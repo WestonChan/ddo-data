@@ -117,7 +117,7 @@ async fn etag_roundtrip_returns_not_modified() {
     let (_, headers, _) = get("/v1/items?q=sireth").await;
     let etag = headers.get(header::ETAG).unwrap().clone();
     let response = app(state())
-        .oneshot(Request::get("/v1/items?q=sireth").header(header::IF_NONE_MATCH, etag).body(Body::empty()).unwrap())
+        .oneshot(Request::get("/v1/items?q=sireth").header(header::IF_NONE_MATCH, etag.clone()).body(Body::empty()).unwrap())
         .await
         .unwrap();
     assert_eq!(response.status(), StatusCode::NOT_MODIFIED);
