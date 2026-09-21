@@ -49,6 +49,17 @@ fn ddl_creates_every_v2_table() {
         "item_augment_slots",
         "item_augment_slot_options",
         "quest_loot",
+        "modifiers",
+        "requirements",
+        "augments",
+        "augment_slots",
+        "augment_bonuses",
+        "set_bonuses",
+        "set_bonus_tiers",
+        "set_bonus_items",
+        "filigrees",
+        "clickies",
+        "item_clickies",
     ] {
         assert!(tables.contains(expected), "missing table {expected}");
     }
@@ -103,6 +114,12 @@ fn bonus_types_include_the_v2_additions() {
         assert!(names.contains(&added), "{added} missing from bonus_types");
     }
     assert_eq!(BonusType::Enhancement.id(), 1);
+    assert_eq!(BonusType::Penalty.id(), 33, "the original 33 ids are stable");
+    assert!(BONUS_TYPES.len() >= 73, "his BonusTypes.xml vocabulary is appended");
+    assert_eq!(BonusType::parse("Feat").map(BonusType::id), Some(48));
+    assert!(BonusType::Destiny.stacks_with_self(), "his 'Always' rule");
+    assert!(!BonusType::Feat.stacks_with_self(), "his 'Highest Only' rule");
+    assert!(BonusType::parse("Not Set").is_none());
     assert!(BonusType::Dodge.stacks_with_self());
     assert!(!BonusType::Enhancement.stacks_with_self());
     assert_eq!(BonusType::parse("Insight"), Some(BonusType::Insight));

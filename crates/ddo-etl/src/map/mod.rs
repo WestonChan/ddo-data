@@ -3,6 +3,7 @@
 pub mod augment_slot;
 pub mod bonus_type;
 pub mod buff;
+pub mod effect;
 pub mod material;
 pub mod placement;
 

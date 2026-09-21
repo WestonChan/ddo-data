@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Augments>
+   
+   
+  <Augment>
+    <Name>Solar Gem of Strength (Heroic)</Name>
+    <Description>+2 Artifact Bonus to Strength
+Drops in: The House of Gems, end chest
+Dinosaur Crisis, optional chest
+Cold Snap, Althea's chest</Description>
+    <MinLevel>1</MinLevel>
+    <Type>Sun</Type>
+    <Icon>HistoryBookWhite</Icon>
+    <Effect>
+      <Type>AbilityBonus</Type>
+      <Bonus>Artifact</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">2</Amount>
+      <Item>Strength</Item>
+    </Effect>
+  </Augment>
+  <Augment>
+    <Name>Lunar Gem of Strength (Heroic)</Name>
+    <Description>+2 Profane Bonus to Strength
+Drops in: Seeds of Decay, end chest
+Rats in a Cage, end chest
+The Proper Authorities, end chest</Description>
+    <MinLevel>1</MinLevel>
+    <Type>Moon</Type>
+    <Icon>HistoryBookWhite</Icon>
+    <Effect>
+      <Type>AbilityBonus</Type>
+      <Bonus>Profane</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">2</Amount>
+      <Item>Strength</Item>
+    </Effect>
+  </Augment>
+  </Augments>

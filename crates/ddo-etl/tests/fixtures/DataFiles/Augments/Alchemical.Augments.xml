@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Augments>
+  
+  <Augment>
+    <Name>Fire I: Combustion</Name>
+    <Description>Combine T0 item with 50 threads and stabilizing compound.</Description>
+    <MinLevel>29</MinLevel>
+    <Type>Legendary Alchemical Tier 1</Type>
+    <Icon>Diamond</Icon>
+    <EffectDescription>Combustion 152: +152 Equipment Bonus to Fire Spell Power.</EffectDescription>
+    <Effect>
+      <Type>SpellPower</Type>
+      <Bonus>Equipment</Bonus>
+      <Item>Fire</Item>
+      <AType>Simple</AType>
+      <Amount size="1">152</Amount>
+    </Effect>
+    <EffectDescription>Fire Lore +21%: Your Fire spells gain a +21% Equipment Bonus to their chance to
+Critical Hit.</EffectDescription>
+    <Effect>
+      <Type>SpellLore</Type>
+      <Bonus>Equipment</Bonus>
+      <Item>Fire</Item>
+      <AType>Simple</AType>
+      <Amount size="1">21</Amount>
+    </Effect>
+    <AddAugment>Legendary Alchemical Tier 2</AddAugment>
+  </Augment>
+  </Augments>

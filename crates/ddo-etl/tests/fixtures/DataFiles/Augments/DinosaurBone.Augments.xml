@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Augments>
+  
+  <Augment>
+    <Name>Voidscale</Name>
+    <Description>+5% Exceptional bonus to Universal Spell Lore</Description>
+    <MinLevel>31</MinLevel>
+    <Type>IoD: Armor: Scale Slot</Type>
+    <Icon>ScaleLightOrange</Icon>
+    <Effect>
+      <Type>UniversalSpellLore</Type>
+      <Bonus>Exceptional</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">5</Amount>
+    </Effect>
+  </Augment>
+  <Augment>
+    <Name>Silverscale</Name>
+    <Description>+56 bonus to each Positive(Competence)/Negative(Profane)/Repair(Enhancement) Amplification</Description>
+    <MinLevel>31</MinLevel>
+    <Type>IoD: Armor: Scale Slot</Type>
+    <Icon>ScaleSilver</Icon>
+    <Effect>
+      <Type>HealingAmplification</Type>
+      <Bonus>Competence</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">56</Amount>
+    </Effect>
+    <Effect>
+      <Type>NegativeHealingAmplification</Type>
+      <Bonus>Profane</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">56</Amount>
+    </Effect>
+    <Effect>
+      <Type>RepairAmplification</Type>
+      <Bonus>Enhancement</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">56</Amount>
+    </Effect>
+  </Augment>
+  </Augments>

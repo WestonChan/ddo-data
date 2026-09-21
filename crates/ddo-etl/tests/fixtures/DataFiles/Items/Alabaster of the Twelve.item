@@ -1,0 +1,21 @@
+<Items>
+  <Item>
+    <NoAutoUpdate/>
+    <Name>Alabaster of the Twelve</Name>
+    <Icon>Trinket_3</Icon>
+    <Description>This fragment of a gemstone is infused with the power of The Twelve.</Description>
+    <DropLocation>The Marketplace, Turn in 10 Planar Shards</DropLocation>
+    <MinLevel>13</MinLevel>
+    <EquipmentSlot>
+      <Trinket/>
+    </EquipmentSlot>
+    <Material>Gem (material)</Material>
+    <Effect>
+      <Type>ItemClickie</Type>
+      <Bonus>Equipment</Bonus>
+      <Item>Cure Serious Wounds, Mass</Item>
+      <AType>SLA</AType>
+      <Amount size="3">14 3 0</Amount>
+    </Effect>
+  </Item>
+</Items>

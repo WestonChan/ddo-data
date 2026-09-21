@@ -33,6 +33,9 @@ impl StatCategory {
 
 /// The stacking class of a bonus. DDO's rule is that bonuses of the same type to the same stat do
 /// not stack unless the type is one of the few that do (see `stacks_with_self`).
+///
+/// Ids 1–33 are the DDO Tools originals; 34 onward were appended from DDOBuilderV2's
+/// `BonusTypes.xml` (2026-09-20), which also supplies the stacking rule. Append, never renumber.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
 pub enum BonusType {
     Enhancement,
@@ -68,6 +71,46 @@ pub enum BonusType {
     FalseLife,
     Legendary,
     Penalty,
+    ActionBoost,
+    ArmorEnhancement,
+    Base,
+    Centered,
+    Circumstance,
+    Class,
+    CombatStyle,
+    Destiny,
+    Divine,
+    Enchantment,
+    ElementalEnergy,
+    ElementalSpellPower,
+    EternalFaith,
+    Epic,
+    Feat,
+    Fortune,
+    GreaterElementalEnergy,
+    GreaterElementalSpellPower,
+    Guild,
+    ImprovedElementalEnergy,
+    ImprovedElementalSpellPower,
+    Inspiration,
+    Keen,
+    LegendaryElementalEnergy,
+    LegendaryElementalSpellPower,
+    LevelUp,
+    Mythic,
+    Pirate,
+    Psionic,
+    Reaper,
+    ShieldEnhancement,
+    SilverFlame,
+    Special,
+    Spooky,
+    Temporary,
+    Unique,
+    Universal,
+    Untyped,
+    WeaponDR,
+    WeaponEnchantment,
 }
 
 impl BonusType {
@@ -105,6 +148,46 @@ impl BonusType {
         Self::FalseLife,
         Self::Legendary,
         Self::Penalty,
+        Self::ActionBoost,
+        Self::ArmorEnhancement,
+        Self::Base,
+        Self::Centered,
+        Self::Circumstance,
+        Self::Class,
+        Self::CombatStyle,
+        Self::Destiny,
+        Self::Divine,
+        Self::Enchantment,
+        Self::ElementalEnergy,
+        Self::ElementalSpellPower,
+        Self::EternalFaith,
+        Self::Epic,
+        Self::Feat,
+        Self::Fortune,
+        Self::GreaterElementalEnergy,
+        Self::GreaterElementalSpellPower,
+        Self::Guild,
+        Self::ImprovedElementalEnergy,
+        Self::ImprovedElementalSpellPower,
+        Self::Inspiration,
+        Self::Keen,
+        Self::LegendaryElementalEnergy,
+        Self::LegendaryElementalSpellPower,
+        Self::LevelUp,
+        Self::Mythic,
+        Self::Pirate,
+        Self::Psionic,
+        Self::Reaper,
+        Self::ShieldEnhancement,
+        Self::SilverFlame,
+        Self::Special,
+        Self::Spooky,
+        Self::Temporary,
+        Self::Unique,
+        Self::Universal,
+        Self::Untyped,
+        Self::WeaponDR,
+        Self::WeaponEnchantment,
     ];
 
     pub const fn id(self) -> i64 {
@@ -142,6 +225,46 @@ impl BonusType {
             Self::FalseLife => 31,
             Self::Legendary => 32,
             Self::Penalty => 33,
+            Self::ActionBoost => 34,
+            Self::ArmorEnhancement => 35,
+            Self::Base => 36,
+            Self::Centered => 37,
+            Self::Circumstance => 38,
+            Self::Class => 39,
+            Self::CombatStyle => 40,
+            Self::Destiny => 41,
+            Self::Divine => 42,
+            Self::Enchantment => 43,
+            Self::ElementalEnergy => 44,
+            Self::ElementalSpellPower => 45,
+            Self::EternalFaith => 46,
+            Self::Epic => 47,
+            Self::Feat => 48,
+            Self::Fortune => 49,
+            Self::GreaterElementalEnergy => 50,
+            Self::GreaterElementalSpellPower => 51,
+            Self::Guild => 52,
+            Self::ImprovedElementalEnergy => 53,
+            Self::ImprovedElementalSpellPower => 54,
+            Self::Inspiration => 55,
+            Self::Keen => 56,
+            Self::LegendaryElementalEnergy => 57,
+            Self::LegendaryElementalSpellPower => 58,
+            Self::LevelUp => 59,
+            Self::Mythic => 60,
+            Self::Pirate => 61,
+            Self::Psionic => 62,
+            Self::Reaper => 63,
+            Self::ShieldEnhancement => 64,
+            Self::SilverFlame => 65,
+            Self::Special => 66,
+            Self::Spooky => 67,
+            Self::Temporary => 68,
+            Self::Unique => 69,
+            Self::Universal => 70,
+            Self::Untyped => 71,
+            Self::WeaponDR => 72,
+            Self::WeaponEnchantment => 73,
         }
     }
 
@@ -180,13 +303,67 @@ impl BonusType {
             Self::FalseLife => "False Life",
             Self::Legendary => "Legendary",
             Self::Penalty => "Penalty",
+            Self::ActionBoost => "Action Boost",
+            Self::ArmorEnhancement => "Armor Enhancement",
+            Self::Base => "Base",
+            Self::Centered => "Centered",
+            Self::Circumstance => "Circumstance",
+            Self::Class => "Class",
+            Self::CombatStyle => "Combat Style",
+            Self::Destiny => "Destiny",
+            Self::Divine => "Divine",
+            Self::Enchantment => "Enchantment",
+            Self::ElementalEnergy => "Elemental Energy",
+            Self::ElementalSpellPower => "Elemental Spell Power",
+            Self::EternalFaith => "Eternal Faith",
+            Self::Epic => "Epic",
+            Self::Feat => "Feat",
+            Self::Fortune => "Fortune",
+            Self::GreaterElementalEnergy => "Greater Elemental Energy",
+            Self::GreaterElementalSpellPower => "Greater Elemental Spell Power",
+            Self::Guild => "Guild",
+            Self::ImprovedElementalEnergy => "Improved Elemental Energy",
+            Self::ImprovedElementalSpellPower => "Improved Elemental Spell Power",
+            Self::Inspiration => "Inspiration",
+            Self::Keen => "Keen",
+            Self::LegendaryElementalEnergy => "Legendary Elemental Energy",
+            Self::LegendaryElementalSpellPower => "Legendary Elemental Spell Power",
+            Self::LevelUp => "Level Up",
+            Self::Mythic => "Mythic",
+            Self::Pirate => "Pirate",
+            Self::Psionic => "Psionic",
+            Self::Reaper => "Reaper",
+            Self::ShieldEnhancement => "Shield Enhancement",
+            Self::SilverFlame => "Silver Flame",
+            Self::Special => "Special",
+            Self::Spooky => "Spooky",
+            Self::Temporary => "Temporary",
+            Self::Unique => "Unique",
+            Self::Universal => "Universal",
+            Self::Untyped => "Untyped",
+            Self::WeaponDR => "Weapon DR",
+            Self::WeaponEnchantment => "Weapon Enchantment",
         }
     }
 
-    /// Whether two bonuses of this type to the same stat add together. Dodge, Stacking and
-    /// Penalty do; everything else takes the highest.
+    /// Whether two bonuses of this type to the same stat add together (his `Always`) rather than
+    /// the highest applying (`Highest Only`).
     pub const fn stacks_with_self(self) -> bool {
-        matches!(self, Self::Dodge | Self::Stacking | Self::Penalty)
+        matches!(
+            self,
+            Self::Dodge
+                | Self::Stacking
+                | Self::Penalty
+                | Self::ArmorEnhancement
+                | Self::Destiny
+                | Self::Mythic
+                | Self::Reaper
+                | Self::ShieldEnhancement
+                | Self::Temporary
+                | Self::Unique
+                | Self::Untyped
+                | Self::WeaponDR
+        )
     }
 
     /// Look a type up by its canonical name.
@@ -459,4 +636,91 @@ impl DamageCategory {
 pub(crate) fn sql_in_list<'a>(names: impl Iterator<Item = &'a str>) -> String {
     let quoted: Vec<String> = names.map(|n| format!("'{n}'")).collect();
     format!("IN ({})", quoted.join(", "))
+}
+
+/// What a `modifiers` row belongs to.
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
+pub enum ModifierSource {
+    Item,
+    Augment,
+    SetBonusTier,
+    Filigree,
+    Clickie,
+    Feat,
+    Enhancement,
+    EnhancementSelection,
+    Spell,
+}
+
+impl ModifierSource {
+    pub const ALL: &'static [ModifierSource] = &[
+        Self::Item,
+        Self::Augment,
+        Self::SetBonusTier,
+        Self::Filigree,
+        Self::Clickie,
+        Self::Feat,
+        Self::Enhancement,
+        Self::EnhancementSelection,
+        Self::Spell,
+    ];
+
+    pub const fn as_str(self) -> &'static str {
+        match self {
+            Self::Item => "item",
+            Self::Augment => "augment",
+            Self::SetBonusTier => "set_bonus_tier",
+            Self::Filigree => "filigree",
+            Self::Clickie => "clickie",
+            Self::Feat => "feat",
+            Self::Enhancement => "enhancement",
+            Self::EnhancementSelection => "enhancement_selection",
+            Self::Spell => "spell",
+        }
+    }
+}
+
+/// What a `requirements` row belongs to: any modifier source, or a modifier itself.
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
+pub enum RequirementOwner {
+    Source(ModifierSource),
+    Modifier,
+    EnhancementTree,
+}
+
+impl RequirementOwner {
+    pub fn as_str(self) -> &'static str {
+        match self {
+            Self::Source(s) => s.as_str(),
+            Self::Modifier => "modifier",
+            Self::EnhancementTree => "enhancement_tree",
+        }
+    }
+
+    pub fn all_names() -> Vec<&'static str> {
+        let mut v: Vec<&'static str> = ModifierSource::ALL.iter().map(|s| s.as_str()).collect();
+        v.push("modifier");
+        v.push("enhancement_tree");
+        v
+    }
+}
+
+/// How the requirements in one `<Requirements>` child group combine.
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
+pub enum RequirementGroup {
+    All,
+    OneOf,
+    NoneOf,
+}
+
+impl RequirementGroup {
+    pub const ALL: &'static [RequirementGroup] = &[Self::All, Self::OneOf, Self::NoneOf];
+
+    pub const fn as_str(self) -> &'static str {
+        match self {
+            Self::All => "all",
+            Self::OneOf => "one_of",
+            Self::NoneOf => "none_of",
+        }
+    }
 }

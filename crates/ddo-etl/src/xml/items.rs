@@ -8,6 +8,8 @@
 //! enumerated every element the 8,779 upstream files use, and a new one should stop the build so
 //! a person decides whether it maps to a column.
 
+use super::effect::Effect;
+use super::requirements::Requirements;
 use super::Empty;
 use anyhow::{bail, Result};
 use serde::de::IgnoredAny;
@@ -39,6 +41,8 @@ struct RawItem {
 }
 
 /// Every element an `<Item>` may contain, named exactly as upstream spells it.
+// A transient parse buffer; the size skew between variants does not matter here.
+#[allow(clippy::large_enum_variant)]
 #[derive(Debug, Deserialize)]
 enum ItemChild {
     Name(String),
@@ -76,7 +80,7 @@ enum ItemChild {
     // Upstream bookkeeping and rarities the schema does not model yet.
     NoAutoUpdate(Empty),
     UserSetsLevel(Empty),
-    Effect(IgnoredAny),
+    Effect(Effect),
     RestrictedSlots(IgnoredAny),
     SlotUpgrade(IgnoredAny),
 }
@@ -114,6 +118,8 @@ pub struct Item {
     pub accepts_sentience: bool,
     pub minor_artifact: bool,
     pub is_greensteel: bool,
+    /// Item-level `<Effect>` elements: clickies, spell-like abilities and the like.
+    pub effects: Vec<Effect>,
 }
 
 impl TryFrom<RawItem> for Item {
@@ -158,9 +164,9 @@ impl TryFrom<RawItem> for Item {
                 ItemChild::IsAcceptsSentience(_) => item.accepts_sentience = true,
                 ItemChild::MinorArtifact(_) => item.minor_artifact = true,
                 ItemChild::IsGreensteel(_) => item.is_greensteel = true,
+                ItemChild::Effect(v) => item.effects.push(v),
                 ItemChild::NoAutoUpdate(_)
                 | ItemChild::UserSetsLevel(_)
-                | ItemChild::Effect(_)
                 | ItemChild::RestrictedSlots(_)
                 | ItemChild::SlotUpgrade(_) => {}
             }
@@ -267,41 +273,15 @@ pub struct AugmentOption {
     pub set_bonus: Vec<String>,
 }
 
-#[derive(Debug, Deserialize)]
-pub struct Requirements {
-    #[serde(rename = "Requirement", default)]
-    pub requirement: Vec<Requirement>,
-    #[serde(rename = "RequiresOneOf", default)]
-    pub requires_one_of: Vec<RequirementGroup>,
-    #[serde(rename = "RequiresNoneOf", default)]
-    pub requires_none_of: Vec<RequirementGroup>,
-}
-
-#[derive(Debug, Deserialize)]
-pub struct RequirementGroup {
-    #[serde(rename = "Requirement", default)]
-    pub requirement: Vec<Requirement>,
-}
-
-#[derive(Debug, Deserialize)]
-pub struct Requirement {
-    #[serde(rename = "Type")]
-    pub kind: String,
-    #[serde(rename = "Item")]
-    pub item: Option<String>,
-    #[serde(rename = "Value")]
-    pub value: Option<String>,
-}
-
 impl Item {
     /// The race restriction, if any: `Race`/`Item` requirements joined, `RaceConstruct` as
     /// "Construct". Restrictions (`NotConstruct`) and feat requirements are not race requirements.
     pub fn race_required(&self) -> Option<String> {
         let reqs = self.requirements.as_ref()?;
-        let all = reqs.requirement.iter().chain(reqs.requires_one_of.iter().flat_map(|g| g.requirement.iter()));
-        let races: Vec<String> = all
+        let races: Vec<String> = reqs
+            .positive()
             .filter_map(|r| match r.kind.as_str() {
-                "Race" => r.item.clone(),
+                "Race" => r.items.first().cloned(),
                 "RaceConstruct" => Some("Construct".to_string()),
                 _ => None,
             })

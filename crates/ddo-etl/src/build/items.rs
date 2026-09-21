@@ -1,156 +1,25 @@
-//! Walk a DDOBuilderV2 `DataFiles` directory and write the database. Rebuilds from scratch every
-//! run: the output is an artifact, not a store that gets patched.
+//! `Items/*.item` → `items` and its satellite tables, plus item-level modifiers and clickies.
 
-use crate::map::augment_slot::decode;
-use crate::map::buff::{BuffMap, Resolved};
+use super::{nonempty, BuildReport, Ctx};
+use crate::map::buff::Resolved;
 use crate::map::material;
 use crate::map::placement::{classify, Placement};
-use crate::xml::items::{parse_item_file, Item};
-use crate::xml::quests::Quest;
-use crate::xml::{item_buffs, patrons, quests};
-use anyhow::{Context, Result};
-use ddo_model::enums::{ArmorType, LootType};
-use ddo_model::{seeds, DatasetVersion, SCHEMA_VERSION};
-use rusqlite::{params, Connection, OptionalExtension, Transaction};
-use std::collections::HashMap;
-use std::path::Path;
-
-#[derive(Debug, Default, Clone, PartialEq, Eq)]
-pub struct BuildReport {
-    pub items_written: usize,
-    pub items_skipped_cosmetic: usize,
-    pub bonuses: usize,
-    pub effects: usize,
-    pub quests: usize,
-    pub quest_loot_links: usize,
-    pub augment_slot_types: usize,
-}
-
-pub fn build(source: &Path, conn: &mut Connection, version: &DatasetVersion) -> Result<BuildReport> {
-    conn.execute_batch(ddo_model::ddl()).context("applying DDL")?;
-    seeds::insert_all(conn).context("inserting seed tables")?;
-
-    let buff_map = BuffMap::load()?;
-    let templates = item_buffs::parse(&source.join("ItemBuffs.xml"))?;
-    let quest_list = quests::parse(&source.join("Quests.xml"))?;
-    let patron_list = patrons::parse(&source.join("Patrons.xml"))?;
-
-    let tx = conn.transaction()?;
-    let mut report = BuildReport::default();
-
-    tx.execute("DELETE FROM schema_version", [])?;
-    tx.execute("INSERT INTO schema_version (version) VALUES (?1)", params![SCHEMA_VERSION])?;
-    tx.execute("DELETE FROM dataset_version", [])?;
-    tx.execute(
-        "INSERT INTO dataset_version (upstream_sha, built_at) VALUES (?1, ?2)",
-        params![version.upstream_sha, version.built_at],
-    )?;
-
-    for p in &patron_list {
-        tx.execute("INSERT OR IGNORE INTO patrons (name) VALUES (?1)", params![p.name.trim()])?;
-    }
-    let quest_index = write_quests(&tx, &quest_list)?;
-    report.quests = quest_index.len();
-
-    let mut ctx =
-        Ctx { tx: &tx, buff_map: &buff_map, templates: &templates, quests: &quest_index, caches: Caches::default() };
-
-    let mut paths: Vec<_> = std::fs::read_dir(source.join("Items"))
-        .with_context(|| format!("listing {}", source.join("Items").display()))?
-        .filter_map(|e| e.ok().map(|e| e.path()))
-        .filter(|p| p.extension().is_some_and(|x| x == "item"))
-        .collect();
-    paths.sort();
-
-    for path in &paths {
-        let file = parse_item_file(path)?;
-        for item in &file.items {
-            let placement = classify(&item.equipment_slot, item.weapon.as_deref(), item.armor.as_deref())
-                .with_context(|| format!("{}", path.display()))?;
-            let Some(placement) = placement else {
-                tx.execute(
-                    "INSERT OR REPLACE INTO excluded_items (name, reason) VALUES (?1, ?2)",
-                    params![item.name.trim(), "cosmetic-only slots"],
-                )?;
-                report.items_skipped_cosmetic += 1;
-                continue;
-            };
-            ctx.write_item(item, &placement, &mut report).with_context(|| format!("{}", path.display()))?;
-            report.items_written += 1;
-        }
-    }
-
-    report.bonuses = ctx.caches.bonuses.len();
-    report.effects = ctx.caches.effects.len();
-    report.augment_slot_types = ctx.caches.slot_types.len();
-    tx.commit()?;
-    Ok(report)
-}
-
-/// Quests by name, longest first, so `DropLocation` matching prefers the most specific name.
-struct QuestIndex {
-    by_length: Vec<(String, i64, bool)>,
-}
-
-impl QuestIndex {
-    fn len(&self) -> usize {
-        self.by_length.len()
-    }
-}
-
-fn write_quests(tx: &Transaction, quests: &[Quest]) -> Result<QuestIndex> {
-    let mut by_length = Vec::with_capacity(quests.len());
-    for q in quests {
-        let pack_id = match &q.adventure_pack {
-            Some(pack) => {
-                tx.execute(
-                    "INSERT OR IGNORE INTO adventure_packs (name, is_free_to_play) VALUES (?1, ?2)",
-                    params![pack, pack == "Free to Play"],
-                )?;
-                Some(tx.query_row("SELECT id FROM adventure_packs WHERE name = ?1", params![pack], |r| {
-                    r.get::<_, i64>(0)
-                })?)
-            }
-            None => None,
-        };
-        let patron_id = match &q.patron {
-            Some(p) => {
-                tx.query_row("SELECT id FROM patrons WHERE name = ?1", params![p], |r| r.get::<_, i64>(0)).optional()?
-            }
-            None => None,
-        };
-        tx.execute(
-            "INSERT OR IGNORE INTO quests (name, pack_id, patron_id, level, epic_level, favor, is_raid) VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7)",
-            params![q.name, pack_id, patron_id, q.levels.first(), q.levels.get(1), q.favor, q.is_raid],
-        )?;
-        let id: i64 = tx.query_row("SELECT id FROM quests WHERE name = ?1", params![q.name], |r| r.get(0))?;
-        by_length.push((q.name.clone(), id, q.is_raid));
-    }
-    by_length.sort_by(|a, b| b.0.len().cmp(&a.0.len()).then_with(|| a.0.cmp(&b.0)));
-    Ok(QuestIndex { by_length })
-}
-
-/// (stat_id, bonus_type_id, value, value2): the identity of a `bonuses` row.
-type BonusKey = (i64, Option<i64>, Option<i64>, Option<i64>);
-
-#[derive(Default)]
-struct Caches {
-    materials: HashMap<String, i64>,
-    slot_types: HashMap<String, i64>,
-    bonuses: HashMap<BonusKey, i64>,
-    effects: HashMap<String, i64>,
-}
-
-struct Ctx<'a> {
-    tx: &'a Transaction<'a>,
-    buff_map: &'a BuffMap,
-    templates: &'a HashMap<String, String>,
-    quests: &'a QuestIndex,
-    caches: Caches,
-}
+use crate::xml::items::Item;
+use anyhow::{bail, Result};
+use ddo_model::enums::{ArmorType, LootType, ModifierSource};
+use rusqlite::params;
 
 impl Ctx<'_> {
-    fn write_item(&mut self, item: &Item, placement: &Placement, report: &mut BuildReport) -> Result<()> {
+    pub(super) fn write_item(&mut self, item: &Item, report: &mut BuildReport) -> Result<()> {
+        let Some(placement) = classify(&item.equipment_slot, item.weapon.as_deref(), item.armor.as_deref())? else {
+            self.tx.execute(
+                "INSERT OR REPLACE INTO excluded_items (name, reason) VALUES (?1, ?2)",
+                params![item.name.trim(), "cosmetic-only slots"],
+            )?;
+            report.items_skipped_cosmetic += 1;
+            return Ok(());
+        };
+        let placement = &placement;
         let mut enhancement_bonus: Option<i64> = None;
         let mut resolved = Vec::with_capacity(item.buffs.len());
         for buff in &item.buffs {
@@ -197,7 +66,7 @@ impl Ctx<'_> {
         }
         if let Some(armor) = item.armor.as_deref() {
             let Some(armor_type) = ArmorType::parse(armor.trim()) else {
-                anyhow::bail!("unknown <Armor> type {armor:?}");
+                bail!("unknown <Armor> type {armor:?}");
             };
             self.write_armor_stats(item_id, item, armor_type)?;
         }
@@ -208,24 +77,7 @@ impl Ctx<'_> {
                 Resolved::Bonus { stat, bonus_type, value, value2 } => {
                     let description =
                         if template.is_empty() { None } else { Some(self.buff_map.describe(template, buff)) };
-                    let key = (stat.id, bonus_type.map(|b| b.id()), value, value2);
-                    let bonus_id = match self.caches.bonuses.get(&key) {
-                        Some(id) => *id,
-                        None => {
-                            let label = match value {
-                                Some(v) if v < 0 => format!("{} {v}", stat.name),
-                                Some(v) => format!("{} +{v}", stat.name),
-                                None => stat.name.to_string(),
-                            };
-                            self.tx.execute(
-                                "INSERT INTO bonuses (name, description, stat_id, bonus_type_id, value, value2) VALUES (?1, ?2, ?3, ?4, ?5, ?6)",
-                                params![label, description, stat.id, key.1, value, value2],
-                            )?;
-                            let id = self.tx.last_insert_rowid();
-                            self.caches.bonuses.insert(key, id);
-                            id
-                        }
-                    };
+                    let bonus_id = self.bonus_id(stat, bonus_type, value, value2, description.as_deref())?;
                     self.tx.execute(
                         "INSERT INTO item_bonuses (item_id, bonus_id, sort_order) VALUES (?1, ?2, ?3)",
                         params![item_id, bonus_id, sort_order as i64],
@@ -276,9 +128,26 @@ impl Ctx<'_> {
             }
         }
 
+        self.write_modifiers(ModifierSource::Item, item_id, &item.effects)?;
+        for (clickie_order, e) in item.effects.iter().filter(|e| e.types[0] == "ItemClickie").enumerate() {
+            let Some(clickie_name) = e.items.first().map(|s| s.trim()) else {
+                bail!("{name}: ItemClickie effect without an <Item>");
+            };
+            // Names not in ItemClickies.xml are spells; the spells stage resolves those.
+            let clickie_id = self.caches.clickies.get(clickie_name).copied();
+            self.tx.execute(
+                "INSERT INTO item_clickies (item_id, sort_order, name, clickie_id) VALUES (?1, ?2, ?3, ?4)",
+                params![item_id, clickie_order as i64, clickie_name, clickie_id],
+            )?;
+        }
+        if let Some(set) = nonempty(item.set_bonus.first().map(String::as_str)) {
+            self.pending_set_items.push((item_id, set.to_string()));
+        }
+
         if let Some(drop) = item.drop_location.as_deref() {
             report.quest_loot_links += self.link_quests(item_id, drop)?;
         }
+        report.items_written += 1;
         Ok(())
     }
 
@@ -381,30 +250,6 @@ impl Ctx<'_> {
             links += 1;
         }
         Ok(links)
-    }
-
-    fn material_id(&mut self, name: &str) -> Result<i64> {
-        if let Some(id) = self.caches.materials.get(name) {
-            return Ok(*id);
-        }
-        self.tx.execute("INSERT INTO item_materials (name) VALUES (?1)", params![name])?;
-        let id = self.tx.last_insert_rowid();
-        self.caches.materials.insert(name.to_string(), id);
-        Ok(id)
-    }
-
-    fn slot_type_id(&mut self, raw: &str) -> Result<i64> {
-        let spec = decode(raw);
-        if let Some(id) = self.caches.slot_types.get(&spec.label) {
-            return Ok(*id);
-        }
-        self.tx.execute(
-            "INSERT INTO augment_slot_types (label, family, variant, qualifier) VALUES (?1, ?2, ?3, ?4)",
-            params![spec.label, spec.family, spec.variant, spec.qualifier],
-        )?;
-        let id = self.tx.last_insert_rowid();
-        self.caches.slot_types.insert(spec.label, id);
-        Ok(id)
     }
 }
 

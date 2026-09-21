@@ -65,9 +65,9 @@ fn parses_armor_with_requirements_and_docent_fields() {
     assert_eq!(it.mithral_body, Some(5));
     assert_eq!(it.adamantine_body, Some(12));
     let reqs = it.requirements.as_ref().unwrap();
-    assert_eq!(reqs.requirement.len(), 1);
-    assert_eq!(reqs.requirement[0].kind, "RaceConstruct");
-    assert_eq!(reqs.requirement[0].item, None);
+    assert_eq!(reqs.groups.len(), 1);
+    assert_eq!(reqs.groups[0].requirements[0].kind, "RaceConstruct");
+    assert!(reqs.groups[0].requirements[0].items.is_empty());
     // Three EnergyResistance buffs carry their element in <Item>.
     let elements: Vec<_> =
         it.buffs.iter().filter(|b| b.kind == "EnergyResistance").map(|b| b.item.clone().unwrap()).collect();
@@ -96,7 +96,7 @@ fn parses_every_fixture_item() {
         parse_item_file(&path).unwrap_or_else(|e| panic!("{}: {e}", path.display()));
         n += 1;
     }
-    assert_eq!(n, 13);
+    assert_eq!(n, 14);
 }
 
 #[test]

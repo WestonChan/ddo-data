@@ -2,10 +2,15 @@
 //! names so a diff against a new upstream commit reads naturally; only Rust-keyword clashes
 //! (`Type` → `kind`) are renamed.
 
+pub mod augments;
+pub mod clickies;
+pub mod effect;
 pub mod item_buffs;
 pub mod items;
 pub mod patrons;
 pub mod quests;
+pub mod requirements;
+pub mod set_bonuses;
 
 use anyhow::{Context, Result};
 use serde::de::DeserializeOwned;

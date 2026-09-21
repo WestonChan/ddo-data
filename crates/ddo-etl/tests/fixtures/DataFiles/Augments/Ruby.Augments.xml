@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Augments>
+   <Augment>
+      <Name>Ruby of Acid Damage</Name>
+      <Description>You deal an extra [value]d6 Acid damage on attacks</Description>
+      <Type>Red</Type>
+      <Type>Purple</Type>
+      <Type>Orange</Type>
+      <Icon>Ruby</Icon>
+      <ChooseLevel />
+      <Levels size="10">1 4 8 12 16 20 24 28 32 36</Levels>
+      <LevelValue size="10">1 2 3 4 5 6 7 8 9 10</LevelValue>
+      <Effect>
+         <Type>WeaponOtherDamageBonus</Type>
+         <Bonus>Enhancement</Bonus>
+         <Dice>
+            <Number size="1">2</Number>
+            <Sides size="1">6</Sides>
+            <Damage>Acid</Damage>
+         </Dice>
+         <Item>All</Item>
+         <IsItemSpecific />
+         <AType>NotNeeded</AType>
+      </Effect>
+      <Effect>
+         <Type>WeaponOtherDamageBonusCritical</Type>
+         <Bonus>Enhancement</Bonus>
+         <Dice>
+            <Number size="1">2</Number>
+            <Sides size="1">6</Sides>
+            <Damage>Acid</Damage>
+         </Dice>
+         <Item>All</Item>
+         <IsItemSpecific />
+         <AType>NotNeeded</AType>
+      </Effect>
+   </Augment>
+   </Augments>

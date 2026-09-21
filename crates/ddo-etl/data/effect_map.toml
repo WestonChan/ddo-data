@@ -1,0 +1,96 @@
+# How DDOBuilderV2's <Effect> vocabulary maps onto DDO Tools stats, for deriving `bonuses` rows.
+#
+# Only an effect that is a plain number on a stat derives a bonus: AType Simple, one Type, one
+# integral Amount. Everything else lives only in `modifiers`, faithfully, so an effect type with no
+# entry here is NOT an error — the build report merely counts it.
+#
+#   [fixed]            Type -> stat, whatever <Item> says
+#   [by_item]          Type -> template over each <Item>; a template naming no stat is skipped
+#   [by_item_default]  Type -> stat used when <Item> is absent or "All"
+#   [item_aliases]     <Item> spellings that differ from the word our stat names use
+#   [bonus_type_aliases]  <Bonus> spellings; an empty value means NULL
+
+[fixed]
+PRR = "Physical Resistance Rating"
+MRR = "Magical Resistance Rating"
+MRRCap = "Magical Resistance Rating Cap"
+ACBonus = "Armor Class"
+NaturalArmor = "Armor Class"
+ACPercent = "Armor Class Percentage"
+Hitpoints = "Hit Points"
+FalseLife = "Hit Points"
+HitpointsPercent = "Maximum Hit Points"
+SpellPoints = "Spell Points"
+UniversalSpellPower = "Universal Spell Power"
+UniversalSpellLore = "Universal Spell Lore"
+UniversalSpellCriticalDamage = "Universal Spell Critical Damage"
+SpellPenetrationBonus = "Spell Penetration"
+MeleePower = "Melee Power"
+RangedPower = "Ranged Power"
+Doublestrike = "Doublestrike"
+Doubleshot = "Doubleshot"
+DodgeBonus = "Dodge"
+DodgeCapBonus = "Dodge Cap"
+Fortification = "Fortification"
+FortificationBypass = "Fortification Bypass"
+HealingAmplification = "Healing Amplification"
+NegativeHealingAmplification = "Negative Healing Amplification"
+RepairAmplification = "Repair Amplification"
+SneakAttackDice = "Sneak Attack Dice"
+SneakAttackAttack = "Sneak Attack Hit"
+SneakAttackDamage = "Sneak Attack Damage"
+ImbueDice = "Imbue Dice"
+MovementSpeed = "Movement Speed"
+Strikethrough = "Strikethrough"
+HelplessDamage = "Helpless Damage"
+ThreatBonusMelee = "Melee Threat Generation"
+SpellResistance = "Spell Resistance"
+MaxDexBonus = "Max Dex Bonus (Armor)"
+Weapon_CriticalRange = "Critical Threat Range"
+Weapon_CriticalMultiplier = "Critical Multiplier"
+Weapon_CriticalMultiplier19To20 = "Critical Multiplier (19-20)"
+Weapon_Alacrity = "Attack Speed"
+OffHandAttackBonus = "Offhand Strike Chance"
+SongCount = "Bard Songs"
+KiPassive = "Ki"
+EldritchBlastD6 = "Eldritch Blast Dice"
+UnconsciousRange = "Unconsciousness Range"
+MaxCasterLevel = "Maximum Caster Level"
+CasterLevel = "Caster Level"
+
+[by_item]
+AbilityBonus = "{item}"
+SkillBonus = "{item}"
+SpellPower = "{item} Spell Power"
+SpellLore = "{item} Spell Lore"
+SpellCriticalDamage = "{item} Spell Critical Damage"
+SpellDC = "{item} Spell Focus"
+SaveBonus = "{item} Save"
+TacticalDC = "{item} DC"
+EnergyResistance = "{item} Resistance"
+EnergyAbsorbance = "{item} Absorption"
+
+[by_item_default]
+SpellPower = "Universal Spell Power"
+SpellLore = "Universal Spell Lore"
+SpellCriticalDamage = "Universal Spell Critical Damage"
+SpellDC = "Spell DCs"
+SaveBonus = "Saving Throws"
+TacticalDC = "Tactics"
+EnergyResistance = "Elemental Resistance"
+Weapon_Attack = "Attack Bonus"
+Weapon_Damage = "Damage Bonus"
+
+[item_aliases]
+"Light/Alignment" = "Light"
+Lawful = "Law"
+Chaotic = "Chaos"
+Electricity = "Electric"
+Traps = "Trap"
+General = "Tactics"
+"Rune Arm" = "Rune Arm"
+
+[bonus_type_aliases]
+Insightful = "Insight"
+"Not Set" = ""
+"Not Equipment" = ""

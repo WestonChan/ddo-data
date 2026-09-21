@@ -1,0 +1,138 @@
+<?xml version='1.0' encoding='utf-8'?>
+<SetBonuses>
+  <SetBonus>
+    <Type>Inevitable Balance</Type>
+    <Icon>InevitableBalance</Icon>
+    <Buff>
+      <EquippedCount>2</EquippedCount>
+      <Description>+5 Melee Power, 5% Doublestrike, Your Sneak Attacks do additional Bane damage</Description>
+      <Effect>
+        <Type>MeleePower</Type>
+        <Type>Doublestrike</Type>
+        <Bonus>Stacking</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">5</Amount>
+      </Effect>
+    </Buff>
+  </SetBonus>
+  <SetBonus>
+    <Type>Eminence of Winter</Type>
+    <Icon>EminenceOfWinter</Icon>
+    <Buff>
+      <EquippedCount>2</EquippedCount>
+      <Description>+30 Artifact bonus to Physical Resistance Rating</Description>
+      <Effect>
+        <Type>PRR</Type>
+        <Bonus>Artifact</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">30</Amount>
+      </Effect>
+    </Buff>
+    <Buff>
+      <EquippedCount>3</EquippedCount>
+      <Description>+30 Artifact bonus to Healing, Repair, and Negative Amplification</Description>
+      <Effect>
+        <Type>HealingAmplification</Type>
+        <Type>RepairAmplification</Type>
+        <Type>NegativeHealingAmplification</Type>
+        <Bonus>Artifact</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">30</Amount>
+      </Effect>
+    </Buff>
+    <Buff>
+      <EquippedCount>4</EquippedCount>
+      <Description>+10% Legendary bonus to maximum hitpoints</Description>
+      <Effect>
+        <Type>HitpointsPercent</Type>
+        <Bonus>Legendary</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">10</Amount>
+      </Effect>
+    </Buff>
+    <Buff>
+      <EquippedCount>5</EquippedCount>
+      <Description>+100% Artifact bonus to Threat generation</Description>
+      <Effect>
+        <Type>ThreatBonusMelee</Type>
+        <Type>ThreatBonusRanged</Type>
+        <Type>ThreatBonusSpell</Type>
+        <Bonus>Artifact</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">100</Amount>
+      </Effect>
+    </Buff>
+    <Buff>
+      <EquippedCount>6</EquippedCount>
+      <Description>+3 Artifact bonus to Constitution</Description>
+      <Effect>
+        <Type>AbilityBonus</Type>
+        <Bonus>Artifact</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">3</Amount>
+        <Item>Constitution</Item>
+      </Effect>
+    </Buff>
+    <Buff>
+      <EquippedCount>7</EquippedCount>
+      <Description>+15% Artifact bonus to Armor Class</Description>
+      <Effect>
+        <Type>ACPercent</Type>
+        <Bonus>Artifact</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">15</Amount>
+      </Effect>
+    </Buff>
+  </SetBonus>
+  
+  <SetBonus>
+    <Type>Kundarak Delving Equipment</Type>
+    <Icon>Kundarak</Icon>
+    <Buff>
+      <EquippedCount>3</EquippedCount>
+      <Description>+1 Artifact bonus to Sneak Attack Dice</Description>
+      <Effect>
+        <Type>SneakAttackDice</Type>
+        <Bonus>Artifact</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+    </Buff>
+    <Buff>
+      <EquippedCount>3</EquippedCount>
+      <Description>+5% Artifact bonus to Helplessness Damage</Description>
+      <Effect>
+        <Type>HelplessDamage</Type>
+        <Bonus>Artifact</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">5</Amount>
+      </Effect>
+    </Buff>
+    <Buff>
+      <EquippedCount>3</EquippedCount>
+      <Description>+5% Artifact bonus to Doublestrike and Doubleshot</Description>
+      <Effect>
+        <Type>Doublestrike</Type>
+        <Type>Doubleshot</Type>
+        <Bonus>Artifact</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">5</Amount>
+      </Effect>
+    </Buff>
+  </SetBonus>
+  <SetBonus>
+    <Type>Perfect Silence</Type>
+    <Icon>ColorlessRaidItemEssence</Icon>
+    <IgnoreForParse />
+    <Buff>
+      <EquippedCount>3</EquippedCount>
+      <Description>+3 Artifact Bonus to Sneak Attack Dice.</Description>
+      <Effect>
+        <Type>SneakAttackDice</Type>
+        <Bonus>Artifact</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">3</Amount>
+      </Effect>
+    </Buff>
+  </SetBonus>
+  </SetBonuses>

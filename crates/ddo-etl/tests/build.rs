@@ -32,9 +32,9 @@ fn item_id(conn: &Connection, name: &str) -> i64 {
 #[test]
 fn builds_items_and_skips_cosmetics() {
     let (conn, report) = built();
-    assert_eq!(report.items_written, 12);
+    assert_eq!(report.items_written, 13);
     assert_eq!(report.items_skipped_cosmetic, 1);
-    assert_eq!(count(&conn, "SELECT COUNT(*) FROM items"), 12);
+    assert_eq!(count(&conn, "SELECT COUNT(*) FROM items"), 13);
     assert_eq!(count(&conn, "SELECT COUNT(*) FROM items WHERE name = '17th Anniversary Dark Helm'"), 0);
     let reason: String = conn
         .query_row("SELECT reason FROM excluded_items WHERE name = '17th Anniversary Dark Helm'", [], |r| r.get(0))
@@ -272,6 +272,177 @@ fn diff_reports_coverage_against_a_legacy_database() {
     assert_eq!(report.matched, 3);
     assert_eq!(report.only_legacy, vec!["Something Only The Wiki Had".to_string()]);
     assert_eq!(report.excluded_by_design, vec!["17th Anniversary Dark Helm".to_string()], "cosmetics are not gaps");
-    assert_eq!(report.only_new.len(), 9);
+    assert_eq!(report.only_new.len(), 10);
     assert!((report.coverage() - 0.75).abs() < 1e-9);
+}
+
+#[test]
+fn writes_augments_with_slots_bonuses_and_modifiers() {
+    let (conn, report) = built();
+    assert_eq!(report.augments, 7);
+    let ruby: i64 =
+        conn.query_row("SELECT id FROM augments WHERE name = 'Ruby of Acid Damage'", [], |r| r.get(0)).unwrap();
+    let (family, choose, levels, values): (String, bool, String, String) = conn
+        .query_row(
+            "SELECT family, choose_level, levels, level_values FROM augments WHERE id = ?1",
+            params![ruby],
+            |r| Ok((r.get(0)?, r.get(1)?, r.get(2)?, r.get(3)?)),
+        )
+        .unwrap();
+    assert_eq!(family, "Ruby");
+    assert!(choose);
+    assert_eq!(levels, "[1,4,8,12,16,20,24,28,32,36]");
+    assert_eq!(values, "[1,2,3,4,5,6,7,8,9,10]");
+    let slots: Vec<String> = conn
+        .prepare("SELECT t.label FROM augment_slots s JOIN augment_slot_types t ON t.id = s.slot_id WHERE s.augment_id = ?1 ORDER BY t.label")
+        .unwrap()
+        .query_map(params![ruby], |r| r.get(0))
+        .unwrap()
+        .map(Result::unwrap)
+        .collect();
+    assert_eq!(slots, vec!["orange", "purple", "red"]);
+    // Dice-based effects are modifiers, not bonuses.
+    assert_eq!(count(&conn, &format!("SELECT COUNT(*) FROM augment_bonuses WHERE augment_id = {ruby}")), 0);
+    let (n, dmg, num): (i64, String, String) = conn
+        .query_row(
+            "SELECT COUNT(*), MIN(dice_damage), MIN(dice_number) FROM modifiers WHERE source_kind = 'augment' AND source_id = ?1",
+            params![ruby],
+            |r| Ok((r.get(0)?, r.get(1)?, r.get(2)?)),
+        )
+        .unwrap();
+    assert_eq!((n, dmg.as_str(), num.as_str()), (2, "Acid", "[2]"));
+
+    let silver: i64 = conn.query_row("SELECT id FROM augments WHERE name = 'Silverscale'", [], |r| r.get(0)).unwrap();
+    let bonuses: Vec<(String, String)> = conn
+        .prepare(
+            "SELECT b.name, bt.name FROM augment_bonuses ab JOIN bonuses b ON b.id = ab.bonus_id JOIN bonus_types bt ON bt.id = b.bonus_type_id
+              WHERE ab.augment_id = ?1 ORDER BY ab.sort_order",
+        )
+        .unwrap()
+        .query_map(params![silver], |r| Ok((r.get(0)?, r.get(1)?)))
+        .unwrap()
+        .map(Result::unwrap)
+        .collect();
+    assert_eq!(
+        bonuses,
+        vec![
+            ("Healing Amplification +56".to_string(), "Competence".to_string()),
+            ("Negative Healing Amplification +56".to_string(), "Profane".to_string()),
+            ("Repair Amplification +56".to_string(), "Enhancement".to_string()),
+        ]
+    );
+    let label: String = conn
+        .query_row(
+            "SELECT t.label FROM augment_slots s JOIN augment_slot_types t ON t.id = s.slot_id WHERE s.augment_id = ?1",
+            params![silver],
+            |r| r.get(0),
+        )
+        .unwrap();
+    assert_eq!(label, "isle of dread: scale (armor)");
+
+    let (adds, slot, desc): (String, String, String) = conn
+        .query_row(
+            "SELECT a.adds_augment, t.label, a.effect_description FROM augments a JOIN augment_slots s ON s.augment_id = a.id JOIN augment_slot_types t ON t.id = s.slot_id WHERE a.name = 'Fire I: Combustion'",
+            [],
+            |r| Ok((r.get(0)?, r.get(1)?, r.get(2)?)),
+        )
+        .unwrap();
+    assert_eq!(adds, "Legendary Alchemical Tier 2");
+    assert_eq!(slot, "crafting: legendary alchemical tier 1");
+    assert!(desc.starts_with("Combustion 152") && desc.contains("Fire Lore +21%"), "{desc}");
+    let fire: Vec<String> = conn
+        .prepare("SELECT b.name FROM augment_bonuses ab JOIN bonuses b ON b.id = ab.bonus_id JOIN augments a ON a.id = ab.augment_id WHERE a.name = 'Fire I: Combustion' ORDER BY ab.sort_order")
+        .unwrap()
+        .query_map([], |r| r.get(0))
+        .unwrap()
+        .map(Result::unwrap)
+        .collect();
+    assert_eq!(fire, vec!["Fire Spell Power +152", "Fire Spell Lore +21"]);
+
+    let (suppress, set): (bool, String) = conn
+        .query_row("SELECT suppress_set_bonus, set_bonus FROM augments WHERE name = 'Perfect Silence'", [], |r| {
+            Ok((r.get(0)?, r.get(1)?))
+        })
+        .unwrap();
+    assert!(suppress);
+    assert_eq!(set, "Perfect Silence");
+}
+
+#[test]
+fn writes_sets_filigrees_and_their_items() {
+    let (conn, report) = built();
+    assert_eq!(report.set_bonuses, 5, "four gear sets and one filigree set");
+    let (icon, filigree): (String, bool) = conn
+        .query_row("SELECT icon, is_filigree_set FROM set_bonuses WHERE name = 'The Inevitable Grave'", [], |r| {
+            Ok((r.get(0)?, r.get(1)?))
+        })
+        .unwrap();
+    assert!(!icon.is_empty());
+    assert!(filigree);
+    let winter: i64 =
+        conn.query_row("SELECT id FROM set_bonuses WHERE name = 'Eminence of Winter'", [], |r| r.get(0)).unwrap();
+    let tiers: Vec<(i64, String)> = conn
+        .prepare("SELECT equipped_count, description FROM set_bonus_tiers WHERE set_id = ?1 ORDER BY equipped_count")
+        .unwrap()
+        .query_map(params![winter], |r| Ok((r.get(0)?, r.get(1)?)))
+        .unwrap()
+        .map(Result::unwrap)
+        .collect();
+    assert!(!tiers.is_empty());
+    assert!(tiers.iter().all(|(n, _)| *n >= 2));
+    let tier_mods = count(&conn, &format!("SELECT COUNT(*) FROM modifiers m JOIN set_bonus_tiers t ON t.id = m.source_id WHERE m.source_kind = 'set_bonus_tier' AND t.set_id = {winter}"));
+    assert!(tier_mods >= 1);
+    let members: Vec<String> = conn
+        .prepare("SELECT i.name FROM set_bonus_items sbi JOIN items i ON i.id = sbi.item_id WHERE sbi.set_id = ?1")
+        .unwrap()
+        .query_map(params![winter], |r| r.get(0))
+        .unwrap()
+        .map(Result::unwrap)
+        .collect();
+    assert_eq!(members, vec!["Legendary Cloak of Winter"]);
+
+    assert_eq!(count(&conn, "SELECT COUNT(*) FROM filigrees"), 4);
+    let (set_name, menu): (String, String) = conn
+        .query_row("SELECT s.name, f.menu FROM filigrees f JOIN set_bonuses s ON s.id = f.set_id LIMIT 1", [], |r| {
+            Ok((r.get(0)?, r.get(1)?))
+        })
+        .unwrap();
+    assert_eq!(set_name, "The Inevitable Grave");
+    assert!(!menu.is_empty());
+    assert!(
+        count(&conn, "SELECT COUNT(*) FROM modifiers WHERE source_kind = 'filigree' AND is_rare = 1") >= 1,
+        "rare filigree bonuses are flagged"
+    );
+}
+
+#[test]
+fn writes_clickies_and_item_level_effects() {
+    let (conn, report) = built();
+    assert_eq!(report.clickies, 2);
+    let alabaster = item_id(&conn, "Alabaster of the Twelve");
+    let name: String = conn
+        .query_row(
+            "SELECT c.name FROM item_clickies ic JOIN clickies c ON c.id = ic.clickie_id WHERE ic.item_id = ?1",
+            params![alabaster],
+            |r| r.get(0),
+        )
+        .unwrap();
+    assert_eq!(name, "Cure Serious Wounds, Mass");
+    let kinds: Vec<String> = conn
+        .prepare("SELECT effect_type FROM modifiers WHERE source_kind = 'item' AND source_id = ?1 ORDER BY sort_order")
+        .unwrap()
+        .query_map(params![alabaster], |r| r.get(0))
+        .unwrap()
+        .map(Result::unwrap)
+        .collect();
+    assert!(kinds.contains(&"ItemClickie".to_string()), "{kinds:?}");
+    let rune_arm = item_id(&conn, "Acid Rune Arm");
+    let (stored, resolved): (String, Option<i64>) = conn
+        .query_row("SELECT name, clickie_id FROM item_clickies WHERE item_id = ?1", params![rune_arm], |r| {
+            Ok((r.get(0)?, r.get(1)?))
+        })
+        .unwrap();
+    assert_eq!(stored, "Acid Shot");
+    assert!(resolved.is_some(), "a name ItemClickies.xml defines resolves immediately");
+    assert!(report.modifiers > 20);
 }

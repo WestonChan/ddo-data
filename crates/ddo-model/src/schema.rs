@@ -3,7 +3,9 @@
 //!
 //! Column comments name the DDOBuilderV2 element a value comes from (`<Name>`), or `computed`.
 
-use crate::enums::{sql_in_list, ArmorType, Handedness, ItemCategory, LootType};
+use crate::enums::{
+    sql_in_list, ArmorType, Handedness, ItemCategory, LootType, ModifierSource, RequirementGroup, RequirementOwner,
+};
 use std::sync::LazyLock;
 
 /// Bumped whenever the DDL changes shape. Stored in `schema_version`.
@@ -14,6 +16,9 @@ static DDL_TEXT: LazyLock<String> = LazyLock::new(|| {
     let handedness = sql_in_list(Handedness::ALL.iter().map(|h| h.as_str()));
     let armor_type = sql_in_list(ArmorType::ALL.iter().map(|a| a.as_str()));
     let loot_type = sql_in_list(LootType::ALL.iter().map(|l| l.as_str()));
+    let modifier_source = sql_in_list(ModifierSource::ALL.iter().map(|s| s.as_str()));
+    let requirement_owner = sql_in_list(RequirementOwner::all_names().into_iter());
+    let requirement_group = sql_in_list(RequirementGroup::ALL.iter().map(|g| g.as_str()));
     format!(
         r#"
 PRAGMA foreign_keys = ON;
@@ -239,6 +244,145 @@ CREATE TABLE IF NOT EXISTS quest_loot (
     PRIMARY KEY (quest_id, item_id)
 );
 CREATE INDEX IF NOT EXISTS idx_quest_loot_item ON quest_loot(item_id);
+
+-- Modifiers and requirements: the two grammars every family shares ---------------
+--
+-- A modifier is one upstream <Effect>, stored faithfully: the engine (Phases 6–8) reads these.
+-- `bonuses` rows are derived from the simple ones for display; see the V3 roadmap entry.
+CREATE TABLE IF NOT EXISTS modifiers (
+    id                   INTEGER PRIMARY KEY,
+    source_kind          TEXT    NOT NULL CHECK (source_kind {modifier_source}),
+    source_id            INTEGER NOT NULL,
+    sort_order           INTEGER NOT NULL,             -- <Effect> position within the source
+    effect_type          TEXT    NOT NULL,             -- first <Type>
+    extra_types          TEXT,                         -- JSON array: further <Type> elements
+    bonus                TEXT,                         -- <Bonus> as written
+    bonus_type_id        INTEGER REFERENCES bonus_types(id),  -- <Bonus> mapped onto bonus_types
+    amount_type          TEXT,                         -- <AType>: Simple, Stacks, TotalLevel, …
+    amounts              TEXT,                         -- JSON array of numbers: <Amount>
+    targets              TEXT,                         -- JSON array: <Item> elements
+    value                TEXT,                         -- <Value>, e.g. a DR material
+    dice_number          TEXT,                         -- <Dice><Number>, a vector like amounts
+    dice_sides           TEXT,                         -- <Dice><Sides>
+    dice_bonus           TEXT,                         -- <Dice><Bonus>
+    dice_damage          TEXT,                         -- <Dice><Damage>
+    damage               TEXT,                         -- <Damage>
+    percent              INTEGER NOT NULL DEFAULT 0 CHECK (percent IN (0, 1)),
+    rank                 INTEGER,                      -- <Rank>
+    cap                  TEXT,                         -- <Cap>
+    stack_source         TEXT,                         -- <StackSource>
+    display_name         TEXT,                         -- <DisplayName>
+    apply_as_item_effect INTEGER NOT NULL DEFAULT 0 CHECK (apply_as_item_effect IN (0, 1)),
+    is_item_specific     INTEGER NOT NULL DEFAULT 0 CHECK (is_item_specific IN (0, 1)),
+    is_rare              INTEGER NOT NULL DEFAULT 0 CHECK (is_rare IN (0, 1))  -- filigree <Rare/>
+);
+CREATE INDEX IF NOT EXISTS idx_modifiers_source ON modifiers(source_kind, source_id);
+CREATE INDEX IF NOT EXISTS idx_modifiers_type ON modifiers(effect_type);
+
+CREATE TABLE IF NOT EXISTS requirements (
+    id          INTEGER PRIMARY KEY,
+    owner_kind  TEXT    NOT NULL CHECK (owner_kind {requirement_owner}),
+    owner_id    INTEGER NOT NULL,
+    group_kind  TEXT    NOT NULL CHECK (group_kind {requirement_group}),  -- Requirement / RequiresOneOf / RequiresNoneOf
+    group_index INTEGER NOT NULL,                      -- which <RequiresOneOf>/<RequiresNoneOf> block
+    sort_order  INTEGER NOT NULL,
+    req_type    TEXT    NOT NULL,                      -- <Type>: Level, Feat, Race, Stance, …
+    items       TEXT,                                  -- JSON array: <Item> elements
+    value       TEXT                                   -- <Value>
+);
+CREATE INDEX IF NOT EXISTS idx_requirements_owner ON requirements(owner_kind, owner_id);
+
+-- Augments ------------------------------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS augments (
+    id                 INTEGER PRIMARY KEY,
+    name               TEXT    NOT NULL,               -- <Name>
+    family             TEXT    NOT NULL,               -- source file stem: 'Ruby', 'Cannith and random item', …
+    description        TEXT,                           -- <Description>
+    effect_description TEXT,                           -- <EffectDescription>, joined
+    min_level          INTEGER,                        -- <MinLevel>
+    icon               TEXT,                           -- <Icon>
+    choose_level       INTEGER NOT NULL DEFAULT 0 CHECK (choose_level IN (0, 1)),  -- <ChooseLevel/>
+    levels             TEXT,                           -- JSON array: <Levels>
+    level_values       TEXT,                           -- JSON array: <LevelValue>
+    level_values2      TEXT,                           -- JSON array: <LevelValue2>
+    dual_values        INTEGER NOT NULL DEFAULT 0 CHECK (dual_values IN (0, 1)),
+    enter_value        INTEGER NOT NULL DEFAULT 0 CHECK (enter_value IN (0, 1)),
+    suppress_set_bonus INTEGER NOT NULL DEFAULT 0 CHECK (suppress_set_bonus IN (0, 1)),
+    set_bonus          TEXT,                           -- <SetBonus>
+    adds_augment       TEXT,                           -- <AddAugment>: slot type this augment opens next
+    grants_augment     TEXT,                           -- <GrantAugment>: colour slot this augment adds
+    weapon_class       TEXT                            -- <WeaponClass>
+);
+-- Names repeat within a family (the same "Use Magic Device" exists for several slot sets), so
+-- the identity is the row, not the name.
+CREATE INDEX IF NOT EXISTS idx_augments_name ON augments(name);
+
+CREATE TABLE IF NOT EXISTS augment_slots (
+    augment_id INTEGER NOT NULL REFERENCES augments(id) ON DELETE CASCADE,
+    slot_id    INTEGER NOT NULL REFERENCES augment_slot_types(id),  -- each <Type>
+    PRIMARY KEY (augment_id, slot_id)
+);
+CREATE INDEX IF NOT EXISTS idx_augment_slots_slot ON augment_slots(slot_id);
+
+CREATE TABLE IF NOT EXISTS augment_bonuses (
+    augment_id INTEGER NOT NULL REFERENCES augments(id) ON DELETE CASCADE,
+    bonus_id   INTEGER NOT NULL REFERENCES bonuses(id),
+    sort_order INTEGER NOT NULL,
+    PRIMARY KEY (augment_id, sort_order)
+);
+
+-- Sets and filigrees ------------------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS set_bonuses (
+    id              INTEGER PRIMARY KEY,
+    name            TEXT    NOT NULL UNIQUE,           -- <SetBonus><Type>
+    icon            TEXT,                              -- <Icon>
+    is_filigree_set INTEGER NOT NULL DEFAULT 0 CHECK (is_filigree_set IN (0, 1))
+);
+
+CREATE TABLE IF NOT EXISTS set_bonus_tiers (
+    id             INTEGER PRIMARY KEY,
+    set_id         INTEGER NOT NULL REFERENCES set_bonuses(id) ON DELETE CASCADE,
+    equipped_count INTEGER NOT NULL,                   -- <Buff><EquippedCount>
+    description    TEXT,                               -- <Buff><Description>
+    UNIQUE (set_id, equipped_count)
+);
+
+CREATE TABLE IF NOT EXISTS set_bonus_items (
+    set_id  INTEGER NOT NULL REFERENCES set_bonuses(id) ON DELETE CASCADE,
+    item_id INTEGER NOT NULL REFERENCES items(id) ON DELETE CASCADE,
+    PRIMARY KEY (set_id, item_id)
+);
+
+CREATE TABLE IF NOT EXISTS filigrees (
+    id          INTEGER PRIMARY KEY,
+    name        TEXT    NOT NULL UNIQUE,               -- <Filigree><Name>
+    description TEXT,                                  -- <Description>
+    icon        TEXT,                                  -- <Icon>
+    menu        TEXT,                                  -- <Menu>
+    set_id      INTEGER REFERENCES set_bonuses(id)     -- <SetBonus>
+);
+
+-- Clickies ------------------------------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS clickies (
+    id          INTEGER PRIMARY KEY,
+    name        TEXT    NOT NULL UNIQUE,               -- ItemClickies.xml <Spell><Name>
+    description TEXT,
+    icon        TEXT,
+    school      TEXT
+);
+
+-- An item's clickable ability by name. Most names are ItemClickies.xml entries (`clickie_id`);
+-- the rest are real spells and resolve to `spell_id` once the spells stage lands.
+CREATE TABLE IF NOT EXISTS item_clickies (
+    item_id    INTEGER NOT NULL REFERENCES items(id) ON DELETE CASCADE,
+    sort_order INTEGER NOT NULL,
+    name       TEXT    NOT NULL,                      -- <Effect><Item> of the ItemClickie effect
+    clickie_id INTEGER REFERENCES clickies(id),
+    PRIMARY KEY (item_id, sort_order)
+);
 "#
     )
 });
