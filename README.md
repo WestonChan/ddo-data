@@ -52,7 +52,8 @@ cargo run -p ddo-etl -- build --source upstream/Output/DataFiles --out ddo.db
 | `cargo fmt --all --check` | Formatting check, as CI runs it |
 | `cargo run -p ddo-etl -- build --source <DataFiles> --out ddo.db` | Build the game database |
 | `cargo run -p ddo-etl -- diff --db ddo.db --legacy <old ddo.db>` | Compare item coverage against a previous database |
-| `DDO_DB_PATH=ddo.db cargo run -p ddo-api` | Serve the API on http://localhost:8080 (docs at `/docs`, spec at `/openapi.json`) |
+| `cargo run -p ddo-etl -- icons --source <DataFiles> --out icons` | Flatten upstream's image folders for the API to serve |
+| `DDO_DB_PATH=ddo.db ICONS_DIR=icons cargo run -p ddo-api` | Serve the API on http://localhost:8080 (docs at `/docs`, spec at `/openapi.json`) |
 
 ## API
 
@@ -74,14 +75,21 @@ download the whole database once from `/v1/dump.sqlite` rather than paging the l
 | `/v1/spells`, `/v1/spells/{id}`, `/v1/clickies` | Spells and item clickies |
 | `/v1/stats`, `/v1/bonus-types`, … | Reference vocabularies |
 | `/v1/dump.sqlite` | The whole database |
+| `/icons/{family}/{Name}.png` | Icons; `family` is `items`, `augments`, `feats`, `enhancements`, `spells`, `classes`, `filigrees`, `sets`, `sentient-gems` or `ui`, and `Name` is the row's `icon` column |
 | `/docs`, `/openapi.json` | Interactive documentation and the OpenAPI 3.1 spec |
 
 ## Deployment
 
-A scheduled GitHub Action pulls DDOBuilderV2, runs the ETL, validates the result, and deploys the
-API image to Fly.io (`fly.toml`, `Dockerfile`). The database is baked into the image, so every
-deploy is an immutable dataset and Fly's release history doubles as the dataset history. The
-machine suspends between requests and resumes on the next one.
+`.github/workflows/deploy.yml` runs weekly and on demand. It sparse-clones DDOBuilderV2, skips the
+run when the live API already serves that commit, builds the ETL and the API, builds the database
+and the icon tree, checks row-count floors, keeps the database as a workflow artifact, and runs
+`flyctl deploy --remote-only` with the `Dockerfile` (a prebuilt binary, the database and the icons
+copied into a slim Debian image; nothing compiles on Fly). The database is baked into the image, so
+every deploy is an immutable dataset and Fly's release history doubles as the dataset history.
+`fly.toml` suspends the machine between requests and resumes it on the next one.
+
+Setup, once: create the Fly app named in `fly.toml`, then `fly tokens create deploy -x 999999h`
+and store the result as the `FLY_API_TOKEN` repository secret.
 
 ## Credits
 

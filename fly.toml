@@ -7,6 +7,7 @@ primary_region = "ord"
 
 [env]
   DDO_DB_PATH = "/app/ddo.db"
+  ICONS_DIR = "/app/icons"
   RUST_LOG = "info,tower_http=warn"
 
 [http_service]

@@ -1,3 +1,4 @@
 *
 !target/release/ddo-api
 !ddo.db
+!icons

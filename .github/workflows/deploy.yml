@@ -1,0 +1,106 @@
+# Build the dataset from DDOBuilderV2 and deploy the API image to Fly.io.
+#
+# Runs weekly and on demand. Skips the deploy when upstream has not moved since the dataset the
+# live API is serving. Needs one repository secret: FLY_API_TOKEN, a deploy token scoped to the app
+# (`fly tokens create deploy -x 999999h`).
+name: Deploy
+
+on:
+  schedule:
+    - cron: "0 9 * * 1"
+  workflow_dispatch:
+    inputs:
+      force:
+        description: Deploy even if upstream has not changed
+        type: boolean
+        default: false
+
+concurrency:
+  group: deploy
+  cancel-in-progress: false
+
+env:
+  CARGO_TERM_COLOR: always
+  UPSTREAM: https://github.com/Maetrim/DDOBuilderV2
+  LIVE_API: https://ddo-data.fly.dev
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fetch DDOBuilderV2 data files
+        run: |
+          git clone --depth 1 --filter=blob:none --sparse "$UPSTREAM" upstream
+          git -C upstream sparse-checkout set Output/DataFiles
+          echo "UPSTREAM_SHA=$(git -C upstream rev-parse HEAD)" >> "$GITHUB_ENV"
+
+      - name: Compare with the live dataset
+        id: compare
+        run: |
+          live=$(curl -sf "$LIVE_API/v1/version" | python3 -c 'import sys,json;print(json.load(sys.stdin)["dataset"]["upstream_sha"])' || echo none)
+          echo "live=$live upstream=$UPSTREAM_SHA"
+          if [ "$live" = "$UPSTREAM_SHA" ] && [ "${{ inputs.force }}" != "true" ]; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - uses: dtolnay/rust-toolchain@stable
+        if: steps.compare.outputs.changed == 'true'
+      - uses: Swatinem/rust-cache@v2
+        if: steps.compare.outputs.changed == 'true'
+
+      - name: Build the ETL and the API
+        if: steps.compare.outputs.changed == 'true'
+        run: cargo build --release -p ddo-etl -p ddo-api
+
+      - name: Build the dataset
+        if: steps.compare.outputs.changed == 'true'
+        run: |
+          ./target/release/ddo-etl build --source upstream/Output/DataFiles --out ddo.db --sha "$UPSTREAM_SHA"
+          ./target/release/ddo-etl icons --source upstream/Output/DataFiles --out icons
+
+      - name: Validate the dataset
+        if: steps.compare.outputs.changed == 'true'
+        run: |
+          set -e
+          check() { n=$(sqlite3 ddo.db "SELECT COUNT(*) FROM $1"); echo "$1: $n (floor $2)"; [ "$n" -ge "$2" ]; }
+          check items 8000
+          check feats 900
+          check enhancement_trees 100
+          check enhancements 3000
+          check spells 600
+          check augments 2000
+          check classes 25
+          check races 25
+          check modifiers 12000
+          test "$(find icons -name '*.png' | wc -l)" -ge 8000
+
+      - name: Keep the dataset as a workflow artifact
+        if: steps.compare.outputs.changed == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: ddo-${{ env.UPSTREAM_SHA }}
+          path: ddo.db
+          retention-days: 90
+
+      - uses: superfly/flyctl-actions/setup-flyctl@master
+        if: steps.compare.outputs.changed == 'true'
+
+      - name: Deploy
+        if: steps.compare.outputs.changed == 'true'
+        run: flyctl deploy --remote-only --ha=false
+        env:
+          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+
+      - name: Verify the live dataset
+        if: steps.compare.outputs.changed == 'true'
+        run: |
+          for i in $(seq 1 12); do
+            live=$(curl -sf "$LIVE_API/v1/version" | python3 -c 'import sys,json;print(json.load(sys.stdin)["dataset"]["upstream_sha"])' || echo none)
+            [ "$live" = "$UPSTREAM_SHA" ] && echo "live API serves $live" && exit 0
+            sleep 10
+          done
+          echo "live API still serves $live" && exit 1

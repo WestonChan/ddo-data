@@ -13,7 +13,11 @@ async fn main() -> Result<()> {
 
     let db_path = PathBuf::from(std::env::var("DDO_DB_PATH").unwrap_or_else(|_| "ddo.db".to_string()));
     let port: u16 = std::env::var("PORT").ok().and_then(|p| p.parse().ok()).unwrap_or(8080);
-    let state = AppState::open(&db_path).with_context(|| format!("opening {}", db_path.display()))?.with_rate_limit();
+    let mut state =
+        AppState::open(&db_path).with_context(|| format!("opening {}", db_path.display()))?.with_rate_limit();
+    if let Ok(icons) = std::env::var("ICONS_DIR") {
+        state = state.with_icons(std::path::Path::new(&icons));
+    }
     tracing::info!(dataset = %state.dataset().upstream_sha, built_at = %state.dataset().built_at, "serving {}", db_path.display());
 
     let addr = SocketAddr::from(([0, 0, 0, 0], port));

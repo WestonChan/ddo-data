@@ -26,6 +26,15 @@ enum Cmd {
         #[arg(long)]
         sha: Option<String>,
     },
+    /// Copy upstream's image folders into a flat `icons/<family>/<Name>.png` tree for the API.
+    Icons {
+        /// Path to DDOBuilderV2's Output/DataFiles directory.
+        #[arg(long)]
+        source: PathBuf,
+        /// Output directory; created if missing, existing files kept.
+        #[arg(long)]
+        out: PathBuf,
+    },
     /// Report item-name coverage of a new database against a previous one.
     Diff {
         #[arg(long)]
@@ -50,6 +59,10 @@ fn main() -> Result<()> {
             let report = ddo_etl::build::build(&source, &mut conn, &version)?;
             println!("{report:#?}");
             println!("dataset {} written to {}", version.upstream_sha, out.display());
+        }
+        Cmd::Icons { source, out } => {
+            let report = ddo_etl::icons::export_icons(&source, &out)?;
+            println!("{report:#?}");
         }
         Cmd::Diff { db, legacy, verbose } => {
             let new = Connection::open(&db)?;

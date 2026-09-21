@@ -21,6 +21,7 @@ use tower_governor::key_extractor::SmartIpKeyExtractor;
 use tower_governor::GovernorLayer;
 use tower_http::compression::CompressionLayer;
 use tower_http::cors::{Any, CorsLayer};
+use tower_http::services::ServeDir;
 use tower_http::set_header::SetResponseHeaderLayer;
 use tower_http::trace::TraceLayer;
 use utoipa::OpenApi;
@@ -59,8 +60,11 @@ pub fn app(state: AppState) -> Router {
     api.info.version = format!("dataset {}", state.dataset().upstream_sha);
     let spec = Arc::new(api.clone());
 
-    let mut router = api_router
-        .merge(Scalar::with_url("/docs", api))
+    let mut router = api_router.merge(Scalar::with_url("/docs", api));
+    if let Some(dir) = state.icons_dir() {
+        router = router.nest_service("/icons", ServeDir::new(dir));
+    }
+    router = router
         .route(
             "/openapi.json",
             get(move || {

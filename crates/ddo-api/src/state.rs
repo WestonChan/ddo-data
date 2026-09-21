@@ -20,6 +20,7 @@ struct Inner {
     dataset: DatasetVersion,
     schema_version: i64,
     rate_limited: bool,
+    icons_dir: Option<PathBuf>,
 }
 
 impl AppState {
@@ -41,6 +42,7 @@ impl AppState {
                 dataset,
                 schema_version,
                 rate_limited: false,
+                icons_dir: None,
             }),
         })
     }
@@ -49,6 +51,16 @@ impl AppState {
     pub fn with_rate_limit(mut self) -> Self {
         Arc::get_mut(&mut self.inner).expect("state not yet shared").rate_limited = true;
         self
+    }
+
+    /// Serve `/icons/<family>/<Name>.png` from this directory (the `ddo-etl icons` output).
+    pub fn with_icons(mut self, dir: &Path) -> Self {
+        Arc::get_mut(&mut self.inner).expect("state not yet shared").icons_dir = Some(dir.to_path_buf());
+        self
+    }
+
+    pub fn icons_dir(&self) -> Option<&Path> {
+        self.inner.icons_dir.as_deref()
     }
 
     pub fn rate_limited(&self) -> bool {

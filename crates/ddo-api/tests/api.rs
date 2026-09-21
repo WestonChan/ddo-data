@@ -117,7 +117,9 @@ async fn etag_roundtrip_returns_not_modified() {
     let (_, headers, _) = get("/v1/items?q=sireth").await;
     let etag = headers.get(header::ETAG).unwrap().clone();
     let response = app(state())
-        .oneshot(Request::get("/v1/items?q=sireth").header(header::IF_NONE_MATCH, etag.clone()).body(Body::empty()).unwrap())
+        .oneshot(
+            Request::get("/v1/items?q=sireth").header(header::IF_NONE_MATCH, etag.clone()).body(Body::empty()).unwrap(),
+        )
         .await
         .unwrap();
     assert_eq!(response.status(), StatusCode::NOT_MODIFIED);
@@ -224,4 +226,28 @@ async fn dump_and_openapi() {
     }
     let response = app(state()).oneshot(Request::get("/docs").body(Body::empty()).unwrap()).await.unwrap();
     assert_eq!(response.status(), StatusCode::OK);
+}
+
+#[tokio::test]
+async fn icons_are_served_when_configured() {
+    let icons = std::env::temp_dir().join(format!("ddo-api-icons-{}", std::process::id()));
+    let _ = std::fs::remove_dir_all(&icons);
+    ddo_etl::icons::export_icons(&fixtures(), &icons).unwrap();
+    let with_icons = || state().with_icons(&icons);
+    let response = app(with_icons())
+        .oneshot(Request::get("/icons/items/Quarterstaff_6a.png").body(Body::empty()).unwrap())
+        .await
+        .unwrap();
+    assert_eq!(response.status(), StatusCode::OK);
+    assert_eq!(response.headers().get(header::CONTENT_TYPE).unwrap(), "image/png");
+    assert!(response.headers().get(header::ETAG).is_some());
+    let response =
+        app(with_icons()).oneshot(Request::get("/icons/items/Nope.png").body(Body::empty()).unwrap()).await.unwrap();
+    assert_eq!(response.status(), StatusCode::NOT_FOUND);
+    let response = app(state())
+        .oneshot(Request::get("/icons/items/Quarterstaff_6a.png").body(Body::empty()).unwrap())
+        .await
+        .unwrap();
+    assert_eq!(response.status(), StatusCode::NOT_FOUND, "no icons directory, no route");
+    let _ = std::fs::remove_dir_all(&icons);
 }
