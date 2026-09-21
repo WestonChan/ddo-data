@@ -1,0 +1,84 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Quests>
+   
+   <Quest>
+      <Name>Land of Lamordia</Name>
+      <Patron>None</Patron>
+      <AdventurePack>Chill of Ravenloft</AdventurePack>
+      <Favor>0</Favor>
+      <Levels size="1">1</Levels>
+      <DoNotShow />
+   </Quest>
+   <Quest>
+      <Name>Redemption</Name>
+      <Patron>The Coin Lords</Patron>
+      <AdventurePack>Free to Play</AdventurePack>
+      <Favor>3</Favor>
+      <Levels size="1">1</Levels>
+      <Casual />
+      <Normal />
+      <Hard />
+      <Elite />
+   </Quest>
+   <Quest>
+      <Name>Combatting Corruption</Name>
+      <Patron>The Summer Court</Patron>
+      <AdventurePack>Fables of the Feywild</AdventurePack>
+      <Favor>2</Favor>
+      <Levels size="2">5 32</Levels>
+      <Casual />
+      <Normal />
+      <Hard />
+      <Elite />
+      <Reaper />
+   </Quest>
+   <Quest>
+      <Name>The Chronoscope</Name>
+      <Patron>The Coin Lords</Patron>
+      <AdventurePack>Devil Assault</AdventurePack>
+      <Favor>5</Favor>
+      <Levels size="2">6 21</Levels>
+      <Casual />
+      <Normal />
+      <Hard />
+      <Elite />
+      <Reaper />
+      <IsRaid />
+   </Quest>
+   <Quest>
+      <Name>Plane of Night</Name>
+      <Patron>House Kundarak</Patron>
+      <AdventurePack>Vault of Night</AdventurePack>
+      <Favor>5</Favor>
+      <Levels size="2">10 22</Levels>
+      <Normal />
+      <Hard />
+      <Elite />
+      <Reaper />
+      <IsRaid />
+   </Quest>
+   <Quest>
+      <Name>The Cursed Crypt</Name>
+      <Patron>The Silver Flame</Patron>
+      <AdventurePack>The Necropolis, Part 3</AdventurePack>
+      <Favor>7</Favor>
+      <Levels size="1">12</Levels>
+      <Normal />
+      <Hard />
+      <Elite />
+      <Reaper />
+   </Quest>
+   <Quest>
+      <Name>Caught in the Web</Name>
+      <Patron>Purple Dragon Knights</Patron>
+      <AdventurePack>Menace of the Underdark</AdventurePack>
+      <Favor>8</Favor>
+      <Levels size="1">24</Levels>
+      <Normal />
+      <Hard />
+      <Elite />
+      <Reaper />
+      <IsRaid />
+   </Quest>
+   
+   </Quests>

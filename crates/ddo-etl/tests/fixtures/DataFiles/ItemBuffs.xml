@@ -1,0 +1,241 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Buffs>
+  <Buff>
+    <Type>Absorption</Type>
+    <DisplayText>%b1 %i1 Absorption %v1%: Passive: %v1 %b1 Bonus to %i1 Absorption. (Absorption reduces damage from an element by a percentage, after resistance have been taken into account.)</DisplayText>
+    <Ignore>Enhancement</Ignore>
+    <Effect>
+      <Type>EnergyAbsorbance</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+      <Item>Unknown</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>ArmorEnchantment</Type>
+    <DisplayText>%v1 Enhancement Bonus: This item has been magically enhanced. Armor with this quality gains a %v1 Enhancement bonus to AC.</DisplayText>
+    <Ignore>Enhancement</Ignore>
+    <Effect>
+      <Type>EnchantArmor</Type>
+      <Bonus>Armor Enhancement</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Cloudburst</Type>
+    <DisplayText>Cloudburst: On Vorpal, this weapon triggers a Cloudburst, striking its target with lightning and dealing sonic damage to surrounding enemies through a powerful thunderclap.</DisplayText>
+  </Buff>
+  <Buff>
+    <Type>Combustion</Type>
+    <DisplayText>%b1 Combustion %v1: %v1 %b1 bonus to Fire spell power.</DisplayText>
+    <Ignore>Equipment</Ignore>
+    <Effect>
+      <Type>SpellPower</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+      <Item>Fire</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Deception</Type>
+    <DisplayText>%b1 Deception %v1: %v1 %b1 bonus to hit and %v2 Damage for Sneak Attacks.</DisplayText>
+    <Ignore>Enhancement</Ignore>
+    <Effect>
+      <Type>SneakAttackAttack</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+    </Effect>
+    <Effect>
+      <Type>SneakAttackDamage</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>EnergyResistance</Type>
+    <DisplayText>%b1 %i1 Resistance %v1: Passive: %v1 %b1 bonus to your %i1 Resistance.</DisplayText>
+    <Ignore>Enhancement</Ignore>
+    <Effect>
+      <Type>EnergyResistance</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+      <Item>Unknown</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Ethereal</Type>
+    <DisplayText>Ethereal: Equipping this item causes your hands and weapons to become partially incorporeal. Your melee attacks do not roll a miss chance for Incorporeal targets.</DisplayText>
+    <Effect>
+      <Type>GhostTouch</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">1</Amount>
+      <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>FalseLife</Type>
+    <DisplayText>%b1 False Life %v1: %v1 %b1 bonus to hit points.</DisplayText>
+    <Ignore>Enhancement</Ignore>
+    <Effect>
+      <Type>FalseLife</Type>
+      <Bonus>False Life</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">10</Amount>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>FeatherFalling</Type>
+    <DisplayText>Feather Falling: This item is engraved with feathers and bestows a powerful magical effect. Whenever the wearer begins to fall from any height, this effect slows the descent dramatically, causing the wearer to fall like a feather.</DisplayText>
+    <Effect>
+      <Type>Immunity</Type>
+      <Bonus>Stacking</Bonus>
+      <AType>NotNeeded</AType>
+      <Item>Falling Damage</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Freedom of Movement</Type>
+    <DisplayText>Freedom of Movement: This item grants its wearer the ability to move and attack normally while under the influence of magic that impedes movement, such as paralysis, solid fog, slow and web.</DisplayText>
+    <Effect>
+      <Type>Immunity</Type>
+      <Bonus>Stacking</Bonus>
+      <AType>NotNeeded</AType>
+      <Item>Freedom of Movement</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Hidden Effect Cursed Defiance</Type>
+    <DisplayText>Hidden Effect - Cursed Defiance: 5% on-being-hit chance to be unable to move and gain DR 20/- for 20 seconds</DisplayText>
+  </Buff>
+  <Buff>
+    <Type>Legendary Ice Barrier</Type>
+    <DisplayText>Legendary Ice Barrier: When struck in combat, there is a small chance you will be shielded by conjured ice, preventing the next 150 Damage unless that damage is Fire. This lasts for 1 minute or until depleted.</DisplayText>
+  </Buff>
+  <Buff>
+    <Type>Lifesealed</Type>
+    <DisplayText>%b1 Lifesealed %v1: You are immune to magical effects that cause instant death. In addition, you have a %v1 %b1 bonus to Negative Energy Absorption.</DisplayText>
+    <Ignore>Enhancement</Ignore>
+    <Effect>
+      <Type>EnergyAbsorbance</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+      <Item>Negative</Item>
+    </Effect>
+    <Effect>
+      <Type>Immunity</Type>
+      <Bonus>Stacking</Bonus>
+      <AType>NotNeeded</AType>
+      <Item>Death Effects</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Lightning Strike</Type>
+    <DisplayText>Lightning Strike: This weapon stores the power of a volatile thunderstorm deep within. Occasionally, this dynamic power comes to the surface, devastating enemies with a massive lightning strike.</DisplayText>
+  </Buff>
+  <Buff>
+    <Type>Manslayer</Type>
+    <DisplayText>Manslayer: While wearing this item, your weapon attacks gain the devastating ability to defeat a humanoid opponent with a single decisive blow. On an attack roll of 20 which is confirmed as a critical hit a humanoid target will be killed. Powerful humanoids may resist the vorpal strike and instead take 100 points of damage until they have been sufficiently weakened.</DisplayText>
+  </Buff>
+  <Buff>
+    <Type>Seeker</Type>
+    <DisplayText>%b1 Seeker %v1: Provides a %v1 %b1 bonus to confirm critical hits, and a %v1 %b1 bonus to critical hit damage (before multipliers are applied).</DisplayText>
+    <Ignore>Competence</Ignore>
+    <Ignore>Enhancement</Ignore>
+    <Effect>
+      <Type>Weapon_AttackAndDamageCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+      <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>SkillBonus</Type>
+    <DisplayText>%b1 %i1 %v1: Passive: %v1 %b1 bonus to the %i1 skill.</DisplayText>
+    <Ignore>Competence</Ignore>
+    <Effect>
+      <Type>SkillBonus</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+      <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Speed</Type>
+    <DisplayText>Speed %v1%: Passive: %v1% Enhancement bonus to movement speed, %v2% Enhancement bonus to melee and ranged attack speed.</DisplayText>
+    <Effect>
+      <Type>MovementSpeed</Type>
+      <Bonus>Enhancement</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+    </Effect>
+    <Effect>
+      <Type>Weapon_Alacrity</Type>
+      <Bonus>Enhancement</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+      <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>SpellcastingImplement</Type>
+    <DisplayText>Spellcasting Implement %v1: Passive: %v1 Implement bonus to Universal spell power.</DisplayText>
+    <Effect>
+      <Type>UniversalSpellPower</Type>
+      <Bonus>Implement</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Supreme Good</Type>
+    <DisplayText>Supreme Good: This weapon is infused with the supreme Power of Good. It does an additional 3 to 18 damage to non-good targets and can only be wielded by Good-aligned characters.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Stacking</Bonus>
+      <AType>NotNeeded</AType>
+      <Dice>
+        <Number size="1">3</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Good</Damage>
+      </Dice>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>EnemyType</Type>
+          <Item>Non-Good</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>WeaponEnchantment</Type>
+    <ApplyToWeaponOnly />
+    <DisplayText>%v1 Enhancement Bonus: %v1 Enhancement bonus to attack and damage rolls.</DisplayText>
+    <Effect>
+      <Type>Weapon_Enchantment</Type>
+      <Bonus>Weapon Enchantment</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+      <Item>All</Item>
+    </Effect>
+  </Buff>
+    <Buff>
+    <Type>Fixture Multi Paragraph</Type>
+    <DisplayText>First paragraph.</DisplayText>
+    <Effect>
+      <Type>Ignored</Type>
+    </Effect>
+    <DisplayText>Second paragraph.</DisplayText>
+  </Buff>
+</Buffs>

@@ -1,0 +1,121 @@
+# How DDOBuilderV2's <Buff> vocabulary maps onto the DDO Tools schema.
+#
+# A buff resolves in this order:
+#   1. its Type is in `enhancement`        -> items.enhancement_bonus = Value1
+#   2. its Type is a key in `fixed`         -> a bonuses row on that stat
+#   3. its Type is a key in `by_item`       -> a bonuses row on the stat named by the template,
+#                                              with {item} replaced by the buff's <Item>; a template
+#                                              that names no stat is an error
+#   4. otherwise                            -> an effects row named by the Type
+#
+# Stat names must match ddo-model's `stats` seed exactly.
+
+enhancement = ["WeaponEnchantment", "ArmorEnchantment", "ShieldEnchantment"]
+
+[by_item]
+AbilityBonus = "{item}"
+SkillBonus = "{item}"
+SchoolFocusNumber = "{item} Spell Focus"
+Absorption = "{item} Absorption"
+EnergyResistance = "{item} Resistance"
+
+# <Item> sub-target spellings that differ from the word our stat names use.
+[item_aliases]
+Lawful = "Law"
+Chaotic = "Chaos"
+
+[fixed]
+# Spell power
+SpellcastingImplement = "Universal Spell Power"
+Potency = "Universal Spell Power"
+UniversalSpellPower = "Universal Spell Power"
+Combustion = "Fire Spell Power"
+Magnetism = "Electric Spell Power"
+Glaciation = "Cold Spell Power"
+Corrosion = "Acid Spell Power"
+Devotion = "Positive Spell Power"
+Impulse = "Force Spell Power"
+Resonance = "Sonic Spell Power"
+Radiance = "Light Spell Power"
+Nullification = "Negative Spell Power"
+Reconstruction = "Repair Spell Power"
+# Spell lore
+FireLore = "Fire Spell Lore"
+LightningLore = "Electric Spell Lore"
+IceLore = "Cold Spell Lore"
+AcidLore = "Acid Spell Lore"
+SonicLore = "Sonic Spell Lore"
+VoidLore = "Negative Spell Lore"
+HealingLore = "Positive Spell Lore"
+RadianceLore = "Light Spell Lore"
+KineticLore = "Force Spell Lore"
+UniversalSpellLore = "Universal Spell Lore"
+SpellLoreNumeral = "Spell Lore"
+# Other casting
+SpellFocusMastery = "Spell Focus Mastery"
+SpellPenetration = "Spell Penetration"
+SpellPenetrationNumeral = "Spell Penetration"
+WizardryNumber = "Spell Points"
+Wizardry = "Spell Points"
+MagicalEfficiency = "Spell Point Cost Reduction"
+OrbBonus = "Spell DCs"
+# Defence
+Fortification = "Fortification"
+PhysicalSheltering = "Physical Resistance Rating"
+MagicalSheltering = "Magical Resistance Rating"
+Sheltering = "Physical and Magical Resistance Rating"
+Resistance = "Saving Throws"
+GoodLuck = "Saving Throws"
+ReflexSave = "Reflex Save"
+FortitudeSave = "Fortitude Save"
+WillSave = "Will Save"
+SpellSave = "Spell Save"
+SpellResistance = "Spell Resistance"
+Dodge = "Dodge"
+Protection = "Armor Class"
+NaturalArmor = "Armor Class"
+ArmorBonus = "Armor Class"
+Shield = "Armor Class"
+ParryingNumber = "Armor Class"
+RoughHide = "Armor Class"
+"Elemental Resistance" = "Elemental Resistance"
+# Hit points and healing
+FalseLife = "Hit Points"
+Vitality = "Hit Points"
+ProfaneLifeforce = "Hit Points"
+HealingAmplification = "Healing Amplification"
+RepairAmplification = "Repair Amplification"
+# Offence
+Deadly = "Deadly"
+Seeker = "Seeker"
+Accuracy = "Accuracy"
+AttackBonus = "Attack Bonus"
+Doublestrike = "Doublestrike"
+Doubleshot = "Doubleshot"
+Deception = "Deception"
+ArmorPiercing = "Fortification Bypass"
+CombatMastery = "Combat Mastery"
+Stunning = "Stun DC"
+Assassinate = "Assassinate DC"
+# Threat
+Incite = "Melee Threat Generation"
+MysticDiversion = "Threat Reduction"
+Diversion = "Threat Reduction"
+DistantDiversion = "Ranged Threat Reduction"
+# Movement and misc
+Speed = "Speed"
+Striding = "Movement Speed"
+"Alluring Skills Bonus" = "Alluring"
+"Profane Well Rounded" = "Well Rounded"
+
+[bonus_type_aliases]
+"Weapon Enchantment" = "Enhancement"
+"Armor Enhancement" = "Enhancement"
+"Shield Enhancement" = "Enhancement"
+Insightful = "Insight"
+resistance = "Resistance"
+"Not Set" = ""
+"Not Equipment" = ""
+
+[weapon_aliases]
+RuneArm = "Rune Arm"

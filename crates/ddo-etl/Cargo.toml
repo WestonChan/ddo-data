@@ -4,6 +4,18 @@ version.workspace = true
 edition.workspace = true
 license.workspace = true
 repository.workspace = true
+description = "Parses DDOBuilderV2 data files into the DDO Tools schema and writes SQLite"
+
+[[bin]]
+name = "ddo-etl"
+path = "src/main.rs"
 
 [dependencies]
+anyhow = { workspace = true }
+clap = { workspace = true }
 ddo-model = { path = "../ddo-model" }
+quick-xml = { workspace = true }
+rusqlite = { workspace = true }
+serde = { workspace = true }
+toml = { workspace = true }
+walkdir = { workspace = true }

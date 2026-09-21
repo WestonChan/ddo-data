@@ -1,0 +1,51 @@
+<Items>
+  <Item>
+    <Name>Docent of Defiance</Name>
+    <Icon>Docent_1a</Icon>
+    <Description>Runes of deep and dark magic are heavily inscribed on the surface of this docent.</Description>
+    <DropLocation>The Cursed Crypt, End Chest</DropLocation>
+    <MinLevel>10</MinLevel>
+    <EquipmentSlot>
+      <Armor/>
+    </EquipmentSlot>
+    <Requirements>
+      <Requirement>
+        <Type>RaceConstruct</Type>
+      </Requirement>
+    </Requirements>
+    <Armor>Docent</Armor>
+    <ArmorBonus>-3</ArmorBonus>
+    <MithralBody>5</MithralBody>
+    <AdamantineBody>12</AdamantineBody>
+    <Material>Gem (material)</Material>
+    <Buff>
+      <Type>ArmorEnchantment</Type>
+      <Value1>4</Value1>
+      <BonusType>Armor Enhancement</BonusType>
+    </Buff>
+    <Buff>
+      <Type>EnergyResistance</Type>
+      <Value1>20</Value1>
+      <BonusType>Enhancement</BonusType>
+      <Description1>Fire</Description1>
+      <Item>Fire</Item>
+    </Buff>
+    <Buff>
+      <Type>EnergyResistance</Type>
+      <Value1>20</Value1>
+      <BonusType>Enhancement</BonusType>
+      <Description1>Electric</Description1>
+      <Item>Electric</Item>
+    </Buff>
+    <Buff>
+      <Type>EnergyResistance</Type>
+      <Value1>20</Value1>
+      <BonusType>Enhancement</BonusType>
+      <Description1>Cold</Description1>
+      <Item>Cold</Item>
+    </Buff>
+    <Buff>
+      <Type>Hidden Effect Cursed Defiance</Type>
+    </Buff>
+  </Item>
+</Items>

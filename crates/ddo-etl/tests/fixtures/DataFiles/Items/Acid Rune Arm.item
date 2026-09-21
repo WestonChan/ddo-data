@@ -1,0 +1,45 @@
+<Items>
+  <Item>
+    <NoAutoUpdate/>
+    <UserSetsLevel/>
+    <Name>Acid Rune Arm</Name>
+    <Icon>RuneArm_1c</Icon>
+    <Description>None</Description>
+    <DropLocation>DDO Store, Not available anywhere else</DropLocation>
+    <MinLevel>5</MinLevel>
+    <EquipmentSlot>
+      <Weapon2/>
+    </EquipmentSlot>
+    <Requirements>
+      <Requirement>
+        <Type>FeatAnySource</Type>
+        <Item>Artificer Rune Arm Use</Item>
+        <Value>1</Value>
+      </Requirement>
+    </Requirements>
+    <Weapon>Rune Arm</Weapon>
+    <Material>Gem (material)</Material>
+    <Buff>
+      <Type>MaximumChargeTierIII</Type>
+      <BonusType>Equipment</BonusType>
+    </Buff>
+    <Effect>
+      <Type>ItemClickie</Type>
+      <Bonus>Enhancement</Bonus>
+      <Item>Acid Shot</Item>
+      <Item>Unknown</Item>
+      <AType>SpellInfo</AType>
+      <Amount size="3">0 0 0</Amount>
+    </Effect>
+    <Buff>
+      <Type>Rune Arm Imbue - Acid II</Type>
+      <BonusType/>
+    </Buff>
+    <ItemAugment>
+      <Type>Cannith Rune Arm Prefix</Type>
+    </ItemAugment>
+    <ItemAugment>
+      <Type>Cannith Rune Arm Suffix</Type>
+    </ItemAugment>
+  </Item>
+</Items>

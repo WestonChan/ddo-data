@@ -1,0 +1,38 @@
+<Items>
+  <Item>
+    <NoAutoUpdate/>
+    <Name>Five Rings</Name>
+    <Icon>Ring_30</Icon>
+    <Description>A set of rings which adorn each finger, torn from the dead hands of the Slave
+Masters.</Description>
+    <DropLocation>Secret of the Slavers' Stockade, Small chest</DropLocation>
+    <MinLevel>8</MinLevel>
+    <EquipmentSlot>
+      <Ring/>
+      <Trinket/>
+    </EquipmentSlot>
+    <Material>Silver</Material>
+    <ItemAugment>
+      <Type>Slavelords Prefix</Type>
+    </ItemAugment>
+    <ItemAugment>
+      <Type>Slavelords Suffix</Type>
+    </ItemAugment>
+    <ItemAugment>
+      <Type>Slavelords Extra</Type>
+    </ItemAugment>
+    <ItemAugment>
+      <Type>Slavelords Bonus</Type>
+    </ItemAugment>
+    <ItemAugment>
+      <Type>Slavelords Set Bonus</Type>
+    </ItemAugment>
+    <SlotUpgrade>
+      <Type>Slavelords Upgrade</Type>
+      <UpgradeType>Blue</UpgradeType>
+      <UpgradeType>Colorless</UpgradeType>
+      <UpgradeType>Green</UpgradeType>
+      <UpgradeType>Yellow</UpgradeType>
+    </SlotUpgrade>
+  </Item>
+</Items>

@@ -1,0 +1,111 @@
+<Items>
+  <Item>
+    <NoAutoUpdate/>
+    <Name>Sireth, Spear of the Sky</Name>
+    <Icon>Quarterstaff_6a</Icon>
+    <Description>Said to have been wielded by an astral deva, this spear is capable of tearing
+open the vault of heaven to bring the wrath of the skies down upon your enemies.</Description>
+    <DropLocation>Caught in the Web, End Chest</DropLocation>
+    <MinLevel>23</MinLevel>
+    <EquipmentSlot>
+      <Weapon1/>
+    </EquipmentSlot>
+    <Weapon>Quarterstaff</Weapon>
+    <AttackModifier>Strength</AttackModifier>
+    <DamageModifier>Strength</DamageModifier>
+    <DRBypass>Good</DRBypass>
+    <DRBypass>Magic</DRBypass>
+    <DRBypass>Pierce</DRBypass>
+    <DRBypass>Slash</DRBypass>
+    <WeaponDamage>3.6</WeaponDamage>
+    <BaseDice>
+      <Number>1</Number>
+      <Sides>10</Sides>
+    </BaseDice>
+    <CriticalMultiplier>2</CriticalMultiplier>
+    <CriticalThreatRange>5</CriticalThreatRange>
+    <Material>Steel</Material>
+    <Buff>
+      <Type>WeaponEnchantment</Type>
+      <Value1>7</Value1>
+      <BonusType>Weapon Enchantment</BonusType>
+    </Buff>
+    <Buff>
+      <Type>Supreme Good</Type>
+      <BonusType>Enhancement</BonusType>
+      <Description1>All</Description1>
+      <Item>All</Item>
+    </Buff>
+    <Buff>
+      <Type>Lightning Strike</Type>
+      <Description1>All</Description1>
+      <Item>All</Item>
+    </Buff>
+    <Buff>
+      <Type>Cloudburst</Type>
+      <BonusType>Enhancement</BonusType>
+    </Buff>
+    <Buff>
+      <Type>Freedom of Movement</Type>
+    </Buff>
+    <Buff>
+      <Type>FeatherFalling</Type>
+      <BonusType>Enhancement</BonusType>
+    </Buff>
+    <ItemAugment>
+      <Type>Attuned to Heroism 1</Type>
+      <Augment>
+        <Name>Planar Conflux</Name>
+        <Description>Planar Conflux: When this item is equipped at the same time as a Planar Focus,
+you will gain set bonuses based on the Planar Focus that you have equipped.</Description>
+        <MinLevel>23</MinLevel>
+        <Icon>Heroism</Icon>
+        <SetBonus>Erudition / Planar Conflux Set Bonus</SetBonus>
+        <SetBonus>Prowess / Planar Conflux Set Bonus</SetBonus>
+        <SetBonus>Subterfuge / Planar Conflux Set Bonus</SetBonus>
+      </Augment>
+    </ItemAugment>
+    <ItemAugment>
+      <Type>Attuned to Heroism 2</Type>
+      <Augment>
+        <Name>+8 Enhancement Bonus</Name>
+        <Description>+8 Enhancement Bonus: +8 enhancement bonus to attack and damage rolls.</Description>
+        <MinLevel>23</MinLevel>
+        <Icon>Heroism</Icon>
+        <Effect>
+          <Type>Weapon_Enchantment</Type>
+          <Bonus>Enhancement</Bonus>
+          <AType>Simple</AType>
+          <Amount size="1">8</Amount>
+        </Effect>
+      </Augment>
+    </ItemAugment>
+    <ItemAugment>
+      <Type>Attuned to Heroism 3</Type>
+      <Augment>
+        <Name>Adds 0.5[W] Weapon dice multiplier</Name>
+        <Description>Adds +0.5 weapon dice multiplier</Description>
+        <MinLevel>23</MinLevel>
+        <Icon>Heroism</Icon>
+        <Effect>
+          <Type>Weapon_BaseDamage</Type>
+          <Bonus>Enhancement</Bonus>
+          <Item>All</Item>
+          <AType>Simple</AType>
+          <Amount size="1">0.5</Amount>
+        </Effect>
+      </Augment>
+    </ItemAugment>
+    <ItemAugment>
+      <Type>Attuned to Heroism 4</Type>
+      <Augment>
+        <Name>Red Augment Slot</Name>
+        <Description>Adds a Red augment slot to this weapon.</Description>
+        <MinLevel>23</MinLevel>
+        <Icon>Heroism</Icon>
+        <GrantAugment>Red</GrantAugment>
+      </Augment>
+    </ItemAugment>
+    <IsAcceptsSentience/>
+  </Item>
+</Items>
