@@ -1,0 +1,35 @@
+# fly launch --no-deploy was not used; this file is hand-written. `app` must match the Fly app.
+app = "ddo-data"
+primary_region = "ord"
+
+[build]
+  dockerfile = "Dockerfile"
+
+[env]
+  DDO_DB_PATH = "/app/ddo.db"
+  RUST_LOG = "info,tower_http=warn"
+
+[http_service]
+  internal_port = 8080
+  force_https = true
+  # Scale to zero between requests; suspend resumes from a memory snapshot in well under a second.
+  auto_stop_machines = "suspend"
+  auto_start_machines = true
+  min_machines_running = 0
+  processes = ["app"]
+
+  [http_service.concurrency]
+    type = "requests"
+    soft_limit = 200
+    hard_limit = 250
+
+[[http_service.checks]]
+  interval = "30s"
+  timeout = "5s"
+  grace_period = "10s"
+  method = "GET"
+  path = "/v1/version"
+
+[[vm]]
+  size = "shared-cpu-1x"
+  memory = "256mb"

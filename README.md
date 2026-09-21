@@ -52,13 +52,36 @@ cargo run -p ddo-etl -- build --source upstream/Output/DataFiles --out ddo.db
 | `cargo fmt --all --check` | Formatting check, as CI runs it |
 | `cargo run -p ddo-etl -- build --source <DataFiles> --out ddo.db` | Build the game database |
 | `cargo run -p ddo-etl -- diff --db ddo.db --legacy <old ddo.db>` | Compare item coverage against a previous database |
-| `cargo run -p ddo-api` | Serve the API locally |
+| `DDO_DB_PATH=ddo.db cargo run -p ddo-api` | Serve the API on http://localhost:8080 (docs at `/docs`, spec at `/openapi.json`) |
+
+## API
+
+`ddo-api` serves the database read-only. Every response carries a strong `ETag`, a long
+`Cache-Control`, and an `X-Dataset-Version` header naming the DDOBuilderV2 commit, so browsers and
+CDNs can cache aggressively and revalidate with `If-None-Match`. Responses are gzip/brotli
+compressed, CORS allows any origin for `GET`, and requests are rate limited per IP. For bulk access
+download the whole database once from `/v1/dump.sqlite` rather than paging the list endpoints.
+
+| Path | What |
+|---|---|
+| `/v1/version` | Dataset and schema versions, table counts |
+| `/v1/items`, `/v1/items/{id}` | Equipment, filterable by name, slot, category, level, pack, raid, stat |
+| `/v1/augments`, `/v1/augments/{id}` | Augments with the sockets they fit |
+| `/v1/sets`, `/v1/sets/{id}`, `/v1/filigrees` | Gear sets, filigree sets, filigrees |
+| `/v1/feats`, `/v1/feats/{id}` | Feats from the standard list, classes and races |
+| `/v1/races`, `/v1/classes` (+ `/{id}`) | Races and classes |
+| `/v1/enhancement-trees`, `/v1/enhancement-trees/{id}` | Trees with every enhancement and selection |
+| `/v1/spells`, `/v1/spells/{id}`, `/v1/clickies` | Spells and item clickies |
+| `/v1/stats`, `/v1/bonus-types`, … | Reference vocabularies |
+| `/v1/dump.sqlite` | The whole database |
+| `/docs`, `/openapi.json` | Interactive documentation and the OpenAPI 3.1 spec |
 
 ## Deployment
 
 A scheduled GitHub Action pulls DDOBuilderV2, runs the ETL, validates the result, and deploys the
-API image to Fly.io. The database is baked into the image, so every deploy is an immutable dataset
-and Fly's release history doubles as the dataset history.
+API image to Fly.io (`fly.toml`, `Dockerfile`). The database is baked into the image, so every
+deploy is an immutable dataset and Fly's release history doubles as the dataset history. The
+machine suspends between requests and resumes on the next one.
 
 ## Credits
 
