@@ -813,3 +813,27 @@ impl RequirementGroup {
         }
     }
 }
+
+/// Which action-point pool an enhancement tree draws from.
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
+pub enum TreeKind {
+    Class,
+    Racial,
+    Universal,
+    Reaper,
+    Destiny,
+}
+
+impl TreeKind {
+    pub const ALL: &'static [TreeKind] = &[Self::Class, Self::Racial, Self::Universal, Self::Reaper, Self::Destiny];
+
+    pub const fn as_str(self) -> &'static str {
+        match self {
+            Self::Class => "class",
+            Self::Racial => "racial",
+            Self::Universal => "universal",
+            Self::Reaper => "reaper",
+            Self::Destiny => "destiny",
+        }
+    }
+}

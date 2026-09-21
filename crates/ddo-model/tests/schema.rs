@@ -78,6 +78,13 @@ fn ddl_creates_every_v2_table() {
         "class_spells",
         "class_feat_slots",
         "class_auto_feats",
+        "enhancement_trees",
+        "enhancements",
+        "enhancement_selections",
+        "enhancement_selector_exclusions",
+        "spells",
+        "spell_damage",
+        "spell_dcs",
     ] {
         assert!(tables.contains(expected), "missing table {expected}");
     }

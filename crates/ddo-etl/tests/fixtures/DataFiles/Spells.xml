@@ -1,0 +1,703 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Spells>
+  
+  <Spell>
+    <Name>Resist Energy</Name>
+    <Description>Gives an ally limited resistance from one chosen energy type, reducing damage or
+attack by 10. (20 at caster level 7th, 30 at 11th.)
+Energy types available are: Acid, Cold, Electricity, Fire, or Sonic.</Description>
+    <Icon>ResistEnergy</Icon>
+    <School>Abjuration</School>
+    <Enlarge />
+    <Extend />
+    <Quicken />
+    <Effect>
+      <Type>EnergyResistance</Type>
+      <Bonus>Enhancement</Bonus>
+      <AType>ClassCasterLevel</AType>
+      <StackSource>Unknown</StackSource>
+      <Amount size="41">0 10 10 10 10 10 10 20 20 20 20 30 30 30 30 30 30 30 30 30 30 30 30 30 30 30 30 30 30 30 30 30 30 30 30 30 30 30 30 30 30</Amount>
+      <Item>Acid</Item>
+      <Item>Cold</Item>
+      <Item>Electric</Item>
+      <Item>Fire</Item>
+      <Item>Sonic</Item>
+    </Effect>
+  </Spell>
+  <Spell>
+    <Name>Resistance</Name>
+    <Description>Imbues the ally with magical energy that protects from harm, granting them a +1
+Resistance bonus on saves (+2 at 6th level, +3 at 9th level).</Description>
+    <Icon>Resistance</Icon>
+    <School>Abjuration</School>
+    <Extend />
+    <Quicken />
+    <Effect>
+      <Type>SaveBonus</Type>
+      <Bonus>Resistance</Bonus>
+      <AType>ClassCasterLevel</AType>
+      <StackSource>Unknown</StackSource>
+      <Amount size="41">0 1 1 1 1 1 2 2 2 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3</Amount>
+      <Item>All</Item>
+    </Effect>
+  </Spell>
+  <Spell>
+    <Name>Static Shock</Name>
+    <Description>An Electrical discharge strikes one target for 1d6 Electricity damage plus 1d6 Electricity
+damage per two caster levels up to a maximum damage of 6d6 at caster level 10.
+A successful Reflex save reduces this damage by half.
+On a failed save, the target must make a successful Will save or be dazed for
+a short period of time or until they take damage.</Description>
+    <Icon>StaticShock</Icon>
+    <School>Evocation</School>
+    <Embolden />
+    <Empower />
+    <Enlarge />
+    <Heighten />
+    <Intensify />
+    <Maximize />
+    <Quicken />
+    <MaxCasterLevel>10</MaxCasterLevel>
+    <SpellDamage>
+      <SpellDice>
+        <BaseDice>
+          <Number>1</Number>
+          <Sides>6</Sides>
+        </BaseDice>
+        <PerCasterLevels>2</PerCasterLevels>
+        <BonusDice>
+          <Number>1</Number>
+          <Sides>6</Sides>
+        </BonusDice>
+      </SpellDice>
+      <Damage>Electric</Damage>
+      <SpellPower>Electric</SpellPower>
+    </SpellDamage>
+    <SpellDC>
+      <DCType>Half Damage</DCType>
+      <DCVersus>Reflex</DCVersus>
+      <School>Evocation</School>
+      <CastingStatMod />
+    </SpellDC>
+  </Spell>
+  <Spell>
+    <Name>Bull's Strength</Name>
+    <Description>An ally gains a +4 Enhancement bonus to Strength for 1 minute per caster level.</Description>
+    <Icon>BullsStrength</Icon>
+    <School>Transmutation</School>
+    <Enlarge />
+    <Extend />
+    <Quicken />
+    <Effect>
+      <Type>AbilityBonus</Type>
+      <Bonus>Enhancement</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">4</Amount>
+      <Item>Strength</Item>
+      <ApplyAsItemEffect />
+    </Effect>
+  </Spell>
+  <Spell>
+    <Name>Cure Light Wounds</Name>
+    <Description>Positive energy heals an ally for 1d6+2 plus 1 per caster level (Maximum caster level 5.)
+hit points, or deals the same amount of damage to an Undead creature.
+A successful Will save takes half damage (undead only).</Description>
+    <Icon>CureLightWounds</Icon>
+    <School>Conjuration</School>
+    <Empower />
+    <EmpowerHealing />
+    <Enlarge />
+    <Intensify />
+    <Maximize />
+    <Quicken />
+    <MaxCasterLevel>5</MaxCasterLevel>
+    <SpellDamage>
+      <SpellDice>
+        <BaseDice>
+          <Number>1</Number>
+          <Sides>6</Sides>
+          <Bonus>2</Bonus>
+        </BaseDice>
+        <PerCasterLevels>1</PerCasterLevels>
+        <BonusDice>
+          <Bonus>1</Bonus>
+        </BonusDice>
+      </SpellDice>
+      <Damage>Positive</Damage>
+      <SpellPower>Positive</SpellPower>
+    </SpellDamage>
+    <SpellDC>
+      <DCType>Half Damage</DCType>
+      <DCVersus>Will</DCVersus>
+      <School>Conjuration</School>
+      <CastingStatMod />
+    </SpellDC>
+  </Spell>
+  <Spell>
+    <Name>Dominate Person</Name>
+    <Description>You can control the actions of any humanoid creature that fails its Will save through
+a telepathic link that you establish with the subjects mind. Dominate acts
+like Charm Person, with additional Will saves every 15 to 30 seconds, but the
+creature will follow you throughout the dungeon.</Description>
+    <Icon>DominatePerson</Icon>
+    <School>Enchantment</School>
+    <Embolden />
+    <Enlarge />
+    <Heighten />
+    <Quicken />
+    <SpellDC>
+      <DCType>Negates</DCType>
+      <DCVersus>Will</DCVersus>
+      <School>Enchantment</School>
+      <CastingStatMod />
+    </SpellDC>
+  </Spell>
+  <Spell>
+    <Name>Protection from Evil</Name>
+    <Description>Creates a magical barrier that wards a target from attacks by Evil creatures.
+It grants a +2 Deflection bonus to Armor Class, and a +2 Resistance bonus to
+saves versus attacks from Evil creatures. The target is also warded from Evil
+magical controls and compulsions.</Description>
+    <Icon>ProtectionFromEvil</Icon>
+    <School>Abjuration</School>
+    <Enlarge />
+    <Extend />
+    <Quicken />
+    <Effect>
+      <Type>ACBonus</Type>
+      <Bonus>Deflection</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">2</Amount>
+    </Effect>
+    <Effect>
+      <Type>Immunity</Type>
+      <Bonus>Stacking</Bonus>
+      <Item>Magical Controls and Compulsion</Item>
+      <AType>NotNeeded</AType>
+    </Effect>
+  </Spell>
+  <Spell>
+    <Name>Bless</Name>
+    <Description>You and any allies near you are filled with courage and gain +1 Morale bonuses to attack
+rolls and saving throws against fear, with an additional +1 per 5 caster levels,
+max 5 at caster level 20. Bless counters and dispels Bane.</Description>
+    <Icon>Bless</Icon>
+    <School>Enchantment</School>
+    <Extend />
+    <Quicken />
+    <MaxCasterLevel>20</MaxCasterLevel>
+    <Effect>
+      <Type>Weapon_Attack</Type>
+      <Bonus>Morale</Bonus>
+      <AType>ClassCasterLevel</AType>
+      <StackSource>Unknown</StackSource>
+      <Amount size="41">0 1 1 1 1 2 2 2 2 2 3 3 3 3 3 4 4 4 4 4 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5</Amount>
+      <Item>All</Item>
+    </Effect>
+    <Effect>
+      <Type>SaveBonus</Type>
+      <Bonus>Morale</Bonus>
+      <AType>ClassCasterLevel</AType>
+      <StackSource>Unknown</StackSource>
+      <Amount size="41">0 1 1 1 1 2 2 2 2 2 3 3 3 3 3 4 4 4 4 4 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5</Amount>
+      <Item>Fear</Item>
+    </Effect>
+  </Spell>
+  <Spell>
+    <Name>Divine Favor</Name>
+    <Description>Calling upon the strength and wisdom of a deity, you gain a +1 luck bonus on attack
+and weapon damage rolls. This bonus is increased by +1 for every 3 caster
+levels beyond level 3. (Maximum bonus +3 at caster level 9.)</Description>
+    <Icon>DivineFavor</Icon>
+    <School>Evocation</School>
+    <Extend />
+    <Quicken />
+    <MaxCasterLevel>9</MaxCasterLevel>
+    <Effect>
+      <Type>Weapon_AttackAndDamage</Type>
+      <Bonus>Luck</Bonus>
+      <AType>ClassCasterLevel</AType>
+      <StackSource>Unknown</StackSource>
+      <Amount size="41">0 1 1 1 1 1 2 2 2 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3</Amount>
+      <Item>All</Item>
+    </Effect>
+  </Spell>
+  <Spell>
+    <Name>Lesser Restoration</Name>
+    <Description>Dispels magical effects reducing 1 of an allies Ability scores, it also eliminates
+the condition Fatigued suffered by the creature, and improves the Exhausted
+condition to Fatigued.</Description>
+    <Icon>LesserRestoration</Icon>
+    <School>Conjuration</School>
+    <Enlarge />
+    <Quicken />
+  </Spell>
+  <Spell>
+    <Name>Seek Eternal Rest</Name>
+    <Description>Grants the caster +4 to Sacred level for the purpose of turning Undead.</Description>
+    <Icon>SeekEternalRest</Icon>
+    <School>Conjuration</School>
+    <Extend />
+    <Quicken />
+    <Effect>
+      <Type>TurnLevelBonus</Type>
+      <Bonus>Sacred</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">4</Amount>
+      <ApplyAsItemEffect />
+    </Effect>
+  </Spell>
+  <Spell>
+    <Name>Aid</Name>
+    <Description>This spell grants the target (An ally creature.) 8 plus 1 per caster level (Maximum
+caster level 10.) temporary Hit points, and a +1 Morale bonus to attack rolls
+and saves versus fear. Aid will not stack with Bless.</Description>
+    <Icon>Aid</Icon>
+    <School>Enchantment</School>
+    <Enlarge />
+    <Extend />
+    <Quicken />
+    <MaxCasterLevel>10</MaxCasterLevel>
+  </Spell>
+  <Spell>
+    <Name>Lionheart</Name>
+    <Description>Imbues a single ally with great bravery, making him immune to fear for 1 minute per
+caster level.</Description>
+    <Icon>Lionheart</Icon>
+    <School>Abjuration</School>
+    <Extend />
+    <Quicken />
+  </Spell>
+  <Spell>
+    <Name>Virtue</Name>
+    <Description>Grants 10 temporary Hit Points plus 2 per caster level over level 4th (Maximum Hit
+Points 20.) to an ally.</Description>
+    <Icon>Virtue</Icon>
+    <School>Transmutation</School>
+    <Enlarge />
+    <Extend />
+    <Quicken />
+    <MaxCasterLevel>5</MaxCasterLevel>
+  </Spell>
+  
+  <Spell>
+    <Name>Ruin</Name>
+    <Description>Deal 500 untyped damage to a single enemy. Spell Point Cost: 75, No saving throw.</Description>
+    <Icon>Ruin</Icon>
+    <Empower />
+    <Enlarge />
+    <Intensify />
+    <Maximize />
+    <Quicken />
+    <Cost>75</Cost>
+    <SpellDamage>
+      <SpellDice>
+        <BaseDice>
+          <Bonus>500</Bonus>
+        </BaseDice>
+      </SpellDice>
+      <Damage>Untyped</Damage>
+      <SpellPower>Untyped</SpellPower>
+    </SpellDamage>
+  </Spell>
+  <Spell>
+    <Name>Lesser Evolution</Name>
+    <Description>Primer Element: Ceruleite
+Choose something to mutate into, giving +1 Alchemical bonus to the chosen Ability score.
+You may only have one Alchemical Mutation active at a time. Duration: 1 Minute</Description>
+    <Icon>AlchemistLesserEvolution</Icon>
+    <School>Transmutation</School>
+    <Primer>Ceruleite</Primer>
+    <Extend />
+    <Quicken />
+    <Effect>
+      <Type>AbilityBonus</Type>
+      <Bonus>Alchemical</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">1</Amount>
+      <Item>Strength</Item>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>StrEvolution</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+    <Effect>
+      <Type>AbilityBonus</Type>
+      <Bonus>Alchemical</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">1</Amount>
+      <Item>Intelligence</Item>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>IntEvolution</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+    <Effect>
+      <Type>AbilityBonus</Type>
+      <Bonus>Alchemical</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">1</Amount>
+      <Item>Wisdom</Item>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>WisEvolution</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+    <Effect>
+      <Type>AbilityBonus</Type>
+      <Bonus>Alchemical</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">1</Amount>
+      <Item>Dexterity</Item>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>DexEvolution</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+    <Effect>
+      <Type>AbilityBonus</Type>
+      <Bonus>Alchemical</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">1</Amount>
+      <Item>Constitution</Item>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>ConEvolution</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+    <Effect>
+      <Type>AbilityBonus</Type>
+      <Bonus>Alchemical</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">1</Amount>
+      <Item>Charisma</Item>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>SChaEvolution</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+    <Stance>
+      <Name>StrEvolution</Name>
+      <Icon>Strength</Icon>
+      <Description>Your Lesser/Standard/Greater Evolution spell applies to Strength</Description>
+      <Group>Evolution Option</Group>
+    </Stance>
+    <Stance>
+      <Name>IntEvolution</Name>
+      <Icon>intelligence</Icon>
+      <Description>Your Lesser/Standard/Greater Evolution spell applies to Intelligence</Description>
+      <Group>Evolution Option</Group>
+    </Stance>
+    <Stance>
+      <Name>WisEvolution</Name>
+      <Icon>Wisdom</Icon>
+      <Description>Your Lesser/Standard/Greater Evolution spell applies to Wisdom</Description>
+      <Group>Evolution Option</Group>
+    </Stance>
+    <Stance>
+      <Name>DexEvolution</Name>
+      <Icon>Dexterity</Icon>
+      <Description>Your Lesser/Standard/Greater Evolution spell applies to Dexterity</Description>
+      <Group>Evolution Option</Group>
+    </Stance>
+    <Stance>
+      <Name>ConEvolution</Name>
+      <Icon>Constitution</Icon>
+      <Description>Your Lesser/Standard/Greater Evolution spell applies to Constitution</Description>
+      <Group>Evolution Option</Group>
+    </Stance>
+    <Stance>
+      <Name>ChaEvolution</Name>
+      <Icon>Charisma</Icon>
+      <Description>Your Lesser/Standard/Greater Evolution spell applies to Charisma</Description>
+      <Group>Evolution Option</Group>
+    </Stance>
+  </Spell>
+  <Spell>
+    <Name>Evolution</Name>
+    <Description>Primer Element: Ceruleite
+Choose something to mutate into, giving +2 Alchemical bonus to the chosen Ability score.
+You may only have one Mutation active at a time. This lasts for 5 minutes.
+At Caster Level 6 and higher, this add +1 minute per
+Caster Level.</Description>
+    <Icon>Evolution</Icon>
+    <School>Transmutation</School>
+    <Primer>Ceruleite</Primer>
+    <Extend />
+    <Quicken />
+    <Effect>
+      <Type>AbilityBonus</Type>
+      <Bonus>Alchemical</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">2</Amount>
+      <Item>Strength</Item>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>StrEvolution</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+    <Effect>
+      <Type>AbilityBonus</Type>
+      <Bonus>Alchemical</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">2</Amount>
+      <Item>Intelligence</Item>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>IntEvolution</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+    <Effect>
+      <Type>AbilityBonus</Type>
+      <Bonus>Alchemical</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">2</Amount>
+      <Item>Wisdom</Item>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>WisEvolution</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+    <Effect>
+      <Type>AbilityBonus</Type>
+      <Bonus>Alchemical</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">2</Amount>
+      <Item>Dexterity</Item>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>DexEvolution</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+    <Effect>
+      <Type>AbilityBonus</Type>
+      <Bonus>Alchemical</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">2</Amount>
+      <Item>Constitution</Item>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>ConEvolution</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+    <Effect>
+      <Type>AbilityBonus</Type>
+      <Bonus>Alchemical</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">2</Amount>
+      <Item>Charisma</Item>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>SChaEvolution</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+    <Stance>
+      <Name>StrEvolution</Name>
+      <Icon>Strength</Icon>
+      <Description>Your Lesser/Standard/Greater Evolution spell applies to Strength</Description>
+      <Group>Evolution Option</Group>
+    </Stance>
+    <Stance>
+      <Name>IntEvolution</Name>
+      <Icon>intelligence</Icon>
+      <Description>Your Lesser/Standard/Greater Evolution spell applies to Intelligence</Description>
+      <Group>Evolution Option</Group>
+    </Stance>
+    <Stance>
+      <Name>WisEvolution</Name>
+      <Icon>Wisdom</Icon>
+      <Description>Your Lesser/Standard/Greater Evolution spell applies to Wisdom</Description>
+      <Group>Evolution Option</Group>
+    </Stance>
+    <Stance>
+      <Name>DexEvolution</Name>
+      <Icon>Dexterity</Icon>
+      <Description>Your Lesser/Standard/Greater Evolution spell applies to Dexterity</Description>
+      <Group>Evolution Option</Group>
+    </Stance>
+    <Stance>
+      <Name>ConEvolution</Name>
+      <Icon>Constitution</Icon>
+      <Description>Your Lesser/Standard/Greater Evolution spell applies to Constitution</Description>
+      <Group>Evolution Option</Group>
+    </Stance>
+    <Stance>
+      <Name>ChaEvolution</Name>
+      <Icon>Charisma</Icon>
+      <Description>Your Lesser/Standard/Greater Evolution spell applies to Charisma</Description>
+      <Group>Evolution Option</Group>
+    </Stance>
+  </Spell>
+  <Spell>
+    <Name>Greater Evolution</Name>
+    <Description>Primer Element: Ceruleite
+Choose something to mutate into and gain a +4 Alchemical bonus to the chosen Ability Score.
+You may only have one Mutation active at a time. This lasts for 1 minute per
+caster level.</Description>
+    <Icon>GreaterEvolution</Icon>
+    <School>Transmutation</School>
+    <Primer>Ceruleite</Primer>
+    <Extend />
+    <Quicken />
+    <Effect>
+      <Type>AbilityBonus</Type>
+      <Bonus>Alchemical</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">4</Amount>
+      <Item>Strength</Item>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>StrEvolution</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+    <Effect>
+      <Type>AbilityBonus</Type>
+      <Bonus>Alchemical</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">4</Amount>
+      <Item>Intelligence</Item>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>IntEvolution</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+    <Effect>
+      <Type>AbilityBonus</Type>
+      <Bonus>Alchemical</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">4</Amount>
+      <Item>Wisdom</Item>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>WisEvolution</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+    <Effect>
+      <Type>AbilityBonus</Type>
+      <Bonus>Alchemical</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">4</Amount>
+      <Item>Dexterity</Item>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>DexEvolution</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+    <Effect>
+      <Type>AbilityBonus</Type>
+      <Bonus>Alchemical</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">4</Amount>
+      <Item>Constitution</Item>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>ConEvolution</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+    <Effect>
+      <Type>AbilityBonus</Type>
+      <Bonus>Alchemical</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">4</Amount>
+      <Item>Charisma</Item>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>SChaEvolution</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+    <Stance>
+      <Name>StrEvolution</Name>
+      <Icon>Strength</Icon>
+      <Description>Your Lesser/Standard/Greater Evolution spell applies to Strength</Description>
+      <Group>Evolution Option</Group>
+    </Stance>
+    <Stance>
+      <Name>IntEvolution</Name>
+      <Icon>intelligence</Icon>
+      <Description>Your Lesser/Standard/Greater Evolution spell applies to Intelligence</Description>
+      <Group>Evolution Option</Group>
+    </Stance>
+    <Stance>
+      <Name>WisEvolution</Name>
+      <Icon>Wisdom</Icon>
+      <Description>Your Lesser/Standard/Greater Evolution spell applies to Wisdom</Description>
+      <Group>Evolution Option</Group>
+    </Stance>
+    <Stance>
+      <Name>DexEvolution</Name>
+      <Icon>Dexterity</Icon>
+      <Description>Your Lesser/Standard/Greater Evolution spell applies to Dexterity</Description>
+      <Group>Evolution Option</Group>
+    </Stance>
+    <Stance>
+      <Name>ConEvolution</Name>
+      <Icon>Constitution</Icon>
+      <Description>Your Lesser/Standard/Greater Evolution spell applies to Constitution</Description>
+      <Group>Evolution Option</Group>
+    </Stance>
+    <Stance>
+      <Name>ChaEvolution</Name>
+      <Icon>Charisma</Icon>
+      <Description>Your Lesser/Standard/Greater Evolution spell applies to Charisma</Description>
+      <Group>Evolution Option</Group>
+    </Stance>
+  </Spell>
+  <Spell>
+    <Name>Dominate Person </Name>
+    <Description>You can control the actions of any humanoid creature that fails its Will save through
+a telepathic link that you establish with the subjects mind. Dominate acts
+like Charm Person, with additional Will saves every 15 to 30 seconds, but the
+creature will follow you throughout the dungeon.</Description>
+    <Icon>DominatePerson</Icon>
+    <School>Enchantment</School>
+    <Enlarge />
+    <Extend />
+    <Heighten />
+    <Quicken />
+    <SpellDC>
+      <DCType>Negates</DCType>
+      <DCVersus>Will</DCVersus>
+      <Amount>15</Amount>
+      <ModAbility>Intelligence</ModAbility>
+      <ModAbility>Wisdom</ModAbility>
+      <ModAbility>Charisma</ModAbility>
+      <School>Enchantment</School>
+    </SpellDC>
+  </Spell>
+  </Spells>

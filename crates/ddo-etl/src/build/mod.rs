@@ -10,6 +10,7 @@ mod characters;
 mod items;
 mod modifiers;
 mod sets;
+mod trees_spells;
 
 use crate::map::augment_slot::decode;
 use crate::map::buff::BuffMap;
@@ -42,6 +43,11 @@ pub struct BuildReport {
     pub feats: usize,
     pub races: usize,
     pub classes: usize,
+    pub enhancement_trees: usize,
+    pub enhancements: usize,
+    pub duplicate_trees_skipped: usize,
+    pub spells: usize,
+    pub duplicate_spells_skipped: usize,
     /// Effect types `derive` could not map onto a stat, with how often each occurred. They are
     /// still stored as modifiers; this is the to-do list for `data/effect_map.toml`.
     pub unmapped_effect_types: BTreeMap<String, usize>,
@@ -93,6 +99,14 @@ pub fn build(source: &Path, conn: &mut Connection, version: &DatasetVersion) -> 
         ctx.write_class_file(&path, &mut report).with_context(|| format!("{}", path.display()))?;
     }
     ctx.resolve_base_classes()?;
+    // Only `*.tree.xml`: upstream also keeps one stray, malformed `Rogue_ArcaneTrickster.xml`.
+    for path in files_with_extension(&source.join("EnhancementTrees"), "xml")?
+        .into_iter()
+        .filter(|p| p.file_name().is_some_and(|n| n.to_string_lossy().ends_with(".tree.xml")))
+    {
+        ctx.write_tree_file(&path, &mut report).with_context(|| format!("{}", path.display()))?;
+    }
+    ctx.write_spells(&source.join("Spells.xml"), &mut report)?;
 
     for c in &clickie_list {
         ctx.write_clickie(c)?;
@@ -115,6 +129,7 @@ pub fn build(source: &Path, conn: &mut Connection, version: &DatasetVersion) -> 
         ctx.write_set_file(&path, true, &mut report).with_context(|| format!("{}", path.display()))?;
     }
     ctx.resolve_set_items()?;
+    ctx.resolve_spell_references()?;
 
     report.bonuses = ctx.caches.bonuses.len();
     report.effects = ctx.caches.effects.len();

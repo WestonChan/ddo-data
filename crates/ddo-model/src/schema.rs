@@ -5,7 +5,7 @@
 
 use crate::enums::{
     sql_in_list, AbilityOwner, ArmorType, FeatSource, Handedness, ItemCategory, LootType, ModifierSource,
-    RequirementGroup, RequirementOwner, SaveProgression,
+    RequirementGroup, RequirementOwner, SaveProgression, TreeKind,
 };
 use std::sync::LazyLock;
 
@@ -22,6 +22,7 @@ static DDL_TEXT: LazyLock<String> = LazyLock::new(|| {
     let feat_source = sql_in_list(FeatSource::ALL.iter().map(|f| f.as_str()));
     let ability_owner = sql_in_list(AbilityOwner::ALL.iter().map(|o| o.as_str()));
     let save_progression = sql_in_list(SaveProgression::ALL.iter().map(|s| s.as_str()));
+    let tree_kind = sql_in_list(TreeKind::ALL.iter().map(|k| k.as_str()));
     let requirement_group = sql_in_list(RequirementGroup::ALL.iter().map(|g| g.as_str()));
     format!(
         r#"
@@ -504,6 +505,98 @@ CREATE TABLE IF NOT EXISTS class_auto_feats (
     PRIMARY KEY (class_id, level, feat_name)
 );
 
+-- Enhancement trees -----------------------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS enhancement_trees (
+    id         INTEGER PRIMARY KEY,
+    name       TEXT    NOT NULL UNIQUE,               -- <Name>
+    version    INTEGER,                               -- <Version>
+    kind       TEXT    NOT NULL CHECK (kind {tree_kind}),  -- from <IsRacialTree/> etc.; default class
+    is_legacy  INTEGER NOT NULL DEFAULT 0 CHECK (is_legacy IN (0, 1)),  -- <Legacy/>: a retired version
+    icon       TEXT,
+    background TEXT
+);
+
+CREATE TABLE IF NOT EXISTS enhancements (
+    id            INTEGER PRIMARY KEY,
+    tree_id       INTEGER NOT NULL REFERENCES enhancement_trees(id) ON DELETE CASCADE,
+    internal_name TEXT    NOT NULL,                   -- <InternalName>; requirements reference these
+    name          TEXT    NOT NULL,
+    description   TEXT,
+    icon          TEXT,
+    x             INTEGER,                            -- <XPosition>: column
+    y             INTEGER,                            -- <YPosition>: tier row (0 = core)
+    cost_per_rank TEXT,                               -- JSON array: <CostPerRank>
+    ranks         INTEGER,
+    min_spent     INTEGER,                            -- <MinSpent>: AP in the tree before this unlocks
+    is_tier5      INTEGER NOT NULL DEFAULT 0 CHECK (is_tier5 IN (0, 1)),
+    is_clickie    INTEGER NOT NULL DEFAULT 0 CHECK (is_clickie IN (0, 1)),
+    arrows        TEXT,                               -- JSON array: ArrowUp, ArrowRight, …
+    UNIQUE (tree_id, internal_name)
+);
+
+-- One of the choices a selector enhancement offers.
+CREATE TABLE IF NOT EXISTS enhancement_selections (
+    id             INTEGER PRIMARY KEY,
+    enhancement_id INTEGER NOT NULL REFERENCES enhancements(id) ON DELETE CASCADE,
+    sort_order     INTEGER NOT NULL,
+    name           TEXT    NOT NULL,
+    description    TEXT,
+    icon           TEXT,
+    cost_per_rank  TEXT,
+    ranks          INTEGER,
+    min_spent      INTEGER,
+    is_clickie     INTEGER NOT NULL DEFAULT 0 CHECK (is_clickie IN (0, 1)),
+    UNIQUE (enhancement_id, sort_order)
+);
+
+-- Enhancements (by internal name) a selector excludes.
+CREATE TABLE IF NOT EXISTS enhancement_selector_exclusions (
+    enhancement_id INTEGER NOT NULL REFERENCES enhancements(id) ON DELETE CASCADE,
+    internal_name  TEXT    NOT NULL,
+    PRIMARY KEY (enhancement_id, internal_name)
+);
+
+-- Spells ------------------------------------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS spells (
+    id               INTEGER PRIMARY KEY,
+    name             TEXT    NOT NULL UNIQUE,
+    description      TEXT,
+    icon             TEXT,
+    schools          TEXT,                            -- JSON array: <School>
+    max_caster_level INTEGER,
+    cost             INTEGER,                         -- <Cost>, when fixed rather than per class
+    metamagics       TEXT                             -- JSON array of the metamagic flags present
+);
+
+CREATE TABLE IF NOT EXISTS spell_damage (
+    id                INTEGER PRIMARY KEY,
+    spell_id          INTEGER NOT NULL REFERENCES spells(id) ON DELETE CASCADE,
+    sort_order        INTEGER NOT NULL,
+    base_dice_number  INTEGER,
+    base_dice_sides   INTEGER,
+    base_dice_bonus   INTEGER,
+    per_caster_levels INTEGER,                        -- bonus dice every N caster levels
+    bonus_dice_number INTEGER,
+    bonus_dice_sides  INTEGER,
+    bonus_dice_bonus  INTEGER,
+    damage            TEXT,                           -- <Damage> type
+    spell_power       TEXT                            -- <SpellPower> that scales it
+);
+
+CREATE TABLE IF NOT EXISTS spell_dcs (
+    id               INTEGER PRIMARY KEY,
+    spell_id         INTEGER NOT NULL REFERENCES spells(id) ON DELETE CASCADE,
+    sort_order       INTEGER NOT NULL,
+    dc_type          TEXT,
+    dc_versus        TEXT,
+    schools          TEXT,                            -- JSON array
+    casting_stat_mod INTEGER NOT NULL DEFAULT 0 CHECK (casting_stat_mod IN (0, 1)),
+    amount           TEXT,                            -- JSON array
+    mod_abilities    TEXT                             -- JSON array
+);
+
 -- Augments ------------------------------------------------------------------------
 
 CREATE TABLE IF NOT EXISTS augments (
@@ -593,6 +686,7 @@ CREATE TABLE IF NOT EXISTS item_clickies (
     sort_order INTEGER NOT NULL,
     name       TEXT    NOT NULL,                      -- <Effect><Item> of the ItemClickie effect
     clickie_id INTEGER REFERENCES clickies(id),
+    spell_id   INTEGER REFERENCES spells(id),         -- when the name is a real spell instead
     PRIMARY KEY (item_id, sort_order)
 );
 "#
