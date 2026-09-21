@@ -4,7 +4,8 @@
 //! Column comments name the DDOBuilderV2 element a value comes from (`<Name>`), or `computed`.
 
 use crate::enums::{
-    sql_in_list, ArmorType, Handedness, ItemCategory, LootType, ModifierSource, RequirementGroup, RequirementOwner,
+    sql_in_list, AbilityOwner, ArmorType, FeatSource, Handedness, ItemCategory, LootType, ModifierSource,
+    RequirementGroup, RequirementOwner, SaveProgression,
 };
 use std::sync::LazyLock;
 
@@ -17,7 +18,10 @@ static DDL_TEXT: LazyLock<String> = LazyLock::new(|| {
     let armor_type = sql_in_list(ArmorType::ALL.iter().map(|a| a.as_str()));
     let loot_type = sql_in_list(LootType::ALL.iter().map(|l| l.as_str()));
     let modifier_source = sql_in_list(ModifierSource::ALL.iter().map(|s| s.as_str()));
-    let requirement_owner = sql_in_list(RequirementOwner::all_names().into_iter());
+    let requirement_owner = sql_in_list(RequirementOwner::ALL.iter().map(|o| o.as_str()));
+    let feat_source = sql_in_list(FeatSource::ALL.iter().map(|f| f.as_str()));
+    let ability_owner = sql_in_list(AbilityOwner::ALL.iter().map(|o| o.as_str()));
+    let save_progression = sql_in_list(SaveProgression::ALL.iter().map(|s| s.as_str()));
     let requirement_group = sql_in_list(RequirementGroup::ALL.iter().map(|g| g.as_str()));
     format!(
         r#"
@@ -291,6 +295,214 @@ CREATE TABLE IF NOT EXISTS requirements (
     value       TEXT                                   -- <Value>
 );
 CREATE INDEX IF NOT EXISTS idx_requirements_owner ON requirements(owner_kind, owner_id);
+
+-- Feats, races, classes ------------------------------------------------------------
+
+-- A feat from Feats.xml, or one defined inside a class or race file (source_kind/source_id).
+-- The same name can exist in several sources; resolution prefers the caller's own source, then
+-- the standard list.
+CREATE TABLE IF NOT EXISTS feats (
+    id                INTEGER PRIMARY KEY,
+    name              TEXT    NOT NULL,               -- <Name>
+    source_kind       TEXT    NOT NULL CHECK (source_kind {feat_source}),
+    source_id         INTEGER,                        -- classes.id or races.id
+    description       TEXT,                           -- <Description>
+    icon              TEXT,                           -- <Icon>
+    acquire           TEXT,                           -- <Acquire>: Train, Automatic, Favor, EpicPastLife, …
+    max_times_acquire INTEGER,                        -- <MaxTimesAcquire>
+    sphere            TEXT,                           -- <Sphere>
+    auto_acquire_ignores_requirements INTEGER NOT NULL DEFAULT 0 CHECK (auto_acquire_ignores_requirements IN (0, 1))
+);
+-- A class file can define the same feat name more than once (a later definition supersedes an
+-- earlier one at a higher level), so the identity is the row; name lookups take the first.
+CREATE INDEX IF NOT EXISTS idx_feats_name ON feats(name, source_kind, source_id);
+
+CREATE TABLE IF NOT EXISTS feat_groups (
+    feat_id    INTEGER NOT NULL REFERENCES feats(id) ON DELETE CASCADE,
+    group_name TEXT    NOT NULL,                      -- <Group>: Standard, Epic Feat, Metamagics, …
+    PRIMARY KEY (feat_id, group_name)
+);
+
+-- Groups a feat belongs to only when its requirements hold (<ConditionalGroup>).
+CREATE TABLE IF NOT EXISTS feat_conditional_groups (
+    id      INTEGER PRIMARY KEY,
+    feat_id INTEGER NOT NULL REFERENCES feats(id) ON DELETE CASCADE,
+    groups  TEXT    NOT NULL                          -- JSON array of group names
+);
+
+CREATE TABLE IF NOT EXISTS feat_sub_items (
+    feat_id     INTEGER NOT NULL REFERENCES feats(id) ON DELETE CASCADE,
+    sort_order  INTEGER NOT NULL,
+    name        TEXT    NOT NULL,
+    icon        TEXT,
+    description TEXT,
+    PRIMARY KEY (feat_id, sort_order)
+);
+
+CREATE TABLE IF NOT EXISTS feat_bonuses (
+    feat_id    INTEGER NOT NULL REFERENCES feats(id) ON DELETE CASCADE,
+    bonus_id   INTEGER NOT NULL REFERENCES bonuses(id),
+    sort_order INTEGER NOT NULL,
+    PRIMARY KEY (feat_id, sort_order)
+);
+
+-- A toggled or automatic combat stance an ability provides.
+CREATE TABLE IF NOT EXISTS stances (
+    id              INTEGER PRIMARY KEY,
+    owner_kind      TEXT    NOT NULL CHECK (owner_kind {ability_owner}),
+    owner_id        INTEGER NOT NULL,
+    sort_order      INTEGER NOT NULL,
+    name            TEXT    NOT NULL,
+    description     TEXT,
+    icon            TEXT,
+    group_name      TEXT,                             -- <Group>
+    auto_controlled INTEGER NOT NULL DEFAULT 0 CHECK (auto_controlled IN (0, 1)),
+    incompatible    TEXT                              -- JSON array: <IncompatibleStance>
+);
+CREATE INDEX IF NOT EXISTS idx_stances_owner ON stances(owner_kind, owner_id);
+
+-- A saving-throw DC an ability imposes.
+CREATE TABLE IF NOT EXISTS dcs (
+    id               INTEGER PRIMARY KEY,
+    owner_kind       TEXT    NOT NULL CHECK (owner_kind {ability_owner}),
+    owner_id         INTEGER NOT NULL,
+    sort_order       INTEGER NOT NULL,
+    name             TEXT,
+    description      TEXT,
+    icon             TEXT,
+    dc_type          TEXT,                            -- <DCType>
+    dc_versus        TEXT,                            -- <DCVersus>
+    mod_ability      TEXT,                            -- JSON array: <ModAbility>
+    amount           TEXT,                            -- JSON array: <Amount>
+    tactical         TEXT,
+    other            TEXT,
+    skill            TEXT,
+    class_level      TEXT,                            -- <ClassLevel>
+    base_class_level TEXT                             -- <BaseClassLevel>
+);
+CREATE INDEX IF NOT EXISTS idx_dcs_owner ON dcs(owner_kind, owner_id);
+
+-- A special attack an ability grants (<Attack>); only its identity is kept.
+CREATE TABLE IF NOT EXISTS attacks (
+    id          INTEGER PRIMARY KEY,
+    owner_kind  TEXT    NOT NULL CHECK (owner_kind {ability_owner}),
+    owner_id    INTEGER NOT NULL,
+    name        TEXT,
+    description TEXT,
+    icon        TEXT
+);
+
+CREATE TABLE IF NOT EXISTS races (
+    id             INTEGER PRIMARY KEY,
+    name           TEXT    NOT NULL UNIQUE,           -- <Name>
+    short_name     TEXT,                              -- <ShortName>
+    description    TEXT,
+    starting_world TEXT,                              -- Eberron / Forgotten Realms
+    build_points   TEXT,                              -- JSON array: <BuildPoints>
+    iconic_class   TEXT,                              -- <IconicClass>
+    is_construct   INTEGER NOT NULL DEFAULT 0 CHECK (is_construct IN (0, 1)),
+    no_past_life   INTEGER NOT NULL DEFAULT 0 CHECK (no_past_life IN (0, 1)),
+    skill_points   INTEGER                            -- <SkillPoints>
+);
+
+CREATE TABLE IF NOT EXISTS race_ability_modifiers (
+    race_id  INTEGER NOT NULL REFERENCES races(id) ON DELETE CASCADE,
+    stat_id  INTEGER NOT NULL REFERENCES stats(id),   -- <Strength>+2 etc.
+    modifier INTEGER NOT NULL,
+    PRIMARY KEY (race_id, stat_id)
+);
+
+CREATE TABLE IF NOT EXISTS race_granted_feats (
+    race_id    INTEGER NOT NULL REFERENCES races(id) ON DELETE CASCADE,
+    sort_order INTEGER NOT NULL,
+    feat_name  TEXT    NOT NULL,                      -- <GrantedFeat>
+    feat_id    INTEGER REFERENCES feats(id),          -- resolved: the race's own feat, else standard
+    PRIMARY KEY (race_id, sort_order)
+);
+
+CREATE TABLE IF NOT EXISTS race_feat_slots (
+    race_id     INTEGER NOT NULL REFERENCES races(id) ON DELETE CASCADE,
+    level       INTEGER NOT NULL,
+    feat_type   TEXT    NOT NULL,
+    update_list TEXT,                                 -- JSON array: <FeatUpdateList>
+    PRIMARY KEY (race_id, level, feat_type)
+);
+
+CREATE TABLE IF NOT EXISTS race_auto_buy_skills (
+    race_id INTEGER NOT NULL REFERENCES races(id) ON DELETE CASCADE,
+    skill   TEXT    NOT NULL,
+    PRIMARY KEY (race_id, skill)
+);
+
+CREATE TABLE IF NOT EXISTS classes (
+    id                        INTEGER PRIMARY KEY,
+    name                      TEXT    NOT NULL UNIQUE,
+    base_class                TEXT,                   -- <BaseClass>: archetypes name their parent
+    base_class_id             INTEGER REFERENCES classes(id),
+    not_heroic                INTEGER NOT NULL DEFAULT 0 CHECK (not_heroic IN (0, 1)),  -- Epic, Legendary
+    description               TEXT,
+    small_icon                TEXT,
+    large_icon                TEXT,
+    skill_points              INTEGER,
+    hit_points                INTEGER,
+    alignments                TEXT,                   -- JSON array: <Alignment>
+    fortitude                 TEXT CHECK (fortitude {save_progression}),
+    reflex                    TEXT CHECK (reflex {save_progression}),
+    will                      TEXT CHECK (will {save_progression}),
+    bab                       TEXT,                   -- JSON array indexed by class level
+    spell_points_per_level    TEXT,                   -- JSON array indexed by class level
+    casting_stats             TEXT,                   -- JSON array: <CastingStat>
+    class_specific_feat_types TEXT                    -- JSON array: <ClassSpecificFeatType>
+);
+
+CREATE TABLE IF NOT EXISTS class_skills (
+    class_id INTEGER NOT NULL REFERENCES classes(id) ON DELETE CASCADE,
+    skill    TEXT    NOT NULL,
+    PRIMARY KEY (class_id, skill)
+);
+
+CREATE TABLE IF NOT EXISTS class_auto_buy_skills (
+    class_id INTEGER NOT NULL REFERENCES classes(id) ON DELETE CASCADE,
+    skill    TEXT    NOT NULL,
+    PRIMARY KEY (class_id, skill)
+);
+
+-- <LevelN> vectors: spell slots per spell level at each class level.
+CREATE TABLE IF NOT EXISTS class_spell_slots (
+    class_id    INTEGER NOT NULL REFERENCES classes(id) ON DELETE CASCADE,
+    class_level INTEGER NOT NULL,
+    spell_level INTEGER NOT NULL,
+    slots       INTEGER NOT NULL,
+    PRIMARY KEY (class_id, class_level, spell_level)
+);
+
+CREATE TABLE IF NOT EXISTS class_spells (
+    class_id         INTEGER NOT NULL REFERENCES classes(id) ON DELETE CASCADE,
+    spell_name       TEXT    NOT NULL,                -- <ClassSpell><Name>; spell_id resolves in the spells stage
+    spell_level      INTEGER NOT NULL,
+    cost             INTEGER,
+    max_caster_level INTEGER,
+    spell_id         INTEGER,
+    PRIMARY KEY (class_id, spell_name, spell_level)
+);
+
+CREATE TABLE IF NOT EXISTS class_feat_slots (
+    id            INTEGER PRIMARY KEY,
+    class_id      INTEGER NOT NULL REFERENCES classes(id) ON DELETE CASCADE,
+    level         INTEGER NOT NULL,
+    feat_type     TEXT    NOT NULL,
+    auto_populate INTEGER NOT NULL DEFAULT 0 CHECK (auto_populate IN (0, 1)),
+    singular      INTEGER NOT NULL DEFAULT 0 CHECK (singular IN (0, 1)),
+    update_list   TEXT                                -- JSON array: <FeatUpdateList>
+);
+
+CREATE TABLE IF NOT EXISTS class_auto_feats (
+    class_id  INTEGER NOT NULL REFERENCES classes(id) ON DELETE CASCADE,
+    level     INTEGER NOT NULL,
+    feat_name TEXT    NOT NULL,                       -- <AutomaticFeats><Feats>
+    feat_id   INTEGER REFERENCES feats(id),           -- resolved: the class's own feat, else standard
+    PRIMARY KEY (class_id, level, feat_name)
+);
 
 -- Augments ------------------------------------------------------------------------
 

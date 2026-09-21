@@ -62,12 +62,25 @@ enum RawChild {
     RequiresNoneOf(RawGroup),
 }
 
-#[derive(Deserialize)]
-struct RawGroup {
+/// A `<RequiresOneOf>` / `<RequiresNoneOf>` block as written.
+#[derive(Debug, Clone, Deserialize)]
+pub struct RawGroup {
     #[serde(rename = "DisplayDescription")]
-    display_description: Option<String>,
+    pub display_description: Option<String>,
     #[serde(rename = "Requirement", default)]
-    requirements: Vec<Requirement>,
+    pub requirements: Vec<Requirement>,
+}
+
+impl RequirementGroup {
+    /// Build a group from a raw block, trimming requirement types.
+    pub fn from_raw(kind: RequirementGroupKind, raw: RawGroup) -> Self {
+        group(kind, raw)
+    }
+
+    /// An `All` group of loose `<Requirement>` elements.
+    pub fn all(requirements: Vec<Requirement>) -> Self {
+        RequirementGroup { kind: RequirementGroupKind::All, display_description: None, requirements }
+    }
 }
 
 impl<'de> Deserialize<'de> for Requirements {

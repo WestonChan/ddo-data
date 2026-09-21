@@ -1,7 +1,7 @@
 //! The schema contract: the DDL applies cleanly, the seed tables agree with the enums that
 //! describe them, and the corrections recorded in the roadmap's V2 entry are in place.
 
-use ddo_model::enums::{BonusType, EquipmentSlot, SlotCategory, WeaponProficiency};
+use ddo_model::enums::{BonusType, EquipmentSlot, SaveProgression, SlotCategory, WeaponProficiency};
 use ddo_model::seeds::{BONUS_TYPES, DAMAGE_TYPES, EQUIPMENT_SLOTS, WEAPON_TYPES};
 use ddo_model::stats::STATS;
 use ddo_model::{ddl, stat_by_name, SCHEMA_VERSION};
@@ -60,6 +60,24 @@ fn ddl_creates_every_v2_table() {
         "filigrees",
         "clickies",
         "item_clickies",
+        "feats",
+        "feat_groups",
+        "feat_conditional_groups",
+        "feat_sub_items",
+        "feat_bonuses",
+        "stances",
+        "dcs",
+        "attacks",
+        "races",
+        "race_ability_modifiers",
+        "race_granted_feats",
+        "race_feat_slots",
+        "classes",
+        "class_skills",
+        "class_spell_slots",
+        "class_spells",
+        "class_feat_slots",
+        "class_auto_feats",
     ] {
         assert!(tables.contains(expected), "missing table {expected}");
     }
@@ -155,4 +173,12 @@ fn seed_tables_load_into_the_schema() {
         )
         .unwrap();
     assert!(martial > 10);
+}
+
+#[test]
+fn save_progressions_follow_upstream_type_codes() {
+    assert_eq!(SaveProgression::from_upstream("Type2"), Some(SaveProgression::Good), "Paladin Fortitude is Type2");
+    assert_eq!(SaveProgression::from_upstream("Type1"), Some(SaveProgression::Poor));
+    assert_eq!(SaveProgression::from_upstream("None"), Some(SaveProgression::None));
+    assert_eq!(SaveProgression::from_upstream("Type3"), None);
 }

@@ -6,6 +6,7 @@
 //! items and sets).
 
 mod augments;
+mod characters;
 mod items;
 mod modifiers;
 mod sets;
@@ -38,6 +39,9 @@ pub struct BuildReport {
     pub filigrees: usize,
     pub clickies: usize,
     pub modifiers: usize,
+    pub feats: usize,
+    pub races: usize,
+    pub classes: usize,
     /// Effect types `derive` could not map onto a stat, with how often each occurred. They are
     /// still stored as modifiers; this is the to-do list for `data/effect_map.toml`.
     pub unmapped_effect_types: BTreeMap<String, usize>,
@@ -80,6 +84,15 @@ pub fn build(source: &Path, conn: &mut Connection, version: &DatasetVersion) -> 
         caches: Caches::default(),
         pending_set_items: Vec::new(),
     };
+
+    ctx.write_standard_feats(&source.join("Feats.xml"), &mut report)?;
+    for path in files_with_extension(&source.join("Races"), "xml")? {
+        ctx.write_race_file(&path, &mut report).with_context(|| format!("{}", path.display()))?;
+    }
+    for path in files_with_extension(&source.join("Classes"), "xml")? {
+        ctx.write_class_file(&path, &mut report).with_context(|| format!("{}", path.display()))?;
+    }
+    ctx.resolve_base_classes()?;
 
     for c in &clickie_list {
         ctx.write_clickie(c)?;
@@ -182,6 +195,9 @@ pub(crate) struct Caches {
     effects: HashMap<String, i64>,
     clickies: HashMap<String, i64>,
     sets: HashMap<String, i64>,
+    /// (name, source, source id) → feats.id
+    feats: HashMap<(String, ddo_model::enums::FeatSource, Option<i64>), i64>,
+    classes: HashMap<String, i64>,
     modifiers_written: usize,
 }
 

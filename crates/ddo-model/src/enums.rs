@@ -680,28 +680,117 @@ impl ModifierSource {
     }
 }
 
-/// What a `requirements` row belongs to: any modifier source, or a modifier itself.
+/// What a `requirements` row belongs to.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
 pub enum RequirementOwner {
-    Source(ModifierSource),
     Modifier,
+    Feat,
+    FeatConditionalGroup,
+    FeatAutoAcquire,
+    Stance,
     EnhancementTree,
+    Enhancement,
+    EnhancementSelection,
 }
 
 impl RequirementOwner {
-    pub fn as_str(self) -> &'static str {
+    pub const ALL: &'static [RequirementOwner] = &[
+        Self::Modifier,
+        Self::Feat,
+        Self::FeatConditionalGroup,
+        Self::FeatAutoAcquire,
+        Self::Stance,
+        Self::EnhancementTree,
+        Self::Enhancement,
+        Self::EnhancementSelection,
+    ];
+
+    pub const fn as_str(self) -> &'static str {
         match self {
-            Self::Source(s) => s.as_str(),
             Self::Modifier => "modifier",
+            Self::Feat => "feat",
+            Self::FeatConditionalGroup => "feat_conditional_group",
+            Self::FeatAutoAcquire => "feat_auto_acquire",
+            Self::Stance => "stance",
             Self::EnhancementTree => "enhancement_tree",
+            Self::Enhancement => "enhancement",
+            Self::EnhancementSelection => "enhancement_selection",
+        }
+    }
+}
+
+/// Where a feat definition came from.
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
+pub enum FeatSource {
+    /// `Feats.xml`
+    Standard,
+    /// A `<Feat>` inside a class file; `source_id` is the class.
+    Class,
+    /// A `<Feat>` inside a race file; `source_id` is the race.
+    Race,
+}
+
+impl FeatSource {
+    pub const ALL: &'static [FeatSource] = &[Self::Standard, Self::Class, Self::Race];
+
+    pub const fn as_str(self) -> &'static str {
+        match self {
+            Self::Standard => "standard",
+            Self::Class => "class",
+            Self::Race => "race",
+        }
+    }
+}
+
+/// What a `stances`, `dcs` or `attacks` row belongs to.
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
+pub enum AbilityOwner {
+    Feat,
+    Enhancement,
+    EnhancementSelection,
+    Spell,
+}
+
+impl AbilityOwner {
+    pub const ALL: &'static [AbilityOwner] = &[Self::Feat, Self::Enhancement, Self::EnhancementSelection, Self::Spell];
+
+    pub const fn as_str(self) -> &'static str {
+        match self {
+            Self::Feat => "feat",
+            Self::Enhancement => "enhancement",
+            Self::EnhancementSelection => "enhancement_selection",
+            Self::Spell => "spell",
+        }
+    }
+}
+
+/// A class's saving-throw progression. Upstream's `Type2` is the good progression (Paladin
+/// Fortitude), `Type1` the poor one, `None` no save bonus at all (Epic, Legendary).
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
+pub enum SaveProgression {
+    Good,
+    Poor,
+    None,
+}
+
+impl SaveProgression {
+    pub const ALL: &'static [SaveProgression] = &[Self::Good, Self::Poor, Self::None];
+
+    pub const fn as_str(self) -> &'static str {
+        match self {
+            Self::Good => "good",
+            Self::Poor => "poor",
+            Self::None => "none",
         }
     }
 
-    pub fn all_names() -> Vec<&'static str> {
-        let mut v: Vec<&'static str> = ModifierSource::ALL.iter().map(|s| s.as_str()).collect();
-        v.push("modifier");
-        v.push("enhancement_tree");
-        v
+    pub fn from_upstream(s: &str) -> Option<Self> {
+        match s.trim() {
+            "Type2" => Some(Self::Good),
+            "Type1" => Some(Self::Poor),
+            "None" => Some(Self::None),
+            _ => None,
+        }
     }
 }
 
