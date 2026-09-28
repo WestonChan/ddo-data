@@ -1,27 +1,3 @@
-mod augments;
-mod characters;
-mod dump;
-mod feats;
-mod items;
-mod lookups;
-mod sets;
-mod spells;
-mod trees;
-mod version;
+pub mod v1;
 
-use crate::state::AppState;
-use utoipa_axum::router::OpenApiRouter;
-
-pub fn router() -> OpenApiRouter<AppState> {
-    OpenApiRouter::new()
-        .merge(version::router())
-        .merge(lookups::router())
-        .merge(items::router())
-        .merge(augments::router())
-        .merge(sets::router())
-        .merge(feats::router())
-        .merge(characters::router())
-        .merge(trees::router())
-        .merge(spells::router())
-        .merge(dump::router())
-}
+pub const LATEST: &str = "v1";

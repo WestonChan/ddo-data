@@ -207,7 +207,7 @@ async fn dump_and_openapi() {
     let bytes = response.into_body().collect().await.unwrap().to_bytes();
     assert!(bytes.starts_with(b"SQLite format 3\0"));
 
-    let (status, _, spec) = get("/openapi.json").await;
+    let (status, _, spec) = get("/v1/openapi.json").await;
     assert_eq!(status, StatusCode::OK);
     let paths = spec["paths"].as_object().unwrap();
     for p in [
@@ -220,7 +220,7 @@ async fn dump_and_openapi() {
     ] {
         assert!(paths.contains_key(p), "missing {p}");
     }
-    let response = app(state()).oneshot(Request::get("/docs").body(Body::empty()).unwrap()).await.unwrap();
+    let response = app(state()).oneshot(Request::get("/v1/docs").body(Body::empty()).unwrap()).await.unwrap();
     assert_eq!(response.status(), StatusCode::OK);
 }
 
@@ -250,7 +250,7 @@ async fn icons_are_served_when_configured() {
 
 #[tokio::test]
 async fn openapi_describes_every_operation_parameter_and_tag() {
-    let (_, _, spec) = get("/openapi.json").await;
+    let (_, _, spec) = get("/v1/openapi.json").await;
     let info = &spec["info"];
     assert!(info["description"].as_str().is_some_and(|d| d.len() > 200), "info.description is thin");
 
@@ -339,7 +339,7 @@ async fn sample_for(path: &str) -> Value {
 
 #[tokio::test]
 async fn openapi_carries_a_real_example_for_every_json_response() {
-    let (_, _, spec) = get("/openapi.json").await;
+    let (_, _, spec) = get("/v1/openapi.json").await;
     let mut checked = 0;
     for (path, item) in spec["paths"].as_object().expect("paths") {
         let Some(content) = item["get"]["responses"]["200"]["content"]["application/json"].as_object() else {
@@ -352,4 +352,18 @@ async fn openapi_carries_a_real_example_for_every_json_response() {
         checked += 1;
     }
     assert!(checked >= 25, "only {checked} JSON responses carry examples");
+}
+
+#[tokio::test]
+async fn each_api_version_has_its_own_docs_and_the_bare_paths_point_at_the_latest() {
+    let (status, _, spec) = get("/v1/openapi.json").await;
+    assert_eq!(status, StatusCode::OK);
+    assert!(spec["paths"].as_object().unwrap().keys().all(|p| p.starts_with("/v1/")), "v1 spec lists other versions");
+    let response = app(state()).oneshot(Request::get("/v1/docs").body(Body::empty()).unwrap()).await.unwrap();
+    assert_eq!(response.status(), StatusCode::OK);
+    for (from, to) in [("/docs", "/v1/docs"), ("/openapi.json", "/v1/openapi.json"), ("/", "/v1/docs")] {
+        let response = app(state()).oneshot(Request::get(from).body(Body::empty()).unwrap()).await.unwrap();
+        assert!(response.status().is_redirection(), "{from} should redirect");
+        assert_eq!(response.headers()[header::LOCATION], to, "{from} should point at the latest version");
+    }
 }

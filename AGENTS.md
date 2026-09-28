@@ -16,7 +16,7 @@ DDO_DB_PATH=ddo.db ICONS_DIR=icons cargo run -p ddo-api
 
 ## Orientation
 
-This is the data half of a two-repo project. The site is `ddo-tools`, a sibling directory under `~/Documents/Personal Projects/` (GitHub `WestonChan/ddo-tools`, live at https://ddo-tools.vercel.app, its own `AGENTS.md`). This API is live at https://ddo-data.fly.dev (Fly app `ddo-data`, region `ord`, suspends to zero between requests; `/docs` is the OpenAPI UI, `/v1/version` reports the dataset SHA and row counts).
+This is the data half of a two-repo project. The site is `ddo-tools`, a sibling directory under `~/Documents/Personal Projects/` (GitHub `WestonChan/ddo-tools`, live at https://ddo-tools.vercel.app, its own `AGENTS.md`). This API is live at https://ddo-data.fly.dev (Fly app `ddo-data`, region `ord`, suspends to zero between requests; `/v1/docs` is the OpenAPI UI and `/docs` redirects to the latest version, `/v1/version` reports the dataset SHA and row counts).
 
 **Data flow.** Maetrim's DDOBuilderV2 `Output/DataFiles` (sparse checkout in `upstream/`, gitignored) → `ddo-etl build` → `ddo.db` (~14 MB SQLite, schema from `ddo-model`) → `ddo-api` serves it read-only with strong ETags → `ddo-tools` reads it over HTTP through `src/lib/api/`. Every response is immutable for a dataset version, so the frontend caches forever.
 
@@ -32,7 +32,7 @@ This is the data half of a two-repo project. The site is `ddo-tools`, a sibling 
 
 - `crates/ddo-model` — the schema as Rust: enums, seeds, DDL, `SCHEMA_VERSION`. Based on ddo-tools' schema, not on DDOBuilderV2's XML; the ETL is the adapter.
 - `crates/ddo-etl` — parses `Output/DataFiles` with quick-xml and writes SQLite. Mapping vocabularies are data in `data/*.toml`; an unmapped value fails the build on purpose.
-- `crates/ddo-api` — axum read API over the ETL output. OpenAPI at `/docs`, strong ETags, `X-Dataset-Version`, rate limiting, `/v1/dump.sqlite`, icons at `/icons/`.
+- `crates/ddo-api` — axum read API over the ETL output. OpenAPI at `/v1/docs`, strong ETags, `X-Dataset-Version`, rate limiting, `/v1/dump.sqlite`, icons at `/icons/`.
 - `xtask` — repo tooling behind `cargo xtask`. Not published.
 - `upstream/` — gitignored sparse checkout of DDOBuilderV2; `.github/workflows/deploy.yml` refreshes it weekly and deploys to Fly.io.
 - Planning lives in the ddo-tools roadmap (`docs/roadmap.md`, V-series section), not here.
@@ -46,9 +46,11 @@ This is the data half of a two-repo project. The site is `ddo-tools`, a sibling 
 
 ## API documentation
 
-`/docs` is the public face of the API, and it is generated from the `#[utoipa::path]` attributes, so the attributes are the documentation. Every route carries `summary` (a short title in the form "List items" / "Get an item"), `description` (what the response contains and how the route behaves, naming the child collections), a `description` on every query and path parameter (what it matches, the vocabulary it comes from, the default), and a `description` on every response. Filters are declared inline in `params(...)` rather than through `IntoParams`, because the comment ban leaves no other place to describe a field. The `tags(...)` and `info(description)` in `lib.rs` are the sidebar headings and the Introduction page. `openapi_describes_every_operation_parameter_and_tag` in `crates/ddo-api/tests/api.rs` fails the build when any of this is missing or too short, so adding a route means writing its docs in the same commit. When a response shape changes, reread its description.
+`/docs` is the public face of the API, and it is generated from the `#[utoipa::path]` attributes, so the attributes are the documentation. Every route carries `summary` (a short title in the form "List items" / "Get an item"), `description` (what the response contains and how the route behaves, naming the child collections), a `description` on every query and path parameter (what it matches, the vocabulary it comes from, the default), and a `description` on every response. Filters are declared inline in `params(...)` rather than through `IntoParams`, because the comment ban leaves no other place to describe a field. The `tags(...)` and `info(description)` on `ApiDoc` in `routes/v1/mod.rs` are the sidebar headings and the Introduction page. `openapi_describes_every_operation_parameter_and_tag` in `crates/ddo-api/tests/api.rs` fails the build when any of this is missing or too short, so adding a route means writing its docs in the same commit. When a response shape changes, reread its description.
 
 Every JSON response also carries an example, attached after generation by `crates/ddo-api/src/docs.rs` from `crates/ddo-api/docs/examples/<route>.json`. The files are real responses from the live API, trimmed to three elements per array by `crates/ddo-api/docs/refresh-examples.sh` (pass a base URL to sample a local server instead). `openapi_carries_a_real_example_for_every_json_response` compares each example's keys and value types against a response from the fixture database, so a shape change fails until the examples are refreshed, and a new route fails until it has one.
+
+**Versions.** The API is versioned by path prefix and every version owns its documentation: `routes/v1/` holds the handlers, the `ApiDoc` (info, tags) and the `EXAMPLES` list, its examples live under `docs/examples/v1/`, and `lib.rs` mounts its spec at `/v1/openapi.json` and its UI at `/v1/docs`. `/docs`, `/openapi.json` and `/` redirect to `routes::LATEST`. A breaking change (renaming or removing a field, changing a shape, changing what a filter matches) goes in a new `routes/v2/` beside `v1`, not in place: copy the module, change what must change, register it in `app()` next to v1, point `LATEST` at it, and keep v1 serving until `ddo-tools` and any other consumer have moved. Additive changes (new field, new route, new optional filter) stay in the current version.
 
 ## Testing
 

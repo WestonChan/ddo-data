@@ -54,7 +54,7 @@ cargo run -p ddo-etl -- build --source upstream/Output/DataFiles --out ddo.db
 | `cargo run -p ddo-etl -- build --source <DataFiles> --out ddo.db` | Build the game database |
 | `cargo run -p ddo-etl -- diff --db ddo.db --legacy <old ddo.db>` | Compare item coverage against a previous database |
 | `cargo run -p ddo-etl -- icons --source <DataFiles> --out icons` | Flatten upstream's image folders for the API to serve |
-| `DDO_DB_PATH=ddo.db ICONS_DIR=icons cargo run -p ddo-api` | Serve the API on http://localhost:8080 (docs at `/docs`, spec at `/openapi.json`) |
+| `DDO_DB_PATH=ddo.db ICONS_DIR=icons cargo run -p ddo-api` | Serve the API on http://localhost:8080 (docs at `/v1/docs`, spec at `/v1/openapi.json`) |
 
 ## API
 
@@ -77,7 +77,7 @@ download the whole database once from `/v1/dump.sqlite` rather than paging the l
 | `/v1/stats`, `/v1/bonus-types`, … | Reference vocabularies |
 | `/v1/dump.sqlite` | The whole database |
 | `/icons/{family}/{Name}.png` | Icons; `family` is `items`, `augments`, `feats`, `enhancements`, `spells`, `classes`, `filigrees`, `sets`, `sentient-gems` or `ui`, and `Name` is the row's `icon` column |
-| `/docs`, `/openapi.json` | Interactive documentation and the OpenAPI 3.1 spec |
+| `/v1/docs`, `/v1/openapi.json` | Interactive documentation and the OpenAPI 3.1 spec for that version; `/docs` and `/openapi.json` redirect to the latest |
 
 ## Deployment
 
