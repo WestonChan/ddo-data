@@ -14,6 +14,20 @@ cargo run -p ddo-etl -- build --source upstream/Output/DataFiles --out ddo.db
 DDO_DB_PATH=ddo.db ICONS_DIR=icons cargo run -p ddo-api
 ```
 
+## Orientation
+
+This is the data half of a two-repo project. The site is `ddo-tools`, a sibling directory under `~/Documents/Personal Projects/` (GitHub `WestonChan/ddo-tools`, live at https://ddo-tools.vercel.app, its own `AGENTS.md`). This API is live at https://ddo-data.fly.dev (Fly app `ddo-data`, region `ord`, suspends to zero between requests; `/docs` is the OpenAPI UI, `/v1/version` reports the dataset SHA and row counts).
+
+**Data flow.** Maetrim's DDOBuilderV2 `Output/DataFiles` (sparse checkout in `upstream/`, gitignored) → `ddo-etl build` → `ddo.db` (~14 MB SQLite, schema from `ddo-model`) → `ddo-api` serves it read-only with strong ETags → `ddo-tools` reads it over HTTP through `src/lib/api/`. Every response is immutable for a dataset version, so the frontend caches forever.
+
+**Deploying.** Only through `.github/workflows/deploy.yml` (weekly schedule or `workflow_dispatch` with `force`): it refreshes `upstream/`, skips if the live `/v1/version` SHA already matches, runs the ETL, checks row-count floors, builds the release binary, and runs `flyctl deploy --remote-only` with the `FLY_API_TOKEN` secret. The `Dockerfile` copies prebuilt artifacts, so `fly deploy` from a laptop does not work; `fly status -a ddo-data` is fine for inspection.
+
+**Local API for the frontend.** `DDO_DB_PATH=ddo.db ICONS_DIR=icons PORT=8089 cargo run --release -p ddo-api`, then `VITE_API_URL=http://localhost:8089` in `ddo-tools/.env`. Icons come from `cargo run -p ddo-etl -- icons --source upstream/Output/DataFiles --out icons`.
+
+**Where the API surface is.** `crates/ddo-api/src/routes/` has one file per resource (`items`, `augments`, `sets`, `feats`, `characters` for races/classes, `trees`, `spells`, `lookups`, `dump`, `version`); `db.rs` holds the shared query helpers; `etag.rs` and `state.rs` the caching and pool. The ETL mirrors it: `crates/ddo-etl/src/xml/` parses, `map/` applies `data/*.toml` vocabularies, `build/` writes tables.
+
+**Planning.** The roadmap for both repos is `ddo-tools/docs/roadmap.md` (V-series section). V1–V6 are done; V7 adds `/v1/builds` on a Fly volume for build sharing.
+
 ## Structure
 
 - `crates/ddo-model` — the schema as Rust: enums, seeds, DDL, `SCHEMA_VERSION`. Based on ddo-tools' schema, not on DDOBuilderV2's XML; the ETL is the adapter.
