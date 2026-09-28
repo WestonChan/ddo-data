@@ -1,9 +1,10 @@
 mod augments;
-mod characters;
+mod classes;
 mod dump;
 mod feats;
 mod items;
 mod lookups;
+mod races;
 mod sets;
 mod spells;
 mod trees;
@@ -44,7 +45,8 @@ use utoipa_axum::router::OpenApiRouter;
         (name = "augments", description = "Augments and crafting-family inserts, with the sockets each one fits"),
         (name = "sets", description = "Gear set bonuses, filigree sets and the filigrees themselves"),
         (name = "feats", description = "Feats from the standard list and those granted by classes and races, with requirements and effects"),
-        (name = "characters", description = "Playable races and classes with their progressions, granted feats and spell lists"),
+        (name = "races", description = "Playable races with ability modifiers, granted feats and racial feats"),
+        (name = "classes", description = "Classes and archetypes with progressions, feat slots and spell lists"),
         (name = "enhancements", description = "Enhancement, epic destiny and reaper trees with every enhancement and selection"),
         (name = "spells", description = "Spells with damage, saves and class lists, and the clickies items grant"),
         (name = "bulk", description = "The whole dataset as one SQLite download")
@@ -95,7 +97,8 @@ pub fn router() -> OpenApiRouter<AppState> {
         .merge(augments::router())
         .merge(sets::router())
         .merge(feats::router())
-        .merge(characters::router())
+        .merge(races::router())
+        .merge(classes::router())
         .merge(trees::router())
         .merge(spells::router())
         .merge(dump::router())
