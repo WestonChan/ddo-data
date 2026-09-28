@@ -3,8 +3,9 @@ use crate::db::{
     stances_for, Filters,
 };
 use crate::error::ApiError;
+use crate::query::ApiQuery;
 use crate::state::AppState;
-use axum::extract::{Path, Query, State};
+use axum::extract::{Path, State};
 use axum::Json;
 use ddo_model::enums::FeatSource;
 use serde::Deserialize;
@@ -17,6 +18,7 @@ pub fn router() -> OpenApiRouter<AppState> {
 }
 
 #[derive(Deserialize)]
+#[serde(deny_unknown_fields)]
 pub struct FeatFilter {
     pub q: Option<String>,
     pub source: Option<String>,
@@ -45,15 +47,15 @@ const COLUMNS: &str = "f.id, f.name, f.source_kind, f.source_id,
         ("source" = Option<String>, Query, description = "`standard`, `class` or `race`; anything else is a 400"),
         ("group" = Option<String>, Query, description = "Feat group name, e.g. `Metamagic`; keeps feats listed in that group"),
         ("acquire" = Option<String>, Query, description = "How the feat is taken, e.g. `Train`, `Automatic`, `Special`"),
-        ("limit" = Option<i64>, Query, description = "Page size, 1 to 10000; defaults to 100"),
-        ("offset" = Option<i64>, Query, description = "Rows to skip before the first returned row; defaults to 0")
+        ("limit" = Option<i64>, Query, description = "Page size, 1 to 10000; defaults to 100; out-of-range values are clamped rather than rejected"),
+        ("offset" = Option<i64>, Query, description = "Rows to skip before the first returned row; defaults to 0; negative values are clamped to 0 rather than rejected")
     ),
     responses(
         (status = 200, description = "`total`, `limit`, `offset` and the `feats` page", body = Value),
-        (status = 400, description = "Unknown source", body = crate::error::ErrorBody)
+        (status = 400, description = "Unknown source, or an unknown or malformed query parameter", body = crate::error::ErrorBody)
     )
 )]
-async fn list(State(state): State<AppState>, Query(f): Query<FeatFilter>) -> Result<Json<Value>, ApiError> {
+async fn list(State(state): State<AppState>, ApiQuery(f): ApiQuery<FeatFilter>) -> Result<Json<Value>, ApiError> {
     if let Some(s) = &f.source {
         if !FeatSource::ALL.iter().any(|k| k.as_str() == s) {
             return Err(ApiError::BadRequest(format!("unknown source {s:?}")));

@@ -2,6 +2,7 @@ mod db;
 mod docs;
 pub mod error;
 mod etag;
+mod query;
 mod routes;
 pub mod state;
 

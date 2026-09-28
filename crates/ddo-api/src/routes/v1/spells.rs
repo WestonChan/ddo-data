@@ -1,7 +1,8 @@
 use crate::db::{booleanize, count, json_row, json_rows, like_pattern, modifiers_for, page, stances_for, Filters};
 use crate::error::ApiError;
+use crate::query::ApiQuery;
 use crate::state::AppState;
-use axum::extract::{Path, Query, State};
+use axum::extract::{Path, State};
 use axum::Json;
 use serde::Deserialize;
 use serde_json::{json, Value};
@@ -13,6 +14,7 @@ pub fn router() -> OpenApiRouter<AppState> {
 }
 
 #[derive(Deserialize)]
+#[serde(deny_unknown_fields)]
 pub struct SpellFilter {
     pub q: Option<String>,
     pub school: Option<String>,
@@ -35,12 +37,15 @@ const COLUMNS: &str = "s.id, s.name, s.description, s.icon, s.schools, s.max_cas
         ("q" = Option<String>, Query, description = "Case-insensitive substring of the spell name"),
         ("school" = Option<String>, Query, description = "Spell school, e.g. `Evocation`; matches spells listing it among their schools"),
         ("class" = Option<String>, Query, description = "Class name as /v1/classes lists it; keeps spells on that class's list"),
-        ("limit" = Option<i64>, Query, description = "Page size, 1 to 10000; defaults to 100"),
-        ("offset" = Option<i64>, Query, description = "Rows to skip before the first returned row; defaults to 0")
+        ("limit" = Option<i64>, Query, description = "Page size, 1 to 10000; defaults to 100; out-of-range values are clamped rather than rejected"),
+        ("offset" = Option<i64>, Query, description = "Rows to skip before the first returned row; defaults to 0; negative values are clamped to 0 rather than rejected")
     ),
-    responses((status = 200, description = "`total`, `limit`, `offset` and the `spells` page", body = Value))
+    responses(
+        (status = 200, description = "`total`, `limit`, `offset` and the `spells` page", body = Value),
+        (status = 400, description = "Unknown or malformed query parameter", body = crate::error::ErrorBody)
+    )
 )]
-async fn list(State(state): State<AppState>, Query(f): Query<SpellFilter>) -> Result<Json<Value>, ApiError> {
+async fn list(State(state): State<AppState>, ApiQuery(f): ApiQuery<SpellFilter>) -> Result<Json<Value>, ApiError> {
     let (limit, offset) = page(f.limit, f.offset);
     state
         .query(move |conn| {

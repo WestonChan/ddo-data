@@ -368,3 +368,58 @@ async fn each_api_version_has_its_own_docs_and_the_bare_paths_point_at_the_lates
         assert_eq!(response.headers()[header::LOCATION], to, "{from} should point at the latest version");
     }
 }
+
+const LIST_ENDPOINTS: [&str; 4] = ["/v1/items", "/v1/augments", "/v1/feats", "/v1/spells"];
+
+fn schema_type(param: &Value) -> &str {
+    let ty = &param["schema"]["type"];
+    ty.as_str()
+        .or_else(|| ty.as_array().into_iter().flatten().filter_map(Value::as_str).find(|t| *t != "null"))
+        .unwrap_or("string")
+}
+
+fn accepted_sample(name: &str, ty: &str) -> &'static str {
+    match (name, ty) {
+        ("category", _) => "Armor",
+        ("source", _) => "standard",
+        (_, "boolean") => "true",
+        (_, "integer" | "number") => "1",
+        _ => "x",
+    }
+}
+
+#[tokio::test]
+async fn list_endpoints_reject_unknown_query_parameters_as_json() {
+    for path in LIST_ENDPOINTS {
+        let (status, headers, json) = get(&format!("{path}?bogus=1")).await;
+        assert_eq!(status, StatusCode::BAD_REQUEST, "{path}?bogus=1 must be rejected");
+        assert!(
+            headers.get(header::CONTENT_TYPE).is_some_and(|v| v.to_str().unwrap().starts_with("application/json")),
+            "{path}?bogus=1 must answer with JSON"
+        );
+        let error = json["error"].as_str().unwrap_or_else(|| panic!("{path}?bogus=1 body {json} has no error string"));
+        assert!(error.contains("bogus"), "{path}?bogus=1 error {error:?} must name the parameter");
+    }
+
+    let (status, _, json) = get("/v1/items?raid=maybe").await;
+    assert_eq!(status, StatusCode::BAD_REQUEST);
+    assert!(json["error"].as_str().is_some_and(|e| e.contains("raid")), "malformed raid body {json} must be JSON");
+}
+
+#[tokio::test]
+async fn list_endpoints_accept_every_documented_query_parameter() {
+    let (_, _, spec) = get("/v1/openapi.json").await;
+    for path in LIST_ENDPOINTS {
+        let op = &spec["paths"][path]["get"];
+        assert!(op["responses"]["400"]["description"].is_string(), "{path} must document its 400 response");
+        let params = op["parameters"].as_array().unwrap_or_else(|| panic!("{path} documents no parameters"));
+        let query_params: Vec<&Value> = params.iter().filter(|p| p["in"] == "query").collect();
+        assert!(query_params.len() >= 5, "{path} documents only {} query parameters", query_params.len());
+        for param in query_params {
+            let name = param["name"].as_str().unwrap();
+            let value = accepted_sample(name, schema_type(param));
+            let (status, _, json) = get(&format!("{path}?{name}={value}")).await;
+            assert_eq!(status, StatusCode::OK, "{path}?{name}={value} is documented but rejected: {json}");
+        }
+    }
+}

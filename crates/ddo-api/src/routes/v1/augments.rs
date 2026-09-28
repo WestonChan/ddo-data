@@ -1,7 +1,8 @@
 use crate::db::{bonuses_via, booleanize, count, json_row, json_rows, like_pattern, modifiers_for, page, Filters};
 use crate::error::ApiError;
+use crate::query::ApiQuery;
 use crate::state::AppState;
-use axum::extract::{Path, Query, State};
+use axum::extract::{Path, State};
 use axum::Json;
 use serde::Deserialize;
 use serde_json::{json, Value};
@@ -13,6 +14,7 @@ pub fn router() -> OpenApiRouter<AppState> {
 }
 
 #[derive(Deserialize)]
+#[serde(deny_unknown_fields)]
 pub struct AugmentFilter {
     pub q: Option<String>,
     pub slot: Option<String>,
@@ -58,12 +60,15 @@ const COLUMNS: &str =
         ("slot" = Option<String>, Query, description = "Socket label as /v1/augment-slot-types lists it, e.g. `red` or `lamordia: melancholic (accessory)`; case-insensitive"),
         ("family" = Option<String>, Query, description = "Augment family, e.g. `standard`, `lamordia`, `dino`, `crafting`"),
         ("max_level" = Option<i64>, Query, description = "Only augments usable at this character level or lower; augments with no minimum level always pass"),
-        ("limit" = Option<i64>, Query, description = "Page size, 1 to 10000; defaults to 100"),
-        ("offset" = Option<i64>, Query, description = "Rows to skip before the first returned row; defaults to 0")
+        ("limit" = Option<i64>, Query, description = "Page size, 1 to 10000; defaults to 100; out-of-range values are clamped rather than rejected"),
+        ("offset" = Option<i64>, Query, description = "Rows to skip before the first returned row; defaults to 0; negative values are clamped to 0 rather than rejected")
     ),
-    responses((status = 200, description = "`total`, `limit`, `offset` and the `augments` page", body = Value))
+    responses(
+        (status = 200, description = "`total`, `limit`, `offset` and the `augments` page", body = Value),
+        (status = 400, description = "Unknown or malformed query parameter", body = crate::error::ErrorBody)
+    )
 )]
-async fn list(State(state): State<AppState>, Query(f): Query<AugmentFilter>) -> Result<Json<Value>, ApiError> {
+async fn list(State(state): State<AppState>, ApiQuery(f): ApiQuery<AugmentFilter>) -> Result<Json<Value>, ApiError> {
     let (limit, offset) = page(f.limit, f.offset);
     state
         .query(move |conn| {

@@ -2,8 +2,9 @@ use crate::db::{
     bonuses_via, booleanize, count, json_row, json_rows, like_pattern, modifiers_for, page, table, Filters,
 };
 use crate::error::ApiError;
+use crate::query::ApiQuery;
 use crate::state::AppState;
-use axum::extract::{Path, Query, State};
+use axum::extract::{Path, State};
 use axum::Json;
 use ddo_model::enums::ItemCategory;
 use serde::Deserialize;
@@ -22,6 +23,7 @@ pub fn router() -> OpenApiRouter<AppState> {
 }
 
 #[derive(Deserialize)]
+#[serde(deny_unknown_fields)]
 pub struct ItemFilter {
     pub q: Option<String>,
     pub slot: Option<String>,
@@ -53,15 +55,15 @@ pub struct ItemFilter {
         ("pack" = Option<String>, Query, description = "Adventure pack name as /v1/adventure-packs lists it; matches items dropping from any quest in it"),
         ("raid" = Option<bool>, Query, description = "`true` keeps only items that drop from a raid; `false` and unset apply no filter"),
         ("stat" = Option<String>, Query, description = "Stat name as /v1/stats lists it; keeps items with at least one bonus to it"),
-        ("limit" = Option<i64>, Query, description = "Page size, 1 to 10000; defaults to 100"),
-        ("offset" = Option<i64>, Query, description = "Rows to skip before the first returned row; defaults to 0")
+        ("limit" = Option<i64>, Query, description = "Page size, 1 to 10000; defaults to 100; out-of-range values are clamped rather than rejected"),
+        ("offset" = Option<i64>, Query, description = "Rows to skip before the first returned row; defaults to 0; negative values are clamped to 0 rather than rejected")
     ),
     responses(
         (status = 200, description = "`total`, `limit`, `offset` and the `items` page", body = Value),
-        (status = 400, description = "Unknown category", body = crate::error::ErrorBody)
+        (status = 400, description = "Unknown category, or an unknown or malformed query parameter", body = crate::error::ErrorBody)
     )
 )]
-async fn list(State(state): State<AppState>, Query(f): Query<ItemFilter>) -> Result<Json<Value>, ApiError> {
+async fn list(State(state): State<AppState>, ApiQuery(f): ApiQuery<ItemFilter>) -> Result<Json<Value>, ApiError> {
     if let Some(c) = &f.category {
         if !ItemCategory::ALL.iter().any(|k| k.as_str() == c) {
             return Err(ApiError::BadRequest(format!("unknown category {c:?}")));
