@@ -80,6 +80,7 @@ pub fn build(source: &Path, conn: &mut Connection, version: &DatasetVersion) -> 
         quests: &quest_index,
         caches: Caches::default(),
         pending_set_items: Vec::new(),
+        pending_set_augments: Vec::new(),
     };
 
     ctx.write_standard_feats(&source.join("Feats.xml"), &mut report)?;
@@ -118,7 +119,7 @@ pub fn build(source: &Path, conn: &mut Connection, version: &DatasetVersion) -> 
     for path in files_with_extension(&source.join("FiligreeSets"), "xml")? {
         ctx.write_set_file(&path, true, &mut report).with_context(|| format!("{}", path.display()))?;
     }
-    ctx.resolve_set_items()?;
+    ctx.resolve_set_members()?;
     ctx.resolve_spell_references()?;
 
     report.bonuses = ctx.caches.bonuses.len();
@@ -220,6 +221,7 @@ pub(crate) struct Ctx<'a> {
     quests: &'a QuestIndex,
     caches: Caches,
     pending_set_items: Vec<(i64, String)>,
+    pending_set_augments: Vec<(i64, String)>,
 }
 
 impl Ctx<'_> {

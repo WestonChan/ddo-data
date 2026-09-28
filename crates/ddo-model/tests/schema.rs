@@ -54,6 +54,7 @@ fn ddl_creates_every_v2_table() {
         "set_bonuses",
         "set_bonus_tiers",
         "set_bonus_items",
+        "set_bonus_augments",
         "filigrees",
         "clickies",
         "item_clickies",

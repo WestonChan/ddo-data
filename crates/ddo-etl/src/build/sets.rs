@@ -63,14 +63,17 @@ impl Ctx<'_> {
         Ok(())
     }
 
-    pub(super) fn resolve_set_items(&mut self) -> Result<()> {
-        let pending = std::mem::take(&mut self.pending_set_items);
-        for (item_id, set_name) in pending {
+    pub(super) fn resolve_set_members(&mut self) -> Result<()> {
+        let items = std::mem::take(&mut self.pending_set_items);
+        self.link_set_members(items, "INSERT OR IGNORE INTO set_bonus_items (set_id, item_id) VALUES (?1, ?2)")?;
+        let augments = std::mem::take(&mut self.pending_set_augments);
+        self.link_set_members(augments, "INSERT OR IGNORE INTO set_bonus_augments (set_id, augment_id) VALUES (?1, ?2)")
+    }
+
+    fn link_set_members(&self, pending: Vec<(i64, String)>, insert: &str) -> Result<()> {
+        for (member_id, set_name) in pending {
             if let Some(set_id) = self.caches.sets.get(&set_name) {
-                self.tx.execute(
-                    "INSERT OR IGNORE INTO set_bonus_items (set_id, item_id) VALUES (?1, ?2)",
-                    params![set_id, item_id],
-                )?;
+                self.tx.execute(insert, params![set_id, member_id])?;
             }
         }
         Ok(())

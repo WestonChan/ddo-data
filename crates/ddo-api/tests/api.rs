@@ -167,6 +167,17 @@ async fn sets_feats_races_classes_trees_spells() {
     let (_, _, set) = get(&format!("/v1/sets/{}", winter["id"])).await;
     assert!(set["tiers"].as_array().unwrap().iter().all(|t| t["equipped_count"].as_i64().unwrap() >= 2));
     assert_eq!(set["items"][0]["name"], "Legendary Cloak of Winter");
+    assert_eq!(set["augments"], serde_json::json!([]));
+    assert_eq!(winter["augment_count"], 0);
+    let silence = sets.as_array().unwrap().iter().find(|s| s["name"] == "Perfect Silence").unwrap();
+    assert_eq!((&silence["item_count"], &silence["augment_count"]), (&serde_json::json!(0), &serde_json::json!(1)));
+    let (_, _, set) = get(&format!("/v1/sets/{}", silence["id"])).await;
+    let augment = &set["augments"][0];
+    assert_eq!(
+        (&augment["name"], &augment["min_level"]),
+        (&serde_json::json!("Perfect Silence"), &serde_json::json!(30))
+    );
+    assert!(augment["id"].is_number());
 
     let (_, _, feats) = get("/v1/feats?source=race").await;
     assert_eq!(feats["total"], 7);

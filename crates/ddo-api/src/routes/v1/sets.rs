@@ -17,7 +17,8 @@ pub fn router() -> OpenApiRouter<AppState> {
     tag = "sets",
     summary = "List sets",
     description = "Every set bonus ordered by name with its icon, whether it is a filigree set rather than a gear \
-                   set, and how many items and tiers it has. Tiers, items and filigrees are on the detail endpoint.",
+                   set, and how many items, augments and tiers it has (`item_count`, `augment_count`, `tier_count`). \
+                   Tiers, items, augments and filigrees are on the detail endpoint.",
     responses((status = 200, description = "All set bonuses", body = Vec<Value>))
 )]
 async fn list(State(state): State<AppState>) -> Result<Json<Vec<Value>>, ApiError> {
@@ -27,6 +28,7 @@ async fn list(State(state): State<AppState>) -> Result<Json<Vec<Value>>, ApiErro
                 conn,
                 "SELECT s.id, s.name, s.icon, s.is_filigree_set,
                         (SELECT COUNT(*) FROM set_bonus_items i WHERE i.set_id = s.id) AS item_count,
+                        (SELECT COUNT(*) FROM set_bonus_augments a WHERE a.set_id = s.id) AS augment_count,
                         (SELECT COUNT(*) FROM set_bonus_tiers t WHERE t.set_id = s.id) AS tier_count
                    FROM set_bonuses s ORDER BY s.name",
                 [],
@@ -45,7 +47,8 @@ async fn list(State(state): State<AppState>) -> Result<Json<Vec<Value>>, ApiErro
     tag = "sets",
     summary = "Get a set",
     description = "One set with its `tiers` (how many pieces equipped unlock which raw `modifiers`), the `items` \
-                   that count towards it with slot and minimum level, and for filigree sets the `filigrees`.",
+                   that count towards it with slot and minimum level, the `augments` whose slotting grants it (id, \
+                   name, minimum level; crafting-system and named augments), and for filigree sets the `filigrees`.",
     params(("id" = i64, Path, description = "The set's numeric id from the list endpoint")), responses((status = 200, description = "The set with its child collections", body = Value), (status = 404, description = "No set has this id", body = crate::error::ErrorBody))
 )]
 async fn detail(State(state): State<AppState>, Path(id): Path<i64>) -> Result<Json<Value>, ApiError> {
@@ -67,6 +70,12 @@ async fn detail(State(state): State<AppState>, Path(id): Path<i64>) -> Result<Js
                 conn,
                 "SELECT i.id, i.name, es.name AS slot, i.minimum_level FROM set_bonus_items sbi JOIN items i ON i.id = sbi.item_id
                    JOIN equipment_slots es ON es.id = i.slot_id WHERE sbi.set_id = ?1 ORDER BY i.name",
+                [id],
+            )?);
+            set["augments"] = Value::Array(json_rows(
+                conn,
+                "SELECT a.id, a.name, a.min_level FROM set_bonus_augments sba JOIN augments a ON a.id = sba.augment_id
+                  WHERE sba.set_id = ?1 ORDER BY a.name, a.id",
                 [id],
             )?);
             set["filigrees"] = Value::Array(filigree_rows(conn, Some(id))?);

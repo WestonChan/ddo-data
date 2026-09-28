@@ -427,6 +427,27 @@ fn writes_sets_filigrees_and_their_items() {
 }
 
 #[test]
+fn links_sets_to_the_augments_that_grant_them() {
+    let (conn, _) = built();
+    let rows: Vec<(String, String)> = conn
+        .prepare(
+            "SELECT s.name, a.name FROM set_bonus_augments sba JOIN set_bonuses s ON s.id = sba.set_id
+               JOIN augments a ON a.id = sba.augment_id ORDER BY s.name, a.name",
+        )
+        .unwrap()
+        .query_map([], |r| Ok((r.get(0)?, r.get(1)?)))
+        .unwrap()
+        .map(Result::unwrap)
+        .collect();
+    assert_eq!(rows, vec![("Perfect Silence".to_string(), "Perfect Silence".to_string())]);
+    assert_eq!(
+        count(&conn, "SELECT COUNT(*) FROM set_bonus_items sbi JOIN set_bonuses s ON s.id = sbi.set_id WHERE s.name = 'Perfect Silence'"),
+        0,
+        "no item names the set; only the augment grants it"
+    );
+}
+
+#[test]
 fn writes_clickies_and_item_level_effects() {
     let (conn, report) = built();
     assert_eq!(report.clickies, 2);

@@ -660,6 +660,14 @@ CREATE TABLE IF NOT EXISTS set_bonus_items (
     PRIMARY KEY (set_id, item_id)
 );
 
+-- Augments whose <SetBonus> names the set: slotting one counts towards it (crafting systems, named augments).
+CREATE TABLE IF NOT EXISTS set_bonus_augments (
+    set_id     INTEGER NOT NULL REFERENCES set_bonuses(id) ON DELETE CASCADE,
+    augment_id INTEGER NOT NULL REFERENCES augments(id) ON DELETE CASCADE,
+    PRIMARY KEY (set_id, augment_id)
+);
+CREATE INDEX IF NOT EXISTS idx_set_bonus_augments_augment ON set_bonus_augments(augment_id);
+
 CREATE TABLE IF NOT EXISTS filigrees (
     id          INTEGER PRIMARY KEY,
     name        TEXT    NOT NULL UNIQUE,               -- <Filigree><Name>

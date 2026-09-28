@@ -35,6 +35,9 @@ impl Ctx<'_> {
                 ],
             )?;
             let id = self.tx.last_insert_rowid();
+            for set in a.set_bonus.iter().map(|s| s.trim()).filter(|s| !s.is_empty()) {
+                self.pending_set_augments.push((id, set.to_string()));
+            }
             for slot in &a.slot_types {
                 let slot_id = self.slot_type_id(slot)?;
                 self.tx.execute(
