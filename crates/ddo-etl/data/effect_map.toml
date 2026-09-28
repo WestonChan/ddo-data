@@ -9,6 +9,10 @@
 #   [by_item_default]  Type -> stat used when <Item> is absent or "All"
 #   [item_aliases]     <Item> spellings that differ from the word our stat names use
 #   [bonus_type_aliases]  <Bonus> spellings; an empty value means NULL
+#   [engine_only]      Type -> why it derives no bonus: conditional on a weapon class, damage type or
+#                      spell, or a mechanic flag without a magnitude. The stats engine reads these
+#                      from `modifiers`. A type may not be both here and in a mapping section, and a
+#                      type listed here is not counted as unmapped.
 
 [fixed]
 PRR = "Physical Resistance Rating"
@@ -146,3 +150,34 @@ General = "Tactics"
 Insightful = "Insight"
 "Not Set" = ""
 "Not Equipment" = ""
+
+[engine_only]
+Weapon_AttackAndDamage = "per weapon class"
+Weapon_BaseDamage = "per weapon class"
+Weapon_Enchantment = "per weapon class"
+Weapon_AttackAndDamageCritical = "per weapon class, on critical hits"
+Weapon_DamageCritical = "per weapon class, on critical hits"
+Weapon_VorpalRange = "per weapon class"
+WeaponAttackBonusClass = "per weapon class"
+WeaponDamageBonusClass = "per weapon class"
+WeaponAlacrityClass = "per weapon class"
+WeaponAttackBonusDamageType = "per weapon damage type"
+WeaponDamageBonusDamageType = "per weapon damage type"
+WeaponKeenDamageType = "per weapon damage type"
+ImplementInYourHands = "per wielded implement"
+SkillBonusAbility = "bonus to the skills keyed by an ability"
+MaxCasterLevelSpell = "per spell"
+SpellCostReduction = "flat spell point reduction, per spell"
+SaveNoFailOn1 = "flag per save"
+OverrideBAB = "mechanic flag"
+DivineGrace = "mechanic flag"
+DamageAbilityMultiplier = "mechanic flag"
+HitpointsStyleBonus = "mechanic flag"
+WildsurgeChance = "mechanic flag"
+RustSusceptability = "mechanic flag"
+SecondaryShieldBash = "mechanic flag"
+MissileDeflectionBypass = "mechanic flag"
+TumbleCharge = "mechanic flag"
+DR = "typed by bypass material"
+GhostTouch = "mechanic flag"
+TrueSeeing = "mechanic flag"

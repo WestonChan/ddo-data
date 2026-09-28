@@ -307,3 +307,26 @@ fn every_stat_named_in_the_effect_map_exists() {
     assert!(missing.is_empty(), "stats missing from STATS: {missing:?}");
     assert!(EffectMap::load().is_ok(), "the load-time validation agrees");
 }
+
+#[test]
+fn engine_only_effect_types_are_not_reported_as_unmapped() {
+    let map = EffectMap::load().unwrap();
+    for kind in ["SkillBonusAbility", "DR", "Weapon_BaseDamage", "SpellCostReduction"] {
+        assert!(map.derive(&simple_effect(kind)).unwrap().is_empty(), "{kind} derives no bonus");
+    }
+    assert!(map.derive(&simple_effect("NotAnEffectType")).unwrap().is_empty());
+    let unmapped = map.unmapped_types();
+    assert_eq!(unmapped.keys().collect::<Vec<_>>(), vec!["NotAnEffectType"], "{unmapped:?}");
+}
+
+#[test]
+fn an_effect_type_cannot_be_both_mapped_and_engine_only() {
+    let sections = |extra_fixed: &str| {
+        format!(
+            "[fixed]\n{extra_fixed}\n[by_item]\n[by_item_default]\n[item_aliases]\n[bonus_type_aliases]\n[engine_only]\nDR = \"typed by bypass material\"\n"
+        )
+    };
+    assert!(EffectMap::from_toml(&sections("PRR = \"Physical Resistance Rating\"")).is_ok());
+    let err = EffectMap::from_toml(&sections("DR = \"Physical Resistance Rating\"")).err().expect("overlap rejected");
+    assert!(err.to_string().contains("DR"), "{err}");
+}

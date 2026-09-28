@@ -4,7 +4,7 @@ use ddo_model::enums::BonusType;
 use ddo_model::stats::Stat;
 use serde::Deserialize;
 use std::cell::RefCell;
-use std::collections::BTreeMap;
+use std::collections::{BTreeMap, BTreeSet};
 
 #[derive(Debug, Deserialize)]
 struct EffectMapData {
@@ -13,6 +13,7 @@ struct EffectMapData {
     by_item_default: BTreeMap<String, String>,
     item_aliases: BTreeMap<String, String>,
     bonus_type_aliases: BTreeMap<String, String>,
+    engine_only: BTreeMap<String, String>,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
@@ -29,11 +30,20 @@ pub struct EffectMap {
 
 impl EffectMap {
     pub fn load() -> Result<Self> {
-        let data: EffectMapData = toml::from_str(include_str!("../../data/effect_map.toml"))?;
+        Self::from_toml(include_str!("../../data/effect_map.toml"))
+    }
+
+    pub fn from_toml(source: &str) -> Result<Self> {
+        let data: EffectMapData = toml::from_str(source)?;
         for (kind, stat) in data.fixed.iter().chain(data.by_item_default.iter()) {
             if ddo_model::stat_by_name(stat).is_none() {
                 bail!("effect_map.toml: {kind} names unknown stat {stat:?}");
             }
+        }
+        let mapped = data.fixed.keys().chain(data.by_item.keys()).chain(data.by_item_default.keys());
+        let both: BTreeSet<&String> = mapped.filter(|kind| data.engine_only.contains_key(*kind)).collect();
+        if !both.is_empty() {
+            bail!("effect_map.toml: {both:?} are both mapped to a stat and listed in [engine_only]");
         }
         Ok(Self { data, unmapped: RefCell::new(BTreeMap::new()) })
     }
@@ -67,6 +77,9 @@ impl EffectMap {
         let template = self.data.by_item.get(kind);
         let default = self.data.by_item_default.get(kind);
         if template.is_none() && default.is_none() {
+            if self.data.engine_only.contains_key(kind) {
+                return Ok(Vec::new());
+            }
             *self.unmapped.borrow_mut().entry(kind.to_string()).or_default() += 1;
             return Ok(Vec::new());
         }
