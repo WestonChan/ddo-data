@@ -26,7 +26,7 @@ This is the data half of a two-repo project. The site is `ddo-tools`, a sibling 
 
 **Where the API surface is.** `crates/ddo-api/src/routes/` has one file per resource (`items` with its slot, weapon, damage and socket vocabularies, `augments`, `sets`, `feats`, `races`, `classes`, `trees`, `spells`, `bonuses` for stats and bonus types, `quests` for quests, packs and patrons, `dump`, `version`); `db.rs` holds the shared query helpers; `etag.rs` and `state.rs` the caching and pool. The ETL mirrors it: `crates/ddo-etl/src/xml/` parses, `map/` applies `data/*.toml` vocabularies, `build/` writes tables.
 
-**Planning.** The roadmap for both repos is `ddo-tools/docs/roadmap.md` (V-series section). V1–V6 are done; V7 adds `/v1/builds` on a Fly volume for build sharing.
+**Planning.** The roadmap for both repos is `ddo-tools/docs/roadmap.md` (V-series section). V1–V6 are done; V7 fills what DDOBuilderV2 lacks (per-drop rarity, quests without named loot, crafting recipes) from ddowiki via agent-read overrides in `crates/ddo-etl/data/wiki/`, and V8 adds `/v1/builds` on a Fly volume for build sharing.
 
 ## Structure
 
