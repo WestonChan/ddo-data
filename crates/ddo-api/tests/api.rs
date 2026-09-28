@@ -47,6 +47,7 @@ async fn version_reports_dataset_and_schema() {
     assert_eq!(status, StatusCode::OK);
     assert_eq!(json["dataset"]["upstream_sha"], "fixture-sha");
     assert_eq!(json["schema_version"], ddo_model::SCHEMA_VERSION);
+    assert!(json.get("api_commit").is_some(), "version must report the API build commit, null when unknown");
     assert_eq!(json["counts"]["items"], 13);
     assert_eq!(headers.get("x-dataset-version").unwrap(), "fixture-sha");
     assert!(headers.get(header::ETAG).is_some());

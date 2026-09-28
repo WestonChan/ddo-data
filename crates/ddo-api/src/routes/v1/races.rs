@@ -72,4 +72,3 @@ async fn race(State(state): State<AppState>, Path(id): Path<i64>) -> Result<Json
         })
         .await
 }
-

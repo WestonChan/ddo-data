@@ -81,8 +81,8 @@ download the whole database once from `/v1/dump.sqlite` rather than paging the l
 
 ## Deployment
 
-`.github/workflows/deploy.yml` runs weekly and on demand. It sparse-clones DDOBuilderV2, skips the
-run when the live API already serves that commit, builds the ETL and the API, builds the database
+`.github/workflows/deploy.yml` runs on every push to `main`, weekly, and on demand. It sparse-clones
+DDOBuilderV2, skips the run when the live API already serves both that data commit and this code commit, builds the ETL and the API, builds the database
 and the icon tree, checks row-count floors, keeps the database as a workflow artifact, and runs
 `flyctl deploy --remote-only` with the `Dockerfile` (a prebuilt binary, the database and the icons
 copied into a slim Debian image; nothing compiles on Fly). The database is baked into the image, so

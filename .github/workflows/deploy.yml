@@ -1,17 +1,22 @@
 # Build the dataset from DDOBuilderV2 and deploy the API image to Fly.io.
 #
-# Runs weekly and on demand. Skips the deploy when upstream has not moved since the dataset the
-# live API is serving. Needs one repository secret: FLY_API_TOKEN, a deploy token scoped to the app
-# (`fly tokens create deploy -x 999999h`).
+# Runs on every push to main, weekly, and on demand. Skips the deploy when the live API already
+# serves both this commit and the current upstream dataset. Needs one repository secret:
+# FLY_API_TOKEN, a deploy token scoped to the app (`fly tokens create deploy -x 999999h`).
 name: Deploy
 
 on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - "**.md"
+      - "LICENSE"
   schedule:
     - cron: "0 9 * * 1"
   workflow_dispatch:
     inputs:
       force:
-        description: Deploy even if upstream has not changed
+        description: Deploy even if nothing has changed
         type: boolean
         default: false
 
@@ -36,12 +41,14 @@ jobs:
           git -C upstream sparse-checkout set Output/DataFiles
           echo "UPSTREAM_SHA=$(git -C upstream rev-parse HEAD)" >> "$GITHUB_ENV"
 
-      - name: Compare with the live dataset
+      - name: Compare with the live API
         id: compare
         run: |
-          live=$(curl -sf "$LIVE_API/v1/version" | python3 -c 'import sys,json;print(json.load(sys.stdin)["dataset"]["upstream_sha"])' || echo none)
-          echo "live=$live upstream=$UPSTREAM_SHA"
-          if [ "$live" = "$UPSTREAM_SHA" ] && [ "${{ inputs.force }}" != "true" ]; then
+          live=$(curl -sf "$LIVE_API/v1/version" || echo '{}')
+          live_data=$(echo "$live" | python3 -c 'import sys,json;print(json.load(sys.stdin).get("dataset",{}).get("upstream_sha","none"))')
+          live_code=$(echo "$live" | python3 -c 'import sys,json;print(json.load(sys.stdin).get("api_commit") or "none")')
+          echo "live data=$live_data upstream=$UPSTREAM_SHA; live code=$live_code this=$GITHUB_SHA"
+          if [ "$live_data" = "$UPSTREAM_SHA" ] && [ "$live_code" = "$GITHUB_SHA" ] && [ "${{ inputs.force }}" != "true" ]; then
             echo "changed=false" >> "$GITHUB_OUTPUT"
           else
             echo "changed=true" >> "$GITHUB_OUTPUT"
@@ -55,6 +62,8 @@ jobs:
       - name: Build the ETL and the API
         if: steps.compare.outputs.changed == 'true'
         run: cargo build --release -p ddo-etl -p ddo-api
+        env:
+          DDO_API_COMMIT: ${{ github.sha }}
 
       - name: Build the dataset
         if: steps.compare.outputs.changed == 'true'
@@ -95,12 +104,14 @@ jobs:
         env:
           FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
 
-      - name: Verify the live dataset
+      - name: Verify the live API
         if: steps.compare.outputs.changed == 'true'
         run: |
           for i in $(seq 1 12); do
-            live=$(curl -sf "$LIVE_API/v1/version" | python3 -c 'import sys,json;print(json.load(sys.stdin)["dataset"]["upstream_sha"])' || echo none)
-            [ "$live" = "$UPSTREAM_SHA" ] && echo "live API serves $live" && exit 0
+            live=$(curl -sf "$LIVE_API/v1/version" || echo '{}')
+            live_data=$(echo "$live" | python3 -c 'import sys,json;print(json.load(sys.stdin).get("dataset",{}).get("upstream_sha","none"))')
+            live_code=$(echo "$live" | python3 -c 'import sys,json;print(json.load(sys.stdin).get("api_commit") or "none")')
+            [ "$live_data" = "$UPSTREAM_SHA" ] && [ "$live_code" = "$GITHUB_SHA" ] && echo "live API serves data $live_data at code $live_code" && exit 0
             sleep 10
           done
-          echo "live API still serves $live" && exit 1
+          echo "live API still serves data $live_data at code $live_code" && exit 1

@@ -17,6 +17,7 @@ pub fn router() -> OpenApiRouter<AppState> {
 #[derive(Serialize, ToSchema)]
 pub struct VersionInfo {
     pub schema_version: i64,
+    pub api_commit: Option<&'static str>,
     #[schema(value_type = Object)]
     pub dataset: DatasetVersion,
     pub counts: BTreeMap<String, i64>,
@@ -45,8 +46,9 @@ const COUNTED: &[&str] = &[
     path = "/v1/version",
     tag = "meta",
     summary = "Get the dataset version",
-    description = "Which DDOBuilderV2 commit the data was built from and when, the schema version, and row counts \
-                   for the main tables. The commit SHA is the same value every response carries in its \
+    description = "Which DDOBuilderV2 commit the data was built from and when, which ddo-data commit the API binary \
+                   was built from (`api_commit`, null for local builds), the schema version, and row counts for \
+                   the main tables. The dataset SHA is the same value every response carries in its \
                    `X-Dataset-Version` header; a change in it means every cached response is stale.",
     responses((status = 200, description = "Dataset, schema and counts", body = VersionInfo))
 )]
@@ -62,5 +64,5 @@ async fn version(State(state): State<AppState>) -> Result<Json<VersionInfo>, Api
             Ok(counts)
         })
         .await?;
-    Ok(Json(VersionInfo { schema_version, dataset, counts }))
+    Ok(Json(VersionInfo { schema_version, api_commit: option_env!("DDO_API_COMMIT"), dataset, counts }))
 }
