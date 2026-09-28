@@ -4,3 +4,8 @@
 *.db-wal
 /upstream
 .env
+
+# Local agent state (Claude Code sessions, plans, MCP config)
+.claude/
+.mcp.json
+CLAUDE.local.md
