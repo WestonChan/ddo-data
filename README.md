@@ -111,13 +111,3 @@ and store the result as the `FLY_API_TOKEN` repository secret.
 ddo-data is an unaffiliated fan project. Dungeons & Dragons Online is © Standing Stone Games; game
 content, names, imagery, and data belong to their respective owners. The MIT license covers this
 repository's code, not the game data it parses or serves.
-
-## Conventions
-
-Code carries its meaning in names, types, and tests: the crates contain no comments or doc comments,
-and `cargo lint` fails if any appear. Reasoning that cannot live in code goes in this README or the
-ddo-tools roadmap. The check is the `xtask` crate, which lexes every `.rs` file with
-`ra-ap-rustc_lexer` (the rust-analyzer publication of rustc's lexer). That crate asserts at compile
-time that `unicode-ident` and `unicode-properties` share a Unicode version, so `Cargo.lock` pins
-`unicode-ident` to 1.0.24 until `unicode-properties` catches up; a bare `cargo update` will
-reintroduce the mismatch.
