@@ -24,7 +24,7 @@ This is the data half of a two-repo project. The site is `ddo-tools`, a sibling 
 
 **Local API for the frontend.** `DDO_DB_PATH=ddo.db ICONS_DIR=icons PORT=8089 cargo run --release -p ddo-api`, then `VITE_API_URL=http://localhost:8089` in `ddo-tools/.env`. Icons come from `cargo run -p ddo-etl -- icons --source upstream/Output/DataFiles --out icons`.
 
-**Where the API surface is.** `crates/ddo-api/src/routes/` has one file per resource (`items`, `augments`, `sets`, `feats`, `races`, `classes`, `trees`, `spells`, `lookups`, `dump`, `version`); `db.rs` holds the shared query helpers; `etag.rs` and `state.rs` the caching and pool. The ETL mirrors it: `crates/ddo-etl/src/xml/` parses, `map/` applies `data/*.toml` vocabularies, `build/` writes tables.
+**Where the API surface is.** `crates/ddo-api/src/routes/` has one file per resource (`items` with its slot, weapon, damage and socket vocabularies, `augments`, `sets`, `feats`, `races`, `classes`, `trees`, `spells`, `bonuses` for stats and bonus types, `quests` for quests, packs and patrons, `dump`, `version`); `db.rs` holds the shared query helpers; `etag.rs` and `state.rs` the caching and pool. The ETL mirrors it: `crates/ddo-etl/src/xml/` parses, `map/` applies `data/*.toml` vocabularies, `build/` writes tables.
 
 **Planning.** The roadmap for both repos is `ddo-tools/docs/roadmap.md` (V-series section). V1–V6 are done; V7 adds `/v1/builds` on a Fly volume for build sharing.
 

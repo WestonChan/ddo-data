@@ -1,4 +1,6 @@
-use crate::db::{bonuses_via, booleanize, count, json_row, json_rows, like_pattern, modifiers_for, page, Filters};
+use crate::db::{
+    bonuses_via, booleanize, count, json_row, json_rows, like_pattern, modifiers_for, page, table, Filters,
+};
 use crate::error::ApiError;
 use crate::state::AppState;
 use axum::extract::{Path, Query, State};
@@ -10,7 +12,13 @@ use utoipa_axum::router::OpenApiRouter;
 use utoipa_axum::routes;
 
 pub fn router() -> OpenApiRouter<AppState> {
-    OpenApiRouter::new().routes(routes!(list)).routes(routes!(detail))
+    OpenApiRouter::new()
+        .routes(routes!(list))
+        .routes(routes!(detail))
+        .routes(routes!(equipment_slots))
+        .routes(routes!(weapon_types))
+        .routes(routes!(damage_types))
+        .routes(routes!(augment_slot_types))
 }
 
 #[derive(Deserialize)]
@@ -218,5 +226,65 @@ async fn detail(State(state): State<AppState>, Path(id): Path<i64>) -> Result<Js
             item["modifiers"] = Value::Array(modifiers_for(conn, "item", id)?);
             Ok(Json(item))
         })
+        .await
+}
+
+#[utoipa::path(
+    get,
+    path = "/v1/equipment-slots",
+    tag = "items",
+    summary = "List equipment slots",
+    description = "The equipment slots an item can occupy, in display order, with a category (weapon, armor, \
+                   accessory). /v1/items accepts these names in `slot`.",
+    responses((status = 200, description = "The whole table", body = Vec<Value>))
+)]
+async fn equipment_slots(State(state): State<AppState>) -> Result<Json<Vec<Value>>, ApiError> {
+    table(state, "SELECT id, name, sort_order, category FROM equipment_slots ORDER BY sort_order", &[]).await
+}
+
+#[utoipa::path(
+    get,
+    path = "/v1/weapon-types",
+    tag = "items",
+    summary = "List weapon types",
+    description = "Every weapon and shield type with the proficiency it needs and whether it is a shield. Item \
+                   `weapon` blocks name their type from this list.",
+    responses((status = 200, description = "The whole table", body = Vec<Value>))
+)]
+async fn weapon_types(State(state): State<AppState>) -> Result<Json<Vec<Value>>, ApiError> {
+    table(
+        state,
+        "SELECT wt.id, wt.name, p.name AS proficiency, wt.is_shield FROM weapon_types wt
+           LEFT JOIN weapon_proficiencies p ON p.id = wt.proficiency_id ORDER BY wt.id",
+        &["is_shield"],
+    )
+    .await
+}
+
+#[utoipa::path(
+    get,
+    path = "/v1/damage-types",
+    tag = "items",
+    summary = "List damage types",
+    description = "Every damage type (physical, elemental, alignment, special) with its category. Spell damage \
+                   lines and DR bypass entries use these names.",
+    responses((status = 200, description = "The whole table", body = Vec<Value>))
+)]
+async fn damage_types(State(state): State<AppState>) -> Result<Json<Vec<Value>>, ApiError> {
+    table(state, "SELECT id, name, category FROM damage_types ORDER BY id", &[]).await
+}
+
+#[utoipa::path(
+    get,
+    path = "/v1/augment-slot-types",
+    tag = "items",
+    summary = "List augment slot types",
+    description = "Every socket an item can carry: gem colours (`red`, `colorless`, `sun`, ...) and crafting-family \
+                   sockets (`lamordia: melancholic (accessory)`, `isle of dread: set bonus`, ...). `family` says which \
+                   kind it is; `label` is what /v1/augments accepts in `slot`.",
+    responses((status = 200, description = "The whole table", body = Vec<Value>))
+)]
+async fn augment_slot_types(State(state): State<AppState>) -> Result<Json<Vec<Value>>, ApiError> {
+    table(state, "SELECT id, label, family, variant, qualifier FROM augment_slot_types ORDER BY family, label", &[])
         .await
 }

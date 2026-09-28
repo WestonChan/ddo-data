@@ -159,3 +159,20 @@ impl Filters {
         rusqlite::params_from_iter(self.params.iter())
     }
 }
+
+pub async fn table(
+    state: crate::state::AppState,
+    sql: &'static str,
+    flags: &'static [&'static str],
+) -> Result<axum::Json<Vec<Value>>, ApiError> {
+    let rows = state
+        .query(move |conn| {
+            let mut rows = json_rows(conn, sql, [])?;
+            for row in &mut rows {
+                booleanize(row, flags);
+            }
+            Ok(rows)
+        })
+        .await?;
+    Ok(axum::Json(rows))
+}

@@ -1,9 +1,10 @@
 mod augments;
+mod bonuses;
 mod classes;
 mod dump;
 mod feats;
 mod items;
-mod lookups;
+mod quests;
 mod races;
 mod sets;
 mod spells;
@@ -40,15 +41,16 @@ use utoipa_axum::router::OpenApiRouter;
     ),
     tags(
         (name = "meta", description = "Which DDOBuilderV2 commit the data came from, the schema version and row counts"),
-        (name = "lookups", description = "The reference vocabularies other responses name things by: stats, bonus types, slots, weapon and damage types, sockets, packs, patrons, quests"),
-        (name = "items", description = "Equipment: weapons, armor, shields, jewelry and clothing with their bonuses, sockets and drop sources"),
+        (name = "items", description = "Equipment: weapons, armor, shields, jewelry and clothing with their bonuses, sockets and drop sources, plus the slot, weapon, damage and socket vocabularies they use"),
         (name = "augments", description = "Augments and crafting-family inserts, with the sockets each one fits"),
-        (name = "sets", description = "Gear set bonuses, filigree sets and the filigrees themselves"),
+        (name = "sets", description = "Gear set bonuses, sentient-weapon filigree sets and the filigrees themselves"),
         (name = "feats", description = "Feats from the standard list and those granted by classes and races, with requirements and effects"),
         (name = "races", description = "Playable races with ability modifiers, granted feats and racial feats"),
         (name = "classes", description = "Classes and archetypes with progressions, feat slots and spell lists"),
         (name = "enhancements", description = "Enhancement, epic destiny and reaper trees with every enhancement and selection"),
         (name = "spells", description = "Spells with damage, saves and class lists, and the clickies items grant"),
+        (name = "bonuses", description = "The stats a bonus can apply to and the bonus types that decide whether two bonuses stack"),
+        (name = "quests", description = "Quests, adventure packs and favor patrons: the sources items drop from"),
         (name = "bulk", description = "The whole dataset as one SQLite download")
     )
 )]
@@ -92,7 +94,6 @@ pub fn openapi() -> utoipa::openapi::OpenApi {
 pub fn router() -> OpenApiRouter<AppState> {
     OpenApiRouter::new()
         .merge(version::router())
-        .merge(lookups::router())
         .merge(items::router())
         .merge(augments::router())
         .merge(sets::router())
@@ -101,5 +102,7 @@ pub fn router() -> OpenApiRouter<AppState> {
         .merge(classes::router())
         .merge(trees::router())
         .merge(spells::router())
+        .merge(bonuses::router())
+        .merge(quests::router())
         .merge(dump::router())
 }
