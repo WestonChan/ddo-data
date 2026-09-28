@@ -91,7 +91,7 @@ fn parses_every_fixture_item() {
         parse_item_file(&path).unwrap_or_else(|e| panic!("{}: {e}", path.display()));
         n += 1;
     }
-    assert_eq!(n, 15);
+    assert_eq!(n, 16);
 }
 
 #[test]

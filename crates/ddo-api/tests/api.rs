@@ -49,7 +49,7 @@ async fn version_reports_dataset_and_schema() {
     assert_eq!(json["dataset"]["upstream_sha"], "fixture-sha");
     assert_eq!(json["schema_version"], ddo_model::SCHEMA_VERSION);
     assert!(json.get("api_commit").is_some(), "version must report the API build commit, null when unknown");
-    assert_eq!(json["counts"]["items"], 14);
+    assert_eq!(json["counts"]["items"], 15);
     assert_eq!(headers.get("x-dataset-version").unwrap(), "fixture-sha");
     assert!(headers.get(header::ETAG).is_some());
     assert!(headers.get(header::CACHE_CONTROL).unwrap().to_str().unwrap().contains("max-age"));
@@ -70,7 +70,7 @@ async fn items_list_filters_and_pages() {
 
     let (_, _, all) = get("/v1/items?limit=5&offset=0").await;
     assert_eq!(all["items"].as_array().unwrap().len(), 5);
-    assert_eq!(all["total"], 14);
+    assert_eq!(all["total"], 15);
     let (_, _, armor) = get("/v1/items?category=Armor").await;
     assert!(armor["items"].as_array().unwrap().iter().all(|i| i["category"] == "Armor"));
     let (_, _, ml) = get("/v1/items?min_level=20&max_level=25").await;
@@ -80,9 +80,9 @@ async fn items_list_filters_and_pages() {
     let rare = rare["items"].as_array().unwrap();
     assert_eq!(rare.len(), 1);
     assert_eq!(rare[0]["name"], "Buckler of the Golden Age");
-    assert_eq!(rare[0]["is_rare"], true, "the wiki lists it as a rare Book Burning drop");
+    assert_eq!(rare[0]["is_rare"], true, "its drop text and the wiki both mark it a rare Book Burning drop");
     let (_, _, unfiltered) = get("/v1/items?rare=false").await;
-    assert_eq!(unfiltered["total"], 14);
+    assert_eq!(unfiltered["total"], 15);
     let (status, _, _) = get("/v1/items?category=Hat").await;
     assert_eq!(status, StatusCode::BAD_REQUEST, "unknown category is a client error");
 }

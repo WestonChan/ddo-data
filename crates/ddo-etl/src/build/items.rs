@@ -1,5 +1,6 @@
 use super::{nonempty, BuildReport, Ctx};
 use crate::map::buff::Resolved;
+use crate::map::drop_location::{marks_rare_loot, segment_containing};
 use crate::map::material;
 use crate::map::placement::{classify, Placement};
 use crate::xml::items::Item;
@@ -142,7 +143,7 @@ impl Ctx<'_> {
         }
 
         if let Some(drop) = item.drop_location.as_deref() {
-            report.quest_loot_links += self.link_quests(item_id, drop)?;
+            self.link_quests(item_id, drop, report)?;
         }
         report.items_written += 1;
         Ok(())
@@ -222,14 +223,15 @@ impl Ctx<'_> {
         Ok(())
     }
 
-    fn link_quests(&self, item_id: i64, drop: &str) -> Result<usize> {
+    fn link_quests(&self, item_id: i64, drop: &str, report: &mut BuildReport) -> Result<()> {
         let mut text = drop.to_string();
         let lower = drop.to_lowercase();
-        let mut links = 0;
         for (name, quest_id, is_raid) in &self.quests.by_length {
             if name.is_empty() || !text.contains(name.as_str()) {
                 continue;
             }
+            let is_rare =
+                text.match_indices(name.as_str()).any(|(at, _)| marks_rare_loot(segment_containing(drop, at)));
             text = text.replace(name.as_str(), &" ".repeat(name.len()));
             let loot_type = if *is_raid {
                 LootType::Raid
@@ -238,13 +240,17 @@ impl Ctx<'_> {
             } else {
                 LootType::Chest
             };
-            self.tx.execute(
-                "INSERT OR IGNORE INTO quest_loot (quest_id, item_id, loot_type) VALUES (?1, ?2, ?3)",
-                params![quest_id, item_id, loot_type.as_str()],
+            let changed = self.tx.execute(
+                "INSERT INTO quest_loot (quest_id, item_id, loot_type, is_rare) VALUES (?1, ?2, ?3, ?4)
+                 ON CONFLICT (quest_id, item_id) DO UPDATE SET is_rare = 1 WHERE excluded.is_rare > quest_loot.is_rare",
+                params![quest_id, item_id, loot_type.as_str(), is_rare],
             )?;
-            links += 1;
+            report.quest_loot_links += 1;
+            if is_rare && changed > 0 {
+                report.drop_text_rare_links += 1;
+            }
         }
-        Ok(links)
+        Ok(())
     }
 }
 

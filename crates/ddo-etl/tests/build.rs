@@ -38,9 +38,9 @@ fn item_id(conn: &Connection, name: &str) -> i64 {
 #[test]
 fn builds_items_and_skips_cosmetics() {
     let (conn, report) = built();
-    assert_eq!(report.items_written, 14);
+    assert_eq!(report.items_written, 15);
     assert_eq!(report.items_skipped_cosmetic, 1);
-    assert_eq!(count(&conn, "SELECT COUNT(*) FROM items"), 14);
+    assert_eq!(count(&conn, "SELECT COUNT(*) FROM items"), 15);
     assert_eq!(count(&conn, "SELECT COUNT(*) FROM items WHERE name = '17th Anniversary Dark Helm'"), 0);
     let reason: String = conn
         .query_row("SELECT reason FROM excluded_items WHERE name = '17th Anniversary Dark Helm'", [], |r| r.get(0))
@@ -292,7 +292,7 @@ fn diff_reports_coverage_against_a_legacy_database() {
     assert_eq!(report.matched, 3);
     assert_eq!(report.only_legacy, vec!["Something Only The Wiki Had".to_string()]);
     assert_eq!(report.excluded_by_design, vec!["17th Anniversary Dark Helm".to_string()], "cosmetics are not gaps");
-    assert_eq!(report.only_new.len(), 11);
+    assert_eq!(report.only_new.len(), 12);
     assert!((report.coverage() - 0.75).abs() < 1e-9);
 }
 

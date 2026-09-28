@@ -32,6 +32,7 @@ pub struct BuildReport {
     pub quests: usize,
     pub challenges: usize,
     pub quest_loot_links: usize,
+    pub drop_text_rare_links: usize,
     pub augment_slot_types: usize,
     pub augments: usize,
     pub set_bonuses: usize,

@@ -12,7 +12,7 @@ Every entry names the page it was read from (`page`, a full `https://ddowiki.com
 
 ## `quest_loot.toml`
 
-One `[[quest]]` table per quest page. `rare` lists the named items the page's loot table marks as rare for that quest.
+One `[[quest]]` table per quest page. `rare` lists the named items the page's loot table marks as rare for that quest. The build already sets `is_rare` where Maetrim's drop text marks the drop itself, a segment (split on `;` and newlines) naming the quest with `(rare)` or `rare drop` and not `rare encounter`, so entries are only needed for rare drops his text leaves unmarked.
 
 ```toml
 [[quest]]
@@ -29,7 +29,7 @@ rare = [
 ]
 ```
 
-The merge sets `quest_loot.is_rare` on each (quest, item) pair. When Maetrim's drop text did not already link the item to the quest, it adds the link with `loot_type = 'chest'`; an added link is an added fact. It never changes a `loot_type` his text produced.
+The merge sets `quest_loot.is_rare` on each (quest, item) pair, after the drop text has set its own; it never clears the flag. When Maetrim's drop text did not already link the item to the quest, it adds the link with `loot_type = 'chest'`; an added link is an added fact. It never changes a `loot_type` his text produced.
 
 ## Validation
 
@@ -48,4 +48,4 @@ Validate a file by running the real build from the `ddo-data` root, with `export
 cargo run --release -p ddo-etl -- build --source upstream/Output/DataFiles --out /tmp/check.db
 ```
 
-A clean run prints the report, whose `wiki_quest_loot_entries`, `wiki_rare_drops` and `wiki_quest_loot_links_added` count what was applied. The tests use their own overrides in `crates/ddo-etl/tests/fixtures/wiki/`, which only name what the fixture data files carry.
+A clean run prints the report, whose `wiki_quest_loot_entries`, `wiki_rare_drops` and `wiki_quest_loot_links_added` count what was applied, and `drop_text_rare_links` counts the rare links Maetrim's text marked on its own. The tests use their own overrides in `crates/ddo-etl/tests/fixtures/wiki/`, which only name what the fixture data files carry.
