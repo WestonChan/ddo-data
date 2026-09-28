@@ -1,5 +1,3 @@
-//! `Items/*.item` → `items` and its satellite tables, plus item-level modifiers and clickies.
-
 use super::{nonempty, BuildReport, Ctx};
 use crate::map::buff::Resolved;
 use crate::map::material;
@@ -133,7 +131,6 @@ impl Ctx<'_> {
             let Some(clickie_name) = e.items.first().map(|s| s.trim()) else {
                 bail!("{name}: ItemClickie effect without an <Item>");
             };
-            // Names not in ItemClickies.xml are spells; the spells stage resolves those.
             let clickie_id = self.caches.clickies.get(clickie_name).copied();
             self.tx.execute(
                 "INSERT INTO item_clickies (item_id, sort_order, name, clickie_id) VALUES (?1, ?2, ?3, ?4)",
@@ -225,8 +222,6 @@ impl Ctx<'_> {
         Ok(())
     }
 
-    /// Link the item to every quest named in its drop text. Longer names are matched first and
-    /// blanked out so a shorter quest name nested inside them does not also match.
     fn link_quests(&self, item_id: i64, drop: &str) -> Result<usize> {
         let mut text = drop.to_string();
         let lower = drop.to_lowercase();
@@ -262,7 +257,6 @@ fn join_nonempty(parts: &[String]) -> Option<String> {
     }
 }
 
-/// `3.6[1d10] + 7 Good, Magic, Pierce, Slash`, the legacy display form.
 fn render_damage(
     multiplier: Option<f64>,
     dice: Option<(i64, i64, Option<i64>)>,

@@ -1,5 +1,3 @@
-//! Feats (from Feats.xml, class files and race files), races and classes.
-
 use ddo_etl::build::build;
 use ddo_etl::xml::{classes, feats, races};
 use ddo_model::DatasetVersion;
@@ -107,7 +105,6 @@ fn writes_feats_from_all_three_sources() {
         .unwrap();
     assert_eq!(stance_name, "Power Attack");
     assert!(incompatible.contains("Combat Expertise"));
-    // The feat's effects are modifiers, each conditioned on the stance.
     let mods: i64 =
         one(&conn, "SELECT COUNT(*) FROM modifiers WHERE source_kind = 'feat' AND source_id = ?1", &[&power]);
     assert_eq!(mods, 3);
@@ -138,7 +135,6 @@ fn writes_feats_from_all_three_sources() {
     assert!(count(&conn, "SELECT COUNT(*) FROM requirements WHERE owner_kind = 'feat_conditional_group'") >= 1);
     assert!(count(&conn, "SELECT COUNT(*) FROM requirements WHERE owner_kind = 'feat_auto_acquire'") >= 1);
 
-    // Race feats derive plain bonuses: Dwarven Stability is Balance +4 (Feat).
     let stab: i64 = one(&conn, "SELECT id FROM feats WHERE name = 'Dwarven Stability' AND source_kind = 'race'", &[]);
     let (bonus, bt): (String, String) = conn
         .query_row("SELECT b.name, bt.name FROM feat_bonuses fb JOIN bonuses b ON b.id = fb.bonus_id JOIN bonus_types bt ON bt.id = b.bonus_type_id WHERE fb.feat_id = ?1", params![stab], |r| Ok((r.get(0)?, r.get(1)?)))

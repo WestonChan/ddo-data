@@ -14,7 +14,6 @@ pub fn router() -> OpenApiRouter<AppState> {
 const TREE_COLUMNS: &str = "t.id, t.name, t.version, t.kind, t.is_legacy, t.icon, t.background,
                             (SELECT COUNT(*) FROM enhancements e WHERE e.tree_id = t.id) AS enhancement_count";
 
-/// Every enhancement tree with its kind and requirements.
 #[utoipa::path(get, path = "/v1/enhancement-trees", tag = "enhancements", responses((status = 200, body = Vec<Value>)))]
 async fn list(State(state): State<AppState>) -> Result<Json<Vec<Value>>, ApiError> {
     state
@@ -50,8 +49,6 @@ fn ability_children(conn: &rusqlite::Connection, owner: &str, row: &mut Value) -
     Ok(())
 }
 
-/// One tree with every enhancement, each with its selections, requirements, modifiers, stances
-/// and DCs. Positions are `x` (column) and `y` (tier row, 0 = core).
 #[utoipa::path(get, path = "/v1/enhancement-trees/{id}", tag = "enhancements", params(("id" = i64, Path)), responses((status = 200, body = Value), (status = 404, body = crate::error::ErrorBody)))]
 async fn detail(State(state): State<AppState>, Path(id): Path<i64>) -> Result<Json<Value>, ApiError> {
     state

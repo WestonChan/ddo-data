@@ -1,5 +1,3 @@
-//! The API over a database built from the ETL fixtures.
-
 use axum::body::Body;
 use axum::http::{header, Request, StatusCode};
 use ddo_api::{app, AppState};
@@ -14,7 +12,6 @@ fn fixtures() -> PathBuf {
     PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../ddo-etl/tests/fixtures/DataFiles")
 }
 
-/// One fixture database per test binary, on disk so the dump endpoint has a file to serve.
 fn db_path() -> &'static PathBuf {
     static PATH: OnceLock<PathBuf> = OnceLock::new();
     PATH.get_or_init(|| {
@@ -124,7 +121,6 @@ async fn etag_roundtrip_returns_not_modified() {
         .unwrap();
     assert_eq!(response.status(), StatusCode::NOT_MODIFIED);
 
-    // A HEAD carries the same tag as the GET, so a client can probe cheaply.
     let head = app(state()).oneshot(Request::head("/v1/items?q=sireth").body(Body::empty()).unwrap()).await.unwrap();
     assert_eq!(head.headers().get(header::ETAG).unwrap(), &etag);
 }

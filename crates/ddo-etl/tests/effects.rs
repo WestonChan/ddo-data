@@ -1,6 +1,3 @@
-//! The two grammars every upstream family shares: `<Effect>` and `<Requirements>`, plus the map
-//! from effect vocabulary onto our stats.
-
 use ddo_etl::map::effect::{Derived, EffectMap};
 use ddo_etl::xml::effect::{parse_effect, Effect};
 use ddo_etl::xml::requirements::{parse_requirements, RequirementGroupKind};
@@ -169,11 +166,9 @@ fn effect_map_derives_bonuses_from_simple_effects() {
         assert_eq!(d[0].stat.name, *expected, "{}", e.types[0]);
     }
 
-    // One bonus per target.
     let two = derived(&simple("SkillBonus", "Enhancement", 5.0, &["Hide", "Move Silently"]));
     assert_eq!(two.iter().map(|d| d.stat.name).collect::<Vec<_>>(), vec!["Hide", "Move Silently"]);
 
-    // Not a plain number on a stat: no bonus rows, and no error.
     assert!(derived(&effect(r#"<Effect><Type>Hitpoints</Type><Bonus>Feat</Bonus><AType>TotalLevel</AType><Amount size="3">3 4 5</Amount></Effect>"#)).is_empty());
     assert!(derived(&simple("SpellLikeAbility", "Enhancement", 1.0, &["Force Shot"])).is_empty());
     assert!(

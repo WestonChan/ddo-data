@@ -1,5 +1,3 @@
-//! `<Buff>` → the item's enhancement bonus, a typed stat bonus, or a named effect.
-
 use super::bonus_type::normalize;
 use super::{MappingData, MAPPING};
 use crate::xml::items::Buff;
@@ -9,11 +7,8 @@ use ddo_model::stats::Stat;
 
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub enum Resolved {
-    /// `items.enhancement_bonus`.
     Enhancement(i64),
-    /// A `bonuses` row.
     Bonus { stat: &'static Stat, bonus_type: Option<BonusType>, value: Option<i64>, value2: Option<i64> },
-    /// An `effects` row.
     Effect { name: String, value: Option<i64>, target: Option<String> },
 }
 
@@ -65,8 +60,6 @@ impl BuffMap {
         Ok(Resolved::Bonus { stat, bonus_type, value: buff.value1, value2: buff.value2 })
     }
 
-    /// Fill an `ItemBuffs.xml` template with this buff's values. Unknown bonus types render as
-    /// their raw text rather than failing, since this is display only.
     pub fn describe(&self, template: &str, buff: &Buff) -> String {
         let bonus_type = buff
             .bonus_type

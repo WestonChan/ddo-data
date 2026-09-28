@@ -1,5 +1,3 @@
-//! Small reference vocabularies. Each is the whole table.
-
 use crate::db::{booleanize, json_rows};
 use crate::error::ApiError;
 use crate::state::AppState;
@@ -39,13 +37,11 @@ async fn table(
     Ok(Json(rows))
 }
 
-/// Every stat a bonus can apply to.
 #[utoipa::path(get, path = "/v1/stats", tag = "lookups", responses((status = 200, body = Vec<Value>)))]
 async fn stats(State(state): State<AppState>) -> Result<Json<Vec<Value>>, ApiError> {
     table(state, "SELECT id, name, category FROM stats ORDER BY id", &[]).await
 }
 
-/// Bonus types and whether two of the same type stack.
 #[utoipa::path(get, path = "/v1/bonus-types", tag = "lookups", responses((status = 200, body = Vec<Value>)))]
 async fn bonus_types(State(state): State<AppState>) -> Result<Json<Vec<Value>>, ApiError> {
     table(state, "SELECT id, name, stacks_with_self FROM bonus_types ORDER BY id", &["stacks_with_self"]).await
@@ -72,7 +68,6 @@ async fn damage_types(State(state): State<AppState>) -> Result<Json<Vec<Value>>,
     table(state, "SELECT id, name, category FROM damage_types ORDER BY id", &[]).await
 }
 
-/// Sockets an item can carry: gem colours and crafting-family slots.
 #[utoipa::path(get, path = "/v1/augment-slot-types", tag = "lookups", responses((status = 200, body = Vec<Value>)))]
 async fn augment_slot_types(State(state): State<AppState>) -> Result<Json<Vec<Value>>, ApiError> {
     table(state, "SELECT id, label, family, variant, qualifier FROM augment_slot_types ORDER BY family, label", &[])
@@ -89,7 +84,6 @@ async fn patrons(State(state): State<AppState>) -> Result<Json<Vec<Value>>, ApiE
     table(state, "SELECT id, name FROM patrons ORDER BY name", &[]).await
 }
 
-/// Every quest and adventure zone with its pack, patron, levels and favor.
 #[utoipa::path(get, path = "/v1/quests", tag = "lookups", responses((status = 200, body = Vec<Value>)))]
 async fn quests(State(state): State<AppState>) -> Result<Json<Vec<Value>>, ApiError> {
     table(

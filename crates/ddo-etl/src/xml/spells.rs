@@ -1,5 +1,3 @@
-//! `Spells.xml`: every castable spell with its schools, metamagic flags, damage dice and DCs.
-
 use super::effect::Effect;
 use super::feats::Stance;
 use super::{Empty, Vector};
@@ -27,8 +25,6 @@ pub struct Spell {
     pub schools: Vec<String>,
     pub max_caster_level: Option<i64>,
     pub cost: Option<i64>,
-    /// Metamagic flag elements present: Quicken, Enlarge, Maximize, Empower, Embolden, Intensify,
-    /// Heighten, Extend, Accelerate, EmpowerHealing, Primer.
     pub metamagics: Vec<String>,
     pub effects: Vec<Effect>,
     pub stances: Vec<Stance>,
@@ -100,7 +96,6 @@ struct RawSpell {
     children: Vec<SpellChild>,
 }
 
-// A transient parse buffer; the size skew between variants does not matter here.
 #[allow(clippy::large_enum_variant)]
 #[derive(Deserialize)]
 enum SpellChild {

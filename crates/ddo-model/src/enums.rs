@@ -1,12 +1,5 @@
-//! Closed vocabularies. Every string the schema constrains with a `CHECK` or a seed table has an
-//! enum here, so a value the game data uses that we do not know about is a compile-time or
-//! parse-time error rather than a silently accepted row.
-//!
-//! Ids are stable and referenced by consumers; append, never renumber.
-
 use serde::{Deserialize, Serialize};
 
-/// Which broad kind of number a stat is. Drives grouping in the UI.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
 #[serde(rename_all = "lowercase")]
 pub enum StatCategory {
@@ -31,11 +24,6 @@ impl StatCategory {
     }
 }
 
-/// The stacking class of a bonus. DDO's rule is that bonuses of the same type to the same stat do
-/// not stack unless the type is one of the few that do (see `stacks_with_self`).
-///
-/// Ids 1–33 are the DDO Tools originals; 34 onward were appended from DDOBuilderV2's
-/// `BonusTypes.xml` (2026-09-20), which also supplies the stacking rule. Append, never renumber.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
 pub enum BonusType {
     Enhancement,
@@ -346,8 +334,6 @@ impl BonusType {
         }
     }
 
-    /// Whether two bonuses of this type to the same stat add together (his `Always`) rather than
-    /// the highest applying (`Highest Only`).
     pub const fn stacks_with_self(self) -> bool {
         matches!(
             self,
@@ -366,13 +352,11 @@ impl BonusType {
         )
     }
 
-    /// Look a type up by its canonical name.
     pub fn parse(name: &str) -> Option<Self> {
         Self::ALL.iter().copied().find(|b| b.name() == name)
     }
 }
 
-/// Where on the body an item is worn.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
 pub enum SlotCategory {
     Weapon,
@@ -390,7 +374,6 @@ impl SlotCategory {
     }
 }
 
-/// The sixteen equipment slots.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
 pub enum EquipmentSlot {
     MainHand,
@@ -431,7 +414,6 @@ impl EquipmentSlot {
         Self::Runearm,
     ];
 
-    /// Id doubles as sort order.
     pub const fn id(self) -> i64 {
         match self {
             Self::MainHand => 1,
@@ -485,7 +467,6 @@ impl EquipmentSlot {
     }
 }
 
-/// The coarse item kind the picker filters on.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
 pub enum ItemCategory {
     Armor,
@@ -509,7 +490,6 @@ impl ItemCategory {
     }
 }
 
-/// How a weapon is held.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
 pub enum Handedness {
     OneHanded,
@@ -531,7 +511,6 @@ impl Handedness {
     }
 }
 
-/// Which feat line lets a character use a weapon without penalty.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
 pub enum WeaponProficiency {
     Simple,
@@ -559,7 +538,6 @@ impl WeaponProficiency {
     }
 }
 
-/// The armor weight class, which decides arcane spell failure and max dex bonus rules.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
 pub enum ArmorType {
     Cloth,
@@ -590,7 +568,6 @@ impl ArmorType {
     }
 }
 
-/// How an item drops from a quest.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
 pub enum LootType {
     Chest,
@@ -610,7 +587,6 @@ impl LootType {
     }
 }
 
-/// The family a damage type belongs to.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
 pub enum DamageCategory {
     Physical,
@@ -632,13 +608,11 @@ impl DamageCategory {
     }
 }
 
-/// Render a list of variants as a SQL `IN (...)` clause for a `CHECK` constraint.
 pub(crate) fn sql_in_list<'a>(names: impl Iterator<Item = &'a str>) -> String {
     let quoted: Vec<String> = names.map(|n| format!("'{n}'")).collect();
     format!("IN ({})", quoted.join(", "))
 }
 
-/// What a `modifiers` row belongs to.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
 pub enum ModifierSource {
     Item,
@@ -680,7 +654,6 @@ impl ModifierSource {
     }
 }
 
-/// What a `requirements` row belongs to.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
 pub enum RequirementOwner {
     Modifier,
@@ -719,14 +692,10 @@ impl RequirementOwner {
     }
 }
 
-/// Where a feat definition came from.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
 pub enum FeatSource {
-    /// `Feats.xml`
     Standard,
-    /// A `<Feat>` inside a class file; `source_id` is the class.
     Class,
-    /// A `<Feat>` inside a race file; `source_id` is the race.
     Race,
 }
 
@@ -742,7 +711,6 @@ impl FeatSource {
     }
 }
 
-/// What a `stances`, `dcs` or `attacks` row belongs to.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
 pub enum AbilityOwner {
     Feat,
@@ -764,8 +732,6 @@ impl AbilityOwner {
     }
 }
 
-/// A class's saving-throw progression. Upstream's `Type2` is the good progression (Paladin
-/// Fortitude), `Type1` the poor one, `None` no save bonus at all (Epic, Legendary).
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
 pub enum SaveProgression {
     Good,
@@ -794,7 +760,6 @@ impl SaveProgression {
     }
 }
 
-/// How the requirements in one `<Requirements>` child group combine.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
 pub enum RequirementGroup {
     All,
@@ -814,7 +779,6 @@ impl RequirementGroup {
     }
 }
 
-/// Which action-point pool an enhancement tree draws from.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
 pub enum TreeKind {
     Class,

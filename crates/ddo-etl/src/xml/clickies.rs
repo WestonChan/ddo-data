@@ -1,6 +1,3 @@
-//! `ItemClickies.xml`: the spell-like effects items can carry, keyed by name from the item-level
-//! `<Effect><Type>ItemClickie</Type><Item>name</Item></Effect>`.
-
 use super::effect::Effect;
 use anyhow::Result;
 use serde::Deserialize;

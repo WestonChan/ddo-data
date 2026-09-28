@@ -1,5 +1,3 @@
-//! `Augments/*.xml` → `augments`, `augment_slots`, `augment_bonuses`, modifiers.
-
 use super::{json_numbers, nonempty, Ctx};
 use crate::xml::augments::parse_augments_file;
 use anyhow::Result;
@@ -8,7 +6,6 @@ use rusqlite::params;
 use std::path::Path;
 
 impl Ctx<'_> {
-    /// Returns how many augments the file contributed.
     pub(super) fn write_augments_file(&mut self, path: &Path) -> Result<usize> {
         let (family, augments) = parse_augments_file(path)?;
         for a in &augments {

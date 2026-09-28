@@ -1,6 +1,3 @@
-//! The schema contract: the DDL applies cleanly, the seed tables agree with the enums that
-//! describe them, and the corrections recorded in the roadmap's V2 entry are in place.
-
 use ddo_model::enums::{BonusType, EquipmentSlot, SaveProgression, SlotCategory, WeaponProficiency};
 use ddo_model::seeds::{BONUS_TYPES, DAMAGE_TYPES, EQUIPMENT_SLOTS, WEAPON_TYPES};
 use ddo_model::stats::STATS;

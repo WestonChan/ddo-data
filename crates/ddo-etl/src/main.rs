@@ -14,34 +14,25 @@ struct Cli {
 
 #[derive(Subcommand)]
 enum Cmd {
-    /// Parse a DataFiles directory and write a fresh SQLite database.
     Build {
-        /// Path to DDOBuilderV2's Output/DataFiles directory.
         #[arg(long)]
         source: PathBuf,
-        /// Output database path. Replaced if it exists.
         #[arg(long)]
         out: PathBuf,
-        /// Upstream commit SHA to record. Defaults to `git rev-parse HEAD` in the source checkout.
         #[arg(long)]
         sha: Option<String>,
     },
-    /// Copy upstream's image folders into a flat `icons/<family>/<Name>.png` tree for the API.
     Icons {
-        /// Path to DDOBuilderV2's Output/DataFiles directory.
         #[arg(long)]
         source: PathBuf,
-        /// Output directory; created if missing, existing files kept.
         #[arg(long)]
         out: PathBuf,
     },
-    /// Report item-name coverage of a new database against a previous one.
     Diff {
         #[arg(long)]
         db: PathBuf,
         #[arg(long)]
         legacy: PathBuf,
-        /// Print every unmatched name rather than the first twenty of each.
         #[arg(long)]
         verbose: bool,
     },
@@ -95,7 +86,6 @@ fn git_sha(source: &Path) -> Option<String> {
     out.status.success().then(|| String::from_utf8_lossy(&out.stdout).trim().to_string())
 }
 
-/// ISO-8601 UTC timestamp without a chrono dependency (civil-from-days, Howard Hinnant).
 fn now_utc() -> String {
     let secs = std::time::SystemTime::now().duration_since(std::time::UNIX_EPOCH).map(|d| d.as_secs()).unwrap_or(0);
     let days = (secs / 86_400) as i64;

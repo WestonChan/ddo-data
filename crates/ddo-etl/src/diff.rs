@@ -1,7 +1,3 @@
-//! Compare a freshly built database with a previous one by item name. The legacy DDO Tools
-//! database is the correctness fixture for the port: the roadmap's V2 bar is ≥ 95% of its item
-//! names present here after normalisation, not counting items excluded on purpose.
-
 use anyhow::Result;
 use rusqlite::Connection;
 use std::collections::{HashMap, HashSet};
@@ -10,14 +6,11 @@ use std::collections::{HashMap, HashSet};
 pub struct DiffReport {
     pub matched: usize,
     pub only_new: Vec<String>,
-    /// Legacy names with no counterpart, after removing the ones the new build excluded on purpose.
     pub only_legacy: Vec<String>,
-    /// Legacy names the new build lists in `excluded_items`.
     pub excluded_by_design: Vec<String>,
 }
 
 impl DiffReport {
-    /// Share of legacy names found in the new database, ignoring deliberate exclusions.
     pub fn coverage(&self) -> f64 {
         let denominator = self.matched + self.only_legacy.len();
         if denominator == 0 {
@@ -28,8 +21,6 @@ impl DiffReport {
     }
 }
 
-/// Lower-case alphanumerics only, with a trailing "(Level 12)" removed: upstream files one item
-/// per level for randomly-levelled loot, where the wiki (and so the legacy database) had one page.
 pub fn normalize_name(name: &str) -> String {
     let base = strip_level_suffix(name.trim());
     base.chars().filter(|c| c.is_ascii_alphanumeric()).flat_map(char::to_lowercase).collect()
@@ -68,7 +59,7 @@ pub fn compare(new: &Connection, legacy: &Connection) -> Result<DiffReport> {
     let legacy_names = names(legacy, "SELECT name FROM items")?;
     let excluded: HashSet<String> = match names(new, "SELECT name FROM excluded_items") {
         Ok(map) => map.into_keys().collect(),
-        Err(_) => HashSet::new(), // an older database without the table
+        Err(_) => HashSet::new(),
     };
     let mut report = DiffReport::default();
     for (key, name) in &legacy_names {

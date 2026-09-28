@@ -1,5 +1,3 @@
-//! Whole-dataset download. Cheaper for everyone than paging through the list endpoints.
-
 use crate::error::ApiError;
 use crate::state::AppState;
 use axum::body::Body;
@@ -13,7 +11,6 @@ pub fn router() -> OpenApiRouter<AppState> {
     OpenApiRouter::new().routes(routes!(dump))
 }
 
-/// The complete SQLite database this API serves. Open it with any SQLite client.
 #[utoipa::path(get, path = "/v1/dump.sqlite", tag = "bulk", responses((status = 200, description = "The database file", content_type = "application/vnd.sqlite3")))]
 async fn dump(State(state): State<AppState>) -> Result<Response, ApiError> {
     let path = state.db_path().to_path_buf();
@@ -36,7 +33,6 @@ async fn dump(State(state): State<AppState>) -> Result<Response, ApiError> {
     Ok(response)
 }
 
-/// A byte stream over a file without pulling in tokio-util: 64 KiB chunks.
 fn tokio_util_stream(
     file: tokio::fs::File,
 ) -> impl futures_core_stream::Stream<Item = Result<bytes::Bytes, std::io::Error>> {
@@ -55,7 +51,6 @@ fn tokio_util_stream(
 }
 
 mod futures_core_stream {
-    //! The two pieces of `futures` this file needs, to keep the dependency list short.
     pub use futures_util::stream::unfold;
     pub use futures_util::Stream;
 }

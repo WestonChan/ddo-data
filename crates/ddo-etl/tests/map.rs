@@ -1,6 +1,3 @@
-//! The adapter from DDOBuilderV2's vocabulary onto ours. Every mapping is data in `data/*.toml`;
-//! these tests pin the semantics the roadmap's V2 entry records.
-
 use ddo_etl::map::augment_slot::{decode, SlotSpec};
 use ddo_etl::map::bonus_type::normalize;
 use ddo_etl::map::buff::{BuffMap, Resolved};

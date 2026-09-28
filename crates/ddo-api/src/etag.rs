@@ -1,6 +1,3 @@
-//! Strong ETags from the dataset version and the request, so a CDN or browser can revalidate
-//! with `If-None-Match` and get a 304 without the database being touched.
-
 use crate::state::AppState;
 use axum::extract::{Request, State};
 use axum::http::{header, HeaderValue, StatusCode};
@@ -10,7 +7,6 @@ use std::hash::{DefaultHasher, Hash, Hasher};
 
 pub async fn etag(State(state): State<AppState>, request: Request, next: Next) -> Response {
     let mut hasher = DefaultHasher::new();
-    // Not the method: a HEAD must yield the same tag as the GET it stands in for.
     state.dataset().upstream_sha.hash(&mut hasher);
     request.uri().path().hash(&mut hasher);
     request.uri().query().hash(&mut hasher);

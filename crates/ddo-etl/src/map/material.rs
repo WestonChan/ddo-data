@@ -1,7 +1,3 @@
-//! `<Material>` carries wiki artefacts upstream never cleaned: "Gem (material)",
-//! "Category:No Material items", "Feysteel (page does not exist)". Normalise to a plain name or
-//! nothing.
-
 pub fn normalize(raw: Option<&str>) -> Option<String> {
     let raw = raw?.trim();
     if raw.is_empty()

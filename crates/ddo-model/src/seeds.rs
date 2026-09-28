@@ -1,6 +1,3 @@
-//! Seed tables: the rows that exist in every database regardless of what the game data says.
-//! They are the reference vocabularies the ETL maps onto and the API exposes as lookups.
-
 use crate::enums::{BonusType, DamageCategory, EquipmentSlot, WeaponProficiency};
 use crate::stats::STATS;
 use rusqlite::{params, Connection};
@@ -35,8 +32,6 @@ pub const EQUIPMENT_SLOTS: &[EquipmentSlotSeed] = &{
     out
 };
 
-/// A weapon or shield type, spelled as DDO spells it. `proficiency` is `None` for shields, orbs,
-/// rune arms and pet collars, which no weapon-proficiency feat governs.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub struct WeaponType {
     pub id: i64,
@@ -115,12 +110,10 @@ impl WeaponType {
         WEAPON_TYPES.iter().find(|w| w.name == name)
     }
 
-    /// Thrown weapons are the ones a character can hold a stack of.
     pub const fn is_thrown(&self) -> bool {
         matches!(self.id, 7 | 39 | 42 | 43 | 44)
     }
 
-    /// Bows and crossbows. Held in the main hand but attack at range.
     pub const fn is_ranged(&self) -> bool {
         matches!(self.id, 10 | 16 | 23 | 27 | 34 | 35 | 37)
     }
@@ -160,7 +153,6 @@ pub const DAMAGE_TYPES: &[DamageType] = &[
     damage(18, "Untyped", Untyped),
 ];
 
-/// Insert every seed table. Idempotent: uses `INSERT OR REPLACE` keyed on the stable ids.
 pub fn insert_all(conn: &Connection) -> rusqlite::Result<()> {
     for s in STATS {
         conn.execute(

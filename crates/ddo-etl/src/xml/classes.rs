@@ -1,6 +1,3 @@
-//! `Classes/*.class.xml`: one `<Class>` per file with its class feats, spell list, spell slots
-//! per level, feat slots and automatic feats nested.
-
 use super::feats::Feat;
 use super::{Empty, Vector};
 use anyhow::{bail, Result};
@@ -43,7 +40,6 @@ pub struct Class {
     pub class_specific_feat_types: Vec<String>,
     pub class_skills: Vec<String>,
     pub auto_buy_skills: Vec<String>,
-    /// Class level → slots per spell level (index 0 = spell level 1).
     pub spell_slots: BTreeMap<u8, Vec<i64>>,
     pub class_spells: Vec<ClassSpell>,
     pub feat_slots: Vec<FeatSlot>,
@@ -63,7 +59,6 @@ pub struct ClassSpell {
     pub max_caster_level: Option<i64>,
 }
 
-/// A feat slot a class or race grants at a level.
 #[derive(Debug, Clone, Deserialize)]
 pub struct FeatSlot {
     #[serde(rename = "Level")]
@@ -92,7 +87,6 @@ struct RawClass {
     children: Vec<ClassChild>,
 }
 
-// A transient parse buffer; the size skew between variants does not matter here.
 #[allow(clippy::large_enum_variant)]
 #[derive(Deserialize)]
 enum ClassChild {

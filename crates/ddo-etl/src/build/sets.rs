@@ -1,6 +1,3 @@
-//! `SetBonuses.xml` and `FiligreeSets/*.xml` → `set_bonuses`, `set_bonus_tiers`, `filigrees`,
-//! modifiers, and finally `set_bonus_items` from the names items carry.
-
 use super::{nonempty, BuildReport, Ctx};
 use crate::xml::set_bonuses::parse_set_file;
 use anyhow::Result;
@@ -28,7 +25,7 @@ impl Ctx<'_> {
             let set_id: i64 =
                 self.tx.query_row("SELECT id FROM set_bonuses WHERE name = ?1", params![name], |r| r.get(0))?;
             if self.caches.sets.insert(name.to_string(), set_id).is_some() {
-                continue; // a duplicate definition; keep the first
+                continue;
             }
             for tier in &set.tiers {
                 self.tx.execute(
@@ -66,8 +63,6 @@ impl Ctx<'_> {
         Ok(())
     }
 
-    /// Link items to the sets they named, now that both tables exist. A name no set defines stays
-    /// on `items.set_bonus` only (the three augment-granted "Planar Conflux" sets, for instance).
     pub(super) fn resolve_set_items(&mut self) -> Result<()> {
         let pending = std::mem::take(&mut self.pending_set_items);
         for (item_id, set_name) in pending {

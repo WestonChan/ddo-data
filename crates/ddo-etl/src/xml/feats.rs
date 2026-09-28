@@ -1,6 +1,3 @@
-//! `<Feat>`: from `Feats.xml`, and nested inside class and race files. Read as an
-//! order-independent child sequence; every child in the 2026-09-21 survey has a variant.
-
 use super::effect::Effect;
 use super::requirements::{RawGroup, Requirement, RequirementGroup, RequirementGroupKind, Requirements};
 use super::{Empty, Vector};
@@ -39,7 +36,6 @@ pub struct Feat {
     pub sub_items: Vec<SubItem>,
 }
 
-/// A stance the ability toggles or applies automatically.
 #[derive(Debug, Clone, Deserialize)]
 pub struct Stance {
     #[serde(rename = "Name")]
@@ -58,8 +54,6 @@ pub struct Stance {
     pub incompatible: Vec<String>,
 }
 
-/// A saving-throw DC the ability imposes. Not strict: this leaf has a long tail of rarely used
-/// descriptive children.
 #[derive(Debug, Clone, Deserialize)]
 pub struct Dc {
     #[serde(rename = "Name")]
@@ -108,7 +102,6 @@ pub struct SubItem {
     pub description: Option<String>,
 }
 
-/// Groups the feat joins only while its requirements hold.
 #[derive(Debug, Clone, Deserialize)]
 pub struct ConditionalGroup {
     #[serde(rename = "Group", default)]
@@ -117,8 +110,6 @@ pub struct ConditionalGroup {
     pub requirements: Option<Requirements>,
 }
 
-/// When a feat is granted without being trained. Shaped like `<Requirements>` plus an
-/// `<IgnoreRequirements/>` flag.
 #[derive(Debug, Clone, Default)]
 pub struct AutomaticAcquisition {
     pub requirements: Requirements,
@@ -169,7 +160,6 @@ struct RawFeat {
     children: Vec<FeatChild>,
 }
 
-// A transient parse buffer; the size skew between variants does not matter here.
 #[allow(clippy::large_enum_variant)]
 #[derive(Deserialize)]
 enum FeatChild {

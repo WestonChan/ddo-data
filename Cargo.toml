@@ -1,6 +1,6 @@
 [workspace]
 resolver = "2"
-members = ["crates/ddo-model", "crates/ddo-etl", "crates/ddo-api"]
+members = ["crates/ddo-model", "crates/ddo-etl", "crates/ddo-api", "xtask"]
 
 [workspace.package]
 version = "0.1.0"

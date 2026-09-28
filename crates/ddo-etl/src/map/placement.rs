@@ -1,6 +1,3 @@
-//! Where an item goes and what kind of thing it is, from its `<EquipmentSlot>` tags and its
-//! `<Weapon>` or `<Armor>` subtype.
-
 use super::MAPPING;
 use crate::xml::items::{EquipmentSlots, SlotTag};
 use anyhow::{bail, Result};
@@ -11,20 +8,16 @@ use ddo_model::seeds::WeaponType;
 pub struct Placement {
     pub slot: EquipmentSlot,
     pub category: ItemCategory,
-    /// Set for anything held in a hand, including shields, orbs and rune arms.
     pub handedness: Option<Handedness>,
-    /// The weapon type or armor weight class, as `items.item_type`.
     pub item_type: Option<String>,
 }
 
 impl Placement {
-    /// The seed row for a weapon or shield, when the item is one.
     pub fn weapon_type(&self) -> Option<&'static WeaponType> {
         self.handedness.and(self.item_type.as_deref()).and_then(WeaponType::by_name)
     }
 }
 
-/// `Ok(None)` for items that only occupy cosmetic slots or none at all; those are not gear.
 pub fn classify(slots: &EquipmentSlots, weapon: Option<&str>, armor: Option<&str>) -> Result<Option<Placement>> {
     let tags: Vec<SlotTag> = slots.tags.iter().copied().filter(|t| !t.is_cosmetic()).collect();
     let Some(&first) = tags.first() else {

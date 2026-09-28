@@ -1,5 +1,3 @@
-//! Feats (standard, class, race), races and classes.
-
 use super::{json_numbers, json_strings, nonempty, BuildReport, Ctx};
 use crate::xml::classes::{self, FeatSlot};
 use crate::xml::feats::{self, Feat};
@@ -83,7 +81,6 @@ impl Ctx<'_> {
         Ok(id)
     }
 
-    /// Stances, DCs and the attack an ability carries. Shared by feats and (later) enhancements.
     pub(super) fn write_ability_children(
         &mut self,
         owner: AbilityOwner,
@@ -153,8 +150,6 @@ impl Ctx<'_> {
         Ok(())
     }
 
-    /// A feat referenced by name from a class or race: that source's own definition first, then
-    /// the standard list.
     fn resolve_feat(&self, name: &str, source: FeatSource, source_id: i64) -> Option<i64> {
         let name = name.trim();
         self.caches
@@ -315,7 +310,6 @@ impl Ctx<'_> {
         Ok(())
     }
 
-    /// Archetypes name their parent class; link them once every class row exists.
     pub(super) fn resolve_base_classes(&mut self) -> Result<()> {
         self.tx.execute(
             "UPDATE classes SET base_class_id = (SELECT p.id FROM classes p WHERE p.name = classes.base_class) WHERE base_class IS NOT NULL",

@@ -16,12 +16,9 @@ pub fn router() -> OpenApiRouter<AppState> {
 
 #[derive(Serialize, ToSchema)]
 pub struct VersionInfo {
-    /// Bumped when the table layout changes.
     pub schema_version: i64,
-    /// The DDOBuilderV2 commit the data was parsed from, and when.
     #[schema(value_type = Object)]
     pub dataset: DatasetVersion,
-    /// Row counts of the main tables.
     pub counts: BTreeMap<String, i64>,
 }
 
@@ -43,7 +40,6 @@ const COUNTED: &[&str] = &[
     "bonuses",
 ];
 
-/// Dataset version, schema version and table counts.
 #[utoipa::path(get, path = "/v1/version", tag = "meta", responses((status = 200, body = VersionInfo)))]
 async fn version(State(state): State<AppState>) -> Result<Json<VersionInfo>, ApiError> {
     let dataset = state.dataset().clone();

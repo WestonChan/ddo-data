@@ -1,7 +1,3 @@
-//! Parsing DDOBuilderV2 XML into Rust structs. Fixtures under `tests/fixtures/DataFiles` are
-//! verbatim copies of upstream files (Items) or trimmed copies keeping the file shape (Quests,
-//! ItemBuffs, Patrons).
-
 use ddo_etl::xml::items::{parse_item_file, SlotTag};
 use ddo_etl::xml::{item_buffs, patrons, quests};
 use std::path::PathBuf;
@@ -68,7 +64,6 @@ fn parses_armor_with_requirements_and_docent_fields() {
     assert_eq!(reqs.groups.len(), 1);
     assert_eq!(reqs.groups[0].requirements[0].kind, "RaceConstruct");
     assert!(reqs.groups[0].requirements[0].items.is_empty());
-    // Three EnergyResistance buffs carry their element in <Item>.
     let elements: Vec<_> =
         it.buffs.iter().filter(|b| b.kind == "EnergyResistance").map(|b| b.item.clone().unwrap()).collect();
     assert_eq!(elements, vec!["Fire", "Electric", "Cold"]);
@@ -101,7 +96,6 @@ fn parses_every_fixture_item() {
 
 #[test]
 fn parses_interleaved_repeated_elements() {
-    // Upstream's Acid Rune Arm lists <Buff>, <Effect>, <Buff>; element order must not matter.
     let it = item("Acid Rune Arm");
     assert_eq!(it.buffs.len(), 2, "{:?}", it.buffs.iter().map(|b| &b.kind).collect::<Vec<_>>());
     assert_eq!(it.weapon.as_deref(), Some("Rune Arm"));

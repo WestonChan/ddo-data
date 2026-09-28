@@ -1,5 +1,3 @@
-//! Enhancement trees and spells, and the by-name spell references they resolve.
-
 use ddo_etl::build::build;
 use ddo_etl::xml::{spells, trees};
 use ddo_model::DatasetVersion;
@@ -131,7 +129,6 @@ fn writes_trees_enhancements_and_selections() {
     );
     assert!(count(&conn, "SELECT COUNT(*) FROM requirements WHERE owner_kind = 'enhancement_selection'") >= 3);
     assert!(count(&conn, "SELECT COUNT(*) FROM modifiers WHERE source_kind = 'enhancement_selection'") >= 3);
-    // The +1 Strength selection derives a plain bonus, stored as a modifier with a mapped bonus type.
     let str_sel: i64 = conn
         .query_row(
             "SELECT id FROM enhancement_selections WHERE name = '+1 Strength' AND enhancement_id = ?1",
@@ -194,7 +191,6 @@ fn writes_spells_and_resolves_references() {
     );
     assert!(count(&conn, "SELECT COUNT(*) FROM modifiers WHERE source_kind = 'spell'") >= 18);
 
-    // Class spell lists resolve to spell rows once spells exist.
     let (resolved, total): (i64, i64) = conn
         .query_row("SELECT SUM(spell_id IS NOT NULL), COUNT(*) FROM class_spells cs JOIN classes c ON c.id = cs.class_id WHERE c.name = 'Paladin'", [], |r| Ok((r.get(0)?, r.get(1)?)))
         .unwrap();

@@ -20,11 +20,8 @@ pub fn router() -> OpenApiRouter<AppState> {
 #[derive(Deserialize, IntoParams)]
 pub struct FeatFilter {
     pub q: Option<String>,
-    /// `standard`, `class` or `race`.
     pub source: Option<String>,
-    /// A feat group such as `Standard`, `Epic Feat` or `Metamagics`.
     pub group: Option<String>,
-    /// `Train`, `Automatic`, `Favor`, …
     pub acquire: Option<String>,
     pub limit: Option<i64>,
     pub offset: Option<i64>,
@@ -35,7 +32,6 @@ const COLUMNS: &str = "f.id, f.name, f.source_kind, f.source_id,
                                           WHEN 'race' THEN (SELECT r.name FROM races r WHERE r.id = f.source_id) END AS source_name,
                        f.description, f.icon, f.acquire, f.max_times_acquire, f.sphere, f.auto_acquire_ignores_requirements";
 
-/// Feats matching the filters.
 #[utoipa::path(get, path = "/v1/feats", tag = "feats", params(FeatFilter), responses((status = 200, body = Value)))]
 async fn list(State(state): State<AppState>, Query(f): Query<FeatFilter>) -> Result<Json<Value>, ApiError> {
     if let Some(s) = &f.source {
@@ -80,7 +76,6 @@ fn groups(conn: &rusqlite::Connection, id: i64) -> Result<Vec<Value>, ApiError> 
         .collect())
 }
 
-/// One feat with groups, requirements, stances, DCs, sub-items, modifiers and derived bonuses.
 #[utoipa::path(get, path = "/v1/feats/{id}", tag = "feats", params(("id" = i64, Path)), responses((status = 200, body = Value), (status = 404, body = crate::error::ErrorBody)))]
 async fn detail(State(state): State<AppState>, Path(id): Path<i64>) -> Result<Json<Value>, ApiError> {
     state

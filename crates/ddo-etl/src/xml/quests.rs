@@ -1,5 +1,3 @@
-//! `Quests.xml`: every quest and adventure zone with its patron, pack, favor and levels.
-
 use super::Empty;
 use anyhow::Result;
 use serde::Deserialize;
@@ -35,7 +33,6 @@ struct RawQuest {
     do_not_show: Option<Empty>,
 }
 
-/// `<Levels size="2">6 21</Levels>`: heroic level, then epic level if the quest has one.
 #[derive(Debug, Deserialize)]
 struct Levels {
     #[serde(rename = "$text", default)]
@@ -50,7 +47,6 @@ pub struct Quest {
     pub favor: Option<i64>,
     pub levels: Vec<i64>,
     pub is_raid: bool,
-    /// Adventure zones and other entries upstream hides from its own quest list.
     pub do_not_show: bool,
 }
 

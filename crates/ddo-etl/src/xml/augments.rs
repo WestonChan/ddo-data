@@ -1,6 +1,3 @@
-//! `Augments/*.xml`: one `<Augments>` root per crafting family, `<Augment>` children read as an
-//! order-independent sequence (`<EffectDescription>` interleaves with `<Effect>`).
-
 use super::effect::Effect;
 use super::Empty;
 use anyhow::Result;
@@ -8,7 +5,6 @@ use serde::de::Error as _;
 use serde::{Deserialize, Deserializer};
 use std::path::Path;
 
-/// Parse one family file. `family` is the file stem before `.Augments`.
 pub fn parse_augments_file(path: &Path) -> Result<(String, Vec<Augment>)> {
     let file: AugmentFile = super::read_xml(path)?;
     let stem = path.file_name().and_then(|n| n.to_str()).unwrap_or("");
@@ -26,10 +22,8 @@ struct AugmentFile {
 pub struct Augment {
     pub name: String,
     pub description: Option<String>,
-    /// `<EffectDescription>` elements, in order.
     pub effect_descriptions: Vec<String>,
     pub min_level: Option<i64>,
-    /// `<Type>`: every slot type this augment fits.
     pub slot_types: Vec<String>,
     pub icon: Option<String>,
     pub effects: Vec<Effect>,
@@ -47,7 +41,6 @@ pub struct Augment {
     pub weapon_class: Option<String>,
 }
 
-/// `<Levels size="3">12 16 20</Levels>`; `LevelValue` can be fractional ("1.5").
 #[derive(Deserialize)]
 struct Vector {
     #[serde(rename = "$text", default)]
@@ -66,7 +59,6 @@ struct RawAugment {
     children: Vec<AugmentChild>,
 }
 
-// A transient parse buffer; the size skew between variants does not matter here.
 #[allow(clippy::large_enum_variant)]
 #[derive(Deserialize)]
 enum AugmentChild {

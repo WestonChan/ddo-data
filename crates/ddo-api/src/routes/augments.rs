@@ -16,9 +16,7 @@ pub fn router() -> OpenApiRouter<AppState> {
 #[derive(Deserialize, IntoParams)]
 pub struct AugmentFilter {
     pub q: Option<String>,
-    /// Slot type label, e.g. `red` or `isle of dread: scale (armor)`.
     pub slot: Option<String>,
-    /// Source family (file stem), e.g. `Ruby`.
     pub family: Option<String>,
     pub max_level: Option<i64>,
     pub limit: Option<i64>,
@@ -48,7 +46,6 @@ const COLUMNS: &str =
                        a.level_values, a.level_values2, a.dual_values, a.enter_value, a.suppress_set_bonus, a.set_bonus,
                        a.adds_augment, a.grants_augment, a.weapon_class";
 
-/// Augments, each with the slot types it fits and its derived bonuses.
 #[utoipa::path(get, path = "/v1/augments", tag = "augments", params(AugmentFilter), responses((status = 200, body = Value)))]
 async fn list(State(state): State<AppState>, Query(f): Query<AugmentFilter>) -> Result<Json<Value>, ApiError> {
     let (limit, offset) = page(f.limit, f.offset);
@@ -81,7 +78,6 @@ async fn list(State(state): State<AppState>, Query(f): Query<AugmentFilter>) -> 
         .await
 }
 
-/// One augment with its full modifiers.
 #[utoipa::path(get, path = "/v1/augments/{id}", tag = "augments", params(("id" = i64, Path)), responses((status = 200, body = Value), (status = 404, body = crate::error::ErrorBody)))]
 async fn detail(State(state): State<AppState>, Path(id): Path<i64>) -> Result<Json<Value>, ApiError> {
     state

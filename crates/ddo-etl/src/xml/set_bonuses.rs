@@ -1,6 +1,3 @@
-//! `SetBonuses.xml` (gear sets) and `FiligreeSets/*.xml` (a `<SetBonus>` plus its `<Filigree>`
-//! children). Both roots hold the same `<SetBonus>` shape, so one parser reads either.
-
 use super::effect::Effect;
 use super::Empty;
 use anyhow::Result;
@@ -39,7 +36,6 @@ enum SetEntry {
 
 #[derive(Debug, Deserialize)]
 pub struct SetBonus {
-    /// Upstream calls the set's name `Type`.
     #[serde(rename = "Type")]
     pub name: String,
     #[serde(rename = "Icon")]

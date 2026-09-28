@@ -11,7 +11,6 @@ pub fn router() -> OpenApiRouter<AppState> {
     OpenApiRouter::new().routes(routes!(list)).routes(routes!(detail)).routes(routes!(filigrees))
 }
 
-/// Every gear set and filigree set.
 #[utoipa::path(get, path = "/v1/sets", tag = "sets", responses((status = 200, body = Vec<Value>)))]
 async fn list(State(state): State<AppState>) -> Result<Json<Vec<Value>>, ApiError> {
     state
@@ -32,7 +31,6 @@ async fn list(State(state): State<AppState>) -> Result<Json<Vec<Value>>, ApiErro
         .await
 }
 
-/// One set with its tiers (each with modifiers), member items and filigrees.
 #[utoipa::path(get, path = "/v1/sets/{id}", tag = "sets", params(("id" = i64, Path)), responses((status = 200, body = Value), (status = 404, body = crate::error::ErrorBody)))]
 async fn detail(State(state): State<AppState>, Path(id): Path<i64>) -> Result<Json<Value>, ApiError> {
     state
@@ -72,7 +70,6 @@ fn filigree_rows(conn: &rusqlite::Connection, set_id: Option<i64>) -> Result<Vec
     Ok(rows)
 }
 
-/// Every filigree with its set and modifiers (rare ones flagged).
 #[utoipa::path(get, path = "/v1/filigrees", tag = "sets", responses((status = 200, body = Vec<Value>)))]
 async fn filigrees(State(state): State<AppState>) -> Result<Json<Vec<Value>>, ApiError> {
     state.query(|conn| Ok(Json(filigree_rows(conn, None)?))).await

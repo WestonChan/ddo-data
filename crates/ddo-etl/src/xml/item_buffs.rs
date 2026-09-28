@@ -1,11 +1,3 @@
-//! `ItemBuffs.xml`: the display template for every buff type, keyed by the same `Type` string
-//! the `<Buff>` elements in item files use. Templates carry `%v1`, `%v2`, `%i1`, `%i2`, `%b1`
-//! placeholders for the buff's values, sub-targets and bonus type.
-//!
-//! Read with the event API rather than serde: a long description is split over several
-//! `<DisplayText>` elements that upstream interleaves with `<Effect>` and `<Requirements>`, which
-//! serde's `Vec` collection (adjacent elements only) rejects as a duplicate field.
-
 use anyhow::{Context, Result};
 use quick_xml::events::Event;
 use quick_xml::Reader;
@@ -22,7 +14,6 @@ pub fn parse(path: &Path) -> Result<HashMap<String, String>> {
     let mut depth = 0usize;
     let mut kind: Option<String> = None;
     let mut paragraphs: Vec<String> = Vec::new();
-    // Set to the tag name while inside a direct child of <Buff> whose text we want.
     let mut capturing: Option<&'static str> = None;
 
     loop {

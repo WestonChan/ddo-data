@@ -1,9 +1,3 @@
-//! Read-only public API over the DDO Tools game database.
-//!
-//! The database is immutable for the lifetime of a deployment (it is baked into the image), so
-//! every response carries a strong ETag derived from the dataset version and the request, a long
-//! `Cache-Control`, and an `X-Dataset-Version` header. A CDN in front can cache everything.
-
 mod db;
 pub mod error;
 mod etag;
@@ -52,8 +46,6 @@ use utoipa_scalar::{Scalar, Servable};
 )]
 struct ApiDoc;
 
-/// The router with every middleware attached. Rate limiting is applied only when the state asks
-/// for it, since it needs a real peer address.
 pub fn app(state: AppState) -> Router {
     let (api_router, mut api) =
         OpenApiRouter::with_openapi(ApiDoc::openapi()).merge(routes::router()).split_for_parts();
@@ -84,7 +76,6 @@ pub fn app(state: AppState) -> Router {
 
     if state.rate_limited() {
         let config = GovernorConfigBuilder::default()
-            // A page load fires a few dozen requests; a scraper looping ids does not get far.
             .per_second(5)
             .burst_size(100)
             .key_extractor(SmartIpKeyExtractor)

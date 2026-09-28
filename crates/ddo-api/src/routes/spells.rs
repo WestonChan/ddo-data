@@ -16,9 +16,7 @@ pub fn router() -> OpenApiRouter<AppState> {
 #[derive(Deserialize, IntoParams)]
 pub struct SpellFilter {
     pub q: Option<String>,
-    /// Spell school, e.g. `Evocation`.
     pub school: Option<String>,
-    /// Class name; lists the spells on that class's list.
     pub class: Option<String>,
     pub limit: Option<i64>,
     pub offset: Option<i64>,
@@ -26,7 +24,6 @@ pub struct SpellFilter {
 
 const COLUMNS: &str = "s.id, s.name, s.description, s.icon, s.schools, s.max_caster_level, s.cost, s.metamagics";
 
-/// Spells matching the filters.
 #[utoipa::path(get, path = "/v1/spells", tag = "spells", params(SpellFilter), responses((status = 200, body = Value)))]
 async fn list(State(state): State<AppState>, Query(f): Query<SpellFilter>) -> Result<Json<Value>, ApiError> {
     let (limit, offset) = page(f.limit, f.offset);
@@ -53,7 +50,6 @@ async fn list(State(state): State<AppState>, Query(f): Query<SpellFilter>) -> Re
         .await
 }
 
-/// One spell with damage dice, DCs, the classes that cast it, stances and modifiers.
 #[utoipa::path(get, path = "/v1/spells/{id}", tag = "spells", params(("id" = i64, Path)), responses((status = 200, body = Value), (status = 404, body = crate::error::ErrorBody)))]
 async fn detail(State(state): State<AppState>, Path(id): Path<i64>) -> Result<Json<Value>, ApiError> {
     state
@@ -87,7 +83,6 @@ async fn detail(State(state): State<AppState>, Path(id): Path<i64>) -> Result<Js
         .await
 }
 
-/// Item clickies: the spell-like effects items carry.
 #[utoipa::path(get, path = "/v1/clickies", tag = "spells", responses((status = 200, body = Vec<Value>)))]
 async fn clickies(State(state): State<AppState>) -> Result<Json<Vec<Value>>, ApiError> {
     state

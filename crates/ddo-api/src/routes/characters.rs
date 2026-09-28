@@ -1,5 +1,3 @@
-//! Races and classes.
-
 use crate::db::{booleanize, json_row, json_rows};
 use crate::error::ApiError;
 use crate::state::AppState;
@@ -29,7 +27,6 @@ async fn races(State(state): State<AppState>) -> Result<Json<Vec<Value>>, ApiErr
         .await
 }
 
-/// One race with ability modifiers, granted feats, its own feat definitions and feat slots.
 #[utoipa::path(get, path = "/v1/races/{id}", tag = "characters", params(("id" = i64, Path)), responses((status = 200, body = Value), (status = 404, body = crate::error::ErrorBody)))]
 async fn race(State(state): State<AppState>, Path(id): Path<i64>) -> Result<Json<Value>, ApiError> {
     state
@@ -76,8 +73,6 @@ async fn classes(State(state): State<AppState>) -> Result<Json<Vec<Value>>, ApiE
         .await
 }
 
-/// One class with skills, spell slots per level, spell list, feat slots, automatic feats and its
-/// own feat definitions.
 #[utoipa::path(get, path = "/v1/classes/{id}", tag = "characters", params(("id" = i64, Path)), responses((status = 200, body = Value), (status = 404, body = crate::error::ErrorBody)))]
 async fn class(State(state): State<AppState>, Path(id): Path<i64>) -> Result<Json<Value>, ApiError> {
     state
@@ -93,7 +88,6 @@ async fn class(State(state): State<AppState>, Path(id): Path<i64>) -> Result<Jso
             class["class_skills"] = Value::Array(skills("class_skills")?);
             class["auto_buy_skills"] = Value::Array(skills("class_auto_buy_skills")?);
 
-            // {"5": [1,0,0,0], ...}: slots per spell level, keyed by class level.
             let mut slots: Map<String, Value> = Map::new();
             for row in json_rows(conn, "SELECT class_level, spell_level, slots FROM class_spell_slots WHERE class_id = ?1 ORDER BY class_level, spell_level", [id])? {
                 let level = row["class_level"].as_i64().unwrap_or(0).to_string();

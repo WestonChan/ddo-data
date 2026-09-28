@@ -1,5 +1,3 @@
-//! One error type for handlers, rendered as a small JSON body.
-
 use axum::http::StatusCode;
 use axum::response::{IntoResponse, Response};
 use axum::Json;

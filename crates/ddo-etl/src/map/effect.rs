@@ -1,5 +1,3 @@
-//! `<Effect>` → derived `bonuses` rows, and his `<Bonus>` → our [`BonusType`].
-
 use crate::xml::effect::Effect;
 use anyhow::{bail, Result};
 use ddo_model::enums::BonusType;
@@ -17,7 +15,6 @@ struct EffectMapData {
     bonus_type_aliases: BTreeMap<String, String>,
 }
 
-/// A bonus row an effect implies.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub struct Derived {
     pub stat: &'static Stat,
@@ -41,8 +38,6 @@ impl EffectMap {
         Ok(Self { data, unmapped: RefCell::new(BTreeMap::new()) })
     }
 
-    /// His `<Bonus>` text as one of our bonus types. Unknown spellings are an error so they get
-    /// added to the enum or the alias table; empty and "Not Set" are `None`.
     pub fn bonus_type(&self, raw: &str) -> Result<Option<BonusType>> {
         let raw = raw.trim();
         let canonical = self.data.bonus_type_aliases.get(raw).map(String::as_str).unwrap_or(raw);
@@ -57,7 +52,6 @@ impl EffectMap {
         }
     }
 
-    /// The bonus rows this effect implies: none unless it is a plain integer on a stat we know.
     pub fn derive(&self, effect: &Effect) -> Result<Vec<Derived>> {
         let Some(value) = effect.simple_integer() else {
             return Ok(Vec::new());
@@ -96,7 +90,6 @@ impl EffectMap {
         Ok(out)
     }
 
-    /// Effect types seen by `derive` that have no mapping, with counts.
     pub fn unmapped_types(&self) -> BTreeMap<String, usize> {
         self.unmapped.borrow().clone()
     }

@@ -1,7 +1,3 @@
-//! `<Requirements>`: the condition grammar every family shares. Children are `<Requirement>`
-//! (all must hold), `<RequiresOneOf>` and `<RequiresNoneOf>` blocks, in any order and any number.
-//! Consecutive top-level `<Requirement>` elements fold into one `All` group.
-
 use anyhow::Result;
 use serde::de::Error as _;
 use serde::{Deserialize, Deserializer};
@@ -62,7 +58,6 @@ enum RawChild {
     RequiresNoneOf(RawGroup),
 }
 
-/// A `<RequiresOneOf>` / `<RequiresNoneOf>` block as written.
 #[derive(Debug, Clone, Deserialize)]
 pub struct RawGroup {
     #[serde(rename = "DisplayDescription")]
@@ -72,12 +67,10 @@ pub struct RawGroup {
 }
 
 impl RequirementGroup {
-    /// Build a group from a raw block, trimming requirement types.
     pub fn from_raw(kind: RequirementGroupKind, raw: RawGroup) -> Self {
         group(kind, raw)
     }
 
-    /// An `All` group of loose `<Requirement>` elements.
     pub fn all(requirements: Vec<Requirement>) -> Self {
         RequirementGroup { kind: RequirementGroupKind::All, display_description: None, requirements }
     }
@@ -127,7 +120,6 @@ fn group(kind: RequirementGroupKind, raw: RawGroup) -> RequirementGroup {
 }
 
 impl Requirements {
-    /// Every positive requirement (`All` and `OneOf` groups), flattened.
     pub fn positive(&self) -> impl Iterator<Item = &Requirement> {
         self.groups.iter().filter(|g| g.kind != RequirementGroupKind::NoneOf).flat_map(|g| g.requirements.iter())
     }

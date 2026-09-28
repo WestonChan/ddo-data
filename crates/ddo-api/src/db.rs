@@ -1,12 +1,8 @@
-//! Query helpers. Most endpoints return rows as JSON objects keyed by column name; columns that
-//! hold a JSON array as text (`amounts`, `targets`, `schools`, …) are expanded into real arrays.
-
 use crate::error::ApiError;
 use rusqlite::types::ValueRef;
 use rusqlite::{Connection, Params, Row};
 use serde_json::{Map, Value};
 
-/// Every row of `sql` as a JSON object.
 pub fn json_rows<P: Params>(conn: &Connection, sql: &str, params: P) -> Result<Vec<Value>, ApiError> {
     let mut stmt = conn.prepare_cached(sql)?;
     let names: Vec<String> = stmt.column_names().into_iter().map(str::to_string).collect();
@@ -14,7 +10,6 @@ pub fn json_rows<P: Params>(conn: &Connection, sql: &str, params: P) -> Result<V
     Ok(rows.collect::<Result<Vec<_>, _>>()?)
 }
 
-/// The first row of `sql` as a JSON object, or `NotFound`.
 pub fn json_row<P: Params>(conn: &Connection, sql: &str, params: P) -> Result<Value, ApiError> {
     let mut stmt = conn.prepare_cached(sql)?;
     let names: Vec<String> = stmt.column_names().into_iter().map(str::to_string).collect();
@@ -44,7 +39,6 @@ fn row_to_json(row: &Row, names: &[String]) -> Value {
     Value::Object(map)
 }
 
-/// JSON arrays stored as text come back as arrays; everything else stays a string.
 fn text_value(t: &str) -> Value {
     if t.starts_with('[') && t.ends_with(']') {
         if let Ok(v @ Value::Array(_)) = serde_json::from_str::<Value>(t) {
@@ -54,7 +48,6 @@ fn text_value(t: &str) -> Value {
     Value::String(t.to_string())
 }
 
-/// Turn `0`/`1` integer columns named in `flags` into booleans, in place.
 pub fn booleanize(value: &mut Value, flags: &[&str]) {
     if let Value::Object(map) = value {
         for flag in flags {
@@ -66,19 +59,16 @@ pub fn booleanize(value: &mut Value, flags: &[&str]) {
     }
 }
 
-/// `%term%` for a `LIKE` search, with LIKE metacharacters escaped.
 pub fn like_pattern(q: &str) -> String {
     let escaped: String =
         q.chars().flat_map(|c| if matches!(c, '%' | '_' | '\\') { vec!['\\', c] } else { vec![c] }).collect();
     format!("%{}%", escaped.trim())
 }
 
-/// Clamp paging parameters to sane bounds.
 pub fn page(limit: Option<i64>, offset: Option<i64>) -> (i64, i64) {
     (limit.unwrap_or(100).clamp(1, 10_000), offset.unwrap_or(0).max(0))
 }
 
-/// Requirements attached to an owner, in group and sort order.
 pub fn requirements_for(conn: &Connection, owner_kind: &str, owner_id: i64) -> Result<Vec<Value>, ApiError> {
     json_rows(
         conn,
@@ -88,7 +78,6 @@ pub fn requirements_for(conn: &Connection, owner_kind: &str, owner_id: i64) -> R
     )
 }
 
-/// Modifiers attached to a source, each with its own requirements nested.
 pub fn modifiers_for(conn: &Connection, source_kind: &str, source_id: i64) -> Result<Vec<Value>, ApiError> {
     let mut rows = json_rows(
         conn,
@@ -132,7 +121,6 @@ pub fn dcs_for(conn: &Connection, owner_kind: &str, owner_id: i64) -> Result<Vec
     )
 }
 
-/// Derived bonuses through a junction table (`item_bonuses`, `augment_bonuses`, `feat_bonuses`).
 pub fn bonuses_via(conn: &Connection, junction: &str, key: &str, id: i64) -> Result<Vec<Value>, ApiError> {
     let sql = format!(
         "SELECT b.id, b.name, b.description, s.name AS stat, s.category AS stat_category, bt.name AS bonus_type, b.value, b.value2
@@ -143,7 +131,6 @@ pub fn bonuses_via(conn: &Connection, junction: &str, key: &str, id: i64) -> Res
     json_rows(conn, &sql, [id])
 }
 
-/// Accumulates `WHERE` clauses and their positional parameters for a list endpoint.
 #[derive(Default)]
 pub struct Filters {
     clauses: Vec<String>,
@@ -151,13 +138,11 @@ pub struct Filters {
 }
 
 impl Filters {
-    /// A clause with one `?` placeholder, bound to `value`.
     pub fn bind(&mut self, clause: &str, value: impl Into<rusqlite::types::Value>) {
         self.params.push(value.into());
         self.clauses.push(clause.replace('?', &format!("?{}", self.params.len())));
     }
 
-    /// A clause with no parameters.
     pub fn clause(&mut self, clause: &str) {
         self.clauses.push(clause.to_string());
     }

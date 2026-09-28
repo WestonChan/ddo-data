@@ -1,5 +1,3 @@
-//! Every endpoint, grouped by family. Each module exposes `router()` for `OpenApiRouter`.
-
 mod augments;
 mod characters;
 mod dump;

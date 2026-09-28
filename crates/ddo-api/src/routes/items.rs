@@ -1,5 +1,3 @@
-//! Items: a filterable list shaped for the picker, and a detail view joining every satellite.
-
 use crate::db::{bonuses_via, booleanize, count, json_row, json_rows, like_pattern, modifiers_for, page, Filters};
 use crate::error::ApiError;
 use crate::state::AppState;
@@ -18,26 +16,18 @@ pub fn router() -> OpenApiRouter<AppState> {
 
 #[derive(Deserialize, IntoParams)]
 pub struct ItemFilter {
-    /// Case-insensitive substring of the name.
     pub q: Option<String>,
-    /// Equipment slot name, e.g. `Main Hand`.
     pub slot: Option<String>,
-    /// `Armor`, `Shield`, `Weapon`, `Jewelry` or `Clothing`.
     pub category: Option<String>,
     pub min_level: Option<i64>,
     pub max_level: Option<i64>,
-    /// Adventure pack name; matches items dropping in that pack's quests.
     pub pack: Option<String>,
-    /// `true` for raid loot only.
     pub raid: Option<bool>,
-    /// Stat name; matches items with a bonus to it.
     pub stat: Option<String>,
-    /// Page size, 1–10000 (default 100).
     pub limit: Option<i64>,
     pub offset: Option<i64>,
 }
 
-/// Items matching the filters, with the fields the picker shows.
 #[utoipa::path(get, path = "/v1/items", tag = "items", params(ItemFilter), responses((status = 200, body = Value)))]
 async fn list(State(state): State<AppState>, Query(f): Query<ItemFilter>) -> Result<Json<Value>, ApiError> {
     if let Some(c) = &f.category {
@@ -95,7 +85,6 @@ async fn list(State(state): State<AppState>, Query(f): Query<ItemFilter>) -> Res
         .await
 }
 
-/// One item with its weapon or armor stats, bonuses, effects, sockets, clickies, set and quests.
 #[utoipa::path(get, path = "/v1/items/{id}", tag = "items", params(("id" = i64, Path)), responses((status = 200, body = Value), (status = 404, body = crate::error::ErrorBody)))]
 async fn detail(State(state): State<AppState>, Path(id): Path<i64>) -> Result<Json<Value>, ApiError> {
     state

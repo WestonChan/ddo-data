@@ -1,7 +1,3 @@
-//! `<Effect>`: the modifier grammar every family shares. Read as an order-independent child
-//! sequence because `<Type>` and `<Item>` repeat and upstream interleaves freely. Every child
-//! element seen in the 2026-09-20 survey has a variant; a new one is a hard error.
-
 use super::requirements::Requirements;
 use super::Empty;
 use anyhow::Result;
@@ -14,11 +10,9 @@ pub fn parse_effect(xml: &str) -> Result<Effect> {
 
 #[derive(Debug, Clone, PartialEq, Default)]
 pub struct Effect {
-    /// One or more `<Type>`; the first is the primary.
     pub types: Vec<String>,
     pub bonus: Option<String>,
     pub amount_type: Option<String>,
-    /// `<Amount size="n">a b c</Amount>` as numbers. Empty when absent.
     pub amounts: Vec<f64>,
     pub items: Vec<String>,
     pub value: Option<String>,
@@ -44,7 +38,6 @@ pub struct Dice {
     pub damage: Option<String>,
 }
 
-/// `<Amount size="4">3.5 4.0 4.5 4.5</Amount>`: whitespace-separated numbers.
 #[derive(Deserialize)]
 struct Vector {
     #[serde(rename = "$text", default)]
@@ -144,7 +137,6 @@ impl<'de> Deserialize<'de> for Effect {
 }
 
 impl Effect {
-    /// A plain number: `AType` Simple, one `Type`, exactly one integral amount.
     pub fn simple_integer(&self) -> Option<i64> {
         if self.amount_type.as_deref() != Some("Simple") || self.types.len() != 1 || self.amounts.len() != 1 {
             return None;

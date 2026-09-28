@@ -1,5 +1,3 @@
-//! Enhancement trees and spells, then the by-name spell references other stages left behind.
-
 use super::{json_numbers, json_strings, nonempty, BuildReport, Ctx};
 use crate::xml::spells;
 use crate::xml::trees::{self, Selection, TreeItem};
@@ -27,7 +25,6 @@ impl Ctx<'_> {
             .query_row("SELECT id FROM enhancement_trees WHERE name = ?1", params![t.name], |r| r.get(0))
             .optional()?;
         if existing.is_some() {
-            // Upstream keeps a stray duplicate file for one tree; the first definition wins.
             report.duplicate_trees_skipped += 1;
             return Ok(());
         }
@@ -180,7 +177,6 @@ impl Ctx<'_> {
         Ok(())
     }
 
-    /// Fill `class_spells.spell_id` and `item_clickies.spell_id` from names, now that spells exist.
     pub(super) fn resolve_spell_references(&mut self) -> Result<()> {
         self.tx.execute(
             "UPDATE class_spells SET spell_id = (SELECT s.id FROM spells s WHERE s.name = class_spells.spell_name) WHERE spell_id IS NULL",

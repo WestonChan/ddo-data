@@ -1,13 +1,3 @@
-//! `Items/*.item`: one `<Items><Item>…</Item></Items>` per file.
-//!
-//! An `<Item>` is read as a sequence of child elements ([`ItemChild`]) and then folded into
-//! [`Item`]. Reading children as a sequence rather than as struct fields makes element order
-//! irrelevant, which matters because upstream occasionally interleaves repeated elements
-//! (`<Buff>`, `<Effect>`, `<Buff>`), and serde's field-based collection only accepts adjacent
-//! repeats. An element with no [`ItemChild`] variant is still a hard error: the 2026-09-20 survey
-//! enumerated every element the 8,779 upstream files use, and a new one should stop the build so
-//! a person decides whether it maps to a column.
-
 use super::effect::Effect;
 use super::requirements::Requirements;
 use super::Empty;
@@ -40,8 +30,6 @@ struct RawItem {
     children: Vec<ItemChild>,
 }
 
-/// Every element an `<Item>` may contain, named exactly as upstream spells it.
-// A transient parse buffer; the size skew between variants does not matter here.
 #[allow(clippy::large_enum_variant)]
 #[derive(Debug, Deserialize)]
 enum ItemChild {
@@ -77,7 +65,6 @@ enum ItemChild {
     IsAcceptsSentience(Empty),
     MinorArtifact(Empty),
     IsGreensteel(Empty),
-    // Upstream bookkeeping and rarities the schema does not model yet.
     NoAutoUpdate(Empty),
     UserSetsLevel(Empty),
     Effect(Effect),
@@ -118,7 +105,6 @@ pub struct Item {
     pub accepts_sentience: bool,
     pub minor_artifact: bool,
     pub is_greensteel: bool,
-    /// Item-level `<Effect>` elements: clickies, spell-like abilities and the like.
     pub effects: Vec<Effect>,
 }
 
@@ -178,8 +164,6 @@ impl TryFrom<RawItem> for Item {
     }
 }
 
-/// The slot tags a `<EquipmentSlot>` element lists. Upstream uses one empty child element per
-/// slot the item can occupy, so a one-handed weapon lists both `Weapon1` and `Weapon2`.
 #[derive(Debug, Default, Deserialize, PartialEq, Eq)]
 pub struct EquipmentSlots {
     #[serde(rename = "$value", default)]
@@ -214,7 +198,6 @@ impl SlotTag {
     }
 }
 
-/// `<BaseDice>`; shields carry an empty element, so every part is optional.
 #[derive(Debug, Deserialize, PartialEq, Eq)]
 pub struct Dice {
     #[serde(rename = "Number")]
@@ -225,8 +208,6 @@ pub struct Dice {
     pub bonus: Option<i64>,
 }
 
-/// One property of an item. `kind` is upstream's `<Type>`; the display template for it lives in
-/// `ItemBuffs.xml`, keyed by the same string.
 #[derive(Debug, Clone, Deserialize, PartialEq, Eq)]
 pub struct Buff {
     #[serde(rename = "Type")]
@@ -245,10 +226,6 @@ pub struct Buff {
     pub description1: Option<String>,
 }
 
-/// A socket on an item. `options` lists the content upstream has fixed for it: one entry is a
-/// crafted upgrade already applied ("Tier 2: Seeker 11 and a Green augment slot"), several are the
-/// choices a crafting step offers ("Commendation Upgrade" with fourteen blessings). Empty means an
-/// ordinary open socket.
 #[derive(Debug, Deserialize)]
 pub struct ItemAugment {
     #[serde(rename = "Type")]
@@ -274,8 +251,6 @@ pub struct AugmentOption {
 }
 
 impl Item {
-    /// The race restriction, if any: `Race`/`Item` requirements joined, `RaceConstruct` as
-    /// "Construct". Restrictions (`NotConstruct`) and feat requirements are not race requirements.
     pub fn race_required(&self) -> Option<String> {
         let reqs = self.requirements.as_ref()?;
         let races: Vec<String> = reqs

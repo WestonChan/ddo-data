@@ -1,5 +1,3 @@
-//! End to end: the fixture DataFiles directory becomes a database with the expected rows.
-
 use ddo_etl::build::{build, BuildReport};
 use ddo_etl::diff::compare;
 use ddo_model::DatasetVersion;
@@ -182,7 +180,6 @@ fn splits_buffs_into_bonuses_and_effects() {
     assert_eq!((effects[1].0.as_str(), effects[1].1), ("Lifesealed", Some(34)));
     assert!(effects[0].2.as_deref().unwrap_or("").len() > 10, "effects carry ItemBuffs.xml text");
 
-    // The same "Fire Spell Power +54 (Enhancement)" bonus on two items is one bonuses row.
     let dup = count(&conn, "SELECT COUNT(*) FROM bonuses WHERE name = 'Fire Spell Power +54'");
     assert_eq!(dup, 1);
     let desc: String =
@@ -246,9 +243,6 @@ fn links_items_to_quests_from_drop_location() {
         conn.query_row("SELECT loot_type FROM quest_loot WHERE item_id = ?1", params![docent], |r| r.get(0)).unwrap();
     assert_eq!(loot, "chest", "'The Cursed Crypt, End Chest' is a non-raid chest drop");
 
-    // Upstream writes "Temple of Elemental Evil Part One" but Quests.xml names those quests
-    // "Temple of Elemental Evil: Water Node" etc., so this drop text stays unlinked. The text is
-    // still on items.drop_location.
     let axe = item_id(&conn, "+3 Combustion Scorched Battle Axe");
     assert_eq!(count(&conn, &format!("SELECT COUNT(*) FROM quest_loot WHERE item_id = {axe}")), 0);
     let drop: String =
@@ -301,7 +295,6 @@ fn writes_augments_with_slots_bonuses_and_modifiers() {
         .map(Result::unwrap)
         .collect();
     assert_eq!(slots, vec!["orange", "purple", "red"]);
-    // Dice-based effects are modifiers, not bonuses.
     assert_eq!(count(&conn, &format!("SELECT COUNT(*) FROM augment_bonuses WHERE augment_id = {ruby}")), 0);
     let (n, dmg, num): (i64, String, String) = conn
         .query_row(

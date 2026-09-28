@@ -1,5 +1,3 @@
-//! `Patrons.xml`: the favor patrons. Only the name is used for now.
-
 use anyhow::Result;
 use serde::Deserialize;
 use std::path::Path;

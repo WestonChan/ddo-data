@@ -1,6 +1,3 @@
-//! The two generic writers: `modifiers` (one row per `<Effect>`) and `requirements` (one row per
-//! `<Requirement>`), plus the `bonuses` rows derived from simple effects.
-
 use super::{json_numbers, json_strings, nonempty, Ctx};
 use crate::xml::effect::Effect;
 use crate::xml::requirements::Requirements;
@@ -9,7 +6,6 @@ use ddo_model::enums::{ModifierSource, RequirementOwner};
 use rusqlite::params;
 
 impl Ctx<'_> {
-    /// Store every effect faithfully. Returns the new modifier ids in order.
     pub(super) fn write_modifiers(
         &mut self,
         source: ModifierSource,
@@ -89,7 +85,6 @@ impl Ctx<'_> {
         Ok(())
     }
 
-    /// `bonuses` ids implied by these effects, in effect order, for a junction table.
     pub(super) fn derived_bonus_ids(&mut self, effects: &[Effect]) -> Result<Vec<i64>> {
         let mut ids = Vec::new();
         for e in effects {

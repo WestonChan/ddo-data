@@ -1,15 +1,9 @@
-//! The DDL. One statement batch, idempotent (`IF NOT EXISTS` throughout), with `CHECK`
-//! constraints generated from the enums so the two can never disagree.
-//!
-//! Column comments name the DDOBuilderV2 element a value comes from (`<Name>`), or `computed`.
-
 use crate::enums::{
     sql_in_list, AbilityOwner, ArmorType, FeatSource, Handedness, ItemCategory, LootType, ModifierSource,
     RequirementGroup, RequirementOwner, SaveProgression, TreeKind,
 };
 use std::sync::LazyLock;
 
-/// Bumped whenever the DDL changes shape. Stored in `schema_version`.
 pub const SCHEMA_VERSION: i64 = 1;
 
 static DDL_TEXT: LazyLock<String> = LazyLock::new(|| {
@@ -693,7 +687,6 @@ CREATE TABLE IF NOT EXISTS item_clickies (
     )
 });
 
-/// The full DDL as one batch.
 pub fn ddl() -> &'static str {
     &DDL_TEXT
 }

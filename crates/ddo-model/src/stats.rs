@@ -1,9 +1,5 @@
-// Generated from the legacy ddo-tools ddo.db `stats` table (238 rows). Ids are stable
-// and referenced by the frontend, so append new stats; never renumber.
-
 use crate::enums::StatCategory;
 
-/// A stat the game tracks: an ability score, a save, a spell power, a skill, and so on.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub struct Stat {
     pub id: i64,

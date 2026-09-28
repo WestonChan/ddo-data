@@ -1,10 +1,3 @@
-//! Walk a DDOBuilderV2 `DataFiles` directory and write the database. Rebuilds from scratch every
-//! run: the output is an artifact, not a store that gets patched.
-//!
-//! Stages, in order: seeds and versions; patrons and quests; clickies; items (which reference
-//! clickies and quests); augments; gear sets and filigree sets; set membership (which needs both
-//! items and sets).
-
 mod augments;
 mod characters;
 mod items;
@@ -48,8 +41,6 @@ pub struct BuildReport {
     pub duplicate_trees_skipped: usize,
     pub spells: usize,
     pub duplicate_spells_skipped: usize,
-    /// Effect types `derive` could not map onto a stat, with how often each occurred. They are
-    /// still stored as modifiers; this is the to-do list for `data/effect_map.toml`.
     pub unmapped_effect_types: BTreeMap<String, usize>,
 }
 
@@ -99,7 +90,6 @@ pub fn build(source: &Path, conn: &mut Connection, version: &DatasetVersion) -> 
         ctx.write_class_file(&path, &mut report).with_context(|| format!("{}", path.display()))?;
     }
     ctx.resolve_base_classes()?;
-    // Only `*.tree.xml`: upstream also keeps one stray, malformed `Rogue_ArcaneTrickster.xml`.
     for path in files_with_extension(&source.join("EnhancementTrees"), "xml")?
         .into_iter()
         .filter(|p| p.file_name().is_some_and(|n| n.to_string_lossy().ends_with(".tree.xml")))
@@ -141,8 +131,6 @@ pub fn build(source: &Path, conn: &mut Connection, version: &DatasetVersion) -> 
     Ok(report)
 }
 
-/// Sorted paths of `*.{ext}` directly inside `dir`. A missing directory is an empty list, so a
-/// trimmed fixture tree need not contain every family.
 fn files_with_extension(dir: &Path, ext: &str) -> Result<Vec<PathBuf>> {
     if !dir.is_dir() {
         return Ok(Vec::new());
@@ -156,7 +144,6 @@ fn files_with_extension(dir: &Path, ext: &str) -> Result<Vec<PathBuf>> {
     Ok(paths)
 }
 
-/// Quests by name, longest first, so `DropLocation` matching prefers the most specific name.
 pub(crate) struct QuestIndex {
     by_length: Vec<(String, i64, bool)>,
 }
@@ -199,7 +186,6 @@ fn write_quests(tx: &Transaction, quests: &[Quest]) -> Result<QuestIndex> {
     Ok(QuestIndex { by_length })
 }
 
-/// (stat_id, bonus_type_id, value, value2): the identity of a `bonuses` row.
 type BonusKey = (i64, Option<i64>, Option<i64>, Option<i64>);
 
 #[derive(Default)]
@@ -210,7 +196,6 @@ pub(crate) struct Caches {
     effects: HashMap<String, i64>,
     clickies: HashMap<String, i64>,
     sets: HashMap<String, i64>,
-    /// (name, source, source id) → feats.id
     feats: HashMap<(String, ddo_model::enums::FeatSource, Option<i64>), i64>,
     classes: HashMap<String, i64>,
     modifiers_written: usize,
@@ -223,12 +208,10 @@ pub(crate) struct Ctx<'a> {
     templates: &'a HashMap<String, String>,
     quests: &'a QuestIndex,
     caches: Caches,
-    /// (item_id, set name) pairs to link once the set tables exist.
     pending_set_items: Vec<(i64, String)>,
 }
 
 impl Ctx<'_> {
-    /// The id of the `bonuses` row for this (stat, type, value, value2), inserting it on first use.
     fn bonus_id(
         &mut self,
         stat: &'static Stat,
@@ -298,12 +281,10 @@ impl Ctx<'_> {
     }
 }
 
-/// Trimmed text, or `None` when absent or blank.
 pub(crate) fn nonempty(s: Option<&str>) -> Option<&str> {
     s.map(str::trim).filter(|s| !s.is_empty())
 }
 
-/// A JSON array of numbers with integral values written without a fractional part: `[2,3.5]`.
 pub(crate) fn json_numbers(values: &[f64]) -> Option<String> {
     if values.is_empty() {
         return None;

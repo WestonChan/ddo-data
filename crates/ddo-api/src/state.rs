@@ -1,5 +1,3 @@
-//! Shared state: a small pool of read-only SQLite connections and the dataset version.
-
 use crate::error::ApiError;
 use anyhow::{Context, Result};
 use ddo_model::DatasetVersion;
@@ -24,7 +22,6 @@ struct Inner {
 }
 
 impl AppState {
-    /// Open the database read-only and read its version rows.
     pub fn open(path: &Path) -> Result<Self> {
         let conn = open_connection(path)?;
         let dataset = conn
@@ -47,13 +44,11 @@ impl AppState {
         })
     }
 
-    /// Turn on per-IP rate limiting. Needs a real peer address, so tests leave it off.
     pub fn with_rate_limit(mut self) -> Self {
         Arc::get_mut(&mut self.inner).expect("state not yet shared").rate_limited = true;
         self
     }
 
-    /// Serve `/icons/<family>/<Name>.png` from this directory (the `ddo-etl icons` output).
     pub fn with_icons(mut self, dir: &Path) -> Self {
         Arc::get_mut(&mut self.inner).expect("state not yet shared").icons_dir = Some(dir.to_path_buf());
         self
@@ -79,7 +74,6 @@ impl AppState {
         &self.inner.path
     }
 
-    /// Run a blocking query on a pooled connection.
     pub async fn query<T, F>(&self, f: F) -> Result<T, ApiError>
     where
         T: Send + 'static,

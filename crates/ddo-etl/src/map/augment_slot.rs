@@ -1,7 +1,3 @@
-//! `<ItemAugment><Type>` → an `augment_slot_types` row. Labels follow the legacy database's
-//! conventions (`lamordia: melancholic (accessory)`, `isle of dread: scale (weapon)`) so the
-//! frontend's existing display keeps working.
-
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct SlotSpec {
     pub label: String,
@@ -26,7 +22,6 @@ pub fn decode(raw: &str) -> SlotSpec {
         return SlotSpec { label: format!("upgrade: {v}"), family: "upgrade".into(), variant: v, qualifier: None };
     }
 
-    // "Melancholic Slot (Accessory)"
     if let Some((head, tail)) = raw.split_once(" Slot (") {
         if LAMORDIA.contains(&head) {
             if let Some(q) = tail.strip_suffix(')') {
@@ -41,7 +36,6 @@ pub fn decode(raw: &str) -> SlotSpec {
         }
     }
 
-    // "IoD: Weapon: Scale Slot" / "IoD: Set Bonus Slot"
     if let Some(rest) = raw.strip_prefix("IoD: ") {
         if rest == "Set Bonus Slot" {
             return SlotSpec {

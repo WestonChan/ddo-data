@@ -1,6 +1,3 @@
-//! `EnhancementTrees/*.xml`: one `<EnhancementTree>` per file with its items, each item optionally
-//! a selector over several `<EnhancementSelection>` choices.
-
 use super::effect::Effect;
 use super::feats::{Attack, Dc, Stance};
 use super::requirements::Requirements;
@@ -54,7 +51,6 @@ pub struct TreeItem {
     pub effects: Vec<Effect>,
     pub is_clickie: bool,
     pub is_tier5: bool,
-    /// `ArrowUp`, `ArrowRight`, `ArrowLeft`, `LongArrowUp`, `ExtraLongArrowUp`, in document order.
     pub arrows: Vec<String>,
     pub selector: Option<Selector>,
     pub stances: Vec<Stance>,
@@ -90,7 +86,6 @@ struct RawTree {
     children: Vec<TreeChild>,
 }
 
-// A transient parse buffer; the size skew between variants does not matter here.
 #[allow(clippy::large_enum_variant)]
 #[derive(Deserialize)]
 enum TreeChild {

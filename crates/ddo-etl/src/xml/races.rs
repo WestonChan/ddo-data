@@ -1,5 +1,3 @@
-//! `Races/*.race.xml`: one `<Race>` per file, with its racial feats nested.
-
 use super::classes::FeatSlot;
 use super::feats::Feat;
 use super::{Empty, Vector};
@@ -29,7 +27,6 @@ pub struct Race {
     pub description: Option<String>,
     pub starting_world: Option<String>,
     pub build_points: Vec<i64>,
-    /// `(ability, modifier)` in document order, from `<Strength>+2</Strength>` and friends.
     pub ability_modifiers: Vec<(String, i64)>,
     pub granted_feats: Vec<String>,
     pub feats: Vec<Feat>,
@@ -47,7 +44,6 @@ struct RawRace {
     children: Vec<RaceChild>,
 }
 
-// A transient parse buffer; the size skew between variants does not matter here.
 #[allow(clippy::large_enum_variant)]
 #[derive(Deserialize)]
 enum RaceChild {
