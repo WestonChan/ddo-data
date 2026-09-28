@@ -388,7 +388,9 @@ CREATE TABLE IF NOT EXISTS attacks (
     owner_id    INTEGER NOT NULL,
     name        TEXT,
     description TEXT,
-    icon        TEXT
+    icon        TEXT,
+    cooldown_seconds INTEGER,                         -- <Cooldown>, first value
+    duration_seconds INTEGER                          -- <FollowOn><Duration>, first value
 );
 
 CREATE TABLE IF NOT EXISTS races (

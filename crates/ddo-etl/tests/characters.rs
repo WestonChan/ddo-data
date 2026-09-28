@@ -27,7 +27,7 @@ fn one<T: rusqlite::types::FromSql>(conn: &Connection, sql: &str, p: &[&dyn rusq
 #[test]
 fn parses_feats_with_every_child_shape() {
     let list = feats::parse(&fixtures().join("Feats.xml")).unwrap();
-    assert_eq!(list.len(), 12);
+    assert_eq!(list.len(), 13);
     let power = list.iter().find(|f| f.name == "Power Attack").unwrap();
     assert_eq!(power.acquire.as_deref(), Some("Train"));
     assert_eq!(power.groups, vec!["Standard", "Epic Feat"]);
@@ -82,7 +82,7 @@ fn parses_races_and_classes() {
 #[test]
 fn writes_feats_from_all_three_sources() {
     let conn = built();
-    assert_eq!(count(&conn, "SELECT COUNT(*) FROM feats WHERE source_kind = 'standard'"), 12);
+    assert_eq!(count(&conn, "SELECT COUNT(*) FROM feats WHERE source_kind = 'standard'"), 13);
     assert_eq!(count(&conn, "SELECT COUNT(*) FROM feats WHERE source_kind = 'race'"), 7, "5 Dwarf + 2 Bladeforged");
     assert!(count(&conn, "SELECT COUNT(*) FROM feats WHERE source_kind = 'class'") >= 13);
 
@@ -129,8 +129,8 @@ fn writes_feats_from_all_three_sources() {
     assert_eq!(count(&conn, &format!("SELECT COUNT(*) FROM feat_sub_items WHERE feat_id = {adept}")), 4);
     assert_eq!(
         count(&conn, "SELECT COUNT(*) FROM attacks WHERE owner_kind = 'feat'"),
-        2,
-        "Attack and Cleave each carry an <Attack>"
+        3,
+        "Attack, Cleave and Improved Feint each carry an <Attack>"
     );
     assert!(count(&conn, "SELECT COUNT(*) FROM feat_conditional_groups") >= 1);
     assert!(count(&conn, "SELECT COUNT(*) FROM requirements WHERE owner_kind = 'feat_conditional_group'") >= 1);
@@ -301,4 +301,75 @@ fn writes_standalone_stances_with_their_requirements() {
         &[&twf],
     );
     assert_eq!(none_of, 8);
+}
+
+fn attack_bonuses(bonuses: Option<&feats::AttackBonuses>) -> Vec<(String, Vec<f64>)> {
+    bonuses.map_or_else(Vec::new, |b| b.effects.iter().map(|e| (e.types.join(","), e.amounts.clone())).collect())
+}
+
+#[test]
+fn parses_feat_attack_cooldown_this_attack_and_follow_on() {
+    let list = feats::parse(&fixtures().join("Feats.xml")).unwrap();
+    let attack = |name: &str| list.iter().find(|f| f.name == name).and_then(|f| f.attack.clone()).unwrap();
+
+    let cleave = attack("Cleave");
+    assert_eq!(cleave.cooldown_seconds, Some(5));
+    assert_eq!(
+        attack_bonuses(cleave.this_attack.as_ref()),
+        [
+            ("BonusDamagePercent".to_string(), vec![20.0]),
+            ("BonusThreatRange".to_string(), vec![1.0]),
+            ("BonusCriticalMultiplier".to_string(), vec![1.0]),
+        ]
+    );
+    assert!(cleave.follow_on.is_none());
+
+    let feint = attack("Improved Feint");
+    assert_eq!(feint.cooldown_seconds, Some(6));
+    assert_eq!(attack_bonuses(feint.this_attack.as_ref()), [("BonusDamagePercent".to_string(), vec![20.0])]);
+    assert_eq!(feint.follow_on.as_ref().unwrap().duration_seconds, Some(4));
+    assert_eq!(
+        attack_bonuses(feint.follow_on.as_ref()),
+        [("AllowSneakAttack".to_string(), vec![])],
+        "an empty flag element is a bonus without amounts"
+    );
+
+    let basic = attack("Attack");
+    assert!(attack_bonuses(basic.this_attack.as_ref()).is_empty(), "a <ThisAttack> holding only a comment");
+}
+
+#[test]
+fn writes_feat_attack_cooldown_this_attack_and_follow_on() {
+    let conn = built();
+    let feat = |name: &str| -> i64 {
+        one(&conn, "SELECT id FROM feats WHERE name = ?1 AND source_kind = 'standard'", &[&name.to_string()])
+    };
+    let modifiers = |kind: &str, id: i64| -> Vec<(String, Option<String>)> {
+        conn.prepare(
+            "SELECT effect_type, amounts FROM modifiers WHERE source_kind = ?1 AND source_id = ?2 ORDER BY sort_order",
+        )
+        .unwrap()
+        .query_map(params![kind, id], |r| Ok((r.get(0)?, r.get(1)?)))
+        .unwrap()
+        .map(Result::unwrap)
+        .collect()
+    };
+    let timings = |id: i64| -> (Option<i64>, Option<i64>) {
+        conn.query_row(
+            "SELECT cooldown_seconds, duration_seconds FROM attacks WHERE owner_kind = 'feat' AND owner_id = ?1",
+            params![id],
+            |r| Ok((r.get(0)?, r.get(1)?)),
+        )
+        .unwrap()
+    };
+
+    let feint = feat("Improved Feint");
+    assert_eq!(timings(feint), (Some(6), Some(4)));
+    assert_eq!(modifiers("feat_follow_on", feint), [("AllowSneakAttack".to_string(), None)]);
+    assert_eq!(modifiers("feat_this_attack", feint), [("BonusDamagePercent".to_string(), Some("[20]".to_string()))]);
+
+    let cleave = feat("Cleave");
+    assert_eq!(timings(cleave), (Some(5), None));
+    assert_eq!(modifiers("feat_this_attack", cleave).len(), 3);
+    assert_eq!(modifiers("feat_follow_on", cleave), []);
 }

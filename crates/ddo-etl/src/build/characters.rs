@@ -72,6 +72,7 @@ impl Ctx<'_> {
         }
         self.write_ability_children(AbilityOwner::Feat, id, &f.stances, &f.dcs, f.attack.as_ref())?;
         self.write_modifiers(ModifierSource::Feat, id, &f.effects)?;
+        self.write_attack_bonuses(AbilityOwner::Feat, id, f.attack.as_ref())?;
         for (i, bonus_id) in self.derived_bonus_ids(&f.effects)?.into_iter().enumerate() {
             self.tx.execute(
                 "INSERT INTO feat_bonuses (feat_id, bonus_id, sort_order) VALUES (?1, ?2, ?3)",
@@ -153,16 +154,46 @@ impl Ctx<'_> {
         }
         if let Some(a) = attack {
             self.tx.execute(
-                "INSERT INTO attacks (owner_kind, owner_id, name, description, icon) VALUES (?1, ?2, ?3, ?4, ?5)",
+                "INSERT INTO attacks (owner_kind, owner_id, name, description, icon, cooldown_seconds, duration_seconds)
+                 VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7)",
                 params![
                     owner.as_str(),
                     owner_id,
                     nonempty(a.name.as_deref()),
                     nonempty(a.description.as_deref()),
-                    nonempty(a.icon.as_deref())
+                    nonempty(a.icon.as_deref()),
+                    a.cooldown_seconds,
+                    a.duration_seconds(),
                 ],
             )?;
         }
+        Ok(())
+    }
+
+    pub(super) fn write_attack_bonuses(
+        &mut self,
+        owner: AbilityOwner,
+        owner_id: i64,
+        attack: Option<&feats::Attack>,
+    ) -> Result<()> {
+        let Some(a) = attack else {
+            return Ok(());
+        };
+        let (this_attack, follow_on) = match owner {
+            AbilityOwner::Feat => (ModifierSource::FeatThisAttack, ModifierSource::FeatFollowOn),
+            AbilityOwner::Enhancement => (ModifierSource::EnhancementThisAttack, ModifierSource::EnhancementFollowOn),
+            AbilityOwner::EnhancementSelection => {
+                (ModifierSource::EnhancementSelectionThisAttack, ModifierSource::EnhancementSelectionFollowOn)
+            }
+            AbilityOwner::Spell | AbilityOwner::Standalone => {
+                if a.follow_on_effects().is_empty() && a.this_attack_effects().is_empty() {
+                    return Ok(());
+                }
+                bail!("{owner:?} {owner_id}: attack bonuses have no modifier source");
+            }
+        };
+        self.write_modifiers(follow_on, owner_id, a.follow_on_effects())?;
+        self.write_modifiers(this_attack, owner_id, a.this_attack_effects())?;
         Ok(())
     }
 

@@ -94,12 +94,28 @@ pub struct Attack {
     pub icon: Option<String>,
     #[serde(rename = "Cooldown", default, deserialize_with = "first_integer")]
     pub cooldown_seconds: Option<i64>,
+    #[serde(rename = "ThisAttack")]
+    pub this_attack: Option<AttackBonuses>,
     #[serde(rename = "FollowOn")]
-    pub follow_on: Option<FollowOn>,
+    pub follow_on: Option<AttackBonuses>,
+}
+
+impl Attack {
+    pub fn duration_seconds(&self) -> Option<i64> {
+        self.follow_on.as_ref().and_then(|f| f.duration_seconds)
+    }
+
+    pub fn follow_on_effects(&self) -> &[Effect] {
+        self.follow_on.as_ref().map_or(&[], |f| &f.effects)
+    }
+
+    pub fn this_attack_effects(&self) -> &[Effect] {
+        self.this_attack.as_ref().map_or(&[], |t| &t.effects)
+    }
 }
 
 #[derive(Debug, Clone, Default)]
-pub struct FollowOn {
+pub struct AttackBonuses {
     pub duration_seconds: Option<i64>,
     pub effects: Vec<Effect>,
 }
@@ -120,31 +136,31 @@ fn attack_bonus_effect(name: String, amounts: Vec<f64>) -> Effect {
     Effect { types: vec![name], amount_type: Some(amount_type.into()), amounts, ..Effect::default() }
 }
 
-impl<'de> Deserialize<'de> for FollowOn {
+impl<'de> Deserialize<'de> for AttackBonuses {
     fn deserialize<D: Deserializer<'de>>(d: D) -> Result<Self, D::Error> {
-        struct FollowOnVisitor;
-        impl<'de> serde::de::Visitor<'de> for FollowOnVisitor {
-            type Value = FollowOn;
+        struct AttackBonusesVisitor;
+        impl<'de> serde::de::Visitor<'de> for AttackBonusesVisitor {
+            type Value = AttackBonuses;
 
             fn expecting(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
-                f.write_str("a <FollowOn> of attack bonus vectors")
+                f.write_str("a <ThisAttack> or <FollowOn> of attack bonus vectors")
             }
 
-            fn visit_map<A: serde::de::MapAccess<'de>>(self, mut map: A) -> Result<FollowOn, A::Error> {
-                let mut follow_on = FollowOn::default();
+            fn visit_map<A: serde::de::MapAccess<'de>>(self, mut map: A) -> Result<AttackBonuses, A::Error> {
+                let mut bonuses = AttackBonuses::default();
                 while let Some(name) = map.next_key::<String>()? {
                     let vector: Vector = map.next_value()?;
                     if name == "Duration" {
-                        follow_on.duration_seconds = vector.integers().map_err(A::Error::custom)?.first().copied();
+                        bonuses.duration_seconds = vector.integers().map_err(A::Error::custom)?.first().copied();
                     } else {
                         let amounts = vector.numbers().map_err(A::Error::custom)?;
-                        follow_on.effects.push(attack_bonus_effect(name, amounts));
+                        bonuses.effects.push(attack_bonus_effect(name, amounts));
                     }
                 }
-                Ok(follow_on)
+                Ok(bonuses)
             }
         }
-        d.deserialize_map(FollowOnVisitor)
+        d.deserialize_map(AttackBonusesVisitor)
     }
 }
 

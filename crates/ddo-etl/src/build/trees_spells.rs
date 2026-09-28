@@ -1,5 +1,4 @@
 use super::{json_numbers, json_strings, nonempty, BuildReport, Ctx};
-use crate::xml::effect::Effect;
 use crate::xml::feats::Attack;
 use crate::xml::spells;
 use crate::xml::trees::{self, Selection, TreeItem};
@@ -7,18 +6,6 @@ use anyhow::Result;
 use ddo_model::enums::{AbilityOwner, ModifierSource, RequirementOwner, TreeKind};
 use rusqlite::{params, OptionalExtension};
 use std::path::Path;
-
-fn cooldown_seconds(attack: Option<&Attack>) -> Option<i64> {
-    attack.and_then(|a| a.cooldown_seconds)
-}
-
-fn duration_seconds(attack: Option<&Attack>) -> Option<i64> {
-    attack.and_then(|a| a.follow_on.as_ref()).and_then(|f| f.duration_seconds)
-}
-
-fn follow_on_effects(attack: Option<&Attack>) -> &[Effect] {
-    attack.and_then(|a| a.follow_on.as_ref()).map_or(&[], |f| &f.effects)
-}
 
 impl Ctx<'_> {
     pub(super) fn write_tree_file(&mut self, path: &Path, report: &mut BuildReport) -> Result<()> {
@@ -77,8 +64,8 @@ impl Ctx<'_> {
                 i.is_tier5,
                 i.is_clickie,
                 json_strings(&i.arrows),
-                cooldown_seconds(i.attack.as_ref()),
-                duration_seconds(i.attack.as_ref()),
+                i.attack.as_ref().and_then(|a| a.cooldown_seconds),
+                i.attack.as_ref().and_then(Attack::duration_seconds),
             ],
         )?;
         let id = self.tx.last_insert_rowid();
@@ -87,7 +74,7 @@ impl Ctx<'_> {
         }
         self.write_ability_children(AbilityOwner::Enhancement, id, &i.stances, &i.dcs, i.attack.as_ref())?;
         self.write_modifiers(ModifierSource::Enhancement, id, &i.effects)?;
-        self.write_modifiers(ModifierSource::EnhancementFollowOn, id, follow_on_effects(i.attack.as_ref()))?;
+        self.write_attack_bonuses(AbilityOwner::Enhancement, id, i.attack.as_ref())?;
         if let Some(sel) = &i.selector {
             for ex in &sel.exclusions {
                 self.tx.execute(
@@ -117,8 +104,8 @@ impl Ctx<'_> {
                 s.ranks,
                 s.min_spent,
                 s.is_clickie,
-                cooldown_seconds(s.attack.as_ref()),
-                duration_seconds(s.attack.as_ref()),
+                s.attack.as_ref().and_then(|a| a.cooldown_seconds),
+                s.attack.as_ref().and_then(Attack::duration_seconds),
             ],
         )?;
         let id = self.tx.last_insert_rowid();
@@ -127,7 +114,7 @@ impl Ctx<'_> {
         }
         self.write_ability_children(AbilityOwner::EnhancementSelection, id, &s.stances, &s.dcs, s.attack.as_ref())?;
         self.write_modifiers(ModifierSource::EnhancementSelection, id, &s.effects)?;
-        self.write_modifiers(ModifierSource::EnhancementSelectionFollowOn, id, follow_on_effects(s.attack.as_ref()))?;
+        self.write_attack_bonuses(AbilityOwner::EnhancementSelection, id, s.attack.as_ref())?;
         Ok(())
     }
 

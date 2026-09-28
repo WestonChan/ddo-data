@@ -709,6 +709,41 @@ Cooldown: 5 seconds</Description>
     </Attack>
   </Feat>
   <Feat>
+    <Name>Improved Feint</Name>
+    <Description>Tactical Melee Attack: A melee attack which also Bluffs enemies, enabling sneak
+attacks for a short period of time. This attack deals +20% damage.</Description>
+    <Group>Standard</Group>
+    <Group>Epic Feat</Group>
+    <Requirements>
+      <RequiresOneOf>
+        <Requirement>
+          <Type>Feat</Type>
+          <Item>Half-Elf Dilettante: Rogue</Item>
+        </Requirement>
+        <Requirement>
+          <Type>Feat</Type>
+          <Item>Sneak Attack</Item>
+        </Requirement>
+      </RequiresOneOf>
+    </Requirements>
+    <Acquire>Train</Acquire>
+    <Icon>ImprovedFeint</Icon>
+    <Attack>
+      <Name>Improved Feint</Name>
+      <Description>Tactical Melee Attack: A melee attack which also Bluffs enemies, enabling sneak
+attacks for a short period of time. This attack deals +20% damage.</Description>
+      <Icon>ImprovedFeint</Icon>
+      <Cooldown size="1">6</Cooldown>
+      <ThisAttack>
+        <BonusDamagePercent size="1">20</BonusDamagePercent>
+      </ThisAttack>
+      <FollowOn>
+        <Duration size="1">4</Duration>
+        <AllowSneakAttack />
+      </FollowOn>
+    </Attack>
+  </Feat>
+  <Feat>
     <Name>Heavy Armor Proficiency</Name>
     <Description>You are proficient with heavy armor and do not suffer armor penalties
 to your attack rolls when wearing heavy armor. You also gain 2 times your BAB

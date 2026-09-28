@@ -1,7 +1,9 @@
 {
   "acquire": "Train",
   "attack": {
+    "cooldown_seconds": 5,
     "description": "This attack deals +20% damage.\n+1 Critical Threat Range\n+1 Critical Multiplier",
+    "duration_seconds": null,
     "icon": "Cleave",
     "name": "Cleave"
   },
@@ -11,6 +13,7 @@
   "conditional_groups": [],
   "dcs": [],
   "description": "Deals: +20% damage.\n+1 Critical Threat Range\n+1 Critical Multiplier\nTactical Melee Cleave: Activate this ability to attack one or more enemies in\nan arc in front of you.\nCooldown: 5 seconds",
+  "follow_on_modifiers": [],
   "groups": [
     "Standard",
     "Epic Feat"
@@ -36,5 +39,91 @@
   "source_name": null,
   "sphere": null,
   "stances": [],
-  "sub_items": []
+  "sub_items": [],
+  "this_attack_modifiers": [
+    {
+      "amount_type": "Simple",
+      "amounts": [
+        20
+      ],
+      "apply_as_item_effect": false,
+      "bonus": null,
+      "bonus_type": null,
+      "cap": null,
+      "damage": null,
+      "dice_bonus": null,
+      "dice_damage": null,
+      "dice_number": null,
+      "dice_sides": null,
+      "display_name": null,
+      "effect_type": "BonusDamagePercent",
+      "extra_types": null,
+      "id": 55,
+      "is_item_specific": false,
+      "is_rare": false,
+      "percent": false,
+      "rank": null,
+      "requirements": [],
+      "sort_order": 0,
+      "stack_source": null,
+      "targets": null,
+      "value": null
+    },
+    {
+      "amount_type": "Simple",
+      "amounts": [
+        1
+      ],
+      "apply_as_item_effect": false,
+      "bonus": null,
+      "bonus_type": null,
+      "cap": null,
+      "damage": null,
+      "dice_bonus": null,
+      "dice_damage": null,
+      "dice_number": null,
+      "dice_sides": null,
+      "display_name": null,
+      "effect_type": "BonusThreatRange",
+      "extra_types": null,
+      "id": 56,
+      "is_item_specific": false,
+      "is_rare": false,
+      "percent": false,
+      "rank": null,
+      "requirements": [],
+      "sort_order": 1,
+      "stack_source": null,
+      "targets": null,
+      "value": null
+    },
+    {
+      "amount_type": "Simple",
+      "amounts": [
+        1
+      ],
+      "apply_as_item_effect": false,
+      "bonus": null,
+      "bonus_type": null,
+      "cap": null,
+      "damage": null,
+      "dice_bonus": null,
+      "dice_damage": null,
+      "dice_number": null,
+      "dice_sides": null,
+      "display_name": null,
+      "effect_type": "BonusCriticalMultiplier",
+      "extra_types": null,
+      "id": 57,
+      "is_item_specific": false,
+      "is_rare": false,
+      "percent": false,
+      "rank": null,
+      "requirements": [],
+      "sort_order": 2,
+      "stack_source": null,
+      "targets": null,
+      "value": null
+    }
+  ]
 }

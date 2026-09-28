@@ -1,6 +1,6 @@
 use crate::db::{
-    bonuses_via, booleanize, count, dcs_for, json_row, json_rows, like_pattern, modifiers_for, page, requirements_for,
-    stances_for, Filters,
+    attack_for, bonuses_via, booleanize, count, dcs_for, json_row, json_rows, like_pattern, modifiers_for, page,
+    requirements_for, stances_for, Filters,
 };
 use crate::error::ApiError;
 use crate::query::ApiQuery;
@@ -105,8 +105,11 @@ fn groups(conn: &rusqlite::Connection, id: i64) -> Result<Vec<Value>, ApiError> 
     summary = "Get a feat",
     description = "One feat with its `requirements` to train it, `auto_acquire_requirements` for automatic grants, \
                    `conditional_groups` (alternative requirement sets), `sub_items` (the choices a selector feat \
-                   offers), `stances`, `dcs`, an `attack` if the feat is one, its derived `bonuses`, and the raw \
-                   `modifiers` they came from.",
+                   offers), `stances`, `dcs`, an `attack` if the feat is one (name, description, icon, \
+                   `cooldown_seconds`, and the `duration_seconds` of what it applies afterwards), the attack's \
+                   `this_attack_modifiers` (bonuses to its own hit, e.g. `BonusDamagePercent`) and \
+                   `follow_on_modifiers` (what it applies afterwards, e.g. `AllowSneakAttack`), its derived \
+                   `bonuses`, and the raw `modifiers` they came from.",
     params(("id" = i64, Path, description = "The feat's numeric id from the list endpoint")), responses((status = 200, description = "The feat with its child collections", body = Value), (status = 404, description = "No feat has this id", body = crate::error::ErrorBody))
 )]
 async fn detail(State(state): State<AppState>, Path(id): Path<i64>) -> Result<Json<Value>, ApiError> {
@@ -131,13 +134,9 @@ async fn detail(State(state): State<AppState>, Path(id): Path<i64>) -> Result<Js
             )?);
             feat["stances"] = Value::Array(stances_for(conn, "feat", id)?);
             feat["dcs"] = Value::Array(dcs_for(conn, "feat", id)?);
-            feat["attack"] = json_rows(
-                conn,
-                "SELECT name, description, icon FROM attacks WHERE owner_kind = 'feat' AND owner_id = ?1",
-                [id],
-            )?
-            .pop()
-            .unwrap_or(Value::Null);
+            feat["attack"] = attack_for(conn, "feat", id)?;
+            feat["this_attack_modifiers"] = Value::Array(modifiers_for(conn, "feat_this_attack", id)?);
+            feat["follow_on_modifiers"] = Value::Array(modifiers_for(conn, "feat_follow_on", id)?);
             feat["bonuses"] = Value::Array(bonuses_via(conn, "feat_bonuses", "feat_id", id)?);
             feat["modifiers"] = Value::Array(modifiers_for(conn, "feat", id)?);
             Ok(Json(feat))

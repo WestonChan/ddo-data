@@ -3,7 +3,7 @@
   "schema_version": 2,
   "dataset": {
     "upstream_sha": "31ef0201ea8e28604de2b6242988aee6d63733b0",
-    "built_at": "2026-09-28T03:06:31Z"
+    "built_at": "2026-09-28T03:11:39Z"
   },
   "counts": {
     "augments": 2246,
@@ -16,7 +16,7 @@
     "filigrees": 437,
     "guild_buffs": 37,
     "items": 8487,
-    "modifiers": 13801,
+    "modifiers": 13817,
     "optional_buffs": 138,
     "quests": 603,
     "races": 30,

@@ -285,3 +285,36 @@ fn writes_spells_and_resolves_references() {
         .unwrap();
     assert!(clw > 0);
 }
+
+#[test]
+fn writes_this_attack_modifiers_for_enhancements_and_selections() {
+    let conn = built();
+    let tree = trees::parse(&fixtures().join("EnhancementTrees/Fighter_Kensei.tree.xml")).unwrap();
+    let reed = tree.items.iter().find(|i| i.internal_name == "KenseiReedInTheWind").unwrap();
+    let this_attack = reed.attack.as_ref().unwrap().this_attack.as_ref().unwrap();
+    assert_eq!(this_attack.effects[0].amounts, [20.0, 40.0, 60.0]);
+
+    let this_attack_rows = |kind: &str, table: &str, name: &str| -> Vec<(String, String)> {
+        conn.prepare(&format!(
+            "SELECT m.effect_type, m.amounts FROM {table} o JOIN modifiers m ON m.source_kind = ?1 AND m.source_id = o.id
+              WHERE o.name = ?2 ORDER BY m.sort_order"
+        ))
+        .unwrap()
+        .query_map(params![kind, name], |r| Ok((r.get(0)?, r.get(1)?)))
+        .unwrap()
+        .map(Result::unwrap)
+        .collect()
+    };
+    assert_eq!(
+        this_attack_rows("enhancement_this_attack", "enhancements", "Kensei: Reed In The Wind"),
+        [("BonusDamagePercent".to_string(), "[20,40,60]".to_string())]
+    );
+    assert_eq!(
+        this_attack_rows("enhancement_selection_this_attack", "enhancement_selections", "Shattering Strike"),
+        [("BonusDamagePercent".to_string(), "[25,50,100]".to_string())]
+    );
+    assert_eq!(
+        this_attack_rows("enhancement_selection_follow_on", "enhancement_selections", "Shattering Strike"),
+        [("FortificationLoss".to_string(), "[15,15,15]".to_string())]
+    );
+}

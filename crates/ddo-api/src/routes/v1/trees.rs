@@ -1,4 +1,4 @@
-use crate::db::{booleanize, dcs_for, json_row, json_rows, modifiers_for, requirements_for, stances_for};
+use crate::db::{attack_for, booleanize, dcs_for, json_row, json_rows, modifiers_for, requirements_for, stances_for};
 use crate::error::ApiError;
 use crate::state::AppState;
 use axum::extract::{Path, State};
@@ -47,15 +47,10 @@ fn ability_children(conn: &rusqlite::Connection, owner: &str, row: &mut Value) -
     row["requirements"] = Value::Array(requirements_for(conn, owner, id)?);
     row["modifiers"] = Value::Array(modifiers_for(conn, owner, id)?);
     row["follow_on_modifiers"] = Value::Array(modifiers_for(conn, &format!("{owner}_follow_on"), id)?);
+    row["this_attack_modifiers"] = Value::Array(modifiers_for(conn, &format!("{owner}_this_attack"), id)?);
     row["stances"] = Value::Array(stances_for(conn, owner, id)?);
     row["dcs"] = Value::Array(dcs_for(conn, owner, id)?);
-    row["attack"] = json_rows(
-        conn,
-        "SELECT name, description, icon FROM attacks WHERE owner_kind = ?1 AND owner_id = ?2",
-        (owner, id),
-    )?
-    .pop()
-    .unwrap_or(Value::Null);
+    row["attack"] = attack_for(conn, owner, id)?;
     Ok(())
 }
 
@@ -67,10 +62,12 @@ fn ability_children(conn: &rusqlite::Connection, owner: &str, row: &mut Value) -
     description = "One tree with every `enhancement` in grid order (`x`, `y`), each with cost per rank, ranks, \
                    points that must be spent in the tree first, tier-5 and clickie flags, `arrows` to prerequisites, \
                    `exclusions`, and for selector enhancements the `selections`. Enhancements and selections both \
-                   carry `requirements`, raw `modifiers`, `stances`, `dcs` and an `attack` when they grant one; an \
-                   attack's `cooldown_seconds`, the `duration_seconds` of what it applies afterwards, and those \
-                   after-use bonuses as `follow_on_modifiers` (effect type named for the attack bonus, e.g. \
-                   `BonusAlacrity`, with per-rank `amounts`) sit on the enhancement or selection itself.",
+                   carry `requirements`, raw `modifiers`, `stances`, `dcs` and an `attack` (with its \
+                   `cooldown_seconds` and `duration_seconds`) when they grant one. The attack's `cooldown_seconds`, \
+                   the `duration_seconds` of what it applies afterwards, the bonuses it applies to its own hit as \
+                   `this_attack_modifiers` (e.g. `BonusDamagePercent`) and those after-use bonuses as \
+                   `follow_on_modifiers` (effect type named for the attack bonus, e.g. `BonusAlacrity`, with \
+                   per-rank `amounts`) also sit on the enhancement or selection itself.",
     params(("id" = i64, Path, description = "The tree's numeric id from the list endpoint")), responses((status = 200, description = "The tree with its child collections", body = Value), (status = 404, description = "No tree has this id", body = crate::error::ErrorBody))
 )]
 async fn detail(State(state): State<AppState>, Path(id): Path<i64>) -> Result<Json<Value>, ApiError> {

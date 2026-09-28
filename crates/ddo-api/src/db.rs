@@ -113,6 +113,17 @@ pub fn stances_for(conn: &Connection, owner_kind: &str, owner_id: i64) -> Result
     Ok(rows)
 }
 
+pub fn attack_for(conn: &Connection, owner_kind: &str, owner_id: i64) -> Result<Value, ApiError> {
+    Ok(json_rows(
+        conn,
+        "SELECT name, description, icon, cooldown_seconds, duration_seconds FROM attacks
+          WHERE owner_kind = ?1 AND owner_id = ?2",
+        (owner_kind, owner_id),
+    )?
+    .pop()
+    .unwrap_or(Value::Null))
+}
+
 pub fn dcs_for(conn: &Connection, owner_kind: &str, owner_id: i64) -> Result<Vec<Value>, ApiError> {
     json_rows(
         conn,

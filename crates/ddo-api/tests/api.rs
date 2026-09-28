@@ -529,3 +529,25 @@ async fn sentient_gems_list_by_name() {
     assert_eq!(rows[2]["icon"], "SentientJewel_Blue");
     assert_eq!(rows[2]["description"], "Voiced by: Ally Murphy");
 }
+
+#[tokio::test]
+async fn feat_attacks_carry_cooldown_and_their_bonuses() {
+    let (_, _, feats) = get("/v1/feats?q=improved+feint").await;
+    let id = feats["feats"][0]["id"].as_i64().unwrap();
+    let (_, _, feat) = get(&format!("/v1/feats/{id}")).await;
+    assert_eq!(feat["attack"]["cooldown_seconds"], 6);
+    assert_eq!(feat["attack"]["duration_seconds"], 4);
+    assert_eq!(feat["follow_on_modifiers"][0]["effect_type"], "AllowSneakAttack");
+    assert_eq!(feat["this_attack_modifiers"][0]["effect_type"], "BonusDamagePercent");
+    assert_eq!(feat["this_attack_modifiers"][0]["amounts"], serde_json::json!([20]));
+
+    let (_, _, trees) = get("/v1/enhancement-trees").await;
+    let kensei = trees.as_array().unwrap().iter().find(|t| t["name"] == "Kensei").unwrap();
+    let (_, _, tree) = get(&format!("/v1/enhancement-trees/{}", kensei["id"])).await;
+    let enh = tree["enhancements"].as_array().unwrap();
+    let reed = enh.iter().find(|e| e["internal_name"] == "KenseiReedInTheWind").unwrap();
+    assert_eq!(reed["this_attack_modifiers"][0]["amounts"], serde_json::json!([20, 40, 60]));
+    assert_eq!(reed["attack"]["cooldown_seconds"], 8);
+    let shattering = enh.iter().find(|e| e["internal_name"] == "KenseiShatteringStrike").unwrap();
+    assert_eq!(shattering["selections"][1]["this_attack_modifiers"][0]["effect_type"], "BonusDamagePercent");
+}
