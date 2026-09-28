@@ -21,6 +21,8 @@ enum Cmd {
         out: PathBuf,
         #[arg(long)]
         sha: Option<String>,
+        #[arg(long)]
+        wiki: Option<PathBuf>,
     },
     Icons {
         #[arg(long)]
@@ -40,15 +42,18 @@ enum Cmd {
 
 fn main() -> Result<()> {
     match Cli::parse().command {
-        Cmd::Build { source, out, sha } => {
+        Cmd::Build { source, out, sha, wiki } => {
             let sha = sha.unwrap_or_else(|| git_sha(&source).unwrap_or_else(|| "unknown".to_string()));
             let version = DatasetVersion { upstream_sha: sha, built_at: now_utc() };
             if out.exists() {
                 std::fs::remove_file(&out).with_context(|| format!("removing {}", out.display()))?;
             }
+            let wiki = match &wiki {
+                Some(dir) => ddo_etl::wiki::WikiOverrides::from_dir(dir)?,
+                None => ddo_etl::wiki::WikiOverrides::embedded()?,
+            };
             let mut conn = Connection::open(&out)?;
-            let report =
-                ddo_etl::build::build(&source, &ddo_etl::wiki::WikiOverrides::embedded()?, &mut conn, &version)?;
+            let report = ddo_etl::build::build(&source, &wiki, &mut conn, &version)?;
             println!("{report:#?}");
             println!("dataset {} written to {}", version.upstream_sha, out.display());
         }

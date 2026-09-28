@@ -42,6 +42,9 @@ const COUNTED: &[&str] = &[
     "modifiers",
     "requirements",
     "bonuses",
+    "crafting_systems",
+    "crafting_recipes",
+    "crafting_ingredients",
 ];
 
 #[utoipa::path(

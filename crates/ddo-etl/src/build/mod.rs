@@ -56,6 +56,9 @@ pub struct BuildReport {
     pub wiki_quest_loot_links_added: usize,
     pub wiki_quest_entries: usize,
     pub wiki_quest_xp_rows: usize,
+    pub wiki_crafting_systems: usize,
+    pub wiki_crafting_recipes: usize,
+    pub wiki_crafting_ingredients: usize,
     pub unmapped_effect_types: BTreeMap<String, usize>,
 }
 

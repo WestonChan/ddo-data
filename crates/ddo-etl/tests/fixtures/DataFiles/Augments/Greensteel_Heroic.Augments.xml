@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Augments>
+   <Augment>
+      <Name>Minor Fire Guard</Name>
+      <Description>50% chance to do 1d4 Fire damage on being hit
+Fire:Dominion:Material</Description>
+      <MinLevel>11</MinLevel>
+      <Type>Accessory Invasion</Type>
+      <Icon>ShardOfPower</Icon>
+      <AddAugment>Accessory Subjugation</AddAugment>
+   </Augment>
+   <Augment>
+      <Name>+5 Fortitude Save</Name>
+      <Description>Fortitude Save +5: +5 Resistance bonus to your Fortitude save.
+Earth:Opposition:Ethereal</Description>
+      <MinLevel>11</MinLevel>
+      <Type>Accessory Invasion</Type>
+      <Icon>ShardOfPower</Icon>
+      <Effect>
+         <Type>SaveBonus</Type>
+         <Bonus>Resistance</Bonus>
+         <AType>Simple</AType>
+         <Amount size="1">5</Amount>
+         <Item>Fortitude</Item>
+      </Effect>
+      <AddAugment>Accessory Subjugation</AddAugment>
+   </Augment>
+   <Augment>
+      <Name>+5 Fortitude Save </Name>
+      <Description>Fortitude Save +5: +5 Resistance bonus to your Fortitude save.
+Negative:Opposition:Ethereal</Description>
+      <MinLevel>11</MinLevel>
+      <Type>Accessory Invasion</Type>
+      <Icon>ShardOfPower</Icon>
+      <Effect>
+         <Type>SaveBonus</Type>
+         <Bonus>Resistance</Bonus>
+         <AType>Simple</AType>
+         <Amount size="1">5</Amount>
+         <Item>Fortitude</Item>
+      </Effect>
+      <AddAugment>Accessory Subjugation</AddAugment>
+   </Augment>
+</Augments>

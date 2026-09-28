@@ -87,6 +87,12 @@ fn ddl_creates_every_v2_table() {
         "spells",
         "spell_damage",
         "spell_dcs",
+        "crafting_systems",
+        "crafting_system_families",
+        "crafting_ingredients",
+        "crafting_recipes",
+        "crafting_recipe_augments",
+        "crafting_recipe_ingredients",
     ] {
         assert!(tables.contains(expected), "missing table {expected}");
     }
@@ -115,6 +121,31 @@ fn quest_xp_accepts_only_the_three_tiers_and_quests_only_the_wiki_durations() {
     }
     assert!(conn.execute("INSERT INTO quest_xp (quest_id, tier) VALUES (1, 'mythic')", []).is_err());
     assert!(conn.execute("INSERT INTO quest_xp (quest_id, tier) VALUES (1, 'heroic')", []).is_err());
+}
+
+#[test]
+fn crafting_tables_accept_only_the_four_crafting_tiers_and_one_ingredient_per_name_and_tier() {
+    let conn = fresh_db();
+    conn.execute("INSERT INTO crafting_systems (id, name, page) VALUES (1, 'Green Steel', 'p')", []).unwrap();
+    for tier in ["heroic", "epic", "legendary", "any"] {
+        conn.execute("INSERT INTO crafting_ingredients (system_id, name, tier) VALUES (1, 'Shard', ?1)", [tier])
+            .unwrap();
+        conn.execute(
+            "INSERT INTO crafting_recipes (system_id, tier, option, sort_order) VALUES (1, ?1, 'x', 0)",
+            [tier],
+        )
+        .unwrap();
+    }
+    assert!(conn
+        .execute("INSERT INTO crafting_ingredients (system_id, name, tier) VALUES (1, 'Shard', 'heroic')", [])
+        .is_err());
+    assert!(conn
+        .execute("INSERT INTO crafting_ingredients (system_id, name, tier) VALUES (1, 'Gem', 'mythic')", [])
+        .is_err());
+    assert!(conn
+        .execute("INSERT INTO crafting_recipes (system_id, tier, option, sort_order) VALUES (1, 'mythic', 'x', 0)", [])
+        .is_err());
+    assert!(conn.execute("INSERT INTO crafting_systems (name, page) VALUES ('Green Steel', 'q')", []).is_err());
 }
 
 #[test]

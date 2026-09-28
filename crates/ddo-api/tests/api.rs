@@ -50,6 +50,14 @@ async fn version_reports_dataset_and_schema() {
     assert_eq!(json["schema_version"], ddo_model::SCHEMA_VERSION);
     assert!(json.get("api_commit").is_some(), "version must report the API build commit, null when unknown");
     assert_eq!(json["counts"]["items"], 15);
+    assert_eq!(
+        (
+            &json["counts"]["crafting_systems"],
+            &json["counts"]["crafting_recipes"],
+            &json["counts"]["crafting_ingredients"]
+        ),
+        (&serde_json::json!(1), &serde_json::json!(3), &serde_json::json!(4))
+    );
     assert_eq!(headers.get("x-dataset-version").unwrap(), "fixture-sha");
     assert!(headers.get(header::ETAG).is_some());
     assert!(headers.get(header::CACHE_CONTROL).unwrap().to_str().unwrap().contains("max-age"));

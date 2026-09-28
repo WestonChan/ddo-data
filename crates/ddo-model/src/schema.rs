@@ -1,5 +1,5 @@
 use crate::enums::{
-    sql_in_list, AbilityOwner, ArmorType, FeatSource, Handedness, ItemCategory, LootType, ModifierSource,
+    sql_in_list, AbilityOwner, ArmorType, CraftingTier, FeatSource, Handedness, ItemCategory, LootType, ModifierSource,
     QuestDuration, RequirementGroup, RequirementOwner, SaveProgression, TreeKind, XpTier,
 };
 use std::sync::LazyLock;
@@ -20,6 +20,7 @@ static DDL_TEXT: LazyLock<String> = LazyLock::new(|| {
     let requirement_group = sql_in_list(RequirementGroup::ALL.iter().map(|g| g.as_str()));
     let quest_duration = sql_in_list(QuestDuration::ALL.iter().map(|d| d.as_str()));
     let xp_tier = sql_in_list(XpTier::ALL.iter().map(|t| t.as_str()));
+    let crafting_tier = sql_in_list(CraftingTier::ALL.iter().map(|t| t.as_str()));
     format!(
         r#"
 PRAGMA foreign_keys = ON;
@@ -659,6 +660,59 @@ CREATE TABLE IF NOT EXISTS augment_bonuses (
     bonus_id   INTEGER NOT NULL REFERENCES bonuses(id),
     sort_order INTEGER NOT NULL,
     PRIMARY KEY (augment_id, sort_order)
+);
+
+-- Crafting (data/wiki crafting) --------------------------------------------------
+
+-- A crafting system as one wiki page describes it. Its options are Maetrim's augments in `families`.
+CREATE TABLE IF NOT EXISTS crafting_systems (
+    id      INTEGER PRIMARY KEY,
+    name    TEXT    NOT NULL UNIQUE,
+    page    TEXT    NOT NULL,                          -- the ddowiki page read
+    pack_id INTEGER REFERENCES adventure_packs(id),
+    npc     TEXT                                       -- the crafting NPC or station, free text
+);
+
+CREATE TABLE IF NOT EXISTS crafting_system_families (
+    system_id INTEGER NOT NULL REFERENCES crafting_systems(id) ON DELETE CASCADE,
+    family    TEXT    NOT NULL,                        -- augments.family
+    PRIMARY KEY (system_id, family)
+);
+
+CREATE TABLE IF NOT EXISTS crafting_ingredients (
+    id        INTEGER PRIMARY KEY,
+    system_id INTEGER NOT NULL REFERENCES crafting_systems(id) ON DELETE CASCADE,
+    name      TEXT    NOT NULL,
+    tier      TEXT    NOT NULL CHECK (tier {crafting_tier}),
+    bind      TEXT,                                    -- as the wiki writes it
+    source    TEXT,                                    -- where it drops, free text
+    UNIQUE (system_id, name, tier)
+);
+
+-- One row of a wiki recipe table: what `option` costs and the augments it yields.
+CREATE TABLE IF NOT EXISTS crafting_recipes (
+    id         INTEGER PRIMARY KEY,
+    system_id  INTEGER NOT NULL REFERENCES crafting_systems(id) ON DELETE CASCADE,
+    tier       TEXT    NOT NULL CHECK (tier {crafting_tier}),
+    slot_id    INTEGER REFERENCES augment_slot_types(id),
+    option     TEXT    NOT NULL,                       -- the wiki's label for the row
+    note       TEXT,
+    sort_order INTEGER NOT NULL                        -- position in the system's file entry
+);
+CREATE INDEX IF NOT EXISTS idx_crafting_recipes_system ON crafting_recipes(system_id, sort_order);
+
+CREATE TABLE IF NOT EXISTS crafting_recipe_augments (
+    recipe_id  INTEGER NOT NULL REFERENCES crafting_recipes(id) ON DELETE CASCADE,
+    augment_id INTEGER NOT NULL REFERENCES augments(id) ON DELETE CASCADE,
+    PRIMARY KEY (recipe_id, augment_id)
+);
+CREATE INDEX IF NOT EXISTS idx_crafting_recipe_augments_augment ON crafting_recipe_augments(augment_id);
+
+CREATE TABLE IF NOT EXISTS crafting_recipe_ingredients (
+    recipe_id     INTEGER NOT NULL REFERENCES crafting_recipes(id) ON DELETE CASCADE,
+    ingredient_id INTEGER NOT NULL REFERENCES crafting_ingredients(id) ON DELETE CASCADE,
+    quantity      INTEGER NOT NULL CHECK (quantity > 0),
+    PRIMARY KEY (recipe_id, ingredient_id)
 );
 
 -- Sets and filigrees ------------------------------------------------------------

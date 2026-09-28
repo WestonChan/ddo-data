@@ -299,7 +299,7 @@ fn diff_reports_coverage_against_a_legacy_database() {
 #[test]
 fn writes_augments_with_slots_bonuses_and_modifiers() {
     let (conn, report) = built();
-    assert_eq!(report.augments, 7);
+    assert_eq!(report.augments, 10);
     let ruby: i64 =
         conn.query_row("SELECT id FROM augments WHERE name = 'Ruby of Acid Damage'", [], |r| r.get(0)).unwrap();
     let (family, choose, levels, values): (String, bool, String, String) = conn

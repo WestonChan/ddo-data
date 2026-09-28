@@ -52,7 +52,7 @@ A clean run prints the report, whose `wiki_quest_loot_entries`, `wiki_rare_drops
 
 ## `quests.toml`
 
-One `[[quest]]` table per quest, carrying the quest facts Maetrim's `Quests.xml` has no field for. The loader reads a file by its name: `quest_loot*.toml` holds loot entries and `quests*.toml` holds these, so a quest may appear once in each; any other name fails the build. The first 548 entries were read from the one index page, [Quests by level and XP](https://ddowiki.com/page/Quests_by_level_and_XP); a later read of a quest's own page updates its entry, `page` and `read` and adds the per-page fields.
+One `[[quest]]` table per quest, carrying the quest facts Maetrim's `Quests.xml` has no field for. The loader reads a file by its name: `quest_loot*.toml` holds loot entries, `quests*.toml` holds these and `crafting*.toml` holds crafting systems, so a quest may appear once in each of the first two; any other name fails the build. The first 548 entries were read from the one index page, [Quests by level and XP](https://ddowiki.com/page/Quests_by_level_and_XP); a later read of a quest's own page updates its entry, `page` and `read` and adds the per-page fields.
 
 ```toml
 [[quest]]
@@ -73,3 +73,43 @@ xp.legendary = { casual = 23256, normal = 39615, hard = 40469, elite = 41325 }
 - `zone`, `bestowed_by`, `flagging` (optional, per-page reads): the page's "Takes place in" value, the quest giver, and free text on what must be run first.
 
 The merge fills `quests.duration`, `is_free_to_play`, `legendary_level`, `zone`, `bestowed_by` and `flagging`, and writes one `quest_xp` row per tier. It never writes the columns Maetrim's files fill (`level`, `epic_level`, `pack_id`, `patron_id`, `favor`, `is_raid`, `difficulties`). Besides the checks above, the build fails when `free_to_play` is missing, `duration` is not one of the four values, or an XP value is negative. The report's `wiki_quest_entries` and `wiki_quest_xp_rows` count what was applied.
+
+## `crafting.toml`
+
+One `[[system]]` table per wiki crafting page, carrying what the wiki adds to Maetrim's crafting data: the ingredients and what each recipe costs. His files already model a system's *options* as augments (`augments.family` groups them: `Slavelords_Heroic`, `Greensteel_Legendary`, `Alchemical`, ...) and an item's crafting sockets as `item_augment_slots`, so a system here only points at his families and names his augments; it never adds an augment, an item or an innate item bonus. `crafting*.toml` files hold these; split a large system into its own `crafting_<system>.toml` when that reads better. An illustrative entry, in the shape the reading agents write:
+
+```toml
+[[system]]
+name = "Slave Lords Crafting"
+page = "https://ddowiki.com/page/Slave_Lords_Crafting"
+read = "2026-09-27"
+pack = "Against the Slave Lords"
+families = ["Slavelords_Heroic", "Slavelords_Legendary"]
+npc = "Ingredient Bag Vendor"
+
+[[system.ingredient]]
+name = "Broken Shackle"
+tier = "heroic"
+bind = "Unbound"
+source = "Slave Pits of the Undercity (Part 1)"
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: slavelords prefix"
+option = "Attributes +5"
+augments = ["Charisma +5", "Constitution +5", "Dexterity +5"]
+cost = [{ ingredient = "Broken Shackle", quantity = 50 }]
+```
+
+- `name` (required, unique across files): the system as the page names it.
+- `pack` (optional): the adventure pack or expansion, spelled as Maetrim's `adventure_packs.name` (what `/v1/adventure-packs` lists).
+- `families` (required, not empty): the augment families this system's options live in, each the name of one of his `Augments/*.Augments.xml` files before `.Augments.xml`.
+- `npc` (optional): the crafting NPC or station, free text.
+- `[[system.ingredient]]`: `name`, `tier` (`heroic`, `epic`, `legendary` or `any`), and optional free-text `bind` and `source` as the wiki writes them. A name may repeat at different tiers, never at the same one.
+- `[[system.recipe]]`, one per row of the page's recipe tables, in page order: `tier` as above; `slot` (optional), the socket label as `/v1/augment-slot-types` lists it; `option`, the wiki's label for the row; `augments`, the names of his augments in the system's families that the row yields; `note` (optional) free text; `cost`, one `{ ingredient, quantity }` per ingredient.
+
+An augment name resolves to every augment of that name in any of the system's families, because names repeat within a family (Green Steel has one `+5 Fortitude Save` per element combination). A cost's `ingredient` names one declared in the same system; when that name is declared at several tiers, the one at the recipe's tier is used, then the one at `any`. `augments` may be empty when the wiki row has no augment counterpart (cleansing an item, a material step), but then `note` must say so.
+
+The merge writes `crafting_systems`, `crafting_system_families`, `crafting_ingredients`, `crafting_recipes` (with `sort_order` the recipe's position in the entry), `crafting_recipe_augments` and `crafting_recipe_ingredients`. Besides the citation checks above, the build fails, naming the system and the value, when a system has a field or table other than the ones above; a required field is missing; `families` is empty; a tier is not one of the four; an ingredient repeats at one tier; a recipe has no `augments` and no `note`; a cost names an undeclared ingredient, repeats one, or has a quantity below 1; or `pack`, a family, a `slot` label or an augment name matches nothing in Maetrim's files. The report's `wiki_crafting_systems`, `wiki_crafting_recipes` and `wiki_crafting_ingredients` count what was applied.
+
+To check a draft without embedding it, point the build at a directory holding only that file: `cargo run --release -p ddo-etl -- build --source upstream/Output/DataFiles --out /tmp/check.db --wiki /path/to/draft-dir`. `--wiki` reads that directory in place of the embedded files.

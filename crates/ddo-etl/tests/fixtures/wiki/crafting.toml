@@ -1,0 +1,47 @@
+# Only names the fixture DataFiles carry. The system, page, family, slot and augment names are real;
+# the NPC, ingredients, costs and the cleansing recipe are test values shaped like a wiki crafting page.
+[[system]]
+name = "Heroic Green Steel"
+page = "https://ddowiki.com/page/Green_Steel_items"
+read = "2026-09-27"
+families = ["Greensteel_Heroic"]
+npc = "Altar of Invasion"
+
+[[system.ingredient]]
+name = "Small Shard of Power"
+tier = "heroic"
+bind = "Bound to Account"
+source = "The Shroud"
+
+[[system.ingredient]]
+name = "Small Focus of Earth"
+tier = "heroic"
+
+[[system.ingredient]]
+name = "Small Focus of Fire"
+tier = "heroic"
+
+[[system.ingredient]]
+name = "Shroud Commendation"
+tier = "any"
+bind = "Unbound"
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: accessory invasion"
+option = "+5 Fortitude Save"
+augments = ["+5 Fortitude Save"]
+cost = [{ ingredient = "Small Shard of Power", quantity = 1 }, { ingredient = "Small Focus of Earth", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: accessory invasion"
+option = "Minor Fire Guard"
+augments = ["Minor Fire Guard"]
+cost = [{ ingredient = "Small Shard of Power", quantity = 1 }, { ingredient = "Small Focus of Fire", quantity = 1 }]
+
+[[system.recipe]]
+tier = "any"
+option = "Cleanse an item"
+note = "Returns a crafted item to its blank state; no augment counterpart."
+cost = [{ ingredient = "Shroud Commendation", quantity = 5 }]

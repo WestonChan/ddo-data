@@ -632,6 +632,31 @@ impl XpTier {
 }
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
+pub enum CraftingTier {
+    Heroic,
+    Epic,
+    Legendary,
+    Any,
+}
+
+impl CraftingTier {
+    pub const ALL: &'static [CraftingTier] = &[Self::Heroic, Self::Epic, Self::Legendary, Self::Any];
+
+    pub const fn as_str(self) -> &'static str {
+        match self {
+            Self::Heroic => "heroic",
+            Self::Epic => "epic",
+            Self::Legendary => "legendary",
+            Self::Any => "any",
+        }
+    }
+
+    pub fn parse(text: &str) -> Option<Self> {
+        Self::ALL.iter().copied().find(|t| t.as_str() == text)
+    }
+}
+
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
 pub enum DamageCategory {
     Physical,
     Elemental,
