@@ -12,7 +12,7 @@ Every entry names the page it was read from (`page`, a full `https://ddowiki.com
 
 ## `quest_loot.toml`
 
-One `[[quest]]` table per quest page. `rare` lists the named items the page's loot table marks as rare for that quest. The build already sets `is_rare` where Maetrim's drop text marks the drop itself, a segment (split on `;` and newlines) naming the quest with `(rare)` or `rare drop` and not `rare encounter`, so entries are only needed for rare drops his text leaves unmarked.
+One `[[quest]]` table per quest page. `rare` lists the named items the page's loot table marks as rare for that quest. The build already sets `is_rare` where Maetrim's drop text marks the drop itself, a segment (split on `;` and newlines) naming the quest with `(rare)` or `rare drop` and not `rare encounter`. An entry lists every rare drop the page marks for the quest, whether or not his text marks it too, so the file doubles as the record of what was read.
 
 ```toml
 [[quest]]

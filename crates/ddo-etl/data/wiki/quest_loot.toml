@@ -1,7 +1,75 @@
 [[quest]]
+name = "Toil and Trouble"
+page = "https://ddowiki.com/page/Toil_and_Trouble"
+read = "2026-09-28"
+rare = [
+  "Dhovras' Armlet",
+  "Epic Dhovras' Armlet",
+]
+
+[[quest]]
+name = "Sleeping with the Fishes"
+page = "https://ddowiki.com/page/Sleeping_with_the_Fishes"
+read = "2026-09-28"
+rare = [
+  "Fried Fish Stick",
+  "Frozen Fish Stick",
+  "Legendary Fried Fish Stick",
+  "Legendary Frozen Fish Stick",
+]
+
+[[quest]]
+name = "The Covered Culvert"
+page = "https://ddowiki.com/page/The_Covered_Culvert"
+read = "2026-09-28"
+rare = [
+  "Hands of Waste",
+  "Legendary Hands of Waste",
+]
+
+[[quest]]
+name = "The Wish"
+page = "https://ddowiki.com/page/The_Wish"
+read = "2026-09-28"
+rare = [
+  "Climber's Remembrance",
+  "Icewalkers",
+  "Legendary Climber's Remembrance",
+  "Legendary Icewalkers",
+]
+
+[[quest]]
+name = "Death Hosts This Banquet"
+page = "https://ddowiki.com/page/Death_Hosts_This_Banquet"
+read = "2026-09-28"
+rare = [
+  "Legendary Outfit of the Warblade",
+  "Outfit of the Warblade",
+  "The Spring Equinox",
+]
+
+[[quest]]
+name = "Going Rogue"
+page = "https://ddowiki.com/page/Going_Rogue"
+read = "2026-09-28"
+rare = [
+  "Legendary Toxic Sash of Drysvayla",
+  "Toxic Sash of Drysvayla",
+]
+
+[[quest]]
+name = "The Final Draw"
+page = "https://ddowiki.com/page/The_Final_Draw"
+read = "2026-09-28"
+rare = [
+  "Chilling Sash of Tailara",
+  "Legendary Chilling Sash of Tailara",
+]
+
+[[quest]]
 name = "Book Burning"
 page = "https://ddowiki.com/page/Book_Burning"
-read = "2026-09-27"
+read = "2026-09-28"
 rare = [
   "Buckler of the Golden Age",
   "Docent of the Crownblade",
@@ -9,4 +77,17 @@ rare = [
   "Legendary Docent of the Crownblade",
   "Legendary Robe of the Warblade",
   "Robe of the Warblade",
+]
+
+[[quest]]
+name = "Portal to Below"
+page = "https://ddowiki.com/page/Portal_to_Below"
+read = "2026-09-28"
+rare = [
+  "Echo of the Artblade",
+  "Legendary Echo of the Artblade",
+  "Legendary Light Armor of the Artblade",
+  "Legendary Tower Shield of the Golden Age",
+  "Light Armor of the Artblade",
+  "Tower Shield of the Golden Age",
 ]
