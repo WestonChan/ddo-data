@@ -49,3 +49,27 @@ cargo run --release -p ddo-etl -- build --source upstream/Output/DataFiles --out
 ```
 
 A clean run prints the report, whose `wiki_quest_loot_entries`, `wiki_rare_drops` and `wiki_quest_loot_links_added` count what was applied, and `drop_text_rare_links` counts the rare links Maetrim's text marked on its own. The tests use their own overrides in `crates/ddo-etl/tests/fixtures/wiki/`, which only name what the fixture data files carry.
+
+## `quests.toml`
+
+One `[[quest]]` table per quest, carrying the quest facts Maetrim's `Quests.xml` has no field for. The loader reads a file by its name: `quest_loot*.toml` holds loot entries and `quests*.toml` holds these, so a quest may appear once in each; any other name fails the build. The first 548 entries were read from the one index page, [Quests by level and XP](https://ddowiki.com/page/Quests_by_level_and_XP); a later read of a quest's own page updates its entry, `page` and `read` and adds the per-page fields.
+
+```toml
+[[quest]]
+name = "A Blood Pact"
+page = "https://ddowiki.com/page/Quests_by_level_and_XP"
+read = "2026-09-28"
+duration = "Long"
+free_to_play = false
+legendary_level = 37
+xp.heroic = { casual = 3480, normal = 6100, hard = 6399, elite = 6700 }
+xp.legendary = { casual = 23256, normal = 39615, hard = 40469, elite = 41325 }
+```
+
+- `free_to_play` (required): whether the quest itself is free to play, which the wiki marks per quest; `adventure_packs.is_free_to_play` stays Maetrim's per-pack flag.
+- `duration` (optional): `Short`, `Medium`, `Long` or `Very long`, as the wiki spells them.
+- `legendary_level` (optional): the legendary version's level. Heroic and epic levels are Maetrim's and are not repeated here.
+- `xp` (optional): `heroic`, `epic` and `legendary` tables, each with optional `casual`, `normal`, `hard` and `elite` base XP. Leave out a tier the quest does not run at and a difficulty the tier lacks.
+- `zone`, `bestowed_by`, `flagging` (optional, per-page reads): the page's "Takes place in" value, the quest giver, and free text on what must be run first.
+
+The merge fills `quests.duration`, `is_free_to_play`, `legendary_level`, `zone`, `bestowed_by` and `flagging`, and writes one `quest_xp` row per tier. It never writes the columns Maetrim's files fill (`level`, `epic_level`, `pack_id`, `patron_id`, `favor`, `is_raid`, `difficulties`). Besides the checks above, the build fails when `free_to_play` is missing, `duration` is not one of the four values, or an XP value is negative. The report's `wiki_quest_entries` and `wiki_quest_xp_rows` count what was applied.

@@ -151,7 +151,7 @@ fn quest_facts(name: &str, extra: &str) -> String {
 #[test]
 fn reads_quest_facts_from_quests_files() {
     let wiki = WikiOverrides::from_dir(&fixtures().join("wiki")).unwrap();
-    assert_eq!(wiki.quests.len(), 2);
+    assert_eq!(wiki.quests.len(), 3);
     let chronoscope = &wiki.quests[0];
     assert_eq!(chronoscope.name, "The Chronoscope");
     assert_eq!(chronoscope.duration.as_deref(), Some("Long"));
@@ -286,16 +286,16 @@ fn fills_the_wiki_only_quest_columns_and_xp_rows() {
         ]
     );
     assert_eq!(xp_rows(&conn, "The Grotto"), vec![("heroic".into(), Some(304), None, None, None)]);
-    assert_eq!(wiki_columns(&conn, "Book Burning"), (None, false, None, None, None, None));
-    assert_eq!(report.wiki_quest_entries, 2);
-    assert_eq!(report.wiki_quest_xp_rows, 3);
+    assert_eq!(wiki_columns(&conn, "Caught in the Web"), (None, false, None, None, None, None));
+    assert_eq!(report.wiki_quest_entries, 3);
+    assert_eq!(report.wiki_quest_xp_rows, 5);
 }
 
 #[test]
 fn quest_facts_never_change_maetrims_quest_columns() {
     let (without, _) = built_with(&WikiOverrides::default());
     let (with, _) = built_with(&WikiOverrides::from_dir(&fixtures().join("wiki")).unwrap());
-    for quest in ["The Chronoscope", "The Grotto"] {
+    for quest in ["The Chronoscope", "The Grotto", "Book Burning"] {
         assert_eq!(maetrim_columns(&with, quest), maetrim_columns(&without, quest), "{quest}");
     }
 }

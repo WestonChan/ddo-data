@@ -37,7 +37,7 @@ This is the data half of a two-repo project. The site is `ddo-tools`, a sibling 
 - `upstream/` — gitignored sparse checkout of DDOBuilderV2; `.github/workflows/deploy.yml` refreshes it weekly and deploys to Fly.io.
 - Planning lives in the ddo-tools roadmap (`docs/roadmap.md`, V-series section), not here.
 
-**Wiki overrides.** `crates/ddo-etl/data/wiki/*.toml` holds facts read from ddowiki that Maetrim's files have no field for (so far, which quest drops are rare). His files win for every field they carry; a wiki row only adds. Every row cites its page and read date, and the build fails on any name his files lack. The format, the validation rules and the command that checks a file are in [`crates/ddo-etl/data/wiki/README.md`](crates/ddo-etl/data/wiki/README.md); read it before adding or editing an entry.
+**Wiki overrides.** `crates/ddo-etl/data/wiki/*.toml` holds facts read from ddowiki that Maetrim's files have no field for (so far, which quest drops are rare, and each quest's duration, XP by tier and difficulty, and free-to-play status). His files win for every field they carry; a wiki row only adds. Every row cites its page and read date, and the build fails on any name his files lack. The format, the validation rules and the command that checks a file are in [`crates/ddo-etl/data/wiki/README.md`](crates/ddo-etl/data/wiki/README.md); read it before adding or editing an entry.
 
 ## Code Quality
 

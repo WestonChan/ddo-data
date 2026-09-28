@@ -185,6 +185,50 @@ async fn quests_carry_difficulties_and_epic_name() {
 }
 
 #[tokio::test]
+async fn quests_carry_the_wiki_facts_and_xp_by_tier() {
+    let (_, _, quests) = get("/v1/quests").await;
+    let quests = quests.as_array().unwrap();
+    let find = |name: &str| quests.iter().find(|q| q["name"] == name).unwrap_or_else(|| panic!("{name}"));
+    let chronoscope = find("The Chronoscope");
+    assert_eq!(chronoscope["duration"], "Long");
+    assert_eq!(chronoscope["is_free_to_play"], false);
+    assert_eq!(chronoscope["legendary_level"], 34);
+    assert_eq!(chronoscope["zone"], "The Harbor");
+    assert_eq!(chronoscope["bestowed_by"], "A harbor quest giver");
+    assert_eq!(chronoscope["flagging"], "None; open to all.");
+    assert_eq!(
+        chronoscope["xp"],
+        serde_json::json!({
+            "heroic": {"casual": null, "normal": 4240, "hard": 4516, "elite": 4792},
+            "epic": {"casual": null, "normal": 23883, "hard": 24669, "elite": 25456},
+        })
+    );
+    let grotto = find("The Grotto");
+    assert_eq!(grotto["is_free_to_play"], true);
+    assert!(grotto["duration"].is_null() && grotto["legendary_level"].is_null() && grotto["zone"].is_null());
+    assert_eq!(
+        grotto["xp"],
+        serde_json::json!({"heroic": {"casual": 304, "normal": null, "hard": null, "elite": null}})
+    );
+    let lamordia = find("Land of Lamordia");
+    assert_eq!(lamordia["xp"], serde_json::json!({}));
+    assert_eq!(lamordia["is_free_to_play"], false);
+    assert!(lamordia["duration"].is_null());
+}
+
+#[tokio::test]
+async fn item_quests_carry_duration_and_free_to_play() {
+    let (_, _, list) = get("/v1/items?q=buckler+of+the+golden").await;
+    let id = list["items"][0]["id"].as_i64().unwrap();
+    let (_, _, buckler) = get(&format!("/v1/items/{id}")).await;
+    let quest = &buckler["quests"][0];
+    assert_eq!(quest["name"], "Book Burning");
+    assert_eq!(quest["duration"], "Short");
+    assert_eq!(quest["is_free_to_play"], false);
+    assert!(quest.get("xp").is_none() && quest.get("zone").is_none(), "{quest}");
+}
+
+#[tokio::test]
 async fn sets_feats_races_classes_trees_spells() {
     let (_, _, sets) = get("/v1/sets").await;
     let winter = sets.as_array().unwrap().iter().find(|s| s["name"] == "Eminence of Winter").unwrap();
