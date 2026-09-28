@@ -677,6 +677,17 @@ CREATE TABLE IF NOT EXISTS filigrees (
     set_id      INTEGER REFERENCES set_bonuses(id)     -- <SetBonus>
 );
 
+-- Buffs --------------------------------------------------------------------------
+
+-- A guild airship amenity; its effects are modifiers with source_kind 'guild_buff', most with
+-- amount_type 'TotalLevel' and one amount per character level.
+CREATE TABLE IF NOT EXISTS guild_buffs (
+    id          INTEGER PRIMARY KEY,
+    name        TEXT    NOT NULL UNIQUE,               -- GuildBuffs.xml <GuildBuff><Name>
+    description TEXT,
+    guild_level INTEGER                                -- <Level>: the guild level that unlocks it
+);
+
 -- Clickies ------------------------------------------------------------------------
 
 CREATE TABLE IF NOT EXISTS clickies (

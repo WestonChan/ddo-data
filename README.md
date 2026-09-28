@@ -72,6 +72,7 @@ download the whole database once from `/v1/dump.sqlite` rather than paging the l
 | `/v1/sets`, `/v1/sets/{id}`, `/v1/filigrees` | Gear sets, filigree sets, filigrees |
 | `/v1/feats`, `/v1/feats/{id}` | Feats from the standard list, classes and races |
 | `/v1/stances` | Standalone stances (weapon style, armor, alignment, auras) with their requirements |
+| `/v1/guild-buffs` | Guild airship buffs with their unlock level and per-character-level effects |
 | `/v1/races`, `/v1/classes` (+ `/{id}`) | Races and classes |
 | `/v1/enhancement-trees`, `/v1/enhancement-trees/{id}` | Trees with every enhancement and selection |
 | `/v1/spells`, `/v1/spells/{id}`, `/v1/clickies` | Spells and item clickies |

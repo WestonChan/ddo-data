@@ -3,6 +3,7 @@ pub mod classes;
 pub mod clickies;
 pub mod effect;
 pub mod feats;
+pub mod guild_buffs;
 pub mod item_buffs;
 pub mod items;
 pub mod patrons;

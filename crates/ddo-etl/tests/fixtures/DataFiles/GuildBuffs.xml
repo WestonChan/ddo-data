@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<GuildBuffs>
+  <GuildBuff>
+    <Name>Sign of the Silver Flame I</Name>
+    <Description>+[5/10/15] Guild bonus to Fire Resistance, and Fire/Light Spell Power at levels [1/7/11]</Description>
+    <Level>10</Level>
+    <Effect>
+      <Type>EnergyResistance</Type>
+      <Bonus>Guild</Bonus>
+      <AType>TotalLevel</AType>
+      <Amount size="40">5 5 5 5 5 5 5 5 5 5 10 10 10 10 10 10 10 10 10 10 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15</Amount>
+      <Item>Fire</Item>
+    </Effect>
+    <Effect>
+      <Type>SpellPower</Type>
+      <Bonus>Guild</Bonus>
+      <AType>TotalLevel</AType>
+      <Amount size="40">5 5 5 5 5 5 10 10 10 10 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15</Amount>
+      <Item>Fire</Item>
+      <Item>Light/Alignment</Item>
+    </Effect>
+  </GuildBuff>
+  <GuildBuff>
+    <Name>Old Sully's Grog Cellar </Name>
+    <Description>+2 Charisma and +2 Constitution</Description>
+    <Level>17</Level>
+    <Effect>
+      <Type>AbilityBonus</Type>
+      <Bonus>Guild</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">2</Amount>
+      <Item>Constitution</Item>
+      <Item>Charisma</Item>
+    </Effect>
+  </GuildBuff>
+  <GuildBuff>
+    <Name>Tactical Training Room</Name>
+    <Description>+[2/4/6] Damage on critical hits (before multiplier)
++1 bonus to the DC of Trip, Sunder, and Slicing blow feats
++2 To-Hit with physical attacks. </Description>
+    <Level>21</Level>
+    <Effect>
+      <Type>Weapon_DamageCritical</Type>
+      <Bonus>Guild</Bonus>
+      <AType>TotalLevel</AType>
+      <Amount size="40">2 2 2 2 2 2 4 4 4 4 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6</Amount>
+      <Item>All</Item>
+    </Effect>
+    <Effect>
+      <Type>TacticalDC</Type>
+      <Bonus>Guild</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">1</Amount>
+      <Item>Trip</Item>
+      <Item>Sunder</Item>
+    </Effect>
+    <Effect>
+        <Type>Weapon_Attack</Type>
+      <Bonus>Guild</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">2</Amount>
+      <Item>All</Item>
+    </Effect>
+  </GuildBuff>
+</GuildBuffs>

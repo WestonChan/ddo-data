@@ -28,6 +28,7 @@ const COUNTED: &[&str] = &[
     "augments",
     "set_bonuses",
     "filigrees",
+    "guild_buffs",
     "clickies",
     "feats",
     "races",

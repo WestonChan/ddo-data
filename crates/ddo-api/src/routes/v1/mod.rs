@@ -1,5 +1,6 @@
 mod augments;
 mod bonuses;
+mod buffs;
 mod classes;
 mod dump;
 mod feats;
@@ -22,8 +23,8 @@ use utoipa_axum::router::OpenApiRouter;
     info(
         title = "DDO Tools data API",
         description = "Dungeons & Dragons Online game data, parsed from Maetrim's DDOBuilderV2 data files and served \
-                       read-only. Items, augments, set bonuses, filigrees, feats, stances, races, classes, enhancement \
-                       trees, spells and clickies, plus the reference vocabularies they share.\n\n\
+                       read-only. Items, augments, set bonuses, filigrees, feats, stances, guild buffs, races, classes, \
+                       enhancement trees, spells and clickies, plus the reference vocabularies they share.\n\n\
                        **Caching.** The dataset is rebuilt only when DDOBuilderV2 changes, so every response is \
                        immutable for a dataset version. Each carries a strong `ETag`, a day-long `Cache-Control` and \
                        an `X-Dataset-Version` header naming the DDOBuilderV2 commit; send `If-None-Match` and expect \
@@ -49,6 +50,7 @@ use utoipa_axum::router::OpenApiRouter;
         (name = "races", description = "Playable races with ability modifiers, granted feats and racial feats"),
         (name = "classes", description = "Classes and archetypes with progressions, feat slots and spell lists"),
         (name = "stances", description = "Combat and defensive stances a character can toggle, with their requirements and effects"),
+        (name = "buffs", description = "Guild buffs and the spell, potion and party buffs a planner can toggle on, with their effects"),
         (name = "enhancements", description = "Enhancement, epic destiny and reaper trees with every enhancement and selection"),
         (name = "spells", description = "Spells with damage, saves and class lists, and the clickies items grant"),
         (name = "bonuses", description = "The stats a bonus can apply to and the bonus types that decide whether two bonuses stack"),
@@ -79,6 +81,7 @@ examples! { "v1":
     ("/v1/feats", "feats"),
     ("/v1/feats/{id}", "feats_id"),
     ("/v1/stances", "stances"),
+    ("/v1/guild-buffs", "guild-buffs"),
     ("/v1/races", "races"),
     ("/v1/races/{id}", "races_id"),
     ("/v1/classes", "classes"),
@@ -102,6 +105,7 @@ pub fn router() -> OpenApiRouter<AppState> {
         .merge(sets::router())
         .merge(feats::router())
         .merge(stances::router())
+        .merge(buffs::router())
         .merge(races::router())
         .merge(classes::router())
         .merge(trees::router())

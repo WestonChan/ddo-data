@@ -627,6 +627,7 @@ pub enum ModifierSource {
     EnhancementSelectionFollowOn,
     Spell,
     Stance,
+    GuildBuff,
 }
 
 impl ModifierSource {
@@ -643,6 +644,7 @@ impl ModifierSource {
         Self::EnhancementSelectionFollowOn,
         Self::Spell,
         Self::Stance,
+        Self::GuildBuff,
     ];
 
     pub const fn as_str(self) -> &'static str {
@@ -659,6 +661,7 @@ impl ModifierSource {
             Self::EnhancementSelectionFollowOn => "enhancement_selection_follow_on",
             Self::Spell => "spell",
             Self::Stance => "stance",
+            Self::GuildBuff => "guild_buff",
         }
     }
 }

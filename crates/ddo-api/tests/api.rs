@@ -482,3 +482,17 @@ async fn stances_lists_the_standalone_stances_in_file_order() {
     assert_eq!(rows[2]["requirements"][0]["value"], "1");
     assert_eq!(rows[0]["modifiers"], serde_json::json!([]));
 }
+
+#[tokio::test]
+async fn guild_buffs_carry_their_unlock_level_and_per_level_modifiers() {
+    let (status, _, json) = get("/v1/guild-buffs").await;
+    assert_eq!(status, StatusCode::OK);
+    let rows = json.as_array().unwrap();
+    let levels: Vec<i64> = rows.iter().map(|b| b["guild_level"].as_i64().unwrap()).collect();
+    assert_eq!(levels, [10, 17, 21]);
+    let flame = &rows[0];
+    assert_eq!(flame["name"], "Sign of the Silver Flame I");
+    assert_eq!(flame["modifiers"][0]["amount_type"], "TotalLevel");
+    assert_eq!(flame["modifiers"][0]["bonus_type"], "Guild");
+    assert_eq!(flame["modifiers"][0]["amounts"].as_array().unwrap().len(), 40);
+}
