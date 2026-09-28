@@ -50,7 +50,7 @@ fn embedded_wiki_files_load() {
 #[test]
 fn rejects_a_page_outside_ddowiki() {
     let src = quest("The Grotto", &[]).replace("https://ddowiki.com/page/", "https://example.com/");
-    let err = load(&[("a.toml", &src)]).unwrap_err();
+    let err = load(&[("quest_loot_a.toml", &src)]).unwrap_err();
     assert!(err.contains("The Grotto") && err.contains("https://ddowiki.com/page/"), "{err}");
 }
 
@@ -58,34 +58,39 @@ fn rejects_a_page_outside_ddowiki() {
 fn rejects_a_read_date_that_is_not_iso() {
     for bad in ["27/09/2026", "2026-9-27", "2026-13-01", "2026-02-30", "yesterday"] {
         let src = quest("The Grotto", &[]).replace("2026-09-27", bad);
-        let err = load(&[("a.toml", &src)]).unwrap_err();
+        let err = load(&[("quest_loot_a.toml", &src)]).unwrap_err();
         assert!(err.contains("The Grotto") && err.contains(bad), "{bad}: {err}");
     }
 }
 
 #[test]
 fn rejects_a_quest_listed_twice_across_files() {
-    let err = load(&[("a.toml", &quest("The Grotto", &[])), ("b.toml", &quest("The Grotto", &[]))]).unwrap_err();
-    assert!(err.contains("The Grotto") && err.contains("a.toml") && err.contains("b.toml"), "{err}");
+    let err =
+        load(&[("quest_loot_a.toml", &quest("The Grotto", &[])), ("quest_loot_b.toml", &quest("The Grotto", &[]))])
+            .unwrap_err();
+    assert!(
+        err.contains("The Grotto") && err.contains("quest_loot_a.toml") && err.contains("quest_loot_b.toml"),
+        "{err}"
+    );
 }
 
 #[test]
 fn rejects_unknown_fields() {
     let src = quest("The Grotto", &[]) + "common = [\"Docent of Defiance\"]\n";
-    let err = load(&[("a.toml", &src)]).unwrap_err();
-    assert!(err.contains("a.toml") && err.contains("common"), "{err}");
+    let err = load(&[("quest_loot_a.toml", &src)]).unwrap_err();
+    assert!(err.contains("quest_loot_a.toml") && err.contains("common"), "{err}");
 }
 
 #[test]
 fn build_fails_naming_a_quest_absent_from_the_quests_table() {
-    let wiki = load(&[("a.toml", &quest("The Missing Quest", &[]))]).unwrap();
+    let wiki = load(&[("quest_loot_a.toml", &quest("The Missing Quest", &[]))]).unwrap();
     let err = build_with(&wiki).unwrap_err();
     assert!(err.contains("The Missing Quest"), "{err}");
 }
 
 #[test]
 fn build_fails_naming_an_item_absent_from_the_items_table() {
-    let wiki = load(&[("a.toml", &quest("Book Burning", &["Buckler of the Missing Age"]))]).unwrap();
+    let wiki = load(&[("quest_loot_a.toml", &quest("Book Burning", &["Buckler of the Missing Age"]))]).unwrap();
     let err = build_with(&wiki).unwrap_err();
     assert!(err.contains("Buckler of the Missing Age") && err.contains("Book Burning"), "{err}");
 }
@@ -125,8 +130,8 @@ fn marks_rare_drops_on_the_links_maetrims_drop_text_made() {
 #[test]
 fn adds_a_chest_link_for_a_rare_drop_and_never_changes_maetrims_loot_type() {
     let wiki = load(&[
-        ("a.toml", &quest("The Grotto", &["Docent of Defiance"])),
-        ("b.toml", &quest("Caught in the Web", &["Sireth, Spear of the Sky"])),
+        ("quest_loot_a.toml", &quest("The Grotto", &["Docent of Defiance"])),
+        ("quest_loot_b.toml", &quest("Caught in the Web", &["Sireth, Spear of the Sky"])),
     ])
     .unwrap();
     let (conn, report) = built_with(&wiki);
@@ -135,4 +140,162 @@ fn adds_a_chest_link_for_a_rare_drop_and_never_changes_maetrims_loot_type() {
     assert_eq!(loot(&conn, "Caught in the Web", "Sireth, Spear of the Sky"), Some(("raid".into(), true)));
     assert_eq!(report.wiki_quest_loot_links_added, 1);
     assert_eq!(report.wiki_rare_drops, 2);
+}
+
+fn quest_facts(name: &str, extra: &str) -> String {
+    format!(
+        "[[quest]]\nname = {name:?}\npage = \"https://ddowiki.com/page/Quests_by_level_and_XP\"\nread = \"2026-09-28\"\nfree_to_play = false\n{extra}"
+    )
+}
+
+#[test]
+fn reads_quest_facts_from_quests_files() {
+    let wiki = WikiOverrides::from_dir(&fixtures().join("wiki")).unwrap();
+    assert_eq!(wiki.quests.len(), 2);
+    let chronoscope = &wiki.quests[0];
+    assert_eq!(chronoscope.name, "The Chronoscope");
+    assert_eq!(chronoscope.duration.as_deref(), Some("Long"));
+    assert!(!chronoscope.free_to_play);
+    assert_eq!(chronoscope.legendary_level, Some(34));
+    assert_eq!(chronoscope.zone.as_deref(), Some("The Harbor"));
+    assert_eq!(chronoscope.bestowed_by.as_deref(), Some("A harbor quest giver"));
+    assert_eq!(chronoscope.flagging.as_deref(), Some("None; open to all."));
+    let epic = chronoscope.xp.epic.as_ref().unwrap();
+    assert_eq!((epic.casual, epic.normal, epic.hard, epic.elite), (None, Some(23883), Some(24669), Some(25456)));
+    assert!(chronoscope.xp.legendary.is_none());
+    assert_eq!(wiki.quest_loot.len(), 1, "quests.toml tables are not read as quest loot");
+}
+
+#[test]
+fn embedded_quests_file_loads() {
+    let wiki = WikiOverrides::embedded().unwrap();
+    assert!(wiki.quests.iter().any(|q| q.name == "A Blood Pact" && q.legendary_level == Some(37)));
+}
+
+#[test]
+fn rejects_a_file_name_that_names_no_wiki_file_type() {
+    let err = load(&[("loot.toml", &quest("The Grotto", &[]))]).unwrap_err();
+    assert!(err.contains("loot.toml") && err.contains("quest_loot") && err.contains("quests"), "{err}");
+}
+
+#[test]
+fn rejects_a_duration_outside_the_four_the_wiki_uses() {
+    let err = load(&[("quests.toml", &quest_facts("The Grotto", "duration = \"Epic\"\n"))]).unwrap_err();
+    assert!(err.contains("The Grotto") && err.contains("Epic") && err.contains("Very long"), "{err}");
+}
+
+#[test]
+fn rejects_negative_xp() {
+    let src = quest_facts("The Grotto", "xp.epic = { normal = -1 }\n");
+    let err = load(&[("quests.toml", &src)]).unwrap_err();
+    assert!(err.contains("The Grotto") && err.contains("epic") && err.contains("-1"), "{err}");
+}
+
+#[test]
+fn rejects_quest_facts_without_free_to_play() {
+    let src = quest_facts("The Grotto", "").replace("free_to_play = false\n", "");
+    let err = load(&[("quests.toml", &src)]).unwrap_err();
+    assert!(err.contains("quests.toml") && err.contains("free_to_play"), "{err}");
+}
+
+#[test]
+fn rejects_quest_facts_citing_a_page_outside_ddowiki() {
+    let src = quest_facts("The Grotto", "").replace("https://ddowiki.com/page/", "https://example.com/");
+    let err = load(&[("quests.toml", &src)]).unwrap_err();
+    assert!(err.contains("The Grotto") && err.contains("https://ddowiki.com/page/"), "{err}");
+}
+
+#[test]
+fn rejects_quest_facts_listed_twice_across_quests_files() {
+    let err =
+        load(&[("quests.toml", &quest_facts("The Grotto", "")), ("quests_epic.toml", &quest_facts("The Grotto", ""))])
+            .unwrap_err();
+    assert!(err.contains("The Grotto") && err.contains("quests.toml") && err.contains("quests_epic.toml"), "{err}");
+}
+
+#[test]
+fn a_quest_may_carry_both_loot_and_facts() {
+    let wiki = load(&[("quest_loot.toml", &quest("The Grotto", &[])), ("quests.toml", &quest_facts("The Grotto", ""))]);
+    assert!(wiki.is_ok(), "{wiki:?}");
+}
+
+#[test]
+fn build_fails_naming_quest_facts_for_a_quest_absent_from_the_quests_table() {
+    let wiki = load(&[("quests.toml", &quest_facts("The Missing Quest", ""))]).unwrap();
+    let err = build_with(&wiki).unwrap_err();
+    assert!(err.contains("The Missing Quest") && err.contains("quests"), "{err}");
+}
+
+type WikiQuestColumns = (Option<String>, bool, Option<i64>, Option<String>, Option<String>, Option<String>);
+
+fn wiki_columns(conn: &Connection, quest: &str) -> WikiQuestColumns {
+    conn.query_row(
+        "SELECT duration, is_free_to_play, legendary_level, zone, bestowed_by, flagging FROM quests WHERE name = ?1",
+        [quest],
+        |r| Ok((r.get(0)?, r.get(1)?, r.get(2)?, r.get(3)?, r.get(4)?, r.get(5)?)),
+    )
+    .unwrap()
+}
+
+type XpRow = (String, Option<i64>, Option<i64>, Option<i64>, Option<i64>);
+
+fn xp_rows(conn: &Connection, quest: &str) -> Vec<XpRow> {
+    let mut stmt = conn
+        .prepare(
+            "SELECT x.tier, x.casual, x.normal, x.hard, x.elite FROM quest_xp x JOIN quests q ON q.id = x.quest_id
+              WHERE q.name = ?1 ORDER BY x.tier",
+        )
+        .unwrap();
+    stmt.query_map([quest], |r| Ok((r.get(0)?, r.get(1)?, r.get(2)?, r.get(3)?, r.get(4)?)))
+        .unwrap()
+        .map(Result::unwrap)
+        .collect()
+}
+
+type MaetrimQuestColumns = (Option<i64>, Option<i64>, Option<i64>, Option<i64>, Option<i64>, bool, String);
+
+fn maetrim_columns(conn: &Connection, quest: &str) -> MaetrimQuestColumns {
+    conn.query_row(
+        "SELECT level, epic_level, pack_id, patron_id, favor, is_raid, difficulties FROM quests WHERE name = ?1",
+        [quest],
+        |r| Ok((r.get(0)?, r.get(1)?, r.get(2)?, r.get(3)?, r.get(4)?, r.get(5)?, r.get(6)?)),
+    )
+    .unwrap()
+}
+
+#[test]
+fn fills_the_wiki_only_quest_columns_and_xp_rows() {
+    let (conn, report) = built_with(&WikiOverrides::from_dir(&fixtures().join("wiki")).unwrap());
+    assert_eq!(
+        wiki_columns(&conn, "The Chronoscope"),
+        (
+            Some("Long".into()),
+            false,
+            Some(34),
+            Some("The Harbor".into()),
+            Some("A harbor quest giver".into()),
+            Some("None; open to all.".into())
+        )
+    );
+    assert_eq!(wiki_columns(&conn, "The Grotto"), (None, true, None, None, None, None));
+    assert_eq!(
+        xp_rows(&conn, "The Chronoscope"),
+        vec![
+            ("epic".into(), None, Some(23883), Some(24669), Some(25456)),
+            ("heroic".into(), None, Some(4240), Some(4516), Some(4792)),
+        ]
+    );
+    assert_eq!(xp_rows(&conn, "The Grotto"), vec![("heroic".into(), Some(304), None, None, None)]);
+    assert_eq!(wiki_columns(&conn, "Book Burning"), (None, false, None, None, None, None));
+    assert_eq!(report.wiki_quest_entries, 2);
+    assert_eq!(report.wiki_quest_xp_rows, 3);
+}
+
+#[test]
+fn quest_facts_never_change_maetrims_quest_columns() {
+    let (without, _) = built_with(&WikiOverrides::default());
+    let (with, _) = built_with(&WikiOverrides::from_dir(&fixtures().join("wiki")).unwrap());
+    for quest in ["The Chronoscope", "The Grotto"] {
+        assert_eq!(maetrim_columns(&with, quest), maetrim_columns(&without, quest), "{quest}");
+    }
 }

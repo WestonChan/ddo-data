@@ -1,6 +1,6 @@
 use crate::enums::{
     sql_in_list, AbilityOwner, ArmorType, FeatSource, Handedness, ItemCategory, LootType, ModifierSource,
-    RequirementGroup, RequirementOwner, SaveProgression, TreeKind,
+    QuestDuration, RequirementGroup, RequirementOwner, SaveProgression, TreeKind, XpTier,
 };
 use std::sync::LazyLock;
 
@@ -18,6 +18,8 @@ static DDL_TEXT: LazyLock<String> = LazyLock::new(|| {
     let save_progression = sql_in_list(SaveProgression::ALL.iter().map(|s| s.as_str()));
     let tree_kind = sql_in_list(TreeKind::ALL.iter().map(|k| k.as_str()));
     let requirement_group = sql_in_list(RequirementGroup::ALL.iter().map(|g| g.as_str()));
+    let quest_duration = sql_in_list(QuestDuration::ALL.iter().map(|d| d.as_str()));
+    let xp_tier = sql_in_list(XpTier::ALL.iter().map(|t| t.as_str()));
     format!(
         r#"
 PRAGMA foreign_keys = ON;
@@ -112,7 +114,24 @@ CREATE TABLE IF NOT EXISTS quests (
     epic_name  TEXT,                                  -- <EpicName>: the epic version's name, when it differs
     difficulties TEXT  NOT NULL DEFAULT '[]',         -- JSON array of the <Casual/> … <Solo/> flags present
     is_challenge INTEGER NOT NULL DEFAULT 0 CHECK (is_challenge IN (0, 1)),  -- from Challenges.xml, not Quests.xml
-    max_level  INTEGER                                -- a challenge's <LevelRange> high end; level is the low end
+    max_level  INTEGER,                               -- a challenge's <LevelRange> high end; level is the low end
+    duration   TEXT CHECK (duration {quest_duration}),  -- data/wiki quests `duration`
+    is_free_to_play INTEGER NOT NULL DEFAULT 0 CHECK (is_free_to_play IN (0, 1)),  -- data/wiki quests `free_to_play`
+    legendary_level INTEGER,                          -- data/wiki quests `legendary_level`
+    zone       TEXT,                                  -- data/wiki quests `zone`: the page's "Takes place in"
+    bestowed_by TEXT,                                 -- data/wiki quests `bestowed_by`
+    flagging   TEXT                                   -- data/wiki quests `flagging`, free text
+);
+
+-- XP per difficulty for one tier of a quest, from data/wiki quests `xp`.
+CREATE TABLE IF NOT EXISTS quest_xp (
+    quest_id INTEGER NOT NULL REFERENCES quests(id) ON DELETE CASCADE,
+    tier     TEXT    NOT NULL CHECK (tier {xp_tier}),
+    casual   INTEGER,
+    normal   INTEGER,
+    hard     INTEGER,
+    elite    INTEGER,
+    PRIMARY KEY (quest_id, tier)
 );
 
 -- Items --------------------------------------------------------------------------

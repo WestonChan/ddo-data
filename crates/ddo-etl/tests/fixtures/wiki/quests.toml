@@ -1,0 +1,21 @@
+# Only names the fixture DataFiles carry. The XP and duration are from data/wiki/quests.toml;
+# legendary_level, zone, bestowed_by and flagging on The Chronoscope are test values.
+[[quest]]
+name = "The Chronoscope"
+page = "https://ddowiki.com/page/The_Chronoscope"
+read = "2026-09-28"
+duration = "Long"
+free_to_play = false
+legendary_level = 34
+zone = "The Harbor"
+bestowed_by = "A harbor quest giver"
+flagging = "None; open to all."
+xp.heroic = { normal = 4240, hard = 4516, elite = 4792 }
+xp.epic = { normal = 23883, hard = 24669, elite = 25456 }
+
+[[quest]]
+name = "The Grotto"
+page = "https://ddowiki.com/page/Quests_by_level_and_XP"
+read = "2026-09-28"
+free_to_play = true
+xp.heroic = { casual = 304 }

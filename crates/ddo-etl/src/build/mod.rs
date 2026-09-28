@@ -54,6 +54,8 @@ pub struct BuildReport {
     pub wiki_quest_loot_entries: usize,
     pub wiki_rare_drops: usize,
     pub wiki_quest_loot_links_added: usize,
+    pub wiki_quest_entries: usize,
+    pub wiki_quest_xp_rows: usize,
     pub unmapped_effect_types: BTreeMap<String, usize>,
 }
 

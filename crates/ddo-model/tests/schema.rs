@@ -34,6 +34,7 @@ fn ddl_creates_every_v2_table() {
         "adventure_packs",
         "patrons",
         "quests",
+        "quest_xp",
         "items",
         "excluded_items",
         "item_weapon_stats",
@@ -102,6 +103,18 @@ fn ddl_drops_the_columns_with_no_source() {
     for kept in ["slot_id", "material_id", "drop_location", "set_bonus", "accepts_sentience", "enhancement_bonus"] {
         assert!(columns.contains(kept), "items.{kept} missing");
     }
+}
+
+#[test]
+fn quest_xp_accepts_only_the_three_tiers_and_quests_only_the_wiki_durations() {
+    let conn = fresh_db();
+    conn.execute("INSERT INTO quests (id, name, duration) VALUES (1, 'The Grotto', 'Very long')", []).unwrap();
+    assert!(conn.execute("INSERT INTO quests (id, name, duration) VALUES (2, 'Other', 'Forever')", []).is_err());
+    for tier in ["heroic", "epic", "legendary"] {
+        conn.execute("INSERT INTO quest_xp (quest_id, tier, normal) VALUES (1, ?1, 100)", [tier]).unwrap();
+    }
+    assert!(conn.execute("INSERT INTO quest_xp (quest_id, tier) VALUES (1, 'mythic')", []).is_err());
+    assert!(conn.execute("INSERT INTO quest_xp (quest_id, tier) VALUES (1, 'heroic')", []).is_err());
 }
 
 #[test]

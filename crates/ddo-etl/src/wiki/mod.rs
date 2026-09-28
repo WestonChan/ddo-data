@@ -1,8 +1,11 @@
 mod quest_loot;
+mod quests;
 
 pub use quest_loot::QuestLoot;
+pub use quests::{QuestFacts, QuestXp, TierXp};
 
 use anyhow::{bail, Context, Result};
+use serde::de::DeserializeOwned;
 use serde::Deserialize;
 use std::collections::HashMap;
 use std::path::Path;
@@ -13,13 +16,79 @@ const PAGE_PREFIX: &str = "https://ddowiki.com/page/";
 #[derive(Debug, Default, Clone, PartialEq, Eq)]
 pub struct WikiOverrides {
     pub quest_loot: Vec<QuestLoot>,
+    pub quests: Vec<QuestFacts>,
 }
 
 #[derive(Deserialize)]
 #[serde(deny_unknown_fields)]
-struct WikiFile {
-    #[serde(default)]
-    quest: Vec<QuestLoot>,
+struct WikiFile<T> {
+    #[serde(default = "Vec::new")]
+    quest: Vec<T>,
+}
+
+trait WikiEntry: DeserializeOwned {
+    fn name(&self) -> &str;
+    fn citation(&self) -> (&str, &str);
+    fn check(&self) -> Result<()> {
+        Ok(())
+    }
+}
+
+impl WikiEntry for QuestLoot {
+    fn name(&self) -> &str {
+        &self.name
+    }
+    fn citation(&self) -> (&str, &str) {
+        (&self.page, &self.read)
+    }
+}
+
+impl WikiEntry for QuestFacts {
+    fn name(&self) -> &str {
+        &self.name
+    }
+    fn citation(&self) -> (&str, &str) {
+        (&self.page, &self.read)
+    }
+    fn check(&self) -> Result<()> {
+        self.check_values()
+    }
+}
+
+enum FileKind {
+    QuestLoot,
+    Quests,
+}
+
+impl FileKind {
+    fn of(file_name: &str) -> Result<Self> {
+        let stem = file_name.strip_suffix(".toml").unwrap_or(file_name);
+        if stem.starts_with("quest_loot") {
+            Ok(Self::QuestLoot)
+        } else if stem.starts_with("quests") {
+            Ok(Self::Quests)
+        } else {
+            bail!("wiki file {file_name}: the name must start with quest_loot or quests, which says what it holds")
+        }
+    }
+}
+
+fn read_entries<'a, T: WikiEntry>(
+    file_name: &'a str,
+    source: &str,
+    seen: &mut HashMap<String, &'a str>,
+) -> Result<Vec<T>> {
+    let file: WikiFile<T> = toml::from_str(source).with_context(|| format!("wiki file {file_name}"))?;
+    for entry in &file.quest {
+        let (page, read) = entry.citation();
+        check_citation(page, read)
+            .and_then(|()| entry.check())
+            .with_context(|| format!("wiki file {file_name}: quest {:?}", entry.name()))?;
+        if let Some(first) = seen.insert(entry.name().to_owned(), file_name) {
+            bail!("wiki file {file_name}: quest {:?} is already listed in {first}", entry.name());
+        }
+    }
+    Ok(file.quest)
 }
 
 impl WikiOverrides {
@@ -46,16 +115,14 @@ impl WikiOverrides {
 
     pub fn from_sources(files: &[(&str, &str)]) -> Result<Self> {
         let mut overrides = Self::default();
-        let mut quest_files: HashMap<String, &str> = HashMap::new();
+        let mut quest_loot_files = HashMap::new();
+        let mut quests_files = HashMap::new();
         for (file_name, source) in files {
-            let file: WikiFile = toml::from_str(source).with_context(|| format!("wiki file {file_name}"))?;
-            for entry in file.quest {
-                check_citation(&entry.page, &entry.read)
-                    .with_context(|| format!("wiki file {file_name}: quest {:?}", entry.name))?;
-                if let Some(first) = quest_files.insert(entry.name.clone(), file_name) {
-                    bail!("wiki file {file_name}: quest {:?} is already listed in {first}", entry.name);
+            match FileKind::of(file_name)? {
+                FileKind::QuestLoot => {
+                    overrides.quest_loot.extend(read_entries(file_name, source, &mut quest_loot_files)?);
                 }
-                overrides.quest_loot.push(entry);
+                FileKind::Quests => overrides.quests.extend(read_entries(file_name, source, &mut quests_files)?),
             }
         }
         Ok(overrides)

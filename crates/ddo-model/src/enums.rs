@@ -588,6 +588,50 @@ impl LootType {
 }
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
+pub enum QuestDuration {
+    Short,
+    Medium,
+    Long,
+    VeryLong,
+}
+
+impl QuestDuration {
+    pub const ALL: &'static [QuestDuration] = &[Self::Short, Self::Medium, Self::Long, Self::VeryLong];
+
+    pub const fn as_str(self) -> &'static str {
+        match self {
+            Self::Short => "Short",
+            Self::Medium => "Medium",
+            Self::Long => "Long",
+            Self::VeryLong => "Very long",
+        }
+    }
+
+    pub fn from_wiki(text: &str) -> Option<Self> {
+        Self::ALL.iter().copied().find(|d| d.as_str() == text)
+    }
+}
+
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
+pub enum XpTier {
+    Heroic,
+    Epic,
+    Legendary,
+}
+
+impl XpTier {
+    pub const ALL: &'static [XpTier] = &[Self::Heroic, Self::Epic, Self::Legendary];
+
+    pub const fn as_str(self) -> &'static str {
+        match self {
+            Self::Heroic => "heroic",
+            Self::Epic => "epic",
+            Self::Legendary => "legendary",
+        }
+    }
+}
+
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
 pub enum DamageCategory {
     Physical,
     Elemental,
