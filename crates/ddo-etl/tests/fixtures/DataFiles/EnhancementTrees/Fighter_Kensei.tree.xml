@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Enhancements>
+  <EnhancementTree>
+    <Name>Kensei</Name>
+    <Version>1</Version>
+    <Requirements>
+      <Requirement>
+        <Type>Class</Type>
+        <Item>Fighter</Item>
+      </Requirement>
+    </Requirements>
+    <Background>FighterBackground</Background>
+    <Icon>Fighter</Icon>
+    <EnhancementTreeItem>
+      <InternalName>KenseiCore4</InternalName>
+      <Name>Kensei: Power Surge</Name>
+      <Description>Action Boost: You gain +8 Psionic bonus to all attributes for 60 seconds.
+If you possess the ability to generate Ki, you gain On Hit: +2 Ki.
+You may use this 5 times per rest.</Description>
+      <Icon>KenseiPowerSurge</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>0</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <Clickie />
+      <MinSpent>20</MinSpent>
+      <Stance>
+        <Name>Kensei: Power Surge</Name>
+        <Icon>KenseiPowerSurge</Icon>
+        <Description>You gain +8 Psionic bonus to all attributes for 60 seconds</Description>
+      </Stance>
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Fighter</Item>
+          <Value>12</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>KenseiCore3</Item>
+        </Requirement>
+      </Requirements>
+      <Attack>
+        <Name>Kensei: Power Surge</Name>
+        <Description>Action Boost: You gain +8 Psionic bonus to all attributes for 60 seconds.</Description>
+        <Icon>KenseiPowerSurge</Icon>
+        <Cooldown size="1">60</Cooldown>
+        <FollowOn>
+          <!--+8 bonus is equivalent to +4 attack/damage-->
+          <Duration size="1">60</Duration>
+          <BonusAttackBonus size="1">4</BonusAttackBonus>
+          <BonusDamage size="1">4</BonusDamage>
+        </FollowOn>
+      </Attack>
+      <Effect>
+        <Type>KiHit</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+      </Effect>
+      <Effect>
+        <Type>Doublestrike</Type>
+        <Type>Doubleshot</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Item>All</Item>
+        <Requirements>
+          <Requirement>
+            <Type>GroupMember</Type>
+            <Item>Focus Weapon</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>AbilityBonus</Type>
+        <Bonus>Psionic</Bonus>
+        <Item>All</Item>
+        <AType>Simple</AType>
+        <Amount size="1">8</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Kensei: Power Surge</Item>
+          </Requirement>
+        </Requirements>
+        <ApplyAsItemEffect />
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <InternalName>KenseiActionBoostI</InternalName>
+      <Name>Kensei: Action Boost</Name>
+      <Description>Choose an action boost, cooldown 30 seconds.</Description>
+      <Icon>KenseiActionBoost</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>1</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <Clickie />
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Fighter</Item>
+          <Value>1</Value>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Attack Boost</Name>
+          <Description>Activate to gain +[4/6/8] Action Boost bonus to hit and damage for 20 seconds.</Description>
+          <Icon>KenseiAttackBoost</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Clickie />
+          <Attack>
+            <Name>Kensei: Attack Boost</Name>
+            <Description>Activate to gain +[4/6/8] Action Boost bonus to hit and damage for 20 seconds.</Description>
+            <Icon>KenseiAttackBoost</Icon>
+            <Cooldown size="3">30 30 30</Cooldown>
+            <FollowOn>
+              <Duration size="3">20 20 20</Duration>
+              <BonusAttack size="3">4 6 8</BonusAttack>
+            </FollowOn>
+          </Attack>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Haste Boost</Name>
+          <Description>Activate to gain +[10/20/30]% Action Boost bonus to attack speed for 20 seconds.</Description>
+          <Icon>KenseiHasteBoost</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Clickie />
+          <Attack>
+            <Name>Kensei: Haste Boost</Name>
+            <Description>Activate to gain +[10/20/30]% Action Boost bonus to attack speed for 20 seconds.</Description>
+            <Icon>KenseiHasteBoost</Icon>
+            <Cooldown size="3">30 30 30</Cooldown>
+            <FollowOn>
+              <Duration size="3">20 20 20</Duration>
+              <BonusAlacrity size="3">10 20 30</BonusAlacrity>
+            </FollowOn>
+          </Attack>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+  </EnhancementTree>
+</Enhancements>

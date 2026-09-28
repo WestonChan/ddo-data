@@ -90,6 +90,60 @@ pub struct Attack {
     pub description: Option<String>,
     #[serde(rename = "Icon")]
     pub icon: Option<String>,
+    #[serde(rename = "Cooldown", default, deserialize_with = "first_integer")]
+    pub cooldown_seconds: Option<i64>,
+    #[serde(rename = "FollowOn")]
+    pub follow_on: Option<FollowOn>,
+}
+
+#[derive(Debug, Clone, Default)]
+pub struct FollowOn {
+    pub duration_seconds: Option<i64>,
+    pub effects: Vec<Effect>,
+}
+
+fn first_integer<'de, D: Deserializer<'de>>(d: D) -> Result<Option<i64>, D::Error> {
+    let Some(vector) = Option::<Vector>::deserialize(d)? else {
+        return Ok(None);
+    };
+    Ok(vector.integers().map_err(D::Error::custom)?.first().copied())
+}
+
+fn attack_bonus_effect(name: String, amounts: Vec<f64>) -> Effect {
+    let amount_type = match amounts.len() {
+        0 => "NotNeeded",
+        1 => "Simple",
+        _ => "Stacks",
+    };
+    Effect { types: vec![name], amount_type: Some(amount_type.into()), amounts, ..Effect::default() }
+}
+
+impl<'de> Deserialize<'de> for FollowOn {
+    fn deserialize<D: Deserializer<'de>>(d: D) -> Result<Self, D::Error> {
+        struct FollowOnVisitor;
+        impl<'de> serde::de::Visitor<'de> for FollowOnVisitor {
+            type Value = FollowOn;
+
+            fn expecting(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
+                f.write_str("a <FollowOn> of attack bonus vectors")
+            }
+
+            fn visit_map<A: serde::de::MapAccess<'de>>(self, mut map: A) -> Result<FollowOn, A::Error> {
+                let mut follow_on = FollowOn::default();
+                while let Some(name) = map.next_key::<String>()? {
+                    let vector: Vector = map.next_value()?;
+                    if name == "Duration" {
+                        follow_on.duration_seconds = vector.integers().map_err(A::Error::custom)?.first().copied();
+                    } else {
+                        let amounts = vector.numbers().map_err(A::Error::custom)?;
+                        follow_on.effects.push(attack_bonus_effect(name, amounts));
+                    }
+                }
+                Ok(follow_on)
+            }
+        }
+        d.deserialize_map(FollowOnVisitor)
+    }
 }
 
 #[derive(Debug, Clone, Deserialize)]

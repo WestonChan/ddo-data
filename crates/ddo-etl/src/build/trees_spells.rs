@@ -1,10 +1,24 @@
 use super::{json_numbers, json_strings, nonempty, BuildReport, Ctx};
+use crate::xml::effect::Effect;
+use crate::xml::feats::Attack;
 use crate::xml::spells;
 use crate::xml::trees::{self, Selection, TreeItem};
 use anyhow::Result;
 use ddo_model::enums::{AbilityOwner, ModifierSource, RequirementOwner, TreeKind};
 use rusqlite::{params, OptionalExtension};
 use std::path::Path;
+
+fn cooldown_seconds(attack: Option<&Attack>) -> Option<i64> {
+    attack.and_then(|a| a.cooldown_seconds)
+}
+
+fn duration_seconds(attack: Option<&Attack>) -> Option<i64> {
+    attack.and_then(|a| a.follow_on.as_ref()).and_then(|f| f.duration_seconds)
+}
+
+fn follow_on_effects(attack: Option<&Attack>) -> &[Effect] {
+    attack.and_then(|a| a.follow_on.as_ref()).map_or(&[], |f| &f.effects)
+}
 
 impl Ctx<'_> {
     pub(super) fn write_tree_file(&mut self, path: &Path, report: &mut BuildReport) -> Result<()> {
@@ -46,8 +60,9 @@ impl Ctx<'_> {
 
     fn write_tree_item(&mut self, tree_id: i64, i: &TreeItem) -> Result<()> {
         self.tx.execute(
-            "INSERT INTO enhancements (tree_id, internal_name, name, description, icon, x, y, cost_per_rank, ranks, min_spent, is_tier5, is_clickie, arrows)
-             VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11, ?12, ?13)",
+            "INSERT INTO enhancements (tree_id, internal_name, name, description, icon, x, y, cost_per_rank, ranks, min_spent, is_tier5, is_clickie, arrows,
+                                       cooldown_seconds, duration_seconds)
+             VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11, ?12, ?13, ?14, ?15)",
             params![
                 tree_id,
                 i.internal_name,
@@ -62,6 +77,8 @@ impl Ctx<'_> {
                 i.is_tier5,
                 i.is_clickie,
                 json_strings(&i.arrows),
+                cooldown_seconds(i.attack.as_ref()),
+                duration_seconds(i.attack.as_ref()),
             ],
         )?;
         let id = self.tx.last_insert_rowid();
@@ -70,6 +87,7 @@ impl Ctx<'_> {
         }
         self.write_ability_children(AbilityOwner::Enhancement, id, &i.stances, &i.dcs, i.attack.as_ref())?;
         self.write_modifiers(ModifierSource::Enhancement, id, &i.effects)?;
+        self.write_modifiers(ModifierSource::EnhancementFollowOn, id, follow_on_effects(i.attack.as_ref()))?;
         if let Some(sel) = &i.selector {
             for ex in &sel.exclusions {
                 self.tx.execute(
@@ -86,8 +104,9 @@ impl Ctx<'_> {
 
     fn write_selection(&mut self, enhancement_id: i64, order: i64, s: &Selection) -> Result<()> {
         self.tx.execute(
-            "INSERT INTO enhancement_selections (enhancement_id, sort_order, name, description, icon, cost_per_rank, ranks, min_spent, is_clickie)
-             VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9)",
+            "INSERT INTO enhancement_selections (enhancement_id, sort_order, name, description, icon, cost_per_rank, ranks, min_spent, is_clickie,
+                                                 cooldown_seconds, duration_seconds)
+             VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11)",
             params![
                 enhancement_id,
                 order,
@@ -98,6 +117,8 @@ impl Ctx<'_> {
                 s.ranks,
                 s.min_spent,
                 s.is_clickie,
+                cooldown_seconds(s.attack.as_ref()),
+                duration_seconds(s.attack.as_ref()),
             ],
         )?;
         let id = self.tx.last_insert_rowid();
@@ -106,6 +127,7 @@ impl Ctx<'_> {
         }
         self.write_ability_children(AbilityOwner::EnhancementSelection, id, &s.stances, &s.dcs, s.attack.as_ref())?;
         self.write_modifiers(ModifierSource::EnhancementSelection, id, &s.effects)?;
+        self.write_modifiers(ModifierSource::EnhancementSelectionFollowOn, id, follow_on_effects(s.attack.as_ref()))?;
         Ok(())
     }
 

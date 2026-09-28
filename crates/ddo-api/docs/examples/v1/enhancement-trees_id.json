@@ -7,12 +7,15 @@
         "ArrowRight"
       ],
       "attack": null,
+      "cooldown_seconds": null,
       "cost_per_rank": [
         1
       ],
       "dcs": [],
       "description": "When you are raging and miss your attack by rolling 1, you gain Fury for six seconds.\nFury: +1 Rage bonus to attack and damage.\nThis effect stacks and one stack fades every six seconds.",
+      "duration_seconds": null,
       "exclusions": [],
+      "follow_on_modifiers": [],
       "icon": "RavFuriousrage",
       "id": 284,
       "internal_name": "RavCore1",
@@ -39,7 +42,7 @@
           "display_name": null,
           "effect_type": "CreateSlider",
           "extra_types": null,
-          "id": 2381,
+          "id": 2382,
           "is_item_specific": false,
           "is_rare": false,
           "percent": false,
@@ -69,7 +72,7 @@
           "display_name": null,
           "effect_type": "Weapon_AttackAndDamage",
           "extra_types": null,
-          "id": 2382,
+          "id": 2383,
           "is_item_specific": false,
           "is_rare": false,
           "percent": false,
@@ -115,12 +118,15 @@
         "ArrowRight"
       ],
       "attack": null,
+      "cooldown_seconds": null,
       "cost_per_rank": [
         1
       ],
       "dcs": [],
       "description": "Passive: +5 Melee power and +10 Healing Amplification",
+      "duration_seconds": null,
       "exclusions": [],
+      "follow_on_modifiers": [],
       "icon": "RavPainTouch",
       "id": 285,
       "internal_name": "RavCore2",
@@ -145,7 +151,7 @@
           "display_name": null,
           "effect_type": "MeleePower",
           "extra_types": null,
-          "id": 2383,
+          "id": 2384,
           "is_item_specific": false,
           "is_rare": false,
           "percent": false,
@@ -173,7 +179,7 @@
           "display_name": null,
           "effect_type": "HealingAmplification",
           "extra_types": null,
-          "id": 2384,
+          "id": 2385,
           "is_item_specific": false,
           "is_rare": false,
           "percent": false,
@@ -217,6 +223,7 @@
         "ArrowRight"
       ],
       "attack": null,
+      "cooldown_seconds": null,
       "cost_per_rank": [
         1
       ],
@@ -239,7 +246,9 @@
         }
       ],
       "description": "You gain +30 hit points and +10 Healing Amplification. When you score a vorpal\nhit in melee, you inflict Crushing Despair on nearby enemies for 30 seconds on\na failed DC 20 Will saving throw. You then inflict Vulnerable Will for\n15 seconds, regardless of the Crushing Despair saving throw.",
+      "duration_seconds": null,
       "exclusions": [],
+      "follow_on_modifiers": [],
       "icon": "RavDemoralizingSuccess",
       "id": 286,
       "internal_name": "RavCore3",
@@ -264,7 +273,7 @@
           "display_name": null,
           "effect_type": "Hitpoints",
           "extra_types": null,
-          "id": 2385,
+          "id": 2386,
           "is_item_specific": false,
           "is_rare": false,
           "percent": false,
@@ -292,7 +301,7 @@
           "display_name": null,
           "effect_type": "HealingAmplification",
           "extra_types": null,
-          "id": 2386,
+          "id": 2387,
           "is_item_specific": false,
           "is_rare": false,
           "percent": false,

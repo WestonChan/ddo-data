@@ -622,7 +622,9 @@ pub enum ModifierSource {
     Clickie,
     Feat,
     Enhancement,
+    EnhancementFollowOn,
     EnhancementSelection,
+    EnhancementSelectionFollowOn,
     Spell,
 }
 
@@ -635,7 +637,9 @@ impl ModifierSource {
         Self::Clickie,
         Self::Feat,
         Self::Enhancement,
+        Self::EnhancementFollowOn,
         Self::EnhancementSelection,
+        Self::EnhancementSelectionFollowOn,
         Self::Spell,
     ];
 
@@ -648,7 +652,9 @@ impl ModifierSource {
             Self::Clickie => "clickie",
             Self::Feat => "feat",
             Self::Enhancement => "enhancement",
+            Self::EnhancementFollowOn => "enhancement_follow_on",
             Self::EnhancementSelection => "enhancement_selection",
+            Self::EnhancementSelectionFollowOn => "enhancement_selection_follow_on",
             Self::Spell => "spell",
         }
     }

@@ -528,6 +528,8 @@ CREATE TABLE IF NOT EXISTS enhancements (
     is_tier5      INTEGER NOT NULL DEFAULT 0 CHECK (is_tier5 IN (0, 1)),
     is_clickie    INTEGER NOT NULL DEFAULT 0 CHECK (is_clickie IN (0, 1)),
     arrows        TEXT,                               -- JSON array: ArrowUp, ArrowRight, …
+    cooldown_seconds INTEGER,                         -- <Attack><Cooldown>, first value
+    duration_seconds INTEGER,                         -- <Attack><FollowOn><Duration>, first value
     UNIQUE (tree_id, internal_name)
 );
 
@@ -543,6 +545,8 @@ CREATE TABLE IF NOT EXISTS enhancement_selections (
     ranks          INTEGER,
     min_spent      INTEGER,
     is_clickie     INTEGER NOT NULL DEFAULT 0 CHECK (is_clickie IN (0, 1)),
+    cooldown_seconds INTEGER,                         -- <Attack><Cooldown>, first value
+    duration_seconds INTEGER,                         -- <Attack><FollowOn><Duration>, first value
     UNIQUE (enhancement_id, sort_order)
 );
 

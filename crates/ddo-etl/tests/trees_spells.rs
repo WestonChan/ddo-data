@@ -57,6 +57,43 @@ fn parses_a_class_tree_with_tier5_and_exclusions() {
 }
 
 #[test]
+fn parses_attack_cooldown_duration_and_follow_on() {
+    let tree = trees::parse(&fixtures().join("EnhancementTrees/Fighter_Kensei.tree.xml")).unwrap();
+    let follow_on_effects = |attack: &ddo_etl::xml::feats::Attack| {
+        attack
+            .follow_on
+            .as_ref()
+            .unwrap()
+            .effects
+            .iter()
+            .map(|e| (e.types.join(","), e.amount_type.clone().unwrap_or_default(), e.amounts.clone()))
+            .collect::<Vec<_>>()
+    };
+    let surge = tree.items.iter().find(|i| i.internal_name == "KenseiCore4").unwrap();
+    let attack = surge.attack.as_ref().unwrap();
+    assert_eq!(attack.cooldown_seconds, Some(60));
+    assert_eq!(attack.follow_on.as_ref().unwrap().duration_seconds, Some(60));
+    assert_eq!(
+        follow_on_effects(attack),
+        vec![
+            ("BonusAttackBonus".to_string(), "Simple".to_string(), vec![4.0]),
+            ("BonusDamage".to_string(), "Simple".to_string(), vec![4.0]),
+        ],
+        "every FollowOn child but Duration is an effect; the XML comment inside is skipped"
+    );
+
+    let boost = tree.items.iter().find(|i| i.internal_name == "KenseiActionBoostI").unwrap();
+    let haste = &boost.selector.as_ref().unwrap().selections[1];
+    let attack = haste.attack.as_ref().unwrap();
+    assert_eq!(attack.cooldown_seconds, Some(30), "a per-rank vector keeps its first value");
+    assert_eq!(attack.follow_on.as_ref().unwrap().duration_seconds, Some(20));
+    assert_eq!(
+        follow_on_effects(attack),
+        vec![("BonusAlacrity".to_string(), "Stacks".to_string(), vec![10.0, 20.0, 30.0])]
+    );
+}
+
+#[test]
 fn parses_spells() {
     let list = spells::parse(&fixtures().join("Spells.xml")).unwrap();
     assert_eq!(list.len(), 19, "the fixture keeps both Dominate Person definitions");
@@ -94,10 +131,11 @@ fn writes_trees_enhancements_and_selections() {
         vec![
             ("Aasimar".to_string(), "racial".to_string()),
             ("Assassin".to_string(), "class".to_string()),
+            ("Kensei".to_string(), "class".to_string()),
             ("Legendary Dreadnought".to_string(), "destiny".to_string()),
         ]
     );
-    assert_eq!(count(&conn, "SELECT COUNT(*) FROM requirements WHERE owner_kind = 'enhancement_tree'"), 3);
+    assert_eq!(count(&conn, "SELECT COUNT(*) FROM requirements WHERE owner_kind = 'enhancement_tree'"), 4);
     let aasimar: i64 =
         conn.query_row("SELECT id FROM enhancement_trees WHERE name = 'Aasimar'", [], |r| r.get(0)).unwrap();
     assert_eq!(count(&conn, &format!("SELECT COUNT(*) FROM enhancements WHERE tree_id = {aasimar}")), 21);
@@ -154,6 +192,53 @@ fn writes_trees_enhancements_and_selections() {
     assert!(
         count(&conn, "SELECT COUNT(*) FROM stances WHERE owner_kind IN ('enhancement', 'enhancement_selection')") >= 1
     );
+}
+
+#[test]
+fn writes_enhancement_timings_and_follow_on_modifiers() {
+    let conn = built();
+    let timings = |table: &str, name: &str| -> (i64, Option<i64>, Option<i64>) {
+        conn.query_row(
+            &format!("SELECT id, cooldown_seconds, duration_seconds FROM {table} WHERE name = ?1"),
+            params![name],
+            |r| Ok((r.get(0)?, r.get(1)?, r.get(2)?)),
+        )
+        .unwrap_or_else(|e| panic!("{name}: {e}"))
+    };
+    let follow_on = |kind: &str, id: i64| -> Vec<(String, String)> {
+        conn.prepare(
+            "SELECT effect_type, amounts FROM modifiers WHERE source_kind = ?1 AND source_id = ?2 ORDER BY sort_order",
+        )
+        .unwrap()
+        .query_map(params![kind, id], |r| Ok((r.get(0)?, r.get(1)?)))
+        .unwrap()
+        .map(Result::unwrap)
+        .collect()
+    };
+
+    let (surge, cooldown, duration) = timings("enhancements", "Kensei: Power Surge");
+    assert_eq!((cooldown, duration), (Some(60), Some(60)));
+    assert_eq!(
+        follow_on("enhancement_follow_on", surge),
+        vec![("BonusAttackBonus".to_string(), "[4]".to_string()), ("BonusDamage".to_string(), "[4]".to_string())]
+    );
+    assert_eq!(
+        count(
+            &conn,
+            &format!("SELECT COUNT(*) FROM modifiers WHERE source_kind = 'enhancement' AND source_id = {surge}")
+        ),
+        3
+    );
+
+    let (haste, cooldown, duration) = timings("enhancement_selections", "Haste Boost");
+    assert_eq!((cooldown, duration), (Some(30), Some(20)));
+    assert_eq!(
+        follow_on("enhancement_selection_follow_on", haste),
+        vec![("BonusAlacrity".to_string(), "[10,20,30]".to_string())]
+    );
+
+    let (_, cooldown, duration) = timings("enhancements", "Kensei: Action Boost");
+    assert_eq!((cooldown, duration), (None, None), "the selector itself grants no attack");
 }
 
 #[test]

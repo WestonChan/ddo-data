@@ -206,6 +206,26 @@ async fn sets_feats_races_classes_trees_spells() {
     assert_eq!(chooser["selections"].as_array().unwrap().len(), 3);
     assert_eq!(chooser["requirements"].as_array().unwrap().len(), 2);
 
+    let kensei = trees.as_array().unwrap().iter().find(|t| t["name"] == "Kensei").unwrap();
+    let (_, _, tree) = get(&format!("/v1/enhancement-trees/{}", kensei["id"])).await;
+    let enh = tree["enhancements"].as_array().unwrap();
+    let surge = enh.iter().find(|e| e["internal_name"] == "KenseiCore4").unwrap();
+    assert_eq!(
+        (&surge["cooldown_seconds"], &surge["duration_seconds"]),
+        (&serde_json::json!(60), &serde_json::json!(60))
+    );
+    assert_eq!(surge["follow_on_modifiers"][1]["effect_type"], "BonusDamage");
+    assert_eq!(surge["modifiers"].as_array().unwrap().len(), 3);
+    let boost = enh.iter().find(|e| e["internal_name"] == "KenseiActionBoostI").unwrap();
+    assert!(boost["cooldown_seconds"].is_null());
+    assert_eq!(boost["follow_on_modifiers"], serde_json::json!([]));
+    let haste = &boost["selections"][1];
+    assert_eq!(
+        (&haste["cooldown_seconds"], &haste["duration_seconds"]),
+        (&serde_json::json!(30), &serde_json::json!(20))
+    );
+    assert_eq!(haste["follow_on_modifiers"][0]["amounts"], serde_json::json!([10, 20, 30]));
+
     let (_, _, spells) = get("/v1/spells?q=static").await;
     let id = spells["spells"][0]["id"].as_i64().unwrap();
     let (_, _, spell) = get(&format!("/v1/spells/{id}")).await;
