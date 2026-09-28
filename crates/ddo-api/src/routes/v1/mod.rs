@@ -2,6 +2,7 @@ mod augments;
 mod bonuses;
 mod buffs;
 mod classes;
+mod crafting;
 mod dump;
 mod feats;
 mod items;
@@ -25,7 +26,7 @@ use utoipa_axum::router::OpenApiRouter;
         description = "Dungeons & Dragons Online game data, parsed from Maetrim's DDOBuilderV2 data files and served \
                        read-only. Items, augments, set bonuses, filigrees, sentient gems, feats, stances, guild \
                        and optional buffs, races, classes, enhancement trees, spells and clickies, plus the \
-                       reference vocabularies they share.\n\n\
+                       reference vocabularies they share, and the quest facts and crafting recipes read from ddowiki.\n\n\
                        **Caching.** The dataset is rebuilt only when DDOBuilderV2 changes, so every response is \
                        immutable for a dataset version. Each carries a strong `ETag`, a day-long `Cache-Control` and \
                        an `X-Dataset-Version` header naming the DDOBuilderV2 commit; send `If-None-Match` and expect \
@@ -45,7 +46,8 @@ use utoipa_axum::router::OpenApiRouter;
     tags(
         (name = "meta", description = "Which DDOBuilderV2 commit the data came from, the schema version and row counts"),
         (name = "items", description = "Equipment: weapons, armor, shields, jewelry and clothing with their bonuses, sockets and drop sources, plus the slot, weapon, damage and socket vocabularies they use"),
-        (name = "augments", description = "Augments and crafting-family inserts, with the sockets each one fits"),
+        (name = "augments", description = "Augments and crafting-family inserts, with the sockets each one fits and the crafting recipes that yield them"),
+        (name = "crafting", description = "Crafting systems from the wiki: ingredients, and recipes that turn ingredients into the augments Maetrim's files carry"),
         (name = "sets", description = "Gear set bonuses, sentient-weapon filigree sets, the filigrees themselves and the sentient gems they slot into"),
         (name = "feats", description = "Feats from the standard list and those granted by classes and races, with requirements and effects"),
         (name = "races", description = "Playable races with ability modifiers, granted feats and racial feats"),
@@ -76,6 +78,8 @@ examples! { "v1":
     ("/v1/items/{id}", "items_id"),
     ("/v1/augments", "augments"),
     ("/v1/augments/{id}", "augments_id"),
+    ("/v1/crafting-systems", "crafting-systems"),
+    ("/v1/crafting-systems/{id}", "crafting-systems_id"),
     ("/v1/sets", "sets"),
     ("/v1/sets/{id}", "sets_id"),
     ("/v1/filigrees", "filigrees"),
@@ -105,6 +109,7 @@ pub fn router() -> OpenApiRouter<AppState> {
         .merge(version::router())
         .merge(items::router())
         .merge(augments::router())
+        .merge(crafting::router())
         .merge(sets::router())
         .merge(feats::router())
         .merge(stances::router())

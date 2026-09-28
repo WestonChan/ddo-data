@@ -620,3 +620,83 @@ async fn feat_attacks_carry_cooldown_and_their_bonuses() {
     let shattering = enh.iter().find(|e| e["internal_name"] == "KenseiShatteringStrike").unwrap();
     assert_eq!(shattering["selections"][1]["this_attack_modifiers"][0]["effect_type"], "BonusDamagePercent");
 }
+
+#[tokio::test]
+async fn crafting_systems_list_their_families_and_counts() {
+    let (status, _, json) = get("/v1/crafting-systems").await;
+    assert_eq!(status, StatusCode::OK);
+    let rows = json.as_array().unwrap();
+    assert_eq!(rows.len(), 1);
+    let system = &rows[0];
+    assert!(system["id"].is_number());
+    assert_eq!(system["name"], "Heroic Green Steel");
+    assert_eq!(system["page"], "https://ddowiki.com/page/Green_Steel_items");
+    assert!(system["pack"].is_null());
+    assert_eq!(system["npc"], "Altar of Invasion");
+    assert_eq!(system["families"], serde_json::json!(["Greensteel_Heroic"]));
+    assert_eq!((&system["ingredient_count"], &system["recipe_count"]), (&serde_json::json!(4), &serde_json::json!(3)));
+}
+
+#[tokio::test]
+async fn crafting_system_detail_carries_ingredients_and_recipes_with_augments_and_cost() {
+    let (_, _, list) = get("/v1/crafting-systems").await;
+    let id = list[0]["id"].as_i64().unwrap();
+    let (status, _, system) = get(&format!("/v1/crafting-systems/{id}")).await;
+    assert_eq!(status, StatusCode::OK);
+    assert_eq!(system["name"], "Heroic Green Steel");
+    assert_eq!(system["families"], serde_json::json!(["Greensteel_Heroic"]));
+    let ingredients = system["ingredients"].as_array().unwrap();
+    assert_eq!(ingredients.len(), 4);
+    assert_eq!(ingredients[0]["name"], "Small Shard of Power");
+    assert_eq!(ingredients[0]["tier"], "heroic");
+    assert_eq!(ingredients[0]["bind"], "Bound to Account");
+    assert_eq!(ingredients[0]["source"], "The Shroud");
+    let recipes = system["recipes"].as_array().unwrap();
+    let options: Vec<&str> = recipes.iter().map(|r| r["option"].as_str().unwrap()).collect();
+    assert_eq!(options, ["+5 Fortitude Save", "Minor Fire Guard", "Cleanse an item"]);
+    let fortitude = &recipes[0];
+    assert_eq!(fortitude["tier"], "heroic");
+    assert_eq!(fortitude["slot"], "crafting: accessory invasion");
+    assert!(fortitude["note"].is_null());
+    let augments = fortitude["augments"].as_array().unwrap();
+    assert_eq!(augments.len(), 2, "both +5 Fortitude Save augments in the family");
+    assert!(augments.iter().all(|a| a["name"] == "+5 Fortitude Save" && a["min_level"] == 11 && a["id"].is_number()));
+    assert_eq!(
+        fortitude["cost"],
+        serde_json::json!([
+            { "ingredient": "Small Shard of Power", "tier": "heroic", "quantity": 1 },
+            { "ingredient": "Small Focus of Earth", "tier": "heroic", "quantity": 1 }
+        ])
+    );
+    let cleanse = &recipes[2];
+    assert!(cleanse["slot"].is_null());
+    assert_eq!(cleanse["augments"], serde_json::json!([]));
+    assert_eq!(cleanse["note"], "Returns a crafted item to its blank state; no augment counterpart.");
+    assert_eq!(cleanse["cost"][0]["tier"], "any");
+
+    let (status, _, _) = get("/v1/crafting-systems/9999").await;
+    assert_eq!(status, StatusCode::NOT_FOUND);
+}
+
+#[tokio::test]
+async fn augment_detail_lists_the_crafting_recipes_that_yield_it() {
+    let (_, _, found) = get("/v1/augments?q=minor+fire+guard").await;
+    let id = found["augments"][0]["id"].as_i64().unwrap();
+    let (_, _, augment) = get(&format!("/v1/augments/{id}")).await;
+    assert_eq!(
+        augment["crafting"],
+        serde_json::json!([{
+            "system": "Heroic Green Steel",
+            "tier": "heroic",
+            "option": "Minor Fire Guard",
+            "cost": [
+                { "ingredient": "Small Shard of Power", "tier": "heroic", "quantity": 1 },
+                { "ingredient": "Small Focus of Fire", "tier": "heroic", "quantity": 1 }
+            ]
+        }])
+    );
+    let (_, _, ruby) = get("/v1/augments?q=ruby+of+acid").await;
+    let id = ruby["augments"][0]["id"].as_i64().unwrap();
+    let (_, _, augment) = get(&format!("/v1/augments/{id}")).await;
+    assert_eq!(augment["crafting"], serde_json::json!([]));
+}

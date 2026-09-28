@@ -1,3 +1,4 @@
+use super::crafting::recipes_yielding;
 use crate::db::{bonuses_via, booleanize, count, json_row, json_rows, like_pattern, modifiers_for, page, Filters};
 use crate::error::ApiError;
 use crate::query::ApiQuery;
@@ -105,7 +106,10 @@ async fn list(State(state): State<AppState>, ApiQuery(f): ApiQuery<AugmentFilter
     tag = "augments",
     summary = "Get an augment",
     description = "One augment as the list returns it, plus the raw `modifiers` its bonuses were derived from, \
-                   including the conditional and dice-valued ones that do not reduce to a bonus.",
+                   including the conditional and dice-valued ones that do not reduce to a bonus, and `crafting`: the \
+                   wiki crafting recipes that yield this augment, each with its `system` name, `tier`, the wiki's \
+                   `option` label and its `cost` as `{ ingredient, tier, quantity }` entries (see \
+                   /v1/crafting-systems); empty when no recipe read from the wiki yields it.",
     params(("id" = i64, Path, description = "The augment's numeric id from the list endpoint")), responses((status = 200, description = "The augment with its child collections", body = Value), (status = 404, description = "No augment has this id", body = crate::error::ErrorBody))
 )]
 async fn detail(State(state): State<AppState>, Path(id): Path<i64>) -> Result<Json<Value>, ApiError> {
@@ -114,6 +118,7 @@ async fn detail(State(state): State<AppState>, Path(id): Path<i64>) -> Result<Js
             let mut a = json_row(conn, &format!("SELECT {COLUMNS} FROM augments a WHERE a.id = ?1"), [id])?;
             attach(conn, &mut a)?;
             a["modifiers"] = Value::Array(modifiers_for(conn, "augment", id)?);
+            a["crafting"] = Value::Array(recipes_yielding(conn, id)?);
             Ok(Json(a))
         })
         .await

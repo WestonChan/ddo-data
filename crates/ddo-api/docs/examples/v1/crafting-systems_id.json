@@ -1,0 +1,109 @@
+{
+  "families": [
+    "Greensteel_Heroic"
+  ],
+  "id": 1,
+  "ingredient_count": 4,
+  "ingredients": [
+    {
+      "bind": "Bound to Account",
+      "id": 1,
+      "name": "Small Shard of Power",
+      "source": "The Shroud",
+      "tier": "heroic"
+    },
+    {
+      "bind": null,
+      "id": 2,
+      "name": "Small Focus of Earth",
+      "source": null,
+      "tier": "heroic"
+    },
+    {
+      "bind": null,
+      "id": 3,
+      "name": "Small Focus of Fire",
+      "source": null,
+      "tier": "heroic"
+    }
+  ],
+  "name": "Heroic Green Steel",
+  "npc": "Altar of Invasion",
+  "pack": null,
+  "page": "https://ddowiki.com/page/Green_Steel_items",
+  "recipe_count": 3,
+  "recipes": [
+    {
+      "augments": [
+        {
+          "id": 742,
+          "min_level": 11,
+          "name": "+5 Fortitude Save"
+        },
+        {
+          "id": 745,
+          "min_level": 11,
+          "name": "+5 Fortitude Save"
+        }
+      ],
+      "cost": [
+        {
+          "ingredient": "Small Shard of Power",
+          "quantity": 1,
+          "tier": "heroic"
+        },
+        {
+          "ingredient": "Small Focus of Earth",
+          "quantity": 1,
+          "tier": "heroic"
+        }
+      ],
+      "id": 1,
+      "note": null,
+      "option": "+5 Fortitude Save",
+      "slot": "crafting: accessory invasion",
+      "tier": "heroic"
+    },
+    {
+      "augments": [
+        {
+          "id": 725,
+          "min_level": 11,
+          "name": "Minor Fire Guard"
+        }
+      ],
+      "cost": [
+        {
+          "ingredient": "Small Shard of Power",
+          "quantity": 1,
+          "tier": "heroic"
+        },
+        {
+          "ingredient": "Small Focus of Fire",
+          "quantity": 1,
+          "tier": "heroic"
+        }
+      ],
+      "id": 2,
+      "note": null,
+      "option": "Minor Fire Guard",
+      "slot": "crafting: accessory invasion",
+      "tier": "heroic"
+    },
+    {
+      "augments": [],
+      "cost": [
+        {
+          "ingredient": "Shroud Commendation",
+          "quantity": 5,
+          "tier": "any"
+        }
+      ],
+      "id": 3,
+      "note": "Returns a crafted item to its blank state; no augment counterpart.",
+      "option": "Cleanse an item",
+      "slot": null,
+      "tier": "any"
+    }
+  ]
+}
