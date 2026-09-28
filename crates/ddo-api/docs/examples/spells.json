@@ -1,0 +1,39 @@
+{
+  "limit": 2,
+  "offset": 0,
+  "spells": [
+    {
+      "cost": null,
+      "description": "Creates a ball of Fire that detonates on impact, causing an explosion of flame that\ndoes 1d6+7 Fire damage per caster level (Maximum damage 20d6+140.) to targets\naround it. A successful Reflex save reduces the damage by half.",
+      "icon": "DelayedBlastFireball",
+      "id": 393,
+      "max_caster_level": 20,
+      "metamagics": [
+        "Embolden",
+        "Empower",
+        "Enlarge"
+      ],
+      "name": "Delayed Blast Fireball",
+      "schools": [
+        "Evocation"
+      ]
+    },
+    {
+      "cost": null,
+      "description": "Creates a ball of Fire dealing 1d6+3 per caster level (Maximum damage 10d6+30) Fire\ndamage, to targets around it. A successful Reflex save reduces the damage by half.",
+      "icon": "Fireball",
+      "id": 359,
+      "max_caster_level": 10,
+      "metamagics": [
+        "Embolden",
+        "Empower",
+        "Enlarge"
+      ],
+      "name": "Fireball",
+      "schools": [
+        "Evocation"
+      ]
+    }
+  ],
+  "total": 3
+}

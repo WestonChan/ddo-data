@@ -1,0 +1,17 @@
+[
+  {
+    "category": "ability",
+    "id": 1,
+    "name": "Strength"
+  },
+  {
+    "category": "ability",
+    "id": 2,
+    "name": "Dexterity"
+  },
+  {
+    "category": "ability",
+    "id": 3,
+    "name": "Constitution"
+  }
+]

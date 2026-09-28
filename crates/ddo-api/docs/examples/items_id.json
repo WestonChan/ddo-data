@@ -1,0 +1,85 @@
+{
+  "accepts_sentience": false,
+  "armor": null,
+  "augment_slots": [
+    {
+      "family": "lamordia",
+      "label": "lamordia: melancholic (accessory)",
+      "options": [],
+      "qualifier": "accessory",
+      "slot_type_id": 21,
+      "sort_order": 0,
+      "variant": "melancholic"
+    },
+    {
+      "family": "lamordia",
+      "label": "lamordia: dolorous (accessory)",
+      "options": [],
+      "qualifier": "accessory",
+      "slot_type_id": 22,
+      "sort_order": 1,
+      "variant": "dolorous"
+    },
+    {
+      "family": "standard",
+      "label": "yellow",
+      "options": [],
+      "qualifier": null,
+      "slot_type_id": 6,
+      "sort_order": 2,
+      "variant": "yellow"
+    }
+  ],
+  "bonuses": [
+    {
+      "bonus_type": "Competence",
+      "description": "Competence Listen 10: Passive: 10 Competence bonus to the Listen skill.",
+      "id": 565,
+      "name": "Listen +10",
+      "stat": "Listen",
+      "stat_category": "skill",
+      "value": 10,
+      "value2": null
+    }
+  ],
+  "category": "Jewelry",
+  "clickies": [],
+  "description": "On bringing these goggles over your eyes, you see a flash of a memory: Wasting\naway in the cold, then coming to in a Form distinctly unlike your own.",
+  "drop_location": "Cold Snap, end chest",
+  "effects": [
+    {
+      "description": "Soundproof: Protects against stunning, dazing and disorientation from sound-based spells such as Soundburst and Greater Shout.",
+      "id": 59,
+      "name": "Soundproof",
+      "target": null,
+      "value": null
+    }
+  ],
+  "enhancement_bonus": null,
+  "icon": "Goggles_19",
+  "id": 497,
+  "is_minor_artifact": false,
+  "item_type": null,
+  "material": "Steel",
+  "minimum_level": 8,
+  "modifiers": [],
+  "name": "Agony's Eyes",
+  "quests": [
+    {
+      "epic_level": 36,
+      "id": 239,
+      "is_raid": false,
+      "level": 8,
+      "loot_type": "chest",
+      "name": "Cold Snap",
+      "pack": "Chill of Ravenloft",
+      "patron": "Keepers of Lamordia"
+    }
+  ],
+  "race_required": null,
+  "set": null,
+  "set_name": null,
+  "slot": "Goggles",
+  "weapon": null,
+  "wiki_url": "https://ddowiki.com/page/Item:Agony's_Eyes"
+}

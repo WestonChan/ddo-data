@@ -1,0 +1,67 @@
+{
+  "adds_augment": null,
+  "bonuses": [
+    {
+      "bonus_type": "Artifact",
+      "description": null,
+      "id": 4414,
+      "name": "Abjuration Spell Focus +2",
+      "stat": "Abjuration Spell Focus",
+      "stat_category": "magical",
+      "value": 2,
+      "value2": null
+    }
+  ],
+  "choose_level": false,
+  "description": "Artifact Abjuration Focus +2\nDrops in: ?",
+  "dual_values": false,
+  "effect_description": null,
+  "enter_value": false,
+  "family": "SunAndMoon",
+  "grants_augment": null,
+  "icon": "HistoryBookWhite",
+  "id": 1961,
+  "level_values": null,
+  "level_values2": null,
+  "levels": null,
+  "min_level": 1,
+  "modifiers": [
+    {
+      "amount_type": "Simple",
+      "amounts": [
+        2
+      ],
+      "apply_as_item_effect": false,
+      "bonus": "Artifact",
+      "bonus_type": "Artifact",
+      "cap": null,
+      "damage": null,
+      "dice_bonus": null,
+      "dice_damage": null,
+      "dice_number": null,
+      "dice_sides": null,
+      "display_name": null,
+      "effect_type": "SpellDC",
+      "extra_types": null,
+      "id": 11241,
+      "is_item_specific": false,
+      "is_rare": false,
+      "percent": false,
+      "rank": null,
+      "requirements": [],
+      "sort_order": 0,
+      "stack_source": null,
+      "targets": [
+        "Abjuration"
+      ],
+      "value": null
+    }
+  ],
+  "name": "Solar Gem of Abjuration (Heroic)",
+  "set_bonus": null,
+  "slots": [
+    "sun"
+  ],
+  "suppress_set_bonus": false,
+  "weapon_class": null
+}

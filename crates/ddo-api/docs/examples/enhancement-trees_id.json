@@ -1,0 +1,352 @@
+{
+  "background": "BarbarianBackground",
+  "enhancement_count": 28,
+  "enhancements": [
+    {
+      "arrows": [
+        "ArrowRight"
+      ],
+      "attack": null,
+      "cost_per_rank": [
+        1
+      ],
+      "dcs": [],
+      "description": "When you are raging and miss your attack by rolling 1, you gain Fury for six seconds.\nFury: +1 Rage bonus to attack and damage.\nThis effect stacks and one stack fades every six seconds.",
+      "exclusions": [],
+      "icon": "RavFuriousrage",
+      "id": 284,
+      "internal_name": "RavCore1",
+      "is_clickie": false,
+      "is_tier5": false,
+      "min_spent": 0,
+      "modifiers": [
+        {
+          "amount_type": "Slider",
+          "amounts": [
+            0,
+            0,
+            100
+          ],
+          "apply_as_item_effect": false,
+          "bonus": "Enhancement",
+          "bonus_type": "Enhancement",
+          "cap": null,
+          "damage": null,
+          "dice_bonus": null,
+          "dice_damage": null,
+          "dice_number": null,
+          "dice_sides": null,
+          "display_name": null,
+          "effect_type": "CreateSlider",
+          "extra_types": null,
+          "id": 2381,
+          "is_item_specific": false,
+          "is_rare": false,
+          "percent": false,
+          "rank": null,
+          "requirements": [],
+          "sort_order": 0,
+          "stack_source": null,
+          "targets": [
+            "Fury"
+          ],
+          "value": null
+        },
+        {
+          "amount_type": "SliderValue",
+          "amounts": [
+            1
+          ],
+          "apply_as_item_effect": false,
+          "bonus": "Rage",
+          "bonus_type": "Rage",
+          "cap": null,
+          "damage": null,
+          "dice_bonus": null,
+          "dice_damage": null,
+          "dice_number": null,
+          "dice_sides": null,
+          "display_name": null,
+          "effect_type": "Weapon_AttackAndDamage",
+          "extra_types": null,
+          "id": 2382,
+          "is_item_specific": false,
+          "is_rare": false,
+          "percent": false,
+          "rank": null,
+          "requirements": [],
+          "sort_order": 1,
+          "stack_source": "Fury",
+          "targets": [
+            "All"
+          ],
+          "value": null
+        }
+      ],
+      "name": "Ravager: Furious Rage",
+      "ranks": 1,
+      "requirements": [
+        {
+          "group_index": 0,
+          "group_kind": "all",
+          "items": [
+            "Barbarian"
+          ],
+          "req_type": "ClassMinLevel",
+          "value": "1"
+        },
+        {
+          "group_index": 1,
+          "group_kind": "none_of",
+          "items": [
+            "DLRavCore1"
+          ],
+          "req_type": "Enhancement",
+          "value": null
+        }
+      ],
+      "selections": [],
+      "stances": [],
+      "x": 0,
+      "y": 0
+    },
+    {
+      "arrows": [
+        "ArrowRight"
+      ],
+      "attack": null,
+      "cost_per_rank": [
+        1
+      ],
+      "dcs": [],
+      "description": "Passive: +5 Melee power and +10 Healing Amplification",
+      "exclusions": [],
+      "icon": "RavPainTouch",
+      "id": 285,
+      "internal_name": "RavCore2",
+      "is_clickie": false,
+      "is_tier5": false,
+      "min_spent": 5,
+      "modifiers": [
+        {
+          "amount_type": "Simple",
+          "amounts": [
+            5
+          ],
+          "apply_as_item_effect": false,
+          "bonus": "Enhancement",
+          "bonus_type": "Enhancement",
+          "cap": null,
+          "damage": null,
+          "dice_bonus": null,
+          "dice_damage": null,
+          "dice_number": null,
+          "dice_sides": null,
+          "display_name": null,
+          "effect_type": "MeleePower",
+          "extra_types": null,
+          "id": 2383,
+          "is_item_specific": false,
+          "is_rare": false,
+          "percent": false,
+          "rank": null,
+          "requirements": [],
+          "sort_order": 0,
+          "stack_source": null,
+          "targets": null,
+          "value": null
+        },
+        {
+          "amount_type": "Simple",
+          "amounts": [
+            10
+          ],
+          "apply_as_item_effect": false,
+          "bonus": "Enhancement",
+          "bonus_type": "Enhancement",
+          "cap": null,
+          "damage": null,
+          "dice_bonus": null,
+          "dice_damage": null,
+          "dice_number": null,
+          "dice_sides": null,
+          "display_name": null,
+          "effect_type": "HealingAmplification",
+          "extra_types": null,
+          "id": 2384,
+          "is_item_specific": false,
+          "is_rare": false,
+          "percent": false,
+          "rank": null,
+          "requirements": [],
+          "sort_order": 1,
+          "stack_source": null,
+          "targets": null,
+          "value": null
+        }
+      ],
+      "name": "Ravager: Pain Touch I",
+      "ranks": 1,
+      "requirements": [
+        {
+          "group_index": 0,
+          "group_kind": "all",
+          "items": [
+            "Barbarian"
+          ],
+          "req_type": "ClassMinLevel",
+          "value": "3"
+        },
+        {
+          "group_index": 0,
+          "group_kind": "all",
+          "items": [
+            "RavCore1"
+          ],
+          "req_type": "Enhancement",
+          "value": null
+        }
+      ],
+      "selections": [],
+      "stances": [],
+      "x": 1,
+      "y": 0
+    },
+    {
+      "arrows": [
+        "ArrowRight"
+      ],
+      "attack": null,
+      "cost_per_rank": [
+        1
+      ],
+      "dcs": [
+        {
+          "amount": [
+            20
+          ],
+          "base_class_level": null,
+          "class_level": null,
+          "dc_type": "Crushing Despair",
+          "dc_versus": "Will",
+          "description": "When you score a vorpal hit in melee, you inflict Crushing Despair on nearby\nenemies for 30 seconds on a failed DC 20 Will saving throw.",
+          "icon": "RavDemoralizingSuccess",
+          "mod_ability": null,
+          "name": "Ravager: Demoralizing Success",
+          "other": null,
+          "skill": null,
+          "tactical": null
+        }
+      ],
+      "description": "You gain +30 hit points and +10 Healing Amplification. When you score a vorpal\nhit in melee, you inflict Crushing Despair on nearby enemies for 30 seconds on\na failed DC 20 Will saving throw. You then inflict Vulnerable Will for\n15 seconds, regardless of the Crushing Despair saving throw.",
+      "exclusions": [],
+      "icon": "RavDemoralizingSuccess",
+      "id": 286,
+      "internal_name": "RavCore3",
+      "is_clickie": false,
+      "is_tier5": false,
+      "min_spent": 10,
+      "modifiers": [
+        {
+          "amount_type": "Simple",
+          "amounts": [
+            30
+          ],
+          "apply_as_item_effect": false,
+          "bonus": "Enhancement",
+          "bonus_type": "Enhancement",
+          "cap": null,
+          "damage": null,
+          "dice_bonus": null,
+          "dice_damage": null,
+          "dice_number": null,
+          "dice_sides": null,
+          "display_name": null,
+          "effect_type": "Hitpoints",
+          "extra_types": null,
+          "id": 2385,
+          "is_item_specific": false,
+          "is_rare": false,
+          "percent": false,
+          "rank": null,
+          "requirements": [],
+          "sort_order": 0,
+          "stack_source": null,
+          "targets": null,
+          "value": null
+        },
+        {
+          "amount_type": "Simple",
+          "amounts": [
+            10
+          ],
+          "apply_as_item_effect": false,
+          "bonus": "Enhancement",
+          "bonus_type": "Enhancement",
+          "cap": null,
+          "damage": null,
+          "dice_bonus": null,
+          "dice_damage": null,
+          "dice_number": null,
+          "dice_sides": null,
+          "display_name": null,
+          "effect_type": "HealingAmplification",
+          "extra_types": null,
+          "id": 2386,
+          "is_item_specific": false,
+          "is_rare": false,
+          "percent": false,
+          "rank": null,
+          "requirements": [],
+          "sort_order": 1,
+          "stack_source": null,
+          "targets": null,
+          "value": null
+        }
+      ],
+      "name": "Ravager: Demoralizing Success",
+      "ranks": 1,
+      "requirements": [
+        {
+          "group_index": 0,
+          "group_kind": "all",
+          "items": [
+            "Barbarian"
+          ],
+          "req_type": "ClassMinLevel",
+          "value": "6"
+        },
+        {
+          "group_index": 0,
+          "group_kind": "all",
+          "items": [
+            "RavCore2"
+          ],
+          "req_type": "Enhancement",
+          "value": null
+        }
+      ],
+      "selections": [],
+      "stances": [],
+      "x": 2,
+      "y": 0
+    }
+  ],
+  "icon": "Barbarian",
+  "id": 11,
+  "is_legacy": false,
+  "kind": "class",
+  "name": "Ravager (Barbarian)",
+  "requirements": [
+    {
+      "group_index": 0,
+      "group_kind": "all",
+      "items": [
+        "Barbarian"
+      ],
+      "req_type": "Class",
+      "value": null
+    }
+  ],
+  "version": 1
+}

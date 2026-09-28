@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "dataset": {
+    "upstream_sha": "31ef0201ea8e28604de2b6242988aee6d63733b0",
+    "built_at": "2026-09-28T00:17:46Z"
+  },
+  "counts": {
+    "augments": 2246,
+    "bonuses": 4638,
+    "classes": 28,
+    "clickies": 219,
+    "enhancement_trees": 114,
+    "enhancements": 3228,
+    "feats": 1022,
+    "filigrees": 437,
+    "items": 8487,
+    "modifiers": 13515,
+    "quests": 570,
+    "races": 30,
+    "requirements": 9658,
+    "set_bonuses": 327,
+    "spells": 706
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "augments": [
+    {
+      "adds_augment": null,
+      "bonuses": [
+        {
+          "bonus_type": "Artifact",
+          "description": null,
+          "id": 4414,
+          "name": "Abjuration Spell Focus +2",
+          "stat": "Abjuration Spell Focus",
+          "stat_category": "magical",
+          "value": 2,
+          "value2": null
+        }
+      ],
+      "choose_level": false,
+      "description": "Artifact Abjuration Focus +2\nDrops in: ?",
+      "dual_values": false,
+      "effect_description": null,
+      "enter_value": false,
+      "family": "SunAndMoon",
+      "grants_augment": null,
+      "icon": "HistoryBookWhite",
+      "id": 1961,
+      "level_values": null,
+      "level_values2": null,
+      "levels": null,
+      "min_level": 1,
+      "name": "Solar Gem of Abjuration (Heroic)",
+      "set_bonus": null,
+      "slots": [
+        "sun"
+      ],
+      "suppress_set_bonus": false,
+      "weapon_class": null
+    },
+    {
+      "adds_augment": null,
+      "bonuses": [
+        {
+          "bonus_type": "Artifact",
+          "description": null,
+          "id": 4593,
+          "name": "Abjuration Spell Focus +4",
+          "stat": "Abjuration Spell Focus",
+          "stat_category": "magical",
+          "value": 4,
+          "value2": null
+        }
+      ],
+      "choose_level": false,
+      "description": "Artifact Abjuration Focus +4\nDrops in: ?",
+      "dual_values": false,
+      "effect_description": null,
+      "enter_value": false,
+      "family": "SunAndMoon",
+      "grants_augment": null,
+      "icon": "HistoryBookWhite",
+      "id": 2121,
+      "level_values": null,
+      "level_values2": null,
+      "levels": null,
+      "min_level": 30,
+      "name": "Solar Gem of Abjuration (Legendary)",
+      "set_bonus": null,
+      "slots": [
+        "sun"
+      ],
+      "suppress_set_bonus": false,
+      "weapon_class": null
+    }
+  ],
+  "limit": 2,
+  "offset": 0,
+  "total": 171
+}

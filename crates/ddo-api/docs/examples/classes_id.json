@@ -1,0 +1,238 @@
+{
+  "alignments": [
+    "Any"
+  ],
+  "auto_buy_skills": [
+    "Concentration",
+    "Spellcraft"
+  ],
+  "automatic_feats": [
+    {
+      "feat_id": 260,
+      "level": 1,
+      "name": "Arcane Lore"
+    },
+    {
+      "feat_id": 23,
+      "level": 1,
+      "name": "Dismiss Charm"
+    },
+    {
+      "feat_id": 1020,
+      "level": 1,
+      "name": "Inscribe Wizard Scroll"
+    }
+  ],
+  "bab": [
+    0,
+    0.5,
+    1
+  ],
+  "base_class": null,
+  "base_class_id": null,
+  "casting_stats": [
+    "Intelligence"
+  ],
+  "class_skills": [
+    "Concentration",
+    "Repair",
+    "Spellcraft"
+  ],
+  "class_specific_feat_types": [
+    "Metamagic"
+  ],
+  "description": "A Wizard is an adaptive and versatile arcane caster and gain five extra\nfeats as they level to further enhance their spellcasting. Wizards\nare able to switch spells after resting at shrines or while in\ntaverns, ensuring they always have the right spell for the job.\nWizards have more spells available to them than a sorcerer, but do\nnot have as many spell points. Wizards are often called 'DC casters'\ndue to their ability to focus not on offensive spells but spells that\ninstantly kill, control, charm, debuff, or otherwise disable or\nweaken enemies. They must focus on their Intelligence to increase\ntheir spell points and the effectiveness of their spells.",
+  "feat_slots": [
+    {
+      "auto_populate": false,
+      "feat_type": "Metamagic Feat",
+      "level": 1,
+      "singular": false,
+      "update_list": [
+        "Augment Summoning",
+        "Empower Spell",
+        "Enlarge Spell"
+      ]
+    },
+    {
+      "auto_populate": false,
+      "feat_type": "Metamagic Feat",
+      "level": 5,
+      "singular": false,
+      "update_list": null
+    },
+    {
+      "auto_populate": false,
+      "feat_type": "Metamagic Feat",
+      "level": 10,
+      "singular": false,
+      "update_list": null
+    }
+  ],
+  "feats": [
+    {
+      "acquire": "Automatic",
+      "description": "You are able to inscribe wizard spells from scrolls into your spell book.\nThis action will destroy the scroll.",
+      "icon": "InscribeWizardScroll",
+      "id": 1020,
+      "max_times_acquire": null,
+      "name": "Inscribe Wizard Scroll"
+    },
+    {
+      "acquire": "Train",
+      "description": "You recall more about your past life as a wizard.\nYou have +1 to the DC's of spells you cast and can cast the magic missile spell\nten times per rest, creating a missile of magical energy that darts forth and\nunerringly strikes its target inflicting 1d4+1 force damage.\nFor every 2 caster levels beyond first you gain an additional missile,\nmaximum 10 missiles.\nD&D Dice: Deals 1d4+1 force damage per missile (max 10 missiles)",
+      "icon": "PastLifeWizard",
+      "id": 1022,
+      "max_times_acquire": null,
+      "name": "Past Life: Arcane Initiate"
+    },
+    {
+      "acquire": "HeroicPastLife",
+      "description": "You were a Wizard in a past life.\nYou occasionally find yourself desiring a good book.\nEach time you acquire this feat you gain +2 to spell penetration checks and the\nDC's of Wands you use.\nThis feat can be stacked up to three times.",
+      "icon": "PastLifeWizard",
+      "id": 1021,
+      "max_times_acquire": 3,
+      "name": "Past Life: Wizard"
+    }
+  ],
+  "fortitude": "poor",
+  "hit_points": 6,
+  "id": 28,
+  "large_icon": "Wizard",
+  "name": "Wizard",
+  "not_heroic": false,
+  "reflex": "poor",
+  "skill_points": 2,
+  "small_icon": "Wizard_Small",
+  "spell_points_per_level": [
+    0,
+    50,
+    75
+  ],
+  "spell_slots": {
+    "1": [
+      3,
+      0,
+      0
+    ],
+    "10": [
+      5,
+      5,
+      4
+    ],
+    "11": [
+      5,
+      5,
+      5
+    ],
+    "12": [
+      5,
+      5,
+      5
+    ],
+    "13": [
+      5,
+      5,
+      5
+    ],
+    "14": [
+      5,
+      5,
+      5
+    ],
+    "15": [
+      5,
+      5,
+      5
+    ],
+    "16": [
+      5,
+      5,
+      5
+    ],
+    "17": [
+      5,
+      5,
+      5
+    ],
+    "18": [
+      5,
+      5,
+      5
+    ],
+    "19": [
+      5,
+      5,
+      5
+    ],
+    "2": [
+      4,
+      0,
+      0
+    ],
+    "20": [
+      5,
+      5,
+      5
+    ],
+    "3": [
+      4,
+      2,
+      0
+    ],
+    "4": [
+      4,
+      3,
+      0
+    ],
+    "5": [
+      4,
+      3,
+      2
+    ],
+    "6": [
+      4,
+      4,
+      3
+    ],
+    "7": [
+      5,
+      4,
+      3
+    ],
+    "8": [
+      5,
+      4,
+      4
+    ],
+    "9": [
+      5,
+      5,
+      4
+    ]
+  },
+  "spells": [
+    {
+      "cost": 4,
+      "max_caster_level": 5,
+      "name": "Acid Spray",
+      "spell_id": 331,
+      "spell_level": 1
+    },
+    {
+      "cost": 4,
+      "max_caster_level": 5,
+      "name": "Burning Hands",
+      "spell_id": 332,
+      "spell_level": 1
+    },
+    {
+      "cost": 6,
+      "max_caster_level": null,
+      "name": "Cause Fear",
+      "spell_id": 90,
+      "spell_level": 1
+    }
+  ],
+  "will": "good"
+}

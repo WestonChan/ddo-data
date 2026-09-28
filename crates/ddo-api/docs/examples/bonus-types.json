@@ -1,0 +1,17 @@
+[
+  {
+    "id": 1,
+    "name": "Enhancement",
+    "stacks_with_self": false
+  },
+  {
+    "id": 2,
+    "name": "Competence",
+    "stacks_with_self": false
+  },
+  {
+    "id": 3,
+    "name": "Insight",
+    "stacks_with_self": false
+  }
+]

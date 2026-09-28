@@ -1,0 +1,32 @@
+[
+  {
+    "epic_level": 37,
+    "favor": 6,
+    "id": 310,
+    "is_raid": false,
+    "level": 11,
+    "name": "A Blood Pact",
+    "pack": "Terror of Demogorgon",
+    "patron": "Battlehammer Expedition"
+  },
+  {
+    "epic_level": 27,
+    "favor": 7,
+    "id": 510,
+    "is_raid": false,
+    "level": 19,
+    "name": "A Break in the Ice",
+    "pack": "Shadowfell Conspiracy",
+    "patron": "The Harpers"
+  },
+  {
+    "epic_level": 24,
+    "favor": 6,
+    "id": 380,
+    "is_raid": false,
+    "level": 14,
+    "name": "A Cabal for One",
+    "pack": "Ruins of Gianthold",
+    "patron": "Agents of Argonnessen"
+  }
+]

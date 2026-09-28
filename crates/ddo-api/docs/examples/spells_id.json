@@ -1,0 +1,66 @@
+{
+  "classes": [
+    {
+      "class": "Sorcerer",
+      "class_id": 23,
+      "cost": 15,
+      "max_caster_level": 10,
+      "spell_level": 3
+    },
+    {
+      "class": "Wild Mage",
+      "class_id": 27,
+      "cost": 15,
+      "max_caster_level": 10,
+      "spell_level": 3
+    },
+    {
+      "class": "Wizard",
+      "class_id": 28,
+      "cost": 15,
+      "max_caster_level": 10,
+      "spell_level": 3
+    }
+  ],
+  "cost": null,
+  "damage": [
+    {
+      "base_dice_bonus": null,
+      "base_dice_number": null,
+      "base_dice_sides": null,
+      "bonus_dice_bonus": 3,
+      "bonus_dice_number": 1,
+      "bonus_dice_sides": 6,
+      "damage": "Fire",
+      "per_caster_levels": null,
+      "spell_power": "Fire"
+    }
+  ],
+  "dcs": [
+    {
+      "amount": null,
+      "casting_stat_mod": true,
+      "dc_type": "Half Damage",
+      "dc_versus": "Reflex",
+      "mod_abilities": null,
+      "schools": [
+        "Evocation"
+      ]
+    }
+  ],
+  "description": "Creates a ball of Fire dealing 1d6+3 per caster level (Maximum damage 10d6+30) Fire\ndamage, to targets around it. A successful Reflex save reduces the damage by half.",
+  "icon": "Fireball",
+  "id": 359,
+  "max_caster_level": 10,
+  "metamagics": [
+    "Embolden",
+    "Empower",
+    "Enlarge"
+  ],
+  "modifiers": [],
+  "name": "Fireball",
+  "schools": [
+    "Evocation"
+  ],
+  "stances": []
+}

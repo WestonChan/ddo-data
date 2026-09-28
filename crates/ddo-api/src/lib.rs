@@ -1,4 +1,5 @@
 mod db;
+mod docs;
 pub mod error;
 mod etag;
 mod routes;
@@ -64,6 +65,7 @@ pub fn app(state: AppState) -> Router {
     let (api_router, mut api) =
         OpenApiRouter::with_openapi(ApiDoc::openapi()).merge(routes::router()).split_for_parts();
     api.info.version = format!("dataset {}", state.dataset().upstream_sha);
+    docs::attach_examples(&mut api);
     let spec = Arc::new(api.clone());
 
     let mut router = api_router.merge(Scalar::with_url("/docs", api));

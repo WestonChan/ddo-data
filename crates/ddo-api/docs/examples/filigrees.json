@@ -1,0 +1,209 @@
+[
+  {
+    "description": "+2 Wisdom\nRare: +4 MRR",
+    "icon": "AbidingPathElementalAvatar",
+    "id": 216,
+    "menu": "Raid Filigrees",
+    "modifiers": [
+      {
+        "amount_type": "Simple",
+        "amounts": [
+          2
+        ],
+        "apply_as_item_effect": false,
+        "bonus": "Stacking",
+        "bonus_type": "Stacking",
+        "cap": null,
+        "damage": null,
+        "dice_bonus": null,
+        "dice_damage": null,
+        "dice_number": null,
+        "dice_sides": null,
+        "display_name": null,
+        "effect_type": "AbilityBonus",
+        "extra_types": null,
+        "id": 12967,
+        "is_item_specific": false,
+        "is_rare": false,
+        "percent": false,
+        "rank": null,
+        "requirements": [],
+        "sort_order": 0,
+        "stack_source": null,
+        "targets": [
+          "Wisdom"
+        ],
+        "value": null
+      },
+      {
+        "amount_type": "Simple",
+        "amounts": [
+          4
+        ],
+        "apply_as_item_effect": false,
+        "bonus": "Stacking",
+        "bonus_type": "Stacking",
+        "cap": null,
+        "damage": null,
+        "dice_bonus": null,
+        "dice_damage": null,
+        "dice_number": null,
+        "dice_sides": null,
+        "display_name": "Abiding Path/Elemental Avatar: +4 MRR",
+        "effect_type": "MRR",
+        "extra_types": null,
+        "id": 12968,
+        "is_item_specific": false,
+        "is_rare": true,
+        "percent": false,
+        "rank": null,
+        "requirements": [],
+        "sort_order": 1,
+        "stack_source": null,
+        "targets": null,
+        "value": null
+      }
+    ],
+    "name": "Abiding Path/Elemental Avatar +2 Wisdom",
+    "set_id": null,
+    "set_name": null
+  },
+  {
+    "description": "+1 Charisma\nRare: +2 MRR",
+    "icon": "AngelicWings",
+    "id": 1,
+    "menu": "Sinister Secret of Saltmarsh",
+    "modifiers": [
+      {
+        "amount_type": "Simple",
+        "amounts": [
+          1
+        ],
+        "apply_as_item_effect": false,
+        "bonus": "Stacking",
+        "bonus_type": "Stacking",
+        "cap": null,
+        "damage": null,
+        "dice_bonus": null,
+        "dice_damage": null,
+        "dice_number": null,
+        "dice_sides": null,
+        "display_name": null,
+        "effect_type": "AbilityBonus",
+        "extra_types": null,
+        "id": 12446,
+        "is_item_specific": false,
+        "is_rare": false,
+        "percent": false,
+        "rank": null,
+        "requirements": [],
+        "sort_order": 0,
+        "stack_source": null,
+        "targets": [
+          "Charisma"
+        ],
+        "value": null
+      },
+      {
+        "amount_type": "Simple",
+        "amounts": [
+          2
+        ],
+        "apply_as_item_effect": false,
+        "bonus": "Stacking",
+        "bonus_type": "Stacking",
+        "cap": null,
+        "damage": null,
+        "dice_bonus": null,
+        "dice_damage": null,
+        "dice_number": null,
+        "dice_sides": null,
+        "display_name": "Angelic Wings: Charisma: MRR",
+        "effect_type": "MRR",
+        "extra_types": null,
+        "id": 12447,
+        "is_item_specific": false,
+        "is_rare": true,
+        "percent": false,
+        "rank": null,
+        "requirements": [],
+        "sort_order": 1,
+        "stack_source": null,
+        "targets": null,
+        "value": null
+      }
+    ],
+    "name": "Angelic Wings: +1 Charisma",
+    "set_id": 264,
+    "set_name": "Angelic Wings"
+  },
+  {
+    "description": "+1 Wisdom\nRare: +2 MRR",
+    "icon": "AngelicWings",
+    "id": 7,
+    "menu": "Sinister Secret of Saltmarsh",
+    "modifiers": [
+      {
+        "amount_type": "Simple",
+        "amounts": [
+          1
+        ],
+        "apply_as_item_effect": false,
+        "bonus": "Stacking",
+        "bonus_type": "Stacking",
+        "cap": null,
+        "damage": null,
+        "dice_bonus": null,
+        "dice_damage": null,
+        "dice_number": null,
+        "dice_sides": null,
+        "display_name": null,
+        "effect_type": "AbilityBonus",
+        "extra_types": null,
+        "id": 12458,
+        "is_item_specific": false,
+        "is_rare": false,
+        "percent": false,
+        "rank": null,
+        "requirements": [],
+        "sort_order": 0,
+        "stack_source": null,
+        "targets": [
+          "Wisdom"
+        ],
+        "value": null
+      },
+      {
+        "amount_type": "Simple",
+        "amounts": [
+          2
+        ],
+        "apply_as_item_effect": false,
+        "bonus": "Stacking",
+        "bonus_type": "Stacking",
+        "cap": null,
+        "damage": null,
+        "dice_bonus": null,
+        "dice_damage": null,
+        "dice_number": null,
+        "dice_sides": null,
+        "display_name": "Angelic Wings: Wisdom: MRR",
+        "effect_type": "MRR",
+        "extra_types": null,
+        "id": 12459,
+        "is_item_specific": false,
+        "is_rare": true,
+        "percent": false,
+        "rank": null,
+        "requirements": [],
+        "sort_order": 1,
+        "stack_source": null,
+        "targets": null,
+        "value": null
+      }
+    ],
+    "name": "Angelic Wings: +1 Wisdom",
+    "set_id": 264,
+    "set_name": "Angelic Wings"
+  }
+]

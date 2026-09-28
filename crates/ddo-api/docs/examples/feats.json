@@ -1,0 +1,41 @@
+{
+  "feats": [
+    {
+      "acquire": "Train",
+      "auto_acquire_ignores_requirements": false,
+      "description": "Deals: +20% damage.\n+1 Critical Threat Range\n+1 Critical Multiplier\nTactical Melee Cleave: Activate this ability to attack one or more enemies in\nan arc in front of you.\nCooldown: 5 seconds",
+      "groups": [
+        "Standard",
+        "Epic Feat"
+      ],
+      "icon": "Cleave",
+      "id": 12,
+      "max_times_acquire": null,
+      "name": "Cleave",
+      "source_id": null,
+      "source_kind": "standard",
+      "source_name": null,
+      "sphere": null
+    },
+    {
+      "acquire": "Train",
+      "auto_acquire_ignores_requirements": false,
+      "description": "Deals: +40% damage.\n+1 Critical Threat Range\n+2 Critical Multiplier\nTactical Melee Cleave: Activate this ability to attack one or more enemies in\na wide arc in front of you.\nCooldown: 5 seconds",
+      "groups": [
+        "Standard",
+        "Epic Feat"
+      ],
+      "icon": "GreatCleave",
+      "id": 48,
+      "max_times_acquire": null,
+      "name": "Great Cleave",
+      "source_id": null,
+      "source_kind": "standard",
+      "source_name": null,
+      "sphere": null
+    }
+  ],
+  "limit": 2,
+  "offset": 0,
+  "total": 3
+}

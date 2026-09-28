@@ -1,0 +1,26 @@
+#!/bin/zsh
+set -e
+A="${1:-https://ddo-data.fly.dev}"
+OUT="$(dirname "$0")/examples"
+TRIM='def trim: if type=="array" then .[:3] | map(trim) elif type=="object" then with_entries(.value |= trim) else . end; trim'
+fetch() { curl -sf "$A$2" | jq "$TRIM" > "$OUT/$1.json"; printf "%-28s %6s bytes\n" "$1" "$(wc -c < "$OUT/$1.json")"; }
+fetch version "/v1/version"
+for t in stats bonus-types equipment-slots weapon-types damage-types augment-slot-types adventure-packs patrons quests; do fetch "$t" "/v1/$t"; done
+fetch items "/v1/items?q=cloak%20of%20winter&limit=2"
+fetch items_id "/v1/items/497"
+fetch augments "/v1/augments?slot=sun&limit=2"
+fetch augments_id "/v1/augments/1961"
+fetch sets "/v1/sets"
+fetch sets_id "/v1/sets/133"
+fetch filigrees "/v1/filigrees"
+fetch feats "/v1/feats?q=cleave&limit=2"
+fetch feats_id "/v1/feats/12"
+fetch races "/v1/races"
+fetch races_id "/v1/races/1"
+fetch classes "/v1/classes"
+fetch classes_id "/v1/classes/28"
+fetch enhancement-trees "/v1/enhancement-trees"
+fetch enhancement-trees_id "/v1/enhancement-trees/11"
+fetch spells "/v1/spells?q=fireball&limit=2"
+fetch spells_id "/v1/spells/359"
+fetch clickies "/v1/clickies"

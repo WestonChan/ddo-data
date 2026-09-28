@@ -1,0 +1,65 @@
+[
+  {
+    "background": "WarlockBackground",
+    "enhancement_count": 30,
+    "icon": "Warlock",
+    "id": 107,
+    "is_legacy": false,
+    "kind": "class",
+    "name": "Acolyte of the Skin",
+    "requirements": [
+      {
+        "group_index": 0,
+        "group_kind": "all",
+        "items": [
+          "Acolyte of the Skin"
+        ],
+        "req_type": "Class",
+        "value": null
+      }
+    ],
+    "version": 1
+  },
+  {
+    "background": "SorcererBackground",
+    "enhancement_count": 29,
+    "icon": "Sorcerer",
+    "id": 93,
+    "is_legacy": false,
+    "kind": "class",
+    "name": "Air Savant",
+    "requirements": [
+      {
+        "group_index": 0,
+        "group_kind": "all",
+        "items": [
+          "Sorcerer"
+        ],
+        "req_type": "BaseClass",
+        "value": null
+      }
+    ],
+    "version": 1
+  },
+  {
+    "background": "FavoredSoulBackground",
+    "enhancement_count": 31,
+    "icon": "Favored Soul",
+    "id": 42,
+    "is_legacy": false,
+    "kind": "class",
+    "name": "Angel of Vengeance",
+    "requirements": [
+      {
+        "group_index": 0,
+        "group_kind": "all",
+        "items": [
+          "Favored Soul"
+        ],
+        "req_type": "Class",
+        "value": null
+      }
+    ],
+    "version": 1
+  }
+]

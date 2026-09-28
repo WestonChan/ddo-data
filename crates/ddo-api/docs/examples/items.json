@@ -1,0 +1,31 @@
+{
+  "items": [
+    {
+      "category": "Clothing",
+      "enhancement_bonus": null,
+      "icon": "Cloak_8",
+      "id": 1429,
+      "is_raid": false,
+      "item_type": null,
+      "minimum_level": 5,
+      "name": "Cloak of Winter",
+      "pack": "Fables of the Feywild",
+      "slot": "Back"
+    },
+    {
+      "category": "Clothing",
+      "enhancement_bonus": null,
+      "icon": "Cloak_8",
+      "id": 1420,
+      "is_raid": false,
+      "item_type": null,
+      "minimum_level": 12,
+      "name": "Cloak of Winter's End (level 12)",
+      "pack": null,
+      "slot": "Back"
+    }
+  ],
+  "limit": 2,
+  "offset": 0,
+  "total": 11
+}

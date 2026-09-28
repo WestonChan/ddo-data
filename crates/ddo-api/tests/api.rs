@@ -286,3 +286,70 @@ async fn openapi_describes_every_operation_parameter_and_tag() {
     }
     assert!(checked >= 25, "only {checked} operations in the spec");
 }
+
+fn shape(value: &Value) -> Value {
+    match value {
+        Value::Object(map) => Value::Object(map.iter().map(|(k, v)| (k.clone(), shape(v))).collect()),
+        Value::Array(items) => Value::Array(items.iter().take(1).map(shape).collect()),
+        Value::Null => Value::Null,
+        other => Value::String(
+            match other {
+                Value::Bool(_) => "bool",
+                Value::Number(_) => "number",
+                _ => "string",
+            }
+            .into(),
+        ),
+    }
+}
+
+fn assert_same_shape(at: &str, example: &Value, real: &Value) {
+    match (example, real) {
+        (Value::Object(e), Value::Object(r)) => {
+            let ek: Vec<_> = e.keys().collect();
+            let rk: Vec<_> = r.keys().collect();
+            assert_eq!(ek, rk, "{at}: example keys differ from a real response");
+            for (k, ev) in e {
+                assert_same_shape(&format!("{at}.{k}"), ev, &r[k]);
+            }
+        }
+        (Value::Array(e), Value::Array(r)) => {
+            if let (Some(ev), Some(rv)) = (e.first(), r.first()) {
+                assert_same_shape(&format!("{at}[0]"), ev, rv);
+            }
+        }
+        (Value::Null, _) | (_, Value::Null) => {}
+        (e, r) => assert_eq!(shape(e), shape(r), "{at}: example value type differs from a real response"),
+    }
+}
+
+async fn sample_for(path: &str) -> Value {
+    if let Some(list_path) = path.strip_suffix("/{id}") {
+        let (_, _, list) = get(list_path).await;
+        let rows = list
+            .as_array()
+            .cloned()
+            .or_else(|| list.as_object().and_then(|o| o.values().find_map(|v| v.as_array().cloned())));
+        let id = rows.and_then(|r| r.first().and_then(|row| row["id"].as_i64())).expect("a row to sample");
+        get(&format!("{list_path}/{id}")).await.2
+    } else {
+        get(path).await.2
+    }
+}
+
+#[tokio::test]
+async fn openapi_carries_a_real_example_for_every_json_response() {
+    let (_, _, spec) = get("/openapi.json").await;
+    let mut checked = 0;
+    for (path, item) in spec["paths"].as_object().expect("paths") {
+        let Some(content) = item["get"]["responses"]["200"]["content"]["application/json"].as_object() else {
+            continue;
+        };
+        let example = content.get("example").unwrap_or(&Value::Null);
+        assert!(!example.is_null(), "GET {path}: 200 response has no example");
+        let real = sample_for(path).await;
+        assert_same_shape(&format!("GET {path}"), example, &real);
+        checked += 1;
+    }
+    assert!(checked >= 25, "only {checked} JSON responses carry examples");
+}

@@ -1,0 +1,62 @@
+{
+  "ability_modifiers": [
+    {
+      "modifier": 2,
+      "stat": "Wisdom"
+    }
+  ],
+  "auto_buy_skills": [],
+  "build_points": [
+    28,
+    32,
+    34
+  ],
+  "description": "Carrying the blood of a celestial, an Aasimar is usually good-aligned and fights\nagainst evil in the world.",
+  "feat_slots": [
+    {
+      "feat_type": "Aasimar Bond",
+      "level": 1,
+      "update_list": null
+    }
+  ],
+  "feats": [
+    {
+      "acquire": "Automatic",
+      "description": "You gain a racial lay on hands SLA which heals for 10 + Character Level * Wisdom Modifier.\n+2 Racial bonus to Heal, Listen and Spot.\n+5 Resistance to Cold, Acid and Electricity",
+      "icon": "AasimarRacialTraits",
+      "id": 364,
+      "max_times_acquire": null,
+      "name": "Aasimar Racial Traits"
+    },
+    {
+      "acquire": "Train",
+      "description": "While fallen stance is active you gain +1 Strength and +1 to Reflex saving throws.",
+      "icon": "AasimarFallen",
+      "id": 363,
+      "max_times_acquire": null,
+      "name": "Aasimar: Fallen Bond"
+    },
+    {
+      "acquire": "Train",
+      "description": "While protector stance is active you gain +1 Charisma and +1 to Will saving throws.",
+      "icon": "AasimarProtector",
+      "id": 362,
+      "max_times_acquire": null,
+      "name": "Aasimar: Protector Bond"
+    }
+  ],
+  "granted_feats": [
+    {
+      "feat_id": 364,
+      "name": "Aasimar Racial Traits"
+    }
+  ],
+  "iconic_class": null,
+  "id": 1,
+  "is_construct": false,
+  "name": "Aasimar",
+  "no_past_life": false,
+  "short_name": "Aasimar",
+  "skill_points": null,
+  "starting_world": "Eberron"
+}

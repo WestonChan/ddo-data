@@ -1,0 +1,137 @@
+{
+  "filigrees": [],
+  "icon": "EminenceOfWinter",
+  "id": 133,
+  "is_filigree_set": false,
+  "items": [
+    {
+      "id": 469,
+      "minimum_level": 29,
+      "name": "Adamantine Bracers",
+      "slot": "Wrists"
+    },
+    {
+      "id": 1305,
+      "minimum_level": 29,
+      "name": "Chainmail of the First Snow",
+      "slot": "Body"
+    },
+    {
+      "id": 1896,
+      "minimum_level": 29,
+      "name": "Direwolf Belt",
+      "slot": "Waist"
+    }
+  ],
+  "name": "Eminence of Winter",
+  "tiers": [
+    {
+      "description": "+30 Artifact bonus to Physical Resistance Rating",
+      "equipped_count": 2,
+      "id": 167,
+      "modifiers": [
+        {
+          "amount_type": "Simple",
+          "amounts": [
+            30
+          ],
+          "apply_as_item_effect": false,
+          "bonus": "Artifact",
+          "bonus_type": "Artifact",
+          "cap": null,
+          "damage": null,
+          "dice_bonus": null,
+          "dice_damage": null,
+          "dice_number": null,
+          "dice_sides": null,
+          "display_name": null,
+          "effect_type": "PRR",
+          "extra_types": null,
+          "id": 12087,
+          "is_item_specific": false,
+          "is_rare": false,
+          "percent": false,
+          "rank": null,
+          "requirements": [],
+          "sort_order": 0,
+          "stack_source": null,
+          "targets": null,
+          "value": null
+        }
+      ]
+    },
+    {
+      "description": "+30 Artifact bonus to Healing, Repair, and Negative Amplification",
+      "equipped_count": 3,
+      "id": 168,
+      "modifiers": [
+        {
+          "amount_type": "Simple",
+          "amounts": [
+            30
+          ],
+          "apply_as_item_effect": false,
+          "bonus": "Artifact",
+          "bonus_type": "Artifact",
+          "cap": null,
+          "damage": null,
+          "dice_bonus": null,
+          "dice_damage": null,
+          "dice_number": null,
+          "dice_sides": null,
+          "display_name": null,
+          "effect_type": "HealingAmplification",
+          "extra_types": [
+            "RepairAmplification",
+            "NegativeHealingAmplification"
+          ],
+          "id": 12088,
+          "is_item_specific": false,
+          "is_rare": false,
+          "percent": false,
+          "rank": null,
+          "requirements": [],
+          "sort_order": 0,
+          "stack_source": null,
+          "targets": null,
+          "value": null
+        }
+      ]
+    },
+    {
+      "description": "+10% Legendary bonus to maximum hitpoints",
+      "equipped_count": 4,
+      "id": 169,
+      "modifiers": [
+        {
+          "amount_type": "Simple",
+          "amounts": [
+            10
+          ],
+          "apply_as_item_effect": false,
+          "bonus": "Legendary",
+          "bonus_type": "Legendary",
+          "cap": null,
+          "damage": null,
+          "dice_bonus": null,
+          "dice_damage": null,
+          "dice_number": null,
+          "dice_sides": null,
+          "display_name": null,
+          "effect_type": "HitpointsPercent",
+          "extra_types": null,
+          "id": 12089,
+          "is_item_specific": false,
+          "is_rare": false,
+          "percent": false,
+          "rank": null,
+          "requirements": [],
+          "sort_order": 0,
+          "stack_source": null,
+          "targets": null,
+          "value": null
+        }
+      ]
+    }
+  ]
+}

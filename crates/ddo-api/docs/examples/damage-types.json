@@ -1,0 +1,17 @@
+[
+  {
+    "category": "physical",
+    "id": 1,
+    "name": "Slashing"
+  },
+  {
+    "category": "physical",
+    "id": 2,
+    "name": "Piercing"
+  },
+  {
+    "category": "physical",
+    "id": 3,
+    "name": "Bludgeoning"
+  }
+]
