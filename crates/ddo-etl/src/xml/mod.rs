@@ -11,6 +11,7 @@ pub mod patrons;
 pub mod quests;
 pub mod races;
 pub mod requirements;
+pub mod sentient_gems;
 pub mod set_bonuses;
 pub mod spells;
 pub mod stances;

@@ -697,6 +697,14 @@ CREATE TABLE IF NOT EXISTS optional_buffs (
     description TEXT
 );
 
+-- A sentient jewel: the personality a sentient weapon's filigrees slot into.
+CREATE TABLE IF NOT EXISTS sentient_gems (
+    id          INTEGER PRIMARY KEY,
+    name        TEXT    NOT NULL UNIQUE,               -- Sentient.gems.xml <Gem><Name>
+    icon        TEXT,                                  -- SentientGemImages/<icon>.png
+    description TEXT                                   -- <Description>: the voice actor credit
+);
+
 -- Clickies ------------------------------------------------------------------------
 
 CREATE TABLE IF NOT EXISTS clickies (

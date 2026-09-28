@@ -1,5 +1,6 @@
 use ddo_etl::build::{build, BuildReport};
 use ddo_etl::diff::compare;
+use ddo_etl::xml::sentient_gems;
 use ddo_model::DatasetVersion;
 use rusqlite::{params, Connection};
 use std::path::PathBuf;
@@ -477,4 +478,24 @@ fn writes_clickies_and_item_level_effects() {
     assert_eq!(stored, "Acid Shot");
     assert!(resolved.is_some(), "a name ItemClickies.xml defines resolves immediately");
     assert!(report.modifiers > 20);
+}
+
+#[test]
+fn parses_and_writes_sentient_gems() {
+    let gems = sentient_gems::parse(&fixtures().join("Sentient.gems.xml")).unwrap();
+    let names: Vec<&str> = gems.iter().map(|g| g.name.as_str()).collect();
+    assert_eq!(
+        names,
+        ["Sentient Jewel of the Hopeful", "Sentient Jewel of the Inquisitive", "Sentient Jewel of the Resolute"]
+    );
+    let (conn, report) = built();
+    assert_eq!(report.sentient_gems, 3);
+    let (icon, description): (String, String) = conn
+        .query_row(
+            "SELECT icon, description FROM sentient_gems WHERE name = 'Sentient Jewel of the Resolute'",
+            [],
+            |r| Ok((r.get(0)?, r.get(1)?)),
+        )
+        .unwrap();
+    assert_eq!((icon.as_str(), description.as_str()), ("SentientJewel_Blue", "Voiced by: Ally Murphy"));
 }

@@ -1,4 +1,5 @@
 use super::{nonempty, BuildReport, Ctx};
+use crate::xml::sentient_gems;
 use crate::xml::set_bonuses::parse_set_file;
 use anyhow::Result;
 use ddo_model::enums::ModifierSource;
@@ -59,6 +60,19 @@ impl Ctx<'_> {
                 self.tx.query_row("SELECT id FROM filigrees WHERE name = ?1", params![f.name.trim()], |r| r.get(0))?;
             self.write_modifiers(ModifierSource::Filigree, id, &f.effects)?;
             report.filigrees += 1;
+        }
+        Ok(())
+    }
+
+    pub(super) fn write_sentient_gems(&mut self, path: &Path, report: &mut BuildReport) -> Result<()> {
+        if !path.is_file() {
+            return Ok(());
+        }
+        for g in sentient_gems::parse(path)? {
+            report.sentient_gems += self.tx.execute(
+                "INSERT OR IGNORE INTO sentient_gems (name, icon, description) VALUES (?1, ?2, ?3)",
+                params![g.name, nonempty(g.icon.as_deref()), nonempty(g.description.as_deref())],
+            )?;
         }
         Ok(())
     }

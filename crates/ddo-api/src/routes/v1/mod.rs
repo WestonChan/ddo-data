@@ -23,9 +23,9 @@ use utoipa_axum::router::OpenApiRouter;
     info(
         title = "DDO Tools data API",
         description = "Dungeons & Dragons Online game data, parsed from Maetrim's DDOBuilderV2 data files and served \
-                       read-only. Items, augments, set bonuses, filigrees, feats, stances, guild and optional \
-                       buffs, races, classes, enhancement trees, spells and clickies, plus the reference \
-                       vocabularies they share.\n\n\
+                       read-only. Items, augments, set bonuses, filigrees, sentient gems, feats, stances, guild \
+                       and optional buffs, races, classes, enhancement trees, spells and clickies, plus the \
+                       reference vocabularies they share.\n\n\
                        **Caching.** The dataset is rebuilt only when DDOBuilderV2 changes, so every response is \
                        immutable for a dataset version. Each carries a strong `ETag`, a day-long `Cache-Control` and \
                        an `X-Dataset-Version` header naming the DDOBuilderV2 commit; send `If-None-Match` and expect \
@@ -46,7 +46,7 @@ use utoipa_axum::router::OpenApiRouter;
         (name = "meta", description = "Which DDOBuilderV2 commit the data came from, the schema version and row counts"),
         (name = "items", description = "Equipment: weapons, armor, shields, jewelry and clothing with their bonuses, sockets and drop sources, plus the slot, weapon, damage and socket vocabularies they use"),
         (name = "augments", description = "Augments and crafting-family inserts, with the sockets each one fits"),
-        (name = "sets", description = "Gear set bonuses, sentient-weapon filigree sets and the filigrees themselves"),
+        (name = "sets", description = "Gear set bonuses, sentient-weapon filigree sets, the filigrees themselves and the sentient gems they slot into"),
         (name = "feats", description = "Feats from the standard list and those granted by classes and races, with requirements and effects"),
         (name = "races", description = "Playable races with ability modifiers, granted feats and racial feats"),
         (name = "classes", description = "Classes and archetypes with progressions, feat slots and spell lists"),
@@ -79,6 +79,7 @@ examples! { "v1":
     ("/v1/sets", "sets"),
     ("/v1/sets/{id}", "sets_id"),
     ("/v1/filigrees", "filigrees"),
+    ("/v1/sentient-gems", "sentient-gems"),
     ("/v1/feats", "feats"),
     ("/v1/feats/{id}", "feats_id"),
     ("/v1/stances", "stances"),

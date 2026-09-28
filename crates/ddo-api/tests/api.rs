@@ -508,3 +508,17 @@ async fn optional_buffs_list_by_name_with_modifiers() {
     assert_eq!(rows[0]["modifiers"][0]["effect_type"], "NaturalArmor");
     assert_eq!(rows[3]["modifiers"][0]["requirements"][0]["req_type"], "Stance");
 }
+
+#[tokio::test]
+async fn sentient_gems_list_by_name() {
+    let (status, _, json) = get("/v1/sentient-gems").await;
+    assert_eq!(status, StatusCode::OK);
+    let rows = json.as_array().unwrap();
+    let names: Vec<&str> = rows.iter().map(|g| g["name"].as_str().unwrap()).collect();
+    assert_eq!(
+        names,
+        ["Sentient Jewel of the Hopeful", "Sentient Jewel of the Inquisitive", "Sentient Jewel of the Resolute"]
+    );
+    assert_eq!(rows[2]["icon"], "SentientJewel_Blue");
+    assert_eq!(rows[2]["description"], "Voiced by: Ally Murphy");
+}

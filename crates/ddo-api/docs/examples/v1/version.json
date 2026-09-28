@@ -3,7 +3,7 @@
   "schema_version": 2,
   "dataset": {
     "upstream_sha": "31ef0201ea8e28604de2b6242988aee6d63733b0",
-    "built_at": "2026-09-28T03:02:01Z"
+    "built_at": "2026-09-28T03:03:57Z"
   },
   "counts": {
     "augments": 2246,
@@ -21,6 +21,7 @@
     "quests": 570,
     "races": 30,
     "requirements": 9771,
+    "sentient_gems": 14,
     "set_bonuses": 327,
     "spells": 706
   }

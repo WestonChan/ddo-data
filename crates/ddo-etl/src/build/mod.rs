@@ -45,6 +45,7 @@ pub struct BuildReport {
     pub standalone_stances: usize,
     pub guild_buffs: usize,
     pub optional_buffs: usize,
+    pub sentient_gems: usize,
     pub unmapped_effect_types: BTreeMap<String, usize>,
 }
 
@@ -124,6 +125,7 @@ pub fn build(source: &Path, conn: &mut Connection, version: &DatasetVersion) -> 
         ctx.write_set_file(&path, true, &mut report).with_context(|| format!("{}", path.display()))?;
     }
     ctx.resolve_set_members()?;
+    ctx.write_sentient_gems(&source.join("Sentient.gems.xml"), &mut report)?;
     ctx.resolve_spell_references()?;
     ctx.write_standalone_stances(&source.join("Stances.xml"), &mut report)?;
     ctx.write_guild_buffs(&source.join("GuildBuffs.xml"), &mut report)?;

@@ -88,6 +88,7 @@ jobs:
           check "stances WHERE owner_kind = 'standalone'" 20
           check guild_buffs 30
           check optional_buffs 100
+          check sentient_gems 10
           test "$(find icons -name '*.png' | wc -l)" -ge 8000
 
       - name: Keep the dataset as a workflow artifact

@@ -1,4 +1,4 @@
-use crate::db::{booleanize, json_row, json_rows, modifiers_for};
+use crate::db::{booleanize, json_row, json_rows, modifiers_for, table};
 use crate::error::ApiError;
 use crate::state::AppState;
 use axum::extract::{Path, State};
@@ -8,7 +8,11 @@ use utoipa_axum::router::OpenApiRouter;
 use utoipa_axum::routes;
 
 pub fn router() -> OpenApiRouter<AppState> {
-    OpenApiRouter::new().routes(routes!(list)).routes(routes!(detail)).routes(routes!(filigrees))
+    OpenApiRouter::new()
+        .routes(routes!(list))
+        .routes(routes!(detail))
+        .routes(routes!(filigrees))
+        .routes(routes!(sentient_gems))
 }
 
 #[utoipa::path(
@@ -106,4 +110,18 @@ fn filigree_rows(conn: &rusqlite::Connection, set_id: Option<i64>) -> Result<Vec
 )]
 async fn filigrees(State(state): State<AppState>) -> Result<Json<Vec<Value>>, ApiError> {
     state.query(|conn| Ok(Json(filigree_rows(conn, None)?))).await
+}
+
+#[utoipa::path(
+    get,
+    path = "/v1/sentient-gems",
+    tag = "sets",
+    summary = "List sentient gems",
+    description = "Every sentient jewel a sentient weapon or accessory can carry, ordered by name, with its icon \
+                   (served from the `sentient-gems` icon family) and description, which upstream uses for the voice \
+                   actor credit. Filigrees slot into the jewel; they are listed by /v1/filigrees.",
+    responses((status = 200, description = "Every sentient gem", body = Vec<Value>))
+)]
+async fn sentient_gems(State(state): State<AppState>) -> Result<Json<Vec<Value>>, ApiError> {
+    table(state, "SELECT id, name, icon, description FROM sentient_gems ORDER BY name", &[]).await
 }

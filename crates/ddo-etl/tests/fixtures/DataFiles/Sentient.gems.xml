@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SentientGems>
+   <Gem>
+      <Name>Sentient Jewel of the Hopeful</Name>
+      <Icon>SentientJewel_Yellow</Icon>
+      <Description>Voiced by: Rachel Butera</Description>
+   </Gem>
+   <Gem>
+      <Name>Sentient Jewel of the Inquisitive</Name>
+      <Icon>SentientJewel_Orange</Icon>
+      <Description>Voiced by: Keith Silverstein</Description>
+   </Gem>
+   <Gem>
+      <Name>Sentient Jewel of the Resolute</Name>
+      <Icon>SentientJewel_Blue</Icon>
+      <Description>Voiced by: Ally Murphy</Description>
+   </Gem>
+</SentientGems>

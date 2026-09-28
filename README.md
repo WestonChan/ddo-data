@@ -69,7 +69,7 @@ download the whole database once from `/v1/dump.sqlite` rather than paging the l
 | `/v1/version` | Dataset and schema versions, table counts |
 | `/v1/items`, `/v1/items/{id}` | Equipment, filterable by name, slot, category, level, pack, raid, stat |
 | `/v1/augments`, `/v1/augments/{id}` | Augments with the sockets they fit |
-| `/v1/sets`, `/v1/sets/{id}`, `/v1/filigrees` | Gear sets, filigree sets, filigrees |
+| `/v1/sets`, `/v1/sets/{id}`, `/v1/filigrees`, `/v1/sentient-gems` | Gear sets, filigree sets, filigrees, the sentient gems they slot into |
 | `/v1/feats`, `/v1/feats/{id}` | Feats from the standard list, classes and races |
 | `/v1/stances` | Standalone stances (weapon style, armor, alignment, auras) with their requirements |
 | `/v1/guild-buffs` | Guild airship buffs with their unlock level and per-character-level effects |
