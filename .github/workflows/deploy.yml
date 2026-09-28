@@ -91,6 +91,7 @@ jobs:
           check sentient_gems 10
           check "quests WHERE is_challenge" 30
           test "$(find icons -name '*.png' | wc -l)" -ge 8000
+          echo "wiki rare drops: $(sqlite3 ddo.db "SELECT COUNT(*) FROM quest_loot WHERE is_rare") across $(sqlite3 ddo.db "SELECT COUNT(DISTINCT quest_id) FROM quest_loot WHERE is_rare") quests (no floor yet)"
 
       - name: Keep the dataset as a workflow artifact
         if: steps.compare.outputs.changed == 'true'
