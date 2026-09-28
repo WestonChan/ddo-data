@@ -1,9 +1,12 @@
 use ddo_etl::map::augment_slot::{decode, SlotSpec};
 use ddo_etl::map::bonus_type::normalize;
 use ddo_etl::map::buff::{BuffMap, Resolved};
+use ddo_etl::map::effect::EffectMap;
 use ddo_etl::map::placement::{classify, Placement};
+use ddo_etl::xml::effect::Effect;
 use ddo_etl::xml::items::{Buff, EquipmentSlots, SlotTag};
-use ddo_model::enums::{BonusType, EquipmentSlot, Handedness, ItemCategory};
+use ddo_model::enums::{BonusType, EquipmentSlot, Handedness, ItemCategory, StatCategory};
+use std::collections::BTreeMap;
 
 fn slots(tags: &[SlotTag]) -> EquipmentSlots {
     EquipmentSlots { tags: tags.to_vec() }
@@ -190,4 +193,117 @@ fn augment_slot_types_decode_into_family_variant_qualifier() {
     );
     assert_eq!(decode("Greensteel Weapon Tier 1").family, "crafting");
     assert_eq!(decode("Greensteel Weapon Tier 1").label, "crafting: greensteel weapon tier 1");
+}
+
+fn simple_effect(kind: &str) -> Effect {
+    Effect {
+        types: vec![kind.to_string()],
+        bonus: Some("Enhancement".to_string()),
+        amount_type: Some("Simple".to_string()),
+        amounts: vec![3.0],
+        ..Effect::default()
+    }
+}
+
+#[test]
+fn character_wide_effect_types_resolve_to_their_stats() {
+    use StatCategory::*;
+    let cases: &[(&str, &str, StatCategory)] = &[
+        ("ArcaneSpellFailure", "Arcane Spell Failure", Magical),
+        ("ArcaneSpellFailureShields", "Arcane Spell Failure (Shield)", Magical),
+        ("ArmorCheckPenalty", "Armor Check Penalty", Defensive),
+        ("ACBonusShield", "Shield Armor Class", Defensive),
+        ("MaxDexBonusTowerShield", "Max Dex Bonus (Tower Shield)", Defensive),
+        ("Displacement", "Displacement", Defensive),
+        ("Incorporeality", "Incorporeality", Defensive),
+        ("DodgeBypass", "Dodge Bypass", Martial),
+        ("MissileDeflection", "Missile Deflection", Defensive),
+        ("ThreatBonusSpell", "Spell Threat Generation", Other),
+        ("ThreatBonusRanged", "Ranged Threat Generation", Other),
+        ("RuneArmChargeRate", "Rune Arm Charge Rate", Other),
+        ("PointBlankShotRange", "Point Blank Shot Range", Martial),
+        ("SpellPointCostPercent", "Spell Point Cost Reduction", Magical),
+        ("FatePoint", "Fate Points", Other),
+        ("ExtraTurns", "Turn Undead Uses", Other),
+        ("TurnLevelBonus", "Turn Undead Level", Other),
+        ("TurnDiceBonus", "Turn Undead Dice", Other),
+        ("TurnMaxDice", "Turn Undead Max Dice", Other),
+        ("TurnBonus", "Turn Undead Bonus", Other),
+        ("ExtraLayOnHands", "Lay on Hands Uses", Other),
+        ("KiHit", "Ki on Hit", Other),
+        ("KiCritical", "Ki on Critical", Other),
+        ("EldritchBlastD8", "Eldritch Blast d8 Dice", Magical),
+        ("MetamagicCostEmpower", "Empower Cost Reduction", Magical),
+        ("MetamagicCostMaximize", "Maximize Cost Reduction", Magical),
+        ("MetamagicCostQuicken", "Quicken Cost Reduction", Magical),
+        ("MetamagicCostEnlarge", "Enlarge Cost Reduction", Magical),
+        ("MetamagicCostHeighten", "Heighten Cost Reduction", Magical),
+        ("MetamagicCostExtend", "Extend Cost Reduction", Magical),
+        ("MetamagicCostEmpowerHealing", "Empower Healing Cost Reduction", Magical),
+        ("MetamagicCostIntensify", "Intensify Cost Reduction", Magical),
+        ("MetamagicCostAccelerate", "Accelerate Cost Reduction", Magical),
+        ("MetamagicCostEschewMaterials", "Eschew Materials Cost Reduction", Magical),
+        ("MetamagicCostEmbolden", "Embolden Cost Reduction", Magical),
+        ("SongDuration", "Song Duration", Other),
+        ("SongACBonus", "Song Armor Class", Other),
+        ("SongDodgeBonus", "Song Dodge", Other),
+        ("SongSaveBonus", "Song Saving Throws", Other),
+        ("SongSkillBonus", "Song Skills", Other),
+        ("SongPRR", "Song Physical Resistance Rating", Other),
+        ("SongUniversalSpellPower", "Song Universal Spell Power", Other),
+        ("SongHealingAmp", "Song Healing Amplification", Other),
+        ("HirelingAbilityBonus", "Hireling Abilities", Other),
+        ("HirelingDodge", "Hireling Dodge", Other),
+        ("HirelingFortification", "Hireling Fortification", Other),
+        ("HirelingHitpoints", "Hireling Hit Points", Other),
+        ("HirelingMRR", "Hireling Magical Resistance Rating", Other),
+        ("HirelingMeleePower", "Hireling Melee Power", Other),
+        ("HirelingPRR", "Hireling Physical Resistance Rating", Other),
+        ("HirelingRangedPower", "Hireling Ranged Power", Other),
+        ("HirelingSpellPower", "Hireling Spell Power", Other),
+    ];
+    let map = EffectMap::load().unwrap();
+    let failures: Vec<String> = cases
+        .iter()
+        .filter_map(|&(kind, name, category)| {
+            let derived = map.derive(&simple_effect(kind)).unwrap();
+            match derived.as_slice() {
+                [d] if d.stat.name == name && d.stat.category == category && d.value == 3 => None,
+                other => Some(format!("{kind}: expected {name} ({category:?}), got {other:?}")),
+            }
+        })
+        .collect();
+    assert!(
+        failures.is_empty(),
+        "{} of {} effect types unresolved:\n{}",
+        failures.len(),
+        cases.len(),
+        failures.join("\n")
+    );
+    assert!(map.unmapped_types().is_empty(), "{:?}", map.unmapped_types());
+
+    let vector =
+        Effect { amount_type: Some("TotalLevel".to_string()), amounts: vec![1.0, 2.0], ..simple_effect("FatePoint") };
+    assert!(
+        map.derive(&vector).unwrap().is_empty(),
+        "a vector amount stays modifier-only even when the type is mapped"
+    );
+}
+
+#[test]
+fn every_stat_named_in_the_effect_map_exists() {
+    #[derive(serde::Deserialize)]
+    struct Sections {
+        fixed: BTreeMap<String, String>,
+        by_item_default: BTreeMap<String, String>,
+    }
+    let sections: Sections = toml::from_str(include_str!("../data/effect_map.toml")).unwrap();
+    let missing: Vec<_> = sections
+        .fixed
+        .iter()
+        .chain(&sections.by_item_default)
+        .filter(|(_, stat)| ddo_model::stat_by_name(stat).is_none())
+        .collect();
+    assert!(missing.is_empty(), "stats missing from STATS: {missing:?}");
+    assert!(EffectMap::load().is_ok(), "the load-time validation agrees");
 }
