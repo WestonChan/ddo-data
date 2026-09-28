@@ -1,0 +1,6 @@
+# A subset of data/wiki/quest_loot.toml: only names the fixture DataFiles carry.
+[[quest]]
+name = "Book Burning"
+page = "https://ddowiki.com/page/Book_Burning"
+read = "2026-09-27"
+rare = ["Buckler of the Golden Age"]

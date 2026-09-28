@@ -100,4 +100,15 @@
       <Elite />
       <Reaper />
    </Quest>
+   <Quest>
+      <Name>Book Burning</Name>
+      <Patron>Cormanthor Elves</Patron>
+      <AdventurePack>Magic of Myth Drannor</AdventurePack>
+      <Favor>4</Favor>
+      <Levels size="2">13 35</Levels>
+      <Normal/>
+      <Hard/>
+      <Elite/>
+      <Reaper/>
+   </Quest>
 </Quests>

@@ -19,7 +19,8 @@ fn db_path() -> &'static PathBuf {
         let _ = std::fs::remove_file(&path);
         let mut conn = rusqlite::Connection::open(&path).unwrap();
         let version = DatasetVersion { upstream_sha: "fixture-sha".into(), built_at: "2026-09-21T00:00:00Z".into() };
-        ddo_etl::build::build(&fixtures(), &mut conn, &version).expect("fixture build");
+        let wiki = ddo_etl::wiki::WikiOverrides::from_dir(&fixtures().parent().unwrap().join("wiki")).unwrap();
+        ddo_etl::build::build(&fixtures(), &wiki, &mut conn, &version).expect("fixture build");
         path
     })
 }
@@ -48,7 +49,7 @@ async fn version_reports_dataset_and_schema() {
     assert_eq!(json["dataset"]["upstream_sha"], "fixture-sha");
     assert_eq!(json["schema_version"], ddo_model::SCHEMA_VERSION);
     assert!(json.get("api_commit").is_some(), "version must report the API build commit, null when unknown");
-    assert_eq!(json["counts"]["items"], 13);
+    assert_eq!(json["counts"]["items"], 14);
     assert_eq!(headers.get("x-dataset-version").unwrap(), "fixture-sha");
     assert!(headers.get(header::ETAG).is_some());
     assert!(headers.get(header::CACHE_CONTROL).unwrap().to_str().unwrap().contains("max-age"));
@@ -69,7 +70,7 @@ async fn items_list_filters_and_pages() {
 
     let (_, _, all) = get("/v1/items?limit=5&offset=0").await;
     assert_eq!(all["items"].as_array().unwrap().len(), 5);
-    assert_eq!(all["total"], 13);
+    assert_eq!(all["total"], 14);
     let (_, _, armor) = get("/v1/items?category=Armor").await;
     assert!(armor["items"].as_array().unwrap().iter().all(|i| i["category"] == "Armor"));
     let (_, _, ml) = get("/v1/items?min_level=20&max_level=25").await;

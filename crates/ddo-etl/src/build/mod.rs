@@ -5,10 +5,12 @@ mod items;
 mod modifiers;
 mod sets;
 mod trees_spells;
+mod wiki;
 
 use crate::map::augment_slot::decode;
 use crate::map::buff::BuffMap;
 use crate::map::effect::EffectMap;
+use crate::wiki::WikiOverrides;
 use crate::xml::challenges::{self, Challenge};
 use crate::xml::items::parse_item_file;
 use crate::xml::quests::Quest;
@@ -48,10 +50,17 @@ pub struct BuildReport {
     pub guild_buffs: usize,
     pub optional_buffs: usize,
     pub sentient_gems: usize,
+    pub wiki_quest_loot_entries: usize,
+    pub wiki_rare_drops: usize,
     pub unmapped_effect_types: BTreeMap<String, usize>,
 }
 
-pub fn build(source: &Path, conn: &mut Connection, version: &DatasetVersion) -> Result<BuildReport> {
+pub fn build(
+    source: &Path,
+    wiki: &WikiOverrides,
+    conn: &mut Connection,
+    version: &DatasetVersion,
+) -> Result<BuildReport> {
     conn.execute_batch(ddo_model::ddl()).context("applying DDL")?;
     seeds::insert_all(conn).context("inserting seed tables")?;
 
@@ -135,6 +144,7 @@ pub fn build(source: &Path, conn: &mut Connection, version: &DatasetVersion) -> 
     ctx.write_standalone_stances(&source.join("Stances.xml"), &mut report)?;
     ctx.write_guild_buffs(&source.join("GuildBuffs.xml"), &mut report)?;
     ctx.write_optional_buffs(&source.join("SelfAndPartyBuffs.xml"), &mut report)?;
+    wiki::apply_wiki(&tx, wiki, &mut report)?;
 
     report.bonuses = ctx.caches.bonuses.len();
     report.effects = ctx.caches.effects.len();

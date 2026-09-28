@@ -1,4 +1,5 @@
 use ddo_etl::build::build;
+use ddo_etl::wiki::WikiOverrides;
 use ddo_etl::xml::requirements::RequirementGroupKind;
 use ddo_etl::xml::{classes, feats, races, stances};
 use ddo_model::DatasetVersion;
@@ -12,7 +13,13 @@ fn fixtures() -> PathBuf {
 fn built() -> Connection {
     let mut conn = Connection::open_in_memory().unwrap();
     let version = DatasetVersion { upstream_sha: "test".into(), built_at: "2026-09-21T00:00:00Z".into() };
-    build(&fixtures(), &mut conn, &version).expect("build succeeds on fixtures");
+    build(
+        &fixtures(),
+        &WikiOverrides::from_dir(&fixtures().parent().unwrap().join("wiki")).unwrap(),
+        &mut conn,
+        &version,
+    )
+    .expect("build succeeds on fixtures");
     conn
 }
 

@@ -1,5 +1,6 @@
 use ddo_etl::build::{build, BuildReport};
 use ddo_etl::diff::compare;
+use ddo_etl::wiki::WikiOverrides;
 use ddo_etl::xml::{challenges, sentient_gems};
 use ddo_model::DatasetVersion;
 use rusqlite::{params, Connection};
@@ -15,7 +16,13 @@ fn version() -> DatasetVersion {
 
 fn built() -> (Connection, BuildReport) {
     let mut conn = Connection::open_in_memory().unwrap();
-    let report = build(&fixtures(), &mut conn, &version()).expect("build succeeds on fixtures");
+    let report = build(
+        &fixtures(),
+        &WikiOverrides::from_dir(&fixtures().parent().unwrap().join("wiki")).unwrap(),
+        &mut conn,
+        &version(),
+    )
+    .expect("build succeeds on fixtures");
     (conn, report)
 }
 
@@ -31,9 +38,9 @@ fn item_id(conn: &Connection, name: &str) -> i64 {
 #[test]
 fn builds_items_and_skips_cosmetics() {
     let (conn, report) = built();
-    assert_eq!(report.items_written, 13);
+    assert_eq!(report.items_written, 14);
     assert_eq!(report.items_skipped_cosmetic, 1);
-    assert_eq!(count(&conn, "SELECT COUNT(*) FROM items"), 13);
+    assert_eq!(count(&conn, "SELECT COUNT(*) FROM items"), 14);
     assert_eq!(count(&conn, "SELECT COUNT(*) FROM items WHERE name = '17th Anniversary Dark Helm'"), 0);
     let reason: String = conn
         .query_row("SELECT reason FROM excluded_items WHERE name = '17th Anniversary Dark Helm'", [], |r| r.get(0))
@@ -217,7 +224,7 @@ fn writes_augment_slots_and_presets() {
 #[test]
 fn links_items_to_quests_from_drop_location() {
     let (conn, report) = built();
-    assert_eq!(count(&conn, "SELECT COUNT(*) FROM quests WHERE NOT is_challenge"), 9);
+    assert_eq!(count(&conn, "SELECT COUNT(*) FROM quests WHERE NOT is_challenge"), 10);
     assert_eq!(count(&conn, "SELECT COUNT(*) FROM patrons"), 22);
     assert!(count(&conn, "SELECT COUNT(*) FROM adventure_packs") >= 5);
     let (level, epic, raid, pack): (i64, Option<i64>, bool, String) = conn
@@ -285,7 +292,7 @@ fn diff_reports_coverage_against_a_legacy_database() {
     assert_eq!(report.matched, 3);
     assert_eq!(report.only_legacy, vec!["Something Only The Wiki Had".to_string()]);
     assert_eq!(report.excluded_by_design, vec!["17th Anniversary Dark Helm".to_string()], "cosmetics are not gaps");
-    assert_eq!(report.only_new.len(), 10);
+    assert_eq!(report.only_new.len(), 11);
     assert!((report.coverage() - 0.75).abs() < 1e-9);
 }
 

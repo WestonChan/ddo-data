@@ -1,0 +1,12 @@
+[[quest]]
+name = "Book Burning"
+page = "https://ddowiki.com/page/Book_Burning"
+read = "2026-09-27"
+rare = [
+  "Buckler of the Golden Age",
+  "Docent of the Crownblade",
+  "Legendary Buckler of the Golden Age",
+  "Legendary Docent of the Crownblade",
+  "Legendary Robe of the Warblade",
+  "Robe of the Warblade",
+]

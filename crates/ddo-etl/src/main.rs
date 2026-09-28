@@ -47,7 +47,8 @@ fn main() -> Result<()> {
                 std::fs::remove_file(&out).with_context(|| format!("removing {}", out.display()))?;
             }
             let mut conn = Connection::open(&out)?;
-            let report = ddo_etl::build::build(&source, &mut conn, &version)?;
+            let report =
+                ddo_etl::build::build(&source, &ddo_etl::wiki::WikiOverrides::embedded()?, &mut conn, &version)?;
             println!("{report:#?}");
             println!("dataset {} written to {}", version.upstream_sha, out.display());
         }
