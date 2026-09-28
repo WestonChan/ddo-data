@@ -57,6 +57,7 @@ fn ddl_creates_every_v2_table() {
         "set_bonus_augments",
         "filigrees",
         "guild_buffs",
+        "optional_buffs",
         "clickies",
         "item_clickies",
         "feats",

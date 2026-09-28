@@ -1,5 +1,5 @@
 use ddo_etl::build::build;
-use ddo_etl::xml::guild_buffs;
+use ddo_etl::xml::{guild_buffs, optional_buffs};
 use ddo_model::DatasetVersion;
 use rusqlite::{params, Connection};
 use std::path::PathBuf;
@@ -61,4 +61,45 @@ fn writes_guild_buffs_with_per_level_modifiers() {
         [("AbilityBonus".to_string(), Some("Guild".to_string()), Some("[2]".to_string()))]
     );
     assert_eq!(conn.query_row("SELECT COUNT(*) FROM guild_buffs", [], |r| r.get::<_, i64>(0)).unwrap(), 3);
+}
+
+#[test]
+fn parses_optional_buffs_across_group_comments() {
+    let list = optional_buffs::parse(&fixtures().join("SelfAndPartyBuffs.xml")).unwrap();
+    let names: Vec<&str> = list.iter().map(|b| b.name.as_str()).collect();
+    assert_eq!(
+        names,
+        ["Barkskin", "Bless", "Deadly Weapons", "Stone of Change: Alchemical Shield Eldritch Ritual"],
+        "the <!--Spell Buffs--> style group comments are skipped"
+    );
+    assert_eq!(list[2].icon.as_deref(), Some("DeadlyWeapons"), "Icon may follow Description");
+    assert_eq!(list[1].effects.len(), 2);
+    assert!(list[3].effects[0].requirements.is_some());
+}
+
+#[test]
+fn writes_optional_buffs_with_modifiers_and_their_requirements() {
+    let conn = built();
+    assert_eq!(conn.query_row("SELECT COUNT(*) FROM optional_buffs", [], |r| r.get::<_, i64>(0)).unwrap(), 4);
+    let (bless, icon): (i64, String) = conn
+        .query_row("SELECT id, icon FROM optional_buffs WHERE name = 'Bless'", [], |r| Ok((r.get(0)?, r.get(1)?)))
+        .unwrap();
+    assert_eq!(icon, "Bless");
+    assert_eq!(
+        modifiers(&conn, "optional_buff", bless),
+        [
+            ("Weapon_Attack".to_string(), Some("Morale".to_string()), Some("[1]".to_string())),
+            ("SaveBonus".to_string(), Some("Morale".to_string()), Some("[1]".to_string())),
+        ]
+    );
+    let shield_requirement: String = conn
+        .query_row(
+            "SELECT r.items FROM optional_buffs b JOIN modifiers m ON m.source_kind = 'optional_buff' AND m.source_id = b.id
+               JOIN requirements r ON r.owner_kind = 'modifier' AND r.owner_id = m.id
+              WHERE b.name = 'Stone of Change: Alchemical Shield Eldritch Ritual'",
+            [],
+            |r| r.get(0),
+        )
+        .unwrap();
+    assert_eq!(shield_requirement, r#"["Shield"]"#);
 }

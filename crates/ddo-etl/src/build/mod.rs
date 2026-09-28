@@ -44,6 +44,7 @@ pub struct BuildReport {
     pub duplicate_spells_skipped: usize,
     pub standalone_stances: usize,
     pub guild_buffs: usize,
+    pub optional_buffs: usize,
     pub unmapped_effect_types: BTreeMap<String, usize>,
 }
 
@@ -126,6 +127,7 @@ pub fn build(source: &Path, conn: &mut Connection, version: &DatasetVersion) -> 
     ctx.resolve_spell_references()?;
     ctx.write_standalone_stances(&source.join("Stances.xml"), &mut report)?;
     ctx.write_guild_buffs(&source.join("GuildBuffs.xml"), &mut report)?;
+    ctx.write_optional_buffs(&source.join("SelfAndPartyBuffs.xml"), &mut report)?;
 
     report.bonuses = ctx.caches.bonuses.len();
     report.effects = ctx.caches.effects.len();

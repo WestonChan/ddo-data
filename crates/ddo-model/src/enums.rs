@@ -628,6 +628,7 @@ pub enum ModifierSource {
     Spell,
     Stance,
     GuildBuff,
+    OptionalBuff,
 }
 
 impl ModifierSource {
@@ -645,6 +646,7 @@ impl ModifierSource {
         Self::Spell,
         Self::Stance,
         Self::GuildBuff,
+        Self::OptionalBuff,
     ];
 
     pub const fn as_str(self) -> &'static str {
@@ -662,6 +664,7 @@ impl ModifierSource {
             Self::Spell => "spell",
             Self::Stance => "stance",
             Self::GuildBuff => "guild_buff",
+            Self::OptionalBuff => "optional_buff",
         }
     }
 }

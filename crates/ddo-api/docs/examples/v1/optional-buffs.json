@@ -1,0 +1,231 @@
+[
+  {
+    "description": "Grants an Animal, Magical Beast, or Vermin a +4 size Bonus to Strength, a +4 Size Bonus\nto Constitution, and a -2 penalty to Dexterity.",
+    "icon": "AnimalGrowth",
+    "id": 123,
+    "modifiers": [
+      {
+        "amount_type": "Simple",
+        "amounts": [
+          4
+        ],
+        "apply_as_item_effect": false,
+        "bonus": "Size",
+        "bonus_type": "Size",
+        "cap": null,
+        "damage": null,
+        "dice_bonus": null,
+        "dice_damage": null,
+        "dice_number": null,
+        "dice_sides": null,
+        "display_name": null,
+        "effect_type": "AbilityBonus",
+        "extra_types": null,
+        "id": 13780,
+        "is_item_specific": false,
+        "is_rare": false,
+        "percent": false,
+        "rank": null,
+        "requirements": [
+          {
+            "group_index": 0,
+            "group_kind": "one_of",
+            "items": [
+              "Shifter"
+            ],
+            "req_type": "Stance",
+            "value": null
+          },
+          {
+            "group_index": 0,
+            "group_kind": "one_of",
+            "items": [
+              "Razorclaw Shifter"
+            ],
+            "req_type": "Stance",
+            "value": null
+          },
+          {
+            "group_index": 0,
+            "group_kind": "one_of",
+            "items": [
+              "Wolf"
+            ],
+            "req_type": "Stance",
+            "value": null
+          }
+        ],
+        "sort_order": 0,
+        "stack_source": null,
+        "targets": [
+          "Strength",
+          "Constitution"
+        ],
+        "value": null
+      },
+      {
+        "amount_type": "Simple",
+        "amounts": [
+          -2
+        ],
+        "apply_as_item_effect": false,
+        "bonus": "Penalty",
+        "bonus_type": "Penalty",
+        "cap": null,
+        "damage": null,
+        "dice_bonus": null,
+        "dice_damage": null,
+        "dice_number": null,
+        "dice_sides": null,
+        "display_name": null,
+        "effect_type": "AbilityBonus",
+        "extra_types": null,
+        "id": 13781,
+        "is_item_specific": false,
+        "is_rare": false,
+        "percent": false,
+        "rank": null,
+        "requirements": [
+          {
+            "group_index": 0,
+            "group_kind": "one_of",
+            "items": [
+              "Shifter"
+            ],
+            "req_type": "Stance",
+            "value": null
+          },
+          {
+            "group_index": 0,
+            "group_kind": "one_of",
+            "items": [
+              "Razorclaw Shifter"
+            ],
+            "req_type": "Stance",
+            "value": null
+          },
+          {
+            "group_index": 0,
+            "group_kind": "one_of",
+            "items": [
+              "Wolf"
+            ],
+            "req_type": "Stance",
+            "value": null
+          }
+        ],
+        "sort_order": 1,
+        "stack_source": null,
+        "targets": [
+          "Dexterity"
+        ],
+        "value": null
+      }
+    ],
+    "name": "Animal Growth"
+  },
+  {
+    "description": "Each ally within 10 feet of the paladin gains a +4 Morale bonus on saving throws against\nfear effects for 9 seconds. This ability functions while the paladin is conscious,\nbut not if they are unconscious or dead.",
+    "icon": "AuraOfCourage",
+    "id": 111,
+    "modifiers": [
+      {
+        "amount_type": "Simple",
+        "amounts": [
+          4
+        ],
+        "apply_as_item_effect": false,
+        "bonus": "Morale",
+        "bonus_type": "Morale",
+        "cap": null,
+        "damage": null,
+        "dice_bonus": null,
+        "dice_damage": null,
+        "dice_number": null,
+        "dice_sides": null,
+        "display_name": null,
+        "effect_type": "SaveBonus",
+        "extra_types": null,
+        "id": 13751,
+        "is_item_specific": false,
+        "is_rare": false,
+        "percent": false,
+        "rank": null,
+        "requirements": [],
+        "sort_order": 0,
+        "stack_source": null,
+        "targets": [
+          "Fear"
+        ],
+        "value": null
+      }
+    ],
+    "name": "Aura of Courage"
+  },
+  {
+    "description": "An aura of holiness surrounds you while near a paladin, granting a bonus to saves and\nArmor Class.",
+    "icon": "AuraOfGood",
+    "id": 112,
+    "modifiers": [
+      {
+        "amount_type": "Simple",
+        "amounts": [
+          1
+        ],
+        "apply_as_item_effect": false,
+        "bonus": "Stacking",
+        "bonus_type": "Stacking",
+        "cap": null,
+        "damage": null,
+        "dice_bonus": null,
+        "dice_damage": null,
+        "dice_number": null,
+        "dice_sides": null,
+        "display_name": null,
+        "effect_type": "SaveBonus",
+        "extra_types": null,
+        "id": 13752,
+        "is_item_specific": false,
+        "is_rare": false,
+        "percent": false,
+        "rank": null,
+        "requirements": [],
+        "sort_order": 0,
+        "stack_source": null,
+        "targets": [
+          "All"
+        ],
+        "value": null
+      },
+      {
+        "amount_type": "Simple",
+        "amounts": [
+          1
+        ],
+        "apply_as_item_effect": false,
+        "bonus": "Stacking",
+        "bonus_type": "Stacking",
+        "cap": null,
+        "damage": null,
+        "dice_bonus": null,
+        "dice_damage": null,
+        "dice_number": null,
+        "dice_sides": null,
+        "display_name": null,
+        "effect_type": "ACBonus",
+        "extra_types": null,
+        "id": 13753,
+        "is_item_specific": false,
+        "is_rare": false,
+        "percent": false,
+        "rank": null,
+        "requirements": [],
+        "sort_order": 1,
+        "stack_source": null,
+        "targets": null,
+        "value": null
+      }
+    ],
+    "name": "Aura of Good"
+  }
+]

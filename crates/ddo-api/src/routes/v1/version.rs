@@ -36,6 +36,7 @@ const COUNTED: &[&str] = &[
     "enhancement_trees",
     "enhancements",
     "spells",
+    "optional_buffs",
     "quests",
     "modifiers",
     "requirements",

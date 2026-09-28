@@ -23,8 +23,9 @@ use utoipa_axum::router::OpenApiRouter;
     info(
         title = "DDO Tools data API",
         description = "Dungeons & Dragons Online game data, parsed from Maetrim's DDOBuilderV2 data files and served \
-                       read-only. Items, augments, set bonuses, filigrees, feats, stances, guild buffs, races, classes, \
-                       enhancement trees, spells and clickies, plus the reference vocabularies they share.\n\n\
+                       read-only. Items, augments, set bonuses, filigrees, feats, stances, guild and optional \
+                       buffs, races, classes, enhancement trees, spells and clickies, plus the reference \
+                       vocabularies they share.\n\n\
                        **Caching.** The dataset is rebuilt only when DDOBuilderV2 changes, so every response is \
                        immutable for a dataset version. Each carries a strong `ETag`, a day-long `Cache-Control` and \
                        an `X-Dataset-Version` header naming the DDOBuilderV2 commit; send `If-None-Match` and expect \
@@ -82,6 +83,7 @@ examples! { "v1":
     ("/v1/feats/{id}", "feats_id"),
     ("/v1/stances", "stances"),
     ("/v1/guild-buffs", "guild-buffs"),
+    ("/v1/optional-buffs", "optional-buffs"),
     ("/v1/races", "races"),
     ("/v1/races/{id}", "races_id"),
     ("/v1/classes", "classes"),

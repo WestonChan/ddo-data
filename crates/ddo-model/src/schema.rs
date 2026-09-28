@@ -688,6 +688,15 @@ CREATE TABLE IF NOT EXISTS guild_buffs (
     guild_level INTEGER                                -- <Level>: the guild level that unlocks it
 );
 
+-- A spell, potion, song or party buff a planner can toggle on (SelfAndPartyBuffs.xml); its effects
+-- are modifiers with source_kind 'optional_buff'.
+CREATE TABLE IF NOT EXISTS optional_buffs (
+    id          INTEGER PRIMARY KEY,
+    name        TEXT    NOT NULL UNIQUE,               -- <OptionalBuff><Name>
+    icon        TEXT,
+    description TEXT
+);
+
 -- Clickies ------------------------------------------------------------------------
 
 CREATE TABLE IF NOT EXISTS clickies (

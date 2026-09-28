@@ -6,6 +6,7 @@ pub mod feats;
 pub mod guild_buffs;
 pub mod item_buffs;
 pub mod items;
+pub mod optional_buffs;
 pub mod patrons;
 pub mod quests;
 pub mod races;

@@ -496,3 +496,15 @@ async fn guild_buffs_carry_their_unlock_level_and_per_level_modifiers() {
     assert_eq!(flame["modifiers"][0]["bonus_type"], "Guild");
     assert_eq!(flame["modifiers"][0]["amounts"].as_array().unwrap().len(), 40);
 }
+
+#[tokio::test]
+async fn optional_buffs_list_by_name_with_modifiers() {
+    let (status, _, json) = get("/v1/optional-buffs").await;
+    assert_eq!(status, StatusCode::OK);
+    let rows = json.as_array().unwrap();
+    let names: Vec<&str> = rows.iter().map(|b| b["name"].as_str().unwrap()).collect();
+    assert_eq!(names, ["Barkskin", "Bless", "Deadly Weapons", "Stone of Change: Alchemical Shield Eldritch Ritual"]);
+    assert_eq!(rows[0]["icon"], "Barkskin");
+    assert_eq!(rows[0]["modifiers"][0]["effect_type"], "NaturalArmor");
+    assert_eq!(rows[3]["modifiers"][0]["requirements"][0]["req_type"], "Stance");
+}

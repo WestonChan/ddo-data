@@ -9,7 +9,7 @@ use utoipa_axum::router::OpenApiRouter;
 use utoipa_axum::routes;
 
 pub fn router() -> OpenApiRouter<AppState> {
-    OpenApiRouter::new().routes(routes!(guild_buffs))
+    OpenApiRouter::new().routes(routes!(guild_buffs)).routes(routes!(optional_buffs))
 }
 
 fn with_modifiers(
@@ -43,6 +43,29 @@ async fn guild_buffs(State(state): State<AppState>) -> Result<Json<Vec<Value>>, 
                 conn,
                 "SELECT id, name, description, guild_level FROM guild_buffs ORDER BY guild_level, name",
                 ModifierSource::GuildBuff,
+            )
+        })
+        .await
+}
+
+#[utoipa::path(
+    get,
+    path = "/v1/optional-buffs",
+    tag = "buffs",
+    summary = "List optional buffs",
+    description = "The spell, enhancement, epic destiny, bard song, monk finisher, potion, Stone of Change ritual \
+                   and legacy guild buffs a planner can toggle on for a character, ordered by name, each with its \
+                   icon, description and the raw `modifiers` it applies. A modifier's `requirements` name the \
+                   stance or gear it needs, e.g. a shield ritual that only counts with the Shield stance.",
+    responses((status = 200, description = "Every optional buff", body = Vec<Value>))
+)]
+async fn optional_buffs(State(state): State<AppState>) -> Result<Json<Vec<Value>>, ApiError> {
+    state
+        .query(|conn| {
+            with_modifiers(
+                conn,
+                "SELECT id, name, icon, description FROM optional_buffs ORDER BY name",
+                ModifierSource::OptionalBuff,
             )
         })
         .await

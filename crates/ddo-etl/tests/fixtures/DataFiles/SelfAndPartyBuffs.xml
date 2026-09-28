@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SelfAndPartyBuffs>
+  <!--Spell Buffs-->
+  <OptionalBuff>
+    <Name>Barkskin</Name>
+    <Icon>Barkskin</Icon>
+    <Description>You have a Natural Armor bonus to AC.</Description>
+    <Effect>
+      <Type>NaturalArmor</Type>
+      <Bonus>Enhancement</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">5</Amount>
+    </Effect>
+  </OptionalBuff>
+  <OptionalBuff>
+    <Name>Bless</Name>
+    <Icon>Bless</Icon>
+    <Description>Multiple targets are filled with courage, granting a +1 Morale bonus on to-hit rolls
+and saves versus fear. Bless counters and dispels Bane.</Description>
+    <Effect>
+        <Type>Weapon_Attack</Type>
+      <Bonus>Morale</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">1</Amount>
+      <Item>All</Item>
+    </Effect>
+    <Effect>
+      <Type>SaveBonus</Type>
+      <Bonus>Morale</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">1</Amount>
+      <Item>Fear</Item>
+    </Effect>
+  </OptionalBuff>
+  <OptionalBuff>
+    <Name>Deadly Weapons</Name>
+    <Description>Your currently equipped weapons deal +1[W].</Description>
+    <Icon>DeadlyWeapons</Icon>
+    <Effect>
+      <Type>Weapon_BaseDamage</Type>
+      <Bonus>Alchemical</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">1</Amount>
+      <Item>All</Item>
+    </Effect>
+  </OptionalBuff>
+  <!--Stone of Change Eldritch Rituals-->
+  <OptionalBuff>
+    <Name>Stone of Change: Alchemical Shield Eldritch Ritual</Name>
+    <Icon>StoneOfChange</Icon>
+    <Description>+1 Stacking Bonus to AC</Description>
+    <Effect>
+      <Type>ACBonus</Type>
+      <Bonus>Stacking</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">1</Amount>
+       <Requirements>
+          <Requirement>
+             <Type>Stance</Type>
+             <Item>Shield</Item>
+          </Requirement>
+       </Requirements>
+    </Effect>
+  </OptionalBuff>
+</SelfAndPartyBuffs>
