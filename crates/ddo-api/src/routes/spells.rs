@@ -5,7 +5,6 @@ use axum::extract::{Path, Query, State};
 use axum::Json;
 use serde::Deserialize;
 use serde_json::{json, Value};
-use utoipa::IntoParams;
 use utoipa_axum::router::OpenApiRouter;
 use utoipa_axum::routes;
 
@@ -13,7 +12,7 @@ pub fn router() -> OpenApiRouter<AppState> {
     OpenApiRouter::new().routes(routes!(list)).routes(routes!(detail)).routes(routes!(clickies))
 }
 
-#[derive(Deserialize, IntoParams)]
+#[derive(Deserialize)]
 pub struct SpellFilter {
     pub q: Option<String>,
     pub school: Option<String>,
@@ -24,7 +23,23 @@ pub struct SpellFilter {
 
 const COLUMNS: &str = "s.id, s.name, s.description, s.icon, s.schools, s.max_caster_level, s.cost, s.metamagics";
 
-#[utoipa::path(get, path = "/v1/spells", tag = "spells", params(SpellFilter), responses((status = 200, body = Value)))]
+#[utoipa::path(
+    get,
+    path = "/v1/spells",
+    tag = "spells",
+    summary = "List spells",
+    description = "One page of spells ordered by name with description, icon, `schools`, maximum caster level, \
+                   spell point `cost` and the `metamagics` that apply. Damage, saving throws and which classes get \
+                   the spell at which level are on the detail endpoint.",
+    params(
+        ("q" = Option<String>, Query, description = "Case-insensitive substring of the spell name"),
+        ("school" = Option<String>, Query, description = "Spell school, e.g. `Evocation`; matches spells listing it among their schools"),
+        ("class" = Option<String>, Query, description = "Class name as /v1/classes lists it; keeps spells on that class's list"),
+        ("limit" = Option<i64>, Query, description = "Page size, 1 to 10000; defaults to 100"),
+        ("offset" = Option<i64>, Query, description = "Rows to skip before the first returned row; defaults to 0")
+    ),
+    responses((status = 200, description = "`total`, `limit`, `offset` and the `spells` page", body = Value))
+)]
 async fn list(State(state): State<AppState>, Query(f): Query<SpellFilter>) -> Result<Json<Value>, ApiError> {
     let (limit, offset) = page(f.limit, f.offset);
     state
@@ -50,7 +65,16 @@ async fn list(State(state): State<AppState>, Query(f): Query<SpellFilter>) -> Re
         .await
 }
 
-#[utoipa::path(get, path = "/v1/spells/{id}", tag = "spells", params(("id" = i64, Path)), responses((status = 200, body = Value), (status = 404, body = crate::error::ErrorBody)))]
+#[utoipa::path(
+    get,
+    path = "/v1/spells/{id}",
+    tag = "spells",
+    summary = "Get a spell",
+    description = "One spell with its `damage` lines (base and per-caster-level dice, damage type, spell power), \
+                   `dcs` (save type, what it is versus, which stat sets it), the `classes` that cast it with spell \
+                   level and cost, `stances` it grants, and raw `modifiers`.",
+    params(("id" = i64, Path, description = "The spell's numeric id from the list endpoint")), responses((status = 200, description = "The spell with its child collections", body = Value), (status = 404, description = "No spell has this id", body = crate::error::ErrorBody))
+)]
 async fn detail(State(state): State<AppState>, Path(id): Path<i64>) -> Result<Json<Value>, ApiError> {
     state
         .query(move |conn| {
@@ -83,7 +107,15 @@ async fn detail(State(state): State<AppState>, Path(id): Path<i64>) -> Result<Js
         .await
 }
 
-#[utoipa::path(get, path = "/v1/clickies", tag = "spells", responses((status = 200, body = Vec<Value>)))]
+#[utoipa::path(
+    get,
+    path = "/v1/clickies",
+    tag = "spells",
+    summary = "List clickies",
+    description = "Every clickie (an item-granted spell-like ability) ordered by name, with description, icon, \
+                   school and the raw `modifiers` it applies. Items reference these by name in their `clickies`.",
+    responses((status = 200, description = "All clickies", body = Vec<Value>))
+)]
 async fn clickies(State(state): State<AppState>) -> Result<Json<Vec<Value>>, ApiError> {
     state
         .query(|conn| {

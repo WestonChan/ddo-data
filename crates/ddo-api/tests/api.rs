@@ -247,3 +247,42 @@ async fn icons_are_served_when_configured() {
     assert_eq!(response.status(), StatusCode::NOT_FOUND, "no icons directory, no route");
     let _ = std::fs::remove_dir_all(&icons);
 }
+
+#[tokio::test]
+async fn openapi_describes_every_operation_parameter_and_tag() {
+    let (_, _, spec) = get("/openapi.json").await;
+    let info = &spec["info"];
+    assert!(info["description"].as_str().is_some_and(|d| d.len() > 200), "info.description is thin");
+
+    for tag in spec["tags"].as_array().expect("tags") {
+        let name = tag["name"].as_str().unwrap();
+        assert!(tag["description"].as_str().is_some_and(|d| d.len() > 20), "tag {name} needs a real description");
+    }
+
+    let mut checked = 0;
+    for (path, item) in spec["paths"].as_object().expect("paths") {
+        for (method, op) in item.as_object().unwrap() {
+            let at = format!("{} {path}", method.to_uppercase());
+            let summary = op["summary"].as_str().unwrap_or("");
+            assert!((8..=60).contains(&summary.len()), "{at}: summary {summary:?} must be a short title");
+            assert!(!summary.ends_with('.'), "{at}: summary is a title, not a sentence");
+            let description = op["description"].as_str().unwrap_or("");
+            assert!(description.len() >= 60, "{at}: description {description:?} must explain the response");
+            for param in op["parameters"].as_array().into_iter().flatten() {
+                let name = param["name"].as_str().unwrap();
+                assert!(
+                    param["description"].as_str().is_some_and(|d| d.len() >= 15),
+                    "{at}: parameter {name} needs a description"
+                );
+            }
+            for (status, response) in op["responses"].as_object().unwrap() {
+                assert!(
+                    response["description"].as_str().is_some_and(|d| d.len() >= 10),
+                    "{at}: response {status} needs a description"
+                );
+            }
+            checked += 1;
+        }
+    }
+    assert!(checked >= 25, "only {checked} operations in the spec");
+}

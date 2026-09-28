@@ -44,6 +44,10 @@ This is the data half of a two-repo project. The site is `ddo-tools`, a sibling 
 - **Keep code clean and refactor freely.** Improve adjacent code you touch; don't leave a file worse than you found it.
 - `rustfmt.toml` sets a 120-column width. Run `cargo fmt --all` before committing.
 
+## API documentation
+
+`/docs` is the public face of the API, and it is generated from the `#[utoipa::path]` attributes, so the attributes are the documentation. Every route carries `summary` (a short title in the form "List items" / "Get an item"), `description` (what the response contains and how the route behaves, naming the child collections), a `description` on every query and path parameter (what it matches, the vocabulary it comes from, the default), and a `description` on every response. Filters are declared inline in `params(...)` rather than through `IntoParams`, because the comment ban leaves no other place to describe a field. The `tags(...)` and `info(description)` in `lib.rs` are the sidebar headings and the Introduction page. `openapi_describes_every_operation_parameter_and_tag` in `crates/ddo-api/tests/api.rs` fails the build when any of this is missing or too short, so adding a route means writing its docs in the same commit. When a response shape changes, reread its description.
+
 ## Testing
 
 Write the failing test first, confirm it fails for the right reason, then the minimum code to pass, then the full suite. Parser tests use fixtures under `crates/ddo-etl/tests/fixtures`; API tests build an in-memory database. `cargo test --workspace`, `cargo lint`, and `cargo fmt --all --check` must all pass before committing.

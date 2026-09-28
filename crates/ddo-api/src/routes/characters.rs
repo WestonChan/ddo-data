@@ -14,7 +14,15 @@ pub fn router() -> OpenApiRouter<AppState> {
 const RACE_COLUMNS: &str = "id, name, short_name, description, starting_world, build_points, iconic_class, is_construct, no_past_life, skill_points";
 const RACE_FLAGS: &[&str] = &["is_construct", "no_past_life"];
 
-#[utoipa::path(get, path = "/v1/races", tag = "characters", responses((status = 200, body = Vec<Value>)))]
+#[utoipa::path(
+    get,
+    path = "/v1/races",
+    tag = "characters",
+    summary = "List races",
+    description = "Every playable race ordered by name with its short name, description, starting world, build \
+                   points, the iconic class if it is an iconic race, and the construct and past-life flags.",
+    responses((status = 200, description = "All playable races", body = Vec<Value>))
+)]
 async fn races(State(state): State<AppState>) -> Result<Json<Vec<Value>>, ApiError> {
     state
         .query(|conn| {
@@ -27,7 +35,15 @@ async fn races(State(state): State<AppState>) -> Result<Json<Vec<Value>>, ApiErr
         .await
 }
 
-#[utoipa::path(get, path = "/v1/races/{id}", tag = "characters", params(("id" = i64, Path)), responses((status = 200, body = Value), (status = 404, body = crate::error::ErrorBody)))]
+#[utoipa::path(
+    get,
+    path = "/v1/races/{id}",
+    tag = "characters",
+    summary = "Get a race",
+    description = "One race with its `ability_modifiers`, the `granted_feats` every member gets, the racial `feats` \
+                   it makes available, its `feat_slots` by level, and the skills it auto-buys.",
+    params(("id" = i64, Path, description = "The race's numeric id from the list endpoint")), responses((status = 200, description = "The race with its child collections", body = Value), (status = 404, description = "No race has this id", body = crate::error::ErrorBody))
+)]
 async fn race(State(state): State<AppState>, Path(id): Path<i64>) -> Result<Json<Value>, ApiError> {
     state
         .query(move |conn| {
@@ -60,7 +76,16 @@ async fn race(State(state): State<AppState>, Path(id): Path<i64>) -> Result<Json
 const CLASS_COLUMNS: &str = "id, name, base_class, base_class_id, not_heroic, description, small_icon, large_icon, skill_points, hit_points,
                              alignments, fortitude, reflex, will, bab, spell_points_per_level, casting_stats, class_specific_feat_types";
 
-#[utoipa::path(get, path = "/v1/classes", tag = "characters", responses((status = 200, body = Vec<Value>)))]
+#[utoipa::path(
+    get,
+    path = "/v1/classes",
+    tag = "characters",
+    summary = "List classes",
+    description = "Every class and archetype ordered by name with its base class, allowed alignments, hit and \
+                   skill points per level, save and base-attack progressions, spell points, casting stats and \
+                   class-specific feat types. Archetypes carry `base_class`; epic-only classes are `not_heroic`.",
+    responses((status = 200, description = "All classes", body = Vec<Value>))
+)]
 async fn classes(State(state): State<AppState>) -> Result<Json<Vec<Value>>, ApiError> {
     state
         .query(|conn| {
@@ -73,7 +98,16 @@ async fn classes(State(state): State<AppState>) -> Result<Json<Vec<Value>>, ApiE
         .await
 }
 
-#[utoipa::path(get, path = "/v1/classes/{id}", tag = "characters", params(("id" = i64, Path)), responses((status = 200, body = Value), (status = 404, body = crate::error::ErrorBody)))]
+#[utoipa::path(
+    get,
+    path = "/v1/classes/{id}",
+    tag = "characters",
+    summary = "Get a class",
+    description = "One class with its `class_skills` and `auto_buy_skills`, `spell_slots` keyed by class level, its \
+                   `spells` with spell level and cost, `feat_slots` by level, `automatic_feats` granted by level, \
+                   and the class `feats` it makes available.",
+    params(("id" = i64, Path, description = "The class's numeric id from the list endpoint")), responses((status = 200, description = "The class with its child collections", body = Value), (status = 404, description = "No class has this id", body = crate::error::ErrorBody))
+)]
 async fn class(State(state): State<AppState>, Path(id): Path<i64>) -> Result<Json<Value>, ApiError> {
     state
         .query(move |conn| {

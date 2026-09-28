@@ -11,7 +11,15 @@ pub fn router() -> OpenApiRouter<AppState> {
     OpenApiRouter::new().routes(routes!(list)).routes(routes!(detail)).routes(routes!(filigrees))
 }
 
-#[utoipa::path(get, path = "/v1/sets", tag = "sets", responses((status = 200, body = Vec<Value>)))]
+#[utoipa::path(
+    get,
+    path = "/v1/sets",
+    tag = "sets",
+    summary = "List sets",
+    description = "Every set bonus ordered by name with its icon, whether it is a filigree set rather than a gear \
+                   set, and how many items and tiers it has. Tiers, items and filigrees are on the detail endpoint.",
+    responses((status = 200, description = "All set bonuses", body = Vec<Value>))
+)]
 async fn list(State(state): State<AppState>) -> Result<Json<Vec<Value>>, ApiError> {
     state
         .query(|conn| {
@@ -31,7 +39,15 @@ async fn list(State(state): State<AppState>) -> Result<Json<Vec<Value>>, ApiErro
         .await
 }
 
-#[utoipa::path(get, path = "/v1/sets/{id}", tag = "sets", params(("id" = i64, Path)), responses((status = 200, body = Value), (status = 404, body = crate::error::ErrorBody)))]
+#[utoipa::path(
+    get,
+    path = "/v1/sets/{id}",
+    tag = "sets",
+    summary = "Get a set",
+    description = "One set with its `tiers` (how many pieces equipped unlock which raw `modifiers`), the `items` \
+                   that count towards it with slot and minimum level, and for filigree sets the `filigrees`.",
+    params(("id" = i64, Path, description = "The set's numeric id from the list endpoint")), responses((status = 200, description = "The set with its child collections", body = Value), (status = 404, description = "No set has this id", body = crate::error::ErrorBody))
+)]
 async fn detail(State(state): State<AppState>, Path(id): Path<i64>) -> Result<Json<Value>, ApiError> {
     state
         .query(move |conn| {
@@ -70,7 +86,15 @@ fn filigree_rows(conn: &rusqlite::Connection, set_id: Option<i64>) -> Result<Vec
     Ok(rows)
 }
 
-#[utoipa::path(get, path = "/v1/filigrees", tag = "sets", responses((status = 200, body = Vec<Value>)))]
+#[utoipa::path(
+    get,
+    path = "/v1/filigrees",
+    tag = "sets",
+    summary = "List filigrees",
+    description = "Every sentient-weapon filigree ordered by name with its description, icon, crafting `menu`, the \
+                   set it belongs to, and the raw `modifiers` it applies on its own.",
+    responses((status = 200, description = "All filigrees", body = Vec<Value>))
+)]
 async fn filigrees(State(state): State<AppState>) -> Result<Json<Vec<Value>>, ApiError> {
     state.query(|conn| Ok(Json(filigree_rows(conn, None)?))).await
 }

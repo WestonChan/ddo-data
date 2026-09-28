@@ -9,7 +9,6 @@ use axum::Json;
 use ddo_model::enums::FeatSource;
 use serde::Deserialize;
 use serde_json::{json, Value};
-use utoipa::IntoParams;
 use utoipa_axum::router::OpenApiRouter;
 use utoipa_axum::routes;
 
@@ -17,7 +16,7 @@ pub fn router() -> OpenApiRouter<AppState> {
     OpenApiRouter::new().routes(routes!(list)).routes(routes!(detail))
 }
 
-#[derive(Deserialize, IntoParams)]
+#[derive(Deserialize)]
 pub struct FeatFilter {
     pub q: Option<String>,
     pub source: Option<String>,
@@ -32,7 +31,28 @@ const COLUMNS: &str = "f.id, f.name, f.source_kind, f.source_id,
                                           WHEN 'race' THEN (SELECT r.name FROM races r WHERE r.id = f.source_id) END AS source_name,
                        f.description, f.icon, f.acquire, f.max_times_acquire, f.sphere, f.auto_acquire_ignores_requirements";
 
-#[utoipa::path(get, path = "/v1/feats", tag = "feats", params(FeatFilter), responses((status = 200, body = Value)))]
+#[utoipa::path(
+    get,
+    path = "/v1/feats",
+    tag = "feats",
+    summary = "List feats",
+    description = "One page of feats ordered by name. `source_kind` says where the feat comes from: `standard` for \
+                   the general list, `class` or `race` for feats granted by one class or race, with `source_name` \
+                   naming it. Each row also carries how the feat is acquired, how many times, its sphere, and the \
+                   feat `groups` it belongs to. Requirements and bonuses are on the detail endpoint.",
+    params(
+        ("q" = Option<String>, Query, description = "Case-insensitive substring of the feat name"),
+        ("source" = Option<String>, Query, description = "`standard`, `class` or `race`; anything else is a 400"),
+        ("group" = Option<String>, Query, description = "Feat group name, e.g. `Metamagic`; keeps feats listed in that group"),
+        ("acquire" = Option<String>, Query, description = "How the feat is taken, e.g. `Train`, `Automatic`, `Special`"),
+        ("limit" = Option<i64>, Query, description = "Page size, 1 to 10000; defaults to 100"),
+        ("offset" = Option<i64>, Query, description = "Rows to skip before the first returned row; defaults to 0")
+    ),
+    responses(
+        (status = 200, description = "`total`, `limit`, `offset` and the `feats` page", body = Value),
+        (status = 400, description = "Unknown source", body = crate::error::ErrorBody)
+    )
+)]
 async fn list(State(state): State<AppState>, Query(f): Query<FeatFilter>) -> Result<Json<Value>, ApiError> {
     if let Some(s) = &f.source {
         if !FeatSource::ALL.iter().any(|k| k.as_str() == s) {
@@ -76,7 +96,17 @@ fn groups(conn: &rusqlite::Connection, id: i64) -> Result<Vec<Value>, ApiError> 
         .collect())
 }
 
-#[utoipa::path(get, path = "/v1/feats/{id}", tag = "feats", params(("id" = i64, Path)), responses((status = 200, body = Value), (status = 404, body = crate::error::ErrorBody)))]
+#[utoipa::path(
+    get,
+    path = "/v1/feats/{id}",
+    tag = "feats",
+    summary = "Get a feat",
+    description = "One feat with its `requirements` to train it, `auto_acquire_requirements` for automatic grants, \
+                   `conditional_groups` (alternative requirement sets), `sub_items` (the choices a selector feat \
+                   offers), `stances`, `dcs`, an `attack` if the feat is one, its derived `bonuses`, and the raw \
+                   `modifiers` they came from.",
+    params(("id" = i64, Path, description = "The feat's numeric id from the list endpoint")), responses((status = 200, description = "The feat with its child collections", body = Value), (status = 404, description = "No feat has this id", body = crate::error::ErrorBody))
+)]
 async fn detail(State(state): State<AppState>, Path(id): Path<i64>) -> Result<Json<Value>, ApiError> {
     state
         .query(move |conn| {

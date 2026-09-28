@@ -5,7 +5,6 @@ use axum::extract::{Path, Query, State};
 use axum::Json;
 use serde::Deserialize;
 use serde_json::{json, Value};
-use utoipa::IntoParams;
 use utoipa_axum::router::OpenApiRouter;
 use utoipa_axum::routes;
 
@@ -13,7 +12,7 @@ pub fn router() -> OpenApiRouter<AppState> {
     OpenApiRouter::new().routes(routes!(list)).routes(routes!(detail))
 }
 
-#[derive(Deserialize, IntoParams)]
+#[derive(Deserialize)]
 pub struct AugmentFilter {
     pub q: Option<String>,
     pub slot: Option<String>,
@@ -46,7 +45,24 @@ const COLUMNS: &str =
                        a.level_values, a.level_values2, a.dual_values, a.enter_value, a.suppress_set_bonus, a.set_bonus,
                        a.adds_augment, a.grants_augment, a.weapon_class";
 
-#[utoipa::path(get, path = "/v1/augments", tag = "augments", params(AugmentFilter), responses((status = 200, body = Value)))]
+#[utoipa::path(
+    get,
+    path = "/v1/augments",
+    tag = "augments",
+    summary = "List augments",
+    description = "One page of augments ordered by name then minimum level, each with the socket labels it fits \
+                   (`slots`), its `bonuses`, and the crafting fields DDOBuilderV2 records (level tables, dual values, \
+                   set bonus, granted augments). Filter by `slot` to get the candidates for one socket on an item.",
+    params(
+        ("q" = Option<String>, Query, description = "Case-insensitive substring of the augment name"),
+        ("slot" = Option<String>, Query, description = "Socket label as /v1/augment-slot-types lists it, e.g. `red` or `lamordia: melancholic (accessory)`; case-insensitive"),
+        ("family" = Option<String>, Query, description = "Augment family, e.g. `standard`, `lamordia`, `dino`, `crafting`"),
+        ("max_level" = Option<i64>, Query, description = "Only augments usable at this character level or lower; augments with no minimum level always pass"),
+        ("limit" = Option<i64>, Query, description = "Page size, 1 to 10000; defaults to 100"),
+        ("offset" = Option<i64>, Query, description = "Rows to skip before the first returned row; defaults to 0")
+    ),
+    responses((status = 200, description = "`total`, `limit`, `offset` and the `augments` page", body = Value))
+)]
 async fn list(State(state): State<AppState>, Query(f): Query<AugmentFilter>) -> Result<Json<Value>, ApiError> {
     let (limit, offset) = page(f.limit, f.offset);
     state
@@ -78,7 +94,15 @@ async fn list(State(state): State<AppState>, Query(f): Query<AugmentFilter>) -> 
         .await
 }
 
-#[utoipa::path(get, path = "/v1/augments/{id}", tag = "augments", params(("id" = i64, Path)), responses((status = 200, body = Value), (status = 404, body = crate::error::ErrorBody)))]
+#[utoipa::path(
+    get,
+    path = "/v1/augments/{id}",
+    tag = "augments",
+    summary = "Get an augment",
+    description = "One augment as the list returns it, plus the raw `modifiers` its bonuses were derived from, \
+                   including the conditional and dice-valued ones that do not reduce to a bonus.",
+    params(("id" = i64, Path, description = "The augment's numeric id from the list endpoint")), responses((status = 200, description = "The augment with its child collections", body = Value), (status = 404, description = "No augment has this id", body = crate::error::ErrorBody))
+)]
 async fn detail(State(state): State<AppState>, Path(id): Path<i64>) -> Result<Json<Value>, ApiError> {
     state
         .query(move |conn| {

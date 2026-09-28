@@ -11,7 +11,16 @@ pub fn router() -> OpenApiRouter<AppState> {
     OpenApiRouter::new().routes(routes!(dump))
 }
 
-#[utoipa::path(get, path = "/v1/dump.sqlite", tag = "bulk", responses((status = 200, description = "The database file", content_type = "application/vnd.sqlite3")))]
+#[utoipa::path(
+    get,
+    path = "/v1/dump.sqlite",
+    tag = "bulk",
+    summary = "Download the database",
+    description = "The whole dataset as one SQLite file (about 14 MB), the same file every other endpoint reads. \
+                   Prefer this to paging the list endpoints when you need everything; the filename carries the \
+                   dataset commit so you can tell copies apart.",
+    responses((status = 200, description = "The SQLite database file", content_type = "application/vnd.sqlite3"))
+)]
 async fn dump(State(state): State<AppState>) -> Result<Response, ApiError> {
     let path = state.db_path().to_path_buf();
     let file = tokio::fs::File::open(&path)

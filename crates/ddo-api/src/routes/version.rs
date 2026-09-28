@@ -40,7 +40,16 @@ const COUNTED: &[&str] = &[
     "bonuses",
 ];
 
-#[utoipa::path(get, path = "/v1/version", tag = "meta", responses((status = 200, body = VersionInfo)))]
+#[utoipa::path(
+    get,
+    path = "/v1/version",
+    tag = "meta",
+    summary = "Get the dataset version",
+    description = "Which DDOBuilderV2 commit the data was built from and when, the schema version, and row counts \
+                   for the main tables. The commit SHA is the same value every response carries in its \
+                   `X-Dataset-Version` header; a change in it means every cached response is stale.",
+    responses((status = 200, description = "Dataset, schema and counts", body = VersionInfo))
+)]
 async fn version(State(state): State<AppState>) -> Result<Json<VersionInfo>, ApiError> {
     let dataset = state.dataset().clone();
     let schema_version = state.schema_version();

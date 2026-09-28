@@ -14,7 +14,16 @@ pub fn router() -> OpenApiRouter<AppState> {
 const TREE_COLUMNS: &str = "t.id, t.name, t.version, t.kind, t.is_legacy, t.icon, t.background,
                             (SELECT COUNT(*) FROM enhancements e WHERE e.tree_id = t.id) AS enhancement_count";
 
-#[utoipa::path(get, path = "/v1/enhancement-trees", tag = "enhancements", responses((status = 200, body = Vec<Value>)))]
+#[utoipa::path(
+    get,
+    path = "/v1/enhancement-trees",
+    tag = "enhancements",
+    summary = "List enhancement trees",
+    description = "Every enhancement, destiny and reaper tree ordered by kind then name, with its version, icon, \
+                   background art name, whether it is a legacy tree, how many enhancements it holds, and the \
+                   `requirements` to access it. The enhancements themselves are on the detail endpoint.",
+    responses((status = 200, description = "All enhancement trees", body = Vec<Value>))
+)]
 async fn list(State(state): State<AppState>) -> Result<Json<Vec<Value>>, ApiError> {
     state
         .query(|conn| {
@@ -49,7 +58,17 @@ fn ability_children(conn: &rusqlite::Connection, owner: &str, row: &mut Value) -
     Ok(())
 }
 
-#[utoipa::path(get, path = "/v1/enhancement-trees/{id}", tag = "enhancements", params(("id" = i64, Path)), responses((status = 200, body = Value), (status = 404, body = crate::error::ErrorBody)))]
+#[utoipa::path(
+    get,
+    path = "/v1/enhancement-trees/{id}",
+    tag = "enhancements",
+    summary = "Get an enhancement tree",
+    description = "One tree with every `enhancement` in grid order (`x`, `y`), each with cost per rank, ranks, \
+                   points that must be spent in the tree first, tier-5 and clickie flags, `arrows` to prerequisites, \
+                   `exclusions`, and for selector enhancements the `selections`. Enhancements and selections both \
+                   carry `requirements`, raw `modifiers`, `stances`, `dcs` and an `attack` when they grant one.",
+    params(("id" = i64, Path, description = "The tree's numeric id from the list endpoint")), responses((status = 200, description = "The tree with its child collections", body = Value), (status = 404, description = "No tree has this id", body = crate::error::ErrorBody))
+)]
 async fn detail(State(state): State<AppState>, Path(id): Path<i64>) -> Result<Json<Value>, ApiError> {
     state
         .query(move |conn| {
