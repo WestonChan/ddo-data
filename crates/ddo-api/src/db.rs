@@ -108,6 +108,7 @@ pub fn stances_for(conn: &Connection, owner_kind: &str, owner_id: i64) -> Result
         booleanize(row, &["auto_controlled"]);
         let id = row["id"].as_i64().unwrap_or(0);
         row["requirements"] = Value::Array(requirements_for(conn, "stance", id)?);
+        row["modifiers"] = Value::Array(modifiers_for(conn, "stance", id)?);
     }
     Ok(rows)
 }

@@ -85,6 +85,7 @@ jobs:
           check classes 25
           check races 25
           check modifiers 12000
+          check "stances WHERE owner_kind = 'standalone'" 20
           test "$(find icons -name '*.png' | wc -l)" -ge 8000
 
       - name: Keep the dataset as a workflow artifact

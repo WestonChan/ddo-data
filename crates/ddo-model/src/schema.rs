@@ -343,11 +343,11 @@ CREATE TABLE IF NOT EXISTS feat_bonuses (
     PRIMARY KEY (feat_id, sort_order)
 );
 
--- A toggled or automatic combat stance an ability provides.
+-- A toggled or automatic combat stance an ability provides, or one of Stances.xml's standalone stances.
 CREATE TABLE IF NOT EXISTS stances (
     id              INTEGER PRIMARY KEY,
     owner_kind      TEXT    NOT NULL CHECK (owner_kind {ability_owner}),
-    owner_id        INTEGER NOT NULL,
+    owner_id        INTEGER NOT NULL,                 -- 0 for 'standalone' (Stances.xml)
     sort_order      INTEGER NOT NULL,
     name            TEXT    NOT NULL,
     description     TEXT,

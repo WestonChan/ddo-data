@@ -52,6 +52,8 @@ pub struct Stance {
     pub requirements: Option<Requirements>,
     #[serde(rename = "IncompatibleStance", default)]
     pub incompatible: Vec<String>,
+    #[serde(rename = "Effect", default)]
+    pub effects: Vec<Effect>,
 }
 
 #[derive(Debug, Clone, Deserialize)]

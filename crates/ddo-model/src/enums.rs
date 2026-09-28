@@ -626,6 +626,7 @@ pub enum ModifierSource {
     EnhancementSelection,
     EnhancementSelectionFollowOn,
     Spell,
+    Stance,
 }
 
 impl ModifierSource {
@@ -641,6 +642,7 @@ impl ModifierSource {
         Self::EnhancementSelection,
         Self::EnhancementSelectionFollowOn,
         Self::Spell,
+        Self::Stance,
     ];
 
     pub const fn as_str(self) -> &'static str {
@@ -656,6 +658,7 @@ impl ModifierSource {
             Self::EnhancementSelection => "enhancement_selection",
             Self::EnhancementSelectionFollowOn => "enhancement_selection_follow_on",
             Self::Spell => "spell",
+            Self::Stance => "stance",
         }
     }
 }
@@ -723,10 +726,12 @@ pub enum AbilityOwner {
     Enhancement,
     EnhancementSelection,
     Spell,
+    Standalone,
 }
 
 impl AbilityOwner {
-    pub const ALL: &'static [AbilityOwner] = &[Self::Feat, Self::Enhancement, Self::EnhancementSelection, Self::Spell];
+    pub const ALL: &'static [AbilityOwner] =
+        &[Self::Feat, Self::Enhancement, Self::EnhancementSelection, Self::Spell, Self::Standalone];
 
     pub const fn as_str(self) -> &'static str {
         match self {
@@ -734,6 +739,7 @@ impl AbilityOwner {
             Self::Enhancement => "enhancement",
             Self::EnhancementSelection => "enhancement_selection",
             Self::Spell => "spell",
+            Self::Standalone => "standalone",
         }
     }
 }

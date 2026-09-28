@@ -1,0 +1,83 @@
+[
+  {
+    "auto_controlled": true,
+    "description": "You are fighting with a weapon in each hand or with handwraps",
+    "group_name": "Auto",
+    "icon": "TwoWeaponFighting",
+    "id": 336,
+    "incompatible": null,
+    "modifiers": [],
+    "name": "Two Weapon Fighting",
+    "requirements": [
+      {
+        "group_index": 0,
+        "group_kind": "all",
+        "items": [
+          "One Handed"
+        ],
+        "req_type": "GroupMember",
+        "value": null
+      },
+      {
+        "group_index": 0,
+        "group_kind": "all",
+        "items": [
+          "One Handed"
+        ],
+        "req_type": "GroupMember2",
+        "value": null
+      },
+      {
+        "group_index": 1,
+        "group_kind": "none_of",
+        "items": [
+          "Plague Wolf"
+        ],
+        "req_type": "Stance",
+        "value": null
+      }
+    ]
+  },
+  {
+    "auto_controlled": true,
+    "description": "You are fighting with a single weapon in both hands",
+    "group_name": "Auto",
+    "icon": "TwoHandedFighting",
+    "id": 337,
+    "incompatible": null,
+    "modifiers": [],
+    "name": "Two Handed Fighting",
+    "requirements": [
+      {
+        "group_index": 0,
+        "group_kind": "all",
+        "items": [
+          "Two Handed"
+        ],
+        "req_type": "GroupMember",
+        "value": null
+      }
+    ]
+  },
+  {
+    "auto_controlled": true,
+    "description": "You are fighting with a ranged weapon",
+    "group_name": "Auto",
+    "icon": "RangedCombat",
+    "id": 338,
+    "incompatible": null,
+    "modifiers": [],
+    "name": "Ranged Combat",
+    "requirements": [
+      {
+        "group_index": 0,
+        "group_kind": "all",
+        "items": [
+          "All Ranged"
+        ],
+        "req_type": "GroupMember",
+        "value": null
+      }
+    ]
+  }
+]

@@ -1,7 +1,7 @@
 use super::{json_numbers, json_strings, nonempty, BuildReport, Ctx};
 use crate::xml::classes::{self, FeatSlot};
 use crate::xml::feats::{self, Feat};
-use crate::xml::races;
+use crate::xml::{races, stances};
 use anyhow::{bail, Context, Result};
 use ddo_model::enums::{AbilityOwner, FeatSource, ModifierSource, RequirementOwner, SaveProgression};
 use rusqlite::params;
@@ -81,14 +81,17 @@ impl Ctx<'_> {
         Ok(id)
     }
 
-    pub(super) fn write_ability_children(
-        &mut self,
-        owner: AbilityOwner,
-        owner_id: i64,
-        stances: &[feats::Stance],
-        dcs: &[feats::Dc],
-        attack: Option<&feats::Attack>,
-    ) -> Result<()> {
+    pub(super) fn write_standalone_stances(&mut self, path: &Path, report: &mut BuildReport) -> Result<()> {
+        if !path.is_file() {
+            return Ok(());
+        }
+        let list = stances::parse(path)?;
+        self.write_stances(AbilityOwner::Standalone, 0, &list)?;
+        report.standalone_stances = list.len();
+        Ok(())
+    }
+
+    fn write_stances(&mut self, owner: AbilityOwner, owner_id: i64, stances: &[feats::Stance]) -> Result<()> {
         for (i, s) in stances.iter().enumerate() {
             self.tx.execute(
                 "INSERT INTO stances (owner_kind, owner_id, sort_order, name, description, icon, group_name, auto_controlled, incompatible)
@@ -109,7 +112,20 @@ impl Ctx<'_> {
             if let Some(reqs) = &s.requirements {
                 self.write_requirements(RequirementOwner::Stance, stance_id, reqs)?;
             }
+            self.write_modifiers(ModifierSource::Stance, stance_id, &s.effects)?;
         }
+        Ok(())
+    }
+
+    pub(super) fn write_ability_children(
+        &mut self,
+        owner: AbilityOwner,
+        owner_id: i64,
+        stances: &[feats::Stance],
+        dcs: &[feats::Dc],
+        attack: Option<&feats::Attack>,
+    ) -> Result<()> {
+        self.write_stances(owner, owner_id, stances)?;
         for (i, d) in dcs.iter().enumerate() {
             let amount = d.amount.as_ref().map(|v| v.numbers()).transpose().map_err(anyhow::Error::msg)?;
             self.tx.execute(

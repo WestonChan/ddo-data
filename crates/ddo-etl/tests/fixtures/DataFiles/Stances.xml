@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Stances>
+   <Stance>
+      <Name>Two Weapon Fighting</Name>
+      <Icon>TwoWeaponFighting</Icon>
+      <Description>You are fighting with a weapon in each hand or with handwraps</Description>
+      <Group>Auto</Group>
+      <AutoControlled/>
+      <Requirements>
+         <Requirement>
+            <Type>GroupMember</Type>
+            <Item>One Handed</Item>
+         </Requirement>
+         <Requirement>
+            <Type>GroupMember2</Type>
+            <Item>One Handed</Item>
+         </Requirement>
+         <RequiresNoneOf>
+            <Requirement>
+               <Type>Stance</Type>
+               <Item>Plague Wolf</Item>
+            </Requirement>
+            <Requirement>
+               <Type>Stance</Type>
+               <Item>Blight Wolf</Item>
+            </Requirement>
+            <Requirement>
+               <Type>Stance</Type>
+               <Item>Wolf</Item>
+            </Requirement>
+            <Requirement>
+               <Type>Stance</Type>
+               <Item>Bear</Item>
+            </Requirement>
+            <Requirement>
+               <Type>Stance</Type>
+               <Item>Winter Wolf</Item>
+            </Requirement>
+            <Requirement>
+               <Type>Stance</Type>
+               <Item>Dire Bear</Item>
+            </Requirement>
+            <Requirement>
+               <Type>Stance</Type>
+               <Item>Fire Elemental</Item>
+            </Requirement>
+            <Requirement>
+               <Type>Stance</Type>
+               <Item>Water Elemental</Item>
+            </Requirement>
+         </RequiresNoneOf>
+      </Requirements>
+   </Stance>
+   <Stance>
+      <Name>Two Handed Fighting</Name>
+      <Icon>TwoHandedFighting</Icon>
+      <Description>You are fighting with a single weapon in both hands</Description>
+      <Group>Auto</Group>
+      <AutoControlled/>
+      <Requirements>
+         <Requirement>
+            <Type>GroupMember</Type>
+            <Item>Two Handed</Item>
+         </Requirement>
+      </Requirements>
+   </Stance>
+   <Stance>
+      <Name>Aura of Good</Name>
+      <Icon>AuraOfGood</Icon>
+      <Description>An aura of holiness surrounds you while near a Paladin, granting a bonus
+to saves and Armor Class against evil creatures.</Description>
+      <Group>Auto</Group>
+      <AutoControlled/>
+      <Requirements>
+         <Requirement>
+            <Type>BaseClassMinLevel</Type>
+            <Item>Paladin</Item>
+            <Value>1</Value>
+         </Requirement>
+      </Requirements>
+   </Stance>
+</Stances>

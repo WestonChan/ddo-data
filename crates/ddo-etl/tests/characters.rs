@@ -1,5 +1,6 @@
 use ddo_etl::build::build;
-use ddo_etl::xml::{classes, feats, races};
+use ddo_etl::xml::requirements::RequirementGroupKind;
+use ddo_etl::xml::{classes, feats, races, stances};
 use ddo_model::DatasetVersion;
 use rusqlite::{params, Connection};
 use std::path::PathBuf;
@@ -255,4 +256,49 @@ fn writes_classes() {
     assert_eq!(base, "Cleric");
     assert!(base_id.is_none(), "Cleric is not in the fixture, so the name is kept without an id");
     assert!(!not_heroic);
+}
+
+#[test]
+fn parses_standalone_stances() {
+    let list = stances::parse(&fixtures().join("Stances.xml")).unwrap();
+    let names: Vec<&str> = list.iter().map(|s| s.name.as_str()).collect();
+    assert_eq!(names, ["Two Weapon Fighting", "Two Handed Fighting", "Aura of Good"]);
+    let twf = &list[0];
+    assert_eq!(twf.group.as_deref(), Some("Auto"));
+    assert!(twf.auto_controlled.is_some());
+    let groups: Vec<(RequirementGroupKind, usize)> =
+        twf.requirements.as_ref().unwrap().groups.iter().map(|g| (g.kind, g.requirements.len())).collect();
+    assert_eq!(groups, [(RequirementGroupKind::All, 2), (RequirementGroupKind::NoneOf, 8)]);
+    assert!(twf.effects.is_empty());
+}
+
+#[test]
+fn writes_standalone_stances_with_their_requirements() {
+    let conn = built();
+    assert_eq!(count(&conn, "SELECT COUNT(*) FROM stances WHERE owner_kind = 'standalone'"), 3);
+    let (id, group, auto_controlled, sort_order): (i64, String, bool, i64) = conn
+        .query_row(
+            "SELECT id, group_name, auto_controlled, sort_order FROM stances
+              WHERE owner_kind = 'standalone' AND name = 'Aura of Good'",
+            [],
+            |r| Ok((r.get(0)?, r.get(1)?, r.get(2)?, r.get(3)?)),
+        )
+        .unwrap();
+    assert_eq!((group.as_str(), auto_controlled, sort_order), ("Auto", true, 2));
+    let (req_type, items, value): (String, String, String) = conn
+        .query_row(
+            "SELECT req_type, items, value FROM requirements WHERE owner_kind = 'stance' AND owner_id = ?1",
+            params![id],
+            |r| Ok((r.get(0)?, r.get(1)?, r.get(2)?)),
+        )
+        .unwrap();
+    assert_eq!((req_type.as_str(), items.as_str(), value.as_str()), ("BaseClassMinLevel", r#"["Paladin"]"#, "1"));
+    let twf: i64 =
+        one(&conn, "SELECT id FROM stances WHERE owner_kind = 'standalone' AND name = 'Two Weapon Fighting'", &[]);
+    let none_of: i64 = one(
+        &conn,
+        "SELECT COUNT(*) FROM requirements WHERE owner_kind = 'stance' AND owner_id = ?1 AND group_kind = 'none_of'",
+        &[&twf],
+    );
+    assert_eq!(none_of, 8);
 }

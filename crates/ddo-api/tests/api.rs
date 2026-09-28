@@ -468,3 +468,17 @@ async fn list_endpoints_accept_every_documented_query_parameter() {
         }
     }
 }
+
+#[tokio::test]
+async fn stances_lists_the_standalone_stances_in_file_order() {
+    let (status, _, json) = get("/v1/stances").await;
+    assert_eq!(status, StatusCode::OK);
+    let rows = json.as_array().unwrap();
+    let names: Vec<&str> = rows.iter().map(|s| s["name"].as_str().unwrap()).collect();
+    assert_eq!(names, ["Two Weapon Fighting", "Two Handed Fighting", "Aura of Good"]);
+    assert_eq!(rows[0]["auto_controlled"], true);
+    assert_eq!(rows[0]["group_name"], "Auto");
+    assert_eq!(rows[0]["requirements"].as_array().unwrap().len(), 10);
+    assert_eq!(rows[2]["requirements"][0]["value"], "1");
+    assert_eq!(rows[0]["modifiers"], serde_json::json!([]));
+}

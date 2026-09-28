@@ -11,6 +11,7 @@ pub mod races;
 pub mod requirements;
 pub mod set_bonuses;
 pub mod spells;
+pub mod stances;
 pub mod trees;
 
 use anyhow::{Context, Result};
