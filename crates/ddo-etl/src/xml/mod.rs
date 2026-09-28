@@ -1,4 +1,5 @@
 pub mod augments;
+pub mod challenges;
 pub mod classes;
 pub mod clickies;
 pub mod effect;

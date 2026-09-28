@@ -110,7 +110,9 @@ CREATE TABLE IF NOT EXISTS quests (
     favor      INTEGER,                               -- <Favor>
     is_raid    INTEGER NOT NULL DEFAULT 0 CHECK (is_raid IN (0, 1)),  -- <IsRaid/> present
     epic_name  TEXT,                                  -- <EpicName>: the epic version's name, when it differs
-    difficulties TEXT  NOT NULL DEFAULT '[]'          -- JSON array of the <Casual/> … <Solo/> flags present
+    difficulties TEXT  NOT NULL DEFAULT '[]',         -- JSON array of the <Casual/> … <Solo/> flags present
+    is_challenge INTEGER NOT NULL DEFAULT 0 CHECK (is_challenge IN (0, 1)),  -- from Challenges.xml, not Quests.xml
+    max_level  INTEGER                                -- a challenge's <LevelRange> high end; level is the low end
 );
 
 -- Items --------------------------------------------------------------------------

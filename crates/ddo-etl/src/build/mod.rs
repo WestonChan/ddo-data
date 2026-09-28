@@ -9,6 +9,7 @@ mod trees_spells;
 use crate::map::augment_slot::decode;
 use crate::map::buff::BuffMap;
 use crate::map::effect::EffectMap;
+use crate::xml::challenges::{self, Challenge};
 use crate::xml::items::parse_item_file;
 use crate::xml::quests::Quest;
 use crate::xml::{clickies, item_buffs, patrons, quests};
@@ -27,6 +28,7 @@ pub struct BuildReport {
     pub bonuses: usize,
     pub effects: usize,
     pub quests: usize,
+    pub challenges: usize,
     pub quest_loot_links: usize,
     pub augment_slot_types: usize,
     pub augments: usize,
@@ -58,6 +60,8 @@ pub fn build(source: &Path, conn: &mut Connection, version: &DatasetVersion) -> 
     let templates = item_buffs::parse(&source.join("ItemBuffs.xml"))?;
     let quest_list = quests::parse(&source.join("Quests.xml"))?;
     let patron_list = patrons::parse(&source.join("Patrons.xml"))?;
+    let challenge_path = source.join("Challenges.xml");
+    let challenge_list = if challenge_path.is_file() { challenges::parse(&challenge_path)? } else { Vec::new() };
     let clickie_list = clickies::parse(&source.join("ItemClickies.xml"))?;
 
     let tx = conn.transaction()?;
@@ -76,6 +80,7 @@ pub fn build(source: &Path, conn: &mut Connection, version: &DatasetVersion) -> 
     }
     let quest_index = write_quests(&tx, &quest_list)?;
     report.quests = quest_index.len();
+    report.challenges = write_challenges(&tx, &challenge_list)?;
 
     let mut ctx = Ctx {
         tx: &tx,
@@ -164,34 +169,34 @@ impl QuestIndex {
     }
 }
 
+fn adventure_pack_id(tx: &Transaction, pack: Option<&str>) -> Result<Option<i64>> {
+    let Some(pack) = pack else {
+        return Ok(None);
+    };
+    tx.execute(
+        "INSERT OR IGNORE INTO adventure_packs (name, is_free_to_play) VALUES (?1, ?2)",
+        params![pack, pack == "Free to Play"],
+    )?;
+    Ok(Some(tx.query_row("SELECT id FROM adventure_packs WHERE name = ?1", params![pack], |r| r.get(0))?))
+}
+
+fn patron_id(tx: &Transaction, patron: Option<&str>) -> Result<Option<i64>> {
+    match patron {
+        Some(p) => Ok(tx.query_row("SELECT id FROM patrons WHERE name = ?1", params![p], |r| r.get(0)).optional()?),
+        None => Ok(None),
+    }
+}
+
 fn write_quests(tx: &Transaction, quests: &[Quest]) -> Result<QuestIndex> {
     let mut by_length = Vec::with_capacity(quests.len());
     for q in quests {
-        let pack_id = match &q.adventure_pack {
-            Some(pack) => {
-                tx.execute(
-                    "INSERT OR IGNORE INTO adventure_packs (name, is_free_to_play) VALUES (?1, ?2)",
-                    params![pack, pack == "Free to Play"],
-                )?;
-                Some(tx.query_row("SELECT id FROM adventure_packs WHERE name = ?1", params![pack], |r| {
-                    r.get::<_, i64>(0)
-                })?)
-            }
-            None => None,
-        };
-        let patron_id = match &q.patron {
-            Some(p) => {
-                tx.query_row("SELECT id FROM patrons WHERE name = ?1", params![p], |r| r.get::<_, i64>(0)).optional()?
-            }
-            None => None,
-        };
         tx.execute(
             "INSERT OR IGNORE INTO quests (name, pack_id, patron_id, level, epic_level, favor, is_raid, epic_name, difficulties)
              VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9)",
             params![
                 q.name,
-                pack_id,
-                patron_id,
+                adventure_pack_id(tx, q.adventure_pack.as_deref())?,
+                patron_id(tx, q.patron.as_deref())?,
                 q.levels.first(),
                 q.levels.get(1),
                 q.favor,
@@ -205,6 +210,23 @@ fn write_quests(tx: &Transaction, quests: &[Quest]) -> Result<QuestIndex> {
     }
     by_length.sort_by(|a, b| b.0.len().cmp(&a.0.len()).then_with(|| a.0.cmp(&b.0)));
     Ok(QuestIndex { by_length })
+}
+
+fn write_challenges(tx: &Transaction, challenges: &[Challenge]) -> Result<usize> {
+    let mut written = 0;
+    for c in challenges {
+        written += tx.execute(
+            "INSERT OR IGNORE INTO quests (name, pack_id, patron_id, level, max_level, is_challenge) VALUES (?1, ?2, ?3, ?4, ?5, 1)",
+            params![
+                c.name,
+                adventure_pack_id(tx, c.adventure_pack.as_deref())?,
+                patron_id(tx, c.patron.as_deref())?,
+                c.level_range.first(),
+                c.level_range.get(1),
+            ],
+        )?;
+    }
+    Ok(written)
 }
 
 type BonusKey = (i64, Option<i64>, Option<i64>, Option<i64>);

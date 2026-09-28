@@ -9,8 +9,10 @@
     "epic_name": null,
     "favor": 6,
     "id": 310,
+    "is_challenge": false,
     "is_raid": false,
     "level": 11,
+    "max_level": null,
     "name": "A Blood Pact",
     "pack": "Terror of Demogorgon",
     "patron": "Battlehammer Expedition"
@@ -25,8 +27,10 @@
     "epic_name": null,
     "favor": 7,
     "id": 510,
+    "is_challenge": false,
     "is_raid": false,
     "level": 19,
+    "max_level": null,
     "name": "A Break in the Ice",
     "pack": "Shadowfell Conspiracy",
     "patron": "The Harpers"
@@ -41,8 +45,10 @@
     "epic_name": "Return to Cabal for One",
     "favor": 6,
     "id": 380,
+    "is_challenge": false,
     "is_raid": false,
     "level": 14,
+    "max_level": null,
     "name": "A Cabal for One",
     "pack": "Ruins of Gianthold",
     "patron": "Agents of Argonnessen"

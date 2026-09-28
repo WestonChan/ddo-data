@@ -1,6 +1,6 @@
 use ddo_etl::build::{build, BuildReport};
 use ddo_etl::diff::compare;
-use ddo_etl::xml::sentient_gems;
+use ddo_etl::xml::{challenges, sentient_gems};
 use ddo_model::DatasetVersion;
 use rusqlite::{params, Connection};
 use std::path::PathBuf;
@@ -217,7 +217,7 @@ fn writes_augment_slots_and_presets() {
 #[test]
 fn links_items_to_quests_from_drop_location() {
     let (conn, report) = built();
-    assert_eq!(count(&conn, "SELECT COUNT(*) FROM quests"), 9);
+    assert_eq!(count(&conn, "SELECT COUNT(*) FROM quests WHERE NOT is_challenge"), 9);
     assert_eq!(count(&conn, "SELECT COUNT(*) FROM patrons"), 22);
     assert!(count(&conn, "SELECT COUNT(*) FROM adventure_packs") >= 5);
     let (level, epic, raid, pack): (i64, Option<i64>, bool, String) = conn
@@ -498,4 +498,46 @@ fn parses_and_writes_sentient_gems() {
         )
         .unwrap();
     assert_eq!((icon.as_str(), description.as_str()), ("SentientJewel_Blue", "Voiced by: Ally Murphy"));
+}
+
+#[test]
+fn parses_challenges_with_their_level_range() {
+    let list = challenges::parse(&fixtures().join("Challenges.xml")).unwrap();
+    assert_eq!(list.len(), 3, "the grouping comments are skipped");
+    let door = &list[0];
+    assert_eq!(door.name, "Dr. Rushmore's Mansion - Behind the Door");
+    assert_eq!(door.patron.as_deref(), Some("House Cannith"));
+    assert_eq!(door.adventure_pack.as_deref(), Some("Free to Play"));
+    assert_eq!(door.level_range, [4, 15]);
+    assert_eq!(list[2].patron, None, "<Patron>None</Patron> is no patron");
+}
+
+#[test]
+fn writes_challenges_into_quests() {
+    let (conn, report) = built();
+    assert_eq!(report.challenges, 3);
+    let challenge = |name: &str| -> (Option<String>, String, i64, i64, bool, Option<i64>) {
+        conn.query_row(
+            "SELECT pt.name, p.name, q.level, q.max_level, q.is_challenge, q.epic_level
+               FROM quests q JOIN adventure_packs p ON p.id = q.pack_id LEFT JOIN patrons pt ON pt.id = q.patron_id
+              WHERE q.name = ?1",
+            params![name],
+            |r| Ok((r.get(0)?, r.get(1)?, r.get(2)?, r.get(3)?, r.get(4)?, r.get(5)?)),
+        )
+        .unwrap_or_else(|e| panic!("{name}: {e}"))
+    };
+    assert_eq!(
+        challenge("Dr. Rushmore's Mansion - Moving Targets - EPIC"),
+        (Some("House Cannith".into()), "Secrets of the Artificers".into(), 21, 25, true, None)
+    );
+    assert_eq!(
+        challenge("Extraplanar Mining - Epic The Dragon's Horde"),
+        (None, "Free to Play".into(), 15, 20, true, None)
+    );
+    let (is_challenge, max_level): (bool, Option<i64>) = conn
+        .query_row("SELECT is_challenge, max_level FROM quests WHERE name = 'The Grotto'", [], |r| {
+            Ok((r.get(0)?, r.get(1)?))
+        })
+        .unwrap();
+    assert_eq!((is_challenge, max_level), (false, None), "regular quests are not challenges");
 }

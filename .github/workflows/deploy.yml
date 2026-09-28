@@ -89,6 +89,7 @@ jobs:
           check guild_buffs 30
           check optional_buffs 100
           check sentient_gems 10
+          check "quests WHERE is_challenge" 30
           test "$(find icons -name '*.png' | wc -l)" -ge 8000
 
       - name: Keep the dataset as a workflow artifact

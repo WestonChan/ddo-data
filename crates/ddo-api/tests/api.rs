@@ -158,6 +158,13 @@ async fn quests_carry_difficulties_and_epic_name() {
     assert_eq!(find("The Grotto")["difficulties"], serde_json::json!(["solo"]));
     assert_eq!(find("Land of Lamordia")["difficulties"], serde_json::json!([]));
     assert!(find("The Grotto")["epic_name"].is_null());
+    assert_eq!(find("The Grotto")["is_challenge"], false);
+    assert!(find("The Grotto")["max_level"].is_null());
+    let moving = find("Dr. Rushmore's Mansion - Moving Targets - EPIC");
+    assert_eq!(moving["is_challenge"], true);
+    assert_eq!((&moving["level"], &moving["max_level"]), (&serde_json::json!(21), &serde_json::json!(25)));
+    assert_eq!(moving["patron"], "House Cannith");
+    assert_eq!(moving["pack"], "Secrets of the Artificers");
 }
 
 #[tokio::test]

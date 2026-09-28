@@ -3,7 +3,7 @@
   "schema_version": 2,
   "dataset": {
     "upstream_sha": "31ef0201ea8e28604de2b6242988aee6d63733b0",
-    "built_at": "2026-09-28T03:03:57Z"
+    "built_at": "2026-09-28T03:06:31Z"
   },
   "counts": {
     "augments": 2246,
@@ -18,7 +18,7 @@
     "items": 8487,
     "modifiers": 13801,
     "optional_buffs": 138,
-    "quests": 570,
+    "quests": 603,
     "races": 30,
     "requirements": 9771,
     "sentient_gems": 14,
