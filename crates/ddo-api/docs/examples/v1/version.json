@@ -3,11 +3,11 @@
   "schema_version": 2,
   "dataset": {
     "upstream_sha": "31ef0201ea8e28604de2b6242988aee6d63733b0",
-    "built_at": "2026-09-28T03:11:39Z"
+    "built_at": "2026-09-28T03:29:18Z"
   },
   "counts": {
     "augments": 2246,
-    "bonuses": 4638,
+    "bonuses": 4752,
     "classes": 28,
     "clickies": 219,
     "enhancement_trees": 114,

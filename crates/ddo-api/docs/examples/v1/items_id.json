@@ -34,7 +34,7 @@
     {
       "bonus_type": "Competence",
       "description": "Competence Listen 10: Passive: 10 Competence bonus to the Listen skill.",
-      "id": 565,
+      "id": 632,
       "name": "Listen +10",
       "stat": "Listen",
       "stat_category": "skill",
@@ -74,6 +74,7 @@
       "epic_level": 36,
       "id": 239,
       "is_raid": false,
+      "is_rare": false,
       "level": 8,
       "loot_type": "chest",
       "name": "Cold Snap",

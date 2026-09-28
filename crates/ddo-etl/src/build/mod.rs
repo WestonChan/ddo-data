@@ -52,6 +52,7 @@ pub struct BuildReport {
     pub sentient_gems: usize,
     pub wiki_quest_loot_entries: usize,
     pub wiki_rare_drops: usize,
+    pub wiki_quest_loot_links_added: usize,
     pub unmapped_effect_types: BTreeMap<String, usize>,
 }
 

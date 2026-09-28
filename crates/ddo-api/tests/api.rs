@@ -75,6 +75,14 @@ async fn items_list_filters_and_pages() {
     assert!(armor["items"].as_array().unwrap().iter().all(|i| i["category"] == "Armor"));
     let (_, _, ml) = get("/v1/items?min_level=20&max_level=25").await;
     assert!(ml["items"].as_array().unwrap().iter().all(|i| (20..=25).contains(&i["minimum_level"].as_i64().unwrap())));
+    assert_eq!(rows[0]["is_rare"], false);
+    let (_, _, rare) = get("/v1/items?rare=true").await;
+    let rare = rare["items"].as_array().unwrap();
+    assert_eq!(rare.len(), 1);
+    assert_eq!(rare[0]["name"], "Buckler of the Golden Age");
+    assert_eq!(rare[0]["is_rare"], true, "the wiki lists it as a rare Book Burning drop");
+    let (_, _, unfiltered) = get("/v1/items?rare=false").await;
+    assert_eq!(unfiltered["total"], 14);
     let (status, _, _) = get("/v1/items?category=Hat").await;
     assert_eq!(status, StatusCode::BAD_REQUEST, "unknown category is a client error");
 }
@@ -99,6 +107,7 @@ async fn item_detail_joins_every_satellite() {
     assert_eq!(json["quests"][0]["name"], "Caught in the Web");
     assert_eq!(json["quests"][0]["loot_type"], "raid");
     assert_eq!(json["quests"][0]["difficulties"], serde_json::json!(["normal", "hard", "elite", "reaper"]));
+    assert_eq!(json["quests"][0]["is_rare"], false);
 
     let (status, _, _) = get("/v1/items/999999").await;
     assert_eq!(status, StatusCode::NOT_FOUND);
@@ -110,6 +119,13 @@ async fn item_detail_joins_every_satellite() {
     assert_eq!(cloak["bonuses"][0]["value"], 34);
     assert_eq!(cloak["bonuses"][0]["bonus_type"], "Enhancement");
     assert_eq!(cloak["set"]["name"], "Eminence of Winter");
+
+    let (_, _, list) = get("/v1/items?q=buckler+of+the+golden").await;
+    let id = list["items"][0]["id"].as_i64().unwrap();
+    let (_, _, buckler) = get(&format!("/v1/items/{id}")).await;
+    assert_eq!(buckler["quests"][0]["name"], "Book Burning");
+    assert_eq!(buckler["quests"][0]["loot_type"], "chest");
+    assert_eq!(buckler["quests"][0]["is_rare"], true);
 }
 
 #[tokio::test]

@@ -97,3 +97,42 @@ fn build_reports_the_wiki_entries_it_applied() {
     assert_eq!(report.wiki_quest_loot_entries, 1);
     assert_eq!(report.wiki_rare_drops, 1);
 }
+
+fn built_with(wiki: &WikiOverrides) -> (Connection, ddo_etl::build::BuildReport) {
+    let mut conn = Connection::open_in_memory().unwrap();
+    let report = build(&fixtures().join("DataFiles"), wiki, &mut conn, &version()).unwrap();
+    (conn, report)
+}
+
+fn loot(conn: &Connection, quest: &str, item: &str) -> Option<(String, bool)> {
+    conn.query_row(
+        "SELECT ql.loot_type, ql.is_rare FROM quest_loot ql JOIN quests q ON q.id = ql.quest_id JOIN items i ON i.id = ql.item_id
+          WHERE q.name = ?1 AND i.name = ?2",
+        [quest, item],
+        |r| Ok((r.get(0)?, r.get(1)?)),
+    )
+    .ok()
+}
+
+#[test]
+fn marks_rare_drops_on_the_links_maetrims_drop_text_made() {
+    let (conn, report) = built_with(&WikiOverrides::from_dir(&fixtures().join("wiki")).unwrap());
+    assert_eq!(loot(&conn, "Book Burning", "Buckler of the Golden Age"), Some(("chest".into(), true)));
+    assert_eq!(loot(&conn, "The Cursed Crypt", "Docent of Defiance"), Some(("chest".into(), false)));
+    assert_eq!(report.wiki_quest_loot_links_added, 0, "Maetrim's drop text already links the buckler");
+}
+
+#[test]
+fn adds_a_chest_link_for_a_rare_drop_and_never_changes_maetrims_loot_type() {
+    let wiki = load(&[
+        ("a.toml", &quest("The Grotto", &["Docent of Defiance"])),
+        ("b.toml", &quest("Caught in the Web", &["Sireth, Spear of the Sky"])),
+    ])
+    .unwrap();
+    let (conn, report) = built_with(&wiki);
+    assert_eq!(loot(&conn, "The Grotto", "Docent of Defiance"), Some(("chest".into(), true)));
+    assert_eq!(loot(&conn, "The Cursed Crypt", "Docent of Defiance"), Some(("chest".into(), false)));
+    assert_eq!(loot(&conn, "Caught in the Web", "Sireth, Spear of the Sky"), Some(("raid".into(), true)));
+    assert_eq!(report.wiki_quest_loot_links_added, 1);
+    assert_eq!(report.wiki_rare_drops, 2);
+}

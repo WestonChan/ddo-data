@@ -244,6 +244,7 @@ CREATE TABLE IF NOT EXISTS quest_loot (
     quest_id  INTEGER NOT NULL REFERENCES quests(id) ON DELETE CASCADE,
     item_id   INTEGER NOT NULL REFERENCES items(id) ON DELETE CASCADE,
     loot_type TEXT CHECK (loot_type {loot_type}),     -- computed from <DropLocation> and quest is_raid
+    is_rare   INTEGER NOT NULL DEFAULT 0 CHECK (is_rare IN (0, 1)),  -- from data/wiki quest_loot `rare`, not Maetrim
     PRIMARY KEY (quest_id, item_id)
 );
 CREATE INDEX IF NOT EXISTS idx_quest_loot_item ON quest_loot(item_id);

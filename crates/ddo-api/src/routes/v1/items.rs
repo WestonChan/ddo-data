@@ -32,6 +32,7 @@ pub struct ItemFilter {
     pub max_level: Option<i64>,
     pub pack: Option<String>,
     pub raid: Option<bool>,
+    pub rare: Option<bool>,
     pub stat: Option<String>,
     pub limit: Option<i64>,
     pub offset: Option<i64>,
@@ -44,8 +45,8 @@ pub struct ItemFilter {
     summary = "List items",
     description = "One page of equipment matching every filter given, ordered by name. Each row carries what a picker \
                    needs: id, name, slot, category, item type, minimum level, enhancement bonus, icon name, the \
-                   alphabetically first adventure pack it drops in, and whether any of its sources is a raid. Use the \
-                   detail endpoint for bonuses, sockets and quests. `total` counts every match, not just this page.",
+                   alphabetically first adventure pack it drops in, whether any of its sources is a raid, and whether \
+                   ddowiki lists it as rare loot from at least one quest. Use the detail endpoint for bonuses, sockets and quests. `total` counts every match, not just this page.",
     params(
         ("q" = Option<String>, Query, description = "Case-insensitive substring of the item name"),
         ("slot" = Option<String>, Query, description = "Equipment slot name exactly as /v1/equipment-slots lists it, e.g. `Main Hand`"),
@@ -54,6 +55,7 @@ pub struct ItemFilter {
         ("max_level" = Option<i64>, Query, description = "Only items whose minimum level is at most this"),
         ("pack" = Option<String>, Query, description = "Adventure pack name as /v1/adventure-packs lists it; matches items dropping from any quest in it"),
         ("raid" = Option<bool>, Query, description = "`true` keeps only items that drop from a raid; `false` and unset apply no filter"),
+        ("rare" = Option<bool>, Query, description = "`true` keeps only items ddowiki lists as rare loot from at least one quest; `false` and unset apply no filter"),
         ("stat" = Option<String>, Query, description = "Stat name as /v1/stats lists it; keeps items with at least one bonus to it"),
         ("limit" = Option<i64>, Query, description = "Page size, 1 to 10000; defaults to 100; out-of-range values are clamped rather than rejected"),
         ("offset" = Option<i64>, Query, description = "Rows to skip before the first returned row; defaults to 0; negative values are clamped to 0 rather than rejected")
@@ -96,6 +98,9 @@ async fn list(State(state): State<AppState>, ApiQuery(f): ApiQuery<ItemFilter>) 
             if f.raid == Some(true) {
                 f_.clause("EXISTS (SELECT 1 FROM quest_loot ql WHERE ql.item_id = i.id AND ql.loot_type = 'raid')");
             }
+            if f.rare == Some(true) {
+                f_.clause("EXISTS (SELECT 1 FROM quest_loot ql WHERE ql.item_id = i.id AND ql.is_rare)");
+            }
             if let Some(stat) = &f.stat {
                 f_.bind("EXISTS (SELECT 1 FROM item_bonuses ib JOIN bonuses b ON b.id = ib.bonus_id JOIN stats s ON s.id = b.stat_id WHERE ib.item_id = i.id AND s.name = ?)",
                     stat.clone(),
@@ -107,12 +112,13 @@ async fn list(State(state): State<AppState>, ApiQuery(f): ApiQuery<ItemFilter>) 
             let sql = format!(
                 "SELECT i.id, i.name, es.name AS slot, i.item_category AS category, i.item_type, i.minimum_level, i.enhancement_bonus, i.icon,
                         (SELECT MIN(ap.name) FROM quest_loot ql JOIN quests q ON q.id = ql.quest_id LEFT JOIN adventure_packs ap ON ap.id = q.pack_id WHERE ql.item_id = i.id) AS pack,
-                        EXISTS (SELECT 1 FROM quest_loot ql WHERE ql.item_id = i.id AND ql.loot_type = 'raid') AS is_raid
+                        EXISTS (SELECT 1 FROM quest_loot ql WHERE ql.item_id = i.id AND ql.loot_type = 'raid') AS is_raid,
+                        EXISTS (SELECT 1 FROM quest_loot ql WHERE ql.item_id = i.id AND ql.is_rare) AS is_rare
                  {from} ORDER BY i.name LIMIT {limit} OFFSET {offset}"
             );
             let mut items = json_rows(conn, &sql, f_.params())?;
             for item in &mut items {
-                booleanize(item, &["is_raid"]);
+                booleanize(item, &["is_raid", "is_rare"]);
             }
             Ok(Json(json!({ "total": total, "limit": limit, "offset": offset, "items": items })))
         })
@@ -130,7 +136,8 @@ async fn list(State(state): State<AppState>, ApiQuery(f): ApiQuery<ItemFilter>) 
                    proficiency, `dr_bypass`) or `armor` (AC, max Dex, spell failure, check penalty) when the item is \
                    one, `bonuses` (stat, bonus type, value), `effects` (named effects with value and target), \
                    `augment_slots` (sockets in order with their fixed `options`), `clickies`, `set`, `quests` it drops \
-                   from with loot type, raid flag and the `difficulties` each offers, and the raw `modifiers` the ETL derived the bonuses from.",
+                   from with loot type, raid flag, `is_rare` (ddowiki lists it as that quest's rare loot) and the \
+                   `difficulties` each offers, and the raw `modifiers` the ETL derived the bonuses from.",
     params(("id" = i64, Path, description = "The item's numeric id from the list endpoint")), responses((status = 200, description = "The item with its child collections", body = Value), (status = 404, description = "No item has this id", body = crate::error::ErrorBody))
 )]
 async fn detail(State(state): State<AppState>, Path(id): Path<i64>) -> Result<Json<Value>, ApiError> {
@@ -215,14 +222,14 @@ async fn detail(State(state): State<AppState>, Path(id): Path<i64>) -> Result<Js
             .unwrap_or(Value::Null);
             let mut quests = json_rows(
                 conn,
-                "SELECT q.id, q.name, q.level, q.epic_level, q.is_raid, q.difficulties, ap.name AS pack, pt.name AS patron, ql.loot_type
+                "SELECT q.id, q.name, q.level, q.epic_level, q.is_raid, q.difficulties, ap.name AS pack, pt.name AS patron, ql.loot_type, ql.is_rare
                    FROM quest_loot ql JOIN quests q ON q.id = ql.quest_id
                    LEFT JOIN adventure_packs ap ON ap.id = q.pack_id LEFT JOIN patrons pt ON pt.id = q.patron_id
                   WHERE ql.item_id = ?1 ORDER BY q.name",
                 [id],
             )?;
             for q in &mut quests {
-                booleanize(q, &["is_raid"]);
+                booleanize(q, &["is_raid", "is_rare"]);
             }
             item["quests"] = Value::Array(quests);
             item["modifiers"] = Value::Array(modifiers_for(conn, "item", id)?);
