@@ -216,7 +216,7 @@ fn writes_augment_slots_and_presets() {
 #[test]
 fn links_items_to_quests_from_drop_location() {
     let (conn, report) = built();
-    assert_eq!(count(&conn, "SELECT COUNT(*) FROM quests"), 7);
+    assert_eq!(count(&conn, "SELECT COUNT(*) FROM quests"), 9);
     assert_eq!(count(&conn, "SELECT COUNT(*) FROM patrons"), 22);
     assert!(count(&conn, "SELECT COUNT(*) FROM adventure_packs") >= 5);
     let (level, epic, raid, pack): (i64, Option<i64>, bool, String) = conn
@@ -249,6 +249,24 @@ fn links_items_to_quests_from_drop_location() {
         conn.query_row("SELECT drop_location FROM items WHERE id = ?1", params![axe], |r| r.get(0)).unwrap();
     assert!(drop.starts_with("Temple of Elemental Evil Part One"));
     assert!(report.quest_loot_links >= 4);
+}
+
+#[test]
+fn writes_quest_difficulties_and_epic_name() {
+    let (conn, _) = built();
+    let quest = |name: &str| -> (String, Option<String>) {
+        conn.query_row("SELECT difficulties, epic_name FROM quests WHERE name = ?1", params![name], |r| {
+            Ok((r.get(0)?, r.get(1)?))
+        })
+        .unwrap_or_else(|e| panic!("{name}: {e}"))
+    };
+    assert_eq!(quest("The Chronoscope"), (r#"["casual","normal","hard","elite","reaper"]"#.into(), None));
+    assert_eq!(quest("The Grotto"), (r#"["solo"]"#.into(), None));
+    assert_eq!(quest("Land of Lamordia"), ("[]".into(), None));
+    assert_eq!(
+        quest("Madstone Crater"),
+        (r#"["normal","hard","elite","reaper"]"#.into(), Some("Return to Madstone Crater".into()))
+    );
 }
 
 #[test]

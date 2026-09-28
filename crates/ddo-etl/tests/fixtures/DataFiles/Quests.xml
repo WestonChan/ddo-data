@@ -80,5 +80,24 @@
       <Reaper />
       <IsRaid />
    </Quest>
-   
-   </Quests>
+   <Quest>
+      <Name>The Grotto</Name>
+      <Patron>None</Patron>
+      <AdventurePack>Free to Play</AdventurePack>
+      <Favor>0</Favor>
+      <Levels size="1">1</Levels>
+      <Solo />
+   </Quest>
+   <Quest>
+      <Name>Madstone Crater</Name>
+      <EpicName>Return to Madstone Crater</EpicName>
+      <Patron>Agents of Argonnessen</Patron>
+      <AdventurePack>Ruins of Gianthold</AdventurePack>
+      <Favor>8</Favor>
+      <Levels size="2">14 24</Levels>
+      <Normal />
+      <Hard />
+      <Elite />
+      <Reaper />
+   </Quest>
+</Quests>

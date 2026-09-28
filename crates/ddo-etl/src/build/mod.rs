@@ -176,8 +176,19 @@ fn write_quests(tx: &Transaction, quests: &[Quest]) -> Result<QuestIndex> {
             None => None,
         };
         tx.execute(
-            "INSERT OR IGNORE INTO quests (name, pack_id, patron_id, level, epic_level, favor, is_raid) VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7)",
-            params![q.name, pack_id, patron_id, q.levels.first(), q.levels.get(1), q.favor, q.is_raid],
+            "INSERT OR IGNORE INTO quests (name, pack_id, patron_id, level, epic_level, favor, is_raid, epic_name, difficulties)
+             VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9)",
+            params![
+                q.name,
+                pack_id,
+                patron_id,
+                q.levels.first(),
+                q.levels.get(1),
+                q.favor,
+                q.is_raid,
+                q.epic_name,
+                serde_json::to_string(&q.difficulties.iter().map(|d| d.as_str()).collect::<Vec<_>>())?,
+            ],
         )?;
         let id: i64 = tx.query_row("SELECT id FROM quests WHERE name = ?1", params![q.name], |r| r.get(0))?;
         by_length.push((q.name.clone(), id, q.is_raid));

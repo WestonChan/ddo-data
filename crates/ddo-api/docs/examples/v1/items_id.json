@@ -66,6 +66,11 @@
   "name": "Agony's Eyes",
   "quests": [
     {
+      "difficulties": [
+        "casual",
+        "normal",
+        "hard"
+      ],
       "epic_level": 36,
       "id": 239,
       "is_raid": false,

@@ -97,6 +97,7 @@ async fn item_detail_joins_every_satellite() {
     assert_eq!(slots[0]["options"][0]["name"], "Planar Conflux");
     assert_eq!(json["quests"][0]["name"], "Caught in the Web");
     assert_eq!(json["quests"][0]["loot_type"], "raid");
+    assert_eq!(json["quests"][0]["difficulties"], serde_json::json!(["normal", "hard", "elite", "reaper"]));
 
     let (status, _, _) = get("/v1/items/999999").await;
     assert_eq!(status, StatusCode::NOT_FOUND);
@@ -144,6 +145,19 @@ async fn lookups_and_augments() {
     let id = silver["id"].as_i64().unwrap();
     let (_, _, detail) = get(&format!("/v1/augments/{id}")).await;
     assert_eq!(detail["modifiers"].as_array().unwrap().len(), 3);
+}
+
+#[tokio::test]
+async fn quests_carry_difficulties_and_epic_name() {
+    let (_, _, quests) = get("/v1/quests").await;
+    let quests = quests.as_array().unwrap();
+    let find = |name: &str| quests.iter().find(|q| q["name"] == name).unwrap_or_else(|| panic!("{name}"));
+    let madstone = find("Madstone Crater");
+    assert_eq!(madstone["epic_name"], "Return to Madstone Crater");
+    assert_eq!(madstone["difficulties"], serde_json::json!(["normal", "hard", "elite", "reaper"]));
+    assert_eq!(find("The Grotto")["difficulties"], serde_json::json!(["solo"]));
+    assert_eq!(find("Land of Lamordia")["difficulties"], serde_json::json!([]));
+    assert!(find("The Grotto")["epic_name"].is_null());
 }
 
 #[tokio::test]

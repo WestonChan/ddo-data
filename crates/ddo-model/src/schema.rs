@@ -4,7 +4,7 @@ use crate::enums::{
 };
 use std::sync::LazyLock;
 
-pub const SCHEMA_VERSION: i64 = 1;
+pub const SCHEMA_VERSION: i64 = 2;
 
 static DDL_TEXT: LazyLock<String> = LazyLock::new(|| {
     let item_category = sql_in_list(ItemCategory::ALL.iter().map(|c| c.as_str()));
@@ -108,7 +108,9 @@ CREATE TABLE IF NOT EXISTS quests (
     level      INTEGER,                               -- first <Levels> entry (heroic)
     epic_level INTEGER,                               -- second <Levels> entry, if any
     favor      INTEGER,                               -- <Favor>
-    is_raid    INTEGER NOT NULL DEFAULT 0 CHECK (is_raid IN (0, 1))  -- <IsRaid/> present
+    is_raid    INTEGER NOT NULL DEFAULT 0 CHECK (is_raid IN (0, 1)),  -- <IsRaid/> present
+    epic_name  TEXT,                                  -- <EpicName>: the epic version's name, when it differs
+    difficulties TEXT  NOT NULL DEFAULT '[]'          -- JSON array of the <Casual/> … <Solo/> flags present
 );
 
 -- Items --------------------------------------------------------------------------

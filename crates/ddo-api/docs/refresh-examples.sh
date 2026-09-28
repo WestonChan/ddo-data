@@ -1,7 +1,7 @@
 #!/bin/zsh
 set -e
 A="${1:-https://ddo-data.fly.dev}"
-OUT="$(dirname "$0")/examples"
+OUT="$(dirname "$0")/examples/v1"
 TRIM='def trim: if type=="array" then .[:3] | map(trim) elif type=="object" then with_entries(.value |= trim) else . end; trim'
 fetch() { curl -sf "$A$2" | jq "$TRIM" > "$OUT/$1.json"; printf "%-28s %6s bytes\n" "$1" "$(wc -c < "$OUT/$1.json")"; }
 fetch version "/v1/version"

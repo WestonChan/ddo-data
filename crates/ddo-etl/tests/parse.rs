@@ -105,7 +105,7 @@ fn parses_interleaved_repeated_elements() {
 #[test]
 fn parses_quests_patrons_and_item_buffs() {
     let qs = quests::parse(&fixtures().join("Quests.xml")).unwrap();
-    assert_eq!(qs.len(), 7);
+    assert_eq!(qs.len(), 9);
     let chrono = qs.iter().find(|q| q.name == "The Chronoscope").unwrap();
     assert_eq!(chrono.levels, vec![6, 21]);
     assert!(chrono.is_raid);
@@ -115,6 +115,16 @@ fn parses_quests_patrons_and_item_buffs() {
     let lamordia = qs.iter().find(|q| q.name == "Land of Lamordia").unwrap();
     assert!(lamordia.do_not_show);
     assert!(!lamordia.is_raid);
+
+    use quests::Difficulty::*;
+    assert_eq!(chrono.difficulties, vec![Casual, Normal, Hard, Elite, Reaper]);
+    assert_eq!(chrono.epic_name, None);
+    assert!(lamordia.difficulties.is_empty(), "no flag elements, no difficulties");
+    let grotto = qs.iter().find(|q| q.name == "The Grotto").unwrap();
+    assert_eq!(grotto.difficulties, vec![Solo]);
+    let madstone = qs.iter().find(|q| q.name == "Madstone Crater").unwrap();
+    assert_eq!(madstone.epic_name.as_deref(), Some("Return to Madstone Crater"));
+    assert_eq!(madstone.difficulties, vec![Normal, Hard, Elite, Reaper]);
 
     let ps = patrons::parse(&fixtures().join("Patrons.xml")).unwrap();
     assert!(ps.iter().any(|p| p.name == "House Cannith"));

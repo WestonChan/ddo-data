@@ -1,6 +1,12 @@
 [
   {
+    "difficulties": [
+      "casual",
+      "normal",
+      "hard"
+    ],
     "epic_level": 37,
+    "epic_name": null,
     "favor": 6,
     "id": 310,
     "is_raid": false,
@@ -10,7 +16,13 @@
     "patron": "Battlehammer Expedition"
   },
   {
+    "difficulties": [
+      "normal",
+      "hard",
+      "elite"
+    ],
     "epic_level": 27,
+    "epic_name": null,
     "favor": 7,
     "id": 510,
     "is_raid": false,
@@ -20,7 +32,13 @@
     "patron": "The Harpers"
   },
   {
+    "difficulties": [
+      "normal",
+      "hard",
+      "elite"
+    ],
     "epic_level": 24,
+    "epic_name": "Return to Cabal for One",
     "favor": 6,
     "id": 380,
     "is_raid": false,

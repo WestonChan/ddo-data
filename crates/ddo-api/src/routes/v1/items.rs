@@ -130,7 +130,7 @@ async fn list(State(state): State<AppState>, ApiQuery(f): ApiQuery<ItemFilter>) 
                    proficiency, `dr_bypass`) or `armor` (AC, max Dex, spell failure, check penalty) when the item is \
                    one, `bonuses` (stat, bonus type, value), `effects` (named effects with value and target), \
                    `augment_slots` (sockets in order with their fixed `options`), `clickies`, `set`, `quests` it drops \
-                   from with loot type and raid flag, and the raw `modifiers` the ETL derived the bonuses from.",
+                   from with loot type, raid flag and the `difficulties` each offers, and the raw `modifiers` the ETL derived the bonuses from.",
     params(("id" = i64, Path, description = "The item's numeric id from the list endpoint")), responses((status = 200, description = "The item with its child collections", body = Value), (status = 404, description = "No item has this id", body = crate::error::ErrorBody))
 )]
 async fn detail(State(state): State<AppState>, Path(id): Path<i64>) -> Result<Json<Value>, ApiError> {
@@ -215,7 +215,7 @@ async fn detail(State(state): State<AppState>, Path(id): Path<i64>) -> Result<Js
             .unwrap_or(Value::Null);
             let mut quests = json_rows(
                 conn,
-                "SELECT q.id, q.name, q.level, q.epic_level, q.is_raid, ap.name AS pack, pt.name AS patron, ql.loot_type
+                "SELECT q.id, q.name, q.level, q.epic_level, q.is_raid, q.difficulties, ap.name AS pack, pt.name AS patron, ql.loot_type
                    FROM quest_loot ql JOIN quests q ON q.id = ql.quest_id
                    LEFT JOIN adventure_packs ap ON ap.id = q.pack_id LEFT JOIN patrons pt ON pt.id = q.patron_id
                   WHERE ql.item_id = ?1 ORDER BY q.name",
