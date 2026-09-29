@@ -1,18 +1,13 @@
 {
-  "schema_version": 2,
   "api_commit": "9dd551f2c0b1e8c4a7d6f5e4b3a2c1d0e9f8a7b6",
-  "dataset": {
-    "upstream_sha": "31ef0201ea8e28604de2b6242988aee6d63733b0",
-    "built_at": "2026-09-28T04:09:48Z"
-  },
   "counts": {
     "augments": 2246,
     "bonuses": 4752,
     "classes": 28,
     "clickies": 219,
-    "crafting_ingredients": 0,
-    "crafting_recipes": 0,
-    "crafting_systems": 0,
+    "crafting_ingredients": 16,
+    "crafting_recipes": 74,
+    "crafting_systems": 1,
     "enhancement_trees": 114,
     "enhancements": 3228,
     "feats": 1022,
@@ -27,5 +22,10 @@
     "sentient_gems": 14,
     "set_bonuses": 327,
     "spells": 706
-  }
+  },
+  "dataset": {
+    "built_at": "2026-09-29T23:31:03Z",
+    "upstream_sha": "31ef0201ea8e28604de2b6242988aee6d63733b0"
+  },
+  "schema_version": 2
 }
