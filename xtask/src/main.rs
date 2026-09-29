@@ -8,6 +8,7 @@ use std::process::Command;
 use walkdir::WalkDir;
 use xtask::dataset::{build_database_file, wiki_overrides_from};
 use xtask::response_examples::{write_response_examples, EXAMPLE_REQUESTS};
+use xtask::wiki_tools::{wiki_check_report, write_wiki_batch};
 use xtask::workspace_root;
 
 #[derive(Parser)]
@@ -31,6 +32,20 @@ enum Task {
         #[arg(long)]
         out: Option<PathBuf>,
     },
+    WikiCheck {
+        #[arg(long)]
+        wiki: Option<PathBuf>,
+        #[arg(long)]
+        source: Option<PathBuf>,
+    },
+    WikiBatch {
+        #[arg(long)]
+        out: Option<PathBuf>,
+        #[arg(long)]
+        wiki: Option<PathBuf>,
+        #[arg(long)]
+        source: Option<PathBuf>,
+    },
 }
 
 fn main() -> Result<()> {
@@ -43,6 +58,19 @@ fn main() -> Result<()> {
         Task::NoComments { fix: true } => strip_workspace_comments(),
         Task::RefreshExamples { db: db_path, source: data_files_dir, out: examples_dir } => {
             refresh_response_examples(db_path.as_deref(), data_files_dir, examples_dir)
+        }
+        Task::WikiCheck { wiki: wiki_dir, source: data_files_dir } => {
+            let data_files_dir = data_files_dir.unwrap_or_else(default_data_files_dir);
+            println!("{}", wiki_check_report(&data_files_dir, wiki_dir.as_deref())?);
+            Ok(())
+        }
+        Task::WikiBatch { out: batch_dir, wiki: wiki_dir, source: data_files_dir } => {
+            let data_files_dir = data_files_dir.unwrap_or_else(default_data_files_dir);
+            let batch_dir = batch_dir.unwrap_or_else(|| workspace_root().join("target/wiki-batch"));
+            for written_path in write_wiki_batch(&data_files_dir, wiki_dir.as_deref(), &batch_dir)? {
+                println!("wrote {written_path}");
+            }
+            Ok(())
         }
     }
 }

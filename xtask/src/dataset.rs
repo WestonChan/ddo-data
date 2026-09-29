@@ -25,3 +25,12 @@ fn build_into(db: &mut Connection, data_files_dir: &Path, wiki_overrides: &WikiO
     ddo_etl::build::build_database(data_files_dir, wiki_overrides, db, &dataset_version)
         .with_context(|| format!("building the database from {}", data_files_dir.display()))
 }
+
+pub fn build_in_memory_database(
+    data_files_dir: &Path,
+    wiki_overrides: &WikiOverrides,
+) -> Result<(Connection, BuildReport)> {
+    let mut db = Connection::open_in_memory()?;
+    let report = build_into(&mut db, data_files_dir, wiki_overrides)?;
+    Ok((db, report))
+}

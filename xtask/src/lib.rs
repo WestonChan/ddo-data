@@ -1,5 +1,6 @@
 pub mod dataset;
 pub mod response_examples;
+pub mod wiki_tools;
 
 use std::path::{Path, PathBuf};
 

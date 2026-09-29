@@ -11,6 +11,8 @@ cargo lint                          # clippy -D warnings, then the no-comments c
 cargo fmt --all --check
 cargo xtask no-comments --fix       # strip every comment and doc comment
 cargo xtask refresh-examples        # rebuild crates/ddo-api/docs/examples/v1 from upstream/
+cargo xtask wiki-check --wiki DIR   # validate wiki override drafts against upstream in memory; prints the wiki counts
+cargo xtask wiki-batch              # write reading-agent inputs (item, augment, quest page and crafting lists) to target/wiki-batch/
 cargo run -p ddo-etl -- build --source upstream/Output/DataFiles --out ddo.db
 DDO_DB_PATH=ddo.db ICONS_DIR=icons cargo run -p ddo-api
 ```
@@ -38,7 +40,7 @@ This is the data half of a two-repo project. The site is `ddo-tools`, a sibling 
 - `upstream/` — gitignored sparse checkout of DDOBuilderV2; `.github/workflows/deploy.yml` refreshes it weekly and deploys to Fly.io.
 - Planning lives in the ddo-tools roadmap (`docs/roadmap.md`, V-series section), not here.
 
-**Wiki overrides.** `crates/ddo-etl/data/wiki/*.toml` holds facts read from ddowiki that Maetrim's files have no field for (so far, which quest drops are rare; each quest's duration, XP by tier and difficulty, and free-to-play status; and crafting systems' ingredients and the recipes that turn them into Maetrim's crafting augments). His files win for every field they carry; a wiki row only adds. Every row cites its page and read date, and the build fails on any name his files lack. The format, the validation rules and the command that checks a file are in [`crates/ddo-etl/data/wiki/README.md`](crates/ddo-etl/data/wiki/README.md); read it before adding or editing an entry.
+**Wiki overrides.** `crates/ddo-etl/data/wiki/*.toml` holds facts read from ddowiki that Maetrim's files have no field for (so far, which quest drops are rare; each quest's duration, XP by tier and difficulty, and free-to-play status; and crafting systems' ingredients and the recipes that turn them into Maetrim's crafting augments). His files win for every field they carry; a wiki row only adds. Every row cites its page and read date, and the build fails on any name his files lack. The format, the validation rules and the command that checks a file are in [`crates/ddo-etl/data/wiki/README.md`](crates/ddo-etl/data/wiki/README.md); read it before adding or editing an entry. `cargo xtask wiki-check` builds everything in memory in a few seconds and prints the wiki counts or the validation error; `--wiki DIR` checks a directory of drafts in place of the embedded files. `cargo xtask wiki-batch` writes what a reading agent needs to `target/wiki-batch/`: every item name, every augment as `family<TAB>name<TAB>min_level`, each quest's likely ddowiki URL, and the wiki's crafting systems list (`xtask/data/crafting_systems.json`).
 
 ## Code Quality
 
