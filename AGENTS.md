@@ -42,6 +42,7 @@ This is the data half of a two-repo project. The site is `ddo-tools`, a sibling 
 ## Code Quality
 
 - **No comments, no doc comments.** Code carries its meaning in names, types, and tests. Do not write `//`, `/* */`, `///`, or `//!`. If something needs a comment to be understood, rename, split, or restructure it until it doesn't. Reasoning that cannot live in code goes in the ddo-tools roadmap or `docs/` there. `cargo lint` fails on any comment; `cargo xtask no-comments --fix` strips them.
+- **Turn findings into lint rules.** When you fix or review a problem a machine could have caught (a convention broken in more than one place, a bug pattern, a rule in this file that nothing enforces), suggest a check that `cargo lint` runs so it can't come back: a clippy lint in `[workspace.lints]` or `clippy.toml`, or an `xtask` check. Say what it would flag today and include it in your final report. Add it yourself when it's cheap and needs no new dependency; a new crate needs the maintainer's approval first.
 - **Names carry the meaning comments would have.** Follow the naming rules below.
 - **Keep code clean and refactor freely.** Improve adjacent code you touch; don't leave a file worse than you found it.
 - `rustfmt.toml` sets a 120-column width. Run `cargo fmt --all` before committing.
