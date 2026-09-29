@@ -3,7 +3,7 @@ use serde::Deserialize;
 use std::path::Path;
 
 pub fn parse(path: &Path) -> Result<Vec<SentientGem>> {
-    let file: SentientGemFile = super::read_xml(path)?;
+    let file: SentientGemFile = super::parse_xml_file(path)?;
     Ok(file.gems.into_iter().map(|g| SentientGem { name: g.name.trim().to_string(), ..g }).collect())
 }
 

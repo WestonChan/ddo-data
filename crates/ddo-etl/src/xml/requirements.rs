@@ -1,26 +1,10 @@
 use anyhow::Result;
+use ddo_model::enums::RequirementGroupKind;
 use serde::de::Error as _;
 use serde::{Deserialize, Deserializer};
 
 pub fn parse_requirements(xml: &str) -> Result<Requirements> {
     Ok(quick_xml::de::from_str(xml)?)
-}
-
-#[derive(Debug, Clone, Copy, PartialEq, Eq)]
-pub enum RequirementGroupKind {
-    All,
-    OneOf,
-    NoneOf,
-}
-
-impl RequirementGroupKind {
-    pub fn to_model(self) -> ddo_model::enums::RequirementGroup {
-        match self {
-            Self::All => ddo_model::enums::RequirementGroup::All,
-            Self::OneOf => ddo_model::enums::RequirementGroup::OneOf,
-            Self::NoneOf => ddo_model::enums::RequirementGroup::NoneOf,
-        }
-    }
 }
 
 #[derive(Debug, Clone, PartialEq, Eq, Default)]
@@ -48,18 +32,18 @@ pub struct Requirement {
 #[derive(Deserialize)]
 struct RawRequirements {
     #[serde(rename = "$value", default)]
-    children: Vec<RawChild>,
+    children: Vec<RequirementsChild>,
 }
 
 #[derive(Deserialize)]
-enum RawChild {
+enum RequirementsChild {
     Requirement(Requirement),
-    RequiresOneOf(RawGroup),
-    RequiresNoneOf(RawGroup),
+    RequiresOneOf(RawRequirementGroup),
+    RequiresNoneOf(RawRequirementGroup),
 }
 
 #[derive(Debug, Clone, Deserialize)]
-pub struct RawGroup {
+pub struct RawRequirementGroup {
     #[serde(rename = "DisplayDescription")]
     pub display_description: Option<String>,
     #[serde(rename = "Requirement", default)]
@@ -67,34 +51,47 @@ pub struct RawGroup {
 }
 
 impl RequirementGroup {
-    pub fn from_raw(kind: RequirementGroupKind, raw: RawGroup) -> Self {
-        group(kind, raw)
+    pub fn from_raw(kind: RequirementGroupKind, raw_group: RawRequirementGroup) -> Self {
+        RequirementGroup {
+            kind,
+            display_description: raw_group.display_description.map(|s| s.trim().to_string()),
+            requirements: raw_group.requirements.into_iter().map(Requirement::with_trimmed_kind).collect(),
+        }
     }
 
-    pub fn all(requirements: Vec<Requirement>) -> Self {
+    pub fn all_of(requirements: Vec<Requirement>) -> Self {
         RequirementGroup { kind: RequirementGroupKind::All, display_description: None, requirements }
     }
 }
 
+impl Requirement {
+    fn with_trimmed_kind(mut self) -> Self {
+        self.kind = self.kind.trim().to_string();
+        self
+    }
+}
+
 impl<'de> Deserialize<'de> for Requirements {
-    fn deserialize<D: Deserializer<'de>>(d: D) -> Result<Self, D::Error> {
-        let raw = RawRequirements::deserialize(d)?;
+    fn deserialize<D: Deserializer<'de>>(deserializer: D) -> Result<Self, D::Error> {
+        let raw_requirements = RawRequirements::deserialize(deserializer)?;
         let mut groups: Vec<RequirementGroup> = Vec::new();
-        for child in raw.children {
+        for child in raw_requirements.children {
             match child {
-                RawChild::Requirement(mut r) => {
-                    r.kind = r.kind.trim().to_string();
+                RequirementsChild::Requirement(requirement) => {
+                    let requirement = requirement.with_trimmed_kind();
                     match groups.last_mut() {
-                        Some(g) if g.kind == RequirementGroupKind::All => g.requirements.push(r),
-                        _ => groups.push(RequirementGroup {
-                            kind: RequirementGroupKind::All,
-                            display_description: None,
-                            requirements: vec![r],
-                        }),
+                        Some(last_group) if last_group.kind == RequirementGroupKind::All => {
+                            last_group.requirements.push(requirement)
+                        }
+                        _ => groups.push(RequirementGroup::all_of(vec![requirement])),
                     }
                 }
-                RawChild::RequiresOneOf(g) => groups.push(group(RequirementGroupKind::OneOf, g)),
-                RawChild::RequiresNoneOf(g) => groups.push(group(RequirementGroupKind::NoneOf, g)),
+                RequirementsChild::RequiresOneOf(g) => {
+                    groups.push(RequirementGroup::from_raw(RequirementGroupKind::OneOf, g))
+                }
+                RequirementsChild::RequiresNoneOf(g) => {
+                    groups.push(RequirementGroup::from_raw(RequirementGroupKind::NoneOf, g))
+                }
             }
         }
         if groups.iter().any(|g| g.requirements.iter().any(|r| r.kind.is_empty())) {
@@ -104,23 +101,8 @@ impl<'de> Deserialize<'de> for Requirements {
     }
 }
 
-fn group(kind: RequirementGroupKind, raw: RawGroup) -> RequirementGroup {
-    RequirementGroup {
-        kind,
-        display_description: raw.display_description.map(|s| s.trim().to_string()),
-        requirements: raw
-            .requirements
-            .into_iter()
-            .map(|mut r| {
-                r.kind = r.kind.trim().to_string();
-                r
-            })
-            .collect(),
-    }
-}
-
 impl Requirements {
-    pub fn positive(&self) -> impl Iterator<Item = &Requirement> {
+    pub fn requirements_to_meet(&self) -> impl Iterator<Item = &Requirement> {
         self.groups.iter().filter(|g| g.kind != RequirementGroupKind::NoneOf).flat_map(|g| g.requirements.iter())
     }
 }

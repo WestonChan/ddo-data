@@ -1,28 +1,28 @@
 use super::effect::Effect;
 use super::feats::{Attack, Dc, Stance};
 use super::requirements::Requirements;
-use super::{Empty, Vector};
+use super::{EmptyElement, NumberList};
 use anyhow::{bail, Result};
 use serde::de::Error as _;
 use serde::{Deserialize, Deserializer};
 use std::path::Path;
 
-pub fn parse(path: &Path) -> Result<Tree> {
-    let file: TreeFile = super::read_xml(path)?;
+pub fn parse(path: &Path) -> Result<EnhancementTree> {
+    let file: EnhancementTreeFile = super::parse_xml_file(path)?;
     match file.trees.into_iter().next() {
-        Some(t) => Ok(t),
+        Some(tree) => Ok(tree),
         None => bail!("{}: no <EnhancementTree>", path.display()),
     }
 }
 
 #[derive(Deserialize)]
-struct TreeFile {
+struct EnhancementTreeFile {
     #[serde(rename = "EnhancementTree", default)]
-    trees: Vec<Tree>,
+    trees: Vec<EnhancementTree>,
 }
 
 #[derive(Debug, Default)]
-pub struct Tree {
+pub struct EnhancementTree {
     pub name: String,
     pub version: Option<i64>,
     pub icon: Option<String>,
@@ -33,11 +33,11 @@ pub struct Tree {
     pub is_universal: bool,
     pub is_reaper: bool,
     pub is_legacy: bool,
-    pub items: Vec<TreeItem>,
+    pub enhancements: Vec<Enhancement>,
 }
 
 #[derive(Debug, Default)]
-pub struct TreeItem {
+pub struct Enhancement {
     pub name: String,
     pub internal_name: String,
     pub description: Option<String>,
@@ -45,33 +45,33 @@ pub struct TreeItem {
     pub x: Option<i64>,
     pub y: Option<i64>,
     pub cost_per_rank: Vec<f64>,
-    pub ranks: Option<i64>,
-    pub min_spent: Option<i64>,
+    pub rank_count: Option<i64>,
+    pub minimum_points_spent: Option<i64>,
     pub requirements: Option<Requirements>,
     pub effects: Vec<Effect>,
     pub is_clickie: bool,
     pub is_tier5: bool,
     pub arrows: Vec<String>,
-    pub selector: Option<Selector>,
+    pub selector: Option<EnhancementSelector>,
     pub stances: Vec<Stance>,
     pub dcs: Vec<Dc>,
     pub attack: Option<Attack>,
 }
 
 #[derive(Debug, Default)]
-pub struct Selector {
-    pub exclusions: Vec<String>,
-    pub selections: Vec<Selection>,
+pub struct EnhancementSelector {
+    pub excluded_internal_names: Vec<String>,
+    pub selections: Vec<EnhancementSelection>,
 }
 
 #[derive(Debug, Default)]
-pub struct Selection {
+pub struct EnhancementSelection {
     pub name: String,
     pub description: Option<String>,
     pub icon: Option<String>,
     pub cost_per_rank: Vec<f64>,
-    pub ranks: Option<i64>,
-    pub min_spent: Option<i64>,
+    pub rank_count: Option<i64>,
+    pub minimum_points_spent: Option<i64>,
     pub requirements: Option<Requirements>,
     pub effects: Vec<Effect>,
     pub is_clickie: bool,
@@ -81,201 +81,205 @@ pub struct Selection {
 }
 
 #[derive(Deserialize)]
-struct RawTree {
+struct RawEnhancementTree {
     #[serde(rename = "$value", default)]
-    children: Vec<TreeChild>,
+    children: Vec<EnhancementTreeChild>,
 }
 
 #[allow(clippy::large_enum_variant)]
 #[derive(Deserialize)]
-enum TreeChild {
+enum EnhancementTreeChild {
     Name(String),
     Version(i64),
     Icon(String),
     Background(String),
     Requirements(Requirements),
-    IsRacialTree(Empty),
-    IsEpicDestiny(Empty),
-    IsUniversalTree(Empty),
-    IsReaperTree(Empty),
-    Legacy(Empty),
-    EnhancementTreeItem(TreeItem),
+    IsRacialTree(EmptyElement),
+    IsEpicDestiny(EmptyElement),
+    IsUniversalTree(EmptyElement),
+    IsReaperTree(EmptyElement),
+    Legacy(EmptyElement),
+    EnhancementTreeItem(Enhancement),
 }
 
-impl<'de> Deserialize<'de> for Tree {
-    fn deserialize<D: Deserializer<'de>>(d: D) -> Result<Self, D::Error> {
-        let raw = RawTree::deserialize(d)?;
-        let mut t = Tree::default();
-        let trim = |s: String| s.trim().to_string();
-        for child in raw.children {
+impl<'de> Deserialize<'de> for EnhancementTree {
+    fn deserialize<D: Deserializer<'de>>(deserializer: D) -> Result<Self, D::Error> {
+        let raw_tree = RawEnhancementTree::deserialize(deserializer)?;
+        let mut tree = EnhancementTree::default();
+        let trimmed = |s: String| s.trim().to_string();
+        for child in raw_tree.children {
             match child {
-                TreeChild::Name(v) => t.name = trim(v),
-                TreeChild::Version(v) => t.version = Some(v),
-                TreeChild::Icon(v) => t.icon = Some(trim(v)),
-                TreeChild::Background(v) => t.background = Some(trim(v)),
-                TreeChild::Requirements(v) => t.requirements = Some(v),
-                TreeChild::IsRacialTree(_) => t.is_racial = true,
-                TreeChild::IsEpicDestiny(_) => t.is_destiny = true,
-                TreeChild::IsUniversalTree(_) => t.is_universal = true,
-                TreeChild::IsReaperTree(_) => t.is_reaper = true,
-                TreeChild::Legacy(_) => t.is_legacy = true,
-                TreeChild::EnhancementTreeItem(v) => t.items.push(v),
+                EnhancementTreeChild::Name(v) => tree.name = trimmed(v),
+                EnhancementTreeChild::Version(v) => tree.version = Some(v),
+                EnhancementTreeChild::Icon(v) => tree.icon = Some(trimmed(v)),
+                EnhancementTreeChild::Background(v) => tree.background = Some(trimmed(v)),
+                EnhancementTreeChild::Requirements(v) => tree.requirements = Some(v),
+                EnhancementTreeChild::IsRacialTree(_) => tree.is_racial = true,
+                EnhancementTreeChild::IsEpicDestiny(_) => tree.is_destiny = true,
+                EnhancementTreeChild::IsUniversalTree(_) => tree.is_universal = true,
+                EnhancementTreeChild::IsReaperTree(_) => tree.is_reaper = true,
+                EnhancementTreeChild::Legacy(_) => tree.is_legacy = true,
+                EnhancementTreeChild::EnhancementTreeItem(v) => tree.enhancements.push(v),
             }
         }
-        if t.name.is_empty() {
+        if tree.name.is_empty() {
             return Err(D::Error::custom("<EnhancementTree> without a <Name>"));
         }
-        Ok(t)
+        Ok(tree)
     }
 }
 
 #[derive(Deserialize)]
-struct RawItem {
+struct RawEnhancement {
     #[serde(rename = "$value", default)]
-    children: Vec<ItemChild>,
+    children: Vec<EnhancementChild>,
 }
 
 #[allow(clippy::large_enum_variant)]
 #[derive(Deserialize)]
-enum ItemChild {
+enum EnhancementChild {
     Name(String),
     InternalName(String),
     Description(String),
     Icon(String),
     XPosition(i64),
     YPosition(i64),
-    CostPerRank(Vector),
+    CostPerRank(NumberList),
     Ranks(i64),
     MinSpent(i64),
     Requirements(Requirements),
     Effect(Effect),
-    Clickie(Empty),
-    Tier5(Empty),
-    ArrowUp(Empty),
-    ArrowRight(Empty),
-    ArrowLeft(Empty),
-    LongArrowUp(Empty),
-    ExtraLongArrowUp(Empty),
-    Selector(Selector),
+    Clickie(EmptyElement),
+    Tier5(EmptyElement),
+    ArrowUp(EmptyElement),
+    ArrowRight(EmptyElement),
+    ArrowLeft(EmptyElement),
+    LongArrowUp(EmptyElement),
+    ExtraLongArrowUp(EmptyElement),
+    Selector(EnhancementSelector),
     Stance(Stance),
     #[serde(rename = "DC")]
     Dc(Dc),
     Attack(Attack),
 }
 
-impl<'de> Deserialize<'de> for TreeItem {
-    fn deserialize<D: Deserializer<'de>>(d: D) -> Result<Self, D::Error> {
-        let raw = RawItem::deserialize(d)?;
-        let mut i = TreeItem::default();
-        let trim = |s: String| s.trim().to_string();
-        for child in raw.children {
+impl<'de> Deserialize<'de> for Enhancement {
+    fn deserialize<D: Deserializer<'de>>(deserializer: D) -> Result<Self, D::Error> {
+        let raw_enhancement = RawEnhancement::deserialize(deserializer)?;
+        let mut enhancement = Enhancement::default();
+        let trimmed = |s: String| s.trim().to_string();
+        for child in raw_enhancement.children {
             match child {
-                ItemChild::Name(v) => i.name = trim(v),
-                ItemChild::InternalName(v) => i.internal_name = trim(v),
-                ItemChild::Description(v) => i.description = Some(trim(v)),
-                ItemChild::Icon(v) => i.icon = Some(trim(v)),
-                ItemChild::XPosition(v) => i.x = Some(v),
-                ItemChild::YPosition(v) => i.y = Some(v),
-                ItemChild::CostPerRank(v) => i.cost_per_rank = v.numbers().map_err(D::Error::custom)?,
-                ItemChild::Ranks(v) => i.ranks = Some(v),
-                ItemChild::MinSpent(v) => i.min_spent = Some(v),
-                ItemChild::Requirements(v) => i.requirements = Some(v),
-                ItemChild::Effect(v) => i.effects.push(v),
-                ItemChild::Clickie(_) => i.is_clickie = true,
-                ItemChild::Tier5(_) => i.is_tier5 = true,
-                ItemChild::ArrowUp(_) => i.arrows.push("ArrowUp".into()),
-                ItemChild::ArrowRight(_) => i.arrows.push("ArrowRight".into()),
-                ItemChild::ArrowLeft(_) => i.arrows.push("ArrowLeft".into()),
-                ItemChild::LongArrowUp(_) => i.arrows.push("LongArrowUp".into()),
-                ItemChild::ExtraLongArrowUp(_) => i.arrows.push("ExtraLongArrowUp".into()),
-                ItemChild::Selector(v) => i.selector = Some(v),
-                ItemChild::Stance(v) => i.stances.push(v),
-                ItemChild::Dc(v) => i.dcs.push(v),
-                ItemChild::Attack(v) => i.attack = Some(v),
+                EnhancementChild::Name(v) => enhancement.name = trimmed(v),
+                EnhancementChild::InternalName(v) => enhancement.internal_name = trimmed(v),
+                EnhancementChild::Description(v) => enhancement.description = Some(trimmed(v)),
+                EnhancementChild::Icon(v) => enhancement.icon = Some(trimmed(v)),
+                EnhancementChild::XPosition(v) => enhancement.x = Some(v),
+                EnhancementChild::YPosition(v) => enhancement.y = Some(v),
+                EnhancementChild::CostPerRank(v) => {
+                    enhancement.cost_per_rank = v.numbers().map_err(D::Error::custom)?
+                }
+                EnhancementChild::Ranks(v) => enhancement.rank_count = Some(v),
+                EnhancementChild::MinSpent(v) => enhancement.minimum_points_spent = Some(v),
+                EnhancementChild::Requirements(v) => enhancement.requirements = Some(v),
+                EnhancementChild::Effect(v) => enhancement.effects.push(v),
+                EnhancementChild::Clickie(_) => enhancement.is_clickie = true,
+                EnhancementChild::Tier5(_) => enhancement.is_tier5 = true,
+                EnhancementChild::ArrowUp(_) => enhancement.arrows.push("ArrowUp".into()),
+                EnhancementChild::ArrowRight(_) => enhancement.arrows.push("ArrowRight".into()),
+                EnhancementChild::ArrowLeft(_) => enhancement.arrows.push("ArrowLeft".into()),
+                EnhancementChild::LongArrowUp(_) => enhancement.arrows.push("LongArrowUp".into()),
+                EnhancementChild::ExtraLongArrowUp(_) => enhancement.arrows.push("ExtraLongArrowUp".into()),
+                EnhancementChild::Selector(v) => enhancement.selector = Some(v),
+                EnhancementChild::Stance(v) => enhancement.stances.push(v),
+                EnhancementChild::Dc(v) => enhancement.dcs.push(v),
+                EnhancementChild::Attack(v) => enhancement.attack = Some(v),
             }
         }
-        if i.name.is_empty() || i.internal_name.is_empty() {
+        if enhancement.name.is_empty() || enhancement.internal_name.is_empty() {
             return Err(D::Error::custom("<EnhancementTreeItem> without a <Name> or <InternalName>"));
         }
-        Ok(i)
+        Ok(enhancement)
     }
 }
 
 #[derive(Deserialize)]
-struct RawSelector {
+struct RawEnhancementSelector {
     #[serde(rename = "$value", default)]
-    children: Vec<SelectorChild>,
+    children: Vec<EnhancementSelectorChild>,
 }
 
 #[allow(clippy::large_enum_variant)]
 #[derive(Deserialize)]
-enum SelectorChild {
+enum EnhancementSelectorChild {
     Exclusions(String),
-    EnhancementSelection(Selection),
+    EnhancementSelection(EnhancementSelection),
 }
 
-impl<'de> Deserialize<'de> for Selector {
-    fn deserialize<D: Deserializer<'de>>(d: D) -> Result<Self, D::Error> {
-        let raw = RawSelector::deserialize(d)?;
-        let mut s = Selector::default();
-        for child in raw.children {
+impl<'de> Deserialize<'de> for EnhancementSelector {
+    fn deserialize<D: Deserializer<'de>>(deserializer: D) -> Result<Self, D::Error> {
+        let raw_selector = RawEnhancementSelector::deserialize(deserializer)?;
+        let mut selector = EnhancementSelector::default();
+        for child in raw_selector.children {
             match child {
-                SelectorChild::Exclusions(v) => s.exclusions.push(v.trim().to_string()),
-                SelectorChild::EnhancementSelection(v) => s.selections.push(v),
+                EnhancementSelectorChild::Exclusions(v) => selector.excluded_internal_names.push(v.trim().to_string()),
+                EnhancementSelectorChild::EnhancementSelection(v) => selector.selections.push(v),
             }
         }
-        Ok(s)
+        Ok(selector)
     }
 }
 
 #[derive(Deserialize)]
-struct RawSelection {
+struct RawEnhancementSelection {
     #[serde(rename = "$value", default)]
-    children: Vec<SelectionChild>,
+    children: Vec<EnhancementSelectionChild>,
 }
 
 #[allow(clippy::large_enum_variant)]
 #[derive(Deserialize)]
-enum SelectionChild {
+enum EnhancementSelectionChild {
     Name(String),
     Description(String),
     Icon(String),
-    CostPerRank(Vector),
+    CostPerRank(NumberList),
     Ranks(i64),
     MinSpent(i64),
     Requirements(Requirements),
     Effect(Effect),
-    Clickie(Empty),
+    Clickie(EmptyElement),
     Stance(Stance),
     #[serde(rename = "DC")]
     Dc(Dc),
     Attack(Attack),
 }
 
-impl<'de> Deserialize<'de> for Selection {
-    fn deserialize<D: Deserializer<'de>>(d: D) -> Result<Self, D::Error> {
-        let raw = RawSelection::deserialize(d)?;
-        let mut s = Selection::default();
-        let trim = |v: String| v.trim().to_string();
-        for child in raw.children {
+impl<'de> Deserialize<'de> for EnhancementSelection {
+    fn deserialize<D: Deserializer<'de>>(deserializer: D) -> Result<Self, D::Error> {
+        let raw_selection = RawEnhancementSelection::deserialize(deserializer)?;
+        let mut selection = EnhancementSelection::default();
+        let trimmed = |v: String| v.trim().to_string();
+        for child in raw_selection.children {
             match child {
-                SelectionChild::Name(v) => s.name = trim(v),
-                SelectionChild::Description(v) => s.description = Some(trim(v)),
-                SelectionChild::Icon(v) => s.icon = Some(trim(v)),
-                SelectionChild::CostPerRank(v) => s.cost_per_rank = v.numbers().map_err(D::Error::custom)?,
-                SelectionChild::Ranks(v) => s.ranks = Some(v),
-                SelectionChild::MinSpent(v) => s.min_spent = Some(v),
-                SelectionChild::Requirements(v) => s.requirements = Some(v),
-                SelectionChild::Effect(v) => s.effects.push(v),
-                SelectionChild::Clickie(_) => s.is_clickie = true,
-                SelectionChild::Stance(v) => s.stances.push(v),
-                SelectionChild::Dc(v) => s.dcs.push(v),
-                SelectionChild::Attack(v) => s.attack = Some(v),
+                EnhancementSelectionChild::Name(v) => selection.name = trimmed(v),
+                EnhancementSelectionChild::Description(v) => selection.description = Some(trimmed(v)),
+                EnhancementSelectionChild::Icon(v) => selection.icon = Some(trimmed(v)),
+                EnhancementSelectionChild::CostPerRank(v) => {
+                    selection.cost_per_rank = v.numbers().map_err(D::Error::custom)?
+                }
+                EnhancementSelectionChild::Ranks(v) => selection.rank_count = Some(v),
+                EnhancementSelectionChild::MinSpent(v) => selection.minimum_points_spent = Some(v),
+                EnhancementSelectionChild::Requirements(v) => selection.requirements = Some(v),
+                EnhancementSelectionChild::Effect(v) => selection.effects.push(v),
+                EnhancementSelectionChild::Clickie(_) => selection.is_clickie = true,
+                EnhancementSelectionChild::Stance(v) => selection.stances.push(v),
+                EnhancementSelectionChild::Dc(v) => selection.dcs.push(v),
+                EnhancementSelectionChild::Attack(v) => selection.attack = Some(v),
             }
         }
-        if s.name.is_empty() {
+        if selection.name.is_empty() {
             return Err(D::Error::custom("<EnhancementSelection> without a <Name>"));
         }
-        Ok(s)
+        Ok(selection)
     }
 }

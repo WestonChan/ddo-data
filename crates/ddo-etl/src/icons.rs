@@ -1,8 +1,8 @@
 use anyhow::{Context, Result};
 use std::collections::BTreeMap;
-use std::path::Path;
+use std::path::{Path, PathBuf};
 
-pub const FAMILIES: &[(&str, &str)] = &[
+pub const ICON_FAMILY_SOURCE_FOLDERS: &[(&str, &str)] = &[
     ("items", "ItemImages"),
     ("augments", "AugmentImages"),
     ("feats", "FeatImages"),
@@ -16,43 +16,43 @@ pub const FAMILIES: &[(&str, &str)] = &[
 ];
 
 #[derive(Debug, Default, Clone, PartialEq, Eq)]
-pub struct IconReport {
-    pub copied: BTreeMap<String, usize>,
-    pub duplicates: usize,
+pub struct IconExportReport {
+    pub copied_count_by_family: BTreeMap<String, usize>,
+    pub skipped_duplicate_count: usize,
 }
 
-pub fn export_icons(source: &Path, out: &Path) -> Result<IconReport> {
-    let mut report = IconReport::default();
-    for (family, folder) in FAMILIES {
-        let from = source.join(folder);
-        if !from.is_dir() {
+pub fn export_icons(data_files_dir: &Path, icons_dir: &Path) -> Result<IconExportReport> {
+    let mut report = IconExportReport::default();
+    for (family, source_folder) in ICON_FAMILY_SOURCE_FOLDERS {
+        let source_dir = data_files_dir.join(source_folder);
+        if !source_dir.is_dir() {
             continue;
         }
-        let to = out.join(family);
-        std::fs::create_dir_all(&to).with_context(|| format!("creating {}", to.display()))?;
-        let mut count = 0;
-        for path in png_files(&from)? {
-            let Some(name) = path.file_name() else { continue };
-            let target = to.join(name);
-            if target.exists() {
-                report.duplicates += 1;
+        let family_dir = icons_dir.join(family);
+        std::fs::create_dir_all(&family_dir).with_context(|| format!("creating {}", family_dir.display()))?;
+        let mut copied_count = 0;
+        for source_path in png_files_under(&source_dir)? {
+            let Some(file_name) = source_path.file_name() else { continue };
+            let target_path = family_dir.join(file_name);
+            if target_path.exists() {
+                report.skipped_duplicate_count += 1;
                 continue;
             }
-            std::fs::copy(&path, &target).with_context(|| format!("copying {}", path.display()))?;
-            count += 1;
+            std::fs::copy(&source_path, &target_path).with_context(|| format!("copying {}", source_path.display()))?;
+            copied_count += 1;
         }
-        report.copied.insert((*family).to_string(), count);
+        report.copied_count_by_family.insert((*family).to_string(), copied_count);
     }
     Ok(report)
 }
 
-fn png_files(dir: &Path) -> Result<Vec<std::path::PathBuf>> {
-    let mut out = Vec::new();
+fn png_files_under(dir: &Path) -> Result<Vec<PathBuf>> {
+    let mut png_paths = Vec::new();
     for entry in walkdir::WalkDir::new(dir).sort_by_file_name() {
         let entry = entry?;
         if entry.file_type().is_file() && entry.path().extension().is_some_and(|e| e.eq_ignore_ascii_case("png")) {
-            out.push(entry.into_path());
+            png_paths.push(entry.into_path());
         }
     }
-    Ok(out)
+    Ok(png_paths)
 }

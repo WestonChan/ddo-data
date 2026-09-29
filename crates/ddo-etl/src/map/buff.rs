@@ -1,80 +1,80 @@
-use super::bonus_type::normalize;
-use super::{MappingData, MAPPING};
+use super::bonus_type::parse_buff_bonus_type;
+use super::{BuffVocabulary, BUFF_VOCABULARY};
 use crate::xml::items::Buff;
 use anyhow::{bail, Result};
 use ddo_model::enums::BonusType;
 use ddo_model::stats::Stat;
 
 #[derive(Debug, Clone, PartialEq, Eq)]
-pub enum Resolved {
-    Enhancement(i64),
-    Bonus { stat: &'static Stat, bonus_type: Option<BonusType>, value: Option<i64>, value2: Option<i64> },
+pub enum ResolvedBuff {
+    EnhancementBonus(i64),
+    Bonus { stat: &'static Stat, bonus_type: Option<BonusType>, value: Option<i64>, second_value: Option<i64> },
     Effect { name: String, value: Option<i64>, target: Option<String> },
 }
 
 pub struct BuffMap {
-    data: &'static MappingData,
+    vocabulary: &'static BuffVocabulary,
 }
 
 impl BuffMap {
     pub fn load() -> Result<Self> {
-        let data: &'static MappingData = &MAPPING;
-        for (kind, stat) in &data.fixed {
-            if ddo_model::stat_by_name(stat).is_none() {
-                bail!("[fixed] {kind} names unknown stat {stat:?}");
+        let vocabulary: &'static BuffVocabulary = &BUFF_VOCABULARY;
+        for (buff_kind, stat_name) in &vocabulary.fixed {
+            if Stat::by_name(stat_name).is_none() {
+                bail!("[fixed] {buff_kind} names unknown stat {stat_name:?}");
             }
         }
-        Ok(Self { data })
+        Ok(Self { vocabulary })
     }
 
-    pub fn resolve(&self, buff: &Buff) -> Result<Resolved> {
-        let kind = buff.kind.trim();
-        if self.data.enhancement.iter().any(|k| k == kind) {
-            return match buff.value1 {
-                Some(v) => Ok(Resolved::Enhancement(v)),
-                None => bail!("{kind} without Value1"),
+    pub fn resolved(&self, buff: &Buff) -> Result<ResolvedBuff> {
+        let buff_kind = buff.kind.trim();
+        if self.vocabulary.enhancement.iter().any(|k| k == buff_kind) {
+            return match buff.value {
+                Some(value) => Ok(ResolvedBuff::EnhancementBonus(value)),
+                None => bail!("{buff_kind} without Value1"),
             };
         }
-        let stat_name = if let Some(fixed) = self.data.fixed.get(kind) {
-            Some(fixed.clone())
-        } else if let Some(template) = self.data.by_item.get(kind) {
-            let Some(item) = buff.item.as_deref().map(str::trim).filter(|s| !s.is_empty()) else {
-                bail!("{kind} needs an <Item> sub-target to name its stat");
+        let stat_name = if let Some(fixed_stat_name) = self.vocabulary.fixed.get(buff_kind) {
+            Some(fixed_stat_name.clone())
+        } else if let Some(stat_template) = self.vocabulary.by_item.get(buff_kind) {
+            let Some(target) = buff.target.as_deref().map(str::trim).filter(|s| !s.is_empty()) else {
+                bail!("{buff_kind} needs an <Item> sub-target to name its stat");
             };
-            let item = self.data.item_aliases.get(item).map(String::as_str).unwrap_or(item);
-            Some(template.replace("{item}", item))
+            let target = self.vocabulary.item_aliases.get(target).map(String::as_str).unwrap_or(target);
+            Some(stat_template.replace("{item}", target))
         } else {
             None
         };
         let Some(stat_name) = stat_name else {
-            return Ok(Resolved::Effect {
-                name: kind.to_string(),
-                value: buff.value1,
-                target: buff.item.as_deref().map(str::trim).filter(|s| !s.is_empty()).map(str::to_string),
+            return Ok(ResolvedBuff::Effect {
+                name: buff_kind.to_string(),
+                value: buff.value,
+                target: buff.target.as_deref().map(str::trim).filter(|s| !s.is_empty()).map(str::to_string),
             });
         };
-        let Some(stat) = ddo_model::stat_by_name(&stat_name) else {
-            bail!("{kind} with Item {:?} resolves to {stat_name:?}, which is not a stat; extend [by_item], [fixed] or the stats seed", buff.item);
+        let Some(stat) = Stat::by_name(&stat_name) else {
+            bail!("{buff_kind} with Item {:?} resolves to {stat_name:?}, which is not a stat; extend [by_item], [fixed] or the stats seed", buff.target);
         };
-        let bonus_type = normalize(buff.bonus_type.as_deref().unwrap_or(""))?;
-        Ok(Resolved::Bonus { stat, bonus_type, value: buff.value1, value2: buff.value2 })
+        let bonus_type = parse_buff_bonus_type(buff.bonus_type.as_deref().unwrap_or(""))?;
+        Ok(ResolvedBuff::Bonus { stat, bonus_type, value: buff.value, second_value: buff.second_value })
     }
 
-    pub fn describe(&self, template: &str, buff: &Buff) -> String {
-        let bonus_type = buff
+    pub fn description(&self, template: &str, buff: &Buff) -> String {
+        let bonus_type_name = buff
             .bonus_type
             .as_deref()
-            .map(|raw| match normalize(raw) {
-                Ok(Some(b)) => b.name().to_string(),
-                _ => raw.trim().to_string(),
+            .map(|upstream_name| match parse_buff_bonus_type(upstream_name) {
+                Ok(Some(bonus_type)) => bonus_type.name().to_string(),
+                _ => upstream_name.trim().to_string(),
             })
             .unwrap_or_default();
         template
-            .replace("%v1", &buff.value1.map(|v| v.to_string()).unwrap_or_default())
-            .replace("%v2", &buff.value2.map(|v| v.to_string()).unwrap_or_default())
-            .replace("%i1", buff.item.as_deref().unwrap_or(""))
-            .replace("%i2", buff.item2.as_deref().unwrap_or(""))
-            .replace("%b1", &bonus_type)
+            .replace("%v1", &buff.value.map(|v| v.to_string()).unwrap_or_default())
+            .replace("%v2", &buff.second_value.map(|v| v.to_string()).unwrap_or_default())
+            .replace("%i1", buff.target.as_deref().unwrap_or(""))
+            .replace("%i2", buff.second_target.as_deref().unwrap_or(""))
+            .replace("%b1", &bonus_type_name)
             .trim()
             .to_string()
     }

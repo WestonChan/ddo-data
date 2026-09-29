@@ -1,4 +1,4 @@
-use crate::db::table;
+use crate::db::whole_table_json;
 use crate::error::ApiError;
 use crate::state::AppState;
 use axum::extract::State;
@@ -21,7 +21,7 @@ pub fn router() -> OpenApiRouter<AppState> {
     responses((status = 200, description = "The whole table", body = Vec<Value>))
 )]
 async fn stats(State(state): State<AppState>) -> Result<Json<Vec<Value>>, ApiError> {
-    table(state, "SELECT id, name, category FROM stats ORDER BY id", &[]).await
+    whole_table_json(state, "SELECT id, name, category FROM stats ORDER BY id", &[]).await
 }
 
 #[utoipa::path(
@@ -35,5 +35,6 @@ async fn stats(State(state): State<AppState>) -> Result<Json<Vec<Value>>, ApiErr
     responses((status = 200, description = "The whole table", body = Vec<Value>))
 )]
 async fn bonus_types(State(state): State<AppState>) -> Result<Json<Vec<Value>>, ApiError> {
-    table(state, "SELECT id, name, stacks_with_self FROM bonus_types ORDER BY id", &["stacks_with_self"]).await
+    whole_table_json(state, "SELECT id, name, stacks_with_self FROM bonus_types ORDER BY id", &["stacks_with_self"])
+        .await
 }

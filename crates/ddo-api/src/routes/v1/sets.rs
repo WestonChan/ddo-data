@@ -1,4 +1,4 @@
-use crate::db::{booleanize, json_row, json_rows, modifiers_for, table};
+use crate::db::{convert_to_booleans, json_row, json_rows, modifiers_for, whole_table_json};
 use crate::error::ApiError;
 use crate::state::AppState;
 use axum::extract::{Path, State};
@@ -9,8 +9,8 @@ use utoipa_axum::routes;
 
 pub fn router() -> OpenApiRouter<AppState> {
     OpenApiRouter::new()
-        .routes(routes!(list))
-        .routes(routes!(detail))
+        .routes(routes!(sets))
+        .routes(routes!(set_detail))
         .routes(routes!(filigrees))
         .routes(routes!(sentient_gems))
 }
@@ -25,11 +25,11 @@ pub fn router() -> OpenApiRouter<AppState> {
                    Tiers, items, augments and filigrees are on the detail endpoint.",
     responses((status = 200, description = "All set bonuses", body = Vec<Value>))
 )]
-async fn list(State(state): State<AppState>) -> Result<Json<Vec<Value>>, ApiError> {
+async fn sets(State(state): State<AppState>) -> Result<Json<Vec<Value>>, ApiError> {
     state
-        .query(|conn| {
-            let mut rows = json_rows(
-                conn,
+        .read_db(|db| {
+            let mut sets = json_rows(
+                db,
                 "SELECT s.id, s.name, s.icon, s.is_filigree_set,
                         (SELECT COUNT(*) FROM set_bonus_items i WHERE i.set_id = s.id) AS item_count,
                         (SELECT COUNT(*) FROM set_bonus_augments a WHERE a.set_id = s.id) AS augment_count,
@@ -37,10 +37,10 @@ async fn list(State(state): State<AppState>) -> Result<Json<Vec<Value>>, ApiErro
                    FROM set_bonuses s ORDER BY s.name",
                 [],
             )?;
-            for r in &mut rows {
-                booleanize(r, &["is_filigree_set"]);
+            for set in &mut sets {
+                convert_to_booleans(set, &["is_filigree_set"]);
             }
-            Ok(Json(rows))
+            Ok(Json(sets))
         })
         .await
 }
@@ -55,48 +55,48 @@ async fn list(State(state): State<AppState>) -> Result<Json<Vec<Value>>, ApiErro
                    name, minimum level; crafting-system and named augments), and for filigree sets the `filigrees`.",
     params(("id" = i64, Path, description = "The set's numeric id from the list endpoint")), responses((status = 200, description = "The set with its child collections", body = Value), (status = 404, description = "No set has this id", body = crate::error::ErrorBody))
 )]
-async fn detail(State(state): State<AppState>, Path(id): Path<i64>) -> Result<Json<Value>, ApiError> {
+async fn set_detail(State(state): State<AppState>, Path(id): Path<i64>) -> Result<Json<Value>, ApiError> {
     state
-        .query(move |conn| {
-            let mut set = json_row(conn, "SELECT id, name, icon, is_filigree_set FROM set_bonuses WHERE id = ?1", [id])?;
-            booleanize(&mut set, &["is_filigree_set"]);
+        .read_db(move |db| {
+            let mut set = json_row(db, "SELECT id, name, icon, is_filigree_set FROM set_bonuses WHERE id = ?1", [id])?;
+            convert_to_booleans(&mut set, &["is_filigree_set"]);
             let mut tiers = json_rows(
-                conn,
+                db,
                 "SELECT id, equipped_count, description FROM set_bonus_tiers WHERE set_id = ?1 ORDER BY equipped_count",
                 [id],
             )?;
-            for t in &mut tiers {
-                let tier_id = t["id"].as_i64().unwrap_or(0);
-                t["modifiers"] = Value::Array(modifiers_for(conn, "set_bonus_tier", tier_id)?);
+            for tier in &mut tiers {
+                let tier_id = tier["id"].as_i64().unwrap_or(0);
+                tier["modifiers"] = Value::Array(modifiers_for(db, "set_bonus_tier", tier_id)?);
             }
             set["tiers"] = Value::Array(tiers);
             set["items"] = Value::Array(json_rows(
-                conn,
+                db,
                 "SELECT i.id, i.name, es.name AS slot, i.minimum_level FROM set_bonus_items sbi JOIN items i ON i.id = sbi.item_id
                    JOIN equipment_slots es ON es.id = i.slot_id WHERE sbi.set_id = ?1 ORDER BY i.name",
                 [id],
             )?);
             set["augments"] = Value::Array(json_rows(
-                conn,
+                db,
                 "SELECT a.id, a.name, a.min_level FROM set_bonus_augments sba JOIN augments a ON a.id = sba.augment_id
                   WHERE sba.set_id = ?1 ORDER BY a.name, a.id",
                 [id],
             )?);
-            set["filigrees"] = Value::Array(filigree_rows(conn, Some(id))?);
+            set["filigrees"] = Value::Array(filigrees_matching_set(db, Some(id))?);
             Ok(Json(set))
         })
         .await
 }
 
-fn filigree_rows(conn: &rusqlite::Connection, set_id: Option<i64>) -> Result<Vec<Value>, ApiError> {
+fn filigrees_matching_set(db: &rusqlite::Connection, set_id: Option<i64>) -> Result<Vec<Value>, ApiError> {
     let sql = "SELECT f.id, f.name, f.description, f.icon, f.menu, f.set_id, s.name AS set_name FROM filigrees f
                  LEFT JOIN set_bonuses s ON s.id = f.set_id WHERE (?1 IS NULL OR f.set_id = ?1) ORDER BY f.name";
-    let mut rows = json_rows(conn, sql, [set_id])?;
-    for f in &mut rows {
-        let id = f["id"].as_i64().unwrap_or(0);
-        f["modifiers"] = Value::Array(modifiers_for(conn, "filigree", id)?);
+    let mut filigrees = json_rows(db, sql, [set_id])?;
+    for filigree in &mut filigrees {
+        let filigree_id = filigree["id"].as_i64().unwrap_or(0);
+        filigree["modifiers"] = Value::Array(modifiers_for(db, "filigree", filigree_id)?);
     }
-    Ok(rows)
+    Ok(filigrees)
 }
 
 #[utoipa::path(
@@ -109,7 +109,7 @@ fn filigree_rows(conn: &rusqlite::Connection, set_id: Option<i64>) -> Result<Vec
     responses((status = 200, description = "All filigrees", body = Vec<Value>))
 )]
 async fn filigrees(State(state): State<AppState>) -> Result<Json<Vec<Value>>, ApiError> {
-    state.query(|conn| Ok(Json(filigree_rows(conn, None)?))).await
+    state.read_db(|db| Ok(Json(filigrees_matching_set(db, None)?))).await
 }
 
 #[utoipa::path(
@@ -123,5 +123,5 @@ async fn filigrees(State(state): State<AppState>) -> Result<Json<Vec<Value>>, Ap
     responses((status = 200, description = "Every sentient gem", body = Vec<Value>))
 )]
 async fn sentient_gems(State(state): State<AppState>) -> Result<Json<Vec<Value>>, ApiError> {
-    table(state, "SELECT id, name, icon, description FROM sentient_gems ORDER BY name", &[]).await
+    whole_table_json(state, "SELECT id, name, icon, description FROM sentient_gems ORDER BY name", &[]).await
 }

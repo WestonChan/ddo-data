@@ -1,22 +1,17 @@
-use super::{json_numbers, json_strings, nonempty, Ctx};
+use super::{json_number_array, json_string_array, trimmed_non_empty, TableWriter};
 use crate::xml::effect::Effect;
 use crate::xml::requirements::Requirements;
 use anyhow::Result;
 use ddo_model::enums::{ModifierSource, RequirementOwner};
 use rusqlite::params;
 
-impl Ctx<'_> {
-    pub(super) fn write_modifiers(
-        &mut self,
-        source: ModifierSource,
-        source_id: i64,
-        effects: &[Effect],
-    ) -> Result<Vec<i64>> {
-        let mut ids = Vec::with_capacity(effects.len());
-        for (sort_order, e) in effects.iter().enumerate() {
-            let bonus_type_id = self.effect_map.bonus_type(e.bonus.as_deref().unwrap_or(""))?.map(|b| b.id());
-            let dice = e.dice.as_ref();
-            self.tx.execute(
+impl TableWriter<'_> {
+    pub(super) fn write_modifiers(&mut self, source: ModifierSource, source_id: i64, effects: &[Effect]) -> Result<()> {
+        for (sort_order, effect) in effects.iter().enumerate() {
+            let bonus_type_id =
+                self.effect_map.parse_bonus_type(effect.bonus.as_deref().unwrap_or(""))?.map(|b| b.id());
+            let dice = effect.dice.as_ref();
+            self.transaction.execute(
                 "INSERT INTO modifiers (source_kind, source_id, sort_order, effect_type, extra_types, bonus, bonus_type_id, amount_type,
                                         amounts, targets, value, dice_number, dice_sides, dice_bonus, dice_damage, damage, percent, rank, cap,
                                         stack_source, display_name, apply_as_item_effect, is_item_specific, is_rare)
@@ -25,59 +20,58 @@ impl Ctx<'_> {
                     source.as_str(),
                     source_id,
                     sort_order as i64,
-                    e.types[0],
-                    json_strings(&e.types[1..]),
-                    nonempty(e.bonus.as_deref()),
+                    effect.types[0],
+                    json_string_array(&effect.types[1..]),
+                    trimmed_non_empty(effect.bonus.as_deref()),
                     bonus_type_id,
-                    nonempty(e.amount_type.as_deref()),
-                    json_numbers(&e.amounts),
-                    json_strings(&e.items),
-                    nonempty(e.value.as_deref()),
-                    dice.and_then(|d| json_numbers(&d.number)),
-                    dice.and_then(|d| json_numbers(&d.sides)),
-                    dice.and_then(|d| json_numbers(&d.bonus)),
-                    dice.and_then(|d| nonempty(d.damage.as_deref())),
-                    nonempty(e.damage.as_deref()),
-                    e.percent,
-                    e.rank,
-                    nonempty(e.cap.as_deref()),
-                    nonempty(e.stack_source.as_deref()),
-                    nonempty(e.display_name.as_deref()),
-                    e.apply_as_item_effect,
-                    e.is_item_specific,
-                    e.rare,
+                    trimmed_non_empty(effect.amount_type.as_deref()),
+                    json_number_array(&effect.amounts),
+                    json_string_array(&effect.targets),
+                    trimmed_non_empty(effect.value.as_deref()),
+                    dice.and_then(|d| json_number_array(&d.counts)),
+                    dice.and_then(|d| json_number_array(&d.sides)),
+                    dice.and_then(|d| json_number_array(&d.bonuses)),
+                    dice.and_then(|d| trimmed_non_empty(d.damage.as_deref())),
+                    trimmed_non_empty(effect.damage.as_deref()),
+                    effect.is_percent,
+                    effect.rank,
+                    trimmed_non_empty(effect.cap.as_deref()),
+                    trimmed_non_empty(effect.stack_source.as_deref()),
+                    trimmed_non_empty(effect.display_name.as_deref()),
+                    effect.applies_as_item_effect,
+                    effect.is_item_specific,
+                    effect.is_rare,
                 ],
             )?;
-            let id = self.tx.last_insert_rowid();
-            if let Some(reqs) = &e.requirements {
-                self.write_requirements(RequirementOwner::Modifier, id, reqs)?;
+            let modifier_id = self.transaction.last_insert_rowid();
+            if let Some(requirements) = &effect.requirements {
+                self.write_requirements(RequirementOwner::Modifier, modifier_id, requirements)?;
             }
-            ids.push(id);
-            self.caches.modifiers_written += 1;
+            self.written.modifier_count += 1;
         }
-        Ok(ids)
+        Ok(())
     }
 
     pub(super) fn write_requirements(
         &mut self,
         owner: RequirementOwner,
         owner_id: i64,
-        reqs: &Requirements,
+        requirements: &Requirements,
     ) -> Result<()> {
-        for (group_index, group) in reqs.groups.iter().enumerate() {
-            for (sort_order, r) in group.requirements.iter().enumerate() {
-                self.tx.execute(
+        for (group_index, group) in requirements.groups.iter().enumerate() {
+            for (sort_order, requirement) in group.requirements.iter().enumerate() {
+                self.transaction.execute(
                     "INSERT INTO requirements (owner_kind, owner_id, group_kind, group_index, sort_order, req_type, items, value)
                      VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8)",
                     params![
                         owner.as_str(),
                         owner_id,
-                        group.kind.to_model().as_str(),
+                        group.kind.as_str(),
                         group_index as i64,
                         sort_order as i64,
-                        r.kind,
-                        json_strings(&r.items),
-                        nonempty(r.value.as_deref()),
+                        requirement.kind,
+                        json_string_array(&requirement.items),
+                        trimmed_non_empty(requirement.value.as_deref()),
                     ],
                 )?;
             }
@@ -85,13 +79,13 @@ impl Ctx<'_> {
         Ok(())
     }
 
-    pub(super) fn derived_bonus_ids(&mut self, effects: &[Effect]) -> Result<Vec<i64>> {
-        let mut ids = Vec::new();
-        for e in effects {
-            for d in self.effect_map.derive(e)? {
-                ids.push(self.bonus_id(d.stat, d.bonus_type, Some(d.value), None, None)?);
+    pub(super) fn ensure_derived_bonuses(&mut self, effects: &[Effect]) -> Result<Vec<i64>> {
+        let mut bonus_ids = Vec::new();
+        for effect in effects {
+            for bonus in self.effect_map.derive_bonuses(effect)? {
+                bonus_ids.push(self.ensure_bonus(bonus.stat, bonus.bonus_type, Some(bonus.value), None, None)?);
             }
         }
-        Ok(ids)
+        Ok(bonus_ids)
     }
 }

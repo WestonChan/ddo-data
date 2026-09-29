@@ -1,26 +1,31 @@
 use crate::enums::{
-    sql_in_list, AbilityOwner, ArmorType, CraftingTier, FeatSource, Handedness, ItemCategory, LootType, ModifierSource,
-    QuestDuration, RequirementGroup, RequirementOwner, SaveProgression, TreeKind, XpTier,
+    AbilityOwner, ArmorType, CraftingTier, EnhancementTreeKind, FeatSource, Handedness, ItemCategory, LootType,
+    ModifierSource, QuestDuration, RequirementGroupKind, RequirementOwner, SaveProgression, XpTier,
 };
 use std::sync::LazyLock;
 
 pub const SCHEMA_VERSION: i64 = 2;
 
-static DDL_TEXT: LazyLock<String> = LazyLock::new(|| {
-    let item_category = sql_in_list(ItemCategory::ALL.iter().map(|c| c.as_str()));
-    let handedness = sql_in_list(Handedness::ALL.iter().map(|h| h.as_str()));
-    let armor_type = sql_in_list(ArmorType::ALL.iter().map(|a| a.as_str()));
-    let loot_type = sql_in_list(LootType::ALL.iter().map(|l| l.as_str()));
-    let modifier_source = sql_in_list(ModifierSource::ALL.iter().map(|s| s.as_str()));
-    let requirement_owner = sql_in_list(RequirementOwner::ALL.iter().map(|o| o.as_str()));
-    let feat_source = sql_in_list(FeatSource::ALL.iter().map(|f| f.as_str()));
-    let ability_owner = sql_in_list(AbilityOwner::ALL.iter().map(|o| o.as_str()));
-    let save_progression = sql_in_list(SaveProgression::ALL.iter().map(|s| s.as_str()));
-    let tree_kind = sql_in_list(TreeKind::ALL.iter().map(|k| k.as_str()));
-    let requirement_group = sql_in_list(RequirementGroup::ALL.iter().map(|g| g.as_str()));
-    let quest_duration = sql_in_list(QuestDuration::ALL.iter().map(|d| d.as_str()));
-    let xp_tier = sql_in_list(XpTier::ALL.iter().map(|t| t.as_str()));
-    let crafting_tier = sql_in_list(CraftingTier::ALL.iter().map(|t| t.as_str()));
+fn sql_in_clause<'a>(allowed_values: impl Iterator<Item = &'a str>) -> String {
+    let quoted_values: Vec<String> = allowed_values.map(|value| format!("'{value}'")).collect();
+    format!("IN ({})", quoted_values.join(", "))
+}
+
+static DDL: LazyLock<String> = LazyLock::new(|| {
+    let item_category = sql_in_clause(ItemCategory::ALL.iter().map(|c| c.as_str()));
+    let handedness = sql_in_clause(Handedness::ALL.iter().map(|h| h.as_str()));
+    let armor_type = sql_in_clause(ArmorType::ALL.iter().map(|a| a.as_str()));
+    let loot_type = sql_in_clause(LootType::ALL.iter().map(|l| l.as_str()));
+    let modifier_source = sql_in_clause(ModifierSource::ALL.iter().map(|s| s.as_str()));
+    let requirement_owner = sql_in_clause(RequirementOwner::ALL.iter().map(|o| o.as_str()));
+    let feat_source = sql_in_clause(FeatSource::ALL.iter().map(|f| f.as_str()));
+    let ability_owner = sql_in_clause(AbilityOwner::ALL.iter().map(|o| o.as_str()));
+    let save_progression = sql_in_clause(SaveProgression::ALL.iter().map(|s| s.as_str()));
+    let tree_kind = sql_in_clause(EnhancementTreeKind::ALL.iter().map(|k| k.as_str()));
+    let requirement_group = sql_in_clause(RequirementGroupKind::ALL.iter().map(|g| g.as_str()));
+    let quest_duration = sql_in_clause(QuestDuration::ALL.iter().map(|d| d.as_str()));
+    let xp_tier = sql_in_clause(XpTier::ALL.iter().map(|t| t.as_str()));
+    let crafting_tier = sql_in_clause(CraftingTier::ALL.iter().map(|t| t.as_str()));
     format!(
         r#"
 PRAGMA foreign_keys = ON;
@@ -808,5 +813,5 @@ CREATE TABLE IF NOT EXISTS item_clickies (
 });
 
 pub fn ddl() -> &'static str {
-    &DDL_TEXT
+    &DDL
 }

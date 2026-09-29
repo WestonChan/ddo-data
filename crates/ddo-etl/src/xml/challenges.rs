@@ -1,10 +1,10 @@
-use super::Vector;
+use super::NumberList;
 use anyhow::{anyhow, Result};
 use serde::Deserialize;
 use std::path::Path;
 
 pub fn parse(path: &Path) -> Result<Vec<Challenge>> {
-    let file: ChallengeFile = super::read_xml(path)?;
+    let file: ChallengeFile = super::parse_xml_file(path)?;
     file.challenges.into_iter().map(Challenge::try_from).collect()
 }
 
@@ -23,7 +23,7 @@ struct RawChallenge {
     #[serde(rename = "AdventurePack")]
     adventure_pack: Option<String>,
     #[serde(rename = "LevelRange")]
-    level_range: Option<Vector>,
+    level_range: Option<NumberList>,
 }
 
 #[derive(Debug, Clone, PartialEq, Eq)]
@@ -37,9 +37,9 @@ pub struct Challenge {
 impl TryFrom<RawChallenge> for Challenge {
     type Error = anyhow::Error;
 
-    fn try_from(raw: RawChallenge) -> Result<Self> {
-        let name = raw.name.trim().to_string();
-        let level_range = raw
+    fn try_from(raw_challenge: RawChallenge) -> Result<Self> {
+        let name = raw_challenge.name.trim().to_string();
+        let level_range = raw_challenge
             .level_range
             .map(|v| v.integers())
             .transpose()
@@ -47,8 +47,8 @@ impl TryFrom<RawChallenge> for Challenge {
             .unwrap_or_default();
         Ok(Challenge {
             name,
-            patron: raw.patron.map(|p| p.trim().to_string()).filter(|p| !p.is_empty() && p != "None"),
-            adventure_pack: raw.adventure_pack.map(|p| p.trim().to_string()).filter(|p| !p.is_empty()),
+            patron: raw_challenge.patron.map(|p| p.trim().to_string()).filter(|p| !p.is_empty() && p != "None"),
+            adventure_pack: raw_challenge.adventure_pack.map(|p| p.trim().to_string()).filter(|p| !p.is_empty()),
             level_range,
         })
     }

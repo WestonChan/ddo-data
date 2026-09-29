@@ -8,38 +8,41 @@ use std::path::PathBuf;
 use std::sync::OnceLock;
 use tower::ServiceExt;
 
-fn fixtures() -> PathBuf {
+fn fixture_data_files_dir() -> PathBuf {
     PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../ddo-etl/tests/fixtures/DataFiles")
 }
 
-fn db_path() -> &'static PathBuf {
-    static PATH: OnceLock<PathBuf> = OnceLock::new();
-    PATH.get_or_init(|| {
+fn fixture_db_path() -> &'static PathBuf {
+    static FIXTURE_DB_PATH: OnceLock<PathBuf> = OnceLock::new();
+    FIXTURE_DB_PATH.get_or_init(|| {
         let path = std::env::temp_dir().join(format!("ddo-api-test-{}.db", std::process::id()));
         let _ = std::fs::remove_file(&path);
-        let mut conn = rusqlite::Connection::open(&path).unwrap();
-        let version = DatasetVersion { upstream_sha: "fixture-sha".into(), built_at: "2026-09-21T00:00:00Z".into() };
-        let wiki = ddo_etl::wiki::WikiOverrides::from_dir(&fixtures().parent().unwrap().join("wiki")).unwrap();
-        ddo_etl::build::build(&fixtures(), &wiki, &mut conn, &version).expect("fixture build");
+        let mut db = rusqlite::Connection::open(&path).unwrap();
+        let dataset_version =
+            DatasetVersion { upstream_sha: "fixture-sha".into(), built_at: "2026-09-21T00:00:00Z".into() };
+        let wiki_overrides =
+            ddo_etl::wiki::WikiOverrides::from_dir(&fixture_data_files_dir().parent().unwrap().join("wiki")).unwrap();
+        ddo_etl::build::build_database(&fixture_data_files_dir(), &wiki_overrides, &mut db, &dataset_version)
+            .expect("fixture build");
         path
     })
 }
 
-fn state() -> AppState {
-    AppState::open(db_path()).expect("state opens")
+fn fixture_state() -> AppState {
+    AppState::open(fixture_db_path()).expect("state opens")
 }
 
 async fn get(path: &str) -> (StatusCode, axum::http::HeaderMap, Value) {
-    let response = app(state()).oneshot(Request::get(path).body(Body::empty()).unwrap()).await.unwrap();
+    let response = app(fixture_state()).oneshot(Request::get(path).body(Body::empty()).unwrap()).await.unwrap();
     let status = response.status();
     let headers = response.headers().clone();
-    let bytes = response.into_body().collect().await.unwrap().to_bytes();
-    let json = if bytes.is_empty() {
+    let body_bytes = response.into_body().collect().await.unwrap().to_bytes();
+    let body_json = if body_bytes.is_empty() {
         Value::Null
     } else {
-        serde_json::from_slice(&bytes).unwrap_or(Value::String(String::from_utf8_lossy(&bytes).into()))
+        serde_json::from_slice(&body_bytes).unwrap_or(Value::String(String::from_utf8_lossy(&body_bytes).into()))
     };
-    (status, headers, json)
+    (status, headers, body_json)
 }
 
 #[tokio::test]
@@ -67,23 +70,27 @@ async fn version_reports_dataset_and_schema() {
 async fn items_list_filters_and_pages() {
     let (status, _, json) = get("/v1/items?q=sireth").await;
     assert_eq!(status, StatusCode::OK);
-    let rows = json["items"].as_array().unwrap();
-    assert_eq!(rows.len(), 1);
-    assert_eq!(rows[0]["name"], "Sireth, Spear of the Sky");
-    assert_eq!(rows[0]["slot"], "Main Hand");
-    assert_eq!(rows[0]["category"], "Weapon");
-    assert_eq!(rows[0]["minimum_level"], 23);
-    assert_eq!(rows[0]["is_raid"], true, "Caught in the Web is a raid");
+    let sireth_matches = json["items"].as_array().unwrap();
+    assert_eq!(sireth_matches.len(), 1);
+    assert_eq!(sireth_matches[0]["name"], "Sireth, Spear of the Sky");
+    assert_eq!(sireth_matches[0]["slot"], "Main Hand");
+    assert_eq!(sireth_matches[0]["category"], "Weapon");
+    assert_eq!(sireth_matches[0]["minimum_level"], 23);
+    assert_eq!(sireth_matches[0]["is_raid"], true, "Caught in the Web is a raid");
     assert_eq!(json["total"], 1);
 
-    let (_, _, all) = get("/v1/items?limit=5&offset=0").await;
-    assert_eq!(all["items"].as_array().unwrap().len(), 5);
-    assert_eq!(all["total"], 15);
+    let (_, _, first_page) = get("/v1/items?limit=5&offset=0").await;
+    assert_eq!(first_page["items"].as_array().unwrap().len(), 5);
+    assert_eq!(first_page["total"], 15);
     let (_, _, armor) = get("/v1/items?category=Armor").await;
     assert!(armor["items"].as_array().unwrap().iter().all(|i| i["category"] == "Armor"));
-    let (_, _, ml) = get("/v1/items?min_level=20&max_level=25").await;
-    assert!(ml["items"].as_array().unwrap().iter().all(|i| (20..=25).contains(&i["minimum_level"].as_i64().unwrap())));
-    assert_eq!(rows[0]["is_rare"], false);
+    let (_, _, level_range) = get("/v1/items?min_level=20&max_level=25").await;
+    assert!(level_range["items"]
+        .as_array()
+        .unwrap()
+        .iter()
+        .all(|i| (20..=25).contains(&i["minimum_level"].as_i64().unwrap())));
+    assert_eq!(sireth_matches[0]["is_rare"], false);
     let (_, _, rare) = get("/v1/items?rare=true").await;
     let rare = rare["items"].as_array().unwrap();
     assert_eq!(rare.len(), 1);
@@ -109,9 +116,9 @@ async fn item_detail_joins_every_satellite() {
     assert_eq!(json["weapon"]["dr_bypass"].as_array().unwrap().len(), 4);
     assert!(json["armor"].is_null());
     assert!(json["effects"].as_array().unwrap().iter().any(|e| e["name"] == "Supreme Good"));
-    let slots = json["augment_slots"].as_array().unwrap();
-    assert_eq!(slots.len(), 4);
-    assert_eq!(slots[0]["options"][0]["name"], "Planar Conflux");
+    let augment_slots = json["augment_slots"].as_array().unwrap();
+    assert_eq!(augment_slots.len(), 4);
+    assert_eq!(augment_slots[0]["options"][0]["name"], "Planar Conflux");
     assert_eq!(json["quests"][0]["name"], "Caught in the Web");
     assert_eq!(json["quests"][0]["loot_type"], "raid");
     assert_eq!(json["quests"][0]["difficulties"], serde_json::json!(["normal", "hard", "elite", "reaper"]));
@@ -140,7 +147,7 @@ async fn item_detail_joins_every_satellite() {
 async fn etag_roundtrip_returns_not_modified() {
     let (_, headers, _) = get("/v1/items?q=sireth").await;
     let etag = headers.get(header::ETAG).unwrap().clone();
-    let response = app(state())
+    let response = app(fixture_state())
         .oneshot(
             Request::get("/v1/items?q=sireth").header(header::IF_NONE_MATCH, etag.clone()).body(Body::empty()).unwrap(),
         )
@@ -148,7 +155,8 @@ async fn etag_roundtrip_returns_not_modified() {
         .unwrap();
     assert_eq!(response.status(), StatusCode::NOT_MODIFIED);
 
-    let head = app(state()).oneshot(Request::head("/v1/items?q=sireth").body(Body::empty()).unwrap()).await.unwrap();
+    let head =
+        app(fixture_state()).oneshot(Request::head("/v1/items?q=sireth").body(Body::empty()).unwrap()).await.unwrap();
     assert_eq!(head.headers().get(header::ETAG).unwrap(), &etag);
 }
 
@@ -156,36 +164,37 @@ async fn etag_roundtrip_returns_not_modified() {
 async fn lookups_and_augments() {
     let (_, _, stats) = get("/v1/stats").await;
     assert_eq!(stats.as_array().unwrap().len(), ddo_model::stats::STATS.len());
-    let (_, _, slots) = get("/v1/augment-slot-types").await;
-    assert!(slots.as_array().unwrap().iter().any(|s| s["label"] == "red"));
-    let (_, _, augs) = get("/v1/augments?slot=red").await;
-    let names: Vec<&str> = augs["augments"].as_array().unwrap().iter().map(|a| a["name"].as_str().unwrap()).collect();
+    let (_, _, augment_slot_types) = get("/v1/augment-slot-types").await;
+    assert!(augment_slot_types.as_array().unwrap().iter().any(|s| s["label"] == "red"));
+    let (_, _, red_augments) = get("/v1/augments?slot=red").await;
+    let names: Vec<&str> =
+        red_augments["augments"].as_array().unwrap().iter().map(|a| a["name"].as_str().unwrap()).collect();
     assert!(names.contains(&"Ruby of Acid Damage"), "{names:?}");
-    let silver = augs["augments"].as_array().unwrap().iter().find(|a| a["name"] == "Silverscale");
-    assert!(silver.is_none(), "Silverscale is an Isle of Dread scale slot, not a red gem");
-    let (_, _, all) = get("/v1/augments").await;
-    let silver = all["augments"].as_array().unwrap().iter().find(|a| a["name"] == "Silverscale").unwrap();
-    assert_eq!(silver["bonuses"][0]["stat"], "Healing Amplification");
-    assert_eq!(silver["slots"][0], "isle of dread: scale (armor)");
-    let id = silver["id"].as_i64().unwrap();
-    let (_, _, detail) = get(&format!("/v1/augments/{id}")).await;
-    assert_eq!(detail["modifiers"].as_array().unwrap().len(), 3);
+    let silverscale = red_augments["augments"].as_array().unwrap().iter().find(|a| a["name"] == "Silverscale");
+    assert!(silverscale.is_none(), "Silverscale is an Isle of Dread scale slot, not a red gem");
+    let (_, _, all_augments) = get("/v1/augments").await;
+    let silverscale = all_augments["augments"].as_array().unwrap().iter().find(|a| a["name"] == "Silverscale").unwrap();
+    assert_eq!(silverscale["bonuses"][0]["stat"], "Healing Amplification");
+    assert_eq!(silverscale["slots"][0], "isle of dread: scale (armor)");
+    let id = silverscale["id"].as_i64().unwrap();
+    let (_, _, silverscale_detail) = get(&format!("/v1/augments/{id}")).await;
+    assert_eq!(silverscale_detail["modifiers"].as_array().unwrap().len(), 3);
 }
 
 #[tokio::test]
 async fn quests_carry_difficulties_and_epic_name() {
     let (_, _, quests) = get("/v1/quests").await;
     let quests = quests.as_array().unwrap();
-    let find = |name: &str| quests.iter().find(|q| q["name"] == name).unwrap_or_else(|| panic!("{name}"));
-    let madstone = find("Madstone Crater");
+    let quest_named = |name: &str| quests.iter().find(|q| q["name"] == name).unwrap_or_else(|| panic!("{name}"));
+    let madstone = quest_named("Madstone Crater");
     assert_eq!(madstone["epic_name"], "Return to Madstone Crater");
     assert_eq!(madstone["difficulties"], serde_json::json!(["normal", "hard", "elite", "reaper"]));
-    assert_eq!(find("The Grotto")["difficulties"], serde_json::json!(["solo"]));
-    assert_eq!(find("Land of Lamordia")["difficulties"], serde_json::json!([]));
-    assert!(find("The Grotto")["epic_name"].is_null());
-    assert_eq!(find("The Grotto")["is_challenge"], false);
-    assert!(find("The Grotto")["max_level"].is_null());
-    let moving = find("Dr. Rushmore's Mansion - Moving Targets - EPIC");
+    assert_eq!(quest_named("The Grotto")["difficulties"], serde_json::json!(["solo"]));
+    assert_eq!(quest_named("Land of Lamordia")["difficulties"], serde_json::json!([]));
+    assert!(quest_named("The Grotto")["epic_name"].is_null());
+    assert_eq!(quest_named("The Grotto")["is_challenge"], false);
+    assert!(quest_named("The Grotto")["max_level"].is_null());
+    let moving = quest_named("Dr. Rushmore's Mansion - Moving Targets - EPIC");
     assert_eq!(moving["is_challenge"], true);
     assert_eq!((&moving["level"], &moving["max_level"]), (&serde_json::json!(21), &serde_json::json!(25)));
     assert_eq!(moving["patron"], "House Cannith");
@@ -196,8 +205,8 @@ async fn quests_carry_difficulties_and_epic_name() {
 async fn quests_carry_the_wiki_facts_and_xp_by_tier() {
     let (_, _, quests) = get("/v1/quests").await;
     let quests = quests.as_array().unwrap();
-    let find = |name: &str| quests.iter().find(|q| q["name"] == name).unwrap_or_else(|| panic!("{name}"));
-    let chronoscope = find("The Chronoscope");
+    let quest_named = |name: &str| quests.iter().find(|q| q["name"] == name).unwrap_or_else(|| panic!("{name}"));
+    let chronoscope = quest_named("The Chronoscope");
     assert_eq!(chronoscope["duration"], "Long");
     assert_eq!(chronoscope["is_free_to_play"], false);
     assert_eq!(chronoscope["legendary_level"], 34);
@@ -211,14 +220,14 @@ async fn quests_carry_the_wiki_facts_and_xp_by_tier() {
             "epic": {"casual": null, "normal": 23883, "hard": 24669, "elite": 25456},
         })
     );
-    let grotto = find("The Grotto");
+    let grotto = quest_named("The Grotto");
     assert_eq!(grotto["is_free_to_play"], true);
     assert!(grotto["duration"].is_null() && grotto["legendary_level"].is_null() && grotto["zone"].is_null());
     assert_eq!(
         grotto["xp"],
         serde_json::json!({"heroic": {"casual": 304, "normal": null, "hard": null, "elite": null}})
     );
-    let lamordia = find("Land of Lamordia");
+    let lamordia = quest_named("Land of Lamordia");
     assert_eq!(lamordia["xp"], serde_json::json!({}));
     assert_eq!(lamordia["is_free_to_play"], false);
     assert!(lamordia["duration"].is_null());
@@ -273,8 +282,8 @@ async fn sets_feats_races_classes_trees_spells() {
     assert_eq!(race["granted_feats"].as_array().unwrap().len(), 5);
 
     let (_, _, classes) = get("/v1/classes").await;
-    let pal = classes.as_array().unwrap().iter().find(|c| c["name"] == "Paladin").unwrap();
-    let (_, _, class) = get(&format!("/v1/classes/{}", pal["id"])).await;
+    let paladin = classes.as_array().unwrap().iter().find(|c| c["name"] == "Paladin").unwrap();
+    let (_, _, class) = get(&format!("/v1/classes/{}", paladin["id"])).await;
     assert_eq!(class["fortitude"], "good");
     assert_eq!(class["spell_slots"]["20"], serde_json::json!([4, 4, 4, 4]));
     assert!(class["spells"]
@@ -283,27 +292,27 @@ async fn sets_feats_races_classes_trees_spells() {
         .iter()
         .any(|s| s["name"] == "Cure Light Wounds" && s["spell_id"].is_number()));
 
-    let (_, _, trees) = get("/v1/enhancement-trees").await;
-    let aasimar = trees.as_array().unwrap().iter().find(|t| t["name"] == "Aasimar").unwrap();
+    let (_, _, enhancement_trees) = get("/v1/enhancement-trees").await;
+    let aasimar = enhancement_trees.as_array().unwrap().iter().find(|t| t["name"] == "Aasimar").unwrap();
     assert_eq!(aasimar["kind"], "racial");
-    let (_, _, tree) = get(&format!("/v1/enhancement-trees/{}", aasimar["id"])).await;
-    let enh = tree["enhancements"].as_array().unwrap();
-    assert_eq!(enh.len(), 21);
-    let chooser = enh.iter().find(|e| e["internal_name"] == "AasimarCore2").unwrap();
-    assert_eq!(chooser["selections"].as_array().unwrap().len(), 3);
-    assert_eq!(chooser["requirements"].as_array().unwrap().len(), 2);
+    let (_, _, enhancement_tree) = get(&format!("/v1/enhancement-trees/{}", aasimar["id"])).await;
+    let enhancements = enhancement_tree["enhancements"].as_array().unwrap();
+    assert_eq!(enhancements.len(), 21);
+    let selector = enhancements.iter().find(|e| e["internal_name"] == "AasimarCore2").unwrap();
+    assert_eq!(selector["selections"].as_array().unwrap().len(), 3);
+    assert_eq!(selector["requirements"].as_array().unwrap().len(), 2);
 
-    let kensei = trees.as_array().unwrap().iter().find(|t| t["name"] == "Kensei").unwrap();
-    let (_, _, tree) = get(&format!("/v1/enhancement-trees/{}", kensei["id"])).await;
-    let enh = tree["enhancements"].as_array().unwrap();
-    let surge = enh.iter().find(|e| e["internal_name"] == "KenseiCore4").unwrap();
+    let kensei = enhancement_trees.as_array().unwrap().iter().find(|t| t["name"] == "Kensei").unwrap();
+    let (_, _, enhancement_tree) = get(&format!("/v1/enhancement-trees/{}", kensei["id"])).await;
+    let enhancements = enhancement_tree["enhancements"].as_array().unwrap();
+    let surge = enhancements.iter().find(|e| e["internal_name"] == "KenseiCore4").unwrap();
     assert_eq!(
         (&surge["cooldown_seconds"], &surge["duration_seconds"]),
         (&serde_json::json!(60), &serde_json::json!(60))
     );
     assert_eq!(surge["follow_on_modifiers"][1]["effect_type"], "BonusDamage");
     assert_eq!(surge["modifiers"].as_array().unwrap().len(), 3);
-    let boost = enh.iter().find(|e| e["internal_name"] == "KenseiActionBoostI").unwrap();
+    let boost = enhancements.iter().find(|e| e["internal_name"] == "KenseiActionBoostI").unwrap();
     assert!(boost["cooldown_seconds"].is_null());
     assert_eq!(boost["follow_on_modifiers"], serde_json::json!([]));
     let haste = &boost["selections"][1];
@@ -323,16 +332,17 @@ async fn sets_feats_races_classes_trees_spells() {
 
 #[tokio::test]
 async fn dump_and_openapi() {
-    let response = app(state()).oneshot(Request::get("/v1/dump.sqlite").body(Body::empty()).unwrap()).await.unwrap();
+    let response =
+        app(fixture_state()).oneshot(Request::get("/v1/dump.sqlite").body(Body::empty()).unwrap()).await.unwrap();
     assert_eq!(response.status(), StatusCode::OK);
     assert_eq!(response.headers().get(header::CONTENT_TYPE).unwrap(), "application/vnd.sqlite3");
-    let bytes = response.into_body().collect().await.unwrap().to_bytes();
-    assert!(bytes.starts_with(b"SQLite format 3\0"));
+    let dump_bytes = response.into_body().collect().await.unwrap().to_bytes();
+    assert!(dump_bytes.starts_with(b"SQLite format 3\0"));
 
     let (status, _, spec) = get("/v1/openapi.json").await;
     assert_eq!(status, StatusCode::OK);
     let paths = spec["paths"].as_object().unwrap();
-    for p in [
+    for path in [
         "/v1/version",
         "/v1/items",
         "/v1/items/{id}",
@@ -340,79 +350,84 @@ async fn dump_and_openapi() {
         "/v1/enhancement-trees/{id}",
         "/v1/dump.sqlite",
     ] {
-        assert!(paths.contains_key(p), "missing {p}");
+        assert!(paths.contains_key(path), "missing {path}");
     }
-    let response = app(state()).oneshot(Request::get("/v1/docs").body(Body::empty()).unwrap()).await.unwrap();
+    let response = app(fixture_state()).oneshot(Request::get("/v1/docs").body(Body::empty()).unwrap()).await.unwrap();
     assert_eq!(response.status(), StatusCode::OK);
 }
 
 #[tokio::test]
 async fn icons_are_served_when_configured() {
-    let icons = std::env::temp_dir().join(format!("ddo-api-icons-{}", std::process::id()));
-    let _ = std::fs::remove_dir_all(&icons);
-    ddo_etl::icons::export_icons(&fixtures(), &icons).unwrap();
-    let with_icons = || state().with_icons(&icons);
-    let response = app(with_icons())
+    let icons_dir = std::env::temp_dir().join(format!("ddo-api-icons-{}", std::process::id()));
+    let _ = std::fs::remove_dir_all(&icons_dir);
+    ddo_etl::icons::export_icons(&fixture_data_files_dir(), &icons_dir).unwrap();
+    let fixture_state_with_icons = || fixture_state().with_icons_dir(&icons_dir);
+    let response = app(fixture_state_with_icons())
         .oneshot(Request::get("/icons/items/Quarterstaff_6a.png").body(Body::empty()).unwrap())
         .await
         .unwrap();
     assert_eq!(response.status(), StatusCode::OK);
     assert_eq!(response.headers().get(header::CONTENT_TYPE).unwrap(), "image/png");
     assert!(response.headers().get(header::ETAG).is_some());
-    let response =
-        app(with_icons()).oneshot(Request::get("/icons/items/Nope.png").body(Body::empty()).unwrap()).await.unwrap();
+    let response = app(fixture_state_with_icons())
+        .oneshot(Request::get("/icons/items/Nope.png").body(Body::empty()).unwrap())
+        .await
+        .unwrap();
     assert_eq!(response.status(), StatusCode::NOT_FOUND);
-    let response = app(state())
+    let response = app(fixture_state())
         .oneshot(Request::get("/icons/items/Quarterstaff_6a.png").body(Body::empty()).unwrap())
         .await
         .unwrap();
     assert_eq!(response.status(), StatusCode::NOT_FOUND, "no icons directory, no route");
-    let _ = std::fs::remove_dir_all(&icons);
+    let _ = std::fs::remove_dir_all(&icons_dir);
 }
 
 #[tokio::test]
 async fn openapi_describes_every_operation_parameter_and_tag() {
     let (_, _, spec) = get("/v1/openapi.json").await;
-    let info = &spec["info"];
-    assert!(info["description"].as_str().is_some_and(|d| d.len() > 200), "info.description is thin");
+    let spec_info = &spec["info"];
+    assert!(spec_info["description"].as_str().is_some_and(|d| d.len() > 200), "info.description is thin");
 
     for tag in spec["tags"].as_array().expect("tags") {
         let name = tag["name"].as_str().unwrap();
         assert!(tag["description"].as_str().is_some_and(|d| d.len() > 20), "tag {name} needs a real description");
     }
 
-    let mut checked = 0;
-    for (path, item) in spec["paths"].as_object().expect("paths") {
-        for (method, op) in item.as_object().unwrap() {
-            let at = format!("{} {path}", method.to_uppercase());
-            let summary = op["summary"].as_str().unwrap_or("");
-            assert!((8..=60).contains(&summary.len()), "{at}: summary {summary:?} must be a short title");
-            assert!(!summary.ends_with('.'), "{at}: summary is a title, not a sentence");
-            let description = op["description"].as_str().unwrap_or("");
-            assert!(description.len() >= 60, "{at}: description {description:?} must explain the response");
-            for param in op["parameters"].as_array().into_iter().flatten() {
+    let mut checked_operation_count = 0;
+    for (path, path_item) in spec["paths"].as_object().expect("paths") {
+        for (method, operation) in path_item.as_object().unwrap() {
+            let operation_label = format!("{} {path}", method.to_uppercase());
+            let summary = operation["summary"].as_str().unwrap_or("");
+            assert!((8..=60).contains(&summary.len()), "{operation_label}: summary {summary:?} must be a short title");
+            assert!(!summary.ends_with('.'), "{operation_label}: summary is a title, not a sentence");
+            let description = operation["description"].as_str().unwrap_or("");
+            assert!(
+                description.len() >= 60,
+                "{operation_label}: description {description:?} must explain the response"
+            );
+            for param in operation["parameters"].as_array().into_iter().flatten() {
                 let name = param["name"].as_str().unwrap();
                 assert!(
                     param["description"].as_str().is_some_and(|d| d.len() >= 15),
-                    "{at}: parameter {name} needs a description"
+                    "{operation_label}: parameter {name} needs a description"
                 );
             }
-            for (status, response) in op["responses"].as_object().unwrap() {
+            for (status, response) in operation["responses"].as_object().unwrap() {
                 assert!(
                     response["description"].as_str().is_some_and(|d| d.len() >= 10),
-                    "{at}: response {status} needs a description"
+                    "{operation_label}: response {status} needs a description"
                 );
             }
-            checked += 1;
+            checked_operation_count += 1;
         }
     }
-    assert!(checked >= 25, "only {checked} operations in the spec");
+    assert!(checked_operation_count >= 25, "only {checked_operation_count} operations in the spec");
 }
 
-fn shape(value: &Value) -> Value {
+fn shape_of(value: &Value) -> Value {
     match value {
-        Value::Object(map) => Value::Object(map.iter().map(|(k, v)| (k.clone(), shape(v))).collect()),
-        Value::Array(items) => Value::Array(items.iter().take(1).map(shape).collect()),
+        Value::Object(map) => Value::Object(map.iter().map(|(k, v)| (k.clone(), shape_of(v))).collect()),
+        Value::Array(items) => Value::Array(items.iter().take(1).map(shape_of).collect()),
         Value::Null => Value::Null,
         other => Value::String(
             match other {
@@ -425,34 +440,36 @@ fn shape(value: &Value) -> Value {
     }
 }
 
-fn assert_same_shape(at: &str, example: &Value, real: &Value) {
+fn assert_same_shape(location: &str, example: &Value, real: &Value) {
     match (example, real) {
-        (Value::Object(e), Value::Object(r)) => {
-            let ek: Vec<_> = e.keys().collect();
-            let rk: Vec<_> = r.keys().collect();
-            assert_eq!(ek, rk, "{at}: example keys differ from a real response");
-            for (k, ev) in e {
-                assert_same_shape(&format!("{at}.{k}"), ev, &r[k]);
+        (Value::Object(example_object), Value::Object(real_object)) => {
+            let example_keys: Vec<_> = example_object.keys().collect();
+            let real_keys: Vec<_> = real_object.keys().collect();
+            assert_eq!(example_keys, real_keys, "{location}: example keys differ from a real response");
+            for (key, example_value) in example_object {
+                assert_same_shape(&format!("{location}.{key}"), example_value, &real_object[key]);
             }
         }
-        (Value::Array(e), Value::Array(r)) => {
-            if let (Some(ev), Some(rv)) = (e.first(), r.first()) {
-                assert_same_shape(&format!("{at}[0]"), ev, rv);
+        (Value::Array(example_items), Value::Array(real_items)) => {
+            if let (Some(example_value), Some(real_value)) = (example_items.first(), real_items.first()) {
+                assert_same_shape(&format!("{location}[0]"), example_value, real_value);
             }
         }
         (Value::Null, _) | (_, Value::Null) => {}
-        (e, r) => assert_eq!(shape(e), shape(r), "{at}: example value type differs from a real response"),
+        (example, real) => {
+            assert_eq!(shape_of(example), shape_of(real), "{location}: example value type differs from a real response")
+        }
     }
 }
 
-async fn sample_for(path: &str) -> Value {
+async fn sample_response_for(path: &str) -> Value {
     if let Some(list_path) = path.strip_suffix("/{id}") {
-        let (_, _, list) = get(list_path).await;
-        let rows = list
+        let (_, _, list_response) = get(list_path).await;
+        let list_rows = list_response
             .as_array()
             .cloned()
-            .or_else(|| list.as_object().and_then(|o| o.values().find_map(|v| v.as_array().cloned())));
-        let id = rows.and_then(|r| r.first().and_then(|row| row["id"].as_i64())).expect("a row to sample");
+            .or_else(|| list_response.as_object().and_then(|o| o.values().find_map(|v| v.as_array().cloned())));
+        let id = list_rows.and_then(|r| r.first().and_then(|row| row["id"].as_i64())).expect("a row to sample");
         get(&format!("{list_path}/{id}")).await.2
     } else {
         get(path).await.2
@@ -462,18 +479,18 @@ async fn sample_for(path: &str) -> Value {
 #[tokio::test]
 async fn openapi_carries_a_real_example_for_every_json_response() {
     let (_, _, spec) = get("/v1/openapi.json").await;
-    let mut checked = 0;
-    for (path, item) in spec["paths"].as_object().expect("paths") {
-        let Some(content) = item["get"]["responses"]["200"]["content"]["application/json"].as_object() else {
+    let mut checked_response_count = 0;
+    for (path, path_item) in spec["paths"].as_object().expect("paths") {
+        let Some(content) = path_item["get"]["responses"]["200"]["content"]["application/json"].as_object() else {
             continue;
         };
         let example = content.get("example").unwrap_or(&Value::Null);
         assert!(!example.is_null(), "GET {path}: 200 response has no example");
-        let real = sample_for(path).await;
-        assert_same_shape(&format!("GET {path}"), example, &real);
-        checked += 1;
+        let real_response = sample_response_for(path).await;
+        assert_same_shape(&format!("GET {path}"), example, &real_response);
+        checked_response_count += 1;
     }
-    assert!(checked >= 25, "only {checked} JSON responses carry examples");
+    assert!(checked_response_count >= 25, "only {checked_response_count} JSON responses carry examples");
 }
 
 #[tokio::test]
@@ -481,26 +498,27 @@ async fn each_api_version_has_its_own_docs_and_the_bare_paths_point_at_the_lates
     let (status, _, spec) = get("/v1/openapi.json").await;
     assert_eq!(status, StatusCode::OK);
     assert!(spec["paths"].as_object().unwrap().keys().all(|p| p.starts_with("/v1/")), "v1 spec lists other versions");
-    let response = app(state()).oneshot(Request::get("/v1/docs").body(Body::empty()).unwrap()).await.unwrap();
+    let response = app(fixture_state()).oneshot(Request::get("/v1/docs").body(Body::empty()).unwrap()).await.unwrap();
     assert_eq!(response.status(), StatusCode::OK);
     for (from, to) in [("/docs", "/v1/docs"), ("/openapi.json", "/v1/openapi.json"), ("/", "/v1/docs")] {
-        let response = app(state()).oneshot(Request::get(from).body(Body::empty()).unwrap()).await.unwrap();
+        let response = app(fixture_state()).oneshot(Request::get(from).body(Body::empty()).unwrap()).await.unwrap();
         assert!(response.status().is_redirection(), "{from} should redirect");
         assert_eq!(response.headers()[header::LOCATION], to, "{from} should point at the latest version");
     }
 }
 
-const LIST_ENDPOINTS: [&str; 4] = ["/v1/items", "/v1/augments", "/v1/feats", "/v1/spells"];
+const FILTERED_LIST_PATHS: [&str; 4] = ["/v1/items", "/v1/augments", "/v1/feats", "/v1/spells"];
 
-fn schema_type(param: &Value) -> &str {
-    let ty = &param["schema"]["type"];
-    ty.as_str()
-        .or_else(|| ty.as_array().into_iter().flatten().filter_map(Value::as_str).find(|t| *t != "null"))
+fn param_schema_type(param: &Value) -> &str {
+    let schema_type = &param["schema"]["type"];
+    schema_type
+        .as_str()
+        .or_else(|| schema_type.as_array().into_iter().flatten().filter_map(Value::as_str).find(|t| *t != "null"))
         .unwrap_or("string")
 }
 
-fn accepted_sample(name: &str, ty: &str) -> &'static str {
-    match (name, ty) {
+fn accepted_sample_value(param_name: &str, schema_type: &str) -> &'static str {
+    match (param_name, schema_type) {
         ("category", _) => "Armor",
         ("source", _) => "standard",
         (_, "boolean") => "true",
@@ -511,7 +529,7 @@ fn accepted_sample(name: &str, ty: &str) -> &'static str {
 
 #[tokio::test]
 async fn list_endpoints_reject_unknown_query_parameters_as_json() {
-    for path in LIST_ENDPOINTS {
+    for path in FILTERED_LIST_PATHS {
         let (status, headers, json) = get(&format!("{path}?bogus=1")).await;
         assert_eq!(status, StatusCode::BAD_REQUEST, "{path}?bogus=1 must be rejected");
         assert!(
@@ -530,17 +548,18 @@ async fn list_endpoints_reject_unknown_query_parameters_as_json() {
 #[tokio::test]
 async fn list_endpoints_accept_every_documented_query_parameter() {
     let (_, _, spec) = get("/v1/openapi.json").await;
-    for path in LIST_ENDPOINTS {
-        let op = &spec["paths"][path]["get"];
-        assert!(op["responses"]["400"]["description"].is_string(), "{path} must document its 400 response");
-        let params = op["parameters"].as_array().unwrap_or_else(|| panic!("{path} documents no parameters"));
-        let query_params: Vec<&Value> = params.iter().filter(|p| p["in"] == "query").collect();
+    for path in FILTERED_LIST_PATHS {
+        let operation = &spec["paths"][path]["get"];
+        assert!(operation["responses"]["400"]["description"].is_string(), "{path} must document its 400 response");
+        let documented_params =
+            operation["parameters"].as_array().unwrap_or_else(|| panic!("{path} documents no parameters"));
+        let query_params: Vec<&Value> = documented_params.iter().filter(|p| p["in"] == "query").collect();
         assert!(query_params.len() >= 5, "{path} documents only {} query parameters", query_params.len());
         for param in query_params {
             let name = param["name"].as_str().unwrap();
-            let value = accepted_sample(name, schema_type(param));
-            let (status, _, json) = get(&format!("{path}?{name}={value}")).await;
-            assert_eq!(status, StatusCode::OK, "{path}?{name}={value} is documented but rejected: {json}");
+            let sample_value = accepted_sample_value(name, param_schema_type(param));
+            let (status, _, json) = get(&format!("{path}?{name}={sample_value}")).await;
+            assert_eq!(status, StatusCode::OK, "{path}?{name}={sample_value} is documented but rejected: {json}");
         }
     }
 }
@@ -549,24 +568,24 @@ async fn list_endpoints_accept_every_documented_query_parameter() {
 async fn stances_lists_the_standalone_stances_in_file_order() {
     let (status, _, json) = get("/v1/stances").await;
     assert_eq!(status, StatusCode::OK);
-    let rows = json.as_array().unwrap();
-    let names: Vec<&str> = rows.iter().map(|s| s["name"].as_str().unwrap()).collect();
+    let stances = json.as_array().unwrap();
+    let names: Vec<&str> = stances.iter().map(|s| s["name"].as_str().unwrap()).collect();
     assert_eq!(names, ["Two Weapon Fighting", "Two Handed Fighting", "Aura of Good"]);
-    assert_eq!(rows[0]["auto_controlled"], true);
-    assert_eq!(rows[0]["group_name"], "Auto");
-    assert_eq!(rows[0]["requirements"].as_array().unwrap().len(), 10);
-    assert_eq!(rows[2]["requirements"][0]["value"], "1");
-    assert_eq!(rows[0]["modifiers"], serde_json::json!([]));
+    assert_eq!(stances[0]["auto_controlled"], true);
+    assert_eq!(stances[0]["group_name"], "Auto");
+    assert_eq!(stances[0]["requirements"].as_array().unwrap().len(), 10);
+    assert_eq!(stances[2]["requirements"][0]["value"], "1");
+    assert_eq!(stances[0]["modifiers"], serde_json::json!([]));
 }
 
 #[tokio::test]
 async fn guild_buffs_carry_their_unlock_level_and_per_level_modifiers() {
     let (status, _, json) = get("/v1/guild-buffs").await;
     assert_eq!(status, StatusCode::OK);
-    let rows = json.as_array().unwrap();
-    let levels: Vec<i64> = rows.iter().map(|b| b["guild_level"].as_i64().unwrap()).collect();
-    assert_eq!(levels, [10, 17, 21]);
-    let flame = &rows[0];
+    let guild_buffs = json.as_array().unwrap();
+    let guild_levels: Vec<i64> = guild_buffs.iter().map(|b| b["guild_level"].as_i64().unwrap()).collect();
+    assert_eq!(guild_levels, [10, 17, 21]);
+    let flame = &guild_buffs[0];
     assert_eq!(flame["name"], "Sign of the Silver Flame I");
     assert_eq!(flame["modifiers"][0]["amount_type"], "TotalLevel");
     assert_eq!(flame["modifiers"][0]["bonus_type"], "Guild");
@@ -577,26 +596,26 @@ async fn guild_buffs_carry_their_unlock_level_and_per_level_modifiers() {
 async fn optional_buffs_list_by_name_with_modifiers() {
     let (status, _, json) = get("/v1/optional-buffs").await;
     assert_eq!(status, StatusCode::OK);
-    let rows = json.as_array().unwrap();
-    let names: Vec<&str> = rows.iter().map(|b| b["name"].as_str().unwrap()).collect();
+    let optional_buffs = json.as_array().unwrap();
+    let names: Vec<&str> = optional_buffs.iter().map(|b| b["name"].as_str().unwrap()).collect();
     assert_eq!(names, ["Barkskin", "Bless", "Deadly Weapons", "Stone of Change: Alchemical Shield Eldritch Ritual"]);
-    assert_eq!(rows[0]["icon"], "Barkskin");
-    assert_eq!(rows[0]["modifiers"][0]["effect_type"], "NaturalArmor");
-    assert_eq!(rows[3]["modifiers"][0]["requirements"][0]["req_type"], "Stance");
+    assert_eq!(optional_buffs[0]["icon"], "Barkskin");
+    assert_eq!(optional_buffs[0]["modifiers"][0]["effect_type"], "NaturalArmor");
+    assert_eq!(optional_buffs[3]["modifiers"][0]["requirements"][0]["req_type"], "Stance");
 }
 
 #[tokio::test]
 async fn sentient_gems_list_by_name() {
     let (status, _, json) = get("/v1/sentient-gems").await;
     assert_eq!(status, StatusCode::OK);
-    let rows = json.as_array().unwrap();
-    let names: Vec<&str> = rows.iter().map(|g| g["name"].as_str().unwrap()).collect();
+    let sentient_gems = json.as_array().unwrap();
+    let names: Vec<&str> = sentient_gems.iter().map(|g| g["name"].as_str().unwrap()).collect();
     assert_eq!(
         names,
         ["Sentient Jewel of the Hopeful", "Sentient Jewel of the Inquisitive", "Sentient Jewel of the Resolute"]
     );
-    assert_eq!(rows[2]["icon"], "SentientJewel_Blue");
-    assert_eq!(rows[2]["description"], "Voiced by: Ally Murphy");
+    assert_eq!(sentient_gems[2]["icon"], "SentientJewel_Blue");
+    assert_eq!(sentient_gems[2]["description"], "Voiced by: Ally Murphy");
 }
 
 #[tokio::test]
@@ -610,14 +629,14 @@ async fn feat_attacks_carry_cooldown_and_their_bonuses() {
     assert_eq!(feat["this_attack_modifiers"][0]["effect_type"], "BonusDamagePercent");
     assert_eq!(feat["this_attack_modifiers"][0]["amounts"], serde_json::json!([20]));
 
-    let (_, _, trees) = get("/v1/enhancement-trees").await;
-    let kensei = trees.as_array().unwrap().iter().find(|t| t["name"] == "Kensei").unwrap();
-    let (_, _, tree) = get(&format!("/v1/enhancement-trees/{}", kensei["id"])).await;
-    let enh = tree["enhancements"].as_array().unwrap();
-    let reed = enh.iter().find(|e| e["internal_name"] == "KenseiReedInTheWind").unwrap();
+    let (_, _, enhancement_trees) = get("/v1/enhancement-trees").await;
+    let kensei = enhancement_trees.as_array().unwrap().iter().find(|t| t["name"] == "Kensei").unwrap();
+    let (_, _, enhancement_tree) = get(&format!("/v1/enhancement-trees/{}", kensei["id"])).await;
+    let enhancements = enhancement_tree["enhancements"].as_array().unwrap();
+    let reed = enhancements.iter().find(|e| e["internal_name"] == "KenseiReedInTheWind").unwrap();
     assert_eq!(reed["this_attack_modifiers"][0]["amounts"], serde_json::json!([20, 40, 60]));
     assert_eq!(reed["attack"]["cooldown_seconds"], 8);
-    let shattering = enh.iter().find(|e| e["internal_name"] == "KenseiShatteringStrike").unwrap();
+    let shattering = enhancements.iter().find(|e| e["internal_name"] == "KenseiShatteringStrike").unwrap();
     assert_eq!(shattering["selections"][1]["this_attack_modifiers"][0]["effect_type"], "BonusDamagePercent");
 }
 
@@ -625,35 +644,38 @@ async fn feat_attacks_carry_cooldown_and_their_bonuses() {
 async fn crafting_systems_list_their_families_and_counts() {
     let (status, _, json) = get("/v1/crafting-systems").await;
     assert_eq!(status, StatusCode::OK);
-    let rows = json.as_array().unwrap();
-    assert_eq!(rows.len(), 1);
-    let system = &rows[0];
-    assert!(system["id"].is_number());
-    assert_eq!(system["name"], "Heroic Green Steel");
-    assert_eq!(system["page"], "https://ddowiki.com/page/Green_Steel_items");
-    assert!(system["pack"].is_null());
-    assert_eq!(system["npc"], "Altar of Invasion");
-    assert_eq!(system["families"], serde_json::json!(["Greensteel_Heroic"]));
-    assert_eq!((&system["ingredient_count"], &system["recipe_count"]), (&serde_json::json!(4), &serde_json::json!(3)));
+    let crafting_systems = json.as_array().unwrap();
+    assert_eq!(crafting_systems.len(), 1);
+    let crafting_system = &crafting_systems[0];
+    assert!(crafting_system["id"].is_number());
+    assert_eq!(crafting_system["name"], "Heroic Green Steel");
+    assert_eq!(crafting_system["page"], "https://ddowiki.com/page/Green_Steel_items");
+    assert!(crafting_system["pack"].is_null());
+    assert_eq!(crafting_system["npc"], "Altar of Invasion");
+    assert_eq!(crafting_system["families"], serde_json::json!(["Greensteel_Heroic"]));
+    assert_eq!(
+        (&crafting_system["ingredient_count"], &crafting_system["recipe_count"]),
+        (&serde_json::json!(4), &serde_json::json!(3))
+    );
 }
 
 #[tokio::test]
 async fn crafting_system_detail_carries_ingredients_and_recipes_with_augments_and_cost() {
     let (_, _, list) = get("/v1/crafting-systems").await;
     let id = list[0]["id"].as_i64().unwrap();
-    let (status, _, system) = get(&format!("/v1/crafting-systems/{id}")).await;
+    let (status, _, crafting_system) = get(&format!("/v1/crafting-systems/{id}")).await;
     assert_eq!(status, StatusCode::OK);
-    assert_eq!(system["name"], "Heroic Green Steel");
-    assert_eq!(system["families"], serde_json::json!(["Greensteel_Heroic"]));
-    let ingredients = system["ingredients"].as_array().unwrap();
+    assert_eq!(crafting_system["name"], "Heroic Green Steel");
+    assert_eq!(crafting_system["families"], serde_json::json!(["Greensteel_Heroic"]));
+    let ingredients = crafting_system["ingredients"].as_array().unwrap();
     assert_eq!(ingredients.len(), 4);
     assert_eq!(ingredients[0]["name"], "Small Shard of Power");
     assert_eq!(ingredients[0]["tier"], "heroic");
     assert_eq!(ingredients[0]["bind"], "Bound to Account");
     assert_eq!(ingredients[0]["source"], "The Shroud");
-    let recipes = system["recipes"].as_array().unwrap();
-    let options: Vec<&str> = recipes.iter().map(|r| r["option"].as_str().unwrap()).collect();
-    assert_eq!(options, ["+5 Fortitude Save", "Minor Fire Guard", "Cleanse an item"]);
+    let recipes = crafting_system["recipes"].as_array().unwrap();
+    let recipe_options: Vec<&str> = recipes.iter().map(|r| r["option"].as_str().unwrap()).collect();
+    assert_eq!(recipe_options, ["+5 Fortitude Save", "Minor Fire Guard", "Cleanse an item"]);
     let fortitude = &recipes[0];
     assert_eq!(fortitude["tier"], "heroic");
     assert_eq!(fortitude["slot"], "crafting: accessory invasion");

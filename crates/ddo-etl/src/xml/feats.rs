@@ -1,13 +1,14 @@
 use super::effect::Effect;
-use super::requirements::{RawGroup, Requirement, RequirementGroup, RequirementGroupKind, Requirements};
-use super::{Empty, Vector};
+use super::requirements::{RawRequirementGroup, Requirement, RequirementGroup, Requirements};
+use super::{EmptyElement, NumberList};
 use anyhow::Result;
+use ddo_model::enums::RequirementGroupKind;
 use serde::de::Error as _;
 use serde::{Deserialize, Deserializer};
 use std::path::Path;
 
 pub fn parse(path: &Path) -> Result<Vec<Feat>> {
-    let file: FeatFile = super::read_xml(path)?;
+    let file: FeatFile = super::parse_xml_file(path)?;
     Ok(file.feats)
 }
 
@@ -23,7 +24,7 @@ pub struct Feat {
     pub description: Option<String>,
     pub acquire: Option<String>,
     pub icon: Option<String>,
-    pub max_times_acquire: Option<i64>,
+    pub maximum_times_acquired: Option<i64>,
     pub sphere: Option<String>,
     pub groups: Vec<String>,
     pub requirements: Option<Requirements>,
@@ -47,11 +48,11 @@ pub struct Stance {
     #[serde(rename = "Group")]
     pub group: Option<String>,
     #[serde(rename = "AutoControlled")]
-    pub auto_controlled: Option<Empty>,
+    pub auto_controlled: Option<EmptyElement>,
     #[serde(rename = "Requirements")]
     pub requirements: Option<Requirements>,
     #[serde(rename = "IncompatibleStance", default)]
-    pub incompatible: Vec<String>,
+    pub incompatible_stances: Vec<String>,
     #[serde(rename = "Effect", default)]
     pub effects: Vec<Effect>,
 }
@@ -69,9 +70,9 @@ pub struct Dc {
     #[serde(rename = "DCVersus")]
     pub dc_versus: Option<String>,
     #[serde(rename = "ModAbility", default)]
-    pub mod_ability: Vec<String>,
+    pub modifier_abilities: Vec<String>,
     #[serde(rename = "Amount")]
-    pub amount: Option<Vector>,
+    pub amount: Option<NumberList>,
     #[serde(rename = "Tactical")]
     pub tactical: Option<String>,
     #[serde(rename = "Other")]
@@ -120,47 +121,47 @@ pub struct AttackBonuses {
     pub effects: Vec<Effect>,
 }
 
-fn first_integer<'de, D: Deserializer<'de>>(d: D) -> Result<Option<i64>, D::Error> {
-    let Some(vector) = Option::<Vector>::deserialize(d)? else {
+fn first_integer<'de, D: Deserializer<'de>>(deserializer: D) -> Result<Option<i64>, D::Error> {
+    let Some(numbers) = Option::<NumberList>::deserialize(deserializer)? else {
         return Ok(None);
     };
-    Ok(vector.integers().map_err(D::Error::custom)?.first().copied())
+    Ok(numbers.integers().map_err(D::Error::custom)?.first().copied())
 }
 
-fn attack_bonus_effect(name: String, amounts: Vec<f64>) -> Effect {
+fn attack_bonus_effect(bonus_name: String, amounts: Vec<f64>) -> Effect {
     let amount_type = match amounts.len() {
         0 => "NotNeeded",
         1 => "Simple",
         _ => "Stacks",
     };
-    Effect { types: vec![name], amount_type: Some(amount_type.into()), amounts, ..Effect::default() }
+    Effect { types: vec![bonus_name], amount_type: Some(amount_type.into()), amounts, ..Effect::default() }
 }
 
 impl<'de> Deserialize<'de> for AttackBonuses {
-    fn deserialize<D: Deserializer<'de>>(d: D) -> Result<Self, D::Error> {
+    fn deserialize<D: Deserializer<'de>>(deserializer: D) -> Result<Self, D::Error> {
         struct AttackBonusesVisitor;
         impl<'de> serde::de::Visitor<'de> for AttackBonusesVisitor {
             type Value = AttackBonuses;
 
-            fn expecting(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
-                f.write_str("a <ThisAttack> or <FollowOn> of attack bonus vectors")
+            fn expecting(&self, formatter: &mut std::fmt::Formatter) -> std::fmt::Result {
+                formatter.write_str("a <ThisAttack> or <FollowOn> of attack bonus vectors")
             }
 
-            fn visit_map<A: serde::de::MapAccess<'de>>(self, mut map: A) -> Result<AttackBonuses, A::Error> {
+            fn visit_map<A: serde::de::MapAccess<'de>>(self, mut elements: A) -> Result<AttackBonuses, A::Error> {
                 let mut bonuses = AttackBonuses::default();
-                while let Some(name) = map.next_key::<String>()? {
-                    let vector: Vector = map.next_value()?;
-                    if name == "Duration" {
-                        bonuses.duration_seconds = vector.integers().map_err(A::Error::custom)?.first().copied();
+                while let Some(element_name) = elements.next_key::<String>()? {
+                    let numbers: NumberList = elements.next_value()?;
+                    if element_name == "Duration" {
+                        bonuses.duration_seconds = numbers.integers().map_err(A::Error::custom)?.first().copied();
                     } else {
-                        let amounts = vector.numbers().map_err(A::Error::custom)?;
-                        bonuses.effects.push(attack_bonus_effect(name, amounts));
+                        let amounts = numbers.numbers().map_err(A::Error::custom)?;
+                        bonuses.effects.push(attack_bonus_effect(element_name, amounts));
                     }
                 }
                 Ok(bonuses)
             }
         }
-        d.deserialize_map(AttackBonusesVisitor)
+        deserializer.deserialize_map(AttackBonusesVisitor)
     }
 }
 
@@ -185,44 +186,44 @@ pub struct ConditionalGroup {
 #[derive(Debug, Clone, Default)]
 pub struct AutomaticAcquisition {
     pub requirements: Requirements,
-    pub ignore_requirements: bool,
+    pub ignores_requirements: bool,
 }
 
 #[derive(Deserialize)]
-struct RawAuto {
+struct RawAutomaticAcquisition {
     #[serde(rename = "$value", default)]
-    children: Vec<AutoChild>,
+    children: Vec<AutomaticAcquisitionChild>,
 }
 
 #[derive(Deserialize)]
-enum AutoChild {
+enum AutomaticAcquisitionChild {
     Requirement(Requirement),
-    RequiresOneOf(RawGroup),
-    RequiresNoneOf(RawGroup),
-    IgnoreRequirements(Empty),
+    RequiresOneOf(RawRequirementGroup),
+    RequiresNoneOf(RawRequirementGroup),
+    IgnoreRequirements(EmptyElement),
 }
 
 impl<'de> Deserialize<'de> for AutomaticAcquisition {
-    fn deserialize<D: Deserializer<'de>>(d: D) -> Result<Self, D::Error> {
-        let raw = RawAuto::deserialize(d)?;
-        let mut out = AutomaticAcquisition::default();
-        let mut loose = Vec::new();
-        for child in raw.children {
+    fn deserialize<D: Deserializer<'de>>(deserializer: D) -> Result<Self, D::Error> {
+        let raw_acquisition = RawAutomaticAcquisition::deserialize(deserializer)?;
+        let mut acquisition = AutomaticAcquisition::default();
+        let mut ungrouped_requirements = Vec::new();
+        for child in raw_acquisition.children {
             match child {
-                AutoChild::Requirement(r) => loose.push(r),
-                AutoChild::RequiresOneOf(g) => {
-                    out.requirements.groups.push(RequirementGroup::from_raw(RequirementGroupKind::OneOf, g))
+                AutomaticAcquisitionChild::Requirement(r) => ungrouped_requirements.push(r),
+                AutomaticAcquisitionChild::RequiresOneOf(g) => {
+                    acquisition.requirements.groups.push(RequirementGroup::from_raw(RequirementGroupKind::OneOf, g))
                 }
-                AutoChild::RequiresNoneOf(g) => {
-                    out.requirements.groups.push(RequirementGroup::from_raw(RequirementGroupKind::NoneOf, g))
+                AutomaticAcquisitionChild::RequiresNoneOf(g) => {
+                    acquisition.requirements.groups.push(RequirementGroup::from_raw(RequirementGroupKind::NoneOf, g))
                 }
-                AutoChild::IgnoreRequirements(_) => out.ignore_requirements = true,
+                AutomaticAcquisitionChild::IgnoreRequirements(_) => acquisition.ignores_requirements = true,
             }
         }
-        if !loose.is_empty() {
-            out.requirements.groups.insert(0, RequirementGroup::all(loose));
+        if !ungrouped_requirements.is_empty() {
+            acquisition.requirements.groups.insert(0, RequirementGroup::all_of(ungrouped_requirements));
         }
-        Ok(out)
+        Ok(acquisition)
     }
 }
 
@@ -254,32 +255,32 @@ enum FeatChild {
 }
 
 impl<'de> Deserialize<'de> for Feat {
-    fn deserialize<D: Deserializer<'de>>(d: D) -> Result<Self, D::Error> {
-        let raw = RawFeat::deserialize(d)?;
-        let mut f = Feat::default();
-        let t = |s: String| s.trim().to_string();
-        for child in raw.children {
+    fn deserialize<D: Deserializer<'de>>(deserializer: D) -> Result<Self, D::Error> {
+        let raw_feat = RawFeat::deserialize(deserializer)?;
+        let mut feat = Feat::default();
+        let trimmed = |s: String| s.trim().to_string();
+        for child in raw_feat.children {
             match child {
-                FeatChild::Name(v) => f.name = t(v),
-                FeatChild::Description(v) => f.description = Some(t(v)),
-                FeatChild::Acquire(v) => f.acquire = Some(t(v)),
-                FeatChild::Icon(v) => f.icon = Some(t(v)),
-                FeatChild::MaxTimesAcquire(v) => f.max_times_acquire = Some(v),
-                FeatChild::Sphere(v) => f.sphere = Some(t(v)),
-                FeatChild::Group(v) => f.groups.push(t(v)),
-                FeatChild::Requirements(v) => f.requirements = Some(v),
-                FeatChild::Effect(v) => f.effects.push(v),
-                FeatChild::Stance(v) => f.stances.push(v),
-                FeatChild::Dc(v) => f.dcs.push(v),
-                FeatChild::ConditionalGroup(v) => f.conditional_groups.push(v),
-                FeatChild::AutomaticAcquisition(v) => f.automatic_acquisition = Some(v),
-                FeatChild::Attack(v) => f.attack = Some(v),
-                FeatChild::SubItem(v) => f.sub_items.push(v),
+                FeatChild::Name(v) => feat.name = trimmed(v),
+                FeatChild::Description(v) => feat.description = Some(trimmed(v)),
+                FeatChild::Acquire(v) => feat.acquire = Some(trimmed(v)),
+                FeatChild::Icon(v) => feat.icon = Some(trimmed(v)),
+                FeatChild::MaxTimesAcquire(v) => feat.maximum_times_acquired = Some(v),
+                FeatChild::Sphere(v) => feat.sphere = Some(trimmed(v)),
+                FeatChild::Group(v) => feat.groups.push(trimmed(v)),
+                FeatChild::Requirements(v) => feat.requirements = Some(v),
+                FeatChild::Effect(v) => feat.effects.push(v),
+                FeatChild::Stance(v) => feat.stances.push(v),
+                FeatChild::Dc(v) => feat.dcs.push(v),
+                FeatChild::ConditionalGroup(v) => feat.conditional_groups.push(v),
+                FeatChild::AutomaticAcquisition(v) => feat.automatic_acquisition = Some(v),
+                FeatChild::Attack(v) => feat.attack = Some(v),
+                FeatChild::SubItem(v) => feat.sub_items.push(v),
             }
         }
-        if f.name.is_empty() {
+        if feat.name.is_empty() {
             return Err(D::Error::custom("<Feat> without a <Name>"));
         }
-        Ok(f)
+        Ok(feat)
     }
 }

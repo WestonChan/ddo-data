@@ -1,12 +1,12 @@
-use super::MAPPING;
-use crate::xml::items::{EquipmentSlots, SlotTag};
+use super::BUFF_VOCABULARY;
+use crate::xml::items::{EquipmentSlotTag, EquipmentSlots};
 use anyhow::{bail, Result};
 use ddo_model::enums::{EquipmentSlot, Handedness, ItemCategory};
 use ddo_model::seeds::WeaponType;
 
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct Placement {
-    pub slot: EquipmentSlot,
+    pub equipment_slot: EquipmentSlot,
     pub category: ItemCategory,
     pub handedness: Option<Handedness>,
     pub item_type: Option<String>,
@@ -18,58 +18,69 @@ impl Placement {
     }
 }
 
-pub fn classify(slots: &EquipmentSlots, weapon: Option<&str>, armor: Option<&str>) -> Result<Option<Placement>> {
-    let tags: Vec<SlotTag> = slots.tags.iter().copied().filter(|t| !t.is_cosmetic()).collect();
-    let Some(&first) = tags.first() else {
+pub fn placement_of(
+    equipment_slots: &EquipmentSlots,
+    weapon_name: Option<&str>,
+    armor_name: Option<&str>,
+) -> Result<Option<Placement>> {
+    let wearable_tags: Vec<EquipmentSlotTag> =
+        equipment_slots.tags.iter().copied().filter(|t| !t.is_cosmetic()).collect();
+    let Some(&first_tag) = wearable_tags.first() else {
         return Ok(None);
     };
-    let has = |t: SlotTag| tags.contains(&t);
+    let has_tag = |tag: EquipmentSlotTag| wearable_tags.contains(&tag);
 
-    if has(SlotTag::Weapon1) || has(SlotTag::Weapon2) {
-        let Some(raw) = weapon else {
+    if has_tag(EquipmentSlotTag::Weapon1) || has_tag(EquipmentSlotTag::Weapon2) {
+        let Some(upstream_weapon_name) = weapon_name else {
             bail!("item occupies a weapon slot but has no <Weapon>");
         };
-        let name = MAPPING.weapon_aliases.get(raw).map(String::as_str).unwrap_or(raw);
-        let Some(wt) = WeaponType::by_name(name) else {
-            bail!("unknown weapon type {raw:?}; add it to ddo-model's WEAPON_TYPES or to [weapon_aliases]");
+        let canonical_weapon_name = BUFF_VOCABULARY
+            .weapon_aliases
+            .get(upstream_weapon_name)
+            .map(String::as_str)
+            .unwrap_or(upstream_weapon_name);
+        let Some(weapon_type) = WeaponType::by_name(canonical_weapon_name) else {
+            bail!(
+                "unknown weapon type {upstream_weapon_name:?}; add it to ddo-model's WEAPON_TYPES or to [weapon_aliases]"
+            );
         };
-        let (slot, category, handedness) = if wt.is_shield {
+        let (equipment_slot, category, handedness) = if weapon_type.is_shield {
             (EquipmentSlot::OffHand, ItemCategory::Shield, Handedness::OffHand)
-        } else if wt.name == "Rune Arm" {
+        } else if weapon_type.name == "Rune Arm" {
             (EquipmentSlot::Runearm, ItemCategory::Weapon, Handedness::OffHand)
-        } else if wt.name == "Orb" || !has(SlotTag::Weapon1) {
+        } else if weapon_type.name == "Orb" || !has_tag(EquipmentSlotTag::Weapon1) {
             (EquipmentSlot::OffHand, ItemCategory::Weapon, Handedness::OffHand)
-        } else if wt.is_thrown() {
+        } else if weapon_type.is_thrown() {
             (EquipmentSlot::MainHand, ItemCategory::Weapon, Handedness::Thrown)
-        } else if has(SlotTag::Weapon2) {
+        } else if has_tag(EquipmentSlotTag::Weapon2) {
             (EquipmentSlot::MainHand, ItemCategory::Weapon, Handedness::OneHanded)
         } else {
             (EquipmentSlot::MainHand, ItemCategory::Weapon, Handedness::TwoHanded)
         };
         return Ok(Some(Placement {
-            slot,
+            equipment_slot,
             category,
             handedness: Some(handedness),
-            item_type: Some(wt.name.to_string()),
+            item_type: Some(weapon_type.name.to_string()),
         }));
     }
 
-    let (slot, category) = match first {
-        SlotTag::Armor => (EquipmentSlot::Body, ItemCategory::Armor),
-        SlotTag::Ring => (EquipmentSlot::Ring, ItemCategory::Jewelry),
-        SlotTag::Necklace => (EquipmentSlot::Neck, ItemCategory::Jewelry),
-        SlotTag::Trinket => (EquipmentSlot::Trinket, ItemCategory::Jewelry),
-        SlotTag::Goggles => (EquipmentSlot::Goggles, ItemCategory::Jewelry),
-        SlotTag::Helmet => (EquipmentSlot::Head, ItemCategory::Clothing),
-        SlotTag::Cloak => (EquipmentSlot::Back, ItemCategory::Clothing),
-        SlotTag::Bracers => (EquipmentSlot::Wrists, ItemCategory::Clothing),
-        SlotTag::Gloves => (EquipmentSlot::Hands, ItemCategory::Clothing),
-        SlotTag::Belt => (EquipmentSlot::Waist, ItemCategory::Clothing),
-        SlotTag::Boots => (EquipmentSlot::Feet, ItemCategory::Clothing),
-        SlotTag::Quiver => (EquipmentSlot::Quiver, ItemCategory::Clothing),
-        SlotTag::Weapon1 | SlotTag::Weapon2 => unreachable!("handled above"),
-        cosmetic => unreachable!("cosmetic tags were filtered: {cosmetic:?}"),
+    let (equipment_slot, category) = match first_tag {
+        EquipmentSlotTag::Armor => (EquipmentSlot::Body, ItemCategory::Armor),
+        EquipmentSlotTag::Ring => (EquipmentSlot::Ring, ItemCategory::Jewelry),
+        EquipmentSlotTag::Necklace => (EquipmentSlot::Neck, ItemCategory::Jewelry),
+        EquipmentSlotTag::Trinket => (EquipmentSlot::Trinket, ItemCategory::Jewelry),
+        EquipmentSlotTag::Goggles => (EquipmentSlot::Goggles, ItemCategory::Jewelry),
+        EquipmentSlotTag::Helmet => (EquipmentSlot::Head, ItemCategory::Clothing),
+        EquipmentSlotTag::Cloak => (EquipmentSlot::Back, ItemCategory::Clothing),
+        EquipmentSlotTag::Bracers => (EquipmentSlot::Wrists, ItemCategory::Clothing),
+        EquipmentSlotTag::Gloves => (EquipmentSlot::Hands, ItemCategory::Clothing),
+        EquipmentSlotTag::Belt => (EquipmentSlot::Waist, ItemCategory::Clothing),
+        EquipmentSlotTag::Boots => (EquipmentSlot::Feet, ItemCategory::Clothing),
+        EquipmentSlotTag::Quiver => (EquipmentSlot::Quiver, ItemCategory::Clothing),
+        EquipmentSlotTag::Weapon1 | EquipmentSlotTag::Weapon2 => unreachable!("handled above"),
+        cosmetic_tag => unreachable!("cosmetic tags were filtered: {cosmetic_tag:?}"),
     };
-    let item_type = if first == SlotTag::Armor { armor.map(str::to_string) } else { None };
-    Ok(Some(Placement { slot, category, handedness: None, item_type }))
+    let item_type = if first_tag == EquipmentSlotTag::Armor { armor_name.map(str::to_string) } else { None };
+    Ok(Some(Placement { equipment_slot, category, handedness: None, item_type }))
 }

@@ -11,7 +11,7 @@ use std::collections::BTreeMap;
 use std::sync::LazyLock;
 
 #[derive(Debug, Deserialize)]
-pub struct MappingData {
+pub struct BuffVocabulary {
     pub enhancement: Vec<String>,
     pub fixed: BTreeMap<String, String>,
     pub by_item: BTreeMap<String, String>,
@@ -20,5 +20,5 @@ pub struct MappingData {
     pub weapon_aliases: BTreeMap<String, String>,
 }
 
-pub static MAPPING: LazyLock<MappingData> =
+pub static BUFF_VOCABULARY: LazyLock<BuffVocabulary> =
     LazyLock::new(|| toml::from_str(include_str!("../../data/buff_map.toml")).expect("data/buff_map.toml is valid"));

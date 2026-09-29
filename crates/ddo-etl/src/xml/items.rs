@@ -1,14 +1,14 @@
 use super::effect::Effect;
 use super::requirements::Requirements;
-use super::Empty;
+use super::{Dice, EmptyElement};
 use anyhow::{bail, Result};
 use serde::de::IgnoredAny;
 use serde::Deserialize;
 use std::path::Path;
 
 pub fn parse_item_file(path: &Path) -> Result<ItemFile> {
-    let raw: RawItemFile = super::read_xml(path)?;
-    let items = raw.items.into_iter().map(Item::try_from).collect::<Result<Vec<_>>>()?;
+    let raw_file: RawItemFile = super::parse_xml_file(path)?;
+    let items = raw_file.items.into_iter().map(Item::try_from).collect::<Result<Vec<_>>>()?;
     Ok(ItemFile { items })
 }
 
@@ -51,7 +51,7 @@ enum ItemChild {
     CriticalThreatRange(i64),
     Material(String),
     Buff(Buff),
-    ItemAugment(ItemAugment),
+    ItemAugment(ItemAugmentSlot),
     SetBonus(String),
     Requirements(Requirements),
     ArmorBonus(i64),
@@ -62,11 +62,11 @@ enum ItemChild {
     DamageReduction(i64),
     MithralBody(i64),
     AdamantineBody(i64),
-    IsAcceptsSentience(Empty),
-    MinorArtifact(Empty),
-    IsGreensteel(Empty),
-    NoAutoUpdate(Empty),
-    UserSetsLevel(Empty),
+    IsAcceptsSentience(EmptyElement),
+    MinorArtifact(EmptyElement),
+    IsGreensteel(EmptyElement),
+    NoAutoUpdate(EmptyElement),
+    UserSetsLevel(EmptyElement),
     Effect(Effect),
     RestrictedSlots(IgnoredAny),
     SlotUpgrade(IgnoredAny),
@@ -78,21 +78,21 @@ pub struct Item {
     pub icon: Option<String>,
     pub description: Option<String>,
     pub drop_location: Option<String>,
-    pub min_level: Option<i64>,
-    pub equipment_slot: EquipmentSlots,
+    pub minimum_level: Option<i64>,
+    pub equipment_slots: EquipmentSlots,
     pub weapon: Option<String>,
     pub armor: Option<String>,
-    pub attack_modifier: Vec<String>,
-    pub damage_modifier: Vec<String>,
-    pub dr_bypass: Vec<String>,
-    pub weapon_damage: Option<f64>,
+    pub attack_modifiers: Vec<String>,
+    pub damage_modifiers: Vec<String>,
+    pub dr_bypasses: Vec<String>,
+    pub damage_multiplier: Option<f64>,
     pub base_dice: Option<Dice>,
     pub critical_multiplier: Option<i64>,
     pub critical_threat_range: Option<i64>,
     pub material: Option<String>,
     pub buffs: Vec<Buff>,
-    pub augments: Vec<ItemAugment>,
-    pub set_bonus: Vec<String>,
+    pub augment_slots: Vec<ItemAugmentSlot>,
+    pub set_bonus_names: Vec<String>,
     pub requirements: Option<Requirements>,
     pub armor_bonus: Option<i64>,
     pub maximum_dexterity_bonus: Option<i64>,
@@ -103,7 +103,7 @@ pub struct Item {
     pub mithral_body: Option<i64>,
     pub adamantine_body: Option<i64>,
     pub accepts_sentience: bool,
-    pub minor_artifact: bool,
+    pub is_minor_artifact: bool,
     pub is_greensteel: bool,
     pub effects: Vec<Effect>,
 }
@@ -111,33 +111,33 @@ pub struct Item {
 impl TryFrom<RawItem> for Item {
     type Error = anyhow::Error;
 
-    fn try_from(raw: RawItem) -> Result<Self> {
+    fn try_from(raw_item: RawItem) -> Result<Self> {
         let mut item = Item::default();
-        let mut named = false;
-        for child in raw.children {
+        let mut has_name = false;
+        for child in raw_item.children {
             match child {
                 ItemChild::Name(v) => {
                     item.name = v.trim().to_string();
-                    named = true;
+                    has_name = true;
                 }
                 ItemChild::Icon(v) => item.icon = Some(v.trim().to_string()),
                 ItemChild::Description(v) => item.description = Some(v),
                 ItemChild::DropLocation(v) => item.drop_location = Some(v),
-                ItemChild::MinLevel(v) => item.min_level = Some(v),
-                ItemChild::EquipmentSlot(v) => item.equipment_slot = v,
+                ItemChild::MinLevel(v) => item.minimum_level = Some(v),
+                ItemChild::EquipmentSlot(v) => item.equipment_slots = v,
                 ItemChild::Weapon(v) => item.weapon = Some(v.trim().to_string()),
                 ItemChild::Armor(v) => item.armor = Some(v.trim().to_string()),
-                ItemChild::AttackModifier(v) => item.attack_modifier.push(v),
-                ItemChild::DamageModifier(v) => item.damage_modifier.push(v),
-                ItemChild::DrBypass(v) => item.dr_bypass.push(v),
-                ItemChild::WeaponDamage(v) => item.weapon_damage = Some(v),
+                ItemChild::AttackModifier(v) => item.attack_modifiers.push(v),
+                ItemChild::DamageModifier(v) => item.damage_modifiers.push(v),
+                ItemChild::DrBypass(v) => item.dr_bypasses.push(v),
+                ItemChild::WeaponDamage(v) => item.damage_multiplier = Some(v),
                 ItemChild::BaseDice(v) => item.base_dice = Some(v),
                 ItemChild::CriticalMultiplier(v) => item.critical_multiplier = Some(v),
                 ItemChild::CriticalThreatRange(v) => item.critical_threat_range = Some(v),
                 ItemChild::Material(v) => item.material = Some(v),
                 ItemChild::Buff(v) => item.buffs.push(v),
-                ItemChild::ItemAugment(v) => item.augments.push(v),
-                ItemChild::SetBonus(v) => item.set_bonus.push(v),
+                ItemChild::ItemAugment(v) => item.augment_slots.push(v),
+                ItemChild::SetBonus(v) => item.set_bonus_names.push(v),
                 ItemChild::Requirements(v) => item.requirements = Some(v),
                 ItemChild::ArmorBonus(v) => item.armor_bonus = Some(v),
                 ItemChild::MaximumDexterityBonus(v) => item.maximum_dexterity_bonus = Some(v),
@@ -148,7 +148,7 @@ impl TryFrom<RawItem> for Item {
                 ItemChild::MithralBody(v) => item.mithral_body = Some(v),
                 ItemChild::AdamantineBody(v) => item.adamantine_body = Some(v),
                 ItemChild::IsAcceptsSentience(_) => item.accepts_sentience = true,
-                ItemChild::MinorArtifact(_) => item.minor_artifact = true,
+                ItemChild::MinorArtifact(_) => item.is_minor_artifact = true,
                 ItemChild::IsGreensteel(_) => item.is_greensteel = true,
                 ItemChild::Effect(v) => item.effects.push(v),
                 ItemChild::NoAutoUpdate(_)
@@ -157,7 +157,7 @@ impl TryFrom<RawItem> for Item {
                 | ItemChild::SlotUpgrade(_) => {}
             }
         }
-        if !named {
+        if !has_name {
             bail!("<Item> without a <Name>");
         }
         Ok(item)
@@ -167,11 +167,11 @@ impl TryFrom<RawItem> for Item {
 #[derive(Debug, Default, Deserialize, PartialEq, Eq)]
 pub struct EquipmentSlots {
     #[serde(rename = "$value", default)]
-    pub tags: Vec<SlotTag>,
+    pub tags: Vec<EquipmentSlotTag>,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Deserialize)]
-pub enum SlotTag {
+pub enum EquipmentSlotTag {
     Weapon1,
     Weapon2,
     Armor,
@@ -192,20 +192,10 @@ pub enum SlotTag {
     CosmeticWeapon1,
 }
 
-impl SlotTag {
+impl EquipmentSlotTag {
     pub const fn is_cosmetic(self) -> bool {
         matches!(self, Self::CosmeticHelm | Self::CosmeticCloak | Self::CosmeticArmor | Self::CosmeticWeapon1)
     }
-}
-
-#[derive(Debug, Deserialize, PartialEq, Eq)]
-pub struct Dice {
-    #[serde(rename = "Number")]
-    pub number: Option<i64>,
-    #[serde(rename = "Sides")]
-    pub sides: Option<i64>,
-    #[serde(rename = "Bonus")]
-    pub bonus: Option<i64>,
 }
 
 #[derive(Debug, Clone, Deserialize, PartialEq, Eq)]
@@ -213,58 +203,58 @@ pub struct Buff {
     #[serde(rename = "Type")]
     pub kind: String,
     #[serde(rename = "Item")]
-    pub item: Option<String>,
+    pub target: Option<String>,
     #[serde(rename = "Item2")]
-    pub item2: Option<String>,
+    pub second_target: Option<String>,
     #[serde(rename = "Value1")]
-    pub value1: Option<i64>,
+    pub value: Option<i64>,
     #[serde(rename = "Value2")]
-    pub value2: Option<i64>,
+    pub second_value: Option<i64>,
     #[serde(rename = "BonusType")]
     pub bonus_type: Option<String>,
     #[serde(rename = "Description1")]
-    pub description1: Option<String>,
+    pub description: Option<String>,
 }
 
 #[derive(Debug, Deserialize)]
-pub struct ItemAugment {
+pub struct ItemAugmentSlot {
     #[serde(rename = "Type")]
     pub kind: String,
     #[serde(rename = "Augment", default)]
-    pub options: Vec<AugmentOption>,
+    pub options: Vec<AugmentSlotOption>,
 }
 
 #[derive(Debug, Deserialize)]
-pub struct AugmentOption {
+pub struct AugmentSlotOption {
     #[serde(rename = "Name")]
     pub name: String,
     #[serde(rename = "Description", default)]
     pub description: String,
     #[serde(rename = "MinLevel")]
-    pub min_level: Option<i64>,
+    pub minimum_level: Option<i64>,
     #[serde(rename = "Icon")]
     pub icon: Option<String>,
     #[serde(rename = "GrantAugment", default)]
-    pub grant_augment: Vec<String>,
+    pub granted_augments: Vec<String>,
     #[serde(rename = "SetBonus", default)]
-    pub set_bonus: Vec<String>,
+    pub set_bonus_names: Vec<String>,
 }
 
 impl Item {
     pub fn race_required(&self) -> Option<String> {
-        let reqs = self.requirements.as_ref()?;
-        let races: Vec<String> = reqs
-            .positive()
+        let requirements = self.requirements.as_ref()?;
+        let required_races: Vec<String> = requirements
+            .requirements_to_meet()
             .filter_map(|r| match r.kind.as_str() {
                 "Race" => r.items.first().cloned(),
                 "RaceConstruct" => Some("Construct".to_string()),
                 _ => None,
             })
             .collect();
-        if races.is_empty() {
+        if required_races.is_empty() {
             None
         } else {
-            Some(races.join(", "))
+            Some(required_races.join(", "))
         }
     }
 }

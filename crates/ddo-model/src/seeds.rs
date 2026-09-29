@@ -3,36 +3,6 @@ use crate::stats::STATS;
 use rusqlite::{params, Connection};
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
-pub struct BonusTypeSeed {
-    pub bonus_type: BonusType,
-}
-
-pub const BONUS_TYPES: &[BonusTypeSeed] = &{
-    let mut out = [BonusTypeSeed { bonus_type: BonusType::Enhancement }; BonusType::ALL.len()];
-    let mut i = 0;
-    while i < BonusType::ALL.len() {
-        out[i] = BonusTypeSeed { bonus_type: BonusType::ALL[i] };
-        i += 1;
-    }
-    out
-};
-
-#[derive(Debug, Clone, Copy, PartialEq, Eq)]
-pub struct EquipmentSlotSeed {
-    pub slot: EquipmentSlot,
-}
-
-pub const EQUIPMENT_SLOTS: &[EquipmentSlotSeed] = &{
-    let mut out = [EquipmentSlotSeed { slot: EquipmentSlot::MainHand }; EquipmentSlot::ALL.len()];
-    let mut i = 0;
-    while i < EquipmentSlot::ALL.len() {
-        out[i] = EquipmentSlotSeed { slot: EquipmentSlot::ALL[i] };
-        i += 1;
-    }
-    out
-};
-
-#[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub struct WeaponType {
     pub id: i64,
     pub name: &'static str,
@@ -126,68 +96,73 @@ pub struct DamageType {
     pub category: DamageCategory,
 }
 
-const fn damage(id: i64, name: &'static str, category: DamageCategory) -> DamageType {
+const fn damage_type(id: i64, name: &'static str, category: DamageCategory) -> DamageType {
     DamageType { id, name, category }
 }
 
 use DamageCategory::{Alignment, Elemental, Energy, Physical, Untyped};
 
 pub const DAMAGE_TYPES: &[DamageType] = &[
-    damage(1, "Slashing", Physical),
-    damage(2, "Piercing", Physical),
-    damage(3, "Bludgeoning", Physical),
-    damage(4, "Fire", Elemental),
-    damage(5, "Cold", Elemental),
-    damage(6, "Electric", Elemental),
-    damage(7, "Acid", Elemental),
-    damage(8, "Sonic", Elemental),
-    damage(9, "Good", Alignment),
-    damage(10, "Evil", Alignment),
-    damage(11, "Lawful", Alignment),
-    damage(12, "Chaotic", Alignment),
-    damage(13, "Negative", Energy),
-    damage(14, "Positive", Energy),
-    damage(15, "Force", Energy),
-    damage(16, "Light", Energy),
-    damage(17, "Poison", Energy),
-    damage(18, "Untyped", Untyped),
+    damage_type(1, "Slashing", Physical),
+    damage_type(2, "Piercing", Physical),
+    damage_type(3, "Bludgeoning", Physical),
+    damage_type(4, "Fire", Elemental),
+    damage_type(5, "Cold", Elemental),
+    damage_type(6, "Electric", Elemental),
+    damage_type(7, "Acid", Elemental),
+    damage_type(8, "Sonic", Elemental),
+    damage_type(9, "Good", Alignment),
+    damage_type(10, "Evil", Alignment),
+    damage_type(11, "Lawful", Alignment),
+    damage_type(12, "Chaotic", Alignment),
+    damage_type(13, "Negative", Energy),
+    damage_type(14, "Positive", Energy),
+    damage_type(15, "Force", Energy),
+    damage_type(16, "Light", Energy),
+    damage_type(17, "Poison", Energy),
+    damage_type(18, "Untyped", Untyped),
 ];
 
-pub fn insert_all(conn: &Connection) -> rusqlite::Result<()> {
-    for s in STATS {
-        conn.execute(
+pub fn insert_all(db: &Connection) -> rusqlite::Result<()> {
+    for stat in STATS {
+        db.execute(
             "INSERT OR REPLACE INTO stats (id, name, category) VALUES (?1, ?2, ?3)",
-            params![s.id, s.name, s.category.as_str()],
+            params![stat.id, stat.name, stat.category.as_str()],
         )?;
     }
-    for b in BONUS_TYPES {
-        conn.execute(
+    for bonus_type in BonusType::ALL {
+        db.execute(
             "INSERT OR REPLACE INTO bonus_types (id, name, stacks_with_self) VALUES (?1, ?2, ?3)",
-            params![b.bonus_type.id(), b.bonus_type.name(), b.bonus_type.stacks_with_self()],
+            params![bonus_type.id(), bonus_type.name(), bonus_type.stacks_with_self()],
         )?;
     }
-    for e in EQUIPMENT_SLOTS {
-        conn.execute(
+    for slot in EquipmentSlot::ALL {
+        db.execute(
             "INSERT OR REPLACE INTO equipment_slots (id, name, sort_order, category) VALUES (?1, ?2, ?1, ?3)",
-            params![e.slot.id(), e.slot.name(), e.slot.category().as_str()],
+            params![slot.id(), slot.name(), slot.category().as_str()],
         )?;
     }
-    for p in WeaponProficiency::ALL {
-        conn.execute(
+    for proficiency in WeaponProficiency::ALL {
+        db.execute(
             "INSERT OR REPLACE INTO weapon_proficiencies (id, name) VALUES (?1, ?2)",
-            params![p.id(), p.name()],
+            params![proficiency.id(), proficiency.name()],
         )?;
     }
-    for w in WEAPON_TYPES {
-        conn.execute(
+    for weapon_type in WEAPON_TYPES {
+        db.execute(
             "INSERT OR REPLACE INTO weapon_types (id, name, proficiency_id, is_shield) VALUES (?1, ?2, ?3, ?4)",
-            params![w.id, w.name, w.proficiency.map(WeaponProficiency::id), w.is_shield],
+            params![
+                weapon_type.id,
+                weapon_type.name,
+                weapon_type.proficiency.map(WeaponProficiency::id),
+                weapon_type.is_shield
+            ],
         )?;
     }
-    for d in DAMAGE_TYPES {
-        conn.execute(
+    for damage_type in DAMAGE_TYPES {
+        db.execute(
             "INSERT OR REPLACE INTO damage_types (id, name, category) VALUES (?1, ?2, ?3)",
-            params![d.id, d.name, d.category.as_str()],
+            params![damage_type.id, damage_type.name, damage_type.category.as_str()],
         )?;
     }
     Ok(())

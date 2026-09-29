@@ -7,6 +7,12 @@ pub struct Stat {
     pub category: StatCategory,
 }
 
+impl Stat {
+    pub fn by_name(name: &str) -> Option<&'static Stat> {
+        STATS.iter().find(|stat| stat.name == name)
+    }
+}
+
 pub const STATS: &[Stat] = &[
     Stat { id: 1, name: "Strength", category: StatCategory::Ability },
     Stat { id: 2, name: "Dexterity", category: StatCategory::Ability },

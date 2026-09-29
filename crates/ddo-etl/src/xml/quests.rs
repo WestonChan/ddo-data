@@ -1,10 +1,10 @@
-use super::Empty;
+use super::EmptyElement;
 use anyhow::Result;
 use serde::Deserialize;
 use std::path::Path;
 
 pub fn parse(path: &Path) -> Result<Vec<Quest>> {
-    let file: QuestFile = super::read_xml(path)?;
+    let file: QuestFile = super::parse_xml_file(path)?;
     file.quests.into_iter().map(Quest::try_from).collect()
 }
 
@@ -26,25 +26,25 @@ struct RawQuest {
     #[serde(rename = "Favor")]
     favor: Option<i64>,
     #[serde(rename = "Levels")]
-    levels: Option<Levels>,
+    levels: Option<RawQuestLevels>,
     #[serde(rename = "IsRaid")]
-    is_raid: Option<Empty>,
+    is_raid: Option<EmptyElement>,
     #[serde(rename = "DoNotShow")]
-    do_not_show: Option<Empty>,
+    do_not_show: Option<EmptyElement>,
     #[serde(rename = "EpicName")]
     epic_name: Option<String>,
     #[serde(rename = "Casual")]
-    casual: Option<Empty>,
+    casual: Option<EmptyElement>,
     #[serde(rename = "Normal")]
-    normal: Option<Empty>,
+    normal: Option<EmptyElement>,
     #[serde(rename = "Hard")]
-    hard: Option<Empty>,
+    hard: Option<EmptyElement>,
     #[serde(rename = "Elite")]
-    elite: Option<Empty>,
+    elite: Option<EmptyElement>,
     #[serde(rename = "Reaper")]
-    reaper: Option<Empty>,
+    reaper: Option<EmptyElement>,
     #[serde(rename = "Solo")]
-    solo: Option<Empty>,
+    solo: Option<EmptyElement>,
 }
 
 impl RawQuest {
@@ -64,7 +64,7 @@ impl RawQuest {
 }
 
 #[derive(Debug, Deserialize)]
-struct Levels {
+struct RawQuestLevels {
     #[serde(rename = "$text", default)]
     text: String,
 }
@@ -77,7 +77,7 @@ pub struct Quest {
     pub favor: Option<i64>,
     pub levels: Vec<i64>,
     pub is_raid: bool,
-    pub do_not_show: bool,
+    pub is_hidden: bool,
     pub epic_name: Option<String>,
     pub difficulties: Vec<Difficulty>,
 }
@@ -108,27 +108,30 @@ impl Difficulty {
 impl TryFrom<RawQuest> for Quest {
     type Error = anyhow::Error;
 
-    fn try_from(raw: RawQuest) -> Result<Self> {
-        let difficulties = raw.difficulties();
-        let levels = raw
+    fn try_from(raw_quest: RawQuest) -> Result<Self> {
+        let difficulties = raw_quest.difficulties();
+        let levels = raw_quest
             .levels
-            .map(|l| {
-                l.text
+            .map(|raw_levels| {
+                raw_levels
+                    .text
                     .split_whitespace()
-                    .map(|n| n.parse::<i64>().map_err(|e| anyhow::anyhow!("quest {}: level {n:?}: {e}", raw.name)))
+                    .map(|n| {
+                        n.parse::<i64>().map_err(|e| anyhow::anyhow!("quest {}: level {n:?}: {e}", raw_quest.name))
+                    })
                     .collect::<Result<Vec<_>>>()
             })
             .transpose()?
             .unwrap_or_default();
         Ok(Quest {
-            name: raw.name.trim().to_string(),
-            patron: raw.patron.filter(|p| p != "None"),
-            adventure_pack: raw.adventure_pack,
-            favor: raw.favor,
+            name: raw_quest.name.trim().to_string(),
+            patron: raw_quest.patron.filter(|p| p != "None"),
+            adventure_pack: raw_quest.adventure_pack,
+            favor: raw_quest.favor,
             levels,
-            is_raid: raw.is_raid.is_some(),
-            do_not_show: raw.do_not_show.is_some(),
-            epic_name: raw.epic_name.map(|n| n.trim().to_string()).filter(|n| !n.is_empty()),
+            is_raid: raw_quest.is_raid.is_some(),
+            is_hidden: raw_quest.do_not_show.is_some(),
+            epic_name: raw_quest.epic_name.map(|n| n.trim().to_string()).filter(|n| !n.is_empty()),
             difficulties,
         })
     }

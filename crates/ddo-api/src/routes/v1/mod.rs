@@ -4,6 +4,7 @@ mod buffs;
 mod classes;
 mod crafting;
 mod dump;
+mod enhancement_trees;
 mod feats;
 mod items;
 mod quests;
@@ -11,10 +12,9 @@ mod races;
 mod sets;
 mod spells;
 mod stances;
-mod trees;
 mod version;
 
-use crate::docs::examples;
+use crate::docs::declare_response_examples;
 use crate::state::AppState;
 use utoipa::OpenApi;
 use utoipa_axum::router::OpenApiRouter;
@@ -63,7 +63,7 @@ use utoipa_axum::router::OpenApiRouter;
 )]
 struct ApiDoc;
 
-examples! { "v1":
+declare_response_examples! { "v1":
     ("/v1/version", "version"),
     ("/v1/stats", "stats"),
     ("/v1/bonus-types", "bonus-types"),
@@ -116,7 +116,7 @@ pub fn router() -> OpenApiRouter<AppState> {
         .merge(buffs::router())
         .merge(races::router())
         .merge(classes::router())
-        .merge(trees::router())
+        .merge(enhancement_trees::router())
         .merge(spells::router())
         .merge(bonuses::router())
         .merge(quests::router())

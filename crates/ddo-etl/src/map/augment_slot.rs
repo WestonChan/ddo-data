@@ -1,63 +1,65 @@
 #[derive(Debug, Clone, PartialEq, Eq)]
-pub struct SlotSpec {
+pub struct AugmentSlotType {
     pub label: String,
     pub family: String,
     pub variant: String,
     pub qualifier: Option<String>,
 }
 
-const COLOURS: &[&str] = &["Red", "Green", "Blue", "Orange", "Purple", "Colorless", "Yellow", "Sun", "Moon"];
-const LAMORDIA: &[&str] = &["Melancholic", "Dolorous", "Miserable", "Woeful"];
+const STANDARD_COLORS: &[&str] = &["Red", "Green", "Blue", "Orange", "Purple", "Colorless", "Yellow", "Sun", "Moon"];
+const LAMORDIA_VARIANTS: &[&str] = &["Melancholic", "Dolorous", "Miserable", "Woeful"];
 
-pub fn decode(raw: &str) -> SlotSpec {
-    let raw = raw.trim();
+impl AugmentSlotType {
+    pub fn parse(upstream_name: &str) -> Self {
+        let upstream_name = upstream_name.trim();
 
-    if COLOURS.contains(&raw) {
-        let v = raw.to_lowercase();
-        return SlotSpec { label: v.clone(), family: "standard".into(), variant: v, qualifier: None };
-    }
+        if STANDARD_COLORS.contains(&upstream_name) {
+            let color = upstream_name.to_lowercase();
+            return Self { label: color.clone(), family: "standard".into(), variant: color, qualifier: None };
+        }
 
-    if let Some(n) = raw.strip_prefix("Tier ").and_then(|n| n.parse::<u32>().ok()) {
-        let v = format!("tier {n}");
-        return SlotSpec { label: format!("upgrade: {v}"), family: "upgrade".into(), variant: v, qualifier: None };
-    }
+        if let Some(tier) = upstream_name.strip_prefix("Tier ").and_then(|n| n.parse::<u32>().ok()) {
+            let variant = format!("tier {tier}");
+            return Self { label: format!("upgrade: {variant}"), family: "upgrade".into(), variant, qualifier: None };
+        }
 
-    if let Some((head, tail)) = raw.split_once(" Slot (") {
-        if LAMORDIA.contains(&head) {
-            if let Some(q) = tail.strip_suffix(')') {
-                let (v, q) = (head.to_lowercase(), q.to_lowercase());
-                return SlotSpec {
-                    label: format!("lamordia: {v} ({q})"),
-                    family: "lamordia".into(),
-                    variant: v,
-                    qualifier: Some(q),
-                };
+        if let Some((head, tail)) = upstream_name.split_once(" Slot (") {
+            if LAMORDIA_VARIANTS.contains(&head) {
+                if let Some(qualifier) = tail.strip_suffix(')') {
+                    let (variant, qualifier) = (head.to_lowercase(), qualifier.to_lowercase());
+                    return Self {
+                        label: format!("lamordia: {variant} ({qualifier})"),
+                        family: "lamordia".into(),
+                        variant,
+                        qualifier: Some(qualifier),
+                    };
+                }
             }
         }
-    }
 
-    if let Some(rest) = raw.strip_prefix("IoD: ") {
-        if rest == "Set Bonus Slot" {
-            return SlotSpec {
-                label: "isle of dread: set bonus".into(),
-                family: "dino".into(),
-                variant: "set".into(),
-                qualifier: None,
-            };
-        }
-        if let Some((q, part)) = rest.split_once(": ") {
-            if let Some(v) = part.strip_suffix(" Slot") {
-                let (v, q) = (v.to_lowercase(), q.to_lowercase());
-                return SlotSpec {
-                    label: format!("isle of dread: {v} ({q})"),
+        if let Some(rest) = upstream_name.strip_prefix("IoD: ") {
+            if rest == "Set Bonus Slot" {
+                return Self {
+                    label: "isle of dread: set bonus".into(),
                     family: "dino".into(),
-                    variant: v,
-                    qualifier: Some(q),
+                    variant: "set".into(),
+                    qualifier: None,
                 };
             }
+            if let Some((qualifier, part)) = rest.split_once(": ") {
+                if let Some(variant) = part.strip_suffix(" Slot") {
+                    let (variant, qualifier) = (variant.to_lowercase(), qualifier.to_lowercase());
+                    return Self {
+                        label: format!("isle of dread: {variant} ({qualifier})"),
+                        family: "dino".into(),
+                        variant,
+                        qualifier: Some(qualifier),
+                    };
+                }
+            }
         }
-    }
 
-    let v = raw.to_lowercase();
-    SlotSpec { label: format!("crafting: {v}"), family: "crafting".into(), variant: v, qualifier: None }
+        let variant = upstream_name.to_lowercase();
+        Self { label: format!("crafting: {variant}"), family: "crafting".into(), variant, qualifier: None }
+    }
 }

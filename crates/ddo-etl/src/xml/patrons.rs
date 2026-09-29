@@ -3,7 +3,7 @@ use serde::Deserialize;
 use std::path::Path;
 
 pub fn parse(path: &Path) -> Result<Vec<Patron>> {
-    let file: PatronFile = super::read_xml(path)?;
+    let file: PatronFile = super::parse_xml_file(path)?;
     Ok(file.patrons)
 }
 

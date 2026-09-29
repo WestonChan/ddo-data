@@ -4,7 +4,7 @@ use serde::Deserialize;
 use std::path::Path;
 
 pub fn parse(path: &Path) -> Result<Vec<Clickie>> {
-    let file: ClickieFile = super::read_xml(path)?;
+    let file: ClickieFile = super::parse_xml_file(path)?;
     Ok(file.clickies)
 }
 

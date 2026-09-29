@@ -4,7 +4,7 @@ use serde::Deserialize;
 use std::path::Path;
 
 pub fn parse(path: &Path) -> Result<Vec<OptionalBuff>> {
-    let file: OptionalBuffFile = super::read_xml(path)?;
+    let file: OptionalBuffFile = super::parse_xml_file(path)?;
     Ok(file.buffs.into_iter().map(|b| OptionalBuff { name: b.name.trim().to_string(), ..b }).collect())
 }
 

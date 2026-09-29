@@ -22,19 +22,19 @@ use anyhow::{Context, Result};
 use serde::de::DeserializeOwned;
 use std::path::Path;
 
-pub(crate) fn read_xml<T: DeserializeOwned>(path: &Path) -> Result<T> {
-    let text = std::fs::read_to_string(path).with_context(|| format!("reading {}", path.display()))?;
-    let text = text.strip_prefix('\u{feff}').unwrap_or(&text);
-    quick_xml::de::from_str(text).with_context(|| format!("parsing {}", path.display()))
+pub(crate) fn parse_xml_file<T: DeserializeOwned>(path: &Path) -> Result<T> {
+    let file_text = std::fs::read_to_string(path).with_context(|| format!("reading {}", path.display()))?;
+    let file_text = file_text.strip_prefix('\u{feff}').unwrap_or(&file_text);
+    quick_xml::de::from_str(file_text).with_context(|| format!("parsing {}", path.display()))
 }
 
 #[derive(Debug, Default, Clone, serde::Deserialize)]
-pub struct Vector {
+pub struct NumberList {
     #[serde(rename = "$text", default)]
     pub text: String,
 }
 
-impl Vector {
+impl NumberList {
     pub fn numbers(&self) -> Result<Vec<f64>, String> {
         self.text.split_whitespace().map(|n| n.parse::<f64>().map_err(|e| format!("{n:?}: {e}"))).collect()
     }
@@ -48,4 +48,14 @@ impl Vector {
 }
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Default, serde::Deserialize)]
-pub struct Empty {}
+pub struct EmptyElement {}
+
+#[derive(Debug, Clone, PartialEq, Eq, serde::Deserialize)]
+pub struct Dice {
+    #[serde(rename = "Number")]
+    pub count: Option<i64>,
+    #[serde(rename = "Sides")]
+    pub sides: Option<i64>,
+    #[serde(rename = "Bonus")]
+    pub bonus: Option<i64>,
+}

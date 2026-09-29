@@ -1,20 +1,21 @@
-use super::MAPPING;
+use super::BUFF_VOCABULARY;
 use anyhow::{bail, Result};
 use ddo_model::enums::BonusType;
 
-pub fn normalize(raw: &str) -> Result<Option<BonusType>> {
-    let raw = raw.trim();
-    if raw.is_empty() {
+pub fn parse_buff_bonus_type(upstream_name: &str) -> Result<Option<BonusType>> {
+    let upstream_name = upstream_name.trim();
+    if upstream_name.is_empty() {
         return Ok(None);
     }
-    let canonical = MAPPING.bonus_type_aliases.get(raw).map(String::as_str).unwrap_or(raw);
-    if canonical.is_empty() {
+    let canonical_name =
+        BUFF_VOCABULARY.bonus_type_aliases.get(upstream_name).map(String::as_str).unwrap_or(upstream_name);
+    if canonical_name.is_empty() {
         return Ok(None);
     }
-    match BonusType::parse(canonical) {
-        Some(b) => Ok(Some(b)),
+    match BonusType::parse(canonical_name) {
+        Some(bonus_type) => Ok(Some(bonus_type)),
         None => bail!(
-            "unknown bonus type {raw:?}; add it to data/buff_map.toml [bonus_type_aliases] or to ddo-model's BonusType"
+            "unknown bonus type {upstream_name:?}; add it to data/buff_map.toml [bonus_type_aliases] or to ddo-model's BonusType"
         ),
     }
 }

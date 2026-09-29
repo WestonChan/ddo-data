@@ -1,4 +1,4 @@
-use crate::db::{booleanize, json_rows, table};
+use crate::db::{convert_to_booleans, json_rows, whole_table_json};
 use crate::error::ApiError;
 use crate::state::AppState;
 use axum::extract::State;
@@ -22,7 +22,8 @@ pub fn router() -> OpenApiRouter<AppState> {
     responses((status = 200, description = "The whole table", body = Vec<Value>))
 )]
 async fn adventure_packs(State(state): State<AppState>) -> Result<Json<Vec<Value>>, ApiError> {
-    table(state, "SELECT id, name, is_free_to_play FROM adventure_packs ORDER BY name", &["is_free_to_play"]).await
+    whole_table_json(state, "SELECT id, name, is_free_to_play FROM adventure_packs ORDER BY name", &["is_free_to_play"])
+        .await
 }
 
 #[utoipa::path(
@@ -34,7 +35,7 @@ async fn adventure_packs(State(state): State<AppState>) -> Result<Json<Vec<Value
     responses((status = 200, description = "The whole table", body = Vec<Value>))
 )]
 async fn patrons(State(state): State<AppState>) -> Result<Json<Vec<Value>>, ApiError> {
-    table(state, "SELECT id, name FROM patrons ORDER BY name", &[]).await
+    whole_table_json(state, "SELECT id, name FROM patrons ORDER BY name", &[]).await
 }
 
 #[utoipa::path(
@@ -59,16 +60,17 @@ async fn patrons(State(state): State<AppState>) -> Result<Json<Vec<Value>>, ApiE
 )]
 async fn quests(State(state): State<AppState>) -> Result<Json<Vec<Value>>, ApiError> {
     let quests = state
-        .query(|conn| {
-            let mut xp_by_quest: HashMap<i64, Map<String, Value>> = HashMap::new();
-            for row in json_rows(conn, "SELECT quest_id, tier, casual, normal, hard, elite FROM quest_xp", [])? {
-                let Value::Object(mut row) = row else { continue };
-                let quest_id = row.remove("quest_id").and_then(|v| v.as_i64()).unwrap_or_default();
-                let tier = row.remove("tier").and_then(|v| v.as_str().map(str::to_owned)).unwrap_or_default();
-                xp_by_quest.entry(quest_id).or_default().insert(tier, Value::Object(row));
+        .read_db(|db| {
+            let mut xp_by_tier_by_quest_id: HashMap<i64, Map<String, Value>> = HashMap::new();
+            for xp_row in json_rows(db, "SELECT quest_id, tier, casual, normal, hard, elite FROM quest_xp", [])? {
+                let Value::Object(mut xp_by_difficulty) = xp_row else { continue };
+                let quest_id = xp_by_difficulty.remove("quest_id").and_then(|v| v.as_i64()).unwrap_or_default();
+                let tier =
+                    xp_by_difficulty.remove("tier").and_then(|v| v.as_str().map(str::to_owned)).unwrap_or_default();
+                xp_by_tier_by_quest_id.entry(quest_id).or_default().insert(tier, Value::Object(xp_by_difficulty));
             }
             let mut quests = json_rows(
-                conn,
+                db,
                 "SELECT q.id, q.name, p.name AS pack, pt.name AS patron, q.level, q.epic_level, q.favor, q.is_raid,
                         q.epic_name, q.difficulties, q.is_challenge, q.max_level, q.duration, q.is_free_to_play,
                         q.legendary_level, q.zone, q.bestowed_by, q.flagging
@@ -77,9 +79,10 @@ async fn quests(State(state): State<AppState>) -> Result<Json<Vec<Value>>, ApiEr
                 [],
             )?;
             for quest in &mut quests {
-                booleanize(quest, &["is_raid", "is_challenge", "is_free_to_play"]);
-                let xp = quest["id"].as_i64().and_then(|id| xp_by_quest.remove(&id)).unwrap_or_default();
-                quest["xp"] = Value::Object(xp);
+                convert_to_booleans(quest, &["is_raid", "is_challenge", "is_free_to_play"]);
+                let xp_by_tier =
+                    quest["id"].as_i64().and_then(|id| xp_by_tier_by_quest_id.remove(&id)).unwrap_or_default();
+                quest["xp"] = Value::Object(xp_by_tier);
             }
             Ok(quests)
         })

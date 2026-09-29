@@ -1,5 +1,5 @@
 use super::requirements::Requirements;
-use super::Empty;
+use super::{EmptyElement, NumberList};
 use anyhow::Result;
 use serde::de::Error as _;
 use serde::{Deserialize, Deserializer};
@@ -14,50 +14,38 @@ pub struct Effect {
     pub bonus: Option<String>,
     pub amount_type: Option<String>,
     pub amounts: Vec<f64>,
-    pub items: Vec<String>,
+    pub targets: Vec<String>,
     pub value: Option<String>,
-    pub dice: Option<Dice>,
+    pub dice: Option<EffectDice>,
     pub damage: Option<String>,
-    pub percent: bool,
+    pub is_percent: bool,
     pub rank: Option<i64>,
     pub cap: Option<String>,
     pub stack_source: Option<String>,
     pub display_name: Option<String>,
-    pub apply_as_item_effect: bool,
+    pub applies_as_item_effect: bool,
     pub is_item_specific: bool,
-    pub rare: bool,
-    pub update_automatic_effects: bool,
+    pub is_rare: bool,
+    pub updates_automatic_effects: bool,
     pub requirements: Option<Requirements>,
 }
 
 #[derive(Debug, Clone, PartialEq, Default)]
-pub struct Dice {
-    pub number: Vec<f64>,
+pub struct EffectDice {
+    pub counts: Vec<f64>,
     pub sides: Vec<f64>,
-    pub bonus: Vec<f64>,
+    pub bonuses: Vec<f64>,
     pub damage: Option<String>,
 }
 
 #[derive(Deserialize)]
-struct Vector {
-    #[serde(rename = "$text", default)]
-    text: String,
-}
-
-impl Vector {
-    fn numbers(&self) -> Result<Vec<f64>, String> {
-        self.text.split_whitespace().map(|n| n.parse::<f64>().map_err(|e| format!("{n:?}: {e}"))).collect()
-    }
-}
-
-#[derive(Deserialize)]
-struct RawDice {
+struct RawEffectDice {
     #[serde(rename = "Number")]
-    number: Option<Vector>,
+    counts: Option<NumberList>,
     #[serde(rename = "Sides")]
-    sides: Option<Vector>,
+    sides: Option<NumberList>,
     #[serde(rename = "Bonus")]
-    bonus: Option<Vector>,
+    bonuses: Option<NumberList>,
     #[serde(rename = "Damage")]
     damage: Option<String>,
 }
@@ -73,75 +61,74 @@ enum EffectChild {
     Type(String),
     Bonus(String),
     AType(String),
-    Amount(Vector),
+    Amount(NumberList),
     Item(String),
     Value(String),
-    Dice(RawDice),
+    Dice(RawEffectDice),
     Damage(String),
-    Percent(Empty),
+    Percent(EmptyElement),
     Rank(i64),
     Cap(String),
     StackSource(String),
     DisplayName(String),
-    ApplyAsItemEffect(Empty),
-    IsItemSpecific(Empty),
-    Rare(Empty),
-    UpdateAutomaticEffects(Empty),
+    ApplyAsItemEffect(EmptyElement),
+    IsItemSpecific(EmptyElement),
+    Rare(EmptyElement),
+    UpdateAutomaticEffects(EmptyElement),
     Requirements(Requirements),
 }
 
+fn numbers_or_empty(number_list: Option<NumberList>) -> Result<Vec<f64>, String> {
+    Ok(number_list.map(|l| l.numbers()).transpose()?.unwrap_or_default())
+}
+
 impl<'de> Deserialize<'de> for Effect {
-    fn deserialize<D: Deserializer<'de>>(d: D) -> Result<Self, D::Error> {
-        let raw = RawEffect::deserialize(d)?;
-        let mut e = Effect::default();
+    fn deserialize<D: Deserializer<'de>>(deserializer: D) -> Result<Self, D::Error> {
+        let raw_effect = RawEffect::deserialize(deserializer)?;
+        let mut effect = Effect::default();
         let trimmed = |s: String| s.trim().to_string();
-        for child in raw.children {
+        for child in raw_effect.children {
             match child {
-                EffectChild::Type(v) => e.types.push(trimmed(v)),
-                EffectChild::Bonus(v) => e.bonus = Some(trimmed(v)),
-                EffectChild::AType(v) => e.amount_type = Some(trimmed(v)),
-                EffectChild::Amount(v) => e.amounts = v.numbers().map_err(D::Error::custom)?,
-                EffectChild::Item(v) => e.items.push(trimmed(v)),
-                EffectChild::Value(v) => e.value = Some(trimmed(v)),
-                EffectChild::Dice(d) => {
-                    e.dice = Some(Dice {
-                        number: d
-                            .number
-                            .map(|v| v.numbers())
-                            .transpose()
-                            .map_err(D::Error::custom)?
-                            .unwrap_or_default(),
-                        sides: d.sides.map(|v| v.numbers()).transpose().map_err(D::Error::custom)?.unwrap_or_default(),
-                        bonus: d.bonus.map(|v| v.numbers()).transpose().map_err(D::Error::custom)?.unwrap_or_default(),
-                        damage: d.damage.map(trimmed),
+                EffectChild::Type(v) => effect.types.push(trimmed(v)),
+                EffectChild::Bonus(v) => effect.bonus = Some(trimmed(v)),
+                EffectChild::AType(v) => effect.amount_type = Some(trimmed(v)),
+                EffectChild::Amount(v) => effect.amounts = v.numbers().map_err(D::Error::custom)?,
+                EffectChild::Item(v) => effect.targets.push(trimmed(v)),
+                EffectChild::Value(v) => effect.value = Some(trimmed(v)),
+                EffectChild::Dice(raw_dice) => {
+                    effect.dice = Some(EffectDice {
+                        counts: numbers_or_empty(raw_dice.counts).map_err(D::Error::custom)?,
+                        sides: numbers_or_empty(raw_dice.sides).map_err(D::Error::custom)?,
+                        bonuses: numbers_or_empty(raw_dice.bonuses).map_err(D::Error::custom)?,
+                        damage: raw_dice.damage.map(trimmed),
                     })
                 }
-                EffectChild::Damage(v) => e.damage = Some(trimmed(v)),
-                EffectChild::Percent(_) => e.percent = true,
-                EffectChild::Rank(v) => e.rank = Some(v),
-                EffectChild::Cap(v) => e.cap = Some(trimmed(v)),
-                EffectChild::StackSource(v) => e.stack_source = Some(trimmed(v)),
-                EffectChild::DisplayName(v) => e.display_name = Some(trimmed(v)),
-                EffectChild::ApplyAsItemEffect(_) => e.apply_as_item_effect = true,
-                EffectChild::IsItemSpecific(_) => e.is_item_specific = true,
-                EffectChild::Rare(_) => e.rare = true,
-                EffectChild::UpdateAutomaticEffects(_) => e.update_automatic_effects = true,
-                EffectChild::Requirements(r) => e.requirements = Some(r),
+                EffectChild::Damage(v) => effect.damage = Some(trimmed(v)),
+                EffectChild::Percent(_) => effect.is_percent = true,
+                EffectChild::Rank(v) => effect.rank = Some(v),
+                EffectChild::Cap(v) => effect.cap = Some(trimmed(v)),
+                EffectChild::StackSource(v) => effect.stack_source = Some(trimmed(v)),
+                EffectChild::DisplayName(v) => effect.display_name = Some(trimmed(v)),
+                EffectChild::ApplyAsItemEffect(_) => effect.applies_as_item_effect = true,
+                EffectChild::IsItemSpecific(_) => effect.is_item_specific = true,
+                EffectChild::Rare(_) => effect.is_rare = true,
+                EffectChild::UpdateAutomaticEffects(_) => effect.updates_automatic_effects = true,
+                EffectChild::Requirements(v) => effect.requirements = Some(v),
             }
         }
-        if e.types.is_empty() {
+        if effect.types.is_empty() {
             return Err(D::Error::custom("<Effect> without a <Type>"));
         }
-        Ok(e)
+        Ok(effect)
     }
 }
 
 impl Effect {
-    pub fn simple_integer(&self) -> Option<i64> {
+    pub fn simple_integer_amount(&self) -> Option<i64> {
         if self.amount_type.as_deref() != Some("Simple") || self.types.len() != 1 || self.amounts.len() != 1 {
             return None;
         }
-        let v = self.amounts[0];
-        (v.fract() == 0.0).then_some(v as i64)
+        let amount = self.amounts[0];
+        (amount.fract() == 0.0).then_some(amount as i64)
     }
 }

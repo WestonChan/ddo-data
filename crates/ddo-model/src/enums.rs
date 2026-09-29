@@ -97,7 +97,7 @@ pub enum BonusType {
     Unique,
     Universal,
     Untyped,
-    WeaponDR,
+    WeaponDr,
     WeaponEnchantment,
 }
 
@@ -174,7 +174,7 @@ impl BonusType {
         Self::Unique,
         Self::Universal,
         Self::Untyped,
-        Self::WeaponDR,
+        Self::WeaponDr,
         Self::WeaponEnchantment,
     ];
 
@@ -251,7 +251,7 @@ impl BonusType {
             Self::Unique => 69,
             Self::Universal => 70,
             Self::Untyped => 71,
-            Self::WeaponDR => 72,
+            Self::WeaponDr => 72,
             Self::WeaponEnchantment => 73,
         }
     }
@@ -329,7 +329,7 @@ impl BonusType {
             Self::Unique => "Unique",
             Self::Universal => "Universal",
             Self::Untyped => "Untyped",
-            Self::WeaponDR => "Weapon DR",
+            Self::WeaponDr => "Weapon DR",
             Self::WeaponEnchantment => "Weapon Enchantment",
         }
     }
@@ -348,7 +348,7 @@ impl BonusType {
                 | Self::Temporary
                 | Self::Unique
                 | Self::Untyped
-                | Self::WeaponDR
+                | Self::WeaponDr
         )
     }
 
@@ -358,13 +358,13 @@ impl BonusType {
 }
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
-pub enum SlotCategory {
+pub enum EquipmentSlotCategory {
     Weapon,
     Armor,
     Accessory,
 }
 
-impl SlotCategory {
+impl EquipmentSlotCategory {
     pub const fn as_str(self) -> &'static str {
         match self {
             Self::Weapon => "weapon",
@@ -456,13 +456,15 @@ impl EquipmentSlot {
         }
     }
 
-    pub const fn category(self) -> SlotCategory {
+    pub const fn category(self) -> EquipmentSlotCategory {
         match self {
-            Self::MainHand | Self::OffHand | Self::Ranged | Self::Quiver | Self::Runearm => SlotCategory::Weapon,
-            Self::Head | Self::Back | Self::Wrists | Self::Hands | Self::Body | Self::Waist | Self::Feet => {
-                SlotCategory::Armor
+            Self::MainHand | Self::OffHand | Self::Ranged | Self::Quiver | Self::Runearm => {
+                EquipmentSlotCategory::Weapon
             }
-            Self::Neck | Self::Trinket | Self::Goggles | Self::Ring => SlotCategory::Accessory,
+            Self::Head | Self::Back | Self::Wrists | Self::Hands | Self::Body | Self::Waist | Self::Feet => {
+                EquipmentSlotCategory::Armor
+            }
+            Self::Neck | Self::Trinket | Self::Goggles | Self::Ring => EquipmentSlotCategory::Accessory,
         }
     }
 }
@@ -563,8 +565,8 @@ impl ArmorType {
         }
     }
 
-    pub fn parse(s: &str) -> Option<Self> {
-        Self::ALL.iter().copied().find(|a| a.as_str() == s)
+    pub fn parse(text: &str) -> Option<Self> {
+        Self::ALL.iter().copied().find(|a| a.as_str() == text)
     }
 }
 
@@ -607,7 +609,7 @@ impl QuestDuration {
         }
     }
 
-    pub fn from_wiki(text: &str) -> Option<Self> {
+    pub fn parse(text: &str) -> Option<Self> {
         Self::ALL.iter().copied().find(|d| d.as_str() == text)
     }
 }
@@ -675,11 +677,6 @@ impl DamageCategory {
             Self::Untyped => "untyped",
         }
     }
-}
-
-pub(crate) fn sql_in_list<'a>(names: impl Iterator<Item = &'a str>) -> String {
-    let quoted: Vec<String> = names.map(|n| format!("'{n}'")).collect();
-    format!("IN ({})", quoted.join(", "))
 }
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
@@ -849,8 +846,8 @@ impl SaveProgression {
         }
     }
 
-    pub fn from_upstream(s: &str) -> Option<Self> {
-        match s.trim() {
+    pub fn parse(code: &str) -> Option<Self> {
+        match code.trim() {
             "Type2" => Some(Self::Good),
             "Type1" => Some(Self::Poor),
             "None" => Some(Self::None),
@@ -860,14 +857,14 @@ impl SaveProgression {
 }
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
-pub enum RequirementGroup {
+pub enum RequirementGroupKind {
     All,
     OneOf,
     NoneOf,
 }
 
-impl RequirementGroup {
-    pub const ALL: &'static [RequirementGroup] = &[Self::All, Self::OneOf, Self::NoneOf];
+impl RequirementGroupKind {
+    pub const ALL: &'static [RequirementGroupKind] = &[Self::All, Self::OneOf, Self::NoneOf];
 
     pub const fn as_str(self) -> &'static str {
         match self {
@@ -879,7 +876,7 @@ impl RequirementGroup {
 }
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
-pub enum TreeKind {
+pub enum EnhancementTreeKind {
     Class,
     Racial,
     Universal,
@@ -887,8 +884,9 @@ pub enum TreeKind {
     Destiny,
 }
 
-impl TreeKind {
-    pub const ALL: &'static [TreeKind] = &[Self::Class, Self::Racial, Self::Universal, Self::Reaper, Self::Destiny];
+impl EnhancementTreeKind {
+    pub const ALL: &'static [EnhancementTreeKind] =
+        &[Self::Class, Self::Racial, Self::Universal, Self::Reaper, Self::Destiny];
 
     pub const fn as_str(self) -> &'static str {
         match self {

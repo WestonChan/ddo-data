@@ -1,120 +1,144 @@
-use super::{json_numbers, json_strings, nonempty, BuildReport, Ctx};
+use super::{json_number_array, json_string_array, trimmed_non_empty, BuildReport, TableWriter};
 use crate::xml::feats::Attack;
 use crate::xml::spells;
-use crate::xml::trees::{self, Selection, TreeItem};
+use crate::xml::trees::{self, Enhancement, EnhancementSelection};
 use anyhow::Result;
-use ddo_model::enums::{AbilityOwner, ModifierSource, RequirementOwner, TreeKind};
+use ddo_model::enums::{AbilityOwner, EnhancementTreeKind, ModifierSource, RequirementOwner};
 use rusqlite::{params, OptionalExtension};
 use std::path::Path;
 
-impl Ctx<'_> {
+impl TableWriter<'_> {
     pub(super) fn write_tree_file(&mut self, path: &Path, report: &mut BuildReport) -> Result<()> {
-        let t = trees::parse(path)?;
-        let kind = if t.is_racial {
-            TreeKind::Racial
-        } else if t.is_destiny {
-            TreeKind::Destiny
-        } else if t.is_reaper {
-            TreeKind::Reaper
-        } else if t.is_universal {
-            TreeKind::Universal
+        let tree = trees::parse(path)?;
+        let tree_kind = if tree.is_racial {
+            EnhancementTreeKind::Racial
+        } else if tree.is_destiny {
+            EnhancementTreeKind::Destiny
+        } else if tree.is_reaper {
+            EnhancementTreeKind::Reaper
+        } else if tree.is_universal {
+            EnhancementTreeKind::Universal
         } else {
-            TreeKind::Class
+            EnhancementTreeKind::Class
         };
-        let existing: Option<i64> = self
-            .tx
-            .query_row("SELECT id FROM enhancement_trees WHERE name = ?1", params![t.name], |r| r.get(0))
+        let existing_tree_id: Option<i64> = self
+            .transaction
+            .query_row("SELECT id FROM enhancement_trees WHERE name = ?1", params![tree.name], |r| r.get(0))
             .optional()?;
-        if existing.is_some() {
-            report.duplicate_trees_skipped += 1;
+        if existing_tree_id.is_some() {
+            report.skipped_duplicate_tree_count += 1;
             return Ok(());
         }
-        self.tx.execute(
+        self.transaction.execute(
             "INSERT INTO enhancement_trees (name, version, kind, is_legacy, icon, background) VALUES (?1, ?2, ?3, ?4, ?5, ?6)",
-            params![t.name, t.version, kind.as_str(), t.is_legacy, nonempty(t.icon.as_deref()), nonempty(t.background.as_deref())],
+            params![
+                tree.name,
+                tree.version,
+                tree_kind.as_str(),
+                tree.is_legacy,
+                trimmed_non_empty(tree.icon.as_deref()),
+                trimmed_non_empty(tree.background.as_deref())
+            ],
         )?;
-        let tree_id = self.tx.last_insert_rowid();
-        if let Some(reqs) = &t.requirements {
-            self.write_requirements(RequirementOwner::EnhancementTree, tree_id, reqs)?;
+        let tree_id = self.transaction.last_insert_rowid();
+        if let Some(requirements) = &tree.requirements {
+            self.write_requirements(RequirementOwner::EnhancementTree, tree_id, requirements)?;
         }
-        for item in &t.items {
-            self.write_tree_item(tree_id, item)?;
-            report.enhancements += 1;
+        for enhancement in &tree.enhancements {
+            self.write_enhancement(tree_id, enhancement)?;
+            report.enhancement_count += 1;
         }
-        report.enhancement_trees += 1;
+        report.enhancement_tree_count += 1;
         Ok(())
     }
 
-    fn write_tree_item(&mut self, tree_id: i64, i: &TreeItem) -> Result<()> {
-        self.tx.execute(
+    fn write_enhancement(&mut self, tree_id: i64, enhancement: &Enhancement) -> Result<()> {
+        self.transaction.execute(
             "INSERT INTO enhancements (tree_id, internal_name, name, description, icon, x, y, cost_per_rank, ranks, min_spent, is_tier5, is_clickie, arrows,
                                        cooldown_seconds, duration_seconds)
              VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11, ?12, ?13, ?14, ?15)",
             params![
                 tree_id,
-                i.internal_name,
-                i.name,
-                nonempty(i.description.as_deref()),
-                nonempty(i.icon.as_deref()),
-                i.x,
-                i.y,
-                json_numbers(&i.cost_per_rank),
-                i.ranks,
-                i.min_spent,
-                i.is_tier5,
-                i.is_clickie,
-                json_strings(&i.arrows),
-                i.attack.as_ref().and_then(|a| a.cooldown_seconds),
-                i.attack.as_ref().and_then(Attack::duration_seconds),
+                enhancement.internal_name,
+                enhancement.name,
+                trimmed_non_empty(enhancement.description.as_deref()),
+                trimmed_non_empty(enhancement.icon.as_deref()),
+                enhancement.x,
+                enhancement.y,
+                json_number_array(&enhancement.cost_per_rank),
+                enhancement.rank_count,
+                enhancement.minimum_points_spent,
+                enhancement.is_tier5,
+                enhancement.is_clickie,
+                json_string_array(&enhancement.arrows),
+                enhancement.attack.as_ref().and_then(|a| a.cooldown_seconds),
+                enhancement.attack.as_ref().and_then(Attack::duration_seconds),
             ],
         )?;
-        let id = self.tx.last_insert_rowid();
-        if let Some(reqs) = &i.requirements {
-            self.write_requirements(RequirementOwner::Enhancement, id, reqs)?;
+        let enhancement_id = self.transaction.last_insert_rowid();
+        if let Some(requirements) = &enhancement.requirements {
+            self.write_requirements(RequirementOwner::Enhancement, enhancement_id, requirements)?;
         }
-        self.write_ability_children(AbilityOwner::Enhancement, id, &i.stances, &i.dcs, i.attack.as_ref())?;
-        self.write_modifiers(ModifierSource::Enhancement, id, &i.effects)?;
-        self.write_attack_bonuses(AbilityOwner::Enhancement, id, i.attack.as_ref())?;
-        if let Some(sel) = &i.selector {
-            for ex in &sel.exclusions {
-                self.tx.execute(
+        self.write_abilities(
+            AbilityOwner::Enhancement,
+            enhancement_id,
+            &enhancement.stances,
+            &enhancement.dcs,
+            enhancement.attack.as_ref(),
+        )?;
+        self.write_modifiers(ModifierSource::Enhancement, enhancement_id, &enhancement.effects)?;
+        self.write_attack_bonuses(AbilityOwner::Enhancement, enhancement_id, enhancement.attack.as_ref())?;
+        if let Some(selector) = &enhancement.selector {
+            for excluded_internal_name in &selector.excluded_internal_names {
+                self.transaction.execute(
                     "INSERT OR IGNORE INTO enhancement_selector_exclusions (enhancement_id, internal_name) VALUES (?1, ?2)",
-                    params![id, ex],
+                    params![enhancement_id, excluded_internal_name],
                 )?;
             }
-            for (order, s) in sel.selections.iter().enumerate() {
-                self.write_selection(id, order as i64, s)?;
+            for (sort_order, selection) in selector.selections.iter().enumerate() {
+                self.write_enhancement_selection(enhancement_id, sort_order as i64, selection)?;
             }
         }
         Ok(())
     }
 
-    fn write_selection(&mut self, enhancement_id: i64, order: i64, s: &Selection) -> Result<()> {
-        self.tx.execute(
+    fn write_enhancement_selection(
+        &mut self,
+        enhancement_id: i64,
+        sort_order: i64,
+        selection: &EnhancementSelection,
+    ) -> Result<()> {
+        self.transaction.execute(
             "INSERT INTO enhancement_selections (enhancement_id, sort_order, name, description, icon, cost_per_rank, ranks, min_spent, is_clickie,
                                                  cooldown_seconds, duration_seconds)
              VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11)",
             params![
                 enhancement_id,
-                order,
-                s.name,
-                nonempty(s.description.as_deref()),
-                nonempty(s.icon.as_deref()),
-                json_numbers(&s.cost_per_rank),
-                s.ranks,
-                s.min_spent,
-                s.is_clickie,
-                s.attack.as_ref().and_then(|a| a.cooldown_seconds),
-                s.attack.as_ref().and_then(Attack::duration_seconds),
+                sort_order,
+                selection.name,
+                trimmed_non_empty(selection.description.as_deref()),
+                trimmed_non_empty(selection.icon.as_deref()),
+                json_number_array(&selection.cost_per_rank),
+                selection.rank_count,
+                selection.minimum_points_spent,
+                selection.is_clickie,
+                selection.attack.as_ref().and_then(|a| a.cooldown_seconds),
+                selection.attack.as_ref().and_then(Attack::duration_seconds),
             ],
         )?;
-        let id = self.tx.last_insert_rowid();
-        if let Some(reqs) = &s.requirements {
-            self.write_requirements(RequirementOwner::EnhancementSelection, id, reqs)?;
+        let selection_id = self.transaction.last_insert_rowid();
+        if let Some(requirements) = &selection.requirements {
+            self.write_requirements(RequirementOwner::EnhancementSelection, selection_id, requirements)?;
         }
-        self.write_ability_children(AbilityOwner::EnhancementSelection, id, &s.stances, &s.dcs, s.attack.as_ref())?;
-        self.write_modifiers(ModifierSource::EnhancementSelection, id, &s.effects)?;
-        self.write_attack_bonuses(AbilityOwner::EnhancementSelection, id, s.attack.as_ref())?;
+        self.write_abilities(
+            AbilityOwner::EnhancementSelection,
+            selection_id,
+            &selection.stances,
+            &selection.dcs,
+            selection.attack.as_ref(),
+        )?;
+        self.write_modifiers(ModifierSource::EnhancementSelection, selection_id, &selection.effects)?;
+        self.write_attack_bonuses(AbilityOwner::EnhancementSelection, selection_id, selection.attack.as_ref())?;
         Ok(())
     }
 
@@ -122,76 +146,76 @@ impl Ctx<'_> {
         if !path.is_file() {
             return Ok(());
         }
-        for s in spells::parse(path)? {
-            let inserted = self.tx.execute(
+        for spell in spells::parse(path)? {
+            let inserted_row_count = self.transaction.execute(
                 "INSERT OR IGNORE INTO spells (name, description, icon, schools, max_caster_level, cost, metamagics) VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7)",
                 params![
-                    s.name,
-                    nonempty(s.description.as_deref()),
-                    nonempty(s.icon.as_deref()),
-                    json_strings(&s.schools),
-                    s.max_caster_level,
-                    s.cost,
-                    json_strings(&s.metamagics),
+                    spell.name,
+                    trimmed_non_empty(spell.description.as_deref()),
+                    trimmed_non_empty(spell.icon.as_deref()),
+                    json_string_array(&spell.schools),
+                    spell.maximum_caster_level,
+                    spell.cost,
+                    json_string_array(&spell.metamagics),
                 ],
             )?;
-            if inserted == 0 {
-                report.duplicate_spells_skipped += 1;
+            if inserted_row_count == 0 {
+                report.skipped_duplicate_spell_count += 1;
                 continue;
             }
-            let id = self.tx.last_insert_rowid();
-            for (order, d) in s.damage.iter().enumerate() {
-                let base = d.base_dice();
-                let bonus = d.dice.bonus_dice.as_ref();
-                self.tx.execute(
+            let spell_id = self.transaction.last_insert_rowid();
+            for (sort_order, damage) in spell.damage_components.iter().enumerate() {
+                let base_dice = damage.base_dice();
+                let bonus_dice = damage.dice.bonus_dice.as_ref();
+                self.transaction.execute(
                     "INSERT INTO spell_damage (spell_id, sort_order, base_dice_number, base_dice_sides, base_dice_bonus, per_caster_levels,
                                                bonus_dice_number, bonus_dice_sides, bonus_dice_bonus, damage, spell_power)
                      VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11)",
                     params![
-                        id,
-                        order as i64,
-                        base.and_then(|b| b.number),
-                        base.and_then(|b| b.sides),
-                        base.and_then(|b| b.bonus),
-                        d.dice.per_caster_levels,
-                        bonus.and_then(|b| b.number),
-                        bonus.and_then(|b| b.sides),
-                        bonus.and_then(|b| b.bonus),
-                        nonempty(d.damage.as_deref()),
-                        nonempty(d.spell_power.as_deref()),
+                        spell_id,
+                        sort_order as i64,
+                        base_dice.and_then(|d| d.count),
+                        base_dice.and_then(|d| d.sides),
+                        base_dice.and_then(|d| d.bonus),
+                        damage.dice.per_caster_levels,
+                        bonus_dice.and_then(|d| d.count),
+                        bonus_dice.and_then(|d| d.sides),
+                        bonus_dice.and_then(|d| d.bonus),
+                        trimmed_non_empty(damage.damage.as_deref()),
+                        trimmed_non_empty(damage.spell_power.as_deref()),
                     ],
                 )?;
             }
-            for (order, dc) in s.dcs.iter().enumerate() {
-                let amount = dc.amount.as_ref().map(|v| v.numbers()).transpose().map_err(anyhow::Error::msg)?;
-                self.tx.execute(
+            for (sort_order, dc) in spell.dcs.iter().enumerate() {
+                let amounts = dc.amount.as_ref().map(|v| v.numbers()).transpose().map_err(anyhow::Error::msg)?;
+                self.transaction.execute(
                     "INSERT INTO spell_dcs (spell_id, sort_order, dc_type, dc_versus, schools, casting_stat_mod, amount, mod_abilities)
                      VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8)",
                     params![
-                        id,
-                        order as i64,
-                        nonempty(dc.dc_type.as_deref()),
-                        nonempty(dc.dc_versus.as_deref()),
-                        json_strings(&dc.schools),
-                        dc.casting_stat_mod(),
-                        amount.as_deref().and_then(json_numbers),
-                        json_strings(&dc.mod_abilities),
+                        spell_id,
+                        sort_order as i64,
+                        trimmed_non_empty(dc.dc_type.as_deref()),
+                        trimmed_non_empty(dc.dc_versus.as_deref()),
+                        json_string_array(&dc.schools),
+                        dc.adds_casting_stat_modifier(),
+                        amounts.as_deref().and_then(json_number_array),
+                        json_string_array(&dc.modifier_abilities),
                     ],
                 )?;
             }
-            self.write_ability_children(AbilityOwner::Spell, id, &s.stances, &[], None)?;
-            self.write_modifiers(ModifierSource::Spell, id, &s.effects)?;
-            report.spells += 1;
+            self.write_abilities(AbilityOwner::Spell, spell_id, &spell.stances, &[], None)?;
+            self.write_modifiers(ModifierSource::Spell, spell_id, &spell.effects)?;
+            report.spell_count += 1;
         }
         Ok(())
     }
 
-    pub(super) fn resolve_spell_references(&mut self) -> Result<()> {
-        self.tx.execute(
+    pub(super) fn link_spell_references(&mut self) -> Result<()> {
+        self.transaction.execute(
             "UPDATE class_spells SET spell_id = (SELECT s.id FROM spells s WHERE s.name = class_spells.spell_name) WHERE spell_id IS NULL",
             [],
         )?;
-        self.tx.execute(
+        self.transaction.execute(
             "UPDATE item_clickies SET spell_id = (SELECT s.id FROM spells s WHERE s.name = item_clickies.name)
               WHERE clickie_id IS NULL AND spell_id IS NULL",
             [],

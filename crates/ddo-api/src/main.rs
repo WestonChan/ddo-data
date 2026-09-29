@@ -15,14 +15,15 @@ async fn main() -> Result<()> {
     let port: u16 = std::env::var("PORT").ok().and_then(|p| p.parse().ok()).unwrap_or(8080);
     let mut state =
         AppState::open(&db_path).with_context(|| format!("opening {}", db_path.display()))?.with_rate_limit();
-    if let Ok(icons) = std::env::var("ICONS_DIR") {
-        state = state.with_icons(std::path::Path::new(&icons));
+    if let Ok(icons_dir) = std::env::var("ICONS_DIR") {
+        state = state.with_icons_dir(std::path::Path::new(&icons_dir));
     }
-    tracing::info!(dataset = %state.dataset().upstream_sha, built_at = %state.dataset().built_at, "serving {}", db_path.display());
+    let dataset_version = state.dataset_version();
+    tracing::info!(dataset = %dataset_version.upstream_sha, built_at = %dataset_version.built_at, "serving {}", db_path.display());
 
-    let addr = SocketAddr::from(([0, 0, 0, 0], port));
-    let listener = tokio::net::TcpListener::bind(addr).await?;
-    tracing::info!("listening on http://{addr}");
+    let listen_address = SocketAddr::from(([0, 0, 0, 0], port));
+    let listener = tokio::net::TcpListener::bind(listen_address).await?;
+    tracing::info!("listening on http://{listen_address}");
     axum::serve(listener, app(state).into_make_service_with_connect_info::<SocketAddr>())
         .with_graceful_shutdown(async {
             let _ = tokio::signal::ctrl_c().await;

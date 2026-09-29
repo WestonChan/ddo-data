@@ -12,17 +12,17 @@ pub fn router() -> OpenApiRouter<AppState> {
     OpenApiRouter::new().routes(routes!(guild_buffs)).routes(routes!(optional_buffs))
 }
 
-fn with_modifiers(
-    conn: &rusqlite::Connection,
+fn buffs_with_modifiers(
+    db: &rusqlite::Connection,
     sql: &str,
-    source: ModifierSource,
+    modifier_source: ModifierSource,
 ) -> Result<Json<Vec<Value>>, ApiError> {
-    let mut rows = json_rows(conn, sql, [])?;
-    for row in &mut rows {
-        let id = row["id"].as_i64().unwrap_or(0);
-        row["modifiers"] = Value::Array(modifiers_for(conn, source.as_str(), id)?);
+    let mut buffs = json_rows(db, sql, [])?;
+    for buff in &mut buffs {
+        let buff_id = buff["id"].as_i64().unwrap_or(0);
+        buff["modifiers"] = Value::Array(modifiers_for(db, modifier_source.as_str(), buff_id)?);
     }
-    Ok(Json(rows))
+    Ok(Json(buffs))
 }
 
 #[utoipa::path(
@@ -38,9 +38,9 @@ fn with_modifiers(
 )]
 async fn guild_buffs(State(state): State<AppState>) -> Result<Json<Vec<Value>>, ApiError> {
     state
-        .query(|conn| {
-            with_modifiers(
-                conn,
+        .read_db(|db| {
+            buffs_with_modifiers(
+                db,
                 "SELECT id, name, description, guild_level FROM guild_buffs ORDER BY guild_level, name",
                 ModifierSource::GuildBuff,
             )
@@ -61,9 +61,9 @@ async fn guild_buffs(State(state): State<AppState>) -> Result<Json<Vec<Value>>, 
 )]
 async fn optional_buffs(State(state): State<AppState>) -> Result<Json<Vec<Value>>, ApiError> {
     state
-        .query(|conn| {
-            with_modifiers(
-                conn,
+        .read_db(|db| {
+            buffs_with_modifiers(
+                db,
                 "SELECT id, name, icon, description FROM optional_buffs ORDER BY name",
                 ModifierSource::OptionalBuff,
             )

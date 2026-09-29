@@ -9,7 +9,7 @@ use utoipa_axum::router::OpenApiRouter;
 use utoipa_axum::routes;
 
 pub fn router() -> OpenApiRouter<AppState> {
-    OpenApiRouter::new().routes(routes!(list))
+    OpenApiRouter::new().routes(routes!(stances))
 }
 
 #[utoipa::path(
@@ -24,6 +24,6 @@ pub fn router() -> OpenApiRouter<AppState> {
                    applies. Stances granted by a feat, enhancement or spell are on that entity's `stances` instead.",
     responses((status = 200, description = "Every standalone stance", body = Vec<Value>))
 )]
-async fn list(State(state): State<AppState>) -> Result<Json<Vec<Value>>, ApiError> {
-    state.query(|conn| Ok(Json(stances_for(conn, AbilityOwner::Standalone.as_str(), 0)?))).await
+async fn stances(State(state): State<AppState>) -> Result<Json<Vec<Value>>, ApiError> {
+    state.read_db(|db| Ok(Json(stances_for(db, AbilityOwner::Standalone.as_str(), 0)?))).await
 }

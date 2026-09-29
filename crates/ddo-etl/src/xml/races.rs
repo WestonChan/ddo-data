@@ -1,15 +1,15 @@
 use super::classes::FeatSlot;
 use super::feats::Feat;
-use super::{Empty, Vector};
+use super::{EmptyElement, NumberList};
 use anyhow::{bail, Result};
 use serde::de::Error as _;
 use serde::{Deserialize, Deserializer};
 use std::path::Path;
 
 pub fn parse(path: &Path) -> Result<Race> {
-    let file: RaceFile = super::read_xml(path)?;
+    let file: RaceFile = super::parse_xml_file(path)?;
     match file.races.into_iter().next() {
-        Some(r) => Ok(r),
+        Some(race) => Ok(race),
         None => bail!("{}: no <Race>", path.display()),
     }
 }
@@ -28,12 +28,12 @@ pub struct Race {
     pub starting_world: Option<String>,
     pub build_points: Vec<i64>,
     pub ability_modifiers: Vec<(String, i64)>,
-    pub granted_feats: Vec<String>,
+    pub granted_feat_names: Vec<String>,
     pub feats: Vec<Feat>,
     pub iconic_class: Option<String>,
     pub feat_slots: Vec<FeatSlot>,
     pub is_construct: bool,
-    pub no_past_life: bool,
+    pub lacks_past_life: bool,
     pub auto_buy_skills: Vec<String>,
     pub skill_points: Option<i64>,
 }
@@ -51,7 +51,7 @@ enum RaceChild {
     ShortName(String),
     Description(String),
     StartingWorld(String),
-    BuildPoints(Vector),
+    BuildPoints(NumberList),
     Strength(String),
     Dexterity(String),
     Constitution(String),
@@ -62,59 +62,61 @@ enum RaceChild {
     Feat(Feat),
     IconicClass(String),
     FeatSlot(FeatSlot),
-    IsConstruct(Empty),
-    NoPastLife(Empty),
+    IsConstruct(EmptyElement),
+    NoPastLife(EmptyElement),
     AutoBuySkill(String),
     SkillPoints(i64),
 }
 
-fn signed(ability: &str, v: &str) -> Result<i64, String> {
-    v.trim().trim_start_matches('+').parse::<i64>().map_err(|e| format!("{ability} {v:?}: {e}"))
+fn ability_modifier(ability: &str, text: &str) -> Result<(String, i64), String> {
+    let modifier =
+        text.trim().trim_start_matches('+').parse::<i64>().map_err(|e| format!("{ability} {text:?}: {e}"))?;
+    Ok((ability.to_string(), modifier))
 }
 
 impl<'de> Deserialize<'de> for Race {
-    fn deserialize<D: Deserializer<'de>>(d: D) -> Result<Self, D::Error> {
-        let raw = RawRace::deserialize(d)?;
-        let mut r = Race::default();
-        let t = |s: String| s.trim().to_string();
-        for child in raw.children {
+    fn deserialize<D: Deserializer<'de>>(deserializer: D) -> Result<Self, D::Error> {
+        let raw_race = RawRace::deserialize(deserializer)?;
+        let mut race = Race::default();
+        let trimmed = |s: String| s.trim().to_string();
+        for child in raw_race.children {
             match child {
-                RaceChild::Name(v) => r.name = t(v),
-                RaceChild::ShortName(v) => r.short_name = Some(t(v)),
-                RaceChild::Description(v) => r.description = Some(t(v)),
-                RaceChild::StartingWorld(v) => r.starting_world = Some(t(v)),
-                RaceChild::BuildPoints(v) => r.build_points = v.integers().map_err(D::Error::custom)?,
+                RaceChild::Name(v) => race.name = trimmed(v),
+                RaceChild::ShortName(v) => race.short_name = Some(trimmed(v)),
+                RaceChild::Description(v) => race.description = Some(trimmed(v)),
+                RaceChild::StartingWorld(v) => race.starting_world = Some(trimmed(v)),
+                RaceChild::BuildPoints(v) => race.build_points = v.integers().map_err(D::Error::custom)?,
                 RaceChild::Strength(v) => {
-                    r.ability_modifiers.push(("Strength".into(), signed("Strength", &v).map_err(D::Error::custom)?))
+                    race.ability_modifiers.push(ability_modifier("Strength", &v).map_err(D::Error::custom)?)
                 }
                 RaceChild::Dexterity(v) => {
-                    r.ability_modifiers.push(("Dexterity".into(), signed("Dexterity", &v).map_err(D::Error::custom)?))
+                    race.ability_modifiers.push(ability_modifier("Dexterity", &v).map_err(D::Error::custom)?)
                 }
-                RaceChild::Constitution(v) => r
-                    .ability_modifiers
-                    .push(("Constitution".into(), signed("Constitution", &v).map_err(D::Error::custom)?)),
-                RaceChild::Intelligence(v) => r
-                    .ability_modifiers
-                    .push(("Intelligence".into(), signed("Intelligence", &v).map_err(D::Error::custom)?)),
+                RaceChild::Constitution(v) => {
+                    race.ability_modifiers.push(ability_modifier("Constitution", &v).map_err(D::Error::custom)?)
+                }
+                RaceChild::Intelligence(v) => {
+                    race.ability_modifiers.push(ability_modifier("Intelligence", &v).map_err(D::Error::custom)?)
+                }
                 RaceChild::Wisdom(v) => {
-                    r.ability_modifiers.push(("Wisdom".into(), signed("Wisdom", &v).map_err(D::Error::custom)?))
+                    race.ability_modifiers.push(ability_modifier("Wisdom", &v).map_err(D::Error::custom)?)
                 }
                 RaceChild::Charisma(v) => {
-                    r.ability_modifiers.push(("Charisma".into(), signed("Charisma", &v).map_err(D::Error::custom)?))
+                    race.ability_modifiers.push(ability_modifier("Charisma", &v).map_err(D::Error::custom)?)
                 }
-                RaceChild::GrantedFeat(v) => r.granted_feats.push(t(v)),
-                RaceChild::Feat(v) => r.feats.push(v),
-                RaceChild::IconicClass(v) => r.iconic_class = Some(t(v)),
-                RaceChild::FeatSlot(v) => r.feat_slots.push(v),
-                RaceChild::IsConstruct(_) => r.is_construct = true,
-                RaceChild::NoPastLife(_) => r.no_past_life = true,
-                RaceChild::AutoBuySkill(v) => r.auto_buy_skills.push(t(v)),
-                RaceChild::SkillPoints(v) => r.skill_points = Some(v),
+                RaceChild::GrantedFeat(v) => race.granted_feat_names.push(trimmed(v)),
+                RaceChild::Feat(v) => race.feats.push(v),
+                RaceChild::IconicClass(v) => race.iconic_class = Some(trimmed(v)),
+                RaceChild::FeatSlot(v) => race.feat_slots.push(v),
+                RaceChild::IsConstruct(_) => race.is_construct = true,
+                RaceChild::NoPastLife(_) => race.lacks_past_life = true,
+                RaceChild::AutoBuySkill(v) => race.auto_buy_skills.push(trimmed(v)),
+                RaceChild::SkillPoints(v) => race.skill_points = Some(v),
             }
         }
-        if r.name.is_empty() {
+        if race.name.is_empty() {
             return Err(D::Error::custom("<Race> without a <Name>"));
         }
-        Ok(r)
+        Ok(race)
     }
 }

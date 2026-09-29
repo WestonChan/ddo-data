@@ -48,7 +48,7 @@ Validate a file by running the real build from the `ddo-data` root, with `export
 cargo run --release -p ddo-etl -- build --source upstream/Output/DataFiles --out /tmp/check.db
 ```
 
-A clean run prints the report, whose `wiki_quest_loot_entries`, `wiki_rare_drops` and `wiki_quest_loot_links_added` count what was applied, and `drop_text_rare_links` counts the rare links Maetrim's text marked on its own. The tests use their own overrides in `crates/ddo-etl/tests/fixtures/wiki/`, which only name what the fixture data files carry.
+A clean run prints the report, whose `wiki_quest_loot_entry_count`, `wiki_rare_drop_count` and `wiki_added_quest_loot_link_count` count what was applied, and `drop_text_rare_link_count` counts the rare links Maetrim's text marked on its own. The tests use their own overrides in `crates/ddo-etl/tests/fixtures/wiki/`, which only name what the fixture data files carry.
 
 ## `quests.toml`
 
@@ -72,7 +72,7 @@ xp.legendary = { casual = 23256, normal = 39615, hard = 40469, elite = 41325 }
 - `xp` (optional): `heroic`, `epic` and `legendary` tables, each with optional `casual`, `normal`, `hard` and `elite` base XP. Leave out a tier the quest does not run at and a difficulty the tier lacks.
 - `zone`, `bestowed_by`, `flagging` (optional, per-page reads): the page's "Takes place in" value, the quest giver, and free text on what must be run first.
 
-The merge fills `quests.duration`, `is_free_to_play`, `legendary_level`, `zone`, `bestowed_by` and `flagging`, and writes one `quest_xp` row per tier. It never writes the columns Maetrim's files fill (`level`, `epic_level`, `pack_id`, `patron_id`, `favor`, `is_raid`, `difficulties`). Besides the checks above, the build fails when `free_to_play` is missing, `duration` is not one of the four values, or an XP value is negative. The report's `wiki_quest_entries` and `wiki_quest_xp_rows` count what was applied.
+The merge fills `quests.duration`, `is_free_to_play`, `legendary_level`, `zone`, `bestowed_by` and `flagging`, and writes one `quest_xp` row per tier. It never writes the columns Maetrim's files fill (`level`, `epic_level`, `pack_id`, `patron_id`, `favor`, `is_raid`, `difficulties`). Besides the checks above, the build fails when `free_to_play` is missing, `duration` is not one of the four values, or an XP value is negative. The report's `wiki_quest_entry_count` and `wiki_quest_xp_row_count` count what was applied.
 
 ## `crafting.toml`
 
@@ -110,6 +110,6 @@ cost = [{ ingredient = "Broken Shackle", quantity = 50 }]
 
 An augment name resolves to every augment of that name in any of the system's families, because names repeat within a family (Green Steel has one `+5 Fortitude Save` per element combination). A cost's `ingredient` names one declared in the same system; when that name is declared at several tiers, the one at the recipe's tier is used, then the one at `any`. `augments` may be empty when the wiki row has no augment counterpart (cleansing an item, a material step), but then `note` must say so.
 
-The merge writes `crafting_systems`, `crafting_system_families`, `crafting_ingredients`, `crafting_recipes` (with `sort_order` the recipe's position in the entry), `crafting_recipe_augments` and `crafting_recipe_ingredients`. Besides the citation checks above, the build fails, naming the system and the value, when a system has a field or table other than the ones above; a required field is missing; `families` is empty; a tier is not one of the four; an ingredient repeats at one tier; a recipe has no `augments` and no `note`; a cost names an undeclared ingredient, repeats one, or has a quantity below 1; or `pack`, a family, a `slot` label or an augment name matches nothing in Maetrim's files. The report's `wiki_crafting_systems`, `wiki_crafting_recipes` and `wiki_crafting_ingredients` count what was applied.
+The merge writes `crafting_systems`, `crafting_system_families`, `crafting_ingredients`, `crafting_recipes` (with `sort_order` the recipe's position in the entry), `crafting_recipe_augments` and `crafting_recipe_ingredients`. Besides the citation checks above, the build fails, naming the system and the value, when a system has a field or table other than the ones above; a required field is missing; `families` is empty; a tier is not one of the four; an ingredient repeats at one tier; a recipe has no `augments` and no `note`; a cost names an undeclared ingredient, repeats one, or has a quantity below 1; or `pack`, a family, a `slot` label or an augment name matches nothing in Maetrim's files. The report's `wiki_crafting_system_count`, `wiki_crafting_recipe_count` and `wiki_crafting_ingredient_count` count what was applied.
 
 To check a draft without embedding it, point the build at a directory holding only that file: `cargo run --release -p ddo-etl -- build --source upstream/Output/DataFiles --out /tmp/check.db --wiki /path/to/draft-dir`. `--wiki` reads that directory in place of the embedded files.

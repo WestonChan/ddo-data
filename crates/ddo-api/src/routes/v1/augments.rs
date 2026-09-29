@@ -1,5 +1,8 @@
-use super::crafting::recipes_yielding;
-use crate::db::{bonuses_via, booleanize, count, json_row, json_rows, like_pattern, modifiers_for, page, Filters};
+use super::crafting::crafting_recipes_yielding;
+use crate::db::{
+    bonuses_via, clamped_page, convert_to_booleans, json_row, json_rows, modifiers_for, row_count,
+    substring_like_pattern, WhereClause,
+};
 use crate::error::ApiError;
 use crate::query::ApiQuery;
 use crate::state::AppState;
@@ -11,12 +14,12 @@ use utoipa_axum::router::OpenApiRouter;
 use utoipa_axum::routes;
 
 pub fn router() -> OpenApiRouter<AppState> {
-    OpenApiRouter::new().routes(routes!(list)).routes(routes!(detail))
+    OpenApiRouter::new().routes(routes!(augments)).routes(routes!(augment_detail))
 }
 
 #[derive(Deserialize)]
 #[serde(deny_unknown_fields)]
-pub struct AugmentFilter {
+pub struct AugmentListQuery {
     pub q: Option<String>,
     pub slot: Option<String>,
     pub family: Option<String>,
@@ -25,25 +28,24 @@ pub struct AugmentFilter {
     pub offset: Option<i64>,
 }
 
-const FLAGS: &[&str] = &["choose_level", "dual_values", "enter_value", "suppress_set_bonus"];
+const AUGMENT_FLAG_COLUMNS: &[&str] = &["choose_level", "dual_values", "enter_value", "suppress_set_bonus"];
 
-fn attach(conn: &rusqlite::Connection, a: &mut Value) -> Result<(), ApiError> {
-    booleanize(a, FLAGS);
-    let id = a["id"].as_i64().unwrap_or(0);
-    let slots: Vec<Value> = json_rows(
-        conn,
+fn attach_slot_labels_and_bonuses(db: &rusqlite::Connection, augment: &mut Value) -> Result<(), ApiError> {
+    let augment_id = augment["id"].as_i64().unwrap_or(0);
+    let slot_labels: Vec<Value> = json_rows(
+        db,
         "SELECT t.label FROM augment_slots s JOIN augment_slot_types t ON t.id = s.slot_id WHERE s.augment_id = ?1 ORDER BY t.label",
-        [id],
+        [augment_id],
     )?
     .into_iter()
-    .map(|r| r["label"].clone())
+    .map(|row| row["label"].clone())
     .collect();
-    a["slots"] = Value::Array(slots);
-    a["bonuses"] = Value::Array(bonuses_via(conn, "augment_bonuses", "augment_id", id)?);
+    augment["slots"] = Value::Array(slot_labels);
+    augment["bonuses"] = Value::Array(bonuses_via(db, "augment_bonuses", "augment_id", augment_id)?);
     Ok(())
 }
 
-const COLUMNS: &str =
+const AUGMENT_COLUMNS: &str =
     "a.id, a.name, a.family, a.description, a.effect_description, a.min_level, a.icon, a.choose_level, a.levels,
                        a.level_values, a.level_values2, a.dual_values, a.enter_value, a.suppress_set_bonus, a.set_bonus,
                        a.adds_augment, a.grants_augment, a.weapon_class";
@@ -69,33 +71,37 @@ const COLUMNS: &str =
         (status = 400, description = "Unknown or malformed query parameter", body = crate::error::ErrorBody)
     )
 )]
-async fn list(State(state): State<AppState>, ApiQuery(f): ApiQuery<AugmentFilter>) -> Result<Json<Value>, ApiError> {
-    let (limit, offset) = page(f.limit, f.offset);
+async fn augments(
+    State(state): State<AppState>,
+    ApiQuery(query): ApiQuery<AugmentListQuery>,
+) -> Result<Json<Value>, ApiError> {
+    let (limit, offset) = clamped_page(query.limit, query.offset);
     state
-        .query(move |conn| {
-            let mut f_ = Filters::default();
-            if let Some(q) = f.q.as_deref().filter(|q| !q.trim().is_empty()) {
-                f_.bind("a.name LIKE ? ESCAPE '\\'", like_pattern(q));
+        .read_db(move |db| {
+            let mut where_clause = WhereClause::default();
+            if let Some(search_text) = query.q.as_deref().filter(|q| !q.trim().is_empty()) {
+                where_clause.add_bound_condition("a.name LIKE ? ESCAPE '\\'", substring_like_pattern(search_text));
             }
-            if let Some(slot) = &f.slot {
-                f_.bind("EXISTS (SELECT 1 FROM augment_slots s JOIN augment_slot_types t ON t.id = s.slot_id WHERE s.augment_id = a.id AND t.label = ?)",
-                    slot.to_lowercase(),
+            if let Some(slot_label) = &query.slot {
+                where_clause.add_bound_condition("EXISTS (SELECT 1 FROM augment_slots s JOIN augment_slot_types t ON t.id = s.slot_id WHERE s.augment_id = a.id AND t.label = ?)",
+                    slot_label.to_lowercase(),
                 );
             }
-            if let Some(fam) = &f.family {
-                f_.bind("a.family = ?", fam.clone());
+            if let Some(family) = &query.family {
+                where_clause.add_bound_condition("a.family = ?", family.clone());
             }
-            if let Some(n) = f.max_level {
-                f_.bind("(a.min_level IS NULL OR a.min_level <= ?)", n);
+            if let Some(max_level) = query.max_level {
+                where_clause.add_bound_condition("(a.min_level IS NULL OR a.min_level <= ?)", max_level);
             }
-            let where_sql = f_.where_sql();
-            let total = count(conn, &format!("SELECT COUNT(*) FROM augments a {where_sql}"), f_.params())?;
-            let sql = format!("SELECT {COLUMNS} FROM augments a {where_sql} ORDER BY a.name, a.min_level LIMIT {limit} OFFSET {offset}");
-            let mut rows = json_rows(conn, &sql, f_.params())?;
-            for a in &mut rows {
-                attach(conn, a)?;
+            let where_sql = where_clause.to_sql();
+            let total = row_count(db, &format!("SELECT COUNT(*) FROM augments a {where_sql}"), where_clause.params())?;
+            let page_sql = format!("SELECT {AUGMENT_COLUMNS} FROM augments a {where_sql} ORDER BY a.name, a.min_level LIMIT {limit} OFFSET {offset}");
+            let mut augments = json_rows(db, &page_sql, where_clause.params())?;
+            for augment in &mut augments {
+                convert_to_booleans(augment, AUGMENT_FLAG_COLUMNS);
+                attach_slot_labels_and_bonuses(db, augment)?;
             }
-            Ok(Json(json!({ "total": total, "limit": limit, "offset": offset, "augments": rows })))
+            Ok(Json(json!({ "total": total, "limit": limit, "offset": offset, "augments": augments })))
         })
         .await
 }
@@ -112,14 +118,15 @@ async fn list(State(state): State<AppState>, ApiQuery(f): ApiQuery<AugmentFilter
                    /v1/crafting-systems); empty when no recipe read from the wiki yields it.",
     params(("id" = i64, Path, description = "The augment's numeric id from the list endpoint")), responses((status = 200, description = "The augment with its child collections", body = Value), (status = 404, description = "No augment has this id", body = crate::error::ErrorBody))
 )]
-async fn detail(State(state): State<AppState>, Path(id): Path<i64>) -> Result<Json<Value>, ApiError> {
+async fn augment_detail(State(state): State<AppState>, Path(id): Path<i64>) -> Result<Json<Value>, ApiError> {
     state
-        .query(move |conn| {
-            let mut a = json_row(conn, &format!("SELECT {COLUMNS} FROM augments a WHERE a.id = ?1"), [id])?;
-            attach(conn, &mut a)?;
-            a["modifiers"] = Value::Array(modifiers_for(conn, "augment", id)?);
-            a["crafting"] = Value::Array(recipes_yielding(conn, id)?);
-            Ok(Json(a))
+        .read_db(move |db| {
+            let mut augment = json_row(db, &format!("SELECT {AUGMENT_COLUMNS} FROM augments a WHERE a.id = ?1"), [id])?;
+            convert_to_booleans(&mut augment, AUGMENT_FLAG_COLUMNS);
+            attach_slot_labels_and_bonuses(db, &mut augment)?;
+            augment["modifiers"] = Value::Array(modifiers_for(db, "augment", id)?);
+            augment["crafting"] = Value::Array(crafting_recipes_yielding(db, id)?);
+            Ok(Json(augment))
         })
         .await
 }

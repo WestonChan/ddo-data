@@ -5,101 +5,101 @@ use rusqlite::{Connection, OpenFlags};
 use std::path::{Path, PathBuf};
 use std::sync::{Arc, Mutex};
 
-const POOL_SIZE: usize = 8;
+const POOL_CAPACITY: usize = 8;
 
 #[derive(Clone)]
 pub struct AppState {
-    inner: Arc<Inner>,
+    shared: Arc<SharedAppState>,
 }
 
-struct Inner {
-    path: PathBuf,
+struct SharedAppState {
+    db_path: PathBuf,
     pool: Mutex<Vec<Connection>>,
-    dataset: DatasetVersion,
+    dataset_version: DatasetVersion,
     schema_version: i64,
-    rate_limited: bool,
+    is_rate_limited: bool,
     icons_dir: Option<PathBuf>,
 }
 
 impl AppState {
-    pub fn open(path: &Path) -> Result<Self> {
-        let conn = open_connection(path)?;
-        let dataset = conn
-            .query_row("SELECT upstream_sha, built_at FROM dataset_version", [], |r| {
-                Ok(DatasetVersion { upstream_sha: r.get(0)?, built_at: r.get(1)? })
+    pub fn open(db_path: &Path) -> Result<Self> {
+        let db = open_read_only_db(db_path)?;
+        let dataset_version = db
+            .query_row("SELECT upstream_sha, built_at FROM dataset_version", [], |row| {
+                Ok(DatasetVersion { upstream_sha: row.get(0)?, built_at: row.get(1)? })
             })
             .context("reading dataset_version")?;
-        let schema_version: i64 = conn
-            .query_row("SELECT MAX(version) FROM schema_version", [], |r| r.get(0))
+        let schema_version: i64 = db
+            .query_row("SELECT MAX(version) FROM schema_version", [], |row| row.get(0))
             .context("reading schema_version")?;
         Ok(Self {
-            inner: Arc::new(Inner {
-                path: path.to_path_buf(),
-                pool: Mutex::new(vec![conn]),
-                dataset,
+            shared: Arc::new(SharedAppState {
+                db_path: db_path.to_path_buf(),
+                pool: Mutex::new(vec![db]),
+                dataset_version,
                 schema_version,
-                rate_limited: false,
+                is_rate_limited: false,
                 icons_dir: None,
             }),
         })
     }
 
     pub fn with_rate_limit(mut self) -> Self {
-        Arc::get_mut(&mut self.inner).expect("state not yet shared").rate_limited = true;
+        Arc::get_mut(&mut self.shared).expect("state not yet shared").is_rate_limited = true;
         self
     }
 
-    pub fn with_icons(mut self, dir: &Path) -> Self {
-        Arc::get_mut(&mut self.inner).expect("state not yet shared").icons_dir = Some(dir.to_path_buf());
+    pub fn with_icons_dir(mut self, icons_dir: &Path) -> Self {
+        Arc::get_mut(&mut self.shared).expect("state not yet shared").icons_dir = Some(icons_dir.to_path_buf());
         self
     }
 
     pub fn icons_dir(&self) -> Option<&Path> {
-        self.inner.icons_dir.as_deref()
+        self.shared.icons_dir.as_deref()
     }
 
-    pub fn rate_limited(&self) -> bool {
-        self.inner.rate_limited
+    pub fn is_rate_limited(&self) -> bool {
+        self.shared.is_rate_limited
     }
 
-    pub fn dataset(&self) -> &DatasetVersion {
-        &self.inner.dataset
+    pub fn dataset_version(&self) -> &DatasetVersion {
+        &self.shared.dataset_version
     }
 
     pub fn schema_version(&self) -> i64 {
-        self.inner.schema_version
+        self.shared.schema_version
     }
 
     pub fn db_path(&self) -> &Path {
-        &self.inner.path
+        &self.shared.db_path
     }
 
-    pub async fn query<T, F>(&self, f: F) -> Result<T, ApiError>
+    pub async fn read_db<T, F>(&self, read: F) -> Result<T, ApiError>
     where
         T: Send + 'static,
         F: FnOnce(&Connection) -> Result<T, ApiError> + Send + 'static,
     {
-        let inner = self.inner.clone();
+        let shared = self.shared.clone();
         tokio::task::spawn_blocking(move || {
-            let conn = match inner.pool.lock().expect("pool lock").pop() {
-                Some(c) => c,
-                None => open_connection(&inner.path).map_err(ApiError::from)?,
+            let db = match shared.pool.lock().expect("pool lock").pop() {
+                Some(pooled_db) => pooled_db,
+                None => open_read_only_db(&shared.db_path).map_err(ApiError::from)?,
             };
-            let result = f(&conn);
-            let mut pool = inner.pool.lock().expect("pool lock");
-            if pool.len() < POOL_SIZE {
-                pool.push(conn);
+            let read_result = read(&db);
+            let mut pool = shared.pool.lock().expect("pool lock");
+            if pool.len() < POOL_CAPACITY {
+                pool.push(db);
             }
-            result
+            read_result
         })
         .await
         .map_err(|e| ApiError::Internal(anyhow::anyhow!("query task failed: {e}")))?
     }
 }
 
-fn open_connection(path: &Path) -> Result<Connection> {
-    let conn = Connection::open_with_flags(path, OpenFlags::SQLITE_OPEN_READ_ONLY | OpenFlags::SQLITE_OPEN_NO_MUTEX)
-        .with_context(|| format!("opening {}", path.display()))?;
-    conn.execute_batch("PRAGMA query_only = 1;")?;
-    Ok(conn)
+fn open_read_only_db(db_path: &Path) -> Result<Connection> {
+    let db = Connection::open_with_flags(db_path, OpenFlags::SQLITE_OPEN_READ_ONLY | OpenFlags::SQLITE_OPEN_NO_MUTEX)
+        .with_context(|| format!("opening {}", db_path.display()))?;
+    db.execute_batch("PRAGMA query_only = 1;")?;
+    Ok(db)
 }

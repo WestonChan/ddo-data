@@ -4,7 +4,7 @@ use serde::Deserialize;
 use std::path::Path;
 
 pub fn parse(path: &Path) -> Result<Vec<Stance>> {
-    let file: StanceFile = super::read_xml(path)?;
+    let file: StanceFile = super::parse_xml_file(path)?;
     Ok(file.stances)
 }
 

@@ -1,4 +1,7 @@
-use crate::db::{booleanize, count, json_row, json_rows, like_pattern, modifiers_for, page, stances_for, Filters};
+use crate::db::{
+    clamped_page, convert_to_booleans, json_row, json_rows, modifiers_for, row_count, stances_for,
+    substring_like_pattern, WhereClause,
+};
 use crate::error::ApiError;
 use crate::query::ApiQuery;
 use crate::state::AppState;
@@ -10,12 +13,12 @@ use utoipa_axum::router::OpenApiRouter;
 use utoipa_axum::routes;
 
 pub fn router() -> OpenApiRouter<AppState> {
-    OpenApiRouter::new().routes(routes!(list)).routes(routes!(detail)).routes(routes!(clickies))
+    OpenApiRouter::new().routes(routes!(spells)).routes(routes!(spell_detail)).routes(routes!(clickies))
 }
 
 #[derive(Deserialize)]
 #[serde(deny_unknown_fields)]
-pub struct SpellFilter {
+pub struct SpellListQuery {
     pub q: Option<String>,
     pub school: Option<String>,
     pub class: Option<String>,
@@ -23,7 +26,7 @@ pub struct SpellFilter {
     pub offset: Option<i64>,
 }
 
-const COLUMNS: &str = "s.id, s.name, s.description, s.icon, s.schools, s.max_caster_level, s.cost, s.metamagics";
+const SPELL_COLUMNS: &str = "s.id, s.name, s.description, s.icon, s.schools, s.max_caster_level, s.cost, s.metamagics";
 
 #[utoipa::path(
     get,
@@ -45,27 +48,33 @@ const COLUMNS: &str = "s.id, s.name, s.description, s.icon, s.schools, s.max_cas
         (status = 400, description = "Unknown or malformed query parameter", body = crate::error::ErrorBody)
     )
 )]
-async fn list(State(state): State<AppState>, ApiQuery(f): ApiQuery<SpellFilter>) -> Result<Json<Value>, ApiError> {
-    let (limit, offset) = page(f.limit, f.offset);
+async fn spells(
+    State(state): State<AppState>,
+    ApiQuery(query): ApiQuery<SpellListQuery>,
+) -> Result<Json<Value>, ApiError> {
+    let (limit, offset) = clamped_page(query.limit, query.offset);
     state
-        .query(move |conn| {
-            let mut f_ = Filters::default();
-            if let Some(q) = f.q.as_deref().filter(|q| !q.trim().is_empty()) {
-                f_.bind("s.name LIKE ? ESCAPE '\\'", like_pattern(q));
+        .read_db(move |db| {
+            let mut where_clause = WhereClause::default();
+            if let Some(search_text) = query.q.as_deref().filter(|q| !q.trim().is_empty()) {
+                where_clause.add_bound_condition("s.name LIKE ? ESCAPE '\\'", substring_like_pattern(search_text));
             }
-            if let Some(school) = &f.school {
-                f_.bind("EXISTS (SELECT 1 FROM json_each(s.schools) j WHERE j.value = ?)", school.clone());
+            if let Some(school) = &query.school {
+                where_clause.add_bound_condition(
+                    "EXISTS (SELECT 1 FROM json_each(s.schools) j WHERE j.value = ?)",
+                    school.clone(),
+                );
             }
-            if let Some(class) = &f.class {
-                f_.bind("EXISTS (SELECT 1 FROM class_spells cs JOIN classes c ON c.id = cs.class_id WHERE cs.spell_id = s.id AND c.name = ?)",
+            if let Some(class) = &query.class {
+                where_clause.add_bound_condition("EXISTS (SELECT 1 FROM class_spells cs JOIN classes c ON c.id = cs.class_id WHERE cs.spell_id = s.id AND c.name = ?)",
                     class.clone(),
                 );
             }
-            let where_sql = f_.where_sql();
-            let total = count(conn, &format!("SELECT COUNT(*) FROM spells s {where_sql}"), f_.params())?;
-            let sql = format!("SELECT {COLUMNS} FROM spells s {where_sql} ORDER BY s.name LIMIT {limit} OFFSET {offset}");
-            let rows = json_rows(conn, &sql, f_.params())?;
-            Ok(Json(json!({ "total": total, "limit": limit, "offset": offset, "spells": rows })))
+            let where_sql = where_clause.to_sql();
+            let total = row_count(db, &format!("SELECT COUNT(*) FROM spells s {where_sql}"), where_clause.params())?;
+            let page_sql = format!("SELECT {SPELL_COLUMNS} FROM spells s {where_sql} ORDER BY s.name LIMIT {limit} OFFSET {offset}");
+            let spells = json_rows(db, &page_sql, where_clause.params())?;
+            Ok(Json(json!({ "total": total, "limit": limit, "offset": offset, "spells": spells })))
         })
         .await
 }
@@ -80,33 +89,33 @@ async fn list(State(state): State<AppState>, ApiQuery(f): ApiQuery<SpellFilter>)
                    level and cost, `stances` it grants, and raw `modifiers`.",
     params(("id" = i64, Path, description = "The spell's numeric id from the list endpoint")), responses((status = 200, description = "The spell with its child collections", body = Value), (status = 404, description = "No spell has this id", body = crate::error::ErrorBody))
 )]
-async fn detail(State(state): State<AppState>, Path(id): Path<i64>) -> Result<Json<Value>, ApiError> {
+async fn spell_detail(State(state): State<AppState>, Path(id): Path<i64>) -> Result<Json<Value>, ApiError> {
     state
-        .query(move |conn| {
-            let mut spell = json_row(conn, &format!("SELECT {COLUMNS} FROM spells s WHERE s.id = ?1"), [id])?;
+        .read_db(move |db| {
+            let mut spell = json_row(db, &format!("SELECT {SPELL_COLUMNS} FROM spells s WHERE s.id = ?1"), [id])?;
             spell["damage"] = Value::Array(json_rows(
-                conn,
+                db,
                 "SELECT base_dice_number, base_dice_sides, base_dice_bonus, per_caster_levels, bonus_dice_number, bonus_dice_sides, bonus_dice_bonus, damage, spell_power
                    FROM spell_damage WHERE spell_id = ?1 ORDER BY sort_order",
                 [id],
             )?);
             let mut dcs = json_rows(
-                conn,
+                db,
                 "SELECT dc_type, dc_versus, schools, casting_stat_mod, amount, mod_abilities FROM spell_dcs WHERE spell_id = ?1 ORDER BY sort_order",
                 [id],
             )?;
             for dc in &mut dcs {
-                booleanize(dc, &["casting_stat_mod"]);
+                convert_to_booleans(dc, &["casting_stat_mod"]);
             }
             spell["dcs"] = Value::Array(dcs);
             spell["classes"] = Value::Array(json_rows(
-                conn,
+                db,
                 "SELECT c.id AS class_id, c.name AS class, cs.spell_level, cs.cost, cs.max_caster_level FROM class_spells cs JOIN classes c ON c.id = cs.class_id
                   WHERE cs.spell_id = ?1 ORDER BY c.name",
                 [id],
             )?);
-            spell["stances"] = Value::Array(stances_for(conn, "spell", id)?);
-            spell["modifiers"] = Value::Array(modifiers_for(conn, "spell", id)?);
+            spell["stances"] = Value::Array(stances_for(db, "spell", id)?);
+            spell["modifiers"] = Value::Array(modifiers_for(db, "spell", id)?);
             Ok(Json(spell))
         })
         .await
@@ -123,14 +132,14 @@ async fn detail(State(state): State<AppState>, Path(id): Path<i64>) -> Result<Js
 )]
 async fn clickies(State(state): State<AppState>) -> Result<Json<Vec<Value>>, ApiError> {
     state
-        .query(|conn| {
-            let mut rows =
-                json_rows(conn, "SELECT id, name, description, icon, school FROM clickies ORDER BY name", [])?;
-            for c in &mut rows {
-                let id = c["id"].as_i64().unwrap_or(0);
-                c["modifiers"] = Value::Array(modifiers_for(conn, "clickie", id)?);
+        .read_db(|db| {
+            let mut clickies =
+                json_rows(db, "SELECT id, name, description, icon, school FROM clickies ORDER BY name", [])?;
+            for clickie in &mut clickies {
+                let clickie_id = clickie["id"].as_i64().unwrap_or(0);
+                clickie["modifiers"] = Value::Array(modifiers_for(db, "clickie", clickie_id)?);
             }
-            Ok(Json(rows))
+            Ok(Json(clickies))
         })
         .await
 }

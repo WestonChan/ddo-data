@@ -9,25 +9,25 @@ use utoipa_axum::router::OpenApiRouter;
 use utoipa_axum::routes;
 
 pub fn router() -> OpenApiRouter<AppState> {
-    OpenApiRouter::new().routes(routes!(list)).routes(routes!(detail))
+    OpenApiRouter::new().routes(routes!(crafting_systems)).routes(routes!(crafting_system_detail))
 }
 
-const SYSTEM_COLUMNS: &str = "s.id, s.name, s.page, p.name AS pack, s.npc,
+const CRAFTING_SYSTEM_COLUMNS_AND_JOINS: &str = "s.id, s.name, s.page, p.name AS pack, s.npc,
         (SELECT COUNT(*) FROM crafting_ingredients i WHERE i.system_id = s.id) AS ingredient_count,
         (SELECT COUNT(*) FROM crafting_recipes r WHERE r.system_id = s.id) AS recipe_count
    FROM crafting_systems s LEFT JOIN adventure_packs p ON p.id = s.pack_id";
 
-fn attach_families(conn: &Connection, system: &mut Value) -> Result<(), ApiError> {
-    let id = system["id"].as_i64().unwrap_or(0);
+fn attach_augment_families(db: &Connection, crafting_system: &mut Value) -> Result<(), ApiError> {
+    let system_id = crafting_system["id"].as_i64().unwrap_or(0);
     let families =
-        json_rows(conn, "SELECT family FROM crafting_system_families WHERE system_id = ?1 ORDER BY family", [id])?;
-    system["families"] = Value::Array(families.into_iter().map(|f| f["family"].clone()).collect());
+        json_rows(db, "SELECT family FROM crafting_system_families WHERE system_id = ?1 ORDER BY family", [system_id])?;
+    crafting_system["families"] = Value::Array(families.into_iter().map(|row| row["family"].clone()).collect());
     Ok(())
 }
 
-fn recipe_cost(conn: &Connection, recipe_id: i64) -> Result<Vec<Value>, ApiError> {
+fn recipe_cost(db: &Connection, recipe_id: i64) -> Result<Vec<Value>, ApiError> {
     json_rows(
-        conn,
+        db,
         "SELECT i.name AS ingredient, i.tier, ri.quantity FROM crafting_recipe_ingredients ri
            JOIN crafting_ingredients i ON i.id = ri.ingredient_id
           WHERE ri.recipe_id = ?1 ORDER BY i.id",
@@ -35,17 +35,17 @@ fn recipe_cost(conn: &Connection, recipe_id: i64) -> Result<Vec<Value>, ApiError
     )
 }
 
-pub fn recipes_yielding(conn: &Connection, augment_id: i64) -> Result<Vec<Value>, ApiError> {
+pub fn crafting_recipes_yielding(db: &Connection, augment_id: i64) -> Result<Vec<Value>, ApiError> {
     let mut recipes = json_rows(
-        conn,
+        db,
         "SELECT r.id, s.name AS system, r.tier, r.option FROM crafting_recipe_augments ra
            JOIN crafting_recipes r ON r.id = ra.recipe_id JOIN crafting_systems s ON s.id = r.system_id
           WHERE ra.augment_id = ?1 ORDER BY s.name, r.sort_order",
         [augment_id],
     )?;
     for recipe in &mut recipes {
-        let id = recipe.as_object_mut().and_then(|r| r.remove("id")).and_then(|v| v.as_i64()).unwrap_or(0);
-        recipe["cost"] = Value::Array(recipe_cost(conn, id)?);
+        let recipe_id = recipe.as_object_mut().and_then(|r| r.remove("id")).and_then(|v| v.as_i64()).unwrap_or(0);
+        recipe["cost"] = Value::Array(recipe_cost(db, recipe_id)?);
     }
     Ok(recipes)
 }
@@ -62,17 +62,18 @@ pub fn recipes_yielding(conn: &Connection, augment_id: i64) -> Result<Vec<Value>
                    (`ingredient_count`, `recipe_count`). Empty until a system has been read.",
     responses((status = 200, description = "The whole table with each system's families and counts", body = Vec<Value>))
 )]
-async fn list(State(state): State<AppState>) -> Result<Json<Vec<Value>>, ApiError> {
-    let systems = state
-        .query(|conn| {
-            let mut systems = json_rows(conn, &format!("SELECT {SYSTEM_COLUMNS} ORDER BY s.name"), [])?;
-            for system in &mut systems {
-                attach_families(conn, system)?;
+async fn crafting_systems(State(state): State<AppState>) -> Result<Json<Vec<Value>>, ApiError> {
+    let crafting_systems = state
+        .read_db(|db| {
+            let mut crafting_systems =
+                json_rows(db, &format!("SELECT {CRAFTING_SYSTEM_COLUMNS_AND_JOINS} ORDER BY s.name"), [])?;
+            for crafting_system in &mut crafting_systems {
+                attach_augment_families(db, crafting_system)?;
             }
-            Ok(systems)
+            Ok(crafting_systems)
         })
         .await?;
-    Ok(Json(systems))
+    Ok(Json(crafting_systems))
 }
 
 #[utoipa::path(
@@ -94,18 +95,19 @@ async fn list(State(state): State<AppState>) -> Result<Json<Vec<Value>>, ApiErro
         (status = 404, description = "No crafting system has this id", body = crate::error::ErrorBody)
     )
 )]
-async fn detail(State(state): State<AppState>, Path(id): Path<i64>) -> Result<Json<Value>, ApiError> {
+async fn crafting_system_detail(State(state): State<AppState>, Path(id): Path<i64>) -> Result<Json<Value>, ApiError> {
     state
-        .query(move |conn| {
-            let mut system = json_row(conn, &format!("SELECT {SYSTEM_COLUMNS} WHERE s.id = ?1"), [id])?;
-            attach_families(conn, &mut system)?;
-            system["ingredients"] = Value::Array(json_rows(
-                conn,
+        .read_db(move |db| {
+            let mut crafting_system =
+                json_row(db, &format!("SELECT {CRAFTING_SYSTEM_COLUMNS_AND_JOINS} WHERE s.id = ?1"), [id])?;
+            attach_augment_families(db, &mut crafting_system)?;
+            crafting_system["ingredients"] = Value::Array(json_rows(
+                db,
                 "SELECT id, name, tier, bind, source FROM crafting_ingredients WHERE system_id = ?1 ORDER BY id",
                 [id],
             )?);
             let mut recipes = json_rows(
-                conn,
+                db,
                 "SELECT r.id, r.tier, t.label AS slot, r.option, r.note FROM crafting_recipes r
                    LEFT JOIN augment_slot_types t ON t.id = r.slot_id
                   WHERE r.system_id = ?1 ORDER BY r.sort_order",
@@ -114,15 +116,15 @@ async fn detail(State(state): State<AppState>, Path(id): Path<i64>) -> Result<Js
             for recipe in &mut recipes {
                 let recipe_id = recipe["id"].as_i64().unwrap_or(0);
                 recipe["augments"] = Value::Array(json_rows(
-                    conn,
+                    db,
                     "SELECT a.id, a.name, a.min_level FROM crafting_recipe_augments ra JOIN augments a ON a.id = ra.augment_id
                       WHERE ra.recipe_id = ?1 ORDER BY a.id",
                     [recipe_id],
                 )?);
-                recipe["cost"] = Value::Array(recipe_cost(conn, recipe_id)?);
+                recipe["cost"] = Value::Array(recipe_cost(db, recipe_id)?);
             }
-            system["recipes"] = Value::Array(recipes);
-            Ok(Json(system))
+            crafting_system["recipes"] = Value::Array(recipes);
+            Ok(Json(crafting_system))
         })
         .await
 }

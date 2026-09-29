@@ -1,4 +1,4 @@
-use crate::db::count;
+use crate::db::row_count;
 use crate::error::ApiError;
 use crate::state::AppState;
 use axum::extract::State;
@@ -11,11 +11,11 @@ use utoipa_axum::router::OpenApiRouter;
 use utoipa_axum::routes;
 
 pub fn router() -> OpenApiRouter<AppState> {
-    OpenApiRouter::new().routes(routes!(version))
+    OpenApiRouter::new().routes(routes!(version_report))
 }
 
 #[derive(Serialize, ToSchema)]
-pub struct VersionInfo {
+pub struct VersionReport {
     pub schema_version: i64,
     pub api_commit: Option<&'static str>,
     #[schema(value_type = Object)]
@@ -23,7 +23,7 @@ pub struct VersionInfo {
     pub counts: BTreeMap<String, i64>,
 }
 
-const COUNTED: &[&str] = &[
+const COUNTED_TABLES: &[&str] = &[
     "items",
     "augments",
     "set_bonuses",
@@ -56,19 +56,25 @@ const COUNTED: &[&str] = &[
                    was built from (`api_commit`, null for local builds), the schema version, and row counts for \
                    the main tables. The dataset SHA is the same value every response carries in its \
                    `X-Dataset-Version` header; a change in it means every cached response is stale.",
-    responses((status = 200, description = "Dataset, schema and counts", body = VersionInfo))
+    responses((status = 200, description = "Dataset, schema and counts", body = VersionReport))
 )]
-async fn version(State(state): State<AppState>) -> Result<Json<VersionInfo>, ApiError> {
-    let dataset = state.dataset().clone();
+async fn version_report(State(state): State<AppState>) -> Result<Json<VersionReport>, ApiError> {
+    let dataset = state.dataset_version().clone();
     let schema_version = state.schema_version();
-    let counts = state
-        .query(|conn| {
-            let mut counts = BTreeMap::new();
-            for table in COUNTED {
-                counts.insert((*table).to_string(), count(conn, &format!("SELECT COUNT(*) FROM {table}"), [])?);
+    let row_counts_by_table = state
+        .read_db(|db| {
+            let mut row_counts_by_table = BTreeMap::new();
+            for table in COUNTED_TABLES {
+                let table_row_count = row_count(db, &format!("SELECT COUNT(*) FROM {table}"), [])?;
+                row_counts_by_table.insert((*table).to_string(), table_row_count);
             }
-            Ok(counts)
+            Ok(row_counts_by_table)
         })
         .await?;
-    Ok(Json(VersionInfo { schema_version, api_commit: option_env!("DDO_API_COMMIT"), dataset, counts }))
+    Ok(Json(VersionReport {
+        schema_version,
+        api_commit: option_env!("DDO_API_COMMIT"),
+        dataset,
+        counts: row_counts_by_table,
+    }))
 }

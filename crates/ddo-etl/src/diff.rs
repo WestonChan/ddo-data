@@ -3,99 +3,99 @@ use rusqlite::Connection;
 use std::collections::{HashMap, HashSet};
 
 #[derive(Debug, Default, Clone, PartialEq, Eq)]
-pub struct DiffReport {
-    pub matched: usize,
-    pub only_new: Vec<String>,
-    pub only_legacy: Vec<String>,
-    pub excluded_by_design: Vec<String>,
+pub struct ItemCoverageReport {
+    pub matched_count: usize,
+    pub names_only_in_built: Vec<String>,
+    pub names_only_in_legacy: Vec<String>,
+    pub names_excluded_by_design: Vec<String>,
 }
 
-impl DiffReport {
-    pub fn coverage(&self) -> f64 {
-        let denominator = self.matched + self.only_legacy.len();
-        if denominator == 0 {
+impl ItemCoverageReport {
+    pub fn coverage_ratio(&self) -> f64 {
+        let comparable_legacy_count = self.matched_count + self.names_only_in_legacy.len();
+        if comparable_legacy_count == 0 {
             1.0
         } else {
-            self.matched as f64 / denominator as f64
+            self.matched_count as f64 / comparable_legacy_count as f64
         }
     }
 }
 
-pub fn normalize_name(name: &str) -> String {
-    let base = strip_level_suffix(name.trim());
-    base.chars().filter(|c| c.is_ascii_alphanumeric()).flat_map(char::to_lowercase).collect()
+pub fn name_comparison_key(name: &str) -> String {
+    let base_name = without_level_suffix(name.trim());
+    base_name.chars().filter(|c| c.is_ascii_alphanumeric()).flat_map(char::to_lowercase).collect()
 }
 
-fn strip_level_suffix(name: &str) -> &str {
-    let Some(open) = name.rfind('(') else {
+fn without_level_suffix(name: &str) -> &str {
+    let Some(open_paren_index) = name.rfind('(') else {
         return name;
     };
-    let inner = name[open + 1..].trim_end_matches(')').trim();
-    let is_level = inner
+    let parenthesized = name[open_paren_index + 1..].trim_end_matches(')').trim();
+    let is_level_suffix = parenthesized
         .strip_prefix("level ")
-        .or_else(|| inner.strip_prefix("Level "))
-        .or_else(|| inner.strip_prefix("ML "))
+        .or_else(|| parenthesized.strip_prefix("Level "))
+        .or_else(|| parenthesized.strip_prefix("ML "))
         .is_some_and(|n| !n.is_empty() && n.chars().all(|c| c.is_ascii_digit()));
-    if name.ends_with(')') && is_level {
-        name[..open].trim_end()
+    if name.ends_with(')') && is_level_suffix {
+        name[..open_paren_index].trim_end()
     } else {
         name
     }
 }
 
-fn names(conn: &Connection, sql: &str) -> Result<HashMap<String, String>> {
-    let mut stmt = conn.prepare(sql)?;
-    let rows = stmt.query_map([], |r| r.get::<_, String>(0))?;
-    let mut out = HashMap::new();
-    for name in rows {
+fn names_by_comparison_key(db: &Connection, sql: &str) -> Result<HashMap<String, String>> {
+    let mut statement = db.prepare(sql)?;
+    let names = statement.query_map([], |r| r.get::<_, String>(0))?;
+    let mut names_by_key = HashMap::new();
+    for name in names {
         let name = name?;
-        out.insert(normalize_name(&name), name);
+        names_by_key.insert(name_comparison_key(&name), name);
     }
-    Ok(out)
+    Ok(names_by_key)
 }
 
-pub fn compare(new: &Connection, legacy: &Connection) -> Result<DiffReport> {
-    let new_names = names(new, "SELECT name FROM items")?;
-    let legacy_names = names(legacy, "SELECT name FROM items")?;
-    let excluded: HashSet<String> = match names(new, "SELECT name FROM excluded_items") {
-        Ok(map) => map.into_keys().collect(),
+pub fn item_coverage(built_db: &Connection, legacy_db: &Connection) -> Result<ItemCoverageReport> {
+    let built_names_by_key = names_by_comparison_key(built_db, "SELECT name FROM items")?;
+    let legacy_names_by_key = names_by_comparison_key(legacy_db, "SELECT name FROM items")?;
+    let excluded_keys: HashSet<String> = match names_by_comparison_key(built_db, "SELECT name FROM excluded_items") {
+        Ok(excluded_names_by_key) => excluded_names_by_key.into_keys().collect(),
         Err(_) => HashSet::new(),
     };
-    let mut report = DiffReport::default();
-    for (key, name) in &legacy_names {
-        if new_names.contains_key(key) {
-            report.matched += 1;
-        } else if excluded.contains(key) {
-            report.excluded_by_design.push(name.clone());
+    let mut report = ItemCoverageReport::default();
+    for (key, name) in &legacy_names_by_key {
+        if built_names_by_key.contains_key(key) {
+            report.matched_count += 1;
+        } else if excluded_keys.contains(key) {
+            report.names_excluded_by_design.push(name.clone());
         } else {
-            report.only_legacy.push(name.clone());
+            report.names_only_in_legacy.push(name.clone());
         }
     }
-    for (key, name) in &new_names {
-        if !legacy_names.contains_key(key) {
-            report.only_new.push(name.clone());
+    for (key, name) in &built_names_by_key {
+        if !legacy_names_by_key.contains_key(key) {
+            report.names_only_in_built.push(name.clone());
         }
     }
-    report.only_legacy.sort();
-    report.only_new.sort();
-    report.excluded_by_design.sort();
+    report.names_only_in_legacy.sort();
+    report.names_only_in_built.sort();
+    report.names_excluded_by_design.sort();
     Ok(report)
 }
 
 #[cfg(test)]
 mod tests {
-    use super::normalize_name;
+    use super::name_comparison_key;
 
     #[test]
     fn level_suffix_variants_share_a_key() {
-        assert_eq!(normalize_name("Allegiance (Level 12)"), "allegiance");
-        assert_eq!(normalize_name("Adamantine Knuckles (level 23)"), "adamantineknuckles");
-        assert_eq!(normalize_name("Allegiance"), "allegiance");
+        assert_eq!(name_comparison_key("Allegiance (Level 12)"), "allegiance");
+        assert_eq!(name_comparison_key("Adamantine Knuckles (level 23)"), "adamantineknuckles");
+        assert_eq!(name_comparison_key("Allegiance"), "allegiance");
         assert_eq!(
-            normalize_name("Cloak of the Reaper (Blue)"),
+            name_comparison_key("Cloak of the Reaper (Blue)"),
             "cloakofthereaperblue",
             "only level suffixes are stripped"
         );
-        assert_eq!(normalize_name("Sireth, Spear of the Sky"), "sirethspearofthesky");
+        assert_eq!(name_comparison_key("Sireth, Spear of the Sky"), "sirethspearofthesky");
     }
 }

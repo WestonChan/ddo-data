@@ -1,124 +1,134 @@
-use super::{json_numbers, json_strings, nonempty, BuildReport, Ctx};
+use super::{json_number_array, json_string_array, trimmed_non_empty, BuildReport, TableWriter};
 use crate::xml::classes::{self, FeatSlot};
 use crate::xml::feats::{self, Feat};
 use crate::xml::{races, stances};
 use anyhow::{bail, Context, Result};
 use ddo_model::enums::{AbilityOwner, FeatSource, ModifierSource, RequirementOwner, SaveProgression};
+use ddo_model::stats::Stat;
 use rusqlite::params;
 use std::path::Path;
 
-impl Ctx<'_> {
+impl TableWriter<'_> {
     pub(super) fn write_standard_feats(&mut self, path: &Path, report: &mut BuildReport) -> Result<()> {
         if !path.is_file() {
             return Ok(());
         }
         for feat in feats::parse(path)? {
             self.write_feat(&feat, FeatSource::Standard, None)?;
-            report.feats += 1;
+            report.feat_count += 1;
         }
         Ok(())
     }
 
-    fn write_feat(&mut self, f: &Feat, source: FeatSource, source_id: Option<i64>) -> Result<i64> {
-        let (auto_reqs, ignore) = match &f.automatic_acquisition {
-            Some(a) => (Some(&a.requirements), a.ignore_requirements),
+    fn write_feat(&mut self, feat: &Feat, source: FeatSource, source_id: Option<i64>) -> Result<i64> {
+        let (auto_acquire_requirements, ignores_requirements) = match &feat.automatic_acquisition {
+            Some(acquisition) => (Some(&acquisition.requirements), acquisition.ignores_requirements),
             None => (None, false),
         };
-        self.tx.execute(
-            "INSERT INTO feats (name, source_kind, source_id, description, icon, acquire, max_times_acquire, sphere,
+        self.transaction
+            .execute(
+                "INSERT INTO feats (name, source_kind, source_id, description, icon, acquire, max_times_acquire, sphere,
                                 auto_acquire_ignores_requirements)
              VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9)",
-            params![
-                f.name,
-                source.as_str(),
-                source_id,
-                nonempty(f.description.as_deref()),
-                nonempty(f.icon.as_deref()),
-                nonempty(f.acquire.as_deref()),
-                f.max_times_acquire,
-                nonempty(f.sphere.as_deref()),
-                ignore,
-            ],
-        )
-        .with_context(|| format!("feat {:?} from {:?} {:?}", f.name, source, source_id))?;
-        let id = self.tx.last_insert_rowid();
-        self.caches.feats.entry((f.name.clone(), source, source_id)).or_insert(id);
+                params![
+                    feat.name,
+                    source.as_str(),
+                    source_id,
+                    trimmed_non_empty(feat.description.as_deref()),
+                    trimmed_non_empty(feat.icon.as_deref()),
+                    trimmed_non_empty(feat.acquire.as_deref()),
+                    feat.maximum_times_acquired,
+                    trimmed_non_empty(feat.sphere.as_deref()),
+                    ignores_requirements,
+                ],
+            )
+            .with_context(|| format!("feat {:?} from {:?} {:?}", feat.name, source, source_id))?;
+        let feat_id = self.transaction.last_insert_rowid();
+        self.written.feat_ids_by_key.entry((feat.name.clone(), source, source_id)).or_insert(feat_id);
 
-        for g in &f.groups {
-            self.tx
-                .execute("INSERT OR IGNORE INTO feat_groups (feat_id, group_name) VALUES (?1, ?2)", params![id, g])?;
-        }
-        for cg in &f.conditional_groups {
-            self.tx.execute(
-                "INSERT INTO feat_conditional_groups (feat_id, groups) VALUES (?1, ?2)",
-                params![id, json_strings(&cg.groups).unwrap_or_else(|| "[]".into())],
+        for group_name in &feat.groups {
+            self.transaction.execute(
+                "INSERT OR IGNORE INTO feat_groups (feat_id, group_name) VALUES (?1, ?2)",
+                params![feat_id, group_name],
             )?;
-            let cg_id = self.tx.last_insert_rowid();
-            if let Some(reqs) = &cg.requirements {
-                self.write_requirements(RequirementOwner::FeatConditionalGroup, cg_id, reqs)?;
+        }
+        for conditional_group in &feat.conditional_groups {
+            self.transaction.execute(
+                "INSERT INTO feat_conditional_groups (feat_id, groups) VALUES (?1, ?2)",
+                params![feat_id, json_string_array(&conditional_group.groups).unwrap_or_else(|| "[]".into())],
+            )?;
+            let conditional_group_id = self.transaction.last_insert_rowid();
+            if let Some(requirements) = &conditional_group.requirements {
+                self.write_requirements(RequirementOwner::FeatConditionalGroup, conditional_group_id, requirements)?;
             }
         }
-        for (i, s) in f.sub_items.iter().enumerate() {
-            self.tx.execute(
+        for (sort_order, sub_item) in feat.sub_items.iter().enumerate() {
+            self.transaction.execute(
                 "INSERT INTO feat_sub_items (feat_id, sort_order, name, icon, description) VALUES (?1, ?2, ?3, ?4, ?5)",
-                params![id, i as i64, s.name.trim(), nonempty(s.icon.as_deref()), nonempty(s.description.as_deref())],
+                params![
+                    feat_id,
+                    sort_order as i64,
+                    sub_item.name.trim(),
+                    trimmed_non_empty(sub_item.icon.as_deref()),
+                    trimmed_non_empty(sub_item.description.as_deref())
+                ],
             )?;
         }
-        if let Some(reqs) = &f.requirements {
-            self.write_requirements(RequirementOwner::Feat, id, reqs)?;
+        if let Some(requirements) = &feat.requirements {
+            self.write_requirements(RequirementOwner::Feat, feat_id, requirements)?;
         }
-        if let Some(reqs) = auto_reqs {
-            self.write_requirements(RequirementOwner::FeatAutoAcquire, id, reqs)?;
+        if let Some(requirements) = auto_acquire_requirements {
+            self.write_requirements(RequirementOwner::FeatAutoAcquire, feat_id, requirements)?;
         }
-        self.write_ability_children(AbilityOwner::Feat, id, &f.stances, &f.dcs, f.attack.as_ref())?;
-        self.write_modifiers(ModifierSource::Feat, id, &f.effects)?;
-        self.write_attack_bonuses(AbilityOwner::Feat, id, f.attack.as_ref())?;
-        for (i, bonus_id) in self.derived_bonus_ids(&f.effects)?.into_iter().enumerate() {
-            self.tx.execute(
+        self.write_abilities(AbilityOwner::Feat, feat_id, &feat.stances, &feat.dcs, feat.attack.as_ref())?;
+        self.write_modifiers(ModifierSource::Feat, feat_id, &feat.effects)?;
+        self.write_attack_bonuses(AbilityOwner::Feat, feat_id, feat.attack.as_ref())?;
+        for (sort_order, bonus_id) in self.ensure_derived_bonuses(&feat.effects)?.into_iter().enumerate() {
+            self.transaction.execute(
                 "INSERT INTO feat_bonuses (feat_id, bonus_id, sort_order) VALUES (?1, ?2, ?3)",
-                params![id, bonus_id, i as i64],
+                params![feat_id, bonus_id, sort_order as i64],
             )?;
         }
-        Ok(id)
+        Ok(feat_id)
     }
 
     pub(super) fn write_standalone_stances(&mut self, path: &Path, report: &mut BuildReport) -> Result<()> {
         if !path.is_file() {
             return Ok(());
         }
-        let list = stances::parse(path)?;
-        self.write_stances(AbilityOwner::Standalone, 0, &list)?;
-        report.standalone_stances = list.len();
+        let standalone_stances = stances::parse(path)?;
+        self.write_stances(AbilityOwner::Standalone, 0, &standalone_stances)?;
+        report.standalone_stance_count = standalone_stances.len();
         Ok(())
     }
 
     fn write_stances(&mut self, owner: AbilityOwner, owner_id: i64, stances: &[feats::Stance]) -> Result<()> {
-        for (i, s) in stances.iter().enumerate() {
-            self.tx.execute(
+        for (sort_order, stance) in stances.iter().enumerate() {
+            self.transaction.execute(
                 "INSERT INTO stances (owner_kind, owner_id, sort_order, name, description, icon, group_name, auto_controlled, incompatible)
                  VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9)",
                 params![
                     owner.as_str(),
                     owner_id,
-                    i as i64,
-                    s.name.trim(),
-                    nonempty(s.description.as_deref()),
-                    nonempty(s.icon.as_deref()),
-                    nonempty(s.group.as_deref()),
-                    s.auto_controlled.is_some(),
-                    json_strings(&s.incompatible),
+                    sort_order as i64,
+                    stance.name.trim(),
+                    trimmed_non_empty(stance.description.as_deref()),
+                    trimmed_non_empty(stance.icon.as_deref()),
+                    trimmed_non_empty(stance.group.as_deref()),
+                    stance.auto_controlled.is_some(),
+                    json_string_array(&stance.incompatible_stances),
                 ],
             )?;
-            let stance_id = self.tx.last_insert_rowid();
-            if let Some(reqs) = &s.requirements {
-                self.write_requirements(RequirementOwner::Stance, stance_id, reqs)?;
+            let stance_id = self.transaction.last_insert_rowid();
+            if let Some(requirements) = &stance.requirements {
+                self.write_requirements(RequirementOwner::Stance, stance_id, requirements)?;
             }
-            self.write_modifiers(ModifierSource::Stance, stance_id, &s.effects)?;
+            self.write_modifiers(ModifierSource::Stance, stance_id, &stance.effects)?;
         }
         Ok(())
     }
 
-    pub(super) fn write_ability_children(
+    pub(super) fn write_abilities(
         &mut self,
         owner: AbilityOwner,
         owner_id: i64,
@@ -127,43 +137,43 @@ impl Ctx<'_> {
         attack: Option<&feats::Attack>,
     ) -> Result<()> {
         self.write_stances(owner, owner_id, stances)?;
-        for (i, d) in dcs.iter().enumerate() {
-            let amount = d.amount.as_ref().map(|v| v.numbers()).transpose().map_err(anyhow::Error::msg)?;
-            self.tx.execute(
+        for (sort_order, dc) in dcs.iter().enumerate() {
+            let amounts = dc.amount.as_ref().map(|v| v.numbers()).transpose().map_err(anyhow::Error::msg)?;
+            self.transaction.execute(
                 "INSERT INTO dcs (owner_kind, owner_id, sort_order, name, description, icon, dc_type, dc_versus, mod_ability, amount,
                                   tactical, other, skill, class_level, base_class_level)
                  VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11, ?12, ?13, ?14, ?15)",
                 params![
                     owner.as_str(),
                     owner_id,
-                    i as i64,
-                    nonempty(d.name.as_deref()),
-                    nonempty(d.description.as_deref()),
-                    nonempty(d.icon.as_deref()),
-                    nonempty(d.dc_type.as_deref()),
-                    nonempty(d.dc_versus.as_deref()),
-                    json_strings(&d.mod_ability),
-                    amount.as_deref().and_then(json_numbers),
-                    nonempty(d.tactical.as_deref()),
-                    nonempty(d.other.as_deref()),
-                    nonempty(d.skill.as_deref()),
-                    nonempty(d.class_level.as_deref()),
-                    nonempty(d.base_class_level.as_deref()),
+                    sort_order as i64,
+                    trimmed_non_empty(dc.name.as_deref()),
+                    trimmed_non_empty(dc.description.as_deref()),
+                    trimmed_non_empty(dc.icon.as_deref()),
+                    trimmed_non_empty(dc.dc_type.as_deref()),
+                    trimmed_non_empty(dc.dc_versus.as_deref()),
+                    json_string_array(&dc.modifier_abilities),
+                    amounts.as_deref().and_then(json_number_array),
+                    trimmed_non_empty(dc.tactical.as_deref()),
+                    trimmed_non_empty(dc.other.as_deref()),
+                    trimmed_non_empty(dc.skill.as_deref()),
+                    trimmed_non_empty(dc.class_level.as_deref()),
+                    trimmed_non_empty(dc.base_class_level.as_deref()),
                 ],
             )?;
         }
-        if let Some(a) = attack {
-            self.tx.execute(
+        if let Some(attack) = attack {
+            self.transaction.execute(
                 "INSERT INTO attacks (owner_kind, owner_id, name, description, icon, cooldown_seconds, duration_seconds)
                  VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7)",
                 params![
                     owner.as_str(),
                     owner_id,
-                    nonempty(a.name.as_deref()),
-                    nonempty(a.description.as_deref()),
-                    nonempty(a.icon.as_deref()),
-                    a.cooldown_seconds,
-                    a.duration_seconds(),
+                    trimmed_non_empty(attack.name.as_deref()),
+                    trimmed_non_empty(attack.description.as_deref()),
+                    trimmed_non_empty(attack.icon.as_deref()),
+                    attack.cooldown_seconds,
+                    attack.duration_seconds(),
                 ],
             )?;
         }
@@ -176,189 +186,194 @@ impl Ctx<'_> {
         owner_id: i64,
         attack: Option<&feats::Attack>,
     ) -> Result<()> {
-        let Some(a) = attack else {
+        let Some(attack) = attack else {
             return Ok(());
         };
-        let (this_attack, follow_on) = match owner {
+        let (this_attack_source, follow_on_source) = match owner {
             AbilityOwner::Feat => (ModifierSource::FeatThisAttack, ModifierSource::FeatFollowOn),
             AbilityOwner::Enhancement => (ModifierSource::EnhancementThisAttack, ModifierSource::EnhancementFollowOn),
             AbilityOwner::EnhancementSelection => {
                 (ModifierSource::EnhancementSelectionThisAttack, ModifierSource::EnhancementSelectionFollowOn)
             }
             AbilityOwner::Spell | AbilityOwner::Standalone => {
-                if a.follow_on_effects().is_empty() && a.this_attack_effects().is_empty() {
+                if attack.follow_on_effects().is_empty() && attack.this_attack_effects().is_empty() {
                     return Ok(());
                 }
                 bail!("{owner:?} {owner_id}: attack bonuses have no modifier source");
             }
         };
-        self.write_modifiers(follow_on, owner_id, a.follow_on_effects())?;
-        self.write_modifiers(this_attack, owner_id, a.this_attack_effects())?;
+        self.write_modifiers(follow_on_source, owner_id, attack.follow_on_effects())?;
+        self.write_modifiers(this_attack_source, owner_id, attack.this_attack_effects())?;
         Ok(())
     }
 
-    fn resolve_feat(&self, name: &str, source: FeatSource, source_id: i64) -> Option<i64> {
-        let name = name.trim();
-        self.caches
-            .feats
-            .get(&(name.to_string(), source, Some(source_id)))
-            .or_else(|| self.caches.feats.get(&(name.to_string(), FeatSource::Standard, None)))
+    fn resolved_feat_id(&self, feat_name: &str, source: FeatSource, source_id: i64) -> Option<i64> {
+        let feat_name = feat_name.trim();
+        self.written
+            .feat_ids_by_key
+            .get(&(feat_name.to_string(), source, Some(source_id)))
+            .or_else(|| self.written.feat_ids_by_key.get(&(feat_name.to_string(), FeatSource::Standard, None)))
             .copied()
     }
 
     pub(super) fn write_race_file(&mut self, path: &Path, report: &mut BuildReport) -> Result<()> {
-        let r = races::parse(path)?;
-        self.tx.execute(
+        let race = races::parse(path)?;
+        self.transaction.execute(
             "INSERT INTO races (name, short_name, description, starting_world, build_points, iconic_class, is_construct, no_past_life, skill_points)
              VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9)",
             params![
-                r.name,
-                nonempty(r.short_name.as_deref()),
-                nonempty(r.description.as_deref()),
-                nonempty(r.starting_world.as_deref()),
-                json_numbers(&r.build_points.iter().map(|v| *v as f64).collect::<Vec<_>>()),
-                nonempty(r.iconic_class.as_deref()),
-                r.is_construct,
-                r.no_past_life,
-                r.skill_points,
+                race.name,
+                trimmed_non_empty(race.short_name.as_deref()),
+                trimmed_non_empty(race.description.as_deref()),
+                trimmed_non_empty(race.starting_world.as_deref()),
+                json_number_array(&race.build_points.iter().map(|v| *v as f64).collect::<Vec<_>>()),
+                trimmed_non_empty(race.iconic_class.as_deref()),
+                race.is_construct,
+                race.lacks_past_life,
+                race.skill_points,
             ],
         )?;
-        let race_id = self.tx.last_insert_rowid();
-        for (ability, modifier) in &r.ability_modifiers {
-            let Some(stat) = ddo_model::stat_by_name(ability) else {
-                bail!("{}: unknown ability {ability:?}", r.name);
+        let race_id = self.transaction.last_insert_rowid();
+        for (ability, modifier) in &race.ability_modifiers {
+            let Some(stat) = Stat::by_name(ability) else {
+                bail!("{}: unknown ability {ability:?}", race.name);
             };
-            self.tx.execute(
+            self.transaction.execute(
                 "INSERT OR REPLACE INTO race_ability_modifiers (race_id, stat_id, modifier) VALUES (?1, ?2, ?3)",
                 params![race_id, stat.id, modifier],
             )?;
         }
-        for feat in &r.feats {
+        for feat in &race.feats {
             self.write_feat(feat, FeatSource::Race, Some(race_id))?;
-            report.feats += 1;
+            report.feat_count += 1;
         }
-        for (i, name) in r.granted_feats.iter().enumerate() {
-            let feat_id = self.resolve_feat(name, FeatSource::Race, race_id);
-            self.tx.execute(
+        for (sort_order, feat_name) in race.granted_feat_names.iter().enumerate() {
+            let feat_id = self.resolved_feat_id(feat_name, FeatSource::Race, race_id);
+            self.transaction.execute(
                 "INSERT INTO race_granted_feats (race_id, sort_order, feat_name, feat_id) VALUES (?1, ?2, ?3, ?4)",
-                params![race_id, i as i64, name, feat_id],
+                params![race_id, sort_order as i64, feat_name, feat_id],
             )?;
         }
-        for slot in &r.feat_slots {
-            self.tx.execute(
+        for feat_slot in &race.feat_slots {
+            self.transaction.execute(
                 "INSERT OR REPLACE INTO race_feat_slots (race_id, level, feat_type, update_list) VALUES (?1, ?2, ?3, ?4)",
-                params![race_id, slot.level, slot.feat_type.trim(), json_strings(&slot.update_list)],
+                params![race_id, feat_slot.level, feat_slot.feat_type.trim(), json_string_array(&feat_slot.update_list)],
             )?;
         }
-        for skill in &r.auto_buy_skills {
-            self.tx.execute(
+        for skill in &race.auto_buy_skills {
+            self.transaction.execute(
                 "INSERT OR IGNORE INTO race_auto_buy_skills (race_id, skill) VALUES (?1, ?2)",
                 params![race_id, skill],
             )?;
         }
-        report.races += 1;
+        report.race_count += 1;
         Ok(())
     }
 
     pub(super) fn write_class_file(&mut self, path: &Path, report: &mut BuildReport) -> Result<()> {
-        let c = classes::parse(path)?;
-        let save = |s: &Option<String>| -> Result<Option<&'static str>> {
-            match s.as_deref() {
+        let class = classes::parse(path)?;
+        let save_progression = |code: &Option<String>| -> Result<Option<&'static str>> {
+            match code.as_deref() {
                 None => Ok(None),
-                Some(v) => match SaveProgression::from_upstream(v) {
-                    Some(p) => Ok(Some(p.as_str())),
-                    None => bail!("{}: unknown save progression {v:?}", c.name),
+                Some(code) => match SaveProgression::parse(code) {
+                    Some(progression) => Ok(Some(progression.as_str())),
+                    None => bail!("{}: unknown save progression {code:?}", class.name),
                 },
             }
         };
-        self.tx.execute(
+        self.transaction.execute(
             "INSERT INTO classes (name, base_class, not_heroic, description, small_icon, large_icon, skill_points, hit_points, alignments,
                                   fortitude, reflex, will, bab, spell_points_per_level, casting_stats, class_specific_feat_types)
              VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11, ?12, ?13, ?14, ?15, ?16)",
             params![
-                c.name,
-                nonempty(c.base_class.as_deref()),
-                c.not_heroic,
-                nonempty(c.description.as_deref()),
-                nonempty(c.small_icon.as_deref()),
-                nonempty(c.large_icon.as_deref()),
-                c.skill_points,
-                c.hit_points,
-                json_strings(&c.alignments),
-                save(&c.fortitude)?,
-                save(&c.reflex)?,
-                save(&c.will)?,
-                json_numbers(&c.bab),
-                json_numbers(&c.spell_points_per_level),
-                json_strings(&c.casting_stats),
-                json_strings(&c.class_specific_feat_types),
+                class.name,
+                trimmed_non_empty(class.base_class.as_deref()),
+                class.is_non_heroic,
+                trimmed_non_empty(class.description.as_deref()),
+                trimmed_non_empty(class.small_icon.as_deref()),
+                trimmed_non_empty(class.large_icon.as_deref()),
+                class.skill_points,
+                class.hit_points,
+                json_string_array(&class.alignments),
+                save_progression(&class.fortitude)?,
+                save_progression(&class.reflex)?,
+                save_progression(&class.will)?,
+                json_number_array(&class.bab),
+                json_number_array(&class.spell_points_per_level),
+                json_string_array(&class.casting_stats),
+                json_string_array(&class.class_specific_feat_types),
             ],
         )?;
-        let class_id = self.tx.last_insert_rowid();
-        self.caches.classes.insert(c.name.clone(), class_id);
-        for skill in &c.class_skills {
-            self.tx.execute(
+        let class_id = self.transaction.last_insert_rowid();
+        for skill in &class.class_skills {
+            self.transaction.execute(
                 "INSERT OR IGNORE INTO class_skills (class_id, skill) VALUES (?1, ?2)",
                 params![class_id, skill],
             )?;
         }
-        for skill in &c.auto_buy_skills {
-            self.tx.execute(
+        for skill in &class.auto_buy_skills {
+            self.transaction.execute(
                 "INSERT OR IGNORE INTO class_auto_buy_skills (class_id, skill) VALUES (?1, ?2)",
                 params![class_id, skill],
             )?;
         }
-        for (class_level, slots) in &c.spell_slots {
-            for (i, n) in slots.iter().enumerate() {
-                self.tx.execute(
+        for (class_level, slot_counts) in &class.spell_slots_by_class_level {
+            for (spell_level_index, slot_count) in slot_counts.iter().enumerate() {
+                self.transaction.execute(
                     "INSERT OR REPLACE INTO class_spell_slots (class_id, class_level, spell_level, slots) VALUES (?1, ?2, ?3, ?4)",
-                    params![class_id, *class_level as i64, i as i64 + 1, n],
+                    params![class_id, *class_level as i64, spell_level_index as i64 + 1, slot_count],
                 )?;
             }
         }
-        for s in &c.class_spells {
-            self.tx.execute(
+        for class_spell in &class.class_spells {
+            self.transaction.execute(
                 "INSERT OR REPLACE INTO class_spells (class_id, spell_name, spell_level, cost, max_caster_level) VALUES (?1, ?2, ?3, ?4, ?5)",
-                params![class_id, s.name.trim(), s.level, s.cost, s.max_caster_level],
+                params![
+                    class_id,
+                    class_spell.name.trim(),
+                    class_spell.level,
+                    class_spell.cost,
+                    class_spell.maximum_caster_level
+                ],
             )?;
         }
-        for slot in &c.feat_slots {
-            self.write_class_feat_slot(class_id, slot)?;
+        for feat_slot in &class.feat_slots {
+            self.write_class_feat_slot(class_id, feat_slot)?;
         }
-        for feat in &c.feats {
+        for feat in &class.feats {
             self.write_feat(feat, FeatSource::Class, Some(class_id))?;
-            report.feats += 1;
+            report.feat_count += 1;
         }
-        for auto in &c.automatic_feats {
-            for name in &auto.feats {
-                let feat_id = self.resolve_feat(name, FeatSource::Class, class_id);
-                self.tx.execute(
+        for automatic_feats in &class.automatic_feats {
+            for feat_name in &automatic_feats.feat_names {
+                let feat_id = self.resolved_feat_id(feat_name, FeatSource::Class, class_id);
+                self.transaction.execute(
                     "INSERT OR REPLACE INTO class_auto_feats (class_id, level, feat_name, feat_id) VALUES (?1, ?2, ?3, ?4)",
-                    params![class_id, auto.level, name.trim(), feat_id],
+                    params![class_id, automatic_feats.level, feat_name.trim(), feat_id],
                 )?;
             }
         }
-        report.classes += 1;
+        report.class_count += 1;
         Ok(())
     }
 
-    fn write_class_feat_slot(&mut self, class_id: i64, slot: &FeatSlot) -> Result<()> {
-        self.tx.execute(
+    fn write_class_feat_slot(&mut self, class_id: i64, feat_slot: &FeatSlot) -> Result<()> {
+        self.transaction.execute(
             "INSERT INTO class_feat_slots (class_id, level, feat_type, auto_populate, singular, update_list) VALUES (?1, ?2, ?3, ?4, ?5, ?6)",
             params![
                 class_id,
-                slot.level,
-                slot.feat_type.trim(),
-                slot.auto_populate.is_some(),
-                slot.singular.is_some(),
-                json_strings(&slot.update_list)
+                feat_slot.level,
+                feat_slot.feat_type.trim(),
+                feat_slot.auto_populate.is_some(),
+                feat_slot.singular.is_some(),
+                json_string_array(&feat_slot.update_list)
             ],
         )?;
         Ok(())
     }
 
-    pub(super) fn resolve_base_classes(&mut self) -> Result<()> {
-        self.tx.execute(
+    pub(super) fn link_base_classes(&mut self) -> Result<()> {
+        self.transaction.execute(
             "UPDATE classes SET base_class_id = (SELECT p.id FROM classes p WHERE p.name = classes.base_class) WHERE base_class IS NOT NULL",
             [],
         )?;

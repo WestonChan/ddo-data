@@ -2,7 +2,7 @@ mod crafting;
 mod quest_loot;
 mod quests;
 
-pub use crafting::{Cost, CraftingSystem, Ingredient, Recipe};
+pub use crafting::{CraftingIngredient, CraftingRecipe, CraftingSystem, IngredientCost};
 pub use quest_loot::QuestLoot;
 pub use quests::{QuestFacts, QuestXp, TierXp};
 
@@ -11,27 +11,27 @@ use serde::de::DeserializeOwned;
 use std::collections::HashMap;
 use std::path::Path;
 
-const EMBEDDED: &[(&str, &str)] = include!(concat!(env!("OUT_DIR"), "/wiki_files.rs"));
-const PAGE_PREFIX: &str = "https://ddowiki.com/page/";
+const EMBEDDED_WIKI_FILES: &[(&str, &str)] = include!(concat!(env!("OUT_DIR"), "/wiki_files.rs"));
+const WIKI_PAGE_URL_PREFIX: &str = "https://ddowiki.com/page/";
 
 #[derive(Debug, Default, Clone, PartialEq, Eq)]
 pub struct WikiOverrides {
     pub quest_loot: Vec<QuestLoot>,
-    pub quests: Vec<QuestFacts>,
-    pub crafting: Vec<CraftingSystem>,
+    pub quest_facts: Vec<QuestFacts>,
+    pub crafting_systems: Vec<CraftingSystem>,
 }
 
 trait WikiEntry: DeserializeOwned {
-    const TABLE: &'static str;
+    const TOML_TABLE_NAME: &'static str;
     fn name(&self) -> &str;
     fn citation(&self) -> (&str, &str);
-    fn check(&self) -> Result<()> {
+    fn validate(&self) -> Result<()> {
         Ok(())
     }
 }
 
 impl WikiEntry for QuestLoot {
-    const TABLE: &'static str = "quest";
+    const TOML_TABLE_NAME: &'static str = "quest";
     fn name(&self) -> &str {
         &self.name
     }
@@ -41,46 +41,46 @@ impl WikiEntry for QuestLoot {
 }
 
 impl WikiEntry for QuestFacts {
-    const TABLE: &'static str = "quest";
+    const TOML_TABLE_NAME: &'static str = "quest";
     fn name(&self) -> &str {
         &self.name
     }
     fn citation(&self) -> (&str, &str) {
         (&self.page, &self.read)
     }
-    fn check(&self) -> Result<()> {
-        self.check_values()
+    fn validate(&self) -> Result<()> {
+        QuestFacts::validate(self)
     }
 }
 
 impl WikiEntry for CraftingSystem {
-    const TABLE: &'static str = "system";
+    const TOML_TABLE_NAME: &'static str = "system";
     fn name(&self) -> &str {
         &self.name
     }
     fn citation(&self) -> (&str, &str) {
         (&self.page, &self.read)
     }
-    fn check(&self) -> Result<()> {
-        self.check_values()
+    fn validate(&self) -> Result<()> {
+        CraftingSystem::validate(self)
     }
 }
 
-enum FileKind {
+enum WikiFileKind {
     QuestLoot,
-    Quests,
-    Crafting,
+    QuestFacts,
+    CraftingSystems,
 }
 
-impl FileKind {
-    fn of(file_name: &str) -> Result<Self> {
+impl WikiFileKind {
+    fn from_file_name(file_name: &str) -> Result<Self> {
         let stem = file_name.strip_suffix(".toml").unwrap_or(file_name);
         if stem.starts_with("quest_loot") {
             Ok(Self::QuestLoot)
         } else if stem.starts_with("quests") {
-            Ok(Self::Quests)
+            Ok(Self::QuestFacts)
         } else if stem.starts_with("crafting") {
-            Ok(Self::Crafting)
+            Ok(Self::CraftingSystems)
         } else {
             bail!(
                 "wiki file {file_name}: the name must start with quest_loot, quests or crafting, which says what it holds"
@@ -89,34 +89,36 @@ impl FileKind {
     }
 }
 
-fn read_entries<'a, T: WikiEntry>(
+fn parse_wiki_entries<'a, T: WikiEntry>(
     file_name: &'a str,
-    source: &str,
-    seen: &mut HashMap<String, &'a str>,
+    toml_text: &str,
+    first_file_by_entry_name: &mut HashMap<String, &'a str>,
 ) -> Result<Vec<T>> {
-    let table = T::TABLE;
-    let mut document: toml::Table = toml::from_str(source).with_context(|| format!("wiki file {file_name}"))?;
-    let rows = match document.remove(table) {
+    let table_name = T::TOML_TABLE_NAME;
+    let mut document: toml::Table = toml::from_str(toml_text).with_context(|| format!("wiki file {file_name}"))?;
+    let tables = match document.remove(table_name) {
         None => Vec::new(),
-        Some(toml::Value::Array(rows)) => rows,
-        Some(_) => bail!("wiki file {file_name}: {table} must be an array of tables, written [[{table}]]"),
+        Some(toml::Value::Array(tables)) => tables,
+        Some(_) => bail!("wiki file {file_name}: {table_name} must be an array of tables, written [[{table_name}]]"),
     };
-    if let Some(other) = document.keys().next() {
-        bail!("wiki file {file_name}: unknown top-level key {other:?}; this file type holds only [[{table}]] tables");
+    if let Some(unknown_key) = document.keys().next() {
+        bail!(
+            "wiki file {file_name}: unknown top-level key {unknown_key:?}; this file type holds only [[{table_name}]] tables"
+        );
     }
-    let mut entries = Vec::with_capacity(rows.len());
-    for (index, row) in rows.into_iter().enumerate() {
-        let label = match row.get("name").and_then(toml::Value::as_str) {
-            Some(name) => format!("{table} {name:?}"),
-            None => format!("{table} #{}", index + 1),
+    let mut entries = Vec::with_capacity(tables.len());
+    for (index, table) in tables.into_iter().enumerate() {
+        let entry_label = match table.get("name").and_then(toml::Value::as_str) {
+            Some(name) => format!("{table_name} {name:?}"),
+            None => format!("{table_name} #{}", index + 1),
         };
-        let entry: T = row.try_into().with_context(|| format!("wiki file {file_name}: {label}"))?;
+        let entry: T = table.try_into().with_context(|| format!("wiki file {file_name}: {entry_label}"))?;
         let (page, read) = entry.citation();
-        check_citation(page, read)
-            .and_then(|()| entry.check())
-            .with_context(|| format!("wiki file {file_name}: {label}"))?;
-        if let Some(first) = seen.insert(entry.name().to_owned(), file_name) {
-            bail!("wiki file {file_name}: {label} is already listed in {first}");
+        validate_citation(page, read)
+            .and_then(|()| entry.validate())
+            .with_context(|| format!("wiki file {file_name}: {entry_label}"))?;
+        if let Some(first_file) = first_file_by_entry_name.insert(entry.name().to_owned(), file_name) {
+            bail!("wiki file {file_name}: {entry_label} is already listed in {first_file}");
         }
         entries.push(entry);
     }
@@ -125,7 +127,7 @@ fn read_entries<'a, T: WikiEntry>(
 
 impl WikiOverrides {
     pub fn embedded() -> Result<Self> {
-        Self::from_sources(EMBEDDED)
+        Self::from_toml_files(EMBEDDED_WIKI_FILES)
     }
 
     pub fn from_dir(dir: &Path) -> Result<Self> {
@@ -135,38 +137,51 @@ impl WikiOverrides {
             .filter(|p| p.extension().is_some_and(|x| x == "toml"))
             .collect();
         paths.sort();
-        let files = paths
+        let toml_files = paths
             .iter()
-            .map(|p| {
-                let source = std::fs::read_to_string(p).with_context(|| format!("reading {}", p.display()))?;
-                Ok((p.file_name().unwrap_or_default().to_string_lossy().into_owned(), source))
+            .map(|path| {
+                let toml_text = std::fs::read_to_string(path).with_context(|| format!("reading {}", path.display()))?;
+                Ok((path.file_name().unwrap_or_default().to_string_lossy().into_owned(), toml_text))
             })
             .collect::<Result<Vec<_>>>()?;
-        Self::from_sources(&files.iter().map(|(n, s)| (n.as_str(), s.as_str())).collect::<Vec<_>>())
+        Self::from_toml_files(
+            &toml_files
+                .iter()
+                .map(|(file_name, toml_text)| (file_name.as_str(), toml_text.as_str()))
+                .collect::<Vec<_>>(),
+        )
     }
 
-    pub fn from_sources(files: &[(&str, &str)]) -> Result<Self> {
+    pub fn from_toml_files(toml_files: &[(&str, &str)]) -> Result<Self> {
         let mut overrides = Self::default();
-        let (mut quest_loot_files, mut quests_files, mut crafting_files) =
+        let (mut quest_loot_file_by_quest, mut quest_facts_file_by_quest, mut crafting_file_by_system) =
             (HashMap::new(), HashMap::new(), HashMap::new());
-        for (file_name, source) in files {
-            match FileKind::of(file_name)? {
-                FileKind::QuestLoot => {
-                    overrides.quest_loot.extend(read_entries(file_name, source, &mut quest_loot_files)?);
-                }
-                FileKind::Quests => overrides.quests.extend(read_entries(file_name, source, &mut quests_files)?),
-                FileKind::Crafting => {
-                    overrides.crafting.extend(read_entries(file_name, source, &mut crafting_files)?);
-                }
+        for (file_name, toml_text) in toml_files {
+            match WikiFileKind::from_file_name(file_name)? {
+                WikiFileKind::QuestLoot => overrides.quest_loot.extend(parse_wiki_entries(
+                    file_name,
+                    toml_text,
+                    &mut quest_loot_file_by_quest,
+                )?),
+                WikiFileKind::QuestFacts => overrides.quest_facts.extend(parse_wiki_entries(
+                    file_name,
+                    toml_text,
+                    &mut quest_facts_file_by_quest,
+                )?),
+                WikiFileKind::CraftingSystems => overrides.crafting_systems.extend(parse_wiki_entries(
+                    file_name,
+                    toml_text,
+                    &mut crafting_file_by_system,
+                )?),
             }
         }
         Ok(overrides)
     }
 }
 
-fn check_citation(page: &str, read: &str) -> Result<()> {
-    if !page.starts_with(PAGE_PREFIX) || page.len() == PAGE_PREFIX.len() {
-        bail!("page {page:?} must start with {PAGE_PREFIX} and name the page read");
+fn validate_citation(page: &str, read: &str) -> Result<()> {
+    if !page.starts_with(WIKI_PAGE_URL_PREFIX) || page.len() == WIKI_PAGE_URL_PREFIX.len() {
+        bail!("page {page:?} must start with {WIKI_PAGE_URL_PREFIX} and name the page read");
     }
     if !is_iso_date(read) {
         bail!("read {read:?} must be the ISO date the page was read, YYYY-MM-DD");
@@ -179,16 +194,16 @@ fn is_iso_date(text: &str) -> bool {
     let [year, month, day] = parts.as_slice() else {
         return false;
     };
-    let digits = |s: &str, n: usize| s.len() == n && s.bytes().all(|b| b.is_ascii_digit());
-    if !(digits(year, 4) && digits(month, 2) && digits(day, 2)) {
+    let is_digit_run = |s: &str, length: usize| s.len() == length && s.bytes().all(|b| b.is_ascii_digit());
+    if !(is_digit_run(year, 4) && is_digit_run(month, 2) && is_digit_run(day, 2)) {
         return false;
     }
     let (year, month, day): (u32, u32, u32) = (year.parse().unwrap(), month.parse().unwrap(), day.parse().unwrap());
-    let is_leap = year % 4 == 0 && (year % 100 != 0 || year % 400 == 0);
+    let is_leap_year = year % 4 == 0 && (year % 100 != 0 || year % 400 == 0);
     let days_in_month = match month {
         1 | 3 | 5 | 7 | 8 | 10 | 12 => 31,
         4 | 6 | 9 | 11 => 30,
-        2 if is_leap => 29,
+        2 if is_leap_year => 29,
         2 => 28,
         _ => return false,
     };

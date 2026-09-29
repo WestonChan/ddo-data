@@ -1,27 +1,27 @@
-use ddo_model::enums::{BonusType, EquipmentSlot, SaveProgression, SlotCategory, WeaponProficiency};
-use ddo_model::seeds::{BONUS_TYPES, DAMAGE_TYPES, EQUIPMENT_SLOTS, WEAPON_TYPES};
-use ddo_model::stats::STATS;
-use ddo_model::{ddl, stat_by_name, SCHEMA_VERSION};
+use ddo_model::enums::{BonusType, EquipmentSlot, EquipmentSlotCategory, SaveProgression, WeaponProficiency};
+use ddo_model::seeds::{WeaponType, DAMAGE_TYPES, WEAPON_TYPES};
+use ddo_model::stats::{Stat, STATS};
+use ddo_model::{ddl, SCHEMA_VERSION};
 use rusqlite::Connection;
 use std::collections::HashSet;
 
 fn fresh_db() -> Connection {
-    let conn = Connection::open_in_memory().expect("in-memory sqlite");
-    conn.execute_batch(ddl()).expect("DDL applies to a fresh database");
-    conn
+    let db = Connection::open_in_memory().expect("in-memory sqlite");
+    db.execute_batch(ddl()).expect("DDL applies to a fresh database");
+    db
 }
 
-fn table_names(conn: &Connection) -> HashSet<String> {
-    let mut stmt =
-        conn.prepare("SELECT name FROM sqlite_master WHERE type = 'table' AND name NOT LIKE 'sqlite_%'").unwrap();
-    stmt.query_map([], |r| r.get::<_, String>(0)).unwrap().map(Result::unwrap).collect()
+fn table_names(db: &Connection) -> HashSet<String> {
+    let mut statement =
+        db.prepare("SELECT name FROM sqlite_master WHERE type = 'table' AND name NOT LIKE 'sqlite_%'").unwrap();
+    statement.query_map([], |r| r.get::<_, String>(0)).unwrap().map(Result::unwrap).collect()
 }
 
 #[test]
 fn ddl_creates_every_v2_table() {
-    let conn = fresh_db();
-    let tables = table_names(&conn);
-    for expected in [
+    let db = fresh_db();
+    let tables = table_names(&db);
+    for expected_table in [
         "schema_version",
         "stats",
         "bonus_types",
@@ -94,67 +94,66 @@ fn ddl_creates_every_v2_table() {
         "crafting_recipe_augments",
         "crafting_recipe_ingredients",
     ] {
-        assert!(tables.contains(expected), "missing table {expected}");
+        assert!(tables.contains(expected_table), "missing table {expected_table}");
     }
 }
 
 #[test]
 fn ddl_drops_the_columns_with_no_source() {
-    let conn = fresh_db();
-    let mut stmt = conn.prepare("SELECT name FROM pragma_table_info('items')").unwrap();
-    let columns: HashSet<String> = stmt.query_map([], |r| r.get::<_, String>(0)).unwrap().map(Result::unwrap).collect();
-    for gone in ["dat_id", "rarity", "tooltip", "binding", "base_value", "equipment_slot", "material"] {
-        assert!(!columns.contains(gone), "items.{gone} should have been dropped");
+    let db = fresh_db();
+    let mut statement = db.prepare("SELECT name FROM pragma_table_info('items')").unwrap();
+    let columns: HashSet<String> =
+        statement.query_map([], |r| r.get::<_, String>(0)).unwrap().map(Result::unwrap).collect();
+    for dropped_column in ["dat_id", "rarity", "tooltip", "binding", "base_value", "equipment_slot", "material"] {
+        assert!(!columns.contains(dropped_column), "items.{dropped_column} should have been dropped");
     }
-    for kept in ["slot_id", "material_id", "drop_location", "set_bonus", "accepts_sentience", "enhancement_bonus"] {
-        assert!(columns.contains(kept), "items.{kept} missing");
+    for kept_column in
+        ["slot_id", "material_id", "drop_location", "set_bonus", "accepts_sentience", "enhancement_bonus"]
+    {
+        assert!(columns.contains(kept_column), "items.{kept_column} missing");
     }
 }
 
 #[test]
 fn quest_xp_accepts_only_the_three_tiers_and_quests_only_the_wiki_durations() {
-    let conn = fresh_db();
-    conn.execute("INSERT INTO quests (id, name, duration) VALUES (1, 'The Grotto', 'Very long')", []).unwrap();
-    assert!(conn.execute("INSERT INTO quests (id, name, duration) VALUES (2, 'Other', 'Forever')", []).is_err());
+    let db = fresh_db();
+    db.execute("INSERT INTO quests (id, name, duration) VALUES (1, 'The Grotto', 'Very long')", []).unwrap();
+    assert!(db.execute("INSERT INTO quests (id, name, duration) VALUES (2, 'Other', 'Forever')", []).is_err());
     for tier in ["heroic", "epic", "legendary"] {
-        conn.execute("INSERT INTO quest_xp (quest_id, tier, normal) VALUES (1, ?1, 100)", [tier]).unwrap();
+        db.execute("INSERT INTO quest_xp (quest_id, tier, normal) VALUES (1, ?1, 100)", [tier]).unwrap();
     }
-    assert!(conn.execute("INSERT INTO quest_xp (quest_id, tier) VALUES (1, 'mythic')", []).is_err());
-    assert!(conn.execute("INSERT INTO quest_xp (quest_id, tier) VALUES (1, 'heroic')", []).is_err());
+    assert!(db.execute("INSERT INTO quest_xp (quest_id, tier) VALUES (1, 'mythic')", []).is_err());
+    assert!(db.execute("INSERT INTO quest_xp (quest_id, tier) VALUES (1, 'heroic')", []).is_err());
 }
 
 #[test]
 fn crafting_tables_accept_only_the_four_crafting_tiers_and_one_ingredient_per_name_and_tier() {
-    let conn = fresh_db();
-    conn.execute("INSERT INTO crafting_systems (id, name, page) VALUES (1, 'Green Steel', 'p')", []).unwrap();
+    let db = fresh_db();
+    db.execute("INSERT INTO crafting_systems (id, name, page) VALUES (1, 'Green Steel', 'p')", []).unwrap();
     for tier in ["heroic", "epic", "legendary", "any"] {
-        conn.execute("INSERT INTO crafting_ingredients (system_id, name, tier) VALUES (1, 'Shard', ?1)", [tier])
+        db.execute("INSERT INTO crafting_ingredients (system_id, name, tier) VALUES (1, 'Shard', ?1)", [tier]).unwrap();
+        db.execute("INSERT INTO crafting_recipes (system_id, tier, option, sort_order) VALUES (1, ?1, 'x', 0)", [tier])
             .unwrap();
-        conn.execute(
-            "INSERT INTO crafting_recipes (system_id, tier, option, sort_order) VALUES (1, ?1, 'x', 0)",
-            [tier],
-        )
-        .unwrap();
     }
-    assert!(conn
+    assert!(db
         .execute("INSERT INTO crafting_ingredients (system_id, name, tier) VALUES (1, 'Shard', 'heroic')", [])
         .is_err());
-    assert!(conn
+    assert!(db
         .execute("INSERT INTO crafting_ingredients (system_id, name, tier) VALUES (1, 'Gem', 'mythic')", [])
         .is_err());
-    assert!(conn
+    assert!(db
         .execute("INSERT INTO crafting_recipes (system_id, tier, option, sort_order) VALUES (1, 'mythic', 'x', 0)", [])
         .is_err());
-    assert!(conn.execute("INSERT INTO crafting_systems (name, page) VALUES ('Green Steel', 'q')", []).is_err());
+    assert!(db.execute("INSERT INTO crafting_systems (name, page) VALUES ('Green Steel', 'q')", []).is_err());
 }
 
 #[test]
 fn ddl_is_idempotent() {
-    let conn = fresh_db();
-    conn.execute_batch(ddl()).expect("re-applying the DDL is a no-op");
-    let recorded: i64 =
-        conn.query_row("SELECT COALESCE(MAX(version), 0) FROM schema_version", [], |r| r.get(0)).unwrap();
-    assert!(recorded <= SCHEMA_VERSION, "a fresh database records no newer version than the code");
+    let db = fresh_db();
+    db.execute_batch(ddl()).expect("re-applying the DDL is a no-op");
+    let recorded_version: i64 =
+        db.query_row("SELECT COALESCE(MAX(version), 0) FROM schema_version", [], |r| r.get(0)).unwrap();
+    assert!(recorded_version <= SCHEMA_VERSION, "a fresh database records no newer version than the code");
 }
 
 #[test]
@@ -163,29 +162,29 @@ fn stats_have_unique_ids_and_names() {
     let names: HashSet<&str> = STATS.iter().map(|s| s.name).collect();
     assert_eq!(ids.len(), STATS.len(), "duplicate stat id");
     assert_eq!(names.len(), STATS.len(), "duplicate stat name");
-    assert_eq!(stat_by_name("Fire Spell Power").map(|s| s.id), Some(25));
-    assert_eq!(stat_by_name("Nope"), None);
+    assert_eq!(Stat::by_name("Fire Spell Power").map(|s| s.id), Some(25));
+    assert_eq!(Stat::by_name("Nope"), None);
 }
 
 #[test]
 fn equipment_slots_say_hands_not_arms() {
-    let names: Vec<&str> = EQUIPMENT_SLOTS.iter().map(|s| s.slot.name()).collect();
+    let names: Vec<&str> = EquipmentSlot::ALL.iter().map(|s| s.name()).collect();
     assert!(names.contains(&"Hands"));
     assert!(!names.contains(&"Arms"));
-    assert_eq!(EquipmentSlot::Hands.category(), SlotCategory::Armor);
+    assert_eq!(EquipmentSlot::Hands.category(), EquipmentSlotCategory::Armor);
     assert_eq!(EquipmentSlot::MainHand.id(), 1);
-    assert_eq!(EQUIPMENT_SLOTS.len(), 16);
+    assert_eq!(EquipmentSlot::ALL.len(), 16);
 }
 
 #[test]
 fn bonus_types_include_the_v2_additions() {
-    let names: Vec<&str> = BONUS_TYPES.iter().map(|b| b.bonus_type.name()).collect();
-    for added in ["Vitality", "False Life", "Legendary", "Penalty"] {
-        assert!(names.contains(&added), "{added} missing from bonus_types");
+    let names: Vec<&str> = BonusType::ALL.iter().map(|b| b.name()).collect();
+    for added_bonus_type in ["Vitality", "False Life", "Legendary", "Penalty"] {
+        assert!(names.contains(&added_bonus_type), "{added_bonus_type} missing from bonus_types");
     }
     assert_eq!(BonusType::Enhancement.id(), 1);
     assert_eq!(BonusType::Penalty.id(), 33, "the original 33 ids are stable");
-    assert!(BONUS_TYPES.len() >= 73, "his BonusTypes.xml vocabulary is appended");
+    assert!(BonusType::ALL.len() >= 73, "his BonusTypes.xml vocabulary is appended");
     assert_eq!(BonusType::parse("Feat").map(BonusType::id), Some(48));
     assert!(BonusType::Destiny.stacks_with_self(), "his 'Always' rule");
     assert!(!BonusType::Feat.stacks_with_self(), "his 'Highest Only' rule");
@@ -197,13 +196,13 @@ fn bonus_types_include_the_v2_additions() {
 
 #[test]
 fn weapon_types_carry_proficiency_and_ddo_spellings() {
-    let by_name = |n: &str| WEAPON_TYPES.iter().find(|w| w.name == n).unwrap_or_else(|| panic!("{n}"));
-    assert_eq!(by_name("Great Axe").proficiency, Some(WeaponProficiency::Martial));
-    assert_eq!(by_name("Khopesh").proficiency, Some(WeaponProficiency::Exotic));
-    assert_eq!(by_name("Dagger").proficiency, Some(WeaponProficiency::Simple));
-    assert_eq!(by_name("Large Shield").proficiency, None);
-    assert!(by_name("Large Shield").is_shield);
-    assert!(!by_name("Handwraps").is_shield);
+    let weapon_type_named = |name: &str| WeaponType::by_name(name).unwrap_or_else(|| panic!("{name}"));
+    assert_eq!(weapon_type_named("Great Axe").proficiency, Some(WeaponProficiency::Martial));
+    assert_eq!(weapon_type_named("Khopesh").proficiency, Some(WeaponProficiency::Exotic));
+    assert_eq!(weapon_type_named("Dagger").proficiency, Some(WeaponProficiency::Simple));
+    assert_eq!(weapon_type_named("Large Shield").proficiency, None);
+    assert!(weapon_type_named("Large Shield").is_shield);
+    assert!(!weapon_type_named("Handwraps").is_shield);
     assert!(WEAPON_TYPES.iter().any(|w| w.name == "Rune Arm"));
     assert!(!WEAPON_TYPES.iter().any(|w| w.name == "Greataxe"));
     assert_eq!(DAMAGE_TYPES.len(), 18);
@@ -211,26 +210,26 @@ fn weapon_types_carry_proficiency_and_ddo_spellings() {
 
 #[test]
 fn seed_tables_load_into_the_schema() {
-    let conn = fresh_db();
-    ddo_model::seeds::insert_all(&conn).expect("seeds insert");
-    let n: i64 = conn.query_row("SELECT COUNT(*) FROM stats", [], |r| r.get(0)).unwrap();
-    assert_eq!(n as usize, STATS.len());
-    let hands: String = conn.query_row("SELECT name FROM equipment_slots WHERE id = 10", [], |r| r.get(0)).unwrap();
+    let db = fresh_db();
+    ddo_model::seeds::insert_all(&db).expect("seeds insert");
+    let stat_count: i64 = db.query_row("SELECT COUNT(*) FROM stats", [], |r| r.get(0)).unwrap();
+    assert_eq!(stat_count as usize, STATS.len());
+    let hands: String = db.query_row("SELECT name FROM equipment_slots WHERE id = 10", [], |r| r.get(0)).unwrap();
     assert_eq!(hands, "Hands");
-    let martial: i64 = conn
+    let martial_weapon_type_count: i64 = db
         .query_row(
             "SELECT COUNT(*) FROM weapon_types wt JOIN weapon_proficiencies p ON p.id = wt.proficiency_id WHERE p.name = 'Martial'",
             [],
             |r| r.get(0),
         )
         .unwrap();
-    assert!(martial > 10);
+    assert!(martial_weapon_type_count > 10);
 }
 
 #[test]
 fn save_progressions_follow_upstream_type_codes() {
-    assert_eq!(SaveProgression::from_upstream("Type2"), Some(SaveProgression::Good), "Paladin Fortitude is Type2");
-    assert_eq!(SaveProgression::from_upstream("Type1"), Some(SaveProgression::Poor));
-    assert_eq!(SaveProgression::from_upstream("None"), Some(SaveProgression::None));
-    assert_eq!(SaveProgression::from_upstream("Type3"), None);
+    assert_eq!(SaveProgression::parse("Type2"), Some(SaveProgression::Good), "Paladin Fortitude is Type2");
+    assert_eq!(SaveProgression::parse("Type1"), Some(SaveProgression::Poor));
+    assert_eq!(SaveProgression::parse("None"), Some(SaveProgression::None));
+    assert_eq!(SaveProgression::parse("Type3"), None);
 }

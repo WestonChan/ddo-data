@@ -1,84 +1,96 @@
-use ddo_etl::map::augment_slot::{decode, SlotSpec};
-use ddo_etl::map::bonus_type::normalize;
-use ddo_etl::map::buff::{BuffMap, Resolved};
+use ddo_etl::map::augment_slot::AugmentSlotType;
+use ddo_etl::map::bonus_type::parse_buff_bonus_type;
+use ddo_etl::map::buff::{BuffMap, ResolvedBuff};
 use ddo_etl::map::effect::EffectMap;
-use ddo_etl::map::placement::{classify, Placement};
+use ddo_etl::map::placement::{placement_of, Placement};
 use ddo_etl::xml::effect::Effect;
-use ddo_etl::xml::items::{Buff, EquipmentSlots, SlotTag};
+use ddo_etl::xml::items::{Buff, EquipmentSlotTag, EquipmentSlots};
 use ddo_model::enums::{BonusType, EquipmentSlot, Handedness, ItemCategory, StatCategory};
 use std::collections::BTreeMap;
 
-fn slots(tags: &[SlotTag]) -> EquipmentSlots {
+fn equipment_slots(tags: &[EquipmentSlotTag]) -> EquipmentSlots {
     EquipmentSlots { tags: tags.to_vec() }
 }
 
-fn buff(kind: &str, item: Option<&str>, value1: Option<i64>, bonus_type: Option<&str>) -> Buff {
+fn buff(kind: &str, target: Option<&str>, value: Option<i64>, bonus_type: Option<&str>) -> Buff {
     Buff {
         kind: kind.to_string(),
-        item: item.map(str::to_string),
-        item2: None,
-        value1,
-        value2: None,
+        target: target.map(str::to_string),
+        second_target: None,
+        value,
+        second_value: None,
         bonus_type: bonus_type.map(str::to_string),
-        description1: None,
+        description: None,
     }
 }
 
 #[test]
 fn bonus_types_normalise_onto_ours() {
-    assert_eq!(normalize("Enhancement").unwrap(), Some(BonusType::Enhancement));
-    assert_eq!(normalize("Weapon Enchantment").unwrap(), Some(BonusType::Enhancement));
-    assert_eq!(normalize("Armor Enhancement").unwrap(), Some(BonusType::Enhancement));
-    assert_eq!(normalize("Insightful").unwrap(), Some(BonusType::Insight));
-    assert_eq!(normalize("resistance").unwrap(), Some(BonusType::Resistance));
-    assert_eq!(normalize("Vitality").unwrap(), Some(BonusType::Vitality));
-    assert_eq!(normalize("Not Set").unwrap(), None);
-    assert_eq!(normalize("").unwrap(), None);
-    assert!(normalize("Bogus").is_err(), "an unknown bonus type is a parse error");
+    assert_eq!(parse_buff_bonus_type("Enhancement").unwrap(), Some(BonusType::Enhancement));
+    assert_eq!(parse_buff_bonus_type("Weapon Enchantment").unwrap(), Some(BonusType::Enhancement));
+    assert_eq!(parse_buff_bonus_type("Armor Enhancement").unwrap(), Some(BonusType::Enhancement));
+    assert_eq!(parse_buff_bonus_type("Insightful").unwrap(), Some(BonusType::Insight));
+    assert_eq!(parse_buff_bonus_type("resistance").unwrap(), Some(BonusType::Resistance));
+    assert_eq!(parse_buff_bonus_type("Vitality").unwrap(), Some(BonusType::Vitality));
+    assert_eq!(parse_buff_bonus_type("Not Set").unwrap(), None);
+    assert_eq!(parse_buff_bonus_type("").unwrap(), None);
+    assert!(parse_buff_bonus_type("Bogus").is_err(), "an unknown bonus type is a parse error");
 }
 
 #[test]
 fn placement_from_slot_tags_and_weapon_type() {
-    let one_handed = classify(&slots(&[SlotTag::Weapon1, SlotTag::Weapon2]), Some("Longsword"), None).unwrap();
+    let one_handed = placement_of(
+        &equipment_slots(&[EquipmentSlotTag::Weapon1, EquipmentSlotTag::Weapon2]),
+        Some("Longsword"),
+        None,
+    )
+    .unwrap();
     assert_eq!(
         one_handed,
         Some(Placement {
-            slot: EquipmentSlot::MainHand,
+            equipment_slot: EquipmentSlot::MainHand,
             category: ItemCategory::Weapon,
             handedness: Some(Handedness::OneHanded),
             item_type: Some("Longsword".into()),
         })
     );
-    let bow = classify(&slots(&[SlotTag::Weapon1]), Some("Longbow"), None).unwrap().unwrap();
-    assert_eq!((bow.slot, bow.handedness), (EquipmentSlot::MainHand, Some(Handedness::TwoHanded)));
-    let dart = classify(&slots(&[SlotTag::Weapon1, SlotTag::Weapon2]), Some("Dart"), None).unwrap().unwrap();
+    let bow = placement_of(&equipment_slots(&[EquipmentSlotTag::Weapon1]), Some("Longbow"), None).unwrap().unwrap();
+    assert_eq!((bow.equipment_slot, bow.handedness), (EquipmentSlot::MainHand, Some(Handedness::TwoHanded)));
+    let dart =
+        placement_of(&equipment_slots(&[EquipmentSlotTag::Weapon1, EquipmentSlotTag::Weapon2]), Some("Dart"), None)
+            .unwrap()
+            .unwrap();
     assert_eq!(dart.handedness, Some(Handedness::Thrown));
-    let shield = classify(&slots(&[SlotTag::Weapon2]), Some("Large Shield"), None).unwrap().unwrap();
+    let shield =
+        placement_of(&equipment_slots(&[EquipmentSlotTag::Weapon2]), Some("Large Shield"), None).unwrap().unwrap();
     assert_eq!(
-        (shield.slot, shield.category, shield.handedness),
+        (shield.equipment_slot, shield.category, shield.handedness),
         (EquipmentSlot::OffHand, ItemCategory::Shield, Some(Handedness::OffHand))
     );
-    let rune_arm = classify(&slots(&[SlotTag::Weapon2]), Some("RuneArm"), None).unwrap().unwrap();
-    assert_eq!((rune_arm.slot, rune_arm.item_type.as_deref()), (EquipmentSlot::Runearm, Some("Rune Arm")));
+    let rune_arm =
+        placement_of(&equipment_slots(&[EquipmentSlotTag::Weapon2]), Some("RuneArm"), None).unwrap().unwrap();
+    assert_eq!((rune_arm.equipment_slot, rune_arm.item_type.as_deref()), (EquipmentSlot::Runearm, Some("Rune Arm")));
 
-    let docent = classify(&slots(&[SlotTag::Armor]), None, Some("Docent")).unwrap().unwrap();
+    let docent = placement_of(&equipment_slots(&[EquipmentSlotTag::Armor]), None, Some("Docent")).unwrap().unwrap();
     assert_eq!(
-        (docent.slot, docent.category, docent.item_type.as_deref()),
+        (docent.equipment_slot, docent.category, docent.item_type.as_deref()),
         (EquipmentSlot::Body, ItemCategory::Armor, Some("Docent"))
     );
-    let gloves = classify(&slots(&[SlotTag::Gloves]), None, None).unwrap().unwrap();
-    assert_eq!((gloves.slot, gloves.category), (EquipmentSlot::Hands, ItemCategory::Clothing));
-    let ring = classify(&slots(&[SlotTag::Ring, SlotTag::Trinket]), None, None).unwrap().unwrap();
-    assert_eq!((ring.slot, ring.category), (EquipmentSlot::Ring, ItemCategory::Jewelry));
+    let gloves = placement_of(&equipment_slots(&[EquipmentSlotTag::Gloves]), None, None).unwrap().unwrap();
+    assert_eq!((gloves.equipment_slot, gloves.category), (EquipmentSlot::Hands, ItemCategory::Clothing));
+    let ring = placement_of(&equipment_slots(&[EquipmentSlotTag::Ring, EquipmentSlotTag::Trinket]), None, None)
+        .unwrap()
+        .unwrap();
+    assert_eq!((ring.equipment_slot, ring.category), (EquipmentSlot::Ring, ItemCategory::Jewelry));
 
     assert_eq!(
-        classify(&slots(&[SlotTag::CosmeticHelm]), None, None).unwrap(),
+        placement_of(&equipment_slots(&[EquipmentSlotTag::CosmeticHelm]), None, None).unwrap(),
         None,
         "cosmetic-only items are excluded"
     );
-    assert_eq!(classify(&slots(&[]), None, None).unwrap(), None);
+    assert_eq!(placement_of(&equipment_slots(&[]), None, None).unwrap(), None);
     assert!(
-        classify(&slots(&[SlotTag::Weapon1]), Some("Lightsaber"), None).is_err(),
+        placement_of(&equipment_slots(&[EquipmentSlotTag::Weapon1]), Some("Lightsaber"), None).is_err(),
         "unknown weapon type is an error"
     );
 }
@@ -88,19 +100,19 @@ fn buffs_resolve_to_enhancement_bonus_stat_or_effect() {
     let map = BuffMap::load().unwrap();
 
     assert_eq!(
-        map.resolve(&buff("WeaponEnchantment", None, Some(7), Some("Weapon Enchantment"))).unwrap(),
-        Resolved::Enhancement(7)
+        map.resolved(&buff("WeaponEnchantment", None, Some(7), Some("Weapon Enchantment"))).unwrap(),
+        ResolvedBuff::EnhancementBonus(7)
     );
     assert_eq!(
-        map.resolve(&buff("ArmorEnchantment", None, Some(4), Some("Armor Enhancement"))).unwrap(),
-        Resolved::Enhancement(4)
+        map.resolved(&buff("ArmorEnchantment", None, Some(4), Some("Armor Enhancement"))).unwrap(),
+        ResolvedBuff::EnhancementBonus(4)
     );
 
-    match map.resolve(&buff("AbilityBonus", Some("Strength"), Some(8), Some("Enhancement"))).unwrap() {
-        Resolved::Bonus { stat, bonus_type, value, value2 } => {
+    match map.resolved(&buff("AbilityBonus", Some("Strength"), Some(8), Some("Enhancement"))).unwrap() {
+        ResolvedBuff::Bonus { stat, bonus_type, value, second_value } => {
             assert_eq!(stat.name, "Strength");
             assert_eq!(bonus_type, Some(BonusType::Enhancement));
-            assert_eq!((value, value2), (Some(8), None));
+            assert_eq!((value, second_value), (Some(8), None));
         }
         other => panic!("{other:?}"),
     }
@@ -121,26 +133,26 @@ fn buffs_resolve_to_enhancement_bonus_stat_or_effect() {
         (buff("WizardryNumber", None, Some(200), Some("Enhancement")), "Spell Points"),
     ];
     for (b, expected) in cases {
-        match map.resolve(&b).unwrap() {
-            Resolved::Bonus { stat, .. } => assert_eq!(stat.name, expected, "{}", b.kind),
+        match map.resolved(&b).unwrap() {
+            ResolvedBuff::Bonus { stat, .. } => assert_eq!(stat.name, expected, "{}", b.kind),
             other => panic!("{}: {other:?}", b.kind),
         }
     }
 
-    match map.resolve(&buff("Sovereign Vorpal", Some("All"), None, None)).unwrap() {
-        Resolved::Effect { name, value, target } => {
+    match map.resolved(&buff("Sovereign Vorpal", Some("All"), None, None)).unwrap() {
+        ResolvedBuff::Effect { name, value, target } => {
             assert_eq!(name, "Sovereign Vorpal");
             assert_eq!(value, None);
             assert_eq!(target.as_deref(), Some("All"));
         }
         other => panic!("{other:?}"),
     }
-    match map.resolve(&buff("Lifesealed", None, Some(34), Some("Enhancement"))).unwrap() {
-        Resolved::Effect { value, .. } => assert_eq!(value, Some(34)),
+    match map.resolved(&buff("Lifesealed", None, Some(34), Some("Enhancement"))).unwrap() {
+        ResolvedBuff::Effect { value, .. } => assert_eq!(value, Some(34)),
         other => panic!("{other:?}"),
     }
     assert!(
-        map.resolve(&buff("AbilityBonus", Some("Luck"), Some(1), None)).is_err(),
+        map.resolved(&buff("AbilityBonus", Some("Luck"), Some(1), None)).is_err(),
         "a by-item template that resolves to no stat is an error, not a silent effect"
     );
 }
@@ -148,7 +160,7 @@ fn buffs_resolve_to_enhancement_bonus_stat_or_effect() {
 #[test]
 fn bonus_descriptions_fill_the_display_template() {
     let map = BuffMap::load().unwrap();
-    let text = map.describe(
+    let text = map.description(
         "%b1 %i1 %v1: Passive: %v1 %b1 bonus to %i1.",
         &buff("AbilityBonus", Some("Strength"), Some(8), Some("Enhancement")),
     );
@@ -158,14 +170,14 @@ fn bonus_descriptions_fill_the_display_template() {
 #[test]
 fn augment_slot_types_decode_into_family_variant_qualifier() {
     assert_eq!(
-        decode("Red"),
-        SlotSpec { label: "red".into(), family: "standard".into(), variant: "red".into(), qualifier: None }
+        AugmentSlotType::parse("Red"),
+        AugmentSlotType { label: "red".into(), family: "standard".into(), variant: "red".into(), qualifier: None }
     );
-    assert_eq!(decode("Colorless").label, "colorless");
-    assert_eq!(decode("Sun").family, "standard");
+    assert_eq!(AugmentSlotType::parse("Colorless").label, "colorless");
+    assert_eq!(AugmentSlotType::parse("Sun").family, "standard");
     assert_eq!(
-        decode("Melancholic Slot (Accessory)"),
-        SlotSpec {
+        AugmentSlotType::parse("Melancholic Slot (Accessory)"),
+        AugmentSlotType {
             label: "lamordia: melancholic (accessory)".into(),
             family: "lamordia".into(),
             variant: "melancholic".into(),
@@ -173,31 +185,31 @@ fn augment_slot_types_decode_into_family_variant_qualifier() {
         }
     );
     assert_eq!(
-        decode("IoD: Weapon: Scale Slot"),
-        SlotSpec {
+        AugmentSlotType::parse("IoD: Weapon: Scale Slot"),
+        AugmentSlotType {
             label: "isle of dread: scale (weapon)".into(),
             family: "dino".into(),
             variant: "scale".into(),
             qualifier: Some("weapon".into())
         }
     );
-    assert_eq!(decode("IoD: Set Bonus Slot").label, "isle of dread: set bonus");
+    assert_eq!(AugmentSlotType::parse("IoD: Set Bonus Slot").label, "isle of dread: set bonus");
     assert_eq!(
-        decode("Tier 2"),
-        SlotSpec {
+        AugmentSlotType::parse("Tier 2"),
+        AugmentSlotType {
             label: "upgrade: tier 2".into(),
             family: "upgrade".into(),
             variant: "tier 2".into(),
             qualifier: None
         }
     );
-    assert_eq!(decode("Greensteel Weapon Tier 1").family, "crafting");
-    assert_eq!(decode("Greensteel Weapon Tier 1").label, "crafting: greensteel weapon tier 1");
+    assert_eq!(AugmentSlotType::parse("Greensteel Weapon Tier 1").family, "crafting");
+    assert_eq!(AugmentSlotType::parse("Greensteel Weapon Tier 1").label, "crafting: greensteel weapon tier 1");
 }
 
-fn simple_effect(kind: &str) -> Effect {
+fn simple_effect(effect_type: &str) -> Effect {
     Effect {
-        types: vec![kind.to_string()],
+        types: vec![effect_type.to_string()],
         bonus: Some("Enhancement".to_string()),
         amount_type: Some("Simple".to_string()),
         amounts: vec![3.0],
@@ -266,8 +278,8 @@ fn character_wide_effect_types_resolve_to_their_stats() {
     let failures: Vec<String> = cases
         .iter()
         .filter_map(|&(kind, name, category)| {
-            let derived = map.derive(&simple_effect(kind)).unwrap();
-            match derived.as_slice() {
+            let derived_bonuses = map.derive_bonuses(&simple_effect(kind)).unwrap();
+            match derived_bonuses.as_slice() {
                 [d] if d.stat.name == name && d.stat.category == category && d.value == 3 => None,
                 other => Some(format!("{kind}: expected {name} ({category:?}), got {other:?}")),
             }
@@ -280,12 +292,12 @@ fn character_wide_effect_types_resolve_to_their_stats() {
         cases.len(),
         failures.join("\n")
     );
-    assert!(map.unmapped_types().is_empty(), "{:?}", map.unmapped_types());
+    assert!(map.unmapped_type_counts().is_empty(), "{:?}", map.unmapped_type_counts());
 
-    let vector =
+    let vector_amount_effect =
         Effect { amount_type: Some("TotalLevel".to_string()), amounts: vec![1.0, 2.0], ..simple_effect("FatePoint") };
     assert!(
-        map.derive(&vector).unwrap().is_empty(),
+        map.derive_bonuses(&vector_amount_effect).unwrap().is_empty(),
         "a vector amount stays modifier-only even when the type is mapped"
     );
 }
@@ -302,7 +314,7 @@ fn every_stat_named_in_the_effect_map_exists() {
         .fixed
         .iter()
         .chain(&sections.by_item_default)
-        .filter(|(_, stat)| ddo_model::stat_by_name(stat).is_none())
+        .filter(|(_, stat)| ddo_model::stats::Stat::by_name(stat).is_none())
         .collect();
     assert!(missing.is_empty(), "stats missing from STATS: {missing:?}");
     assert!(EffectMap::load().is_ok(), "the load-time validation agrees");
@@ -311,22 +323,23 @@ fn every_stat_named_in_the_effect_map_exists() {
 #[test]
 fn engine_only_effect_types_are_not_reported_as_unmapped() {
     let map = EffectMap::load().unwrap();
-    for kind in ["SkillBonusAbility", "DR", "Weapon_BaseDamage", "SpellCostReduction"] {
-        assert!(map.derive(&simple_effect(kind)).unwrap().is_empty(), "{kind} derives no bonus");
+    for effect_type in ["SkillBonusAbility", "DR", "Weapon_BaseDamage", "SpellCostReduction"] {
+        assert!(map.derive_bonuses(&simple_effect(effect_type)).unwrap().is_empty(), "{effect_type} derives no bonus");
     }
-    assert!(map.derive(&simple_effect("NotAnEffectType")).unwrap().is_empty());
-    let unmapped = map.unmapped_types();
+    assert!(map.derive_bonuses(&simple_effect("NotAnEffectType")).unwrap().is_empty());
+    let unmapped = map.unmapped_type_counts();
     assert_eq!(unmapped.keys().collect::<Vec<_>>(), vec!["NotAnEffectType"], "{unmapped:?}");
 }
 
 #[test]
 fn an_effect_type_cannot_be_both_mapped_and_engine_only() {
-    let sections = |extra_fixed: &str| {
+    let effect_map_toml = |extra_fixed: &str| {
         format!(
             "[fixed]\n{extra_fixed}\n[by_item]\n[by_item_default]\n[item_aliases]\n[bonus_type_aliases]\n[engine_only]\nDR = \"typed by bypass material\"\n"
         )
     };
-    assert!(EffectMap::from_toml(&sections("PRR = \"Physical Resistance Rating\"")).is_ok());
-    let err = EffectMap::from_toml(&sections("DR = \"Physical Resistance Rating\"")).err().expect("overlap rejected");
-    assert!(err.to_string().contains("DR"), "{err}");
+    assert!(EffectMap::from_toml(&effect_map_toml("PRR = \"Physical Resistance Rating\"")).is_ok());
+    let error =
+        EffectMap::from_toml(&effect_map_toml("DR = \"Physical Resistance Rating\"")).err().expect("overlap rejected");
+    assert!(error.to_string().contains("DR"), "{error}");
 }
