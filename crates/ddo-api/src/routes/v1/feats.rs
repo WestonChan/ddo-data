@@ -13,13 +13,13 @@ use serde_json::{json, Value};
 use utoipa_axum::router::OpenApiRouter;
 use utoipa_axum::routes;
 
-pub fn router() -> OpenApiRouter<AppState> {
+pub(super) fn router() -> OpenApiRouter<AppState> {
     OpenApiRouter::new().routes(routes!(feats)).routes(routes!(feat_detail))
 }
 
 #[derive(Deserialize)]
 #[serde(deny_unknown_fields)]
-pub struct FeatListQuery {
+pub(super) struct FeatListQuery {
     pub q: Option<String>,
     pub source: Option<String>,
     pub group: Option<String>,

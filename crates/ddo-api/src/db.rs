@@ -3,14 +3,14 @@ use rusqlite::types::ValueRef;
 use rusqlite::{Connection, Params, Row};
 use serde_json::{Map, Value};
 
-pub fn json_rows<P: Params>(db: &Connection, sql: &str, params: P) -> Result<Vec<Value>, ApiError> {
+pub(crate) fn json_rows<P: Params>(db: &Connection, sql: &str, params: P) -> Result<Vec<Value>, ApiError> {
     let mut statement = db.prepare_cached(sql)?;
     let column_names: Vec<String> = statement.column_names().into_iter().map(str::to_string).collect();
     let rows = statement.query_map(params, |row| Ok(json_object_from_row(row, &column_names)))?;
     Ok(rows.collect::<Result<Vec<_>, _>>()?)
 }
 
-pub fn json_row<P: Params>(db: &Connection, sql: &str, params: P) -> Result<Value, ApiError> {
+pub(crate) fn json_row<P: Params>(db: &Connection, sql: &str, params: P) -> Result<Value, ApiError> {
     let mut statement = db.prepare_cached(sql)?;
     let column_names: Vec<String> = statement.column_names().into_iter().map(str::to_string).collect();
     let mut rows = statement.query(params)?;
@@ -20,7 +20,7 @@ pub fn json_row<P: Params>(db: &Connection, sql: &str, params: P) -> Result<Valu
     }
 }
 
-pub fn row_count<P: Params>(db: &Connection, sql: &str, params: P) -> Result<i64, ApiError> {
+pub(crate) fn row_count<P: Params>(db: &Connection, sql: &str, params: P) -> Result<i64, ApiError> {
     Ok(db.query_row(sql, params, |row| row.get(0))?)
 }
 
@@ -48,7 +48,7 @@ fn json_from_text(text: &str) -> Value {
     Value::String(text.to_string())
 }
 
-pub fn convert_to_booleans(row: &mut Value, flag_columns: &[&str]) {
+pub(crate) fn convert_to_booleans(row: &mut Value, flag_columns: &[&str]) {
     if let Value::Object(object) = row {
         for column in flag_columns {
             if let Some(Value::Number(n)) = object.get(*column) {
@@ -59,17 +59,17 @@ pub fn convert_to_booleans(row: &mut Value, flag_columns: &[&str]) {
     }
 }
 
-pub fn substring_like_pattern(search_text: &str) -> String {
+pub(crate) fn substring_like_pattern(search_text: &str) -> String {
     let escaped: String =
         search_text.chars().flat_map(|c| if matches!(c, '%' | '_' | '\\') { vec!['\\', c] } else { vec![c] }).collect();
     format!("%{}%", escaped.trim())
 }
 
-pub fn clamped_page(limit: Option<i64>, offset: Option<i64>) -> (i64, i64) {
+pub(crate) fn clamped_page(limit: Option<i64>, offset: Option<i64>) -> (i64, i64) {
     (limit.unwrap_or(100).clamp(1, 10_000), offset.unwrap_or(0).max(0))
 }
 
-pub fn requirements_for(db: &Connection, owner_kind: &str, owner_id: i64) -> Result<Vec<Value>, ApiError> {
+pub(crate) fn requirements_for(db: &Connection, owner_kind: &str, owner_id: i64) -> Result<Vec<Value>, ApiError> {
     json_rows(
         db,
         "SELECT group_kind, group_index, req_type, items, value FROM requirements
@@ -78,7 +78,7 @@ pub fn requirements_for(db: &Connection, owner_kind: &str, owner_id: i64) -> Res
     )
 }
 
-pub fn modifiers_for(db: &Connection, source_kind: &str, source_id: i64) -> Result<Vec<Value>, ApiError> {
+pub(crate) fn modifiers_for(db: &Connection, source_kind: &str, source_id: i64) -> Result<Vec<Value>, ApiError> {
     let mut modifiers = json_rows(
         db,
         "SELECT m.id, m.sort_order, m.effect_type, m.extra_types, m.bonus, bt.name AS bonus_type, m.amount_type, m.amounts,
@@ -96,7 +96,7 @@ pub fn modifiers_for(db: &Connection, source_kind: &str, source_id: i64) -> Resu
     Ok(modifiers)
 }
 
-pub fn stances_for(db: &Connection, owner_kind: &str, owner_id: i64) -> Result<Vec<Value>, ApiError> {
+pub(crate) fn stances_for(db: &Connection, owner_kind: &str, owner_id: i64) -> Result<Vec<Value>, ApiError> {
     let mut stances = json_rows(
         db,
         "SELECT id, name, description, icon, group_name, auto_controlled, incompatible FROM stances
@@ -112,7 +112,7 @@ pub fn stances_for(db: &Connection, owner_kind: &str, owner_id: i64) -> Result<V
     Ok(stances)
 }
 
-pub fn attack_for(db: &Connection, owner_kind: &str, owner_id: i64) -> Result<Value, ApiError> {
+pub(crate) fn attack_for(db: &Connection, owner_kind: &str, owner_id: i64) -> Result<Value, ApiError> {
     Ok(json_rows(
         db,
         "SELECT name, description, icon, cooldown_seconds, duration_seconds FROM attacks
@@ -123,7 +123,7 @@ pub fn attack_for(db: &Connection, owner_kind: &str, owner_id: i64) -> Result<Va
     .unwrap_or(Value::Null))
 }
 
-pub fn dcs_for(db: &Connection, owner_kind: &str, owner_id: i64) -> Result<Vec<Value>, ApiError> {
+pub(crate) fn dcs_for(db: &Connection, owner_kind: &str, owner_id: i64) -> Result<Vec<Value>, ApiError> {
     json_rows(
         db,
         "SELECT name, description, icon, dc_type, dc_versus, mod_ability, amount, tactical, other, skill, class_level, base_class_level
@@ -132,7 +132,7 @@ pub fn dcs_for(db: &Connection, owner_kind: &str, owner_id: i64) -> Result<Vec<V
     )
 }
 
-pub fn bonuses_via(
+pub(crate) fn bonuses_via(
     db: &Connection,
     junction_table: &str,
     owner_column: &str,
@@ -148,22 +148,22 @@ pub fn bonuses_via(
 }
 
 #[derive(Default)]
-pub struct WhereClause {
+pub(crate) struct WhereClause {
     conditions: Vec<String>,
     bound_values: Vec<rusqlite::types::Value>,
 }
 
 impl WhereClause {
-    pub fn add_bound_condition(&mut self, condition: &str, bound_value: impl Into<rusqlite::types::Value>) {
+    pub(crate) fn add_bound_condition(&mut self, condition: &str, bound_value: impl Into<rusqlite::types::Value>) {
         self.bound_values.push(bound_value.into());
         self.conditions.push(condition.replace('?', &format!("?{}", self.bound_values.len())));
     }
 
-    pub fn add_condition(&mut self, condition: &str) {
+    pub(crate) fn add_condition(&mut self, condition: &str) {
         self.conditions.push(condition.to_string());
     }
 
-    pub fn to_sql(&self) -> String {
+    pub(crate) fn to_sql(&self) -> String {
         if self.conditions.is_empty() {
             String::new()
         } else {
@@ -171,12 +171,12 @@ impl WhereClause {
         }
     }
 
-    pub fn params(&self) -> impl Params + '_ {
+    pub(crate) fn params(&self) -> impl Params + '_ {
         rusqlite::params_from_iter(self.bound_values.iter())
     }
 }
 
-pub async fn whole_table_json(
+pub(crate) async fn whole_table_json(
     state: crate::state::AppState,
     sql: &'static str,
     flag_columns: &'static [&'static str],

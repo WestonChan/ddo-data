@@ -12,13 +12,13 @@ use serde_json::{json, Value};
 use utoipa_axum::router::OpenApiRouter;
 use utoipa_axum::routes;
 
-pub fn router() -> OpenApiRouter<AppState> {
+pub(super) fn router() -> OpenApiRouter<AppState> {
     OpenApiRouter::new().routes(routes!(spells)).routes(routes!(spell_detail)).routes(routes!(clickies))
 }
 
 #[derive(Deserialize)]
 #[serde(deny_unknown_fields)]
-pub struct SpellListQuery {
+pub(super) struct SpellListQuery {
     pub q: Option<String>,
     pub school: Option<String>,
     pub class: Option<String>,

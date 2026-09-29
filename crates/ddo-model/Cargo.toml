@@ -9,3 +9,6 @@ description = "The DDO Tools database schema as Rust types: enums, seed tables, 
 [dependencies]
 rusqlite = { workspace = true }
 serde = { workspace = true }
+
+[lints]
+workspace = true

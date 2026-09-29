@@ -45,6 +45,7 @@ This is the data half of a two-repo project. The site is `ddo-tools`, a sibling 
 - **Turn findings into lint rules.** When you fix or review a problem a machine could have caught (a convention broken in more than one place, a bug pattern, a rule in this file that nothing enforces), suggest a check that `cargo lint` runs so it can't come back: a clippy lint in `[workspace.lints]` or `clippy.toml`, or an `xtask` check. Say what it would flag today and include it in your final report. Add it yourself when it's cheap and needs no new dependency; a new crate needs the maintainer's approval first.
 - **Names carry the meaning comments would have.** Follow the naming rules below.
 - **Keep code clean and refactor freely.** Improve adjacent code you touch; don't leave a file worse than you found it.
+- **`cargo lint` also enforces** `unreachable_pub` (so a crate-internal item is `pub(crate)` and dead code stays visible) and the naming lints in `[workspace.lints]` and `clippy.toml`: `disallowed_names` (`data`, `info`, `tmp`, `val` and similar), `many_single_char_names` (three or more single-letter bindings in one scope) and `similar_names`. Every crate opts in with `[lints] workspace = true`.
 - `rustfmt.toml` sets a 120-column width. Run `cargo fmt --all` before committing.
 
 ### Naming

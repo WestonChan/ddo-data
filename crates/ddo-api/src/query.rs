@@ -3,7 +3,7 @@ use axum::extract::{FromRequestParts, Query};
 use axum::http::request::Parts;
 use serde::de::DeserializeOwned;
 
-pub struct ApiQuery<T>(pub T);
+pub(crate) struct ApiQuery<T>(pub T);
 
 impl<T: DeserializeOwned, S: Send + Sync> FromRequestParts<S> for ApiQuery<T> {
     type Rejection = ApiError;

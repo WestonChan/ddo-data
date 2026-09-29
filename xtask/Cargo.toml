@@ -11,3 +11,6 @@ anyhow = { workspace = true }
 clap = { workspace = true }
 ra-ap-rustc_lexer = "0.174"
 walkdir = { workspace = true }
+
+[lints]
+workspace = true

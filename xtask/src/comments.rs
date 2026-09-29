@@ -1,12 +1,12 @@
 use ra_ap_rustc_lexer::{tokenize, FrontmatterAllowed, TokenKind};
 use std::ops::Range;
 
-pub struct Comment {
+pub(crate) struct Comment {
     pub byte_range: Range<usize>,
     pub line_number: usize,
 }
 
-pub fn comments_in(source_code: &str) -> Vec<Comment> {
+pub(crate) fn comments_in(source_code: &str) -> Vec<Comment> {
     let mut comments = Vec::new();
     let mut token_start = 0;
     for token in tokenize(source_code, FrontmatterAllowed::No) {
@@ -20,7 +20,7 @@ pub fn comments_in(source_code: &str) -> Vec<Comment> {
     comments
 }
 
-pub fn without_comments(source_code: &str) -> String {
+pub(crate) fn without_comments(source_code: &str) -> String {
     let mut uncommented_code = source_code.to_string();
     for comment in comments_in(source_code).into_iter().rev() {
         uncommented_code.replace_range(comment_removal_range(source_code, comment.byte_range), "");

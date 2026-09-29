@@ -100,11 +100,11 @@ declare_response_examples! { "v1":
     ("/v1/clickies", "clickies"),
 }
 
-pub fn openapi() -> utoipa::openapi::OpenApi {
+pub(crate) fn openapi() -> utoipa::openapi::OpenApi {
     ApiDoc::openapi()
 }
 
-pub fn router() -> OpenApiRouter<AppState> {
+pub(crate) fn router() -> OpenApiRouter<AppState> {
     OpenApiRouter::new()
         .merge(version::router())
         .merge(items::router())

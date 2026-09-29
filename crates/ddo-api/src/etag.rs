@@ -7,7 +7,7 @@ use std::hash::{DefaultHasher, Hash, Hasher};
 
 const DATASET_VERSION_HEADER: &str = "x-dataset-version";
 
-pub async fn apply_etag(State(state): State<AppState>, request: Request, next: Next) -> Response {
+pub(crate) async fn apply_etag(State(state): State<AppState>, request: Request, next: Next) -> Response {
     let upstream_sha = &state.dataset_version().upstream_sha;
     let mut hasher = DefaultHasher::new();
     upstream_sha.hash(&mut hasher);

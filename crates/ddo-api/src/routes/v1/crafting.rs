@@ -8,7 +8,7 @@ use serde_json::Value;
 use utoipa_axum::router::OpenApiRouter;
 use utoipa_axum::routes;
 
-pub fn router() -> OpenApiRouter<AppState> {
+pub(super) fn router() -> OpenApiRouter<AppState> {
     OpenApiRouter::new().routes(routes!(crafting_systems)).routes(routes!(crafting_system_detail))
 }
 
@@ -35,7 +35,7 @@ fn recipe_cost(db: &Connection, recipe_id: i64) -> Result<Vec<Value>, ApiError> 
     )
 }
 
-pub fn crafting_recipes_yielding(db: &Connection, augment_id: i64) -> Result<Vec<Value>, ApiError> {
+pub(super) fn crafting_recipes_yielding(db: &Connection, augment_id: i64) -> Result<Vec<Value>, ApiError> {
     let mut recipes = json_rows(
         db,
         "SELECT r.id, s.name AS system, r.tier, r.option FROM crafting_recipe_augments ra

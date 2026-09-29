@@ -10,12 +10,12 @@ use utoipa::ToSchema;
 use utoipa_axum::router::OpenApiRouter;
 use utoipa_axum::routes;
 
-pub fn router() -> OpenApiRouter<AppState> {
+pub(super) fn router() -> OpenApiRouter<AppState> {
     OpenApiRouter::new().routes(routes!(version_report))
 }
 
 #[derive(Serialize, ToSchema)]
-pub struct VersionReport {
+pub(super) struct VersionReport {
     pub schema_version: i64,
     pub api_commit: Option<&'static str>,
     #[schema(value_type = Object)]

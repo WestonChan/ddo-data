@@ -28,3 +28,6 @@ utoipa-scalar = { version = "0.3", features = ["axum"] }
 [dev-dependencies]
 ddo-etl = { path = "../ddo-etl" }
 http-body-util = "0.1"
+
+[lints]
+workspace = true

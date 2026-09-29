@@ -1,0 +1,2 @@
+disallowed-names = ["..", "data", "info", "tmp", "temp", "obj", "val", "stuff", "thing", "foo", "bar"]
+single-char-binding-names-threshold = 3
