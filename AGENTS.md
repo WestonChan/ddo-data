@@ -42,9 +42,20 @@ This is the data half of a two-repo project. The site is `ddo-tools`, a sibling 
 ## Code Quality
 
 - **No comments, no doc comments.** Code carries its meaning in names, types, and tests. Do not write `//`, `/* */`, `///`, or `//!`. If something needs a comment to be understood, rename, split, or restructure it until it doesn't. Reasoning that cannot live in code goes in the ddo-tools roadmap or `docs/` there. `cargo lint` fails on any comment; `cargo xtask no-comments --fix` strips them.
-- **Specific things get purpose names; shared things get general names.** A function that does one job is named for the job (`bonuses_via`, `read_item_buffs`), not its mechanism. Code in `ddo-model` and shared helpers describes the capability, not the first caller.
+- **Names carry the meaning comments would have.** Follow the naming rules below.
 - **Keep code clean and refactor freely.** Improve adjacent code you touch; don't leave a file worse than you found it.
 - `rustfmt.toml` sets a 120-column width. Run `cargo fmt --all` before committing.
+
+### Naming
+
+Names replace comments, so each name must answer the question a reader would otherwise ask. **Before naming or renaming anything, read `ddo-tools/docs/naming.md`** (the sibling checkout, or [on GitHub](https://github.com/WestonChan/ddo-tools/blob/main/docs/naming.md)). It covers how to choose a name, with examples and sources, and applies to both repos. Its examples use TypeScript casing; here the same words go in `snake_case` and `UpperCamelCase`. Existing code predates it and is not a model to copy; rename what you touch. The rules in short:
+
+- **Choose, don't guess.** List the concepts the name must carry, pick one word per concept (the player's word, the same word the frontend and API use), put them in English order (`maximum_message_length`, `total_strength`, `cooldown_ms`), then read the call site on its own.
+- **Code that changes data** is an imperative verb phrase naming what it changes, or why: `insert_quests`, `reject_unmapped_slot`. Never `update`, `process` or `handle`. A name that needs "and" means the function should be split.
+- **Code that only reads, and every binding,** is a noun phrase naming what it is or what it's for, often through the process that made it: `sorted_items`, `rows_to_insert`. Reads have no side effects. Follow the Rust API Guidelines: no `get_` on getters; `as_`/`to_`/`into_` for conversions; `new`/`from_x` for constructors; `is_`/`has_`/`can_` for predicates.
+- **Types are nouns**: the domain word if one exists (`Race`, `Augment`, `EquipmentSlot`), otherwise the role the thing plays. No `Manager`, `Helper`, `Info` or `Data`. Enum variants read as values (`Difficulty::Elite`).
+- **A name means only one thing.** Qualify generic words (`slot`, `candidate`, `entry`, `child`, `kind`) until only one reading is left. Add words that remove ambiguity and drop words that repeat the type or the owner.
+- **Name length follows scope**: short names only for values that live 10 lines or fewer. `ddo-model` and shared helpers get capability names, not a name from their first caller's point of view.
 
 ## API documentation
 
