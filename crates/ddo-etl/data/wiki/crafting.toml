@@ -1,0 +1,631 @@
+[[system]]
+name = "Slave Lords Crafting"
+page = "https://ddowiki.com/page/Slave_Lords_Crafting"
+read = "2026-09-29"
+pack = "Against the Slave Lords"
+families = ["Slavelords_Heroic", "Slavelords_Legendary"]
+npc = "Garvon <Armorer and Outfitter>, in the Forsaken Temple just inside the Slave Pits of the Undercity entrance"
+
+[[system.ingredient]]
+name = "Broken Shackle"
+tier = "heroic"
+bind = "Unbound"
+source = "Part 1, Slave Pits of the Undercity"
+
+[[system.ingredient]]
+name = "Chain Links"
+tier = "heroic"
+bind = "Unbound"
+source = "Part 2, Secret of the Slavers' Stockade"
+
+[[system.ingredient]]
+name = "Broken Collar"
+tier = "heroic"
+bind = "Unbound"
+source = "Part 3, Assault on the Aerie of the Slave Lords"
+
+[[system.ingredient]]
+name = "Shattered Symbol of the Slave Lords"
+tier = "heroic"
+bind = "BtA"
+source = "Part 1, Slave Pits of the Undercity"
+
+[[system.ingredient]]
+name = "Frayed Leather"
+tier = "heroic"
+bind = "BtA"
+source = "Part 2, Secret of the Slavers' Stockade"
+
+[[system.ingredient]]
+name = "Staff Splinter"
+tier = "heroic"
+bind = "BtA"
+source = "Part 3, Assault on the Aerie of the Slave Lords"
+
+[[system.ingredient]]
+name = "Statuette of the Gods"
+tier = "heroic"
+bind = "BtA"
+source = "All parts"
+
+[[system.ingredient]]
+name = "Slave Master's Bust"
+tier = "heroic"
+bind = "BtA"
+source = "All parts"
+
+[[system.ingredient]]
+name = "Legendary Broken Shackle"
+tier = "legendary"
+bind = "Unbound"
+source = "Part 1, Slave Pits of the Undercity"
+
+[[system.ingredient]]
+name = "Legendary Chain Links"
+tier = "legendary"
+bind = "Unbound"
+source = "Part 2, Secret of the Slavers' Stockade"
+
+[[system.ingredient]]
+name = "Legendary Broken Collar"
+tier = "legendary"
+bind = "Unbound"
+source = "Part 3, Assault on the Aerie of the Slave Lords"
+
+[[system.ingredient]]
+name = "Legendary Shattered Symbol of Slave Lords"
+tier = "legendary"
+bind = "BtA"
+source = "Part 1, Slave Pits of the Undercity"
+
+[[system.ingredient]]
+name = "Legendary Frayed Leather"
+tier = "legendary"
+bind = "BtA"
+source = "Part 2, Secret of the Slavers' Stockade"
+
+[[system.ingredient]]
+name = "Legendary Staff Splinter"
+tier = "legendary"
+bind = "BtA"
+source = "Part 3, Assault on the Aerie of the Slave Lords"
+
+[[system.ingredient]]
+name = "Legendary Statuette of the Gods"
+tier = "legendary"
+bind = "BtA"
+source = "All parts"
+
+[[system.ingredient]]
+name = "Legendary Slave Master's Bust"
+tier = "legendary"
+bind = "BtA"
+source = "All parts"
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: slavelords prefix"
+option = "Attributes +5"
+augments = ["Charisma +5", "Constitution +5", "Dexterity +5", "Intelligence +5", "Strength +5", "Wisdom +5"]
+cost = [{ ingredient = "Broken Shackle", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: legendary slavelords prefix"
+option = "Attributes +13"
+augments = ["Charisma +13", "Constitution +13", "Dexterity +13", "Intelligence +13", "Strength +13", "Wisdom +13"]
+cost = [{ ingredient = "Legendary Broken Shackle", quantity = 100 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: slavelords prefix"
+option = "False Life +18"
+augments = ["False Life +18"]
+cost = [{ ingredient = "Broken Shackle", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: legendary slavelords prefix"
+option = "False Life +50"
+augments = ["False Life +50"]
+cost = [{ ingredient = "Legendary Broken Shackle", quantity = 100 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: slavelords prefix"
+option = "Fortification +70%"
+augments = ["Fortification +70%"]
+cost = [{ ingredient = "Broken Shackle", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: legendary slavelords prefix"
+option = "Fortification +142%"
+augments = ["Fortification +142%"]
+cost = [{ ingredient = "Legendary Broken Shackle", quantity = 100 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: slavelords prefix"
+option = "Sheltering +12"
+augments = ["Sheltering +12"]
+cost = [{ ingredient = "Broken Shackle", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: legendary slavelords prefix"
+option = "Sheltering +33"
+augments = ["Sheltering +33"]
+cost = [{ ingredient = "Legendary Broken Shackle", quantity = 100 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: slavelords prefix"
+option = "Wizardry +96"
+augments = ["Wizardry +96"]
+cost = [{ ingredient = "Broken Shackle", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: legendary slavelords prefix"
+option = "Wizardry +269"
+augments = ["Wizardry +269"]
+cost = [{ ingredient = "Legendary Broken Shackle", quantity = 100 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: slavelords suffix"
+option = "Accuracy +8"
+augments = ["Accuracy +8"]
+cost = [{ ingredient = "Chain Links", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: legendary slavelords suffix"
+option = "Accuracy +20"
+augments = ["Accuracy +20"]
+cost = [{ ingredient = "Legendary Chain Links", quantity = 100 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: slavelords suffix"
+option = "Armor Piercing +8"
+augments = ["Armor Piercing +8"]
+cost = [{ ingredient = "Chain Links", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: legendary slavelords suffix"
+option = "Armor Piercing +20"
+augments = ["Armor Piercing +20"]
+cost = [{ ingredient = "Legendary Chain Links", quantity = 100 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: slavelords suffix"
+option = "Damage Guards +2d8"
+augments = ["Damage Guards 2d8"]
+note = "The page notes the damage guards don't stack with each other."
+cost = [{ ingredient = "Chain Links", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: legendary slavelords suffix"
+option = "Damage Guards +8d8"
+augments = ["Damage Guards 8d8"]
+note = "The page notes the damage guards don't stack with each other."
+cost = [{ ingredient = "Legendary Chain Links", quantity = 100 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: slavelords suffix"
+option = "Deadly +4"
+augments = ["Deadly +4"]
+cost = [{ ingredient = "Chain Links", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: legendary slavelords suffix"
+option = "Deadly +10"
+augments = ["Deadly +10"]
+cost = [{ ingredient = "Legendary Chain Links", quantity = 100 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: slavelords suffix"
+option = "Deception +3"
+augments = ["Deception +3"]
+note = "The page notes this has no Bluff effect."
+cost = [{ ingredient = "Chain Links", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: legendary slavelords suffix"
+option = "Deception +10"
+augments = ["Deception +10"]
+note = "The page notes this has no Bluff effect."
+cost = [{ ingredient = "Legendary Chain Links", quantity = 100 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: slavelords suffix"
+option = "Resistance +4"
+augments = ["Resistance +4"]
+cost = [{ ingredient = "Chain Links", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: legendary slavelords suffix"
+option = "Resistance +10"
+augments = ["Resistance +10"]
+cost = [{ ingredient = "Legendary Chain Links", quantity = 100 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: slavelords suffix"
+option = "Seeker +5"
+augments = ["Seeker +5"]
+cost = [{ ingredient = "Chain Links", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: legendary slavelords suffix"
+option = "Seeker +13"
+augments = ["Seeker +13"]
+cost = [{ ingredient = "Legendary Chain Links", quantity = 100 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: slavelords suffix"
+option = "Spell Lore (single type) (Equipment Bonus) +10"
+augments = ["Spell Lore Acid +10", "Spell Lore Cold +10", "Spell Lore Electric +10", "Spell Lore Fire +10", "Spell Lore Force +10", "Spell Lore Light +10", "Spell Lore Negative +10", "Spell Lore Positive +10", "Spell Lore Repair +10", "Spell Lore Sonic +10"]
+cost = [{ ingredient = "Chain Links", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: legendary slavelords suffix"
+option = "Spell Lore (single type) (Equipment Bonus) +21"
+augments = ["Spell Lore Acid +21", "Spell Lore Cold +21", "Spell Lore Electric +21", "Spell Lore Fire +21", "Spell Lore Force +21", "Spell Lore Light +21", "Spell Lore Negative +21", "Spell Lore Positive +21", "Spell Lore Repair +21", "Spell Lore Sonic +21"]
+cost = [{ ingredient = "Legendary Chain Links", quantity = 100 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: slavelords suffix"
+option = "Spell Power (single type) (Equipment Bonus) +70"
+augments = ["Spell Power Acid +70", "Spell Power Cold +70", "Spell Power Electric +70", "Spell Power Fire +70", "Spell Power Force +70", "Spell Power Light +70", "Spell Power Negative +70", "Spell Power Positive +70", "Spell Power Repair +70", "Spell Power Sonic +70"]
+cost = [{ ingredient = "Chain Links", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: legendary slavelords suffix"
+option = "Spell Power (single type) (Equipment Bonus) +142"
+augments = ["Spell Power Acid +142", "Spell Power Cold +142", "Spell Power Electric +142", "Spell Power Fire +142", "Spell Power Force +142", "Spell Power Light +142", "Spell Power Negative +142", "Spell Power Positive +142", "Spell Power Repair +142", "Spell Power Sonic +142"]
+cost = [{ ingredient = "Legendary Chain Links", quantity = 100 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: slavelords extra"
+option = "Skills (except UMD) +10"
+augments = ["Balance +10", "Bluff +10", "Concentration +10", "Diplomacy +10", "Disable Device +10", "Haggle +10", "Heal +10", "Hide +10", "Intimidate +10", "Jump +10", "Listen +10", "Move Silently +10", "Open Lock +10", "Perform +10", "Repair +10", "Search +10", "Spellcraft +10", "Spot +10", "Swim +10", "Tumble +10"]
+cost = [{ ingredient = "Broken Collar", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: legendary slavelords extra"
+option = "Skills (except UMD) +20"
+augments = ["Balance +20", "Bluff +20", "Concentration +20", "Diplomacy +20", "Disable Device +20", "Haggle +20", "Heal +20", "Hide +20", "Intimidate +20", "Jump +20", "Listen +20", "Move Silently +20", "Open Lock +20", "Perform +20", "Repair +20", "Search +20", "Spellcraft +20", "Spot +20", "Swim +20", "Tumble +20"]
+cost = [{ ingredient = "Legendary Broken Collar", quantity = 100 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: slavelords extra"
+option = "UMD +1"
+augments = ["Use Magic Device +1"]
+note = "The page notes the barter window displays incorrect values."
+cost = [{ ingredient = "Broken Collar", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: legendary slavelords extra"
+option = "UMD +5"
+augments = ["Use Magic Device +5"]
+note = "The page notes the barter window displays incorrect values."
+cost = [{ ingredient = "Legendary Broken Collar", quantity = 100 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: slavelords extra"
+option = "Shatter +6"
+augments = ["Shatter +6"]
+cost = [{ ingredient = "Broken Collar", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: legendary slavelords extra"
+option = "Shatter +15"
+augments = ["Shatter +15"]
+cost = [{ ingredient = "Legendary Broken Collar", quantity = 100 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: slavelords extra"
+option = "Spell Focus Mastery +2"
+augments = ["Spell Focus Mastery +2"]
+cost = [{ ingredient = "Broken Collar", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: legendary slavelords extra"
+option = "Spell Focus Mastery +6"
+augments = ["Spell Focus Mastery +4"]
+note = "The page gives +6; Maetrim's Slavelords_Legendary augment is Spell Focus Mastery +4, and his value stands."
+cost = [{ ingredient = "Legendary Broken Collar", quantity = 100 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: slavelords extra"
+option = "Spell Penetration +3"
+augments = ["Spell Penetration +3"]
+cost = [{ ingredient = "Broken Collar", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: legendary slavelords extra"
+option = "Spell Penetration +8"
+augments = ["Spell Penetration +8"]
+cost = [{ ingredient = "Legendary Broken Collar", quantity = 100 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: slavelords extra"
+option = "Stunning +6"
+augments = ["Stunning +6"]
+cost = [{ ingredient = "Broken Collar", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: legendary slavelords extra"
+option = "Stunning +15"
+augments = ["Stunning +15"]
+cost = [{ ingredient = "Legendary Broken Collar", quantity = 100 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: slavelords extra"
+option = "Tendon Slice +4"
+augments = ["Tendon Slice +4"]
+cost = [{ ingredient = "Broken Collar", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: legendary slavelords extra"
+option = "Tendon Slice +10"
+augments = ["Tendon Slice +10"]
+cost = [{ ingredient = "Legendary Broken Collar", quantity = 100 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: slavelords extra"
+option = "Vertigo +6"
+augments = ["Vertigo +6"]
+cost = [{ ingredient = "Broken Collar", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: legendary slavelords extra"
+option = "Vertigo +15"
+augments = ["Vertigo +15"]
+cost = [{ ingredient = "Legendary Broken Collar", quantity = 100 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: slavelords bonus"
+option = "Quality Attributes +1"
+augments = ["Quality Charisma +1", "Quality Constitution +1", "Quality Dexterity +1", "Quality Intelligence +1", "Quality Strength +1", "Quality Wisdom +1"]
+note = "The page notes the heroic barter window displays incorrect values for this row; these are the page's corrected values."
+cost = [{ ingredient = "Frayed Leather", quantity = 20 }, { ingredient = "Broken Shackle", quantity = 20 }, { ingredient = "Chain Links", quantity = 20 }, { ingredient = "Broken Collar", quantity = 20 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: legendary slavelords bonus"
+option = "Quality Attributes +3"
+augments = ["Quality Charisma +3", "Quality Constitution +3", "Quality Dexterity +3", "Quality Intelligence +3", "Quality Strength +3", "Quality Wisdom +3"]
+cost = [{ ingredient = "Legendary Frayed Leather", quantity = 50 }, { ingredient = "Legendary Broken Shackle", quantity = 50 }, { ingredient = "Legendary Chain Links", quantity = 50 }, { ingredient = "Legendary Broken Collar", quantity = 50 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: slavelords bonus"
+option = "Quality False Life +4"
+augments = ["Quality False Life +4"]
+note = "The page notes the heroic barter window displays incorrect values for this row; these are the page's corrected values."
+cost = [{ ingredient = "Frayed Leather", quantity = 20 }, { ingredient = "Broken Shackle", quantity = 20 }, { ingredient = "Chain Links", quantity = 20 }, { ingredient = "Broken Collar", quantity = 20 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: legendary slavelords bonus"
+option = "Quality False Life +12"
+augments = ["Quality False Life +12"]
+cost = [{ ingredient = "Legendary Frayed Leather", quantity = 50 }, { ingredient = "Legendary Broken Shackle", quantity = 50 }, { ingredient = "Legendary Chain Links", quantity = 50 }, { ingredient = "Legendary Broken Collar", quantity = 50 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: slavelords bonus"
+option = "Quality Fortification +17%"
+augments = ["Quality Fortification +17%"]
+note = "The page notes the heroic barter window displays incorrect values for this row; these are the page's corrected values."
+cost = [{ ingredient = "Frayed Leather", quantity = 20 }, { ingredient = "Broken Shackle", quantity = 20 }, { ingredient = "Chain Links", quantity = 20 }, { ingredient = "Broken Collar", quantity = 20 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: legendary slavelords bonus"
+option = "Quality Fortification +35%"
+augments = ["Quality Fortification +35%"]
+cost = [{ ingredient = "Legendary Frayed Leather", quantity = 50 }, { ingredient = "Legendary Broken Shackle", quantity = 50 }, { ingredient = "Legendary Chain Links", quantity = 50 }, { ingredient = "Legendary Broken Collar", quantity = 50 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: slavelords bonus"
+option = "Quality MRR +2"
+augments = ["Quality MRR +2"]
+cost = [{ ingredient = "Frayed Leather", quantity = 20 }, { ingredient = "Broken Shackle", quantity = 20 }, { ingredient = "Chain Links", quantity = 20 }, { ingredient = "Broken Collar", quantity = 20 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: legendary slavelords bonus"
+option = "Quality MRR +8"
+augments = ["Quality MRR +8"]
+cost = [{ ingredient = "Legendary Frayed Leather", quantity = 50 }, { ingredient = "Legendary Broken Shackle", quantity = 50 }, { ingredient = "Legendary Chain Links", quantity = 50 }, { ingredient = "Legendary Broken Collar", quantity = 50 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: slavelords bonus"
+option = "Quality PRR +2"
+augments = ["Quality PRR +2"]
+cost = [{ ingredient = "Frayed Leather", quantity = 20 }, { ingredient = "Broken Shackle", quantity = 20 }, { ingredient = "Chain Links", quantity = 20 }, { ingredient = "Broken Collar", quantity = 20 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: legendary slavelords bonus"
+option = "Quality PRR +8"
+augments = ["Quality PRR +8"]
+cost = [{ ingredient = "Legendary Frayed Leather", quantity = 50 }, { ingredient = "Legendary Broken Shackle", quantity = 50 }, { ingredient = "Legendary Chain Links", quantity = 50 }, { ingredient = "Legendary Broken Collar", quantity = 50 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: slavelords bonus"
+option = "Quality Skills +2"
+augments = ["Quality Balance +2", "Quality Bluff +2", "Quality Concentration +2", "Quality Diplomacy +2", "Quality Disable Device +2", "Quality Haggle +2", "Quality Heal +2", "Quality Hide +2", "Quality Intimidate +2", "Quality Jump +2", "Quality listen +2", "Quality Move Silently +2", "Quality Open Lock +2", "Quality Perform +2", "Quality Repair +2", "Quality Search +2", "Quality Spellcraft +2", "Quality Spot +2", "Quality Swim +2", "Quality Tumble +2"]
+cost = [{ ingredient = "Frayed Leather", quantity = 20 }, { ingredient = "Broken Shackle", quantity = 20 }, { ingredient = "Chain Links", quantity = 20 }, { ingredient = "Broken Collar", quantity = 20 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: legendary slavelords bonus"
+option = "Quality Skills +5"
+augments = ["Quality Balance +5", "Quality Bluff +5", "Quality Concentration +5", "Quality Diplomacy +5", "Quality Disable Device +5", "Quality Haggle +5", "Quality Heal +5", "Quality Hide +5", "Quality Intimidate +5", "Quality Jump +5", "Quality listen +5", "Quality Move Silently +5", "Quality Open Lock +5", "Quality Perform +5", "Quality Repair +5", "Quality Search +5", "Quality Spellcraft +5", "Quality Spot +5", "Quality Swim +5", "Quality Tumble +5"]
+cost = [{ ingredient = "Legendary Frayed Leather", quantity = 50 }, { ingredient = "Legendary Broken Shackle", quantity = 50 }, { ingredient = "Legendary Chain Links", quantity = 50 }, { ingredient = "Legendary Broken Collar", quantity = 50 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Colorless Augment Slot"
+augments = []
+note = "Adds a Colorless augment slot to the item; no augment counterpart."
+cost = [{ ingredient = "Staff Splinter", quantity = 20 }, { ingredient = "Broken Shackle", quantity = 20 }, { ingredient = "Chain Links", quantity = 20 }, { ingredient = "Broken Collar", quantity = 20 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Colorless Augment Slot"
+augments = []
+note = "Adds a Colorless augment slot to the item; no augment counterpart."
+cost = [{ ingredient = "Legendary Staff Splinter", quantity = 50 }, { ingredient = "Legendary Broken Shackle", quantity = 50 }, { ingredient = "Legendary Chain Links", quantity = 50 }, { ingredient = "Legendary Broken Collar", quantity = 50 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Blue Augment Slot"
+augments = []
+note = "Adds a Blue augment slot to the item; no augment counterpart."
+cost = [{ ingredient = "Staff Splinter", quantity = 20 }, { ingredient = "Broken Shackle", quantity = 20 }, { ingredient = "Chain Links", quantity = 20 }, { ingredient = "Broken Collar", quantity = 20 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Blue Augment Slot"
+augments = []
+note = "Adds a Blue augment slot to the item; no augment counterpart."
+cost = [{ ingredient = "Legendary Staff Splinter", quantity = 50 }, { ingredient = "Legendary Broken Shackle", quantity = 50 }, { ingredient = "Legendary Chain Links", quantity = 50 }, { ingredient = "Legendary Broken Collar", quantity = 50 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Yellow Augment Slot"
+augments = []
+note = "Adds a Yellow augment slot to the item; no augment counterpart."
+cost = [{ ingredient = "Staff Splinter", quantity = 20 }, { ingredient = "Broken Shackle", quantity = 20 }, { ingredient = "Chain Links", quantity = 20 }, { ingredient = "Broken Collar", quantity = 20 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Yellow Augment Slot"
+augments = []
+note = "Adds a Yellow augment slot to the item; no augment counterpart."
+cost = [{ ingredient = "Legendary Staff Splinter", quantity = 50 }, { ingredient = "Legendary Broken Shackle", quantity = 50 }, { ingredient = "Legendary Chain Links", quantity = 50 }, { ingredient = "Legendary Broken Collar", quantity = 50 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Green Augment Slot"
+augments = []
+note = "Adds a Green augment slot to the item; no augment counterpart."
+cost = [{ ingredient = "Staff Splinter", quantity = 30 }, { ingredient = "Broken Shackle", quantity = 20 }, { ingredient = "Chain Links", quantity = 20 }, { ingredient = "Broken Collar", quantity = 20 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Green Augment Slot"
+augments = []
+note = "Adds a Green augment slot to the item; no augment counterpart."
+cost = [{ ingredient = "Legendary Staff Splinter", quantity = 100 }, { ingredient = "Legendary Broken Shackle", quantity = 50 }, { ingredient = "Legendary Chain Links", quantity = 50 }, { ingredient = "Legendary Broken Collar", quantity = 50 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: slavelords set bonus"
+option = "Slave Lord's Might"
+augments = ["Slavelords Might"]
+cost = [{ ingredient = "Shattered Symbol of the Slave Lords", quantity = 20 }, { ingredient = "Broken Shackle", quantity = 20 }, { ingredient = "Chain Links", quantity = 20 }, { ingredient = "Broken Collar", quantity = 20 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: legendary slavelords set bonus"
+option = "Slave Lord's Might"
+augments = ["Legendary Slavelords Might"]
+cost = [{ ingredient = "Legendary Shattered Symbol of Slave Lords", quantity = 50 }, { ingredient = "Legendary Broken Shackle", quantity = 50 }, { ingredient = "Legendary Chain Links", quantity = 50 }, { ingredient = "Legendary Broken Collar", quantity = 50 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: slavelords set bonus"
+option = "Slave Lord's Sorcery"
+augments = ["Slavelords Sorcery"]
+cost = [{ ingredient = "Shattered Symbol of the Slave Lords", quantity = 20 }, { ingredient = "Broken Shackle", quantity = 20 }, { ingredient = "Chain Links", quantity = 20 }, { ingredient = "Broken Collar", quantity = 20 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: legendary slavelords set bonus"
+option = "Slave Lord's Sorcery"
+augments = ["Legendary Slavelords Sorcery"]
+cost = [{ ingredient = "Legendary Shattered Symbol of Slave Lords", quantity = 50 }, { ingredient = "Legendary Broken Shackle", quantity = 50 }, { ingredient = "Legendary Chain Links", quantity = 50 }, { ingredient = "Legendary Broken Collar", quantity = 50 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: slavelords set bonus"
+option = "Slaver's Endurance"
+augments = ["Slavelords Endurance"]
+cost = [{ ingredient = "Shattered Symbol of the Slave Lords", quantity = 20 }, { ingredient = "Broken Shackle", quantity = 20 }, { ingredient = "Chain Links", quantity = 20 }, { ingredient = "Broken Collar", quantity = 20 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: legendary slavelords set bonus"
+option = "Slaver's Endurance"
+augments = ["Legendary Slavelords Endurance"]
+cost = [{ ingredient = "Legendary Shattered Symbol of Slave Lords", quantity = 50 }, { ingredient = "Legendary Broken Shackle", quantity = 50 }, { ingredient = "Legendary Chain Links", quantity = 50 }, { ingredient = "Legendary Broken Collar", quantity = 50 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Mythic Boost +1"
+augments = []
+note = "Adds a +1 Mythic Boost to crafted or named Slave Lords gear; no augment counterpart."
+cost = [{ ingredient = "Statuette of the Gods", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Mythic Boost +1"
+augments = []
+note = "Adds a +1 Mythic Boost to crafted or named Slave Lords gear; no augment counterpart."
+cost = [{ ingredient = "Legendary Statuette of the Gods", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Mythic Boost +3"
+augments = []
+note = "Adds a +3 Mythic Boost to crafted or named Slave Lords gear; no augment counterpart."
+cost = [{ ingredient = "Slave Master's Bust", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Mythic Boost +3"
+augments = []
+note = "Adds a +3 Mythic Boost to crafted or named Slave Lords gear; no augment counterpart."
+cost = [{ ingredient = "Legendary Slave Master's Bust", quantity = 1 }]

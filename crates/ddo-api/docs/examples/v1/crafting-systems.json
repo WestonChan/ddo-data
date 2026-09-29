@@ -1,14 +1,15 @@
 [
   {
     "families": [
-      "Greensteel_Heroic"
+      "Slavelords_Heroic",
+      "Slavelords_Legendary"
     ],
     "id": 1,
-    "ingredient_count": 4,
-    "name": "Heroic Green Steel",
-    "npc": "Altar of Invasion",
-    "pack": null,
-    "page": "https://ddowiki.com/page/Green_Steel_items",
-    "recipe_count": 3
+    "ingredient_count": 16,
+    "name": "Slave Lords Crafting",
+    "npc": "Garvon <Armorer and Outfitter>, in the Forsaken Temple just inside the Slave Pits of the Undercity entrance",
+    "pack": "Against the Slave Lords",
+    "page": "https://ddowiki.com/page/Slave_Lords_Crafting",
+    "recipe_count": 74
   }
 ]

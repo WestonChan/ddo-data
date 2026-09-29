@@ -1,109 +1,121 @@
 {
   "families": [
-    "Greensteel_Heroic"
+    "Slavelords_Heroic",
+    "Slavelords_Legendary"
   ],
   "id": 1,
-  "ingredient_count": 4,
+  "ingredient_count": 16,
   "ingredients": [
     {
-      "bind": "Bound to Account",
+      "bind": "Unbound",
       "id": 1,
-      "name": "Small Shard of Power",
-      "source": "The Shroud",
+      "name": "Broken Shackle",
+      "source": "Part 1, Slave Pits of the Undercity",
       "tier": "heroic"
     },
     {
-      "bind": null,
+      "bind": "Unbound",
       "id": 2,
-      "name": "Small Focus of Earth",
-      "source": null,
+      "name": "Chain Links",
+      "source": "Part 2, Secret of the Slavers' Stockade",
       "tier": "heroic"
     },
     {
-      "bind": null,
+      "bind": "Unbound",
       "id": 3,
-      "name": "Small Focus of Fire",
-      "source": null,
+      "name": "Broken Collar",
+      "source": "Part 3, Assault on the Aerie of the Slave Lords",
       "tier": "heroic"
     }
   ],
-  "name": "Heroic Green Steel",
-  "npc": "Altar of Invasion",
-  "pack": null,
-  "page": "https://ddowiki.com/page/Green_Steel_items",
-  "recipe_count": 3,
+  "name": "Slave Lords Crafting",
+  "npc": "Garvon <Armorer and Outfitter>, in the Forsaken Temple just inside the Slave Pits of the Undercity entrance",
+  "pack": "Against the Slave Lords",
+  "page": "https://ddowiki.com/page/Slave_Lords_Crafting",
+  "recipe_count": 74,
   "recipes": [
     {
       "augments": [
         {
-          "id": 742,
-          "min_level": 11,
-          "name": "+5 Fortitude Save"
+          "id": 1674,
+          "min_level": 8,
+          "name": "Strength +5"
         },
         {
-          "id": 745,
-          "min_level": 11,
-          "name": "+5 Fortitude Save"
+          "id": 1675,
+          "min_level": 8,
+          "name": "Intelligence +5"
+        },
+        {
+          "id": 1676,
+          "min_level": 8,
+          "name": "Dexterity +5"
         }
       ],
       "cost": [
         {
-          "ingredient": "Small Shard of Power",
-          "quantity": 1,
-          "tier": "heroic"
-        },
-        {
-          "ingredient": "Small Focus of Earth",
-          "quantity": 1,
+          "ingredient": "Broken Shackle",
+          "quantity": 50,
           "tier": "heroic"
         }
       ],
       "id": 1,
       "note": null,
-      "option": "+5 Fortitude Save",
-      "slot": "crafting: accessory invasion",
+      "option": "Attributes +5",
+      "slot": "crafting: slavelords prefix",
       "tier": "heroic"
     },
     {
       "augments": [
         {
-          "id": 725,
-          "min_level": 11,
-          "name": "Minor Fire Guard"
+          "id": 1771,
+          "min_level": 28,
+          "name": "Strength +13"
+        },
+        {
+          "id": 1772,
+          "min_level": 28,
+          "name": "Intelligence +13"
+        },
+        {
+          "id": 1773,
+          "min_level": 28,
+          "name": "Dexterity +13"
         }
       ],
       "cost": [
         {
-          "ingredient": "Small Shard of Power",
-          "quantity": 1,
-          "tier": "heroic"
-        },
-        {
-          "ingredient": "Small Focus of Fire",
-          "quantity": 1,
-          "tier": "heroic"
+          "ingredient": "Legendary Broken Shackle",
+          "quantity": 100,
+          "tier": "legendary"
         }
       ],
       "id": 2,
       "note": null,
-      "option": "Minor Fire Guard",
-      "slot": "crafting: accessory invasion",
-      "tier": "heroic"
+      "option": "Attributes +13",
+      "slot": "crafting: legendary slavelords prefix",
+      "tier": "legendary"
     },
     {
-      "augments": [],
+      "augments": [
+        {
+          "id": 1680,
+          "min_level": 8,
+          "name": "False Life +18"
+        }
+      ],
       "cost": [
         {
-          "ingredient": "Shroud Commendation",
-          "quantity": 5,
-          "tier": "any"
+          "ingredient": "Broken Shackle",
+          "quantity": 50,
+          "tier": "heroic"
         }
       ],
       "id": 3,
-      "note": "Returns a crafted item to its blank state; no augment counterpart.",
-      "option": "Cleanse an item",
-      "slot": null,
-      "tier": "any"
+      "note": null,
+      "option": "False Life +18",
+      "slot": "crafting: slavelords prefix",
+      "tier": "heroic"
     }
   ]
 }
