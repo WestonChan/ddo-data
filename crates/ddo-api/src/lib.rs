@@ -6,6 +6,7 @@ mod query;
 mod routes;
 pub mod state;
 
+pub use docs::ResponseExample;
 pub use state::AppState;
 
 use axum::http::{header, HeaderValue, Method};
@@ -42,6 +43,10 @@ fn mount_docs(router: Router<AppState>, api_version: &'static str, spec: OpenApi
             async move { Json((*shared_spec).clone()) }
         }),
     )
+}
+
+pub fn v1_response_examples() -> &'static [ResponseExample] {
+    routes::v1::RESPONSE_EXAMPLES
 }
 
 pub fn app(state: AppState) -> Router {

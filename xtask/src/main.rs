@@ -6,6 +6,9 @@ use comments::{comments_in, without_comments};
 use std::path::{Path, PathBuf};
 use std::process::Command;
 use walkdir::WalkDir;
+use xtask::dataset::{build_database_file, wiki_overrides_from};
+use xtask::response_examples::{write_response_examples, EXAMPLE_REQUESTS};
+use xtask::workspace_root;
 
 #[derive(Parser)]
 struct Cli {
@@ -20,6 +23,14 @@ enum Task {
         #[arg(long)]
         fix: bool,
     },
+    RefreshExamples {
+        #[arg(long)]
+        db: Option<PathBuf>,
+        #[arg(long)]
+        source: Option<PathBuf>,
+        #[arg(long)]
+        out: Option<PathBuf>,
+    },
 }
 
 fn main() -> Result<()> {
@@ -30,7 +41,37 @@ fn main() -> Result<()> {
         }
         Task::NoComments { fix: false } => deny_comments(),
         Task::NoComments { fix: true } => strip_workspace_comments(),
+        Task::RefreshExamples { db: db_path, source: data_files_dir, out: examples_dir } => {
+            refresh_response_examples(db_path.as_deref(), data_files_dir, examples_dir)
+        }
     }
+}
+
+fn refresh_response_examples(
+    db_path: Option<&Path>,
+    data_files_dir: Option<PathBuf>,
+    examples_dir: Option<PathBuf>,
+) -> Result<()> {
+    let examples_dir = examples_dir.unwrap_or_else(|| workspace_root().join("crates/ddo-api/docs/examples/v1"));
+    let built_db_file;
+    let db_path = match db_path {
+        Some(db_path) => db_path,
+        None => {
+            built_db_file = tempfile::NamedTempFile::new()?;
+            let data_files_dir = data_files_dir.unwrap_or_else(default_data_files_dir);
+            println!("building {} into {}", data_files_dir.display(), built_db_file.path().display());
+            build_database_file(&data_files_dir, &wiki_overrides_from(None)?, built_db_file.path())?;
+            built_db_file.path()
+        }
+    };
+    for written_example in write_response_examples(db_path, EXAMPLE_REQUESTS, &examples_dir)? {
+        println!("{:<28} {:>6} bytes", written_example.file_name, written_example.size_bytes);
+    }
+    Ok(())
+}
+
+fn default_data_files_dir() -> PathBuf {
+    ddo_etl::upstream::default_data_files_dir(&workspace_root())
 }
 
 fn deny_clippy_warnings() -> Result<()> {
@@ -79,8 +120,4 @@ fn rust_source_paths(search_root: PathBuf) -> impl Iterator<Item = PathBuf> {
         .filter_map(|entry| entry.ok())
         .filter(|entry| entry.path().extension().is_some_and(|extension| extension == "rs"))
         .map(|entry| entry.into_path())
-}
-
-fn workspace_root() -> PathBuf {
-    Path::new(env!("CARGO_MANIFEST_DIR")).parent().unwrap().to_path_buf()
 }
