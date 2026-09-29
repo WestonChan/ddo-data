@@ -1,4 +1,5 @@
 use ddo_model::DatasetVersion;
+use std::ffi::OsString;
 use std::path::{Path, PathBuf};
 use std::process::Command;
 
@@ -6,8 +7,17 @@ fn data_files_dir_in(upstream_checkout_dir: &Path) -> PathBuf {
     upstream_checkout_dir.join("Output").join("DataFiles")
 }
 
+pub const UPSTREAM_CHECKOUT_ENV_VAR: &str = "DDO_UPSTREAM";
+
 pub fn default_data_files_dir(checkout_root: &Path) -> PathBuf {
-    data_files_dir_in(&checkout_root.join("upstream"))
+    data_files_dir_for(std::env::var_os(UPSTREAM_CHECKOUT_ENV_VAR), checkout_root)
+}
+
+pub fn data_files_dir_for(upstream_checkout_env_value: Option<OsString>, checkout_root: &Path) -> PathBuf {
+    match upstream_checkout_env_value.filter(|env_value| !env_value.is_empty()) {
+        Some(upstream_checkout_dir) => data_files_dir_in(Path::new(&upstream_checkout_dir)),
+        None => data_files_dir_in(&checkout_root.join("upstream")),
+    }
 }
 
 pub fn dataset_version(data_files_dir: &Path, upstream_sha: Option<String>) -> DatasetVersion {

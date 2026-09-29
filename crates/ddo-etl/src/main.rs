@@ -1,7 +1,7 @@
 use anyhow::{Context, Result};
 use clap::{Parser, Subcommand};
 use rusqlite::Connection;
-use std::path::PathBuf;
+use std::path::{Path, PathBuf};
 
 #[derive(Parser)]
 #[command(name = "ddo-etl", about = "Build the DDO Tools game database from DDOBuilderV2 data files")]
@@ -14,7 +14,7 @@ struct Cli {
 enum CliCommand {
     Build {
         #[arg(long)]
-        source: PathBuf,
+        source: Option<PathBuf>,
         #[arg(long)]
         out: PathBuf,
         #[arg(long)]
@@ -24,7 +24,7 @@ enum CliCommand {
     },
     Icons {
         #[arg(long)]
-        source: PathBuf,
+        source: Option<PathBuf>,
         #[arg(long)]
         out: PathBuf,
     },
@@ -41,6 +41,7 @@ enum CliCommand {
 fn main() -> Result<()> {
     match Cli::parse().command {
         CliCommand::Build { source: data_files_dir, out: database_path, sha: upstream_sha, wiki: wiki_dir } => {
+            let data_files_dir = data_files_dir.unwrap_or_else(default_data_files_dir);
             let dataset_version = ddo_etl::upstream::dataset_version(&data_files_dir, upstream_sha);
             if database_path.exists() {
                 std::fs::remove_file(&database_path)
@@ -56,6 +57,7 @@ fn main() -> Result<()> {
             println!("dataset {} written to {}", dataset_version.upstream_sha, database_path.display());
         }
         CliCommand::Icons { source: data_files_dir, out: icons_dir } => {
+            let data_files_dir = data_files_dir.unwrap_or_else(default_data_files_dir);
             let report = ddo_etl::icons::export_icons(&data_files_dir, &icons_dir)?;
             println!("{report:#?}");
         }
@@ -83,4 +85,8 @@ fn main() -> Result<()> {
         }
     }
     Ok(())
+}
+
+fn default_data_files_dir() -> PathBuf {
+    ddo_etl::upstream::default_data_files_dir(Path::new(""))
 }
