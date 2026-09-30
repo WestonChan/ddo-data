@@ -151,6 +151,9 @@ enhancement_bonus = 16
 material = "Steel"
 description = "A powerful axe that echoes with the power of Baphomet's own."
 drop_location = "Terror of the Demon Lords, end chest"
+quests = [
+  { name = "Terror of the Demon Lords", loot_type = "raid" },
+]
 accepts_sentience = true
 augment_slots = ["orange", "purple"]
 effects = [
@@ -183,6 +186,9 @@ enhancement_bonus = 16
 material = "Steel"
 description = "A manifestation of Orcus' power. Incomplete, it only holds a fraction of the real one's power, but that's more than enough."
 drop_location = "Terror of the Demon Lords, end chest"
+quests = [
+  { name = "Terror of the Demon Lords", loot_type = "raid" },
+]
 accepts_sentience = true
 augment_slots = ["orange", "purple"]
 bonuses = [
@@ -503,6 +509,9 @@ minimum_level = 35
 material = "Wood"
 description = "This spiked ball from Yeenoghu's flail takes his rage, and forces it back out through magic."
 drop_location = "Terror of the Demon Lords, end chest"
+quests = [
+  { name = "Terror of the Demon Lords", loot_type = "raid" },
+]
 augment_slots = ["crafting: nearly complete: spell focus (legendary)", "orange", "purple"]
 bonuses = [
   { stat = "Negative Spell Power", bonus_type = "Equipment", value = 169 },
@@ -538,6 +547,9 @@ enhancement_bonus = 16
 material = "Steel"
 description = "One of the heads of Yeenoghu's mighty flail, attached to a sturdy haft. It carries its former owner's desire for violence."
 drop_location = "Terror of the Demon Lords, end chest"
+quests = [
+  { name = "Terror of the Demon Lords", loot_type = "raid" },
+]
 accepts_sentience = true
 augment_slots = ["orange", "purple"]
 effects = [
@@ -570,6 +582,9 @@ enhancement_bonus = 16
 material = "Steel"
 description = "One of the heads of Yeenoghu's flail, attached to a sturdy haft. It carries its former owner's desire for violence."
 drop_location = "Terror of the Demon Lords, end chest"
+quests = [
+  { name = "Terror of the Demon Lords", loot_type = "raid" },
+]
 accepts_sentience = true
 augment_slots = ["orange", "purple"]
 effects = [
@@ -602,6 +617,9 @@ enhancement_bonus = 16
 material = "Steel"
 description = "One of the heads of Yeenoghu's mighty flail, attached to a sturdy haft. It carries its former owner's desire for violence."
 drop_location = "Terror of the Demon Lords, end chest"
+quests = [
+  { name = "Terror of the Demon Lords", loot_type = "raid" },
+]
 accepts_sentience = true
 augment_slots = ["orange", "purple"]
 effects = [
@@ -634,6 +652,9 @@ enhancement_bonus = 16
 material = "Steel"
 description = "A tooth from Demogorgon himself."
 drop_location = "Terror of the Demon Lords, end chest"
+quests = [
+  { name = "Terror of the Demon Lords", loot_type = "raid" },
+]
 accepts_sentience = true
 augment_slots = ["orange", "purple"]
 effects = [
@@ -664,6 +685,9 @@ minimum_level = 35
 material = "Flesh"
 description = "Flailing remnants of Zuggtmoy's mark on the world as she retreats."
 drop_location = "Terror of the Demon Lords, end chest"
+quests = [
+  { name = "Terror of the Demon Lords", loot_type = "raid" },
+]
 augment_slots = ["crafting: nearly complete: ability score (legendary)", "green", "yellow", "sun"]
 bonuses = [
   { stat = "Hit Points", bonus_type = "Enhancement", value = 61 },
@@ -687,6 +711,9 @@ enhancement_bonus = 16
 material = "Steel"
 description = "Juiblex's power continues to manifest in his absence."
 drop_location = "Terror of the Demon Lords, end chest"
+quests = [
+  { name = "Terror of the Demon Lords", loot_type = "raid" },
+]
 accepts_sentience = true
 augment_slots = ["orange", "purple"]
 effects = [
@@ -719,6 +746,9 @@ enhancement_bonus = 16
 material = "Steel"
 description = "Juiblex's power continues to manifest in his absence."
 drop_location = "Terror of the Demon Lords, end chest"
+quests = [
+  { name = "Terror of the Demon Lords", loot_type = "raid" },
+]
 accepts_sentience = true
 augment_slots = ["orange", "purple"]
 effects = [
@@ -750,6 +780,9 @@ minimum_level = 35
 enhancement_bonus = 16
 material = "Leather"
 drop_location = "Terror of the Demon Lords, end chest"
+quests = [
+  { name = "Terror of the Demon Lords", loot_type = "raid" },
+]
 augment_slots = ["crafting: nearly complete: ability score (legendary)", "green", "colorless", "sun"]
 bonuses = [
   { stat = "Fortification Bypass", bonus_type = "Legendary", value = 6 },
@@ -778,6 +811,9 @@ minimum_level = 35
 material = "Flesh"
 description = "Flailing remnants of Zuggtmoy's mark on the world as she retreats."
 drop_location = "Terror of the Demon Lords, end chest"
+quests = [
+  { name = "Terror of the Demon Lords", loot_type = "raid" },
+]
 augment_slots = ["crafting: nearly complete: insightful ability score (legendary)", "green", "yellow", "sun"]
 bonuses = [
   { stat = "Physical and Magical Resistance Rating", bonus_type = "Enhancement", value = 41 },
@@ -800,6 +836,9 @@ enhancement_bonus = 16
 material = "Steel"
 description = "A sceptre oft used in secret by Graz'zt."
 drop_location = "Terror of the Demon Lords, end chest"
+quests = [
+  { name = "Terror of the Demon Lords", loot_type = "raid" },
+]
 accepts_sentience = true
 augment_slots = ["crafting: nearly complete: spell focus (legendary)", "orange", "purple"]
 bonuses = [
@@ -832,6 +871,9 @@ minimum_level = 35
 material = "Leather"
 description = "The toe of Graz'zt. A gift, really. He wanted you to have it. It's unclear if this makes things better or worse."
 drop_location = "Terror of the Demon Lords, end chest"
+quests = [
+  { name = "Terror of the Demon Lords", loot_type = "raid" },
+]
 augment_slots = ["crafting: nearly complete: insightful ability score (legendary)", "green", "yellow", "sun"]
 bonuses = [
   { stat = "Concealment", bonus_type = "Enhancement", value = 40 },
@@ -853,6 +895,9 @@ minimum_level = 35
 material = "Flesh"
 description = "The skull of Baphomet, taken as his form faded away. He may regenerate in the Abyss, but this will be a lasting reminder of his defeat."
 drop_location = "Terror of the Demon Lords, end chest"
+quests = [
+  { name = "Terror of the Demon Lords", loot_type = "raid" },
+]
 augment_slots = ["crafting: nearly complete: ability score (legendary)", "green", "yellow", "sun"]
 bonuses = [
   { stat = "Fortification Bypass", bonus_type = "Enhancement", value = 25 },
@@ -876,6 +921,9 @@ enhancement_bonus = 16
 material = "Steel"
 description = "Juiblex's power continues to manifest in his absence."
 drop_location = "Terror of the Demon Lords, end chest"
+quests = [
+  { name = "Terror of the Demon Lords", loot_type = "raid" },
+]
 accepts_sentience = true
 augment_slots = ["orange", "purple"]
 effects = [
@@ -906,6 +954,9 @@ minimum_level = 35
 material = "Leather"
 description = "A small spark of good divinity. One of the Demon Lords sought to destroy it, but found they could not."
 drop_location = "Terror of the Demon Lords, end chest"
+quests = [
+  { name = "Terror of the Demon Lords", loot_type = "raid" },
+]
 augment_slots = ["crafting: nearly complete: insightful ability score (legendary)", "green", "yellow", "moon"]
 bonuses = [
   { stat = "Deadly", bonus_type = "Quality", value = 4 },
@@ -928,6 +979,9 @@ minimum_level = 35
 material = "Wood"
 description = "Praise."
 drop_location = "Terror of the Demon Lords, end chest"
+quests = [
+  { name = "Terror of the Demon Lords", loot_type = "raid" },
+]
 augment_slots = ["crafting: nearly complete: spell focus (legendary)", "orange", "purple"]
 bonuses = [
   { stat = "Necromancy Spell Focus", bonus_type = "Equipment", value = 14 },
@@ -958,6 +1012,9 @@ minimum_level = 35
 material = "Leather"
 description = "A song of the epic battle that was waged here, spun into these fine gloves. Projectiles fired while using them carry that song."
 drop_location = "Terror of the Demon Lords, end chest"
+quests = [
+  { name = "Terror of the Demon Lords", loot_type = "raid" },
+]
 augment_slots = ["crafting: nearly complete: ability score (legendary)", "green", "yellow", "moon"]
 bonuses = [
   { stat = "Cold Spell Power", bonus_type = "Equipment", value = 169 },
@@ -1040,6 +1097,9 @@ minimum_level = 35
 material = "Gem"
 description = "Praise."
 drop_location = "Terror of the Demon Lords, end chest"
+quests = [
+  { name = "Terror of the Demon Lords", loot_type = "raid" },
+]
 augment_slots = ["green", "yellow"]
 bonuses = [
   { stat = "Acid Spell Lore", bonus_type = "Equipment", value = 25 },
