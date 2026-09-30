@@ -37,6 +37,8 @@ rare = [
   "Legendary Hands of Waste",
 ]
 rare_augments = [
+  { name = "Solar Gem of Magical Resistance Rating Cap (Heroic)", chest = "end chest" },
+  { name = "Solar Gem of Magical Resistance Rating Cap (Legendary)", chest = "end chest" },
   { name = "Solar Gem of Sneak Attack Dice (Heroic)", chest = "optional chest" },
   { name = "Solar Gem of Sneak Attack Dice (Legendary)", chest = "optional chest" },
   { name = "Solar Gem of Swift Charging (Heroic)", chest = "end chest" },
@@ -52,6 +54,10 @@ rare = [
   "Icewalkers",
   "Legendary Climber's Remembrance",
   "Legendary Icewalkers",
+]
+rare_augments = [
+  "Solar Gem of Weapon Damage (Heroic)",
+  "Solar Gem of Weapon Damage (Legendary)",
 ]
 
 [[quest]]
@@ -233,6 +239,8 @@ rare = [
   "Legendary Contraption Keyring",
 ]
 rare_augments = [
+  "Solar Gem of Magical Resistance Rating Cap (Heroic)",
+  "Solar Gem of Magical Resistance Rating Cap (Legendary)",
   "Solar Gem of Evocation (Heroic)",
   "Solar Gem of Evocation (Legendary)",
 ]
@@ -441,6 +449,8 @@ rare = [
   "Lesser Oblivion",
 ]
 rare_augments = [
+  "Solar Gem of Magical Resistance Rating Cap (Heroic)",
+  "Solar Gem of Magical Resistance Rating Cap (Legendary)",
   "Solar Gem of Spell Critical Chance (Heroic)",
   "Solar Gem of Spell Critical Chance (Legendary)",
 ]
