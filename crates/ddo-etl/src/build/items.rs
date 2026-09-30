@@ -1,6 +1,5 @@
 use super::{joined_non_empty, trimmed_non_empty, BuildReport, TableWriter};
 use crate::map::buff::ResolvedBuff;
-use crate::map::drop_location::{marks_rare_loot, segment_containing};
 use crate::map::material;
 use crate::map::placement::placement_of;
 use crate::xml::items::Item;
@@ -354,30 +353,14 @@ impl TableWriter<'_> {
     }
 
     fn link_item_to_quests(&self, item_id: i64, drop_location: &str, report: &mut BuildReport) -> Result<()> {
-        let mut unmatched_text = drop_location.to_string();
-        let lowercase_drop_location = drop_location.to_lowercase();
-        for quest in &self.drop_text_quests.longest_name_first {
-            let quest_name = quest.name.as_str();
-            if quest_name.is_empty() || !unmatched_text.contains(quest_name) {
-                continue;
-            }
-            let is_rare = unmatched_text
-                .match_indices(quest_name)
-                .any(|(byte_offset, _)| marks_rare_loot(segment_containing(drop_location, byte_offset)));
-            unmatched_text = unmatched_text.replace(quest_name, &" ".repeat(quest_name.len()));
-            let loot_type = if quest.is_raid {
-                LootType::Raid
-            } else if lowercase_drop_location.contains("reward") {
-                LootType::Reward
-            } else {
-                LootType::Chest
-            };
-            let changed_row_count = self.insert_quest_loot_link(quest.id, item_id, loot_type, is_rare)?;
+        for quest_link in self.drop_text_quests.quest_links_in(drop_location) {
+            let changed_row_count =
+                self.insert_quest_loot_link(quest_link.quest_id, item_id, quest_link.loot_type, quest_link.is_rare)?;
             report.quest_loot_link_count += 1;
-            if quest.is_wiki {
+            if quest_link.is_wiki_quest {
                 report.drop_text_wiki_quest_link_count += 1;
             }
-            if is_rare && changed_row_count > 0 {
+            if quest_link.is_rare && changed_row_count > 0 {
                 report.drop_text_rare_link_count += 1;
             }
         }
