@@ -1,7 +1,10 @@
 use ddo_etl::wiki::DescriptionKind;
 use serde_json::Value;
 use std::path::{Path, PathBuf};
-use xtask::wiki_tools::{blank_description_page_url, likely_wiki_page_url, wiki_check_report, write_wiki_batch};
+use xtask::wiki_tools::{
+    blank_description_page_url, likely_wiki_page_url, socket_label_spelling_key, socket_label_spelling_warnings,
+    wiki_check_report, write_wiki_batch,
+};
 
 fn fixtures_dir() -> PathBuf {
     Path::new(env!("CARGO_MANIFEST_DIR")).join("../crates/ddo-etl/tests/fixtures")
@@ -57,6 +60,44 @@ fn wiki_check_warns_about_family_augments_no_recipe_yields() {
     );
     assert!(draft_report[warnings_start..].lines().any(|line| line == unused_augment_warning), "{draft_report}");
     assert!(!draft_report.contains("\"+5 Fortitude Save\" has no recipe"), "{draft_report}");
+}
+
+#[test]
+fn socket_label_spelling_key_ignores_case_spacing_punctuation_and_known_misspellings() {
+    assert_eq!(
+        socket_label_spelling_key("crafting: Zentarim Attuned"),
+        socket_label_spelling_key("crafting: zhentarim attuned")
+    );
+    assert_eq!(
+        socket_label_spelling_key("upgrade: Upgradable Item"),
+        socket_label_spelling_key("upgrade: upgradeable-item")
+    );
+    assert_eq!(
+        socket_label_spelling_key("crafting: Suppressed power"),
+        socket_label_spelling_key("crafting: suppressed Power")
+    );
+    assert_ne!(
+        socket_label_spelling_key("crafting: reaper helmet"),
+        socket_label_spelling_key("crafting: reaper belt")
+    );
+}
+
+#[test]
+fn socket_label_spelling_warnings_name_each_group_of_colliding_labels() {
+    let labels = ["crafting: Zentarim Attuned", "colorless", "crafting: Zhentarim Attuned", "crafting: reaper belt"]
+        .map(String::from);
+
+    assert_eq!(
+        socket_label_spelling_warnings(&labels),
+        ["warning: socket labels differ only by spelling: \"crafting: Zentarim Attuned\" / \"crafting: Zhentarim Attuned\""]
+    );
+}
+
+#[test]
+fn wiki_check_prints_no_socket_label_warning_for_the_fixture_labels() {
+    let report = wiki_check_report(&fixtures_dir().join("DataFiles"), Some(&fixtures_dir().join("wiki"))).unwrap();
+
+    assert!(!report.contains("socket labels differ only by spelling"), "{report}");
 }
 
 #[test]

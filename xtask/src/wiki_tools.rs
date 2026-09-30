@@ -9,6 +9,7 @@ use std::path::Path;
 const WIKI_PAGE_URL_PREFIX: &str = "https://ddowiki.com/page/";
 const DIFFICULTY_NAME_SUFFIXES: &[&str] = &[" (Casual)", " (Normal)", " (Hard)", " (Elite)"];
 const CRAFTING_SYSTEMS_JSON: &str = include_str!("../data/crafting_systems.json");
+const KNOWN_SOCKET_LABEL_MISSPELLINGS: &[(&str, &str)] = &[("zentarim", "zhentarim"), ("upgradable", "upgradeable")];
 
 pub fn wiki_check_report(data_files_dir: &Path, wiki_dir: Option<&Path>) -> Result<String> {
     let wiki_overrides = wiki_overrides_from(wiki_dir)?;
@@ -16,6 +17,7 @@ pub fn wiki_check_report(data_files_dir: &Path, wiki_dir: Option<&Path>) -> Resu
     let mut report_lines = wiki_report_lines(&report);
     report_lines.push("warnings:".to_string());
     report_lines.extend(unused_family_augment_warnings(&db)?);
+    report_lines.extend(socket_label_warnings(&db)?);
     Ok(report_lines.join("\n"))
 }
 
@@ -153,4 +155,34 @@ fn blank_description_lines(db: &Connection) -> Result<Vec<String>> {
         }));
     }
     Ok(lines)
+}
+
+pub fn socket_label_spelling_key(label: &str) -> String {
+    let letters_and_digits: String =
+        label.chars().filter(|character| character.is_alphanumeric()).flat_map(char::to_lowercase).collect();
+    KNOWN_SOCKET_LABEL_MISSPELLINGS
+        .iter()
+        .fold(letters_and_digits, |key, (misspelling, spelling)| key.replace(misspelling, spelling))
+}
+
+pub fn socket_label_spelling_warnings(labels: &[String]) -> Vec<String> {
+    let mut labels_by_spelling_key: BTreeMap<String, Vec<&str>> = BTreeMap::new();
+    for label in labels {
+        labels_by_spelling_key.entry(socket_label_spelling_key(label)).or_default().push(label);
+    }
+    labels_by_spelling_key
+        .into_values()
+        .filter(|colliding_labels| colliding_labels.len() > 1)
+        .map(|mut colliding_labels| {
+            colliding_labels.sort_unstable();
+            let quoted_labels: Vec<String> = colliding_labels.iter().map(|label| format!("{label:?}")).collect();
+            format!("warning: socket labels differ only by spelling: {}", quoted_labels.join(" / "))
+        })
+        .collect()
+}
+
+fn socket_label_warnings(db: &Connection) -> Result<Vec<String>> {
+    let mut statement = db.prepare("SELECT label FROM augment_slot_types ORDER BY label")?;
+    let labels: Vec<String> = statement.query_map([], |row| row.get(0))?.collect::<rusqlite::Result<_>>()?;
+    Ok(socket_label_spelling_warnings(&labels))
 }
