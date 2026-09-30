@@ -21,19 +21,26 @@ pub(super) fn apply_wiki_overrides(
                 "{citation}: no quest has this name in Quests.xml or Challenges.xml; fix the name to match Maetrim's"
             )
         })?;
-        for item_name in &quest_loot.rare {
+        for rare_item in &quest_loot.rare {
+            let item_name = rare_item.name();
             let item_id = id_by_name(transaction, "items", item_name)?.with_context(|| {
                 format!("{citation}: rare item {item_name:?} is not in Maetrim's items; report it upstream rather than adding it here")
             })?;
-            report.wiki_added_quest_loot_link_count += transaction.execute(
-                "INSERT OR IGNORE INTO quest_loot (quest_id, item_id, loot_type) VALUES (?1, ?2, ?3)",
-                params![quest_id, item_id, LootType::Chest.as_str()],
-            )?;
-            transaction.execute(
-                "UPDATE quest_loot SET is_rare = 1 WHERE quest_id = ?1 AND item_id = ?2",
-                params![quest_id, item_id],
-            )?;
+            report.wiki_added_quest_loot_link_count +=
+                mark_rare_loot(transaction, QuestLootTable::Items, quest_id, item_id, rare_item.chest())?;
             report.wiki_rare_drop_count += 1;
+        }
+        for rare_augment in &quest_loot.rare_augments {
+            let augment_name = rare_augment.name();
+            let augment_ids = ids_by_name(transaction, "augments", augment_name)?;
+            if augment_ids.is_empty() {
+                bail!("{citation}: rare augment {augment_name:?} is not in Maetrim's augments; names must match his exactly");
+            }
+            for augment_id in augment_ids {
+                report.wiki_added_quest_augment_loot_link_count +=
+                    mark_rare_loot(transaction, QuestLootTable::Augments, quest_id, augment_id, rare_augment.chest())?;
+            }
+            report.wiki_rare_augment_drop_count += 1;
         }
         report.wiki_quest_loot_entry_count += 1;
     }
@@ -310,6 +317,25 @@ fn augment_ids_named_in(transaction: &Transaction, augment_name: &str, families:
         }
     }
     Ok(augment_ids)
+}
+
+fn mark_rare_loot(
+    transaction: &Transaction,
+    table: QuestLootTable,
+    quest_id: i64,
+    loot_id: i64,
+    chest: Option<&str>,
+) -> Result<usize> {
+    let added_link_count =
+        transaction.execute(table.insert_missing_link_sql(), params![quest_id, loot_id, LootType::Chest.as_str()])?;
+    transaction.execute(table.mark_rare_sql(), params![quest_id, loot_id, chest])?;
+    Ok(added_link_count)
+}
+
+fn ids_by_name(transaction: &Transaction, table: &str, name: &str) -> Result<Vec<i64>> {
+    let mut statement = transaction.prepare(&format!("SELECT id FROM {table} WHERE name = ?1 ORDER BY id"))?;
+    let ids = statement.query_map(params![name], |r| r.get(0))?.collect::<rusqlite::Result<_>>()?;
+    Ok(ids)
 }
 
 fn id_by_name(transaction: &Transaction, table: &str, name: &str) -> Result<Option<i64>> {

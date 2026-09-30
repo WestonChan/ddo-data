@@ -86,6 +86,26 @@ pub(super) enum QuestLootTable {
 }
 
 impl QuestLootTable {
+    pub(super) fn insert_missing_link_sql(self) -> &'static str {
+        match self {
+            Self::Items => "INSERT OR IGNORE INTO quest_loot (quest_id, item_id, loot_type) VALUES (?1, ?2, ?3)",
+            Self::Augments => {
+                "INSERT OR IGNORE INTO quest_augment_loot (quest_id, augment_id, loot_type) VALUES (?1, ?2, ?3)"
+            }
+        }
+    }
+
+    pub(super) fn mark_rare_sql(self) -> &'static str {
+        match self {
+            Self::Items => {
+                "UPDATE quest_loot SET is_rare = 1, chest = COALESCE(chest, ?3) WHERE quest_id = ?1 AND item_id = ?2"
+            }
+            Self::Augments => {
+                "UPDATE quest_augment_loot SET is_rare = 1, chest = COALESCE(chest, ?3) WHERE quest_id = ?1 AND augment_id = ?2"
+            }
+        }
+    }
+
     fn insert_link_sql(self) -> &'static str {
         match self {
             Self::Items => {

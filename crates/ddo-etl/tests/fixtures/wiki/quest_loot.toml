@@ -1,6 +1,8 @@
 # A subset of data/wiki/quest_loot.toml: only names the fixture DataFiles carry.
+# rare_augments is an invented test value: the page read does not mark this augment rare.
 [[quest]]
 name = "Book Burning"
 page = "https://ddowiki.com/page/Book_Burning"
 read = "2026-09-27"
 rare = ["Buckler of the Golden Age"]
+rare_augments = ["Lunar Gem of Magical Protection (Heroic)"]

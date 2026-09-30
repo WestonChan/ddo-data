@@ -59,6 +59,8 @@ fn wiki_report_lines(report: &BuildReport) -> Vec<String> {
         ("wiki_rare_drop_count", report.wiki_rare_drop_count),
         ("wiki_added_quest_loot_link_count", report.wiki_added_quest_loot_link_count),
         ("drop_text_rare_link_count", report.drop_text_rare_link_count),
+        ("wiki_rare_augment_drop_count", report.wiki_rare_augment_drop_count),
+        ("wiki_added_quest_augment_loot_link_count", report.wiki_added_quest_augment_loot_link_count),
         ("quest_augment_loot_link_count", report.quest_augment_loot_link_count),
         ("drop_text_rare_augment_link_count", report.drop_text_rare_augment_link_count),
         ("wiki_quest_entry_count", report.wiki_quest_entry_count),

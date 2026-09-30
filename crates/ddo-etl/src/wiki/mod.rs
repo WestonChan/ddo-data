@@ -7,7 +7,7 @@ mod quests;
 pub use crafting::{CraftingIngredient, CraftingRecipe, CraftingSystem, IngredientCost};
 pub use descriptions::{DescriptionKind, WikiDescription};
 pub use items::{WikiArmorStats, WikiItem, WikiItemBonus, WikiItemEffect, WikiItemQuest, WikiWeaponStats};
-pub use quest_loot::QuestLoot;
+pub use quest_loot::{QuestLoot, RareDrop, RareDropInChest};
 pub use quests::WikiQuest;
 
 use anyhow::{bail, Context, Result};

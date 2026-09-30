@@ -1,6 +1,6 @@
 use ddo_etl::build::{build_database, ProbableDuplicateWikiEntry, SupersededWikiEntry};
 use ddo_etl::corrections::Corrections;
-use ddo_etl::wiki::{DescriptionKind, WikiOverrides};
+use ddo_etl::wiki::{DescriptionKind, RareDrop, WikiOverrides};
 use ddo_model::DatasetVersion;
 use rusqlite::Connection;
 use std::path::PathBuf;
@@ -46,7 +46,81 @@ fn reads_quest_loot_from_every_toml_file_in_the_directory() {
     assert_eq!(entry.name, "Book Burning");
     assert_eq!(entry.page, "https://ddowiki.com/page/Book_Burning");
     assert_eq!(entry.read, "2026-09-27");
-    assert_eq!(entry.rare, vec!["Buckler of the Golden Age".to_string()]);
+    assert_eq!(entry.rare.iter().map(RareDrop::name).collect::<Vec<_>>(), ["Buckler of the Golden Age"]);
+    assert_eq!(
+        entry.rare_augments.iter().map(RareDrop::name).collect::<Vec<_>>(),
+        ["Lunar Gem of Magical Protection (Heroic)"]
+    );
+}
+
+const BOOK_BURNING_CITATION: &str =
+    "[[quest]]\nname = \"Book Burning\"\npage = \"https://ddowiki.com/page/Book_Burning\"\nread = \"2026-09-27\"\n";
+
+#[test]
+fn reads_a_rare_drop_as_a_name_or_a_name_with_its_chest() {
+    let toml_text = format!(
+        "{BOOK_BURNING_CITATION}rare = [\"Buckler of the Golden Age\", {{ name = \"Docent of Defiance\", chest = \"optional chest\" }}]\n"
+    );
+    let wiki = parsed_wiki(&[("quest_loot_a.toml", &toml_text)]).unwrap();
+    let rare_drops: Vec<(&str, Option<&str>)> =
+        wiki.quest_loot[0].rare.iter().map(|drop| (drop.name(), drop.chest())).collect();
+    assert_eq!(rare_drops, [("Buckler of the Golden Age", None), ("Docent of Defiance", Some("optional chest"))]);
+    let unknown_field_text = toml_text.replace("chest = ", "chests = ");
+    assert!(
+        parsed_wiki(&[("quest_loot_a.toml", &unknown_field_text)]).is_err(),
+        "a rare drop object takes name and chest"
+    );
+}
+
+fn quest_augment_loot_row(db: &Connection, quest: &str, augment: &str) -> Option<(String, bool, Option<String>)> {
+    db.query_row(
+        "SELECT qal.loot_type, qal.is_rare, qal.chest FROM quest_augment_loot qal
+           JOIN quests q ON q.id = qal.quest_id JOIN augments a ON a.id = qal.augment_id
+          WHERE q.name = ?1 AND a.name = ?2",
+        [quest, augment],
+        |r| Ok((r.get(0)?, r.get(1)?, r.get(2)?)),
+    )
+    .ok()
+}
+
+#[test]
+fn marks_rare_augments_on_the_links_maetrims_description_made() {
+    let (db, report) = built_db_with(&WikiOverrides::from_dir(&fixtures_dir().join("wiki")).unwrap());
+    assert_eq!(
+        quest_augment_loot_row(&db, "Book Burning", "Lunar Gem of Magical Protection (Heroic)"),
+        Some(("chest".into(), true, Some("end chest".into())))
+    );
+    assert_eq!((report.wiki_rare_augment_drop_count, report.wiki_added_quest_augment_loot_link_count), (1, 0));
+}
+
+#[test]
+fn adds_a_chest_link_for_a_rare_augment_and_fills_only_a_chest_his_text_left_blank() {
+    let toml_text = format!(
+        "{BOOK_BURNING_CITATION}rare = [{{ name = \"Buckler of the Golden Age\", chest = \"optional chest\" }}]\n\
+         rare_augments = [{{ name = \"Lunar Gem of Evocation (Heroic)\", chest = \"end chest\" }}]\n"
+    );
+    let (db, report) = built_db_with(&parsed_wiki(&[("quest_loot_a.toml", &toml_text)]).unwrap());
+    assert_eq!(
+        quest_augment_loot_row(&db, "Book Burning", "Lunar Gem of Evocation (Heroic)"),
+        Some(("chest".into(), true, Some("end chest".into())))
+    );
+    let buckler_chest: Option<String> = db
+        .query_row(
+            "SELECT ql.chest FROM quest_loot ql JOIN quests q ON q.id = ql.quest_id JOIN items i ON i.id = ql.item_id
+              WHERE q.name = 'Book Burning' AND i.name = 'Buckler of the Golden Age'",
+            [],
+            |r| r.get(0),
+        )
+        .unwrap();
+    assert_eq!(buckler_chest.as_deref(), Some("end chest"), "his text's chest wins");
+    assert_eq!((report.wiki_rare_augment_drop_count, report.wiki_added_quest_augment_loot_link_count), (1, 1));
+}
+
+#[test]
+fn build_fails_naming_a_rare_augment_absent_from_the_augments_table() {
+    let toml_text = format!("{BOOK_BURNING_CITATION}rare_augments = [\"Lunar Gem of Missing Things\"]\n");
+    let error = build_report_with(&parsed_wiki(&[("quest_loot_a.toml", &toml_text)]).unwrap()).unwrap_err();
+    assert!(error.contains("Lunar Gem of Missing Things") && error.contains("Book Burning"), "{error}");
 }
 
 #[test]
