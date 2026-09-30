@@ -238,6 +238,34 @@ fn quest_augment_loot_links_quests_to_augments_as_quest_loot_links_them_to_items
 }
 
 #[test]
+fn both_quest_loot_tables_carry_identical_loot_columns() {
+    let db = fresh_db();
+    let loot_columns = |table: &str| -> Vec<(String, String, bool, Option<String>)> {
+        let mut statement = db
+            .prepare(&format!(
+                "SELECT name, type, \"notnull\", dflt_value FROM pragma_table_info('{table}') WHERE pk = 0 ORDER BY cid"
+            ))
+            .unwrap();
+        statement
+            .query_map([], |r| Ok((r.get(0)?, r.get(1)?, r.get(2)?, r.get(3)?)))
+            .unwrap()
+            .map(Result::unwrap)
+            .collect()
+    };
+    assert_eq!(loot_columns("quest_augment_loot"), loot_columns("quest_loot"));
+    let table_sql = |table: &str| -> String {
+        db.query_row("SELECT sql FROM sqlite_master WHERE type = 'table' AND name = ?1", [table], |r| r.get(0)).unwrap()
+    };
+    let loot_column_sql = |table: &str| -> String {
+        let sql = table_sql(table);
+        let start = sql.find("loot_type").unwrap();
+        let end = sql.find("PRIMARY KEY").unwrap();
+        sql[start..end].to_string()
+    };
+    assert_eq!(loot_column_sql("quest_augment_loot"), loot_column_sql("quest_loot"), "same CHECK constraints");
+}
+
+#[test]
 fn quest_loot_records_the_chest_as_free_text() {
     let db = fresh_db();
     let mut statement = db.prepare("SELECT name FROM pragma_table_info('quest_loot') ORDER BY cid").unwrap();

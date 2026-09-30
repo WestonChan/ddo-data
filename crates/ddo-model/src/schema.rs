@@ -26,6 +26,11 @@ static DDL: LazyLock<String> = LazyLock::new(|| {
     let requirement_group = sql_in_clause(RequirementGroupKind::ALL.iter().map(|g| g.as_str()));
     let crafting_tier = sql_in_clause(CraftingTier::ALL.iter().map(|t| t.as_str()));
     let correction_kind = sql_in_clause(CorrectionKind::ALL.iter().map(|k| k.as_str()));
+    let quest_loot_columns = format!(
+        "loot_type TEXT CHECK (loot_type {loot_type}),
+    is_rare   INTEGER NOT NULL DEFAULT 0 CHECK (is_rare IN (0, 1)),
+    chest     TEXT,"
+    );
     format!(
         r#"
 PRAGMA foreign_keys = ON;
@@ -255,12 +260,13 @@ CREATE TABLE IF NOT EXISTS item_augment_slot_options (
     FOREIGN KEY (item_id, slot_order) REFERENCES item_augment_slots(item_id, sort_order) ON DELETE CASCADE
 );
 
+-- A quest's item drops. loot_type comes from <DropLocation> and the quest's is_raid; is_rare from (rare) or rare drop
+-- in it, or data/wiki quest_loot `rare`; chest is the lower-cased phrase after the quest name in its segment, or the
+-- `chest` of a wiki rare drop where his text names none.
 CREATE TABLE IF NOT EXISTS quest_loot (
     quest_id  INTEGER NOT NULL REFERENCES quests(id) ON DELETE CASCADE,
     item_id   INTEGER NOT NULL REFERENCES items(id) ON DELETE CASCADE,
-    loot_type TEXT CHECK (loot_type {loot_type}),     -- computed from <DropLocation> and quest is_raid
-    is_rare   INTEGER NOT NULL DEFAULT 0 CHECK (is_rare IN (0, 1)),  -- (rare) / rare drop in <DropLocation>, or data/wiki quest_loot `rare`
-    chest     TEXT,                                    -- lower-cased phrase after the quest name in its <DropLocation> segment, or data/wiki quest_loot `chest`
+    {quest_loot_columns}
     PRIMARY KEY (quest_id, item_id)
 );
 CREATE INDEX IF NOT EXISTS idx_quest_loot_item ON quest_loot(item_id);
@@ -658,13 +664,12 @@ CREATE TABLE IF NOT EXISTS augment_bonuses (
     PRIMARY KEY (augment_id, sort_order)
 );
 
--- The quests an augment drops in, read from the "Drops in" text of his <Description> as quest_loot reads <DropLocation>.
+-- The quests an augment drops in, read from the "Drops in" text of his <Description> as quest_loot reads <DropLocation>;
+-- rare_augments in data/wiki quest_loot marks them rare. The loot columns are quest_loot's.
 CREATE TABLE IF NOT EXISTS quest_augment_loot (
     quest_id   INTEGER NOT NULL REFERENCES quests(id) ON DELETE CASCADE,
     augment_id INTEGER NOT NULL REFERENCES augments(id) ON DELETE CASCADE,
-    loot_type  TEXT CHECK (loot_type {loot_type}),
-    is_rare    INTEGER NOT NULL DEFAULT 0 CHECK (is_rare IN (0, 1)),  -- (rare) / rare drop in the text, or data/wiki quest_loot `rare_augments`
-    chest      TEXT,                                   -- as quest_loot.chest
+    {quest_loot_columns}
     PRIMARY KEY (quest_id, augment_id)
 );
 CREATE INDEX IF NOT EXISTS idx_quest_augment_loot_augment ON quest_augment_loot(augment_id);
