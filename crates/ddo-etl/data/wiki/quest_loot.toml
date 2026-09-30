@@ -1,36 +1,52 @@
 [[quest]]
 name = "Toil and Trouble"
 page = "https://ddowiki.com/page/Toil_and_Trouble"
-read = "2026-09-27"
+read = "2026-09-30"
 rare = [
   "Dhovras' Armlet",
   "Epic Dhovras' Armlet",
+]
+rare_augments = [
+  "Solar Gem of Imbuement (Epic)",
+  "Solar Gem of Imbuement (Heroic)",
+  "Solar Gem of Spell Critical Chance (Epic)",
+  "Solar Gem of Spell Critical Chance (Heroic)",
 ]
 
 [[quest]]
 name = "Sleeping with the Fishes"
 page = "https://ddowiki.com/page/Sleeping_with_the_Fishes"
-read = "2026-09-27"
+read = "2026-09-30"
 rare = [
   "Fried Fish Stick",
   "Frozen Fish Stick",
   "Legendary Fried Fish Stick",
   "Legendary Frozen Fish Stick",
 ]
+rare_augments = [
+  "Solar Gem of Enduring (Heroic)",
+  "Solar Gem of Enduring (Legendary)",
+]
 
 [[quest]]
 name = "The Covered Culvert"
 page = "https://ddowiki.com/page/The_Covered_Culvert"
-read = "2026-09-27"
+read = "2026-09-30"
 rare = [
   "Hands of Waste",
   "Legendary Hands of Waste",
+]
+rare_augments = [
+  { name = "Solar Gem of Sneak Attack Dice (Heroic)", chest = "optional chest" },
+  { name = "Solar Gem of Sneak Attack Dice (Legendary)", chest = "optional chest" },
+  { name = "Solar Gem of Swift Charging (Heroic)", chest = "end chest" },
+  { name = "Solar Gem of Swift Charging (Legendary)", chest = "end chest" },
 ]
 
 [[quest]]
 name = "The Wish"
 page = "https://ddowiki.com/page/The_Wish"
-read = "2026-09-27"
+read = "2026-09-30"
 rare = [
   "Climber's Remembrance",
   "Icewalkers",
@@ -41,17 +57,21 @@ rare = [
 [[quest]]
 name = "Death Hosts This Banquet"
 page = "https://ddowiki.com/page/Death_Hosts_This_Banquet"
-read = "2026-09-27"
+read = "2026-09-30"
 rare = [
   "Legendary Outfit of the Warblade",
   "Outfit of the Warblade",
   "The Spring Equinox",
 ]
+rare_augments = [
+  "Solar Gem of Strikethrough (Heroic)",
+  "Solar Gem of Strikethrough (Legendary)",
+]
 
 [[quest]]
 name = "Going Rogue"
 page = "https://ddowiki.com/page/Going_Rogue"
-read = "2026-09-27"
+read = "2026-09-30"
 rare = [
   "Legendary Toxic Sash of Drysvayla",
   "Toxic Sash of Drysvayla",
@@ -60,7 +80,7 @@ rare = [
 [[quest]]
 name = "The Final Draw"
 page = "https://ddowiki.com/page/The_Final_Draw"
-read = "2026-09-27"
+read = "2026-09-30"
 rare = [
   "Chilling Sash of Tailara",
   "Legendary Chilling Sash of Tailara",
@@ -69,7 +89,7 @@ rare = [
 [[quest]]
 name = "Book Burning"
 page = "https://ddowiki.com/page/Book_Burning"
-read = "2026-09-27"
+read = "2026-09-30"
 rare = [
   "Buckler of the Golden Age",
   "Docent of the Crownblade",
@@ -82,7 +102,7 @@ rare = [
 [[quest]]
 name = "Portal to Below"
 page = "https://ddowiki.com/page/Portal_to_Below"
-read = "2026-09-27"
+read = "2026-09-30"
 rare = [
   "Echo of the Artblade",
   "Legendary Echo of the Artblade",
@@ -90,4 +110,418 @@ rare = [
   "Legendary Tower Shield of the Golden Age",
   "Light Armor of the Artblade",
   "Tower Shield of the Golden Age",
+]
+
+[[quest]]
+name = "A Light in the Attic"
+page = "https://ddowiki.com/page/A_Light_in_the_Attic"
+read = "2026-09-30"
+rare = [
+  "Legendary Wintery Wrappings",
+  "Wintery Wrappings",
+]
+rare_augments = [
+  "Solar Gem of Conjuration (Heroic)",
+  "Solar Gem of Conjuration (Legendary)",
+  "Solar Gem of Pact Dice (Heroic)",
+  "Solar Gem of Pact Dice (Legendary)",
+]
+
+[[quest]]
+name = "A Miner Sacrifice"
+page = "https://ddowiki.com/page/A_Miner_Sacrifice"
+read = "2026-09-30"
+rare = [
+  "Downcast Robe",
+  "Legendary Downcast Robe",
+]
+rare_augments = [
+  "Solar Gem of Arcane Endurance (Heroic)",
+  "Solar Gem of Arcane Endurance (Legendary)",
+  "Solar Gem of Cruelty (Heroic)",
+  "Solar Gem of Cruelty (Legendary)",
+]
+
+[[quest]]
+name = "Back to the Abyss"
+page = "https://ddowiki.com/page/Back_to_the_Abyss"
+read = "2026-09-30"
+rare_augments = [
+  "Solar Gem of Spell Critical Chance (Heroic)",
+  "Solar Gem of Spell Critical Chance (Legendary)",
+]
+
+[[quest]]
+name = "Beneath the City Streets"
+page = "https://ddowiki.com/page/Beneath_the_City_Streets"
+read = "2026-09-30"
+rare = [
+  "Deadmonger Gang's Signet",
+  "Legendary Deadmonger Gang's Signet",
+]
+rare_augments = [
+  "Solar Gem of Enchantment (Heroic)",
+  "Solar Gem of Enchantment (Legendary)",
+  "Solar Gem of Sneak Attack Dice (Heroic)",
+  "Solar Gem of Sneak Attack Dice (Legendary)",
+]
+
+[[quest]]
+name = "Cold Snap"
+page = "https://ddowiki.com/page/Cold_Snap"
+read = "2026-09-30"
+rare = [
+  "Frozen Contraption",
+  "Legendary Frozen Contraption",
+]
+rare_augments = [
+  "Solar Gem of Blast Dice (Heroic)",
+  "Solar Gem of Blast Dice (Legendary)",
+  "Solar Gem of Strikethrough (Heroic)",
+  "Solar Gem of Strikethrough (Legendary)",
+]
+
+[[quest]]
+name = "Dinosaur Crisis"
+page = "https://ddowiki.com/page/Dinosaur_Crisis"
+read = "2026-09-30"
+rare = [
+  "Crisis Claw",
+  "Epic Crisis Claw",
+]
+rare_augments = [
+  "Solar Gem of Fortification Bypass (Epic)",
+  "Solar Gem of Fortification Bypass (Heroic)",
+  "Solar Gem of Strikethrough (Epic)",
+  "Solar Gem of Strikethrough (Heroic)",
+]
+
+[[quest]]
+name = "Ends and Means"
+page = "https://ddowiki.com/page/Ends_and_Means"
+read = "2026-09-30"
+rare = [
+  "Downcast Docent",
+  "Legendary Downcast Docent",
+]
+rare_augments = [
+  "Solar Gem of Rune Arm DCs (Heroic)",
+  "Solar Gem of Rune Arm DCs (Legendary)",
+  "Solar Gem of Swift Charging (Heroic)",
+  "Solar Gem of Swift Charging (Legendary)",
+]
+
+[[quest]]
+name = "Ettercap Incursion"
+page = "https://ddowiki.com/page/Ettercap_Incursion"
+read = "2026-09-30"
+rare = [
+  "Docent of the Artblade",
+  "Large Shield of the Golden Age",
+  "Legendary Docent of the Artblade",
+  "Legendary Large Shield of the Golden Age",
+  "Legendary Rune Arm of Nature's Wrath",
+  "Rune Arm of Nature's Wrath",
+]
+
+[[quest]]
+name = "Locked Away (Part One)"
+page = "https://ddowiki.com/page/Locked_Away_(Part_One)"
+read = "2026-09-30"
+rare = [
+  "Contraption Keyring",
+  "Legendary Contraption Keyring",
+]
+rare_augments = [
+  "Solar Gem of Evocation (Heroic)",
+  "Solar Gem of Evocation (Legendary)",
+]
+
+[[quest]]
+name = "Locked Away (Part Two)"
+page = "https://ddowiki.com/page/Locked_Away_(Part_Two)"
+read = "2026-09-30"
+rare = [
+  "Goggles of the Frozen Night",
+  "Legendary Goggles of the Frozen Night",
+]
+rare_augments = [
+  "Solar Gem of Abjuration (Heroic)",
+  "Solar Gem of Abjuration (Legendary)",
+  "Solar Gem of Illusion (Heroic)",
+  "Solar Gem of Illusion (Legendary)",
+]
+
+[[quest]]
+name = "Rats in a Cage"
+page = "https://ddowiki.com/page/Rats_in_a_Cage"
+read = "2026-09-30"
+rare = [
+  "Legendary Nightbringer's Wake",
+  "Nightbringer's Wake",
+]
+rare_augments = [
+  "Solar Gem of Enduring (Heroic)",
+  "Solar Gem of Enduring (Legendary)",
+  "Solar Gem of Strikethrough (Heroic)",
+  "Solar Gem of Strikethrough (Legendary)",
+]
+
+[[quest]]
+name = "Secrets of the Red Wizards"
+page = "https://ddowiki.com/page/Secrets_of_the_Red_Wizards"
+read = "2026-09-30"
+rare = [
+  "Legendary Robe of the Artblade",
+  "Legendary Robe of the Crownblade",
+  "Robe of the Artblade",
+  "Robe of the Crownblade",
+]
+rare_augments = [
+  "Solar Gem of Enduring (Heroic)",
+  "Solar Gem of Enduring (Legendary)",
+]
+
+[[quest]]
+name = "Seeds of Decay"
+page = "https://ddowiki.com/page/Seeds_of_Decay"
+read = "2026-09-30"
+rare = [
+  "Heavy Armor of the Warblade",
+  "Legendary Heavy Armor of the Warblade",
+  "Legendary Light Armor of the Crownblade",
+  "Legendary Small Shield of the Golden Age",
+  "Light Armor of the Crownblade",
+  "Small Shield of the Golden Age",
+]
+
+[[quest]]
+name = "Snowfall and Sunlight"
+page = "https://ddowiki.com/page/Snowfall_and_Sunlight"
+read = "2026-09-30"
+rare = [
+  "Heartshard",
+  "Legendary Heartshard",
+]
+rare_augments = [
+  "Solar Gem of Force Absorption (Heroic)",
+  "Solar Gem of Force Absorption (Legendary)",
+  "Solar Gem of Imbuement (Heroic)",
+  "Solar Gem of Imbuement (Legendary)",
+]
+
+[[quest]]
+name = "Special Delivery"
+page = "https://ddowiki.com/page/Special_Delivery"
+read = "2026-09-30"
+rare = [
+  "Downcast Gambeson",
+  "Legendary Downcast Gambeson",
+]
+rare_augments = [
+  "Solar Gem of Dodge Cap (Heroic)",
+  "Solar Gem of Dodge Cap (Legendary)",
+  "Solar Gem of Transmutation (Heroic)",
+  "Solar Gem of Transmutation (Legendary)",
+]
+
+[[quest]]
+name = "The Body Snatchers"
+page = "https://ddowiki.com/page/The_Body_Snatchers"
+read = "2026-09-30"
+rare = [
+  "Downcast Vest",
+  "Legendary Downcast Vest",
+]
+rare_augments = [
+  "Solar Gem of Critical Confirmation (Heroic)",
+  "Solar Gem of Critical Confirmation (Legendary)",
+  "Solar Gem of Necromancy (Heroic)",
+  "Solar Gem of Necromancy (Legendary)",
+]
+
+[[quest]]
+name = "The Darkness and the Light"
+page = "https://ddowiki.com/page/The_Darkness_and_the_Light"
+read = "2026-09-30"
+rare = [
+  "Legendary Moonlight Slinger",
+  "Legendary Selune's Favor",
+  "Legendary Selune's Light",
+  "Moonlight Slinger",
+  "Selune's Favor",
+  "Selune's Light",
+]
+
+[[quest]]
+name = "The House of Gems"
+page = "https://ddowiki.com/page/The_House_of_Gems"
+read = "2026-09-30"
+rare = [
+  "Legendary Outfit of the Crownblade",
+  "Outfit of the Crownblade",
+  "The Theurgy of Winter",
+  "The Winter Solstice",
+]
+
+[[quest]]
+name = "The Key to the Mythal"
+page = "https://ddowiki.com/page/The_Key_to_the_Mythal"
+read = "2026-09-30"
+rare = [
+  "Echo of the Warblade",
+  "Legendary Echo of the Warblade",
+  "Legendary Light Armor of the Warblade",
+  "Light Armor of the Warblade",
+  "The Theurgy of Spring",
+]
+
+[[quest]]
+name = "The Knife's Edge"
+page = "https://ddowiki.com/page/The_Knife%27s_Edge"
+read = "2026-09-30"
+rare = [
+  "Legendary Poniard of Pain",
+  "Poniard of Pain",
+]
+rare_augments = [
+  "Solar Gem of Fortification Bypass (Heroic)",
+  "Solar Gem of Fortification Bypass (Legendary)",
+  "Solar Gem of Sneak Attack Dice (Heroic)",
+  "Solar Gem of Sneak Attack Dice (Legendary)",
+]
+
+[[quest]]
+name = "The Price of an Egg"
+page = "https://ddowiki.com/page/The_Price_of_an_Egg"
+read = "2026-09-30"
+rare_augments = [
+  "Solar Gem of Illusion (Heroic)",
+  "Solar Gem of Illusion (Legendary)",
+]
+
+[[quest]]
+name = "The Proper Authorities"
+page = "https://ddowiki.com/page/The_Proper_Authorities"
+read = "2026-09-30"
+rare = [
+  "Downcast Armor",
+  "Downcast Brawler's Garb",
+  "Legendary Downcast Armor",
+  "Legendary Downcast Brawler's Garb",
+]
+rare_augments = [
+  "Solar Gem of Enduring (Heroic)",
+  "Solar Gem of Enduring (Legendary)",
+  "Solar Gem of Spell Critical Chance (Heroic)",
+  "Solar Gem of Spell Critical Chance (Legendary)",
+]
+
+[[quest]]
+name = "The Safehold"
+page = "https://ddowiki.com/page/The_Safehold"
+read = "2026-09-30"
+rare = [
+  "Docent of the Warblade",
+  "Legendary Docent of the Warblade",
+  "Legendary Medium Armor of the Artblade",
+  "Medium Armor of the Artblade",
+]
+rare_augments = [
+  "Solar Gem of Swift Charging (Heroic)",
+  "Solar Gem of Swift Charging (Legendary)",
+]
+
+[[quest]]
+name = "The Wizard's Labyrinth"
+page = "https://ddowiki.com/page/The_Wizard%27s_Labyrinth"
+read = "2026-09-30"
+rare = [
+  "Legendary Lesser Oblivion",
+  "Lesser Oblivion",
+]
+rare_augments = [
+  "Solar Gem of Spell Critical Chance (Heroic)",
+  "Solar Gem of Spell Critical Chance (Legendary)",
+]
+
+[[quest]]
+name = "The Zulkir's Plan"
+page = "https://ddowiki.com/page/The_Zulkir%27s_Plan"
+read = "2026-09-30"
+rare = [
+  "Echo of the Crownblade",
+  "Heavy Armor of the Artblade",
+  "Legendary Echo of the Crownblade",
+  "Legendary Heavy Armor of the Artblade",
+  "The Theurgy of Summer",
+]
+
+[[quest]]
+name = "Times Long Past"
+page = "https://ddowiki.com/page/Times_Long_Past"
+read = "2026-09-30"
+rare = [
+  "Legendary Medium Armor of the Crownblade",
+  "Legendary Outfit of the Artblade",
+  "Medium Armor of the Crownblade",
+  "Outfit of the Artblade",
+  "The Theurgy of Autumn",
+]
+
+[[quest]]
+name = "Voices of the Dead"
+page = "https://ddowiki.com/page/Voices_of_the_Dead"
+read = "2026-09-30"
+rare = [
+  "Heavy Armor of the Crownblade",
+  "Legendary Heavy Armor of the Crownblade",
+  "The Autumn Equinox",
+]
+rare_augments = [
+  "Solar Gem of Imbuement (Heroic)",
+  "Solar Gem of Imbuement (Legendary)",
+]
+
+[[quest]]
+name = "Zoo Creeper"
+page = "https://ddowiki.com/page/Zoo_Creeper"
+read = "2026-09-30"
+rare = [
+  "Buckle of Secrets",
+  "Golden Souvenir Coin",
+  "Legendary Buckle of Secrets",
+  "Legendary Golden Souvenir Coin",
+]
+rare_augments = [
+  "Solar Gem of Attack (Heroic)",
+  "Solar Gem of Attack (Legendary)",
+  "Solar Gem of Fortification Bypass (Heroic)",
+  "Solar Gem of Fortification Bypass (Legendary)",
+]
+
+[[quest]]
+name = "Ruins of Myth Drannor"
+page = "https://ddowiki.com/page/Ruins_of_Myth_Drannor"
+read = "2026-09-30"
+rare = [
+  "Cloak of the Artblade",
+  "Cloak of the Crownblade",
+  "Cloak of the Warblade",
+  "Helm of the Crownblade",
+  "Helm of the Warblade",
+  "Legendary Cloak of the Artblade",
+  "Legendary Cloak of the Crownblade",
+  "Legendary Cloak of the Warblade",
+  "Legendary Helm of the Artblade",
+  "Legendary Helm of the Crownblade",
+  "Legendary Helm of the Warblade",
+]
+rare_augments = [
+  { name = "Solar Gem of Fortification Bypass (Heroic)", chest = "goranathanil's chest" },
+  { name = "Solar Gem of Fortification Bypass (Legendary)", chest = "goranathanil's chest" },
+  "Solar Gem of Sneak Attack Dice (Heroic)",
+  "Solar Gem of Sneak Attack Dice (Legendary)",
+  "Solar Gem of Spell Critical Chance (Heroic)",
+  "Solar Gem of Spell Critical Chance (Legendary)",
 ]
