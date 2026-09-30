@@ -12,7 +12,7 @@ enhancement_bonus = 15
 material = "Steel"
 description = "Test description: an axe that drips."
 drop_location = "Test source: The Grotto, end chest"
-quests = [{ name = "The Grotto", loot_type = "chest" }, { name = "The Oozing Pit", loot_type = "reward" }]
+quests = [{ name = "The Grotto", loot_type = "chest" }, { name = "Ghosts of Perdition", loot_type = "reward" }]
 set = "Inevitable Balance"
 augment_slots = ["red", "colorless"]
 bonuses = [

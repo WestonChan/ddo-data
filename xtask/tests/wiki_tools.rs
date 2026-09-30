@@ -56,6 +56,7 @@ fn wiki_check_reports_the_wiki_counts_for_a_valid_wiki_dir() {
         "wiki_quest_loot_entry_count: 1",
         "wiki_quest_entry_count: 4",
         "wiki_quest_created_count: 1",
+        "drop_text_wiki_quest_link_count: 1",
         "wiki_quest_superseded_count: 1",
         "wiki_quest_probable_duplicate_count: 0",
         "wiki_crafting_system_count: 2",
@@ -106,7 +107,7 @@ fn wiki_check_warns_about_superseded_and_probably_duplicate_wiki_quests() {
     let draft_dir = tempfile::tempdir().unwrap();
     std::fs::write(
         draft_dir.path().join("quests_draft.toml"),
-        fixture_quests.replace("name = \"The Oozing Pit\"", "name = \"The Chrono-scope\""),
+        fixture_quests.replace("name = \"Ghosts of Perdition\"", "name = \"The Chrono-scope\""),
     )
     .unwrap();
 
@@ -298,14 +299,17 @@ fn wiki_batch_writes_the_reading_agent_inputs() {
         std::fs::read_to_string(out_dir.path().join("wiki_source_items.txt")).unwrap(),
         "Battle Axe of the Oozing Hunger\n"
     );
-    assert_eq!(std::fs::read_to_string(out_dir.path().join("wiki_source_quests.txt")).unwrap(), "The Oozing Pit\n");
+    assert_eq!(
+        std::fs::read_to_string(out_dir.path().join("wiki_source_quests.txt")).unwrap(),
+        "Ghosts of Perdition\n"
+    );
     let augment_lines = std::fs::read_to_string(out_dir.path().join("augment_names.txt")).unwrap();
     assert_eq!(augment_lines.lines().count(), 11);
     assert!(augment_lines.lines().any(|line| line == "Alchemical\tFire I: Combustion\t29"), "{augment_lines}");
     let quest_pages: Value =
         serde_json::from_str(&std::fs::read_to_string(out_dir.path().join("quest_pages.json")).unwrap()).unwrap();
     assert_eq!(quest_pages.as_object().unwrap().len(), 14, "Maetrim's 13 quests and challenges and the wiki quest");
-    assert_eq!(quest_pages["The Oozing Pit"], likely_wiki_page_url("The Oozing Pit"));
+    assert_eq!(quest_pages["Ghosts of Perdition"], likely_wiki_page_url("Ghosts of Perdition"));
     assert_eq!(
         quest_pages["Dr. Rushmore's Mansion - Behind the Door"],
         likely_wiki_page_url("Dr. Rushmore's Mansion - Behind the Door")

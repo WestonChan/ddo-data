@@ -356,7 +356,7 @@ impl TableWriter<'_> {
     fn link_item_to_quests(&self, item_id: i64, drop_location: &str, report: &mut BuildReport) -> Result<()> {
         let mut unmatched_text = drop_location.to_string();
         let lowercase_drop_location = drop_location.to_lowercase();
-        for quest in &self.written_quests.longest_name_first {
+        for quest in &self.drop_text_quests.longest_name_first {
             let quest_name = quest.name.as_str();
             if quest_name.is_empty() || !unmatched_text.contains(quest_name) {
                 continue;
@@ -374,6 +374,9 @@ impl TableWriter<'_> {
             };
             let changed_row_count = self.insert_quest_loot_link(quest.id, item_id, loot_type, is_rare)?;
             report.quest_loot_link_count += 1;
+            if quest.is_wiki {
+                report.drop_text_wiki_quest_link_count += 1;
+            }
             if is_rare && changed_row_count > 0 {
                 report.drop_text_rare_link_count += 1;
             }

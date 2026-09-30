@@ -254,10 +254,10 @@ async fn quests_say_whether_maetrim_or_the_wiki_supplied_them() {
     let (_, _, quests) = get("/v1/quests").await;
     let quests = quests.as_array().unwrap();
     let quest_named = |name: &str| quests.iter().find(|q| q["name"] == name).unwrap_or_else(|| panic!("{name}"));
-    let oozing_pit = quest_named("The Oozing Pit");
-    assert_eq!(oozing_pit["source"], "wiki");
+    let ghosts_of_perdition = quest_named("Ghosts of Perdition");
+    assert_eq!(ghosts_of_perdition["source"], "wiki");
     assert_eq!(
-        (&oozing_pit["pack"], &oozing_pit["level"]),
+        (&ghosts_of_perdition["pack"], &ghosts_of_perdition["level"]),
         (&serde_json::json!("Chill of Ravenloft"), &serde_json::json!(32))
     );
     assert_eq!(quest_named("The Grotto")["source"], "maetrim");
@@ -270,7 +270,7 @@ async fn quests_say_whether_maetrim_or_the_wiki_supplied_them() {
         .iter()
         .map(|quest| (quest["name"].as_str().unwrap(), quest["source"].as_str().unwrap()))
         .collect();
-    assert_eq!(axe_quest_sources, [("The Grotto", "maetrim"), ("The Oozing Pit", "wiki")]);
+    assert_eq!(axe_quest_sources, [("Ghosts of Perdition", "wiki"), ("The Grotto", "maetrim")]);
 
     let (_, _, version) = get("/v1/version").await;
     assert_eq!(version["counts"]["wiki_quests"], 1);

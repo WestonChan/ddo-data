@@ -61,6 +61,7 @@ fn wiki_report_lines(report: &BuildReport) -> Vec<String> {
         ("drop_text_rare_link_count", report.drop_text_rare_link_count),
         ("wiki_quest_entry_count", report.wiki_quest_entry_count),
         ("wiki_quest_created_count", report.wiki_quest_created_count),
+        ("drop_text_wiki_quest_link_count", report.drop_text_wiki_quest_link_count),
         ("wiki_quest_superseded_count", report.wiki_quest_superseded_count),
         ("wiki_quest_probable_duplicate_count", report.wiki_quest_probable_duplicate_count),
         ("wiki_crafting_system_count", report.wiki_crafting_system_count),

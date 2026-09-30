@@ -299,7 +299,7 @@ fn quest_facts_never_change_maetrims_quest_columns() {
     }
 }
 
-const WIKI_QUEST: &str = "The Oozing Pit";
+const WIKI_QUEST: &str = "Ghosts of Perdition";
 
 fn wiki_quest_fields_toml(name: &str, extra_lines: &str) -> String {
     quest_facts_toml(
@@ -313,19 +313,48 @@ fn wiki_quest_fields_toml(name: &str, extra_lines: &str) -> String {
 #[test]
 fn reads_the_quest_fields_a_wiki_quest_carries() {
     let wiki = WikiOverrides::from_dir(&fixtures_dir().join("wiki")).unwrap();
-    let oozing_pit = wiki.quests.iter().find(|q| q.name == WIKI_QUEST).unwrap();
-    assert_eq!(oozing_pit.file_name, "quests.toml");
+    let ghosts_of_perdition = wiki.quests.iter().find(|q| q.name == WIKI_QUEST).unwrap();
+    assert_eq!(ghosts_of_perdition.file_name, "quests.toml");
     assert_eq!(
-        (oozing_pit.pack.as_deref(), oozing_pit.patron.as_deref()),
+        (ghosts_of_perdition.pack.as_deref(), ghosts_of_perdition.patron.as_deref()),
         (Some("Chill of Ravenloft"), Some("The Coin Lords"))
     );
     assert_eq!(
-        (oozing_pit.level, oozing_pit.epic_level, oozing_pit.favor, oozing_pit.is_raid),
+        (
+            ghosts_of_perdition.level,
+            ghosts_of_perdition.epic_level,
+            ghosts_of_perdition.favor,
+            ghosts_of_perdition.is_raid
+        ),
         (Some(32), Some(33), Some(150), Some(false))
     );
-    assert_eq!(oozing_pit.difficulties.as_deref(), Some(&["normal", "hard", "elite", "reaper"].map(String::from)[..]));
-    assert!(oozing_pit.carries_quest_fields());
+    assert_eq!(
+        ghosts_of_perdition.difficulties.as_deref(),
+        Some(&["normal", "hard", "elite", "reaper"].map(String::from)[..])
+    );
+    assert!(ghosts_of_perdition.carries_quest_fields());
     assert!(!wiki.quests[0].carries_quest_fields(), "The Chronoscope only adds facts");
+}
+
+#[test]
+fn links_maetrims_items_to_a_wiki_quest_their_drop_text_names() {
+    let (db, report) = built_db_with_fixture_wiki();
+    let drop_text_links: Vec<(String, String, bool)> = db
+        .prepare(
+            "SELECT i.name, ql.loot_type, ql.is_rare FROM quest_loot ql
+               JOIN quests q ON q.id = ql.quest_id JOIN items i ON i.id = ql.item_id
+              WHERE q.name = ?1 AND i.source = 'maetrim' ORDER BY i.name",
+        )
+        .unwrap()
+        .query_map([WIKI_QUEST], |r| Ok((r.get(0)?, r.get(1)?, r.get(2)?)))
+        .unwrap()
+        .collect::<rusqlite::Result<_>>()
+        .unwrap();
+    assert_eq!(drop_text_links, [("Argenti's Armor".to_string(), "chest".to_string(), false)]);
+    assert_eq!(report.drop_text_wiki_quest_link_count, 1);
+    let (_, without_report) = built_db_with(&WikiOverrides::default());
+    assert_eq!(without_report.drop_text_wiki_quest_link_count, 0);
+    assert_eq!(report.quest_loot_link_count, without_report.quest_loot_link_count + 1);
 }
 
 #[test]

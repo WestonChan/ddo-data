@@ -1,7 +1,7 @@
 # Book Burning's values are from data/wiki/quests.toml; legendary_level, zone, bestowed_by and flagging on
 # The Chronoscope are test values. The quest fields on The Grotto are test values the build must skip, since
-# Maetrim's fixture files carry that quest; The Oozing Pit is a test quest his fixture files lack, so the build
-# creates it from its test values.
+# Maetrim's fixture files carry that quest; Ghosts of Perdition is a quest his fixture Quests.xml lacks though his
+# fixture Argenti's Armor names it in its drop text, so the build creates it from these test values.
 [[quest]]
 name = "The Chronoscope"
 page = "https://ddowiki.com/page/The_Chronoscope"
@@ -31,8 +31,8 @@ free_to_play = false
 legendary_level = 35
 
 [[quest]]
-name = "The Oozing Pit"
-page = "https://ddowiki.com/page/The_Oozing_Pit"
+name = "Ghosts of Perdition"
+page = "https://ddowiki.com/page/Ghosts_of_Perdition"
 read = "2026-09-30"
 free_to_play = false
 pack = "Chill of Ravenloft"

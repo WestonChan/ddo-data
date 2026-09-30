@@ -18,7 +18,7 @@ use crate::xml::items::parse_item_file;
 use crate::xml::quests::Quest;
 use crate::xml::{clickies, item_buffs, patrons, quests};
 use anyhow::{Context, Result};
-use ddo_model::enums::{BonusType, FeatSource, ModifierSource};
+use ddo_model::enums::{BonusType, FeatSource, ModifierSource, RowSource};
 use ddo_model::stats::Stat;
 use ddo_model::{seeds, DatasetVersion, SCHEMA_VERSION};
 use rusqlite::{params, Connection, OptionalExtension, Transaction};
@@ -35,6 +35,7 @@ pub struct BuildReport {
     pub challenge_count: usize,
     pub quest_loot_link_count: usize,
     pub drop_text_rare_link_count: usize,
+    pub drop_text_wiki_quest_link_count: usize,
     pub augment_slot_type_count: usize,
     pub augment_count: usize,
     pub set_bonus_count: usize,
@@ -134,17 +135,17 @@ pub fn build_database(
     for patron in &parsed_patrons {
         transaction.execute("INSERT OR IGNORE INTO patrons (name) VALUES (?1)", params![patron.name.trim()])?;
     }
-    let written_quests = write_quests(&transaction, &parsed_quests)?;
-    report.quest_count = written_quests.quest_count();
+    report.quest_count = write_quests(&transaction, &parsed_quests)?;
     report.challenge_count = write_challenges(&transaction, &parsed_challenges)?;
     wiki::write_wiki_quests(&transaction, &wiki_overrides.quests, &mut report)?;
+    let drop_text_quests = drop_text_quests(&transaction)?;
 
     let mut writer = TableWriter {
         transaction: &transaction,
         buff_map: &buff_map,
         effect_map: &effect_map,
         buff_description_templates: &buff_description_templates,
-        written_quests: &written_quests,
+        drop_text_quests: &drop_text_quests,
         written: WrittenRows::default(),
         pending_set_item_links: Vec::new(),
         pending_set_augment_links: Vec::new(),
@@ -219,20 +220,27 @@ fn files_with_extension(dir: &Path, extension: &str) -> Result<Vec<PathBuf>> {
     Ok(paths)
 }
 
-pub(crate) struct WrittenQuest {
+pub(crate) struct DropTextQuest {
     name: String,
     id: i64,
     is_raid: bool,
+    is_wiki: bool,
 }
 
-pub(crate) struct WrittenQuests {
-    longest_name_first: Vec<WrittenQuest>,
+pub(crate) struct DropTextQuests {
+    longest_name_first: Vec<DropTextQuest>,
 }
 
-impl WrittenQuests {
-    fn quest_count(&self) -> usize {
-        self.longest_name_first.len()
-    }
+fn drop_text_quests(transaction: &Transaction) -> Result<DropTextQuests> {
+    let mut statement =
+        transaction.prepare("SELECT name, id, is_raid, source = ?1 FROM quests WHERE is_challenge = 0")?;
+    let mut longest_name_first = statement
+        .query_map(params![RowSource::Wiki.as_str()], |r| {
+            Ok(DropTextQuest { name: r.get(0)?, id: r.get(1)?, is_raid: r.get(2)?, is_wiki: r.get(3)? })
+        })?
+        .collect::<rusqlite::Result<Vec<_>>>()?;
+    longest_name_first.sort_by(|a, b| b.name.len().cmp(&a.name.len()).then_with(|| a.name.cmp(&b.name)));
+    Ok(DropTextQuests { longest_name_first })
 }
 
 fn ensure_adventure_pack(transaction: &Transaction, pack_name: Option<&str>) -> Result<Option<i64>> {
@@ -255,8 +263,7 @@ fn patron_id(transaction: &Transaction, patron_name: Option<&str>) -> Result<Opt
     }
 }
 
-fn write_quests(transaction: &Transaction, quests: &[Quest]) -> Result<WrittenQuests> {
-    let mut longest_name_first = Vec::with_capacity(quests.len());
+fn write_quests(transaction: &Transaction, quests: &[Quest]) -> Result<usize> {
     for quest in quests {
         transaction.execute(
             "INSERT OR IGNORE INTO quests (name, pack_id, patron_id, level, epic_level, favor, is_raid, epic_name, difficulties)
@@ -273,12 +280,8 @@ fn write_quests(transaction: &Transaction, quests: &[Quest]) -> Result<WrittenQu
                 serde_json::to_string(&quest.difficulties.iter().map(|d| d.as_str()).collect::<Vec<_>>())?,
             ],
         )?;
-        let id: i64 =
-            transaction.query_row("SELECT id FROM quests WHERE name = ?1", params![quest.name], |r| r.get(0))?;
-        longest_name_first.push(WrittenQuest { name: quest.name.clone(), id, is_raid: quest.is_raid });
     }
-    longest_name_first.sort_by(|a, b| b.name.len().cmp(&a.name.len()).then_with(|| a.name.cmp(&b.name)));
-    Ok(WrittenQuests { longest_name_first })
+    Ok(quests.len())
 }
 
 fn write_challenges(transaction: &Transaction, challenges: &[Challenge]) -> Result<usize> {
@@ -319,7 +322,7 @@ pub(crate) struct TableWriter<'a> {
     buff_map: &'a BuffMap,
     effect_map: &'a EffectMap,
     buff_description_templates: &'a HashMap<String, String>,
-    written_quests: &'a WrittenQuests,
+    drop_text_quests: &'a DropTextQuests,
     written: WrittenRows,
     pending_set_item_links: Vec<(i64, String)>,
     pending_set_augment_links: Vec<(i64, String)>,
