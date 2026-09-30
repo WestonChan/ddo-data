@@ -1,4 +1,5 @@
 use ddo_etl::build::build_database;
+use ddo_etl::corrections::Corrections;
 use ddo_etl::wiki::WikiOverrides;
 use ddo_etl::xml::{classes, feats, races, stances};
 use ddo_model::enums::RequirementGroupKind;
@@ -16,6 +17,7 @@ fn built_fixture_db() -> Connection {
     build_database(
         &data_files_fixture_dir(),
         &WikiOverrides::from_dir(&data_files_fixture_dir().parent().unwrap().join("wiki")).unwrap(),
+        &Corrections::default(),
         &mut db,
         &dataset_version,
     )

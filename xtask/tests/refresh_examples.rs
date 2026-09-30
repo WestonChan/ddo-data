@@ -1,3 +1,4 @@
+use ddo_etl::corrections::Corrections;
 use ddo_etl::wiki::WikiOverrides;
 use serde_json::Value;
 use std::path::{Path, PathBuf};
@@ -11,7 +12,7 @@ fn fixtures_dir() -> PathBuf {
 fn fixture_db_in(work_dir: &Path) -> PathBuf {
     let db_path = work_dir.join("fixture.db");
     let wiki_overrides = WikiOverrides::from_dir(&fixtures_dir().join("wiki")).unwrap();
-    build_database_file(&fixtures_dir().join("DataFiles"), &wiki_overrides, &db_path).unwrap();
+    build_database_file(&fixtures_dir().join("DataFiles"), &wiki_overrides, &Corrections::default(), &db_path).unwrap();
     db_path
 }
 

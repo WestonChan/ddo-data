@@ -1,4 +1,5 @@
 pub mod build;
+pub mod corrections;
 pub mod diff;
 pub mod icons;
 pub mod map;

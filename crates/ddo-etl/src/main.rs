@@ -21,6 +21,8 @@ enum CliCommand {
         sha: Option<String>,
         #[arg(long)]
         wiki: Option<PathBuf>,
+        #[arg(long)]
+        corrections: Option<PathBuf>,
     },
     Icons {
         #[arg(long)]
@@ -40,7 +42,13 @@ enum CliCommand {
 
 fn main() -> Result<()> {
     match Cli::parse().command {
-        CliCommand::Build { source: data_files_dir, out: database_path, sha: upstream_sha, wiki: wiki_dir } => {
+        CliCommand::Build {
+            source: data_files_dir,
+            out: database_path,
+            sha: upstream_sha,
+            wiki: wiki_dir,
+            corrections: corrections_dir,
+        } => {
             let data_files_dir = data_files_dir.unwrap_or_else(default_data_files_dir);
             let dataset_version = ddo_etl::upstream::dataset_version(&data_files_dir, upstream_sha);
             if database_path.exists() {
@@ -51,8 +59,18 @@ fn main() -> Result<()> {
                 Some(dir) => ddo_etl::wiki::WikiOverrides::from_dir(dir)?,
                 None => ddo_etl::wiki::WikiOverrides::embedded()?,
             };
+            let corrections = match &corrections_dir {
+                Some(dir) => ddo_etl::corrections::Corrections::from_dir(dir)?,
+                None => ddo_etl::corrections::Corrections::embedded()?,
+            };
             let mut db = Connection::open(&database_path)?;
-            let report = ddo_etl::build::build_database(&data_files_dir, &wiki_overrides, &mut db, &dataset_version)?;
+            let report = ddo_etl::build::build_database(
+                &data_files_dir,
+                &wiki_overrides,
+                &corrections,
+                &mut db,
+                &dataset_version,
+            )?;
             println!("{report:#?}");
             println!("dataset {} written to {}", dataset_version.upstream_sha, database_path.display());
         }

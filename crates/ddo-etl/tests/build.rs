@@ -1,4 +1,5 @@
 use ddo_etl::build::{build_database, BuildReport};
+use ddo_etl::corrections::Corrections;
 use ddo_etl::diff::item_coverage;
 use ddo_etl::wiki::WikiOverrides;
 use ddo_etl::xml::{challenges, sentient_gems};
@@ -19,6 +20,7 @@ fn built_fixture_db() -> (Connection, BuildReport) {
     let report = build_database(
         &data_files_fixture_dir(),
         &WikiOverrides::from_dir(&data_files_fixture_dir().parent().unwrap().join("wiki")).unwrap(),
+        &Corrections::default(),
         &mut db,
         &fixture_dataset_version(),
     )

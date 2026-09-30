@@ -47,6 +47,8 @@ fn build_and_icons_read_ddo_upstream_when_source_is_absent() {
         .arg(&db_path)
         .arg("--wiki")
         .arg(fixtures_dir().join("wiki"))
+        .arg("--corrections")
+        .arg(fixtures_dir().join("corrections"))
         .env("DDO_UPSTREAM", &upstream_checkout_dir)
         .output()
         .unwrap();

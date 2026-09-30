@@ -1,4 +1,5 @@
 use ddo_etl::build::{build_database, BuildReport};
+use ddo_etl::corrections::Corrections;
 use ddo_etl::map::drop_location::marks_rare_loot;
 use ddo_etl::wiki::WikiOverrides;
 use ddo_model::DatasetVersion;
@@ -9,7 +10,9 @@ fn built_without_wiki() -> (Connection, BuildReport) {
     let mut db = Connection::open_in_memory().unwrap();
     let data_files_dir = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures/DataFiles");
     let dataset_version = DatasetVersion { upstream_sha: "31ef0201".into(), built_at: "2026-09-20T00:00:00Z".into() };
-    let report = build_database(&data_files_dir, &WikiOverrides::default(), &mut db, &dataset_version).unwrap();
+    let report =
+        build_database(&data_files_dir, &WikiOverrides::default(), &Corrections::default(), &mut db, &dataset_version)
+            .unwrap();
     (db, report)
 }
 

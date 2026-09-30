@@ -10,13 +10,22 @@ fn fixtures_dir() -> PathBuf {
     Path::new(env!("CARGO_MANIFEST_DIR")).join("../crates/ddo-etl/tests/fixtures")
 }
 
+fn fixture_corrections_dir() -> PathBuf {
+    fixtures_dir().join("corrections")
+}
+
 fn line_count(path: &Path) -> usize {
     std::fs::read_to_string(path).unwrap_or_else(|e| panic!("{}: {e}", path.display())).lines().count()
 }
 
 #[test]
 fn wiki_check_reports_the_wiki_counts_for_a_valid_wiki_dir() {
-    let report = wiki_check_report(&fixtures_dir().join("DataFiles"), Some(&fixtures_dir().join("wiki"))).unwrap();
+    let report = wiki_check_report(
+        &fixtures_dir().join("DataFiles"),
+        Some(&fixtures_dir().join("wiki")),
+        Some(&fixture_corrections_dir()),
+    )
+    .unwrap();
 
     for expected_line in [
         "wiki_quest_loot_entry_count: 1",
@@ -46,7 +55,9 @@ fn wiki_check_warns_about_superseded_and_probably_duplicate_wiki_items() {
     )
     .unwrap();
 
-    let report = wiki_check_report(&fixtures_dir().join("DataFiles"), Some(draft_dir.path())).unwrap();
+    let report =
+        wiki_check_report(&fixtures_dir().join("DataFiles"), Some(draft_dir.path()), Some(&fixture_corrections_dir()))
+            .unwrap();
 
     let warnings_start = report.find("\nwarnings:").unwrap_or_else(|| panic!("no warnings section in\n{report}"));
     for expected_warning in [
@@ -74,7 +85,8 @@ fn wiki_check_warns_about_a_wiki_item_that_looks_like_a_variant_of_a_maetrim_ite
     let report_for = |items_toml: &str| {
         let draft_dir = tempfile::tempdir().unwrap();
         std::fs::write(draft_dir.path().join("items_draft.toml"), items_toml).unwrap();
-        wiki_check_report(&fixtures_dir().join("DataFiles"), Some(draft_dir.path())).unwrap()
+        wiki_check_report(&fixtures_dir().join("DataFiles"), Some(draft_dir.path()), Some(&fixture_corrections_dir()))
+            .unwrap()
     };
 
     let report = report_for(&variant_items);
@@ -100,7 +112,8 @@ fn wiki_check_warns_about_a_wiki_effect_spelled_like_a_maetrim_effect_apart_from
     let report_for = |items_toml: &str| {
         let draft_dir = tempfile::tempdir().unwrap();
         std::fs::write(draft_dir.path().join("items_draft.toml"), items_toml).unwrap();
-        wiki_check_report(&fixtures_dir().join("DataFiles"), Some(draft_dir.path())).unwrap()
+        wiki_check_report(&fixtures_dir().join("DataFiles"), Some(draft_dir.path()), Some(&fixture_corrections_dir()))
+            .unwrap()
     };
 
     let report = report_for(&items_with_effect("Maximum Charge Tier / III"));
@@ -131,8 +144,15 @@ fn wiki_check_warns_about_family_augments_no_recipe_yields() {
     )
     .unwrap();
 
-    let full_report = wiki_check_report(&fixtures_dir().join("DataFiles"), Some(&fixtures_dir().join("wiki"))).unwrap();
-    let draft_report = wiki_check_report(&fixtures_dir().join("DataFiles"), Some(draft_dir.path())).unwrap();
+    let full_report = wiki_check_report(
+        &fixtures_dir().join("DataFiles"),
+        Some(&fixtures_dir().join("wiki")),
+        Some(&fixture_corrections_dir()),
+    )
+    .unwrap();
+    let draft_report =
+        wiki_check_report(&fixtures_dir().join("DataFiles"), Some(draft_dir.path()), Some(&fixture_corrections_dir()))
+            .unwrap();
 
     let unused_augment_warning =
         "warning: Heroic Green Steel: Greensteel_Heroic augment \"Minor Fire Guard\" has no recipe";
@@ -180,7 +200,12 @@ fn socket_label_spelling_warnings_name_each_group_of_colliding_labels() {
 
 #[test]
 fn wiki_check_prints_no_socket_label_warning_for_the_fixture_labels() {
-    let report = wiki_check_report(&fixtures_dir().join("DataFiles"), Some(&fixtures_dir().join("wiki"))).unwrap();
+    let report = wiki_check_report(
+        &fixtures_dir().join("DataFiles"),
+        Some(&fixtures_dir().join("wiki")),
+        Some(&fixture_corrections_dir()),
+    )
+    .unwrap();
 
     assert!(!report.contains("socket labels differ only by spelling"), "{report}");
 }
@@ -194,7 +219,9 @@ fn wiki_check_fails_naming_an_unknown_quest() {
     )
     .unwrap();
 
-    let error = wiki_check_report(&fixtures_dir().join("DataFiles"), Some(draft_dir.path())).unwrap_err();
+    let error =
+        wiki_check_report(&fixtures_dir().join("DataFiles"), Some(draft_dir.path()), Some(&fixture_corrections_dir()))
+            .unwrap_err();
 
     assert!(format!("{error:#}").contains("No Such Quest"), "{error:#}");
 }
@@ -203,7 +230,13 @@ fn wiki_check_fails_naming_an_unknown_quest() {
 fn wiki_batch_writes_the_reading_agent_inputs() {
     let out_dir = tempfile::tempdir().unwrap();
 
-    write_wiki_batch(&fixtures_dir().join("DataFiles"), Some(&fixtures_dir().join("wiki")), out_dir.path()).unwrap();
+    write_wiki_batch(
+        &fixtures_dir().join("DataFiles"),
+        Some(&fixtures_dir().join("wiki")),
+        Some(&fixture_corrections_dir()),
+        out_dir.path(),
+    )
+    .unwrap();
 
     assert_eq!(line_count(&out_dir.path().join("item_names.txt")), 15);
     assert_eq!(
@@ -231,9 +264,20 @@ fn wiki_batch_lists_every_blank_description_the_wiki_files_have_not_filled() {
     let unfilled_out_dir = tempfile::tempdir().unwrap();
     let filled_out_dir = tempfile::tempdir().unwrap();
 
-    write_wiki_batch(&fixtures_dir().join("DataFiles"), Some(empty_wiki_dir.path()), unfilled_out_dir.path()).unwrap();
-    write_wiki_batch(&fixtures_dir().join("DataFiles"), Some(&fixtures_dir().join("wiki")), filled_out_dir.path())
-        .unwrap();
+    write_wiki_batch(
+        &fixtures_dir().join("DataFiles"),
+        Some(empty_wiki_dir.path()),
+        Some(&fixture_corrections_dir()),
+        unfilled_out_dir.path(),
+    )
+    .unwrap();
+    write_wiki_batch(
+        &fixtures_dir().join("DataFiles"),
+        Some(&fixtures_dir().join("wiki")),
+        Some(&fixture_corrections_dir()),
+        filled_out_dir.path(),
+    )
+    .unwrap();
 
     assert_eq!(
         std::fs::read_to_string(unfilled_out_dir.path().join("blank_descriptions.txt")).unwrap(),

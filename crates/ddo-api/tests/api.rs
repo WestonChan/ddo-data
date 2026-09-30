@@ -22,8 +22,14 @@ fn fixture_db_path() -> &'static PathBuf {
             DatasetVersion { upstream_sha: "fixture-sha".into(), built_at: "2026-09-21T00:00:00Z".into() };
         let wiki_overrides =
             ddo_etl::wiki::WikiOverrides::from_dir(&fixture_data_files_dir().parent().unwrap().join("wiki")).unwrap();
-        ddo_etl::build::build_database(&fixture_data_files_dir(), &wiki_overrides, &mut db, &dataset_version)
-            .expect("fixture build");
+        ddo_etl::build::build_database(
+            &fixture_data_files_dir(),
+            &wiki_overrides,
+            &ddo_etl::corrections::Corrections::default(),
+            &mut db,
+            &dataset_version,
+        )
+        .expect("fixture build");
         path
     })
 }

@@ -871,3 +871,70 @@ impl EnhancementTreeKind {
         }
     }
 }
+
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
+pub enum CorrectionKind {
+    Item,
+    Augment,
+    Quest,
+    Feat,
+    Enhancement,
+    Race,
+    Class,
+    AdventurePack,
+    Patron,
+    SetBonus,
+    Spell,
+}
+
+impl CorrectionKind {
+    pub const ALL: &'static [CorrectionKind] = &[
+        Self::Item,
+        Self::Augment,
+        Self::Quest,
+        Self::Feat,
+        Self::Enhancement,
+        Self::Race,
+        Self::Class,
+        Self::AdventurePack,
+        Self::Patron,
+        Self::SetBonus,
+        Self::Spell,
+    ];
+
+    pub const fn as_str(self) -> &'static str {
+        match self {
+            Self::Item => "item",
+            Self::Augment => "augment",
+            Self::Quest => "quest",
+            Self::Feat => "feat",
+            Self::Enhancement => "enhancement",
+            Self::Race => "race",
+            Self::Class => "class",
+            Self::AdventurePack => "adventure_pack",
+            Self::Patron => "patron",
+            Self::SetBonus => "set_bonus",
+            Self::Spell => "spell",
+        }
+    }
+
+    pub const fn table_name(self) -> &'static str {
+        match self {
+            Self::Item => "items",
+            Self::Augment => "augments",
+            Self::Quest => "quests",
+            Self::Feat => "feats",
+            Self::Enhancement => "enhancements",
+            Self::Race => "races",
+            Self::Class => "classes",
+            Self::AdventurePack => "adventure_packs",
+            Self::Patron => "patrons",
+            Self::SetBonus => "set_bonuses",
+            Self::Spell => "spells",
+        }
+    }
+
+    pub fn parse(text: &str) -> Option<Self> {
+        Self::ALL.iter().copied().find(|kind| kind.as_str() == text)
+    }
+}

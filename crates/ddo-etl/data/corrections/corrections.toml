@@ -1,0 +1,9 @@
+[[correction]]
+kind = "augment"
+name = "The Fury's Rage"
+field = "min_level"
+from = 318
+to = 18
+reason = "Every sibling augment in LostPurpose is min level 18; 318 is a typo."
+source = "https://ddowiki.com/page/Lost_Purpose"
+read = "2026-09-29"

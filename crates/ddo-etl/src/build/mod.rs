@@ -1,12 +1,14 @@
 mod augments;
 mod buffs;
 mod characters;
+mod corrections;
 mod items;
 mod modifiers;
 mod sets;
 mod trees_spells;
 mod wiki;
 
+use crate::corrections::Corrections;
 use crate::map::augment_slot::AugmentSlotType;
 use crate::map::buff::BuffMap;
 use crate::map::effect::EffectMap;
@@ -66,12 +68,25 @@ pub struct BuildReport {
     pub wiki_item_probable_duplicate_count: usize,
     pub superseded_wiki_items: Vec<SupersededWikiItem>,
     pub probable_duplicate_wiki_items: Vec<ProbableDuplicateWikiItem>,
+    pub correction_applied_count: usize,
+    pub correction_stale_count: usize,
+    pub stale_corrections: Vec<StaleCorrection>,
     pub unmapped_effect_type_counts: BTreeMap<String, usize>,
 }
 
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct SupersededWikiItem {
     pub name: String,
+    pub file_name: String,
+}
+
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub struct StaleCorrection {
+    pub kind: String,
+    pub name: String,
+    pub field: String,
+    pub expected_value: String,
+    pub maetrim_value: String,
     pub file_name: String,
 }
 
@@ -84,6 +99,7 @@ pub struct ProbableDuplicateWikiItem {
 pub fn build_database(
     data_files_dir: &Path,
     wiki_overrides: &WikiOverrides,
+    corrections: &Corrections,
     db: &mut Connection,
     dataset_version: &DatasetVersion,
 ) -> Result<BuildReport> {
@@ -171,6 +187,7 @@ pub fn build_database(
     writer.write_standalone_stances(&data_files_dir.join("Stances.xml"), &mut report)?;
     writer.write_guild_buffs(&data_files_dir.join("GuildBuffs.xml"), &mut report)?;
     writer.write_optional_buffs(&data_files_dir.join("SelfAndPartyBuffs.xml"), &mut report)?;
+    corrections::apply_corrections(&transaction, corrections, &mut report)?;
     wiki::apply_wiki_overrides(&transaction, wiki_overrides, &mut report)?;
 
     report.bonus_count = writer.written.bonus_ids_by_key.len();

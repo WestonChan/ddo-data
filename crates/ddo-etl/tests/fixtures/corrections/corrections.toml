@@ -1,0 +1,41 @@
+# Only names the fixture DataFiles carry. Each `from` is the fixture's own value; each `to`, reason and source is a
+# test value, not a real correction. The last entry's `from` is deliberately not the fixture's value, so it is stale.
+[[correction]]
+kind = "augment"
+name = "Perfect Silence"
+field = "min_level"
+from = 30
+to = 29
+reason = "Test correction of an augment's level."
+source = "https://ddowiki.com/page/Item:Perfect_Silence"
+read = "2026-09-29"
+
+[[correction]]
+kind = "item"
+name = "Docent of Defiance"
+field = "minimum_level"
+from = 10
+to = 11
+reason = "Test correction of an item's level."
+source = "https://ddowiki.com/page/Item:Docent_of_Defiance"
+read = "2026-09-29"
+
+[[correction]]
+kind = "quest"
+name = "Plane of Night"
+field = "favor"
+from = 5
+to = 6
+reason = "Test correction of a quest's favor."
+source = "https://ddowiki.com/page/Plane_of_Night"
+read = "2026-09-29"
+
+[[correction]]
+kind = "augment"
+name = "Ruby of Acid Damage"
+field = "min_level"
+from = 7
+to = 8
+reason = "Test correction whose from no longer matches the fixture."
+source = "https://ddowiki.com/page/Item:Ruby_of_Acid_Damage"
+read = "2026-09-29"

@@ -92,6 +92,7 @@ fn ddl_creates_every_v2_table() {
         "crafting_recipes",
         "crafting_recipe_augments",
         "crafting_recipe_ingredients",
+        "corrections",
     ] {
         assert!(tables.contains(expected_table), "missing table {expected_table}");
     }
@@ -137,7 +138,6 @@ fn items_come_from_maetrim_unless_the_wiki_supplied_them() {
             []
         )
         .is_err());
-    assert_eq!(SCHEMA_VERSION, 3);
 }
 
 #[test]
@@ -167,6 +167,25 @@ fn crafting_tables_accept_only_the_four_crafting_tiers_and_one_ingredient_per_na
         .execute("INSERT INTO crafting_recipes (system_id, tier, option, sort_order) VALUES (1, 'mythic', 'x', 0)", [])
         .is_err());
     assert!(db.execute("INSERT INTO crafting_systems (name, page) VALUES ('Green Steel', 'q')", []).is_err());
+}
+
+#[test]
+fn corrections_record_each_kind_field_and_value_change_once() {
+    let db = fresh_db();
+    let mut statement = db.prepare("SELECT name FROM pragma_table_info('corrections') ORDER BY cid").unwrap();
+    let columns: Vec<String> = statement.query_map([], |r| r.get(0)).unwrap().map(Result::unwrap).collect();
+    assert_eq!(columns, ["id", "kind", "name", "field", "from_value", "to_value", "reason", "source", "read"]);
+    let insert_correction = |kind: &str| {
+        db.execute(
+            "INSERT INTO corrections (kind, name, field, from_value, to_value, reason, source, read)
+             VALUES (?1, 'The Fury''s Rage', 'min_level', '318', '18', 'typo', 'https://ddowiki.com/page/Lost_Purpose', '2026-09-29')",
+            [kind],
+        )
+    };
+    insert_correction("augment").unwrap();
+    assert!(insert_correction("augment").is_err(), "a (kind, name, field) is corrected once");
+    assert!(insert_correction("gem").is_err(), "kind is one of the correctable tables");
+    assert_eq!(SCHEMA_VERSION, 4);
 }
 
 #[test]

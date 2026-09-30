@@ -1,10 +1,10 @@
 use crate::enums::{
-    AbilityOwner, ArmorType, CraftingTier, EnhancementTreeKind, FeatSource, Handedness, ItemCategory, ItemSource,
-    LootType, ModifierSource, RequirementGroupKind, RequirementOwner, SaveProgression,
+    AbilityOwner, ArmorType, CorrectionKind, CraftingTier, EnhancementTreeKind, FeatSource, Handedness, ItemCategory,
+    ItemSource, LootType, ModifierSource, RequirementGroupKind, RequirementOwner, SaveProgression,
 };
 use std::sync::LazyLock;
 
-pub const SCHEMA_VERSION: i64 = 3;
+pub const SCHEMA_VERSION: i64 = 4;
 
 fn sql_in_clause<'a>(allowed_values: impl Iterator<Item = &'a str>) -> String {
     let quoted_values: Vec<String> = allowed_values.map(|value| format!("'{value}'")).collect();
@@ -25,6 +25,7 @@ static DDL: LazyLock<String> = LazyLock::new(|| {
     let tree_kind = sql_in_clause(EnhancementTreeKind::ALL.iter().map(|k| k.as_str()));
     let requirement_group = sql_in_clause(RequirementGroupKind::ALL.iter().map(|g| g.as_str()));
     let crafting_tier = sql_in_clause(CraftingTier::ALL.iter().map(|t| t.as_str()));
+    let correction_kind = sql_in_clause(CorrectionKind::ALL.iter().map(|k| k.as_str()));
     format!(
         r#"
 PRAGMA foreign_keys = ON;
@@ -708,6 +709,23 @@ CREATE TABLE IF NOT EXISTS crafting_recipe_ingredients (
     quantity      INTEGER NOT NULL CHECK (quantity > 0),
     PRIMARY KEY (recipe_id, ingredient_id)
 );
+
+-- Corrections (data/corrections) ------------------------------------------------
+
+-- A known mistake in Maetrim's data and the value that replaced it. Values are JSON (318, "text", null).
+CREATE TABLE IF NOT EXISTS corrections (
+    id         INTEGER PRIMARY KEY,
+    kind       TEXT NOT NULL CHECK (kind {correction_kind}),
+    name       TEXT NOT NULL,                          -- the row's name in Maetrim's files
+    field      TEXT NOT NULL,
+    from_value TEXT NOT NULL,                          -- his value, as JSON
+    to_value   TEXT NOT NULL,                          -- the value written, as JSON
+    reason     TEXT NOT NULL,
+    source     TEXT NOT NULL,                          -- URL citing the right value
+    read       TEXT NOT NULL,                          -- YYYY-MM-DD the source was read
+    UNIQUE (kind, name, field)
+);
+CREATE INDEX IF NOT EXISTS idx_corrections_kind_name ON corrections(kind, name);
 
 -- Sets and filigrees ------------------------------------------------------------
 

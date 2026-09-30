@@ -244,7 +244,7 @@ fn validate_citation(page: &str, read: &str) -> Result<()> {
     Ok(())
 }
 
-fn is_iso_date(text: &str) -> bool {
+pub(crate) fn is_iso_date(text: &str) -> bool {
     let parts: Vec<&str> = text.split('-').collect();
     let [year, month, day] = parts.as_slice() else {
         return false;

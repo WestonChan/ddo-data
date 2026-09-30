@@ -6,7 +6,7 @@ use comments::{comments_in, without_comments};
 use std::path::{Path, PathBuf};
 use std::process::Command;
 use walkdir::WalkDir;
-use xtask::dataset::{build_database_file, wiki_overrides_from};
+use xtask::dataset::{build_database_file, corrections_from, wiki_overrides_from};
 use xtask::response_examples::{write_response_examples, EXAMPLE_REQUESTS};
 use xtask::wiki_tools::{wiki_check_report, write_wiki_batch};
 use xtask::workspace_root;
@@ -36,6 +36,8 @@ enum Task {
         #[arg(long)]
         wiki: Option<PathBuf>,
         #[arg(long)]
+        corrections: Option<PathBuf>,
+        #[arg(long)]
         source: Option<PathBuf>,
     },
     WikiBatch {
@@ -43,6 +45,8 @@ enum Task {
         out: Option<PathBuf>,
         #[arg(long)]
         wiki: Option<PathBuf>,
+        #[arg(long)]
+        corrections: Option<PathBuf>,
         #[arg(long)]
         source: Option<PathBuf>,
     },
@@ -59,15 +63,17 @@ fn main() -> Result<()> {
         Task::RefreshExamples { db: db_path, source: data_files_dir, out: examples_dir } => {
             refresh_response_examples(db_path.as_deref(), data_files_dir, examples_dir)
         }
-        Task::WikiCheck { wiki: wiki_dir, source: data_files_dir } => {
+        Task::WikiCheck { wiki: wiki_dir, corrections: corrections_dir, source: data_files_dir } => {
             let data_files_dir = data_files_dir.unwrap_or_else(default_data_files_dir);
-            println!("{}", wiki_check_report(&data_files_dir, wiki_dir.as_deref())?);
+            println!("{}", wiki_check_report(&data_files_dir, wiki_dir.as_deref(), corrections_dir.as_deref())?);
             Ok(())
         }
-        Task::WikiBatch { out: batch_dir, wiki: wiki_dir, source: data_files_dir } => {
+        Task::WikiBatch { out: batch_dir, wiki: wiki_dir, corrections: corrections_dir, source: data_files_dir } => {
             let data_files_dir = data_files_dir.unwrap_or_else(default_data_files_dir);
             let batch_dir = batch_dir.unwrap_or_else(|| workspace_root().join("target/wiki-batch"));
-            for written_path in write_wiki_batch(&data_files_dir, wiki_dir.as_deref(), &batch_dir)? {
+            for written_path in
+                write_wiki_batch(&data_files_dir, wiki_dir.as_deref(), corrections_dir.as_deref(), &batch_dir)?
+            {
                 println!("wrote {written_path}");
             }
             Ok(())
@@ -88,7 +94,12 @@ fn refresh_response_examples(
             built_db_file = tempfile::NamedTempFile::new()?;
             let data_files_dir = data_files_dir.unwrap_or_else(default_data_files_dir);
             println!("building {} into {}", data_files_dir.display(), built_db_file.path().display());
-            build_database_file(&data_files_dir, &wiki_overrides_from(None)?, built_db_file.path())?;
+            build_database_file(
+                &data_files_dir,
+                &wiki_overrides_from(None)?,
+                &corrections_from(None)?,
+                built_db_file.path(),
+            )?;
             built_db_file.path()
         }
     };

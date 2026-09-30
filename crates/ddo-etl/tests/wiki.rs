@@ -1,4 +1,5 @@
 use ddo_etl::build::{build_database, ProbableDuplicateWikiItem, SupersededWikiItem};
+use ddo_etl::corrections::Corrections;
 use ddo_etl::wiki::{DescriptionKind, WikiOverrides};
 use ddo_model::DatasetVersion;
 use rusqlite::Connection;
@@ -27,8 +28,14 @@ fn parsed_wiki(files: &[(&str, &str)]) -> Result<WikiOverrides, String> {
 
 fn build_report_with(wiki: &WikiOverrides) -> Result<ddo_etl::build::BuildReport, String> {
     let mut db = Connection::open_in_memory().unwrap();
-    build_database(&fixtures_dir().join("DataFiles"), wiki, &mut db, &fixture_dataset_version())
-        .map_err(|e| format!("{e:#}"))
+    build_database(
+        &fixtures_dir().join("DataFiles"),
+        wiki,
+        &Corrections::default(),
+        &mut db,
+        &fixture_dataset_version(),
+    )
+    .map_err(|e| format!("{e:#}"))
 }
 
 #[test]
@@ -109,7 +116,14 @@ fn build_reports_the_wiki_entries_it_applied() {
 
 fn built_db_with(wiki: &WikiOverrides) -> (Connection, ddo_etl::build::BuildReport) {
     let mut db = Connection::open_in_memory().unwrap();
-    let report = build_database(&fixtures_dir().join("DataFiles"), wiki, &mut db, &fixture_dataset_version()).unwrap();
+    let report = build_database(
+        &fixtures_dir().join("DataFiles"),
+        wiki,
+        &Corrections::default(),
+        &mut db,
+        &fixture_dataset_version(),
+    )
+    .unwrap();
     (db, report)
 }
 

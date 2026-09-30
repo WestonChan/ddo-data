@@ -1,4 +1,4 @@
-use crate::dataset::{build_in_memory_database, wiki_overrides_from};
+use crate::dataset::{build_in_memory_database, corrections_from, wiki_overrides_from};
 use anyhow::{Context, Result};
 use ddo_etl::build::BuildReport;
 use ddo_etl::wiki::DescriptionKind;
@@ -12,9 +12,13 @@ const DIFFICULTY_NAME_SUFFIXES: &[&str] = &[" (Casual)", " (Normal)", " (Hard)",
 const CRAFTING_SYSTEMS_JSON: &str = include_str!("../data/crafting_systems.json");
 const KNOWN_SOCKET_LABEL_MISSPELLINGS: &[(&str, &str)] = &[("zentarim", "zhentarim"), ("upgradable", "upgradeable")];
 
-pub fn wiki_check_report(data_files_dir: &Path, wiki_dir: Option<&Path>) -> Result<String> {
+pub fn wiki_check_report(
+    data_files_dir: &Path,
+    wiki_dir: Option<&Path>,
+    corrections_dir: Option<&Path>,
+) -> Result<String> {
     let wiki_overrides = wiki_overrides_from(wiki_dir)?;
-    let (db, report) = build_in_memory_database(data_files_dir, &wiki_overrides)?;
+    let (db, report) = build_in_memory_database(data_files_dir, &wiki_overrides, &corrections_from(corrections_dir)?)?;
     let mut report_lines = wiki_report_lines(&report);
     report_lines.push("warnings:".to_string());
     report_lines.extend(unused_family_augment_warnings(&db)?);
@@ -169,9 +173,14 @@ fn looks_variant_warnings(db: &Connection) -> Result<Vec<String>> {
     Ok(warnings)
 }
 
-pub fn write_wiki_batch(data_files_dir: &Path, wiki_dir: Option<&Path>, out_dir: &Path) -> Result<Vec<String>> {
+pub fn write_wiki_batch(
+    data_files_dir: &Path,
+    wiki_dir: Option<&Path>,
+    corrections_dir: Option<&Path>,
+    out_dir: &Path,
+) -> Result<Vec<String>> {
     let wiki_overrides = wiki_overrides_from(wiki_dir)?;
-    let (db, _) = build_in_memory_database(data_files_dir, &wiki_overrides)?;
+    let (db, _) = build_in_memory_database(data_files_dir, &wiki_overrides, &corrections_from(corrections_dir)?)?;
     std::fs::create_dir_all(out_dir).with_context(|| format!("creating {}", out_dir.display()))?;
     let batch_files = [
         ("item_names.txt", as_lines(item_names_from(&db, ItemSource::Maetrim)?)),
