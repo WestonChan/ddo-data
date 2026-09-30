@@ -1,0 +1,2245 @@
+[[system]]
+name = "Viktranium Experiment Crafting"
+page = "https://ddowiki.com/page/Viktranium_Experiment_crafting"
+read = "2026-09-29"
+pack = "Chill of Ravenloft"
+families = ["Lamordia_Heroic", "Lamordia_Legendary"]
+npc = "Workbenches in Ludendorf City Hall, one each for the Heroic and Legendary systems; the Wicked Viktranium Experiment device stands at the start of the Relentless raid (and at the matching spot in the Ludendorf Wax Museum in the Lamordia wilderness)"
+
+[[system.ingredient]]
+name = "Bleak Alternator"
+tier = "heroic"
+bind = "Unbound"
+source = "Chill of Ravenloft quests, wilderness encounters and raid"
+
+[[system.ingredient]]
+name = "Legendary Bleak Alternator"
+tier = "legendary"
+bind = "Unbound"
+source = "Chill of Ravenloft quests, wilderness encounters and raid"
+
+[[system.ingredient]]
+name = "Bleak Conductor"
+tier = "heroic"
+bind = "Unbound"
+source = "Chill of Ravenloft quests, wilderness encounters and raid"
+
+[[system.ingredient]]
+name = "Legendary Bleak Conductor"
+tier = "legendary"
+bind = "Unbound"
+source = "Chill of Ravenloft quests, wilderness encounters and raid"
+
+[[system.ingredient]]
+name = "Bleak Insulator"
+tier = "heroic"
+bind = "Unbound"
+source = "Chill of Ravenloft quests, wilderness encounters and raid"
+
+[[system.ingredient]]
+name = "Legendary Bleak Insulator"
+tier = "legendary"
+bind = "Unbound"
+source = "Chill of Ravenloft quests, wilderness encounters and raid"
+
+[[system.ingredient]]
+name = "Bleak Resistor"
+tier = "heroic"
+bind = "Unbound"
+source = "Chill of Ravenloft quests, wilderness encounters and raid"
+
+[[system.ingredient]]
+name = "Legendary Bleak Resistor"
+tier = "legendary"
+bind = "Unbound"
+source = "Chill of Ravenloft quests, wilderness encounters and raid"
+
+[[system.ingredient]]
+name = "Bleak Wire"
+tier = "heroic"
+bind = "Unbound"
+source = "The raid and wilderness encounters"
+
+[[system.ingredient]]
+name = "Legendary Bleak Wire"
+tier = "legendary"
+bind = "Unbound"
+source = "The raid and wilderness encounters"
+
+[[system.ingredient]]
+name = "Bleak Transformer"
+tier = "heroic"
+bind = "Bound to Account on Acquire"
+source = "The raid and special wilderness encounters"
+
+[[system.ingredient]]
+name = "Legendary Bleak Transformer"
+tier = "legendary"
+bind = "Bound to Account on Acquire"
+source = "The raid and special wilderness encounters"
+
+[[system.ingredient]]
+name = "Legendary Bleak Memento"
+tier = "legendary"
+bind = "Bound to Account on Acquire"
+source = "The raid Relentless only; Legendary only"
+
+[[system.recipe]]
+tier = "heroic"
+option = "Heroic Calamitous weapon"
+augments = []
+note = "All recipe tables are on this page; the linked Calamitous weapons and Cataclysmic weapons and shields pages list the weapons, not recipes. Creates an ML8 Calamitous weapon (+4 Enhancement, 1[W], Vampirism 1, Melancholic, Dolorous and Miserable weapon slots and a Red slot, Bound to Account on Acquire, no Mythic bonuses); no augment counterpart."
+cost = [{ ingredient = "Bleak Alternator", quantity = 5 }, { ingredient = "Bleak Conductor", quantity = 5 }, { ingredient = "Bleak Insulator", quantity = 5 }, { ingredient = "Bleak Resistor", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Calamitous weapon"
+augments = []
+note = "Creates an ML34 Calamitous weapon (+15 Enhancement, 5.8[W], Melancholic, Dolorous, Miserable and Woeful weapon slots plus Orange and Purple slots, Bound to Account on Acquire, no Mythic bonuses); no augment counterpart."
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 25 }, { ingredient = "Legendary Bleak Conductor", quantity = 25 }, { ingredient = "Legendary Bleak Insulator", quantity = 25 }, { ingredient = "Legendary Bleak Resistor", quantity = 25 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: melancholic (weapon)"
+option = "Melancholic Flames"
+augments = ["Melancholic Flames (Heroic)"]
+cost = [{ ingredient = "Bleak Alternator", quantity = 5 }, { ingredient = "Bleak Conductor", quantity = 5 }, { ingredient = "Bleak Insulator", quantity = 5 }, { ingredient = "Bleak Resistor", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: melancholic (weapon)"
+option = "Melancholic Flames"
+augments = ["Melancholic Flames (Legendary)"]
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 25 }, { ingredient = "Legendary Bleak Conductor", quantity = 25 }, { ingredient = "Legendary Bleak Insulator", quantity = 25 }, { ingredient = "Legendary Bleak Resistor", quantity = 25 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: melancholic (weapon)"
+option = "Melancholic Chill"
+augments = ["Melancholic Chill (Heroic)"]
+cost = [{ ingredient = "Bleak Alternator", quantity = 5 }, { ingredient = "Bleak Conductor", quantity = 5 }, { ingredient = "Bleak Insulator", quantity = 5 }, { ingredient = "Bleak Resistor", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: melancholic (weapon)"
+option = "Melancholic Chill"
+augments = ["Melancholic Chill (Legendary)"]
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 25 }, { ingredient = "Legendary Bleak Conductor", quantity = 25 }, { ingredient = "Legendary Bleak Insulator", quantity = 25 }, { ingredient = "Legendary Bleak Resistor", quantity = 25 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: melancholic (weapon)"
+option = "Melancholic Sparks"
+augments = ["Melancholic Sparks (Heroic)"]
+cost = [{ ingredient = "Bleak Alternator", quantity = 5 }, { ingredient = "Bleak Conductor", quantity = 5 }, { ingredient = "Bleak Insulator", quantity = 5 }, { ingredient = "Bleak Resistor", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: melancholic (weapon)"
+option = "Melancholic Sparks"
+augments = ["Melancholic Sparks (Legendary)"]
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 25 }, { ingredient = "Legendary Bleak Conductor", quantity = 25 }, { ingredient = "Legendary Bleak Insulator", quantity = 25 }, { ingredient = "Legendary Bleak Resistor", quantity = 25 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: melancholic (weapon)"
+option = "Melancholic Acid"
+augments = ["Melancholic Acid (Heroic)"]
+cost = [{ ingredient = "Bleak Alternator", quantity = 5 }, { ingredient = "Bleak Conductor", quantity = 5 }, { ingredient = "Bleak Insulator", quantity = 5 }, { ingredient = "Bleak Resistor", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: melancholic (weapon)"
+option = "Melancholic Acid"
+augments = ["Melancholic Acid (Legendary)"]
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 25 }, { ingredient = "Legendary Bleak Conductor", quantity = 25 }, { ingredient = "Legendary Bleak Insulator", quantity = 25 }, { ingredient = "Legendary Bleak Resistor", quantity = 25 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: melancholic (weapon)"
+option = "Melancholic Dimlight"
+augments = ["Melancholic Dimlight (Heroic)"]
+cost = [{ ingredient = "Bleak Alternator", quantity = 5 }, { ingredient = "Bleak Conductor", quantity = 5 }, { ingredient = "Bleak Insulator", quantity = 5 }, { ingredient = "Bleak Resistor", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: melancholic (weapon)"
+option = "Melancholic Dimlight"
+augments = ["Melancholic Dimlight (Legendary)"]
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 25 }, { ingredient = "Legendary Bleak Conductor", quantity = 25 }, { ingredient = "Legendary Bleak Insulator", quantity = 25 }, { ingredient = "Legendary Bleak Resistor", quantity = 25 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: melancholic (weapon)"
+option = "Melancholic Shadows"
+augments = ["Melancholic Shadows (Heroic)"]
+cost = [{ ingredient = "Bleak Alternator", quantity = 5 }, { ingredient = "Bleak Conductor", quantity = 5 }, { ingredient = "Bleak Insulator", quantity = 5 }, { ingredient = "Bleak Resistor", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: melancholic (weapon)"
+option = "Melancholic Shadows"
+augments = ["Melancholic Shadows (Legendary)"]
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 25 }, { ingredient = "Legendary Bleak Conductor", quantity = 25 }, { ingredient = "Legendary Bleak Insulator", quantity = 25 }, { ingredient = "Legendary Bleak Resistor", quantity = 25 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: melancholic (weapon)"
+option = "Melancholic Arcana"
+augments = ["Melancholic Arcana (Heroic)"]
+cost = [{ ingredient = "Bleak Alternator", quantity = 5 }, { ingredient = "Bleak Conductor", quantity = 5 }, { ingredient = "Bleak Insulator", quantity = 5 }, { ingredient = "Bleak Resistor", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: melancholic (weapon)"
+option = "Melancholic Arcana"
+augments = ["Melancholic Arcana (Legendary)"]
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 25 }, { ingredient = "Legendary Bleak Conductor", quantity = 25 }, { ingredient = "Legendary Bleak Insulator", quantity = 25 }, { ingredient = "Legendary Bleak Resistor", quantity = 25 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: dolorous (weapon)"
+option = "Dolorous Flames"
+augments = ["Dolorous Flames (Heroic)"]
+note = "The page notes the game lists this Heroic augment as Dreadful instead of Dolorous. The page also notes it grants Alchemical Fire Attunement and not Flaming."
+cost = [{ ingredient = "Bleak Alternator", quantity = 10 }, { ingredient = "Bleak Conductor", quantity = 10 }, { ingredient = "Bleak Insulator", quantity = 10 }, { ingredient = "Bleak Resistor", quantity = 10 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: dolorous (weapon)"
+option = "Dolorous Flames"
+augments = ["Dolorous Flames (Legendary)"]
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 50 }, { ingredient = "Legendary Bleak Conductor", quantity = 50 }, { ingredient = "Legendary Bleak Insulator", quantity = 50 }, { ingredient = "Legendary Bleak Resistor", quantity = 50 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: dolorous (weapon)"
+option = "Dolorous Chill"
+augments = ["Dolorous Chill (Heroic)"]
+note = "The page notes the game lists this Heroic augment as Dreadful instead of Dolorous. The page also notes it grants Alchemical Water Attunement and not Freezing."
+cost = [{ ingredient = "Bleak Alternator", quantity = 10 }, { ingredient = "Bleak Conductor", quantity = 10 }, { ingredient = "Bleak Insulator", quantity = 10 }, { ingredient = "Bleak Resistor", quantity = 10 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: dolorous (weapon)"
+option = "Dolorous Chill"
+augments = ["Dolorous Chill (Legendary)"]
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 50 }, { ingredient = "Legendary Bleak Conductor", quantity = 50 }, { ingredient = "Legendary Bleak Insulator", quantity = 50 }, { ingredient = "Legendary Bleak Resistor", quantity = 50 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: dolorous (weapon)"
+option = "Dolorous Sparks"
+augments = ["Dolorous Sparks (Heroic)"]
+note = "The page notes the game lists this Heroic augment as Dreadful instead of Dolorous. The page also notes it grants Alchemical Air Attunement and not Jolting."
+cost = [{ ingredient = "Bleak Alternator", quantity = 10 }, { ingredient = "Bleak Conductor", quantity = 10 }, { ingredient = "Bleak Insulator", quantity = 10 }, { ingredient = "Bleak Resistor", quantity = 10 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: dolorous (weapon)"
+option = "Dolorous Sparks"
+augments = ["Dolorous Sparks (Legendary)"]
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 50 }, { ingredient = "Legendary Bleak Conductor", quantity = 50 }, { ingredient = "Legendary Bleak Insulator", quantity = 50 }, { ingredient = "Legendary Bleak Resistor", quantity = 50 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: dolorous (weapon)"
+option = "Dolorous Acid"
+augments = ["Dolorous Acid (Heroic)"]
+note = "The page notes the game lists this Heroic augment as Dreadful instead of Dolorous. The page also notes it grants Alchemical Earth Attunement and not Corroding."
+cost = [{ ingredient = "Bleak Alternator", quantity = 10 }, { ingredient = "Bleak Conductor", quantity = 10 }, { ingredient = "Bleak Insulator", quantity = 10 }, { ingredient = "Bleak Resistor", quantity = 10 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: dolorous (weapon)"
+option = "Dolorous Acid"
+augments = ["Dolorous Acid (Legendary)"]
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 50 }, { ingredient = "Legendary Bleak Conductor", quantity = 50 }, { ingredient = "Legendary Bleak Insulator", quantity = 50 }, { ingredient = "Legendary Bleak Resistor", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: dolorous (weapon)"
+option = "Dolorous Dimlight"
+augments = ["Dolorous Dimlight (Legendary)"]
+note = "The page notes there is no Heroic version."
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 50 }, { ingredient = "Legendary Bleak Conductor", quantity = 50 }, { ingredient = "Legendary Bleak Insulator", quantity = 50 }, { ingredient = "Legendary Bleak Resistor", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: dolorous (weapon)"
+option = "Dolorous Shadows"
+augments = ["Dolorous Shadows (Legendary)"]
+note = "The page notes there is no Heroic version."
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 50 }, { ingredient = "Legendary Bleak Conductor", quantity = 50 }, { ingredient = "Legendary Bleak Insulator", quantity = 50 }, { ingredient = "Legendary Bleak Resistor", quantity = 50 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: dolorous (weapon)"
+option = "Dolorous Focus"
+augments = ["Dolorous Arcana (Heroic)"]
+note = "The page notes the game lists this Heroic augment as Dreadful instead of Dolorous. Maetrim names the Heroic augment Dolorous Arcana (Heroic); its text is the page's Heroic Dolorous Focus (+2 Equipment bonus to all Spell DCs)."
+cost = [{ ingredient = "Bleak Alternator", quantity = 10 }, { ingredient = "Bleak Conductor", quantity = 10 }, { ingredient = "Bleak Insulator", quantity = 10 }, { ingredient = "Bleak Resistor", quantity = 10 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: dolorous (weapon)"
+option = "Dolorous Focus"
+augments = ["Dolorous Focus (Legendary)"]
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 50 }, { ingredient = "Legendary Bleak Conductor", quantity = 50 }, { ingredient = "Legendary Bleak Insulator", quantity = 50 }, { ingredient = "Legendary Bleak Resistor", quantity = 50 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: dolorous (weapon)"
+option = "Dolorous Arcana: Acid"
+augments = ["Dolorous Arcana: Acid (Heroic)"]
+cost = [{ ingredient = "Bleak Alternator", quantity = 10 }, { ingredient = "Bleak Conductor", quantity = 10 }, { ingredient = "Bleak Insulator", quantity = 10 }, { ingredient = "Bleak Resistor", quantity = 10 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: dolorous (weapon)"
+option = "Dolorous Arcana: Acid"
+augments = ["Dolorous Arcana: Acid (Legendary)"]
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 50 }, { ingredient = "Legendary Bleak Conductor", quantity = 50 }, { ingredient = "Legendary Bleak Insulator", quantity = 50 }, { ingredient = "Legendary Bleak Resistor", quantity = 50 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: dolorous (weapon)"
+option = "Dolorous Arcana: Cold"
+augments = ["Dolorous Arcana: Cold (Heroic)"]
+cost = [{ ingredient = "Bleak Alternator", quantity = 10 }, { ingredient = "Bleak Conductor", quantity = 10 }, { ingredient = "Bleak Insulator", quantity = 10 }, { ingredient = "Bleak Resistor", quantity = 10 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: dolorous (weapon)"
+option = "Dolorous Arcana: Cold"
+augments = ["Dolorous Arcana: Cold (Legendary)"]
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 50 }, { ingredient = "Legendary Bleak Conductor", quantity = 50 }, { ingredient = "Legendary Bleak Insulator", quantity = 50 }, { ingredient = "Legendary Bleak Resistor", quantity = 50 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: dolorous (weapon)"
+option = "Dolorous Arcana: Electric"
+augments = ["Dolorous Arcana: Electric (Heroic)"]
+cost = [{ ingredient = "Bleak Alternator", quantity = 10 }, { ingredient = "Bleak Conductor", quantity = 10 }, { ingredient = "Bleak Insulator", quantity = 10 }, { ingredient = "Bleak Resistor", quantity = 10 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: dolorous (weapon)"
+option = "Dolorous Arcana: Electric"
+augments = ["Dolorous Arcana: Electric (Legendary)"]
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 50 }, { ingredient = "Legendary Bleak Conductor", quantity = 50 }, { ingredient = "Legendary Bleak Insulator", quantity = 50 }, { ingredient = "Legendary Bleak Resistor", quantity = 50 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: dolorous (weapon)"
+option = "Dolorous Arcana: Fire"
+augments = ["Dolorous Arcana: Fire (Heroic)"]
+cost = [{ ingredient = "Bleak Alternator", quantity = 10 }, { ingredient = "Bleak Conductor", quantity = 10 }, { ingredient = "Bleak Insulator", quantity = 10 }, { ingredient = "Bleak Resistor", quantity = 10 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: dolorous (weapon)"
+option = "Dolorous Arcana: Fire"
+augments = ["Dolorous Arcana: Fire (Legendary)"]
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 50 }, { ingredient = "Legendary Bleak Conductor", quantity = 50 }, { ingredient = "Legendary Bleak Insulator", quantity = 50 }, { ingredient = "Legendary Bleak Resistor", quantity = 50 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: dolorous (weapon)"
+option = "Dolorous Arcana: Force"
+augments = ["Dolorous Arcana: Force (Heroic)"]
+cost = [{ ingredient = "Bleak Alternator", quantity = 10 }, { ingredient = "Bleak Conductor", quantity = 10 }, { ingredient = "Bleak Insulator", quantity = 10 }, { ingredient = "Bleak Resistor", quantity = 10 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: dolorous (weapon)"
+option = "Dolorous Arcana: Force"
+augments = ["Dolorous Arcana: Force (Legendary)"]
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 50 }, { ingredient = "Legendary Bleak Conductor", quantity = 50 }, { ingredient = "Legendary Bleak Insulator", quantity = 50 }, { ingredient = "Legendary Bleak Resistor", quantity = 50 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: dolorous (weapon)"
+option = "Dolorous Arcana: Light"
+augments = ["Dolorous Arcana: Light (Heroic)"]
+cost = [{ ingredient = "Bleak Alternator", quantity = 10 }, { ingredient = "Bleak Conductor", quantity = 10 }, { ingredient = "Bleak Insulator", quantity = 10 }, { ingredient = "Bleak Resistor", quantity = 10 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: dolorous (weapon)"
+option = "Dolorous Arcana: Light"
+augments = ["Dolorous Arcana: Light (Legendary)"]
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 50 }, { ingredient = "Legendary Bleak Conductor", quantity = 50 }, { ingredient = "Legendary Bleak Insulator", quantity = 50 }, { ingredient = "Legendary Bleak Resistor", quantity = 50 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: dolorous (weapon)"
+option = "Dolorous Arcana: Negative"
+augments = ["Dolorous Arcana: Negative (Heroic)"]
+cost = [{ ingredient = "Bleak Alternator", quantity = 10 }, { ingredient = "Bleak Conductor", quantity = 10 }, { ingredient = "Bleak Insulator", quantity = 10 }, { ingredient = "Bleak Resistor", quantity = 10 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: dolorous (weapon)"
+option = "Dolorous Arcana: Negative"
+augments = ["Dolorous Arcana: Negative (Legendary)"]
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 50 }, { ingredient = "Legendary Bleak Conductor", quantity = 50 }, { ingredient = "Legendary Bleak Insulator", quantity = 50 }, { ingredient = "Legendary Bleak Resistor", quantity = 50 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: dolorous (weapon)"
+option = "Dolorous Arcana: Positive"
+augments = ["Dolorous Arcana: Positive (Heroic)"]
+cost = [{ ingredient = "Bleak Alternator", quantity = 10 }, { ingredient = "Bleak Conductor", quantity = 10 }, { ingredient = "Bleak Insulator", quantity = 10 }, { ingredient = "Bleak Resistor", quantity = 10 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: dolorous (weapon)"
+option = "Dolorous Arcana: Positive"
+augments = ["Dolorous Arcana: Positive (Legendary)"]
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 50 }, { ingredient = "Legendary Bleak Conductor", quantity = 50 }, { ingredient = "Legendary Bleak Insulator", quantity = 50 }, { ingredient = "Legendary Bleak Resistor", quantity = 50 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: dolorous (weapon)"
+option = "Dolorous Arcana: Repair"
+augments = ["Dolorous Arcana: Repair (Heroic)"]
+cost = [{ ingredient = "Bleak Alternator", quantity = 10 }, { ingredient = "Bleak Conductor", quantity = 10 }, { ingredient = "Bleak Insulator", quantity = 10 }, { ingredient = "Bleak Resistor", quantity = 10 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: dolorous (weapon)"
+option = "Dolorous Arcana: Repair"
+augments = ["Dolorous Arcana: Repair (Legendary)"]
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 50 }, { ingredient = "Legendary Bleak Conductor", quantity = 50 }, { ingredient = "Legendary Bleak Insulator", quantity = 50 }, { ingredient = "Legendary Bleak Resistor", quantity = 50 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: dolorous (weapon)"
+option = "Dolorous Arcana: Sonic"
+augments = ["Dolorous Arcana: Sonic (Heroic)"]
+cost = [{ ingredient = "Bleak Alternator", quantity = 10 }, { ingredient = "Bleak Conductor", quantity = 10 }, { ingredient = "Bleak Insulator", quantity = 10 }, { ingredient = "Bleak Resistor", quantity = 10 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: dolorous (weapon)"
+option = "Dolorous Arcana: Sonic"
+augments = ["Dolorous Arcana: Sonic (Legendary)"]
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 50 }, { ingredient = "Legendary Bleak Conductor", quantity = 50 }, { ingredient = "Legendary Bleak Insulator", quantity = 50 }, { ingredient = "Legendary Bleak Resistor", quantity = 50 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: miserable (weapon)"
+option = "Miserable Flames"
+augments = ["Miserable Flames (Heroic)"]
+cost = [{ ingredient = "Bleak Alternator", quantity = 5 }, { ingredient = "Bleak Conductor", quantity = 5 }, { ingredient = "Bleak Insulator", quantity = 5 }, { ingredient = "Bleak Resistor", quantity = 5 }, { ingredient = "Bleak Wire", quantity = 20 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: miserable (weapon)"
+option = "Miserable Flames"
+augments = ["Miserable Flames (Legendary)"]
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 25 }, { ingredient = "Legendary Bleak Conductor", quantity = 25 }, { ingredient = "Legendary Bleak Insulator", quantity = 25 }, { ingredient = "Legendary Bleak Resistor", quantity = 25 }, { ingredient = "Legendary Bleak Wire", quantity = 100 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: miserable (weapon)"
+option = "Miserable Chill"
+augments = ["Miserable Chill (Heroic)"]
+cost = [{ ingredient = "Bleak Alternator", quantity = 5 }, { ingredient = "Bleak Conductor", quantity = 5 }, { ingredient = "Bleak Insulator", quantity = 5 }, { ingredient = "Bleak Resistor", quantity = 5 }, { ingredient = "Bleak Wire", quantity = 20 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: miserable (weapon)"
+option = "Miserable Chill"
+augments = ["Miserable Chill (Legendary)"]
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 25 }, { ingredient = "Legendary Bleak Conductor", quantity = 25 }, { ingredient = "Legendary Bleak Insulator", quantity = 25 }, { ingredient = "Legendary Bleak Resistor", quantity = 25 }, { ingredient = "Legendary Bleak Wire", quantity = 100 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: miserable (weapon)"
+option = "Miserable Sparks"
+augments = ["Miserable Sparks (Heroic)"]
+cost = [{ ingredient = "Bleak Alternator", quantity = 5 }, { ingredient = "Bleak Conductor", quantity = 5 }, { ingredient = "Bleak Insulator", quantity = 5 }, { ingredient = "Bleak Resistor", quantity = 5 }, { ingredient = "Bleak Wire", quantity = 20 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: miserable (weapon)"
+option = "Miserable Sparks"
+augments = ["Miserable Sparks (Legendary)"]
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 25 }, { ingredient = "Legendary Bleak Conductor", quantity = 25 }, { ingredient = "Legendary Bleak Insulator", quantity = 25 }, { ingredient = "Legendary Bleak Resistor", quantity = 25 }, { ingredient = "Legendary Bleak Wire", quantity = 100 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: miserable (weapon)"
+option = "Miserable Acid"
+augments = ["Miserable Acid (Heroic)"]
+cost = [{ ingredient = "Bleak Alternator", quantity = 5 }, { ingredient = "Bleak Conductor", quantity = 5 }, { ingredient = "Bleak Insulator", quantity = 5 }, { ingredient = "Bleak Resistor", quantity = 5 }, { ingredient = "Bleak Wire", quantity = 20 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: miserable (weapon)"
+option = "Miserable Acid"
+augments = ["Miserable Acid (Legendary)"]
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 25 }, { ingredient = "Legendary Bleak Conductor", quantity = 25 }, { ingredient = "Legendary Bleak Insulator", quantity = 25 }, { ingredient = "Legendary Bleak Resistor", quantity = 25 }, { ingredient = "Legendary Bleak Wire", quantity = 100 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: miserable (weapon)"
+option = "Miserable Dimlight"
+augments = ["Miserable Dimlight (Heroic)"]
+cost = [{ ingredient = "Bleak Alternator", quantity = 5 }, { ingredient = "Bleak Conductor", quantity = 5 }, { ingredient = "Bleak Insulator", quantity = 5 }, { ingredient = "Bleak Resistor", quantity = 5 }, { ingredient = "Bleak Wire", quantity = 20 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: miserable (weapon)"
+option = "Miserable Dimlight"
+augments = ["Miserable Dimlight (Legendary)"]
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 25 }, { ingredient = "Legendary Bleak Conductor", quantity = 25 }, { ingredient = "Legendary Bleak Insulator", quantity = 25 }, { ingredient = "Legendary Bleak Resistor", quantity = 25 }, { ingredient = "Legendary Bleak Wire", quantity = 100 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: miserable (weapon)"
+option = "Miserable Shadows"
+augments = ["Miserable Shadows (Heroic)"]
+cost = [{ ingredient = "Bleak Alternator", quantity = 5 }, { ingredient = "Bleak Conductor", quantity = 5 }, { ingredient = "Bleak Insulator", quantity = 5 }, { ingredient = "Bleak Resistor", quantity = 5 }, { ingredient = "Bleak Wire", quantity = 20 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: miserable (weapon)"
+option = "Miserable Shadows"
+augments = ["Miserable Shadows (Legendary)"]
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 25 }, { ingredient = "Legendary Bleak Conductor", quantity = 25 }, { ingredient = "Legendary Bleak Insulator", quantity = 25 }, { ingredient = "Legendary Bleak Resistor", quantity = 25 }, { ingredient = "Legendary Bleak Wire", quantity = 100 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: miserable (weapon)"
+option = "Miserable Arcana: Acid"
+augments = ["Miserable Arcana: Acid (Heroic)"]
+cost = [{ ingredient = "Bleak Alternator", quantity = 5 }, { ingredient = "Bleak Conductor", quantity = 5 }, { ingredient = "Bleak Insulator", quantity = 5 }, { ingredient = "Bleak Resistor", quantity = 5 }, { ingredient = "Bleak Wire", quantity = 20 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: miserable (weapon)"
+option = "Miserable Arcana: Acid"
+augments = ["Miserable Arcana: Acid (Legendary)"]
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 25 }, { ingredient = "Legendary Bleak Conductor", quantity = 25 }, { ingredient = "Legendary Bleak Insulator", quantity = 25 }, { ingredient = "Legendary Bleak Resistor", quantity = 25 }, { ingredient = "Legendary Bleak Wire", quantity = 100 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: miserable (weapon)"
+option = "Miserable Arcana: Cold"
+augments = ["Miserable Arcana: Cold (Heroic)"]
+cost = [{ ingredient = "Bleak Alternator", quantity = 5 }, { ingredient = "Bleak Conductor", quantity = 5 }, { ingredient = "Bleak Insulator", quantity = 5 }, { ingredient = "Bleak Resistor", quantity = 5 }, { ingredient = "Bleak Wire", quantity = 20 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: miserable (weapon)"
+option = "Miserable Arcana: Cold"
+augments = ["Miserable Arcana: Cold (Legendary)"]
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 25 }, { ingredient = "Legendary Bleak Conductor", quantity = 25 }, { ingredient = "Legendary Bleak Insulator", quantity = 25 }, { ingredient = "Legendary Bleak Resistor", quantity = 25 }, { ingredient = "Legendary Bleak Wire", quantity = 100 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: miserable (weapon)"
+option = "Miserable Arcana: Electric"
+augments = ["Miserable Arcana: Electric (Heroic)"]
+cost = [{ ingredient = "Bleak Alternator", quantity = 5 }, { ingredient = "Bleak Conductor", quantity = 5 }, { ingredient = "Bleak Insulator", quantity = 5 }, { ingredient = "Bleak Resistor", quantity = 5 }, { ingredient = "Bleak Wire", quantity = 20 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: miserable (weapon)"
+option = "Miserable Arcana: Electric"
+augments = ["Miserable Arcana: Electric (Legendary)"]
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 25 }, { ingredient = "Legendary Bleak Conductor", quantity = 25 }, { ingredient = "Legendary Bleak Insulator", quantity = 25 }, { ingredient = "Legendary Bleak Resistor", quantity = 25 }, { ingredient = "Legendary Bleak Wire", quantity = 100 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: miserable (weapon)"
+option = "Miserable Arcana: Fire"
+augments = ["Miserable Arcana: Fire (Heroic)"]
+cost = [{ ingredient = "Bleak Alternator", quantity = 5 }, { ingredient = "Bleak Conductor", quantity = 5 }, { ingredient = "Bleak Insulator", quantity = 5 }, { ingredient = "Bleak Resistor", quantity = 5 }, { ingredient = "Bleak Wire", quantity = 20 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: miserable (weapon)"
+option = "Miserable Arcana: Fire"
+augments = ["Miserable Arcana: Fire (Legendary)"]
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 25 }, { ingredient = "Legendary Bleak Conductor", quantity = 25 }, { ingredient = "Legendary Bleak Insulator", quantity = 25 }, { ingredient = "Legendary Bleak Resistor", quantity = 25 }, { ingredient = "Legendary Bleak Wire", quantity = 100 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: miserable (weapon)"
+option = "Miserable Arcana: Force"
+augments = ["Miserable Arcana: Force (Heroic)"]
+cost = [{ ingredient = "Bleak Alternator", quantity = 5 }, { ingredient = "Bleak Conductor", quantity = 5 }, { ingredient = "Bleak Insulator", quantity = 5 }, { ingredient = "Bleak Resistor", quantity = 5 }, { ingredient = "Bleak Wire", quantity = 20 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: miserable (weapon)"
+option = "Miserable Arcana: Force"
+augments = ["Miserable Arcana: Force (Legendary)"]
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 25 }, { ingredient = "Legendary Bleak Conductor", quantity = 25 }, { ingredient = "Legendary Bleak Insulator", quantity = 25 }, { ingredient = "Legendary Bleak Resistor", quantity = 25 }, { ingredient = "Legendary Bleak Wire", quantity = 100 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: miserable (weapon)"
+option = "Miserable Arcana: Light"
+augments = ["Miserable Arcana: Light (Heroic)"]
+cost = [{ ingredient = "Bleak Alternator", quantity = 5 }, { ingredient = "Bleak Conductor", quantity = 5 }, { ingredient = "Bleak Insulator", quantity = 5 }, { ingredient = "Bleak Resistor", quantity = 5 }, { ingredient = "Bleak Wire", quantity = 20 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: miserable (weapon)"
+option = "Miserable Arcana: Light"
+augments = ["Miserable Arcana: Light (Legendary)"]
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 25 }, { ingredient = "Legendary Bleak Conductor", quantity = 25 }, { ingredient = "Legendary Bleak Insulator", quantity = 25 }, { ingredient = "Legendary Bleak Resistor", quantity = 25 }, { ingredient = "Legendary Bleak Wire", quantity = 100 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: miserable (weapon)"
+option = "Miserable Arcana: Negative"
+augments = ["Miserable Arcana: Negative (Heroic)"]
+cost = [{ ingredient = "Bleak Alternator", quantity = 5 }, { ingredient = "Bleak Conductor", quantity = 5 }, { ingredient = "Bleak Insulator", quantity = 5 }, { ingredient = "Bleak Resistor", quantity = 5 }, { ingredient = "Bleak Wire", quantity = 20 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: miserable (weapon)"
+option = "Miserable Arcana: Negative"
+augments = ["Miserable Arcana: Negative (Legendary)"]
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 25 }, { ingredient = "Legendary Bleak Conductor", quantity = 25 }, { ingredient = "Legendary Bleak Insulator", quantity = 25 }, { ingredient = "Legendary Bleak Resistor", quantity = 25 }, { ingredient = "Legendary Bleak Wire", quantity = 100 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: miserable (weapon)"
+option = "Miserable Arcana: Positive"
+augments = ["Miserable Arcana: Positive (Heroic)"]
+cost = [{ ingredient = "Bleak Alternator", quantity = 5 }, { ingredient = "Bleak Conductor", quantity = 5 }, { ingredient = "Bleak Insulator", quantity = 5 }, { ingredient = "Bleak Resistor", quantity = 5 }, { ingredient = "Bleak Wire", quantity = 20 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: miserable (weapon)"
+option = "Miserable Arcana: Positive"
+augments = ["Miserable Arcana: Positive (Legendary)"]
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 25 }, { ingredient = "Legendary Bleak Conductor", quantity = 25 }, { ingredient = "Legendary Bleak Insulator", quantity = 25 }, { ingredient = "Legendary Bleak Resistor", quantity = 25 }, { ingredient = "Legendary Bleak Wire", quantity = 100 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: miserable (weapon)"
+option = "Miserable Arcana: Repair"
+augments = ["Miserable Arcana: Repair (Heroic)"]
+cost = [{ ingredient = "Bleak Alternator", quantity = 5 }, { ingredient = "Bleak Conductor", quantity = 5 }, { ingredient = "Bleak Insulator", quantity = 5 }, { ingredient = "Bleak Resistor", quantity = 5 }, { ingredient = "Bleak Wire", quantity = 20 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: miserable (weapon)"
+option = "Miserable Arcana: Repair"
+augments = ["Miserable Arcana: Repair (Legendary)"]
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 25 }, { ingredient = "Legendary Bleak Conductor", quantity = 25 }, { ingredient = "Legendary Bleak Insulator", quantity = 25 }, { ingredient = "Legendary Bleak Resistor", quantity = 25 }, { ingredient = "Legendary Bleak Wire", quantity = 100 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: miserable (weapon)"
+option = "Miserable Arcana: Sonic"
+augments = ["Miserable Arcana: Sonic (Heroic)"]
+cost = [{ ingredient = "Bleak Alternator", quantity = 5 }, { ingredient = "Bleak Conductor", quantity = 5 }, { ingredient = "Bleak Insulator", quantity = 5 }, { ingredient = "Bleak Resistor", quantity = 5 }, { ingredient = "Bleak Wire", quantity = 20 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: miserable (weapon)"
+option = "Miserable Arcana: Sonic"
+augments = ["Miserable Arcana: Sonic (Legendary)"]
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 25 }, { ingredient = "Legendary Bleak Conductor", quantity = 25 }, { ingredient = "Legendary Bleak Insulator", quantity = 25 }, { ingredient = "Legendary Bleak Resistor", quantity = 25 }, { ingredient = "Legendary Bleak Wire", quantity = 100 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: miserable (weapon)"
+option = "Miserable (Improved) Destruction"
+augments = ["Miserable Destruction (Heroic)"]
+note = "The page names the Heroic version Miserable Destruction."
+cost = [{ ingredient = "Bleak Alternator", quantity = 5 }, { ingredient = "Bleak Conductor", quantity = 5 }, { ingredient = "Bleak Insulator", quantity = 5 }, { ingredient = "Bleak Resistor", quantity = 5 }, { ingredient = "Bleak Wire", quantity = 20 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: miserable (weapon)"
+option = "Miserable (Improved) Destruction"
+augments = ["Miserable Destruction (Legendary)"]
+note = "The page names the Legendary version Miserable Improved Destruction, triggering once every second; Maetrim's Miserable Destruction (Legendary) triggers once every three seconds, and his value stands."
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 25 }, { ingredient = "Legendary Bleak Conductor", quantity = 25 }, { ingredient = "Legendary Bleak Insulator", quantity = 25 }, { ingredient = "Legendary Bleak Resistor", quantity = 25 }, { ingredient = "Legendary Bleak Wire", quantity = 100 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: miserable (weapon)"
+option = "Miserable Maiming"
+augments = ["Miserable Maiming (Heroic)"]
+cost = [{ ingredient = "Bleak Alternator", quantity = 5 }, { ingredient = "Bleak Conductor", quantity = 5 }, { ingredient = "Bleak Insulator", quantity = 5 }, { ingredient = "Bleak Resistor", quantity = 5 }, { ingredient = "Bleak Wire", quantity = 20 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: miserable (weapon)"
+option = "Miserable Maiming"
+augments = ["Miserable Maiming (Legendary)"]
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 25 }, { ingredient = "Legendary Bleak Conductor", quantity = 25 }, { ingredient = "Legendary Bleak Insulator", quantity = 25 }, { ingredient = "Legendary Bleak Resistor", quantity = 25 }, { ingredient = "Legendary Bleak Wire", quantity = 100 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: miserable (weapon)"
+option = "Miserable Humanoid Bane"
+augments = ["Miserable Humanoid Bane (Heroic)"]
+cost = [{ ingredient = "Bleak Alternator", quantity = 5 }, { ingredient = "Bleak Conductor", quantity = 5 }, { ingredient = "Bleak Insulator", quantity = 5 }, { ingredient = "Bleak Resistor", quantity = 5 }, { ingredient = "Bleak Wire", quantity = 20 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: miserable (weapon)"
+option = "Miserable Humanoid Bane"
+augments = ["Miserable Humanoid Bane (Legendary)"]
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 25 }, { ingredient = "Legendary Bleak Conductor", quantity = 25 }, { ingredient = "Legendary Bleak Insulator", quantity = 25 }, { ingredient = "Legendary Bleak Resistor", quantity = 25 }, { ingredient = "Legendary Bleak Wire", quantity = 100 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: miserable (weapon)"
+option = "Miserable Monstrous Humanoid Bane"
+augments = ["Miserable Monstrous Humanoid Bane (Heroic)"]
+cost = [{ ingredient = "Bleak Alternator", quantity = 5 }, { ingredient = "Bleak Conductor", quantity = 5 }, { ingredient = "Bleak Insulator", quantity = 5 }, { ingredient = "Bleak Resistor", quantity = 5 }, { ingredient = "Bleak Wire", quantity = 20 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: miserable (weapon)"
+option = "Miserable Monstrous Humanoid Bane"
+augments = ["Miserable Monstrous Humanoid Bane (Legendary)"]
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 25 }, { ingredient = "Legendary Bleak Conductor", quantity = 25 }, { ingredient = "Legendary Bleak Insulator", quantity = 25 }, { ingredient = "Legendary Bleak Resistor", quantity = 25 }, { ingredient = "Legendary Bleak Wire", quantity = 100 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: miserable (weapon)"
+option = "Miserable Undead Bane"
+augments = ["Miserable Undead Bane (Heroic)"]
+cost = [{ ingredient = "Bleak Alternator", quantity = 5 }, { ingredient = "Bleak Conductor", quantity = 5 }, { ingredient = "Bleak Insulator", quantity = 5 }, { ingredient = "Bleak Resistor", quantity = 5 }, { ingredient = "Bleak Wire", quantity = 20 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: miserable (weapon)"
+option = "Miserable Undead Bane"
+augments = ["Miserable Undead Bane (Legendary)"]
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 25 }, { ingredient = "Legendary Bleak Conductor", quantity = 25 }, { ingredient = "Legendary Bleak Insulator", quantity = 25 }, { ingredient = "Legendary Bleak Resistor", quantity = 25 }, { ingredient = "Legendary Bleak Wire", quantity = 100 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: miserable (weapon)"
+option = "Miserable Vermin Bane"
+augments = ["Miserable Vermin Bane (Heroic)"]
+cost = [{ ingredient = "Bleak Alternator", quantity = 5 }, { ingredient = "Bleak Conductor", quantity = 5 }, { ingredient = "Bleak Insulator", quantity = 5 }, { ingredient = "Bleak Resistor", quantity = 5 }, { ingredient = "Bleak Wire", quantity = 20 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: miserable (weapon)"
+option = "Miserable Vermin Bane"
+augments = ["Miserable Vermin Bane (Legendary)"]
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 25 }, { ingredient = "Legendary Bleak Conductor", quantity = 25 }, { ingredient = "Legendary Bleak Insulator", quantity = 25 }, { ingredient = "Legendary Bleak Resistor", quantity = 25 }, { ingredient = "Legendary Bleak Wire", quantity = 100 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: miserable (weapon)"
+option = "Miserable Armor-Piercing"
+augments = ["Miserable Armor-Piercing (Heroic)"]
+cost = [{ ingredient = "Bleak Alternator", quantity = 5 }, { ingredient = "Bleak Conductor", quantity = 5 }, { ingredient = "Bleak Insulator", quantity = 5 }, { ingredient = "Bleak Resistor", quantity = 5 }, { ingredient = "Bleak Wire", quantity = 20 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: miserable (weapon)"
+option = "Miserable Armor-Piercing"
+augments = ["Miserable Armor-Piercing (Legendary)"]
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 25 }, { ingredient = "Legendary Bleak Conductor", quantity = 25 }, { ingredient = "Legendary Bleak Insulator", quantity = 25 }, { ingredient = "Legendary Bleak Resistor", quantity = 25 }, { ingredient = "Legendary Bleak Wire", quantity = 100 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: woeful (weapon)"
+option = "Woeful Flames"
+augments = ["Woeful Flames (Legendary)"]
+note = "The page notes Woeful weapon augments are Legendary only."
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 50 }, { ingredient = "Legendary Bleak Conductor", quantity = 50 }, { ingredient = "Legendary Bleak Insulator", quantity = 50 }, { ingredient = "Legendary Bleak Resistor", quantity = 50 }, { ingredient = "Legendary Bleak Transformer", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: woeful (weapon)"
+option = "Woeful Chill"
+augments = ["Woeful Chill (Legendary)"]
+note = "The page notes Woeful weapon augments are Legendary only."
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 50 }, { ingredient = "Legendary Bleak Conductor", quantity = 50 }, { ingredient = "Legendary Bleak Insulator", quantity = 50 }, { ingredient = "Legendary Bleak Resistor", quantity = 50 }, { ingredient = "Legendary Bleak Transformer", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: woeful (weapon)"
+option = "Woeful Sparks"
+augments = ["Woeful Sparks (Legendary)"]
+note = "The page notes Woeful weapon augments are Legendary only."
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 50 }, { ingredient = "Legendary Bleak Conductor", quantity = 50 }, { ingredient = "Legendary Bleak Insulator", quantity = 50 }, { ingredient = "Legendary Bleak Resistor", quantity = 50 }, { ingredient = "Legendary Bleak Transformer", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: woeful (weapon)"
+option = "Woeful Acid"
+augments = ["Woeful Acid (Legendary)"]
+note = "The page notes Woeful weapon augments are Legendary only."
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 50 }, { ingredient = "Legendary Bleak Conductor", quantity = 50 }, { ingredient = "Legendary Bleak Insulator", quantity = 50 }, { ingredient = "Legendary Bleak Resistor", quantity = 50 }, { ingredient = "Legendary Bleak Transformer", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: woeful (weapon)"
+option = "Woeful Dimlight"
+augments = ["Woeful Dimlight (Legendary)"]
+note = "The page notes Woeful weapon augments are Legendary only."
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 50 }, { ingredient = "Legendary Bleak Conductor", quantity = 50 }, { ingredient = "Legendary Bleak Insulator", quantity = 50 }, { ingredient = "Legendary Bleak Resistor", quantity = 50 }, { ingredient = "Legendary Bleak Transformer", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: woeful (weapon)"
+option = "Woeful Shadows"
+augments = ["Woeful Shadows (Legendary)"]
+note = "The page notes Woeful weapon augments are Legendary only."
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 50 }, { ingredient = "Legendary Bleak Conductor", quantity = 50 }, { ingredient = "Legendary Bleak Insulator", quantity = 50 }, { ingredient = "Legendary Bleak Resistor", quantity = 50 }, { ingredient = "Legendary Bleak Transformer", quantity = 50 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: melancholic (accessory)"
+option = "Melancholic False Life"
+augments = ["Melancholic False Life (Heroic)"]
+cost = [{ ingredient = "Bleak Alternator", quantity = 5 }, { ingredient = "Bleak Conductor", quantity = 5 }, { ingredient = "Bleak Insulator", quantity = 5 }, { ingredient = "Bleak Resistor", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: melancholic (accessory)"
+option = "Melancholic False Life"
+augments = ["Melancholic False Life (Legendary)"]
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 25 }, { ingredient = "Legendary Bleak Conductor", quantity = 25 }, { ingredient = "Legendary Bleak Insulator", quantity = 25 }, { ingredient = "Legendary Bleak Resistor", quantity = 25 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: melancholic (accessory)"
+option = "Melancholic Charisma"
+augments = ["Melancholic Charisma (Heroic)"]
+cost = [{ ingredient = "Bleak Alternator", quantity = 5 }, { ingredient = "Bleak Conductor", quantity = 5 }, { ingredient = "Bleak Insulator", quantity = 5 }, { ingredient = "Bleak Resistor", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: melancholic (accessory)"
+option = "Melancholic Charisma"
+augments = ["Melancholic Charisma (Legendary)"]
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 25 }, { ingredient = "Legendary Bleak Conductor", quantity = 25 }, { ingredient = "Legendary Bleak Insulator", quantity = 25 }, { ingredient = "Legendary Bleak Resistor", quantity = 25 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: melancholic (accessory)"
+option = "Melancholic Constitution"
+augments = ["Melancholic Constitution (Heroic)"]
+cost = [{ ingredient = "Bleak Alternator", quantity = 5 }, { ingredient = "Bleak Conductor", quantity = 5 }, { ingredient = "Bleak Insulator", quantity = 5 }, { ingredient = "Bleak Resistor", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: melancholic (accessory)"
+option = "Melancholic Constitution"
+augments = ["Melancholic Constitution (Legendary)"]
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 25 }, { ingredient = "Legendary Bleak Conductor", quantity = 25 }, { ingredient = "Legendary Bleak Insulator", quantity = 25 }, { ingredient = "Legendary Bleak Resistor", quantity = 25 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: melancholic (accessory)"
+option = "Melancholic Dexterity"
+augments = ["Melancholic Dexterity (Heroic)"]
+cost = [{ ingredient = "Bleak Alternator", quantity = 5 }, { ingredient = "Bleak Conductor", quantity = 5 }, { ingredient = "Bleak Insulator", quantity = 5 }, { ingredient = "Bleak Resistor", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: melancholic (accessory)"
+option = "Melancholic Dexterity"
+augments = ["Melancholic Dexterity (Legendary)"]
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 25 }, { ingredient = "Legendary Bleak Conductor", quantity = 25 }, { ingredient = "Legendary Bleak Insulator", quantity = 25 }, { ingredient = "Legendary Bleak Resistor", quantity = 25 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: melancholic (accessory)"
+option = "Melancholic Intelligence"
+augments = ["Melancholic Intelligence (Heroic)"]
+cost = [{ ingredient = "Bleak Alternator", quantity = 5 }, { ingredient = "Bleak Conductor", quantity = 5 }, { ingredient = "Bleak Insulator", quantity = 5 }, { ingredient = "Bleak Resistor", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: melancholic (accessory)"
+option = "Melancholic Intelligence"
+augments = ["Melancholic Intelligence (Legendary)"]
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 25 }, { ingredient = "Legendary Bleak Conductor", quantity = 25 }, { ingredient = "Legendary Bleak Insulator", quantity = 25 }, { ingredient = "Legendary Bleak Resistor", quantity = 25 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: melancholic (accessory)"
+option = "Melancholic Strength"
+augments = ["Melancholic Strength (Heroic)"]
+cost = [{ ingredient = "Bleak Alternator", quantity = 5 }, { ingredient = "Bleak Conductor", quantity = 5 }, { ingredient = "Bleak Insulator", quantity = 5 }, { ingredient = "Bleak Resistor", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: melancholic (accessory)"
+option = "Melancholic Strength"
+augments = ["Melancholic Strength (Legendary)"]
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 25 }, { ingredient = "Legendary Bleak Conductor", quantity = 25 }, { ingredient = "Legendary Bleak Insulator", quantity = 25 }, { ingredient = "Legendary Bleak Resistor", quantity = 25 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: melancholic (accessory)"
+option = "Melancholic Wisdom"
+augments = ["Melancholic Wisdom (Heroic)"]
+cost = [{ ingredient = "Bleak Alternator", quantity = 5 }, { ingredient = "Bleak Conductor", quantity = 5 }, { ingredient = "Bleak Insulator", quantity = 5 }, { ingredient = "Bleak Resistor", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: melancholic (accessory)"
+option = "Melancholic Wisdom"
+augments = ["Melancholic Wisdom (Legendary)"]
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 25 }, { ingredient = "Legendary Bleak Conductor", quantity = 25 }, { ingredient = "Legendary Bleak Insulator", quantity = 25 }, { ingredient = "Legendary Bleak Resistor", quantity = 25 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: melancholic (accessory)"
+option = "Melancholic Acid Spell Crit Damage"
+augments = ["Melancholic Acid Spell Critical Damage (Heroic)"]
+note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+cost = [{ ingredient = "Bleak Alternator", quantity = 5 }, { ingredient = "Bleak Conductor", quantity = 5 }, { ingredient = "Bleak Insulator", quantity = 5 }, { ingredient = "Bleak Resistor", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: melancholic (accessory)"
+option = "Melancholic Acid Spell Crit Damage"
+augments = ["Melancholic Acid Spell Critical Damage (Legendary)"]
+note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 25 }, { ingredient = "Legendary Bleak Conductor", quantity = 25 }, { ingredient = "Legendary Bleak Insulator", quantity = 25 }, { ingredient = "Legendary Bleak Resistor", quantity = 25 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: melancholic (accessory)"
+option = "Melancholic Cold Spell Crit Damage"
+augments = ["Melancholic Cold Spell Critical Damage (Heroic)"]
+note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+cost = [{ ingredient = "Bleak Alternator", quantity = 5 }, { ingredient = "Bleak Conductor", quantity = 5 }, { ingredient = "Bleak Insulator", quantity = 5 }, { ingredient = "Bleak Resistor", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: melancholic (accessory)"
+option = "Melancholic Cold Spell Crit Damage"
+augments = ["Melancholic Cold Spell Critical Damage (Legendary)"]
+note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 25 }, { ingredient = "Legendary Bleak Conductor", quantity = 25 }, { ingredient = "Legendary Bleak Insulator", quantity = 25 }, { ingredient = "Legendary Bleak Resistor", quantity = 25 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: melancholic (accessory)"
+option = "Melancholic Electric Spell Crit Damage"
+augments = ["Melancholic Electric Spell Critical Damage (Heroic)"]
+note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+cost = [{ ingredient = "Bleak Alternator", quantity = 5 }, { ingredient = "Bleak Conductor", quantity = 5 }, { ingredient = "Bleak Insulator", quantity = 5 }, { ingredient = "Bleak Resistor", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: melancholic (accessory)"
+option = "Melancholic Electric Spell Crit Damage"
+augments = ["Melancholic Electric Spell Critical Damage (Legendary)"]
+note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 25 }, { ingredient = "Legendary Bleak Conductor", quantity = 25 }, { ingredient = "Legendary Bleak Insulator", quantity = 25 }, { ingredient = "Legendary Bleak Resistor", quantity = 25 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: melancholic (accessory)"
+option = "Melancholic Fire Spell Crit Damage"
+augments = ["Melancholic Fire Spell Critical Damage (Heroic)"]
+note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+cost = [{ ingredient = "Bleak Alternator", quantity = 5 }, { ingredient = "Bleak Conductor", quantity = 5 }, { ingredient = "Bleak Insulator", quantity = 5 }, { ingredient = "Bleak Resistor", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: melancholic (accessory)"
+option = "Melancholic Fire Spell Crit Damage"
+augments = ["Melancholic Fire Spell Critical Damage (Legendary)"]
+note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 25 }, { ingredient = "Legendary Bleak Conductor", quantity = 25 }, { ingredient = "Legendary Bleak Insulator", quantity = 25 }, { ingredient = "Legendary Bleak Resistor", quantity = 25 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: melancholic (accessory)"
+option = "Melancholic Force Spell Crit Damage"
+augments = ["Melancholic Force Spell Critical Damage (Heroic)"]
+note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+cost = [{ ingredient = "Bleak Alternator", quantity = 5 }, { ingredient = "Bleak Conductor", quantity = 5 }, { ingredient = "Bleak Insulator", quantity = 5 }, { ingredient = "Bleak Resistor", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: melancholic (accessory)"
+option = "Melancholic Force Spell Crit Damage"
+augments = ["Melancholic Force Spell Critical Damage (Legendary)"]
+note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 25 }, { ingredient = "Legendary Bleak Conductor", quantity = 25 }, { ingredient = "Legendary Bleak Insulator", quantity = 25 }, { ingredient = "Legendary Bleak Resistor", quantity = 25 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: melancholic (accessory)"
+option = "Melancholic Light Spell Crit Damage"
+augments = ["Melancholic Light Spell Critical Damage (Heroic)"]
+note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+cost = [{ ingredient = "Bleak Alternator", quantity = 5 }, { ingredient = "Bleak Conductor", quantity = 5 }, { ingredient = "Bleak Insulator", quantity = 5 }, { ingredient = "Bleak Resistor", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: melancholic (accessory)"
+option = "Melancholic Light Spell Crit Damage"
+augments = ["Melancholic Light Spell Critical Damage (Legendary)"]
+note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 25 }, { ingredient = "Legendary Bleak Conductor", quantity = 25 }, { ingredient = "Legendary Bleak Insulator", quantity = 25 }, { ingredient = "Legendary Bleak Resistor", quantity = 25 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: melancholic (accessory)"
+option = "Melancholic Negative Spell Crit Damage"
+augments = ["Melancholic Negative Spell Critical Damage (Heroic)"]
+note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+cost = [{ ingredient = "Bleak Alternator", quantity = 5 }, { ingredient = "Bleak Conductor", quantity = 5 }, { ingredient = "Bleak Insulator", quantity = 5 }, { ingredient = "Bleak Resistor", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: melancholic (accessory)"
+option = "Melancholic Negative Spell Crit Damage"
+augments = ["Melancholic Negative Spell Critical Damage (Legendary)"]
+note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 25 }, { ingredient = "Legendary Bleak Conductor", quantity = 25 }, { ingredient = "Legendary Bleak Insulator", quantity = 25 }, { ingredient = "Legendary Bleak Resistor", quantity = 25 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: melancholic (accessory)"
+option = "Melancholic Positive Spell Crit Damage"
+augments = ["Melancholic Positive Spell Critical Damage (Heroic)"]
+note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+cost = [{ ingredient = "Bleak Alternator", quantity = 5 }, { ingredient = "Bleak Conductor", quantity = 5 }, { ingredient = "Bleak Insulator", quantity = 5 }, { ingredient = "Bleak Resistor", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: melancholic (accessory)"
+option = "Melancholic Positive Spell Crit Damage"
+augments = ["Melancholic Positive Spell Critical Damage (Legendary)"]
+note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 25 }, { ingredient = "Legendary Bleak Conductor", quantity = 25 }, { ingredient = "Legendary Bleak Insulator", quantity = 25 }, { ingredient = "Legendary Bleak Resistor", quantity = 25 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: melancholic (accessory)"
+option = "Melancholic Repair Spell Crit Damage"
+augments = ["Melancholic Repair Spell Critical Damage (Heroic)"]
+note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+cost = [{ ingredient = "Bleak Alternator", quantity = 5 }, { ingredient = "Bleak Conductor", quantity = 5 }, { ingredient = "Bleak Insulator", quantity = 5 }, { ingredient = "Bleak Resistor", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: melancholic (accessory)"
+option = "Melancholic Repair Spell Crit Damage"
+augments = ["Melancholic Repair Spell Critical Damage (Legendary)"]
+note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 25 }, { ingredient = "Legendary Bleak Conductor", quantity = 25 }, { ingredient = "Legendary Bleak Insulator", quantity = 25 }, { ingredient = "Legendary Bleak Resistor", quantity = 25 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: melancholic (accessory)"
+option = "Melancholic Sonic Spell Crit Damage"
+augments = ["Melancholic Sonic Spell Critical Damage (Heroic)"]
+note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+cost = [{ ingredient = "Bleak Alternator", quantity = 5 }, { ingredient = "Bleak Conductor", quantity = 5 }, { ingredient = "Bleak Insulator", quantity = 5 }, { ingredient = "Bleak Resistor", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: melancholic (accessory)"
+option = "Melancholic Sonic Spell Crit Damage"
+augments = ["Melancholic Sonic Spell Critical Damage (Legendary)"]
+note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 25 }, { ingredient = "Legendary Bleak Conductor", quantity = 25 }, { ingredient = "Legendary Bleak Insulator", quantity = 25 }, { ingredient = "Legendary Bleak Resistor", quantity = 25 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: melancholic (accessory)"
+option = "Melancholic Doublestrike"
+augments = ["Melancholic Doublestrike (Heroic)"]
+cost = [{ ingredient = "Bleak Alternator", quantity = 5 }, { ingredient = "Bleak Conductor", quantity = 5 }, { ingredient = "Bleak Insulator", quantity = 5 }, { ingredient = "Bleak Resistor", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: melancholic (accessory)"
+option = "Melancholic Doublestrike"
+augments = ["Melancholic Doublestrike (Legendary)"]
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 25 }, { ingredient = "Legendary Bleak Conductor", quantity = 25 }, { ingredient = "Legendary Bleak Insulator", quantity = 25 }, { ingredient = "Legendary Bleak Resistor", quantity = 25 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: melancholic (accessory)"
+option = "Melancholic Doubleshot"
+augments = ["Melancholic Doubleshot (Heroic)"]
+cost = [{ ingredient = "Bleak Alternator", quantity = 5 }, { ingredient = "Bleak Conductor", quantity = 5 }, { ingredient = "Bleak Insulator", quantity = 5 }, { ingredient = "Bleak Resistor", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: melancholic (accessory)"
+option = "Melancholic Doubleshot"
+augments = ["Melancholic Doubleshot (Legendary)"]
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 25 }, { ingredient = "Legendary Bleak Conductor", quantity = 25 }, { ingredient = "Legendary Bleak Insulator", quantity = 25 }, { ingredient = "Legendary Bleak Resistor", quantity = 25 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: dolorous (accessory)"
+option = "Dolorous Healing Amplification"
+augments = ["Dolorous Healing Amplification (Heroic)"]
+cost = [{ ingredient = "Bleak Alternator", quantity = 10 }, { ingredient = "Bleak Conductor", quantity = 10 }, { ingredient = "Bleak Insulator", quantity = 10 }, { ingredient = "Bleak Resistor", quantity = 10 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: dolorous (accessory)"
+option = "Dolorous Healing Amplification"
+augments = ["Dolorous Healing Amplification (Legendary)"]
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 50 }, { ingredient = "Legendary Bleak Conductor", quantity = 50 }, { ingredient = "Legendary Bleak Insulator", quantity = 50 }, { ingredient = "Legendary Bleak Resistor", quantity = 50 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: dolorous (accessory)"
+option = "Dolorous Negative Amplification"
+augments = ["Dolorous Negative Amplification (Heroic)"]
+cost = [{ ingredient = "Bleak Alternator", quantity = 10 }, { ingredient = "Bleak Conductor", quantity = 10 }, { ingredient = "Bleak Insulator", quantity = 10 }, { ingredient = "Bleak Resistor", quantity = 10 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: dolorous (accessory)"
+option = "Dolorous Negative Amplification"
+augments = ["Dolorous Negative Amplification (Legendary)"]
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 50 }, { ingredient = "Legendary Bleak Conductor", quantity = 50 }, { ingredient = "Legendary Bleak Insulator", quantity = 50 }, { ingredient = "Legendary Bleak Resistor", quantity = 50 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: dolorous (accessory)"
+option = "Dolorous Repair Amplification"
+augments = ["Dolorous Repair Amplification (Heroic)"]
+cost = [{ ingredient = "Bleak Alternator", quantity = 10 }, { ingredient = "Bleak Conductor", quantity = 10 }, { ingredient = "Bleak Insulator", quantity = 10 }, { ingredient = "Bleak Resistor", quantity = 10 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: dolorous (accessory)"
+option = "Dolorous Repair Amplification"
+augments = ["Dolorous Repair Amplification (Legendary)"]
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 50 }, { ingredient = "Legendary Bleak Conductor", quantity = 50 }, { ingredient = "Legendary Bleak Insulator", quantity = 50 }, { ingredient = "Legendary Bleak Resistor", quantity = 50 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: dolorous (accessory)"
+option = "Dolorous Accuracy"
+augments = ["Dolorous Accuracy (Heroic)"]
+cost = [{ ingredient = "Bleak Alternator", quantity = 10 }, { ingredient = "Bleak Conductor", quantity = 10 }, { ingredient = "Bleak Insulator", quantity = 10 }, { ingredient = "Bleak Resistor", quantity = 10 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: dolorous (accessory)"
+option = "Dolorous Accuracy"
+augments = ["Dolorous Accuracy (Legendary)"]
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 50 }, { ingredient = "Legendary Bleak Conductor", quantity = 50 }, { ingredient = "Legendary Bleak Insulator", quantity = 50 }, { ingredient = "Legendary Bleak Resistor", quantity = 50 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: dolorous (accessory)"
+option = "Dolorous Damage"
+augments = ["Dolorous Damage (Heroic)"]
+cost = [{ ingredient = "Bleak Alternator", quantity = 10 }, { ingredient = "Bleak Conductor", quantity = 10 }, { ingredient = "Bleak Insulator", quantity = 10 }, { ingredient = "Bleak Resistor", quantity = 10 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: dolorous (accessory)"
+option = "Dolorous Damage"
+augments = ["Dolorous Damage (Legendary)"]
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 50 }, { ingredient = "Legendary Bleak Conductor", quantity = 50 }, { ingredient = "Legendary Bleak Insulator", quantity = 50 }, { ingredient = "Legendary Bleak Resistor", quantity = 50 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: dolorous (accessory)"
+option = "Dolorous Deception"
+augments = ["Dolorous Deception (Heroic)"]
+cost = [{ ingredient = "Bleak Alternator", quantity = 10 }, { ingredient = "Bleak Conductor", quantity = 10 }, { ingredient = "Bleak Insulator", quantity = 10 }, { ingredient = "Bleak Resistor", quantity = 10 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: dolorous (accessory)"
+option = "Dolorous Deception"
+augments = ["Dolorous Deception (Legendary)"]
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 50 }, { ingredient = "Legendary Bleak Conductor", quantity = 50 }, { ingredient = "Legendary Bleak Insulator", quantity = 50 }, { ingredient = "Legendary Bleak Resistor", quantity = 50 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: dolorous (accessory)"
+option = "Dolorous Seeker"
+augments = ["Dolorous Seeker (Heroic)"]
+cost = [{ ingredient = "Bleak Alternator", quantity = 10 }, { ingredient = "Bleak Conductor", quantity = 10 }, { ingredient = "Bleak Insulator", quantity = 10 }, { ingredient = "Bleak Resistor", quantity = 10 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: dolorous (accessory)"
+option = "Dolorous Seeker"
+augments = ["Dolorous Seeker (Legendary)"]
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 50 }, { ingredient = "Legendary Bleak Conductor", quantity = 50 }, { ingredient = "Legendary Bleak Insulator", quantity = 50 }, { ingredient = "Legendary Bleak Resistor", quantity = 50 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: dolorous (accessory)"
+option = "Dolorous Acid Spell Crit Damage"
+augments = ["Dolorous Acid Spell Critical Damage (Heroic)"]
+note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+cost = [{ ingredient = "Bleak Alternator", quantity = 10 }, { ingredient = "Bleak Conductor", quantity = 10 }, { ingredient = "Bleak Insulator", quantity = 10 }, { ingredient = "Bleak Resistor", quantity = 10 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: dolorous (accessory)"
+option = "Dolorous Acid Spell Crit Damage"
+augments = ["Dolorous Acid Spell Critical Damage (Legendary)"]
+note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 50 }, { ingredient = "Legendary Bleak Conductor", quantity = 50 }, { ingredient = "Legendary Bleak Insulator", quantity = 50 }, { ingredient = "Legendary Bleak Resistor", quantity = 50 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: dolorous (accessory)"
+option = "Dolorous Cold Spell Crit Damage"
+augments = ["Dolorous Cold Spell Critical Damage (Heroic)"]
+note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+cost = [{ ingredient = "Bleak Alternator", quantity = 10 }, { ingredient = "Bleak Conductor", quantity = 10 }, { ingredient = "Bleak Insulator", quantity = 10 }, { ingredient = "Bleak Resistor", quantity = 10 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: dolorous (accessory)"
+option = "Dolorous Cold Spell Crit Damage"
+augments = ["Dolorous Cold Spell Critical Damage (Legendary)"]
+note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 50 }, { ingredient = "Legendary Bleak Conductor", quantity = 50 }, { ingredient = "Legendary Bleak Insulator", quantity = 50 }, { ingredient = "Legendary Bleak Resistor", quantity = 50 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: dolorous (accessory)"
+option = "Dolorous Electric Spell Crit Damage"
+augments = ["Dolorous Electric Spell Critical Damage (Heroic)"]
+note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+cost = [{ ingredient = "Bleak Alternator", quantity = 10 }, { ingredient = "Bleak Conductor", quantity = 10 }, { ingredient = "Bleak Insulator", quantity = 10 }, { ingredient = "Bleak Resistor", quantity = 10 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: dolorous (accessory)"
+option = "Dolorous Electric Spell Crit Damage"
+augments = ["Dolorous Electric Spell Critical Damage (Legendary)"]
+note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 50 }, { ingredient = "Legendary Bleak Conductor", quantity = 50 }, { ingredient = "Legendary Bleak Insulator", quantity = 50 }, { ingredient = "Legendary Bleak Resistor", quantity = 50 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: dolorous (accessory)"
+option = "Dolorous Fire Spell Crit Damage"
+augments = ["Dolorous Fire Spell Critical Damage (Heroic)"]
+note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+cost = [{ ingredient = "Bleak Alternator", quantity = 10 }, { ingredient = "Bleak Conductor", quantity = 10 }, { ingredient = "Bleak Insulator", quantity = 10 }, { ingredient = "Bleak Resistor", quantity = 10 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: dolorous (accessory)"
+option = "Dolorous Fire Spell Crit Damage"
+augments = ["Dolorous Fire Spell Critical Damage (Legendary)"]
+note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 50 }, { ingredient = "Legendary Bleak Conductor", quantity = 50 }, { ingredient = "Legendary Bleak Insulator", quantity = 50 }, { ingredient = "Legendary Bleak Resistor", quantity = 50 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: dolorous (accessory)"
+option = "Dolorous Force Spell Crit Damage"
+augments = ["Dolorous Force Spell Critical Damage (Heroic)"]
+note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+cost = [{ ingredient = "Bleak Alternator", quantity = 10 }, { ingredient = "Bleak Conductor", quantity = 10 }, { ingredient = "Bleak Insulator", quantity = 10 }, { ingredient = "Bleak Resistor", quantity = 10 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: dolorous (accessory)"
+option = "Dolorous Force Spell Crit Damage"
+augments = ["Dolorous Force Spell Critical Damage (Legendary)"]
+note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 50 }, { ingredient = "Legendary Bleak Conductor", quantity = 50 }, { ingredient = "Legendary Bleak Insulator", quantity = 50 }, { ingredient = "Legendary Bleak Resistor", quantity = 50 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: dolorous (accessory)"
+option = "Dolorous Light Spell Crit Damage"
+augments = ["Dolorous Light Spell Critical Damage (Heroic)"]
+note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+cost = [{ ingredient = "Bleak Alternator", quantity = 10 }, { ingredient = "Bleak Conductor", quantity = 10 }, { ingredient = "Bleak Insulator", quantity = 10 }, { ingredient = "Bleak Resistor", quantity = 10 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: dolorous (accessory)"
+option = "Dolorous Light Spell Crit Damage"
+augments = ["Dolorous Light Spell Critical Damage (Legendary)"]
+note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 50 }, { ingredient = "Legendary Bleak Conductor", quantity = 50 }, { ingredient = "Legendary Bleak Insulator", quantity = 50 }, { ingredient = "Legendary Bleak Resistor", quantity = 50 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: dolorous (accessory)"
+option = "Dolorous Negative Spell Crit Damage"
+augments = ["Dolorous Negative Spell Critical Damage (Heroic)"]
+note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+cost = [{ ingredient = "Bleak Alternator", quantity = 10 }, { ingredient = "Bleak Conductor", quantity = 10 }, { ingredient = "Bleak Insulator", quantity = 10 }, { ingredient = "Bleak Resistor", quantity = 10 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: dolorous (accessory)"
+option = "Dolorous Negative Spell Crit Damage"
+augments = ["Dolorous Negative Spell Critical Damage (Legendary)"]
+note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 50 }, { ingredient = "Legendary Bleak Conductor", quantity = 50 }, { ingredient = "Legendary Bleak Insulator", quantity = 50 }, { ingredient = "Legendary Bleak Resistor", quantity = 50 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: dolorous (accessory)"
+option = "Dolorous Positive Spell Crit Damage"
+augments = ["Dolorous Positive Spell Critical Damage (Heroic)"]
+note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+cost = [{ ingredient = "Bleak Alternator", quantity = 10 }, { ingredient = "Bleak Conductor", quantity = 10 }, { ingredient = "Bleak Insulator", quantity = 10 }, { ingredient = "Bleak Resistor", quantity = 10 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: dolorous (accessory)"
+option = "Dolorous Positive Spell Crit Damage"
+augments = ["Dolorous Positive Spell Critical Damage (Legendary)"]
+note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 50 }, { ingredient = "Legendary Bleak Conductor", quantity = 50 }, { ingredient = "Legendary Bleak Insulator", quantity = 50 }, { ingredient = "Legendary Bleak Resistor", quantity = 50 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: dolorous (accessory)"
+option = "Dolorous Repair Spell Crit Damage"
+augments = ["Dolorous Repair Spell Critical Damage (Heroic)"]
+note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+cost = [{ ingredient = "Bleak Alternator", quantity = 10 }, { ingredient = "Bleak Conductor", quantity = 10 }, { ingredient = "Bleak Insulator", quantity = 10 }, { ingredient = "Bleak Resistor", quantity = 10 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: dolorous (accessory)"
+option = "Dolorous Repair Spell Crit Damage"
+augments = ["Dolorous Repair Spell Critical Damage (Legendary)"]
+note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 50 }, { ingredient = "Legendary Bleak Conductor", quantity = 50 }, { ingredient = "Legendary Bleak Insulator", quantity = 50 }, { ingredient = "Legendary Bleak Resistor", quantity = 50 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: dolorous (accessory)"
+option = "Dolorous Sonic Spell Crit Damage"
+augments = ["Dolorous Sonic Spell Critical Damage (Heroic)"]
+note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+cost = [{ ingredient = "Bleak Alternator", quantity = 10 }, { ingredient = "Bleak Conductor", quantity = 10 }, { ingredient = "Bleak Insulator", quantity = 10 }, { ingredient = "Bleak Resistor", quantity = 10 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: dolorous (accessory)"
+option = "Dolorous Sonic Spell Crit Damage"
+augments = ["Dolorous Sonic Spell Critical Damage (Legendary)"]
+note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 50 }, { ingredient = "Legendary Bleak Conductor", quantity = 50 }, { ingredient = "Legendary Bleak Insulator", quantity = 50 }, { ingredient = "Legendary Bleak Resistor", quantity = 50 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: dolorous (accessory)"
+option = "Dolorous Quality Charisma"
+augments = ["Dolorous Quality Charisma (Heroic)"]
+cost = [{ ingredient = "Bleak Alternator", quantity = 10 }, { ingredient = "Bleak Conductor", quantity = 10 }, { ingredient = "Bleak Insulator", quantity = 10 }, { ingredient = "Bleak Resistor", quantity = 10 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: dolorous (accessory)"
+option = "Dolorous Quality Charisma"
+augments = ["Dolorous Quality Charisma (Legendary)"]
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 50 }, { ingredient = "Legendary Bleak Conductor", quantity = 50 }, { ingredient = "Legendary Bleak Insulator", quantity = 50 }, { ingredient = "Legendary Bleak Resistor", quantity = 50 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: dolorous (accessory)"
+option = "Dolorous Quality Constitution"
+augments = ["Dolorous Quality Constitution (Heroic)"]
+cost = [{ ingredient = "Bleak Alternator", quantity = 10 }, { ingredient = "Bleak Conductor", quantity = 10 }, { ingredient = "Bleak Insulator", quantity = 10 }, { ingredient = "Bleak Resistor", quantity = 10 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: dolorous (accessory)"
+option = "Dolorous Quality Constitution"
+augments = ["Dolorous Quality Constitution (Legendary)"]
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 50 }, { ingredient = "Legendary Bleak Conductor", quantity = 50 }, { ingredient = "Legendary Bleak Insulator", quantity = 50 }, { ingredient = "Legendary Bleak Resistor", quantity = 50 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: dolorous (accessory)"
+option = "Dolorous Quality Dexterity"
+augments = ["Dolorous Quality Dexterity (Heroic)"]
+cost = [{ ingredient = "Bleak Alternator", quantity = 10 }, { ingredient = "Bleak Conductor", quantity = 10 }, { ingredient = "Bleak Insulator", quantity = 10 }, { ingredient = "Bleak Resistor", quantity = 10 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: dolorous (accessory)"
+option = "Dolorous Quality Dexterity"
+augments = ["Dolorous Quality Dexterity (Legendary)"]
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 50 }, { ingredient = "Legendary Bleak Conductor", quantity = 50 }, { ingredient = "Legendary Bleak Insulator", quantity = 50 }, { ingredient = "Legendary Bleak Resistor", quantity = 50 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: dolorous (accessory)"
+option = "Dolorous Quality Intelligence"
+augments = ["Dolorous Quality Intelligence (Heroic)"]
+cost = [{ ingredient = "Bleak Alternator", quantity = 10 }, { ingredient = "Bleak Conductor", quantity = 10 }, { ingredient = "Bleak Insulator", quantity = 10 }, { ingredient = "Bleak Resistor", quantity = 10 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: dolorous (accessory)"
+option = "Dolorous Quality Intelligence"
+augments = ["Dolorous Quality Intelligence (Legendary)"]
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 50 }, { ingredient = "Legendary Bleak Conductor", quantity = 50 }, { ingredient = "Legendary Bleak Insulator", quantity = 50 }, { ingredient = "Legendary Bleak Resistor", quantity = 50 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: dolorous (accessory)"
+option = "Dolorous Quality Strength"
+augments = ["Dolorous Quality Strength (Heroic)"]
+cost = [{ ingredient = "Bleak Alternator", quantity = 10 }, { ingredient = "Bleak Conductor", quantity = 10 }, { ingredient = "Bleak Insulator", quantity = 10 }, { ingredient = "Bleak Resistor", quantity = 10 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: dolorous (accessory)"
+option = "Dolorous Quality Strength"
+augments = ["Dolorous Quality Strength (Legendary)"]
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 50 }, { ingredient = "Legendary Bleak Conductor", quantity = 50 }, { ingredient = "Legendary Bleak Insulator", quantity = 50 }, { ingredient = "Legendary Bleak Resistor", quantity = 50 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: dolorous (accessory)"
+option = "Dolorous Quality Wisdom"
+augments = ["Dolorous Quality Wisdom (Heroic)"]
+cost = [{ ingredient = "Bleak Alternator", quantity = 10 }, { ingredient = "Bleak Conductor", quantity = 10 }, { ingredient = "Bleak Insulator", quantity = 10 }, { ingredient = "Bleak Resistor", quantity = 10 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: dolorous (accessory)"
+option = "Dolorous Quality Wisdom"
+augments = ["Dolorous Quality Wisdom (Legendary)"]
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 50 }, { ingredient = "Legendary Bleak Conductor", quantity = 50 }, { ingredient = "Legendary Bleak Insulator", quantity = 50 }, { ingredient = "Legendary Bleak Resistor", quantity = 50 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: dolorous (accessory)"
+option = "Dolorous Quality Accuracy"
+augments = ["Dolorous Quality Accuracy (Heroic)"]
+cost = [{ ingredient = "Bleak Alternator", quantity = 10 }, { ingredient = "Bleak Conductor", quantity = 10 }, { ingredient = "Bleak Insulator", quantity = 10 }, { ingredient = "Bleak Resistor", quantity = 10 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: dolorous (accessory)"
+option = "Dolorous Quality Accuracy"
+augments = ["Dolorous Quality Accuracy (Legendary)"]
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 50 }, { ingredient = "Legendary Bleak Conductor", quantity = 50 }, { ingredient = "Legendary Bleak Insulator", quantity = 50 }, { ingredient = "Legendary Bleak Resistor", quantity = 50 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: dolorous (accessory)"
+option = "Dolorous Quality Damage"
+augments = ["Dolorous Quality Damage (Heroic)"]
+cost = [{ ingredient = "Bleak Alternator", quantity = 10 }, { ingredient = "Bleak Conductor", quantity = 10 }, { ingredient = "Bleak Insulator", quantity = 10 }, { ingredient = "Bleak Resistor", quantity = 10 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: dolorous (accessory)"
+option = "Dolorous Quality Damage"
+augments = ["Dolorous Quality Damage (Legendary)"]
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 50 }, { ingredient = "Legendary Bleak Conductor", quantity = 50 }, { ingredient = "Legendary Bleak Insulator", quantity = 50 }, { ingredient = "Legendary Bleak Resistor", quantity = 50 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: dolorous (accessory)"
+option = "Dolorous Quality Combat Mastery"
+augments = ["Dolorous Quality Combat Mastery (Heroic)"]
+cost = [{ ingredient = "Bleak Alternator", quantity = 10 }, { ingredient = "Bleak Conductor", quantity = 10 }, { ingredient = "Bleak Insulator", quantity = 10 }, { ingredient = "Bleak Resistor", quantity = 10 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: dolorous (accessory)"
+option = "Dolorous Quality Combat Mastery"
+augments = ["Dolorous Quality Combat Mastery (Legendary)"]
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 50 }, { ingredient = "Legendary Bleak Conductor", quantity = 50 }, { ingredient = "Legendary Bleak Insulator", quantity = 50 }, { ingredient = "Legendary Bleak Resistor", quantity = 50 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: miserable (accessory)"
+option = "Miserable Physical Resistance Rating"
+augments = ["Miserable Physical Resistance Rating (Heroic)"]
+cost = [{ ingredient = "Bleak Alternator", quantity = 5 }, { ingredient = "Bleak Conductor", quantity = 5 }, { ingredient = "Bleak Insulator", quantity = 5 }, { ingredient = "Bleak Resistor", quantity = 5 }, { ingredient = "Bleak Wire", quantity = 20 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: miserable (accessory)"
+option = "Miserable Physical Resistance Rating"
+augments = ["Miserable Physical Resistance Rating (Legendary)"]
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 25 }, { ingredient = "Legendary Bleak Conductor", quantity = 25 }, { ingredient = "Legendary Bleak Insulator", quantity = 25 }, { ingredient = "Legendary Bleak Resistor", quantity = 25 }, { ingredient = "Legendary Bleak Wire", quantity = 100 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: miserable (accessory)"
+option = "Miserable Magical Resistance Rating"
+augments = ["Miserable Magical Resistance Rating (Heroic)"]
+cost = [{ ingredient = "Bleak Alternator", quantity = 5 }, { ingredient = "Bleak Conductor", quantity = 5 }, { ingredient = "Bleak Insulator", quantity = 5 }, { ingredient = "Bleak Resistor", quantity = 5 }, { ingredient = "Bleak Wire", quantity = 20 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: miserable (accessory)"
+option = "Miserable Magical Resistance Rating"
+augments = ["Miserable Magical Resistance Rating (Legendary)"]
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 25 }, { ingredient = "Legendary Bleak Conductor", quantity = 25 }, { ingredient = "Legendary Bleak Insulator", quantity = 25 }, { ingredient = "Legendary Bleak Resistor", quantity = 25 }, { ingredient = "Legendary Bleak Wire", quantity = 100 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: miserable (accessory)"
+option = "Miserable Stunning"
+augments = ["Miserable Stunning (Heroic)"]
+cost = [{ ingredient = "Bleak Alternator", quantity = 5 }, { ingredient = "Bleak Conductor", quantity = 5 }, { ingredient = "Bleak Insulator", quantity = 5 }, { ingredient = "Bleak Resistor", quantity = 5 }, { ingredient = "Bleak Wire", quantity = 20 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: miserable (accessory)"
+option = "Miserable Stunning"
+augments = ["Miserable Stunning (Legendary)"]
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 25 }, { ingredient = "Legendary Bleak Conductor", quantity = 25 }, { ingredient = "Legendary Bleak Insulator", quantity = 25 }, { ingredient = "Legendary Bleak Resistor", quantity = 25 }, { ingredient = "Legendary Bleak Wire", quantity = 100 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: miserable (accessory)"
+option = "Miserable Trip"
+augments = ["Miserable Trip (Heroic)"]
+cost = [{ ingredient = "Bleak Alternator", quantity = 5 }, { ingredient = "Bleak Conductor", quantity = 5 }, { ingredient = "Bleak Insulator", quantity = 5 }, { ingredient = "Bleak Resistor", quantity = 5 }, { ingredient = "Bleak Wire", quantity = 20 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: miserable (accessory)"
+option = "Miserable Trip"
+augments = ["Miserable Trip (Legendary)"]
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 25 }, { ingredient = "Legendary Bleak Conductor", quantity = 25 }, { ingredient = "Legendary Bleak Insulator", quantity = 25 }, { ingredient = "Legendary Bleak Resistor", quantity = 25 }, { ingredient = "Legendary Bleak Wire", quantity = 100 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: miserable (accessory)"
+option = "Miserable Sunder"
+augments = ["Miserable Sunder (Heroic)"]
+cost = [{ ingredient = "Bleak Alternator", quantity = 5 }, { ingredient = "Bleak Conductor", quantity = 5 }, { ingredient = "Bleak Insulator", quantity = 5 }, { ingredient = "Bleak Resistor", quantity = 5 }, { ingredient = "Bleak Wire", quantity = 20 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: miserable (accessory)"
+option = "Miserable Sunder"
+augments = ["Miserable Sunder (Legendary)"]
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 25 }, { ingredient = "Legendary Bleak Conductor", quantity = 25 }, { ingredient = "Legendary Bleak Insulator", quantity = 25 }, { ingredient = "Legendary Bleak Resistor", quantity = 25 }, { ingredient = "Legendary Bleak Wire", quantity = 100 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: miserable (accessory)"
+option = "Miserable Assassinate"
+augments = ["Miserable Assassinate (Heroic)"]
+cost = [{ ingredient = "Bleak Alternator", quantity = 5 }, { ingredient = "Bleak Conductor", quantity = 5 }, { ingredient = "Bleak Insulator", quantity = 5 }, { ingredient = "Bleak Resistor", quantity = 5 }, { ingredient = "Bleak Wire", quantity = 20 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: miserable (accessory)"
+option = "Miserable Assassinate"
+augments = ["Miserable Assassinate (Legendary)"]
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 25 }, { ingredient = "Legendary Bleak Conductor", quantity = 25 }, { ingredient = "Legendary Bleak Insulator", quantity = 25 }, { ingredient = "Legendary Bleak Resistor", quantity = 25 }, { ingredient = "Legendary Bleak Wire", quantity = 100 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: miserable (accessory)"
+option = "Miserable Spell Penetration"
+augments = ["Miserable Spell Penetration (Heroic)"]
+cost = [{ ingredient = "Bleak Alternator", quantity = 5 }, { ingredient = "Bleak Conductor", quantity = 5 }, { ingredient = "Bleak Insulator", quantity = 5 }, { ingredient = "Bleak Resistor", quantity = 5 }, { ingredient = "Bleak Wire", quantity = 20 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: miserable (accessory)"
+option = "Miserable Spell Penetration"
+augments = ["Miserable Spell Penetration (Legendary)"]
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 25 }, { ingredient = "Legendary Bleak Conductor", quantity = 25 }, { ingredient = "Legendary Bleak Insulator", quantity = 25 }, { ingredient = "Legendary Bleak Resistor", quantity = 25 }, { ingredient = "Legendary Bleak Wire", quantity = 100 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: miserable (accessory)"
+option = "Miserable Acid Spell Crit Damage"
+augments = ["Miserable Acid Spell Critical Damage (Heroic)"]
+note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+cost = [{ ingredient = "Bleak Alternator", quantity = 5 }, { ingredient = "Bleak Conductor", quantity = 5 }, { ingredient = "Bleak Insulator", quantity = 5 }, { ingredient = "Bleak Resistor", quantity = 5 }, { ingredient = "Bleak Wire", quantity = 20 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: miserable (accessory)"
+option = "Miserable Acid Spell Crit Damage"
+augments = ["Miserable Acid Spell Critical Damage (Legendary)"]
+note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 25 }, { ingredient = "Legendary Bleak Conductor", quantity = 25 }, { ingredient = "Legendary Bleak Insulator", quantity = 25 }, { ingredient = "Legendary Bleak Resistor", quantity = 25 }, { ingredient = "Legendary Bleak Wire", quantity = 100 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: miserable (accessory)"
+option = "Miserable Cold Spell Crit Damage"
+augments = ["Miserable Cold Spell Critical Damage (Heroic)"]
+note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+cost = [{ ingredient = "Bleak Alternator", quantity = 5 }, { ingredient = "Bleak Conductor", quantity = 5 }, { ingredient = "Bleak Insulator", quantity = 5 }, { ingredient = "Bleak Resistor", quantity = 5 }, { ingredient = "Bleak Wire", quantity = 20 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: miserable (accessory)"
+option = "Miserable Cold Spell Crit Damage"
+augments = ["Miserable Cold Spell Critical Damage (Legendary)"]
+note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 25 }, { ingredient = "Legendary Bleak Conductor", quantity = 25 }, { ingredient = "Legendary Bleak Insulator", quantity = 25 }, { ingredient = "Legendary Bleak Resistor", quantity = 25 }, { ingredient = "Legendary Bleak Wire", quantity = 100 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: miserable (accessory)"
+option = "Miserable Electric Spell Crit Damage"
+augments = ["Miserable Electric Spell Critical Damage (Heroic)"]
+note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+cost = [{ ingredient = "Bleak Alternator", quantity = 5 }, { ingredient = "Bleak Conductor", quantity = 5 }, { ingredient = "Bleak Insulator", quantity = 5 }, { ingredient = "Bleak Resistor", quantity = 5 }, { ingredient = "Bleak Wire", quantity = 20 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: miserable (accessory)"
+option = "Miserable Electric Spell Crit Damage"
+augments = ["Miserable Electric Spell Critical Damage (Legendary)"]
+note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 25 }, { ingredient = "Legendary Bleak Conductor", quantity = 25 }, { ingredient = "Legendary Bleak Insulator", quantity = 25 }, { ingredient = "Legendary Bleak Resistor", quantity = 25 }, { ingredient = "Legendary Bleak Wire", quantity = 100 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: miserable (accessory)"
+option = "Miserable Fire Spell Crit Damage"
+augments = ["Miserable Fire Spell Critical Damage (Heroic)"]
+note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+cost = [{ ingredient = "Bleak Alternator", quantity = 5 }, { ingredient = "Bleak Conductor", quantity = 5 }, { ingredient = "Bleak Insulator", quantity = 5 }, { ingredient = "Bleak Resistor", quantity = 5 }, { ingredient = "Bleak Wire", quantity = 20 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: miserable (accessory)"
+option = "Miserable Fire Spell Crit Damage"
+augments = ["Miserable Fire Spell Critical Damage (Legendary)"]
+note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 25 }, { ingredient = "Legendary Bleak Conductor", quantity = 25 }, { ingredient = "Legendary Bleak Insulator", quantity = 25 }, { ingredient = "Legendary Bleak Resistor", quantity = 25 }, { ingredient = "Legendary Bleak Wire", quantity = 100 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: miserable (accessory)"
+option = "Miserable Force Spell Crit Damage"
+augments = ["Miserable Force Spell Critical Damage (Heroic)"]
+note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+cost = [{ ingredient = "Bleak Alternator", quantity = 5 }, { ingredient = "Bleak Conductor", quantity = 5 }, { ingredient = "Bleak Insulator", quantity = 5 }, { ingredient = "Bleak Resistor", quantity = 5 }, { ingredient = "Bleak Wire", quantity = 20 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: miserable (accessory)"
+option = "Miserable Force Spell Crit Damage"
+augments = ["Miserable Force Spell Critical Damage (Legendary)"]
+note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 25 }, { ingredient = "Legendary Bleak Conductor", quantity = 25 }, { ingredient = "Legendary Bleak Insulator", quantity = 25 }, { ingredient = "Legendary Bleak Resistor", quantity = 25 }, { ingredient = "Legendary Bleak Wire", quantity = 100 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: miserable (accessory)"
+option = "Miserable Light Spell Crit Damage"
+augments = ["Miserable Light Spell Critical Damage (Heroic)"]
+note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+cost = [{ ingredient = "Bleak Alternator", quantity = 5 }, { ingredient = "Bleak Conductor", quantity = 5 }, { ingredient = "Bleak Insulator", quantity = 5 }, { ingredient = "Bleak Resistor", quantity = 5 }, { ingredient = "Bleak Wire", quantity = 20 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: miserable (accessory)"
+option = "Miserable Light Spell Crit Damage"
+augments = ["Miserable Light Spell Critical Damage (Legendary)"]
+note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 25 }, { ingredient = "Legendary Bleak Conductor", quantity = 25 }, { ingredient = "Legendary Bleak Insulator", quantity = 25 }, { ingredient = "Legendary Bleak Resistor", quantity = 25 }, { ingredient = "Legendary Bleak Wire", quantity = 100 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: miserable (accessory)"
+option = "Miserable Negative Spell Crit Damage"
+augments = ["Miserable Negative Spell Critical Damage (Heroic)"]
+note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+cost = [{ ingredient = "Bleak Alternator", quantity = 5 }, { ingredient = "Bleak Conductor", quantity = 5 }, { ingredient = "Bleak Insulator", quantity = 5 }, { ingredient = "Bleak Resistor", quantity = 5 }, { ingredient = "Bleak Wire", quantity = 20 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: miserable (accessory)"
+option = "Miserable Negative Spell Crit Damage"
+augments = ["Miserable Negative Spell Critical Damage (Legendary)"]
+note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 25 }, { ingredient = "Legendary Bleak Conductor", quantity = 25 }, { ingredient = "Legendary Bleak Insulator", quantity = 25 }, { ingredient = "Legendary Bleak Resistor", quantity = 25 }, { ingredient = "Legendary Bleak Wire", quantity = 100 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: miserable (accessory)"
+option = "Miserable Positive Spell Crit Damage"
+augments = ["Miserable Positive Spell Critical Damage (Heroic)"]
+note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+cost = [{ ingredient = "Bleak Alternator", quantity = 5 }, { ingredient = "Bleak Conductor", quantity = 5 }, { ingredient = "Bleak Insulator", quantity = 5 }, { ingredient = "Bleak Resistor", quantity = 5 }, { ingredient = "Bleak Wire", quantity = 20 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: miserable (accessory)"
+option = "Miserable Positive Spell Crit Damage"
+augments = ["Miserable Positive Spell Critical Damage (Legendary)"]
+note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 25 }, { ingredient = "Legendary Bleak Conductor", quantity = 25 }, { ingredient = "Legendary Bleak Insulator", quantity = 25 }, { ingredient = "Legendary Bleak Resistor", quantity = 25 }, { ingredient = "Legendary Bleak Wire", quantity = 100 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: miserable (accessory)"
+option = "Miserable Repair Spell Crit Damage"
+augments = ["Miserable Repair Spell Critical Damage (Heroic)"]
+note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+cost = [{ ingredient = "Bleak Alternator", quantity = 5 }, { ingredient = "Bleak Conductor", quantity = 5 }, { ingredient = "Bleak Insulator", quantity = 5 }, { ingredient = "Bleak Resistor", quantity = 5 }, { ingredient = "Bleak Wire", quantity = 20 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: miserable (accessory)"
+option = "Miserable Repair Spell Crit Damage"
+augments = ["Miserable Repair Spell Critical Damage (Legendary)"]
+note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 25 }, { ingredient = "Legendary Bleak Conductor", quantity = 25 }, { ingredient = "Legendary Bleak Insulator", quantity = 25 }, { ingredient = "Legendary Bleak Resistor", quantity = 25 }, { ingredient = "Legendary Bleak Wire", quantity = 100 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: miserable (accessory)"
+option = "Miserable Sonic Spell Crit Damage"
+augments = ["Miserable Sonic Spell Critical Damage (Heroic)"]
+note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+cost = [{ ingredient = "Bleak Alternator", quantity = 5 }, { ingredient = "Bleak Conductor", quantity = 5 }, { ingredient = "Bleak Insulator", quantity = 5 }, { ingredient = "Bleak Resistor", quantity = 5 }, { ingredient = "Bleak Wire", quantity = 20 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: miserable (accessory)"
+option = "Miserable Sonic Spell Crit Damage"
+augments = ["Miserable Sonic Spell Critical Damage (Legendary)"]
+note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 25 }, { ingredient = "Legendary Bleak Conductor", quantity = 25 }, { ingredient = "Legendary Bleak Insulator", quantity = 25 }, { ingredient = "Legendary Bleak Resistor", quantity = 25 }, { ingredient = "Legendary Bleak Wire", quantity = 100 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: woeful (accessory)"
+option = "Woeful Resistance"
+augments = ["Woeful Resistance (Heroic)"]
+cost = [{ ingredient = "Bleak Alternator", quantity = 10 }, { ingredient = "Bleak Conductor", quantity = 10 }, { ingredient = "Bleak Insulator", quantity = 10 }, { ingredient = "Bleak Resistor", quantity = 10 }, { ingredient = "Bleak Transformer", quantity = 10 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: woeful (accessory)"
+option = "Woeful Resistance"
+augments = ["Woeful Resistance (Legendary)"]
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 50 }, { ingredient = "Legendary Bleak Conductor", quantity = 50 }, { ingredient = "Legendary Bleak Insulator", quantity = 50 }, { ingredient = "Legendary Bleak Resistor", quantity = 50 }, { ingredient = "Legendary Bleak Transformer", quantity = 50 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: woeful (accessory)"
+option = "Woeful Enhanced Ghostly"
+augments = ["Woeful Enhanced Ghostly (Heroic)"]
+cost = [{ ingredient = "Bleak Alternator", quantity = 10 }, { ingredient = "Bleak Conductor", quantity = 10 }, { ingredient = "Bleak Insulator", quantity = 10 }, { ingredient = "Bleak Resistor", quantity = 10 }, { ingredient = "Bleak Transformer", quantity = 10 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: woeful (accessory)"
+option = "Woeful Enhanced Ghostly"
+augments = ["Woeful Enhanced Ghostly (Legendary)"]
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 50 }, { ingredient = "Legendary Bleak Conductor", quantity = 50 }, { ingredient = "Legendary Bleak Insulator", quantity = 50 }, { ingredient = "Legendary Bleak Resistor", quantity = 50 }, { ingredient = "Legendary Bleak Transformer", quantity = 50 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: woeful (accessory)"
+option = "Woeful Relentless Fury"
+augments = ["Woeful Relentless Fury (Heroic)"]
+cost = [{ ingredient = "Bleak Alternator", quantity = 10 }, { ingredient = "Bleak Conductor", quantity = 10 }, { ingredient = "Bleak Insulator", quantity = 10 }, { ingredient = "Bleak Resistor", quantity = 10 }, { ingredient = "Bleak Transformer", quantity = 10 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: woeful (accessory)"
+option = "Woeful Relentless Fury"
+augments = ["Woeful Relentless Fury (Legendary)"]
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 50 }, { ingredient = "Legendary Bleak Conductor", quantity = 50 }, { ingredient = "Legendary Bleak Insulator", quantity = 50 }, { ingredient = "Legendary Bleak Resistor", quantity = 50 }, { ingredient = "Legendary Bleak Transformer", quantity = 50 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: woeful (accessory)"
+option = "Woeful Armor Piercing"
+augments = ["Woeful Armor-Piercing (Heroic)"]
+note = "The page spells it Armor Piercing; Maetrim spells it Armor-Piercing."
+cost = [{ ingredient = "Bleak Alternator", quantity = 10 }, { ingredient = "Bleak Conductor", quantity = 10 }, { ingredient = "Bleak Insulator", quantity = 10 }, { ingredient = "Bleak Resistor", quantity = 10 }, { ingredient = "Bleak Transformer", quantity = 10 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: woeful (accessory)"
+option = "Woeful Armor Piercing"
+augments = ["Woeful Armor-Piercing (Legendary)"]
+note = "The page spells it Armor Piercing; Maetrim spells it Armor-Piercing."
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 50 }, { ingredient = "Legendary Bleak Conductor", quantity = 50 }, { ingredient = "Legendary Bleak Insulator", quantity = 50 }, { ingredient = "Legendary Bleak Resistor", quantity = 50 }, { ingredient = "Legendary Bleak Transformer", quantity = 50 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: woeful (accessory)"
+option = "Woeful Wizardry"
+augments = ["Woeful Wizardry (Heroic)"]
+cost = [{ ingredient = "Bleak Alternator", quantity = 10 }, { ingredient = "Bleak Conductor", quantity = 10 }, { ingredient = "Bleak Insulator", quantity = 10 }, { ingredient = "Bleak Resistor", quantity = 10 }, { ingredient = "Bleak Transformer", quantity = 10 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: woeful (accessory)"
+option = "Woeful Wizardry"
+augments = ["Woeful Wizardry (Legendary)"]
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 50 }, { ingredient = "Legendary Bleak Conductor", quantity = 50 }, { ingredient = "Legendary Bleak Insulator", quantity = 50 }, { ingredient = "Legendary Bleak Resistor", quantity = 50 }, { ingredient = "Legendary Bleak Transformer", quantity = 50 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: woeful (accessory)"
+option = "Woeful Profane DCs"
+augments = ["Woeful Profane DCs (Heroic)"]
+cost = [{ ingredient = "Bleak Alternator", quantity = 10 }, { ingredient = "Bleak Conductor", quantity = 10 }, { ingredient = "Bleak Insulator", quantity = 10 }, { ingredient = "Bleak Resistor", quantity = 10 }, { ingredient = "Bleak Transformer", quantity = 10 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: woeful (accessory)"
+option = "Woeful Profane DCs"
+augments = ["Woeful Profane DCs (Legendary)"]
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 50 }, { ingredient = "Legendary Bleak Conductor", quantity = 50 }, { ingredient = "Legendary Bleak Insulator", quantity = 50 }, { ingredient = "Legendary Bleak Resistor", quantity = 50 }, { ingredient = "Legendary Bleak Transformer", quantity = 50 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: woeful (accessory)"
+option = "Woeful Sacred DCs"
+augments = ["Woeful Sacred DCs (Heroic)"]
+cost = [{ ingredient = "Bleak Alternator", quantity = 10 }, { ingredient = "Bleak Conductor", quantity = 10 }, { ingredient = "Bleak Insulator", quantity = 10 }, { ingredient = "Bleak Resistor", quantity = 10 }, { ingredient = "Bleak Transformer", quantity = 10 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: woeful (accessory)"
+option = "Woeful Sacred DCs"
+augments = ["Woeful Sacred DCs (Legendary)"]
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 50 }, { ingredient = "Legendary Bleak Conductor", quantity = 50 }, { ingredient = "Legendary Bleak Insulator", quantity = 50 }, { ingredient = "Legendary Bleak Resistor", quantity = 50 }, { ingredient = "Legendary Bleak Transformer", quantity = 50 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: melancholic (armor)"
+option = "Melancholic Device"
+augments = ["Melancholic Device (Heroic)"]
+cost = [{ ingredient = "Bleak Alternator", quantity = 5 }, { ingredient = "Bleak Conductor", quantity = 5 }, { ingredient = "Bleak Insulator", quantity = 5 }, { ingredient = "Bleak Resistor", quantity = 5 }, { ingredient = "Bleak Wire", quantity = 20 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: melancholic (armor)"
+option = "Melancholic Device"
+augments = ["Melancholic Device (Legendary)"]
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 25 }, { ingredient = "Legendary Bleak Conductor", quantity = 25 }, { ingredient = "Legendary Bleak Insulator", quantity = 25 }, { ingredient = "Legendary Bleak Resistor", quantity = 25 }, { ingredient = "Legendary Bleak Wire", quantity = 100 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: melancholic (armor)"
+option = "Melancholic Plating"
+augments = ["Melancholic Plating (Heroic)"]
+cost = [{ ingredient = "Bleak Alternator", quantity = 5 }, { ingredient = "Bleak Conductor", quantity = 5 }, { ingredient = "Bleak Insulator", quantity = 5 }, { ingredient = "Bleak Resistor", quantity = 5 }, { ingredient = "Bleak Wire", quantity = 20 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: melancholic (armor)"
+option = "Melancholic Plating"
+augments = ["Melancholic Plating (Legendary)"]
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 25 }, { ingredient = "Legendary Bleak Conductor", quantity = 25 }, { ingredient = "Legendary Bleak Insulator", quantity = 25 }, { ingredient = "Legendary Bleak Resistor", quantity = 25 }, { ingredient = "Legendary Bleak Wire", quantity = 100 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: melancholic (armor)"
+option = "Melancholic Converter"
+augments = ["Melancholic Converter (Heroic)"]
+cost = [{ ingredient = "Bleak Alternator", quantity = 5 }, { ingredient = "Bleak Conductor", quantity = 5 }, { ingredient = "Bleak Insulator", quantity = 5 }, { ingredient = "Bleak Resistor", quantity = 5 }, { ingredient = "Bleak Wire", quantity = 20 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: melancholic (armor)"
+option = "Melancholic Converter"
+augments = ["Melancholic Converter (Legendary)"]
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 25 }, { ingredient = "Legendary Bleak Conductor", quantity = 25 }, { ingredient = "Legendary Bleak Insulator", quantity = 25 }, { ingredient = "Legendary Bleak Resistor", quantity = 25 }, { ingredient = "Legendary Bleak Wire", quantity = 100 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: melancholic (armor)"
+option = "Melancholic Booster"
+augments = ["Melancholic Booster (Heroic)"]
+cost = [{ ingredient = "Bleak Alternator", quantity = 5 }, { ingredient = "Bleak Conductor", quantity = 5 }, { ingredient = "Bleak Insulator", quantity = 5 }, { ingredient = "Bleak Resistor", quantity = 5 }, { ingredient = "Bleak Wire", quantity = 20 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: melancholic (armor)"
+option = "Melancholic Booster"
+augments = ["Melancholic Booster (Legendary)"]
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 25 }, { ingredient = "Legendary Bleak Conductor", quantity = 25 }, { ingredient = "Legendary Bleak Insulator", quantity = 25 }, { ingredient = "Legendary Bleak Resistor", quantity = 25 }, { ingredient = "Legendary Bleak Wire", quantity = 100 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: dolorous (armor)"
+option = "Dolorous Silencer"
+augments = ["Dolorous Silencer (Heroic)"]
+cost = [{ ingredient = "Bleak Alternator", quantity = 10 }, { ingredient = "Bleak Conductor", quantity = 10 }, { ingredient = "Bleak Insulator", quantity = 10 }, { ingredient = "Bleak Resistor", quantity = 10 }, { ingredient = "Bleak Transformer", quantity = 10 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: dolorous (armor)"
+option = "Dolorous Silencer"
+augments = ["Dolorous Silencer (Legendary)"]
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 50 }, { ingredient = "Legendary Bleak Conductor", quantity = 50 }, { ingredient = "Legendary Bleak Insulator", quantity = 50 }, { ingredient = "Legendary Bleak Resistor", quantity = 50 }, { ingredient = "Legendary Bleak Transformer", quantity = 50 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: dolorous (armor)"
+option = "Dolorous Invigorator"
+augments = ["Dolorous Invigorator (Heroic)"]
+cost = [{ ingredient = "Bleak Alternator", quantity = 10 }, { ingredient = "Bleak Conductor", quantity = 10 }, { ingredient = "Bleak Insulator", quantity = 10 }, { ingredient = "Bleak Resistor", quantity = 10 }, { ingredient = "Bleak Transformer", quantity = 10 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: dolorous (armor)"
+option = "Dolorous Invigorator"
+augments = ["Dolorous Invigorator (Legendary)"]
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 50 }, { ingredient = "Legendary Bleak Conductor", quantity = 50 }, { ingredient = "Legendary Bleak Insulator", quantity = 50 }, { ingredient = "Legendary Bleak Resistor", quantity = 50 }, { ingredient = "Legendary Bleak Transformer", quantity = 50 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "lamordia: dolorous (armor)"
+option = "Dolorous Voidwheel"
+augments = ["Dolorous Voidwheel (Heroic)"]
+cost = [{ ingredient = "Bleak Alternator", quantity = 10 }, { ingredient = "Bleak Conductor", quantity = 10 }, { ingredient = "Bleak Insulator", quantity = 10 }, { ingredient = "Bleak Resistor", quantity = 10 }, { ingredient = "Bleak Transformer", quantity = 10 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: dolorous (armor)"
+option = "Dolorous Voidwheel"
+augments = ["Dolorous Voidwheel (Legendary)"]
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 50 }, { ingredient = "Legendary Bleak Conductor", quantity = 50 }, { ingredient = "Legendary Bleak Insulator", quantity = 50 }, { ingredient = "Legendary Bleak Resistor", quantity = 50 }, { ingredient = "Legendary Bleak Transformer", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: miserable (weapon)"
+option = "Miserable Metalline"
+augments = ["Miserable Metalline (Legendary)"]
+note = "Wicked Viktranium Experiment Crafting: a separate device inside the Relentless raid that makes Legendary-only augments. Wicked Viktranium Experiment device in Relentless."
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 25 }, { ingredient = "Legendary Bleak Conductor", quantity = 25 }, { ingredient = "Legendary Bleak Insulator", quantity = 25 }, { ingredient = "Legendary Bleak Resistor", quantity = 25 }, { ingredient = "Legendary Bleak Transformer", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: miserable (weapon)"
+option = "Miserable Planar"
+augments = ["Miserable Planar (Legendary)"]
+note = "Wicked Viktranium Experiment device in Relentless."
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 25 }, { ingredient = "Legendary Bleak Conductor", quantity = 25 }, { ingredient = "Legendary Bleak Insulator", quantity = 25 }, { ingredient = "Legendary Bleak Resistor", quantity = 25 }, { ingredient = "Legendary Bleak Transformer", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: miserable (weapon)"
+option = "Miserable Acid Spell Crit Chance"
+augments = ["Miserable Acid Spell Crit Chance (Legendary)"]
+note = "Wicked Viktranium Experiment device in Relentless."
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 25 }, { ingredient = "Legendary Bleak Conductor", quantity = 25 }, { ingredient = "Legendary Bleak Insulator", quantity = 25 }, { ingredient = "Legendary Bleak Resistor", quantity = 25 }, { ingredient = "Legendary Bleak Transformer", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: miserable (weapon)"
+option = "Miserable Cold Spell Crit Chance"
+augments = ["Miserable Cold Spell Crit Chance (Legendary)"]
+note = "Wicked Viktranium Experiment device in Relentless."
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 25 }, { ingredient = "Legendary Bleak Conductor", quantity = 25 }, { ingredient = "Legendary Bleak Insulator", quantity = 25 }, { ingredient = "Legendary Bleak Resistor", quantity = 25 }, { ingredient = "Legendary Bleak Transformer", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: miserable (weapon)"
+option = "Miserable Electric Spell Crit Chance"
+augments = ["Miserable Electric Spell Crit Chance (Legendary)"]
+note = "Wicked Viktranium Experiment device in Relentless."
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 25 }, { ingredient = "Legendary Bleak Conductor", quantity = 25 }, { ingredient = "Legendary Bleak Insulator", quantity = 25 }, { ingredient = "Legendary Bleak Resistor", quantity = 25 }, { ingredient = "Legendary Bleak Transformer", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: miserable (weapon)"
+option = "Miserable Fire Spell Crit Chance"
+augments = ["Miserable Fire Spell Crit Chance (Legendary)"]
+note = "Wicked Viktranium Experiment device in Relentless."
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 25 }, { ingredient = "Legendary Bleak Conductor", quantity = 25 }, { ingredient = "Legendary Bleak Insulator", quantity = 25 }, { ingredient = "Legendary Bleak Resistor", quantity = 25 }, { ingredient = "Legendary Bleak Transformer", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: miserable (weapon)"
+option = "Miserable Force Spell Crit Chance"
+augments = ["Miserable Force Spell Crit Chance (Legendary)"]
+note = "Wicked Viktranium Experiment device in Relentless."
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 25 }, { ingredient = "Legendary Bleak Conductor", quantity = 25 }, { ingredient = "Legendary Bleak Insulator", quantity = 25 }, { ingredient = "Legendary Bleak Resistor", quantity = 25 }, { ingredient = "Legendary Bleak Transformer", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: miserable (weapon)"
+option = "Miserable Light Spell Crit Chance"
+augments = ["Miserable Light Spell Crit Chance (Legendary)"]
+note = "Wicked Viktranium Experiment device in Relentless."
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 25 }, { ingredient = "Legendary Bleak Conductor", quantity = 25 }, { ingredient = "Legendary Bleak Insulator", quantity = 25 }, { ingredient = "Legendary Bleak Resistor", quantity = 25 }, { ingredient = "Legendary Bleak Transformer", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: miserable (weapon)"
+option = "Miserable Negative Spell Crit Chance"
+augments = ["Miserable Negative Spell Crit Chance (Legendary)"]
+note = "Wicked Viktranium Experiment device in Relentless."
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 25 }, { ingredient = "Legendary Bleak Conductor", quantity = 25 }, { ingredient = "Legendary Bleak Insulator", quantity = 25 }, { ingredient = "Legendary Bleak Resistor", quantity = 25 }, { ingredient = "Legendary Bleak Transformer", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: miserable (weapon)"
+option = "Miserable Positive Spell Crit Chance"
+augments = ["Miserable Positive Spell Crit Chance (Legendary)"]
+note = "Wicked Viktranium Experiment device in Relentless."
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 25 }, { ingredient = "Legendary Bleak Conductor", quantity = 25 }, { ingredient = "Legendary Bleak Insulator", quantity = 25 }, { ingredient = "Legendary Bleak Resistor", quantity = 25 }, { ingredient = "Legendary Bleak Transformer", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: miserable (weapon)"
+option = "Miserable Repair Spell Crit Chance"
+augments = ["Miserable Repair Spell Crit Chance (Legendary)"]
+note = "Wicked Viktranium Experiment device in Relentless."
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 25 }, { ingredient = "Legendary Bleak Conductor", quantity = 25 }, { ingredient = "Legendary Bleak Insulator", quantity = 25 }, { ingredient = "Legendary Bleak Resistor", quantity = 25 }, { ingredient = "Legendary Bleak Transformer", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: miserable (weapon)"
+option = "Miserable Sonic Spell Crit Chance"
+augments = ["Miserable Sonic Spell Crit Chance (Legendary)"]
+note = "Wicked Viktranium Experiment device in Relentless."
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 25 }, { ingredient = "Legendary Bleak Conductor", quantity = 25 }, { ingredient = "Legendary Bleak Insulator", quantity = 25 }, { ingredient = "Legendary Bleak Resistor", quantity = 25 }, { ingredient = "Legendary Bleak Transformer", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: miserable (accessory)"
+option = "Miserable Legendary Armor Piercing"
+augments = ["Miserable Legendary Armor Piercing (Legendary)"]
+note = "Wicked Viktranium Experiment device in Relentless."
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 25 }, { ingredient = "Legendary Bleak Conductor", quantity = 25 }, { ingredient = "Legendary Bleak Insulator", quantity = 25 }, { ingredient = "Legendary Bleak Resistor", quantity = 25 }, { ingredient = "Legendary Bleak Transformer", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: miserable (accessory)"
+option = "Miserable Force Absorption"
+augments = ["Miserable Force Absorption (Legendary)"]
+note = "Wicked Viktranium Experiment device in Relentless."
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 25 }, { ingredient = "Legendary Bleak Conductor", quantity = 25 }, { ingredient = "Legendary Bleak Insulator", quantity = 25 }, { ingredient = "Legendary Bleak Resistor", quantity = 25 }, { ingredient = "Legendary Bleak Transformer", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: miserable (accessory)"
+option = "Miserable Rebellion"
+augments = ["Miserable Rebellion (Legendary)"]
+note = "Wicked Viktranium Experiment device in Relentless."
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 25 }, { ingredient = "Legendary Bleak Conductor", quantity = 25 }, { ingredient = "Legendary Bleak Insulator", quantity = 25 }, { ingredient = "Legendary Bleak Resistor", quantity = 25 }, { ingredient = "Legendary Bleak Transformer", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: woeful (weapon)"
+option = "Woeful Exceptional Spell Focus Mastery"
+augments = ["Woeful Exceptional Spell Focus Mastery (Legendary)"]
+note = "Wicked Viktranium Experiment device in Relentless. The page's cost reads Bleak Mementos, which exist only as Legendary Bleak Mementos."
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 50 }, { ingredient = "Legendary Bleak Conductor", quantity = 50 }, { ingredient = "Legendary Bleak Insulator", quantity = 50 }, { ingredient = "Legendary Bleak Resistor", quantity = 50 }, { ingredient = "Legendary Bleak Memento", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: woeful (weapon)"
+option = "Woeful Salt"
+augments = ["Woeful Salt (Legendary)"]
+note = "Wicked Viktranium Experiment device in Relentless. The page's cost reads Bleak Mementos, which exist only as Legendary Bleak Mementos."
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 50 }, { ingredient = "Legendary Bleak Conductor", quantity = 50 }, { ingredient = "Legendary Bleak Insulator", quantity = 50 }, { ingredient = "Legendary Bleak Resistor", quantity = 50 }, { ingredient = "Legendary Bleak Memento", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: woeful (weapon)"
+option = "Woeful Shadow"
+augments = ["Woeful Shadow (Legendary)"]
+note = "Wicked Viktranium Experiment device in Relentless. The page's cost reads Bleak Mementos, which exist only as Legendary Bleak Mementos."
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 50 }, { ingredient = "Legendary Bleak Conductor", quantity = 50 }, { ingredient = "Legendary Bleak Insulator", quantity = 50 }, { ingredient = "Legendary Bleak Resistor", quantity = 50 }, { ingredient = "Legendary Bleak Memento", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: woeful (weapon)"
+option = "Woeful Magma"
+augments = ["Woeful Magma (Legendary)"]
+note = "Wicked Viktranium Experiment device in Relentless. The page's cost reads Bleak Mementos, which exist only as Legendary Bleak Mementos."
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 50 }, { ingredient = "Legendary Bleak Conductor", quantity = 50 }, { ingredient = "Legendary Bleak Insulator", quantity = 50 }, { ingredient = "Legendary Bleak Resistor", quantity = 50 }, { ingredient = "Legendary Bleak Memento", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: woeful (weapon)"
+option = "Woeful Frostbite"
+augments = ["Woeful Frostbite (Legendary)"]
+note = "Wicked Viktranium Experiment device in Relentless. The page's cost reads Bleak Mementos, which exist only as Legendary Bleak Mementos."
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 50 }, { ingredient = "Legendary Bleak Conductor", quantity = 50 }, { ingredient = "Legendary Bleak Insulator", quantity = 50 }, { ingredient = "Legendary Bleak Resistor", quantity = 50 }, { ingredient = "Legendary Bleak Memento", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: woeful (weapon)"
+option = "Woeful Lightning"
+augments = ["Woeful Lightning (Legendary)"]
+note = "Wicked Viktranium Experiment device in Relentless. The page's cost reads Bleak Mementos, which exist only as Legendary Bleak Mementos."
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 50 }, { ingredient = "Legendary Bleak Conductor", quantity = 50 }, { ingredient = "Legendary Bleak Insulator", quantity = 50 }, { ingredient = "Legendary Bleak Resistor", quantity = 50 }, { ingredient = "Legendary Bleak Memento", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: woeful (weapon)"
+option = "Woeful Acidburn"
+augments = ["Woeful Acidburn (Legendary)"]
+note = "Wicked Viktranium Experiment device in Relentless. The page's cost reads Bleak Mementos, which exist only as Legendary Bleak Mementos."
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 50 }, { ingredient = "Legendary Bleak Conductor", quantity = 50 }, { ingredient = "Legendary Bleak Insulator", quantity = 50 }, { ingredient = "Legendary Bleak Resistor", quantity = 50 }, { ingredient = "Legendary Bleak Memento", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: woeful (weapon)"
+option = "Woeful Echoes"
+augments = ["Woeful Echoes (Legendary)"]
+note = "Wicked Viktranium Experiment device in Relentless. The page's cost reads Bleak Mementos, which exist only as Legendary Bleak Mementos."
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 50 }, { ingredient = "Legendary Bleak Conductor", quantity = 50 }, { ingredient = "Legendary Bleak Insulator", quantity = 50 }, { ingredient = "Legendary Bleak Resistor", quantity = 50 }, { ingredient = "Legendary Bleak Memento", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: woeful (weapon)"
+option = "Woeful Venom"
+augments = ["Woeful Venom (Legendary)"]
+note = "Wicked Viktranium Experiment device in Relentless. The page's cost reads Bleak Mementos, which exist only as Legendary Bleak Mementos."
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 50 }, { ingredient = "Legendary Bleak Conductor", quantity = 50 }, { ingredient = "Legendary Bleak Insulator", quantity = 50 }, { ingredient = "Legendary Bleak Resistor", quantity = 50 }, { ingredient = "Legendary Bleak Memento", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: woeful (weapon)"
+option = "Woeful Energy"
+augments = ["Woeful Energy (Legendary)"]
+note = "Wicked Viktranium Experiment device in Relentless. The page's cost reads Bleak Mementos, which exist only as Legendary Bleak Mementos."
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 50 }, { ingredient = "Legendary Bleak Conductor", quantity = 50 }, { ingredient = "Legendary Bleak Insulator", quantity = 50 }, { ingredient = "Legendary Bleak Resistor", quantity = 50 }, { ingredient = "Legendary Bleak Memento", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: woeful (accessory)"
+option = "Woeful Acid Spell Crit Chance"
+augments = ["Woeful Acid Spell Crit Chance (Legendary)"]
+note = "Wicked Viktranium Experiment device in Relentless. The page warns these augments are Bound to Character on Acquire."
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 50 }, { ingredient = "Legendary Bleak Conductor", quantity = 50 }, { ingredient = "Legendary Bleak Insulator", quantity = 50 }, { ingredient = "Legendary Bleak Resistor", quantity = 50 }, { ingredient = "Legendary Bleak Memento", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: woeful (accessory)"
+option = "Woeful Cold Spell Crit Chance"
+augments = ["Woeful Cold Spell Crit Chance (Legendary)"]
+note = "Wicked Viktranium Experiment device in Relentless. The page warns these augments are Bound to Character on Acquire."
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 50 }, { ingredient = "Legendary Bleak Conductor", quantity = 50 }, { ingredient = "Legendary Bleak Insulator", quantity = 50 }, { ingredient = "Legendary Bleak Resistor", quantity = 50 }, { ingredient = "Legendary Bleak Memento", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: woeful (accessory)"
+option = "Woeful Electric Spell Crit Chance"
+augments = ["Woeful Electric Spell Crit Chance (Legendary)"]
+note = "Wicked Viktranium Experiment device in Relentless. The page warns these augments are Bound to Character on Acquire."
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 50 }, { ingredient = "Legendary Bleak Conductor", quantity = 50 }, { ingredient = "Legendary Bleak Insulator", quantity = 50 }, { ingredient = "Legendary Bleak Resistor", quantity = 50 }, { ingredient = "Legendary Bleak Memento", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: woeful (accessory)"
+option = "Woeful Fire Spell Crit Chance"
+augments = ["Woeful Fire Spell Crit Chance (Legendary)"]
+note = "Wicked Viktranium Experiment device in Relentless. The page warns these augments are Bound to Character on Acquire."
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 50 }, { ingredient = "Legendary Bleak Conductor", quantity = 50 }, { ingredient = "Legendary Bleak Insulator", quantity = 50 }, { ingredient = "Legendary Bleak Resistor", quantity = 50 }, { ingredient = "Legendary Bleak Memento", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: woeful (accessory)"
+option = "Woeful Force Spell Crit Chance"
+augments = ["Woeful Force Spell Crit Chance (Legendary)"]
+note = "Wicked Viktranium Experiment device in Relentless. The page warns these augments are Bound to Character on Acquire."
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 50 }, { ingredient = "Legendary Bleak Conductor", quantity = 50 }, { ingredient = "Legendary Bleak Insulator", quantity = 50 }, { ingredient = "Legendary Bleak Resistor", quantity = 50 }, { ingredient = "Legendary Bleak Memento", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: woeful (accessory)"
+option = "Woeful Light Spell Crit Chance"
+augments = ["Woeful Light Spell Crit Chance (Legendary)"]
+note = "Wicked Viktranium Experiment device in Relentless. The page warns these augments are Bound to Character on Acquire."
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 50 }, { ingredient = "Legendary Bleak Conductor", quantity = 50 }, { ingredient = "Legendary Bleak Insulator", quantity = 50 }, { ingredient = "Legendary Bleak Resistor", quantity = 50 }, { ingredient = "Legendary Bleak Memento", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: woeful (accessory)"
+option = "Woeful Negative Spell Crit Chance"
+augments = ["Woeful Negative Spell Crit Chance (Legendary)"]
+note = "Wicked Viktranium Experiment device in Relentless. The page warns these augments are Bound to Character on Acquire."
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 50 }, { ingredient = "Legendary Bleak Conductor", quantity = 50 }, { ingredient = "Legendary Bleak Insulator", quantity = 50 }, { ingredient = "Legendary Bleak Resistor", quantity = 50 }, { ingredient = "Legendary Bleak Memento", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: woeful (accessory)"
+option = "Woeful Positive Spell Crit Chance"
+augments = ["Woeful Positive Spell Crit Chance (Legendary)"]
+note = "Wicked Viktranium Experiment device in Relentless. The page warns these augments are Bound to Character on Acquire."
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 50 }, { ingredient = "Legendary Bleak Conductor", quantity = 50 }, { ingredient = "Legendary Bleak Insulator", quantity = 50 }, { ingredient = "Legendary Bleak Resistor", quantity = 50 }, { ingredient = "Legendary Bleak Memento", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: woeful (accessory)"
+option = "Woeful Repair Spell Crit Chance"
+augments = ["Woeful Repair Spell Crit Chance (Legendary)"]
+note = "Wicked Viktranium Experiment device in Relentless. The page warns these augments are Bound to Character on Acquire."
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 50 }, { ingredient = "Legendary Bleak Conductor", quantity = 50 }, { ingredient = "Legendary Bleak Insulator", quantity = 50 }, { ingredient = "Legendary Bleak Resistor", quantity = 50 }, { ingredient = "Legendary Bleak Memento", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: woeful (accessory)"
+option = "Woeful Sonic Spell Crit Chance"
+augments = ["Woeful Sonic Spell Crit Chance (Legendary)"]
+note = "Wicked Viktranium Experiment device in Relentless. The page warns these augments are Bound to Character on Acquire."
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 50 }, { ingredient = "Legendary Bleak Conductor", quantity = 50 }, { ingredient = "Legendary Bleak Insulator", quantity = 50 }, { ingredient = "Legendary Bleak Resistor", quantity = 50 }, { ingredient = "Legendary Bleak Memento", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: woeful (accessory)"
+option = "Woeful Quality Seeker"
+augments = ["Woeful Quality Seeker (Legendary)"]
+note = "Wicked Viktranium Experiment device in Relentless. The page warns these augments are Bound to Character on Acquire."
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 50 }, { ingredient = "Legendary Bleak Conductor", quantity = 50 }, { ingredient = "Legendary Bleak Insulator", quantity = 50 }, { ingredient = "Legendary Bleak Resistor", quantity = 50 }, { ingredient = "Legendary Bleak Memento", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: woeful (accessory)"
+option = "Woeful Greater Marksmanship"
+augments = ["Woeful Greater Marksmanship (Legendary)"]
+note = "Wicked Viktranium Experiment device in Relentless. The page warns these augments are Bound to Character on Acquire."
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 50 }, { ingredient = "Legendary Bleak Conductor", quantity = 50 }, { ingredient = "Legendary Bleak Insulator", quantity = 50 }, { ingredient = "Legendary Bleak Resistor", quantity = 50 }, { ingredient = "Legendary Bleak Memento", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: woeful (accessory)"
+option = "Woeful Strength of Purpose"
+augments = ["Woeful Strength of Purpose (Legendary)"]
+note = "Wicked Viktranium Experiment device in Relentless. The page warns these augments are Bound to Character on Acquire."
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 50 }, { ingredient = "Legendary Bleak Conductor", quantity = 50 }, { ingredient = "Legendary Bleak Insulator", quantity = 50 }, { ingredient = "Legendary Bleak Resistor", quantity = 50 }, { ingredient = "Legendary Bleak Memento", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "lamordia: woeful (accessory)"
+option = "Woeful Quality Spell Focus Mastery"
+augments = ["Woeful Quality Spell Focus Mastery (Legendary)"]
+note = "Wicked Viktranium Experiment device in Relentless. The page warns these augments are Bound to Character on Acquire."
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 50 }, { ingredient = "Legendary Bleak Conductor", quantity = 50 }, { ingredient = "Legendary Bleak Insulator", quantity = 50 }, { ingredient = "Legendary Bleak Resistor", quantity = 50 }, { ingredient = "Legendary Bleak Memento", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Cataclysmic weapon or shield"
+augments = []
+note = "Wicked Viktranium Experiment device in Relentless: creates a Cataclysmic weapon (Bound to Character on Acquire) or shield (Bound to Account on Acquire), a Calamitous weapon with +3/+6 loaded weapon dice; no augment counterpart."
+cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 25 }, { ingredient = "Legendary Bleak Conductor", quantity = 25 }, { ingredient = "Legendary Bleak Insulator", quantity = 25 }, { ingredient = "Legendary Bleak Resistor", quantity = 25 }, { ingredient = "Legendary Bleak Memento", quantity = 25 }]

@@ -1,39 +1,38 @@
 [
   {
     "families": [
-      "Greensteel_Heroic"
+      "Alchemical"
     ],
     "id": 2,
+    "ingredient_count": 29,
+    "name": "Alchemical Crafting",
+    "npc": "Cannith Melting Station (House Cannith Manufactury) makes the manufactured ingredients; Cannith Reforging Station (Artificer Workshops, Toven's Workshop) adds the material type and crafts every Legendary tier; Cannith Binding Station (Research Facility, Eldritch Site Prime) adds heroic Tiers 1-3; a second Melting and Reforging Station stand in Sharn - Cliffside Docks District, and the Melting Station is also a Guild Ship amenity",
+    "pack": "Secrets of the Artificers",
+    "page": "https://ddowiki.com/page/Alchemical_Crafting",
+    "recipe_count": 109
+  },
+  {
+    "families": [
+      "DinosaurBone"
+    ],
+    "id": 3,
+    "ingredient_count": 6,
+    "name": "Dinosaur Bone crafting",
+    "npc": "Sharpened Bone, whose barter window creates Isle of Dread augments and Dinosaur Bone weapons; augments are slotted through the Augment Item UI in the inventory panel",
+    "pack": "The Isle of Dread",
+    "page": "https://ddowiki.com/page/Dinosaur_Bone_crafting",
+    "recipe_count": 108
+  },
+  {
+    "families": [
+      "Greensteel_Heroic"
+    ],
+    "id": 4,
     "ingredient_count": 85,
     "name": "Green Steel items",
     "npc": "Altar of Fecundity in Meridia for blanks; Altars of Invasion, Subjugation and Devastation in The Shroud (phases 1, 3 and 5) for upgrades; a Green Steel Crafting Hall on Guild Airships holds all the altars",
     "pack": "The Vale of Twilight",
     "page": "https://ddowiki.com/page/Green_Steel_items",
     "recipe_count": 388
-  },
-  {
-    "families": [
-      "Greensteel_Legendary"
-    ],
-    "id": 3,
-    "ingredient_count": 54,
-    "name": "Legendary Green Steel items",
-    "npc": "Altar of Fecundity in Meridia (blanks and Active augments); Legendary Altars of Invasion, Subjugation and Devastation at the ends of parts 1, 2 and 5 of The Codex and the Shroud; Guild Airships",
-    "pack": "The Vale of Twilight",
-    "page": "https://ddowiki.com/page/Legendary_Green_Steel_items",
-    "recipe_count": 314
-  },
-  {
-    "families": [
-      "Slavelords_Heroic",
-      "Slavelords_Legendary"
-    ],
-    "id": 1,
-    "ingredient_count": 16,
-    "name": "Slave Lords Crafting",
-    "npc": "Garvon <Armorer and Outfitter>, in the Forsaken Temple just inside the Slave Pits of the Undercity entrance",
-    "pack": "Against the Slave Lords",
-    "page": "https://ddowiki.com/page/Slave_Lords_Crafting",
-    "recipe_count": 74
   }
 ]

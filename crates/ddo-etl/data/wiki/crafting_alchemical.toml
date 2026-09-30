@@ -1,0 +1,1011 @@
+[[system]]
+name = "Alchemical Crafting"
+page = "https://ddowiki.com/page/Alchemical_Crafting"
+read = "2026-09-29"
+pack = "Secrets of the Artificers"
+families = ["Alchemical"]
+npc = "Cannith Melting Station (House Cannith Manufactury) makes the manufactured ingredients; Cannith Reforging Station (Artificer Workshops, Toven's Workshop) adds the material type and crafts every Legendary tier; Cannith Binding Station (Research Facility, Eldritch Site Prime) adds heroic Tiers 1-3; a second Melting and Reforging Station stand in Sharn - Cliffside Docks District, and the Melting Station is also a Guild Ship amenity"
+
+[[system.ingredient]]
+name = "Iron Defender Rivets"
+tier = "heroic"
+bind = "Unbound"
+source = "Mob kills within House Cannith Manufactury, the Artificer Workshops, the Research Facility and their quests, distributed like the Altar of Insanity ingredients; used at the Cannith Melting Station; the Melting Station's recipes call it Pile of Iron Defender Rivets"
+
+[[system.ingredient]]
+name = "Iron Defender Claws"
+tier = "heroic"
+bind = "Unbound"
+source = "Mob kills within House Cannith Manufactury, the Artificer Workshops, the Research Facility and their quests, distributed like the Altar of Insanity ingredients; used at the Cannith Melting Station; the Melting Station's recipes call it Pair of Iron Defender Rivets (Claws)"
+
+[[system.ingredient]]
+name = "Iron Juggernaut Parts"
+tier = "heroic"
+bind = "Unbound"
+source = "Mob kills within House Cannith Manufactury, the Artificer Workshops, the Research Facility and their quests, distributed like the Altar of Insanity ingredients; used at the Cannith Melting Station; the Melting Station's recipes call it Iron Juggernaut Limb"
+
+[[system.ingredient]]
+name = "Iron Juggernaut Plating"
+tier = "heroic"
+bind = "Unbound"
+source = "Mob kills within House Cannith Manufactury, the Artificer Workshops, the Research Facility and their quests, distributed like the Altar of Insanity ingredients; used at the Cannith Melting Station; the Melting Station's recipes call it Set of Iron Juggernaut Plating"
+
+[[system.ingredient]]
+name = "Magefire Cannon Parts"
+tier = "heroic"
+bind = "Unbound"
+source = "Mob kills within House Cannith Manufactury, the Artificer Workshops, the Research Facility and their quests, distributed like the Altar of Insanity ingredients; used at the Cannith Melting Station; the Melting Station's recipes call it Pile of Magefire Cannon Parts"
+
+[[system.ingredient]]
+name = "Magefire Cannon Core"
+tier = "heroic"
+bind = "Unbound"
+source = "Mob kills within House Cannith Manufactury, the Artificer Workshops, the Research Facility and their quests, distributed like the Altar of Insanity ingredients; used at the Cannith Melting Station"
+
+[[system.ingredient]]
+name = "Quorforged Juggernaut Parts"
+tier = "heroic"
+bind = "Unbound"
+source = "Mob kills within House Cannith Manufactury, the Artificer Workshops, the Research Facility and their quests, distributed like the Altar of Insanity ingredients; used at the Cannith Melting Station; the Melting Station's recipes call it Quorforged Juggernaut Limb"
+
+[[system.ingredient]]
+name = "Quorforged Juggernaut Plating"
+tier = "heroic"
+bind = "Unbound"
+source = "Mob kills within House Cannith Manufactury, the Artificer Workshops, the Research Facility and their quests, distributed like the Altar of Insanity ingredients; used at the Cannith Melting Station; the Melting Station's recipes call it Set of Quorforged Juggernaut Plating"
+
+[[system.ingredient]]
+name = "Worker Drone Platings"
+tier = "heroic"
+source = "Masterminds of Sharn quests; used at the Cannith Melting Station"
+
+[[system.ingredient]]
+name = "Worker Drone Actuators"
+tier = "heroic"
+source = "Masterminds of Sharn quests; used at the Cannith Melting Station"
+
+[[system.ingredient]]
+name = "Shield Guardian Gyroscopes"
+tier = "heroic"
+source = "Masterminds of Sharn quests; used at the Cannith Melting Station"
+
+[[system.ingredient]]
+name = "Shield Guardian Cores"
+tier = "heroic"
+source = "Masterminds of Sharn quests; used at the Cannith Melting Station"
+
+[[system.ingredient]]
+name = "Lesser Cannith Power Cell"
+tier = "heroic"
+bind = "Unbound"
+source = "Quest and raid end chests within the area; used at the Cannith Reforging Station"
+
+[[system.ingredient]]
+name = "Cannith Power Cell"
+tier = "heroic"
+bind = "Unbound"
+source = "Quest and raid end chests within the area; used at the Cannith Reforging Station"
+
+[[system.ingredient]]
+name = "Greater Cannith Power Cell"
+tier = "heroic"
+bind = "Unbound"
+source = "Quest and raid end chests within the area; used at the Cannith Binding Station"
+
+[[system.ingredient]]
+name = "Metallic Ingot"
+tier = "heroic"
+source = "Made at the Cannith Melting Station"
+
+[[system.ingredient]]
+name = "Dense Ingot"
+tier = "heroic"
+source = "Made at the Cannith Melting Station"
+
+[[system.ingredient]]
+name = "Pliable Ingot"
+tier = "heroic"
+source = "Made at the Cannith Melting Station"
+
+[[system.ingredient]]
+name = "Glowing Ingot"
+tier = "heroic"
+source = "Made at the Cannith Melting Station"
+
+[[system.ingredient]]
+name = "Durable Alloy"
+tier = "heroic"
+source = "Made at the Cannith Melting Station"
+
+[[system.ingredient]]
+name = "Volatile Alloy"
+tier = "heroic"
+source = "Made at the Cannith Melting Station"
+
+[[system.ingredient]]
+name = "Fortified Compound"
+tier = "heroic"
+source = "Made at the Cannith Melting Station"
+
+[[system.ingredient]]
+name = "Mercurial Compound"
+tier = "heroic"
+source = "Made at the Cannith Melting Station"
+
+[[system.ingredient]]
+name = "Energizing Alloy"
+tier = "heroic"
+source = "Made at the Cannith Melting Station"
+
+[[system.ingredient]]
+name = "Dampening Alloy"
+tier = "heroic"
+source = "Made at the Cannith Melting Station"
+
+[[system.ingredient]]
+name = "Caustic Compound"
+tier = "heroic"
+source = "Made at the Cannith Melting Station"
+
+[[system.ingredient]]
+name = "Stabilizing Compound"
+tier = "any"
+source = "Made at the Cannith Melting Station; used for Legendary Tiers 1-3"
+
+[[system.ingredient]]
+name = "Token of the Twelve"
+tier = "heroic"
+
+[[system.ingredient]]
+name = "Thread of Fate"
+tier = "legendary"
+
+[[system.recipe]]
+tier = "heroic"
+option = "Metallic Ingot"
+augments = []
+note = "Heroic recipes read from the sub-pages Cannith_Melting_Station, Cannith_Reforging_Station and Cannith_Binding_Station; the Legendary costs are on this page. Cannith Melting Station: makes the manufactured ingredient Metallic Ingot; no augment counterpart."
+cost = [{ ingredient = "Iron Defender Rivets", quantity = 1 }, { ingredient = "Iron Defender Claws", quantity = 1 }, { ingredient = "Iron Juggernaut Parts", quantity = 1 }, { ingredient = "Iron Juggernaut Plating", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Dense Ingot"
+augments = []
+note = "Cannith Melting Station: makes the manufactured ingredient Dense Ingot; no augment counterpart."
+cost = [{ ingredient = "Quorforged Juggernaut Parts", quantity = 1 }, { ingredient = "Quorforged Juggernaut Plating", quantity = 1 }, { ingredient = "Iron Juggernaut Parts", quantity = 1 }, { ingredient = "Iron Juggernaut Plating", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Pliable Ingot"
+augments = []
+note = "Cannith Melting Station: makes the manufactured ingredient Pliable Ingot; no augment counterpart."
+cost = [{ ingredient = "Iron Defender Rivets", quantity = 1 }, { ingredient = "Iron Defender Claws", quantity = 1 }, { ingredient = "Magefire Cannon Parts", quantity = 1 }, { ingredient = "Magefire Cannon Core", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Glowing Ingot"
+augments = []
+note = "Cannith Melting Station: makes the manufactured ingredient Glowing Ingot; no augment counterpart."
+cost = [{ ingredient = "Magefire Cannon Parts", quantity = 1 }, { ingredient = "Magefire Cannon Core", quantity = 1 }, { ingredient = "Quorforged Juggernaut Parts", quantity = 1 }, { ingredient = "Quorforged Juggernaut Plating", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Durable Alloy"
+augments = []
+note = "Cannith Melting Station: makes the manufactured ingredient Durable Alloy; no augment counterpart."
+cost = [{ ingredient = "Metallic Ingot", quantity = 1 }, { ingredient = "Dense Ingot", quantity = 1 }, { ingredient = "Iron Defender Rivets", quantity = 1 }, { ingredient = "Iron Defender Claws", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Volatile Alloy"
+augments = []
+note = "Cannith Melting Station: makes the manufactured ingredient Volatile Alloy; no augment counterpart."
+cost = [{ ingredient = "Glowing Ingot", quantity = 1 }, { ingredient = "Pliable Ingot", quantity = 1 }, { ingredient = "Quorforged Juggernaut Parts", quantity = 1 }, { ingredient = "Quorforged Juggernaut Plating", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Fortified Compound"
+augments = []
+note = "Cannith Melting Station: makes the manufactured ingredient Fortified Compound; no augment counterpart."
+cost = [{ ingredient = "Durable Alloy", quantity = 1 }, { ingredient = "Metallic Ingot", quantity = 1 }, { ingredient = "Dense Ingot", quantity = 1 }, { ingredient = "Pliable Ingot", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Mercurial Compound"
+augments = []
+note = "Cannith Melting Station: makes the manufactured ingredient Mercurial Compound; no augment counterpart."
+cost = [{ ingredient = "Volatile Alloy", quantity = 1 }, { ingredient = "Glowing Ingot", quantity = 1 }, { ingredient = "Pliable Ingot", quantity = 1 }, { ingredient = "Dense Ingot", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Reforged Metallic Ingot"
+augments = []
+note = "Cannith Melting Station: makes the manufactured ingredient Metallic Ingot; no augment counterpart. The page names the recipe Reforged Metallic Ingot and shows the Metallic Ingot icon."
+cost = [{ ingredient = "Iron Defender Rivets", quantity = 5 }, { ingredient = "Magefire Cannon Parts", quantity = 5 }, { ingredient = "Worker Drone Platings", quantity = 5 }, { ingredient = "Shield Guardian Gyroscopes", quantity = 5 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Reforged Dense Ingot"
+augments = []
+note = "Cannith Melting Station: makes the manufactured ingredient Dense Ingot; no augment counterpart. The page names the recipe Reforged Dense Ingot and shows the Dense Ingot icon."
+cost = [{ ingredient = "Iron Defender Rivets", quantity = 5 }, { ingredient = "Magefire Cannon Parts", quantity = 5 }, { ingredient = "Worker Drone Actuators", quantity = 5 }, { ingredient = "Shield Guardian Cores", quantity = 5 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Reforged Pliable Ingot"
+augments = []
+note = "Cannith Melting Station: makes the manufactured ingredient Pliable Ingot; no augment counterpart. The page names the recipe Reforged Pliable Ingot and shows the Pliable Ingot icon."
+cost = [{ ingredient = "Worker Drone Actuators", quantity = 5 }, { ingredient = "Shield Guardian Cores", quantity = 5 }, { ingredient = "Worker Drone Platings", quantity = 5 }, { ingredient = "Shield Guardian Gyroscopes", quantity = 5 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Reforged Glowing Ingot"
+augments = []
+note = "Cannith Melting Station: makes the manufactured ingredient Glowing Ingot; no augment counterpart. The page names the recipe Reforged Glowing Ingot and shows the Glowing Ingot icon. The page lists 5 Worker Drone Actuators and 5 Shield Guardian Cores twice each; recorded as 10 of each."
+cost = [{ ingredient = "Worker Drone Actuators", quantity = 10 }, { ingredient = "Shield Guardian Cores", quantity = 10 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Energizing Alloy"
+augments = []
+note = "Cannith Melting Station: makes the manufactured ingredient Energizing Alloy; no augment counterpart. The page shows it with the Durable Alloy icon."
+cost = [{ ingredient = "Metallic Ingot", quantity = 1 }, { ingredient = "Pliable Ingot", quantity = 1 }, { ingredient = "Worker Drone Platings", quantity = 5 }, { ingredient = "Shield Guardian Gyroscopes", quantity = 5 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Dampening Alloy"
+augments = []
+note = "Cannith Melting Station: makes the manufactured ingredient Dampening Alloy; no augment counterpart. The page shows it with the Volatile Alloy icon."
+cost = [{ ingredient = "Dense Ingot", quantity = 1 }, { ingredient = "Glowing Ingot", quantity = 1 }, { ingredient = "Worker Drone Actuators", quantity = 5 }, { ingredient = "Shield Guardian Cores", quantity = 5 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Caustic Compound"
+augments = []
+note = "Cannith Melting Station: makes the manufactured ingredient Caustic Compound; no augment counterpart. The page shows it with the Fortified Compound icon."
+cost = [{ ingredient = "Durable Alloy", quantity = 1 }, { ingredient = "Metallic Ingot", quantity = 1 }, { ingredient = "Dense Ingot", quantity = 1 }, { ingredient = "Pliable Ingot", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Stabilizing Compound"
+augments = []
+note = "Cannith Melting Station: makes the manufactured ingredient Stabilizing Compound; no augment counterpart. The page shows it with the Mercurial Compound icon."
+cost = [{ ingredient = "Volatile Alloy", quantity = 1 }, { ingredient = "Metallic Ingot", quantity = 1 }, { ingredient = "Dense Ingot", quantity = 1 }, { ingredient = "Glowing Ingot", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: alchemical material type"
+option = "Reforge Item (Adamantine)"
+augments = ["Adamantine: Mystical 1: Impulse +90, Mystical 2: Kinetic Lore VI"]
+note = "Cannith Reforging Station: reforge the prototype weapon or shield; it becomes Bound to Account and ML14. The page cautions that Cold Iron and Silver share a recipe, as do Crystal and Flametouched Iron. The Reforging Station page gives the Mystical Tier 1 effect as Laceration +90; the main page and Maetrim's augment give Impulse +90, and his value stands."
+cost = [{ ingredient = "Dense Ingot", quantity = 1 }, { ingredient = "Metallic Ingot", quantity = 1 }, { ingredient = "Glowing Ingot", quantity = 1 }, { ingredient = "Cannith Power Cell", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: alchemical material type"
+option = "Reforge Item (Byeshk)"
+augments = ["Byeshk: Mystical 1: Nullification +90, Mystical 2: Void Lore VI"]
+note = "Cannith Reforging Station: reforge the prototype weapon or shield; it becomes Bound to Account and ML14. The page cautions that Cold Iron and Silver share a recipe, as do Crystal and Flametouched Iron."
+cost = [{ ingredient = "Pliable Ingot", quantity = 1 }, { ingredient = "Metallic Ingot", quantity = 1 }, { ingredient = "Dense Ingot", quantity = 1 }, { ingredient = "Cannith Power Cell", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: alchemical material type"
+option = "Reforge Item (Cold Iron)"
+augments = ["Cold Iron: Mystical 1: Resonance +90, Mystical 2: Sonic Lore VI"]
+note = "Cannith Reforging Station: reforge the prototype weapon or shield; it becomes Bound to Account and ML14. The page cautions that Cold Iron and Silver share a recipe, as do Crystal and Flametouched Iron."
+cost = [{ ingredient = "Metallic Ingot", quantity = 1 }, { ingredient = "Glowing Ingot", quantity = 1 }, { ingredient = "Pliable Ingot", quantity = 1 }, { ingredient = "Cannith Power Cell", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: alchemical material type"
+option = "Reforge Item (Crystal)"
+augments = ["Crystal: Mystical 1: Impulse +90, Mystical 2: Kinetic Lore VI"]
+note = "Cannith Reforging Station: reforge the prototype weapon or shield; it becomes Bound to Account and ML14. The page cautions that Cold Iron and Silver share a recipe, as do Crystal and Flametouched Iron."
+cost = [{ ingredient = "Glowing Ingot", quantity = 1 }, { ingredient = "Pliable Ingot", quantity = 1 }, { ingredient = "Dense Ingot", quantity = 1 }, { ingredient = "Cannith Power Cell", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: alchemical material type"
+option = "Reforge Item (Flametouched Iron)"
+augments = ["Flametouched Iron: Mystical 1: Devotion +90, Mystical 2: Healing Lore VI"]
+note = "Cannith Reforging Station: reforge the prototype weapon or shield; it becomes Bound to Account and ML14. The page cautions that Cold Iron and Silver share a recipe, as do Crystal and Flametouched Iron."
+cost = [{ ingredient = "Glowing Ingot", quantity = 1 }, { ingredient = "Pliable Ingot", quantity = 1 }, { ingredient = "Dense Ingot", quantity = 1 }, { ingredient = "Cannith Power Cell", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: alchemical material type"
+option = "Reforge Item (Silver)"
+augments = ["Silver: Mystical 1: Radiance +90, Mystical 2: Radiance Lore VI"]
+note = "Cannith Reforging Station: reforge the prototype weapon or shield; it becomes Bound to Account and ML14. The page cautions that Cold Iron and Silver share a recipe, as do Crystal and Flametouched Iron."
+cost = [{ ingredient = "Metallic Ingot", quantity = 1 }, { ingredient = "Glowing Ingot", quantity = 1 }, { ingredient = "Pliable Ingot", quantity = 1 }, { ingredient = "Cannith Power Cell", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: alchemical tier 1"
+option = "Martial Tier 1: Air"
+augments = ["Martial: Shocking Burst, Stunning +10, Heightened Awareness 4"]
+note = "Cannith Binding Station."
+cost = [{ ingredient = "Durable Alloy", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: alchemical tier 1"
+option = "Martial Tier 1: Earth"
+augments = ["Martial: Acid Burst, Greater Stone Prison, Earthgrab"]
+note = "Cannith Binding Station."
+cost = [{ ingredient = "Durable Alloy", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: alchemical tier 1"
+option = "Martial Tier 1: Fire"
+augments = ["Martial: Flaming Burst, Flaming Blast, Seeker +10"]
+note = "Cannith Binding Station."
+cost = [{ ingredient = "Durable Alloy", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: alchemical tier 1"
+option = "Martial Tier 1: Water"
+augments = ["Martial: Icy Burst, Freezing Ice, Fire Shield (Cold)"]
+note = "Cannith Binding Station."
+cost = [{ ingredient = "Durable Alloy", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: alchemical tier 1"
+option = "Mystical Tier 1: Air"
+augments = ["Mystical: Magnetism +90, Metal Type Effect, Air Guard"]
+note = "Cannith Binding Station. The Binding Station page gives Superior <element> IX and a Superior IX metal-type effect where the main page and Maetrim's augment give +90."
+cost = [{ ingredient = "Volatile Alloy", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: alchemical tier 1"
+option = "Mystical Tier 1: Earth"
+augments = ["Mystical: Corrosion +90, Metal Type Effect, Earthgrab Guard"]
+note = "Cannith Binding Station. The Binding Station page gives Superior <element> IX and a Superior IX metal-type effect where the main page and Maetrim's augment give +90."
+cost = [{ ingredient = "Volatile Alloy", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: alchemical tier 1"
+option = "Mystical Tier 1: Fire"
+augments = ["Mystical: Combustion +90, Metal Type Effect, Magma Surge Guard"]
+note = "Cannith Binding Station. The Binding Station page gives Superior <element> IX and a Superior IX metal-type effect where the main page and Maetrim's augment give +90."
+cost = [{ ingredient = "Volatile Alloy", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: alchemical tier 1"
+option = "Mystical Tier 1: Water"
+augments = ["Mystical: Glaciation +90, Metal Type Effect, Freezing Ice Guard"]
+note = "Cannith Binding Station. The Binding Station page gives Superior <element> IX and a Superior IX metal-type effect where the main page and Maetrim's augment give +90."
+cost = [{ ingredient = "Volatile Alloy", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: alchemical tier 2"
+option = "Martial Tier 2: Air"
+augments = ["Martial: Alchemical Dexterity +2, Lighting Strike, Doublestrike 6%"]
+note = "Cannith Binding Station. The page shows the compound's icon without a count; recorded as 1. Maetrim's augment name spells Lightning Strike as Lighting Strike."
+cost = [{ ingredient = "Durable Alloy", quantity = 1 }, { ingredient = "Fortified Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: alchemical tier 2"
+option = "Martial Tier 2: Earth"
+augments = ["Martial: Alchemical Constitution +2, Acid Blast, Disintegration"]
+note = "Cannith Binding Station. The page shows the compound's icon without a count; recorded as 1."
+cost = [{ ingredient = "Durable Alloy", quantity = 1 }, { ingredient = "Fortified Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: alchemical tier 2"
+option = "Martial Tier 2: Fire"
+augments = ["Martial: Alchemical Strength +2, Incineration, Righteous"]
+note = "Cannith Binding Station. The page shows the compound's icon without a count; recorded as 1."
+cost = [{ ingredient = "Durable Alloy", quantity = 1 }, { ingredient = "Fortified Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: alchemical tier 2"
+option = "Martial Tier 2: Water"
+augments = ["Martial: Alchemical Wisdom +2, Crushing Wave, Corrosive Salt"]
+note = "Cannith Binding Station. The page shows the compound's icon without a count; recorded as 1."
+cost = [{ ingredient = "Durable Alloy", quantity = 1 }, { ingredient = "Fortified Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: alchemical tier 2"
+option = "Mystical Tier 2: Air"
+augments = ["Mystical: Lightning Lore VI, Greater Spark, Metal Type Effect"]
+note = "Cannith Binding Station. The page shows the compound's icon without a count; recorded as 1. The Binding Station page names the effects Superior <element> Lore and Superior <spell> IX; the main page and Maetrim give Lore VI and Greater <spell> (+20)."
+cost = [{ ingredient = "Volatile Alloy", quantity = 1 }, { ingredient = "Mercurial Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: alchemical tier 2"
+option = "Mystical Tier 2: Earth"
+augments = ["Mystical: Acid Lore VI, Greater Erosion, Metal Type Effect"]
+note = "Cannith Binding Station. The page shows the compound's icon without a count; recorded as 1. The Binding Station page names the effects Superior <element> Lore and Superior <spell> IX; the main page and Maetrim give Lore VI and Greater <spell> (+20)."
+cost = [{ ingredient = "Volatile Alloy", quantity = 1 }, { ingredient = "Mercurial Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: alchemical tier 2"
+option = "Mystical Tier 2: Fire"
+augments = ["Mystical: Fire Lore VI, Greater Inferno, Metal Type Effect"]
+note = "Cannith Binding Station. The page shows the compound's icon without a count; recorded as 1. The Binding Station page names the effects Superior <element> Lore and Superior <spell> IX; the main page and Maetrim give Lore VI and Greater <spell> (+20)."
+cost = [{ ingredient = "Volatile Alloy", quantity = 1 }, { ingredient = "Mercurial Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: alchemical tier 2"
+option = "Mystical Tier 2: Water"
+augments = ["Mystical: Ice Lore VI, Greater Freeze, Metal Type Effect"]
+note = "Cannith Binding Station. The page shows the compound's icon without a count; recorded as 1. The Binding Station page names the effects Superior <element> Lore and Superior <spell> IX; the main page and Maetrim give Lore VI and Greater <spell> (+20)."
+cost = [{ ingredient = "Volatile Alloy", quantity = 1 }, { ingredient = "Mercurial Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: alchemical tier 3"
+option = "Martial Tier 3: Air"
+augments = ["Martial: +6 Enhancement Bonus, Electric Storm, Red Augment Slot"]
+grants_slot = "red"
+note = "Cannith Binding Station; adds an empty Red augment slot."
+cost = [{ ingredient = "Fortified Compound", quantity = 2 }, { ingredient = "Token of the Twelve", quantity = 5 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: alchemical tier 3"
+option = "Martial Tier 3: Earth"
+augments = ["Martial: +6 Enhancement Bonus, Acid Torrent, Red Augment Slot"]
+grants_slot = "red"
+note = "Cannith Binding Station; adds an empty Red augment slot."
+cost = [{ ingredient = "Fortified Compound", quantity = 2 }, { ingredient = "Token of the Twelve", quantity = 5 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: alchemical tier 3"
+option = "Martial Tier 3: Fire"
+augments = ["Martial: +6 Enhancement Bonus, Fiery Detonation, Red Augment Slot"]
+grants_slot = "red"
+note = "Cannith Binding Station; adds an empty Red augment slot."
+cost = [{ ingredient = "Fortified Compound", quantity = 2 }, { ingredient = "Token of the Twelve", quantity = 5 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: alchemical tier 3"
+option = "Martial Tier 3: Water"
+augments = ["Martial: +6 Enhancement Bonus, Freezing Gale, Red Augment Slot"]
+grants_slot = "red"
+note = "Cannith Binding Station; adds an empty Red augment slot."
+cost = [{ ingredient = "Fortified Compound", quantity = 2 }, { ingredient = "Token of the Twelve", quantity = 5 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: alchemical tier 3"
+option = "Mystical Tier 3: Air"
+augments = ["Mystical: Efficient Metamagic - Enlarge II, Enchantment Focus +2, Spell Focus Mastery +1"]
+note = "Cannith Binding Station. The page shows the compound's icon without a count; recorded as 1. The Binding Station page names the focus Greater <school> Focus (and Earth's Greater Spell Penetration IX); the main page and Maetrim give <school> Focus +2 and Spell Penetration III."
+cost = [{ ingredient = "Volatile Alloy", quantity = 1 }, { ingredient = "Mercurial Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: alchemical tier 3"
+option = "Mystical Tier 3: Earth"
+augments = ["Mystical: Efficient Metamagic - Empower II, Conjuration Focus +2, Spell Penetration III"]
+note = "Cannith Binding Station. The page shows the compound's icon without a count; recorded as 1. The Binding Station page names the focus Greater <school> Focus (and Earth's Greater Spell Penetration IX); the main page and Maetrim give <school> Focus +2 and Spell Penetration III."
+cost = [{ ingredient = "Volatile Alloy", quantity = 1 }, { ingredient = "Mercurial Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: alchemical tier 3"
+option = "Mystical Tier 3: Fire"
+augments = ["Mystical: Efficient Metamagic - Maximize II, Evocation Focus +2, Arcane Augmentation IX"]
+note = "Cannith Binding Station. The page shows the compound's icon without a count; recorded as 1. The Binding Station page names the focus Greater <school> Focus (and Earth's Greater Spell Penetration IX); the main page and Maetrim give <school> Focus +2 and Spell Penetration III."
+cost = [{ ingredient = "Volatile Alloy", quantity = 1 }, { ingredient = "Mercurial Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: alchemical tier 3"
+option = "Mystical Tier 3: Water"
+augments = ["Mystical: Efficient Metamagic - Extend II, Transmutation Focus +2, Greater Elemental Spell Power"]
+note = "Cannith Binding Station. The page shows the compound's icon without a count; recorded as 1. The Binding Station page names the focus Greater <school> Focus (and Earth's Greater Spell Penetration IX); the main page and Maetrim give <school> Focus +2 and Spell Penetration III."
+cost = [{ ingredient = "Volatile Alloy", quantity = 1 }, { ingredient = "Mercurial Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: legendary alchemical material"
+option = "Tier 0: Adamantine"
+augments = ["Adamantine"]
+note = "Cannith Reforging Station: combine the prototype blank with 50 Threads of Fate."
+cost = [{ ingredient = "Thread of Fate", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: legendary alchemical material"
+option = "Tier 0: Byeshk"
+augments = ["Byeshk"]
+note = "Cannith Reforging Station: combine the prototype blank with 50 Threads of Fate."
+cost = [{ ingredient = "Thread of Fate", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: legendary alchemical material"
+option = "Tier 0: Cold Iron"
+augments = ["Cold Iron"]
+note = "Cannith Reforging Station: combine the prototype blank with 50 Threads of Fate."
+cost = [{ ingredient = "Thread of Fate", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: legendary alchemical material"
+option = "Tier 0: Crystal"
+augments = ["Crystal"]
+note = "Cannith Reforging Station: combine the prototype blank with 50 Threads of Fate."
+cost = [{ ingredient = "Thread of Fate", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: legendary alchemical material"
+option = "Tier 0: Flametouched Iron"
+augments = ["Flametouched Iron"]
+note = "Cannith Reforging Station: combine the prototype blank with 50 Threads of Fate."
+cost = [{ ingredient = "Thread of Fate", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: legendary alchemical material"
+option = "Tier 0: Silver"
+augments = ["Silver"]
+note = "Cannith Reforging Station: combine the prototype blank with 50 Threads of Fate."
+cost = [{ ingredient = "Thread of Fate", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: legendary alchemical material"
+option = "Tier 0: Mithral"
+augments = []
+note = "Cannith Reforging Station: combine the prototype blank with 50 Threads of Fate. The page lists Mithral (breaks Mithril DR); Maetrim's Alchemical family has no Mithral material augment."
+cost = [{ ingredient = "Thread of Fate", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: legendary alchemical tier 1"
+option = "Air: Shocking Blast 6, Sovereign Lightning Strike"
+augments = ["Air I: Electric Blast + Lightning Strike"]
+note = "The page gives Shocking Blast 6 and Sovereign Lightning Strike; Maetrim names it Electric Blast + Lightning Strike."
+cost = [{ ingredient = "Thread of Fate", quantity = 50 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: legendary alchemical tier 1"
+option = "Air: Heightened Awareness +6, Legendary Lightning Storm Guard"
+augments = ["Air I: Heightened Awareness + Lightning Storm guard(Alchemical)"]
+note = "The page notes Heightened Awareness gives +6 Insightful AC, not saves."
+cost = [{ ingredient = "Thread of Fate", quantity = 50 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: legendary alchemical tier 1"
+option = "Air: Spell Resistance +40, Magical Sheltering +35"
+augments = ["Air I: MRR and Spell Resistance"]
+cost = [{ ingredient = "Thread of Fate", quantity = 50 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: legendary alchemical tier 1"
+option = "Air: Magnetism +148, Lightning Lore +22%"
+augments = ["Air I: Magnetism"]
+cost = [{ ingredient = "Thread of Fate", quantity = 50 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: legendary alchemical tier 1"
+option = "Air: Resonance +148, Sonic Lore +22%"
+augments = ["Air I: Resonance"]
+cost = [{ ingredient = "Thread of Fate", quantity = 50 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: legendary alchemical tier 1"
+option = "Earth: Acid Blast 6, Legendary Stone Prison"
+augments = ["Earth I: Acid Blast + Stone Prison"]
+cost = [{ ingredient = "Thread of Fate", quantity = 50 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: legendary alchemical tier 1"
+option = "Earth: Crippling, Legendary Earthgrab Guard"
+augments = ["Earth I: Crippling + Earthgrab Guard"]
+cost = [{ ingredient = "Thread of Fate", quantity = 50 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: legendary alchemical tier 1"
+option = "Earth: Fortification +148%, Physical Sheltering +35"
+augments = ["Earth I: Fortification and PRR"]
+cost = [{ ingredient = "Thread of Fate", quantity = 50 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: legendary alchemical tier 1"
+option = "Earth: Corrosion +148, Acid Lore +22%"
+augments = ["Earth I: Corrosion"]
+cost = [{ ingredient = "Thread of Fate", quantity = 50 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: legendary alchemical tier 1"
+option = "Earth: Nullification +148, Void Lore +22%"
+augments = ["Earth I: Nullification"]
+cost = [{ ingredient = "Thread of Fate", quantity = 50 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: legendary alchemical tier 1"
+option = "Water: Icy Blast 6, Concentrated Corrosive Salt"
+augments = ["Cold I: Cold Blast + Corrosive Salt"]
+note = "The page gives Icy Blast 6; Maetrim names it Cold Blast. The page's Water element is Maetrim's Cold."
+cost = [{ ingredient = "Thread of Fate", quantity = 50 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: legendary alchemical tier 1"
+option = "Water: Fire Shield (Cold) (constantly on), Legendary Ice Shards Guard"
+augments = ["Cold I: Fire Shield (Cold) + Ice Shards Guard"]
+note = "The page's Water element is Maetrim's Cold."
+cost = [{ ingredient = "Thread of Fate", quantity = 50 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: legendary alchemical tier 1"
+option = "Water: Glaciation +148, Ice Lore +22%"
+augments = ["Cold I: Glaciation"]
+note = "The page's Water element is Maetrim's Cold."
+cost = [{ ingredient = "Thread of Fate", quantity = 50 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: legendary alchemical tier 1"
+option = "Water: Impulse +148, Kinetic Lore +22%"
+augments = ["Cold I: Impulse"]
+note = "The page's Water element is Maetrim's Cold."
+cost = [{ ingredient = "Thread of Fate", quantity = 50 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: legendary alchemical tier 1"
+option = "Water: Reconstruction +148, Repair Lore +22%"
+augments = ["Cold I: Reconstruction"]
+note = "The page's Water element is Maetrim's Cold."
+cost = [{ ingredient = "Thread of Fate", quantity = 50 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: legendary alchemical tier 1"
+option = "Fire: Flaming Blast 6, Overwhelming Incineration"
+augments = ["Fire I: Flaming Blast + Overwhelming Incineration"]
+cost = [{ ingredient = "Thread of Fate", quantity = 50 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: legendary alchemical tier 1"
+option = "Fire: Seeker +13, Legendary Magma Surge Guard"
+augments = ["Fire I: Seeker + Legendary Magma Surge Guard"]
+cost = [{ ingredient = "Thread of Fate", quantity = 50 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: legendary alchemical tier 1"
+option = "Fire: Combustion +148, Fire Lore +22%"
+augments = ["Fire I: Combustion"]
+cost = [{ ingredient = "Thread of Fate", quantity = 50 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: legendary alchemical tier 1"
+option = "Fire: Radiance +148, Radiance Lore +22%"
+augments = ["Fire I: Radiance"]
+cost = [{ ingredient = "Thread of Fate", quantity = 50 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: legendary alchemical tier 1"
+option = "Fire: Devotion +148, Healing Lore +22%"
+augments = ["Fire I: Devotion"]
+cost = [{ ingredient = "Thread of Fate", quantity = 50 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: legendary alchemical tier 2"
+option = "Air: Legendary Electric Storm"
+augments = ["Air II: Electric Storm"]
+cost = [{ ingredient = "Thread of Fate", quantity = 100 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: legendary alchemical tier 2"
+option = "Air: Alchemical Dexterity +2"
+augments = ["Air II: Alchemical Dexterity"]
+cost = [{ ingredient = "Thread of Fate", quantity = 100 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: legendary alchemical tier 2"
+option = "Air: Doubleshot +8%"
+augments = ["Air II: Doubleshot"]
+note = "The page warns it does not function on melee weapons."
+cost = [{ ingredient = "Thread of Fate", quantity = 100 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: legendary alchemical tier 2"
+option = "Air: Efficient Metamagic - Enlarge II"
+augments = ["Air II: Efficient Metamagic: Enlarge II"]
+cost = [{ ingredient = "Thread of Fate", quantity = 100 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: legendary alchemical tier 2"
+option = "Air: Vertigo +15"
+augments = ["Air II: Vertigo"]
+cost = [{ ingredient = "Thread of Fate", quantity = 100 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: legendary alchemical tier 2"
+option = "Earth: Legendary Acid Torrent"
+augments = ["Earth II: Acid Torrent"]
+cost = [{ ingredient = "Thread of Fate", quantity = 100 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: legendary alchemical tier 2"
+option = "Earth: Alchemical Constitution +2"
+augments = ["Earth II: Alchemical Constitution"]
+cost = [{ ingredient = "Thread of Fate", quantity = 100 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: legendary alchemical tier 2"
+option = "Earth: Alchemical Intelligence +2"
+augments = ["Earth II: Alchemical Intelligence"]
+cost = [{ ingredient = "Thread of Fate", quantity = 100 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: legendary alchemical tier 2"
+option = "Earth: Efficient Metamagic - Empower II"
+augments = ["Earth II: Efficient Metamagic: Empower II"]
+cost = [{ ingredient = "Thread of Fate", quantity = 100 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: legendary alchemical tier 2"
+option = "Earth: Shatter +15"
+augments = ["Earth II: Shatter"]
+cost = [{ ingredient = "Thread of Fate", quantity = 100 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: legendary alchemical tier 2"
+option = "Water: Legendary Freezing Gale"
+augments = ["Cold II: Freezing Gale"]
+note = "The page's Water element is Maetrim's Cold."
+cost = [{ ingredient = "Thread of Fate", quantity = 100 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: legendary alchemical tier 2"
+option = "Water: Alchemical Wisdom +2"
+augments = ["Cold II: Alchemical Wisdom"]
+note = "The page's Water element is Maetrim's Cold."
+cost = [{ ingredient = "Thread of Fate", quantity = 100 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: legendary alchemical tier 2"
+option = "Water: Alchemical Charisma +2"
+augments = ["Cold II: Alchemical Charisma"]
+note = "The page's Water element is Maetrim's Cold."
+cost = [{ ingredient = "Thread of Fate", quantity = 100 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: legendary alchemical tier 2"
+option = "Water: Efficient Metamagic - Extend II"
+augments = ["Cold II: Efficient Metamagic: Extend II"]
+note = "The page's Water element is Maetrim's Cold."
+cost = [{ ingredient = "Thread of Fate", quantity = 100 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: legendary alchemical tier 2"
+option = "Water: Assassinate +6"
+augments = ["Cold II: Assassinate"]
+note = "The page's Water element is Maetrim's Cold."
+cost = [{ ingredient = "Thread of Fate", quantity = 100 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: legendary alchemical tier 2"
+option = "Fire: Legendary Fiery Detonation"
+augments = ["Fire II: Fiery Detonation"]
+cost = [{ ingredient = "Thread of Fate", quantity = 100 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: legendary alchemical tier 2"
+option = "Fire: Alchemical Strength +2"
+augments = ["Fire II: Alchemical Strength"]
+cost = [{ ingredient = "Thread of Fate", quantity = 100 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: legendary alchemical tier 2"
+option = "Fire: Doublestrike +15%"
+augments = ["Fire II: Doublestrike"]
+note = "The page warns it does not function on ranged weapons."
+cost = [{ ingredient = "Thread of Fate", quantity = 100 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: legendary alchemical tier 2"
+option = "Fire: Efficient Metamagic - Maximize II"
+augments = ["Fire II: Efficient Metamagic: Maximize II"]
+cost = [{ ingredient = "Thread of Fate", quantity = 100 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: legendary alchemical tier 2"
+option = "Fire: Stunning +15"
+augments = ["Fire II: Stunning"]
+cost = [{ ingredient = "Thread of Fate", quantity = 100 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: legendary alchemical t3"
+option = "Air: Alchemical Air Attunement, Orange slot"
+augments = ["Air III: Air Attunement"]
+grants_slot = "orange"
+note = "The page notes the Tier 3 element must match the Tier 1 or Tier 2 element."
+cost = [{ ingredient = "Thread of Fate", quantity = 250 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: legendary alchemical t3"
+option = "Air: Improved Electric Augmentation IX, Purple slot"
+augments = ["Air III: Improved Electric Augmentation"]
+grants_slot = "purple"
+note = "The page notes the Tier 3 element must match the Tier 1 or Tier 2 element."
+cost = [{ ingredient = "Thread of Fate", quantity = 250 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: legendary alchemical t3"
+option = "Air: Enchantment Focus +6, Green slot"
+augments = ["Air III: Enchantment Focus"]
+grants_slot = "green"
+note = "The page notes the Tier 3 element must match the Tier 1 or Tier 2 element."
+cost = [{ ingredient = "Thread of Fate", quantity = 250 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: legendary alchemical t3"
+option = "Air: Illusion Focus +6, Green slot"
+augments = ["Air III: Illusion Focus"]
+grants_slot = "green"
+note = "The page notes the Tier 3 element must match the Tier 1 or Tier 2 element."
+cost = [{ ingredient = "Thread of Fate", quantity = 250 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: legendary alchemical t3"
+option = "Earth: Alchemical Earth Attunement, Orange slot"
+augments = ["Earth III: Earth Attunement"]
+grants_slot = "orange"
+note = "The page notes the Tier 3 element must match the Tier 1 or Tier 2 element."
+cost = [{ ingredient = "Thread of Fate", quantity = 250 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: legendary alchemical t3"
+option = "Earth: Improved Acid Augmentation IX, Purple slot"
+augments = ["Earth III: Improved Acid Augmentation"]
+grants_slot = "purple"
+note = "The page notes the Tier 3 element must match the Tier 1 or Tier 2 element."
+cost = [{ ingredient = "Thread of Fate", quantity = 250 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: legendary alchemical t3"
+option = "Earth: Conjuration Focus +6, Green slot"
+augments = ["Earth III: Conjuration Focus"]
+grants_slot = "green"
+note = "The page notes the Tier 3 element must match the Tier 1 or Tier 2 element."
+cost = [{ ingredient = "Thread of Fate", quantity = 250 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: legendary alchemical t3"
+option = "Earth: Transmutation Focus +6, Green slot"
+augments = ["Earth III: Transmutation Focus"]
+grants_slot = "green"
+note = "The page notes the Tier 3 element must match the Tier 1 or Tier 2 element."
+cost = [{ ingredient = "Thread of Fate", quantity = 250 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: legendary alchemical t3"
+option = "Water: Alchemical Water Attunement, Orange slot"
+augments = ["Cold III: Water Attunement"]
+grants_slot = "orange"
+note = "The page notes the Tier 3 element must match the Tier 1 or Tier 2 element. The page's Water element is Maetrim's Cold."
+cost = [{ ingredient = "Thread of Fate", quantity = 250 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: legendary alchemical t3"
+option = "Water: Improved Cold Augmentation IX, Purple slot"
+augments = ["Cold III: Improved Cold Augmentation"]
+grants_slot = "purple"
+note = "The page notes the Tier 3 element must match the Tier 1 or Tier 2 element. The page's Water element is Maetrim's Cold."
+cost = [{ ingredient = "Thread of Fate", quantity = 250 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: legendary alchemical t3"
+option = "Water: Spell Penetration +9, Purple slot"
+augments = ["Cold III: Spell Penetration"]
+grants_slot = "purple"
+note = "The page notes the Tier 3 element must match the Tier 1 or Tier 2 element. The page's Water element is Maetrim's Cold."
+cost = [{ ingredient = "Thread of Fate", quantity = 250 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: legendary alchemical t3"
+option = "Water: Necromancy Focus +6, Green slot"
+augments = ["Cold III: Necromancy Focus"]
+grants_slot = "green"
+note = "The page notes the Tier 3 element must match the Tier 1 or Tier 2 element. The page's Water element is Maetrim's Cold."
+cost = [{ ingredient = "Thread of Fate", quantity = 250 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: legendary alchemical t3"
+option = "Fire: Alchemical Fire Attunement, Orange slot"
+augments = ["Fire III: Fire Attunement"]
+grants_slot = "orange"
+note = "The page notes the Tier 3 element must match the Tier 1 or Tier 2 element."
+cost = [{ ingredient = "Thread of Fate", quantity = 250 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: legendary alchemical t3"
+option = "Fire: Improved Fire Augmentation IX, Purple slot"
+augments = ["Fire III: Improved Fire Augmentation"]
+grants_slot = "purple"
+note = "The page notes the Tier 3 element must match the Tier 1 or Tier 2 element."
+cost = [{ ingredient = "Thread of Fate", quantity = 250 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: legendary alchemical t3"
+option = "Fire: Resistance +11, Purple slot"
+augments = ["Fire III: Resistance"]
+grants_slot = "purple"
+note = "The page notes the Tier 3 element must match the Tier 1 or Tier 2 element."
+cost = [{ ingredient = "Thread of Fate", quantity = 250 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: legendary alchemical t3"
+option = "Fire: Evocation Focus +6, Green slot"
+augments = ["Fire III: Evocation Focus"]
+grants_slot = "green"
+note = "The page notes the Tier 3 element must match the Tier 1 or Tier 2 element."
+cost = [{ ingredient = "Thread of Fate", quantity = 250 }, { ingredient = "Stabilizing Compound", quantity = 1 }]

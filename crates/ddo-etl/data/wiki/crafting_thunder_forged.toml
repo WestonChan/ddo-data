@@ -1,0 +1,403 @@
+[[system]]
+name = "Thunder-Forged"
+page = "https://ddowiki.com/page/Thunder-Forged"
+read = "2026-09-29"
+pack = "Shadowfell Conspiracy"
+families = ["Thunderforged"]
+npc = "Magma Forge, in the lower area of The Ruins of Thunderholme; a fast travel NPC in The Thunder Peaks public area takes you there once you have defeated the Dragon Emissary (Sarva Bellistrae), flagging for the Temple of the Deathwyrm raid"
+
+[[system.ingredient]]
+name = "Thunder-Forged Dwarven Ingot"
+tier = "epic"
+bind = "Unbound"
+source = "Main Raid Chest, Fire on Thunder Peak and Temple of the Deathwyrm (14-26); Side Raid Chests, Fire on Thunder Peak and Temple of the Deathwyrm (Rare Drop: 0-3?); Rare Encounter Chests, The Ruins of Thunderholme (0-10?). Used for the base item and Tiers 1-3"
+
+[[system.ingredient]]
+name = "Commendation of Valor"
+tier = "epic"
+bind = "Bound to Character on Acquire"
+source = "Epic quest end rewards; Raid Side Chests (11-18?); Rare Encounter Chests, The Ruins of Thunderholme (Rare Drop: 0-14?). Used for the base item and Tiers 1-3"
+
+[[system.ingredient]]
+name = "Fire Dragon Scale"
+tier = "epic"
+bind = "Unbound"
+source = "Main Raid Chest, Fire on Thunder Peak (EN: 3-8, EH: 8-23, EE: 12-37). Used for Tiers 2-3"
+
+[[system.ingredient]]
+name = "Shadow Dragon Scale"
+tier = "epic"
+bind = "Unbound"
+source = "Main Raid Chest, Temple of the Deathwyrm (EN: 3-8, EH: 8-23, EE: 12-37). Used for Tiers 2-3"
+
+[[system.ingredient]]
+name = "Fire Dragon Phlogiston"
+tier = "epic"
+bind = "Bound to Account on Acquire"
+source = "Main Raid Chest, Fire on Thunder Peak (EN: 60%, EH: 80%, EE: 100%). Used for Tier 3; older Lamannia notes and the forge UI call it a Soul"
+
+[[system.ingredient]]
+name = "Shadow Dragon Phlogiston"
+tier = "epic"
+bind = "Bound to Account on Acquire"
+source = "Main Raid Chest, Temple of the Deathwyrm (EN: 60%, EH: 80%, EE: 100%). Used for Tier 3; older Lamannia notes and the forge UI call it a Soul"
+
+[[system.recipe]]
+tier = "epic"
+option = "Thunder-Forged (Tier 0) base weapon"
+augments = []
+note = "All recipe tables are on this page; the linked Thunder-Forged_weapons page is a weapon damage chart with no recipes. Creates the ML22 Tier 0 weapon (+9 Enhancement, Metalline, an Orange augment slot), any weapon type; no augment counterpart."
+cost = [{ ingredient = "Thunder-Forged Dwarven Ingot", quantity = 20 }, { ingredient = "Commendation of Valor", quantity = 15 }]
+
+[[system.recipe]]
+tier = "epic"
+slot = "crafting: thunderforged tier 1"
+option = "Blinding Fear"
+augments = ["Blinding Fear"]
+cost = [{ ingredient = "Thunder-Forged Dwarven Ingot", quantity = 60 }, { ingredient = "Commendation of Valor", quantity = 45 }]
+
+[[system.recipe]]
+tier = "epic"
+slot = "crafting: thunderforged tier 1"
+option = "1st Degree Burns"
+augments = ["1st Degree Burns"]
+cost = [{ ingredient = "Thunder-Forged Dwarven Ingot", quantity = 60 }, { ingredient = "Commendation of Valor", quantity = 45 }]
+
+[[system.recipe]]
+tier = "epic"
+slot = "crafting: thunderforged tier 1"
+option = "Touch of Flames"
+augments = ["Touch of Flames"]
+cost = [{ ingredient = "Thunder-Forged Dwarven Ingot", quantity = 60 }, { ingredient = "Commendation of Valor", quantity = 45 }]
+
+[[system.recipe]]
+tier = "epic"
+slot = "crafting: thunderforged tier 1"
+option = "Touch of Shadows"
+augments = ["Touch of Shadows"]
+cost = [{ ingredient = "Thunder-Forged Dwarven Ingot", quantity = 60 }, { ingredient = "Commendation of Valor", quantity = 45 }]
+
+[[system.recipe]]
+tier = "epic"
+slot = "crafting: thunderforged tier 1"
+option = "Dwarvencraft Potency"
+augments = ["Dwarvencraft Potency"]
+cost = [{ ingredient = "Thunder-Forged Dwarven Ingot", quantity = 60 }, { ingredient = "Commendation of Valor", quantity = 45 }]
+
+[[system.recipe]]
+tier = "epic"
+slot = "crafting: thunderforged tier 1"
+option = "Dwarvencraft <Spell-Power Type>"
+augments = ["Dwarvencraft Combustion", "Dwarvencraft Corrosion", "Dwarvencraft Devotion", "Dwarvencraft Glaciation", "Dwarvencraft Impulse", "Dwarvencraft Magnetism", "Dwarvencraft Nullification", "Dwarvencraft Radiance", "Dwarvencraft Reconstruction", "Dwarvencraft Resonance"]
+cost = [{ ingredient = "Thunder-Forged Dwarven Ingot", quantity = 60 }, { ingredient = "Commendation of Valor", quantity = 45 }]
+
+[[system.recipe]]
+tier = "epic"
+slot = "crafting: thunderforged tier 2"
+option = "Dragon's Blessing"
+augments = ["Dragon's Blessing"]
+cost = [{ ingredient = "Thunder-Forged Dwarven Ingot", quantity = 320 }, { ingredient = "Commendation of Valor", quantity = 240 }, { ingredient = "Fire Dragon Scale", quantity = 75 }, { ingredient = "Shadow Dragon Scale", quantity = 25 }]
+
+[[system.recipe]]
+tier = "epic"
+slot = "crafting: thunderforged tier 2"
+option = "Dragon's Edge"
+augments = ["Dragon's Edge"]
+cost = [{ ingredient = "Thunder-Forged Dwarven Ingot", quantity = 320 }, { ingredient = "Commendation of Valor", quantity = 240 }, { ingredient = "Fire Dragon Scale", quantity = 25 }, { ingredient = "Shadow Dragon Scale", quantity = 75 }]
+
+[[system.recipe]]
+tier = "epic"
+slot = "crafting: thunderforged tier 2"
+option = "2nd Degree Burns"
+augments = ["2nd Degree Burns"]
+cost = [{ ingredient = "Thunder-Forged Dwarven Ingot", quantity = 320 }, { ingredient = "Commendation of Valor", quantity = 240 }, { ingredient = "Fire Dragon Scale", quantity = 100 }]
+
+[[system.recipe]]
+tier = "epic"
+slot = "crafting: thunderforged tier 2"
+option = "Wrath of Flames"
+augments = ["Wrath of Flames"]
+cost = [{ ingredient = "Thunder-Forged Dwarven Ingot", quantity = 320 }, { ingredient = "Commendation of Valor", quantity = 240 }, { ingredient = "Fire Dragon Scale", quantity = 100 }]
+
+[[system.recipe]]
+tier = "epic"
+slot = "crafting: thunderforged tier 2"
+option = "Paralyzing Fear"
+augments = ["Paralyzing Fear"]
+cost = [{ ingredient = "Thunder-Forged Dwarven Ingot", quantity = 320 }, { ingredient = "Commendation of Valor", quantity = 240 }, { ingredient = "Shadow Dragon Scale", quantity = 100 }]
+
+[[system.recipe]]
+tier = "epic"
+slot = "crafting: thunderforged tier 2"
+option = "Wrath of Shadows"
+augments = ["Wrath of Shadows"]
+cost = [{ ingredient = "Thunder-Forged Dwarven Ingot", quantity = 320 }, { ingredient = "Commendation of Valor", quantity = 240 }, { ingredient = "Shadow Dragon Scale", quantity = 100 }]
+
+[[system.recipe]]
+tier = "epic"
+slot = "crafting: thunderforged tier 2"
+option = "Dwarvencraft Focus"
+augments = ["Dwarvencraft Focus"]
+cost = [{ ingredient = "Thunder-Forged Dwarven Ingot", quantity = 320 }, { ingredient = "Commendation of Valor", quantity = 240 }, { ingredient = "Fire Dragon Scale", quantity = 50 }, { ingredient = "Shadow Dragon Scale", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+slot = "crafting: thunderforged tier 2"
+option = "Dwarvencraft <Spell-school> Focus"
+augments = ["Dwarvencraft Abjuration Focus", "Dwarvencraft Conjuration Focus", "Dwarvencraft Enchantment Focus", "Dwarvencraft Evocation Focus", "Dwarvencraft Illusion Focus", "Dwarvencraft Necromancy Focus", "Dwarvencraft Transmutation Focus"]
+cost = [{ ingredient = "Thunder-Forged Dwarven Ingot", quantity = 320 }, { ingredient = "Commendation of Valor", quantity = 240 }, { ingredient = "Fire Dragon Scale", quantity = 50 }, { ingredient = "Shadow Dragon Scale", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+slot = "crafting: thunderforged tier 2"
+option = "Dwarvencraft Spell Penetration"
+augments = ["Dwarvencraft Spell Penetration"]
+cost = [{ ingredient = "Thunder-Forged Dwarven Ingot", quantity = 320 }, { ingredient = "Commendation of Valor", quantity = 240 }, { ingredient = "Fire Dragon Scale", quantity = 50 }, { ingredient = "Shadow Dragon Scale", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+slot = "crafting: thunderforged tier 2"
+option = "Green Augment Slot"
+augments = ["Green Augment Slot"]
+grants_slot = "green"
+note = "The page notes a Tier 2 augment slot excludes every other Tier 2 effect and the other slot."
+cost = [{ ingredient = "Thunder-Forged Dwarven Ingot", quantity = 720 }, { ingredient = "Commendation of Valor", quantity = 240 }]
+
+[[system.recipe]]
+tier = "epic"
+slot = "crafting: thunderforged tier 2"
+option = "Purple Augment Slot"
+augments = ["Purple Augment Slot"]
+grants_slot = "purple"
+note = "The page notes a Tier 2 augment slot excludes every other Tier 2 effect and the other slot."
+cost = [{ ingredient = "Thunder-Forged Dwarven Ingot", quantity = 720 }, { ingredient = "Commendation of Valor", quantity = 240 }]
+
+[[system.recipe]]
+tier = "epic"
+slot = "crafting: thunderforged tier 3"
+option = "Ice Storm"
+augments = ["Ice Storm"]
+cost = [{ ingredient = "Thunder-Forged Dwarven Ingot", quantity = 800 }, { ingredient = "Commendation of Valor", quantity = 600 }, { ingredient = "Fire Dragon Scale", quantity = 200 }, { ingredient = "Shadow Dragon Phlogiston", quantity = 30 }]
+
+[[system.recipe]]
+tier = "epic"
+slot = "crafting: thunderforged tier 3"
+option = "3rd Degree Burns"
+augments = ["3rd Degree Burns"]
+cost = [{ ingredient = "Thunder-Forged Dwarven Ingot", quantity = 800 }, { ingredient = "Commendation of Valor", quantity = 600 }, { ingredient = "Fire Dragon Scale", quantity = 200 }, { ingredient = "Shadow Dragon Phlogiston", quantity = 30 }]
+
+[[system.recipe]]
+tier = "epic"
+slot = "crafting: thunderforged tier 3"
+option = "Crippling Flames"
+augments = ["Crippling Flames"]
+cost = [{ ingredient = "Thunder-Forged Dwarven Ingot", quantity = 800 }, { ingredient = "Commendation of Valor", quantity = 600 }, { ingredient = "Fire Dragon Scale", quantity = 200 }, { ingredient = "Shadow Dragon Phlogiston", quantity = 30 }]
+
+[[system.recipe]]
+tier = "epic"
+slot = "crafting: thunderforged tier 3"
+option = "Leg Breaker"
+augments = ["Leg Breaker"]
+cost = [{ ingredient = "Thunder-Forged Dwarven Ingot", quantity = 800 }, { ingredient = "Commendation of Valor", quantity = 600 }, { ingredient = "Fire Dragon Scale", quantity = 200 }, { ingredient = "Shadow Dragon Phlogiston", quantity = 30 }]
+
+[[system.recipe]]
+tier = "epic"
+slot = "crafting: thunderforged tier 3"
+option = "Mind Breaker"
+augments = ["Mind Breaker"]
+cost = [{ ingredient = "Thunder-Forged Dwarven Ingot", quantity = 800 }, { ingredient = "Commendation of Valor", quantity = 600 }, { ingredient = "Fire Dragon Scale", quantity = 200 }, { ingredient = "Shadow Dragon Phlogiston", quantity = 30 }]
+
+[[system.recipe]]
+tier = "epic"
+slot = "crafting: thunderforged tier 3"
+option = "Dwarvencraft Acid Lore"
+augments = ["Dwarvencraft Acid Lore"]
+cost = [{ ingredient = "Thunder-Forged Dwarven Ingot", quantity = 800 }, { ingredient = "Commendation of Valor", quantity = 600 }, { ingredient = "Fire Dragon Scale", quantity = 200 }, { ingredient = "Shadow Dragon Phlogiston", quantity = 30 }]
+
+[[system.recipe]]
+tier = "epic"
+slot = "crafting: thunderforged tier 3"
+option = "Dwarvencraft Healing Lore"
+augments = ["Dwarvencraft Healing Lore"]
+cost = [{ ingredient = "Thunder-Forged Dwarven Ingot", quantity = 800 }, { ingredient = "Commendation of Valor", quantity = 600 }, { ingredient = "Fire Dragon Scale", quantity = 200 }, { ingredient = "Shadow Dragon Phlogiston", quantity = 30 }]
+
+[[system.recipe]]
+tier = "epic"
+slot = "crafting: thunderforged tier 3"
+option = "Eternal Chilling Darkness"
+augments = ["Eternal Chilling Darkness"]
+cost = [{ ingredient = "Thunder-Forged Dwarven Ingot", quantity = 800 }, { ingredient = "Commendation of Valor", quantity = 600 }, { ingredient = "Shadow Dragon Scale", quantity = 200 }, { ingredient = "Shadow Dragon Phlogiston", quantity = 30 }]
+
+[[system.recipe]]
+tier = "epic"
+slot = "crafting: thunderforged tier 3"
+option = "Acid Storm"
+augments = ["Acid Storm"]
+cost = [{ ingredient = "Thunder-Forged Dwarven Ingot", quantity = 800 }, { ingredient = "Commendation of Valor", quantity = 600 }, { ingredient = "Shadow Dragon Scale", quantity = 200 }, { ingredient = "Shadow Dragon Phlogiston", quantity = 30 }]
+
+[[system.recipe]]
+tier = "epic"
+slot = "crafting: thunderforged tier 3"
+option = "Mortal Fear"
+augments = ["Mortal Fear"]
+cost = [{ ingredient = "Thunder-Forged Dwarven Ingot", quantity = 800 }, { ingredient = "Commendation of Valor", quantity = 600 }, { ingredient = "Shadow Dragon Scale", quantity = 200 }, { ingredient = "Shadow Dragon Phlogiston", quantity = 30 }]
+
+[[system.recipe]]
+tier = "epic"
+slot = "crafting: thunderforged tier 3"
+option = "Body Breaker"
+augments = ["Body Breaker"]
+cost = [{ ingredient = "Thunder-Forged Dwarven Ingot", quantity = 800 }, { ingredient = "Commendation of Valor", quantity = 600 }, { ingredient = "Shadow Dragon Scale", quantity = 200 }, { ingredient = "Shadow Dragon Phlogiston", quantity = 30 }]
+
+[[system.recipe]]
+tier = "epic"
+slot = "crafting: thunderforged tier 3"
+option = "Dwarvencraft Lore"
+augments = ["Dwarvencraft Lore"]
+cost = [{ ingredient = "Thunder-Forged Dwarven Ingot", quantity = 800 }, { ingredient = "Commendation of Valor", quantity = 600 }, { ingredient = "Shadow Dragon Scale", quantity = 200 }, { ingredient = "Shadow Dragon Phlogiston", quantity = 30 }]
+
+[[system.recipe]]
+tier = "epic"
+slot = "crafting: thunderforged tier 3"
+option = "Dwarvencraft Void Lore"
+augments = ["Dwarvencraft Void Lore"]
+cost = [{ ingredient = "Thunder-Forged Dwarven Ingot", quantity = 800 }, { ingredient = "Commendation of Valor", quantity = 600 }, { ingredient = "Shadow Dragon Scale", quantity = 200 }, { ingredient = "Shadow Dragon Phlogiston", quantity = 30 }]
+
+[[system.recipe]]
+tier = "epic"
+slot = "crafting: thunderforged tier 3"
+option = "Dwarvencraft Ice Lore"
+augments = ["Dwarvencraft Ice Lore"]
+cost = [{ ingredient = "Thunder-Forged Dwarven Ingot", quantity = 800 }, { ingredient = "Commendation of Valor", quantity = 600 }, { ingredient = "Shadow Dragon Scale", quantity = 200 }, { ingredient = "Shadow Dragon Phlogiston", quantity = 30 }]
+
+[[system.recipe]]
+tier = "epic"
+slot = "crafting: thunderforged tier 3"
+option = "Dwarvencraft Kinetic Lore"
+augments = ["Dwarvencraft Kinetic Lore"]
+cost = [{ ingredient = "Thunder-Forged Dwarven Ingot", quantity = 800 }, { ingredient = "Commendation of Valor", quantity = 600 }, { ingredient = "Shadow Dragon Scale", quantity = 200 }, { ingredient = "Shadow Dragon Phlogiston", quantity = 30 }]
+
+[[system.recipe]]
+tier = "epic"
+slot = "crafting: thunderforged tier 3"
+option = "Eternal Scorching Light"
+augments = ["Eternal Scorching Light"]
+cost = [{ ingredient = "Thunder-Forged Dwarven Ingot", quantity = 800 }, { ingredient = "Commendation of Valor", quantity = 600 }, { ingredient = "Shadow Dragon Scale", quantity = 200 }, { ingredient = "Fire Dragon Phlogiston", quantity = 30 }]
+
+[[system.recipe]]
+tier = "epic"
+slot = "crafting: thunderforged tier 3"
+option = "Fire Storm"
+augments = ["Fire Storm"]
+cost = [{ ingredient = "Thunder-Forged Dwarven Ingot", quantity = 800 }, { ingredient = "Commendation of Valor", quantity = 600 }, { ingredient = "Shadow Dragon Scale", quantity = 200 }, { ingredient = "Fire Dragon Phlogiston", quantity = 30 }]
+
+[[system.recipe]]
+tier = "epic"
+slot = "crafting: thunderforged tier 3"
+option = "Lightning Storm"
+augments = ["Lightning Storm"]
+cost = [{ ingredient = "Thunder-Forged Dwarven Ingot", quantity = 800 }, { ingredient = "Commendation of Valor", quantity = 600 }, { ingredient = "Shadow Dragon Scale", quantity = 200 }, { ingredient = "Fire Dragon Phlogiston", quantity = 30 }]
+
+[[system.recipe]]
+tier = "epic"
+slot = "crafting: thunderforged tier 3"
+option = "Burning Emptiness"
+augments = ["Burning Emptiness"]
+cost = [{ ingredient = "Thunder-Forged Dwarven Ingot", quantity = 800 }, { ingredient = "Commendation of Valor", quantity = 600 }, { ingredient = "Shadow Dragon Scale", quantity = 200 }, { ingredient = "Fire Dragon Phlogiston", quantity = 30 }]
+
+[[system.recipe]]
+tier = "epic"
+slot = "crafting: thunderforged tier 3"
+option = "Draconic Reinvigoration"
+augments = ["Draconic Reinvigoration"]
+cost = [{ ingredient = "Thunder-Forged Dwarven Ingot", quantity = 800 }, { ingredient = "Commendation of Valor", quantity = 600 }, { ingredient = "Shadow Dragon Scale", quantity = 200 }, { ingredient = "Fire Dragon Phlogiston", quantity = 30 }]
+
+[[system.recipe]]
+tier = "epic"
+slot = "crafting: thunderforged tier 3"
+option = "Dwarvencraft Fire Lore"
+augments = ["Dwarvencraft Fire Lore"]
+cost = [{ ingredient = "Thunder-Forged Dwarven Ingot", quantity = 800 }, { ingredient = "Commendation of Valor", quantity = 600 }, { ingredient = "Shadow Dragon Scale", quantity = 200 }, { ingredient = "Fire Dragon Phlogiston", quantity = 30 }]
+
+[[system.recipe]]
+tier = "epic"
+slot = "crafting: thunderforged tier 3"
+option = "Dwarvencraft Radiance Lore"
+augments = ["Dwarvencraft Radiance Lore"]
+cost = [{ ingredient = "Thunder-Forged Dwarven Ingot", quantity = 800 }, { ingredient = "Commendation of Valor", quantity = 600 }, { ingredient = "Shadow Dragon Scale", quantity = 200 }, { ingredient = "Fire Dragon Phlogiston", quantity = 30 }]
+
+[[system.recipe]]
+tier = "epic"
+slot = "crafting: thunderforged tier 3"
+option = "Dwarvencraft Sonic Lore"
+augments = ["Dwarvencraft Sonic Lore"]
+cost = [{ ingredient = "Thunder-Forged Dwarven Ingot", quantity = 800 }, { ingredient = "Commendation of Valor", quantity = 600 }, { ingredient = "Shadow Dragon Scale", quantity = 200 }, { ingredient = "Fire Dragon Phlogiston", quantity = 30 }]
+
+[[system.recipe]]
+tier = "epic"
+slot = "crafting: thunderforged tier 3"
+option = "Dwarvencraft Lightning Lore"
+augments = ["Dwarvencraft Lightning Lore"]
+cost = [{ ingredient = "Thunder-Forged Dwarven Ingot", quantity = 800 }, { ingredient = "Commendation of Valor", quantity = 600 }, { ingredient = "Shadow Dragon Scale", quantity = 200 }, { ingredient = "Fire Dragon Phlogiston", quantity = 30 }]
+
+[[system.recipe]]
+tier = "epic"
+slot = "crafting: thunderforged tier 3"
+option = "Dwarvencraft Repair Lore"
+augments = ["Dwarvencraft Repair Lore"]
+cost = [{ ingredient = "Thunder-Forged Dwarven Ingot", quantity = 800 }, { ingredient = "Commendation of Valor", quantity = 600 }, { ingredient = "Shadow Dragon Scale", quantity = 200 }, { ingredient = "Fire Dragon Phlogiston", quantity = 30 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Flawed Shadowscale Armor (base item)"
+augments = []
+note = "Creates the ML26 Flawed Shadowscale robe, outfit, light, medium or heavy armor or docent (+11 Enhancement, Deathblock, Fortification +130%, Ghostly, a Blue augment slot, From The Shadows); no augment counterpart."
+cost = [{ ingredient = "Shadow Dragon Scale", quantity = 50 }, { ingredient = "Commendation of Valor", quantity = 240 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Shadow Caster"
+augments = ["Shadow Caster - +3 Profane Concentration, +1 Profane Spell DCs"]
+grants_slot = "green"
+note = "Flawless (ML28) upgrade, one choice per armor; compatible with cloth, light, medium, heavy and docent. Every choice also adds a Green augment slot."
+cost = [{ ingredient = "Shadow Dragon Scale", quantity = 50 }, { ingredient = "Commendation of Valor", quantity = 240 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Shadow Disciple"
+augments = ["Shadow Disciple - +3 Profane Concentration, +1 Profane tactics DCs"]
+grants_slot = "green"
+note = "Flawless (ML28) upgrade, one choice per armor; compatible with cloth, light, medium, heavy and docent. Every choice also adds a Green augment slot."
+cost = [{ ingredient = "Shadow Dragon Scale", quantity = 50 }, { ingredient = "Commendation of Valor", quantity = 240 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Shadow Killer"
+augments = ["Shadow Killer - +2d6 Profane Sneak Attack, +1 Profane Reflex save"]
+grants_slot = "green"
+note = "Flawless (ML28) upgrade, one choice per armor; compatible with light, medium, heavy and docent. Every choice also adds a Green augment slot."
+cost = [{ ingredient = "Shadow Dragon Scale", quantity = 50 }, { ingredient = "Commendation of Valor", quantity = 240 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Shadow Striker"
+augments = ["Shadow Striker - +3% Profane bonus to Doublestrike, Melee Alacrity 15%, Ranged Alacrity 20%"]
+grants_slot = "green"
+note = "Flawless (ML28) upgrade, one choice per armor; compatible with medium, heavy and docent (docent requires Mithral Body or Adamantine Body). Every choice also adds a Green augment slot."
+cost = [{ ingredient = "Shadow Dragon Scale", quantity = 50 }, { ingredient = "Commendation of Valor", quantity = 240 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Shadow Guardian"
+augments = ["Shadow Guardian - DR 30/Epic, DR 60/Epic while below 75% health"]
+grants_slot = "green"
+note = "Flawless (ML28) upgrade, one choice per armor; compatible with heavy and docent (docent requires Adamantine Body). Every choice also adds a Green augment slot."
+cost = [{ ingredient = "Shadow Dragon Scale", quantity = 50 }, { ingredient = "Commendation of Valor", quantity = 240 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Shadow Construct"
+augments = ["Shadow Construct - Repair Amplification 10%"]
+grants_slot = "green"
+note = "Flawless (ML28) upgrade, one choice per armor; compatible with docent. Every choice also adds a Green augment slot. The page gives Profane Repair Amplification +10; Maetrim's augment is Repair Amplification 10%."
+cost = [{ ingredient = "Shadow Dragon Scale", quantity = 50 }, { ingredient = "Commendation of Valor", quantity = 240 }]

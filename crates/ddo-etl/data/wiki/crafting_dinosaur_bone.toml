@@ -1,0 +1,868 @@
+[[system]]
+name = "Dinosaur Bone crafting"
+page = "https://ddowiki.com/page/Dinosaur_Bone_crafting"
+read = "2026-09-29"
+pack = "The Isle of Dread"
+families = ["DinosaurBone"]
+npc = "Sharpened Bone, whose barter window creates Isle of Dread augments and Dinosaur Bone weapons; augments are slotted through the Augment Item UI in the inventory panel"
+
+[[system.ingredient]]
+name = "Fossilized Ankylosaur Rib"
+tier = "legendary"
+bind = "Unbound"
+source = "Isle of Dread quests and the Isle of Dread wilderness"
+
+[[system.ingredient]]
+name = "Fossilized Pteranodon Vertebrae"
+tier = "legendary"
+bind = "Unbound"
+source = "Isle of Dread quests and the Isle of Dread wilderness"
+
+[[system.ingredient]]
+name = "Fossilized Raptor Claw"
+tier = "legendary"
+bind = "Unbound"
+source = "Isle of Dread quests and the Isle of Dread wilderness"
+
+[[system.ingredient]]
+name = "Fossilized Triceratops Horn"
+tier = "legendary"
+bind = "Unbound"
+source = "Isle of Dread quests and the Isle of Dread wilderness"
+
+[[system.ingredient]]
+name = "Fossilized Tyrannosaurus Tooth"
+tier = "legendary"
+bind = "Unbound"
+source = "The Isle of Dread wilderness only"
+
+[[system.ingredient]]
+name = "Black Pearl"
+tier = "legendary"
+bind = "BtA"
+source = "The Isle of Dread raid (Skeletons in the Closet) and special wilderness encounters (Stonejaw, Vixorshal the Deceiver and Zardanarith); also the Draconic Raider's Reward Box"
+
+[[system.recipe]]
+tier = "legendary"
+option = "Dinosaur Bone weapon"
+augments = []
+note = "All recipe tables are on this page. Creates an ML31 Dinosaur Bone weapon (+15 Enhancement, 5.2[W], Scale, Fang, Claw and Horn weapon slots plus Orange and Purple slots, Bound to Account on Acquire); no augment counterpart. The weapons also drop in the wilderness."
+cost = [{ ingredient = "Fossilized Raptor Claw", quantity = 25 }, { ingredient = "Fossilized Triceratops Horn", quantity = 25 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 25 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 25 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "isle of dread: scale (weapon)"
+option = "Flamescale"
+augments = ["Flamescale"]
+cost = [{ ingredient = "Fossilized Raptor Claw", quantity = 25 }, { ingredient = "Fossilized Triceratops Horn", quantity = 25 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 25 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 25 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "isle of dread: scale (weapon)"
+option = "Icescale"
+augments = ["Icescale"]
+cost = [{ ingredient = "Fossilized Raptor Claw", quantity = 25 }, { ingredient = "Fossilized Triceratops Horn", quantity = 25 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 25 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 25 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "isle of dread: scale (weapon)"
+option = "Sparkscale"
+augments = ["Sparkscale"]
+cost = [{ ingredient = "Fossilized Raptor Claw", quantity = 25 }, { ingredient = "Fossilized Triceratops Horn", quantity = 25 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 25 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 25 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "isle of dread: scale (weapon)"
+option = "Meltscale"
+augments = ["MeltScale"]
+note = "Maetrim capitalizes it MeltScale."
+cost = [{ ingredient = "Fossilized Raptor Claw", quantity = 25 }, { ingredient = "Fossilized Triceratops Horn", quantity = 25 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 25 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 25 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "isle of dread: scale (weapon)"
+option = "Brightscale"
+augments = ["Brightscale"]
+cost = [{ ingredient = "Fossilized Raptor Claw", quantity = 25 }, { ingredient = "Fossilized Triceratops Horn", quantity = 25 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 25 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 25 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "isle of dread: scale (weapon)"
+option = "Shadowscale"
+augments = ["Shadowscale"]
+cost = [{ ingredient = "Fossilized Raptor Claw", quantity = 25 }, { ingredient = "Fossilized Triceratops Horn", quantity = 25 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 25 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 25 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "isle of dread: scale (weapon)"
+option = "Iridiscent Scale"
+augments = ["Iridescent Scale"]
+note = "The page spells it Iridiscent; Maetrim spells it Iridescent."
+cost = [{ ingredient = "Fossilized Raptor Claw", quantity = 25 }, { ingredient = "Fossilized Triceratops Horn", quantity = 25 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 25 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 25 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "isle of dread: fang (weapon)"
+option = "Flamefang"
+augments = ["Flamefang"]
+cost = [{ ingredient = "Fossilized Raptor Claw", quantity = 50 }, { ingredient = "Fossilized Triceratops Horn", quantity = 50 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 50 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "isle of dread: fang (weapon)"
+option = "Icefang"
+augments = ["Icefang"]
+cost = [{ ingredient = "Fossilized Raptor Claw", quantity = 50 }, { ingredient = "Fossilized Triceratops Horn", quantity = 50 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 50 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "isle of dread: fang (weapon)"
+option = "Sparkfang"
+augments = ["Sparkfang"]
+cost = [{ ingredient = "Fossilized Raptor Claw", quantity = 50 }, { ingredient = "Fossilized Triceratops Horn", quantity = 50 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 50 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "isle of dread: fang (weapon)"
+option = "Meltfang"
+augments = ["Meltfang"]
+cost = [{ ingredient = "Fossilized Raptor Claw", quantity = 50 }, { ingredient = "Fossilized Triceratops Horn", quantity = 50 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 50 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "isle of dread: fang (weapon)"
+option = "Brightfang"
+augments = ["Brightfang"]
+cost = [{ ingredient = "Fossilized Raptor Claw", quantity = 50 }, { ingredient = "Fossilized Triceratops Horn", quantity = 50 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 50 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "isle of dread: fang (weapon)"
+option = "Shadowfang"
+augments = ["Shadowfang"]
+cost = [{ ingredient = "Fossilized Raptor Claw", quantity = 50 }, { ingredient = "Fossilized Triceratops Horn", quantity = 50 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 50 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "isle of dread: fang (weapon)"
+option = "Iridiscent Fang"
+augments = ["Iridescent Fang"]
+note = "The page spells it Iridiscent; Maetrim spells it Iridescent."
+cost = [{ ingredient = "Fossilized Raptor Claw", quantity = 50 }, { ingredient = "Fossilized Triceratops Horn", quantity = 50 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 50 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "isle of dread: claw (weapon)"
+option = "Flameclaw"
+augments = ["Flameclaw: Strength"]
+cost = [{ ingredient = "Fossilized Tyrannosaurus Tooth", quantity = 100 }, { ingredient = "Fossilized Raptor Claw", quantity = 25 }, { ingredient = "Fossilized Triceratops Horn", quantity = 25 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 25 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 25 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "isle of dread: claw (weapon)"
+option = "Iceclaw"
+augments = ["Iceclaw: Wisdom"]
+cost = [{ ingredient = "Fossilized Tyrannosaurus Tooth", quantity = 100 }, { ingredient = "Fossilized Raptor Claw", quantity = 25 }, { ingredient = "Fossilized Triceratops Horn", quantity = 25 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 25 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 25 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "isle of dread: claw (weapon)"
+option = "Sparkclaw"
+augments = ["Sparkclaw: Charisma"]
+cost = [{ ingredient = "Fossilized Tyrannosaurus Tooth", quantity = 100 }, { ingredient = "Fossilized Raptor Claw", quantity = 25 }, { ingredient = "Fossilized Triceratops Horn", quantity = 25 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 25 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 25 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "isle of dread: claw (weapon)"
+option = "Meltclaw"
+augments = ["Meltclaw: Constitution"]
+cost = [{ ingredient = "Fossilized Tyrannosaurus Tooth", quantity = 100 }, { ingredient = "Fossilized Raptor Claw", quantity = 25 }, { ingredient = "Fossilized Triceratops Horn", quantity = 25 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 25 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 25 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "isle of dread: claw (weapon)"
+option = "Brightclaw"
+augments = ["Brightclaw: Intelligence"]
+cost = [{ ingredient = "Fossilized Tyrannosaurus Tooth", quantity = 100 }, { ingredient = "Fossilized Raptor Claw", quantity = 25 }, { ingredient = "Fossilized Triceratops Horn", quantity = 25 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 25 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 25 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "isle of dread: claw (weapon)"
+option = "Shadowclaw"
+augments = ["Shadowclaw: Dexterity"]
+cost = [{ ingredient = "Fossilized Tyrannosaurus Tooth", quantity = 100 }, { ingredient = "Fossilized Raptor Claw", quantity = 25 }, { ingredient = "Fossilized Triceratops Horn", quantity = 25 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 25 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 25 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "isle of dread: claw (weapon)"
+option = "Iridiscent Claw: Acid"
+augments = ["Iridescent Claw: Acid"]
+note = "The page spells it Iridiscent; Maetrim spells it Iridescent."
+cost = [{ ingredient = "Fossilized Tyrannosaurus Tooth", quantity = 100 }, { ingredient = "Fossilized Raptor Claw", quantity = 25 }, { ingredient = "Fossilized Triceratops Horn", quantity = 25 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 25 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 25 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "isle of dread: claw (weapon)"
+option = "Iridiscent Claw: Cold"
+augments = ["Iridescent Claw: Cold"]
+note = "The page spells it Iridiscent; Maetrim spells it Iridescent."
+cost = [{ ingredient = "Fossilized Tyrannosaurus Tooth", quantity = 100 }, { ingredient = "Fossilized Raptor Claw", quantity = 25 }, { ingredient = "Fossilized Triceratops Horn", quantity = 25 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 25 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 25 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "isle of dread: claw (weapon)"
+option = "Iridiscent Claw: Electric"
+augments = ["Iridescent Claw: Electric"]
+note = "The page spells it Iridiscent; Maetrim spells it Iridescent."
+cost = [{ ingredient = "Fossilized Tyrannosaurus Tooth", quantity = 100 }, { ingredient = "Fossilized Raptor Claw", quantity = 25 }, { ingredient = "Fossilized Triceratops Horn", quantity = 25 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 25 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 25 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "isle of dread: claw (weapon)"
+option = "Iridiscent Claw: Fire"
+augments = ["Iridescent Claw: Fire"]
+note = "The page spells it Iridiscent; Maetrim spells it Iridescent."
+cost = [{ ingredient = "Fossilized Tyrannosaurus Tooth", quantity = 100 }, { ingredient = "Fossilized Raptor Claw", quantity = 25 }, { ingredient = "Fossilized Triceratops Horn", quantity = 25 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 25 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 25 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "isle of dread: claw (weapon)"
+option = "Iridiscent Claw: Force"
+augments = ["Iridescent Claw: Force"]
+note = "The page spells it Iridiscent; Maetrim spells it Iridescent."
+cost = [{ ingredient = "Fossilized Tyrannosaurus Tooth", quantity = 100 }, { ingredient = "Fossilized Raptor Claw", quantity = 25 }, { ingredient = "Fossilized Triceratops Horn", quantity = 25 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 25 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 25 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "isle of dread: claw (weapon)"
+option = "Iridiscent Claw: Light"
+augments = ["Iridescent Claw: Light"]
+note = "The page spells it Iridiscent; Maetrim spells it Iridescent."
+cost = [{ ingredient = "Fossilized Tyrannosaurus Tooth", quantity = 100 }, { ingredient = "Fossilized Raptor Claw", quantity = 25 }, { ingredient = "Fossilized Triceratops Horn", quantity = 25 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 25 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 25 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "isle of dread: claw (weapon)"
+option = "Iridiscent Claw: Negative"
+augments = ["Iridescent Claw: Negative"]
+note = "The page spells it Iridiscent; Maetrim spells it Iridescent."
+cost = [{ ingredient = "Fossilized Tyrannosaurus Tooth", quantity = 100 }, { ingredient = "Fossilized Raptor Claw", quantity = 25 }, { ingredient = "Fossilized Triceratops Horn", quantity = 25 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 25 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 25 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "isle of dread: claw (weapon)"
+option = "Iridiscent Claw: Positive"
+augments = ["Iridescent Claw: Positive"]
+note = "The page spells it Iridiscent; Maetrim spells it Iridescent."
+cost = [{ ingredient = "Fossilized Tyrannosaurus Tooth", quantity = 100 }, { ingredient = "Fossilized Raptor Claw", quantity = 25 }, { ingredient = "Fossilized Triceratops Horn", quantity = 25 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 25 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 25 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "isle of dread: claw (weapon)"
+option = "Iridiscent Claw: Repair"
+augments = ["Iridescent Claw: Repair"]
+note = "The page spells it Iridiscent; Maetrim spells it Iridescent."
+cost = [{ ingredient = "Fossilized Tyrannosaurus Tooth", quantity = 100 }, { ingredient = "Fossilized Raptor Claw", quantity = 25 }, { ingredient = "Fossilized Triceratops Horn", quantity = 25 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 25 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 25 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "isle of dread: claw (weapon)"
+option = "Iridiscent Claw: Sonic"
+augments = ["Iridescent Claw: Sonic"]
+note = "The page spells it Iridiscent; Maetrim spells it Iridescent."
+cost = [{ ingredient = "Fossilized Tyrannosaurus Tooth", quantity = 100 }, { ingredient = "Fossilized Raptor Claw", quantity = 25 }, { ingredient = "Fossilized Triceratops Horn", quantity = 25 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 25 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 25 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "isle of dread: horn (weapon)"
+option = "Flamehorn"
+augments = ["Flamehorn"]
+cost = [{ ingredient = "Black Pearl", quantity = 50 }, { ingredient = "Fossilized Raptor Claw", quantity = 50 }, { ingredient = "Fossilized Triceratops Horn", quantity = 50 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 50 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "isle of dread: horn (weapon)"
+option = "Icehorn"
+augments = ["Icehorn"]
+cost = [{ ingredient = "Black Pearl", quantity = 50 }, { ingredient = "Fossilized Raptor Claw", quantity = 50 }, { ingredient = "Fossilized Triceratops Horn", quantity = 50 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 50 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "isle of dread: horn (weapon)"
+option = "Sparkhorn"
+augments = ["Sparkhorn"]
+cost = [{ ingredient = "Black Pearl", quantity = 50 }, { ingredient = "Fossilized Raptor Claw", quantity = 50 }, { ingredient = "Fossilized Triceratops Horn", quantity = 50 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 50 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "isle of dread: horn (weapon)"
+option = "Melthorn"
+augments = ["Melthorn"]
+cost = [{ ingredient = "Black Pearl", quantity = 50 }, { ingredient = "Fossilized Raptor Claw", quantity = 50 }, { ingredient = "Fossilized Triceratops Horn", quantity = 50 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 50 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "isle of dread: horn (weapon)"
+option = "Brighthorn"
+augments = ["Brighthorn"]
+cost = [{ ingredient = "Black Pearl", quantity = 50 }, { ingredient = "Fossilized Raptor Claw", quantity = 50 }, { ingredient = "Fossilized Triceratops Horn", quantity = 50 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 50 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "isle of dread: horn (weapon)"
+option = "Shadowhorn"
+augments = ["Shadowhorn"]
+cost = [{ ingredient = "Black Pearl", quantity = 50 }, { ingredient = "Fossilized Raptor Claw", quantity = 50 }, { ingredient = "Fossilized Triceratops Horn", quantity = 50 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 50 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "isle of dread: scale (accessory)"
+option = "Scale: False Life"
+augments = ["Scale: +53 False Life", "Scale: +58 False Life"]
+note = "Yields the regular and the Minor Artifact version of Maetrim's augment. The page gives +53, or +58 in a Minor Artifact."
+cost = [{ ingredient = "Fossilized Raptor Claw", quantity = 25 }, { ingredient = "Fossilized Triceratops Horn", quantity = 25 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 25 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 25 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "isle of dread: scale (accessory)"
+option = "Scale: Charisma"
+augments = ["Scale: +14 Charisma", "Scale: +15 Charisma"]
+note = "Yields the regular and the Minor Artifact version of Maetrim's augment. The page gives +14, or +15 in a Minor Artifact."
+cost = [{ ingredient = "Fossilized Raptor Claw", quantity = 25 }, { ingredient = "Fossilized Triceratops Horn", quantity = 25 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 25 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 25 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "isle of dread: scale (accessory)"
+option = "Scale: Constitution"
+augments = ["Scale: +14 Constitution", "Scale: +15 Constitution"]
+note = "Yields the regular and the Minor Artifact version of Maetrim's augment. The page gives +14, or +15 in a Minor Artifact."
+cost = [{ ingredient = "Fossilized Raptor Claw", quantity = 25 }, { ingredient = "Fossilized Triceratops Horn", quantity = 25 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 25 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 25 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "isle of dread: scale (accessory)"
+option = "Scale: Dexterity"
+augments = ["Scale: +14 Dexterity", "Scale: +15 Dexterity"]
+note = "Yields the regular and the Minor Artifact version of Maetrim's augment. The page gives +14, or +15 in a Minor Artifact."
+cost = [{ ingredient = "Fossilized Raptor Claw", quantity = 25 }, { ingredient = "Fossilized Triceratops Horn", quantity = 25 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 25 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 25 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "isle of dread: scale (accessory)"
+option = "Scale: Intelligence"
+augments = ["Scale: +14 Intelligence", "Scale: +15 Intelligence"]
+note = "Yields the regular and the Minor Artifact version of Maetrim's augment. The page gives +14, or +15 in a Minor Artifact."
+cost = [{ ingredient = "Fossilized Raptor Claw", quantity = 25 }, { ingredient = "Fossilized Triceratops Horn", quantity = 25 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 25 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 25 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "isle of dread: scale (accessory)"
+option = "Scale: Strength"
+augments = ["Scale: +14 Strength", "Scale: +15 Strength"]
+note = "Yields the regular and the Minor Artifact version of Maetrim's augment. The page gives +14, or +15 in a Minor Artifact."
+cost = [{ ingredient = "Fossilized Raptor Claw", quantity = 25 }, { ingredient = "Fossilized Triceratops Horn", quantity = 25 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 25 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 25 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "isle of dread: scale (accessory)"
+option = "Scale: Wisdom"
+augments = ["Scale: +14 Wisdom", "Scale: +15 Wisdom"]
+note = "Yields the regular and the Minor Artifact version of Maetrim's augment. The page gives +14, or +15 in a Minor Artifact."
+cost = [{ ingredient = "Fossilized Raptor Claw", quantity = 25 }, { ingredient = "Fossilized Triceratops Horn", quantity = 25 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 25 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 25 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "isle of dread: scale (accessory)"
+option = "Scale: Acid Spell Crit Damage"
+augments = ["Scale: Acid Spell Critical Damage"]
+note = "The page names it Spell Crit Damage; Maetrim's augment, which fits both the regular and the Minor Artifact slot, names it Spell Critical Damage."
+cost = [{ ingredient = "Fossilized Raptor Claw", quantity = 25 }, { ingredient = "Fossilized Triceratops Horn", quantity = 25 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 25 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 25 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "isle of dread: scale (accessory)"
+option = "Scale: Cold Spell Crit Damage"
+augments = ["Scale: Cold Spell Critical Damage"]
+note = "The page names it Spell Crit Damage; Maetrim's augment, which fits both the regular and the Minor Artifact slot, names it Spell Critical Damage."
+cost = [{ ingredient = "Fossilized Raptor Claw", quantity = 25 }, { ingredient = "Fossilized Triceratops Horn", quantity = 25 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 25 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 25 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "isle of dread: scale (accessory)"
+option = "Scale: Electric Spell Crit Damage"
+augments = ["Scale: Electric Spell Critical Damage"]
+note = "The page names it Spell Crit Damage; Maetrim's augment, which fits both the regular and the Minor Artifact slot, names it Spell Critical Damage."
+cost = [{ ingredient = "Fossilized Raptor Claw", quantity = 25 }, { ingredient = "Fossilized Triceratops Horn", quantity = 25 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 25 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 25 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "isle of dread: scale (accessory)"
+option = "Scale: Fire Spell Crit Damage"
+augments = ["Scale: Fire Spell Critical Damage"]
+note = "The page names it Spell Crit Damage; Maetrim's augment, which fits both the regular and the Minor Artifact slot, names it Spell Critical Damage."
+cost = [{ ingredient = "Fossilized Raptor Claw", quantity = 25 }, { ingredient = "Fossilized Triceratops Horn", quantity = 25 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 25 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 25 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "isle of dread: scale (accessory)"
+option = "Scale: Force Spell Crit Damage"
+augments = ["Scale: Force Spell Critical Damage"]
+note = "The page names it Spell Crit Damage; Maetrim's augment, which fits both the regular and the Minor Artifact slot, names it Spell Critical Damage."
+cost = [{ ingredient = "Fossilized Raptor Claw", quantity = 25 }, { ingredient = "Fossilized Triceratops Horn", quantity = 25 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 25 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 25 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "isle of dread: scale (accessory)"
+option = "Scale: Light Spell Crit Damage"
+augments = ["Scale: Light Spell Critical Damage"]
+note = "The page names it Spell Crit Damage; Maetrim's augment, which fits both the regular and the Minor Artifact slot, names it Spell Critical Damage."
+cost = [{ ingredient = "Fossilized Raptor Claw", quantity = 25 }, { ingredient = "Fossilized Triceratops Horn", quantity = 25 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 25 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 25 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "isle of dread: scale (accessory)"
+option = "Scale: Negative Spell Crit Damage"
+augments = ["Scale: Negative Spell Critical Damage"]
+note = "The page names it Spell Crit Damage; Maetrim's augment, which fits both the regular and the Minor Artifact slot, names it Spell Critical Damage."
+cost = [{ ingredient = "Fossilized Raptor Claw", quantity = 25 }, { ingredient = "Fossilized Triceratops Horn", quantity = 25 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 25 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 25 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "isle of dread: scale (accessory)"
+option = "Scale: Positive Spell Crit Damage"
+augments = ["Scale: Positive Spell Critical Damage"]
+note = "The page names it Spell Crit Damage; Maetrim's augment, which fits both the regular and the Minor Artifact slot, names it Spell Critical Damage."
+cost = [{ ingredient = "Fossilized Raptor Claw", quantity = 25 }, { ingredient = "Fossilized Triceratops Horn", quantity = 25 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 25 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 25 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "isle of dread: scale (accessory)"
+option = "Scale: Repair Spell Crit Damage"
+augments = ["Scale: Repair Spell Critical Damage"]
+note = "The page names it Spell Crit Damage; Maetrim's augment, which fits both the regular and the Minor Artifact slot, names it Spell Critical Damage."
+cost = [{ ingredient = "Fossilized Raptor Claw", quantity = 25 }, { ingredient = "Fossilized Triceratops Horn", quantity = 25 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 25 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 25 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "isle of dread: scale (accessory)"
+option = "Scale: Sonic Spell Crit Damage"
+augments = ["Scale: Sonic Spell Critical Damage"]
+note = "The page names it Spell Crit Damage; Maetrim's augment, which fits both the regular and the Minor Artifact slot, names it Spell Critical Damage."
+cost = [{ ingredient = "Fossilized Raptor Claw", quantity = 25 }, { ingredient = "Fossilized Triceratops Horn", quantity = 25 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 25 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 25 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "isle of dread: fang (accessory)"
+option = "Fang: Healing Amplification"
+augments = ["Fang: Healing Amplification +56", "Fang: Healing Amplification +61"]
+note = "Yields the regular and the Minor Artifact version of Maetrim's augment. The page gives +56, or +61 in a Minor Artifact."
+cost = [{ ingredient = "Fossilized Raptor Claw", quantity = 50 }, { ingredient = "Fossilized Triceratops Horn", quantity = 50 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 50 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "isle of dread: fang (accessory)"
+option = "Fang: Negative Amplification"
+augments = ["Fang: Negative Healing Amplification +56", "Fang: Negative Healing Amplification +61"]
+note = "Yields the regular and the Minor Artifact version of Maetrim's augment. The page gives +56, or +61 in a Minor Artifact."
+cost = [{ ingredient = "Fossilized Raptor Claw", quantity = 50 }, { ingredient = "Fossilized Triceratops Horn", quantity = 50 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 50 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "isle of dread: fang (accessory)"
+option = "Fang: Repair Amplification"
+augments = ["Fang: Repair Amplification +56", "Fang: Repair Amplification +61"]
+note = "Yields the regular and the Minor Artifact version of Maetrim's augment. The page gives +56, or +61 in a Minor Artifact."
+cost = [{ ingredient = "Fossilized Raptor Claw", quantity = 50 }, { ingredient = "Fossilized Triceratops Horn", quantity = 50 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 50 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "isle of dread: fang (accessory)"
+option = "Fang: Accuracy"
+augments = ["Fang: Accuracy +21", "Fang: Accuracy +23"]
+note = "Yields the regular and the Minor Artifact version of Maetrim's augment. The page gives +21, or +23 in a Minor Artifact."
+cost = [{ ingredient = "Fossilized Raptor Claw", quantity = 50 }, { ingredient = "Fossilized Triceratops Horn", quantity = 50 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 50 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "isle of dread: fang (accessory)"
+option = "Fang: Damage"
+augments = ["Fang: Deadly +11", "Fang: Deadly +12"]
+note = "Yields the regular and the Minor Artifact version of Maetrim's augment. The page gives +11, or +12 in a Minor Artifact. Maetrim names it Deadly."
+cost = [{ ingredient = "Fossilized Raptor Claw", quantity = 50 }, { ingredient = "Fossilized Triceratops Horn", quantity = 50 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 50 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "isle of dread: fang (accessory)"
+option = "Fang: Deception"
+augments = ["Fang: Deception +11", "Fang: Deception +12"]
+note = "Yields the regular and the Minor Artifact version of Maetrim's augment. The page gives +11 and +17, or +12 and +18 in a Minor Artifact. Maetrim's names carry only the Sneak Attack bonus."
+cost = [{ ingredient = "Fossilized Raptor Claw", quantity = 50 }, { ingredient = "Fossilized Triceratops Horn", quantity = 50 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 50 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "isle of dread: fang (accessory)"
+option = "Fang: Seeker"
+augments = ["Fang: Seeker +14", "Fang: Seeker +15"]
+note = "Yields the regular and the Minor Artifact version of Maetrim's augment. The page gives +14, or +15 in a Minor Artifact."
+cost = [{ ingredient = "Fossilized Raptor Claw", quantity = 50 }, { ingredient = "Fossilized Triceratops Horn", quantity = 50 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 50 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "isle of dread: fang (accessory)"
+option = "Fang: Acid Spell Crit Damage"
+augments = ["Fang: Acid Spell Critical Damage"]
+note = "The page names it Spell Crit Damage; Maetrim's augment, which fits both the regular and the Minor Artifact slot, names it Spell Critical Damage."
+cost = [{ ingredient = "Fossilized Raptor Claw", quantity = 50 }, { ingredient = "Fossilized Triceratops Horn", quantity = 50 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 50 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "isle of dread: fang (accessory)"
+option = "Fang: Cold Spell Crit Damage"
+augments = ["Fang: Cold Spell Critical Damage"]
+note = "The page names it Spell Crit Damage; Maetrim's augment, which fits both the regular and the Minor Artifact slot, names it Spell Critical Damage."
+cost = [{ ingredient = "Fossilized Raptor Claw", quantity = 50 }, { ingredient = "Fossilized Triceratops Horn", quantity = 50 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 50 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "isle of dread: fang (accessory)"
+option = "Fang: Electric Spell Crit Damage"
+augments = ["Fang: Electric Spell Critical Damage"]
+note = "The page names it Spell Crit Damage; Maetrim's augment, which fits both the regular and the Minor Artifact slot, names it Spell Critical Damage."
+cost = [{ ingredient = "Fossilized Raptor Claw", quantity = 50 }, { ingredient = "Fossilized Triceratops Horn", quantity = 50 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 50 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "isle of dread: fang (accessory)"
+option = "Fang: Fire Spell Crit Damage"
+augments = ["Fang: Fire Spell Critical Damage"]
+note = "The page names it Spell Crit Damage; Maetrim's augment, which fits both the regular and the Minor Artifact slot, names it Spell Critical Damage."
+cost = [{ ingredient = "Fossilized Raptor Claw", quantity = 50 }, { ingredient = "Fossilized Triceratops Horn", quantity = 50 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 50 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "isle of dread: fang (accessory)"
+option = "Fang: Force Spell Crit Damage"
+augments = ["Fang: Force Spell Critical Damage"]
+note = "The page names it Spell Crit Damage; Maetrim's augment, which fits both the regular and the Minor Artifact slot, names it Spell Critical Damage."
+cost = [{ ingredient = "Fossilized Raptor Claw", quantity = 50 }, { ingredient = "Fossilized Triceratops Horn", quantity = 50 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 50 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "isle of dread: fang (accessory)"
+option = "Fang: Light Spell Crit Damage"
+augments = ["Fang: Light Spell Critical Damage"]
+note = "The page names it Spell Crit Damage; Maetrim's augment, which fits both the regular and the Minor Artifact slot, names it Spell Critical Damage."
+cost = [{ ingredient = "Fossilized Raptor Claw", quantity = 50 }, { ingredient = "Fossilized Triceratops Horn", quantity = 50 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 50 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "isle of dread: fang (accessory)"
+option = "Fang: Negative Spell Crit Damage"
+augments = ["Fang: Negative Spell Critical Damage"]
+note = "The page names it Spell Crit Damage; Maetrim's augment, which fits both the regular and the Minor Artifact slot, names it Spell Critical Damage."
+cost = [{ ingredient = "Fossilized Raptor Claw", quantity = 50 }, { ingredient = "Fossilized Triceratops Horn", quantity = 50 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 50 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "isle of dread: fang (accessory)"
+option = "Fang: Positive Spell Crit Damage"
+augments = ["Fang: Positive Spell Critical Damage"]
+note = "The page names it Spell Crit Damage; Maetrim's augment, which fits both the regular and the Minor Artifact slot, names it Spell Critical Damage."
+cost = [{ ingredient = "Fossilized Raptor Claw", quantity = 50 }, { ingredient = "Fossilized Triceratops Horn", quantity = 50 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 50 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "isle of dread: fang (accessory)"
+option = "Fang: Repair Spell Crit Damage"
+augments = ["Fang: Repair Spell Critical Damage"]
+note = "The page names it Spell Crit Damage; Maetrim's augment, which fits both the regular and the Minor Artifact slot, names it Spell Critical Damage."
+cost = [{ ingredient = "Fossilized Raptor Claw", quantity = 50 }, { ingredient = "Fossilized Triceratops Horn", quantity = 50 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 50 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "isle of dread: fang (accessory)"
+option = "Fang: Sonic Spell Crit Damage"
+augments = ["Fang: Sonic Spell Critical Damage"]
+note = "The page names it Spell Crit Damage; Maetrim's augment, which fits both the regular and the Minor Artifact slot, names it Spell Critical Damage."
+cost = [{ ingredient = "Fossilized Raptor Claw", quantity = 50 }, { ingredient = "Fossilized Triceratops Horn", quantity = 50 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 50 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "isle of dread: claw (accessory)"
+option = "Claw: Physical Resistance Rating"
+augments = ["Claw: +35 Physical Resistance Rating", "Claw: +38 Physical Resistance Rating"]
+note = "Yields the regular and the Minor Artifact version of Maetrim's augment. The page gives +35, or +38 in a Minor Artifact."
+cost = [{ ingredient = "Fossilized Tyrannosaurus Tooth", quantity = 100 }, { ingredient = "Fossilized Raptor Claw", quantity = 25 }, { ingredient = "Fossilized Triceratops Horn", quantity = 25 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 25 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 25 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "isle of dread: claw (accessory)"
+option = "Claw: Magical Resistance Rating"
+augments = ["Claw: +35 Magical Resistance Rating", "Claw: +38 Magical Resistance Rating"]
+note = "Yields the regular and the Minor Artifact version of Maetrim's augment. The page gives +35, or +38 in a Minor Artifact."
+cost = [{ ingredient = "Fossilized Tyrannosaurus Tooth", quantity = 100 }, { ingredient = "Fossilized Raptor Claw", quantity = 25 }, { ingredient = "Fossilized Triceratops Horn", quantity = 25 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 25 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 25 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "isle of dread: claw (accessory)"
+option = "Claw: Stunning"
+augments = ["Claw: Stunning"]
+cost = [{ ingredient = "Fossilized Tyrannosaurus Tooth", quantity = 100 }, { ingredient = "Fossilized Raptor Claw", quantity = 25 }, { ingredient = "Fossilized Triceratops Horn", quantity = 25 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 25 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 25 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "isle of dread: claw (accessory)"
+option = "Claw: Trip"
+augments = ["Claw: Trip"]
+cost = [{ ingredient = "Fossilized Tyrannosaurus Tooth", quantity = 100 }, { ingredient = "Fossilized Raptor Claw", quantity = 25 }, { ingredient = "Fossilized Triceratops Horn", quantity = 25 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 25 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 25 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "isle of dread: claw (accessory)"
+option = "Claw: Sunder"
+augments = ["Claw: Sunder"]
+cost = [{ ingredient = "Fossilized Tyrannosaurus Tooth", quantity = 100 }, { ingredient = "Fossilized Raptor Claw", quantity = 25 }, { ingredient = "Fossilized Triceratops Horn", quantity = 25 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 25 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 25 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "isle of dread: claw (accessory)"
+option = "Claw: Assassinate"
+augments = ["Claw: +15 Assassinate", "Claw: +17 Assassinate"]
+note = "Yields the regular and the Minor Artifact version of Maetrim's augment. The page gives +15, or +17 in a Minor Artifact."
+cost = [{ ingredient = "Fossilized Tyrannosaurus Tooth", quantity = 100 }, { ingredient = "Fossilized Raptor Claw", quantity = 25 }, { ingredient = "Fossilized Triceratops Horn", quantity = 25 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 25 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 25 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "isle of dread: claw (accessory)"
+option = "Claw: Spell Penetration"
+augments = ["Claw: +9 Spell Penetration", "Claw: +10 Spell Penetration"]
+note = "Yields the regular and the Minor Artifact version of Maetrim's augment. The page gives +9, or +10 in a Minor Artifact."
+cost = [{ ingredient = "Fossilized Tyrannosaurus Tooth", quantity = 100 }, { ingredient = "Fossilized Raptor Claw", quantity = 25 }, { ingredient = "Fossilized Triceratops Horn", quantity = 25 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 25 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 25 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "isle of dread: claw (accessory)"
+option = "Claw: Acid Spell Crit Damage"
+augments = ["Claw: Acid Spell Critical Damage"]
+note = "The page names it Spell Crit Damage; Maetrim's augment, which fits both the regular and the Minor Artifact slot, names it Spell Critical Damage."
+cost = [{ ingredient = "Fossilized Tyrannosaurus Tooth", quantity = 100 }, { ingredient = "Fossilized Raptor Claw", quantity = 25 }, { ingredient = "Fossilized Triceratops Horn", quantity = 25 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 25 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 25 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "isle of dread: claw (accessory)"
+option = "Claw: Cold Spell Crit Damage"
+augments = ["Claw: Cold Spell Critical Damage"]
+note = "The page names it Spell Crit Damage; Maetrim's augment, which fits both the regular and the Minor Artifact slot, names it Spell Critical Damage."
+cost = [{ ingredient = "Fossilized Tyrannosaurus Tooth", quantity = 100 }, { ingredient = "Fossilized Raptor Claw", quantity = 25 }, { ingredient = "Fossilized Triceratops Horn", quantity = 25 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 25 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 25 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "isle of dread: claw (accessory)"
+option = "Claw: Electric Spell Crit Damage"
+augments = ["Claw: Electric Spell Critical Damage"]
+note = "The page names it Spell Crit Damage; Maetrim's augment, which fits both the regular and the Minor Artifact slot, names it Spell Critical Damage."
+cost = [{ ingredient = "Fossilized Tyrannosaurus Tooth", quantity = 100 }, { ingredient = "Fossilized Raptor Claw", quantity = 25 }, { ingredient = "Fossilized Triceratops Horn", quantity = 25 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 25 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 25 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "isle of dread: claw (accessory)"
+option = "Claw: Fire Spell Crit Damage"
+augments = ["Claw: Fire Spell Critical Damage"]
+note = "The page names it Spell Crit Damage; Maetrim's augment, which fits both the regular and the Minor Artifact slot, names it Spell Critical Damage."
+cost = [{ ingredient = "Fossilized Tyrannosaurus Tooth", quantity = 100 }, { ingredient = "Fossilized Raptor Claw", quantity = 25 }, { ingredient = "Fossilized Triceratops Horn", quantity = 25 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 25 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 25 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "isle of dread: claw (accessory)"
+option = "Claw: Force Spell Crit Damage"
+augments = ["Claw: Force Spell Critical Damage"]
+note = "The page names it Spell Crit Damage; Maetrim's augment, which fits both the regular and the Minor Artifact slot, names it Spell Critical Damage."
+cost = [{ ingredient = "Fossilized Tyrannosaurus Tooth", quantity = 100 }, { ingredient = "Fossilized Raptor Claw", quantity = 25 }, { ingredient = "Fossilized Triceratops Horn", quantity = 25 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 25 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 25 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "isle of dread: claw (accessory)"
+option = "Claw: Light Spell Crit Damage"
+augments = ["Claw: Light Spell Critical Damage"]
+note = "The page names it Spell Crit Damage; Maetrim's augment, which fits both the regular and the Minor Artifact slot, names it Spell Critical Damage."
+cost = [{ ingredient = "Fossilized Tyrannosaurus Tooth", quantity = 100 }, { ingredient = "Fossilized Raptor Claw", quantity = 25 }, { ingredient = "Fossilized Triceratops Horn", quantity = 25 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 25 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 25 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "isle of dread: claw (accessory)"
+option = "Claw: Negative Spell Crit Damage"
+augments = ["Claw: Negative Spell Critical Damage"]
+note = "The page names it Spell Crit Damage; Maetrim's augment, which fits both the regular and the Minor Artifact slot, names it Spell Critical Damage."
+cost = [{ ingredient = "Fossilized Tyrannosaurus Tooth", quantity = 100 }, { ingredient = "Fossilized Raptor Claw", quantity = 25 }, { ingredient = "Fossilized Triceratops Horn", quantity = 25 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 25 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 25 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "isle of dread: claw (accessory)"
+option = "Claw: Positive Spell Crit Damage"
+augments = ["Claw: Positive Spell Critical Damage"]
+note = "The page names it Spell Crit Damage; Maetrim's augment, which fits both the regular and the Minor Artifact slot, names it Spell Critical Damage."
+cost = [{ ingredient = "Fossilized Tyrannosaurus Tooth", quantity = 100 }, { ingredient = "Fossilized Raptor Claw", quantity = 25 }, { ingredient = "Fossilized Triceratops Horn", quantity = 25 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 25 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 25 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "isle of dread: claw (accessory)"
+option = "Claw: Repair Spell Crit Damage"
+augments = ["Claw: Repair Spell Critical Damage"]
+note = "The page names it Spell Crit Damage; Maetrim's augment, which fits both the regular and the Minor Artifact slot, names it Spell Critical Damage."
+cost = [{ ingredient = "Fossilized Tyrannosaurus Tooth", quantity = 100 }, { ingredient = "Fossilized Raptor Claw", quantity = 25 }, { ingredient = "Fossilized Triceratops Horn", quantity = 25 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 25 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 25 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "isle of dread: claw (accessory)"
+option = "Claw: Sonic Spell Crit Damage"
+augments = ["Claw: Sonic Spell Critical Damage"]
+note = "The page names it Spell Crit Damage; Maetrim's augment, which fits both the regular and the Minor Artifact slot, names it Spell Critical Damage."
+cost = [{ ingredient = "Fossilized Tyrannosaurus Tooth", quantity = 100 }, { ingredient = "Fossilized Raptor Claw", quantity = 25 }, { ingredient = "Fossilized Triceratops Horn", quantity = 25 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 25 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 25 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "isle of dread: horn (accessory)"
+option = "Horn: Resistance"
+augments = ["Horn: +12 Resistance"]
+note = "The page gives +12 and notes, undocumented, that the bonus is actually +11."
+cost = [{ ingredient = "Black Pearl", quantity = 50 }, { ingredient = "Fossilized Raptor Claw", quantity = 50 }, { ingredient = "Fossilized Triceratops Horn", quantity = 50 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 50 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "isle of dread: horn (accessory)"
+option = "Horn: Enhanced Ghostly"
+augments = ["Horn: Enhanced Ghostly"]
+cost = [{ ingredient = "Black Pearl", quantity = 50 }, { ingredient = "Fossilized Raptor Claw", quantity = 50 }, { ingredient = "Fossilized Triceratops Horn", quantity = 50 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 50 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "isle of dread: horn (accessory)"
+option = "Horn: Relentless Fury"
+augments = ["Horn: Relentless Fury"]
+cost = [{ ingredient = "Black Pearl", quantity = 50 }, { ingredient = "Fossilized Raptor Claw", quantity = 50 }, { ingredient = "Fossilized Triceratops Horn", quantity = 50 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 50 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "isle of dread: horn (accessory)"
+option = "Horn: Armor Piercing"
+augments = ["Horn: +21 Armor Piercing", "Horn: +23 Armor Piercing"]
+note = "Yields the regular and the Minor Artifact version of Maetrim's augment. The page gives +22%, or +24% in a Minor Artifact; Maetrim's augments are +21 and +23, and his values stand."
+cost = [{ ingredient = "Black Pearl", quantity = 50 }, { ingredient = "Fossilized Raptor Claw", quantity = 50 }, { ingredient = "Fossilized Triceratops Horn", quantity = 50 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 50 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "isle of dread: horn (accessory)"
+option = "Horn: Wizardry"
+augments = ["Horn: +286 Wizardry"]
+cost = [{ ingredient = "Black Pearl", quantity = 50 }, { ingredient = "Fossilized Raptor Claw", quantity = 50 }, { ingredient = "Fossilized Triceratops Horn", quantity = 50 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 50 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "isle of dread: horn (accessory)"
+option = "Horn: Profane DCs"
+augments = ["Horn: Profane DCs"]
+cost = [{ ingredient = "Black Pearl", quantity = 50 }, { ingredient = "Fossilized Raptor Claw", quantity = 50 }, { ingredient = "Fossilized Triceratops Horn", quantity = 50 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 50 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "isle of dread: horn (accessory)"
+option = "Horn: Sacred DCs"
+augments = ["Horn: Sacred DCs"]
+cost = [{ ingredient = "Black Pearl", quantity = 50 }, { ingredient = "Fossilized Raptor Claw", quantity = 50 }, { ingredient = "Fossilized Triceratops Horn", quantity = 50 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 50 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "isle of dread: scale (armor)"
+option = "Bronzescale"
+augments = ["Bronzescale"]
+cost = [{ ingredient = "Fossilized Tyrannosaurus Tooth", quantity = 100 }, { ingredient = "Fossilized Raptor Claw", quantity = 25 }, { ingredient = "Fossilized Triceratops Horn", quantity = 25 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 25 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 25 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "isle of dread: scale (armor)"
+option = "Goldscale"
+augments = ["Goldscale"]
+cost = [{ ingredient = "Fossilized Tyrannosaurus Tooth", quantity = 100 }, { ingredient = "Fossilized Raptor Claw", quantity = 25 }, { ingredient = "Fossilized Triceratops Horn", quantity = 25 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 25 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 25 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "isle of dread: scale (armor)"
+option = "Silverscale"
+augments = ["Silverscale"]
+cost = [{ ingredient = "Fossilized Tyrannosaurus Tooth", quantity = 100 }, { ingredient = "Fossilized Raptor Claw", quantity = 25 }, { ingredient = "Fossilized Triceratops Horn", quantity = 25 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 25 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 25 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "isle of dread: scale (armor)"
+option = "Voidscale"
+augments = ["Voidscale"]
+cost = [{ ingredient = "Fossilized Tyrannosaurus Tooth", quantity = 100 }, { ingredient = "Fossilized Raptor Claw", quantity = 25 }, { ingredient = "Fossilized Triceratops Horn", quantity = 25 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 25 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 25 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "isle of dread: fang (armor)"
+option = "Goldfang"
+augments = ["Goldfang"]
+cost = [{ ingredient = "Black Pearl", quantity = 50 }, { ingredient = "Fossilized Raptor Claw", quantity = 50 }, { ingredient = "Fossilized Triceratops Horn", quantity = 50 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 50 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "isle of dread: fang (armor)"
+option = "Silverfang"
+augments = ["Silverfang"]
+cost = [{ ingredient = "Black Pearl", quantity = 50 }, { ingredient = "Fossilized Raptor Claw", quantity = 50 }, { ingredient = "Fossilized Triceratops Horn", quantity = 50 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 50 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "isle of dread: fang (armor)"
+option = "Voidfang"
+augments = ["Voidfang"]
+cost = [{ ingredient = "Black Pearl", quantity = 50 }, { ingredient = "Fossilized Raptor Claw", quantity = 50 }, { ingredient = "Fossilized Triceratops Horn", quantity = 50 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 50 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "isle of dread: set bonus"
+option = "Dread Stalker"
+augments = ["Dread Stalker"]
+note = "Set Bonus augment for armor, cloak and helm."
+cost = [{ ingredient = "Black Pearl", quantity = 50 }, { ingredient = "Fossilized Raptor Claw", quantity = 50 }, { ingredient = "Fossilized Triceratops Horn", quantity = 50 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 50 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "isle of dread: set bonus"
+option = "Devotion of the Firemouth"
+augments = ["Devotion of the Firemouth"]
+note = "Set Bonus augment for armor, cloak and helm."
+cost = [{ ingredient = "Black Pearl", quantity = 50 }, { ingredient = "Fossilized Raptor Claw", quantity = 50 }, { ingredient = "Fossilized Triceratops Horn", quantity = 50 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 50 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "isle of dread: set bonus"
+option = "Defender of Tanaroa"
+augments = ["Defender of Tanaroa"]
+note = "Set Bonus augment for armor, cloak and helm."
+cost = [{ ingredient = "Black Pearl", quantity = 50 }, { ingredient = "Fossilized Raptor Claw", quantity = 50 }, { ingredient = "Fossilized Triceratops Horn", quantity = 50 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 50 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "isle of dread: set bonus"
+option = "Deacon of the Auricular Sacrarium"
+augments = ["Deacon of the Auricular Sacrarium"]
+note = "Set Bonus augment for armor, cloak and helm."
+cost = [{ ingredient = "Black Pearl", quantity = 50 }, { ingredient = "Fossilized Raptor Claw", quantity = 50 }, { ingredient = "Fossilized Triceratops Horn", quantity = 50 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 50 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "isle of dread: set bonus"
+option = "Echoes of the Walking Ancestors"
+augments = ["Echoes of the Walking Ancestors"]
+note = "Set Bonus augment for armor, cloak and helm."
+cost = [{ ingredient = "Black Pearl", quantity = 50 }, { ingredient = "Fossilized Raptor Claw", quantity = 50 }, { ingredient = "Fossilized Triceratops Horn", quantity = 50 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 50 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "isle of dread: set bonus"
+option = "The Legendary Dread Isle's Curse"
+augments = ["The Legendary Dread Isle's Curse"]
+note = "Set Bonus augment for armor, cloak and helm."
+cost = [{ ingredient = "Black Pearl", quantity = 50 }, { ingredient = "Fossilized Raptor Claw", quantity = 50 }, { ingredient = "Fossilized Triceratops Horn", quantity = 50 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 50 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 50 }]
