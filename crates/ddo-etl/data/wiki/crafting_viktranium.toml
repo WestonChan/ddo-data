@@ -2,7 +2,7 @@
 name = "Viktranium Experiment Crafting"
 page = "https://ddowiki.com/page/Viktranium_Experiment_crafting"
 read = "2026-09-29"
-pack = "Chill of Ravenloft"
+pack = "The Chill of Ravenloft"
 families = ["Lamordia_Heroic", "Lamordia_Legendary"]
 npc = "Workbenches in Ludendorf City Hall, one each for the Heroic and Legendary systems; the Wicked Viktranium Experiment device stands at the start of the Relentless raid (and at the matching spot in the Ludendorf Wax Museum in the Lamordia wilderness)"
 
@@ -10,49 +10,49 @@ npc = "Workbenches in Ludendorf City Hall, one each for the Heroic and Legendary
 name = "Bleak Alternator"
 tier = "heroic"
 bind = "Unbound"
-source = "Chill of Ravenloft quests, wilderness encounters and raid"
+source = "The Chill of Ravenloft quests, wilderness encounters and raid"
 
 [[system.ingredient]]
 name = "Legendary Bleak Alternator"
 tier = "legendary"
 bind = "Unbound"
-source = "Chill of Ravenloft quests, wilderness encounters and raid"
+source = "The Chill of Ravenloft quests, wilderness encounters and raid"
 
 [[system.ingredient]]
 name = "Bleak Conductor"
 tier = "heroic"
 bind = "Unbound"
-source = "Chill of Ravenloft quests, wilderness encounters and raid"
+source = "The Chill of Ravenloft quests, wilderness encounters and raid"
 
 [[system.ingredient]]
 name = "Legendary Bleak Conductor"
 tier = "legendary"
 bind = "Unbound"
-source = "Chill of Ravenloft quests, wilderness encounters and raid"
+source = "The Chill of Ravenloft quests, wilderness encounters and raid"
 
 [[system.ingredient]]
 name = "Bleak Insulator"
 tier = "heroic"
 bind = "Unbound"
-source = "Chill of Ravenloft quests, wilderness encounters and raid"
+source = "The Chill of Ravenloft quests, wilderness encounters and raid"
 
 [[system.ingredient]]
 name = "Legendary Bleak Insulator"
 tier = "legendary"
 bind = "Unbound"
-source = "Chill of Ravenloft quests, wilderness encounters and raid"
+source = "The Chill of Ravenloft quests, wilderness encounters and raid"
 
 [[system.ingredient]]
 name = "Bleak Resistor"
 tier = "heroic"
 bind = "Unbound"
-source = "Chill of Ravenloft quests, wilderness encounters and raid"
+source = "The Chill of Ravenloft quests, wilderness encounters and raid"
 
 [[system.ingredient]]
 name = "Legendary Bleak Resistor"
 tier = "legendary"
 bind = "Unbound"
-source = "Chill of Ravenloft quests, wilderness encounters and raid"
+source = "The Chill of Ravenloft quests, wilderness encounters and raid"
 
 [[system.ingredient]]
 name = "Bleak Wire"
