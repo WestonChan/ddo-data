@@ -1,4 +1,4 @@
-use ddo_etl::build::build_database;
+use ddo_etl::build::{build_database, ProbableDuplicateWikiItem, SupersededWikiItem};
 use ddo_etl::wiki::{DescriptionKind, WikiOverrides};
 use ddo_model::DatasetVersion;
 use rusqlite::Connection;
@@ -589,7 +589,13 @@ fn merges_a_family_less_system_whose_recipes_grant_sockets() {
 fn crafting_never_adds_innate_item_bonuses_or_augments() {
     let (without, _) = built_db_with(&WikiOverrides::default());
     let (with, _) = built_db_with(&WikiOverrides::from_dir(&fixtures_dir().join("wiki")).unwrap());
-    for table in ["augments", "item_bonuses", "items", "adventure_packs", "augment_slot_types"] {
+    for table in [
+        "augments",
+        "item_bonuses JOIN items ON items.id = item_bonuses.item_id WHERE items.source = 'maetrim'",
+        "items WHERE source = 'maetrim'",
+        "adventure_packs",
+        "augment_slot_types",
+    ] {
         let count =
             |c: &Connection| c.query_row(&format!("SELECT COUNT(*) FROM {table}"), [], |r| r.get::<_, i64>(0)).unwrap();
         assert_eq!(count(&with), count(&without), "{table}");
@@ -843,4 +849,171 @@ fn rejects_unknown_wiki_item_fields() {
     let error = parsed_edited_items(|s| s.replacen("minimum_level = 29", "minimum_level = 29\nrarity = \"Rare\"", 1))
         .unwrap_err();
     assert!(error.contains(WIKI_AXE) && error.contains("rarity"), "{error}");
+}
+
+fn built_db_with_fixture_wiki() -> (Connection, ddo_etl::build::BuildReport) {
+    built_db_with(&WikiOverrides::from_dir(&fixtures_dir().join("wiki")).unwrap())
+}
+
+fn item_count(db: &Connection, sql_condition: &str) -> i64 {
+    db.query_row(&format!("SELECT COUNT(*) FROM items WHERE {sql_condition}"), [], |r| r.get(0)).unwrap()
+}
+
+#[test]
+fn drops_a_wiki_item_maetrim_already_carries_and_reports_it() {
+    let (without, _) = built_db_with(&WikiOverrides::default());
+    let (with, report) = built_db_with_fixture_wiki();
+    assert_eq!(item_count(&with, "name = 'Five Rings'"), 1);
+    assert_eq!(item_count(&with, "name = 'Five Rings' AND source = 'maetrim'"), 1);
+    let bonus_names = |db: &Connection| {
+        string_column(
+            db,
+            "SELECT b.name FROM item_bonuses ib JOIN bonuses b ON b.id = ib.bonus_id JOIN items i ON i.id = ib.item_id
+              WHERE i.name = 'Five Rings' ORDER BY ib.sort_order",
+        )
+    };
+    assert_eq!(bonus_names(&with), bonus_names(&without));
+    assert_eq!(report.wiki_item_superseded_count, 1);
+    assert_eq!(
+        report.superseded_wiki_items,
+        [SupersededWikiItem { name: "Five Rings".into(), file_name: "items.toml".into() }]
+    );
+}
+
+type WikiItemRow =
+    (String, String, Option<String>, i64, Option<i64>, Option<String>, Option<String>, Option<String>, String);
+
+#[test]
+fn writes_a_new_wiki_item_with_its_stats_bonuses_effects_sockets_set_and_quests() {
+    let (db, report) = built_db_with_fixture_wiki();
+    let item_row: WikiItemRow = db
+        .query_row(
+            "SELECT es.name, i.item_category, i.item_type, i.minimum_level, i.enhancement_bonus, m.name, i.set_bonus,
+                    i.wiki_url, i.source
+               FROM items i JOIN equipment_slots es ON es.id = i.slot_id LEFT JOIN item_materials m ON m.id = i.material_id
+              WHERE i.name = ?1",
+            [WIKI_AXE],
+            |r| Ok((r.get(0)?, r.get(1)?, r.get(2)?, r.get(3)?, r.get(4)?, r.get(5)?, r.get(6)?, r.get(7)?, r.get(8)?)),
+        )
+        .unwrap();
+    assert_eq!(
+        item_row,
+        (
+            "Main Hand".into(),
+            "Weapon".into(),
+            Some("Battle Axe".into()),
+            29,
+            Some(15),
+            Some("Steel".into()),
+            Some("Inevitable Balance".into()),
+            Some("https://ddowiki.com/page/Item:Battle_Axe_of_the_Oozing_Hunger".into()),
+            "wiki".into()
+        )
+    );
+    let item_id: i64 = db.query_row("SELECT id FROM items WHERE name = ?1", [WIKI_AXE], |r| r.get(0)).unwrap();
+    let item_column = |sql: &str| string_column(&db, &sql.replace("?item", &item_id.to_string()));
+    assert_eq!(
+        item_column(
+            "SELECT wt.name || '|' || w.base_dice_count || 'd' || w.base_dice_sides || '+' || w.base_dice_bonus || '|' ||
+                    w.damage_multiplier || '|' || w.critical_threat_range || '|' || w.critical_multiplier || '|' ||
+                    w.handedness || '|' || w.damage || '|' || w.critical
+               FROM item_weapon_stats w JOIN weapon_types wt ON wt.id = w.weapon_type_id WHERE w.item_id = ?item"
+        ),
+        ["Battle Axe|1d8+0|3.0|2|3|One-handed|3[1d8] + 15 Magic, Slash|19-20 / x3"]
+    );
+    assert_eq!(
+        item_column("SELECT bypass FROM item_dr_bypass WHERE item_id = ?item ORDER BY bypass"),
+        ["Magic", "Slash"]
+    );
+    assert_eq!(
+        item_column(
+            "SELECT s.name || '|' || bt.name || '|' || b.value FROM item_bonuses ib JOIN bonuses b ON b.id = ib.bonus_id
+               JOIN stats s ON s.id = b.stat_id JOIN bonus_types bt ON bt.id = b.bonus_type_id
+              WHERE ib.item_id = ?item ORDER BY ib.sort_order"
+        ),
+        ["Strength|Enhancement|15", "Doublestrike|Insight|5"]
+    );
+    let effect_lines = item_column(
+        "SELECT e.name || '|' || COALESCE(ie.value, '') || '|' || COALESCE(ie.target, '') || '|' ||
+                COALESCE(e.description, '')
+           FROM item_effects ie JOIN effects e ON e.id = ie.effect_id WHERE ie.item_id = ?item ORDER BY ie.sort_order",
+    );
+    assert_eq!(effect_lines[0], "Test Oozing Hunger|3|All|Test description: on hit, the target oozes.");
+    assert!(
+        effect_lines[1].starts_with("Ethereal|||Ethereal: Equipping this item"),
+        "his description stands: {effect_lines:?}"
+    );
+    assert_eq!(effect_lines.len(), 2);
+    assert_eq!(
+        string_column(&db, "SELECT COUNT(*) || '' FROM effects WHERE name = 'Ethereal'"),
+        ["1"],
+        "his Ethereal is reused"
+    );
+    assert_eq!(
+        item_column(
+            "SELECT t.label FROM item_augment_slots s JOIN augment_slot_types t ON t.id = s.slot_id
+              WHERE s.item_id = ?item ORDER BY s.sort_order"
+        ),
+        ["red", "colorless"]
+    );
+    assert_eq!(
+        item_column(
+            "SELECT s.name FROM set_bonus_items sbi JOIN set_bonuses s ON s.id = sbi.set_id WHERE sbi.item_id = ?item"
+        ),
+        ["Inevitable Balance"]
+    );
+    assert_eq!(quest_loot_row(&db, "The Grotto", WIKI_AXE), Some(("chest".into(), false)));
+    assert_eq!(report.wiki_item_written_count, 1);
+    assert_eq!(item_count(&db, "source = 'wiki'"), report.wiki_item_written_count as i64);
+}
+
+#[test]
+fn writes_a_probable_duplicate_of_a_maetrim_item_and_reports_both_names() {
+    let wiki = parsed_edited_items(|s| s.replace(WIKI_AXE, "Argentis Armor (Level 12)")).unwrap();
+    let (db, report) = built_db_with(&wiki);
+    assert_eq!(item_count(&db, "name = 'Argentis Armor (Level 12)' AND source = 'wiki'"), 1);
+    assert_eq!((report.wiki_item_written_count, report.wiki_item_probable_duplicate_count), (1, 1));
+    assert_eq!(
+        report.probable_duplicate_wiki_items,
+        [ProbableDuplicateWikiItem {
+            name: "Argentis Armor (Level 12)".into(),
+            maetrim_name: "Argenti's Armor".into()
+        }]
+    );
+}
+
+#[test]
+fn a_wiki_item_with_a_new_name_is_no_probable_duplicate() {
+    let (_, report) = built_db_with_fixture_wiki();
+    assert_eq!(report.wiki_item_probable_duplicate_count, 0);
+    assert!(report.probable_duplicate_wiki_items.is_empty());
+}
+
+#[test]
+fn build_fails_naming_a_wiki_item_value_absent_from_maetrims_files() {
+    for (field, good, bad) in [
+        ("material", "material = \"Steel\"", "material = \"Byeshk\""),
+        ("set", "set = \"Inevitable Balance\"", "set = \"Inevitable Imbalance\""),
+        ("augment_slots", "augment_slots = [\"red\", \"colorless\"]", "augment_slots = [\"red\", \"colourless\"]"),
+        ("quest", "{ name = \"The Grotto\", loot_type", "{ name = \"The Grotto Revisited\", loot_type"),
+    ] {
+        let wiki = parsed_edited_items(|s| s.replacen(good, bad, 1)).unwrap();
+        let error = build_report_with(&wiki).unwrap_err();
+        let bad_value = if field == "augment_slots" { "colourless" } else { bad.split('"').nth(1).unwrap() };
+        assert!(
+            error.contains(WIKI_AXE)
+                && error.contains("items.toml")
+                && error.contains(field)
+                && error.contains(bad_value),
+            "{field}: {error}"
+        );
+    }
+}
+
+#[test]
+fn wiki_items_never_change_maetrims_items() {
+    let (without, _) = built_db_with(&WikiOverrides::default());
+    let (with, _) = built_db_with_fixture_wiki();
+    assert_eq!(item_count(&with, "source = 'maetrim'"), item_count(&without, "1"));
+    assert_eq!(item_count(&without, "source = 'wiki'"), 0);
 }

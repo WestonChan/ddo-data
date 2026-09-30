@@ -61,7 +61,24 @@ pub struct BuildReport {
     pub wiki_description_entry_count: usize,
     pub wiki_description_filled_count: usize,
     pub wiki_description_skipped_count: usize,
+    pub wiki_item_written_count: usize,
+    pub wiki_item_superseded_count: usize,
+    pub wiki_item_probable_duplicate_count: usize,
+    pub superseded_wiki_items: Vec<SupersededWikiItem>,
+    pub probable_duplicate_wiki_items: Vec<ProbableDuplicateWikiItem>,
     pub unmapped_effect_type_counts: BTreeMap<String, usize>,
+}
+
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub struct SupersededWikiItem {
+    pub name: String,
+    pub file_name: String,
+}
+
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub struct ProbableDuplicateWikiItem {
+    pub name: String,
+    pub maetrim_name: String,
 }
 
 pub fn build_database(
@@ -147,6 +164,7 @@ pub fn build_database(
     for path in files_with_extension(&data_files_dir.join("FiligreeSets"), "xml")? {
         writer.write_set_bonus_file(&path, true, &mut report).with_context(|| format!("{}", path.display()))?;
     }
+    writer.write_wiki_items(&wiki_overrides.items, &mut report)?;
     writer.link_pending_set_members()?;
     writer.write_sentient_gems(&data_files_dir.join("Sentient.gems.xml"), &mut report)?;
     writer.link_spell_references()?;
@@ -191,6 +209,10 @@ pub(crate) struct WrittenQuests {
 impl WrittenQuests {
     fn quest_count(&self) -> usize {
         self.longest_name_first.len()
+    }
+
+    fn id_named(&self, quest_name: &str) -> Option<i64> {
+        self.longest_name_first.iter().find(|quest| quest.name == quest_name).map(|quest| quest.id)
     }
 }
 

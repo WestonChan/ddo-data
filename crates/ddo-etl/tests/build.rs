@@ -40,7 +40,7 @@ fn builds_items_and_skips_cosmetics() {
     let (db, report) = built_fixture_db();
     assert_eq!(report.written_item_count, 15);
     assert_eq!(report.skipped_cosmetic_item_count, 1);
-    assert_eq!(count(&db, "SELECT COUNT(*) FROM items"), 15);
+    assert_eq!(count(&db, "SELECT COUNT(*) FROM items WHERE source = 'maetrim'"), 15);
     assert_eq!(count(&db, "SELECT COUNT(*) FROM items WHERE name = '17th Anniversary Dark Helm'"), 0);
     let reason: String = db
         .query_row("SELECT reason FROM excluded_items WHERE name = '17th Anniversary Dark Helm'", [], |r| r.get(0))
@@ -303,7 +303,7 @@ fn diff_reports_coverage_against_a_legacy_database() {
         vec!["17th Anniversary Dark Helm".to_string()],
         "cosmetics are not gaps"
     );
-    assert_eq!(coverage.names_only_in_built.len(), 12);
+    assert_eq!(coverage.names_only_in_built.len(), 13, "the wiki fixture item is only in the build");
     assert!((coverage.coverage_ratio() - 0.75).abs() < 1e-9);
 }
 

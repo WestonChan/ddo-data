@@ -1,9 +1,10 @@
-use super::BuildReport;
-use crate::wiki::{CraftingRecipe, CraftingSystem, WikiDescription, WikiOverrides};
+use super::items::{ArmorStatsRow, ItemRow, WeaponStatsRow};
+use super::{BuildReport, ProbableDuplicateWikiItem, SupersededWikiItem, TableWriter};
+use crate::wiki::{CraftingRecipe, CraftingSystem, WikiDescription, WikiItem, WikiOverrides};
 use anyhow::{bail, Context, Result};
-use ddo_model::enums::LootType;
+use ddo_model::enums::{ItemSource, LootType};
 use rusqlite::{params, OptionalExtension, Transaction};
-use std::collections::HashMap;
+use std::collections::{HashMap, HashSet};
 
 pub(super) fn apply_wiki_overrides(
     transaction: &Transaction,
@@ -246,4 +247,165 @@ fn id_by_name(transaction: &Transaction, table: &str, name: &str) -> Result<Opti
     Ok(transaction
         .query_row(&format!("SELECT id FROM {table} WHERE name = ?1"), params![name], |r| r.get(0))
         .optional()?)
+}
+
+impl TableWriter<'_> {
+    pub(super) fn write_wiki_items(&mut self, wiki_items: &[WikiItem], report: &mut BuildReport) -> Result<()> {
+        let maetrim_item_names: Vec<String> = {
+            let mut statement = self.transaction.prepare("SELECT name FROM items ORDER BY name")?;
+            let names = statement.query_map([], |r| r.get(0))?.collect::<rusqlite::Result<_>>()?;
+            names
+        };
+        let maetrim_item_name_set: HashSet<&str> = maetrim_item_names.iter().map(String::as_str).collect();
+        let mut maetrim_item_names_by_normalised_name: HashMap<String, &str> = HashMap::new();
+        for maetrim_item_name in &maetrim_item_names {
+            maetrim_item_names_by_normalised_name
+                .entry(normalised_item_name(maetrim_item_name))
+                .or_insert(maetrim_item_name);
+        }
+        for wiki_item in wiki_items {
+            if maetrim_item_name_set.contains(wiki_item.name.as_str()) {
+                report
+                    .superseded_wiki_items
+                    .push(SupersededWikiItem { name: wiki_item.name.clone(), file_name: wiki_item.file_name.clone() });
+                report.wiki_item_superseded_count += 1;
+                continue;
+            }
+            self.write_wiki_item(wiki_item).with_context(|| {
+                format!("wiki {} item {:?} ({})", wiki_item.file_name, wiki_item.name, wiki_item.page)
+            })?;
+            report.wiki_item_written_count += 1;
+            if let Some(maetrim_name) =
+                maetrim_item_names_by_normalised_name.get(&normalised_item_name(&wiki_item.name))
+            {
+                report.probable_duplicate_wiki_items.push(ProbableDuplicateWikiItem {
+                    name: wiki_item.name.clone(),
+                    maetrim_name: (*maetrim_name).to_string(),
+                });
+                report.wiki_item_probable_duplicate_count += 1;
+            }
+        }
+        Ok(())
+    }
+
+    fn write_wiki_item(&mut self, wiki_item: &WikiItem) -> Result<()> {
+        let material_id = match &wiki_item.material {
+            Some(material_name) => Some(*self.written.material_ids_by_name.get(material_name).with_context(|| {
+                format!(
+                    "material {material_name:?} is not a material of Maetrim's items; use one /v1/items/{{id}} shows"
+                )
+            })?),
+            None => None,
+        };
+        if let Some(set_name) = &wiki_item.set {
+            if !self.written.set_bonus_ids_by_name.contains_key(set_name) {
+                bail!("set {set_name:?} is not a set in Maetrim's SetBonuses.xml or FiligreeSets/; use his spelling");
+            }
+        }
+        let slot_type_ids = wiki_item
+            .augment_slots
+            .iter()
+            .map(|label| {
+                self.written.augment_slot_type_ids_by_label.get(label).copied().with_context(|| {
+                    format!("augment_slots label {label:?} is not a socket label in Maetrim's files; use one /v1/augment-slot-types lists")
+                })
+            })
+            .collect::<Result<Vec<i64>>>()?;
+        let quest_links = wiki_item
+            .quests
+            .iter()
+            .map(|quest| {
+                let quest_id = self.written_quests.id_named(&quest.name).with_context(|| {
+                    format!(
+                        "quest {:?} is not a quest in Maetrim's Quests.xml or Challenges.xml; use his spelling",
+                        quest.name
+                    )
+                })?;
+                Ok((quest_id, quest.loot_type()))
+            })
+            .collect::<Result<Vec<(i64, LootType)>>>()?;
+
+        let item_id = self.insert_item_row(&ItemRow {
+            name: &wiki_item.name,
+            equipment_slot: wiki_item.equipment_slot(),
+            category: wiki_item.item_category(),
+            item_type: wiki_item.item_type.as_deref(),
+            minimum_level: Some(wiki_item.minimum_level),
+            enhancement_bonus: wiki_item.enhancement_bonus,
+            material_id,
+            race_required: wiki_item.race_required.clone(),
+            icon: None,
+            description: wiki_item.description.as_deref(),
+            drop_location: Some(&wiki_item.drop_location),
+            set_bonus: wiki_item.set.as_deref(),
+            accepts_sentience: wiki_item.accepts_sentience,
+            is_minor_artifact: wiki_item.is_minor_artifact,
+            wiki_url: wiki_item.page.clone(),
+            source: ItemSource::Wiki,
+        })?;
+        if let (Some(weapon), Some(weapon_type)) = (&wiki_item.weapon, wiki_item.weapon_type()) {
+            self.insert_weapon_stats(
+                item_id,
+                &WeaponStatsRow {
+                    weapon_type_id: weapon_type.id,
+                    base_dice_count: Some(weapon.damage_dice_count),
+                    base_dice_sides: Some(weapon.damage_dice_sides),
+                    base_dice_bonus: weapon.damage_dice_bonus,
+                    damage_multiplier: weapon.damage_multiplier,
+                    critical_threat_range: Some(weapon.critical_threat_range),
+                    critical_multiplier: Some(weapon.critical_multiplier),
+                    attack_modifier: None,
+                    damage_modifier: None,
+                    handedness: Some(weapon.handedness()),
+                    enhancement_bonus: wiki_item.enhancement_bonus,
+                    dr_bypasses: &weapon.dr_bypass,
+                },
+            )?;
+        }
+        if let (Some(armor), Some(armor_type)) = (&wiki_item.armor, wiki_item.armor_type()) {
+            self.insert_armor_stats(
+                item_id,
+                &ArmorStatsRow {
+                    armor_type,
+                    armor_bonus: armor.armor_bonus,
+                    max_dex_bonus: armor.max_dex_bonus,
+                    arcane_spell_failure: armor.arcane_spell_failure,
+                    armor_check_penalty: armor.armor_check_penalty,
+                    shield_bonus: armor.shield_bonus,
+                    damage_reduction: None,
+                    mithral_body: None,
+                    adamantine_body: None,
+                },
+            )?;
+        }
+        for (sort_order, bonus) in wiki_item.bonuses.iter().enumerate() {
+            let bonus_id =
+                self.ensure_bonus(bonus.stat(), Some(bonus.bonus_type()), Some(bonus.value), bonus.value2, None)?;
+            self.insert_item_bonus(item_id, bonus_id, sort_order)?;
+        }
+        for (sort_order, effect) in wiki_item.effects.iter().enumerate() {
+            let effect_id = self.ensure_effect(&effect.name, effect.description.as_deref())?;
+            self.insert_item_effect(item_id, effect_id, sort_order, effect.value, effect.target.as_deref())?;
+        }
+        for (sort_order, slot_type_id) in slot_type_ids.into_iter().enumerate() {
+            self.insert_item_augment_slot(item_id, sort_order, slot_type_id)?;
+        }
+        for (quest_id, loot_type) in quest_links {
+            self.insert_quest_loot_link(quest_id, item_id, loot_type, false)?;
+        }
+        if let Some(set_name) = &wiki_item.set {
+            self.pending_set_item_links.push((item_id, set_name.clone()));
+        }
+        Ok(())
+    }
+}
+
+fn normalised_item_name(item_name: &str) -> String {
+    let lowercase_name = item_name.trim().to_lowercase();
+    let name_without_level = lowercase_name
+        .strip_suffix(')')
+        .and_then(|before_paren| before_paren.rsplit_once("(level "))
+        .filter(|(_, level)| !level.is_empty() && level.bytes().all(|b| b.is_ascii_digit()))
+        .map_or(lowercase_name.as_str(), |(before_level, _)| before_level);
+    name_without_level.chars().filter(|character| character.is_alphanumeric()).collect()
 }

@@ -68,7 +68,8 @@ jobs:
       - name: Build the dataset
         if: steps.compare.outputs.changed == 'true'
         run: |
-          ./target/release/ddo-etl build --source upstream/Output/DataFiles --out ddo.db --sha "$UPSTREAM_SHA"
+          set -o pipefail
+          ./target/release/ddo-etl build --source upstream/Output/DataFiles --out ddo.db --sha "$UPSTREAM_SHA" | tee build-report.txt
           ./target/release/ddo-etl icons --source upstream/Output/DataFiles --out icons
 
       - name: Validate the dataset
@@ -97,6 +98,7 @@ jobs:
           check crafting_recipes 2500
           check crafting_ingredients 600
           check crafting_recipe_augments 1100
+          grep -E 'wiki_item_(written|superseded|probable_duplicate)_count' build-report.txt | tr -d ' ,'
 
       - name: Keep the dataset as a workflow artifact
         if: steps.compare.outputs.changed == 'true'

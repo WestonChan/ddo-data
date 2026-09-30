@@ -13,7 +13,7 @@ material = "Steel"
 description = "Test description: an axe that drips."
 drop_location = "Test source: The Grotto, end chest"
 quests = [{ name = "The Grotto", loot_type = "chest" }]
-set = "Perfect Silence"
+set = "Inevitable Balance"
 augment_slots = ["red", "colorless"]
 bonuses = [
   { stat = "Strength", bonus_type = "Enhancement", value = 15 },

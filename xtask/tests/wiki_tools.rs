@@ -27,10 +27,38 @@ fn wiki_check_reports_the_wiki_counts_for_a_valid_wiki_dir() {
         "wiki_description_entry_count: 4",
         "wiki_description_filled_count: 2",
         "wiki_description_skipped_count: 3",
+        "wiki_item_written_count: 1",
+        "wiki_item_superseded_count: 1",
+        "wiki_item_probable_duplicate_count: 0",
     ] {
         assert!(report.lines().any(|line| line == expected_line), "missing {expected_line:?} in\n{report}");
     }
     assert!(!report.contains("written_item_count"), "only wiki lines: {report}");
+}
+
+#[test]
+fn wiki_check_warns_about_superseded_and_probably_duplicate_wiki_items() {
+    let fixture_items = std::fs::read_to_string(fixtures_dir().join("wiki/items.toml")).unwrap();
+    let draft_dir = tempfile::tempdir().unwrap();
+    std::fs::write(
+        draft_dir.path().join("items_draft.toml"),
+        fixture_items.replace("Battle Axe of the Oozing Hunger", "Argentis Armor (Level 12)"),
+    )
+    .unwrap();
+
+    let report = wiki_check_report(&fixtures_dir().join("DataFiles"), Some(draft_dir.path())).unwrap();
+
+    let warnings_start = report.find("\nwarnings:").unwrap_or_else(|| panic!("no warnings section in\n{report}"));
+    for expected_warning in [
+        "warning: wiki item \"Five Rings\" is now in Maetrim's files; delete it from items_draft.toml",
+        "warning: wiki item \"Argentis Armor (Level 12)\" may duplicate Maetrim's \"Argenti's Armor\"",
+    ] {
+        assert!(
+            report[warnings_start..].lines().any(|line| line == expected_warning),
+            "missing {expected_warning:?} in\n{report}"
+        );
+    }
+    assert!(report[..warnings_start].lines().any(|line| line == "wiki_item_probable_duplicate_count: 1"), "{report}");
 }
 
 #[test]

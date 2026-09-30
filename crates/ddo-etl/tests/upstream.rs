@@ -53,7 +53,7 @@ fn build_and_icons_read_ddo_upstream_when_source_is_absent() {
     assert!(build_output.status.success(), "{}", String::from_utf8_lossy(&build_output.stderr));
     let item_count: i64 = rusqlite::Connection::open(&db_path)
         .unwrap()
-        .query_row("SELECT COUNT(*) FROM items", [], |row| row.get(0))
+        .query_row("SELECT COUNT(*) FROM items WHERE source = 'maetrim'", [], |row| row.get(0))
         .unwrap();
     assert_eq!(item_count, 15);
 

@@ -88,6 +88,28 @@ pub struct WikiArmorStats {
     pub shield_bonus: Option<i64>,
 }
 
+impl WikiItemQuest {
+    pub fn loot_type(&self) -> LootType {
+        LootType::ALL.iter().copied().find(|l| l.as_str() == self.loot_type).expect("validated loot_type")
+    }
+}
+
+impl WikiItemBonus {
+    pub fn stat(&self) -> &'static Stat {
+        Stat::by_name(&self.stat).expect("validated stat")
+    }
+
+    pub fn bonus_type(&self) -> BonusType {
+        BonusType::parse(&self.bonus_type).expect("validated bonus_type")
+    }
+}
+
+impl WikiWeaponStats {
+    pub fn handedness(&self) -> Handedness {
+        Handedness::ALL.iter().copied().find(|h| h.as_str() == self.handedness).expect("validated handedness")
+    }
+}
+
 impl WikiItem {
     pub fn equipment_slot(&self) -> EquipmentSlot {
         EquipmentSlot::ALL.iter().copied().find(|s| s.name() == self.slot).expect("validated slot")

@@ -18,6 +18,7 @@ pub fn wiki_check_report(data_files_dir: &Path, wiki_dir: Option<&Path>) -> Resu
     report_lines.push("warnings:".to_string());
     report_lines.extend(unused_family_augment_warnings(&db)?);
     report_lines.extend(socket_label_warnings(&db)?);
+    report_lines.extend(wiki_item_warnings(&report));
     Ok(report_lines.join("\n"))
 }
 
@@ -56,10 +57,29 @@ fn wiki_report_lines(report: &BuildReport) -> Vec<String> {
         ("wiki_description_entry_count", report.wiki_description_entry_count),
         ("wiki_description_filled_count", report.wiki_description_filled_count),
         ("wiki_description_skipped_count", report.wiki_description_skipped_count),
+        ("wiki_item_written_count", report.wiki_item_written_count),
+        ("wiki_item_superseded_count", report.wiki_item_superseded_count),
+        ("wiki_item_probable_duplicate_count", report.wiki_item_probable_duplicate_count),
     ]
     .iter()
     .map(|(field_name, count)| format!("{field_name}: {count}"))
     .collect()
+}
+
+fn wiki_item_warnings(report: &BuildReport) -> Vec<String> {
+    let superseded_warnings = report.superseded_wiki_items.iter().map(|superseded_item| {
+        format!(
+            "warning: wiki item {:?} is now in Maetrim's files; delete it from {}",
+            superseded_item.name, superseded_item.file_name
+        )
+    });
+    let probable_duplicate_warnings = report.probable_duplicate_wiki_items.iter().map(|duplicate_item| {
+        format!(
+            "warning: wiki item {:?} may duplicate Maetrim's {:?}",
+            duplicate_item.name, duplicate_item.maetrim_name
+        )
+    });
+    superseded_warnings.chain(probable_duplicate_warnings).collect()
 }
 
 pub fn write_wiki_batch(data_files_dir: &Path, wiki_dir: Option<&Path>, out_dir: &Path) -> Result<Vec<String>> {
@@ -67,7 +87,7 @@ pub fn write_wiki_batch(data_files_dir: &Path, wiki_dir: Option<&Path>, out_dir:
     let (db, _) = build_in_memory_database(data_files_dir, &wiki_overrides)?;
     std::fs::create_dir_all(out_dir).with_context(|| format!("creating {}", out_dir.display()))?;
     let batch_files = [
-        ("item_names.txt", as_lines(item_names(&db)?)),
+        ("item_names.txt", as_lines(maetrim_item_names(&db)?)),
         ("augment_names.txt", as_lines(augment_name_lines(&db)?)),
         ("quest_pages.json", serde_json::to_string_pretty(&quest_page_urls(&db)?)? + "\n"),
         ("crafting_systems.json", CRAFTING_SYSTEMS_JSON.to_string()),
@@ -106,8 +126,8 @@ fn as_lines(lines: Vec<String>) -> String {
     lines.iter().map(|line| format!("{line}\n")).collect()
 }
 
-fn item_names(db: &Connection) -> Result<Vec<String>> {
-    let mut statement = db.prepare("SELECT name FROM items ORDER BY name")?;
+fn maetrim_item_names(db: &Connection) -> Result<Vec<String>> {
+    let mut statement = db.prepare("SELECT name FROM items WHERE source = 'maetrim' ORDER BY name")?;
     let names = statement.query_map([], |row| row.get(0))?.collect::<rusqlite::Result<_>>()?;
     Ok(names)
 }
