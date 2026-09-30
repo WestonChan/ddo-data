@@ -85,6 +85,11 @@ fn labels_the_chest_named_after_a_quest_without_rarity_or_asides() {
         (",  ", None),
         (" and ", None),
         (", Rantha 's chest &amp", Some("rantha 's chest")),
+        (" (wilderness), Rare Chests, and ", Some("rare chests")),
+        (", any legendary end chest or ", Some("any legendary end chest")),
+        (", end chest, and, ", Some("end chest")),
+        (" and visits to the Cerulean Hills and ", Some("visits to the cerulean hills")),
+        (", or ", None),
     ] {
         assert_eq!(chest_label(text_after_quest_name).as_deref(), expected_chest, "{text_after_quest_name:?}");
     }
@@ -131,6 +136,18 @@ fn finds_a_quest_name_spelt_with_other_capitals_or_spacing_only_as_whole_words()
         ["ToEE: Lower\nTemple Complex"],
         "a name his text wraps onto the next line"
     );
+}
+
+#[test]
+fn gives_each_quest_its_own_chest_when_the_text_names_one_after_each() {
+    let drop_location = "Isle of Dread (wilderness), Rare Chests, and All Hail the King end chest";
+    let quest_name_spans: Vec<std::ops::Range<usize>> = ["Isle of Dread", "All Hail the King"]
+        .iter()
+        .flat_map(|quest_name| quest_name_spans(drop_location, quest_name))
+        .collect();
+    let chests: Vec<Option<String>> =
+        quest_name_spans.iter().map(|span| chest_following(drop_location, span.end, &quest_name_spans)).collect();
+    assert_eq!(chests.iter().map(Option::as_deref).collect::<Vec<_>>(), [Some("rare chests"), Some("end chest")]);
 }
 
 #[test]

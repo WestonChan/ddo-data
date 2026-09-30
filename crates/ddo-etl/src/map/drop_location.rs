@@ -91,15 +91,31 @@ pub fn chest_label(text_after_quest_name: &str) -> Option<String> {
     let joined_words = words.join(" ");
     let label = joined_words.trim_start_matches(CHEST_LABEL_LEADING_PUNCTUATION).trim_start();
     let label = RARE_DROP_PREFIXES.iter().find_map(|prefix| label.strip_prefix(prefix)).unwrap_or(label);
-    let label = label.trim().trim_end_matches(CHEST_LABEL_TRAILING_PUNCTUATION).trim();
-    let label = label.trim_end_matches(['&', ' ']);
-    (!label.is_empty() && !LIST_CONNECTORS.contains(&label)).then(|| label.to_string())
+    let label = label_without_list_connectors_at_its_ends(label.trim_end_matches(CHEST_LABEL_TRAILING_PUNCTUATION));
+    (!label.is_empty()).then(|| label.to_string())
+}
+
+fn label_without_list_connectors_at_its_ends(label: &str) -> &str {
+    let mut label = label.trim_matches(LIST_SEPARATOR_CHARACTERS);
+    loop {
+        let label_without_a_connector = LIST_CONNECTORS.iter().find_map(|connector| {
+            label
+                .strip_suffix(connector)
+                .filter(|text_before| text_before.is_empty() || text_before.ends_with(LIST_SEPARATOR_CHARACTERS))
+                .or_else(|| label.strip_prefix(connector).filter(|text_after| text_after.starts_with(' ')))
+        });
+        match label_without_a_connector {
+            Some(shorter_label) => label = shorter_label.trim_matches(LIST_SEPARATOR_CHARACTERS),
+            None => return label,
+        }
+    }
 }
 
 const CHEST_LABEL_LEADING_PUNCTUATION: [char; 4] = [',', ':', '-', ' '];
 const CHEST_LABEL_TRAILING_PUNCTUATION: [char; 3] = ['.', ',', ' '];
 const ESCAPED_AMPERSAND: &str = "&amp";
 const LIST_CONNECTORS: [&str; 2] = ["and", "or"];
+const LIST_SEPARATOR_CHARACTERS: [char; 3] = [',', ' ', '&'];
 const RARE_DROP_PREFIXES: [&str; 2] = ["rare drop in ", "rare drop "];
 
 fn text_without_parentheticals(text: &str) -> String {
