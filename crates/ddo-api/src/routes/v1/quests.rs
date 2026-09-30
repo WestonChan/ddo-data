@@ -1,8 +1,9 @@
-use crate::db::{convert_to_booleans, json_rows, whole_table_json};
+use crate::db::{convert_to_booleans, corrections_by_name, json_rows, whole_table_json};
 use crate::error::ApiError;
 use crate::state::AppState;
 use axum::extract::State;
 use axum::Json;
+use ddo_model::enums::CorrectionKind;
 use serde_json::Value;
 use utoipa_axum::router::OpenApiRouter;
 use utoipa_axum::routes;
@@ -50,9 +51,11 @@ async fn patrons(State(state): State<AppState>) -> Result<Json<Vec<Value>>, ApiE
                    `max_level` null. Read from ddowiki, since Maetrim's files carry none of them: \
                    `is_free_to_play` (the quest itself, not its pack), `legendary_level`, `zone` (where it takes \
                    place), `bestowed_by` (the quest giver) and `flagging` (free text on what must be run first), \
-                   each null or false when the wiki has not been read for that quest. Item detail responses \
-                   reference these in `quests`.",
-    responses((status = 200, description = "The whole table with each quest's wiki facts", body = Vec<Value>))
+                   each null or false when the wiki has not been read for that quest. `corrections` lists each \
+                   known mistake in Maetrim's value for the quest that the dataset replaced, as \
+                   `{ field, from, to, reason, source }` with `from` his value and `to` the value shown (empty when \
+                   none). Item detail responses reference these in `quests`.",
+    responses((status = 200, description = "The whole table with each quest's wiki facts and corrections", body = Vec<Value>))
 )]
 async fn quests(State(state): State<AppState>) -> Result<Json<Vec<Value>>, ApiError> {
     let quests = state
@@ -66,8 +69,12 @@ async fn quests(State(state): State<AppState>) -> Result<Json<Vec<Value>>, ApiEr
                   ORDER BY q.name",
                 [],
             )?;
+            let mut corrections_by_quest_name = corrections_by_name(db, CorrectionKind::Quest)?;
             for quest in &mut quests {
                 convert_to_booleans(quest, &["is_raid", "is_challenge", "is_free_to_play"]);
+                let quest_corrections =
+                    quest["name"].as_str().and_then(|name| corrections_by_quest_name.remove(name)).unwrap_or_default();
+                quest["corrections"] = Value::Array(quest_corrections);
             }
             Ok(quests)
         })

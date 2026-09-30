@@ -5,6 +5,7 @@
     "bonuses": 4798,
     "classes": 28,
     "clickies": 219,
+    "corrections": 1,
     "crafting_ingredients": 702,
     "crafting_recipes": 2846,
     "crafting_systems": 37,
@@ -25,8 +26,8 @@
     "wiki_items": 262
   },
   "dataset": {
-    "built_at": "2026-09-30T06:44:42Z",
+    "built_at": "2026-09-30T06:53:50Z",
     "upstream_sha": "31ef0201ea8e28604de2b6242988aee6d63733b0"
   },
-  "schema_version": 3
+  "schema_version": 4
 }

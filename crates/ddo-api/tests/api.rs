@@ -25,7 +25,10 @@ fn fixture_db_path() -> &'static PathBuf {
         ddo_etl::build::build_database(
             &fixture_data_files_dir(),
             &wiki_overrides,
-            &ddo_etl::corrections::Corrections::default(),
+            &ddo_etl::corrections::Corrections::from_dir(
+                &fixture_data_files_dir().parent().unwrap().join("corrections"),
+            )
+            .unwrap(),
             &mut db,
             &dataset_version,
         )
@@ -768,4 +771,52 @@ async fn augment_list_rows_carry_the_crafting_recipes_that_yield_them() {
     }
     let (_, _, ruby) = get("/v1/augments?q=ruby+of+acid").await;
     assert_eq!(ruby["augments"][0]["crafting"], serde_json::json!([]));
+}
+
+async fn id_of_item_named(item_name: &str) -> i64 {
+    let (_, _, items) = get(&format!("/v1/items?q={}", item_name.replace(' ', "+"))).await;
+    items["items"].as_array().unwrap().iter().find(|item| item["name"] == item_name).unwrap()["id"].as_i64().unwrap()
+}
+
+#[tokio::test]
+async fn items_augments_and_quests_report_the_corrections_applied_to_them() {
+    let (_, _, docent) = get(&format!("/v1/items/{}", id_of_item_named("Docent of Defiance").await)).await;
+    assert_eq!(docent["minimum_level"], 11);
+    assert_eq!(
+        docent["corrections"],
+        serde_json::json!([{
+            "field": "minimum_level",
+            "from": 10,
+            "to": 11,
+            "reason": "Test correction of an item's level.",
+            "source": "https://ddowiki.com/page/Item:Docent_of_Defiance"
+        }])
+    );
+    let (_, _, crossbow) =
+        get(&format!("/v1/items/{}", id_of_item_named("+1 Ember Repeating Light Crossbow").await)).await;
+    assert_eq!(crossbow["corrections"], serde_json::json!([]));
+
+    let (_, _, augments) = get("/v1/augments?q=voidscale").await;
+    let voidscale_id = augments["augments"][0]["id"].as_i64().unwrap();
+    let (_, _, voidscale) = get(&format!("/v1/augments/{voidscale_id}")).await;
+    assert_eq!(voidscale["min_level"], 30);
+    assert_eq!(voidscale["corrections"][0]["field"], "min_level");
+    assert_eq!(
+        (&voidscale["corrections"][0]["from"], &voidscale["corrections"][0]["to"]),
+        (&serde_json::json!(31), &serde_json::json!(30))
+    );
+
+    let (_, _, quests) = get("/v1/quests").await;
+    let quests = quests.as_array().unwrap();
+    let plane_of_night = quests.iter().find(|quest| quest["name"] == "Plane of Night").unwrap();
+    assert_eq!(plane_of_night["favor"], 6);
+    assert_eq!(plane_of_night["corrections"][0]["field"], "favor");
+    assert_eq!(plane_of_night["corrections"][0]["reason"], "Test correction of a quest's favor.");
+    assert!(quests
+        .iter()
+        .filter(|quest| quest["name"] != "Plane of Night")
+        .all(|quest| quest["corrections"] == serde_json::json!([])));
+
+    let (_, _, version) = get("/v1/version").await;
+    assert_eq!(version["counts"]["corrections"], 3);
 }

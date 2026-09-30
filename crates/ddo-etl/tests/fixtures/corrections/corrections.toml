@@ -2,12 +2,12 @@
 # test value, not a real correction. The last entry's `from` is deliberately not the fixture's value, so it is stale.
 [[correction]]
 kind = "augment"
-name = "Perfect Silence"
+name = "Voidscale"
 field = "min_level"
-from = 30
-to = 29
+from = 31
+to = 30
 reason = "Test correction of an augment's level."
-source = "https://ddowiki.com/page/Item:Perfect_Silence"
+source = "https://ddowiki.com/page/Item:Voidscale"
 read = "2026-09-29"
 
 [[correction]]

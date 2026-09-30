@@ -46,6 +46,7 @@ const COUNTED_ROWS: &[(&str, &str)] = &[
     ("crafting_recipes", "crafting_recipes"),
     ("crafting_ingredients", "crafting_ingredients"),
     ("wiki_items", "items WHERE source = 'wiki'"),
+    ("corrections", "corrections"),
 ];
 
 #[utoipa::path(
@@ -55,7 +56,8 @@ const COUNTED_ROWS: &[(&str, &str)] = &[
     summary = "Get the dataset version",
     description = "Which DDOBuilderV2 commit the data was built from and when, which ddo-data commit the API binary \
                    was built from (`api_commit`, null for local builds), the schema version, and row counts for \
-                   the main tables plus `wiki_items`, the items read from ddowiki because DDOBuilderV2 lacks them. \
+                   the main tables plus `wiki_items`, the items read from ddowiki because DDOBuilderV2 lacks them, and \
+                   `corrections`, the known mistakes in DDOBuilderV2's values the dataset replaced. \
                    The dataset SHA is the same value every response carries in its `X-Dataset-Version` header; a change in it means every cached response is stale.",
     responses((status = 200, description = "Dataset, schema and counts", body = VersionReport))
 )]

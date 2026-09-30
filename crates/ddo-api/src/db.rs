@@ -1,7 +1,9 @@
 use crate::error::ApiError;
+use ddo_model::enums::CorrectionKind;
 use rusqlite::types::ValueRef;
 use rusqlite::{Connection, Params, Row};
-use serde_json::{Map, Value};
+use serde_json::{json, Map, Value};
+use std::collections::HashMap;
 
 pub(crate) fn json_rows<P: Params>(db: &Connection, sql: &str, params: P) -> Result<Vec<Value>, ApiError> {
     let mut statement = db.prepare_cached(sql)?;
@@ -130,6 +132,50 @@ pub(crate) fn dcs_for(db: &Connection, owner_kind: &str, owner_id: i64) -> Resul
            FROM dcs WHERE owner_kind = ?1 AND owner_id = ?2 ORDER BY sort_order",
         (owner_kind, owner_id),
     )
+}
+
+const CORRECTION_COLUMNS: &str = "name, field, from_value, to_value, reason, source";
+
+pub(crate) fn corrections_by_name(
+    db: &Connection,
+    kind: CorrectionKind,
+) -> Result<HashMap<String, Vec<Value>>, ApiError> {
+    let mut statement = db.prepare_cached(&format!(
+        "SELECT {CORRECTION_COLUMNS} FROM corrections WHERE kind = ?1 ORDER BY name, field"
+    ))?;
+    let named_corrections = statement.query_map([kind.as_str()], named_correction_json)?;
+    let mut corrections_by_name: HashMap<String, Vec<Value>> = HashMap::new();
+    for named_correction in named_corrections {
+        let (name, correction) = named_correction?;
+        corrections_by_name.entry(name).or_default().push(correction);
+    }
+    Ok(corrections_by_name)
+}
+
+pub(crate) fn corrections_for(db: &Connection, kind: CorrectionKind, name: &str) -> Result<Vec<Value>, ApiError> {
+    let mut statement = db.prepare_cached(&format!(
+        "SELECT {CORRECTION_COLUMNS} FROM corrections WHERE kind = ?1 AND name = ?2 ORDER BY field"
+    ))?;
+    let corrections = statement.query_map((kind.as_str(), name), named_correction_json)?;
+    Ok(corrections
+        .map(|named_correction| named_correction.map(|(_, correction)| correction))
+        .collect::<Result<_, _>>()?)
+}
+
+fn named_correction_json(row: &Row) -> rusqlite::Result<(String, Value)> {
+    let (from_value, to_value): (String, String) = (row.get(2)?, row.get(3)?);
+    let correction = json!({
+        "field": row.get::<_, String>(1)?,
+        "from": json_from_stored_json(&from_value),
+        "to": json_from_stored_json(&to_value),
+        "reason": row.get::<_, String>(4)?,
+        "source": row.get::<_, String>(5)?,
+    });
+    Ok((row.get(0)?, correction))
+}
+
+fn json_from_stored_json(stored_json: &str) -> Value {
+    serde_json::from_str(stored_json).unwrap_or_else(|_| Value::String(stored_json.to_string()))
 }
 
 pub(crate) fn bonuses_via(

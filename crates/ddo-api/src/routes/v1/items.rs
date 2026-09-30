@@ -1,5 +1,5 @@
 use crate::db::{
-    bonuses_via, clamped_page, convert_to_booleans, json_row, json_rows, modifiers_for, row_count,
+    bonuses_via, clamped_page, convert_to_booleans, corrections_for, json_row, json_rows, modifiers_for, row_count,
     substring_like_pattern, whole_table_json, WhereClause,
 };
 use crate::error::ApiError;
@@ -7,7 +7,7 @@ use crate::query::ApiQuery;
 use crate::state::AppState;
 use axum::extract::{Path, State};
 use axum::Json;
-use ddo_model::enums::ItemCategory;
+use ddo_model::enums::{CorrectionKind, ItemCategory};
 use serde::Deserialize;
 use serde_json::{json, Value};
 use utoipa_axum::router::OpenApiRouter;
@@ -145,7 +145,10 @@ async fn items(
                    `augment_slots` (sockets in order with their fixed `options`), `clickies`, `set`, `quests` it drops \
                    from with loot type, raid flag, `is_rare` (rare loot in that quest, per Maetrim's drop text or ddowiki), the \
                    `difficulties` each offers, and ddowiki's `is_free_to_play` for each (see /v1/quests for the rest of \
-                   the quest), and the raw `modifiers` the ETL derived the bonuses from.",
+                   the quest), the raw `modifiers` the ETL derived the bonuses from, and `corrections`: each known \
+                   mistake in Maetrim's value for this item that the dataset replaced, as \
+                   `{ field, from, to, reason, source }` with `from` his value and `to` the value shown (empty when \
+                   none).",
     params(("id" = i64, Path, description = "The item's numeric id from the list endpoint")), responses((status = 200, description = "The item with its child collections", body = Value), (status = 404, description = "No item has this id", body = crate::error::ErrorBody))
 )]
 async fn item_detail(State(state): State<AppState>, Path(id): Path<i64>) -> Result<Json<Value>, ApiError> {
@@ -242,6 +245,8 @@ async fn item_detail(State(state): State<AppState>, Path(id): Path<i64>) -> Resu
             }
             item["quests"] = Value::Array(quests);
             item["modifiers"] = Value::Array(modifiers_for(db, "item", id)?);
+            let item_name = item["name"].as_str().unwrap_or_default().to_string();
+            item["corrections"] = Value::Array(corrections_for(db, CorrectionKind::Item, &item_name)?);
             Ok(Json(item))
         })
         .await
