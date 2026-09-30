@@ -1,0 +1,77 @@
+[[system]]
+name = "Augmentation Altar"
+page = "https://ddowiki.com/page/Augmentation_Altar"
+read = "2026-09-29"
+families = ["SealedInFire", "SealedInUndeath"]
+npc = "Augmentation Altar inside the Temple of Silith-tar in the raid Den of Vipers (introduced in Update 72)"
+
+[[system.ingredient]]
+name = "Hydra Scale"
+tier = "legendary"
+source = "Den of Vipers end and optional chests"
+
+[[system.ingredient]]
+name = "Sealed in Mist item"
+tier = "legendary"
+source = "Den of Vipers raid weapons"
+
+[[system.ingredient]]
+name = "Sealed in Gloom item"
+tier = "legendary"
+source = "Den of Vipers raid equipment"
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: sealed in mist"
+option = "Legendary Dust (Raid Den of Vipers Weapons)"
+augments = ["Legendary Dust"]
+note = "Removes any effect the Augmentation Altar added before and adds Legendary Dust; Sealed in Mist itself stays. The page gives one cost for all six weapon rows."
+cost = [{ ingredient = "Sealed in Mist item", quantity = 1 }, { ingredient = "Hydra Scale", quantity = 20 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: sealed in mist"
+option = "Legendary Ash (Raid Den of Vipers Weapons)"
+augments = ["Legendary Ash"]
+note = "Removes any effect the Augmentation Altar added before and adds Legendary Ash; Sealed in Mist itself stays. The page gives one cost for all six weapon rows."
+cost = [{ ingredient = "Sealed in Mist item", quantity = 1 }, { ingredient = "Hydra Scale", quantity = 20 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: sealed in mist"
+option = "Legendary Vacuum (Raid Den of Vipers Weapons)"
+augments = ["Legendary Vacuum"]
+note = "Removes any effect the Augmentation Altar added before and adds Legendary Vacuum; Sealed in Mist itself stays. The page gives one cost for all six weapon rows."
+cost = [{ ingredient = "Sealed in Mist item", quantity = 1 }, { ingredient = "Hydra Scale", quantity = 20 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: sealed in mist"
+option = "Legendary Ooze (Raid Den of Vipers Weapons)"
+augments = ["Legendary Ooze"]
+note = "Removes any effect the Augmentation Altar added before and adds Legendary Ooze; Sealed in Mist itself stays. The page gives one cost for all six weapon rows."
+cost = [{ ingredient = "Sealed in Mist item", quantity = 1 }, { ingredient = "Hydra Scale", quantity = 20 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: sealed in mist"
+option = "Legendary Salt (Raid Den of Vipers Weapons)"
+augments = ["Legendary Salt"]
+note = "Removes any effect the Augmentation Altar added before and adds Legendary Salt; Sealed in Mist itself stays. The page gives one cost for all six weapon rows."
+cost = [{ ingredient = "Sealed in Mist item", quantity = 1 }, { ingredient = "Hydra Scale", quantity = 20 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: sealed in mist"
+option = "Legendary Affirmation (Raid Den of Vipers Weapons)"
+augments = ["Legendary Affirmation"]
+note = "Removes any effect the Augmentation Altar added before and adds Legendary Affirmation; Sealed in Mist itself stays. The page gives one cost for all six weapon rows."
+cost = [{ ingredient = "Sealed in Mist item", quantity = 1 }, { ingredient = "Hydra Scale", quantity = 20 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: sealed in gloom"
+option = "Ability bonus (Raid Den of Vipers Equipment)"
+augments = ["Strength +15", "Constitution +15", "Dexterity +15", "Intelligence +15", "Wisdom +15", "Charisma +15", "Insightful Strength +7", "Insightful Constitution +7", "Insightful Dexterity +7", "Insightful Intelligence +7", "Insightful Wisdom +7", "Insightful Charisma +7", "Quality Strength +3", "Quality Constitution +3", "Quality Dexterity +3", "Quality Intelligence +3", "Quality Wisdom +3", "Quality Charisma +3"]
+note = "Removes any effect the Augmentation Altar added before and adds one ability bonus of choice: +15, Insightful +7 or Quality +3 to any ability."
+cost = [{ ingredient = "Sealed in Gloom item", quantity = 1 }, { ingredient = "Hydra Scale", quantity = 20 }]

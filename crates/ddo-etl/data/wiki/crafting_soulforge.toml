@@ -1,0 +1,180 @@
+[[system]]
+name = "Soulforge"
+page = "https://ddowiki.com/page/Soulforge"
+read = "2026-09-29"
+families = ["Named"]
+npc = "Soulforge altar, Eberron Hall of Heroes (lower level, first room, south-west corner)"
+
+[[system.ingredient]]
+name = "Thread of Fate"
+tier = "legendary"
+
+[[system.ingredient]]
+name = "Empty Soul Vessel"
+tier = "legendary"
+
+[[system.ingredient]]
+name = "The Invisible Cloak of Strahd"
+tier = "legendary"
+source = "Raid item; drops in Old Baba's Hut"
+
+[[system.ingredient]]
+name = "Nullscale Armor"
+tier = "legendary"
+source = "Raid item; drops in Killing Time"
+
+[[system.ingredient]]
+name = "Epic Litany of the Dead"
+tier = "legendary"
+source = "Raid item; drops in Mark of Death"
+
+[[system.ingredient]]
+name = "The Broken Blade of Constellation"
+tier = "legendary"
+source = "Raid item"
+
+[[system.ingredient]]
+name = "The Shattered Hilt of Constellation"
+tier = "legendary"
+source = "Raid item"
+
+[[system.ingredient]]
+name = "The Masque"
+tier = "legendary"
+source = "Raid item; drops in The Curse of Strahd"
+
+[[system.ingredient]]
+name = "Cobalt Guard"
+tier = "legendary"
+source = "Raid item; drops in Riding the Storm Out"
+
+[[system.ingredient]]
+name = "Cracked Core"
+tier = "legendary"
+source = "Raid item"
+
+[[system.ingredient]]
+name = "Dark Diversion"
+tier = "legendary"
+source = "Raid item; drops in Temple of the Deathwyrm"
+
+[[system.ingredient]]
+name = "Spear of the Mournlands"
+tier = "legendary"
+source = "Raid item"
+
+[[system.ingredient]]
+name = "Champion of the Twins"
+tier = "legendary"
+source = "Raid item; drops in Legendary Vision of Destruction"
+
+[[system.ingredient]]
+name = "Ultimatum"
+tier = "legendary"
+source = "Raid item; drops in Defiler of the Just"
+
+[[system.ingredient]]
+name = "Dethek Runestone"
+tier = "legendary"
+source = "Raid item; drops in Fire on Thunder Peak"
+
+[[system.ingredient]]
+name = "Pomura's Memento"
+tier = "legendary"
+source = "Raid item; drops in Hunt or Be Hunted"
+
+[[system.ingredient]]
+name = "Constellation, Cursed Blade"
+tier = "legendary"
+source = "Raid item; the alternative to both Constellation halves"
+
+[[system.recipe]]
+tier = "legendary"
+option = "Essence of the Cloak of Strahd"
+augments = ["Essence of the Cloak of Strahd"]
+note = "Transforms the raid item into a Bound to Account ML 30 Yellow augment whose slotted effect is Invisibility Guard."
+cost = [{ ingredient = "Thread of Fate", quantity = 50 }, { ingredient = "Empty Soul Vessel", quantity = 1 }, { ingredient = "The Invisible Cloak of Strahd", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Essence of the Nullscale Armor"
+augments = ["Essence of Nullscale Armor"]
+note = "Transforms the raid item into a Bound to Account ML 30 Yellow augment whose slotted effect is Nullmagic Guard. Maetrim names the augment Essence of Nullscale Armor."
+cost = [{ ingredient = "Thread of Fate", quantity = 50 }, { ingredient = "Empty Soul Vessel", quantity = 1 }, { ingredient = "Nullscale Armor", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Essence of the Epic Litany of the Dead"
+augments = ["Essence of the Epic Litany of the Dead"]
+note = "Transforms the raid item into a Bound to Account ML 30 Colorless augment whose slotted effect is Litany of the Dead II - Ability Bonus (+2 Profane bonus to all Abilities)."
+cost = [{ ingredient = "Thread of Fate", quantity = 50 }, { ingredient = "Empty Soul Vessel", quantity = 1 }, { ingredient = "Epic Litany of the Dead", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Essence of Constellation, Broken and Reforged"
+augments = ["Essence of Constellation, Broken and Reforged"]
+note = "Transforms the raid item into a Bound to Account ML 30 Orange augment whose slotted effect is Improved Destruction. Needs both The Broken Blade of Constellation and The Shattered Hilt of Constellation, or Constellation, Cursed Blade instead."
+cost = [{ ingredient = "Thread of Fate", quantity = 50 }, { ingredient = "Empty Soul Vessel", quantity = 1 }, { ingredient = "The Broken Blade of Constellation", quantity = 1 }, { ingredient = "The Shattered Hilt of Constellation", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Essence of The Masque"
+augments = []
+note = "Transforms the raid item into a Bound to Account ML 30 Blue augment whose slotted effect is Soundproof. Maetrim has no augment of this name, so the row names none."
+cost = [{ ingredient = "Thread of Fate", quantity = 50 }, { ingredient = "Empty Soul Vessel", quantity = 1 }, { ingredient = "The Masque", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Essence of the Cobalt Guard"
+augments = ["Essence of the Cobalt Guard"]
+note = "Transforms the raid item into a Bound to Account ML 30 Purple augment whose slotted effect is Improved Quelling Strikes."
+cost = [{ ingredient = "Thread of Fate", quantity = 50 }, { ingredient = "Empty Soul Vessel", quantity = 1 }, { ingredient = "Cobalt Guard", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Essence of the Cracked Core"
+augments = ["Essence of the Cracked Core"]
+note = "Transforms the raid item into a Bound to Account ML 30 Yellow augment whose slotted effect is Alchemical Conservation."
+cost = [{ ingredient = "Thread of Fate", quantity = 50 }, { ingredient = "Empty Soul Vessel", quantity = 1 }, { ingredient = "Cracked Core", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Essence of Dark Diversion"
+augments = ["Essence of Dark Diversion"]
+note = "Transforms the raid item into a Bound to Account ML 30 Yellow augment whose slotted effect is Occultation (20% Enhancement bonus to decreased threat from all damage)."
+cost = [{ ingredient = "Thread of Fate", quantity = 50 }, { ingredient = "Empty Soul Vessel", quantity = 1 }, { ingredient = "Dark Diversion", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Essence of the Spear of the Mournlands"
+augments = ["Essence of the Spear of the Mournlands"]
+note = "Transforms the raid item into a Bound to Account ML 30 Orange augment whose slotted effect is Touch of the Mournlands."
+cost = [{ ingredient = "Thread of Fate", quantity = 50 }, { ingredient = "Empty Soul Vessel", quantity = 1 }, { ingredient = "Spear of the Mournlands", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Essence of the Champion of the Twins"
+augments = []
+note = "Transforms the raid item into a Bound to Account ML 30 Blue augment whose slotted effect is Healers Bounty. Maetrim has no augment of this name, so the row names none."
+cost = [{ ingredient = "Thread of Fate", quantity = 50 }, { ingredient = "Empty Soul Vessel", quantity = 1 }, { ingredient = "Champion of the Twins", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Essence of Ultimatum"
+augments = ["Essence of Ultimatum"]
+note = "Transforms the raid item into a Bound to Account ML 30 Green augment whose slotted effect is Petrification Immunity."
+cost = [{ ingredient = "Thread of Fate", quantity = 50 }, { ingredient = "Empty Soul Vessel", quantity = 1 }, { ingredient = "Ultimatum", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Essence of the Dethek Runestone"
+augments = ["Essence of the Dethek Runestone"]
+note = "Transforms the raid item into a Bound to Account ML 30 Green augment whose slotted effect is Runic Revitalization."
+cost = [{ ingredient = "Thread of Fate", quantity = 50 }, { ingredient = "Empty Soul Vessel", quantity = 1 }, { ingredient = "Dethek Runestone", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Essence of Pomura's Memento"
+augments = ["Essence of Pomura's Memento"]
+note = "Transforms the raid item into a Bound to Account ML 30 Green augment whose slotted effect is Insightful Spell Lore V."
+cost = [{ ingredient = "Thread of Fate", quantity = 50 }, { ingredient = "Empty Soul Vessel", quantity = 1 }, { ingredient = "Pomura's Memento", quantity = 1 }]

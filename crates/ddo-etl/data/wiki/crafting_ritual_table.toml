@@ -1,0 +1,336 @@
+[[system]]
+name = "Ritual Table"
+page = "https://ddowiki.com/page/Ritual_Table"
+read = "2026-09-29"
+pack = "Magic of Myth Drannor"
+families = ["SealedInFire", "SealedInUndeath"]
+npc = "Ritual Table in a side room of the raid Threats Old and New (Outskirts of Myth Drannor; introduced in Update 69); accessible only after completing the raid"
+
+[[system.ingredient]]
+name = "Barrier Fragment"
+tier = "legendary"
+source = "Threats Old and New end chest"
+
+[[system.ingredient]]
+name = "Sigil of the Crownblade"
+tier = "legendary"
+source = "Threats Old and New end chest, rare drop"
+
+[[system.ingredient]]
+name = "Sigil of the Warblade"
+tier = "legendary"
+source = "Threats Old and New end chest, rare drop"
+
+[[system.ingredient]]
+name = "Sigil of the Artblade"
+tier = "legendary"
+source = "Threats Old and New end chest, rare drop"
+
+[[system.ingredient]]
+name = "Legendary Weapon of the Golden Age"
+tier = "legendary"
+source = "The Legendary Golden Age weapon matching the Undying Age weapon"
+
+[[system.ingredient]]
+name = "Legendary Echo of the Warblade"
+tier = "legendary"
+
+[[system.ingredient]]
+name = "Legendary Echo of the Artblade"
+tier = "legendary"
+
+[[system.ingredient]]
+name = "Legendary Echo of the Crownblade"
+tier = "legendary"
+
+[[system.ingredient]]
+name = "Legendary Docent of the Artblade"
+tier = "legendary"
+
+[[system.ingredient]]
+name = "Legendary Heavy Armor of the Artblade"
+tier = "legendary"
+
+[[system.ingredient]]
+name = "Legendary Medium Armor of the Artblade"
+tier = "legendary"
+
+[[system.ingredient]]
+name = "Legendary Light Armor of the Artblade"
+tier = "legendary"
+
+[[system.ingredient]]
+name = "Legendary Outfit of the Artblade"
+tier = "legendary"
+
+[[system.ingredient]]
+name = "Legendary Robe of the Artblade"
+tier = "legendary"
+
+[[system.ingredient]]
+name = "Legendary Docent of the Warblade"
+tier = "legendary"
+
+[[system.ingredient]]
+name = "Legendary Heavy Armor of the Warblade"
+tier = "legendary"
+
+[[system.ingredient]]
+name = "Legendary Medium Armor of the Warblade"
+tier = "legendary"
+
+[[system.ingredient]]
+name = "Legendary Light Armor of the Warblade"
+tier = "legendary"
+
+[[system.ingredient]]
+name = "Legendary Outfit of the Warblade"
+tier = "legendary"
+
+[[system.ingredient]]
+name = "Legendary Robe of the Warblade"
+tier = "legendary"
+
+[[system.ingredient]]
+name = "Legendary Docent of the Crownblade"
+tier = "legendary"
+
+[[system.ingredient]]
+name = "Legendary Heavy Armor of the Crownblade"
+tier = "legendary"
+
+[[system.ingredient]]
+name = "Legendary Medium Armor of the Crownblade"
+tier = "legendary"
+
+[[system.ingredient]]
+name = "Legendary Light Armor of the Crownblade"
+tier = "legendary"
+
+[[system.ingredient]]
+name = "Legendary Outfit of the Crownblade"
+tier = "legendary"
+
+[[system.ingredient]]
+name = "Legendary Robe of the Crownblade"
+tier = "legendary"
+
+[[system.ingredient]]
+name = "Sealed in Fire weapon"
+tier = "legendary"
+source = "Weaponry of the Undying Age or Threats Old and New raid weapons"
+
+[[system.ingredient]]
+name = "Sealed in Undeath item"
+tier = "legendary"
+source = "Threats Old and New raid clothing and jewelry"
+
+[[system.recipe]]
+tier = "legendary"
+option = "Any Weapon of the Undying Age (including the caster longswords)"
+augments = []
+note = "Turns the corresponding Legendary Weapon of the Golden Age into its Weapon of the Undying Age. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Legendary Weapon of the Golden Age", quantity = 1 }, { ingredient = "Barrier Fragment", quantity = 120 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Reflection of the Warblade"
+augments = []
+note = "Upgrades Legendary Echo of the Warblade into Reflection of the Warblade. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Legendary Echo of the Warblade", quantity = 1 }, { ingredient = "Barrier Fragment", quantity = 120 }, { ingredient = "Sigil of the Warblade", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Reflection of the Artblade"
+augments = []
+note = "Upgrades Legendary Echo of the Artblade into Reflection of the Artblade. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Legendary Echo of the Artblade", quantity = 1 }, { ingredient = "Barrier Fragment", quantity = 120 }, { ingredient = "Sigil of the Artblade", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Reflection of the Crownblade"
+augments = []
+note = "Upgrades Legendary Echo of the Crownblade into Reflection of the Crownblade. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Legendary Echo of the Crownblade", quantity = 1 }, { ingredient = "Barrier Fragment", quantity = 120 }, { ingredient = "Sigil of the Crownblade", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Docent of the Artblade's Reflection"
+augments = []
+note = "Upgrades Legendary Docent of the Artblade into Docent of the Artblade's Reflection. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Legendary Docent of the Artblade", quantity = 1 }, { ingredient = "Barrier Fragment", quantity = 120 }, { ingredient = "Sigil of the Artblade", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Heavy Armor of the Artblade's Reflection"
+augments = []
+note = "Upgrades Legendary Heavy Armor of the Artblade into Heavy Armor of the Artblade's Reflection. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Legendary Heavy Armor of the Artblade", quantity = 1 }, { ingredient = "Barrier Fragment", quantity = 120 }, { ingredient = "Sigil of the Artblade", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Medium Armor of the Artblade's Reflection"
+augments = []
+note = "Upgrades Legendary Medium Armor of the Artblade into Medium Armor of the Artblade's Reflection. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Legendary Medium Armor of the Artblade", quantity = 1 }, { ingredient = "Barrier Fragment", quantity = 120 }, { ingredient = "Sigil of the Artblade", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Light Armor of the Artblade's Reflection"
+augments = []
+note = "Upgrades Legendary Light Armor of the Artblade into Light Armor of the Artblade's Reflection. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Legendary Light Armor of the Artblade", quantity = 1 }, { ingredient = "Barrier Fragment", quantity = 120 }, { ingredient = "Sigil of the Artblade", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Outfit of the Artblade's Reflection"
+augments = []
+note = "Upgrades Legendary Outfit of the Artblade into Outfit of the Artblade's Reflection. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Legendary Outfit of the Artblade", quantity = 1 }, { ingredient = "Barrier Fragment", quantity = 120 }, { ingredient = "Sigil of the Artblade", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Robe of the Artblade's Reflection"
+augments = []
+note = "Upgrades Legendary Robe of the Artblade into Robe of the Artblade's Reflection. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Legendary Robe of the Artblade", quantity = 1 }, { ingredient = "Barrier Fragment", quantity = 120 }, { ingredient = "Sigil of the Artblade", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Docent of the Warblade's Reflection"
+augments = []
+note = "Upgrades Legendary Docent of the Warblade into Docent of the Warblade's Reflection. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Legendary Docent of the Warblade", quantity = 1 }, { ingredient = "Barrier Fragment", quantity = 120 }, { ingredient = "Sigil of the Warblade", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Heavy Armor of the Warblade's Reflection"
+augments = []
+note = "Upgrades Legendary Heavy Armor of the Warblade into Heavy Armor of the Warblade's Reflection. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Legendary Heavy Armor of the Warblade", quantity = 1 }, { ingredient = "Barrier Fragment", quantity = 120 }, { ingredient = "Sigil of the Warblade", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Medium Armor of the Warblade's Reflection"
+augments = []
+note = "Upgrades Legendary Medium Armor of the Warblade into Medium Armor of the Warblade's Reflection. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Legendary Medium Armor of the Warblade", quantity = 1 }, { ingredient = "Barrier Fragment", quantity = 120 }, { ingredient = "Sigil of the Warblade", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Light Armor of the Warblade's Reflection"
+augments = []
+note = "Upgrades Legendary Light Armor of the Warblade into Light Armor of the Warblade's Reflection. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Legendary Light Armor of the Warblade", quantity = 1 }, { ingredient = "Barrier Fragment", quantity = 120 }, { ingredient = "Sigil of the Warblade", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Outfit of the Warblade's Reflection"
+augments = []
+note = "Upgrades Legendary Outfit of the Warblade into Outfit of the Warblade's Reflection. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Legendary Outfit of the Warblade", quantity = 1 }, { ingredient = "Barrier Fragment", quantity = 120 }, { ingredient = "Sigil of the Warblade", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Robe of the Warblade's Reflection"
+augments = []
+note = "Upgrades Legendary Robe of the Warblade into Robe of the Warblade's Reflection. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Legendary Robe of the Warblade", quantity = 1 }, { ingredient = "Barrier Fragment", quantity = 120 }, { ingredient = "Sigil of the Warblade", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Docent of the Crownblade's Reflection"
+augments = []
+note = "Upgrades Legendary Docent of the Crownblade into Docent of the Crownblade's Reflection. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Legendary Docent of the Crownblade", quantity = 1 }, { ingredient = "Barrier Fragment", quantity = 120 }, { ingredient = "Sigil of the Crownblade", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Heavy Armor of the Crownblade's Reflection"
+augments = []
+note = "Upgrades Legendary Heavy Armor of the Crownblade into Heavy Armor of the Crownblade's Reflection. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Legendary Heavy Armor of the Crownblade", quantity = 1 }, { ingredient = "Barrier Fragment", quantity = 120 }, { ingredient = "Sigil of the Crownblade", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Medium Armor of the Crownblade's Reflection"
+augments = []
+note = "Upgrades Legendary Medium Armor of the Crownblade into Medium Armor of the Crownblade's Reflection. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Legendary Medium Armor of the Crownblade", quantity = 1 }, { ingredient = "Barrier Fragment", quantity = 120 }, { ingredient = "Sigil of the Crownblade", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Light Armor of the Crownblade's Reflection"
+augments = []
+note = "Upgrades Legendary Light Armor of the Crownblade into Light Armor of the Crownblade's Reflection. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Legendary Light Armor of the Crownblade", quantity = 1 }, { ingredient = "Barrier Fragment", quantity = 120 }, { ingredient = "Sigil of the Crownblade", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Outfit of the Crownblade's Reflection"
+augments = []
+note = "Upgrades Legendary Outfit of the Crownblade into Outfit of the Crownblade's Reflection. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Legendary Outfit of the Crownblade", quantity = 1 }, { ingredient = "Barrier Fragment", quantity = 120 }, { ingredient = "Sigil of the Crownblade", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Robe of the Crownblade's Reflection"
+augments = []
+note = "Upgrades Legendary Robe of the Crownblade into Robe of the Crownblade's Reflection. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Legendary Robe of the Crownblade", quantity = 1 }, { ingredient = "Barrier Fragment", quantity = 120 }, { ingredient = "Sigil of the Crownblade", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: sealed in fire"
+option = "Legendary Dust (Weaponry of the Undying Age) (Threats Old and New raid weapons)"
+augments = ["Legendary Dust"]
+note = "Removes any effect the Ritual Table added before and adds Legendary Dust. The page gives one cost for all six rows. Maetrim's Sealed in Fire augments also fit the Sealed in Mist socket."
+cost = [{ ingredient = "Sealed in Fire weapon", quantity = 1 }, { ingredient = "Barrier Fragment", quantity = 20 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: sealed in fire"
+option = "Legendary Ash (Weaponry of the Undying Age) (Threats Old and New raid weapons)"
+augments = ["Legendary Ash"]
+note = "Removes any effect the Ritual Table added before and adds Legendary Ash. The page gives one cost for all six rows. Maetrim's Sealed in Fire augments also fit the Sealed in Mist socket."
+cost = [{ ingredient = "Sealed in Fire weapon", quantity = 1 }, { ingredient = "Barrier Fragment", quantity = 20 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: sealed in fire"
+option = "Legendary Vacuum (Weaponry of the Undying Age) (Threats Old and New raid weapons)"
+augments = ["Legendary Vacuum"]
+note = "Removes any effect the Ritual Table added before and adds Legendary Vacuum. The page gives one cost for all six rows. Maetrim's Sealed in Fire augments also fit the Sealed in Mist socket."
+cost = [{ ingredient = "Sealed in Fire weapon", quantity = 1 }, { ingredient = "Barrier Fragment", quantity = 20 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: sealed in fire"
+option = "Legendary Ooze (Weaponry of the Undying Age) (Threats Old and New raid weapons)"
+augments = ["Legendary Ooze"]
+note = "Removes any effect the Ritual Table added before and adds Legendary Ooze. The page gives one cost for all six rows. Maetrim's Sealed in Fire augments also fit the Sealed in Mist socket."
+cost = [{ ingredient = "Sealed in Fire weapon", quantity = 1 }, { ingredient = "Barrier Fragment", quantity = 20 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: sealed in fire"
+option = "Legendary Salt (Weaponry of the Undying Age) (Threats Old and New raid weapons)"
+augments = ["Legendary Salt"]
+note = "Removes any effect the Ritual Table added before and adds Legendary Salt. The page gives one cost for all six rows. Maetrim's Sealed in Fire augments also fit the Sealed in Mist socket."
+cost = [{ ingredient = "Sealed in Fire weapon", quantity = 1 }, { ingredient = "Barrier Fragment", quantity = 20 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: sealed in fire"
+option = "Legendary Affirmation (Weaponry of the Undying Age) (Threats Old and New raid weapons)"
+augments = ["Legendary Affirmation"]
+note = "Removes any effect the Ritual Table added before and adds Legendary Affirmation. The page gives one cost for all six rows. Maetrim's Sealed in Fire augments also fit the Sealed in Mist socket."
+cost = [{ ingredient = "Sealed in Fire weapon", quantity = 1 }, { ingredient = "Barrier Fragment", quantity = 20 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: sealed in undeath"
+option = "Ability bonus (Raid Threats Old and New Equipment)"
+augments = ["Strength +15", "Constitution +15", "Dexterity +15", "Intelligence +15", "Wisdom +15", "Charisma +15", "Insightful Strength +7", "Insightful Constitution +7", "Insightful Dexterity +7", "Insightful Intelligence +7", "Insightful Wisdom +7", "Insightful Charisma +7", "Quality Strength +3", "Quality Constitution +3", "Quality Dexterity +3", "Quality Intelligence +3", "Quality Wisdom +3", "Quality Charisma +3"]
+note = "Removes any effect the Ritual Table added before and adds one ability bonus of choice: +15, Insightful +7 or Quality +3 to any ability. Maetrim's Sealed in Undeath augments also fit the Sealed in Gloom socket."
+cost = [{ ingredient = "Sealed in Undeath item", quantity = 1 }, { ingredient = "Barrier Fragment", quantity = 20 }]

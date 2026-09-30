@@ -1,0 +1,1599 @@
+[[system]]
+name = "Legendary Crafting"
+page = "https://ddowiki.com/page/Legendary_Crafting"
+read = "2026-09-29"
+npc = "Altar of Legendary Rituals in The Twelve (introduced in Update 50)"
+
+[[system.ingredient]]
+name = "Desert Sand Crystal"
+tier = "legendary"
+source = "Sands of Menechtarun quest end chests"
+
+[[system.ingredient]]
+name = "Vault Key"
+tier = "legendary"
+source = "Vault of Night quest end chests"
+
+[[system.ingredient]]
+name = "Medal of House Deneith"
+tier = "legendary"
+source = "Sentinels of Stormreach quest end chests"
+
+[[system.ingredient]]
+name = "Scrap of Patterned Cloth"
+tier = "legendary"
+source = "Phiarlan Carnival quest end chests"
+
+[[system.ingredient]]
+name = "Glowing Fen Mushroom"
+tier = "legendary"
+source = "The Red Fens quest end chests"
+
+[[system.ingredient]]
+name = "Fractured Sliver of Time"
+tier = "legendary"
+source = "The Chronoscope quest end chests"
+
+[[system.ingredient]]
+name = "Crystallized Spiderweb"
+tier = "legendary"
+source = "Web of Chaos quest end chests"
+
+[[system.ingredient]]
+name = "Saltmeadow Hay"
+tier = "legendary"
+source = "Sinister Secret of Saltmarsh quest end chests"
+
+[[system.ingredient]]
+name = "Star Fragment"
+tier = "legendary"
+
+[[system.ingredient]]
+name = "Thread of Fate"
+tier = "legendary"
+source = "Needed only for raid items"
+
+[[system.ingredient]]
+name = "Epic item"
+tier = "legendary"
+source = "The ML 20 Epic version from Epic Crafting"
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Sword of Shadow"
+augments = []
+note = "Upgrades Epic Sword of Shadow into Legendary Sword of Shadow (Cosmetic Great Sword, ML 1); Vault of Night raid item. Cosmetic only (ML 1): the devs chose not to give this weapon a working legendary version; keep it at Epic to fight with it. Maetrim has no Legendary Sword of Shadow. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Vault Key", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }, { ingredient = "Thread of Fate", quantity = 250 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Sir Squilliam V, Esq."
+augments = []
+note = "Upgrades Sir Squilliam IV, Esq. into Sir Squilliam V, Esq. (Rune Arm, ML 30); Sinister Secret of Saltmarsh item. The Legendary quest or raid can drop it directly. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Saltmeadow Hay", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Winter's Wrath"
+augments = []
+note = "Upgrades Epic Winter's Wrath into Legendary Winter's Wrath (Eternal wand, ML 30). The Epic Crafting page does not list Epic Winter's Wrath, so the pack ingredient is not named. Maetrim has no Legendary Winter's Wrath. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Ironweave Robe"
+augments = []
+note = "Upgrades Epic Ironweave Robe into Legendary Ironweave Robe (Clothing, ML 30); Vault of Night raid item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Vault Key", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }, { ingredient = "Thread of Fate", quantity = 250 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Illusionist's Garb"
+augments = []
+note = "Upgrades Epic Illusionist's Garb into Legendary Illusionist's Garb (Clothing, ML 30); Phiarlan Carnival item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Scrap of Patterned Cloth", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Red Dragonscale Robe"
+augments = []
+note = "Upgrades Epic Red Dragonscale Robe into Legendary Red Dragonscale Robe (Clothing, ML 30); Vault of Night raid item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Vault Key", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }, { ingredient = "Thread of Fate", quantity = 250 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Robe of Dissonance"
+augments = []
+note = "Upgrades Epic Robe of Dissonance into Legendary Robe of Dissonance (Clothing, ML 30); The Red Fens item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Glowing Fen Mushroom", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Ship-Mage's Attire"
+augments = []
+note = "Upgrades Epic Ship-Mage's Attire into Legendary Ship-Mage's Attire (Clothing, ML 30); Sinister Secret of Saltmarsh item. Also drops from The Final Enemy end chest. The Legendary quest or raid can drop it directly. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Saltmeadow Hay", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Dockworker's Outfit"
+augments = []
+note = "Upgrades Epic Dockworker's Outfit into Legendary Dockworker's Outfit (Clothing, ML 30); Sinister Secret of Saltmarsh item. Also drops from Under the Cover of Darkness end chest. The Legendary quest or raid can drop it directly. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Saltmeadow Hay", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Robe of Fire"
+augments = []
+note = "Upgrades Epic Robe of Fire into Legendary Robe of Fire (Clothing, ML 30); Sands of Menechtarun item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Vulkoorim Dervish Robe"
+augments = []
+note = "Upgrades Epic Vulkoorim Dervish Robe into Legendary Vulkoorim Dervish Robe (Clothing, ML 30); Sands of Menechtarun item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Kundarak Delving Suit"
+augments = []
+note = "Upgrades Epic Kundarak Delving Suit into Legendary Kundarak Delving Suit (Light Armor, ML 30); Vault of Night raid item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Vault Key", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }, { ingredient = "Thread of Fate", quantity = 250 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Rakshasa Hide"
+augments = []
+note = "Upgrades Epic Rakshasa Hide into Legendary Rakshasa Hide (Light Armor, ML 30); Web of Chaos item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Crystallized Spiderweb", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Red Dragonhide Armor"
+augments = []
+note = "Upgrades Epic Red Dragonhide Armor into Legendary Red Dragonhide Armor (Light Armor, ML 30); Vault of Night raid item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Vault Key", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }, { ingredient = "Thread of Fate", quantity = 250 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Utility Vest"
+augments = []
+note = "Upgrades Epic Utility Vest into Legendary Utility Vest (Light Armor, ML 30); Phiarlan Carnival item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Scrap of Patterned Cloth", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Smuggler's Gear"
+augments = []
+note = "Upgrades Epic Smuggler's Gear into Legendary Smuggler's Gear (Light Armor, ML 30); Sinister Secret of Saltmarsh item. The Legendary quest or raid can drop it directly. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Saltmeadow Hay", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Demon Scale Armor"
+augments = []
+note = "Upgrades Epic Demon Scale Armor into Legendary Demon Scale Armor (Light Armor, ML 30); Sands of Menechtarun raid item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }, { ingredient = "Thread of Fate", quantity = 250 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Marilith Chain"
+augments = []
+note = "Upgrades Epic Marilith Chain into Legendary Marilith Chain (Light Armor, ML 30); Sands of Menechtarun raid item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }, { ingredient = "Thread of Fate", quantity = 250 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Mummy Wrappings"
+augments = []
+note = "Upgrades Epic Mummy Wrappings into Legendary Mummy Wrappings (Light Armor, ML 30); Sands of Menechtarun item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Silken Mail"
+augments = []
+note = "Upgrades Epic Silken Mail into Legendary Silken Mail (Light Armor, ML 30); Sands of Menechtarun item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Tourney Armor"
+augments = []
+note = "Upgrades Epic Tourney Armor into Legendary Tourney Armor (Light Armor, ML 30); Sands of Menechtarun item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Vulkoorim Fighting Leathers"
+augments = []
+note = "Upgrades Epic Vulkoorim Fighting Leathers into Legendary Vulkoorim Fighting Leathers (Light Armor, ML 30); Sands of Menechtarun item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Infested Chainmail"
+augments = []
+note = "Upgrades Epic Infested Armor into Legendary Infested Chainmail (Light Armor, ML 30); The Chronoscope raid item. The page names Epic Infested Armor as its source, though Epic Crafting also lists an Epic Infested Scalemail. The Legendary quest or raid can drop it directly. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Fractured Sliver of Time", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }, { ingredient = "Thread of Fate", quantity = 250 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Red Dragonscale Armor"
+augments = []
+note = "Upgrades Epic Red Dragonscale Armor into Legendary Red Dragonscale Armor (Medium Armor, ML 30); Vault of Night raid item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Vault Key", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }, { ingredient = "Thread of Fate", quantity = 250 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Templar's Bastion"
+augments = []
+note = "Upgrades Epic Templar's Bastion into Legendary Templar's Bastion (Medium Armor, ML 30); Web of Chaos item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Crystallized Spiderweb", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Deneith Heavy Chain"
+augments = []
+note = "Upgrades Epic Deneith Heavy Chain into Legendary Deneith Heavy Chain (Medium Armor, ML 30); Sentinels of Stormreach item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Medal of House Deneith", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Stinkpelt's Hide"
+augments = []
+note = "Upgrades Epic Stinkpelt's Hide into Legendary Stinkpelt's Hide (Medium Armor, ML 30); Sands of Menechtarun item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Privateer's Leathers"
+augments = []
+note = "Upgrades Epic Privateer's Leathers into Legendary Privateer's Leathers (Medium Armor, ML 30); Sinister Secret of Saltmarsh item. The Legendary quest or raid can drop it directly. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Saltmeadow Hay", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Infested Scalemail"
+augments = []
+note = "Upgrades Epic Infested Armor into Legendary Infested Scalemail (Medium Armor, ML 30); The Chronoscope raid item. The page names Epic Infested Armor as its source, not Epic Infested Scalemail. The Legendary quest or raid can drop it directly. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Fractured Sliver of Time", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }, { ingredient = "Thread of Fate", quantity = 250 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Frozen Plate"
+augments = []
+note = "Upgrades Epic Frozen Plate into Legendary Frozen Plate (Heavy Armor, ML 30); The Red Fens item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Glowing Fen Mushroom", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Full Plate of the Ringleader"
+augments = []
+note = "Upgrades Epic Full Plate of the Ringleader into Legendary Full Plate of the Ringleader (Heavy Armor, ML 30); Phiarlan Carnival item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Scrap of Patterned Cloth", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Infested Armor"
+augments = []
+note = "Upgrades Epic Infested Armor into Legendary Infested Armor (Heavy Armor, ML 30); The Chronoscope raid item. The Legendary quest or raid can drop it directly. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Fractured Sliver of Time", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }, { ingredient = "Thread of Fate", quantity = 250 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Red Dragonplate Armor"
+augments = []
+note = "Upgrades Epic Red Dragonplate Armor into Legendary Red Dragonplate Armor (Heavy Armor, ML 30); Vault of Night raid item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Vault Key", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }, { ingredient = "Thread of Fate", quantity = 250 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Stonemeld Plate Armor"
+augments = []
+note = "Upgrades Epic Stonemeld Plate Armor into Legendary Stonemeld Plate Armor (Heavy Armor, ML 30); Vault of Night raid item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Vault Key", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }, { ingredient = "Thread of Fate", quantity = 250 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Saltiron Plate"
+augments = []
+note = "Upgrades Epic Saltiron Plate into Legendary Saltiron Plate (Heavy Armor, ML 30); Sinister Secret of Saltmarsh item. The Legendary quest or raid can drop it directly. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Saltmeadow Hay", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Vambraces of Inner Light"
+augments = []
+note = "Upgrades Epic Vambraces of Inner Light into Legendary Vambraces of Inner Light (Heavy Armor, ML 30); Sands of Menechtarun item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Red Dragonscale Docent"
+augments = []
+note = "Upgrades Epic Red Dragonscale Docent into Legendary Red Dragonscale Docent (Docent, ML 30); Vault of Night raid item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Vault Key", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }, { ingredient = "Thread of Fate", quantity = 250 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Templar's Docent"
+augments = []
+note = "Upgrades Epic Templar's Docent into Legendary Templar's Docent (Docent, ML 30); Web of Chaos item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Crystallized Spiderweb", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Blademark's Docent"
+augments = []
+note = "Upgrades Epic Blademark's Docent into Legendary Blademark's Docent (Docent, ML 30); Sentinels of Stormreach item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Medal of House Deneith", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Docent of Grace"
+augments = []
+note = "Upgrades Epic Docent of Grace into Legendary Docent of Grace (Docent, ML 30); Vault of Night raid item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Vault Key", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }, { ingredient = "Thread of Fate", quantity = 250 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Saltiron Docent"
+augments = []
+note = "Upgrades Epic Saltiron Docent into Legendary Saltiron Docent (Docent, ML 30); Sinister Secret of Saltmarsh item. The Legendary quest or raid can drop it directly. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Saltmeadow Hay", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Chimera's Fang"
+augments = []
+note = "Upgrades Epic Chimera's Fang into Legendary Chimera's Fang (Bastard Sword, ML 30); Sentinels of Stormreach item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Medal of House Deneith", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Templar's Retribution"
+augments = []
+note = "Upgrades Epic Templar's Retribution into Legendary Templar's Retribution (Bastard Sword, ML 30); Web of Chaos item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Crystallized Spiderweb", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Unkor's Cleaver"
+augments = []
+note = "Upgrades Epic Unkor's Cleaver into Legendary Unkor's Cleaver (Battle Axe, ML 30); Sands of Menechtarun item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Belt of Myriad Pockets"
+augments = []
+note = "Upgrades Epic Belt of Myriad Pockets into Legendary Belt of Myriad Pockets (Belt, ML 30); Sinister Secret of Saltmarsh item. The Legendary quest or raid can drop it directly. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Saltmeadow Hay", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Snakeskin Belt"
+augments = []
+note = "Upgrades Epic Snakeskin Belt into Legendary Snakeskin Belt (Belt, ML 30); Sinister Secret of Saltmarsh item. The Legendary quest or raid can drop it directly. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Saltmeadow Hay", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Belt of the Black Abishai"
+augments = []
+note = "Upgrades Epic Belt of the Black Abishai into Legendary Belt of the Black Abishai (Belt, ML 30); The Chronoscope raid item. The Legendary quest or raid can drop it directly. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Fractured Sliver of Time", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }, { ingredient = "Thread of Fate", quantity = 250 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Belt of the Blue Abishai"
+augments = []
+note = "Upgrades Epic Belt of the Blue Abishai into Legendary Belt of the Blue Abishai (Belt, ML 30); The Chronoscope raid item. The Legendary quest or raid can drop it directly. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Fractured Sliver of Time", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }, { ingredient = "Thread of Fate", quantity = 250 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Belt of the Green Abishai"
+augments = []
+note = "Upgrades Epic Belt of the Green Abishai into Legendary Belt of the Green Abishai (Belt, ML 30); The Chronoscope raid item. The Legendary quest or raid can drop it directly. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Fractured Sliver of Time", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }, { ingredient = "Thread of Fate", quantity = 250 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Belt of the Red Abishai"
+augments = []
+note = "Upgrades Epic Belt of the Red Abishai into Legendary Belt of the Red Abishai (Belt, ML 30); The Chronoscope raid item. The Legendary quest or raid can drop it directly. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Fractured Sliver of Time", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }, { ingredient = "Thread of Fate", quantity = 250 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Belt of the White Abishai"
+augments = []
+note = "Upgrades Epic Belt of the White Abishai into Legendary Belt of the White Abishai (Belt, ML 30); The Chronoscope raid item. The Legendary quest or raid can drop it directly. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Fractured Sliver of Time", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }, { ingredient = "Thread of Fate", quantity = 250 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Lion-headed Belt Buckle"
+augments = []
+note = "Upgrades Epic Lion-headed Belt Buckle into Legendary Lion-headed Belt Buckle (Belt, ML 30); Sands of Menechtarun raid item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }, { ingredient = "Thread of Fate", quantity = 250 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Siren's Belt"
+augments = []
+note = "Upgrades Epic Siren's Belt into Legendary Siren's Belt (Belt, ML 30); The Red Fens item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Glowing Fen Mushroom", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Belt of the Mroranon"
+augments = []
+note = "Upgrades Epic Belt of the Mroranon into Legendary Belt of the Mroranon (Belt, ML 30); Vault of Night raid item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Vault Key", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }, { ingredient = "Thread of Fate", quantity = 250 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Crocodile Skin Boots"
+augments = []
+note = "Upgrades Epic Crocodile Skin Boots into Legendary Crocodile Skin Boots (Boots, ML 30); Sinister Secret of Saltmarsh item. The Legendary quest or raid can drop it directly. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Saltmeadow Hay", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Sparksoles"
+augments = []
+note = "Upgrades Epic Sparksoles into Legendary Sparksoles (Boots, ML 30); Sinister Secret of Saltmarsh item. The Legendary quest or raid can drop it directly. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Saltmeadow Hay", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Boots of Corrosion"
+augments = []
+note = "Upgrades Epic Boots of Corrosion into Legendary Boots of Corrosion (Boots, ML 30); The Chronoscope raid item. The Legendary quest or raid can drop it directly. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Fractured Sliver of Time", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }, { ingredient = "Thread of Fate", quantity = 250 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Firestorm Greaves"
+augments = []
+note = "Upgrades Epic Firestorm Greaves into Legendary Firestorm Greaves (Boots, ML 30); Sands of Menechtarun item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Boots of the Mire"
+augments = []
+note = "Upgrades Epic Boots of the Mire into Legendary Boots of the Mire (Boots, ML 30); The Red Fens item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Glowing Fen Mushroom", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Kundarak Delving Boots"
+augments = []
+note = "Upgrades Epic Kundarak Delving Boots into Legendary Kundarak Delving Boots (Boots, ML 30); Vault of Night raid item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Vault Key", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }, { ingredient = "Thread of Fate", quantity = 250 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Golden Greaves"
+augments = []
+note = "Upgrades Epic Golden Greaves into Legendary Golden Greaves (Boots, ML 30); Sands of Menechtarun item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Dustless Boots"
+augments = []
+note = "Upgrades Epic Dustless Boots into Legendary Dustless Boots (Boots, ML 30); Sands of Menechtarun item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Saltiron Bracer"
+augments = []
+note = "Upgrades Epic Saltiron Bracer into Legendary Saltiron Bracer (Bracers, ML 30); Sinister Secret of Saltmarsh item. The Legendary quest or raid can drop it directly. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Saltmeadow Hay", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Driftwood Bracers"
+augments = []
+note = "Upgrades Epic Driftwood Bracers into Legendary Driftwood Bracers (Bracers, ML 30); Sinister Secret of Saltmarsh item. The Legendary quest or raid can drop it directly. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Saltmeadow Hay", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Scorched Bracers"
+augments = []
+note = "Upgrades Epic Scorched Bracers into Legendary Scorched Bracers (Bracers, ML 30); The Chronoscope raid item. The Legendary quest or raid can drop it directly. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Fractured Sliver of Time", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }, { ingredient = "Thread of Fate", quantity = 250 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Bracers of the Claw"
+augments = []
+note = "Upgrades Epic Bracers of the Claw into Legendary Bracers of the Claw (Bracers, ML 30); The Red Fens item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Glowing Fen Mushroom", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Jidz-Tet'ka"
+augments = []
+note = "Upgrades Epic Jidz-Tet'ka into Legendary Jidz-Tet'ka (Bracers, ML 30); Sentinels of Stormreach item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Medal of House Deneith", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Kundarak Warding Bracers"
+augments = []
+note = "Upgrades Epic Kundarak Warding Bracers into Legendary Kundarak Warding Bracers (Bracers, ML 30); Vault of Night raid item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Vault Key", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }, { ingredient = "Thread of Fate", quantity = 250 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Bracers of the Hunter"
+augments = []
+note = "Upgrades Epic Bracers of the Hunter into Legendary Bracers of the Hunter (Bracers, ML 30); Sands of Menechtarun item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Bracers of Deftness"
+augments = []
+note = "Upgrades Epic Bracers of Deftness into Legendary Bracers of Deftness (Bracers, ML 30); Sands of Menechtarun item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Bracers of the Demon's Consort"
+augments = []
+note = "Upgrades Epic Bracers of the Demon's Consort into Legendary Bracers of the Demon's Consort (Bracers, ML 30); Sands of Menechtarun raid item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }, { ingredient = "Thread of Fate", quantity = 250 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Wind-Swept Buckler"
+augments = []
+note = "Upgrades Epic Wind-Swept Buckler into Legendary Wind-Swept Buckler (Buckler shield, ML 30); Sinister Secret of Saltmarsh item. The Legendary quest or raid can drop it directly. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Saltmeadow Hay", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Marshreed Cloak"
+augments = []
+note = "Upgrades Epic Marshreed Cloak into Legendary Marshreed Cloak (Cloak, ML 30); Sinister Secret of Saltmarsh item. The Legendary quest or raid can drop it directly. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Saltmeadow Hay", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Sailcloth Cloak"
+augments = []
+note = "Upgrades Epic Sailcloth Cloak into Legendary Sailcloth Cloak (Cloak, ML 30); Sinister Secret of Saltmarsh item. The Legendary quest or raid can drop it directly. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Saltmeadow Hay", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Envenomed Cloak"
+augments = []
+note = "Upgrades Epic Envenomed Cloak into Legendary Envenomed Cloak (Cloak, ML 30); The Chronoscope raid item. The Legendary quest or raid can drop it directly. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Fractured Sliver of Time", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }, { ingredient = "Thread of Fate", quantity = 250 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Phiarlan Mirror Cloak"
+augments = []
+note = "Upgrades Epic Phiarlan Mirror Cloak into Legendary Phiarlan Mirror Cloak (Cloak, ML 30); Phiarlan Carnival item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Scrap of Patterned Cloth", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Cloak of the Silver Concord"
+augments = []
+note = "Upgrades Epic Cloak of the Silver Concord into Legendary Cloak of the Silver Concord (Cloak, ML 30); Vault of Night raid item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Vault Key", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }, { ingredient = "Thread of Fate", quantity = 250 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Cape of the Roc"
+augments = []
+note = "Upgrades Epic Cape of the Roc into Legendary Cape of the Roc (Cloak, ML 30); Sands of Menechtarun item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Cloak of the Zephyr"
+augments = []
+note = "Upgrades Epic Cloak of the Zephyr into Legendary Cloak of the Zephyr (Cloak, ML 30); Sands of Menechtarun raid item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }, { ingredient = "Thread of Fate", quantity = 250 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Flameward"
+augments = []
+note = "Upgrades Epic Flameward into Legendary Flameward (Club, ML 30); Web of Chaos item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Crystallized Spiderweb", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Goldcursed Dagger"
+augments = []
+note = "Upgrades Epic Goldcursed Dagger into Legendary Goldcursed Dagger (Dagger, ML 30); Sinister Secret of Saltmarsh item. The Legendary quest or raid can drop it directly. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Saltmeadow Hay", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Phiarlan Spy Dagger"
+augments = []
+note = "Upgrades Epic Phiarlan Spy Dagger into Legendary Phiarlan Spy Dagger (Dagger, ML 30); Phiarlan Carnival item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Scrap of Patterned Cloth", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Ancient Vulkoorim Dagger"
+augments = []
+note = "Upgrades Epic Ancient Vulkoorim Dagger into Legendary Ancient Vulkoorim Dagger (Dagger, ML 30); Sands of Menechtarun item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Bejeweled Letter Opener"
+augments = []
+note = "Upgrades Epic Bejeweled Letter Opener into Legendary Bejeweled Letter Opener (Dagger, ML 30); Sands of Menechtarun item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Flint"
+augments = []
+note = "Upgrades Epic Flint into Legendary Flint (Dagger, ML 30); Sands of Menechtarun item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Splintermast"
+augments = []
+note = "Upgrades Epic Splintermast into Legendary Splintermast (Dart, ML 30); Sinister Secret of Saltmarsh item. The Legendary quest or raid can drop it directly. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Saltmeadow Hay", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Templar's Justice"
+augments = []
+note = "Upgrades Epic Templar's Justice into Legendary Templar's Justice (Dwarven War Axe, ML 30); Web of Chaos item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Crystallized Spiderweb", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Xuum"
+augments = []
+note = "Upgrades Epic Xuum into Legendary Xuum (Falchion, ML 30); Sands of Menechtarun item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Gloves of the Tinkerer"
+augments = []
+note = "Upgrades Epic Gloves of the Tinkerer into Legendary Gloves of the Tinkerer (Gloves, ML 30); Sinister Secret of Saltmarsh item. The Legendary quest or raid can drop it directly. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Saltmeadow Hay", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Cinderfingers"
+augments = []
+note = "Upgrades Epic Cinderfingers into Legendary Cinderfingers (Gloves, ML 30); Sinister Secret of Saltmarsh item. The Legendary quest or raid can drop it directly. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Saltmeadow Hay", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Charged Gauntlets"
+augments = []
+note = "Upgrades Epic Charged Gauntlets into Legendary Charged Gauntlets (Gloves, ML 30); The Chronoscope raid item. The Legendary quest or raid can drop it directly. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Fractured Sliver of Time", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }, { ingredient = "Thread of Fate", quantity = 250 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Gloves of the Claw"
+augments = []
+note = "Upgrades Epic Gloves of the Claw into Legendary Gloves of the Claw (Gloves, ML 30); The Red Fens item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Glowing Fen Mushroom", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Raven's Talons"
+augments = []
+note = "Upgrades Epic Raven's Talons into Legendary Raven's Talons (Gloves, ML 30); The Red Fens item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Glowing Fen Mushroom", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Bramble-Casters"
+augments = []
+note = "Upgrades Epic Bramble-Casters into Legendary Bramble-Casters (Gloves, ML 30); Sands of Menechtarun raid item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }, { ingredient = "Thread of Fate", quantity = 250 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Spectral Gloves"
+augments = []
+note = "Upgrades Epic Spectral Gloves into Legendary Spectral Gloves (Gloves, ML 30); Sands of Menechtarun item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Gloves of the Falcon"
+augments = []
+note = "Upgrades Epic Gloves of the Falcon into Legendary Gloves of the Falcon (Gloves, ML 30); Sands of Menechtarun item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Ruby Encrusted Gauntlets"
+augments = []
+note = "Upgrades Epic Ruby Encrusted Gauntlets into Legendary Ruby Encrusted Gauntlets (Gloves, ML 30); Vault of Night raid item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Vault Key", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }, { ingredient = "Thread of Fate", quantity = 250 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Corroded Iron Lenses"
+augments = []
+note = "Upgrades Epic Corroded Iron Lenses into Legendary Corroded Iron Lenses (Goggles, ML 30); Sinister Secret of Saltmarsh item. The Legendary quest or raid can drop it directly. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Saltmeadow Hay", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Amethyst Loupe"
+augments = []
+note = "Upgrades Epic Amethyst Loupe into Legendary Amethyst Loupe (Goggles, ML 30); Sinister Secret of Saltmarsh item. The Legendary quest or raid can drop it directly. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Saltmeadow Hay", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Goggles of Time-Sensing"
+augments = []
+note = "Upgrades Epic Goggles of Time-Sensing into Legendary Goggles of Time-Sensing (Goggles, ML 30); The Chronoscope raid item. The Legendary quest or raid can drop it directly. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Fractured Sliver of Time", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }, { ingredient = "Thread of Fate", quantity = 250 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Kundarak Delving Goggles"
+augments = []
+note = "Upgrades Epic Kundarak Delving Goggles into Legendary Kundarak Delving Goggles (Goggles, ML 30); Vault of Night raid item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Vault Key", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }, { ingredient = "Thread of Fate", quantity = 250 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Raven's Sight"
+augments = []
+note = "Upgrades Epic Raven's Sight into Legendary Raven's Sight (Goggles, ML 30); The Red Fens item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Glowing Fen Mushroom", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Sandstorm Glasses"
+augments = []
+note = "Upgrades Epic Sandstorm Glasses into Legendary Sandstorm Glasses (Goggles, ML 30); Sands of Menechtarun item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Spectacles of Spirit Sight"
+augments = []
+note = "Upgrades Epic Spectacles of Spirit Sight into Legendary Spectacles of Spirit Sight (Goggles, ML 30); Sands of Menechtarun item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Hellstroke Great Axe"
+augments = []
+note = "Upgrades Epic Hellstroke Great Axe into Legendary Hellstroke Great Axe (Great Axe, ML 30); The Chronoscope raid item. The Legendary quest or raid can drop it directly. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Fractured Sliver of Time", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }, { ingredient = "Thread of Fate", quantity = 250 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Antique Greataxe"
+augments = []
+note = "Upgrades Epic Antique Greataxe into Legendary Antique Greataxe (Great Axe, ML 30); Phiarlan Carnival item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Scrap of Patterned Cloth", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Greatclub of the Scrag"
+augments = []
+note = "Upgrades Epic Greatclub of the Scrag into Legendary Greatclub of the Scrag (Great Club, ML 30); The Red Fens item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Glowing Fen Mushroom", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Whirlwind"
+augments = []
+note = "Upgrades Epic Whirlwind into Legendary Whirlwind (Great Sword, ML 30); Sands of Menechtarun item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Crocodile Maw"
+augments = []
+note = "Upgrades Epic Crocodile Maw into Legendary Crocodile Maw (Handwrap, ML 30); Sinister Secret of Saltmarsh item. The Legendary quest or raid can drop it directly. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Saltmeadow Hay", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Storm"
+augments = []
+note = "Upgrades Epic Storm into Legendary Storm (Heavy Crossbow, ML 30); Sands of Menechtarun raid item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }, { ingredient = "Thread of Fate", quantity = 250 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Scalegouger"
+augments = []
+note = "Upgrades Epic Scalegouger into Legendary Scalegouger (Heavy Pick, ML 30); Sinister Secret of Saltmarsh item. The Legendary quest or raid can drop it directly. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Saltmeadow Hay", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Helm of the Red Dragon"
+augments = []
+note = "Upgrades Epic Helm of the Red Dragon into Legendary Helm of the Red Dragon (Helmet, ML 30); Vault of Night raid item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Vault Key", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }, { ingredient = "Thread of Fate", quantity = 250 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Skullduggery Cap"
+augments = []
+note = "Upgrades Epic Skullduggery Cap into Legendary Skullduggery Cap (Helmet, ML 30); Sinister Secret of Saltmarsh item. The Legendary quest or raid can drop it directly. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Saltmeadow Hay", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Smuggler's Cap"
+augments = []
+note = "Upgrades Epic Smuggler's Cap into Legendary Smuggler's Cap (Helmet, ML 30); Sinister Secret of Saltmarsh item. The Legendary quest or raid can drop it directly. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Saltmeadow Hay", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Helm of Frost"
+augments = []
+note = "Upgrades Epic Helm of Frost into Legendary Helm of Frost (Helmet, ML 30); The Chronoscope raid item. The Legendary quest or raid can drop it directly. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Fractured Sliver of Time", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }, { ingredient = "Thread of Fate", quantity = 250 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Darkstorm Helm"
+augments = []
+note = "Upgrades Epic Darkstorm Helm into Legendary Darkstorm Helm (Helmet, ML 30); Web of Chaos item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Crystallized Spiderweb", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Sacred Helm"
+augments = []
+note = "Upgrades Epic Sacred Helm into Legendary Sacred Helm (Helmet, ML 30); The Red Fens item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Glowing Fen Mushroom", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Mask of Tragedy"
+augments = []
+note = "Upgrades Epic Mask of Tragedy into Legendary Mask of Tragedy (Helmet, ML 30); Phiarlan Carnival item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Scrap of Patterned Cloth", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Spiked Turban"
+augments = []
+note = "Upgrades Epic Spiked Turban into Legendary Spiked Turban (Helmet, ML 30); Sands of Menechtarun item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Shining Crest of St. Markus"
+augments = []
+note = "Upgrades Epic Shining Crest of St. Markus into Legendary Shining Crest of St. Markus (Helmet, ML 30); Sands of Menechtarun raid item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }, { ingredient = "Thread of Fate", quantity = 250 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Chainmail Coif"
+augments = []
+note = "Upgrades Epic Chainmail Coif into Legendary Chainmail Coif (Helmet, ML 30); Sands of Menechtarun item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Big Top"
+augments = []
+note = "Upgrades Epic Big Top into Legendary Big Top (Helmet, ML 30); Phiarlan Carnival item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Scrap of Patterned Cloth", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Mask of Comedy"
+augments = []
+note = "Upgrades Epic Mask of Comedy into Legendary Mask of Comedy (Helmet, ML 30); Phiarlan Carnival item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Scrap of Patterned Cloth", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Elder's Cap"
+augments = []
+note = "Upgrades Epic Elder's Cap into Legendary Elder's Cap (Helmet, ML 30); The Red Fens item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Glowing Fen Mushroom", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Chimera's Crown"
+augments = []
+note = "Upgrades Epic Chimera's Crown into Legendary Chimera's Crown (Helmet, ML 30); Sentinels of Stormreach item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Medal of House Deneith", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Helm of the Mroranon"
+augments = []
+note = "Upgrades Epic Helm of the Mroranon into Legendary Helm of the Mroranon (Helmet, ML 30); Vault of Night raid item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Vault Key", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }, { ingredient = "Thread of Fate", quantity = 250 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Chaosblade"
+augments = []
+note = "Upgrades Epic Chaosblade into Legendary Chaosblade (Khopesh, ML 30); Sands of Menechtarun raid item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }, { ingredient = "Thread of Fate", quantity = 250 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Dynastic Falcata"
+augments = []
+note = "Upgrades Epic Dynastic Falcata into Legendary Dynastic Falcata (Khopesh, ML 30); Sands of Menechtarun item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Midnight Greetings"
+augments = []
+note = "Upgrades Epic Midnight Greetings into Legendary Midnight Greetings (Kukri, ML 30); Sentinels of Stormreach item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Medal of House Deneith", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Green Blade"
+augments = []
+note = "Upgrades Epic Green Blade into Legendary Green Blade (Kukri, ML 30); Sands of Menechtarun raid item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }, { ingredient = "Thread of Fate", quantity = 250 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Shield of the Scorpion"
+augments = []
+note = "Upgrades Epic Shield of the Scorpion into Legendary Shield of the Scorpion (Large shield, ML 30); Sands of Menechtarun item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Ward of Undeath"
+augments = []
+note = "Upgrades Epic Ward of Undeath into Legendary Ward of Undeath (Large shield, ML 30); Sands of Menechtarun item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Coronation Shield"
+augments = []
+note = "Upgrades Epic Coronation Shield into Legendary Coronation Shield (Large shield, ML 30); Sands of Menechtarun item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Saltiron Targe"
+augments = []
+note = "Upgrades Epic Saltiron Targe into Legendary Saltiron Targe (Large shield, ML 30); Sinister Secret of Saltmarsh item. The Legendary quest or raid can drop it directly. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Saltmeadow Hay", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Kundarak Warding Shield"
+augments = []
+note = "Upgrades Epic Kundarak Warding Shield into Legendary Kundarak Warding Shield (Large shield, ML 30); Vault of Night raid item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Vault Key", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }, { ingredient = "Thread of Fate", quantity = 250 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Shatterbow"
+augments = []
+note = "Upgrades Epic Shatterbow into Legendary Shatterbow (Long Bow, ML 30); The Red Fens item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Glowing Fen Mushroom", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Bow of the Silver Flame"
+augments = []
+note = "Upgrades Epic Bow of the Silver Flame into Legendary Bow of the Silver Flame (Long Bow, ML 30); Web of Chaos item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Crystallized Spiderweb", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Bow of the Elements (Air)"
+augments = []
+note = "Upgrades Epic Bow of the Elements (Air) into Legendary Bow of the Elements (Air) (Long Bow, ML 30); Sands of Menechtarun item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Thornlord"
+augments = []
+note = "Upgrades Epic Thornlord into Legendary Thornlord (Long Bow, ML 30); Sands of Menechtarun item. The Epic version has a base critical threat range of 19-20; the Legendary version does not. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Timeblade"
+augments = []
+note = "Upgrades Epic Timeblade into Legendary Timeblade (Long Sword, ML 30); The Chronoscope raid item. The Legendary quest or raid can drop it directly. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Fractured Sliver of Time", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }, { ingredient = "Thread of Fate", quantity = 250 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Sirocco"
+augments = []
+note = "Upgrades Epic Sirocco into Legendary Sirocco (Long Sword, ML 30); Sands of Menechtarun item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Fury of the Flame"
+augments = []
+note = "Upgrades Epic Fury of the Flame into Legendary Fury of the Flame (Maul, ML 30); Web of Chaos item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Crystallized Spiderweb", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Hammer of Life"
+augments = []
+note = "Upgrades Epic Hammer of Life into Legendary Hammer of Life (Maul, ML 30); Vault of Night raid item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Vault Key", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }, { ingredient = "Thread of Fate", quantity = 250 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Lizardfolk Tooth Necklace"
+augments = []
+note = "Upgrades Epic Lizardfolk Tooth Necklace into Legendary Lizardfolk Tooth Necklace (Necklace, ML 30); Sinister Secret of Saltmarsh item. The Legendary quest or raid can drop it directly. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Saltmeadow Hay", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Anchorchain"
+augments = []
+note = "Upgrades Epic Anchorchain into Legendary Anchorchain (Necklace, ML 30); Sinister Secret of Saltmarsh item. The Legendary quest or raid can drop it directly. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Saltmeadow Hay", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Azure Necklace of Prophecy"
+augments = []
+note = "Upgrades Epic Azure Necklace of Prophecy into Legendary Azure Necklace of Prophecy (Necklace, ML 30); Vault of Night raid item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Vault Key", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }, { ingredient = "Thread of Fate", quantity = 250 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Elder's Focus"
+augments = []
+note = "Upgrades Epic Elder's Focus into Legendary Elder's Focus (Necklace, ML 30); The Red Fens item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Glowing Fen Mushroom", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Crimson Necklace of Prophecy"
+augments = []
+note = "Upgrades Epic Crimson Necklace of Prophecy into Legendary Crimson Necklace of Prophecy (Necklace, ML 30); Vault of Night raid item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Vault Key", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }, { ingredient = "Thread of Fate", quantity = 250 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Golden Guile"
+augments = []
+note = "Upgrades Epic Golden Guile into Legendary Golden Guile (Necklace, ML 30); Web of Chaos item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Crystallized Spiderweb", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Grim's Bracelet"
+augments = []
+note = "Upgrades Epic Grim's Bracelet into Legendary Grim's Bracelet (Necklace, ML 30); Phiarlan Carnival item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Scrap of Patterned Cloth", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Necklace of Venom"
+augments = []
+note = "Upgrades Epic Necklace of Venom into Legendary Necklace of Venom (Necklace, ML 30); The Red Fens item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Glowing Fen Mushroom", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Shaman's Beads"
+augments = []
+note = "Upgrades Epic Shaman's Beads into Legendary Shaman's Beads (Necklace, ML 30); The Red Fens item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Glowing Fen Mushroom", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Shimmering Pendant"
+augments = []
+note = "Upgrades Epic Shimmering Pendant into Legendary Shimmering Pendant (Necklace, ML 30); Phiarlan Carnival item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Scrap of Patterned Cloth", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Silver Necklace of Prophecy"
+augments = []
+note = "Upgrades Epic Silver Necklace of Prophecy into Legendary Silver Necklace of Prophecy (Necklace, ML 30); Vault of Night raid item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Vault Key", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }, { ingredient = "Thread of Fate", quantity = 250 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Twisted Talisman"
+augments = []
+note = "Upgrades Epic Twisted Talisman into Legendary Twisted Talisman (Necklace, ML 30); The Red Fens item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Glowing Fen Mushroom", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Adherent's Pendant"
+augments = []
+note = "Upgrades Epic Adherent's Pendant into Legendary Adherent's Pendant (Necklace, ML 30); Sands of Menechtarun item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Hyena Claw Necklace"
+augments = []
+note = "Upgrades Epic Hyena Claw Necklace into Legendary Hyena Claw Necklace (Necklace, ML 30); Sands of Menechtarun item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Siren's Charm"
+augments = []
+note = "Upgrades Epic Siren's Charm into Legendary Siren's Charm (Necklace, ML 30); The Red Fens item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Glowing Fen Mushroom", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Hruvayah's Medallion"
+augments = []
+note = "Upgrades Epic Hruvayah's Medallion into Legendary Hruvayah's Medallion (Necklace, ML 30); Sands of Menechtarun item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Torc of Prince Raiyum-de II"
+augments = []
+note = "Upgrades Epic Torc of Prince Raiyum-de II into Legendary Torc of Prince Raiyum-de II (Necklace, ML 30); Sands of Menechtarun raid item. Can also be used in Catalyst Crafting to make Legendary Torc of the Lords of the Abyss. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }, { ingredient = "Thread of Fate", quantity = 250 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Vulkoorim Pendant"
+augments = []
+note = "Upgrades Epic Vulkoorim Pendant into Legendary Vulkoorim Pendant (Necklace, ML 30); Sands of Menechtarun item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Wolf Whistle"
+augments = []
+note = "Upgrades Epic Wolf Whistle into Legendary Wolf Whistle (Necklace, ML 30); Sands of Menechtarun item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Pendant of the Blue Abishai"
+augments = []
+note = "Upgrades Epic Pendant of the Blue Abishai into Legendary Pendant of the Blue Abishai (Necklace, ML 30); The Chronoscope raid item. The Legendary quest or raid can drop it directly. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Fractured Sliver of Time", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }, { ingredient = "Thread of Fate", quantity = 250 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Pendant of the Black Abishai"
+augments = []
+note = "Upgrades Epic Pendant of the Black Abishai into Legendary Pendant of the Black Abishai (Necklace, ML 30); The Chronoscope raid item. The Legendary quest or raid can drop it directly. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Fractured Sliver of Time", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }, { ingredient = "Thread of Fate", quantity = 250 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Pendant of the Green Abishai"
+augments = []
+note = "Upgrades Epic Pendant of the Green Abishai into Legendary Pendant of the Green Abishai (Necklace, ML 30); The Chronoscope raid item. The Legendary quest or raid can drop it directly. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Fractured Sliver of Time", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }, { ingredient = "Thread of Fate", quantity = 250 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Pendant of the Red Abishai"
+augments = []
+note = "Upgrades Epic Pendant of the Red Abishai into Legendary Pendant of the Red Abishai (Necklace, ML 30); The Chronoscope raid item. The Legendary quest or raid can drop it directly. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Fractured Sliver of Time", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }, { ingredient = "Thread of Fate", quantity = 250 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Pendant of the White Abishai"
+augments = []
+note = "Upgrades Epic Pendant of the White Abishai into Legendary Pendant of the White Abishai (Necklace, ML 30); The Chronoscope raid item. The Legendary quest or raid can drop it directly. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Fractured Sliver of Time", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }, { ingredient = "Thread of Fate", quantity = 250 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Immaculate Globe"
+augments = []
+note = "Upgrades Epic Immaculate Globe into Legendary Immaculate Globe (Orb, ML 30); Sinister Secret of Saltmarsh item. The Legendary quest or raid can drop it directly. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Saltmeadow Hay", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Luminous Truth"
+augments = []
+note = "Upgrades Epic Luminous Truth into Legendary Luminous Truth (Quarterstaff, ML 30); Web of Chaos item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Crystallized Spiderweb", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Souleater"
+augments = []
+note = "Upgrades Epic Souleater into Legendary Souleater (Quarterstaff, ML 30); The Red Fens item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Glowing Fen Mushroom", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Staff of Nat Gann"
+augments = []
+note = "Upgrades Epic Staff of Nat Gann into Legendary Staff of Nat Gann (Quarterstaff, ML 30); The Chronoscope raid item. The Legendary quest or raid can drop it directly. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Fractured Sliver of Time", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }, { ingredient = "Thread of Fate", quantity = 250 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Bullywug Priestess' Staff"
+augments = []
+note = "Upgrades Epic Bullywug Priestess' Staff into Legendary Bullywug Priestess' Staff (Quarterstaff, ML 30); Sinister Secret of Saltmarsh item. The Legendary quest or raid can drop it directly. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Saltmeadow Hay", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Staff of Arcane Power"
+augments = []
+note = "Upgrades Epic Staff of Arcane Power into Legendary Staff of Arcane Power (Quarterstaff, ML 30); Sands of Menechtarun raid item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }, { ingredient = "Thread of Fate", quantity = 250 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Staff of Inner Sight"
+augments = []
+note = "Upgrades Epic Staff of Inner Sight into Legendary Staff of Inner Sight (Quarterstaff, ML 30); Sands of Menechtarun item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Tinder"
+augments = []
+note = "Upgrades Epic Tinder into Legendary Tinder (Quarterstaff, ML 30); Sands of Menechtarun item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Elyd Edge"
+augments = []
+note = "Upgrades Epic Elyd Edge into Legendary Elyd Edge (Rapier, ML 30); Sentinels of Stormreach item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Medal of House Deneith", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Duelist's Epee"
+augments = []
+note = "Upgrades Epic Duelist's Epee into Legendary Duelist's Epee (Rapier, ML 30); Sinister Secret of Saltmarsh item. The Legendary quest or raid can drop it directly. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Saltmeadow Hay", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Hellfire Crossbow"
+augments = []
+note = "Upgrades Epic Hellfire Crossbow into Legendary Hellfire Crossbow (Repeating Heavy Crossbow, ML 30); The Chronoscope raid item. The Legendary quest or raid can drop it directly. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Fractured Sliver of Time", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }, { ingredient = "Thread of Fate", quantity = 250 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Silver Slinger"
+augments = []
+note = "Upgrades Epic Silver Slinger into Legendary Silver Slinger (Repeating Heavy Crossbow, ML 30); Web of Chaos item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Crystallized Spiderweb", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Doublecross Bow"
+augments = []
+note = "Upgrades Epic Doublecross Bow into Legendary Doublecross Bow (Repeating Light Crossbow, ML 30); Web of Chaos item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Crystallized Spiderweb", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Salt-Pearl Ring"
+augments = []
+note = "Upgrades Epic Salt-Pearl Ring into Legendary Salt-Pearl Ring (Ring, ML 30); Sinister Secret of Saltmarsh item. The Legendary quest or raid can drop it directly. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Saltmeadow Hay", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Ethereal Ring"
+augments = []
+note = "Upgrades Epic Ethereal Ring into Legendary Ethereal Ring (Ring, ML 30); Sinister Secret of Saltmarsh item. The Legendary quest or raid can drop it directly. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Saltmeadow Hay", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Ring of the Mire"
+augments = []
+note = "Upgrades Epic Ring of the Mire into Legendary Ring of the Mire (Ring, ML 30); The Red Fens item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Glowing Fen Mushroom", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Seal of the Earth"
+augments = []
+note = "Upgrades Epic Seal of the Earth into Legendary Seal of the Earth (Ring, ML 30); Sands of Menechtarun item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Ring of the Silver Concord"
+augments = []
+note = "Upgrades Epic Ring of the Silver Concord into Legendary Ring of the Silver Concord (Ring, ML 30); Vault of Night raid item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Vault Key", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }, { ingredient = "Thread of Fate", quantity = 250 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Ring of Venom"
+augments = []
+note = "Upgrades Epic Ring of Venom into Legendary Ring of Venom (Ring, ML 30); The Red Fens item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Glowing Fen Mushroom", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Sacred Band"
+augments = []
+note = "Upgrades Epic Sacred Band into Legendary Sacred Band (Ring, ML 30); The Red Fens item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Glowing Fen Mushroom", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Shaman's Band"
+augments = []
+note = "Upgrades Epic Shaman's Band into Legendary Shaman's Band (Ring, ML 30); The Red Fens item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Glowing Fen Mushroom", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Ring of Baphomet"
+augments = []
+note = "Upgrades Epic Ring of Baphomet into Legendary Ring of Baphomet (Ring, ML 30); Sands of Menechtarun item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Ring of Spell Storing"
+augments = []
+note = "Upgrades Epic Ring of Spell Storing into Legendary Ring of Spell Storing (Ring, ML 30); Sands of Menechtarun item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Diabolist's Ring"
+augments = []
+note = "Upgrades Epic Diabolist's Ring into Legendary Diabolist's Ring (Ring, ML 30); The Chronoscope raid item. The Legendary quest or raid can drop it directly. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Fractured Sliver of Time", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }, { ingredient = "Thread of Fate", quantity = 250 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Ring of the Black Abishai"
+augments = []
+note = "Upgrades Epic Ring of the Black Abishai into Legendary Ring of the Black Abishai (Ring, ML 30); The Chronoscope raid item. The Legendary quest or raid can drop it directly. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Fractured Sliver of Time", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }, { ingredient = "Thread of Fate", quantity = 250 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Ring of the Blue Abishai"
+augments = []
+note = "Upgrades Epic Ring of the Blue Abishai into Legendary Ring of the Blue Abishai (Ring, ML 30); The Chronoscope raid item. The Legendary quest or raid can drop it directly. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Fractured Sliver of Time", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }, { ingredient = "Thread of Fate", quantity = 250 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Ring of the Green Abishai"
+augments = []
+note = "Upgrades Epic Ring of the Green Abishai into Legendary Ring of the Green Abishai (Ring, ML 30); The Chronoscope raid item. The Legendary quest or raid can drop it directly. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Fractured Sliver of Time", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }, { ingredient = "Thread of Fate", quantity = 250 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Ring of the Red Abishai"
+augments = []
+note = "Upgrades Epic Ring of the Red Abishai into Legendary Ring of the Red Abishai (Ring, ML 30); The Chronoscope raid item. The Legendary quest or raid can drop it directly. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Fractured Sliver of Time", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }, { ingredient = "Thread of Fate", quantity = 250 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Ring of the White Abishai"
+augments = []
+note = "Upgrades Epic Ring of the White Abishai into Legendary Ring of the White Abishai (Ring, ML 30); The Chronoscope raid item. The Legendary quest or raid can drop it directly. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Fractured Sliver of Time", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }, { ingredient = "Thread of Fate", quantity = 250 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Ring of Elemental Essence"
+augments = []
+note = "Upgrades Epic Ring of Elemental Essence into Legendary Ring of Elemental Essence (Ring, ML 30); Phiarlan Carnival item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Scrap of Patterned Cloth", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Kron'zek's Cruelty"
+augments = []
+note = "Upgrades Epic Kron'zek's Cruelty into Legendary Kron'zek's Cruelty (Scimitar, ML 30); Phiarlan Carnival item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Scrap of Patterned Cloth", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Cruel Nobility"
+augments = []
+note = "Upgrades Epic Cruel Nobility into Legendary Cruel Nobility (Scimitar, ML 30); Web of Chaos item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Crystallized Spiderweb", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Mirage"
+augments = []
+note = "Upgrades Epic Mirage into Legendary Mirage (Scimitar, ML 30); Sands of Menechtarun item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Collapsible Shortbow"
+augments = []
+note = "Upgrades Epic Collapsible Shortbow into Legendary Collapsible Shortbow (Short Bow, ML 30); Sands of Menechtarun item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Envenomed Blade"
+augments = []
+note = "Upgrades Epic Envenomed Blade into Legendary Envenomed Blade (Short Sword, ML 30); Web of Chaos item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Crystallized Spiderweb", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Garos' Malice"
+augments = []
+note = "Upgrades Epic Garos' Malice into Legendary Garos' Malice (Short Sword, ML 30); Web of Chaos item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Crystallized Spiderweb", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Sting"
+augments = []
+note = "Upgrades Epic Sting into Legendary Sting (Short Sword, ML 30); Sands of Menechtarun item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Zephyr"
+augments = []
+note = "Upgrades Epic Zephyr into Legendary Zephyr (Short Sword, ML 30); Sands of Menechtarun item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Smash 'n Grabber"
+augments = []
+note = "Upgrades Epic Smash 'n Grabber into Legendary Smash 'n Grabber (Small shield, ML 30); Sinister Secret of Saltmarsh item. The page notes Riposte and Parrying do not stack. The Legendary quest or raid can drop it directly. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Saltmeadow Hay", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Weathered Targe"
+augments = []
+note = "Upgrades Epic Weathered Targe into Legendary Weathered Targe (Small shield, ML 30); Sands of Menechtarun item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Noxious Fang"
+augments = []
+note = "Upgrades Epic Noxious Fang into Legendary Noxious Fang (Throwing Dagger, ML 30); Phiarlan Carnival item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Scrap of Patterned Cloth", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Skull of the Sea"
+augments = []
+note = "Upgrades Epic Skull of the Sea into Legendary Skull of the Sea (Tower shield, ML 30); Sinister Secret of Saltmarsh item. The Legendary quest or raid can drop it directly. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Saltmeadow Hay", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Templar's Bulwark"
+augments = []
+note = "Upgrades Epic Templar's Bulwark into Legendary Templar's Bulwark (Tower shield, ML 30); Web of Chaos item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Crystallized Spiderweb", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Crocodile Tooth"
+augments = []
+note = "Upgrades Epic Crocodile Tooth into Legendary Crocodile Tooth (Trinket, ML 30); Sinister Secret of Saltmarsh item. The Legendary quest or raid can drop it directly. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Saltmeadow Hay", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Silver Pocketwatch"
+augments = []
+note = "Upgrades Epic Silver Pocketwatch into Legendary Silver Pocketwatch (Trinket, ML 30); Sinister Secret of Saltmarsh item. The Legendary quest or raid can drop it directly. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Saltmeadow Hay", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Dusk Heart"
+augments = []
+note = "Upgrades Epic Dusk Heart into Legendary Dusk Heart (Trinket, ML 30); Sands of Menechtarun item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Shard of Vollun"
+augments = []
+note = "Upgrades Epic Shard of Vollun into Legendary Shard of Vollun (Trinket, ML 30); Sands of Menechtarun item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Pouch of Jerky"
+augments = []
+note = "Upgrades Epic Pouch of Jerky into Legendary Pouch of Jerky (Trinket, ML 30); Sands of Menechtarun raid item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }, { ingredient = "Thread of Fate", quantity = 250 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Bloodstone"
+augments = []
+note = "Upgrades Epic Bloodstone into Legendary Bloodstone (Trinket, ML 30); Sands of Menechtarun item. The page says it can also be used in Catalyst Crafting. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Brawn's Spirits"
+augments = []
+note = "Upgrades Epic Brawn's Spirits into Legendary Brawn's Spirits (Trinket, ML 30); Phiarlan Carnival item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Scrap of Patterned Cloth", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Dragon's Eye"
+augments = []
+note = "Upgrades Epic Dragon's Eye into Legendary Dragon's Eye (Trinket, ML 30); Vault of Night raid item. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Vault Key", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }, { ingredient = "Thread of Fate", quantity = 250 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Gem of Many Facets"
+augments = []
+note = "Upgrades Epic Gem of Many Facets into Legendary Gem of Many Facets (Trinket, ML 30); The Chronoscope raid item. The Legendary quest or raid can drop it directly. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic item", quantity = 1 }, { ingredient = "Fractured Sliver of Time", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }, { ingredient = "Thread of Fate", quantity = 250 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Reroll Legendary Gem of Many Facets set bonuses"
+augments = []
+note = "Rerolls the set bonuses of Legendary Gem of Many Facets at the Altar of Legendary Rituals. No augment counterpart."
+cost = [{ ingredient = "Thread of Fate", quantity = 100 }]

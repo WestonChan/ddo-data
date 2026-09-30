@@ -1,0 +1,1044 @@
+[[system]]
+name = "Catalyst Crafting"
+page = "https://ddowiki.com/page/Catalyst_Crafting"
+read = "2026-09-29"
+pack = "Terror of Demogorgon"
+npc = "Strange Catalyst Forge in Gravenhollow"
+
+[[system.ingredient]]
+name = "Abyssal Gem"
+tier = "heroic"
+source = "Terror of Demogorgon end chests"
+
+[[system.ingredient]]
+name = "Legendary Abyssal Gem"
+tier = "legendary"
+source = "Terror of Demogorgon end chests"
+
+[[system.ingredient]]
+name = "Abyssal Catalyst"
+tier = "heroic"
+source = "Heroic fixed chests in Terror of Demogorgon quests (Rare Loot List); Unbound, so also tradeable on the Auction House and Shard Exchange. Using one needs Terror of Demogorgon"
+
+[[system.ingredient]]
+name = "Abyssal Catalyst"
+tier = "legendary"
+source = "Legendary fixed chests in Terror of Demogorgon quests (Rare Loot List); Unbound, so also tradeable on the Auction House and Shard Exchange. Using one needs Terror of Demogorgon"
+
+[[system.ingredient]]
+name = "Deep Catalyst"
+tier = "heroic"
+source = "Heroic fixed chests in Terror of Demogorgon quests (Rare Loot List); Unbound, so also tradeable on the Auction House and Shard Exchange. Using one needs Terror of Demogorgon"
+
+[[system.ingredient]]
+name = "Deep Catalyst"
+tier = "legendary"
+source = "Legendary fixed chests in Terror of Demogorgon quests (Rare Loot List); Unbound, so also tradeable on the Auction House and Shard Exchange. Using one needs Terror of Demogorgon"
+
+[[system.ingredient]]
+name = "The Blood Stone"
+tier = "heroic"
+source = "The named base item; a heroic version for the heroic recipe, an Epic or Legendary version for the legendary one"
+
+[[system.ingredient]]
+name = "The Blood Stone"
+tier = "legendary"
+source = "The named base item; a heroic version for the heroic recipe, an Epic or Legendary version for the legendary one"
+
+[[system.ingredient]]
+name = "Bow of Sinew"
+tier = "heroic"
+source = "The named base item; a heroic version for the heroic recipe, an Epic or Legendary version for the legendary one"
+
+[[system.ingredient]]
+name = "Bow of Sinew"
+tier = "legendary"
+source = "The named base item; a heroic version for the heroic recipe, an Epic or Legendary version for the legendary one"
+
+[[system.ingredient]]
+name = "Cannith Boots of Propulsion"
+tier = "heroic"
+source = "The named base item; a heroic version for the heroic recipe, an Epic or Legendary version for the legendary one"
+
+[[system.ingredient]]
+name = "Cannith Boots of Propulsion"
+tier = "legendary"
+source = "The named base item; a heroic version for the heroic recipe, an Epic or Legendary version for the legendary one"
+
+[[system.ingredient]]
+name = "Cowl of the Devotee"
+tier = "heroic"
+source = "The named base item; a heroic version for the heroic recipe, an Epic or Legendary version for the legendary one"
+
+[[system.ingredient]]
+name = "Legendary Cowl of the Devotee"
+tier = "legendary"
+source = "The named base item; a heroic version for the heroic recipe, an Epic or Legendary version for the legendary one"
+
+[[system.ingredient]]
+name = "Death's Door"
+tier = "heroic"
+source = "The named base item; a heroic version for the heroic recipe, an Epic or Legendary version for the legendary one"
+
+[[system.ingredient]]
+name = "Death's Door"
+tier = "legendary"
+source = "The named base item; a heroic version for the heroic recipe, an Epic or Legendary version for the legendary one"
+
+[[system.ingredient]]
+name = "Demon Scale Armor"
+tier = "heroic"
+source = "The named base item; a heroic version for the heroic recipe, an Epic or Legendary version for the legendary one"
+
+[[system.ingredient]]
+name = "Epic Demon Scale Armor / Legendary Demon Scale Armor"
+tier = "legendary"
+source = "The named base item; a heroic version for the heroic recipe, an Epic or Legendary version for the legendary one"
+
+[[system.ingredient]]
+name = "Drow Bastard Sword of the Weapon Master"
+tier = "heroic"
+source = "The named base item; a heroic version for the heroic recipe, an Epic or Legendary version for the legendary one"
+
+[[system.ingredient]]
+name = "Drow Bastard Sword of the Weapon Master"
+tier = "legendary"
+source = "The named base item; a heroic version for the heroic recipe, an Epic or Legendary version for the legendary one"
+
+[[system.ingredient]]
+name = "Drow Dagger of the Weapon Master"
+tier = "heroic"
+source = "The named base item; a heroic version for the heroic recipe, an Epic or Legendary version for the legendary one"
+
+[[system.ingredient]]
+name = "Drow Dagger of the Weapon Master"
+tier = "legendary"
+source = "The named base item; a heroic version for the heroic recipe, an Epic or Legendary version for the legendary one"
+
+[[system.ingredient]]
+name = "Drow Greataxe of the Weapon Master"
+tier = "heroic"
+source = "The named base item; a heroic version for the heroic recipe, an Epic or Legendary version for the legendary one"
+
+[[system.ingredient]]
+name = "Drow Greataxe of the Weapon Master"
+tier = "legendary"
+source = "The named base item; a heroic version for the heroic recipe, an Epic or Legendary version for the legendary one"
+
+[[system.ingredient]]
+name = "Drow Khopesh of the Weapon Master"
+tier = "heroic"
+source = "The named base item; a heroic version for the heroic recipe, an Epic or Legendary version for the legendary one"
+
+[[system.ingredient]]
+name = "Drow Khopesh of the Weapon Master"
+tier = "legendary"
+source = "The named base item; a heroic version for the heroic recipe, an Epic or Legendary version for the legendary one"
+
+[[system.ingredient]]
+name = "Drow Light Mace of the Weapon Master"
+tier = "heroic"
+source = "The named base item; a heroic version for the heroic recipe, an Epic or Legendary version for the legendary one"
+
+[[system.ingredient]]
+name = "Drow Light Mace of the Weapon Master"
+tier = "legendary"
+source = "The named base item; a heroic version for the heroic recipe, an Epic or Legendary version for the legendary one"
+
+[[system.ingredient]]
+name = "Drow Longsword of the Weapon Master"
+tier = "heroic"
+source = "The named base item; a heroic version for the heroic recipe, an Epic or Legendary version for the legendary one"
+
+[[system.ingredient]]
+name = "Drow Longsword of the Weapon Master"
+tier = "legendary"
+source = "The named base item; a heroic version for the heroic recipe, an Epic or Legendary version for the legendary one"
+
+[[system.ingredient]]
+name = "Drow Maul of the Weapon Master"
+tier = "heroic"
+source = "The named base item; a heroic version for the heroic recipe, an Epic or Legendary version for the legendary one"
+
+[[system.ingredient]]
+name = "Drow Maul of the Weapon Master"
+tier = "legendary"
+source = "The named base item; a heroic version for the heroic recipe, an Epic or Legendary version for the legendary one"
+
+[[system.ingredient]]
+name = "Drow Piwafwi"
+tier = "heroic"
+source = "The named base item; a heroic version for the heroic recipe, an Epic or Legendary version for the legendary one"
+
+[[system.ingredient]]
+name = "Drow Piwafwi"
+tier = "legendary"
+source = "The named base item; a heroic version for the heroic recipe, an Epic or Legendary version for the legendary one"
+
+[[system.ingredient]]
+name = "Drow Quarterstaff of the Weapon Master"
+tier = "heroic"
+source = "The named base item; a heroic version for the heroic recipe, an Epic or Legendary version for the legendary one"
+
+[[system.ingredient]]
+name = "Drow Quarterstaff of the Weapon Master"
+tier = "legendary"
+source = "The named base item; a heroic version for the heroic recipe, an Epic or Legendary version for the legendary one"
+
+[[system.ingredient]]
+name = "Drow Rapier of the Weapon Master"
+tier = "heroic"
+source = "The named base item; a heroic version for the heroic recipe, an Epic or Legendary version for the legendary one"
+
+[[system.ingredient]]
+name = "Drow Rapier of the Weapon Master"
+tier = "legendary"
+source = "The named base item; a heroic version for the heroic recipe, an Epic or Legendary version for the legendary one"
+
+[[system.ingredient]]
+name = "Drow Scimitar of the Weapon Master"
+tier = "heroic"
+source = "The named base item; a heroic version for the heroic recipe, an Epic or Legendary version for the legendary one"
+
+[[system.ingredient]]
+name = "Drow Scimitar of the Weapon Master"
+tier = "legendary"
+source = "The named base item; a heroic version for the heroic recipe, an Epic or Legendary version for the legendary one"
+
+[[system.ingredient]]
+name = "Drow Shortsword of the Weapon Master"
+tier = "heroic"
+source = "The named base item; a heroic version for the heroic recipe, an Epic or Legendary version for the legendary one"
+
+[[system.ingredient]]
+name = "Drow Shortsword of the Weapon Master"
+tier = "legendary"
+source = "The named base item; a heroic version for the heroic recipe, an Epic or Legendary version for the legendary one"
+
+[[system.ingredient]]
+name = "Drow Warhammer of the Weapon Master"
+tier = "heroic"
+source = "The named base item; a heroic version for the heroic recipe, an Epic or Legendary version for the legendary one"
+
+[[system.ingredient]]
+name = "Drow Warhammer of the Weapon Master"
+tier = "legendary"
+source = "The named base item; a heroic version for the heroic recipe, an Epic or Legendary version for the legendary one"
+
+[[system.ingredient]]
+name = "Duergar Waraxe of the Weapon Master"
+tier = "heroic"
+source = "The named base item; a heroic version for the heroic recipe, an Epic or Legendary version for the legendary one"
+
+[[system.ingredient]]
+name = "Duergar Waraxe of the Weapon Master"
+tier = "legendary"
+source = "The named base item; a heroic version for the heroic recipe, an Epic or Legendary version for the legendary one"
+
+[[system.ingredient]]
+name = "Elemental Victory"
+tier = "heroic"
+source = "The named base item; a heroic version for the heroic recipe, an Epic or Legendary version for the legendary one"
+
+[[system.ingredient]]
+name = "Epic Elemental Victory"
+tier = "legendary"
+source = "The named base item; a heroic version for the heroic recipe, an Epic or Legendary version for the legendary one"
+
+[[system.ingredient]]
+name = "Expeditious Boots"
+tier = "heroic"
+source = "The named base item; a heroic version for the heroic recipe, an Epic or Legendary version for the legendary one"
+
+[[system.ingredient]]
+name = "Expeditious Boots"
+tier = "legendary"
+source = "The named base item; a heroic version for the heroic recipe, an Epic or Legendary version for the legendary one"
+
+[[system.ingredient]]
+name = "Graz'zt's Habiliment"
+tier = "heroic"
+source = "The named base item; a heroic version for the heroic recipe, an Epic or Legendary version for the legendary one"
+
+[[system.ingredient]]
+name = "Graz'zt's Habiliment"
+tier = "legendary"
+source = "The named base item; a heroic version for the heroic recipe, an Epic or Legendary version for the legendary one"
+
+[[system.ingredient]]
+name = "Hide of the Goristro"
+tier = "heroic"
+source = "The named base item; a heroic version for the heroic recipe, an Epic or Legendary version for the legendary one"
+
+[[system.ingredient]]
+name = "Hide of the Goristro"
+tier = "legendary"
+source = "The named base item; a heroic version for the heroic recipe, an Epic or Legendary version for the legendary one"
+
+[[system.ingredient]]
+name = "Insanity"
+tier = "heroic"
+source = "The named base item; a heroic version for the heroic recipe, an Epic or Legendary version for the legendary one"
+
+[[system.ingredient]]
+name = "Insanity"
+tier = "legendary"
+source = "The named base item; a heroic version for the heroic recipe, an Epic or Legendary version for the legendary one"
+
+[[system.ingredient]]
+name = "Lantern Ring"
+tier = "heroic"
+source = "The named base item; a heroic version for the heroic recipe, an Epic or Legendary version for the legendary one"
+
+[[system.ingredient]]
+name = "Lantern Ring"
+tier = "legendary"
+source = "The named base item; a heroic version for the heroic recipe, an Epic or Legendary version for the legendary one"
+
+[[system.ingredient]]
+name = "Locus of Vol"
+tier = "heroic"
+source = "The named base item; a heroic version for the heroic recipe, an Epic or Legendary version for the legendary one"
+
+[[system.ingredient]]
+name = "Epic Locus of Vol"
+tier = "legendary"
+source = "The named base item; a heroic version for the heroic recipe, an Epic or Legendary version for the legendary one"
+
+[[system.ingredient]]
+name = "The Mad Lute"
+tier = "heroic"
+source = "The named base item; a heroic version for the heroic recipe, an Epic or Legendary version for the legendary one"
+
+[[system.ingredient]]
+name = "The Mad Lute"
+tier = "legendary"
+source = "The named base item; a heroic version for the heroic recipe, an Epic or Legendary version for the legendary one"
+
+[[system.ingredient]]
+name = "Mantle of the Worldshaper"
+tier = "heroic"
+source = "The named base item; a heroic version for the heroic recipe, an Epic or Legendary version for the legendary one"
+
+[[system.ingredient]]
+name = "Mantle of the Worldshaper"
+tier = "legendary"
+source = "The named base item; a heroic version for the heroic recipe, an Epic or Legendary version for the legendary one"
+
+[[system.ingredient]]
+name = "Muck's Doom"
+tier = "heroic"
+source = "The named base item; a heroic version for the heroic recipe, an Epic or Legendary version for the legendary one"
+
+[[system.ingredient]]
+name = "Muck's Doom"
+tier = "legendary"
+source = "The named base item; a heroic version for the heroic recipe, an Epic or Legendary version for the legendary one"
+
+[[system.ingredient]]
+name = "Pansophic Circlet"
+tier = "heroic"
+source = "The named base item; a heroic version for the heroic recipe, an Epic or Legendary version for the legendary one"
+
+[[system.ingredient]]
+name = "Legendary Pansophic Circlet"
+tier = "legendary"
+source = "The named base item; a heroic version for the heroic recipe, an Epic or Legendary version for the legendary one"
+
+[[system.ingredient]]
+name = "Planar Compass"
+tier = "heroic"
+source = "The named base item; a heroic version for the heroic recipe, an Epic or Legendary version for the legendary one"
+
+[[system.ingredient]]
+name = "Legendary Planar Compass"
+tier = "legendary"
+source = "The named base item; a heroic version for the heroic recipe, an Epic or Legendary version for the legendary one"
+
+[[system.ingredient]]
+name = "Planar Gird"
+tier = "heroic"
+source = "The named base item; a heroic version for the heroic recipe, an Epic or Legendary version for the legendary one"
+
+[[system.ingredient]]
+name = "Planar Gird"
+tier = "legendary"
+source = "The named base item; a heroic version for the heroic recipe, an Epic or Legendary version for the legendary one"
+
+[[system.ingredient]]
+name = "Royal Guard Mask"
+tier = "heroic"
+source = "The named base item; a heroic version for the heroic recipe, an Epic or Legendary version for the legendary one"
+
+[[system.ingredient]]
+name = "Royal Guard Mask"
+tier = "legendary"
+source = "The named base item; a heroic version for the heroic recipe, an Epic or Legendary version for the legendary one"
+
+[[system.ingredient]]
+name = "Seraphim"
+tier = "heroic"
+source = "The named base item; a heroic version for the heroic recipe, an Epic or Legendary version for the legendary one"
+
+[[system.ingredient]]
+name = "Epic Seraphim"
+tier = "legendary"
+source = "The named base item; a heroic version for the heroic recipe, an Epic or Legendary version for the legendary one"
+
+[[system.ingredient]]
+name = "Spidersilk Robes"
+tier = "heroic"
+source = "The named base item; a heroic version for the heroic recipe, an Epic or Legendary version for the legendary one"
+
+[[system.ingredient]]
+name = "Spidersilk Robes"
+tier = "legendary"
+source = "The named base item; a heroic version for the heroic recipe, an Epic or Legendary version for the legendary one"
+
+[[system.ingredient]]
+name = "Spider-spun Caparison"
+tier = "heroic"
+source = "The named base item; a heroic version for the heroic recipe, an Epic or Legendary version for the legendary one"
+
+[[system.ingredient]]
+name = "Spider-spun Caparison"
+tier = "legendary"
+source = "The named base item; a heroic version for the heroic recipe, an Epic or Legendary version for the legendary one"
+
+[[system.ingredient]]
+name = "Staff of the Necromancer"
+tier = "heroic"
+source = "The named base item; a heroic version for the heroic recipe, an Epic or Legendary version for the legendary one"
+
+[[system.ingredient]]
+name = "Staff of the Necromancer"
+tier = "legendary"
+source = "The named base item; a heroic version for the heroic recipe, an Epic or Legendary version for the legendary one"
+
+[[system.ingredient]]
+name = "Sun Blade"
+tier = "heroic"
+source = "The named base item; a heroic version for the heroic recipe, an Epic or Legendary version for the legendary one"
+
+[[system.ingredient]]
+name = "Sun Blade"
+tier = "legendary"
+source = "The named base item; a heroic version for the heroic recipe, an Epic or Legendary version for the legendary one"
+
+[[system.ingredient]]
+name = "Torc of Prince Raiyum-de II"
+tier = "heroic"
+source = "The named base item; a heroic version for the heroic recipe, an Epic or Legendary version for the legendary one"
+
+[[system.ingredient]]
+name = "Epic Torc of Prince Raiyum-de II / Legendary Torc of Prince Raiyum-de II"
+tier = "legendary"
+source = "The named base item; a heroic version for the heroic recipe, an Epic or Legendary version for the legendary one"
+
+[[system.ingredient]]
+name = "Ultimatum"
+tier = "heroic"
+source = "The named base item; a heroic version for the heroic recipe, an Epic or Legendary version for the legendary one"
+
+[[system.ingredient]]
+name = "Ultimatum"
+tier = "legendary"
+source = "The named base item; a heroic version for the heroic recipe, an Epic or Legendary version for the legendary one"
+
+[[system.ingredient]]
+name = "Visor of the Flesh Render Guards"
+tier = "heroic"
+source = "The named base item; a heroic version for the heroic recipe, an Epic or Legendary version for the legendary one"
+
+[[system.ingredient]]
+name = "Visor of the Flesh Render Guards"
+tier = "legendary"
+source = "The named base item; a heroic version for the heroic recipe, an Epic or Legendary version for the legendary one"
+
+[[system.recipe]]
+tier = "heroic"
+option = "The Bloody Boulder"
+augments = []
+note = "Trinket. Combines The Blood Stone with its Heroic Abyssal Catalyst (drops in Flocked Together, end chest) into The Bloody Boulder, ML 11. The result is a new item (does not inherit Card Curses, Mythic or Reaper bonuses; all socketed augments are destroyed), a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "The Blood Stone", quantity = 1 }, { ingredient = "Abyssal Catalyst", quantity = 1 }, { ingredient = "Abyssal Gem", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary The Bloody Boulder"
+augments = []
+note = "Trinket. Combines The Blood Stone with its Legendary Abyssal Catalyst (drops in Flocked Together, end chest) into Legendary The Bloody Boulder, ML 35. The result is a new item (does not inherit Card Curses, Mythic or Reaper bonuses; all socketed augments are destroyed), a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "The Blood Stone", quantity = 1 }, { ingredient = "Abyssal Catalyst", quantity = 1 }, { ingredient = "Legendary Abyssal Gem", quantity = 5 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Demon's Arc"
+augments = []
+note = "Weapon (Long Bow). Combines Bow of Sinew with its Heroic Abyssal Catalyst (drops in A Blood Pact, end chest) into Demon's Arc, ML 11. The result is a new item (does not inherit Card Curses, Mythic or Reaper bonuses; all socketed augments are destroyed), a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Bow of Sinew", quantity = 1 }, { ingredient = "Abyssal Catalyst", quantity = 1 }, { ingredient = "Abyssal Gem", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Demon's Arc"
+augments = []
+note = "Weapon (Long Bow). Combines Bow of Sinew with its Legendary Abyssal Catalyst (drops in A Blood Pact, end chest) into Legendary Demon's Arc, ML 35. The result is a new item (does not inherit Card Curses, Mythic or Reaper bonuses; all socketed augments are destroyed), a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Bow of Sinew", quantity = 1 }, { ingredient = "Abyssal Catalyst", quantity = 1 }, { ingredient = "Legendary Abyssal Gem", quantity = 5 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Demonic Rush"
+augments = []
+note = "Boots. Combines Cannith Boots of Propulsion with its Heroic Abyssal Catalyst (drops in The Darklake, red-named rare encounter chests) into Demonic Rush, ML 11. The result is a new item (does not inherit Card Curses, Mythic or Reaper bonuses; all socketed augments are destroyed), a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Cannith Boots of Propulsion", quantity = 1 }, { ingredient = "Abyssal Catalyst", quantity = 1 }, { ingredient = "Abyssal Gem", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Demonic Rush"
+augments = []
+note = "Boots. Combines Cannith Boots of Propulsion with its Legendary Abyssal Catalyst (drops in The Darklake, red-named rare encounter chests) into Legendary Demonic Rush, ML 35. The result is a new item (does not inherit Card Curses, Mythic or Reaper bonuses; all socketed augments are destroyed), a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Cannith Boots of Propulsion", quantity = 1 }, { ingredient = "Abyssal Catalyst", quantity = 1 }, { ingredient = "Legendary Abyssal Gem", quantity = 5 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Cowl of the Drow Devotee"
+augments = []
+note = "Headgear. Combines Cowl of the Devotee with its Heroic Deep Catalyst (drops in Demon in the Rough, end chest) into Cowl of the Drow Devotee, ML 11. The result is a new item (does not inherit Card Curses, Mythic or Reaper bonuses; all socketed augments are destroyed), a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Cowl of the Devotee", quantity = 1 }, { ingredient = "Deep Catalyst", quantity = 1 }, { ingredient = "Abyssal Gem", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Cowl of the Drow Devotee"
+augments = []
+note = "Headgear. Combines Legendary Cowl of the Devotee with its Legendary Deep Catalyst (drops in Demon in the Rough, end chest) into Legendary Cowl of the Drow Devotee, ML 35. The result is a new item (does not inherit Card Curses, Mythic or Reaper bonuses; all socketed augments are destroyed), a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Legendary Cowl of the Devotee", quantity = 1 }, { ingredient = "Deep Catalyst", quantity = 1 }, { ingredient = "Legendary Abyssal Gem", quantity = 5 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Demon's Door"
+augments = []
+note = "Shield (Large). Combines Death's Door with its Heroic Abyssal Catalyst (drops in If It Wasn't For Bad Luck, end chest) into Demon's Door, ML 11. The result is a new item (does not inherit Card Curses, Mythic or Reaper bonuses; all socketed augments are destroyed), a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Death's Door", quantity = 1 }, { ingredient = "Abyssal Catalyst", quantity = 1 }, { ingredient = "Abyssal Gem", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Demon's Door"
+augments = []
+note = "Shield (Large). Combines Death's Door with its Legendary Abyssal Catalyst (drops in If It Wasn't For Bad Luck, end chest) into Legendary Demon's Door, ML 35. The result is a new item (does not inherit Card Curses, Mythic or Reaper bonuses; all socketed augments are destroyed), a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Death's Door", quantity = 1 }, { ingredient = "Abyssal Catalyst", quantity = 1 }, { ingredient = "Legendary Abyssal Gem", quantity = 5 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Scales of Demogorgon"
+augments = []
+note = "Armor (Heavy). Combines Demon Scale Armor with its Heroic Abyssal Catalyst (drops in For Want of a Heart, end chest) into Scales of Demogorgon, ML 11. The result is a new item (does not inherit Card Curses, Mythic or Reaper bonuses; all socketed augments are destroyed), a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Demon Scale Armor", quantity = 1 }, { ingredient = "Abyssal Catalyst", quantity = 1 }, { ingredient = "Abyssal Gem", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Scales of Demogorgon"
+augments = []
+note = "Armor (Heavy). Combines Epic Demon Scale Armor / Legendary Demon Scale Armor with its Legendary Abyssal Catalyst (drops in For Want of a Heart, end chest) into Legendary Scales of Demogorgon, ML 35. The result is a new item (does not inherit Card Curses, Mythic or Reaper bonuses; all socketed augments are destroyed), a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic Demon Scale Armor / Legendary Demon Scale Armor", quantity = 1 }, { ingredient = "Abyssal Catalyst", quantity = 1 }, { ingredient = "Legendary Abyssal Gem", quantity = 5 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Perfected Bastard Sword of the Weapon Master"
+augments = []
+note = "Weapon (Bastard Sword). Combines Drow Bastard Sword of the Weapon Master with its Heroic Abyssal Catalyst (drops in A Long Way to Mushrooms, end chest) into Perfected Bastard Sword of the Weapon Master, ML 11. The result is a new item (does not inherit Card Curses, Mythic or Reaper bonuses; all socketed augments are destroyed), a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Drow Bastard Sword of the Weapon Master", quantity = 1 }, { ingredient = "Abyssal Catalyst", quantity = 1 }, { ingredient = "Abyssal Gem", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Perfected Bastard Sword of the Weapon Master"
+augments = []
+note = "Weapon (Bastard Sword). Combines Drow Bastard Sword of the Weapon Master with its Legendary Abyssal Catalyst (drops in A Long Way to Mushrooms, end chest) into Legendary Perfected Bastard Sword of the Weapon Master, ML 35. The result is a new item (does not inherit Card Curses, Mythic or Reaper bonuses; all socketed augments are destroyed), a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Drow Bastard Sword of the Weapon Master", quantity = 1 }, { ingredient = "Abyssal Catalyst", quantity = 1 }, { ingredient = "Legendary Abyssal Gem", quantity = 5 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Perfected Dagger of the Weapon Master"
+augments = []
+note = "Weapon (Dagger). Combines Drow Dagger of the Weapon Master with its Heroic Abyssal Catalyst (drops in A Long Way to Mushrooms, end chest) into Perfected Dagger of the Weapon Master, ML 11. The result is a new item (does not inherit Card Curses, Mythic or Reaper bonuses; all socketed augments are destroyed), a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Drow Dagger of the Weapon Master", quantity = 1 }, { ingredient = "Abyssal Catalyst", quantity = 1 }, { ingredient = "Abyssal Gem", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Perfected Dagger of the Weapon Master"
+augments = []
+note = "Weapon (Dagger). Combines Drow Dagger of the Weapon Master with its Legendary Abyssal Catalyst (drops in A Long Way to Mushrooms, end chest) into Legendary Perfected Dagger of the Weapon Master, ML 35. The result is a new item (does not inherit Card Curses, Mythic or Reaper bonuses; all socketed augments are destroyed), a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Drow Dagger of the Weapon Master", quantity = 1 }, { ingredient = "Abyssal Catalyst", quantity = 1 }, { ingredient = "Legendary Abyssal Gem", quantity = 5 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Perfected Greataxe of the Weapon Master"
+augments = []
+note = "Weapon (Greataxe). Combines Drow Greataxe of the Weapon Master with its Heroic Abyssal Catalyst (drops in A Long Way to Mushrooms, end chest) into Perfected Greataxe of the Weapon Master, ML 11. The result is a new item (does not inherit Card Curses, Mythic or Reaper bonuses; all socketed augments are destroyed), a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Drow Greataxe of the Weapon Master", quantity = 1 }, { ingredient = "Abyssal Catalyst", quantity = 1 }, { ingredient = "Abyssal Gem", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Perfected Greataxe of the Weapon Master"
+augments = []
+note = "Weapon (Greataxe). Combines Drow Greataxe of the Weapon Master with its Legendary Abyssal Catalyst (drops in A Long Way to Mushrooms, end chest) into Legendary Perfected Greataxe of the Weapon Master, ML 35. The result is a new item (does not inherit Card Curses, Mythic or Reaper bonuses; all socketed augments are destroyed), a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Drow Greataxe of the Weapon Master", quantity = 1 }, { ingredient = "Abyssal Catalyst", quantity = 1 }, { ingredient = "Legendary Abyssal Gem", quantity = 5 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Perfected Khopesh of the Weapon Master"
+augments = []
+note = "Weapon (Khopesh). Combines Drow Khopesh of the Weapon Master with its Heroic Abyssal Catalyst (drops in A Long Way to Mushrooms, end chest) into Perfected Khopesh of the Weapon Master, ML 11. The result is a new item (does not inherit Card Curses, Mythic or Reaper bonuses; all socketed augments are destroyed), a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Drow Khopesh of the Weapon Master", quantity = 1 }, { ingredient = "Abyssal Catalyst", quantity = 1 }, { ingredient = "Abyssal Gem", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Perfected Khopesh of the Weapon Master"
+augments = []
+note = "Weapon (Khopesh). Combines Drow Khopesh of the Weapon Master with its Legendary Abyssal Catalyst (drops in A Long Way to Mushrooms, end chest) into Legendary Perfected Khopesh of the Weapon Master, ML 35. The result is a new item (does not inherit Card Curses, Mythic or Reaper bonuses; all socketed augments are destroyed), a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Drow Khopesh of the Weapon Master", quantity = 1 }, { ingredient = "Abyssal Catalyst", quantity = 1 }, { ingredient = "Legendary Abyssal Gem", quantity = 5 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Perfected Light Mace of the Weapon Master"
+augments = []
+note = "Weapon (Light Mace). Combines Drow Light Mace of the Weapon Master with its Heroic Abyssal Catalyst (drops in A Long Way to Mushrooms, end chest) into Perfected Light Mace of the Weapon Master, ML 11. The result is a new item (does not inherit Card Curses, Mythic or Reaper bonuses; all socketed augments are destroyed), a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Drow Light Mace of the Weapon Master", quantity = 1 }, { ingredient = "Abyssal Catalyst", quantity = 1 }, { ingredient = "Abyssal Gem", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Perfected Light Mace of the Weapon Master"
+augments = []
+note = "Weapon (Light Mace). Combines Drow Light Mace of the Weapon Master with its Legendary Abyssal Catalyst (drops in A Long Way to Mushrooms, end chest) into Legendary Perfected Light Mace of the Weapon Master, ML 35. The result is a new item (does not inherit Card Curses, Mythic or Reaper bonuses; all socketed augments are destroyed), a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Drow Light Mace of the Weapon Master", quantity = 1 }, { ingredient = "Abyssal Catalyst", quantity = 1 }, { ingredient = "Legendary Abyssal Gem", quantity = 5 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Perfected Longsword of the Weapon Master"
+augments = []
+note = "Weapon (Long Sword). Combines Drow Longsword of the Weapon Master with its Heroic Abyssal Catalyst (drops in A Long Way to Mushrooms, end chest) into Perfected Longsword of the Weapon Master, ML 11. The result is a new item (does not inherit Card Curses, Mythic or Reaper bonuses; all socketed augments are destroyed), a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Drow Longsword of the Weapon Master", quantity = 1 }, { ingredient = "Abyssal Catalyst", quantity = 1 }, { ingredient = "Abyssal Gem", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Perfected Longsword of the Weapon Master"
+augments = []
+note = "Weapon (Long Sword). Combines Drow Longsword of the Weapon Master with its Legendary Abyssal Catalyst (drops in A Long Way to Mushrooms, end chest) into Legendary Perfected Longsword of the Weapon Master, ML 35. The result is a new item (does not inherit Card Curses, Mythic or Reaper bonuses; all socketed augments are destroyed), a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Drow Longsword of the Weapon Master", quantity = 1 }, { ingredient = "Abyssal Catalyst", quantity = 1 }, { ingredient = "Legendary Abyssal Gem", quantity = 5 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Perfected Maul of the Weapon Master"
+augments = []
+note = "Weapon (Maul). Combines Drow Maul of the Weapon Master with its Heroic Abyssal Catalyst (drops in A Long Way to Mushrooms, end chest) into Perfected Maul of the Weapon Master, ML 11. The result is a new item (does not inherit Card Curses, Mythic or Reaper bonuses; all socketed augments are destroyed), a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Drow Maul of the Weapon Master", quantity = 1 }, { ingredient = "Abyssal Catalyst", quantity = 1 }, { ingredient = "Abyssal Gem", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Perfected Maul of the Weapon Master"
+augments = []
+note = "Weapon (Maul). Combines Drow Maul of the Weapon Master with its Legendary Abyssal Catalyst (drops in A Long Way to Mushrooms, end chest) into Legendary Perfected Maul of the Weapon Master, ML 35. The result is a new item (does not inherit Card Curses, Mythic or Reaper bonuses; all socketed augments are destroyed), a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Drow Maul of the Weapon Master", quantity = 1 }, { ingredient = "Abyssal Catalyst", quantity = 1 }, { ingredient = "Legendary Abyssal Gem", quantity = 5 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Piwafwi of the Drow Assassin"
+augments = []
+note = "Cloak. Combines Drow Piwafwi with its Heroic Deep Catalyst (drops in Hideous to Behold, end chest) into Piwafwi of the Drow Assassin, ML 11. The result is a new item (does not inherit Card Curses, Mythic or Reaper bonuses; all socketed augments are destroyed), a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Drow Piwafwi", quantity = 1 }, { ingredient = "Deep Catalyst", quantity = 1 }, { ingredient = "Abyssal Gem", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Piwafwi of the Drow Assassin"
+augments = []
+note = "Cloak. Combines Drow Piwafwi with its Legendary Deep Catalyst (drops in Hideous to Behold, end chest) into Legendary Piwafwi of the Drow Assassin, ML 35. The result is a new item (does not inherit Card Curses, Mythic or Reaper bonuses; all socketed augments are destroyed), a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Drow Piwafwi", quantity = 1 }, { ingredient = "Deep Catalyst", quantity = 1 }, { ingredient = "Legendary Abyssal Gem", quantity = 5 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Perfected Quarterstaff of the Weapon Master"
+augments = []
+note = "Weapon (Quarterstaff). Combines Drow Quarterstaff of the Weapon Master with its Heroic Abyssal Catalyst (drops in A Long Way to Mushrooms, end chest) into Perfected Quarterstaff of the Weapon Master, ML 11. The result is a new item (does not inherit Card Curses, Mythic or Reaper bonuses; all socketed augments are destroyed), a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Drow Quarterstaff of the Weapon Master", quantity = 1 }, { ingredient = "Abyssal Catalyst", quantity = 1 }, { ingredient = "Abyssal Gem", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Perfected Quarterstaff of the Weapon Master"
+augments = []
+note = "Weapon (Quarterstaff). Combines Drow Quarterstaff of the Weapon Master with its Legendary Abyssal Catalyst (drops in A Long Way to Mushrooms, end chest) into Legendary Perfected Quarterstaff of the Weapon Master, ML 35. The result is a new item (does not inherit Card Curses, Mythic or Reaper bonuses; all socketed augments are destroyed), a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Drow Quarterstaff of the Weapon Master", quantity = 1 }, { ingredient = "Abyssal Catalyst", quantity = 1 }, { ingredient = "Legendary Abyssal Gem", quantity = 5 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Perfected Rapier of the Weapon Master"
+augments = []
+note = "Weapon (Rapier). Combines Drow Rapier of the Weapon Master with its Heroic Abyssal Catalyst (drops in A Long Way to Mushrooms, end chest) into Perfected Rapier of the Weapon Master, ML 11. The result is a new item (does not inherit Card Curses, Mythic or Reaper bonuses; all socketed augments are destroyed), a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Drow Rapier of the Weapon Master", quantity = 1 }, { ingredient = "Abyssal Catalyst", quantity = 1 }, { ingredient = "Abyssal Gem", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Perfected Rapier of the Weapon Master"
+augments = []
+note = "Weapon (Rapier). Combines Drow Rapier of the Weapon Master with its Legendary Abyssal Catalyst (drops in A Long Way to Mushrooms, end chest) into Legendary Perfected Rapier of the Weapon Master, ML 35. The result is a new item (does not inherit Card Curses, Mythic or Reaper bonuses; all socketed augments are destroyed), a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Drow Rapier of the Weapon Master", quantity = 1 }, { ingredient = "Abyssal Catalyst", quantity = 1 }, { ingredient = "Legendary Abyssal Gem", quantity = 5 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Perfected Scimitar of the Weapon Master"
+augments = []
+note = "Weapon (Scimitar). Combines Drow Scimitar of the Weapon Master with its Heroic Abyssal Catalyst (drops in A Long Way to Mushrooms, end chest) into Perfected Scimitar of the Weapon Master, ML 11. The result is a new item (does not inherit Card Curses, Mythic or Reaper bonuses; all socketed augments are destroyed), a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Drow Scimitar of the Weapon Master", quantity = 1 }, { ingredient = "Abyssal Catalyst", quantity = 1 }, { ingredient = "Abyssal Gem", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Perfected Scimitar of the Weapon Master"
+augments = []
+note = "Weapon (Scimitar). Combines Drow Scimitar of the Weapon Master with its Legendary Abyssal Catalyst (drops in A Long Way to Mushrooms, end chest) into Legendary Perfected Scimitar of the Weapon Master, ML 35. The result is a new item (does not inherit Card Curses, Mythic or Reaper bonuses; all socketed augments are destroyed), a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Drow Scimitar of the Weapon Master", quantity = 1 }, { ingredient = "Abyssal Catalyst", quantity = 1 }, { ingredient = "Legendary Abyssal Gem", quantity = 5 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Perfected Shortsword of the Weapon Master"
+augments = []
+note = "Weapon (Short Sword). Combines Drow Shortsword of the Weapon Master with its Heroic Abyssal Catalyst (drops in A Long Way to Mushrooms, end chest) into Perfected Shortsword of the Weapon Master, ML 11. The result is a new item (does not inherit Card Curses, Mythic or Reaper bonuses; all socketed augments are destroyed), a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Drow Shortsword of the Weapon Master", quantity = 1 }, { ingredient = "Abyssal Catalyst", quantity = 1 }, { ingredient = "Abyssal Gem", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Perfected Shortsword of the Weapon Master"
+augments = []
+note = "Weapon (Short Sword). Combines Drow Shortsword of the Weapon Master with its Legendary Abyssal Catalyst (drops in A Long Way to Mushrooms, end chest) into Legendary Perfected Shortsword of the Weapon Master, ML 35. The result is a new item (does not inherit Card Curses, Mythic or Reaper bonuses; all socketed augments are destroyed), a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Drow Shortsword of the Weapon Master", quantity = 1 }, { ingredient = "Abyssal Catalyst", quantity = 1 }, { ingredient = "Legendary Abyssal Gem", quantity = 5 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Perfected Warhammer of the Weapon Master"
+augments = []
+note = "Weapon (War Hammer). Combines Drow Warhammer of the Weapon Master with its Heroic Abyssal Catalyst (drops in A Long Way to Mushrooms, end chest) into Perfected Warhammer of the Weapon Master, ML 11. The result is a new item (does not inherit Card Curses, Mythic or Reaper bonuses; all socketed augments are destroyed), a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Drow Warhammer of the Weapon Master", quantity = 1 }, { ingredient = "Abyssal Catalyst", quantity = 1 }, { ingredient = "Abyssal Gem", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Perfected Warhammer of the Weapon Master"
+augments = []
+note = "Weapon (War Hammer). Combines Drow Warhammer of the Weapon Master with its Legendary Abyssal Catalyst (drops in A Long Way to Mushrooms, end chest) into Legendary Perfected Warhammer of the Weapon Master, ML 35. The result is a new item (does not inherit Card Curses, Mythic or Reaper bonuses; all socketed augments are destroyed), a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Drow Warhammer of the Weapon Master", quantity = 1 }, { ingredient = "Abyssal Catalyst", quantity = 1 }, { ingredient = "Legendary Abyssal Gem", quantity = 5 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Perfected Dwarven Waraxe of the Weapon Master"
+augments = []
+note = "Weapon (Dwarven Waraxe). Combines Duergar Waraxe of the Weapon Master with its Heroic Abyssal Catalyst (drops in A Long Way to Mushrooms, end chest) into Perfected Dwarven Waraxe of the Weapon Master, ML 11. The result is a new item (does not inherit Card Curses, Mythic or Reaper bonuses; all socketed augments are destroyed), a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Duergar Waraxe of the Weapon Master", quantity = 1 }, { ingredient = "Abyssal Catalyst", quantity = 1 }, { ingredient = "Abyssal Gem", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Perfected Dwarven Waraxe of the Weapon Master"
+augments = []
+note = "Weapon (Dwarven Waraxe). Combines Duergar Waraxe of the Weapon Master with its Legendary Abyssal Catalyst (drops in A Long Way to Mushrooms, end chest) into Legendary Perfected Dwarven Waraxe of the Weapon Master, ML 35. The result is a new item (does not inherit Card Curses, Mythic or Reaper bonuses; all socketed augments are destroyed), a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Duergar Waraxe of the Weapon Master", quantity = 1 }, { ingredient = "Abyssal Catalyst", quantity = 1 }, { ingredient = "Legendary Abyssal Gem", quantity = 5 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Crown of Ioun"
+augments = []
+note = "Headgear. Combines Elemental Victory with its Heroic Deep Catalyst (drops in Tower of Vengeance, end chest) into Crown of Ioun, ML 11. The result is a new item (does not inherit Card Curses, Mythic or Reaper bonuses; all socketed augments are destroyed), a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Elemental Victory", quantity = 1 }, { ingredient = "Deep Catalyst", quantity = 1 }, { ingredient = "Abyssal Gem", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Crown of Ioun"
+augments = []
+note = "Headgear. Combines Epic Elemental Victory with its Legendary Deep Catalyst (drops in Tower of Vengeance, end chest) into Legendary Crown of Ioun, ML 35. The result is a new item (does not inherit Card Curses, Mythic or Reaper bonuses; all socketed augments are destroyed), a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic Elemental Victory", quantity = 1 }, { ingredient = "Deep Catalyst", quantity = 1 }, { ingredient = "Legendary Abyssal Gem", quantity = 5 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Hooves of Orcus"
+augments = []
+note = "Boots. Combines Expeditious Boots with its Heroic Abyssal Catalyst (drops in The Darklake, Depthdigger's chest) into Hooves of Orcus, ML 11. The result is a new item (does not inherit Card Curses, Mythic or Reaper bonuses; all socketed augments are destroyed), a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Expeditious Boots", quantity = 1 }, { ingredient = "Abyssal Catalyst", quantity = 1 }, { ingredient = "Abyssal Gem", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Hooves of Orcus"
+augments = []
+note = "Boots. Combines Expeditious Boots with its Legendary Abyssal Catalyst (drops in The Darklake, Depthdigger's chest) into Legendary Hooves of Orcus, ML 35. The result is a new item (does not inherit Card Curses, Mythic or Reaper bonuses; all socketed augments are destroyed), a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Expeditious Boots", quantity = 1 }, { ingredient = "Abyssal Catalyst", quantity = 1 }, { ingredient = "Legendary Abyssal Gem", quantity = 5 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "The Shadow King's Cruelty"
+augments = []
+note = "Armor (Light). Combines Graz'zt's Habiliment with its Heroic Abyssal Catalyst (drops in Stealing from Sorcere, end chest) into The Shadow King's Cruelty, ML 11. The result is a new item (does not inherit Card Curses, Mythic or Reaper bonuses; all socketed augments are destroyed), a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Graz'zt's Habiliment", quantity = 1 }, { ingredient = "Abyssal Catalyst", quantity = 1 }, { ingredient = "Abyssal Gem", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary The Shadow King's Cruelty"
+augments = []
+note = "Armor (Light). Combines Graz'zt's Habiliment with its Legendary Abyssal Catalyst (drops in Stealing from Sorcere, end chest) into Legendary The Shadow King's Cruelty, ML 35. The result is a new item (does not inherit Card Curses, Mythic or Reaper bonuses; all socketed augments are destroyed), a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Graz'zt's Habiliment", quantity = 1 }, { ingredient = "Abyssal Catalyst", quantity = 1 }, { ingredient = "Legendary Abyssal Gem", quantity = 5 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Baphomet's Brutality"
+augments = []
+note = "Armor (Medium). Combines Hide of the Goristro with its Heroic Abyssal Catalyst (drops in Flocked Together, end chest) into Baphomet's Brutality, ML 11. The result is a new item (does not inherit Card Curses, Mythic or Reaper bonuses; all socketed augments are destroyed), a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Hide of the Goristro", quantity = 1 }, { ingredient = "Abyssal Catalyst", quantity = 1 }, { ingredient = "Abyssal Gem", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Baphomet's Brutality"
+augments = []
+note = "Armor (Medium). Combines Hide of the Goristro with its Legendary Abyssal Catalyst (drops in Flocked Together, end chest) into Legendary Baphomet's Brutality, ML 35. The result is a new item (does not inherit Card Curses, Mythic or Reaper bonuses; all socketed augments are destroyed), a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Hide of the Goristro", quantity = 1 }, { ingredient = "Abyssal Catalyst", quantity = 1 }, { ingredient = "Legendary Abyssal Gem", quantity = 5 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Madness of the Demon Lords"
+augments = []
+note = "Weapon (Greatsword). Combines Insanity with its Heroic Abyssal Catalyst (drops in The Price of an Egg, end chest) into Madness of the Demon Lords, ML 11. The result is a new item (does not inherit Card Curses, Mythic or Reaper bonuses; all socketed augments are destroyed), a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Insanity", quantity = 1 }, { ingredient = "Abyssal Catalyst", quantity = 1 }, { ingredient = "Abyssal Gem", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Madness of the Demon Lords"
+augments = []
+note = "Weapon (Greatsword). Combines Insanity with its Legendary Abyssal Catalyst (drops in The Price of an Egg, end chest) into Legendary Madness of the Demon Lords, ML 35. The result is a new item (does not inherit Card Curses, Mythic or Reaper bonuses; all socketed augments are destroyed), a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Insanity", quantity = 1 }, { ingredient = "Abyssal Catalyst", quantity = 1 }, { ingredient = "Legendary Abyssal Gem", quantity = 5 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Lantern of the Abyss"
+augments = []
+note = "Ring. Combines Lantern Ring with its Heroic Abyssal Catalyst (drops in Back to the Abyss, end chest) into Lantern of the Abyss, ML 11. The result is a new item (does not inherit Card Curses, Mythic or Reaper bonuses; all socketed augments are destroyed), a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Lantern Ring", quantity = 1 }, { ingredient = "Abyssal Catalyst", quantity = 1 }, { ingredient = "Abyssal Gem", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Lantern of the Abyss"
+augments = []
+note = "Ring. Combines Lantern Ring with its Legendary Abyssal Catalyst (drops in Back to the Abyss, end chest) into Legendary Lantern of the Abyss, ML 35. The result is a new item (does not inherit Card Curses, Mythic or Reaper bonuses; all socketed augments are destroyed), a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Lantern Ring", quantity = 1 }, { ingredient = "Abyssal Catalyst", quantity = 1 }, { ingredient = "Legendary Abyssal Gem", quantity = 5 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "The Blood of Demons"
+augments = []
+note = "Necklace. Combines Locus of Vol with its Heroic Abyssal Catalyst (drops in The Darklake, J'anara's chest) into The Blood of Demons, ML 11. The result is a new item (does not inherit Card Curses, Mythic or Reaper bonuses; all socketed augments are destroyed), a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Locus of Vol", quantity = 1 }, { ingredient = "Abyssal Catalyst", quantity = 1 }, { ingredient = "Abyssal Gem", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary The Blood of Demons"
+augments = []
+note = "Necklace. Combines Epic Locus of Vol with its Legendary Abyssal Catalyst (drops in The Darklake, J'anara's chest) into Legendary The Blood of Demons, ML 35. The result is a new item (does not inherit Card Curses, Mythic or Reaper bonuses; all socketed augments are destroyed), a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic Locus of Vol", quantity = 1 }, { ingredient = "Abyssal Catalyst", quantity = 1 }, { ingredient = "Legendary Abyssal Gem", quantity = 5 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "The Wicked Pull"
+augments = []
+note = "Weapon (Greatclub). Combines The Mad Lute with its Heroic Abyssal Catalyst (drops in Tower of Vengeance, end chest) into The Wicked Pull, ML 11. The result is a new item (does not inherit Card Curses, Mythic or Reaper bonuses; all socketed augments are destroyed), a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "The Mad Lute", quantity = 1 }, { ingredient = "Abyssal Catalyst", quantity = 1 }, { ingredient = "Abyssal Gem", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary The Wicked Pull"
+augments = []
+note = "Weapon (Greatclub). Combines The Mad Lute with its Legendary Abyssal Catalyst (drops in Tower of Vengeance, end chest) into Legendary The Wicked Pull, ML 35. The result is a new item (does not inherit Card Curses, Mythic or Reaper bonuses; all socketed augments are destroyed), a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "The Mad Lute", quantity = 1 }, { ingredient = "Abyssal Catalyst", quantity = 1 }, { ingredient = "Legendary Abyssal Gem", quantity = 5 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Dream of the Worldshaper"
+augments = []
+note = "Cloak. Combines Mantle of the Worldshaper with its Heroic Deep Catalyst (drops in Hideous to Behold, end chest) into Dream of the Worldshaper, ML 11. The result is a new item (does not inherit Card Curses, Mythic or Reaper bonuses; all socketed augments are destroyed), a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Mantle of the Worldshaper", quantity = 1 }, { ingredient = "Deep Catalyst", quantity = 1 }, { ingredient = "Abyssal Gem", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Dream of the Worldshaper"
+augments = []
+note = "Cloak. Combines Mantle of the Worldshaper with its Legendary Deep Catalyst (drops in Hideous to Behold, end chest) into Legendary Dream of the Worldshaper, ML 35. The result is a new item (does not inherit Card Curses, Mythic or Reaper bonuses; all socketed augments are destroyed), a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Mantle of the Worldshaper", quantity = 1 }, { ingredient = "Deep Catalyst", quantity = 1 }, { ingredient = "Legendary Abyssal Gem", quantity = 5 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Muck's Ascension"
+augments = []
+note = "Weapon (Club). Combines Muck's Doom with its Heroic Abyssal Catalyst (drops in The Price of an Egg, end chest) into Muck's Ascension, ML 11. The result is a new item (does not inherit Card Curses, Mythic or Reaper bonuses; all socketed augments are destroyed), a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Muck's Doom", quantity = 1 }, { ingredient = "Abyssal Catalyst", quantity = 1 }, { ingredient = "Abyssal Gem", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Muck's Ascension"
+augments = []
+note = "Weapon (Club). Combines Muck's Doom with its Legendary Abyssal Catalyst (drops in The Price of an Egg, end chest) into Legendary Muck's Ascension, ML 35. The result is a new item (does not inherit Card Curses, Mythic or Reaper bonuses; all socketed augments are destroyed), a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Muck's Doom", quantity = 1 }, { ingredient = "Abyssal Catalyst", quantity = 1 }, { ingredient = "Legendary Abyssal Gem", quantity = 5 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Occultic Circlet"
+augments = []
+note = "Headgear. Combines Pansophic Circlet with its Heroic Abyssal Catalyst (drops in Raiding the Raiders, end chest) into Occultic Circlet, ML 11. The result is a new item (does not inherit Card Curses, Mythic or Reaper bonuses; all socketed augments are destroyed), a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Pansophic Circlet", quantity = 1 }, { ingredient = "Abyssal Catalyst", quantity = 1 }, { ingredient = "Abyssal Gem", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Occultic Circlet"
+augments = []
+note = "Headgear. Combines Legendary Pansophic Circlet with its Legendary Abyssal Catalyst (drops in Raiding the Raiders, end chest) into Legendary Occultic Circlet, ML 35. The result is a new item (does not inherit Card Curses, Mythic or Reaper bonuses; all socketed augments are destroyed), a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Legendary Pansophic Circlet", quantity = 1 }, { ingredient = "Abyssal Catalyst", quantity = 1 }, { ingredient = "Legendary Abyssal Gem", quantity = 5 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Abyssal Compass"
+augments = []
+note = "Trinket. Combines Planar Compass with its Heroic Abyssal Catalyst (drops in For Want of a Heart, end chest) into Abyssal Compass, ML 11. The result is a new item (does not inherit Card Curses, Mythic or Reaper bonuses; all socketed augments are destroyed), a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Planar Compass", quantity = 1 }, { ingredient = "Abyssal Catalyst", quantity = 1 }, { ingredient = "Abyssal Gem", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Abyssal Compass"
+augments = []
+note = "Trinket. Combines Legendary Planar Compass with its Legendary Abyssal Catalyst (drops in For Want of a Heart, end chest) into Legendary Abyssal Compass, ML 35. The result is a new item (does not inherit Card Curses, Mythic or Reaper bonuses; all socketed augments are destroyed), a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Legendary Planar Compass", quantity = 1 }, { ingredient = "Abyssal Catalyst", quantity = 1 }, { ingredient = "Legendary Abyssal Gem", quantity = 5 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Planar Lariat"
+augments = []
+note = "Belt. Combines Planar Gird with its Heroic Abyssal Catalyst (drops in A Blood Pact, end chest) into Planar Lariat, ML 11. The result is a new item (does not inherit Card Curses, Mythic or Reaper bonuses; all socketed augments are destroyed), a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Planar Gird", quantity = 1 }, { ingredient = "Abyssal Catalyst", quantity = 1 }, { ingredient = "Abyssal Gem", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Planar Lariat"
+augments = []
+note = "Belt. Combines Planar Gird with its Legendary Abyssal Catalyst (drops in A Blood Pact, end chest) into Legendary Planar Lariat, ML 35. The result is a new item (does not inherit Card Curses, Mythic or Reaper bonuses; all socketed augments are destroyed), a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Planar Gird", quantity = 1 }, { ingredient = "Abyssal Catalyst", quantity = 1 }, { ingredient = "Legendary Abyssal Gem", quantity = 5 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Drow Captain's Mask"
+augments = []
+note = "Headgear. Combines Royal Guard Mask with its Heroic Deep Catalyst (drops in Demon in the Rough, end chest) into Drow Captain's Mask, ML 11. The result is a new item (does not inherit Card Curses, Mythic or Reaper bonuses; all socketed augments are destroyed), a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Royal Guard Mask", quantity = 1 }, { ingredient = "Deep Catalyst", quantity = 1 }, { ingredient = "Abyssal Gem", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Drow Captain's Mask"
+augments = []
+note = "Headgear. Combines Royal Guard Mask with its Legendary Deep Catalyst (drops in Demon in the Rough, end chest) into Legendary Drow Captain's Mask, ML 35. The result is a new item (does not inherit Card Curses, Mythic or Reaper bonuses; all socketed augments are destroyed), a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Royal Guard Mask", quantity = 1 }, { ingredient = "Deep Catalyst", quantity = 1 }, { ingredient = "Legendary Abyssal Gem", quantity = 5 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Lolth's Protection"
+augments = []
+note = "Headgear. Combines Seraphim with its Heroic Abyssal Catalyst (drops in Stealing from Sorcere, end chest) into Lolth's Protection, ML 11. The result is a new item (does not inherit Card Curses, Mythic or Reaper bonuses; all socketed augments are destroyed), a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Seraphim", quantity = 1 }, { ingredient = "Abyssal Catalyst", quantity = 1 }, { ingredient = "Abyssal Gem", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Lolth's Protection"
+augments = []
+note = "Headgear. Combines Epic Seraphim with its Legendary Abyssal Catalyst (drops in Stealing from Sorcere, end chest) into Legendary Lolth's Protection, ML 35. The result is a new item (does not inherit Card Curses, Mythic or Reaper bonuses; all socketed augments are destroyed), a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic Seraphim", quantity = 1 }, { ingredient = "Abyssal Catalyst", quantity = 1 }, { ingredient = "Legendary Abyssal Gem", quantity = 5 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Drow Priestess' Mantle"
+augments = []
+note = "Armor (Cloth). Combines Spidersilk Robes with its Heroic Deep Catalyst (drops in The Fetid Wedding, end chest) into Drow Priestess' Mantle, ML 11. The result is a new item (does not inherit Card Curses, Mythic or Reaper bonuses; all socketed augments are destroyed), a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Spidersilk Robes", quantity = 1 }, { ingredient = "Deep Catalyst", quantity = 1 }, { ingredient = "Abyssal Gem", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Drow Priestess' Mantle"
+augments = []
+note = "Armor (Cloth). Combines Spidersilk Robes with its Legendary Deep Catalyst (drops in The Fetid Wedding, end chest) into Legendary Drow Priestess' Mantle, ML 35. The result is a new item (does not inherit Card Curses, Mythic or Reaper bonuses; all socketed augments are destroyed), a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Spidersilk Robes", quantity = 1 }, { ingredient = "Deep Catalyst", quantity = 1 }, { ingredient = "Legendary Abyssal Gem", quantity = 5 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Webs of the Drow Penitent"
+augments = []
+note = "Armor (Cloth). Combines Spider-spun Caparison with its Heroic Deep Catalyst (drops in The Fetid Wedding, end chest) into Webs of the Drow Penitent, ML 11. The result is a new item (does not inherit Card Curses, Mythic or Reaper bonuses; all socketed augments are destroyed), a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Spider-spun Caparison", quantity = 1 }, { ingredient = "Deep Catalyst", quantity = 1 }, { ingredient = "Abyssal Gem", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Webs of the Drow Penitent"
+augments = []
+note = "Armor (Cloth). Combines Spider-spun Caparison with its Legendary Deep Catalyst (drops in The Fetid Wedding, end chest) into Legendary Webs of the Drow Penitent, ML 35. The result is a new item (does not inherit Card Curses, Mythic or Reaper bonuses; all socketed augments are destroyed), a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Spider-spun Caparison", quantity = 1 }, { ingredient = "Deep Catalyst", quantity = 1 }, { ingredient = "Legendary Abyssal Gem", quantity = 5 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Staff of the Demonic Resurrector"
+augments = []
+note = "Weapon (Quarterstaff). Combines Staff of the Necromancer with its Heroic Abyssal Catalyst (drops in A Long Way to Mushrooms, end chest) into Staff of the Demonic Resurrector, ML 11. The result is a new item (does not inherit Card Curses, Mythic or Reaper bonuses; all socketed augments are destroyed), a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Staff of the Necromancer", quantity = 1 }, { ingredient = "Abyssal Catalyst", quantity = 1 }, { ingredient = "Abyssal Gem", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Staff of the Demonic Resurrector"
+augments = []
+note = "Weapon (Quarterstaff). Combines Staff of the Necromancer with its Legendary Abyssal Catalyst (drops in A Long Way to Mushrooms, end chest) into Legendary Staff of the Demonic Resurrector, ML 35. The result is a new item (does not inherit Card Curses, Mythic or Reaper bonuses; all socketed augments are destroyed), a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Staff of the Necromancer", quantity = 1 }, { ingredient = "Abyssal Catalyst", quantity = 1 }, { ingredient = "Legendary Abyssal Gem", quantity = 5 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Null Blade"
+augments = []
+note = "Weapon (Shortsword). Combines Sun Blade with its Heroic Abyssal Catalyst (drops in Back to the Abyss, end chest) into Null Blade, ML 11. The result is a new item (does not inherit Card Curses, Mythic or Reaper bonuses; all socketed augments are destroyed), a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Sun Blade", quantity = 1 }, { ingredient = "Abyssal Catalyst", quantity = 1 }, { ingredient = "Abyssal Gem", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Null Blade"
+augments = []
+note = "Weapon (Shortsword). Combines Sun Blade with its Legendary Abyssal Catalyst (drops in Back to the Abyss, end chest) into Legendary Null Blade, ML 35. The result is a new item (does not inherit Card Curses, Mythic or Reaper bonuses; all socketed augments are destroyed), a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Sun Blade", quantity = 1 }, { ingredient = "Abyssal Catalyst", quantity = 1 }, { ingredient = "Legendary Abyssal Gem", quantity = 5 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Torc of the Lords of the Abyss"
+augments = []
+note = "Necklace. Combines Torc of Prince Raiyum-de II with its Heroic Abyssal Catalyst (drops in Raiding the Raiders, end chest) into Torc of the Lords of the Abyss, ML 11. The result is a new item (does not inherit Card Curses, Mythic or Reaper bonuses; all socketed augments are destroyed), a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Torc of Prince Raiyum-de II", quantity = 1 }, { ingredient = "Abyssal Catalyst", quantity = 1 }, { ingredient = "Abyssal Gem", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Torc of the Lords of the Abyss"
+augments = []
+note = "Necklace. Combines Epic Torc of Prince Raiyum-de II / Legendary Torc of Prince Raiyum-de II with its Legendary Abyssal Catalyst (drops in Raiding the Raiders, end chest) into Legendary Torc of the Lords of the Abyss, ML 35. The result is a new item (does not inherit Card Curses, Mythic or Reaper bonuses; all socketed augments are destroyed), a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic Torc of Prince Raiyum-de II / Legendary Torc of Prince Raiyum-de II", quantity = 1 }, { ingredient = "Abyssal Catalyst", quantity = 1 }, { ingredient = "Legendary Abyssal Gem", quantity = 5 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Fiendish Requisition"
+augments = []
+note = "Shield (Tower). Combines Ultimatum with its Heroic Abyssal Catalyst (drops in If It Wasn't For Bad Luck, end chest) into Fiendish Requisition, ML 11. The result is a new item (does not inherit Card Curses, Mythic or Reaper bonuses; all socketed augments are destroyed), a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Ultimatum", quantity = 1 }, { ingredient = "Abyssal Catalyst", quantity = 1 }, { ingredient = "Abyssal Gem", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Fiendish Requisition"
+augments = []
+note = "Shield (Tower). Combines Ultimatum with its Legendary Abyssal Catalyst (drops in If It Wasn't For Bad Luck, end chest) into Legendary Fiendish Requisition, ML 35. The result is a new item (does not inherit Card Curses, Mythic or Reaper bonuses; all socketed augments are destroyed), a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Ultimatum", quantity = 1 }, { ingredient = "Abyssal Catalyst", quantity = 1 }, { ingredient = "Legendary Abyssal Gem", quantity = 5 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Visor of Fraz-Urb'luu"
+augments = []
+note = "Goggles. Combines Visor of the Flesh Render Guards with its Heroic Abyssal Catalyst (drops in The Darklake, Zarazurthu's chest) into Visor of Fraz-Urb'luu, ML 11. The result is a new item (does not inherit Card Curses, Mythic or Reaper bonuses; all socketed augments are destroyed), a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Visor of the Flesh Render Guards", quantity = 1 }, { ingredient = "Abyssal Catalyst", quantity = 1 }, { ingredient = "Abyssal Gem", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Visor of Fraz-Urb'luu"
+augments = []
+note = "Goggles. Combines Visor of the Flesh Render Guards with its Legendary Abyssal Catalyst (drops in The Darklake, Zarazurthu's chest) into Legendary Visor of Fraz-Urb'luu, ML 35. The result is a new item (does not inherit Card Curses, Mythic or Reaper bonuses; all socketed augments are destroyed), a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Visor of the Flesh Render Guards", quantity = 1 }, { ingredient = "Abyssal Catalyst", quantity = 1 }, { ingredient = "Legendary Abyssal Gem", quantity = 5 }]

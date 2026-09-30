@@ -1,0 +1,89 @@
+[[system]]
+name = "Dampened"
+page = "https://ddowiki.com/page/Dampened"
+read = "2026-09-29"
+pack = "The Red Fens"
+npc = "Altar of Vulkoor, Raveneye Refugee Camp in The Red Fens (no preview of upgrades); epic and legendary upgrades at the Altar of Epic Rituals and Altar of Legendary Rituals"
+
+[[system.ingredient]]
+name = "Golden Swamp Pearl"
+tier = "heroic"
+source = "Colossal Clams throughout The Red Fens wilderness and quests"
+
+[[system.ingredient]]
+name = "Token of Vulkoor"
+tier = "heroic"
+source = "Turn in one Golden Swamp Pearl to Pearl Collector Dagni d'Kundarak in The Red Fens"
+
+[[system.ingredient]]
+name = "Dampened Item"
+tier = "heroic"
+source = "End chests of The Red Fens quests, more often on higher difficulties; The Last Stand drops none. ML 5 to 7, binding varies"
+
+[[system.ingredient]]
+name = "Glowing Fen Mushroom"
+tier = "epic"
+
+[[system.ingredient]]
+name = "Glowing Fen Mushroom"
+tier = "legendary"
+
+[[system.ingredient]]
+name = "Star Fragment"
+tier = "legendary"
+
+[[system.recipe]]
+tier = "heroic"
+option = "Cacophonic Verge (Wand)"
+augments = []
+note = "Cleanses Dampened Cacophonic Verge (drops in The Claw of Vulkoor: Sonic Blast, 50 Charges, Dampened, UMD 19, ML 5, Bound to Account on Acquire, Exclusive) into Cacophonic Verge (Sonic Blast, 50 Charges, Sonic Lore +9%, Resonance +59, UMD 23, ML 5, Bound to Character on Acquire, Exclusive). The upgraded item is a separate item in Maetrim's data; introduced in Update 6. No augment counterpart."
+cost = [{ ingredient = "Dampened Item", quantity = 1 }, { ingredient = "Token of Vulkoor", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Shatterbow (Longbow)"
+augments = []
+note = "Cleanses Dampened Shatterbow (drops in The Claw of Vulkoor: Dampened, +1 Enhancement Bonus, Screaming, Construct Bane, Move Silently -5, ML 7, Unbound) into Shatterbow (+3 Enhancement Bonus, Reverberating 2, Construct Bane 2, Armor-Piercing 7%, ML 7, Bound to Account on Acquire, Exclusive). The upgraded item is a separate item in Maetrim's data; introduced in Update 6. No augment counterpart."
+cost = [{ ingredient = "Dampened Item", quantity = 1 }, { ingredient = "Token of Vulkoor", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Robe of Dissonance (Robe)"
+augments = []
+note = "Cleanses Dampened Robe of Dissonance (drops in Fathom the Depths: Dampened, Sonic Resistance +3, Sonic Guard, Resonance +48, Impulse +48, ML 7, Bound to Character on Acquire) into Robe of Dissonance (+3 Enhancement Bonus, Resonance +66, Impulse +66, Sonic Guard, Sonic Resistance +17, ML 7, Bound to Account on Acquire). The upgraded item is a separate item in Maetrim's data; introduced in Update 6. No augment counterpart."
+cost = [{ ingredient = "Dampened Item", quantity = 1 }, { ingredient = "Token of Vulkoor", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Frozen Plate (Full Plate)"
+augments = []
+note = "Cleanses Dampened Frozen Plate (drops in Into the Deep: +3 Enhancement Bonus, Dampened, ML 6, Bound to Account on Acquire) into Frozen Plate (+4 Enhancement Bonus, Physical Sheltering +10, Cold Absorption +17%, Cold Resistance +15, Ice Guard II, ML 6, Bound to Account on Acquire). The upgraded item is a separate item in Maetrim's data; introduced in Update 6. No augment counterpart."
+cost = [{ ingredient = "Dampened Item", quantity = 1 }, { ingredient = "Token of Vulkoor", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Greatclub of the Scrag (Greatclub)"
+augments = []
+note = "Cleanses Dampened Greatclub of the Scrag (drops in Into the Deep: [1d10], Dampened, +2 Enhancement Bonus, True Chaos, Cold Touch, Regeneration, ML 7, Bound to Character on Equip) into Greatclub of the Scrag ([1d10], +3 Enhancement Bonus, Anarchic 2, Chilling 2, Regeneration, ML 7, Bound to Account on Acquire). The upgraded item is a separate item in Maetrim's data; introduced in Update 6. No augment counterpart."
+cost = [{ ingredient = "Dampened Item", quantity = 1 }, { ingredient = "Token of Vulkoor", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Token of Vulkoor"
+augments = []
+note = "Barter with Pearl Collector Dagni d'Kundarak, not the altar; a crafting ingredient, no augment counterpart."
+cost = [{ ingredient = "Golden Swamp Pearl", quantity = 1 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic upgrade"
+augments = []
+note = "Upgrades any of the cleansed items to its Epic version at the Altar of Epic Rituals: ML 20, Bound to Character on Acquire. The page does not list the Epic items' stats. No augment counterpart."
+cost = [{ ingredient = "Glowing Fen Mushroom", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary upgrade"
+augments = []
+note = "Upgrades any of the items except the wand to its Legendary version at the Altar of Legendary Rituals: ML 30, Bound to Character on Acquire. No augment counterpart."
+cost = [{ ingredient = "Glowing Fen Mushroom", quantity = 100 }, { ingredient = "Star Fragment", quantity = 5 }]

@@ -1,0 +1,149 @@
+[[system]]
+name = "Dragonscale Armor"
+page = "https://ddowiki.com/page/Dragonscale_Armor"
+read = "2026-09-29"
+npc = "Master Scalesmiths (Gianthold colors); Altar of Epic Rituals (Epic Red); Mikrom Sum, requires 375 Purple Dragon Knights favor (Cormyrian)"
+
+[[system.ingredient]]
+name = "Black Dragon Scale"
+tier = "heroic"
+source = "Module 4; Gianthold Tor, Mired in Kobolds"
+
+[[system.ingredient]]
+name = "Blue Dragon Scale"
+tier = "heroic"
+source = "Module 4; Gianthold Tor"
+
+[[system.ingredient]]
+name = "White Dragon Scale"
+tier = "heroic"
+source = "Module 4; Gianthold Tor, Prey on the Hunter"
+
+[[system.ingredient]]
+name = "Flawless Black Dragon Scale"
+tier = "epic"
+source = "Update 17; Gianthold Tor (epic only)"
+
+[[system.ingredient]]
+name = "Flawless Blue Dragon Scale"
+tier = "epic"
+source = "Update 17; Gianthold Tor (epic only)"
+
+[[system.ingredient]]
+name = "Flawless White Dragon Scale"
+tier = "epic"
+source = "Update 17; Gianthold Tor (epic only)"
+
+[[system.ingredient]]
+name = "Flawless Red Dragon Scale"
+tier = "epic"
+source = "Update 3; Plane of Night (epic only), Underdark Arena: Ring of Fire / Underdark Arena: Fight to the Finish"
+
+[[system.ingredient]]
+name = "Flawless Green Dragon Scale"
+tier = "epic"
+source = "Update 14 (Menace of the Underdark); Don't Drink the Water, The King's Forest"
+
+[[system.ingredient]]
+name = "Commendation of Heroism"
+tier = "epic"
+source = "Caught in the Web, The Fall of Truth"
+
+[[system.ingredient]]
+name = "Restored Dragon Relic"
+tier = "epic"
+
+[[system.ingredient]]
+name = "Restored Giant Relic"
+tier = "epic"
+
+[[system.ingredient]]
+name = "Restored Elven Relic"
+tier = "epic"
+
+[[system.ingredient]]
+name = "Vault Key"
+tier = "epic"
+
+[[system.ingredient]]
+name = "Greater Token of the Twelve"
+tier = "epic"
+
+[[system.ingredient]]
+name = "Shard of the Red Dragon"
+tier = "epic"
+
+[[system.ingredient]]
+name = "Commendation: Purple Dragon Knights"
+tier = "epic"
+
+[[system.ingredient]]
+name = "Commendation: Druids of the King's Forest"
+tier = "epic"
+
+[[system.ingredient]]
+name = "Commendation: War Wizards"
+tier = "epic"
+
+[[system.recipe]]
+tier = "heroic"
+option = "Black Dragon Scale Armors"
+augments = []
+note = "At the Master Scalesmiths; yields one of Black Dragonscale Robe, Black Dragonhide Armor, Black Dragonscale Armor, Black Dragonplate Armor, Black Dragonscale Docent. ML 14: Haste Guard, Armor-Piercing 10%, Relentless Fury, Acid Resistance +30. Update 14 made the enhancements uniform across the armor types (robe Armor Bonus +8; leather 3, scalemail 6, full plate 9 base armor with +5 enhancement; docent). The results are separate items in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Black Dragon Scale", quantity = 20 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Blue Dragon Scale Armors"
+augments = []
+note = "At the Master Scalesmiths; yields one of Blue Dragonscale Robe, Blue Dragonhide Armor, Blue Dragonscale Armor, Blue Dragonplate Armor, Blue Dragonscale Docent. ML 14: Spell Penetration II, Spell Lore VI, Potency +52, Electric Resistance +30. Update 14 made the enhancements uniform across the armor types (robe Armor Bonus +8; leather 3, scalemail 6, full plate 9 base armor with +5 enhancement; docent). The results are separate items in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Blue Dragon Scale", quantity = 20 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "White Dragon Scale Armors"
+augments = []
+note = "At the Master Scalesmiths; yields one of White Dragonscale Robe, White Dragonhide Armor, White Dragonscale Armor, White Dragonplate Armor, White Dragonscale Docent. ML 14: Fortification +100%, Protection +5, Shield +4, Cold Resistance +30. Update 14 made the enhancements uniform across the armor types (robe Armor Bonus +8; leather 3, scalemail 6, full plate 9 base armor with +5 enhancement; docent). The results are separate items in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "White Dragon Scale", quantity = 20 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Flawless Black Dragon Scale Armors"
+augments = []
+note = "At the Master Scalesmiths; yields one of Flawless Black Dragonscale Robe, Flawless Black Dragonhide Armor, Flawless Black Dragonscale Armor, Flawless Black Dragonplate Armor, Flawless Black Dragonscale Docent. ML 25, +7 Enhancement Bonus instead of +6: Draconic Ferocity, Haste Guard, Armor-Piercing 15%, Relentless Fury, Acid Resistance +40, Blue Augment Slot. The set bonus pairs it with the Helm of the Black Dragon (levels 23-25). Update 14 made the enhancements uniform across the armor types (robe Armor Bonus +8; leather 3, scalemail 6, full plate 9 base armor with +5 enhancement; docent). The results are separate items in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Flawless Black Dragon Scale", quantity = 20 }, { ingredient = "Restored Dragon Relic", quantity = 10 }, { ingredient = "Restored Giant Relic", quantity = 10 }, { ingredient = "Restored Elven Relic", quantity = 10 }, { ingredient = "Commendation of Heroism", quantity = 3 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Flawless Blue Dragon Scale Armors"
+augments = []
+note = "At the Master Scalesmiths; yields one of Flawless Blue Dragonscale Robe, Flawless Blue Dragonhide Armor, Flawless Blue Dragonscale Armor, Flawless Blue Dragonplate Armor, Flawless Blue Dragonscale Docent. ML 25, +7 Enhancement Bonus instead of +6: Draconic Mind, Spell Penetration III, Spell Lore VI, Potency +80, Electric Resistance +40, Blue Augment Slot. The set bonus pairs it with the Helm of the Blue Dragon (levels 23-25). Update 14 made the enhancements uniform across the armor types (robe Armor Bonus +8; leather 3, scalemail 6, full plate 9 base armor with +5 enhancement; docent). The results are separate items in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Flawless Blue Dragon Scale", quantity = 20 }, { ingredient = "Restored Dragon Relic", quantity = 10 }, { ingredient = "Restored Giant Relic", quantity = 10 }, { ingredient = "Restored Elven Relic", quantity = 10 }, { ingredient = "Commendation of Heroism", quantity = 3 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Flawless White Dragon Scale Armors"
+augments = []
+note = "At the Master Scalesmiths; yields one of Flawless White Dragonscale Robe, Flawless White Dragonhide Armor, Flawless White Dragonscale Armor, Flawless White Dragonplate Armor, Flawless White Dragonscale Docent. ML 25, +7 Enhancement Bonus instead of +6: Draconic Resilience, Fortification +100%, Protection +7, Shield +6, Cold Resistance +40, Blue Augment Slot. The set bonus pairs it with the Helm of the White Dragon (levels 23-25). Update 14 made the enhancements uniform across the armor types (robe Armor Bonus +8; leather 3, scalemail 6, full plate 9 base armor with +5 enhancement; docent). The results are separate items in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Flawless White Dragon Scale", quantity = 20 }, { ingredient = "Restored Dragon Relic", quantity = 10 }, { ingredient = "Restored Giant Relic", quantity = 10 }, { ingredient = "Restored Elven Relic", quantity = 10 }, { ingredient = "Commendation of Heroism", quantity = 3 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Red Dragonscale Armors"
+augments = []
+note = "At the Altar of Epic Rituals; yields one of Epic Red Dragonscale Robe, Epic Red Dragonhide Armor, Epic Red Dragonscale Armor, Epic Red Dragonplate Armor, Epic Red Dragonscale Docent. ML 20, +6 Enhancement Bonus instead of +5: Fire Resistance +40, Eternal Fire, Combustion +84, Fire Lore VI, Fire Guard, Incineration Guard, Colorless Augment Slot, Blue Augment Slot. Update 14 made the enhancements uniform across the armor types (robe Armor Bonus +8; leather 3, scalemail 6, full plate 9 base armor with +5 enhancement; docent). The results are separate items in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Flawless Red Dragon Scale", quantity = 20 }, { ingredient = "Vault Key", quantity = 50 }, { ingredient = "Greater Token of the Twelve", quantity = 5 }, { ingredient = "Shard of the Red Dragon", quantity = 1 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Cormyrian Red Dragonscale Armors"
+augments = []
+note = "At Mikrom Sum (requires 375 Purple Dragon Knights favor); yields one of Cormyrian Red Dragonscale Robe, Cormyrian Red Dragonhide Armor, Cormyrian Red Dragonscale Armor, Cormyrian Red Dragonplate Armor, Cormyrian Red Dragonscale Docent. ML 23, Armor Bonus +9 on the robe and +6 Enhancement Bonus on the rest: Vitality +20, Fire Resistance +40, Fire Absorption +20%, Protection +6, Fortification +100%, Seeker +10. The Mikrom Sum page gives a different second commendation per armor type. Update 14 made the enhancements uniform across the armor types (robe Armor Bonus +8; leather 3, scalemail 6, full plate 9 base armor with +5 enhancement; docent). The results are separate items in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Flawless Red Dragon Scale", quantity = 20 }, { ingredient = "Commendation: Purple Dragon Knights", quantity = 15 }, { ingredient = "Commendation: Druids of the King's Forest", quantity = 15 }, { ingredient = "Commendation of Heroism", quantity = 3 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Cormyrian Green Dragonscale Armors"
+augments = []
+note = "At Mikrom Sum (requires 375 Purple Dragon Knights favor); yields one of Cormyrian Green Dragonscale Robe, Cormyrian Green Dragonhide Armor, Cormyrian Green Dragonscale Armor, Cormyrian Green Dragonplate Armor, Cormyrian Green Dragonscale Docent. ML 23, Armor Bonus +9 on the robe and +6 Enhancement Bonus on the rest: Vitality +20, Acid Resistance +40, Acid Absorption +20%, Resistance +6, Proof Against Poison +10, Power Store. The Mikrom Sum page gives a different second commendation per armor type. Update 14 made the enhancements uniform across the armor types (robe Armor Bonus +8; leather 3, scalemail 6, full plate 9 base armor with +5 enhancement; docent). The results are separate items in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Flawless Green Dragon Scale", quantity = 20 }, { ingredient = "Commendation: Purple Dragon Knights", quantity = 15 }, { ingredient = "Commendation: War Wizards", quantity = 15 }, { ingredient = "Commendation of Heroism", quantity = 3 }]

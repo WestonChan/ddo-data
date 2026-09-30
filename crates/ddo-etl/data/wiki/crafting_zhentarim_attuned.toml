@@ -1,0 +1,93 @@
+[[system]]
+name = "Zhentarim Attuned"
+page = "https://ddowiki.com/page/Zhentarim_Attuned"
+read = "2026-09-29"
+pack = "The Haunted Halls of Eveningstar"
+npc = "Zhentarim Improvement UI, opened by double-clicking Black Stones in the inventory (which also previews the upgrades); attuned by the Zhentarim mage Whisper"
+
+[[system.ingredient]]
+name = "Black Stone"
+tier = "epic"
+bind = "Unbound"
+source = "The Haunted Halls of Eveningstar chests; stores in an ingredients bag"
+
+[[system.ingredient]]
+name = "Lantern Ring"
+tier = "epic"
+source = "The Haunted Halls of Eveningstar named loot"
+
+[[system.ingredient]]
+name = "Libram of Silver Magic"
+tier = "epic"
+source = "The Haunted Halls of Eveningstar named loot"
+
+[[system.ingredient]]
+name = "Magestar"
+tier = "epic"
+source = "The Haunted Halls of Eveningstar named loot"
+
+[[system.ingredient]]
+name = "Manual of Stealthy Pilfering"
+tier = "epic"
+source = "The Haunted Halls of Eveningstar named loot"
+
+[[system.ingredient]]
+name = "Necklace of Mystic Eidolons"
+tier = "epic"
+source = "The Haunted Halls of Eveningstar named loot"
+
+[[system.ingredient]]
+name = "Purple Dragon Shield"
+tier = "epic"
+source = "The Haunted Halls of Eveningstar named loot"
+
+[[system.recipe]]
+tier = "epic"
+option = "Lantern Ring upgrade"
+augments = []
+grants_slot = "green"
+note = "Upgrades Lantern Ring (Ring; Radiance +144, Insightful Wisdom +2, Radiant Glory 2, Colorless Augment Slot, Zhentarim Attuned): gains Radiant Glory damage increased to 3 to 18, Radiance Lore VIII, Green Augment Slot. The item changes from Bind on Equip to Bound to Character. Introduced in Update 21. Maetrim's item has no Zhentarim Attuned socket."
+cost = [{ ingredient = "Lantern Ring", quantity = 1 }, { ingredient = "Black Stone", quantity = 150 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Libram of Silver Magic upgrade"
+augments = []
+grants_slot = "orange"
+note = "Upgrades Libram of Silver Magic (Orb; +8 Orb Bonus, Insightful Potency +10, Insightful Spell Lore I, Intelligence +10, Charisma +10, Spellcraft +20, Zhentarim Attuned): loses +8 Orb Bonus, Insightful Spell Lore I, Intelligence +10, Charisma +10, gains +11 Orb Bonus, Insightful Spell Lore II, Intelligence +11, Charisma +11, Orange Augment Slot. The item changes from Bind on Equip to Bound to Character. Introduced in Update 21. Maetrim's item has no Zhentarim Attuned socket."
+cost = [{ ingredient = "Libram of Silver Magic", quantity = 1 }, { ingredient = "Black Stone", quantity = 150 }]
+
+[[system.recipe]]
+tier = "epic"
+slot = "crafting: zentarim attuned"
+option = "Magestar upgrade"
+augments = []
+grants_slot = "green"
+note = "Upgrades Magestar (Trinket; Magestar Absorption (5 Charges, Recharged/Day: 5), Zhentarim Attuned): loses Magestar Absorption (5 Charges, Recharged/Day: 5), gains Magestar Absorption (10 Charges, Recharged/Day: 10), Green Augment Slot. The item changes from Bind on Equip to Bound to Character. Introduced in Update 21. Maetrim spells this item's socket Zentarim Attuned."
+cost = [{ ingredient = "Magestar", quantity = 1 }, { ingredient = "Black Stone", quantity = 150 }]
+
+[[system.recipe]]
+tier = "epic"
+slot = "crafting: zhentarim attuned"
+option = "Manual of Stealthy Pilfering upgrade"
+augments = []
+grants_slot = "green"
+note = "Upgrades Manual of Stealthy Pilfering (Trinket; Good Luck +2, Dexterity Skills - Exceptional Bonus +4, Intelligence Skills - Exceptional Bonus +4, Open Lock +20, Disable Device +20, Spot +20, Use Magic Device +3, Zhentarim Attuned): loses Good Luck +2, Dexterity Skills - Exceptional Bonus +4, Intelligence Skills - Exceptional Bonus +4, Use Magic Device +3, gains Good Luck +3, Dexterity Skills - Exceptional Bonus +6, Intelligence Skills - Exceptional Bonus +6, Use Magic Device +5, Green Augment Slot. The item changes from Bind on Equip to Bound to Character. Introduced in Update 21."
+cost = [{ ingredient = "Manual of Stealthy Pilfering", quantity = 1 }, { ingredient = "Black Stone", quantity = 150 }]
+
+[[system.recipe]]
+tier = "epic"
+slot = "crafting: zhentarim attuned"
+option = "Necklace of Mystic Eidolons upgrade"
+augments = []
+note = "Upgrades Necklace of Mystic Eidolons (Necklace; Eidolon Summons, Ghostly, Deathblock, Insightful Constitution +3, Insightful Dexterity +3, Green Augment Slot, Zhentarim Attuned): loses Eidolon Summons, Insightful Constitution +3, Insightful Dexterity +3, gains Eidolon Summons cooldown reduced to 80 seconds, Insightful Constitution +4, Insightful Dexterity +4, Augment Summoning. The item changes from Bind on Equip to Bound to Character. Introduced in Update 21. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
+cost = [{ ingredient = "Necklace of Mystic Eidolons", quantity = 1 }, { ingredient = "Black Stone", quantity = 150 }]
+
+[[system.recipe]]
+tier = "epic"
+slot = "crafting: zhentarim attuned"
+option = "Purple Dragon Shield upgrade"
+augments = []
+grants_slot = "purple"
+note = "Upgrades Purple Dragon Shield (Tower Shield; +8 Enhancement Bonus, Constitution +10, Charisma +10, Improved Bashing X, Sovereign Vorpal, Block Elements, Zhentarim Attuned): gains +8 Orb Bonus, Purple Augment Slot. The item changes from Bind on Equip to Bound to Character. Introduced in Update 21. The page lists +8 Orb Bonus as gained on a tower shield."
+cost = [{ ingredient = "Purple Dragon Shield", quantity = 1 }, { ingredient = "Black Stone", quantity = 150 }]

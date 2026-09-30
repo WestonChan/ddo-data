@@ -1,0 +1,120 @@
+[[system]]
+name = "Schism Shard Crafting"
+page = "https://ddowiki.com/page/Schism_Shard_Crafting"
+read = "2026-09-29"
+pack = "Dragonblood Prophecy"
+npc = "Varron Tertius <Schism Shard Collector> in The Gatekeepers' Grove; Killing Time must be completed to speak with him and view the recipes"
+
+[[system.ingredient]]
+name = "Schism Shard"
+tier = "legendary"
+bind = "Bound to Account on Acquire"
+source = "Killing Time end chest (rare drop), or 500 Time Runes"
+
+[[system.ingredient]]
+name = "Legendary Echo of Wave"
+tier = "legendary"
+source = "White Plume Mountain; must never have had a sentient jewel slotted (remove or destroy it first, then drag the weapon into the ingredient area)"
+
+[[system.ingredient]]
+name = "Legendary Echo of Blackrazor"
+tier = "legendary"
+source = "White Plume Mountain; must never have had a sentient jewel slotted (remove or destroy it first, then drag the weapon into the ingredient area)"
+
+[[system.ingredient]]
+name = "Legendary Echo of Whelm"
+tier = "legendary"
+source = "White Plume Mountain; must never have had a sentient jewel slotted (remove or destroy it first, then drag the weapon into the ingredient area)"
+
+[[system.ingredient]]
+name = "Legendary Wave of Sorrow"
+tier = "legendary"
+source = "Desire in the Dark; must never have had a sentient jewel slotted (remove or destroy it first, then drag the weapon into the ingredient area)"
+
+[[system.ingredient]]
+name = "Legendary Wave of Despair"
+tier = "legendary"
+source = "Desire in the Dark; must never have had a sentient jewel slotted (remove or destroy it first, then drag the weapon into the ingredient area)"
+
+[[system.ingredient]]
+name = "Epic Leopard's Chill"
+tier = "legendary"
+source = "The Temple of Elemental Evil; must never have had a sentient jewel slotted (remove or destroy it first, then drag the weapon into the ingredient area)"
+
+[[system.ingredient]]
+name = "Sentient Jewel of Wave"
+tier = "legendary"
+source = "Must have 0 Sentience XP"
+
+[[system.ingredient]]
+name = "Sentient Jewel of Blackrazor"
+tier = "legendary"
+source = "Must have 0 Sentience XP"
+
+[[system.ingredient]]
+name = "Sentient Jewel of Whelm"
+tier = "legendary"
+source = "Must have 0 Sentience XP"
+
+[[system.recipe]]
+tier = "legendary"
+option = "Reflection of Wave"
+augments = []
+note = "Upgrades Legendary Echo of Wave into Reflection of Wave (Quarterstaff), Bound to Character on Acquire. Mythic and Reaper bonuses on the base weapon are lost; since Update 41 Threads of Fate can add Mythic +2 or +4 to the result. Each White Plume Mountain weapon offers a direct upgrade or a secondary weapon type. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Legendary Echo of Wave", quantity = 1 }, { ingredient = "Schism Shard", quantity = 5 }, { ingredient = "Sentient Jewel of Wave", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Sphere of Waves"
+augments = []
+note = "Upgrades Legendary Echo of Wave into Sphere of Waves (Orb), Bound to Character on Acquire. Mythic and Reaper bonuses on the base weapon are lost; since Update 41 Threads of Fate can add Mythic +2 or +4 to the result. Each White Plume Mountain weapon offers a direct upgrade or a secondary weapon type. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Legendary Echo of Wave", quantity = 1 }, { ingredient = "Schism Shard", quantity = 5 }, { ingredient = "Sentient Jewel of Wave", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Reflection of Blackrazor"
+augments = []
+note = "Upgrades Legendary Echo of Blackrazor into Reflection of Blackrazor (Great Sword), Bound to Character on Acquire. Mythic and Reaper bonuses on the base weapon are lost; since Update 41 Threads of Fate can add Mythic +2 or +4 to the result. Each White Plume Mountain weapon offers a direct upgrade or a secondary weapon type. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Legendary Echo of Blackrazor", quantity = 1 }, { ingredient = "Schism Shard", quantity = 5 }, { ingredient = "Sentient Jewel of Blackrazor", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Soulrazor"
+augments = []
+note = "Upgrades Legendary Echo of Blackrazor into Soulrazor (Long Sword), Bound to Character on Acquire. Mythic and Reaper bonuses on the base weapon are lost; since Update 41 Threads of Fate can add Mythic +2 or +4 to the result. Each White Plume Mountain weapon offers a direct upgrade or a secondary weapon type. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Legendary Echo of Blackrazor", quantity = 1 }, { ingredient = "Schism Shard", quantity = 5 }, { ingredient = "Sentient Jewel of Blackrazor", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Reflection of Whelm"
+augments = []
+note = "Upgrades Legendary Echo of Whelm into Reflection of Whelm (War Hammer), Bound to Character on Acquire. Mythic and Reaper bonuses on the base weapon are lost; since Update 41 Threads of Fate can add Mythic +2 or +4 to the result. Each White Plume Mountain weapon offers a direct upgrade or a secondary weapon type. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Legendary Echo of Whelm", quantity = 1 }, { ingredient = "Schism Shard", quantity = 5 }, { ingredient = "Sentient Jewel of Whelm", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Overwhelming Impact"
+augments = []
+note = "Upgrades Legendary Echo of Whelm into Overwhelming Impact (Throwing Hammer), Bound to Character on Acquire. Mythic and Reaper bonuses on the base weapon are lost; since Update 41 Threads of Fate can add Mythic +2 or +4 to the result. Each White Plume Mountain weapon offers a direct upgrade or a secondary weapon type. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Legendary Echo of Whelm", quantity = 1 }, { ingredient = "Schism Shard", quantity = 5 }, { ingredient = "Sentient Jewel of Whelm", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Reflection of Angdrelve"
+augments = []
+note = "Upgrades Legendary Wave of Sorrow into Reflection of Angdrelve (Great Sword), Bound to Character on Acquire. Mythic and Reaper bonuses on the base weapon are lost; since Update 41 Threads of Fate can add Mythic +2 or +4 to the result. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Legendary Wave of Sorrow", quantity = 1 }, { ingredient = "Schism Shard", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Soul's Sorrow"
+augments = []
+note = "Upgrades Legendary Wave of Despair into Soul's Sorrow (Bastard Sword), Bound to Character on Acquire. Mythic and Reaper bonuses on the base weapon are lost; since Update 41 Threads of Fate can add Mythic +2 or +4 to the result. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Legendary Wave of Despair", quantity = 1 }, { ingredient = "Schism Shard", quantity = 5 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Reflection of The Frostblade"
+augments = []
+note = "Upgrades Epic Leopard's Chill into Reflection of The Frostblade (Scimitar), Bound to Character on Acquire. Mythic and Reaper bonuses on the base weapon are lost; since Update 41 Threads of Fate can add Mythic +2 or +4 to the result. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Epic Leopard's Chill", quantity = 1 }, { ingredient = "Schism Shard", quantity = 5 }]

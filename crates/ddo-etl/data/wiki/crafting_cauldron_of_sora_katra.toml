@@ -1,0 +1,1252 @@
+[[system]]
+name = "Cauldron of Sora Katra"
+page = "https://ddowiki.com/page/Cauldron_of_Sora_Katra"
+read = "2026-09-29"
+pack = "Attack on Stormreach"
+npc = "Cauldron of Sora Katra, southwest corner of Lordsmarch Plaza, south of the palace entrance; its window lists every recipe and filters by the item dragged in or a keyword"
+
+[[system.ingredient]]
+name = "Astral Shard"
+tier = "any"
+source = "Spent in the device UI to buy Marks"
+
+[[system.ingredient]]
+name = "Mark of Rhesh Turakbar"
+tier = "heroic"
+source = "In-quest chests: Assault on Summerfield; or 25 Astral Shards in the device UI"
+
+[[system.ingredient]]
+name = "Mark of Bal Molesh"
+tier = "heroic"
+source = "In-quest chests: Undermine and Siegebreaker; also Commander Darmon Kosh's end reward list for the whole Attack on Stormreach chain (not guaranteed, guaranteed every 3 completions); or 25 Astral Shards in the device UI"
+
+[[system.ingredient]]
+name = "Mark of Tzaryan Rrac"
+tier = "heroic"
+source = "In-quest chests: Siegebreaker; or 25 Astral Shards in the device UI"
+
+[[system.ingredient]]
+name = "Mark of Sheshka"
+tier = "heroic"
+source = "In-quest chests: Blockade Buster; or 25 Astral Shards in the device UI"
+
+[[system.ingredient]]
+name = "Legendary Mark of Rhesh Turakbar"
+tier = "legendary"
+source = "In-quest chests: Assault on Summerfield; or 25 Astral Shards in the device UI"
+
+[[system.ingredient]]
+name = "Legendary Mark of Bal Molesh"
+tier = "legendary"
+source = "In-quest chests: Undermine and Siegebreaker; also Commander Darmon Kosh's end reward list for the whole Attack on Stormreach chain (not guaranteed, guaranteed every 3 completions); or 25 Astral Shards in the device UI"
+
+[[system.ingredient]]
+name = "Legendary Mark of Tzaryan Rrac"
+tier = "legendary"
+source = "In-quest chests: Siegebreaker; or 25 Astral Shards in the device UI"
+
+[[system.ingredient]]
+name = "Legendary Mark of Sheshka"
+tier = "legendary"
+source = "In-quest chests: Blockade Buster; or 25 Astral Shards in the device UI"
+
+[[system.ingredient]]
+name = "Mark of Rhesh Turakbar"
+tier = "legendary"
+source = "Named without the Legendary prefix as the second mark of Legendary Crippling Fury Shortsword in the page's recipe table; every other legendary row uses Legendary Marks, so this may be a wiki typo"
+
+[[system.ingredient]]
+name = "Blade of Fury"
+tier = "heroic"
+source = "Fusible item from the Diplomacy chain (Update 7); some are unbound and sold on the Auction House"
+
+[[system.ingredient]]
+name = "Bloody Cleaver"
+tier = "heroic"
+source = "Fusible item from the Diplomacy chain (Update 7); some are unbound and sold on the Auction House"
+
+[[system.ingredient]]
+name = "Fusible Sceptre of Combustion"
+tier = "heroic"
+source = "Fusible sceptre from Peril of the Planar Eyes (Update 47)"
+
+[[system.ingredient]]
+name = "Fusible Sceptre of Corrosion"
+tier = "heroic"
+source = "Fusible sceptre from Peril of the Planar Eyes (Update 47)"
+
+[[system.ingredient]]
+name = "Fusible Sceptre of Glaciation"
+tier = "heroic"
+source = "Fusible sceptre from Peril of the Planar Eyes (Update 47)"
+
+[[system.ingredient]]
+name = "Fusible Sceptre of Impulse"
+tier = "heroic"
+source = "Fusible sceptre from Peril of the Planar Eyes (Update 47)"
+
+[[system.ingredient]]
+name = "Fusible Sceptre of Magnetism"
+tier = "heroic"
+source = "Fusible sceptre from Peril of the Planar Eyes (Update 47)"
+
+[[system.ingredient]]
+name = "Gnollish War Bow"
+tier = "heroic"
+source = "Malleable item from Attack on Stormreach (Update 8)"
+
+[[system.ingredient]]
+name = "Hooked Blade"
+tier = "heroic"
+source = "Malleable item from Attack on Stormreach (Update 8)"
+
+[[system.ingredient]]
+name = "Katra's Wit"
+tier = "heroic"
+source = "Battle-Scarred item of the Wrath of Sora Kell set from the Diplomacy chain (Update 7); legendary variants from Update 59"
+
+[[system.ingredient]]
+name = "Maenya's Fists"
+tier = "heroic"
+source = "Battle-Scarred item of the Wrath of Sora Kell set from the Diplomacy chain (Update 7); legendary variants from Update 59"
+
+[[system.ingredient]]
+name = "Malleable Sceptre of Devotion"
+tier = "heroic"
+source = "Malleable sceptre from Peril of the Planar Eyes (Update 47)"
+
+[[system.ingredient]]
+name = "Malleable Sceptre of Nullification"
+tier = "heroic"
+source = "Malleable sceptre from Peril of the Planar Eyes (Update 47)"
+
+[[system.ingredient]]
+name = "Malleable Sceptre of Radiance"
+tier = "heroic"
+source = "Malleable sceptre from Peril of the Planar Eyes (Update 47)"
+
+[[system.ingredient]]
+name = "Malleable Sceptre of Reconstruction"
+tier = "heroic"
+source = "Malleable sceptre from Peril of the Planar Eyes (Update 47)"
+
+[[system.ingredient]]
+name = "Malleable Sceptre of Resonation"
+tier = "heroic"
+source = "Malleable sceptre from Peril of the Planar Eyes (Update 47)"
+
+[[system.ingredient]]
+name = "Ogrish War Axe"
+tier = "heroic"
+source = "Malleable item from Attack on Stormreach (Update 8)"
+
+[[system.ingredient]]
+name = "Rocksplitter"
+tier = "heroic"
+source = "Fusible item from the Diplomacy chain (Update 7); some are unbound and sold on the Auction House"
+
+[[system.ingredient]]
+name = "Scepter of the Fleshweaver"
+tier = "heroic"
+source = "Fragmented item"
+
+[[system.ingredient]]
+name = "Scepter of the Ogre Magi"
+tier = "heroic"
+source = "Fragmented item"
+
+[[system.ingredient]]
+name = "Staff of the Shadow"
+tier = "heroic"
+source = "Malleable item from Attack on Stormreach (Update 8)"
+
+[[system.ingredient]]
+name = "Stonedust Handwraps"
+tier = "heroic"
+source = "Fusible item from the Diplomacy chain (Update 7); some are unbound and sold on the Auction House"
+
+[[system.ingredient]]
+name = "Teraza's Sight"
+tier = "heroic"
+source = "Battle-Scarred item of the Wrath of Sora Kell set from the Diplomacy chain (Update 7); legendary variants from Update 59"
+
+[[system.ingredient]]
+name = "Legendary Blade of Fury"
+tier = "legendary"
+source = "Fusible item from the Diplomacy chain (Update 7); some are unbound and sold on the Auction House"
+
+[[system.ingredient]]
+name = "Legendary Bloody Cleaver"
+tier = "legendary"
+source = "Fusible item from the Diplomacy chain (Update 7); some are unbound and sold on the Auction House"
+
+[[system.ingredient]]
+name = "Legendary Fusible Sceptre of Combustion"
+tier = "legendary"
+source = "Fusible sceptre from Peril of the Planar Eyes (Update 47)"
+
+[[system.ingredient]]
+name = "Legendary Fusible Sceptre of Corrosion"
+tier = "legendary"
+source = "Fusible sceptre from Peril of the Planar Eyes (Update 47)"
+
+[[system.ingredient]]
+name = "Legendary Fusible Sceptre of Glaciation"
+tier = "legendary"
+source = "Fusible sceptre from Peril of the Planar Eyes (Update 47)"
+
+[[system.ingredient]]
+name = "Legendary Fusible Sceptre of Impulse"
+tier = "legendary"
+source = "Fusible sceptre from Peril of the Planar Eyes (Update 47)"
+
+[[system.ingredient]]
+name = "Legendary Fusible Sceptre of Magnetism"
+tier = "legendary"
+source = "Fusible sceptre from Peril of the Planar Eyes (Update 47)"
+
+[[system.ingredient]]
+name = "Legendary Gnollish War Bow"
+tier = "legendary"
+source = "Malleable item from Attack on Stormreach (Update 8)"
+
+[[system.ingredient]]
+name = "Legendary Hooked Blade"
+tier = "legendary"
+source = "Malleable item from Attack on Stormreach (Update 8)"
+
+[[system.ingredient]]
+name = "Legendary Katra's Wit"
+tier = "legendary"
+source = "Battle-Scarred item of the Wrath of Sora Kell set from the Diplomacy chain (Update 7); legendary variants from Update 59"
+
+[[system.ingredient]]
+name = "Legendary Maenya's Fists"
+tier = "legendary"
+source = "Battle-Scarred item of the Wrath of Sora Kell set from the Diplomacy chain (Update 7); legendary variants from Update 59"
+
+[[system.ingredient]]
+name = "Legendary Malleable Sceptre of Devotion"
+tier = "legendary"
+source = "Malleable sceptre from Peril of the Planar Eyes (Update 47)"
+
+[[system.ingredient]]
+name = "Legendary Malleable Sceptre of Nullification"
+tier = "legendary"
+source = "Malleable sceptre from Peril of the Planar Eyes (Update 47)"
+
+[[system.ingredient]]
+name = "Legendary Malleable Sceptre of Radiance"
+tier = "legendary"
+source = "Malleable sceptre from Peril of the Planar Eyes (Update 47)"
+
+[[system.ingredient]]
+name = "Legendary Malleable Sceptre of Reconstruction"
+tier = "legendary"
+source = "Malleable sceptre from Peril of the Planar Eyes (Update 47)"
+
+[[system.ingredient]]
+name = "Legendary Malleable Sceptre of Resonation"
+tier = "legendary"
+source = "Malleable sceptre from Peril of the Planar Eyes (Update 47)"
+
+[[system.ingredient]]
+name = "Legendary Ogrish War Axe"
+tier = "legendary"
+source = "Malleable item from Attack on Stormreach (Update 8)"
+
+[[system.ingredient]]
+name = "Legendary Rocksplitter"
+tier = "legendary"
+source = "Fusible item from the Diplomacy chain (Update 7); some are unbound and sold on the Auction House"
+
+[[system.ingredient]]
+name = "Legendary Scepter of the Fleshweaver"
+tier = "legendary"
+source = "Fragmented item"
+
+[[system.ingredient]]
+name = "Legendary Scepter of the Ogre Magi"
+tier = "legendary"
+source = "Fragmented item"
+
+[[system.ingredient]]
+name = "Legendary Staff of the Shadow"
+tier = "legendary"
+source = "Malleable item from Attack on Stormreach (Update 8)"
+
+[[system.ingredient]]
+name = "Legendary Stonedust Handwraps"
+tier = "legendary"
+source = "Fusible item from the Diplomacy chain (Update 7); some are unbound and sold on the Auction House"
+
+[[system.ingredient]]
+name = "Legendary Teraza's Sight"
+tier = "legendary"
+source = "Battle-Scarred item of the Wrath of Sora Kell set from the Diplomacy chain (Update 7); legendary variants from Update 59"
+
+[[system.recipe]]
+tier = "heroic"
+option = "Crippling Fury Blade"
+augments = []
+note = "Fusible upgrade: Blade of Fury gains the effect of the Malleable Gnollish War Bow (adds Crippling) and becomes Crippling Fury Blade. The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Blade of Fury", quantity = 1 }, { ingredient = "Gnollish War Bow", quantity = 1 }, { ingredient = "Mark of Sheshka", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Maiming Fury Blade"
+augments = []
+note = "Fusible upgrade: Blade of Fury gains the effect of the Malleable Hooked Blade (adds Maiming) and becomes Maiming Fury Blade. The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Blade of Fury", quantity = 1 }, { ingredient = "Hooked Blade", quantity = 1 }, { ingredient = "Mark of Sheshka", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Vengeful Fury Blade"
+augments = []
+note = "Fusible upgrade: Blade of Fury gains the effect of the Malleable Ogrish War Axe (adds Vengeful) and becomes Vengeful Fury Blade. The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Blade of Fury", quantity = 1 }, { ingredient = "Ogrish War Axe", quantity = 1 }, { ingredient = "Mark of Sheshka", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Vampiric Fury Blade"
+augments = []
+note = "Fusible upgrade: Blade of Fury gains the effect of the Malleable Staff of the Shadow (adds Lesser Vampirism) and becomes Vampiric Fury Blade. The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Blade of Fury", quantity = 1 }, { ingredient = "Staff of the Shadow", quantity = 1 }, { ingredient = "Mark of Sheshka", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Crippling Fury Shortsword"
+augments = []
+note = "Fusible upgrade: Blade of Fury gains the effect of the Malleable Gnollish War Bow (adds Crippling) and becomes Crippling Fury Shortsword. With two Marks the Blade of Fury splits into two shortswords instead of one greatsword. The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Blade of Fury", quantity = 1 }, { ingredient = "Gnollish War Bow", quantity = 1 }, { ingredient = "Mark of Sheshka", quantity = 1 }, { ingredient = "Mark of Rhesh Turakbar", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Maiming Fury Shortsword"
+augments = []
+note = "Fusible upgrade: Blade of Fury gains the effect of the Malleable Hooked Blade (adds Maiming) and becomes Maiming Fury Shortsword. With two Marks the Blade of Fury splits into two shortswords instead of one greatsword. The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Blade of Fury", quantity = 1 }, { ingredient = "Hooked Blade", quantity = 1 }, { ingredient = "Mark of Bal Molesh", quantity = 1 }, { ingredient = "Mark of Tzaryan Rrac", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Vengeful Fury Shortsword"
+augments = []
+note = "Fusible upgrade: Blade of Fury gains the effect of the Malleable Ogrish War Axe (adds Vengeful) and becomes Vengeful Fury Shortsword. With two Marks the Blade of Fury splits into two shortswords instead of one greatsword. The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Blade of Fury", quantity = 1 }, { ingredient = "Ogrish War Axe", quantity = 1 }, { ingredient = "Mark of Sheshka", quantity = 1 }, { ingredient = "Mark of Bal Molesh", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Vampiric Fury Shortsword"
+augments = []
+note = "Fusible upgrade: Blade of Fury gains the effect of the Malleable Staff of the Shadow (adds Lesser Vampirism) and becomes Vampiric Fury Shortsword. With two Marks the Blade of Fury splits into two shortswords instead of one greatsword. The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Blade of Fury", quantity = 1 }, { ingredient = "Staff of the Shadow", quantity = 1 }, { ingredient = "Mark of Sheshka", quantity = 1 }, { ingredient = "Mark of Tzaryan Rrac", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Crippling Cleaver"
+augments = []
+note = "Fusible upgrade: Bloody Cleaver gains the effect of the Malleable Gnollish War Bow (adds Crippling) and becomes Crippling Cleaver. The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Bloody Cleaver", quantity = 1 }, { ingredient = "Gnollish War Bow", quantity = 1 }, { ingredient = "Mark of Bal Molesh", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Maiming Cleaver"
+augments = []
+note = "Fusible upgrade: Bloody Cleaver gains the effect of the Malleable Hooked Blade (adds Maiming) and becomes Maiming Cleaver. The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Bloody Cleaver", quantity = 1 }, { ingredient = "Hooked Blade", quantity = 1 }, { ingredient = "Mark of Bal Molesh", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Vengeful Cleaver"
+augments = []
+note = "Fusible upgrade: Bloody Cleaver gains the effect of the Malleable Ogrish War Axe (adds Vengeful) and becomes Vengeful Cleaver. The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Bloody Cleaver", quantity = 1 }, { ingredient = "Ogrish War Axe", quantity = 1 }, { ingredient = "Mark of Bal Molesh", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Vampiric Cleaver"
+augments = []
+note = "Fusible upgrade: Bloody Cleaver gains the effect of the Malleable Staff of the Shadow (adds Lesser Vampirism) and becomes Vampiric Cleaver. The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Bloody Cleaver", quantity = 1 }, { ingredient = "Staff of the Shadow", quantity = 1 }, { ingredient = "Mark of Bal Molesh", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Infectious War Bow"
+augments = []
+note = "Malleable upgrade: Gnollish War Bow gains the effect of the Fusible Blade of Fury (adds Infectious (Demon Fever)) and becomes Infectious War Bow. The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Gnollish War Bow", quantity = 1 }, { ingredient = "Blade of Fury", quantity = 1 }, { ingredient = "Mark of Bal Molesh", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Bloody War Bow"
+augments = []
+note = "Malleable upgrade: Gnollish War Bow gains the effect of the Fusible Bloody Cleaver (adds Bloody (Bodyfeeder on melee, Life Shield on ranged)) and becomes Bloody War Bow. The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Gnollish War Bow", quantity = 1 }, { ingredient = "Bloody Cleaver", quantity = 1 }, { ingredient = "Mark of Rhesh Turakbar", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Destructive War Bow"
+augments = []
+note = "Malleable upgrade: Gnollish War Bow gains the effect of the Fusible Rocksplitter (adds Destructive (Destruction)) and becomes Destructive War Bow. The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Gnollish War Bow", quantity = 1 }, { ingredient = "Rocksplitter", quantity = 1 }, { ingredient = "Mark of Tzaryan Rrac", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Petrifying War Bow"
+augments = []
+note = "Malleable upgrade: Gnollish War Bow gains the effect of the Fusible Stonedust Handwraps (adds Petrifying (Stone Prison)) and becomes Petrifying War Bow. The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Gnollish War Bow", quantity = 1 }, { ingredient = "Stonedust Handwraps", quantity = 1 }, { ingredient = "Mark of Sheshka", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Infectious Hooked Blade"
+augments = []
+note = "Malleable upgrade: Hooked Blade gains the effect of the Fusible Blade of Fury (adds Infectious (Demon Fever)) and becomes Infectious Hooked Blade. The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Hooked Blade", quantity = 1 }, { ingredient = "Blade of Fury", quantity = 1 }, { ingredient = "Mark of Bal Molesh", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Bloody Hooked Blade"
+augments = []
+note = "Malleable upgrade: Hooked Blade gains the effect of the Fusible Bloody Cleaver (adds Bloody (Bodyfeeder on melee, Life Shield on ranged)) and becomes Bloody Hooked Blade. The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Hooked Blade", quantity = 1 }, { ingredient = "Bloody Cleaver", quantity = 1 }, { ingredient = "Mark of Rhesh Turakbar", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Destructive Hooked Blade"
+augments = []
+note = "Malleable upgrade: Hooked Blade gains the effect of the Fusible Rocksplitter (adds Destructive (Destruction)) and becomes Destructive Hooked Blade. The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Hooked Blade", quantity = 1 }, { ingredient = "Rocksplitter", quantity = 1 }, { ingredient = "Mark of Tzaryan Rrac", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Petrifying Hooked Blade"
+augments = []
+note = "Malleable upgrade: Hooked Blade gains the effect of the Fusible Stonedust Handwraps (adds Petrifying (Stone Prison)) and becomes Petrifying Hooked Blade. The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Hooked Blade", quantity = 1 }, { ingredient = "Stonedust Handwraps", quantity = 1 }, { ingredient = "Mark of Sheshka", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Infectious War Axe"
+augments = []
+note = "Malleable upgrade: Ogrish War Axe gains the effect of the Fusible Blade of Fury (adds Infectious (Demon Fever)) and becomes Infectious War Axe. The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Ogrish War Axe", quantity = 1 }, { ingredient = "Blade of Fury", quantity = 1 }, { ingredient = "Mark of Bal Molesh", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Bloody War Axe"
+augments = []
+note = "Malleable upgrade: Ogrish War Axe gains the effect of the Fusible Bloody Cleaver (adds Bloody (Bodyfeeder on melee, Life Shield on ranged)) and becomes Bloody War Axe. The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Ogrish War Axe", quantity = 1 }, { ingredient = "Bloody Cleaver", quantity = 1 }, { ingredient = "Mark of Rhesh Turakbar", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Destructive War Axe"
+augments = []
+note = "Malleable upgrade: Ogrish War Axe gains the effect of the Fusible Rocksplitter (adds Destructive (Destruction)) and becomes Destructive War Axe. The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Ogrish War Axe", quantity = 1 }, { ingredient = "Rocksplitter", quantity = 1 }, { ingredient = "Mark of Tzaryan Rrac", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Petrifying War Axe"
+augments = []
+note = "Malleable upgrade: Ogrish War Axe gains the effect of the Fusible Stonedust Handwraps (adds Petrifying (Stone Prison)) and becomes Petrifying War Axe. The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Ogrish War Axe", quantity = 1 }, { ingredient = "Stonedust Handwraps", quantity = 1 }, { ingredient = "Mark of Sheshka", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Crippling Rocksplitter"
+augments = []
+note = "Fusible upgrade: Rocksplitter gains the effect of the Malleable Gnollish War Bow (adds Crippling) and becomes Crippling Rocksplitter. The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Rocksplitter", quantity = 1 }, { ingredient = "Gnollish War Bow", quantity = 1 }, { ingredient = "Mark of Rhesh Turakbar", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Maiming Rocksplitter"
+augments = []
+note = "Fusible upgrade: Rocksplitter gains the effect of the Malleable Hooked Blade (adds Maiming) and becomes Maiming Rocksplitter. The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Rocksplitter", quantity = 1 }, { ingredient = "Hooked Blade", quantity = 1 }, { ingredient = "Mark of Rhesh Turakbar", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Vengeful Rocksplitter"
+augments = []
+note = "Fusible upgrade: Rocksplitter gains the effect of the Malleable Ogrish War Axe (adds Vengeful) and becomes Vengeful Rocksplitter. The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Rocksplitter", quantity = 1 }, { ingredient = "Ogrish War Axe", quantity = 1 }, { ingredient = "Mark of Rhesh Turakbar", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Vampiric Rocksplitter"
+augments = []
+note = "Fusible upgrade: Rocksplitter gains the effect of the Malleable Staff of the Shadow (adds Lesser Vampirism) and becomes Vampiric Rocksplitter. The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Rocksplitter", quantity = 1 }, { ingredient = "Staff of the Shadow", quantity = 1 }, { ingredient = "Mark of Rhesh Turakbar", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Infectious Shadow Staff"
+augments = []
+note = "Malleable upgrade: Staff of the Shadow gains the effect of the Fusible Blade of Fury (adds Infectious (Demon Fever)) and becomes Infectious Shadow Staff. The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Staff of the Shadow", quantity = 1 }, { ingredient = "Blade of Fury", quantity = 1 }, { ingredient = "Mark of Bal Molesh", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Bloody Shadow Staff"
+augments = []
+note = "Malleable upgrade: Staff of the Shadow gains the effect of the Fusible Bloody Cleaver (adds Bloody (Bodyfeeder on melee, Life Shield on ranged)) and becomes Bloody Shadow Staff. The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Staff of the Shadow", quantity = 1 }, { ingredient = "Bloody Cleaver", quantity = 1 }, { ingredient = "Mark of Rhesh Turakbar", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Destructive Shadow Staff"
+augments = []
+note = "Malleable upgrade: Staff of the Shadow gains the effect of the Fusible Rocksplitter (adds Destructive (Destruction)) and becomes Destructive Shadow Staff. The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Staff of the Shadow", quantity = 1 }, { ingredient = "Rocksplitter", quantity = 1 }, { ingredient = "Mark of Tzaryan Rrac", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Petrifying Shadow Staff"
+augments = []
+note = "Malleable upgrade: Staff of the Shadow gains the effect of the Fusible Stonedust Handwraps (adds Petrifying (Stone Prison)) and becomes Petrifying Shadow Staff. The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Staff of the Shadow", quantity = 1 }, { ingredient = "Stonedust Handwraps", quantity = 1 }, { ingredient = "Mark of Sheshka", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Crippling Stonedust Wraps"
+augments = []
+note = "Fusible upgrade: Stonedust Handwraps gains the effect of the Malleable Gnollish War Bow (adds Crippling) and becomes Crippling Stonedust Wraps. The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Stonedust Handwraps", quantity = 1 }, { ingredient = "Gnollish War Bow", quantity = 1 }, { ingredient = "Mark of Tzaryan Rrac", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Maiming Stonedust Wraps"
+augments = []
+note = "Fusible upgrade: Stonedust Handwraps gains the effect of the Malleable Hooked Blade (adds Maiming) and becomes Maiming Stonedust Wraps. The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Stonedust Handwraps", quantity = 1 }, { ingredient = "Hooked Blade", quantity = 1 }, { ingredient = "Mark of Tzaryan Rrac", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Vengeful Stonedust Wraps"
+augments = []
+note = "Fusible upgrade: Stonedust Handwraps gains the effect of the Malleable Ogrish War Axe (adds Vengeful) and becomes Vengeful Stonedust Wraps. The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Stonedust Handwraps", quantity = 1 }, { ingredient = "Ogrish War Axe", quantity = 1 }, { ingredient = "Mark of Tzaryan Rrac", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Vampiric Stonedust Wraps"
+augments = []
+note = "Fusible upgrade: Stonedust Handwraps gains the effect of the Malleable Staff of the Shadow (adds Lesser Vampirism) and becomes Vampiric Stonedust Wraps. The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Stonedust Handwraps", quantity = 1 }, { ingredient = "Staff of the Shadow", quantity = 1 }, { ingredient = "Mark of Tzaryan Rrac", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Master Transmuter's Staff"
+augments = []
+note = "Fragmented upgrade: combines Scepter of the Ogre Magi and Scepter of the Fleshweaver into Master Transmuter's Staff. The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Scepter of the Ogre Magi", quantity = 1 }, { ingredient = "Scepter of the Fleshweaver", quantity = 1 }, { ingredient = "Mark of Tzaryan Rrac", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Teraza's Perfect Sight"
+augments = []
+note = "Battle-Scarred upgrade: recreates Teraza's Sight as its more powerful version Teraza's Perfect Sight. The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Teraza's Sight", quantity = 1 }, { ingredient = "Mark of Tzaryan Rrac", quantity = 1 }, { ingredient = "Mark of Sheshka", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Katra's Razor Wit"
+augments = []
+note = "Battle-Scarred upgrade: recreates Katra's Wit as its more powerful version Katra's Razor Wit. The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Katra's Wit", quantity = 1 }, { ingredient = "Mark of Bal Molesh", quantity = 1 }, { ingredient = "Mark of Sheshka", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Maenya's Iron Fists"
+augments = []
+note = "Battle-Scarred upgrade: recreates Maenya's Fists as its more powerful version Maenya's Iron Fists. The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Maenya's Fists", quantity = 1 }, { ingredient = "Mark of Rhesh Turakbar", quantity = 1 }, { ingredient = "Mark of Bal Molesh", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Mark of Rhesh Turakbar"
+augments = []
+note = "Bought in the device UI; also drops in Assault on Summerfield. A crafting ingredient, no augment counterpart."
+cost = [{ ingredient = "Astral Shard", quantity = 25 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Mark of Bal Molesh"
+augments = []
+note = "Bought in the device UI; also drops in Undermine. A crafting ingredient, no augment counterpart."
+cost = [{ ingredient = "Astral Shard", quantity = 25 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Mark of Tzaryan Rrac"
+augments = []
+note = "Bought in the device UI; also drops in Siegebreaker. A crafting ingredient, no augment counterpart."
+cost = [{ ingredient = "Astral Shard", quantity = 25 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Mark of Sheshka"
+augments = []
+note = "Bought in the device UI; also drops in Blockade Buster. A crafting ingredient, no augment counterpart."
+cost = [{ ingredient = "Astral Shard", quantity = 25 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Crippling Fury Blade"
+augments = []
+note = "Fusible upgrade: Legendary Blade of Fury gains the effect of the Malleable Legendary Gnollish War Bow (adds Crippling) and becomes Legendary Crippling Fury Blade. The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Legendary Blade of Fury", quantity = 1 }, { ingredient = "Legendary Gnollish War Bow", quantity = 1 }, { ingredient = "Legendary Mark of Sheshka", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Maiming Fury Blade"
+augments = []
+note = "Fusible upgrade: Legendary Blade of Fury gains the effect of the Malleable Legendary Hooked Blade (adds Maiming) and becomes Legendary Maiming Fury Blade. The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Legendary Blade of Fury", quantity = 1 }, { ingredient = "Legendary Hooked Blade", quantity = 1 }, { ingredient = "Legendary Mark of Sheshka", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Vengeful Fury Blade"
+augments = []
+note = "Fusible upgrade: Legendary Blade of Fury gains the effect of the Malleable Legendary Ogrish War Axe (adds Vengeful) and becomes Legendary Vengeful Fury Blade. The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Legendary Blade of Fury", quantity = 1 }, { ingredient = "Legendary Ogrish War Axe", quantity = 1 }, { ingredient = "Legendary Mark of Sheshka", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Vampiric Fury Blade"
+augments = []
+note = "Fusible upgrade: Legendary Blade of Fury gains the effect of the Malleable Legendary Staff of the Shadow (adds Lesser Vampirism) and becomes Legendary Vampiric Fury Blade. The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Legendary Blade of Fury", quantity = 1 }, { ingredient = "Legendary Staff of the Shadow", quantity = 1 }, { ingredient = "Legendary Mark of Sheshka", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Crippling Fury Shortsword"
+augments = []
+note = "Fusible upgrade: Legendary Blade of Fury gains the effect of the Malleable Legendary Gnollish War Bow (adds Crippling) and becomes Legendary Crippling Fury Shortsword. With two Marks the Blade of Fury splits into two shortswords instead of one greatsword. The page lists the second mark as the heroic Mark of Rhesh Turakbar, not the Legendary one. The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Legendary Blade of Fury", quantity = 1 }, { ingredient = "Legendary Gnollish War Bow", quantity = 1 }, { ingredient = "Legendary Mark of Sheshka", quantity = 1 }, { ingredient = "Mark of Rhesh Turakbar", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Maiming Fury Shortsword"
+augments = []
+note = "Fusible upgrade: Legendary Blade of Fury gains the effect of the Malleable Legendary Hooked Blade (adds Maiming) and becomes Legendary Maiming Fury Shortsword. With two Marks the Blade of Fury splits into two shortswords instead of one greatsword. The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Legendary Blade of Fury", quantity = 1 }, { ingredient = "Legendary Hooked Blade", quantity = 1 }, { ingredient = "Legendary Mark of Bal Molesh", quantity = 1 }, { ingredient = "Legendary Mark of Tzaryan Rrac", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Vengeful Fury Shortsword"
+augments = []
+note = "Fusible upgrade: Legendary Blade of Fury gains the effect of the Malleable Legendary Ogrish War Axe (adds Vengeful) and becomes Legendary Vengeful Fury Shortsword. With two Marks the Blade of Fury splits into two shortswords instead of one greatsword. The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Legendary Blade of Fury", quantity = 1 }, { ingredient = "Legendary Ogrish War Axe", quantity = 1 }, { ingredient = "Legendary Mark of Sheshka", quantity = 1 }, { ingredient = "Legendary Mark of Bal Molesh", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Vampiric Fury Shortsword"
+augments = []
+note = "Fusible upgrade: Legendary Blade of Fury gains the effect of the Malleable Legendary Staff of the Shadow (adds Lesser Vampirism) and becomes Legendary Vampiric Fury Shortsword. With two Marks the Blade of Fury splits into two shortswords instead of one greatsword. The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Legendary Blade of Fury", quantity = 1 }, { ingredient = "Legendary Staff of the Shadow", quantity = 1 }, { ingredient = "Legendary Mark of Sheshka", quantity = 1 }, { ingredient = "Legendary Mark of Tzaryan Rrac", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Crippling Cleaver"
+augments = []
+note = "Fusible upgrade: Legendary Bloody Cleaver gains the effect of the Malleable Legendary Gnollish War Bow (adds Crippling) and becomes Legendary Crippling Cleaver. The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Legendary Bloody Cleaver", quantity = 1 }, { ingredient = "Legendary Gnollish War Bow", quantity = 1 }, { ingredient = "Legendary Mark of Bal Molesh", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Maiming Cleaver"
+augments = []
+note = "Fusible upgrade: Legendary Bloody Cleaver gains the effect of the Malleable Legendary Hooked Blade (adds Maiming) and becomes Legendary Maiming Cleaver. The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Legendary Bloody Cleaver", quantity = 1 }, { ingredient = "Legendary Hooked Blade", quantity = 1 }, { ingredient = "Legendary Mark of Bal Molesh", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Vengeful Cleaver"
+augments = []
+note = "Fusible upgrade: Legendary Bloody Cleaver gains the effect of the Malleable Legendary Ogrish War Axe (adds Vengeful) and becomes Legendary Vengeful Cleaver. The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Legendary Bloody Cleaver", quantity = 1 }, { ingredient = "Legendary Ogrish War Axe", quantity = 1 }, { ingredient = "Legendary Mark of Bal Molesh", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Vampiric Cleaver"
+augments = []
+note = "Fusible upgrade: Legendary Bloody Cleaver gains the effect of the Malleable Legendary Staff of the Shadow (adds Lesser Vampirism) and becomes Legendary Vampiric Cleaver. The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Legendary Bloody Cleaver", quantity = 1 }, { ingredient = "Legendary Staff of the Shadow", quantity = 1 }, { ingredient = "Legendary Mark of Bal Molesh", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Infectious War Bow"
+augments = []
+note = "Malleable upgrade: Legendary Gnollish War Bow gains the effect of the Fusible Legendary Blade of Fury (adds Infectious (Demon Fever)) and becomes Legendary Infectious War Bow. The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Legendary Gnollish War Bow", quantity = 1 }, { ingredient = "Legendary Blade of Fury", quantity = 1 }, { ingredient = "Legendary Mark of Bal Molesh", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Bloody War Bow"
+augments = []
+note = "Malleable upgrade: Legendary Gnollish War Bow gains the effect of the Fusible Legendary Bloody Cleaver (adds Bloody (Bodyfeeder on melee, Life Shield on ranged)) and becomes Legendary Bloody War Bow. The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Legendary Gnollish War Bow", quantity = 1 }, { ingredient = "Legendary Bloody Cleaver", quantity = 1 }, { ingredient = "Legendary Mark of Rhesh Turakbar", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Destructive War Bow"
+augments = []
+note = "Malleable upgrade: Legendary Gnollish War Bow gains the effect of the Fusible Legendary Rocksplitter (adds Destructive (Destruction)) and becomes Legendary Destructive War Bow. The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Legendary Gnollish War Bow", quantity = 1 }, { ingredient = "Legendary Rocksplitter", quantity = 1 }, { ingredient = "Legendary Mark of Tzaryan Rrac", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Petrifying War Bow"
+augments = []
+note = "Malleable upgrade: Legendary Gnollish War Bow gains the effect of the Fusible Legendary Stonedust Handwraps (adds Petrifying (Stone Prison)) and becomes Legendary Petrifying War Bow. The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Legendary Gnollish War Bow", quantity = 1 }, { ingredient = "Legendary Stonedust Handwraps", quantity = 1 }, { ingredient = "Legendary Mark of Sheshka", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Infectious Hooked Blade"
+augments = []
+note = "Malleable upgrade: Legendary Hooked Blade gains the effect of the Fusible Legendary Blade of Fury (adds Infectious (Demon Fever)) and becomes Legendary Infectious Hooked Blade. The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Legendary Hooked Blade", quantity = 1 }, { ingredient = "Legendary Blade of Fury", quantity = 1 }, { ingredient = "Legendary Mark of Bal Molesh", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Bloody Hooked Blade"
+augments = []
+note = "Malleable upgrade: Legendary Hooked Blade gains the effect of the Fusible Legendary Bloody Cleaver (adds Bloody (Bodyfeeder on melee, Life Shield on ranged)) and becomes Legendary Bloody Hooked Blade. The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Legendary Hooked Blade", quantity = 1 }, { ingredient = "Legendary Bloody Cleaver", quantity = 1 }, { ingredient = "Legendary Mark of Rhesh Turakbar", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Destructive Hooked Blade"
+augments = []
+note = "Malleable upgrade: Legendary Hooked Blade gains the effect of the Fusible Legendary Rocksplitter (adds Destructive (Destruction)) and becomes Legendary Destructive Hooked Blade. The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Legendary Hooked Blade", quantity = 1 }, { ingredient = "Legendary Rocksplitter", quantity = 1 }, { ingredient = "Legendary Mark of Tzaryan Rrac", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Petrifying Hooked Blade"
+augments = []
+note = "Malleable upgrade: Legendary Hooked Blade gains the effect of the Fusible Legendary Stonedust Handwraps (adds Petrifying (Stone Prison)) and becomes Legendary Petrifying Hooked Blade. The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Legendary Hooked Blade", quantity = 1 }, { ingredient = "Legendary Stonedust Handwraps", quantity = 1 }, { ingredient = "Legendary Mark of Sheshka", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Infectious War Axe"
+augments = []
+note = "Malleable upgrade: Legendary Ogrish War Axe gains the effect of the Fusible Legendary Blade of Fury (adds Infectious (Demon Fever)) and becomes Legendary Infectious War Axe. The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Legendary Ogrish War Axe", quantity = 1 }, { ingredient = "Legendary Blade of Fury", quantity = 1 }, { ingredient = "Legendary Mark of Bal Molesh", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Bloody War Axe"
+augments = []
+note = "Malleable upgrade: Legendary Ogrish War Axe gains the effect of the Fusible Legendary Bloody Cleaver (adds Bloody (Bodyfeeder on melee, Life Shield on ranged)) and becomes Legendary Bloody War Axe. The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Legendary Ogrish War Axe", quantity = 1 }, { ingredient = "Legendary Bloody Cleaver", quantity = 1 }, { ingredient = "Legendary Mark of Rhesh Turakbar", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Destructive War Axe"
+augments = []
+note = "Malleable upgrade: Legendary Ogrish War Axe gains the effect of the Fusible Legendary Rocksplitter (adds Destructive (Destruction)) and becomes Legendary Destructive War Axe. The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Legendary Ogrish War Axe", quantity = 1 }, { ingredient = "Legendary Rocksplitter", quantity = 1 }, { ingredient = "Legendary Mark of Tzaryan Rrac", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Petrifying War Axe"
+augments = []
+note = "Malleable upgrade: Legendary Ogrish War Axe gains the effect of the Fusible Legendary Stonedust Handwraps (adds Petrifying (Stone Prison)) and becomes Legendary Petrifying War Axe. The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Legendary Ogrish War Axe", quantity = 1 }, { ingredient = "Legendary Stonedust Handwraps", quantity = 1 }, { ingredient = "Legendary Mark of Sheshka", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Crippling Rocksplitter"
+augments = []
+note = "Fusible upgrade: Legendary Rocksplitter gains the effect of the Malleable Legendary Gnollish War Bow (adds Crippling) and becomes Legendary Crippling Rocksplitter. The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Legendary Rocksplitter", quantity = 1 }, { ingredient = "Legendary Gnollish War Bow", quantity = 1 }, { ingredient = "Legendary Mark of Rhesh Turakbar", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Maiming Rocksplitter"
+augments = []
+note = "Fusible upgrade: Legendary Rocksplitter gains the effect of the Malleable Legendary Hooked Blade (adds Maiming) and becomes Legendary Maiming Rocksplitter. The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Legendary Rocksplitter", quantity = 1 }, { ingredient = "Legendary Hooked Blade", quantity = 1 }, { ingredient = "Legendary Mark of Rhesh Turakbar", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Vengeful Rocksplitter"
+augments = []
+note = "Fusible upgrade: Legendary Rocksplitter gains the effect of the Malleable Legendary Ogrish War Axe (adds Vengeful) and becomes Legendary Vengeful Rocksplitter. The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Legendary Rocksplitter", quantity = 1 }, { ingredient = "Legendary Ogrish War Axe", quantity = 1 }, { ingredient = "Legendary Mark of Rhesh Turakbar", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Vampiric Rocksplitter"
+augments = []
+note = "Fusible upgrade: Legendary Rocksplitter gains the effect of the Malleable Legendary Staff of the Shadow (adds Lesser Vampirism) and becomes Legendary Vampiric Rocksplitter. The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Legendary Rocksplitter", quantity = 1 }, { ingredient = "Legendary Staff of the Shadow", quantity = 1 }, { ingredient = "Legendary Mark of Rhesh Turakbar", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Infectious Shadow Staff"
+augments = []
+note = "Malleable upgrade: Legendary Staff of the Shadow gains the effect of the Fusible Legendary Blade of Fury (adds Infectious (Demon Fever)) and becomes Legendary Infectious Shadow Staff. The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Legendary Staff of the Shadow", quantity = 1 }, { ingredient = "Legendary Blade of Fury", quantity = 1 }, { ingredient = "Legendary Mark of Bal Molesh", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Bloody Shadow Staff"
+augments = []
+note = "Malleable upgrade: Legendary Staff of the Shadow gains the effect of the Fusible Legendary Bloody Cleaver (adds Bloody (Bodyfeeder on melee, Life Shield on ranged)) and becomes Legendary Bloody Shadow Staff. The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Legendary Staff of the Shadow", quantity = 1 }, { ingredient = "Legendary Bloody Cleaver", quantity = 1 }, { ingredient = "Legendary Mark of Rhesh Turakbar", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Destructive Shadow Staff"
+augments = []
+note = "Malleable upgrade: Legendary Staff of the Shadow gains the effect of the Fusible Legendary Rocksplitter (adds Destructive (Destruction)) and becomes Legendary Destructive Shadow Staff. The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Legendary Staff of the Shadow", quantity = 1 }, { ingredient = "Legendary Rocksplitter", quantity = 1 }, { ingredient = "Legendary Mark of Tzaryan Rrac", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Petrifying Shadow Staff"
+augments = []
+note = "Malleable upgrade: Legendary Staff of the Shadow gains the effect of the Fusible Legendary Stonedust Handwraps (adds Petrifying (Stone Prison)) and becomes Legendary Petrifying Shadow Staff. The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Legendary Staff of the Shadow", quantity = 1 }, { ingredient = "Legendary Stonedust Handwraps", quantity = 1 }, { ingredient = "Legendary Mark of Sheshka", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Crippling Stonedust Wraps"
+augments = []
+note = "Fusible upgrade: Legendary Stonedust Handwraps gains the effect of the Malleable Legendary Gnollish War Bow (adds Crippling) and becomes Legendary Crippling Stonedust Wraps. The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Legendary Stonedust Handwraps", quantity = 1 }, { ingredient = "Legendary Gnollish War Bow", quantity = 1 }, { ingredient = "Legendary Mark of Tzaryan Rrac", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Maiming Stonedust Wraps"
+augments = []
+note = "Fusible upgrade: Legendary Stonedust Handwraps gains the effect of the Malleable Legendary Hooked Blade (adds Maiming) and becomes Legendary Maiming Stonedust Wraps. The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Legendary Stonedust Handwraps", quantity = 1 }, { ingredient = "Legendary Hooked Blade", quantity = 1 }, { ingredient = "Legendary Mark of Tzaryan Rrac", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Vengeful Stonedust Wraps"
+augments = []
+note = "Fusible upgrade: Legendary Stonedust Handwraps gains the effect of the Malleable Legendary Ogrish War Axe (adds Vengeful) and becomes Legendary Vengeful Stonedust Wraps. The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Legendary Stonedust Handwraps", quantity = 1 }, { ingredient = "Legendary Ogrish War Axe", quantity = 1 }, { ingredient = "Legendary Mark of Tzaryan Rrac", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Vampiric Stonedust Wraps"
+augments = []
+note = "Fusible upgrade: Legendary Stonedust Handwraps gains the effect of the Malleable Legendary Staff of the Shadow (adds Lesser Vampirism) and becomes Legendary Vampiric Stonedust Wraps. The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Legendary Stonedust Handwraps", quantity = 1 }, { ingredient = "Legendary Staff of the Shadow", quantity = 1 }, { ingredient = "Legendary Mark of Tzaryan Rrac", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Master Transmuter's Staff"
+augments = []
+note = "Fragmented upgrade: combines Legendary Scepter of the Ogre Magi and Legendary Scepter of the Fleshweaver into Legendary Master Transmuter's Staff. The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Legendary Scepter of the Ogre Magi", quantity = 1 }, { ingredient = "Legendary Scepter of the Fleshweaver", quantity = 1 }, { ingredient = "Legendary Mark of Tzaryan Rrac", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Teraza's Perfect Sight"
+augments = []
+note = "Battle-Scarred upgrade: recreates Legendary Teraza's Sight as its more powerful version Legendary Teraza's Perfect Sight. The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Legendary Teraza's Sight", quantity = 1 }, { ingredient = "Legendary Mark of Tzaryan Rrac", quantity = 1 }, { ingredient = "Legendary Mark of Sheshka", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Katra's Razor Wit"
+augments = []
+note = "Battle-Scarred upgrade: recreates Legendary Katra's Wit as its more powerful version Legendary Katra's Razor Wit. The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Legendary Katra's Wit", quantity = 1 }, { ingredient = "Legendary Mark of Bal Molesh", quantity = 1 }, { ingredient = "Legendary Mark of Sheshka", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Maenya's Iron Fists"
+augments = []
+note = "Battle-Scarred upgrade: recreates Legendary Maenya's Fists as its more powerful version Legendary Maenya's Iron Fists. The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Legendary Maenya's Fists", quantity = 1 }, { ingredient = "Legendary Mark of Rhesh Turakbar", quantity = 1 }, { ingredient = "Legendary Mark of Bal Molesh", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Mark of Rhesh Turakbar"
+augments = []
+note = "Bought in the device UI; also drops in Assault on Summerfield. A crafting ingredient, no augment counterpart."
+cost = [{ ingredient = "Astral Shard", quantity = 25 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Mark of Bal Molesh"
+augments = []
+note = "Bought in the device UI; also drops in Undermine. A crafting ingredient, no augment counterpart."
+cost = [{ ingredient = "Astral Shard", quantity = 25 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Mark of Tzaryan Rrac"
+augments = []
+note = "Bought in the device UI; also drops in Siegebreaker. A crafting ingredient, no augment counterpart."
+cost = [{ ingredient = "Astral Shard", quantity = 25 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Mark of Sheshka"
+augments = []
+note = "Bought in the device UI; also drops in Blockade Buster. A crafting ingredient, no augment counterpart."
+cost = [{ ingredient = "Astral Shard", quantity = 25 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Combustible Devoted Quarterstaff"
+augments = []
+note = "Combines Fusible Sceptre of Combustion and Malleable Sceptre of Devotion (no Mark required) into Combustible Devoted Quarterstaff, whose enchantments are the two sceptres' combined (non-stacking ones such as Enhancement Bonus and Spellcasting Implement are not additive); one of the two Red Augment Slots becomes an Orange Augment Slot, and it gains Magical Efficiency 5% (ML 12). The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Fusible Sceptre of Combustion", quantity = 1 }, { ingredient = "Malleable Sceptre of Devotion", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Combustible Nullified Quarterstaff"
+augments = []
+note = "Combines Fusible Sceptre of Combustion and Malleable Sceptre of Nullification (no Mark required) into Combustible Nullified Quarterstaff, whose enchantments are the two sceptres' combined (non-stacking ones such as Enhancement Bonus and Spellcasting Implement are not additive); one of the two Red Augment Slots becomes an Orange Augment Slot, and it gains Magical Efficiency 5% (ML 12). The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Fusible Sceptre of Combustion", quantity = 1 }, { ingredient = "Malleable Sceptre of Nullification", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Combustible Radiant Quarterstaff"
+augments = []
+note = "Combines Fusible Sceptre of Combustion and Malleable Sceptre of Radiance (no Mark required) into Combustible Radiant Quarterstaff, whose enchantments are the two sceptres' combined (non-stacking ones such as Enhancement Bonus and Spellcasting Implement are not additive); one of the two Red Augment Slots becomes an Orange Augment Slot, and it gains Magical Efficiency 5% (ML 12). The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Fusible Sceptre of Combustion", quantity = 1 }, { ingredient = "Malleable Sceptre of Radiance", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Combustible Reconstructed Quarterstaff"
+augments = []
+note = "Combines Fusible Sceptre of Combustion and Malleable Sceptre of Reconstruction (no Mark required) into Combustible Reconstructed Quarterstaff, whose enchantments are the two sceptres' combined (non-stacking ones such as Enhancement Bonus and Spellcasting Implement are not additive); one of the two Red Augment Slots becomes an Orange Augment Slot, and it gains Magical Efficiency 5% (ML 12). The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Fusible Sceptre of Combustion", quantity = 1 }, { ingredient = "Malleable Sceptre of Reconstruction", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Combustible Resonating Quarterstaff"
+augments = []
+note = "Combines Fusible Sceptre of Combustion and Malleable Sceptre of Resonation (no Mark required) into Combustible Resonating Quarterstaff, whose enchantments are the two sceptres' combined (non-stacking ones such as Enhancement Bonus and Spellcasting Implement are not additive); one of the two Red Augment Slots becomes an Orange Augment Slot, and it gains Magical Efficiency 5% (ML 12). The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Fusible Sceptre of Combustion", quantity = 1 }, { ingredient = "Malleable Sceptre of Resonation", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Corrosive Devoted Quarterstaff"
+augments = []
+note = "Combines Fusible Sceptre of Corrosion and Malleable Sceptre of Devotion (no Mark required) into Corrosive Devoted Quarterstaff, whose enchantments are the two sceptres' combined (non-stacking ones such as Enhancement Bonus and Spellcasting Implement are not additive); one of the two Red Augment Slots becomes an Orange Augment Slot, and it gains Magical Efficiency 5% (ML 12). The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Fusible Sceptre of Corrosion", quantity = 1 }, { ingredient = "Malleable Sceptre of Devotion", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Corrosive Nullified Quarterstaff"
+augments = []
+note = "Combines Fusible Sceptre of Corrosion and Malleable Sceptre of Nullification (no Mark required) into Corrosive Nullified Quarterstaff, whose enchantments are the two sceptres' combined (non-stacking ones such as Enhancement Bonus and Spellcasting Implement are not additive); one of the two Red Augment Slots becomes an Orange Augment Slot, and it gains Magical Efficiency 5% (ML 12). The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Fusible Sceptre of Corrosion", quantity = 1 }, { ingredient = "Malleable Sceptre of Nullification", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Corrosive Radiant Quarterstaff"
+augments = []
+note = "Combines Fusible Sceptre of Corrosion and Malleable Sceptre of Radiance (no Mark required) into Corrosive Radiant Quarterstaff, whose enchantments are the two sceptres' combined (non-stacking ones such as Enhancement Bonus and Spellcasting Implement are not additive); one of the two Red Augment Slots becomes an Orange Augment Slot, and it gains Magical Efficiency 5% (ML 12). The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Fusible Sceptre of Corrosion", quantity = 1 }, { ingredient = "Malleable Sceptre of Radiance", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Corrosive Reconstructed Quarterstaff"
+augments = []
+note = "Combines Fusible Sceptre of Corrosion and Malleable Sceptre of Reconstruction (no Mark required) into Corrosive Reconstructed Quarterstaff, whose enchantments are the two sceptres' combined (non-stacking ones such as Enhancement Bonus and Spellcasting Implement are not additive); one of the two Red Augment Slots becomes an Orange Augment Slot, and it gains Magical Efficiency 5% (ML 12). The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Fusible Sceptre of Corrosion", quantity = 1 }, { ingredient = "Malleable Sceptre of Reconstruction", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Corrosive Resonating Quarterstaff"
+augments = []
+note = "Combines Fusible Sceptre of Corrosion and Malleable Sceptre of Resonation (no Mark required) into Corrosive Resonating Quarterstaff, whose enchantments are the two sceptres' combined (non-stacking ones such as Enhancement Bonus and Spellcasting Implement are not additive); one of the two Red Augment Slots becomes an Orange Augment Slot, and it gains Magical Efficiency 5% (ML 12). The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Fusible Sceptre of Corrosion", quantity = 1 }, { ingredient = "Malleable Sceptre of Resonation", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Glaciated Devoted Quarterstaff"
+augments = []
+note = "Combines Fusible Sceptre of Glaciation and Malleable Sceptre of Devotion (no Mark required) into Glaciated Devoted Quarterstaff, whose enchantments are the two sceptres' combined (non-stacking ones such as Enhancement Bonus and Spellcasting Implement are not additive); one of the two Red Augment Slots becomes an Orange Augment Slot, and it gains Magical Efficiency 5% (ML 12). The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Fusible Sceptre of Glaciation", quantity = 1 }, { ingredient = "Malleable Sceptre of Devotion", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Glaciated Nullified Quarterstaff"
+augments = []
+note = "Combines Fusible Sceptre of Glaciation and Malleable Sceptre of Nullification (no Mark required) into Glaciated Nullified Quarterstaff, whose enchantments are the two sceptres' combined (non-stacking ones such as Enhancement Bonus and Spellcasting Implement are not additive); one of the two Red Augment Slots becomes an Orange Augment Slot, and it gains Magical Efficiency 5% (ML 12). The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Fusible Sceptre of Glaciation", quantity = 1 }, { ingredient = "Malleable Sceptre of Nullification", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Glaciated Radiant Quarterstaff"
+augments = []
+note = "Combines Fusible Sceptre of Glaciation and Malleable Sceptre of Radiance (no Mark required) into Glaciated Radiant Quarterstaff, whose enchantments are the two sceptres' combined (non-stacking ones such as Enhancement Bonus and Spellcasting Implement are not additive); one of the two Red Augment Slots becomes an Orange Augment Slot, and it gains Magical Efficiency 5% (ML 12). The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Fusible Sceptre of Glaciation", quantity = 1 }, { ingredient = "Malleable Sceptre of Radiance", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Glaciated Reconstructed Quarterstaff"
+augments = []
+note = "Combines Fusible Sceptre of Glaciation and Malleable Sceptre of Reconstruction (no Mark required) into Glaciated Reconstructed Quarterstaff, whose enchantments are the two sceptres' combined (non-stacking ones such as Enhancement Bonus and Spellcasting Implement are not additive); one of the two Red Augment Slots becomes an Orange Augment Slot, and it gains Magical Efficiency 5% (ML 12). The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Fusible Sceptre of Glaciation", quantity = 1 }, { ingredient = "Malleable Sceptre of Reconstruction", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Glaciated Resonating Quarterstaff"
+augments = []
+note = "Combines Fusible Sceptre of Glaciation and Malleable Sceptre of Resonation (no Mark required) into Glaciated Resonating Quarterstaff, whose enchantments are the two sceptres' combined (non-stacking ones such as Enhancement Bonus and Spellcasting Implement are not additive); one of the two Red Augment Slots becomes an Orange Augment Slot, and it gains Magical Efficiency 5% (ML 12). The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Fusible Sceptre of Glaciation", quantity = 1 }, { ingredient = "Malleable Sceptre of Resonation", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Impulsive Devoted Quarterstaff"
+augments = []
+note = "Combines Fusible Sceptre of Impulse and Malleable Sceptre of Devotion (no Mark required) into Impulsive Devoted Quarterstaff, whose enchantments are the two sceptres' combined (non-stacking ones such as Enhancement Bonus and Spellcasting Implement are not additive); one of the two Red Augment Slots becomes an Orange Augment Slot, and it gains Magical Efficiency 5% (ML 12). The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Fusible Sceptre of Impulse", quantity = 1 }, { ingredient = "Malleable Sceptre of Devotion", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Impulsive Nullified Quarterstaff"
+augments = []
+note = "Combines Fusible Sceptre of Impulse and Malleable Sceptre of Nullification (no Mark required) into Impulsive Nullified Quarterstaff, whose enchantments are the two sceptres' combined (non-stacking ones such as Enhancement Bonus and Spellcasting Implement are not additive); one of the two Red Augment Slots becomes an Orange Augment Slot, and it gains Magical Efficiency 5% (ML 12). The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Fusible Sceptre of Impulse", quantity = 1 }, { ingredient = "Malleable Sceptre of Nullification", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Impulsive Radiant Quarterstaff"
+augments = []
+note = "Combines Fusible Sceptre of Impulse and Malleable Sceptre of Radiance (no Mark required) into Impulsive Radiant Quarterstaff, whose enchantments are the two sceptres' combined (non-stacking ones such as Enhancement Bonus and Spellcasting Implement are not additive); one of the two Red Augment Slots becomes an Orange Augment Slot, and it gains Magical Efficiency 5% (ML 12). The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Fusible Sceptre of Impulse", quantity = 1 }, { ingredient = "Malleable Sceptre of Radiance", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Impulsive Reconstructed Quarterstaff"
+augments = []
+note = "Combines Fusible Sceptre of Impulse and Malleable Sceptre of Reconstruction (no Mark required) into Impulsive Reconstructed Quarterstaff, whose enchantments are the two sceptres' combined (non-stacking ones such as Enhancement Bonus and Spellcasting Implement are not additive); one of the two Red Augment Slots becomes an Orange Augment Slot, and it gains Magical Efficiency 5% (ML 12). The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Fusible Sceptre of Impulse", quantity = 1 }, { ingredient = "Malleable Sceptre of Reconstruction", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Impulsive Resonating Quarterstaff"
+augments = []
+note = "Combines Fusible Sceptre of Impulse and Malleable Sceptre of Resonation (no Mark required) into Impulsive Resonating Quarterstaff, whose enchantments are the two sceptres' combined (non-stacking ones such as Enhancement Bonus and Spellcasting Implement are not additive); one of the two Red Augment Slots becomes an Orange Augment Slot, and it gains Magical Efficiency 5% (ML 12). The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Fusible Sceptre of Impulse", quantity = 1 }, { ingredient = "Malleable Sceptre of Resonation", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Magnetic Devoted Quarterstaff"
+augments = []
+note = "Combines Fusible Sceptre of Magnetism and Malleable Sceptre of Devotion (no Mark required) into Magnetic Devoted Quarterstaff, whose enchantments are the two sceptres' combined (non-stacking ones such as Enhancement Bonus and Spellcasting Implement are not additive); one of the two Red Augment Slots becomes an Orange Augment Slot, and it gains Magical Efficiency 5% (ML 12). The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Fusible Sceptre of Magnetism", quantity = 1 }, { ingredient = "Malleable Sceptre of Devotion", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Magnetic Nullified Quarterstaff"
+augments = []
+note = "Combines Fusible Sceptre of Magnetism and Malleable Sceptre of Nullification (no Mark required) into Magnetic Nullified Quarterstaff, whose enchantments are the two sceptres' combined (non-stacking ones such as Enhancement Bonus and Spellcasting Implement are not additive); one of the two Red Augment Slots becomes an Orange Augment Slot, and it gains Magical Efficiency 5% (ML 12). The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Fusible Sceptre of Magnetism", quantity = 1 }, { ingredient = "Malleable Sceptre of Nullification", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Magnetic Radiant Quarterstaff"
+augments = []
+note = "Combines Fusible Sceptre of Magnetism and Malleable Sceptre of Radiance (no Mark required) into Magnetic Radiant Quarterstaff, whose enchantments are the two sceptres' combined (non-stacking ones such as Enhancement Bonus and Spellcasting Implement are not additive); one of the two Red Augment Slots becomes an Orange Augment Slot, and it gains Magical Efficiency 5% (ML 12). The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Fusible Sceptre of Magnetism", quantity = 1 }, { ingredient = "Malleable Sceptre of Radiance", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Magnetic Reconstructed Quarterstaff"
+augments = []
+note = "Combines Fusible Sceptre of Magnetism and Malleable Sceptre of Reconstruction (no Mark required) into Magnetic Reconstructed Quarterstaff, whose enchantments are the two sceptres' combined (non-stacking ones such as Enhancement Bonus and Spellcasting Implement are not additive); one of the two Red Augment Slots becomes an Orange Augment Slot, and it gains Magical Efficiency 5% (ML 12). The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Fusible Sceptre of Magnetism", quantity = 1 }, { ingredient = "Malleable Sceptre of Reconstruction", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Magnetic Resonating Quarterstaff"
+augments = []
+note = "Combines Fusible Sceptre of Magnetism and Malleable Sceptre of Resonation (no Mark required) into Magnetic Resonating Quarterstaff, whose enchantments are the two sceptres' combined (non-stacking ones such as Enhancement Bonus and Spellcasting Implement are not additive); one of the two Red Augment Slots becomes an Orange Augment Slot, and it gains Magical Efficiency 5% (ML 12). The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Fusible Sceptre of Magnetism", quantity = 1 }, { ingredient = "Malleable Sceptre of Resonation", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Combustible Devoted Quarterstaff"
+augments = []
+note = "Combines Legendary Fusible Sceptre of Combustion and Legendary Malleable Sceptre of Devotion (no Mark required) into Legendary Combustible Devoted Quarterstaff, whose enchantments are the two sceptres' combined (non-stacking ones such as Enhancement Bonus and Spellcasting Implement are not additive); one of the two Red Augment Slots becomes an Orange Augment Slot, and it gains Magical Efficiency 10%. The page's summary calls this the Epic (ML 29) version; the recipe table and Maetrim name it Legendary. The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Legendary Fusible Sceptre of Combustion", quantity = 1 }, { ingredient = "Legendary Malleable Sceptre of Devotion", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Combustible Nullified Quarterstaff"
+augments = []
+note = "Combines Legendary Fusible Sceptre of Combustion and Legendary Malleable Sceptre of Nullification (no Mark required) into Legendary Combustible Nullified Quarterstaff, whose enchantments are the two sceptres' combined (non-stacking ones such as Enhancement Bonus and Spellcasting Implement are not additive); one of the two Red Augment Slots becomes an Orange Augment Slot, and it gains Magical Efficiency 10%. The page's summary calls this the Epic (ML 29) version; the recipe table and Maetrim name it Legendary. The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Legendary Fusible Sceptre of Combustion", quantity = 1 }, { ingredient = "Legendary Malleable Sceptre of Nullification", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Combustible Radiant Quarterstaff"
+augments = []
+note = "Combines Legendary Fusible Sceptre of Combustion and Legendary Malleable Sceptre of Radiance (no Mark required) into Legendary Combustible Radiant Quarterstaff, whose enchantments are the two sceptres' combined (non-stacking ones such as Enhancement Bonus and Spellcasting Implement are not additive); one of the two Red Augment Slots becomes an Orange Augment Slot, and it gains Magical Efficiency 10%. The page's summary calls this the Epic (ML 29) version; the recipe table and Maetrim name it Legendary. The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Legendary Fusible Sceptre of Combustion", quantity = 1 }, { ingredient = "Legendary Malleable Sceptre of Radiance", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Combustible Reconstructed Quarterstaff"
+augments = []
+note = "Combines Legendary Fusible Sceptre of Combustion and Legendary Malleable Sceptre of Reconstruction (no Mark required) into Legendary Combustible Reconstructed Quarterstaff, whose enchantments are the two sceptres' combined (non-stacking ones such as Enhancement Bonus and Spellcasting Implement are not additive); one of the two Red Augment Slots becomes an Orange Augment Slot, and it gains Magical Efficiency 10%. The page's summary calls this the Epic (ML 29) version; the recipe table and Maetrim name it Legendary. The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Legendary Fusible Sceptre of Combustion", quantity = 1 }, { ingredient = "Legendary Malleable Sceptre of Reconstruction", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Combustible Resonating Quarterstaff"
+augments = []
+note = "Combines Legendary Fusible Sceptre of Combustion and Legendary Malleable Sceptre of Resonation (no Mark required) into Legendary Combustible Resonating Quarterstaff, whose enchantments are the two sceptres' combined (non-stacking ones such as Enhancement Bonus and Spellcasting Implement are not additive); one of the two Red Augment Slots becomes an Orange Augment Slot, and it gains Magical Efficiency 10%. The page's summary calls this the Epic (ML 29) version; the recipe table and Maetrim name it Legendary. The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Legendary Fusible Sceptre of Combustion", quantity = 1 }, { ingredient = "Legendary Malleable Sceptre of Resonation", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Corrosive Devoted Quarterstaff"
+augments = []
+note = "Combines Legendary Fusible Sceptre of Corrosion and Legendary Malleable Sceptre of Devotion (no Mark required) into Legendary Corrosive Devoted Quarterstaff, whose enchantments are the two sceptres' combined (non-stacking ones such as Enhancement Bonus and Spellcasting Implement are not additive); one of the two Red Augment Slots becomes an Orange Augment Slot, and it gains Magical Efficiency 10%. The page's summary calls this the Epic (ML 29) version; the recipe table and Maetrim name it Legendary. The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Legendary Fusible Sceptre of Corrosion", quantity = 1 }, { ingredient = "Legendary Malleable Sceptre of Devotion", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Corrosive Nullified Quarterstaff"
+augments = []
+note = "Combines Legendary Fusible Sceptre of Corrosion and Legendary Malleable Sceptre of Nullification (no Mark required) into Legendary Corrosive Nullified Quarterstaff, whose enchantments are the two sceptres' combined (non-stacking ones such as Enhancement Bonus and Spellcasting Implement are not additive); one of the two Red Augment Slots becomes an Orange Augment Slot, and it gains Magical Efficiency 10%. The page's summary calls this the Epic (ML 29) version; the recipe table and Maetrim name it Legendary. The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Legendary Fusible Sceptre of Corrosion", quantity = 1 }, { ingredient = "Legendary Malleable Sceptre of Nullification", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Corrosive Radiant Quarterstaff"
+augments = []
+note = "Combines Legendary Fusible Sceptre of Corrosion and Legendary Malleable Sceptre of Radiance (no Mark required) into Legendary Corrosive Radiant Quarterstaff, whose enchantments are the two sceptres' combined (non-stacking ones such as Enhancement Bonus and Spellcasting Implement are not additive); one of the two Red Augment Slots becomes an Orange Augment Slot, and it gains Magical Efficiency 10%. The page's summary calls this the Epic (ML 29) version; the recipe table and Maetrim name it Legendary. The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Legendary Fusible Sceptre of Corrosion", quantity = 1 }, { ingredient = "Legendary Malleable Sceptre of Radiance", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Corrosive Reconstructed Quarterstaff"
+augments = []
+note = "Combines Legendary Fusible Sceptre of Corrosion and Legendary Malleable Sceptre of Reconstruction (no Mark required) into Legendary Corrosive Reconstructed Quarterstaff, whose enchantments are the two sceptres' combined (non-stacking ones such as Enhancement Bonus and Spellcasting Implement are not additive); one of the two Red Augment Slots becomes an Orange Augment Slot, and it gains Magical Efficiency 10%. The page's summary calls this the Epic (ML 29) version; the recipe table and Maetrim name it Legendary. The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Legendary Fusible Sceptre of Corrosion", quantity = 1 }, { ingredient = "Legendary Malleable Sceptre of Reconstruction", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Corrosive Resonating Quarterstaff"
+augments = []
+note = "Combines Legendary Fusible Sceptre of Corrosion and Legendary Malleable Sceptre of Resonation (no Mark required) into Legendary Corrosive Resonating Quarterstaff, whose enchantments are the two sceptres' combined (non-stacking ones such as Enhancement Bonus and Spellcasting Implement are not additive); one of the two Red Augment Slots becomes an Orange Augment Slot, and it gains Magical Efficiency 10%. The page's summary calls this the Epic (ML 29) version; the recipe table and Maetrim name it Legendary. The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Legendary Fusible Sceptre of Corrosion", quantity = 1 }, { ingredient = "Legendary Malleable Sceptre of Resonation", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Glaciated Devoted Quarterstaff"
+augments = []
+note = "Combines Legendary Fusible Sceptre of Glaciation and Legendary Malleable Sceptre of Devotion (no Mark required) into Legendary Glaciated Devoted Quarterstaff, whose enchantments are the two sceptres' combined (non-stacking ones such as Enhancement Bonus and Spellcasting Implement are not additive); one of the two Red Augment Slots becomes an Orange Augment Slot, and it gains Magical Efficiency 10%. The page's summary calls this the Epic (ML 29) version; the recipe table and Maetrim name it Legendary. The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Legendary Fusible Sceptre of Glaciation", quantity = 1 }, { ingredient = "Legendary Malleable Sceptre of Devotion", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Glaciated Nullified Quarterstaff"
+augments = []
+note = "Combines Legendary Fusible Sceptre of Glaciation and Legendary Malleable Sceptre of Nullification (no Mark required) into Legendary Glaciated Nullified Quarterstaff, whose enchantments are the two sceptres' combined (non-stacking ones such as Enhancement Bonus and Spellcasting Implement are not additive); one of the two Red Augment Slots becomes an Orange Augment Slot, and it gains Magical Efficiency 10%. The page's summary calls this the Epic (ML 29) version; the recipe table and Maetrim name it Legendary. The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Legendary Fusible Sceptre of Glaciation", quantity = 1 }, { ingredient = "Legendary Malleable Sceptre of Nullification", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Glaciated Radiant Quarterstaff"
+augments = []
+note = "Combines Legendary Fusible Sceptre of Glaciation and Legendary Malleable Sceptre of Radiance (no Mark required) into Legendary Glaciated Radiant Quarterstaff, whose enchantments are the two sceptres' combined (non-stacking ones such as Enhancement Bonus and Spellcasting Implement are not additive); one of the two Red Augment Slots becomes an Orange Augment Slot, and it gains Magical Efficiency 10%. The page's summary calls this the Epic (ML 29) version; the recipe table and Maetrim name it Legendary. The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Legendary Fusible Sceptre of Glaciation", quantity = 1 }, { ingredient = "Legendary Malleable Sceptre of Radiance", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Glaciated Reconstructed Quarterstaff"
+augments = []
+note = "Combines Legendary Fusible Sceptre of Glaciation and Legendary Malleable Sceptre of Reconstruction (no Mark required) into Legendary Glaciated Reconstructed Quarterstaff, whose enchantments are the two sceptres' combined (non-stacking ones such as Enhancement Bonus and Spellcasting Implement are not additive); one of the two Red Augment Slots becomes an Orange Augment Slot, and it gains Magical Efficiency 10%. The page's summary calls this the Epic (ML 29) version; the recipe table and Maetrim name it Legendary. The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Legendary Fusible Sceptre of Glaciation", quantity = 1 }, { ingredient = "Legendary Malleable Sceptre of Reconstruction", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Glaciated Resonating Quarterstaff"
+augments = []
+note = "Combines Legendary Fusible Sceptre of Glaciation and Legendary Malleable Sceptre of Resonation (no Mark required) into Legendary Glaciated Resonating Quarterstaff, whose enchantments are the two sceptres' combined (non-stacking ones such as Enhancement Bonus and Spellcasting Implement are not additive); one of the two Red Augment Slots becomes an Orange Augment Slot, and it gains Magical Efficiency 10%. The page's summary calls this the Epic (ML 29) version; the recipe table and Maetrim name it Legendary. The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Legendary Fusible Sceptre of Glaciation", quantity = 1 }, { ingredient = "Legendary Malleable Sceptre of Resonation", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Impulsive Devoted Quarterstaff"
+augments = []
+note = "Combines Legendary Fusible Sceptre of Impulse and Legendary Malleable Sceptre of Devotion (no Mark required) into Legendary Impulsive Devoted Quarterstaff, whose enchantments are the two sceptres' combined (non-stacking ones such as Enhancement Bonus and Spellcasting Implement are not additive); one of the two Red Augment Slots becomes an Orange Augment Slot, and it gains Magical Efficiency 10%. The page's summary calls this the Epic (ML 29) version; the recipe table and Maetrim name it Legendary. The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Legendary Fusible Sceptre of Impulse", quantity = 1 }, { ingredient = "Legendary Malleable Sceptre of Devotion", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Impulsive Nullified Quarterstaff"
+augments = []
+note = "Combines Legendary Fusible Sceptre of Impulse and Legendary Malleable Sceptre of Nullification (no Mark required) into Legendary Impulsive Nullified Quarterstaff, whose enchantments are the two sceptres' combined (non-stacking ones such as Enhancement Bonus and Spellcasting Implement are not additive); one of the two Red Augment Slots becomes an Orange Augment Slot, and it gains Magical Efficiency 10%. The page's summary calls this the Epic (ML 29) version; the recipe table and Maetrim name it Legendary. The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Legendary Fusible Sceptre of Impulse", quantity = 1 }, { ingredient = "Legendary Malleable Sceptre of Nullification", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Impulsive Radiant Quarterstaff"
+augments = []
+note = "Combines Legendary Fusible Sceptre of Impulse and Legendary Malleable Sceptre of Radiance (no Mark required) into Legendary Impulsive Radiant Quarterstaff, whose enchantments are the two sceptres' combined (non-stacking ones such as Enhancement Bonus and Spellcasting Implement are not additive); one of the two Red Augment Slots becomes an Orange Augment Slot, and it gains Magical Efficiency 10%. The page's summary calls this the Epic (ML 29) version; the recipe table and Maetrim name it Legendary. The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Legendary Fusible Sceptre of Impulse", quantity = 1 }, { ingredient = "Legendary Malleable Sceptre of Radiance", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Impulsive Reconstructed Quarterstaff"
+augments = []
+note = "Combines Legendary Fusible Sceptre of Impulse and Legendary Malleable Sceptre of Reconstruction (no Mark required) into Legendary Impulsive Reconstructed Quarterstaff, whose enchantments are the two sceptres' combined (non-stacking ones such as Enhancement Bonus and Spellcasting Implement are not additive); one of the two Red Augment Slots becomes an Orange Augment Slot, and it gains Magical Efficiency 10%. The page's summary calls this the Epic (ML 29) version; the recipe table and Maetrim name it Legendary. The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Legendary Fusible Sceptre of Impulse", quantity = 1 }, { ingredient = "Legendary Malleable Sceptre of Reconstruction", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Impulsive Resonating Quarterstaff"
+augments = []
+note = "Combines Legendary Fusible Sceptre of Impulse and Legendary Malleable Sceptre of Resonation (no Mark required) into Legendary Impulsive Resonating Quarterstaff, whose enchantments are the two sceptres' combined (non-stacking ones such as Enhancement Bonus and Spellcasting Implement are not additive); one of the two Red Augment Slots becomes an Orange Augment Slot, and it gains Magical Efficiency 10%. The page's summary calls this the Epic (ML 29) version; the recipe table and Maetrim name it Legendary. The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Legendary Fusible Sceptre of Impulse", quantity = 1 }, { ingredient = "Legendary Malleable Sceptre of Resonation", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Magnetic Devoted Quarterstaff"
+augments = []
+note = "Combines Legendary Fusible Sceptre of Magnetism and Legendary Malleable Sceptre of Devotion (no Mark required) into Legendary Magnetic Devoted Quarterstaff, whose enchantments are the two sceptres' combined (non-stacking ones such as Enhancement Bonus and Spellcasting Implement are not additive); one of the two Red Augment Slots becomes an Orange Augment Slot, and it gains Magical Efficiency 10%. The page's summary calls this the Epic (ML 29) version; the recipe table and Maetrim name it Legendary. The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Legendary Fusible Sceptre of Magnetism", quantity = 1 }, { ingredient = "Legendary Malleable Sceptre of Devotion", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Magnetic Nullified Quarterstaff"
+augments = []
+note = "Combines Legendary Fusible Sceptre of Magnetism and Legendary Malleable Sceptre of Nullification (no Mark required) into Legendary Magnetic Nullified Quarterstaff, whose enchantments are the two sceptres' combined (non-stacking ones such as Enhancement Bonus and Spellcasting Implement are not additive); one of the two Red Augment Slots becomes an Orange Augment Slot, and it gains Magical Efficiency 10%. The page's summary calls this the Epic (ML 29) version; the recipe table and Maetrim name it Legendary. The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Legendary Fusible Sceptre of Magnetism", quantity = 1 }, { ingredient = "Legendary Malleable Sceptre of Nullification", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Magnetic Radiant Quarterstaff"
+augments = []
+note = "Combines Legendary Fusible Sceptre of Magnetism and Legendary Malleable Sceptre of Radiance (no Mark required) into Legendary Magnetic Radiant Quarterstaff, whose enchantments are the two sceptres' combined (non-stacking ones such as Enhancement Bonus and Spellcasting Implement are not additive); one of the two Red Augment Slots becomes an Orange Augment Slot, and it gains Magical Efficiency 10%. The page's summary calls this the Epic (ML 29) version; the recipe table and Maetrim name it Legendary. The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Legendary Fusible Sceptre of Magnetism", quantity = 1 }, { ingredient = "Legendary Malleable Sceptre of Radiance", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Magnetic Reconstructed Quarterstaff"
+augments = []
+note = "Combines Legendary Fusible Sceptre of Magnetism and Legendary Malleable Sceptre of Reconstruction (no Mark required) into Legendary Magnetic Reconstructed Quarterstaff, whose enchantments are the two sceptres' combined (non-stacking ones such as Enhancement Bonus and Spellcasting Implement are not additive); one of the two Red Augment Slots becomes an Orange Augment Slot, and it gains Magical Efficiency 10%. The page's summary calls this the Epic (ML 29) version; the recipe table and Maetrim name it Legendary. The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Legendary Fusible Sceptre of Magnetism", quantity = 1 }, { ingredient = "Legendary Malleable Sceptre of Reconstruction", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary Magnetic Resonating Quarterstaff"
+augments = []
+note = "Combines Legendary Fusible Sceptre of Magnetism and Legendary Malleable Sceptre of Resonation (no Mark required) into Legendary Magnetic Resonating Quarterstaff, whose enchantments are the two sceptres' combined (non-stacking ones such as Enhancement Bonus and Spellcasting Implement are not additive); one of the two Red Augment Slots becomes an Orange Augment Slot, and it gains Magical Efficiency 10%. The page's summary calls this the Epic (ML 29) version; the recipe table and Maetrim name it Legendary. The result is a separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Legendary Fusible Sceptre of Magnetism", quantity = 1 }, { ingredient = "Legendary Malleable Sceptre of Resonation", quantity = 1 }]

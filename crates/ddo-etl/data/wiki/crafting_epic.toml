@@ -1,0 +1,1629 @@
+[[system]]
+name = "Epic Crafting"
+page = "https://ddowiki.com/page/Epic_Crafting"
+read = "2026-09-29"
+npc = "Altar of Epic Rituals in the Twelve, outside the Tower of the Twelve to the south by south-west (converts heroic items to epic ML 20; a new item, so Mythic boosts and slotted augments are wiped). Nearby: NPC Lahar (Epic Trader selling augments and hearts of wood for Tokens of the Twelve; Seal Scroll Shard Cruncher turning pre-Update 50 scrolls, seals and shards into pack ingredients) and the Legacy Altar of Epic Rituals (old-version epic items from a scroll, seal and shard set, or converting a legacy epic item into a new blank version, losing Mythic/Reaper bonuses, rituals, augments, curses and Sentient Jewels)"
+
+[[system.ingredient]]
+name = "Desert Sand Crystal"
+tier = "any"
+source = "Sands of Menechtarun (Update 1) quest end chests in moderate amounts; replaces the pre-Update 50 seals and shards"
+
+[[system.ingredient]]
+name = "Vault Key"
+tier = "any"
+source = "The Vault of Night (Update 3) quest end chests in moderate amounts; replaces the pre-Update 50 seals and shards"
+
+[[system.ingredient]]
+name = "Medal of House Deneith"
+tier = "any"
+source = "Sentinels of Stormreach (Update 4) quest end chests in moderate amounts; replaces the pre-Update 50 seals and shards"
+
+[[system.ingredient]]
+name = "Scrap of Patterned Cloth"
+tier = "any"
+source = "Phiarlan Carnival (Update 5) quest end chests in moderate amounts; replaces the pre-Update 50 seals and shards"
+
+[[system.ingredient]]
+name = "Glowing Fen Mushroom"
+tier = "any"
+source = "The Red Fens (Update 6) quest end chests in moderate amounts; replaces the pre-Update 50 seals and shards"
+
+[[system.ingredient]]
+name = "Fractured Sliver of Time"
+tier = "any"
+source = "The Chronoscope (Update 7) quest end chests in moderate amounts; replaces the pre-Update 50 seals and shards"
+
+[[system.ingredient]]
+name = "Crystallized Spiderweb"
+tier = "any"
+source = "Web of Chaos (Update 13) quest end chests in moderate amounts; replaces the pre-Update 50 seals and shards"
+
+[[system.ingredient]]
+name = "Saltmeadow Hay"
+tier = "any"
+source = "Sinister Secret of Saltmarsh (Update 50) quest end chests in moderate amounts, and Saltmarsh wilderness rare encounter chests; replaces the pre-Update 50 seals and shards"
+
+[[system.ingredient]]
+name = "Greater Token of the Twelve"
+tier = "epic"
+source = "Needed only for raid items"
+
+[[system.ingredient]]
+name = "Heroic base item"
+tier = "epic"
+source = "The heroic version of the item being upgraded"
+
+[[system.ingredient]]
+name = "Flawless Red Dragon Scale"
+tier = "epic"
+
+[[system.ingredient]]
+name = "Shard of the Red Dragon"
+tier = "epic"
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Adherent's Pendant"
+augments = []
+note = "Upgrades the heroic version into Epic Adherent's Pendant (ML 20) at the Altar of Epic Rituals; Sands of Menechtarun item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Amethyst Loupe"
+augments = []
+note = "Upgrades the heroic version into Epic Amethyst Loupe (ML 20) at the Altar of Epic Rituals; Sinister Secret of Saltmarsh item. The Legendary quest or raid can drop the Legendary version directly. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Saltmeadow Hay", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Anchorchain"
+augments = []
+note = "Upgrades the heroic version into Epic Anchorchain (ML 20) at the Altar of Epic Rituals; Sinister Secret of Saltmarsh item. The Legendary quest or raid can drop the Legendary version directly. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Saltmeadow Hay", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Ancient Vulkoorim Dagger"
+augments = []
+note = "Upgrades the heroic version into Epic Ancient Vulkoorim Dagger (ML 20) at the Altar of Epic Rituals; Sands of Menechtarun item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Antique Greataxe"
+augments = []
+note = "Upgrades the heroic version into Epic Antique Greataxe (ML 20) at the Altar of Epic Rituals; Phiarlan Carnival item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Scrap of Patterned Cloth", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Azure Necklace of Prophecy"
+augments = []
+note = "Upgrades the heroic version into Epic Azure Necklace of Prophecy (ML 20) at the Altar of Epic Rituals; Vault of Night raid item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Vault Key", quantity = 50 }, { ingredient = "Greater Token of the Twelve", quantity = 5 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Bejeweled Letter Opener"
+augments = []
+note = "Upgrades the heroic version into Epic Bejeweled Letter Opener (ML 20) at the Altar of Epic Rituals; Sands of Menechtarun item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Belt of Myriad Pockets"
+augments = []
+note = "Upgrades the heroic version into Epic Belt of Myriad Pockets (ML 20) at the Altar of Epic Rituals; Sinister Secret of Saltmarsh item. The Legendary quest or raid can drop the Legendary version directly. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Saltmeadow Hay", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Belt of the Black Abishai"
+augments = []
+note = "Upgrades the heroic version into Epic Belt of the Black Abishai (ML 20) at the Altar of Epic Rituals; The Chronoscope raid item. The Legendary quest or raid can drop the Legendary version directly. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Fractured Sliver of Time", quantity = 50 }, { ingredient = "Greater Token of the Twelve", quantity = 5 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Belt of the Blue Abishai"
+augments = []
+note = "Upgrades the heroic version into Epic Belt of the Blue Abishai (ML 20) at the Altar of Epic Rituals; The Chronoscope raid item. The Legendary quest or raid can drop the Legendary version directly. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Fractured Sliver of Time", quantity = 50 }, { ingredient = "Greater Token of the Twelve", quantity = 5 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Belt of the Green Abishai"
+augments = []
+note = "Upgrades the heroic version into Epic Belt of the Green Abishai (ML 20) at the Altar of Epic Rituals; The Chronoscope raid item. The Legendary quest or raid can drop the Legendary version directly. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Fractured Sliver of Time", quantity = 50 }, { ingredient = "Greater Token of the Twelve", quantity = 5 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Belt of the Mroranon"
+augments = []
+note = "Upgrades the heroic version into Epic Belt of the Mroranon (ML 20) at the Altar of Epic Rituals; Vault of Night raid item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Vault Key", quantity = 50 }, { ingredient = "Greater Token of the Twelve", quantity = 5 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Belt of the Red Abishai"
+augments = []
+note = "Upgrades the heroic version into Epic Belt of the Red Abishai (ML 20) at the Altar of Epic Rituals; The Chronoscope raid item. The Legendary quest or raid can drop the Legendary version directly. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Fractured Sliver of Time", quantity = 50 }, { ingredient = "Greater Token of the Twelve", quantity = 5 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Belt of the White Abishai"
+augments = []
+note = "Upgrades the heroic version into Epic Belt of the White Abishai (ML 20) at the Altar of Epic Rituals; The Chronoscope raid item. The Legendary quest or raid can drop the Legendary version directly. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Fractured Sliver of Time", quantity = 50 }, { ingredient = "Greater Token of the Twelve", quantity = 5 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Big Top"
+augments = []
+note = "Upgrades the heroic version into Epic Big Top (ML 20) at the Altar of Epic Rituals; Phiarlan Carnival item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Scrap of Patterned Cloth", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Blademark's Docent"
+augments = []
+note = "Upgrades the heroic version into Epic Blademark's Docent (ML 20) at the Altar of Epic Rituals; Sentinels of Stormreach item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Medal of House Deneith", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Bloodstone"
+augments = []
+note = "Upgrades the heroic version into Epic Bloodstone (ML 20) at the Altar of Epic Rituals; Sands of Menechtarun item. Has a Perfected version (see Nebula Fragment Crafting). A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Boots of Corrosion"
+augments = []
+note = "Upgrades the heroic version into Epic Boots of Corrosion (ML 20) at the Altar of Epic Rituals; The Chronoscope raid item. The Legendary quest or raid can drop the Legendary version directly. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Fractured Sliver of Time", quantity = 50 }, { ingredient = "Greater Token of the Twelve", quantity = 5 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Boots of the Mire"
+augments = []
+note = "Upgrades the heroic version into Epic Boots of the Mire (ML 20) at the Altar of Epic Rituals; The Red Fens item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Glowing Fen Mushroom", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Bow of the Elements (Air)"
+augments = []
+note = "Upgrades the heroic version into Epic Bow of the Elements (Air) (ML 20) at the Altar of Epic Rituals; Sands of Menechtarun item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Bow of the Silver Flame"
+augments = []
+note = "Upgrades the heroic version into Epic Bow of the Silver Flame (ML 20) at the Altar of Epic Rituals; Web of Chaos item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Crystallized Spiderweb", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Bracers of Deftness"
+augments = []
+note = "Upgrades the heroic version into Epic Bracers of Deftness (ML 20) at the Altar of Epic Rituals; Sands of Menechtarun item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Bracers of the Claw"
+augments = []
+note = "Upgrades the heroic version into Epic Bracers of the Claw (ML 20) at the Altar of Epic Rituals; The Red Fens item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Glowing Fen Mushroom", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Bracers of the Demon's Consort"
+augments = []
+note = "Upgrades the heroic version into Epic Bracers of the Demon's Consort (ML 20) at the Altar of Epic Rituals; Sands of Menechtarun raid item. Has a Perfected version (see Nebula Fragment Crafting). A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 50 }, { ingredient = "Greater Token of the Twelve", quantity = 5 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Bracers of the Hunter"
+augments = []
+note = "Upgrades the heroic version into Epic Bracers of the Hunter (ML 20) at the Altar of Epic Rituals; Sands of Menechtarun item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Bramble-Casters"
+augments = []
+note = "Upgrades the heroic version into Epic Bramble-Casters (ML 20) at the Altar of Epic Rituals; Sands of Menechtarun raid item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 50 }, { ingredient = "Greater Token of the Twelve", quantity = 5 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Brawn's Spirits"
+augments = []
+note = "Upgrades the heroic version into Epic Brawn's Spirits (ML 20) at the Altar of Epic Rituals; Phiarlan Carnival item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Scrap of Patterned Cloth", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Bullywug Priestess' Staff"
+augments = []
+note = "Upgrades the heroic version into Epic Bullywug Priestess' Staff (ML 20) at the Altar of Epic Rituals; Sinister Secret of Saltmarsh item. The Legendary quest or raid can drop the Legendary version directly. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Saltmeadow Hay", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Cacophonic Verge"
+augments = []
+note = "Upgrades the heroic version into Epic Cacophonic Verge (ML 20) at the Altar of Epic Rituals; The Red Fens item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart. Maetrim has no Epic Cacophonic Verge (a wand)."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Glowing Fen Mushroom", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Cape of the Roc"
+augments = []
+note = "Upgrades the heroic version into Epic Cape of the Roc (ML 20) at the Altar of Epic Rituals; Sands of Menechtarun item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Chainmail Coif"
+augments = []
+note = "Upgrades the heroic version into Epic Chainmail Coif (ML 20) at the Altar of Epic Rituals; Sands of Menechtarun item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Chaosblade"
+augments = []
+note = "Upgrades the heroic version into Epic Chaosblade (ML 20) at the Altar of Epic Rituals; Sands of Menechtarun raid item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 50 }, { ingredient = "Greater Token of the Twelve", quantity = 5 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Charged Gauntlets"
+augments = []
+note = "Upgrades the heroic version into Epic Charged Gauntlets (ML 20) at the Altar of Epic Rituals; The Chronoscope raid item. Has a Perfected version (see Nebula Fragment Crafting). The Legendary quest or raid can drop the Legendary version directly. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Fractured Sliver of Time", quantity = 50 }, { ingredient = "Greater Token of the Twelve", quantity = 5 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Chimera's Crown"
+augments = []
+note = "Upgrades the heroic version into Epic Chimera's Crown (ML 20) at the Altar of Epic Rituals; Sentinels of Stormreach item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Medal of House Deneith", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Chimera's Fang"
+augments = []
+note = "Upgrades the heroic version into Epic Chimera's Fang (ML 20) at the Altar of Epic Rituals; Sentinels of Stormreach item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Medal of House Deneith", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Cinderfingers"
+augments = []
+note = "Upgrades the heroic version into Epic Cinderfingers (ML 20) at the Altar of Epic Rituals; Sinister Secret of Saltmarsh item. Has a Perfected version (see Nebula Fragment Crafting). The Legendary quest or raid can drop the Legendary version directly. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Saltmeadow Hay", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Cloak of the Silver Concord"
+augments = []
+note = "Upgrades the heroic version into Epic Cloak of the Silver Concord (ML 20) at the Altar of Epic Rituals; Vault of Night raid item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Vault Key", quantity = 50 }, { ingredient = "Greater Token of the Twelve", quantity = 5 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Cloak of the Zephyr"
+augments = []
+note = "Upgrades the heroic version into Epic Cloak of the Zephyr (ML 20) at the Altar of Epic Rituals; Sands of Menechtarun raid item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 50 }, { ingredient = "Greater Token of the Twelve", quantity = 5 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Collapsible Shortbow"
+augments = []
+note = "Upgrades the heroic version into Epic Collapsible Shortbow (ML 20) at the Altar of Epic Rituals; Sands of Menechtarun item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Coronation Shield"
+augments = []
+note = "Upgrades the heroic version into Epic Coronation Shield (ML 20) at the Altar of Epic Rituals; Sands of Menechtarun item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Corroded Iron Lenses"
+augments = []
+note = "Upgrades the heroic version into Epic Corroded Iron Lenses (ML 20) at the Altar of Epic Rituals; Sinister Secret of Saltmarsh item. The Legendary quest or raid can drop the Legendary version directly. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Saltmeadow Hay", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Crimson Necklace of Prophecy"
+augments = []
+note = "Upgrades the heroic version into Epic Crimson Necklace of Prophecy (ML 20) at the Altar of Epic Rituals; Vault of Night raid item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Vault Key", quantity = 50 }, { ingredient = "Greater Token of the Twelve", quantity = 5 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Crocodile Maw"
+augments = []
+note = "Upgrades the heroic version into Epic Crocodile Maw (ML 20) at the Altar of Epic Rituals; Sinister Secret of Saltmarsh item. The Legendary quest or raid can drop the Legendary version directly. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Saltmeadow Hay", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Crocodile Skin Boots"
+augments = []
+note = "Upgrades the heroic version into Epic Crocodile Skin Boots (ML 20) at the Altar of Epic Rituals; Sinister Secret of Saltmarsh item. The Legendary quest or raid can drop the Legendary version directly. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Saltmeadow Hay", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Crocodile Tooth"
+augments = []
+note = "Upgrades the heroic version into Epic Crocodile Tooth (ML 20) at the Altar of Epic Rituals; Sinister Secret of Saltmarsh item. The Legendary quest or raid can drop the Legendary version directly. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Saltmeadow Hay", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Cruel Nobility"
+augments = []
+note = "Upgrades the heroic version into Epic Cruel Nobility (ML 20) at the Altar of Epic Rituals; Web of Chaos item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Crystallized Spiderweb", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Darkstorm Helm"
+augments = []
+note = "Upgrades the heroic version into Epic Darkstorm Helm (ML 20) at the Altar of Epic Rituals; Web of Chaos item. Has a Perfected version (see Nebula Fragment Crafting). A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Crystallized Spiderweb", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Demon Scale Armor"
+augments = []
+note = "Upgrades the heroic version into Epic Demon Scale Armor (ML 20) at the Altar of Epic Rituals; Sands of Menechtarun raid item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 50 }, { ingredient = "Greater Token of the Twelve", quantity = 5 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Deneith Heavy Chain"
+augments = []
+note = "Upgrades the heroic version into Epic Deneith Heavy Chain (ML 20) at the Altar of Epic Rituals; Sentinels of Stormreach item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Medal of House Deneith", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Diabolist's Docent"
+augments = []
+note = "Upgrades the heroic version into Epic Diabolist's Docent (ML 20) at the Altar of Epic Rituals; The Chronoscope raid item. The Legendary quest or raid can drop the Legendary version directly. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Fractured Sliver of Time", quantity = 50 }, { ingredient = "Greater Token of the Twelve", quantity = 5 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Diabolist's Ring"
+augments = []
+note = "Upgrades the heroic version into Epic Diabolist's Ring (ML 20) at the Altar of Epic Rituals; The Chronoscope raid item. The Legendary quest or raid can drop the Legendary version directly. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Fractured Sliver of Time", quantity = 50 }, { ingredient = "Greater Token of the Twelve", quantity = 5 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Diabolist's Robe"
+augments = []
+note = "Upgrades the heroic version into Epic Diabolist's Robe (ML 20) at the Altar of Epic Rituals; The Chronoscope raid item. The Legendary quest or raid can drop the Legendary version directly. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Fractured Sliver of Time", quantity = 50 }, { ingredient = "Greater Token of the Twelve", quantity = 5 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Docent of Grace"
+augments = []
+note = "Upgrades the heroic version into Epic Docent of Grace (ML 20) at the Altar of Epic Rituals; Vault of Night raid item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Vault Key", quantity = 50 }, { ingredient = "Greater Token of the Twelve", quantity = 5 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Dockworker's Outfit"
+augments = []
+note = "Upgrades the heroic version into Epic Dockworker's Outfit (ML 20) at the Altar of Epic Rituals; Sinister Secret of Saltmarsh item. The Legendary quest or raid can drop the Legendary version directly. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Saltmeadow Hay", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Doublecross Bow"
+augments = []
+note = "Upgrades the heroic version into Epic Doublecross Bow (ML 20) at the Altar of Epic Rituals; Web of Chaos item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Crystallized Spiderweb", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Dragon's Eye"
+augments = []
+note = "Upgrades the heroic version into Epic Dragon's Eye (ML 20) at the Altar of Epic Rituals; Vault of Night raid item. Has a Perfected version (see Nebula Fragment Crafting). A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Vault Key", quantity = 50 }, { ingredient = "Greater Token of the Twelve", quantity = 5 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Driftwood Bracers"
+augments = []
+note = "Upgrades the heroic version into Epic Driftwood Bracers (ML 20) at the Altar of Epic Rituals; Sinister Secret of Saltmarsh item. The Legendary quest or raid can drop the Legendary version directly. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Saltmeadow Hay", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Duelist's Epee"
+augments = []
+note = "Upgrades the heroic version into Epic Duelist's Epee (ML 20) at the Altar of Epic Rituals; Sinister Secret of Saltmarsh item. The Legendary quest or raid can drop the Legendary version directly. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Saltmeadow Hay", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Dusk Heart"
+augments = []
+note = "Upgrades the heroic version into Epic Dusk Heart (ML 20) at the Altar of Epic Rituals; Sands of Menechtarun item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Dustless Boots"
+augments = []
+note = "Upgrades the heroic version into Epic Dustless Boots (ML 20) at the Altar of Epic Rituals; Sands of Menechtarun item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Dynastic Falcata"
+augments = []
+note = "Upgrades the heroic version into Epic Dynastic Falcata (ML 20) at the Altar of Epic Rituals; Sands of Menechtarun item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Elder's Cap"
+augments = []
+note = "Upgrades the heroic version into Epic Elder's Cap (ML 20) at the Altar of Epic Rituals; The Red Fens item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Glowing Fen Mushroom", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Elder's Focus"
+augments = []
+note = "Upgrades the heroic version into Epic Elder's Focus (ML 20) at the Altar of Epic Rituals; The Red Fens item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Glowing Fen Mushroom", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Elyd Edge"
+augments = []
+note = "Upgrades the heroic version into Epic Elyd Edge (ML 20) at the Altar of Epic Rituals; Sentinels of Stormreach item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Medal of House Deneith", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Envenomed Blade"
+augments = []
+note = "Upgrades the heroic version into Epic Envenomed Blade (ML 20) at the Altar of Epic Rituals; Web of Chaos item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Crystallized Spiderweb", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Envenomed Cloak"
+augments = []
+note = "Upgrades the heroic version into Epic Envenomed Cloak (ML 20) at the Altar of Epic Rituals; The Chronoscope raid item. The Legendary quest or raid can drop the Legendary version directly. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Fractured Sliver of Time", quantity = 50 }, { ingredient = "Greater Token of the Twelve", quantity = 5 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Ethereal Ring"
+augments = []
+note = "Upgrades the heroic version into Epic Ethereal Ring (ML 20) at the Altar of Epic Rituals; Sinister Secret of Saltmarsh item. The Legendary quest or raid can drop the Legendary version directly. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Saltmeadow Hay", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Firestorm Greaves"
+augments = []
+note = "Upgrades the heroic version into Epic Firestorm Greaves (ML 20) at the Altar of Epic Rituals; Sands of Menechtarun item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Flameward"
+augments = []
+note = "Upgrades the heroic version into Epic Flameward (ML 20) at the Altar of Epic Rituals; Web of Chaos item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Crystallized Spiderweb", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Flint"
+augments = []
+note = "Upgrades the heroic version into Epic Flint (ML 20) at the Altar of Epic Rituals; Sands of Menechtarun item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Frozen Plate"
+augments = []
+note = "Upgrades the heroic version into Epic Frozen Plate (ML 20) at the Altar of Epic Rituals; The Red Fens item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Glowing Fen Mushroom", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Full Plate of the Ringleader"
+augments = []
+note = "Upgrades the heroic version into Epic Full Plate of the Ringleader (ML 20) at the Altar of Epic Rituals; Phiarlan Carnival item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Scrap of Patterned Cloth", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Fury of the Flame"
+augments = []
+note = "Upgrades the heroic version into Epic Fury of the Flame (ML 20) at the Altar of Epic Rituals; Web of Chaos item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Crystallized Spiderweb", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Garos' Malice"
+augments = []
+note = "Upgrades the heroic version into Epic Garos' Malice (ML 20) at the Altar of Epic Rituals; Web of Chaos item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Crystallized Spiderweb", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Gem of Many Facets"
+augments = []
+note = "Upgrades the heroic version into Epic Gem of Many Facets (ML 20) at the Altar of Epic Rituals; The Chronoscope raid item. The Legendary quest or raid can drop the Legendary version directly. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Fractured Sliver of Time", quantity = 50 }, { ingredient = "Greater Token of the Twelve", quantity = 5 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Gloves of the Claw"
+augments = []
+note = "Upgrades the heroic version into Epic Gloves of the Claw (ML 20) at the Altar of Epic Rituals; The Red Fens item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Glowing Fen Mushroom", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Gloves of the Falcon"
+augments = []
+note = "Upgrades the heroic version into Epic Gloves of the Falcon (ML 20) at the Altar of Epic Rituals; Sands of Menechtarun item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Gloves of the Tinkerer"
+augments = []
+note = "Upgrades the heroic version into Epic Gloves of the Tinkerer (ML 20) at the Altar of Epic Rituals; Sinister Secret of Saltmarsh item. The Legendary quest or raid can drop the Legendary version directly. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Saltmeadow Hay", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Goggles of Time-Sensing"
+augments = []
+note = "Upgrades the heroic version into Epic Goggles of Time-Sensing (ML 20) at the Altar of Epic Rituals; The Chronoscope raid item. Has a Perfected version (see Nebula Fragment Crafting). The Legendary quest or raid can drop the Legendary version directly. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Fractured Sliver of Time", quantity = 50 }, { ingredient = "Greater Token of the Twelve", quantity = 5 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Goldcursed Dagger"
+augments = []
+note = "Upgrades the heroic version into Epic Goldcursed Dagger (ML 20) at the Altar of Epic Rituals; Sinister Secret of Saltmarsh item. The Legendary quest or raid can drop the Legendary version directly. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Saltmeadow Hay", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Golden Greaves"
+augments = []
+note = "Upgrades the heroic version into Epic Golden Greaves (ML 20) at the Altar of Epic Rituals; Sands of Menechtarun item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Golden Guile"
+augments = []
+note = "Upgrades the heroic version into Epic Golden Guile (ML 20) at the Altar of Epic Rituals; Web of Chaos item. Has a Perfected version (see Nebula Fragment Crafting). A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Crystallized Spiderweb", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Greatclub of the Scrag"
+augments = []
+note = "Upgrades the heroic version into Epic Greatclub of the Scrag (ML 20) at the Altar of Epic Rituals; The Red Fens item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Glowing Fen Mushroom", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Green Blade"
+augments = []
+note = "Upgrades the heroic version into Epic Green Blade (ML 20) at the Altar of Epic Rituals; Sands of Menechtarun raid item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 50 }, { ingredient = "Greater Token of the Twelve", quantity = 5 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Grim's Bracelet"
+augments = []
+note = "Upgrades the heroic version into Epic Grim's Bracelet (ML 20) at the Altar of Epic Rituals; Phiarlan Carnival item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Scrap of Patterned Cloth", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Hammer of Life"
+augments = []
+note = "Upgrades the heroic version into Epic Hammer of Life (ML 20) at the Altar of Epic Rituals; Vault of Night raid item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Vault Key", quantity = 50 }, { ingredient = "Greater Token of the Twelve", quantity = 5 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Hellfire Crossbow"
+augments = []
+note = "Upgrades the heroic version into Epic Hellfire Crossbow (ML 20) at the Altar of Epic Rituals; The Chronoscope raid item. The Legendary quest or raid can drop the Legendary version directly. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Fractured Sliver of Time", quantity = 50 }, { ingredient = "Greater Token of the Twelve", quantity = 5 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Hellstroke Great Axe"
+augments = []
+note = "Upgrades the heroic version into Epic Hellstroke Great Axe (ML 20) at the Altar of Epic Rituals; The Chronoscope raid item. The Legendary quest or raid can drop the Legendary version directly. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Fractured Sliver of Time", quantity = 50 }, { ingredient = "Greater Token of the Twelve", quantity = 5 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Helm of Frost"
+augments = []
+note = "Upgrades the heroic version into Epic Helm of Frost (ML 20) at the Altar of Epic Rituals; The Chronoscope raid item. The Legendary quest or raid can drop the Legendary version directly. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Fractured Sliver of Time", quantity = 50 }, { ingredient = "Greater Token of the Twelve", quantity = 5 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Helm of the Mroranon"
+augments = []
+note = "Upgrades the heroic version into Epic Helm of the Mroranon (ML 20) at the Altar of Epic Rituals; Vault of Night raid item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Vault Key", quantity = 50 }, { ingredient = "Greater Token of the Twelve", quantity = 5 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Helm of the Red Dragon"
+augments = []
+note = "Vault of Night raid item. The page says it has no upgrade ingredient: it drops directly from the raid. Has a Perfected version. Listed on the page; no augment counterpart."
+cost = []
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Hruvayah's Medallion"
+augments = []
+note = "Upgrades the heroic version into Epic Hruvayah's Medallion (ML 20) at the Altar of Epic Rituals; Sands of Menechtarun item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Hyena Claw Necklace"
+augments = []
+note = "Upgrades the heroic version into Epic Hyena Claw Necklace (ML 20) at the Altar of Epic Rituals; Sands of Menechtarun item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Illusionist's Garb"
+augments = []
+note = "Upgrades the heroic version into Epic Illusionist's Garb (ML 20) at the Altar of Epic Rituals; Phiarlan Carnival item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Scrap of Patterned Cloth", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Immaculate Globe"
+augments = []
+note = "Upgrades the heroic version into Epic Immaculate Globe (ML 20) at the Altar of Epic Rituals; Sinister Secret of Saltmarsh item. The Legendary quest or raid can drop the Legendary version directly. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Saltmeadow Hay", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Infested Armor"
+augments = []
+note = "Upgrades the heroic version into Epic Infested Armor (ML 20) at the Altar of Epic Rituals; The Chronoscope raid item. The Legendary quest or raid can drop the Legendary version directly. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Fractured Sliver of Time", quantity = 50 }, { ingredient = "Greater Token of the Twelve", quantity = 5 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Infested Scalemail"
+augments = []
+note = "Upgrades the heroic version into Epic Infested Scalemail (ML 20) at the Altar of Epic Rituals; The Chronoscope raid item. The Legendary quest or raid can drop the Legendary version directly. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Fractured Sliver of Time", quantity = 50 }, { ingredient = "Greater Token of the Twelve", quantity = 5 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Ironweave Robe"
+augments = []
+note = "Upgrades the heroic version into Epic Ironweave Robe (ML 20) at the Altar of Epic Rituals; Vault of Night raid item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Vault Key", quantity = 50 }, { ingredient = "Greater Token of the Twelve", quantity = 5 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Jidz-Tet'ka"
+augments = []
+note = "Upgrades the heroic version into Epic Jidz-Tet'ka (ML 20) at the Altar of Epic Rituals; Sentinels of Stormreach item. Has a Perfected version (see Nebula Fragment Crafting). A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Medal of House Deneith", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Kron'zek's Cruelty"
+augments = []
+note = "Upgrades the heroic version into Epic Kron'zek's Cruelty (ML 20) at the Altar of Epic Rituals; Phiarlan Carnival item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Scrap of Patterned Cloth", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Kundarak Delving Boots"
+augments = []
+note = "Upgrades the heroic version into Epic Kundarak Delving Boots (ML 20) at the Altar of Epic Rituals; Vault of Night raid item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Vault Key", quantity = 50 }, { ingredient = "Greater Token of the Twelve", quantity = 5 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Kundarak Delving Goggles"
+augments = []
+note = "Upgrades the heroic version into Epic Kundarak Delving Goggles (ML 20) at the Altar of Epic Rituals; Vault of Night raid item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Vault Key", quantity = 50 }, { ingredient = "Greater Token of the Twelve", quantity = 5 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Kundarak Delving Suit"
+augments = []
+note = "Upgrades the heroic version into Epic Kundarak Delving Suit (ML 20) at the Altar of Epic Rituals; Vault of Night raid item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Vault Key", quantity = 50 }, { ingredient = "Greater Token of the Twelve", quantity = 5 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Kundarak Warding Bracers"
+augments = []
+note = "Upgrades the heroic version into Epic Kundarak Warding Bracers (ML 20) at the Altar of Epic Rituals; Vault of Night raid item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Vault Key", quantity = 50 }, { ingredient = "Greater Token of the Twelve", quantity = 5 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Kundarak Warding Shield"
+augments = []
+note = "Upgrades the heroic version into Epic Kundarak Warding Shield (ML 20) at the Altar of Epic Rituals; Vault of Night raid item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Vault Key", quantity = 50 }, { ingredient = "Greater Token of the Twelve", quantity = 5 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Lion-headed Belt Buckle"
+augments = []
+note = "Upgrades the heroic version into Epic Lion-headed Belt Buckle (ML 20) at the Altar of Epic Rituals; Sands of Menechtarun raid item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 50 }, { ingredient = "Greater Token of the Twelve", quantity = 5 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Lizardfolk Tooth Necklace"
+augments = []
+note = "Upgrades the heroic version into Epic Lizardfolk Tooth Necklace (ML 20) at the Altar of Epic Rituals; Sinister Secret of Saltmarsh item. The Legendary quest or raid can drop the Legendary version directly. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Saltmeadow Hay", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Luminous Truth"
+augments = []
+note = "Upgrades the heroic version into Epic Luminous Truth (ML 20) at the Altar of Epic Rituals; Web of Chaos item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Crystallized Spiderweb", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Marilith Chain"
+augments = []
+note = "Upgrades the heroic version into Epic Marilith Chain (ML 20) at the Altar of Epic Rituals; Sands of Menechtarun raid item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 50 }, { ingredient = "Greater Token of the Twelve", quantity = 5 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Marshreed Cloak"
+augments = []
+note = "Upgrades the heroic version into Epic Marshreed Cloak (ML 20) at the Altar of Epic Rituals; Sinister Secret of Saltmarsh item. The Legendary quest or raid can drop the Legendary version directly. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Saltmeadow Hay", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Mask of Comedy"
+augments = []
+note = "Upgrades the heroic version into Epic Mask of Comedy (ML 20) at the Altar of Epic Rituals; Phiarlan Carnival item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Scrap of Patterned Cloth", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Mask of Tragedy"
+augments = []
+note = "Upgrades the heroic version into Epic Mask of Tragedy (ML 20) at the Altar of Epic Rituals; Phiarlan Carnival item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Scrap of Patterned Cloth", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Midnight Greetings"
+augments = []
+note = "Upgrades the heroic version into Epic Midnight Greetings (ML 20) at the Altar of Epic Rituals; Sentinels of Stormreach item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Medal of House Deneith", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Mirage"
+augments = []
+note = "Upgrades the heroic version into Epic Mirage (ML 20) at the Altar of Epic Rituals; Sands of Menechtarun item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Mummy Wrappings"
+augments = []
+note = "Upgrades the heroic version into Epic Mummy Wrappings (ML 20) at the Altar of Epic Rituals; Sands of Menechtarun item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Necklace of Venom"
+augments = []
+note = "Upgrades the heroic version into Epic Necklace of Venom (ML 20) at the Altar of Epic Rituals; The Red Fens item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Glowing Fen Mushroom", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Noxious Fang"
+augments = []
+note = "Upgrades the heroic version into Epic Noxious Fang (ML 20) at the Altar of Epic Rituals; Phiarlan Carnival item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Scrap of Patterned Cloth", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Pendant of the Black Abishai"
+augments = []
+note = "Upgrades the heroic version into Epic Pendant of the Black Abishai (ML 20) at the Altar of Epic Rituals; The Chronoscope raid item. The Legendary quest or raid can drop the Legendary version directly. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Fractured Sliver of Time", quantity = 50 }, { ingredient = "Greater Token of the Twelve", quantity = 5 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Pendant of the Blue Abishai"
+augments = []
+note = "Upgrades the heroic version into Epic Pendant of the Blue Abishai (ML 20) at the Altar of Epic Rituals; The Chronoscope raid item. The Legendary quest or raid can drop the Legendary version directly. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Fractured Sliver of Time", quantity = 50 }, { ingredient = "Greater Token of the Twelve", quantity = 5 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Pendant of the Green Abishai"
+augments = []
+note = "Upgrades the heroic version into Epic Pendant of the Green Abishai (ML 20) at the Altar of Epic Rituals; The Chronoscope raid item. The Legendary quest or raid can drop the Legendary version directly. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Fractured Sliver of Time", quantity = 50 }, { ingredient = "Greater Token of the Twelve", quantity = 5 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Pendant of the Red Abishai"
+augments = []
+note = "Upgrades the heroic version into Epic Pendant of the Red Abishai (ML 20) at the Altar of Epic Rituals; The Chronoscope raid item. The Legendary quest or raid can drop the Legendary version directly. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Fractured Sliver of Time", quantity = 50 }, { ingredient = "Greater Token of the Twelve", quantity = 5 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Pendant of the White Abishai"
+augments = []
+note = "Upgrades the heroic version into Epic Pendant of the White Abishai (ML 20) at the Altar of Epic Rituals; The Chronoscope raid item. The Legendary quest or raid can drop the Legendary version directly. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Fractured Sliver of Time", quantity = 50 }, { ingredient = "Greater Token of the Twelve", quantity = 5 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Phiarlan Mirror Cloak"
+augments = []
+note = "Upgrades the heroic version into Epic Phiarlan Mirror Cloak (ML 20) at the Altar of Epic Rituals; Phiarlan Carnival item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Scrap of Patterned Cloth", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Phiarlan Spy Dagger"
+augments = []
+note = "Upgrades the heroic version into Epic Phiarlan Spy Dagger (ML 20) at the Altar of Epic Rituals; Phiarlan Carnival item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Scrap of Patterned Cloth", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Pouch of Jerky"
+augments = []
+note = "Upgrades the heroic version into Epic Pouch of Jerky (ML 20) at the Altar of Epic Rituals; Sands of Menechtarun raid item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 50 }, { ingredient = "Greater Token of the Twelve", quantity = 5 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Privateer's Leathers"
+augments = []
+note = "Upgrades the heroic version into Epic Privateer's Leathers (ML 20) at the Altar of Epic Rituals; Sinister Secret of Saltmarsh item. The Legendary quest or raid can drop the Legendary version directly. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Saltmeadow Hay", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Rakshasa Hide"
+augments = []
+note = "Upgrades the heroic version into Epic Rakshasa Hide (ML 20) at the Altar of Epic Rituals; Web of Chaos item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Crystallized Spiderweb", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Raven's Sight"
+augments = []
+note = "Upgrades the heroic version into Epic Raven's Sight (ML 20) at the Altar of Epic Rituals; The Red Fens item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Glowing Fen Mushroom", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Raven's Talons"
+augments = []
+note = "Upgrades the heroic version into Epic Raven's Talons (ML 20) at the Altar of Epic Rituals; The Red Fens item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Glowing Fen Mushroom", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Ring of Baphomet"
+augments = []
+note = "Upgrades the heroic version into Epic Ring of Baphomet (ML 20) at the Altar of Epic Rituals; Sands of Menechtarun item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Ring of Elemental Essence"
+augments = []
+note = "Upgrades the heroic version into Epic Ring of Elemental Essence (ML 20) at the Altar of Epic Rituals; Phiarlan Carnival item. Has a Perfected version (see Nebula Fragment Crafting). A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Scrap of Patterned Cloth", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Ring of Spell Storing"
+augments = []
+note = "Upgrades the heroic version into Epic Ring of Spell Storing (ML 20) at the Altar of Epic Rituals; Sands of Menechtarun item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Ring of the Black Abishai"
+augments = []
+note = "Upgrades the heroic version into Epic Ring of the Black Abishai (ML 20) at the Altar of Epic Rituals; The Chronoscope raid item. The Legendary quest or raid can drop the Legendary version directly. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Fractured Sliver of Time", quantity = 50 }, { ingredient = "Greater Token of the Twelve", quantity = 5 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Ring of the Blue Abishai"
+augments = []
+note = "Upgrades the heroic version into Epic Ring of the Blue Abishai (ML 20) at the Altar of Epic Rituals; The Chronoscope raid item. The Legendary quest or raid can drop the Legendary version directly. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Fractured Sliver of Time", quantity = 50 }, { ingredient = "Greater Token of the Twelve", quantity = 5 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Ring of the Green Abishai"
+augments = []
+note = "Upgrades the heroic version into Epic Ring of the Green Abishai (ML 20) at the Altar of Epic Rituals; The Chronoscope raid item. The Legendary quest or raid can drop the Legendary version directly. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Fractured Sliver of Time", quantity = 50 }, { ingredient = "Greater Token of the Twelve", quantity = 5 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Ring of the Mire"
+augments = []
+note = "Upgrades the heroic version into Epic Ring of the Mire (ML 20) at the Altar of Epic Rituals; The Red Fens item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Glowing Fen Mushroom", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Ring of the Red Abishai"
+augments = []
+note = "Upgrades the heroic version into Epic Ring of the Red Abishai (ML 20) at the Altar of Epic Rituals; The Chronoscope raid item. The Legendary quest or raid can drop the Legendary version directly. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Fractured Sliver of Time", quantity = 50 }, { ingredient = "Greater Token of the Twelve", quantity = 5 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Ring of the Silver Concord"
+augments = []
+note = "Upgrades the heroic version into Epic Ring of the Silver Concord (ML 20) at the Altar of Epic Rituals; Vault of Night raid item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Vault Key", quantity = 50 }, { ingredient = "Greater Token of the Twelve", quantity = 5 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Ring of the White Abishai"
+augments = []
+note = "Upgrades the heroic version into Epic Ring of the White Abishai (ML 20) at the Altar of Epic Rituals; The Chronoscope raid item. The Legendary quest or raid can drop the Legendary version directly. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Fractured Sliver of Time", quantity = 50 }, { ingredient = "Greater Token of the Twelve", quantity = 5 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Ring of Venom"
+augments = []
+note = "Upgrades the heroic version into Epic Ring of Venom (ML 20) at the Altar of Epic Rituals; The Red Fens item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Glowing Fen Mushroom", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Robe of Dissonance"
+augments = []
+note = "Upgrades the heroic version into Epic Robe of Dissonance (ML 20) at the Altar of Epic Rituals; The Red Fens item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Glowing Fen Mushroom", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Robe of Fire"
+augments = []
+note = "Upgrades the heroic version into Epic Robe of Fire (ML 20) at the Altar of Epic Rituals; Sands of Menechtarun item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Ruby Encrusted Gauntlets"
+augments = []
+note = "Upgrades the heroic version into Epic Ruby Encrusted Gauntlets (ML 20) at the Altar of Epic Rituals; Vault of Night raid item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Vault Key", quantity = 50 }, { ingredient = "Greater Token of the Twelve", quantity = 5 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Sacred Band"
+augments = []
+note = "Upgrades the heroic version into Epic Sacred Band (ML 20) at the Altar of Epic Rituals; The Red Fens item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Glowing Fen Mushroom", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Sacred Helm"
+augments = []
+note = "Upgrades the heroic version into Epic Sacred Helm (ML 20) at the Altar of Epic Rituals; The Red Fens item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Glowing Fen Mushroom", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Sailcloth Cloak"
+augments = []
+note = "Upgrades the heroic version into Epic Sailcloth Cloak (ML 20) at the Altar of Epic Rituals; Sinister Secret of Saltmarsh item. The Legendary quest or raid can drop the Legendary version directly. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Saltmeadow Hay", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Salt-Pearl Ring"
+augments = []
+note = "Upgrades the heroic version into Epic Salt-Pearl Ring (ML 20) at the Altar of Epic Rituals; Sinister Secret of Saltmarsh item. Has a Perfected version (see Nebula Fragment Crafting). The Legendary quest or raid can drop the Legendary version directly. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Saltmeadow Hay", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Saltiron Bracer"
+augments = []
+note = "Upgrades the heroic version into Epic Saltiron Bracer (ML 20) at the Altar of Epic Rituals; Sinister Secret of Saltmarsh item. The Legendary quest or raid can drop the Legendary version directly. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Saltmeadow Hay", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Saltiron Docent"
+augments = []
+note = "Upgrades the heroic version into Epic Saltiron Docent (ML 20) at the Altar of Epic Rituals; Sinister Secret of Saltmarsh item. The Legendary quest or raid can drop the Legendary version directly. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Saltmeadow Hay", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Saltiron Plate"
+augments = []
+note = "Upgrades the heroic version into Epic Saltiron Plate (ML 20) at the Altar of Epic Rituals; Sinister Secret of Saltmarsh item. The Legendary quest or raid can drop the Legendary version directly. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Saltmeadow Hay", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Saltiron Targe"
+augments = []
+note = "Upgrades the heroic version into Epic Saltiron Targe (ML 20) at the Altar of Epic Rituals; Sinister Secret of Saltmarsh item. The Legendary quest or raid can drop the Legendary version directly. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Saltmeadow Hay", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Sandstorm Glasses"
+augments = []
+note = "Upgrades the heroic version into Epic Sandstorm Glasses (ML 20) at the Altar of Epic Rituals; Sands of Menechtarun item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Scalegouger"
+augments = []
+note = "Upgrades the heroic version into Epic Scalegouger (ML 20) at the Altar of Epic Rituals; Sinister Secret of Saltmarsh item. The Legendary quest or raid can drop the Legendary version directly. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Saltmeadow Hay", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Scorched Bracers"
+augments = []
+note = "Upgrades the heroic version into Epic Scorched Bracers (ML 20) at the Altar of Epic Rituals; The Chronoscope raid item. The Legendary quest or raid can drop the Legendary version directly. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Fractured Sliver of Time", quantity = 50 }, { ingredient = "Greater Token of the Twelve", quantity = 5 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Seal of the Earth"
+augments = []
+note = "Upgrades the heroic version into Epic Seal of the Earth (ML 20) at the Altar of Epic Rituals; Sands of Menechtarun item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Shaman's Band"
+augments = []
+note = "Upgrades the heroic version into Epic Shaman's Band (ML 20) at the Altar of Epic Rituals; The Red Fens item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Glowing Fen Mushroom", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Shaman's Beads"
+augments = []
+note = "Upgrades the heroic version into Epic Shaman's Beads (ML 20) at the Altar of Epic Rituals; The Red Fens item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Glowing Fen Mushroom", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Shard of Vollun"
+augments = []
+note = "Upgrades the heroic version into Epic Shard of Vollun (ML 20) at the Altar of Epic Rituals; Sands of Menechtarun item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Shatterbow"
+augments = []
+note = "Upgrades the heroic version into Epic Shatterbow (ML 20) at the Altar of Epic Rituals; The Red Fens item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Glowing Fen Mushroom", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Shield of the Scorpion"
+augments = []
+note = "Upgrades the heroic version into Epic Shield of the Scorpion (ML 20) at the Altar of Epic Rituals; Sands of Menechtarun item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Shimmering Pendant"
+augments = []
+note = "Upgrades the heroic version into Epic Shimmering Pendant (ML 20) at the Altar of Epic Rituals; Phiarlan Carnival item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Scrap of Patterned Cloth", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Shining Crest of St. Markus"
+augments = []
+note = "Upgrades the heroic version into Epic Shining Crest of St. Markus (ML 20) at the Altar of Epic Rituals; Sands of Menechtarun raid item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 50 }, { ingredient = "Greater Token of the Twelve", quantity = 5 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Ship-Mage's Attire"
+augments = []
+note = "Upgrades the heroic version into Epic Ship-Mage's Attire (ML 20) at the Altar of Epic Rituals; Sinister Secret of Saltmarsh item. The Legendary quest or raid can drop the Legendary version directly. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Saltmeadow Hay", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Silken Mail"
+augments = []
+note = "Upgrades the heroic version into Epic Silken Mail (ML 20) at the Altar of Epic Rituals; Sands of Menechtarun item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Silver Necklace of Prophecy"
+augments = []
+note = "Upgrades the heroic version into Epic Silver Necklace of Prophecy (ML 20) at the Altar of Epic Rituals; Vault of Night raid item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Vault Key", quantity = 50 }, { ingredient = "Greater Token of the Twelve", quantity = 5 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Silver Pocketwatch"
+augments = []
+note = "Upgrades the heroic version into Epic Silver Pocketwatch (ML 20) at the Altar of Epic Rituals; Sinister Secret of Saltmarsh item. The Legendary quest or raid can drop the Legendary version directly. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Saltmeadow Hay", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Silver Slinger"
+augments = []
+note = "Upgrades the heroic version into Epic Silver Slinger (ML 20) at the Altar of Epic Rituals; Web of Chaos item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Crystallized Spiderweb", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Sir Squilliam IV, Esq."
+augments = []
+note = "Upgrades the heroic version into Sir Squilliam IV, Esq. (ML 20) at the Altar of Epic Rituals; Sinister Secret of Saltmarsh item. The Legendary quest or raid can drop the Legendary version directly. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Saltmeadow Hay", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Siren's Belt"
+augments = []
+note = "Upgrades the heroic version into Epic Siren's Belt (ML 20) at the Altar of Epic Rituals; The Red Fens item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Glowing Fen Mushroom", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Siren's Charm"
+augments = []
+note = "Upgrades the heroic version into Epic Siren's Charm (ML 20) at the Altar of Epic Rituals; The Red Fens item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Glowing Fen Mushroom", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Sirocco"
+augments = []
+note = "Upgrades the heroic version into Epic Sirocco (ML 20) at the Altar of Epic Rituals; Sands of Menechtarun item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Skull of the Sea"
+augments = []
+note = "Upgrades the heroic version into Epic Skull of the Sea (ML 20) at the Altar of Epic Rituals; Sinister Secret of Saltmarsh item. The Legendary quest or raid can drop the Legendary version directly. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Saltmeadow Hay", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Skullduggery Cap"
+augments = []
+note = "Upgrades the heroic version into Epic Skullduggery Cap (ML 20) at the Altar of Epic Rituals; Sinister Secret of Saltmarsh item. The Legendary quest or raid can drop the Legendary version directly. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Saltmeadow Hay", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Smash 'n Grabber"
+augments = []
+note = "Upgrades the heroic version into Epic Smash 'n Grabber (ML 20) at the Altar of Epic Rituals; Sinister Secret of Saltmarsh item. The Legendary quest or raid can drop the Legendary version directly. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Saltmeadow Hay", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Smuggler's Cap"
+augments = []
+note = "Upgrades the heroic version into Epic Smuggler's Cap (ML 20) at the Altar of Epic Rituals; Sinister Secret of Saltmarsh item. The Legendary quest or raid can drop the Legendary version directly. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Saltmeadow Hay", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Smuggler's Gear"
+augments = []
+note = "Upgrades the heroic version into Epic Smuggler's Gear (ML 20) at the Altar of Epic Rituals; Sinister Secret of Saltmarsh item. The Legendary quest or raid can drop the Legendary version directly. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Saltmeadow Hay", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Snakeskin Belt"
+augments = []
+note = "Upgrades the heroic version into Epic Snakeskin Belt (ML 20) at the Altar of Epic Rituals; Sinister Secret of Saltmarsh item. The Legendary quest or raid can drop the Legendary version directly. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Saltmeadow Hay", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Souleater"
+augments = []
+note = "Upgrades the heroic version into Epic Souleater (ML 20) at the Altar of Epic Rituals; The Red Fens item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Glowing Fen Mushroom", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Sparksoles"
+augments = []
+note = "Upgrades the heroic version into Epic Sparksoles (ML 20) at the Altar of Epic Rituals; Sinister Secret of Saltmarsh item. The Legendary quest or raid can drop the Legendary version directly. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Saltmeadow Hay", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Spectacles of Spirit Sight"
+augments = []
+note = "Upgrades the heroic version into Epic Spectacles of Spirit Sight (ML 20) at the Altar of Epic Rituals; Sands of Menechtarun item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Spectral Gloves"
+augments = []
+note = "Upgrades the heroic version into Epic Spectral Gloves (ML 20) at the Altar of Epic Rituals; Sands of Menechtarun item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Spiked Turban"
+augments = []
+note = "Upgrades the heroic version into Epic Spiked Turban (ML 20) at the Altar of Epic Rituals; Sands of Menechtarun item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Splintermast"
+augments = []
+note = "Upgrades the heroic version into Epic Splintermast (ML 20) at the Altar of Epic Rituals; Sinister Secret of Saltmarsh item. The Legendary quest or raid can drop the Legendary version directly. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Saltmeadow Hay", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Staff of Arcane Power"
+augments = []
+note = "Upgrades the heroic version into Epic Staff of Arcane Power (ML 20) at the Altar of Epic Rituals; Sands of Menechtarun raid item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 50 }, { ingredient = "Greater Token of the Twelve", quantity = 5 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Staff of Inner Sight"
+augments = []
+note = "Upgrades the heroic version into Epic Staff of Inner Sight (ML 20) at the Altar of Epic Rituals; Sands of Menechtarun item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Staff of Nat Gann"
+augments = []
+note = "Upgrades the heroic version into Epic Staff of Nat Gann (ML 20) at the Altar of Epic Rituals; The Chronoscope raid item. The Legendary quest or raid can drop the Legendary version directly. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Fractured Sliver of Time", quantity = 50 }, { ingredient = "Greater Token of the Twelve", quantity = 5 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Sting"
+augments = []
+note = "Upgrades the heroic version into Epic Sting (ML 20) at the Altar of Epic Rituals; Sands of Menechtarun item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Stinkpelt's Hide"
+augments = []
+note = "Upgrades the heroic version into Epic Stinkpelt's Hide (ML 20) at the Altar of Epic Rituals; Sands of Menechtarun item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Stonemeld Plate Armor"
+augments = []
+note = "Upgrades the heroic version into Epic Stonemeld Plate Armor (ML 20) at the Altar of Epic Rituals; Vault of Night raid item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Vault Key", quantity = 50 }, { ingredient = "Greater Token of the Twelve", quantity = 5 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Storm"
+augments = []
+note = "Upgrades the heroic version into Epic Storm (ML 20) at the Altar of Epic Rituals; Sands of Menechtarun raid item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 50 }, { ingredient = "Greater Token of the Twelve", quantity = 5 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Sword of Shadow"
+augments = []
+note = "Upgrades the heroic version into Epic Sword of Shadow (ML 20) at the Altar of Epic Rituals; Vault of Night raid item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Vault Key", quantity = 50 }, { ingredient = "Greater Token of the Twelve", quantity = 5 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Templar's Bastion"
+augments = []
+note = "Upgrades the heroic version into Epic Templar's Bastion (ML 20) at the Altar of Epic Rituals; Web of Chaos item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Crystallized Spiderweb", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Templar's Bulwark"
+augments = []
+note = "Upgrades the heroic version into Epic Templar's Bulwark (ML 20) at the Altar of Epic Rituals; Web of Chaos item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Crystallized Spiderweb", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Templar's Docent"
+augments = []
+note = "Upgrades the heroic version into Epic Templar's Docent (ML 20) at the Altar of Epic Rituals; Web of Chaos item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Crystallized Spiderweb", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Templar's Justice"
+augments = []
+note = "Upgrades the heroic version into Epic Templar's Justice (ML 20) at the Altar of Epic Rituals; Web of Chaos item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Crystallized Spiderweb", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Templar's Retribution"
+augments = []
+note = "Upgrades the heroic version into Epic Templar's Retribution (ML 20) at the Altar of Epic Rituals; Web of Chaos item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Crystallized Spiderweb", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Thornlord"
+augments = []
+note = "Upgrades the heroic version into Epic Thornlord (ML 20) at the Altar of Epic Rituals; Sands of Menechtarun item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Timeblade"
+augments = []
+note = "Upgrades the heroic version into Epic Timeblade (ML 20) at the Altar of Epic Rituals; The Chronoscope raid item. The Legendary quest or raid can drop the Legendary version directly. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Fractured Sliver of Time", quantity = 50 }, { ingredient = "Greater Token of the Twelve", quantity = 5 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Tinder"
+augments = []
+note = "Upgrades the heroic version into Epic Tinder (ML 20) at the Altar of Epic Rituals; Sands of Menechtarun item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Torc of Prince Raiyum-de II"
+augments = []
+note = "Upgrades the heroic version into Epic Torc of Prince Raiyum-de II (ML 20) at the Altar of Epic Rituals; Sands of Menechtarun raid item. Has a Perfected version (see Nebula Fragment Crafting). A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 50 }, { ingredient = "Greater Token of the Twelve", quantity = 5 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Tourney Armor"
+augments = []
+note = "Upgrades the heroic version into Epic Tourney Armor (ML 20) at the Altar of Epic Rituals; Sands of Menechtarun item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Twisted Talisman"
+augments = []
+note = "Upgrades the heroic version into Epic Twisted Talisman (ML 20) at the Altar of Epic Rituals; The Red Fens item. Has a Perfected version (see Nebula Fragment Crafting). A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Glowing Fen Mushroom", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Unkor's Cleaver"
+augments = []
+note = "Upgrades the heroic version into Epic Unkor's Cleaver (ML 20) at the Altar of Epic Rituals; Sands of Menechtarun item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Utility Vest"
+augments = []
+note = "Upgrades the heroic version into Epic Utility Vest (ML 20) at the Altar of Epic Rituals; Phiarlan Carnival item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Scrap of Patterned Cloth", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Vambraces of Inner Light"
+augments = []
+note = "Upgrades the heroic version into Epic Vambraces of Inner Light (ML 20) at the Altar of Epic Rituals; Sands of Menechtarun item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Vulkoorim Dervish Robe"
+augments = []
+note = "Upgrades the heroic version into Epic Vulkoorim Dervish Robe (ML 20) at the Altar of Epic Rituals; Sands of Menechtarun item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Vulkoorim Fighting Leathers"
+augments = []
+note = "Upgrades the heroic version into Epic Vulkoorim Fighting Leathers (ML 20) at the Altar of Epic Rituals; Sands of Menechtarun item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Vulkoorim Pendant"
+augments = []
+note = "Upgrades the heroic version into Epic Vulkoorim Pendant (ML 20) at the Altar of Epic Rituals; Sands of Menechtarun item. Has a Perfected version (see Nebula Fragment Crafting). A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Ward of Undeath"
+augments = []
+note = "Upgrades the heroic version into Epic Ward of Undeath (ML 20) at the Altar of Epic Rituals; Sands of Menechtarun item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Weathered Targe"
+augments = []
+note = "Upgrades the heroic version into Epic Weathered Targe (ML 20) at the Altar of Epic Rituals; Sands of Menechtarun item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Whirlwind"
+augments = []
+note = "Upgrades the heroic version into Epic Whirlwind (ML 20) at the Altar of Epic Rituals; Sands of Menechtarun item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Wind-Swept Buckler"
+augments = []
+note = "Upgrades the heroic version into Epic Wind-Swept Buckler (ML 20) at the Altar of Epic Rituals; Sinister Secret of Saltmarsh item. The Legendary quest or raid can drop the Legendary version directly. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Saltmeadow Hay", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Wolf Whistle"
+augments = []
+note = "Upgrades the heroic version into Epic Wolf Whistle (ML 20) at the Altar of Epic Rituals; Sands of Menechtarun item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Xuum"
+augments = []
+note = "Upgrades the heroic version into Epic Xuum (ML 20) at the Altar of Epic Rituals; Sands of Menechtarun item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Zephyr"
+augments = []
+note = "Upgrades the heroic version into Epic Zephyr (ML 20) at the Altar of Epic Rituals; Sands of Menechtarun item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
+cost = [{ ingredient = "Heroic base item", quantity = 1 }, { ingredient = "Desert Sand Crystal", quantity = 50 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Epic Red Dragonscale Armor"
+augments = []
+note = "Vault of Night raid item with no heroic base item, so it takes additional ingredients: Shard of the Red Dragon and 20 Flawless Red Dragon Scales on top of the Vault of Night raid cost. See Dragonscale Armor for the five armor types. No augment counterpart."
+cost = [{ ingredient = "Flawless Red Dragon Scale", quantity = 20 }, { ingredient = "Vault Key", quantity = 50 }, { ingredient = "Greater Token of the Twelve", quantity = 5 }, { ingredient = "Shard of the Red Dragon", quantity = 1 }]
+
+[[system.ingredient]]
+name = "Star Fragment"
+tier = "legendary"
+source = "Sinister Secret of Saltmarsh and The Chronoscope (Legendary), or bought at the Altar of Legendary Rituals"
+
+[[system.recipe]]
+tier = "legendary"
+option = "Star Fragment from Desert Sand Crystal"
+augments = []
+note = "Exchange at the Altar of Legendary Rituals: 100 pack ingredients (any but Saltmeadow Hay) for one Star Fragment. A crafting ingredient, no augment counterpart."
+cost = [{ ingredient = "Desert Sand Crystal", quantity = 100 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Star Fragment from Vault Key"
+augments = []
+note = "Exchange at the Altar of Legendary Rituals: 100 pack ingredients (any but Saltmeadow Hay) for one Star Fragment. A crafting ingredient, no augment counterpart."
+cost = [{ ingredient = "Vault Key", quantity = 100 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Star Fragment from Medal of House Deneith"
+augments = []
+note = "Exchange at the Altar of Legendary Rituals: 100 pack ingredients (any but Saltmeadow Hay) for one Star Fragment. A crafting ingredient, no augment counterpart."
+cost = [{ ingredient = "Medal of House Deneith", quantity = 100 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Star Fragment from Scrap of Patterned Cloth"
+augments = []
+note = "Exchange at the Altar of Legendary Rituals: 100 pack ingredients (any but Saltmeadow Hay) for one Star Fragment. A crafting ingredient, no augment counterpart."
+cost = [{ ingredient = "Scrap of Patterned Cloth", quantity = 100 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Star Fragment from Glowing Fen Mushroom"
+augments = []
+note = "Exchange at the Altar of Legendary Rituals: 100 pack ingredients (any but Saltmeadow Hay) for one Star Fragment. A crafting ingredient, no augment counterpart."
+cost = [{ ingredient = "Glowing Fen Mushroom", quantity = 100 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Star Fragment from Fractured Sliver of Time"
+augments = []
+note = "Exchange at the Altar of Legendary Rituals: 100 pack ingredients (any but Saltmeadow Hay) for one Star Fragment. A crafting ingredient, no augment counterpart."
+cost = [{ ingredient = "Fractured Sliver of Time", quantity = 100 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Star Fragment from Crystallized Spiderweb"
+augments = []
+note = "Exchange at the Altar of Legendary Rituals: 100 pack ingredients (any but Saltmeadow Hay) for one Star Fragment. A crafting ingredient, no augment counterpart."
+cost = [{ ingredient = "Crystallized Spiderweb", quantity = 100 }]

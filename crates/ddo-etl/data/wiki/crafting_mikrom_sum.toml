@@ -1,0 +1,721 @@
+[[system]]
+name = "Mikrom Sum"
+page = "https://ddowiki.com/page/Mikrom_Sum"
+read = "2026-09-29"
+pack = "Menace of the Underdark"
+npc = "Mikrom Sum, Purple Dragon Knight patron vendor in north-central Eveningstar next to Battlemaster Dint; every upgrade and purchase needs Oversword status (375 Purple Dragon Knights favor)"
+
+[[system.ingredient]]
+name = "Commendation of Heroism"
+tier = "epic"
+
+[[system.ingredient]]
+name = "Commendation: Purple Dragon Knights"
+tier = "epic"
+source = "Commendation collectables from Menace of the Underdark quests"
+
+[[system.ingredient]]
+name = "Commendation: War Wizards"
+tier = "epic"
+source = "Commendation collectables from Menace of the Underdark quests"
+
+[[system.ingredient]]
+name = "Commendation: Clerics of Amaunator"
+tier = "epic"
+source = "Commendation collectables from Menace of the Underdark quests"
+
+[[system.ingredient]]
+name = "Commendation: Druids of the King's Forest"
+tier = "epic"
+source = "Commendation collectables from Menace of the Underdark quests"
+
+[[system.ingredient]]
+name = "Commendation: Villagers of Eveningstar"
+tier = "epic"
+source = "Commendation collectables from Menace of the Underdark quests"
+
+[[system.ingredient]]
+name = "Flawless Red Dragon Scale"
+tier = "epic"
+
+[[system.ingredient]]
+name = "Flawless Green Dragon Scale"
+tier = "epic"
+
+[[system.ingredient]]
+name = "Agony, the Knife in the Dark"
+tier = "epic"
+source = "Caught in the Web raid loot"
+
+[[system.ingredient]]
+name = "Antipode, Fist of the Horizon"
+tier = "epic"
+source = "Caught in the Web raid loot"
+
+[[system.ingredient]]
+name = "Balizarde, Protector of the King"
+tier = "epic"
+source = "Caught in the Web raid loot"
+
+[[system.ingredient]]
+name = "Breach, The Dividing Blade"
+tier = "epic"
+source = "Caught in the Web raid loot"
+
+[[system.ingredient]]
+name = "Celestia, Brightest Star of Day"
+tier = "epic"
+source = "Caught in the Web raid loot"
+
+[[system.ingredient]]
+name = "Cleaver, Hewer of Suffering"
+tier = "epic"
+source = "Caught in the Web raid loot"
+
+[[system.ingredient]]
+name = "Mornh, Hammer of the Mountains"
+tier = "epic"
+source = "Caught in the Web raid loot"
+
+[[system.ingredient]]
+name = "Needle, Quill-slinger"
+tier = "epic"
+source = "Caught in the Web raid loot"
+
+[[system.ingredient]]
+name = "Nightmare, the Fallen Moon"
+tier = "epic"
+source = "Caught in the Web raid loot"
+
+[[system.ingredient]]
+name = "Pinion, Cloud-piercer"
+tier = "epic"
+source = "Caught in the Web raid loot"
+
+[[system.ingredient]]
+name = "Sireth, Spear of the Sky"
+tier = "epic"
+source = "Caught in the Web raid loot"
+
+[[system.ingredient]]
+name = "Tinah, Sword of the Sea"
+tier = "epic"
+source = "Caught in the Web raid loot"
+
+[[system.ingredient]]
+name = "Twilight, Element of Magic"
+tier = "epic"
+source = "Caught in the Web raid loot"
+
+[[system.ingredient]]
+name = "Stone Heart"
+tier = "epic"
+source = "Named armor from Trial by Fury, The Deal and the Demon or Reclaiming the Rift"
+
+[[system.ingredient]]
+name = "Terrorweb Chitin Breastplate"
+tier = "epic"
+source = "Named armor from Trial by Fury, The Deal and the Demon or Reclaiming the Rift"
+
+[[system.ingredient]]
+name = "Spidersilk Robes"
+tier = "epic"
+source = "Named armor from Trial by Fury, The Deal and the Demon or Reclaiming the Rift"
+
+[[system.ingredient]]
+name = "Spider-spun Caparison"
+tier = "epic"
+source = "Named armor from Trial by Fury, The Deal and the Demon or Reclaiming the Rift"
+
+[[system.ingredient]]
+name = "Hide of the Goristro"
+tier = "epic"
+source = "Named armor from Trial by Fury, The Deal and the Demon or Reclaiming the Rift"
+
+[[system.ingredient]]
+name = "Embrace of the Spider Queen"
+tier = "epic"
+source = "Named armor from Trial by Fury, The Deal and the Demon or Reclaiming the Rift"
+
+[[system.recipe]]
+tier = "epic"
+slot = "crafting: attuned to heroism 1"
+option = "Agony, the Knife in the Dark: Attuned by Heroism Tier 1"
+augments = []
+note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 1: Adds Planar Conflux. Upgraded items keep their binding (unbound items stay tradeable) and their Mythic and Reaper bonuses; on the first upgrade Attuned to Heroism becomes Attuned by Heroism: Tier 1. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
+cost = [{ ingredient = "Agony, the Knife in the Dark", quantity = 1 }, { ingredient = "Commendation of Heroism", quantity = 3 }]
+
+[[system.recipe]]
+tier = "epic"
+slot = "crafting: attuned to heroism 2"
+option = "Agony, the Knife in the Dark: Attuned by Heroism Tier 2"
+augments = []
+note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 2: +7 enhancement bonus becomes +8 enhancement bonus. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
+cost = [{ ingredient = "Agony, the Knife in the Dark", quantity = 1 }, { ingredient = "Commendation of Heroism", quantity = 5 }]
+
+[[system.recipe]]
+tier = "epic"
+slot = "crafting: attuned to heroism 3"
+option = "Agony, the Knife in the Dark: Attuned by Heroism Tier 3"
+augments = []
+note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 3: Hemorrhaging becomes Phlebotomizing. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
+cost = [{ ingredient = "Agony, the Knife in the Dark", quantity = 1 }, { ingredient = "Commendation of Heroism", quantity = 7 }]
+
+[[system.recipe]]
+tier = "epic"
+slot = "crafting: attuned to heroism 4"
+option = "Agony, the Knife in the Dark: Attuned by Heroism Tier 4"
+augments = []
+grants_slot = "red"
+note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 4: Adds a Red Augment Slot."
+cost = [{ ingredient = "Agony, the Knife in the Dark", quantity = 1 }, { ingredient = "Commendation of Heroism", quantity = 10 }]
+
+[[system.recipe]]
+tier = "epic"
+slot = "crafting: attuned to heroism 1"
+option = "Antipode, Fist of the Horizon: Attuned by Heroism Tier 1"
+augments = []
+note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 1: Adds Planar Conflux. Upgraded items keep their binding (unbound items stay tradeable) and their Mythic and Reaper bonuses; on the first upgrade Attuned to Heroism becomes Attuned by Heroism: Tier 1. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
+cost = [{ ingredient = "Antipode, Fist of the Horizon", quantity = 1 }, { ingredient = "Commendation of Heroism", quantity = 3 }]
+
+[[system.recipe]]
+tier = "epic"
+slot = "crafting: attuned to heroism 2"
+option = "Antipode, Fist of the Horizon: Attuned by Heroism Tier 2"
+augments = []
+note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 2: +7 enhancement bonus becomes +8 enhancement bonus. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
+cost = [{ ingredient = "Antipode, Fist of the Horizon", quantity = 1 }, { ingredient = "Commendation of Heroism", quantity = 5 }]
+
+[[system.recipe]]
+tier = "epic"
+slot = "crafting: attuned to heroism 3"
+option = "Antipode, Fist of the Horizon: Attuned by Heroism Tier 3"
+augments = []
+note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 3: Adds +0.5 weapon dice multiplier. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
+cost = [{ ingredient = "Antipode, Fist of the Horizon", quantity = 1 }, { ingredient = "Commendation of Heroism", quantity = 7 }]
+
+[[system.recipe]]
+tier = "epic"
+slot = "crafting: attuned to heroism 4"
+option = "Antipode, Fist of the Horizon: Attuned by Heroism Tier 4"
+augments = []
+grants_slot = "red"
+note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 4: Adds a Red Augment Slot."
+cost = [{ ingredient = "Antipode, Fist of the Horizon", quantity = 1 }, { ingredient = "Commendation of Heroism", quantity = 10 }]
+
+[[system.recipe]]
+tier = "epic"
+slot = "crafting: attuned to heroism 1"
+option = "Balizarde, Protector of the King: Attuned by Heroism Tier 1"
+augments = []
+note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 1: Adds Planar Conflux. Upgraded items keep their binding (unbound items stay tradeable) and their Mythic and Reaper bonuses; on the first upgrade Attuned to Heroism becomes Attuned by Heroism: Tier 1. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
+cost = [{ ingredient = "Balizarde, Protector of the King", quantity = 1 }, { ingredient = "Commendation of Heroism", quantity = 3 }]
+
+[[system.recipe]]
+tier = "epic"
+slot = "crafting: attuned to heroism 2"
+option = "Balizarde, Protector of the King: Attuned by Heroism Tier 2"
+augments = []
+note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 2: +7 enhancement bonus becomes +8 enhancement bonus. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
+cost = [{ ingredient = "Balizarde, Protector of the King", quantity = 1 }, { ingredient = "Commendation of Heroism", quantity = 5 }]
+
+[[system.recipe]]
+tier = "epic"
+slot = "crafting: attuned to heroism 3"
+option = "Balizarde, Protector of the King: Attuned by Heroism Tier 3"
+augments = []
+note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 3: Hemorrhaging becomes Phlebotomizing. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
+cost = [{ ingredient = "Balizarde, Protector of the King", quantity = 1 }, { ingredient = "Commendation of Heroism", quantity = 7 }]
+
+[[system.recipe]]
+tier = "epic"
+slot = "crafting: attuned to heroism 4"
+option = "Balizarde, Protector of the King: Attuned by Heroism Tier 4"
+augments = []
+grants_slot = "red"
+note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 4: Adds a Red Augment Slot."
+cost = [{ ingredient = "Balizarde, Protector of the King", quantity = 1 }, { ingredient = "Commendation of Heroism", quantity = 10 }]
+
+[[system.recipe]]
+tier = "epic"
+slot = "crafting: attuned to heroism 1"
+option = "Breach, The Dividing Blade: Attuned by Heroism Tier 1"
+augments = []
+note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 1: Adds Planar Conflux. Upgraded items keep their binding (unbound items stay tradeable) and their Mythic and Reaper bonuses; on the first upgrade Attuned to Heroism becomes Attuned by Heroism: Tier 1. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
+cost = [{ ingredient = "Breach, The Dividing Blade", quantity = 1 }, { ingredient = "Commendation of Heroism", quantity = 3 }]
+
+[[system.recipe]]
+tier = "epic"
+slot = "crafting: attuned to heroism 2"
+option = "Breach, The Dividing Blade: Attuned by Heroism Tier 2"
+augments = []
+note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 2: +7 enhancement bonus becomes +8 enhancement bonus. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
+cost = [{ ingredient = "Breach, The Dividing Blade", quantity = 1 }, { ingredient = "Commendation of Heroism", quantity = 5 }]
+
+[[system.recipe]]
+tier = "epic"
+slot = "crafting: attuned to heroism 3"
+option = "Breach, The Dividing Blade: Attuned by Heroism Tier 3"
+augments = []
+note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 3: Shrieking becomes Wailing. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
+cost = [{ ingredient = "Breach, The Dividing Blade", quantity = 1 }, { ingredient = "Commendation of Heroism", quantity = 7 }]
+
+[[system.recipe]]
+tier = "epic"
+slot = "crafting: attuned to heroism 4"
+option = "Breach, The Dividing Blade: Attuned by Heroism Tier 4"
+augments = []
+grants_slot = "red"
+note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 4: Adds a Red Augment Slot."
+cost = [{ ingredient = "Breach, The Dividing Blade", quantity = 1 }, { ingredient = "Commendation of Heroism", quantity = 10 }]
+
+[[system.recipe]]
+tier = "epic"
+slot = "crafting: attuned to heroism 1"
+option = "Celestia, Brightest Star of Day: Attuned by Heroism Tier 1"
+augments = []
+note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 1: Adds Planar Conflux. Upgraded items keep their binding (unbound items stay tradeable) and their Mythic and Reaper bonuses; on the first upgrade Attuned to Heroism becomes Attuned by Heroism: Tier 1. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
+cost = [{ ingredient = "Celestia, Brightest Star of Day", quantity = 1 }, { ingredient = "Commendation of Heroism", quantity = 3 }]
+
+[[system.recipe]]
+tier = "epic"
+slot = "crafting: attuned to heroism 2"
+option = "Celestia, Brightest Star of Day: Attuned by Heroism Tier 2"
+augments = []
+note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 2: +7 enhancement bonus becomes +8 enhancement bonus. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
+cost = [{ ingredient = "Celestia, Brightest Star of Day", quantity = 1 }, { ingredient = "Commendation of Heroism", quantity = 5 }]
+
+[[system.recipe]]
+tier = "epic"
+slot = "crafting: attuned to heroism 3"
+option = "Celestia, Brightest Star of Day: Attuned by Heroism Tier 3"
+augments = []
+note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 3: Adds Banishing. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
+cost = [{ ingredient = "Celestia, Brightest Star of Day", quantity = 1 }, { ingredient = "Commendation of Heroism", quantity = 7 }]
+
+[[system.recipe]]
+tier = "epic"
+slot = "crafting: attuned to heroism 4"
+option = "Celestia, Brightest Star of Day: Attuned by Heroism Tier 4"
+augments = []
+grants_slot = "green"
+note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 4: Adds a Green Augment Slot."
+cost = [{ ingredient = "Celestia, Brightest Star of Day", quantity = 1 }, { ingredient = "Commendation of Heroism", quantity = 10 }]
+
+[[system.recipe]]
+tier = "epic"
+slot = "crafting: attuned to heroism 1"
+option = "Cleaver, Hewer of Suffering: Attuned by Heroism Tier 1"
+augments = []
+note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 1: Adds Planar Conflux. Upgraded items keep their binding (unbound items stay tradeable) and their Mythic and Reaper bonuses; on the first upgrade Attuned to Heroism becomes Attuned by Heroism: Tier 1. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
+cost = [{ ingredient = "Cleaver, Hewer of Suffering", quantity = 1 }, { ingredient = "Commendation of Heroism", quantity = 3 }]
+
+[[system.recipe]]
+tier = "epic"
+slot = "crafting: attuned to heroism 2"
+option = "Cleaver, Hewer of Suffering: Attuned by Heroism Tier 2"
+augments = []
+note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 2: +7 enhancement bonus becomes +8 enhancement bonus. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
+cost = [{ ingredient = "Cleaver, Hewer of Suffering", quantity = 1 }, { ingredient = "Commendation of Heroism", quantity = 5 }]
+
+[[system.recipe]]
+tier = "epic"
+slot = "crafting: attuned to heroism 3"
+option = "Cleaver, Hewer of Suffering: Attuned by Heroism Tier 3"
+augments = []
+note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 3: Hemorrhaging becomes Phlebotomizing. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
+cost = [{ ingredient = "Cleaver, Hewer of Suffering", quantity = 1 }, { ingredient = "Commendation of Heroism", quantity = 7 }]
+
+[[system.recipe]]
+tier = "epic"
+slot = "crafting: attuned to heroism 4"
+option = "Cleaver, Hewer of Suffering: Attuned by Heroism Tier 4"
+augments = []
+grants_slot = "red"
+note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 4: Adds a Red Augment Slot."
+cost = [{ ingredient = "Cleaver, Hewer of Suffering", quantity = 1 }, { ingredient = "Commendation of Heroism", quantity = 10 }]
+
+[[system.recipe]]
+tier = "epic"
+slot = "crafting: attuned to heroism 1"
+option = "Mornh, Hammer of the Mountains: Attuned by Heroism Tier 1"
+augments = []
+note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 1: Adds Planar Conflux. Upgraded items keep their binding (unbound items stay tradeable) and their Mythic and Reaper bonuses; on the first upgrade Attuned to Heroism becomes Attuned by Heroism: Tier 1. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
+cost = [{ ingredient = "Mornh, Hammer of the Mountains", quantity = 1 }, { ingredient = "Commendation of Heroism", quantity = 3 }]
+
+[[system.recipe]]
+tier = "epic"
+slot = "crafting: attuned to heroism 2"
+option = "Mornh, Hammer of the Mountains: Attuned by Heroism Tier 2"
+augments = []
+note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 2: +7 enhancement bonus becomes +8 enhancement bonus. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
+cost = [{ ingredient = "Mornh, Hammer of the Mountains", quantity = 1 }, { ingredient = "Commendation of Heroism", quantity = 5 }]
+
+[[system.recipe]]
+tier = "epic"
+slot = "crafting: attuned to heroism 3"
+option = "Mornh, Hammer of the Mountains: Attuned by Heroism Tier 3"
+augments = []
+note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 3: Adds +0.5 weapon dice multiplier. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
+cost = [{ ingredient = "Mornh, Hammer of the Mountains", quantity = 1 }, { ingredient = "Commendation of Heroism", quantity = 7 }]
+
+[[system.recipe]]
+tier = "epic"
+slot = "crafting: attuned to heroism 4"
+option = "Mornh, Hammer of the Mountains: Attuned by Heroism Tier 4"
+augments = []
+grants_slot = "red"
+note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 4: Adds a Red Augment Slot."
+cost = [{ ingredient = "Mornh, Hammer of the Mountains", quantity = 1 }, { ingredient = "Commendation of Heroism", quantity = 10 }]
+
+[[system.recipe]]
+tier = "epic"
+slot = "crafting: attuned to heroism 1"
+option = "Needle, Quill-slinger: Attuned by Heroism Tier 1"
+augments = []
+note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 1: Adds Planar Conflux. Upgraded items keep their binding (unbound items stay tradeable) and their Mythic and Reaper bonuses; on the first upgrade Attuned to Heroism becomes Attuned by Heroism: Tier 1. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
+cost = [{ ingredient = "Needle, Quill-slinger", quantity = 1 }, { ingredient = "Commendation of Heroism", quantity = 3 }]
+
+[[system.recipe]]
+tier = "epic"
+slot = "crafting: attuned to heroism 2"
+option = "Needle, Quill-slinger: Attuned by Heroism Tier 2"
+augments = []
+note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 2: +7 enhancement bonus becomes +8 enhancement bonus. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
+cost = [{ ingredient = "Needle, Quill-slinger", quantity = 1 }, { ingredient = "Commendation of Heroism", quantity = 5 }]
+
+[[system.recipe]]
+tier = "epic"
+slot = "crafting: attuned to heroism 3"
+option = "Needle, Quill-slinger: Attuned by Heroism Tier 3"
+augments = []
+note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 3: Hemorrhaging becomes Phlebotomizing. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
+cost = [{ ingredient = "Needle, Quill-slinger", quantity = 1 }, { ingredient = "Commendation of Heroism", quantity = 7 }]
+
+[[system.recipe]]
+tier = "epic"
+slot = "crafting: attuned to heroism 4"
+option = "Needle, Quill-slinger: Attuned by Heroism Tier 4"
+augments = []
+grants_slot = "red"
+note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 4: Adds a Red Augment Slot."
+cost = [{ ingredient = "Needle, Quill-slinger", quantity = 1 }, { ingredient = "Commendation of Heroism", quantity = 10 }]
+
+[[system.recipe]]
+tier = "epic"
+slot = "crafting: attuned to heroism 1"
+option = "Nightmare, the Fallen Moon: Attuned by Heroism Tier 1"
+augments = []
+note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 1: Adds Planar Conflux. Upgraded items keep their binding (unbound items stay tradeable) and their Mythic and Reaper bonuses; on the first upgrade Attuned to Heroism becomes Attuned by Heroism: Tier 1. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
+cost = [{ ingredient = "Nightmare, the Fallen Moon", quantity = 1 }, { ingredient = "Commendation of Heroism", quantity = 3 }]
+
+[[system.recipe]]
+tier = "epic"
+slot = "crafting: attuned to heroism 2"
+option = "Nightmare, the Fallen Moon: Attuned by Heroism Tier 2"
+augments = []
+note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 2: +7 enhancement bonus becomes +8 enhancement bonus. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
+cost = [{ ingredient = "Nightmare, the Fallen Moon", quantity = 1 }, { ingredient = "Commendation of Heroism", quantity = 5 }]
+
+[[system.recipe]]
+tier = "epic"
+slot = "crafting: attuned to heroism 3"
+option = "Nightmare, the Fallen Moon: Attuned by Heroism Tier 3"
+augments = []
+note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 3: Adds +0.5 weapon dice multiplier. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
+cost = [{ ingredient = "Nightmare, the Fallen Moon", quantity = 1 }, { ingredient = "Commendation of Heroism", quantity = 7 }]
+
+[[system.recipe]]
+tier = "epic"
+slot = "crafting: attuned to heroism 4"
+option = "Nightmare, the Fallen Moon: Attuned by Heroism Tier 4"
+augments = []
+grants_slot = "red"
+note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 4: Adds a Red Augment Slot."
+cost = [{ ingredient = "Nightmare, the Fallen Moon", quantity = 1 }, { ingredient = "Commendation of Heroism", quantity = 10 }]
+
+[[system.recipe]]
+tier = "epic"
+slot = "crafting: attuned to heroism 1"
+option = "Pinion, Cloud-piercer: Attuned by Heroism Tier 1"
+augments = []
+note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 1: Adds Planar Conflux. Upgraded items keep their binding (unbound items stay tradeable) and their Mythic and Reaper bonuses; on the first upgrade Attuned to Heroism becomes Attuned by Heroism: Tier 1. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
+cost = [{ ingredient = "Pinion, Cloud-piercer", quantity = 1 }, { ingredient = "Commendation of Heroism", quantity = 3 }]
+
+[[system.recipe]]
+tier = "epic"
+slot = "crafting: attuned to heroism 2"
+option = "Pinion, Cloud-piercer: Attuned by Heroism Tier 2"
+augments = []
+note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 2: +7 enhancement bonus becomes +8 enhancement bonus. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
+cost = [{ ingredient = "Pinion, Cloud-piercer", quantity = 1 }, { ingredient = "Commendation of Heroism", quantity = 5 }]
+
+[[system.recipe]]
+tier = "epic"
+slot = "crafting: attuned to heroism 3"
+option = "Pinion, Cloud-piercer: Attuned by Heroism Tier 3"
+augments = []
+note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 3: Shrieking becomes Wailing. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
+cost = [{ ingredient = "Pinion, Cloud-piercer", quantity = 1 }, { ingredient = "Commendation of Heroism", quantity = 7 }]
+
+[[system.recipe]]
+tier = "epic"
+slot = "crafting: attuned to heroism 4"
+option = "Pinion, Cloud-piercer: Attuned by Heroism Tier 4"
+augments = []
+grants_slot = "red"
+note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 4: Adds a Red Augment Slot."
+cost = [{ ingredient = "Pinion, Cloud-piercer", quantity = 1 }, { ingredient = "Commendation of Heroism", quantity = 10 }]
+
+[[system.recipe]]
+tier = "epic"
+slot = "crafting: attuned to heroism 1"
+option = "Sireth, Spear of the Sky: Attuned by Heroism Tier 1"
+augments = []
+note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 1: Adds Planar Conflux. Upgraded items keep their binding (unbound items stay tradeable) and their Mythic and Reaper bonuses; on the first upgrade Attuned to Heroism becomes Attuned by Heroism: Tier 1. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
+cost = [{ ingredient = "Sireth, Spear of the Sky", quantity = 1 }, { ingredient = "Commendation of Heroism", quantity = 3 }]
+
+[[system.recipe]]
+tier = "epic"
+slot = "crafting: attuned to heroism 2"
+option = "Sireth, Spear of the Sky: Attuned by Heroism Tier 2"
+augments = []
+note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 2: +7 enhancement bonus becomes +8 enhancement bonus. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
+cost = [{ ingredient = "Sireth, Spear of the Sky", quantity = 1 }, { ingredient = "Commendation of Heroism", quantity = 5 }]
+
+[[system.recipe]]
+tier = "epic"
+slot = "crafting: attuned to heroism 3"
+option = "Sireth, Spear of the Sky: Attuned by Heroism Tier 3"
+augments = []
+note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 3: Adds +0.5 weapon dice multiplier. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
+cost = [{ ingredient = "Sireth, Spear of the Sky", quantity = 1 }, { ingredient = "Commendation of Heroism", quantity = 7 }]
+
+[[system.recipe]]
+tier = "epic"
+slot = "crafting: attuned to heroism 4"
+option = "Sireth, Spear of the Sky: Attuned by Heroism Tier 4"
+augments = []
+grants_slot = "red"
+note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 4: Adds a Red Augment Slot."
+cost = [{ ingredient = "Sireth, Spear of the Sky", quantity = 1 }, { ingredient = "Commendation of Heroism", quantity = 10 }]
+
+[[system.recipe]]
+tier = "epic"
+slot = "crafting: attuned to heroism 1"
+option = "Tinah, Sword of the Sea: Attuned by Heroism Tier 1"
+augments = []
+note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 1: Adds Planar Conflux. Upgraded items keep their binding (unbound items stay tradeable) and their Mythic and Reaper bonuses; on the first upgrade Attuned to Heroism becomes Attuned by Heroism: Tier 1. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
+cost = [{ ingredient = "Tinah, Sword of the Sea", quantity = 1 }, { ingredient = "Commendation of Heroism", quantity = 3 }]
+
+[[system.recipe]]
+tier = "epic"
+slot = "crafting: attuned to heroism 2"
+option = "Tinah, Sword of the Sea: Attuned by Heroism Tier 2"
+augments = []
+note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 2: +7 enhancement bonus becomes +8 enhancement bonus. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
+cost = [{ ingredient = "Tinah, Sword of the Sea", quantity = 1 }, { ingredient = "Commendation of Heroism", quantity = 5 }]
+
+[[system.recipe]]
+tier = "epic"
+slot = "crafting: attuned to heroism 3"
+option = "Tinah, Sword of the Sea: Attuned by Heroism Tier 3"
+augments = []
+note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 3: Adds +0.5 weapon dice multiplier. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
+cost = [{ ingredient = "Tinah, Sword of the Sea", quantity = 1 }, { ingredient = "Commendation of Heroism", quantity = 7 }]
+
+[[system.recipe]]
+tier = "epic"
+slot = "crafting: attuned to heroism 4"
+option = "Tinah, Sword of the Sea: Attuned by Heroism Tier 4"
+augments = []
+grants_slot = "red"
+note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 4: Adds a Red Augment Slot."
+cost = [{ ingredient = "Tinah, Sword of the Sea", quantity = 1 }, { ingredient = "Commendation of Heroism", quantity = 10 }]
+
+[[system.recipe]]
+tier = "epic"
+slot = "crafting: attuned to heroism 1"
+option = "Twilight, Element of Magic: Attuned by Heroism Tier 1"
+augments = []
+note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 1: Adds Planar Conflux. Upgraded items keep their binding (unbound items stay tradeable) and their Mythic and Reaper bonuses; on the first upgrade Attuned to Heroism becomes Attuned by Heroism: Tier 1. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
+cost = [{ ingredient = "Twilight, Element of Magic", quantity = 1 }, { ingredient = "Commendation of Heroism", quantity = 3 }]
+
+[[system.recipe]]
+tier = "epic"
+slot = "crafting: attuned to heroism 2"
+option = "Twilight, Element of Magic: Attuned by Heroism Tier 2"
+augments = []
+note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 2: +7 enhancement bonus becomes +8 enhancement bonus. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
+cost = [{ ingredient = "Twilight, Element of Magic", quantity = 1 }, { ingredient = "Commendation of Heroism", quantity = 5 }]
+
+[[system.recipe]]
+tier = "epic"
+slot = "crafting: attuned to heroism 3"
+option = "Twilight, Element of Magic: Attuned by Heroism Tier 3"
+augments = []
+note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 3: Adds one +120 Spell Power of choice (Combustion, Glaciation, Corrosion, Magnetism, Nullification, Devotion, Radiance). Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
+cost = [{ ingredient = "Twilight, Element of Magic", quantity = 1 }, { ingredient = "Commendation of Heroism", quantity = 7 }]
+
+[[system.recipe]]
+tier = "epic"
+slot = "crafting: attuned to heroism 4"
+option = "Twilight, Element of Magic: Attuned by Heroism Tier 4"
+augments = []
+grants_slot = "red"
+note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 4: Adds a Red Augment Slot."
+cost = [{ ingredient = "Twilight, Element of Magic", quantity = 1 }, { ingredient = "Commendation of Heroism", quantity = 10 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Cormyrian Red Dragonplate Armor"
+augments = []
+note = "Purchase of Cormyrian Red Dragonplate Armor (Heavy); unlike the Vault of Night red dragonscale armors it needs no base armor. A separate item in Maetrim's data; no augment counterpart. The Dragonscale Armor page gives one cost per color instead (red: Purple Dragon Knights and Druids of the King's Forest; green: Purple Dragon Knights and War Wizards)."
+cost = [{ ingredient = "Flawless Red Dragon Scale", quantity = 20 }, { ingredient = "Commendation: Purple Dragon Knights", quantity = 15 }, { ingredient = "Commendation: War Wizards", quantity = 15 }, { ingredient = "Commendation of Heroism", quantity = 3 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Cormyrian Red Dragonscale Armor"
+augments = []
+note = "Purchase of Cormyrian Red Dragonscale Armor (Medium); unlike the Vault of Night red dragonscale armors it needs no base armor. A separate item in Maetrim's data; no augment counterpart. The Dragonscale Armor page gives one cost per color instead (red: Purple Dragon Knights and Druids of the King's Forest; green: Purple Dragon Knights and War Wizards)."
+cost = [{ ingredient = "Flawless Red Dragon Scale", quantity = 20 }, { ingredient = "Commendation: Purple Dragon Knights", quantity = 15 }, { ingredient = "Commendation: Clerics of Amaunator", quantity = 15 }, { ingredient = "Commendation of Heroism", quantity = 3 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Cormyrian Red Dragonhide Armor"
+augments = []
+note = "Purchase of Cormyrian Red Dragonhide Armor (Light); unlike the Vault of Night red dragonscale armors it needs no base armor. A separate item in Maetrim's data; no augment counterpart. The Dragonscale Armor page gives one cost per color instead (red: Purple Dragon Knights and Druids of the King's Forest; green: Purple Dragon Knights and War Wizards)."
+cost = [{ ingredient = "Flawless Red Dragon Scale", quantity = 20 }, { ingredient = "Commendation: Purple Dragon Knights", quantity = 15 }, { ingredient = "Commendation: Druids of the King's Forest", quantity = 15 }, { ingredient = "Commendation of Heroism", quantity = 3 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Cormyrian Red Dragonscale Robe"
+augments = []
+note = "Purchase of Cormyrian Red Dragonscale Robe (Robe); unlike the Vault of Night red dragonscale armors it needs no base armor. A separate item in Maetrim's data; no augment counterpart. The Dragonscale Armor page gives one cost per color instead (red: Purple Dragon Knights and Druids of the King's Forest; green: Purple Dragon Knights and War Wizards)."
+cost = [{ ingredient = "Flawless Red Dragon Scale", quantity = 20 }, { ingredient = "Commendation: Purple Dragon Knights", quantity = 15 }, { ingredient = "Commendation: Villagers of Eveningstar", quantity = 15 }, { ingredient = "Commendation of Heroism", quantity = 3 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Cormyrian Red Dragonscale Docent"
+augments = []
+note = "Purchase of Cormyrian Red Dragonscale Docent (Docent); unlike the Vault of Night red dragonscale armors it needs no base armor. A separate item in Maetrim's data; no augment counterpart. The Dragonscale Armor page gives one cost per color instead (red: Purple Dragon Knights and Druids of the King's Forest; green: Purple Dragon Knights and War Wizards)."
+cost = [{ ingredient = "Flawless Red Dragon Scale", quantity = 20 }, { ingredient = "Commendation: Purple Dragon Knights", quantity = 15 }, { ingredient = "Commendation: War Wizards", quantity = 15 }, { ingredient = "Commendation of Heroism", quantity = 3 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Cormyrian Green Dragonplate Armor"
+augments = []
+note = "Purchase of Cormyrian Green Dragonplate Armor (Heavy); unlike the Vault of Night red dragonscale armors it needs no base armor. A separate item in Maetrim's data; no augment counterpart. The Dragonscale Armor page gives one cost per color instead (red: Purple Dragon Knights and Druids of the King's Forest; green: Purple Dragon Knights and War Wizards)."
+cost = [{ ingredient = "Flawless Green Dragon Scale", quantity = 20 }, { ingredient = "Commendation: War Wizards", quantity = 15 }, { ingredient = "Commendation: Purple Dragon Knights", quantity = 15 }, { ingredient = "Commendation of Heroism", quantity = 3 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Cormyrian Green Dragonscale Armor"
+augments = []
+note = "Purchase of Cormyrian Green Dragonscale Armor (Medium); unlike the Vault of Night red dragonscale armors it needs no base armor. A separate item in Maetrim's data; no augment counterpart. The Dragonscale Armor page gives one cost per color instead (red: Purple Dragon Knights and Druids of the King's Forest; green: Purple Dragon Knights and War Wizards)."
+cost = [{ ingredient = "Flawless Green Dragon Scale", quantity = 20 }, { ingredient = "Commendation: War Wizards", quantity = 15 }, { ingredient = "Commendation: Clerics of Amaunator", quantity = 15 }, { ingredient = "Commendation of Heroism", quantity = 3 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Cormyrian Green Dragonhide Armor"
+augments = []
+note = "Purchase of Cormyrian Green Dragonhide Armor (Light); unlike the Vault of Night red dragonscale armors it needs no base armor. A separate item in Maetrim's data; no augment counterpart. The Dragonscale Armor page gives one cost per color instead (red: Purple Dragon Knights and Druids of the King's Forest; green: Purple Dragon Knights and War Wizards)."
+cost = [{ ingredient = "Flawless Green Dragon Scale", quantity = 20 }, { ingredient = "Commendation: War Wizards", quantity = 15 }, { ingredient = "Commendation: Druids of the King's Forest", quantity = 15 }, { ingredient = "Commendation of Heroism", quantity = 3 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Cormyrian Green Dragonscale Robe"
+augments = []
+note = "Purchase of Cormyrian Green Dragonscale Robe (Robe); unlike the Vault of Night red dragonscale armors it needs no base armor. A separate item in Maetrim's data; no augment counterpart. The Dragonscale Armor page gives one cost per color instead (red: Purple Dragon Knights and Druids of the King's Forest; green: Purple Dragon Knights and War Wizards)."
+cost = [{ ingredient = "Flawless Green Dragon Scale", quantity = 20 }, { ingredient = "Commendation: War Wizards", quantity = 15 }, { ingredient = "Commendation: Villagers of Eveningstar", quantity = 15 }, { ingredient = "Commendation of Heroism", quantity = 3 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Cormyrian Green Dragonscale Docent"
+augments = []
+note = "Purchase of Cormyrian Green Dragonscale Docent (Docent); unlike the Vault of Night red dragonscale armors it needs no base armor. A separate item in Maetrim's data; no augment counterpart. The Dragonscale Armor page gives one cost per color instead (red: Purple Dragon Knights and Druids of the King's Forest; green: Purple Dragon Knights and War Wizards)."
+cost = [{ ingredient = "Flawless Green Dragon Scale", quantity = 20 }, { ingredient = "Commendation: War Wizards", quantity = 15 }, { ingredient = "Commendation: Purple Dragon Knights", quantity = 15 }, { ingredient = "Commendation of Heroism", quantity = 3 }]
+
+[[system.recipe]]
+tier = "epic"
+slot = "crafting: upgrade"
+option = "Amaunator's Blessing: Stone Heart"
+augments = []
+note = "Upgrades Stone Heart to join the Eveningstar Commendation item set Amaunator's Blessing, gaining Amaunator's Blessing. Maetrim holds the set as an option on this socket."
+cost = [{ ingredient = "Stone Heart", quantity = 1 }, { ingredient = "Commendation: Clerics of Amaunator", quantity = 15 }]
+
+[[system.recipe]]
+tier = "epic"
+slot = "crafting: upgrade"
+option = "Amaunator's Blessing: Terrorweb Chitin Breastplate"
+augments = []
+note = "Upgrades Terrorweb Chitin Breastplate to join the Eveningstar Commendation item set Amaunator's Blessing, gaining Amaunator's Blessing. Maetrim holds the set as an option on this socket."
+cost = [{ ingredient = "Terrorweb Chitin Breastplate", quantity = 1 }, { ingredient = "Commendation: Clerics of Amaunator", quantity = 15 }]
+
+[[system.recipe]]
+tier = "epic"
+slot = "crafting: upgrade"
+option = "Battle Arcanist: Stone Heart"
+augments = []
+note = "Upgrades Stone Heart to join the Eveningstar Commendation item set Battle Arcanist, gaining Battle Arcanist. Maetrim holds the set as an option on this socket."
+cost = [{ ingredient = "Stone Heart", quantity = 1 }, { ingredient = "Commendation: War Wizards", quantity = 15 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Battle Arcanist: Spidersilk Robes"
+augments = []
+note = "Upgrades Spidersilk Robes to join the Eveningstar Commendation item set Battle Arcanist, gaining Battle Arcanist. Maetrim's item has no upgrade socket for this."
+cost = [{ ingredient = "Spidersilk Robes", quantity = 1 }, { ingredient = "Commendation: War Wizards", quantity = 15 }]
+
+[[system.recipe]]
+tier = "epic"
+slot = "crafting: upgrade"
+option = "Way of the Sun Soul: Stone Heart"
+augments = []
+note = "Upgrades Stone Heart to join the Eveningstar Commendation item set Way of the Sun Soul, gaining Way of the Sun Soul. Maetrim holds the set as an option on this socket."
+cost = [{ ingredient = "Stone Heart", quantity = 1 }, { ingredient = "Commendation: Villagers of Eveningstar", quantity = 15 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Way of the Sun Soul: Spider-spun Caparison"
+augments = []
+note = "Upgrades Spider-spun Caparison to join the Eveningstar Commendation item set Way of the Sun Soul, gaining Way of the Sun Soul. Maetrim's item has no upgrade socket for this."
+cost = [{ ingredient = "Spider-spun Caparison", quantity = 1 }, { ingredient = "Commendation: Villagers of Eveningstar", quantity = 15 }]
+
+[[system.recipe]]
+tier = "epic"
+slot = "crafting: upgrade"
+option = "Woodsman's Guile: Stone Heart"
+augments = []
+note = "Upgrades Stone Heart to join the Eveningstar Commendation item set Woodsman's Guile, gaining Woodsman's Guile. Maetrim holds the set as an option on this socket."
+cost = [{ ingredient = "Stone Heart", quantity = 1 }, { ingredient = "Commendation: Druids of the King's Forest", quantity = 15 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Woodsman's Guile: Hide of the Goristro"
+augments = []
+note = "Upgrades Hide of the Goristro to join the Eveningstar Commendation item set Woodsman's Guile, gaining Woodsman's Guile. Maetrim's item has no upgrade socket for this."
+cost = [{ ingredient = "Hide of the Goristro", quantity = 1 }, { ingredient = "Commendation: Druids of the King's Forest", quantity = 15 }]
+
+[[system.recipe]]
+tier = "epic"
+slot = "crafting: upgrade"
+option = "Knight's Loyalty: Stone Heart"
+augments = []
+note = "Upgrades Stone Heart to join the Eveningstar Commendation item set Knight's Loyalty, gaining Knight's Loyalty. Maetrim holds the set as an option on this socket."
+cost = [{ ingredient = "Stone Heart", quantity = 1 }, { ingredient = "Commendation: Purple Dragon Knights", quantity = 15 }]
+
+[[system.recipe]]
+tier = "epic"
+slot = "crafting: upgrade"
+option = "Knight's Loyalty: Terrorweb Chitin Breastplate"
+augments = []
+note = "Upgrades Terrorweb Chitin Breastplate to join the Eveningstar Commendation item set Knight's Loyalty, gaining Knight's Loyalty. Maetrim holds the set as an option on this socket."
+cost = [{ ingredient = "Terrorweb Chitin Breastplate", quantity = 1 }, { ingredient = "Commendation: Purple Dragon Knights", quantity = 15 }]
+
+[[system.recipe]]
+tier = "epic"
+option = "Knight's Loyalty: Embrace of the Spider Queen"
+augments = []
+note = "Upgrades Embrace of the Spider Queen to join the Eveningstar Commendation item set Knight's Loyalty, gaining Knight's Loyalty. Maetrim's item has no upgrade socket for this."
+cost = [{ ingredient = "Embrace of the Spider Queen", quantity = 1 }, { ingredient = "Commendation: Purple Dragon Knights", quantity = 15 }]

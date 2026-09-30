@@ -1,0 +1,76 @@
+[[system]]
+name = "Esoteric Table"
+page = "https://ddowiki.com/page/Esoteric_Table"
+read = "2026-09-29"
+pack = "Vecna Unleashed"
+families = ["PlanarSearing"]
+npc = "Esoteric Table at the entrance of Fire Over Morgrave, Morgrave University - Upper Commons (introduced in Update 61); usable before the raid starts or after it completes, locked during the fight; speak to Geth to enter (level 20 or higher)"
+
+[[system.ingredient]]
+name = "Burning Planar Scrap"
+tier = "legendary"
+source = "Fire Over Morgrave end chests"
+
+[[system.ingredient]]
+name = "Legendary Esoteric Relic"
+tier = "legendary"
+source = "Vecna Unleashed end chests"
+
+[[system.ingredient]]
+name = "Legendary Gray Dust of Vile Darkness"
+tier = "legendary"
+source = "Vecna Denied (Belanatharis Dragon second chest)"
+
+[[system.ingredient]]
+name = "Legendary Black Dust of Vile Darkness"
+tier = "legendary"
+source = "Taken in Hand (second main room, behind barrels)"
+
+[[system.ingredient]]
+name = "Legendary Crimson Dust of Vile Darkness"
+tier = "legendary"
+source = "The Evil We Know (underneath Conch optional)"
+
+[[system.ingredient]]
+name = "Legendary Golden Dust of Vile Darkness"
+tier = "legendary"
+source = "The Hand and the Eyes (north of the final shrine), part of Grip of the Hidden Hand"
+
+[[system.recipe]]
+tier = "legendary"
+option = "Warp the Unholy (Truly Vile Weapon - Legendary Defiled Reliquary Weaponry)"
+augments = []
+note = "Tier 1. Removes Taint of Evil; adds Leashed Power (Tier 2) and Warp Souls (-1 Will, AC and Fortification, stacks 10 times). The page gives one cost for both Tier 1 rows. Maetrim has no Warp the Unholy augment, so the row names none."
+cost = [{ ingredient = "Burning Planar Scrap", quantity = 20 }, { ingredient = "Legendary Esoteric Relic", quantity = 20 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: planar searing"
+option = "Warp the Seared (Object Seared - Raid weapons Fire Over Morgrave)"
+augments = ["Warp the Seared"]
+note = "Tier 1. Removes Planar Searing; adds Leashed Power (Tier 2) and Warp Souls (-1 Will, AC and Fortification, stacks 10 times). The page gives one cost for both Tier 1 rows."
+cost = [{ ingredient = "Burning Planar Scrap", quantity = 20 }, { ingredient = "Legendary Esoteric Relic", quantity = 20 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: leashed power"
+option = "Unleash the Fire"
+augments = ["Unleash the Fire"]
+note = "Tier 2. Removes Unleashed Storm and Unleashed Resistance; adds Unleashed Inferno (small chance of 10d440 fire damage plus a DC 110 Fortitude save against knockdown). Dev comments say the table should also work on certain shields, but the shield recipes are not shown on the altar and are unknown."
+cost = [{ ingredient = "Burning Planar Scrap", quantity = 120 }, { ingredient = "Legendary Esoteric Relic", quantity = 30 }, { ingredient = "Legendary Black Dust of Vile Darkness", quantity = 12 }, { ingredient = "Legendary Golden Dust of Vile Darkness", quantity = 12 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: leashed power"
+option = "Unleash the Lightning"
+augments = ["Unleash the Lightning"]
+note = "Tier 2. Removes Unleashed Inferno and Unleashed Resistance; adds Unleashed Storm (small chance of 10d440 electric damage plus a DC 110 Fortitude save against paralysis). Dev comments say the table should also work on certain shields, but the shield recipes are not shown on the altar and are unknown."
+cost = [{ ingredient = "Burning Planar Scrap", quantity = 120 }, { ingredient = "Legendary Esoteric Relic", quantity = 30 }, { ingredient = "Legendary Gray Dust of Vile Darkness", quantity = 12 }, { ingredient = "Legendary Golden Dust of Vile Darkness", quantity = 12 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: leashed power"
+option = "Unleash the Resistance"
+augments = ["Unleash the Resistance"]
+note = "Tier 2. Removes Unleashed Inferno and Unleashed Storm; adds Unleashed Resistance (20 competence resistance and +5% profane absorption to fire and electric). Dev comments say the table should also work on certain shields, but the shield recipes are not shown on the altar and are unknown."
+cost = [{ ingredient = "Burning Planar Scrap", quantity = 120 }, { ingredient = "Legendary Esoteric Relic", quantity = 30 }, { ingredient = "Legendary Crimson Dust of Vile Darkness", quantity = 12 }, { ingredient = "Legendary Golden Dust of Vile Darkness", quantity = 12 }]

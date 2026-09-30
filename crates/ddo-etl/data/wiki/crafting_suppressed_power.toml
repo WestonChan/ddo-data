@@ -1,0 +1,350 @@
+[[system]]
+name = "Suppressed Power"
+page = "https://ddowiki.com/page/Dreamforge"
+read = "2026-09-29"
+pack = "The Dreaming Dark"
+npc = "Dreamforge, final room of The Dreaming Dark quest after The Devourer of Dreams is defeated; the quest must be completed each visit, and forcefields stop switching to alts. Its list interface previews the upgrades"
+
+[[system.ingredient]]
+name = "Essence of Horrors"
+tier = "heroic"
+bind = "Bound to Account on Acquire (tradeable through the shared chest)"
+source = "End chests of Eye of the Titan, Reclaiming Memories, Raiding the Giants' Vault and Mining for Ancient Secrets; one essence per completion (casual may drop none) until the chest becomes ransacked; the Eye of the Titan chest never ransacks its essence"
+
+[[system.ingredient]]
+name = "Essence of Nightmares"
+tier = "heroic"
+bind = "Bound to Account on Acquire (tradeable through the shared chest)"
+source = "End chest of Eye of the Titan; one essence per completion (casual may drop none) until the chest becomes ransacked; the Eye of the Titan chest never ransacks its essence"
+
+[[system.ingredient]]
+name = "Essence of Phantasms"
+tier = "heroic"
+bind = "Bound to Account on Acquire (tradeable through the shared chest)"
+source = "End chest of Reclaiming Memories; one essence per completion (casual may drop none) until the chest becomes ransacked; the Eye of the Titan chest never ransacks its essence"
+
+[[system.ingredient]]
+name = "Essence of Torments"
+tier = "heroic"
+bind = "Bound to Account on Acquire (tradeable through the shared chest)"
+source = "End chests of Raiding the Giants' Vault and Mining for Ancient Secrets; one essence per completion (casual may drop none) until the chest becomes ransacked; the Eye of the Titan chest never ransacks its essence"
+
+[[system.ingredient]]
+name = "Crystal Shard of Dreams"
+tier = "heroic"
+bind = "Bound to Account on Acquire"
+source = "End reward of The Dreaming Dark quest"
+
+[[system.ingredient]]
+name = "Crystal Disc of Dreams"
+tier = "heroic"
+bind = "Bound to Account on Acquire"
+source = "End reward of The Dreaming Dark quest, or 50 Astral Shards at the Dreamforge"
+
+[[system.ingredient]]
+name = "Astral Shard"
+tier = "any"
+
+[[system.ingredient]]
+name = "Dark Blue Ioun Stone"
+tier = "heroic"
+source = "One of the ten types is in The Dreaming Dark end rewards every 3 completions, with a chance on every completion"
+
+[[system.ingredient]]
+name = "Deep Red Ioun Stone"
+tier = "heroic"
+source = "One of the ten types is in The Dreaming Dark end rewards every 3 completions, with a chance on every completion"
+
+[[system.ingredient]]
+name = "Dusty Rose Ioun Stone"
+tier = "heroic"
+source = "One of the ten types is in The Dreaming Dark end rewards every 3 completions, with a chance on every completion"
+
+[[system.ingredient]]
+name = "Incandescent Blue Ioun Stone"
+tier = "heroic"
+source = "One of the ten types is in The Dreaming Dark end rewards every 3 completions, with a chance on every completion"
+
+[[system.ingredient]]
+name = "Pale Blue Ioun Stone"
+tier = "heroic"
+source = "One of the ten types is in The Dreaming Dark end rewards every 3 completions, with a chance on every completion"
+
+[[system.ingredient]]
+name = "Pale Lavender Ioun Stone"
+tier = "heroic"
+source = "One of the ten types is in The Dreaming Dark end rewards every 3 completions, with a chance on every completion"
+
+[[system.ingredient]]
+name = "Pink and Green Ioun Stone"
+tier = "heroic"
+source = "One of the ten types is in The Dreaming Dark end rewards every 3 completions, with a chance on every completion"
+
+[[system.ingredient]]
+name = "Pink Ioun Stone"
+tier = "heroic"
+source = "One of the ten types is in The Dreaming Dark end rewards every 3 completions, with a chance on every completion"
+
+[[system.ingredient]]
+name = "Scarlet and Blue Ioun Stone"
+tier = "heroic"
+source = "One of the ten types is in The Dreaming Dark end rewards every 3 completions, with a chance on every completion"
+
+[[system.ingredient]]
+name = "Vibrant Purple Ioun Stone"
+tier = "heroic"
+source = "One of the ten types is in The Dreaming Dark end rewards every 3 completions, with a chance on every completion"
+
+[[system.ingredient]]
+name = "Death's Touch"
+tier = "heroic"
+source = "The Mindsunder"
+
+[[system.ingredient]]
+name = "Dream Edge"
+tier = "heroic"
+source = "The Mindsunder"
+
+[[system.ingredient]]
+name = "Elocator's Habiliment"
+tier = "heroic"
+source = "The Mindsunder"
+
+[[system.ingredient]]
+name = "Gloves of Titan's Grip"
+tier = "heroic"
+source = "The Mindsunder"
+
+[[system.ingredient]]
+name = "Light and Darkness"
+tier = "heroic"
+source = "The Mindsunder"
+
+[[system.ingredient]]
+name = "Quorforged Docent of Battle"
+tier = "heroic"
+source = "The Mindsunder"
+
+[[system.ingredient]]
+name = "Rahl's Might"
+tier = "heroic"
+source = "The Mindsunder"
+
+[[system.ingredient]]
+name = "Regalia of the Phoenix"
+tier = "heroic"
+source = "The Mindsunder"
+
+[[system.ingredient]]
+name = "Terror"
+tier = "heroic"
+source = "The Mindsunder"
+
+[[system.ingredient]]
+name = "Dreamspitter"
+tier = "heroic"
+source = "The Reaver's Fate raid"
+
+[[system.recipe]]
+tier = "heroic"
+option = "Essence of Horrors"
+augments = []
+note = "Essence conversion: the other three essences make the fourth. A crafting ingredient, no augment counterpart."
+cost = [{ ingredient = "Essence of Nightmares", quantity = 1 }, { ingredient = "Essence of Phantasms", quantity = 1 }, { ingredient = "Essence of Torments", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Essence of Nightmares"
+augments = []
+note = "Essence conversion: the other three essences make the fourth. A crafting ingredient, no augment counterpart."
+cost = [{ ingredient = "Essence of Horrors", quantity = 1 }, { ingredient = "Essence of Phantasms", quantity = 1 }, { ingredient = "Essence of Torments", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Essence of Phantasms"
+augments = []
+note = "Essence conversion: the other three essences make the fourth. A crafting ingredient, no augment counterpart."
+cost = [{ ingredient = "Essence of Horrors", quantity = 1 }, { ingredient = "Essence of Nightmares", quantity = 1 }, { ingredient = "Essence of Torments", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Essence of Torments"
+augments = []
+note = "Essence conversion: the other three essences make the fourth. A crafting ingredient, no augment counterpart."
+cost = [{ ingredient = "Essence of Horrors", quantity = 1 }, { ingredient = "Essence of Nightmares", quantity = 1 }, { ingredient = "Essence of Phantasms", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Crystal Shard of Dreams"
+augments = []
+note = "One of each essence; a crafting ingredient, no augment counterpart."
+cost = [{ ingredient = "Essence of Horrors", quantity = 1 }, { ingredient = "Essence of Nightmares", quantity = 1 }, { ingredient = "Essence of Phantasms", quantity = 1 }, { ingredient = "Essence of Torments", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Crystal Disc of Dreams (from essences)"
+augments = []
+note = "Six of each essence; a crafting ingredient, no augment counterpart."
+cost = [{ ingredient = "Essence of Horrors", quantity = 6 }, { ingredient = "Essence of Nightmares", quantity = 6 }, { ingredient = "Essence of Phantasms", quantity = 6 }, { ingredient = "Essence of Torments", quantity = 6 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Crystal Disc of Dreams (from shards)"
+augments = []
+note = "A crafting ingredient, no augment counterpart."
+cost = [{ ingredient = "Crystal Shard of Dreams", quantity = 6 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Crystal Disc of Dreams (purchase)"
+augments = []
+note = "Bought at the Dreamforge; a crafting ingredient, no augment counterpart."
+cost = [{ ingredient = "Astral Shard", quantity = 50 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Dark Blue Ioun Stone upgrade"
+augments = []
+note = "Upgrades Dark Blue Ioun Stone (drag it onto the crafting menu): loses Spot +3, Listen +3, gains Spot +15, Listen +15. The result is ML 5 and Bound to Character on Acquire; the Dreamforge window wrongly says the level rises much higher. Maetrim holds the result as the separate item Dark Blue Ioun Stone (unsuppressed); no augment counterpart."
+cost = [{ ingredient = "Dark Blue Ioun Stone", quantity = 1 }, { ingredient = "Crystal Disc of Dreams", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Deep Red Ioun Stone upgrade"
+augments = []
+note = "Upgrades Deep Red Ioun Stone (drag it onto the crafting menu): loses Dexterity +2, gains Dexterity +6, Dexterity Skills - Exceptional Bonus +2. The result is ML 5 and Bound to Character on Acquire; the Dreamforge window wrongly says the level rises much higher. Maetrim holds the result as the separate item Deep Red Ioun Stone (unsuppressed); no augment counterpart."
+cost = [{ ingredient = "Deep Red Ioun Stone", quantity = 1 }, { ingredient = "Crystal Disc of Dreams", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Dusty Rose Ioun Stone upgrade"
+augments = []
+note = "Upgrades Dusty Rose Ioun Stone (drag it onto the crafting menu): loses Protection +1, gains Protection +5. The result is ML 5 and Bound to Character on Acquire; the Dreamforge window wrongly says the level rises much higher. Maetrim holds the result as the separate item Dusty Rose Ioun Stone (unsuppressed); no augment counterpart."
+cost = [{ ingredient = "Dusty Rose Ioun Stone", quantity = 1 }, { ingredient = "Crystal Disc of Dreams", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Incandescent Blue Ioun Stone upgrade"
+augments = []
+note = "Upgrades Incandescent Blue Ioun Stone (drag it onto the crafting menu): loses Wisdom +2, gains Wisdom +6, Wisdom Skills - Exceptional Bonus +2. The result is ML 5 and Bound to Character on Acquire; the Dreamforge window wrongly says the level rises much higher. Maetrim holds the result as the separate item Incandescent Blue Ioun Stone (unsuppressed); no augment counterpart."
+cost = [{ ingredient = "Incandescent Blue Ioun Stone", quantity = 1 }, { ingredient = "Crystal Disc of Dreams", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Pale Blue Ioun Stone upgrade"
+augments = []
+note = "Upgrades Pale Blue Ioun Stone (drag it onto the crafting menu): loses Strength +2, gains Strength +6, Strength Skills - Exceptional Bonus +2. The result is ML 5 and Bound to Character on Acquire; the Dreamforge window wrongly says the level rises much higher. Maetrim holds the result as the separate item Pale Blue Ioun Stone (unsuppressed); no augment counterpart."
+cost = [{ ingredient = "Pale Blue Ioun Stone", quantity = 1 }, { ingredient = "Crystal Disc of Dreams", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Pale Lavender Ioun Stone upgrade"
+augments = []
+note = "Upgrades Pale Lavender Ioun Stone (drag it onto the crafting menu): loses Spell Absorption, 20 Charges, No Recharges, gains Spell Absorption, 50 Charges (Recharged/Day: 15). The result is ML 5 and Bound to Character on Acquire; the Dreamforge window wrongly says the level rises much higher. Maetrim holds the result as the separate item Pale Lavender Ioun Stone (unsuppressed); no augment counterpart. Old Pale Lavender stones without the Suppressed Power effect can still be upgraded; other old stones without it cannot."
+cost = [{ ingredient = "Pale Lavender Ioun Stone", quantity = 1 }, { ingredient = "Crystal Disc of Dreams", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Pink and Green Ioun Stone upgrade"
+augments = []
+note = "Upgrades Pink and Green Ioun Stone (drag it onto the crafting menu): loses Charisma +2, gains Charisma +6, Charisma Skills - Exceptional Bonus +2. The result is ML 5 and Bound to Character on Acquire; the Dreamforge window wrongly says the level rises much higher. Maetrim holds the result as the separate item Pink and Green Ioun Stone (unsuppressed); no augment counterpart."
+cost = [{ ingredient = "Pink and Green Ioun Stone", quantity = 1 }, { ingredient = "Crystal Disc of Dreams", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Pink Ioun Stone upgrade"
+augments = []
+note = "Upgrades Pink Ioun Stone (drag it onto the crafting menu): loses Constitution +2, gains Constitution +6, Constitution Skills - Exceptional Bonus +2. The result is ML 5 and Bound to Character on Acquire; the Dreamforge window wrongly says the level rises much higher. Maetrim holds the result as the separate item Pink Ioun Stone (unsuppressed); no augment counterpart."
+cost = [{ ingredient = "Pink Ioun Stone", quantity = 1 }, { ingredient = "Crystal Disc of Dreams", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Scarlet and Blue Ioun Stone upgrade"
+augments = []
+note = "Upgrades Scarlet and Blue Ioun Stone (drag it onto the crafting menu): loses Intelligence +2, gains Intelligence +6, Intelligence Skills - Exceptional Bonus +2. The result is ML 5 and Bound to Character on Acquire; the Dreamforge window wrongly says the level rises much higher. Maetrim holds the result as the separate item Scarlet and Blue Ioun Stone (unsuppressed); no augment counterpart."
+cost = [{ ingredient = "Scarlet and Blue Ioun Stone", quantity = 1 }, { ingredient = "Crystal Disc of Dreams", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Vibrant Purple Ioun Stone upgrade"
+augments = []
+note = "Upgrades Vibrant Purple Ioun Stone (drag it onto the crafting menu): loses Power III, gains Archmagi, Spell Penetration III. The result is ML 5 and Bound to Character on Acquire; the Dreamforge window wrongly says the level rises much higher. Maetrim holds the result as the separate item Vibrant Purple Ioun Stone (unsuppressed); no augment counterpart."
+cost = [{ ingredient = "Vibrant Purple Ioun Stone", quantity = 1 }, { ingredient = "Crystal Disc of Dreams", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: suppressed power"
+option = "Death's Touch upgrade"
+augments = []
+note = "Unlocks the Suppressed Power of Death's Touch (Sickle; Spellcasting Implement +15, +5 Enhancement Bonus, Negative Energy Spike, Lesser Vampirism, Nullification +84, Void Lore IV, Taint of Evil, Suppressed Power): gains Unholy Burst, Necromancy Focus II. Upgraded items become Bound to Character on Acquire; existing Stone of Change rituals stay. Maetrim holds the unlocked effects as an item-specific option on this socket, not in an augment family."
+cost = [{ ingredient = "Death's Touch", quantity = 1 }, { ingredient = "Crystal Disc of Dreams", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: suppressed power"
+option = "Dream Edge upgrade"
+augments = []
+note = "Unlocks the Suppressed Power of Dream Edge (Kama; +5 Enhancement Bonus, Maiming, Aligned, Bodyfeeder, Random Effect, Suppressed Power): gains Lesser Vampirism. Upgraded items become Bound to Character on Acquire; existing Stone of Change rituals stay. Maetrim holds the unlocked effects as an item-specific option on this socket, not in an augment family."
+cost = [{ ingredient = "Dream Edge", quantity = 1 }, { ingredient = "Crystal Disc of Dreams", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: suppressed power"
+option = "Elocator's Habiliment upgrade"
+augments = []
+note = "Unlocks the Suppressed Power of Elocator's Habiliment (Splint Mail; +5 Enhancement Bonus, Displacement (5 Charges, Recharged/Day: 2), Attack Bonus +2, Jump +10, Tumble +10, Feat: Mobility, Resistance +5, Suppressed Power): gains Greater Nimbleness. Upgraded items become Bound to Character on Acquire; existing Stone of Change rituals stay. Maetrim holds the unlocked effects as an item-specific option on this socket, not in an augment family."
+cost = [{ ingredient = "Elocator's Habiliment", quantity = 1 }, { ingredient = "Crystal Disc of Dreams", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Gloves of Titan's Grip upgrade"
+augments = []
+note = "Unlocks the Suppressed Power of Gloves of Titan's Grip (Gloves; Titan's Grip (3 Charges, Recharged/Day: 1), Strength +6, Suppressed Power): gains Reconstruction +84, Repair Lore V, Repair Systems. Upgraded items become Bound to Character on Acquire; existing Stone of Change rituals stay. Maetrim's item has no Suppressed Power socket."
+cost = [{ ingredient = "Gloves of Titan's Grip", quantity = 1 }, { ingredient = "Crystal Disc of Dreams", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: suppressed power"
+option = "Light and Darkness upgrade"
+augments = []
+note = "Unlocks the Suppressed Power of Light and Darkness (Large Shield; +5 Enhancement Bonus, Superior Stability, Protection +4, Resistance +4, DR 3/-, Adamantine, Mithral, Suppressed Power): gains DR 5/Epic, Bashing. Upgraded items become Bound to Character on Acquire; existing Stone of Change rituals stay. Maetrim holds the unlocked effects as an item-specific option on this socket, not in an augment family."
+cost = [{ ingredient = "Light and Darkness", quantity = 1 }, { ingredient = "Crystal Disc of Dreams", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: suppressed power"
+option = "Quorforged Docent of Battle upgrade"
+augments = []
+note = "Unlocks the Suppressed Power of Quorforged Docent of Battle (Docent; +5 Enhancement Bonus, Construct Fortification (10%), Constitution +6, Improved False Life, Will Save -2, Suppressed Power): loses Improved False Life, gains Superior False Life, Vitality +20. Upgraded items become Bound to Character on Acquire; existing Stone of Change rituals stay. Maetrim holds the unlocked effects as an item-specific option on this socket, not in an augment family."
+cost = [{ ingredient = "Quorforged Docent of Battle", quantity = 1 }, { ingredient = "Crystal Disc of Dreams", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: suppressed power"
+option = "Rahl's Might upgrade"
+augments = []
+note = "Unlocks the Suppressed Power of Rahl's Might (Quarterstaff; +5 Enhancement Bonus, Strength +6, Improved Destruction, Deception, Random Effect (1 Axiomatic, 2 Bleed, 3 Force, 4 Impact, 5 Shock), Suppressed Power): loses the random effect, gains its upgrade: 1 Axiomatic Burst, 2 Puncturing, 3 Force Burst, 4 Maiming, 5 Shocking Burst. Upgraded items become Bound to Character on Acquire; existing Stone of Change rituals stay. Maetrim holds the unlocked effects as an item-specific option on this socket, not in an augment family."
+cost = [{ ingredient = "Rahl's Might", quantity = 1 }, { ingredient = "Crystal Disc of Dreams", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Regalia of the Phoenix upgrade"
+augments = []
+note = "Unlocks the Suppressed Power of Regalia of the Phoenix (Robe; Greater Inferno (3 Charges, Recharged/Day: 3), Evocation Focus I, Combustion +78, Fire Lore III, Feather Falling, Suppressed Power): loses Evocation Focus I, Fire Lore III, gains Evocation Focus II, Fire Lore V. Upgraded items become Bound to Character on Acquire; existing Stone of Change rituals stay. Maetrim's item has no Suppressed Power socket."
+cost = [{ ingredient = "Regalia of the Phoenix", quantity = 1 }, { ingredient = "Crystal Disc of Dreams", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: suppressed power"
+option = "Terror upgrade"
+augments = []
+note = "Unlocks the Suppressed Power of Terror (Greatsword; +5 Enhancement Bonus, Fearsome, Nightmares, Phantasmal Killer (3 Charges), Suppressed Power): gains Intimidate +15, Deception. Upgraded items become Bound to Character on Acquire; existing Stone of Change rituals stay. Maetrim holds the unlocked effects as an item-specific option on this socket, not in an augment family."
+cost = [{ ingredient = "Terror", quantity = 1 }, { ingredient = "Crystal Disc of Dreams", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: suppressed power"
+option = "Dreamspitter upgrade"
+augments = []
+note = "Unlocks the Suppressed Power of Dreamspitter (Quarterstaff; +5 Enhancement Bonus, Greater Evil Outsider Bane, Life Stealing, Enchantment Focus II, Upgradeable Item (Stormreaver), Suppressed Power): gains Holy. Upgraded items become Bound to Character on Acquire; existing Stone of Change rituals stay. Maetrim holds the unlocked effects as an item-specific option on this socket, not in an augment family."
+cost = [{ ingredient = "Dreamspitter", quantity = 1 }, { ingredient = "Crystal Disc of Dreams", quantity = 1 }]

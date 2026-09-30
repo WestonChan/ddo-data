@@ -1,0 +1,171 @@
+[[system]]
+name = "Nebula Fragment Crafting"
+page = "https://ddowiki.com/page/Item:Nebula_Fragment"
+read = "2026-09-29"
+npc = "Lahar in The Twelve: present a Nebula Fragment to receive the Star Fragments: Frame quest; the completed Frame (Bound to Account, not consumed, shareable through the bank) must be in the inventory to open his Perfected Crafting interface"
+
+[[system.ingredient]]
+name = "Nebula Fragment"
+tier = "legendary"
+bind = "Bound to Account on Acquire"
+source = "Very rare drop from Legendary chests in Sinister Secret of Saltmarsh"
+
+[[system.ingredient]]
+name = "Thread of Fate"
+tier = "legendary"
+
+[[system.ingredient]]
+name = "Legendary base item"
+tier = "legendary"
+source = "The Legendary Crafting version of the item"
+
+[[system.ingredient]]
+name = "Desert Sand Crystal"
+tier = "legendary"
+source = "Sands of Menechtarun pack-specific component"
+
+[[system.ingredient]]
+name = "Vault Key"
+tier = "legendary"
+source = "Vault of Night pack-specific component"
+
+[[system.ingredient]]
+name = "Medal of House Deneith"
+tier = "legendary"
+source = "Sentinels of Stormreach pack-specific component"
+
+[[system.ingredient]]
+name = "Scrap of Patterned Cloth"
+tier = "legendary"
+source = "Phiarlan Carnival pack-specific component"
+
+[[system.ingredient]]
+name = "Glowing Fen Mushroom"
+tier = "legendary"
+source = "The Red Fens pack-specific component"
+
+[[system.ingredient]]
+name = "Fractured Sliver of Time"
+tier = "legendary"
+source = "The Chronoscope pack-specific component"
+
+[[system.ingredient]]
+name = "Crystallized Spiderweb"
+tier = "legendary"
+source = "Web of Chaos pack-specific component"
+
+[[system.ingredient]]
+name = "Saltmeadow Hay"
+tier = "legendary"
+source = "Sinister Secret of Saltmarsh pack-specific component"
+
+[[system.ingredient]]
+name = "Star Fragments: Frame"
+tier = "legendary"
+bind = "Bound to Account"
+source = "From Lahar's quest; completed by clicking 8 Star Shrines with it in the inventory: Red (Saltmarsh wilderness, south of the Final Enemy entrance), Orange (The Chronoscope, Rusty Nail inn behind the weapon and wand dealers' counter), Yellow (Partycrashers, front lobby by the guest list), Green (Storm the Beaches, on the warship), Teal (Into the Deep, bottom right corner), Blue (Plane of Night, island below the main platform, bring Feather Fall), Purple (The Spinner of Shadows, in the lava), Pink (Sands of Menechtarun wilderness, south-west of the Chains of Flame entrance). Needs Sands of Menechtarun, Sentinels of Stormreach, The Red Fens, Devil Assault, The Vault of Night, Phiarlan Carnival, Sinister Secret of Saltmarsh and Web of Chaos (free to play); all but the Red Shard work with VIP"
+
+[[system.recipe]]
+tier = "legendary"
+option = "Perfected Jidz-Tet'ka"
+augments = []
+note = "Upgrades the Legendary Jidz-Tet'ka into Perfected Jidz-Tet'ka (Bracers), a minor artifact at ML 30 with up to 4 filigree slots. The Frame must be in the inventory and is not consumed. As a new item it inherits no Mythic, Reaper or Deck of Many Curses effects, and cannot be equipped alongside another minor artifact. Uses Sentinels of Stormreach components per the Epic Crafting pack table. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Legendary base item", quantity = 1 }, { ingredient = "Nebula Fragment", quantity = 1 }, { ingredient = "Thread of Fate", quantity = 500 }, { ingredient = "Medal of House Deneith", quantity = 250 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Perfected Bracers of the Demon's Consort"
+augments = []
+note = "Upgrades the Legendary Bracers of the Demon's Consort into Perfected Bracers of the Demon's Consort (Bracers), a minor artifact at ML 30 with up to 4 filigree slots. The Frame must be in the inventory and is not consumed. As a new item it inherits no Mythic, Reaper or Deck of Many Curses effects, and cannot be equipped alongside another minor artifact. Uses Sands of Menechtarun components per the Epic Crafting pack table. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Legendary base item", quantity = 1 }, { ingredient = "Nebula Fragment", quantity = 1 }, { ingredient = "Thread of Fate", quantity = 500 }, { ingredient = "Desert Sand Crystal", quantity = 250 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Perfected Cinderfingers"
+augments = []
+note = "Upgrades the Legendary Cinderfingers into Perfected Cinderfingers (Gloves), a minor artifact at ML 30 with up to 4 filigree slots. The Frame must be in the inventory and is not consumed. As a new item it inherits no Mythic, Reaper or Deck of Many Curses effects, and cannot be equipped alongside another minor artifact. Uses Sinister Secret of Saltmarsh components per the Epic Crafting pack table. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Legendary base item", quantity = 1 }, { ingredient = "Nebula Fragment", quantity = 1 }, { ingredient = "Thread of Fate", quantity = 500 }, { ingredient = "Saltmeadow Hay", quantity = 250 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Perfected Charged Gauntlets"
+augments = []
+note = "Upgrades the Legendary Charged Gauntlets into Perfected Charged Gauntlets (Gloves), a minor artifact at ML 30 with up to 4 filigree slots. The Frame must be in the inventory and is not consumed. As a new item it inherits no Mythic, Reaper or Deck of Many Curses effects, and cannot be equipped alongside another minor artifact. Uses The Chronoscope components per the Epic Crafting pack table. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Legendary base item", quantity = 1 }, { ingredient = "Nebula Fragment", quantity = 1 }, { ingredient = "Thread of Fate", quantity = 500 }, { ingredient = "Fractured Sliver of Time", quantity = 250 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Perfected Goggles of Time-Sensing"
+augments = []
+note = "Upgrades the Legendary Goggles of Time-Sensing into Perfected Goggles of Time-Sensing (Goggles), a minor artifact at ML 30 with up to 4 filigree slots. The Frame must be in the inventory and is not consumed. As a new item it inherits no Mythic, Reaper or Deck of Many Curses effects, and cannot be equipped alongside another minor artifact. Uses The Chronoscope components per the Epic Crafting pack table. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Legendary base item", quantity = 1 }, { ingredient = "Nebula Fragment", quantity = 1 }, { ingredient = "Thread of Fate", quantity = 500 }, { ingredient = "Fractured Sliver of Time", quantity = 250 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Perfected Darkstorm Helm"
+augments = []
+note = "Upgrades the Legendary Darkstorm Helm into Perfected Darkstorm Helm (Helmet), a minor artifact at ML 30 with up to 4 filigree slots. The Frame must be in the inventory and is not consumed. As a new item it inherits no Mythic, Reaper or Deck of Many Curses effects, and cannot be equipped alongside another minor artifact. Uses Web of Chaos components per the Epic Crafting pack table. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Legendary base item", quantity = 1 }, { ingredient = "Nebula Fragment", quantity = 1 }, { ingredient = "Thread of Fate", quantity = 500 }, { ingredient = "Crystallized Spiderweb", quantity = 250 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Perfected Helm of the Red Dragon"
+augments = []
+note = "Upgrades the Legendary Helm of the Red Dragon into Perfected Helm of the Red Dragon (Helmet), a minor artifact at ML 30 with up to 4 filigree slots. The Frame must be in the inventory and is not consumed. As a new item it inherits no Mythic, Reaper or Deck of Many Curses effects, and cannot be equipped alongside another minor artifact. Uses Vault of Night components per the Epic Crafting pack table. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Legendary base item", quantity = 1 }, { ingredient = "Nebula Fragment", quantity = 1 }, { ingredient = "Thread of Fate", quantity = 500 }, { ingredient = "Vault Key", quantity = 250 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Perfected Golden Guile"
+augments = []
+note = "Upgrades the Legendary Golden Guile into Perfected Golden Guile (Necklace), a minor artifact at ML 30 with up to 4 filigree slots. The Frame must be in the inventory and is not consumed. As a new item it inherits no Mythic, Reaper or Deck of Many Curses effects, and cannot be equipped alongside another minor artifact. Uses Web of Chaos components per the Epic Crafting pack table. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Legendary base item", quantity = 1 }, { ingredient = "Nebula Fragment", quantity = 1 }, { ingredient = "Thread of Fate", quantity = 500 }, { ingredient = "Crystallized Spiderweb", quantity = 250 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Perfected Twisted Talisman"
+augments = []
+note = "Upgrades the Legendary Twisted Talisman into Perfected Twisted Talisman (Necklace), a minor artifact at ML 30 with up to 4 filigree slots. The Frame must be in the inventory and is not consumed. As a new item it inherits no Mythic, Reaper or Deck of Many Curses effects, and cannot be equipped alongside another minor artifact. Uses The Red Fens components per the Epic Crafting pack table. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Legendary base item", quantity = 1 }, { ingredient = "Nebula Fragment", quantity = 1 }, { ingredient = "Thread of Fate", quantity = 500 }, { ingredient = "Glowing Fen Mushroom", quantity = 250 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Perfected Torc of Prince Raiyum-de II"
+augments = []
+note = "Upgrades the Legendary Torc of Prince Raiyum-de II into Perfected Torc of Prince Raiyum-de II (Necklace), a minor artifact at ML 30 with up to 4 filigree slots. The Frame must be in the inventory and is not consumed. As a new item it inherits no Mythic, Reaper or Deck of Many Curses effects, and cannot be equipped alongside another minor artifact. Uses Sands of Menechtarun components per the Epic Crafting pack table. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Legendary base item", quantity = 1 }, { ingredient = "Nebula Fragment", quantity = 1 }, { ingredient = "Thread of Fate", quantity = 500 }, { ingredient = "Desert Sand Crystal", quantity = 250 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Perfected Vulkoorim Pendant"
+augments = []
+note = "Upgrades the Legendary Vulkoorim Pendant into Perfected Vulkoorim Pendant (Necklace), a minor artifact at ML 30 with up to 4 filigree slots. The Frame must be in the inventory and is not consumed. As a new item it inherits no Mythic, Reaper or Deck of Many Curses effects, and cannot be equipped alongside another minor artifact. Uses Sands of Menechtarun components per the Epic Crafting pack table. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Legendary base item", quantity = 1 }, { ingredient = "Nebula Fragment", quantity = 1 }, { ingredient = "Thread of Fate", quantity = 500 }, { ingredient = "Desert Sand Crystal", quantity = 250 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Perfected Ring of Elemental Essence"
+augments = []
+note = "Upgrades the Legendary Ring of Elemental Essence into Perfected Ring of Elemental Essence (Ring), a minor artifact at ML 30 with up to 4 filigree slots. The Frame must be in the inventory and is not consumed. As a new item it inherits no Mythic, Reaper or Deck of Many Curses effects, and cannot be equipped alongside another minor artifact. Uses Phiarlan Carnival components per the Epic Crafting pack table. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Legendary base item", quantity = 1 }, { ingredient = "Nebula Fragment", quantity = 1 }, { ingredient = "Thread of Fate", quantity = 500 }, { ingredient = "Scrap of Patterned Cloth", quantity = 250 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Perfected Salt-Pearl Ring"
+augments = []
+note = "Upgrades the Legendary Salt-Pearl Ring into Perfected Salt-Pearl Ring (Ring), a minor artifact at ML 30 with up to 4 filigree slots. The Frame must be in the inventory and is not consumed. As a new item it inherits no Mythic, Reaper or Deck of Many Curses effects, and cannot be equipped alongside another minor artifact. Uses Sinister Secret of Saltmarsh components per the Epic Crafting pack table. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Legendary base item", quantity = 1 }, { ingredient = "Nebula Fragment", quantity = 1 }, { ingredient = "Thread of Fate", quantity = 500 }, { ingredient = "Saltmeadow Hay", quantity = 250 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Perfected Dragon's Eye"
+augments = []
+note = "Upgrades the Legendary Dragon's Eye into Perfected Dragon's Eye (Trinket), a minor artifact at ML 30 with up to 4 filigree slots. The Frame must be in the inventory and is not consumed. As a new item it inherits no Mythic, Reaper or Deck of Many Curses effects, and cannot be equipped alongside another minor artifact. Uses Vault of Night components per the Epic Crafting pack table. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Legendary base item", quantity = 1 }, { ingredient = "Nebula Fragment", quantity = 1 }, { ingredient = "Thread of Fate", quantity = 500 }, { ingredient = "Vault Key", quantity = 250 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Perfected Bloodstone"
+augments = []
+note = "Upgrades the Legendary Bloodstone into Perfected Bloodstone (Trinket), a minor artifact at ML 30 with up to 4 filigree slots. The Frame must be in the inventory and is not consumed. As a new item it inherits no Mythic, Reaper or Deck of Many Curses effects, and cannot be equipped alongside another minor artifact. Uses Sands of Menechtarun components per the Epic Crafting pack table. A separate item in Maetrim's data; no augment counterpart."
+cost = [{ ingredient = "Legendary base item", quantity = 1 }, { ingredient = "Nebula Fragment", quantity = 1 }, { ingredient = "Thread of Fate", quantity = 500 }, { ingredient = "Desert Sand Crystal", quantity = 250 }]

@@ -13,26 +13,25 @@
   },
   {
     "families": [
-      "DeckOfManyCurses"
+      "SealedInFire",
+      "SealedInUndeath"
     ],
     "id": 3,
-    "ingredient_count": 6,
-    "name": "Deck of Many Curses",
-    "npc": null,
-    "pack": "Illithid Invasion",
-    "page": "https://ddowiki.com/page/Item:Deck_of_Many_Curses",
-    "recipe_count": 95
+    "ingredient_count": 3,
+    "name": "Augmentation Altar",
+    "npc": "Augmentation Altar inside the Temple of Silith-tar in the raid Den of Vipers (introduced in Update 72)",
+    "pack": null,
+    "page": "https://ddowiki.com/page/Augmentation_Altar",
+    "recipe_count": 7
   },
   {
-    "families": [
-      "DinosaurBone"
-    ],
+    "families": [],
     "id": 4,
-    "ingredient_count": 6,
-    "name": "Dinosaur Bone crafting",
-    "npc": "Sharpened Bone, whose barter window creates Isle of Dread augments and Dinosaur Bone weapons; augments are slotted through the Augment Item UI in the inventory panel",
-    "pack": "The Isle of Dread",
-    "page": "https://ddowiki.com/page/Dinosaur_Bone_crafting",
-    "recipe_count": 108
+    "ingredient_count": 90,
+    "name": "Catalyst Crafting",
+    "npc": "Strange Catalyst Forge in Gravenhollow",
+    "pack": "Terror of Demogorgon",
+    "page": "https://ddowiki.com/page/Catalyst_Crafting",
+    "recipe_count": 84
   }
 ]

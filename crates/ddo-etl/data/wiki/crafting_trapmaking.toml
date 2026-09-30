@@ -1,0 +1,164 @@
+[[system]]
+name = "Trapmaking"
+page = "https://ddowiki.com/page/Trapmaking"
+read = "2026-09-29"
+npc = "Device Workstation, ground level of the House Cannith Enclave; also a guild airship amenity at guild level 30 (24 Gold Seal). Needs the Trapmaking feat (auto-granted to level 4 Rogues and Artificers and level 3 Dark Hunters)"
+
+[[system.ingredient]]
+name = "Mechanical Trap Parts"
+tier = "any"
+source = "From disabled trap Control Panels whose traps are mechanical (spikes, blades); needs the Trapmaking feat"
+
+[[system.ingredient]]
+name = "<Elemental> Trap Parts"
+tier = "any"
+source = "From disabled trap Control Panels of the matching element: Acid, Cold, Electrical, Fire, Force or Sonic; needs the Trapmaking feat. Unholy and Holy parts drop but have no recipe"
+
+[[system.ingredient]]
+name = "Magical Trap Parts"
+tier = "any"
+source = "From disabled Control Panels of poison and spell traps; needs the Trapmaking feat"
+
+[[system.ingredient]]
+name = "Siberys Dragonshard Fragment"
+tier = "any"
+source = "Chests and collectables"
+
+[[system.ingredient]]
+name = "Magic Item Essence"
+tier = "any"
+
+[[system.ingredient]]
+name = "Crude Vial"
+tier = "any"
+source = "Free Agent vendor only, e.g. Sorvile Smythe"
+
+[[system.ingredient]]
+name = "Simple Vial"
+tier = "any"
+source = "Free Agent vendor only, e.g. Sorvile Smythe"
+
+[[system.ingredient]]
+name = "Unadorned Vial"
+tier = "any"
+source = "Free Agent vendor only, e.g. Sorvile Smythe"
+
+[[system.ingredient]]
+name = "Level 1 trap scroll"
+tier = "any"
+source = "Scroll of Cause Fear, Daze, Grease, Hypnotism or Sleep; The Marketplace Bazaar sells level 1 scrolls except the rare Daze"
+
+[[system.ingredient]]
+name = "Level 2 trap scroll"
+tier = "any"
+source = "Scroll of Blindness, Daze Monster, Glitterdust, Hypnotic Pattern, Otto's Resistible Dance, Scare, Touch of Idiocy or Web; The Marketplace Bazaar sells level 2 scrolls"
+
+[[system.ingredient]]
+name = "Level 3 trap scroll"
+tier = "any"
+source = "Scroll of Deep Slumber, Dispel Magic, Halt Undead, Hold Person or Slow; Object Desire in the House Phiarlan Enclave sells level 3 scrolls"
+
+[[system.recipe]]
+tier = "any"
+option = "Noisemakers"
+augments = []
+note = "Mine. Yields 15 Noisemakers, which make a small noise after several seconds to lure creatures. Level 2 to use. A consumable, no augment counterpart."
+cost = [{ ingredient = "Mechanical Trap Parts", quantity = 25 }]
+
+[[system.recipe]]
+tier = "any"
+option = "Weak <Elemental> Trap"
+augments = []
+note = "Mine. Yields 15 Weak <Elemental> Traps: 10d6 damage. Level 3 to use. A consumable, no augment counterpart."
+cost = [{ ingredient = "<Elemental> Trap Parts", quantity = 10 }, { ingredient = "Mechanical Trap Parts", quantity = 10 }]
+
+[[system.recipe]]
+tier = "any"
+option = "Small <Elemental> Trap"
+augments = []
+note = "Mine, minimum level 5. Yields 15 Small <Elemental> Traps: 20d6 damage. Level 5 to use. A consumable, no augment counterpart."
+cost = [{ ingredient = "<Elemental> Trap Parts", quantity = 25 }, { ingredient = "Mechanical Trap Parts", quantity = 10 }, { ingredient = "Siberys Dragonshard Fragment", quantity = 10 }]
+
+[[system.recipe]]
+tier = "any"
+option = "Average <Elemental> Trap"
+augments = []
+note = "Mine. Yields 15 Average <Elemental> Traps: 30d6 damage, large area of effect. Level 7 to use. A consumable, no augment counterpart."
+cost = [{ ingredient = "<Elemental> Trap Parts", quantity = 50 }, { ingredient = "Mechanical Trap Parts", quantity = 25 }, { ingredient = "Siberys Dragonshard Fragment", quantity = 50 }, { ingredient = "Magic Item Essence", quantity = 1 }]
+
+[[system.recipe]]
+tier = "any"
+option = "Strong <Elemental> Trap"
+augments = []
+note = "Mine. Yields 15 Large <Elemental> Traps: 40d6 damage, large area of effect. Level 9 to use. A consumable, no augment counterpart."
+cost = [{ ingredient = "<Elemental> Trap Parts", quantity = 75 }, { ingredient = "Mechanical Trap Parts", quantity = 25 }, { ingredient = "Siberys Dragonshard Fragment", quantity = 100 }, { ingredient = "Magic Item Essence", quantity = 3 }]
+
+[[system.recipe]]
+tier = "any"
+option = "Deadly <Elemental> Trap"
+augments = []
+note = "Mine. Yields 15 Deadly <Elemental> Traps: 50d6 damage, huge area of effect. Level 11 to use. A consumable, no augment counterpart."
+cost = [{ ingredient = "<Elemental> Trap Parts", quantity = 100 }, { ingredient = "Mechanical Trap Parts", quantity = 25 }, { ingredient = "Siberys Dragonshard Fragment", quantity = 250 }, { ingredient = "Magic Item Essence", quantity = 5 }]
+
+[[system.recipe]]
+tier = "any"
+option = "Construct <Elemental> Traps (ML 13 to 27)"
+augments = []
+note = "Mine; one recipe per two levels (ML 13, 15, 17 ... 27). Yields 15 <Elemental> Traps of that ML: (ML-1)x5 d6 damage, huge area of effect. The page notes that as of U36 these deal roughly 2/3 of that (ML 13 about 40d6 instead of 60d6, ML 23 about 72d6 instead of 110d6). A consumable, no augment counterpart."
+cost = [{ ingredient = "<Elemental> Trap Parts", quantity = 100 }, { ingredient = "Mechanical Trap Parts", quantity = 25 }, { ingredient = "Siberys Dragonshard Fragment", quantity = 250 }, { ingredient = "Magic Item Essence", quantity = 5 }]
+
+[[system.recipe]]
+tier = "any"
+option = "Weak <Elemental> Grenades"
+augments = []
+note = "Grenade. Yields 25: 2d6 damage, Reflex save 12. Level 1 to use (UMD 12 without Rogue or Artificer levels). A consumable, no augment counterpart."
+cost = [{ ingredient = "<Elemental> Trap Parts", quantity = 10 }, { ingredient = "Crude Vial", quantity = 25 }]
+
+[[system.recipe]]
+tier = "any"
+option = "Small <Elemental> Grenades"
+augments = []
+note = "Grenade. Yields 25: 6d6 damage, Reflex save 16. Level 2 to use (UMD 16). A consumable, no augment counterpart."
+cost = [{ ingredient = "<Elemental> Trap Parts", quantity = 25 }, { ingredient = "Crude Vial", quantity = 25 }, { ingredient = "Siberys Dragonshard Fragment", quantity = 10 }]
+
+[[system.recipe]]
+tier = "any"
+option = "Average <Elemental> Grenades"
+augments = []
+note = "Grenade. Yields 25: 12d6 damage, Reflex save 20. Level 4 to use (UMD 22). A consumable, no augment counterpart."
+cost = [{ ingredient = "<Elemental> Trap Parts", quantity = 50 }, { ingredient = "Simple Vial", quantity = 25 }, { ingredient = "Siberys Dragonshard Fragment", quantity = 50 }, { ingredient = "Magic Item Essence", quantity = 1 }]
+
+[[system.recipe]]
+tier = "any"
+option = "Strong <Elemental> Grenades"
+augments = []
+note = "Grenade. Yields 25: 20d6 damage, Reflex save 24. Level 8 to use (UMD 30). A consumable, no augment counterpart."
+cost = [{ ingredient = "<Elemental> Trap Parts", quantity = 75 }, { ingredient = "Simple Vial", quantity = 25 }, { ingredient = "Siberys Dragonshard Fragment", quantity = 100 }, { ingredient = "Magic Item Essence", quantity = 3 }]
+
+[[system.recipe]]
+tier = "any"
+option = "Deadly <Elemental> Grenades"
+augments = []
+note = "Grenade. Yields 25: 30d6 damage, Reflex save 28. Level 16 to use (UMD 40). A consumable, no augment counterpart."
+cost = [{ ingredient = "<Elemental> Trap Parts", quantity = 100 }, { ingredient = "Unadorned Vial", quantity = 25 }, { ingredient = "Siberys Dragonshard Fragment", quantity = 250 }, { ingredient = "Magic Item Essence", quantity = 5 }]
+
+[[system.recipe]]
+tier = "any"
+option = "Magical Traps"
+augments = []
+note = "Magical trap (poison and spell). Yields 15 Magical Traps that cast the scroll's spell when triggered. A consumable, no augment counterpart."
+cost = [{ ingredient = "Magical Trap Parts", quantity = 10 }, { ingredient = "Mechanical Trap Parts", quantity = 10 }, { ingredient = "Level 1 trap scroll", quantity = 1 }]
+
+[[system.recipe]]
+tier = "any"
+option = "Magical Traps (ML 5)"
+augments = []
+note = "Magical trap. Yields 15 Magical Traps, ML 5. A consumable, no augment counterpart."
+cost = [{ ingredient = "Magical Trap Parts", quantity = 25 }, { ingredient = "Mechanical Trap Parts", quantity = 10 }, { ingredient = "Level 2 trap scroll", quantity = 1 }]
+
+[[system.recipe]]
+tier = "any"
+option = "Magical Traps (ML 7)"
+augments = []
+note = "Magical trap. Yields 15 Magical Traps, ML 7. A consumable, no augment counterpart."
+cost = [{ ingredient = "Magical Trap Parts", quantity = 50 }, { ingredient = "Mechanical Trap Parts", quantity = 10 }, { ingredient = "Level 3 trap scroll", quantity = 1 }]
