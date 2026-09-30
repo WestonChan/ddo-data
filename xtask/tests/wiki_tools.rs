@@ -17,9 +17,9 @@ fn wiki_check_reports_the_wiki_counts_for_a_valid_wiki_dir() {
     for expected_line in [
         "wiki_quest_loot_entry_count: 1",
         "wiki_quest_entry_count: 3",
-        "wiki_crafting_system_count: 1",
-        "wiki_crafting_recipe_count: 3",
-        "wiki_crafting_ingredient_count: 4",
+        "wiki_crafting_system_count: 2",
+        "wiki_crafting_recipe_count: 5",
+        "wiki_crafting_ingredient_count: 5",
     ] {
         assert!(report.lines().any(|line| line == expected_line), "missing {expected_line:?} in\n{report}");
     }

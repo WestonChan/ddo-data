@@ -59,7 +59,7 @@ async fn version_reports_dataset_and_schema() {
             &json["counts"]["crafting_recipes"],
             &json["counts"]["crafting_ingredients"]
         ),
-        (&serde_json::json!(1), &serde_json::json!(3), &serde_json::json!(4))
+        (&serde_json::json!(2), &serde_json::json!(5), &serde_json::json!(5))
     );
     assert_eq!(headers.get("x-dataset-version").unwrap(), "fixture-sha");
     assert!(headers.get(header::ETAG).is_some());
@@ -645,7 +645,7 @@ async fn crafting_systems_list_their_families_and_counts() {
     let (status, _, json) = get("/v1/crafting-systems").await;
     assert_eq!(status, StatusCode::OK);
     let crafting_systems = json.as_array().unwrap();
-    assert_eq!(crafting_systems.len(), 1);
+    assert_eq!(crafting_systems.len(), 2);
     let crafting_system = &crafting_systems[0];
     assert!(crafting_system["id"].is_number());
     assert_eq!(crafting_system["name"], "Heroic Green Steel");

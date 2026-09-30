@@ -330,7 +330,7 @@ fn parsed_edited_crafting(edit: impl Fn(String) -> String) -> Result<WikiOverrid
 #[test]
 fn reads_crafting_systems_from_crafting_files() {
     let wiki = WikiOverrides::from_dir(&fixtures_dir().join("wiki")).unwrap();
-    assert_eq!(wiki.crafting_systems.len(), 1);
+    assert_eq!(wiki.crafting_systems.len(), 2);
     let system = &wiki.crafting_systems[0];
     assert_eq!(system.name, "Heroic Green Steel");
     assert_eq!(system.page, "https://ddowiki.com/page/Green_Steel_items");
@@ -342,6 +342,10 @@ fn reads_crafting_systems_from_crafting_files() {
     assert_eq!(system.recipes.len(), 3);
     assert_eq!(system.recipes[0].cost[1].ingredient, "Small Focus of Earth");
     assert_eq!(system.recipes[2].augments, Vec::<String>::new());
+    let upgrade_system = &wiki.crafting_systems[1];
+    assert_eq!(upgrade_system.name, "Test Upgrade Altar");
+    assert!(upgrade_system.families.is_empty());
+    assert_eq!(upgrade_system.recipes[0].grants_slot.as_deref(), Some("upgrade: tier 2"));
     assert_eq!(wiki.quest_facts.len(), 3, "crafting.toml tables are not read as quests");
 }
 
@@ -387,9 +391,31 @@ fn rejects_a_crafting_cost_quantity_that_is_not_positive() {
 }
 
 #[test]
-fn rejects_a_crafting_system_missing_its_families_naming_the_system() {
+fn rejects_a_family_less_system_whose_recipe_lists_augments_naming_the_system_and_recipe() {
     let error = parsed_edited_crafting(|s| s.replace("families = [\"Greensteel_Heroic\"]\n", "")).unwrap_err();
-    assert!(error.contains("Heroic Green Steel") && error.contains("families"), "{error}");
+    assert!(
+        error.contains("Heroic Green Steel") && error.contains("+5 Fortitude Save") && error.contains("families"),
+        "{error}"
+    );
+}
+
+#[test]
+fn rejects_an_empty_families_list_when_a_recipe_lists_augments() {
+    let error =
+        parsed_edited_crafting(|s| s.replace("families = [\"Greensteel_Heroic\"]", "families = []")).unwrap_err();
+    assert!(error.contains("Heroic Green Steel") && error.contains("+5 Fortitude Save"), "{error}");
+}
+
+#[test]
+fn rejects_a_crafting_recipe_with_no_augments_note_or_grants_slot() {
+    let error = parsed_edited_crafting(|s| s.replace("grants_slot = \"upgrade: tier 2\"\n", "")).unwrap_err();
+    assert!(
+        error.contains("Test Upgrade Altar")
+            && error.contains("Test tier 2 upgrade")
+            && error.contains("note")
+            && error.contains("grants_slot"),
+        "{error}"
+    );
 }
 
 #[test]
@@ -443,9 +469,21 @@ fn build_fails_naming_an_unknown_slot_label() {
 }
 
 #[test]
-fn build_fails_naming_an_unknown_pack() {
+fn build_fails_naming_an_unknown_grants_slot_label() {
     let error =
-        build_report_with_edited_crafting(|s| s.replace("npc = ", "pack = \"The Shroud Pack\"\nnpc = ")).unwrap_err();
+        build_report_with_edited_crafting(|s| s.replace("\"upgrade: tier 2\"", "\"upgrade: tier 9\"")).unwrap_err();
+    assert!(
+        error.contains("Test Upgrade Altar")
+            && error.contains("Test tier 2 upgrade")
+            && error.contains("upgrade: tier 9"),
+        "{error}"
+    );
+}
+
+#[test]
+fn build_fails_naming_an_unknown_pack() {
+    let error = build_report_with_edited_crafting(|s| s.replacen("npc = ", "pack = \"The Shroud Pack\"\nnpc = ", 1))
+        .unwrap_err();
     assert!(error.contains("Heroic Green Steel") && error.contains("The Shroud Pack"), "{error}");
 }
 
@@ -455,7 +493,7 @@ fn recipe_rows(db: &Connection) -> Vec<RecipeRow> {
     let mut statement = db
         .prepare(
             "SELECT r.tier, t.label, r.option, r.note, r.sort_order FROM crafting_recipes r
-               LEFT JOIN augment_slot_types t ON t.id = r.slot_id ORDER BY r.sort_order",
+               LEFT JOIN augment_slot_types t ON t.id = r.slot_id ORDER BY r.system_id, r.sort_order",
         )
         .unwrap();
     statement
@@ -475,10 +513,10 @@ fn merges_crafting_systems_ingredients_and_recipes() {
     let (db, report) = built_db_with(&WikiOverrides::from_dir(&fixtures_dir().join("wiki")).unwrap());
     assert_eq!(
         (report.wiki_crafting_system_count, report.wiki_crafting_recipe_count, report.wiki_crafting_ingredient_count),
-        (1, 3, 4)
+        (2, 5, 5)
     );
     let (name, page, pack, npc): (String, String, Option<i64>, Option<String>) = db
-        .query_row("SELECT name, page, pack_id, npc FROM crafting_systems", [], |r| {
+        .query_row("SELECT name, page, pack_id, npc FROM crafting_systems ORDER BY id LIMIT 1", [], |r| {
             Ok((r.get(0)?, r.get(1)?, r.get(2)?, r.get(3)?))
         })
         .unwrap();
@@ -490,7 +528,8 @@ fn merges_crafting_systems_ingredients_and_recipes() {
     assert_eq!(
         string_column(
             &db,
-            "SELECT name || '|' || tier || '|' || COALESCE(bind, '') FROM crafting_ingredients ORDER BY id"
+            "SELECT name || '|' || tier || '|' || COALESCE(bind, '') FROM crafting_ingredients WHERE system_id = 1
+              ORDER BY id"
         ),
         [
             "Small Shard of Power|heroic|Bound to Account",
@@ -500,8 +539,8 @@ fn merges_crafting_systems_ingredients_and_recipes() {
         ]
     );
     assert_eq!(
-        recipe_rows(&db),
-        vec![
+        recipe_rows(&db)[..3],
+        [
             ("heroic".into(), Some("crafting: accessory invasion".into()), "+5 Fortitude Save".into(), None, 0),
             ("heroic".into(), Some("crafting: accessory invasion".into()), "Minor Fire Guard".into(), None, 1),
             (
@@ -527,7 +566,7 @@ fn merges_crafting_systems_ingredients_and_recipes() {
             &db,
             "SELECT r.option || '|' || i.name || '|' || ri.quantity FROM crafting_recipe_ingredients ri
                JOIN crafting_recipes r ON r.id = ri.recipe_id JOIN crafting_ingredients i ON i.id = ri.ingredient_id
-              ORDER BY r.sort_order, i.id"
+              WHERE r.system_id = 1 ORDER BY r.sort_order, i.id"
         ),
         [
             "+5 Fortitude Save|Small Shard of Power|1",
@@ -541,8 +580,43 @@ fn merges_crafting_systems_ingredients_and_recipes() {
 
 #[test]
 fn crafting_pack_resolves_to_maetrims_adventure_pack() {
-    let report = build_report_with_edited_crafting(|s| s.replace("npc = ", "pack = \"Free to Play\"\nnpc = ")).unwrap();
-    assert_eq!(report.wiki_crafting_system_count, 1);
+    let report =
+        build_report_with_edited_crafting(|s| s.replacen("npc = ", "pack = \"Free to Play\"\nnpc = ", 1)).unwrap();
+    assert_eq!(report.wiki_crafting_system_count, 2);
+}
+
+#[test]
+fn merges_a_family_less_system_whose_recipes_grant_sockets() {
+    let (db, _) = built_db_with(&WikiOverrides::from_dir(&fixtures_dir().join("wiki")).unwrap());
+    assert_eq!(
+        string_column(
+            &db,
+            "SELECT r.option || '|' || t.label || '|' || COALESCE(r.note, '') || '|' || r.sort_order
+               FROM crafting_recipes r JOIN crafting_systems s ON s.id = r.system_id
+               JOIN augment_slot_types t ON t.id = r.grants_slot_id
+              WHERE s.name = 'Test Upgrade Altar' ORDER BY r.sort_order"
+        ),
+        [
+            "Test tier 2 upgrade|upgrade: tier 2||0",
+            "Test Colorless Augment Slot|colorless|Test note: adds a socket, never an augment.|1"
+        ]
+    );
+    assert_eq!(
+        string_column(
+            &db,
+            "SELECT f.family FROM crafting_system_families f JOIN crafting_systems s ON s.id = f.system_id
+              WHERE s.name = 'Test Upgrade Altar'"
+        ),
+        Vec::<String>::new()
+    );
+    assert_eq!(
+        string_column(
+            &db,
+            "SELECT r.option FROM crafting_recipes r JOIN crafting_systems s ON s.id = r.system_id
+              WHERE s.name = 'Heroic Green Steel' AND r.grants_slot_id IS NOT NULL"
+        ),
+        Vec::<String>::new()
+    );
 }
 
 #[test]

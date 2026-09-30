@@ -137,22 +137,25 @@ fn insert_crafting_recipe(
     recipe: &CraftingRecipe,
     ingredient_ids_by_name_and_tier: &HashMap<(&str, &str), i64>,
 ) -> Result<()> {
-    let slot_type_id = match &recipe.slot {
-        Some(label) => Some(
-            transaction
-                .query_row("SELECT id FROM augment_slot_types WHERE label = ?1", params![label], |r| r.get::<_, i64>(0))
-                .optional()?
-                .with_context(|| {
-                    format!(
-                        "slot {label:?} is not a socket label in Maetrim's files; use one /v1/augment-slot-types lists"
-                    )
-                })?,
-        ),
-        None => None,
-    };
+    let slot_type_id =
+        recipe.slot.as_deref().map(|label| slot_type_id_labelled(transaction, "slot", label)).transpose()?;
+    let granted_slot_type_id = recipe
+        .grants_slot
+        .as_deref()
+        .map(|label| slot_type_id_labelled(transaction, "grants_slot", label))
+        .transpose()?;
     transaction.execute(
-        "INSERT INTO crafting_recipes (system_id, tier, slot_id, option, note, sort_order) VALUES (?1, ?2, ?3, ?4, ?5, ?6)",
-        params![system_id, recipe.tier, slot_type_id, recipe.option, recipe.note, sort_order as i64],
+        "INSERT INTO crafting_recipes (system_id, tier, slot_id, grants_slot_id, option, note, sort_order)
+         VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7)",
+        params![
+            system_id,
+            recipe.tier,
+            slot_type_id,
+            granted_slot_type_id,
+            recipe.option,
+            recipe.note,
+            sort_order as i64
+        ],
     )?;
     let recipe_id = transaction.last_insert_rowid();
     for augment_name in &recipe.augments {
@@ -182,6 +185,15 @@ fn insert_crafting_recipe(
         )?;
     }
     Ok(())
+}
+
+fn slot_type_id_labelled(transaction: &Transaction, field: &str, label: &str) -> Result<i64> {
+    transaction
+        .query_row("SELECT id FROM augment_slot_types WHERE label = ?1", params![label], |r| r.get(0))
+        .optional()?
+        .with_context(|| {
+            format!("{field} {label:?} is not a socket label in Maetrim's files; use one /v1/augment-slot-types lists")
+        })
 }
 
 fn augment_ids_named_in(transaction: &Transaction, augment_name: &str, families: &[String]) -> Result<Vec<i64>> {

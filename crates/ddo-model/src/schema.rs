@@ -694,15 +694,16 @@ CREATE TABLE IF NOT EXISTS crafting_ingredients (
     UNIQUE (system_id, name, tier)
 );
 
--- One row of a wiki recipe table: what `option` costs and the augments it yields.
+-- One row of a wiki recipe table: what `option` costs and the augments or socket it yields.
 CREATE TABLE IF NOT EXISTS crafting_recipes (
-    id         INTEGER PRIMARY KEY,
-    system_id  INTEGER NOT NULL REFERENCES crafting_systems(id) ON DELETE CASCADE,
-    tier       TEXT    NOT NULL CHECK (tier {crafting_tier}),
-    slot_id    INTEGER REFERENCES augment_slot_types(id),
-    option     TEXT    NOT NULL,                       -- the wiki's label for the row
-    note       TEXT,
-    sort_order INTEGER NOT NULL                        -- position in the system's file entry
+    id             INTEGER PRIMARY KEY,
+    system_id      INTEGER NOT NULL REFERENCES crafting_systems(id) ON DELETE CASCADE,
+    tier           TEXT    NOT NULL CHECK (tier {crafting_tier}),
+    slot_id        INTEGER REFERENCES augment_slot_types(id),   -- the socket the row's augments fill
+    grants_slot_id INTEGER REFERENCES augment_slot_types(id),   -- the socket the row adds to the item
+    option         TEXT    NOT NULL,                            -- the wiki's label for the row
+    note           TEXT,
+    sort_order     INTEGER NOT NULL                             -- position in the system's file entry
 );
 CREATE INDEX IF NOT EXISTS idx_crafting_recipes_system ON crafting_recipes(system_id, sort_order);
 

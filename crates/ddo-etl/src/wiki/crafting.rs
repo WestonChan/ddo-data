@@ -10,6 +10,7 @@ pub struct CraftingSystem {
     pub page: String,
     pub read: String,
     pub pack: Option<String>,
+    #[serde(default)]
     pub families: Vec<String>,
     pub npc: Option<String>,
     #[serde(default, rename = "ingredient")]
@@ -36,6 +37,7 @@ pub struct CraftingRecipe {
     #[serde(default)]
     pub augments: Vec<String>,
     pub note: Option<String>,
+    pub grants_slot: Option<String>,
     #[serde(default)]
     pub cost: Vec<IngredientCost>,
 }
@@ -71,9 +73,6 @@ impl CraftingSystem {
     }
 
     pub(super) fn validate(&self) -> Result<()> {
-        if self.families.is_empty() {
-            bail!("families is empty; name the Maetrim augment families this system's options live in");
-        }
         let mut declared_ingredient_keys = HashSet::new();
         for ingredient in &self.ingredients {
             validate_tier(&ingredient.tier).with_context(|| format!("ingredient {:?}", ingredient.name))?;
@@ -89,8 +88,17 @@ impl CraftingSystem {
 
     fn validate_recipe(&self, recipe: &CraftingRecipe) -> Result<()> {
         validate_tier(&recipe.tier)?;
-        if recipe.augments.is_empty() && recipe.note.is_none() {
-            bail!("augments is empty, so a note must say why the wiki row has no augment counterpart");
+        if self.families.is_empty() && !recipe.augments.is_empty() {
+            bail!(
+                "augments names Maetrim augments, but the system has no families to find them in; \
+                 add the families or empty augments"
+            );
+        }
+        if recipe.augments.is_empty() && recipe.note.is_none() && recipe.grants_slot.is_none() {
+            bail!(
+                "augments is empty, so grants_slot must name the socket the row adds or a note must say why the \
+                 wiki row has no augment counterpart"
+            );
         }
         let mut costed_ingredient_keys = HashSet::new();
         for cost in &recipe.cost {

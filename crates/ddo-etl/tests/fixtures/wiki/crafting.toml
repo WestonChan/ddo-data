@@ -45,3 +45,28 @@ tier = "any"
 option = "Cleanse an item"
 note = "Returns a crafted item to its blank state; no augment counterpart."
 cost = [{ ingredient = "Shroud Commendation", quantity = 5 }]
+
+# An invented system with no augment family, shaped like an upgrade altar. Every value except the slot labels
+# (real labels from the fixture DataFiles) is a test value.
+[[system]]
+name = "Test Upgrade Altar"
+page = "https://ddowiki.com/page/Test_Upgrade_Altar"
+read = "2026-09-29"
+npc = "Test Altar Keeper"
+
+[[system.ingredient]]
+name = "Test Upgrade Token"
+tier = "any"
+
+[[system.recipe]]
+tier = "heroic"
+option = "Test tier 2 upgrade"
+grants_slot = "upgrade: tier 2"
+cost = [{ ingredient = "Test Upgrade Token", quantity = 2 }]
+
+[[system.recipe]]
+tier = "any"
+option = "Test Colorless Augment Slot"
+grants_slot = "colorless"
+note = "Test note: adds a socket, never an augment."
+cost = [{ ingredient = "Test Upgrade Token", quantity = 3 }]
