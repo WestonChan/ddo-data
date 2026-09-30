@@ -1,0 +1,702 @@
+[[system]]
+name = "Dragontouched Armor"
+page = "https://ddowiki.com/page/Dragontouched_Armor"
+read = "2026-09-29"
+pack = "The Reaver's Reach"
+families = ["Dragontouched_EldritchRune", "Dragontouched_TempestRune", "Dragontouched_SovereignRune"]
+npc = "Vorace, across from the Stormreaver in Reaver's Refuge, beside the Dragontouched Eldritch, Tempest and Sovereign Altars"
+
+[[system.ingredient]]
+name = "Draconic Rune"
+tier = "heroic"
+source = "1-3 from named chests in Aussircaex's Valley, Soami Gardens, Mount Reysalon and Eerie Forest; 3-11 from end chests in Enter the Kobold, Monastery of the Scorpion and Prey on the Hunter; 50 as the Stealer of Souls end reward. Spending them needs Stealer of Souls complete; Vorace also trades 50 for an Eberron Dragonshard Essence and 25 each for a Siberys or Khyber Dragonshard Essence"
+
+[[system.ingredient]]
+name = "Eldritch Rune"
+tier = "heroic"
+source = "1-2 from Enter the Kobold; 1-2 from Monastery of the Scorpion; one from Vorace for 50 Draconic Runes. 23 types; identified in the chest since Update 7"
+
+[[system.ingredient]]
+name = "Tempest Rune"
+tier = "heroic"
+source = "1 from Prey on the Hunter; made from three Eldritch Runes. 24 types"
+
+[[system.ingredient]]
+name = "Sovereign Rune"
+tier = "heroic"
+source = "1 from Stealer of Souls; made from three Tempest Runes. 33 types"
+
+[[system.recipe]]
+tier = "heroic"
+option = "Dragontouched Armor (blank)"
+augments = []
+note = "All recipe facts are on this page (Dragontouched_Armor redirects to Item:Dragontouched_Armor). Vorace sells the blank for 50 Draconic Runes once Stealer of Souls is complete; all six types are ML16: Plate Armor (armor +22, max Dex +1), Breastplate (+17, max Dex +5), Leather Armor (+11, max Dex +11), Docent (Adamantine +16, Mithral +7, Composite +2, Construct Fortification 10%), Shroud (robe, +6) and Vestments (outfit, +6). The armor takes one rune of each type, in any order, at the matching altar; no augment counterpart."
+cost = [{ ingredient = "Draconic Rune", quantity = 50 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Eldritch Rune from Vorace"
+augments = []
+note = "Vorace shows ten of the 25 possible Eldritch Runes and you pick one; Tempest and Sovereign Runes can no longer be bought (since Module 9). No augment counterpart."
+cost = [{ ingredient = "Draconic Rune", quantity = 50 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Tempest Rune Empowered"
+augments = []
+note = "Three Eldritch Runes at the Dragontouched Eldritch Altar make one random Tempest Rune; a stack of identical runes cannot be used, but separate identical runes can. No augment counterpart."
+cost = [{ ingredient = "Eldritch Rune", quantity = 3 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Sovereign Rune Empowered"
+augments = []
+note = "Three Tempest Runes make one random Sovereign Rune. No augment counterpart."
+cost = [{ ingredient = "Tempest Rune", quantity = 3 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "Sovereign Rune Shattered"
+augments = []
+note = "At the Dragontouched Sovereign Altar (since Update 7) a Sovereign Rune and a Draconic Rune return 1-9 Eldritch Runes' worth, converted up (5 gives 1 Tempest and 2 Eldritch; 9 gives a Sovereign), with exceptions. No augment counterpart."
+cost = [{ ingredient = "Sovereign Rune", quantity = 1 }, { ingredient = "Draconic Rune", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: eldritch rune"
+option = "Eldritch Rune of Striding"
+augments = ["Eldritch Rune of Striding"]
+note = "Effect: Striding +20%."
+cost = [{ ingredient = "Eldritch Rune", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: eldritch rune"
+option = "Eldritch Rune of Greater Striding"
+augments = ["Eldritch Rune of Greater Striding"]
+note = "Effect: Striding +25%."
+cost = [{ ingredient = "Eldritch Rune", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: eldritch rune"
+option = "Eldritch Rune of Acid Resistance"
+augments = ["Eldritch Rune of Acid Resistance"]
+note = "Effect: Acid Resistance +30."
+cost = [{ ingredient = "Eldritch Rune", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: eldritch rune"
+option = "Eldritch Rune of Cold Resistance"
+augments = ["Eldritch Rune of Cold Resistance"]
+note = "Effect: Cold Resistance +30."
+cost = [{ ingredient = "Eldritch Rune", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: eldritch rune"
+option = "Eldritch Rune of Electricity Resistance"
+augments = ["Eldritch Rune of Electricity Resistance"]
+note = "Effect: Electric Resistance +30."
+cost = [{ ingredient = "Eldritch Rune", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: eldritch rune"
+option = "Eldritch Rune of Fire Resistance"
+augments = ["Eldritch Rune of Fire Resistance"]
+note = "Effect: Fire Resistance +30."
+cost = [{ ingredient = "Eldritch Rune", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: eldritch rune"
+option = "Eldritch Rune of Sonic Resistance"
+augments = ["Eldritch Rune of Sonic Resistance"]
+note = "Effect: Sonic Resistance +30."
+cost = [{ ingredient = "Eldritch Rune", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: eldritch rune"
+option = "Eldritch Rune of Skill:Strength"
+augments = ["Eldritch Rune of Skill: Strength"]
+note = "Effect: Exceptional Strength Skills +6. The in-game text says +3; the actual bonus is +6. Maetrim spells it Eldritch Rune of Skill: Strength."
+cost = [{ ingredient = "Eldritch Rune", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: eldritch rune"
+option = "Eldritch Rune of Skill:Dexterity"
+augments = ["Eldritch Rune of Skill: Dexterity"]
+note = "Effect: Exceptional Dexterity Skills +6. The in-game text says +3; the actual bonus is +6. Maetrim spells it Eldritch Rune of Skill: Dexterity."
+cost = [{ ingredient = "Eldritch Rune", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: eldritch rune"
+option = "Eldritch Rune of Skill:Constitution"
+augments = ["Eldritch Rune of Skill: Constitution"]
+note = "Effect: Exceptional Constitution Skills +6. The in-game text says +3; the actual bonus is +6. Maetrim spells it Eldritch Rune of Skill: Constitution."
+cost = [{ ingredient = "Eldritch Rune", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: eldritch rune"
+option = "Eldritch Rune of Skill:Intelligence"
+augments = ["Eldritch Rune of Skill: Intelligence"]
+note = "Effect: Exceptional Intelligence Skills +6. The in-game text says +3; the actual bonus is +6. Maetrim spells it Eldritch Rune of Skill: Intelligence."
+cost = [{ ingredient = "Eldritch Rune", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: eldritch rune"
+option = "Eldritch Rune of Skill:Wisdom"
+augments = ["Eldritch Rune of Skill: Wisdom"]
+note = "Effect: Exceptional Wisdom Skills +6. The in-game text says +3; the actual bonus is +6. Maetrim spells it Eldritch Rune of Skill: Wisdom."
+cost = [{ ingredient = "Eldritch Rune", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: eldritch rune"
+option = "Eldritch Rune of Skill:Charisma"
+augments = ["Eldritch Rune of Skill: Charisma"]
+note = "Effect: Exceptional Charisma Skills +6. The in-game text says +3; the actual bonus is +6. Maetrim spells it Eldritch Rune of Skill: Charisma."
+cost = [{ ingredient = "Eldritch Rune", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: eldritch rune"
+option = "Eldritch Rune of Fortification"
+augments = ["Eldritch Rune of Fortification"]
+note = "Effect: Fortification +100%."
+cost = [{ ingredient = "Eldritch Rune", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: eldritch rune"
+option = "Eldritch Rune of Resistance"
+augments = ["Eldritch Rune of Resistance"]
+note = "Effect: Resistance +5."
+cost = [{ ingredient = "Eldritch Rune", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: eldritch rune"
+option = "Eldritch Rune of Improved False Life"
+augments = ["Eldritch Rune of Improved False Life"]
+note = "Effect: Improved False Life."
+cost = [{ ingredient = "Eldritch Rune", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: eldritch rune"
+option = "Eldritch Rune of Greater False Life"
+augments = ["Eldritch Rune of Greater False Life"]
+note = "Effect: Greater False Life."
+cost = [{ ingredient = "Eldritch Rune", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: eldritch rune"
+option = "Eldritch Rune of Fear"
+augments = ["Eldritch Rune of Fear"]
+note = "Effect: Fearsome."
+cost = [{ ingredient = "Eldritch Rune", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: eldritch rune"
+option = "Eldritch Rune of Featherfalling"
+augments = ["Eldritch Rune of Featherfalling"]
+note = "Effect: Feather Falling."
+cost = [{ ingredient = "Eldritch Rune", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: eldritch rune"
+option = "Eldritch Rune of Deathward"
+augments = ["Eldritch Rune of Deathward"]
+note = "Effect: Deathblock."
+cost = [{ ingredient = "Eldritch Rune", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: eldritch rune"
+option = "Eldritch Rune of Lionheart"
+augments = ["Eldritch Rune of Lionheart"]
+note = "Effect: Lionheart (procs Remove Fear)."
+cost = [{ ingredient = "Eldritch Rune", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: eldritch rune"
+option = "Eldritch Rune of Lesser Healing Amplification"
+augments = ["Eldritch Rune of Lesser Healing Amplification"]
+note = "Effect: Exceptional Healing Amplification +20."
+cost = [{ ingredient = "Eldritch Rune", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: eldritch rune"
+option = "Eldritch Rune of Threat"
+augments = ["Eldritch Rune of Threat"]
+note = "Effect: Incite +10."
+cost = [{ ingredient = "Eldritch Rune", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: tempest rune"
+option = "Tempest Rune of Strength"
+augments = ["Tempest Rune of Strength"]
+note = "Effect: Strength +6."
+cost = [{ ingredient = "Tempest Rune", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: tempest rune"
+option = "Tempest Rune of Dexterity"
+augments = ["Tempest Rune of Dexterity"]
+note = "Effect: Dexterity +6."
+cost = [{ ingredient = "Tempest Rune", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: tempest rune"
+option = "Tempest Rune of Constitution"
+augments = ["Tempest Rune of Constitution"]
+note = "Effect: Constitution +6."
+cost = [{ ingredient = "Tempest Rune", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: tempest rune"
+option = "Tempest Rune of Intelligence"
+augments = ["Tempest Rune of Intelligence"]
+note = "Effect: Intelligence +6."
+cost = [{ ingredient = "Tempest Rune", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: tempest rune"
+option = "Tempest Rune of Wisdom"
+augments = ["Tempest Rune of Wisdom"]
+note = "Effect: Wisdom +6."
+cost = [{ ingredient = "Tempest Rune", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: tempest rune"
+option = "Tempest Rune of Charisma"
+augments = ["Tempest Rune of Charisma"]
+note = "Effect: Charisma +6."
+cost = [{ ingredient = "Tempest Rune", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: tempest rune"
+option = "Tempest Rune of Exceptional Strength"
+augments = ["Tempest Rune of Exceptional Strength"]
+note = "Effect: Exceptional Strength +1."
+cost = [{ ingredient = "Tempest Rune", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: tempest rune"
+option = "Tempest Rune of Exceptional Dexterity"
+augments = ["Tempest Rune of Exceptional Dexterity"]
+note = "Effect: Exceptional Dexterity +1."
+cost = [{ ingredient = "Tempest Rune", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: tempest rune"
+option = "Tempest Rune of Exceptional Constitution"
+augments = ["Tempest Rune of Exceptional Constitution"]
+note = "Effect: Exceptional Constitution +1."
+cost = [{ ingredient = "Tempest Rune", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: tempest rune"
+option = "Tempest Rune of Exceptional Intelligence"
+augments = ["Tempest Rune of Exceptional Intelligence"]
+note = "Effect: Exceptional Intelligence +1."
+cost = [{ ingredient = "Tempest Rune", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: tempest rune"
+option = "Tempest Rune of Exceptional Wisdom"
+augments = ["Tempest Rune of Exceptional Wisdom"]
+note = "Effect: Exceptional Wisdom +1."
+cost = [{ ingredient = "Tempest Rune", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: tempest rune"
+option = "Tempest Rune of Exceptional Charisma"
+augments = ["Tempest Rune of Exceptional Charisma"]
+note = "Effect: Exceptional Charisma +1."
+cost = [{ ingredient = "Tempest Rune", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: tempest rune"
+option = "Tempest Rune of Protection"
+augments = ["Tempest Rune of Protection"]
+note = "Effect: Protection +5."
+cost = [{ ingredient = "Tempest Rune", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: tempest rune"
+option = "Tempest Rune of Salt"
+augments = ["Tempest Rune of Salt"]
+note = "Effect: Corrosive Salt Guard."
+cost = [{ ingredient = "Tempest Rune", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: tempest rune"
+option = "Tempest Rune of Water"
+augments = ["Tempest Rune of Water"]
+note = "Effect: Crushing Wave Guard."
+cost = [{ ingredient = "Tempest Rune", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: tempest rune"
+option = "Tempest Rune of Magma"
+augments = ["Tempest Rune of Magma"]
+note = "Effect: Magma Surge Guard."
+cost = [{ ingredient = "Tempest Rune", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: tempest rune"
+option = "Tempest Rune of Sight"
+augments = ["Tempest Rune of Sight"]
+note = "Effect: True Seeing."
+cost = [{ ingredient = "Tempest Rune", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: tempest rune"
+option = "Tempest Rune of Spell Resistance"
+augments = ["Tempest Rune of Spell Resistance"]
+note = "Effect: Spell Resistance +22."
+cost = [{ ingredient = "Tempest Rune", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: tempest rune"
+option = "Tempest Rune of Healing Amplification"
+augments = ["Tempest Rune of Healing Amplification"]
+note = "Effect: Equipment Healing Amplification +40."
+cost = [{ ingredient = "Tempest Rune", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: tempest rune"
+option = "Tempest Rune of Threat"
+augments = ["Tempest Rune of Threat"]
+note = "Effect: Incite +15."
+cost = [{ ingredient = "Tempest Rune", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: tempest rune"
+option = "Tempest Rune of Wizardry"
+augments = ["Tempest Rune of Wizardry"]
+note = "Effect: Wizardry +6."
+cost = [{ ingredient = "Tempest Rune", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: tempest rune"
+option = "Tempest Rune of Empowered Healing"
+augments = ["Tempest Rune of Empowered Healing"]
+note = "Effect: Efficient Metamagic - Empower Healing II."
+cost = [{ ingredient = "Tempest Rune", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: tempest rune"
+option = "Tempest Rune of Spell Penetration"
+augments = ["Tempest Rune of Spell Penetration"]
+note = "Effect: Spell Penetration II."
+cost = [{ ingredient = "Tempest Rune", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: tempest rune"
+option = "Tempest Rune of Arcane Sigil"
+augments = ["Tempest Rune of Arcane Sigil"]
+note = "Effect: Lesser Arcane Sigil."
+cost = [{ ingredient = "Tempest Rune", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: sovereign rune"
+option = "Sovereign Rune of Glacial Assault"
+augments = ["Sovereign Rune of Glacial Assault"]
+note = "Effect: Glacial Assault. Part of a three-piece set with two Module 7 raid items: 2 pieces Glaciation +72, 3 pieces Glaciation +78."
+cost = [{ ingredient = "Sovereign Rune", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: sovereign rune"
+option = "Sovereign Rune of Levik"
+augments = ["Sovereign Rune of Levik"]
+note = "Effect: Levik's Defender. Part of a three-piece set with two Module 7 raid items: 2 pieces +3 insight AC, 20% additional melee threat, unlisted +1 insight bonus to Fortitude and Will saves; 3 pieces +5 insight AC, 30% additional melee threat."
+cost = [{ ingredient = "Sovereign Rune", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: sovereign rune"
+option = "Sovereign Rune of Lorikk"
+augments = ["Sovereign Rune of Lorikk"]
+note = "Effect: Lorikk's Champion. Part of a three-piece set with two Module 7 raid items: 2 pieces Devotion +72, 3 pieces Devotion +78."
+cost = [{ ingredient = "Sovereign Rune", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: sovereign rune"
+option = "Sovereign Rune of Tharne"
+augments = ["Sovereign Rune of Tharne"]
+note = "Effect: Tharne's Wrath. Part of a three-piece set with two Module 7 raid items: 2 pieces Ghost Touch and -20% melee threat reduction, 3 pieces Feather Falling."
+cost = [{ ingredient = "Sovereign Rune", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: sovereign rune"
+option = "Sovereign Rune of Dodging"
+augments = ["Sovereign Rune of Dodging"]
+note = "Effect: Dodge +3%."
+cost = [{ ingredient = "Sovereign Rune", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: sovereign rune"
+option = "Sovereign Rune of Natural Armor"
+augments = ["Sovereign Rune of Natural Armor"]
+note = "Effect: Natural Armor +4."
+cost = [{ ingredient = "Sovereign Rune", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: sovereign rune"
+option = "Sovereign Rune of Insight"
+augments = ["Sovereign Rune of Insight"]
+note = "Effect: Heightened Awareness 4."
+cost = [{ ingredient = "Sovereign Rune", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: sovereign rune"
+option = "Sovereign Rune of Air"
+augments = ["Sovereign Rune of Air"]
+note = "Effect: Air Guard."
+cost = [{ ingredient = "Sovereign Rune", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: sovereign rune"
+option = "Sovereign Rune of Dust"
+augments = ["Sovereign Rune of Dust"]
+note = "Effect: Disintegration Guard."
+cost = [{ ingredient = "Sovereign Rune", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: sovereign rune"
+option = "Sovereign Rune of Stoneskin"
+augments = ["Sovereign Rune of Stoneskin"]
+note = "Effect: Earthen Guard."
+cost = [{ ingredient = "Sovereign Rune", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: sovereign rune"
+option = "Sovereign Rune of Earth"
+augments = ["Sovereign Rune of Earth"]
+note = "Effect: Earthgrab Guard."
+cost = [{ ingredient = "Sovereign Rune", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: sovereign rune"
+option = "Sovereign Rune of Ash"
+augments = ["Sovereign Rune of Ash"]
+note = "Effect: Enervation Guard."
+cost = [{ ingredient = "Sovereign Rune", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: sovereign rune"
+option = "Sovereign Rune of Ice"
+augments = ["Sovereign Rune of Ice"]
+note = "Effect: Freezing Ice Guard."
+cost = [{ ingredient = "Sovereign Rune", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: sovereign rune"
+option = "Sovereign Rune of Dancing"
+augments = ["Sovereign Rune of Dancing"]
+note = "Effect: Melodic Guard."
+cost = [{ ingredient = "Sovereign Rune", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: sovereign rune"
+option = "Sovereign Rune of Ooze"
+augments = ["Sovereign Rune of Ooze"]
+note = "Effect: Sundering Ooze Guard."
+cost = [{ ingredient = "Sovereign Rune", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: sovereign rune"
+option = "Sovereign Rune of Radiance"
+augments = ["Sovereign Rune of Radiance"]
+note = "Effect: Radiance Guard."
+cost = [{ ingredient = "Sovereign Rune", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: sovereign rune"
+option = "Sovereign Rune of Crippling"
+augments = ["Sovereign Rune of Crippling"]
+note = "Effect: Crippling (Melee weapon attack only)."
+cost = [{ ingredient = "Sovereign Rune", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: sovereign rune"
+option = "Sovereign Rune of Destruction"
+augments = ["Sovereign Rune of Destruction"]
+note = "Effect: Destruction (Melee weapon attack only)."
+cost = [{ ingredient = "Sovereign Rune", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: sovereign rune"
+option = "Sovereign Rune of Smiting"
+augments = ["Sovereign Rune of Smiting"]
+note = "Effect: Smiting (Melee or ranged attack post U-11)."
+cost = [{ ingredient = "Sovereign Rune", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: sovereign rune"
+option = "Sovereign Rune of Threat"
+augments = ["Sovereign Rune of Threat"]
+note = "Effect: Incite +20."
+cost = [{ ingredient = "Sovereign Rune", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: sovereign rune"
+option = "Sovereign Rune of Health"
+augments = ["Sovereign Rune of Health"]
+note = "Effect: Greater Elemental Energy (+20 HP)."
+cost = [{ ingredient = "Sovereign Rune", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: sovereign rune"
+option = "Sovereign Rune of Spell Power"
+augments = ["Sovereign Rune of Spell Power"]
+note = "Effect: Greater Elemental Spell Power (+100 SP)."
+cost = [{ ingredient = "Sovereign Rune", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: sovereign rune"
+option = "Sovereign Rune of Arcane Sigil"
+augments = ["Sovereign Rune of Arcane Sigil"]
+note = "Effect: Arcane Sigil."
+cost = [{ ingredient = "Sovereign Rune", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: sovereign rune"
+option = "Sovereign Rune of Flame"
+augments = ["Sovereign Rune of Flame"]
+note = "Effect: Combustion +84."
+cost = [{ ingredient = "Sovereign Rune", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: sovereign rune"
+option = "Sovereign Rune of the Inferno"
+augments = ["Sovereign Rune of the Inferno"]
+note = "Effect: Combustion +84."
+cost = [{ ingredient = "Sovereign Rune", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: sovereign rune"
+option = "Sovereign Rune of Life"
+augments = ["Sovereign Rune of Life"]
+note = "Effect: Devotion +84."
+cost = [{ ingredient = "Sovereign Rune", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: sovereign rune"
+option = "Sovereign Rune of Chill"
+augments = ["Sovereign Rune of Chill"]
+note = "Effect: Glaciation +84."
+cost = [{ ingredient = "Sovereign Rune", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: sovereign rune"
+option = "Sovereign Rune of Frost"
+augments = ["Sovereign Rune of Frost"]
+note = "Effect: Glaciation +84."
+cost = [{ ingredient = "Sovereign Rune", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: sovereign rune"
+option = "Sovereign Rune of Sound"
+augments = ["Sovereign Rune of Sound"]
+note = "Effect: Resonance +84."
+cost = [{ ingredient = "Sovereign Rune", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: sovereign rune"
+option = "Sovereign Rune of Cacophony"
+augments = ["Sovereign Rune of Cacophony"]
+note = "Effect: Resonance +84."
+cost = [{ ingredient = "Sovereign Rune", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: sovereign rune"
+option = "Sovereign Rune of Magic"
+augments = ["Sovereign Rune of Magic"]
+note = "Effect: Potency +56."
+cost = [{ ingredient = "Sovereign Rune", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: sovereign rune"
+option = "Sovereign Rune of Power"
+augments = ["Sovereign Rune of Power"]
+note = "Effect: Potency +56."
+cost = [{ ingredient = "Sovereign Rune", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: sovereign rune"
+option = "Sovereign Rune of Spell Penetration"
+augments = ["Sovereign Rune of Spell Penetration"]
+note = "Effect: Spell Penetration III."
+cost = [{ ingredient = "Sovereign Rune", quantity = 1 }]

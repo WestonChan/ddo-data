@@ -13,26 +13,26 @@
   },
   {
     "families": [
-      "DinosaurBone"
+      "DeckOfManyCurses"
     ],
     "id": 3,
+    "ingredient_count": 6,
+    "name": "Deck of Many Curses",
+    "npc": null,
+    "pack": "Illithid Invasion",
+    "page": "https://ddowiki.com/page/Item:Deck_of_Many_Curses",
+    "recipe_count": 95
+  },
+  {
+    "families": [
+      "DinosaurBone"
+    ],
+    "id": 4,
     "ingredient_count": 6,
     "name": "Dinosaur Bone crafting",
     "npc": "Sharpened Bone, whose barter window creates Isle of Dread augments and Dinosaur Bone weapons; augments are slotted through the Augment Item UI in the inventory panel",
     "pack": "The Isle of Dread",
     "page": "https://ddowiki.com/page/Dinosaur_Bone_crafting",
     "recipe_count": 108
-  },
-  {
-    "families": [
-      "Greensteel_Heroic"
-    ],
-    "id": 4,
-    "ingredient_count": 85,
-    "name": "Green Steel items",
-    "npc": "Altar of Fecundity in Meridia for blanks; Altars of Invasion, Subjugation and Devastation in The Shroud (phases 1, 3 and 5) for upgrades; a Green Steel Crafting Hall on Guild Airships holds all the altars",
-    "pack": "The Vale of Twilight",
-    "page": "https://ddowiki.com/page/Green_Steel_items",
-    "recipe_count": 388
   }
 ]

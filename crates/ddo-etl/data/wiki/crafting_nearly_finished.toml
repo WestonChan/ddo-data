@@ -1,0 +1,1516 @@
+[[system]]
+name = "Nearly Finished"
+page = "https://ddowiki.com/page/Nearly_Finished"
+read = "2026-09-29"
+npc = "Cannith Reforging Station (combine the item with melted materials); Cannith Melting Station (make the cost ingredients)"
+
+[[system.ingredient]]
+name = "Energizing Alloy"
+tier = "any"
+source = "Claimed as saga rewards (2 Heroic, 2 Epic) for the Masterminds of Sharn quests, or made at a Cannith Melting Station from materials found in quest chests"
+
+[[system.ingredient]]
+name = "Dampening Alloy"
+tier = "any"
+source = "Claimed as saga rewards (2 Heroic, 2 Epic) for the Masterminds of Sharn quests, or made at a Cannith Melting Station from materials found in quest chests"
+
+[[system.ingredient]]
+name = "Reforged Pliable Ingot"
+tier = "any"
+source = "Claimed as saga rewards (2 Heroic, 2 Epic) for the Masterminds of Sharn quests, or made at a Cannith Melting Station from materials found in quest chests"
+
+[[system.ingredient]]
+name = "Reforged Metallic Ingot"
+tier = "any"
+source = "Claimed as saga rewards (2 Heroic, 2 Epic) for the Masterminds of Sharn quests, or made at a Cannith Melting Station from materials found in quest chests"
+
+[[system.ingredient]]
+name = "Reforged Glowing Ingot"
+tier = "any"
+source = "Claimed as saga rewards (2 Heroic, 2 Epic) for the Masterminds of Sharn quests, or made at a Cannith Melting Station from materials found in quest chests"
+
+[[system.ingredient]]
+name = "Reforged Dense Ingot"
+tier = "any"
+source = "Claimed as saga rewards (2 Heroic, 2 Epic) for the Masterminds of Sharn quests, or made at a Cannith Melting Station from materials found in quest chests"
+
+[[system.ingredient]]
+name = "Caustic Compound"
+tier = "any"
+source = "Claimed as saga rewards (2 Heroic, 2 Epic) for the Masterminds of Sharn quests, or made at a Cannith Melting Station from materials found in quest chests"
+
+[[system.ingredient]]
+name = "Stabilizing Compound"
+tier = "any"
+source = "Claimed as saga rewards (2 Heroic, 2 Epic) for the Masterminds of Sharn quests, or made at a Cannith Melting Station from materials found in quest chests"
+
+[[system.ingredient]]
+name = "Threads of Fate"
+tier = "legendary"
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: nearly finished"
+option = "Resplendant Fury: Insightful Charisma +3"
+augments = []
+note = "All recipe tables are on this page: Masterminds of Sharn quest items, Masterminds of Sharn raid items, The Soul Splitter, and Secrets of the Artificers set bonuses. The page's second quest-item column is headed Epic; its items are the Legendary versions, recorded at the legendary tier. Each recipe gives one effect of your choice; the page notes most values, especially heroic, need verification. Applied to Resplendant Fury; removes Nearly Finished and adds Insightful Charisma +3. Cost materials, melted at a Cannith Melting Station: 20 Iron Defender Claws, 25 Iron Defender Rivets, 20 Magefire Cannon Cores, 25 Magefire Cannon Parts, 5 Shield Guardian Cores, 50 Shield Guardian Gyroscopes, 5 Worker Drone Actuators, 50 Worker Drone Platings. Maetrim has no augment family for this system."
+cost = [{ ingredient = "Energizing Alloy", quantity = 1 }, { ingredient = "Reforged Pliable Ingot", quantity = 1 }, { ingredient = "Reforged Metallic Ingot", quantity = 1 }, { ingredient = "Caustic Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: nearly finished"
+option = "Legendary Resplendant Fury: Insightful Charisma +6"
+augments = []
+note = "Applied to Legendary Resplendant Fury; removes Nearly Finished and adds Insightful Charisma +6. Cost materials, melted at a Cannith Melting Station: 20 Iron Defender Claws, 25 Iron Defender Rivets, 20 Magefire Cannon Cores, 25 Magefire Cannon Parts, 5 Shield Guardian Cores, 50 Shield Guardian Gyroscopes, 5 Worker Drone Actuators, 50 Worker Drone Platings. Maetrim has no augment family for this system."
+cost = [{ ingredient = "Energizing Alloy", quantity = 1 }, { ingredient = "Reforged Pliable Ingot", quantity = 1 }, { ingredient = "Reforged Metallic Ingot", quantity = 1 }, { ingredient = "Caustic Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: nearly finished"
+option = "Resplendant Fury: Insightful Wisdom +3"
+augments = []
+note = "Applied to Resplendant Fury; removes Nearly Finished and adds Insightful Wisdom +3. Cost materials, melted at a Cannith Melting Station: 20 Iron Defender Claws, 25 Iron Defender Rivets, 20 Magefire Cannon Cores, 25 Magefire Cannon Parts, 5 Shield Guardian Cores, 50 Shield Guardian Gyroscopes, 5 Worker Drone Actuators, 50 Worker Drone Platings. Maetrim has no augment family for this system."
+cost = [{ ingredient = "Energizing Alloy", quantity = 1 }, { ingredient = "Reforged Pliable Ingot", quantity = 1 }, { ingredient = "Reforged Metallic Ingot", quantity = 1 }, { ingredient = "Caustic Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: nearly finished"
+option = "Legendary Resplendant Fury: Insightful Wisdom +6"
+augments = []
+note = "Applied to Legendary Resplendant Fury; removes Nearly Finished and adds Insightful Wisdom +6. Cost materials, melted at a Cannith Melting Station: 20 Iron Defender Claws, 25 Iron Defender Rivets, 20 Magefire Cannon Cores, 25 Magefire Cannon Parts, 5 Shield Guardian Cores, 50 Shield Guardian Gyroscopes, 5 Worker Drone Actuators, 50 Worker Drone Platings. Maetrim has no augment family for this system."
+cost = [{ ingredient = "Energizing Alloy", quantity = 1 }, { ingredient = "Reforged Pliable Ingot", quantity = 1 }, { ingredient = "Reforged Metallic Ingot", quantity = 1 }, { ingredient = "Caustic Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: nearly finished"
+option = "Resplendant Fury: Insightful Intelligence +3"
+augments = []
+note = "Applied to Resplendant Fury; removes Nearly Finished and adds Insightful Intelligence +3. Cost materials, melted at a Cannith Melting Station: 20 Iron Defender Claws, 25 Iron Defender Rivets, 20 Magefire Cannon Cores, 25 Magefire Cannon Parts, 5 Shield Guardian Cores, 50 Shield Guardian Gyroscopes, 5 Worker Drone Actuators, 50 Worker Drone Platings. Maetrim has no augment family for this system."
+cost = [{ ingredient = "Energizing Alloy", quantity = 1 }, { ingredient = "Reforged Pliable Ingot", quantity = 1 }, { ingredient = "Reforged Metallic Ingot", quantity = 1 }, { ingredient = "Caustic Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: nearly finished"
+option = "Legendary Resplendant Fury: Insightful Intelligence +6"
+augments = []
+note = "Applied to Legendary Resplendant Fury; removes Nearly Finished and adds Insightful Intelligence +6. Cost materials, melted at a Cannith Melting Station: 20 Iron Defender Claws, 25 Iron Defender Rivets, 20 Magefire Cannon Cores, 25 Magefire Cannon Parts, 5 Shield Guardian Cores, 50 Shield Guardian Gyroscopes, 5 Worker Drone Actuators, 50 Worker Drone Platings. Maetrim has no augment family for this system."
+cost = [{ ingredient = "Energizing Alloy", quantity = 1 }, { ingredient = "Reforged Pliable Ingot", quantity = 1 }, { ingredient = "Reforged Metallic Ingot", quantity = 1 }, { ingredient = "Caustic Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: nearly finished"
+option = "Stygian Wrath: Insightful Charisma +3"
+augments = []
+note = "Applied to Stygian Wrath; removes Nearly Finished and adds Insightful Charisma +3. Cost materials, melted at a Cannith Melting Station: 20 Iron Defender Claws, 25 Iron Defender Rivets, 20 Magefire Cannon Cores, 25 Magefire Cannon Parts, 50 Shield Guardian Cores, 5 Shield Guardian Gyroscopes, 50 Worker Drone Actuators, 5 Worker Drone Platings. Maetrim has no augment family for this system."
+cost = [{ ingredient = "Dampening Alloy", quantity = 1 }, { ingredient = "Reforged Glowing Ingot", quantity = 1 }, { ingredient = "Reforged Dense Ingot", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: nearly finished"
+option = "Legendary Stygian Wrath: Insightful Charisma +6"
+augments = []
+note = "Applied to Legendary Stygian Wrath; removes Nearly Finished and adds Insightful Charisma +6. Cost materials, melted at a Cannith Melting Station: 20 Iron Defender Claws, 25 Iron Defender Rivets, 20 Magefire Cannon Cores, 25 Magefire Cannon Parts, 50 Shield Guardian Cores, 5 Shield Guardian Gyroscopes, 50 Worker Drone Actuators, 5 Worker Drone Platings. Maetrim has no augment family for this system."
+cost = [{ ingredient = "Dampening Alloy", quantity = 1 }, { ingredient = "Reforged Glowing Ingot", quantity = 1 }, { ingredient = "Reforged Dense Ingot", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: nearly finished"
+option = "Stygian Wrath: Insightful Wisdom +3"
+augments = []
+note = "Applied to Stygian Wrath; removes Nearly Finished and adds Insightful Wisdom +3. Cost materials, melted at a Cannith Melting Station: 20 Iron Defender Claws, 25 Iron Defender Rivets, 20 Magefire Cannon Cores, 25 Magefire Cannon Parts, 50 Shield Guardian Cores, 5 Shield Guardian Gyroscopes, 50 Worker Drone Actuators, 5 Worker Drone Platings. Maetrim has no augment family for this system."
+cost = [{ ingredient = "Dampening Alloy", quantity = 1 }, { ingredient = "Reforged Glowing Ingot", quantity = 1 }, { ingredient = "Reforged Dense Ingot", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: nearly finished"
+option = "Legendary Stygian Wrath: Insightful Wisdom +6"
+augments = []
+note = "Applied to Legendary Stygian Wrath; removes Nearly Finished and adds Insightful Wisdom +6. Cost materials, melted at a Cannith Melting Station: 20 Iron Defender Claws, 25 Iron Defender Rivets, 20 Magefire Cannon Cores, 25 Magefire Cannon Parts, 50 Shield Guardian Cores, 5 Shield Guardian Gyroscopes, 50 Worker Drone Actuators, 5 Worker Drone Platings. Maetrim has no augment family for this system."
+cost = [{ ingredient = "Dampening Alloy", quantity = 1 }, { ingredient = "Reforged Glowing Ingot", quantity = 1 }, { ingredient = "Reforged Dense Ingot", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: nearly finished"
+option = "Stygian Wrath: Insightful Intelligence +3"
+augments = []
+note = "Applied to Stygian Wrath; removes Nearly Finished and adds Insightful Intelligence +3. Cost materials, melted at a Cannith Melting Station: 20 Iron Defender Claws, 25 Iron Defender Rivets, 20 Magefire Cannon Cores, 25 Magefire Cannon Parts, 50 Shield Guardian Cores, 5 Shield Guardian Gyroscopes, 50 Worker Drone Actuators, 5 Worker Drone Platings. Maetrim has no augment family for this system."
+cost = [{ ingredient = "Dampening Alloy", quantity = 1 }, { ingredient = "Reforged Glowing Ingot", quantity = 1 }, { ingredient = "Reforged Dense Ingot", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: nearly finished"
+option = "Legendary Stygian Wrath: Insightful Intelligence +6"
+augments = []
+note = "Applied to Legendary Stygian Wrath; removes Nearly Finished and adds Insightful Intelligence +6. Cost materials, melted at a Cannith Melting Station: 20 Iron Defender Claws, 25 Iron Defender Rivets, 20 Magefire Cannon Cores, 25 Magefire Cannon Parts, 50 Shield Guardian Cores, 5 Shield Guardian Gyroscopes, 50 Worker Drone Actuators, 5 Worker Drone Platings. Maetrim has no augment family for this system."
+cost = [{ ingredient = "Dampening Alloy", quantity = 1 }, { ingredient = "Reforged Glowing Ingot", quantity = 1 }, { ingredient = "Reforged Dense Ingot", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: nearly finished"
+option = "Black Satin Waist: Quality Charisma +1"
+augments = []
+note = "Applied to Black Satin Waist; removes Nearly Finished and adds Quality Charisma +1. Cost materials, melted at a Cannith Melting Station: 20 Iron Defender Claws, 25 Iron Defender Rivets, 20 Magefire Cannon Cores, 25 Magefire Cannon Parts, 5 Shield Guardian Cores, 50 Shield Guardian Gyroscopes, 5 Worker Drone Actuators, 50 Worker Drone Platings. Maetrim has no augment family for this system."
+cost = [{ ingredient = "Energizing Alloy", quantity = 1 }, { ingredient = "Reforged Pliable Ingot", quantity = 1 }, { ingredient = "Reforged Metallic Ingot", quantity = 1 }, { ingredient = "Caustic Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: nearly finished"
+option = "Legendary Black Satin Waist: Quality Charisma +3"
+augments = []
+note = "Applied to Legendary Black Satin Waist; removes Nearly Finished and adds Quality Charisma +3. Cost materials, melted at a Cannith Melting Station: 20 Iron Defender Claws, 25 Iron Defender Rivets, 20 Magefire Cannon Cores, 25 Magefire Cannon Parts, 5 Shield Guardian Cores, 50 Shield Guardian Gyroscopes, 5 Worker Drone Actuators, 50 Worker Drone Platings. Maetrim has no augment family for this system."
+cost = [{ ingredient = "Energizing Alloy", quantity = 1 }, { ingredient = "Reforged Pliable Ingot", quantity = 1 }, { ingredient = "Reforged Metallic Ingot", quantity = 1 }, { ingredient = "Caustic Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: nearly finished"
+option = "Black Satin Waist: Quality Intelligence +1"
+augments = []
+note = "Applied to Black Satin Waist; removes Nearly Finished and adds Quality Intelligence +1. Cost materials, melted at a Cannith Melting Station: 20 Iron Defender Claws, 25 Iron Defender Rivets, 20 Magefire Cannon Cores, 25 Magefire Cannon Parts, 5 Shield Guardian Cores, 50 Shield Guardian Gyroscopes, 5 Worker Drone Actuators, 50 Worker Drone Platings. Maetrim has no augment family for this system."
+cost = [{ ingredient = "Energizing Alloy", quantity = 1 }, { ingredient = "Reforged Pliable Ingot", quantity = 1 }, { ingredient = "Reforged Metallic Ingot", quantity = 1 }, { ingredient = "Caustic Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: nearly finished"
+option = "Legendary Black Satin Waist: Quality Intelligence +3"
+augments = []
+note = "Applied to Legendary Black Satin Waist; removes Nearly Finished and adds Quality Intelligence +3. Cost materials, melted at a Cannith Melting Station: 20 Iron Defender Claws, 25 Iron Defender Rivets, 20 Magefire Cannon Cores, 25 Magefire Cannon Parts, 5 Shield Guardian Cores, 50 Shield Guardian Gyroscopes, 5 Worker Drone Actuators, 50 Worker Drone Platings. Maetrim has no augment family for this system."
+cost = [{ ingredient = "Energizing Alloy", quantity = 1 }, { ingredient = "Reforged Pliable Ingot", quantity = 1 }, { ingredient = "Reforged Metallic Ingot", quantity = 1 }, { ingredient = "Caustic Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: nearly finished"
+option = "Black Satin Waist: Quality Wisdom +1"
+augments = []
+note = "Applied to Black Satin Waist; removes Nearly Finished and adds Quality Wisdom +1. Cost materials, melted at a Cannith Melting Station: 20 Iron Defender Claws, 25 Iron Defender Rivets, 20 Magefire Cannon Cores, 25 Magefire Cannon Parts, 5 Shield Guardian Cores, 50 Shield Guardian Gyroscopes, 5 Worker Drone Actuators, 50 Worker Drone Platings. Maetrim has no augment family for this system."
+cost = [{ ingredient = "Energizing Alloy", quantity = 1 }, { ingredient = "Reforged Pliable Ingot", quantity = 1 }, { ingredient = "Reforged Metallic Ingot", quantity = 1 }, { ingredient = "Caustic Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: nearly finished"
+option = "Legendary Black Satin Waist: Quality Wisdom +3"
+augments = []
+note = "Applied to Legendary Black Satin Waist; removes Nearly Finished and adds Quality Wisdom +3. Cost materials, melted at a Cannith Melting Station: 20 Iron Defender Claws, 25 Iron Defender Rivets, 20 Magefire Cannon Cores, 25 Magefire Cannon Parts, 5 Shield Guardian Cores, 50 Shield Guardian Gyroscopes, 5 Worker Drone Actuators, 50 Worker Drone Platings. Maetrim has no augment family for this system."
+cost = [{ ingredient = "Energizing Alloy", quantity = 1 }, { ingredient = "Reforged Pliable Ingot", quantity = 1 }, { ingredient = "Reforged Metallic Ingot", quantity = 1 }, { ingredient = "Caustic Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: nearly finished"
+option = "Celestial Amethyst Ring: Strength +8"
+augments = []
+note = "Applied to Celestial Amethyst Ring; removes Nearly Finished and adds Strength +8. Cost materials, melted at a Cannith Melting Station: 20 Iron Defender Claws, 25 Iron Defender Rivets, 20 Magefire Cannon Cores, 25 Magefire Cannon Parts, 5 Shield Guardian Cores, 50 Shield Guardian Gyroscopes, 5 Worker Drone Actuators, 50 Worker Drone Platings. Maetrim has no augment family for this system."
+cost = [{ ingredient = "Energizing Alloy", quantity = 1 }, { ingredient = "Reforged Pliable Ingot", quantity = 1 }, { ingredient = "Reforged Metallic Ingot", quantity = 1 }, { ingredient = "Caustic Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: nearly finished"
+option = "Legendary Celestial Amethyst Ring: Strength +13"
+augments = []
+note = "Applied to Legendary Celestial Amethyst Ring; removes Nearly Finished and adds Strength +13. Cost materials, melted at a Cannith Melting Station: 20 Iron Defender Claws, 25 Iron Defender Rivets, 20 Magefire Cannon Cores, 25 Magefire Cannon Parts, 5 Shield Guardian Cores, 50 Shield Guardian Gyroscopes, 5 Worker Drone Actuators, 50 Worker Drone Platings. Maetrim has no augment family for this system."
+cost = [{ ingredient = "Energizing Alloy", quantity = 1 }, { ingredient = "Reforged Pliable Ingot", quantity = 1 }, { ingredient = "Reforged Metallic Ingot", quantity = 1 }, { ingredient = "Caustic Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: nearly finished"
+option = "Celestial Amethyst Ring: Intelligence +8"
+augments = []
+note = "Applied to Celestial Amethyst Ring; removes Nearly Finished and adds Intelligence +8. Cost materials, melted at a Cannith Melting Station: 20 Iron Defender Claws, 25 Iron Defender Rivets, 20 Magefire Cannon Cores, 25 Magefire Cannon Parts, 5 Shield Guardian Cores, 50 Shield Guardian Gyroscopes, 5 Worker Drone Actuators, 50 Worker Drone Platings. Maetrim has no augment family for this system."
+cost = [{ ingredient = "Energizing Alloy", quantity = 1 }, { ingredient = "Reforged Pliable Ingot", quantity = 1 }, { ingredient = "Reforged Metallic Ingot", quantity = 1 }, { ingredient = "Caustic Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: nearly finished"
+option = "Legendary Celestial Amethyst Ring: Intelligence +13"
+augments = []
+note = "Applied to Legendary Celestial Amethyst Ring; removes Nearly Finished and adds Intelligence +13. Cost materials, melted at a Cannith Melting Station: 20 Iron Defender Claws, 25 Iron Defender Rivets, 20 Magefire Cannon Cores, 25 Magefire Cannon Parts, 5 Shield Guardian Cores, 50 Shield Guardian Gyroscopes, 5 Worker Drone Actuators, 50 Worker Drone Platings. Maetrim has no augment family for this system."
+cost = [{ ingredient = "Energizing Alloy", quantity = 1 }, { ingredient = "Reforged Pliable Ingot", quantity = 1 }, { ingredient = "Reforged Metallic Ingot", quantity = 1 }, { ingredient = "Caustic Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: nearly finished"
+option = "Celestial Amethyst Ring: Charisma +8"
+augments = []
+note = "Applied to Celestial Amethyst Ring; removes Nearly Finished and adds Charisma +8. Cost materials, melted at a Cannith Melting Station: 20 Iron Defender Claws, 25 Iron Defender Rivets, 20 Magefire Cannon Cores, 25 Magefire Cannon Parts, 5 Shield Guardian Cores, 50 Shield Guardian Gyroscopes, 5 Worker Drone Actuators, 50 Worker Drone Platings. Maetrim has no augment family for this system."
+cost = [{ ingredient = "Energizing Alloy", quantity = 1 }, { ingredient = "Reforged Pliable Ingot", quantity = 1 }, { ingredient = "Reforged Metallic Ingot", quantity = 1 }, { ingredient = "Caustic Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: nearly finished"
+option = "Legendary Celestial Amethyst Ring: Charisma +13"
+augments = []
+note = "Applied to Legendary Celestial Amethyst Ring; removes Nearly Finished and adds Charisma +13. Cost materials, melted at a Cannith Melting Station: 20 Iron Defender Claws, 25 Iron Defender Rivets, 20 Magefire Cannon Cores, 25 Magefire Cannon Parts, 5 Shield Guardian Cores, 50 Shield Guardian Gyroscopes, 5 Worker Drone Actuators, 50 Worker Drone Platings. Maetrim has no augment family for this system."
+cost = [{ ingredient = "Energizing Alloy", quantity = 1 }, { ingredient = "Reforged Pliable Ingot", quantity = 1 }, { ingredient = "Reforged Metallic Ingot", quantity = 1 }, { ingredient = "Caustic Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: nearly finished"
+option = "Celestial Emerald Ring: Constitution +8"
+augments = []
+note = "Applied to Celestial Emerald Ring; removes Nearly Finished and adds Constitution +8. Cost materials, melted at a Cannith Melting Station: 20 Iron Defender Claws, 25 Iron Defender Rivets, 20 Magefire Cannon Cores, 25 Magefire Cannon Parts, 50 Shield Guardian Cores, 5 Shield Guardian Gyroscopes, 50 Worker Drone Actuators, 5 Worker Drone Platings. Maetrim has no augment family for this system."
+cost = [{ ingredient = "Dampening Alloy", quantity = 1 }, { ingredient = "Reforged Glowing Ingot", quantity = 1 }, { ingredient = "Reforged Dense Ingot", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: nearly finished"
+option = "Legendary Celestial Emerald Ring: Constitution +13"
+augments = []
+note = "Applied to Legendary Celestial Emerald Ring; removes Nearly Finished and adds Constitution +13. Cost materials, melted at a Cannith Melting Station: 20 Iron Defender Claws, 25 Iron Defender Rivets, 20 Magefire Cannon Cores, 25 Magefire Cannon Parts, 50 Shield Guardian Cores, 5 Shield Guardian Gyroscopes, 50 Worker Drone Actuators, 5 Worker Drone Platings. Maetrim has no augment family for this system."
+cost = [{ ingredient = "Dampening Alloy", quantity = 1 }, { ingredient = "Reforged Glowing Ingot", quantity = 1 }, { ingredient = "Reforged Dense Ingot", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: nearly finished"
+option = "Celestial Emerald Ring: Strength +8"
+augments = []
+note = "Applied to Celestial Emerald Ring; removes Nearly Finished and adds Strength +8. Cost materials, melted at a Cannith Melting Station: 20 Iron Defender Claws, 25 Iron Defender Rivets, 20 Magefire Cannon Cores, 25 Magefire Cannon Parts, 50 Shield Guardian Cores, 5 Shield Guardian Gyroscopes, 50 Worker Drone Actuators, 5 Worker Drone Platings. Maetrim has no augment family for this system."
+cost = [{ ingredient = "Dampening Alloy", quantity = 1 }, { ingredient = "Reforged Glowing Ingot", quantity = 1 }, { ingredient = "Reforged Dense Ingot", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: nearly finished"
+option = "Legendary Celestial Emerald Ring: Strength +13"
+augments = []
+note = "Applied to Legendary Celestial Emerald Ring; removes Nearly Finished and adds Strength +13. Cost materials, melted at a Cannith Melting Station: 20 Iron Defender Claws, 25 Iron Defender Rivets, 20 Magefire Cannon Cores, 25 Magefire Cannon Parts, 50 Shield Guardian Cores, 5 Shield Guardian Gyroscopes, 50 Worker Drone Actuators, 5 Worker Drone Platings. Maetrim has no augment family for this system."
+cost = [{ ingredient = "Dampening Alloy", quantity = 1 }, { ingredient = "Reforged Glowing Ingot", quantity = 1 }, { ingredient = "Reforged Dense Ingot", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: nearly finished"
+option = "Celestial Emerald Ring: Wisdom +8"
+augments = []
+note = "Applied to Celestial Emerald Ring; removes Nearly Finished and adds Wisdom +8. Cost materials, melted at a Cannith Melting Station: 20 Iron Defender Claws, 25 Iron Defender Rivets, 20 Magefire Cannon Cores, 25 Magefire Cannon Parts, 50 Shield Guardian Cores, 5 Shield Guardian Gyroscopes, 50 Worker Drone Actuators, 5 Worker Drone Platings. Maetrim has no augment family for this system."
+cost = [{ ingredient = "Dampening Alloy", quantity = 1 }, { ingredient = "Reforged Glowing Ingot", quantity = 1 }, { ingredient = "Reforged Dense Ingot", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: nearly finished"
+option = "Legendary Celestial Emerald Ring: Wisdom +13"
+augments = []
+note = "Applied to Legendary Celestial Emerald Ring; removes Nearly Finished and adds Wisdom +13. Cost materials, melted at a Cannith Melting Station: 20 Iron Defender Claws, 25 Iron Defender Rivets, 20 Magefire Cannon Cores, 25 Magefire Cannon Parts, 50 Shield Guardian Cores, 5 Shield Guardian Gyroscopes, 50 Worker Drone Actuators, 5 Worker Drone Platings. Maetrim has no augment family for this system."
+cost = [{ ingredient = "Dampening Alloy", quantity = 1 }, { ingredient = "Reforged Glowing Ingot", quantity = 1 }, { ingredient = "Reforged Dense Ingot", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: nearly finished"
+option = "Celestial Sapphire Ring: Dexterity +8"
+augments = []
+note = "Applied to Celestial Sapphire Ring; removes Nearly Finished and adds Dexterity +8. Cost materials, melted at a Cannith Melting Station: 20 Iron Defender Claws, 25 Iron Defender Rivets, 20 Magefire Cannon Cores, 25 Magefire Cannon Parts, 50 Shield Guardian Cores, 5 Shield Guardian Gyroscopes, 50 Worker Drone Actuators, 5 Worker Drone Platings. Maetrim has no augment family for this system."
+cost = [{ ingredient = "Dampening Alloy", quantity = 1 }, { ingredient = "Reforged Glowing Ingot", quantity = 1 }, { ingredient = "Reforged Dense Ingot", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: nearly finished"
+option = "Legendary Celestial Sapphire Ring: Dexterity +13"
+augments = []
+note = "Applied to Legendary Celestial Sapphire Ring; removes Nearly Finished and adds Dexterity +13. Cost materials, melted at a Cannith Melting Station: 20 Iron Defender Claws, 25 Iron Defender Rivets, 20 Magefire Cannon Cores, 25 Magefire Cannon Parts, 50 Shield Guardian Cores, 5 Shield Guardian Gyroscopes, 50 Worker Drone Actuators, 5 Worker Drone Platings. Maetrim has no augment family for this system."
+cost = [{ ingredient = "Dampening Alloy", quantity = 1 }, { ingredient = "Reforged Glowing Ingot", quantity = 1 }, { ingredient = "Reforged Dense Ingot", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: nearly finished"
+option = "Celestial Sapphire Ring: Intelligence +8"
+augments = []
+note = "Applied to Celestial Sapphire Ring; removes Nearly Finished and adds Intelligence +8. Cost materials, melted at a Cannith Melting Station: 20 Iron Defender Claws, 25 Iron Defender Rivets, 20 Magefire Cannon Cores, 25 Magefire Cannon Parts, 50 Shield Guardian Cores, 5 Shield Guardian Gyroscopes, 50 Worker Drone Actuators, 5 Worker Drone Platings. Maetrim has no augment family for this system."
+cost = [{ ingredient = "Dampening Alloy", quantity = 1 }, { ingredient = "Reforged Glowing Ingot", quantity = 1 }, { ingredient = "Reforged Dense Ingot", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: nearly finished"
+option = "Legendary Celestial Sapphire Ring: Intelligence +13"
+augments = []
+note = "Applied to Legendary Celestial Sapphire Ring; removes Nearly Finished and adds Intelligence +13. Cost materials, melted at a Cannith Melting Station: 20 Iron Defender Claws, 25 Iron Defender Rivets, 20 Magefire Cannon Cores, 25 Magefire Cannon Parts, 50 Shield Guardian Cores, 5 Shield Guardian Gyroscopes, 50 Worker Drone Actuators, 5 Worker Drone Platings. Maetrim has no augment family for this system."
+cost = [{ ingredient = "Dampening Alloy", quantity = 1 }, { ingredient = "Reforged Glowing Ingot", quantity = 1 }, { ingredient = "Reforged Dense Ingot", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: nearly finished"
+option = "Celestial Sapphire Ring: Constitution +8"
+augments = []
+note = "Applied to Celestial Sapphire Ring; removes Nearly Finished and adds Constitution +8. Cost materials, melted at a Cannith Melting Station: 20 Iron Defender Claws, 25 Iron Defender Rivets, 20 Magefire Cannon Cores, 25 Magefire Cannon Parts, 50 Shield Guardian Cores, 5 Shield Guardian Gyroscopes, 50 Worker Drone Actuators, 5 Worker Drone Platings. Maetrim has no augment family for this system."
+cost = [{ ingredient = "Dampening Alloy", quantity = 1 }, { ingredient = "Reforged Glowing Ingot", quantity = 1 }, { ingredient = "Reforged Dense Ingot", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: nearly finished"
+option = "Legendary Celestial Sapphire Ring: Constitution +13"
+augments = []
+note = "Applied to Legendary Celestial Sapphire Ring; removes Nearly Finished and adds Constitution +13. Cost materials, melted at a Cannith Melting Station: 20 Iron Defender Claws, 25 Iron Defender Rivets, 20 Magefire Cannon Cores, 25 Magefire Cannon Parts, 50 Shield Guardian Cores, 5 Shield Guardian Gyroscopes, 50 Worker Drone Actuators, 5 Worker Drone Platings. Maetrim has no augment family for this system."
+cost = [{ ingredient = "Dampening Alloy", quantity = 1 }, { ingredient = "Reforged Glowing Ingot", quantity = 1 }, { ingredient = "Reforged Dense Ingot", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: nearly finished"
+option = "Celestial Ruby Ring: Strength +8"
+augments = []
+note = "Applied to Celestial Ruby Ring; removes Nearly Finished and adds Strength +8. Cost materials, melted at a Cannith Melting Station: 20 Iron Defender Claws, 25 Iron Defender Rivets, 20 Magefire Cannon Cores, 25 Magefire Cannon Parts, 50 Shield Guardian Cores, 5 Shield Guardian Gyroscopes, 50 Worker Drone Actuators, 5 Worker Drone Platings. Maetrim has no augment family for this system."
+cost = [{ ingredient = "Dampening Alloy", quantity = 1 }, { ingredient = "Reforged Glowing Ingot", quantity = 1 }, { ingredient = "Reforged Dense Ingot", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: nearly finished"
+option = "Legendary Celestial Ruby Ring: Strength +13"
+augments = []
+note = "Applied to Legendary Celestial Ruby Ring; removes Nearly Finished and adds Strength +13. Cost materials, melted at a Cannith Melting Station: 20 Iron Defender Claws, 25 Iron Defender Rivets, 20 Magefire Cannon Cores, 25 Magefire Cannon Parts, 50 Shield Guardian Cores, 5 Shield Guardian Gyroscopes, 50 Worker Drone Actuators, 5 Worker Drone Platings. Maetrim has no augment family for this system."
+cost = [{ ingredient = "Dampening Alloy", quantity = 1 }, { ingredient = "Reforged Glowing Ingot", quantity = 1 }, { ingredient = "Reforged Dense Ingot", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: nearly finished"
+option = "Celestial Ruby Ring: Dexterity +8"
+augments = []
+note = "Applied to Celestial Ruby Ring; removes Nearly Finished and adds Dexterity +8. Cost materials, melted at a Cannith Melting Station: 20 Iron Defender Claws, 25 Iron Defender Rivets, 20 Magefire Cannon Cores, 25 Magefire Cannon Parts, 50 Shield Guardian Cores, 5 Shield Guardian Gyroscopes, 50 Worker Drone Actuators, 5 Worker Drone Platings. Maetrim has no augment family for this system."
+cost = [{ ingredient = "Dampening Alloy", quantity = 1 }, { ingredient = "Reforged Glowing Ingot", quantity = 1 }, { ingredient = "Reforged Dense Ingot", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: nearly finished"
+option = "Legendary Celestial Ruby Ring: Dexterity +13"
+augments = []
+note = "Applied to Legendary Celestial Ruby Ring; removes Nearly Finished and adds Dexterity +13. Cost materials, melted at a Cannith Melting Station: 20 Iron Defender Claws, 25 Iron Defender Rivets, 20 Magefire Cannon Cores, 25 Magefire Cannon Parts, 50 Shield Guardian Cores, 5 Shield Guardian Gyroscopes, 50 Worker Drone Actuators, 5 Worker Drone Platings. Maetrim has no augment family for this system."
+cost = [{ ingredient = "Dampening Alloy", quantity = 1 }, { ingredient = "Reforged Glowing Ingot", quantity = 1 }, { ingredient = "Reforged Dense Ingot", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: nearly finished"
+option = "Celestial Ruby Ring: Intelligence +8"
+augments = []
+note = "Applied to Celestial Ruby Ring; removes Nearly Finished and adds Intelligence +8. Cost materials, melted at a Cannith Melting Station: 20 Iron Defender Claws, 25 Iron Defender Rivets, 20 Magefire Cannon Cores, 25 Magefire Cannon Parts, 50 Shield Guardian Cores, 5 Shield Guardian Gyroscopes, 50 Worker Drone Actuators, 5 Worker Drone Platings. Maetrim has no augment family for this system."
+cost = [{ ingredient = "Dampening Alloy", quantity = 1 }, { ingredient = "Reforged Glowing Ingot", quantity = 1 }, { ingredient = "Reforged Dense Ingot", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: nearly finished"
+option = "Legendary Celestial Ruby Ring: Intelligence +13"
+augments = []
+note = "Applied to Legendary Celestial Ruby Ring; removes Nearly Finished and adds Intelligence +13. Cost materials, melted at a Cannith Melting Station: 20 Iron Defender Claws, 25 Iron Defender Rivets, 20 Magefire Cannon Cores, 25 Magefire Cannon Parts, 50 Shield Guardian Cores, 5 Shield Guardian Gyroscopes, 50 Worker Drone Actuators, 5 Worker Drone Platings. Maetrim has no augment family for this system."
+cost = [{ ingredient = "Dampening Alloy", quantity = 1 }, { ingredient = "Reforged Glowing Ingot", quantity = 1 }, { ingredient = "Reforged Dense Ingot", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: nearly finished"
+option = "Celestial Topaz Ring: Intelligence +8"
+augments = []
+note = "Applied to Celestial Topaz Ring; removes Nearly Finished and adds Intelligence +8. Cost materials, melted at a Cannith Melting Station: 20 Iron Defender Claws, 25 Iron Defender Rivets, 20 Magefire Cannon Cores, 25 Magefire Cannon Parts, 5 Shield Guardian Cores, 50 Shield Guardian Gyroscopes, 5 Worker Drone Actuators, 50 Worker Drone Platings. Maetrim has no augment family for this system."
+cost = [{ ingredient = "Energizing Alloy", quantity = 1 }, { ingredient = "Reforged Pliable Ingot", quantity = 1 }, { ingredient = "Reforged Metallic Ingot", quantity = 1 }, { ingredient = "Caustic Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: nearly finished"
+option = "Legendary Celestial Topaz Ring: Intelligence +13"
+augments = []
+note = "Applied to Legendary Celestial Topaz Ring; removes Nearly Finished and adds Intelligence +13. Cost materials, melted at a Cannith Melting Station: 20 Iron Defender Claws, 25 Iron Defender Rivets, 20 Magefire Cannon Cores, 25 Magefire Cannon Parts, 5 Shield Guardian Cores, 50 Shield Guardian Gyroscopes, 5 Worker Drone Actuators, 50 Worker Drone Platings. Maetrim has no augment family for this system."
+cost = [{ ingredient = "Energizing Alloy", quantity = 1 }, { ingredient = "Reforged Pliable Ingot", quantity = 1 }, { ingredient = "Reforged Metallic Ingot", quantity = 1 }, { ingredient = "Caustic Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: nearly finished"
+option = "Celestial Topaz Ring: Wisdom +8"
+augments = []
+note = "Applied to Celestial Topaz Ring; removes Nearly Finished and adds Wisdom +8. Cost materials, melted at a Cannith Melting Station: 20 Iron Defender Claws, 25 Iron Defender Rivets, 20 Magefire Cannon Cores, 25 Magefire Cannon Parts, 5 Shield Guardian Cores, 50 Shield Guardian Gyroscopes, 5 Worker Drone Actuators, 50 Worker Drone Platings. Maetrim has no augment family for this system."
+cost = [{ ingredient = "Energizing Alloy", quantity = 1 }, { ingredient = "Reforged Pliable Ingot", quantity = 1 }, { ingredient = "Reforged Metallic Ingot", quantity = 1 }, { ingredient = "Caustic Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: nearly finished"
+option = "Legendary Celestial Topaz Ring: Wisdom +13"
+augments = []
+note = "Applied to Legendary Celestial Topaz Ring; removes Nearly Finished and adds Wisdom +13. Cost materials, melted at a Cannith Melting Station: 20 Iron Defender Claws, 25 Iron Defender Rivets, 20 Magefire Cannon Cores, 25 Magefire Cannon Parts, 5 Shield Guardian Cores, 50 Shield Guardian Gyroscopes, 5 Worker Drone Actuators, 50 Worker Drone Platings. Maetrim has no augment family for this system."
+cost = [{ ingredient = "Energizing Alloy", quantity = 1 }, { ingredient = "Reforged Pliable Ingot", quantity = 1 }, { ingredient = "Reforged Metallic Ingot", quantity = 1 }, { ingredient = "Caustic Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: nearly finished"
+option = "Celestial Topaz Ring: Charisma +8"
+augments = []
+note = "Applied to Celestial Topaz Ring; removes Nearly Finished and adds Charisma +8. Cost materials, melted at a Cannith Melting Station: 20 Iron Defender Claws, 25 Iron Defender Rivets, 20 Magefire Cannon Cores, 25 Magefire Cannon Parts, 5 Shield Guardian Cores, 50 Shield Guardian Gyroscopes, 5 Worker Drone Actuators, 50 Worker Drone Platings. Maetrim has no augment family for this system."
+cost = [{ ingredient = "Energizing Alloy", quantity = 1 }, { ingredient = "Reforged Pliable Ingot", quantity = 1 }, { ingredient = "Reforged Metallic Ingot", quantity = 1 }, { ingredient = "Caustic Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: nearly finished"
+option = "Legendary Celestial Topaz Ring: Charisma +13"
+augments = []
+note = "Applied to Legendary Celestial Topaz Ring; removes Nearly Finished and adds Charisma +13. Cost materials, melted at a Cannith Melting Station: 20 Iron Defender Claws, 25 Iron Defender Rivets, 20 Magefire Cannon Cores, 25 Magefire Cannon Parts, 5 Shield Guardian Cores, 50 Shield Guardian Gyroscopes, 5 Worker Drone Actuators, 50 Worker Drone Platings. Maetrim has no augment family for this system."
+cost = [{ ingredient = "Energizing Alloy", quantity = 1 }, { ingredient = "Reforged Pliable Ingot", quantity = 1 }, { ingredient = "Reforged Metallic Ingot", quantity = 1 }, { ingredient = "Caustic Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: nearly finished"
+option = "The Shattered Onyx: Insightful Charisma +3"
+augments = []
+note = "Applied to The Shattered Onyx; removes Nearly Finished and adds Insightful Charisma +3. Cost materials, melted at a Cannith Melting Station: 20 Iron Defender Claws, 25 Iron Defender Rivets, 20 Magefire Cannon Cores, 25 Magefire Cannon Parts, 50 Shield Guardian Cores, 5 Shield Guardian Gyroscopes, 50 Worker Drone Actuators, 5 Worker Drone Platings. Maetrim has no augment family for this system."
+cost = [{ ingredient = "Dampening Alloy", quantity = 1 }, { ingredient = "Reforged Glowing Ingot", quantity = 1 }, { ingredient = "Reforged Dense Ingot", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: nearly finished"
+option = "The Legendary Shattered Onyx: Insightful Charisma +6"
+augments = []
+note = "Applied to The Legendary Shattered Onyx; removes Nearly Finished and adds Insightful Charisma +6. Cost materials, melted at a Cannith Melting Station: 20 Iron Defender Claws, 25 Iron Defender Rivets, 20 Magefire Cannon Cores, 25 Magefire Cannon Parts, 50 Shield Guardian Cores, 5 Shield Guardian Gyroscopes, 50 Worker Drone Actuators, 5 Worker Drone Platings. Maetrim has no augment family for this system."
+cost = [{ ingredient = "Dampening Alloy", quantity = 1 }, { ingredient = "Reforged Glowing Ingot", quantity = 1 }, { ingredient = "Reforged Dense Ingot", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: nearly finished"
+option = "The Shattered Onyx: Insightful Wisdom +3"
+augments = []
+note = "Applied to The Shattered Onyx; removes Nearly Finished and adds Insightful Wisdom +3. Cost materials, melted at a Cannith Melting Station: 20 Iron Defender Claws, 25 Iron Defender Rivets, 20 Magefire Cannon Cores, 25 Magefire Cannon Parts, 50 Shield Guardian Cores, 5 Shield Guardian Gyroscopes, 50 Worker Drone Actuators, 5 Worker Drone Platings. Maetrim has no augment family for this system."
+cost = [{ ingredient = "Dampening Alloy", quantity = 1 }, { ingredient = "Reforged Glowing Ingot", quantity = 1 }, { ingredient = "Reforged Dense Ingot", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: nearly finished"
+option = "The Legendary Shattered Onyx: Insightful Wisdom +6"
+augments = []
+note = "Applied to The Legendary Shattered Onyx; removes Nearly Finished and adds Insightful Wisdom +6. Cost materials, melted at a Cannith Melting Station: 20 Iron Defender Claws, 25 Iron Defender Rivets, 20 Magefire Cannon Cores, 25 Magefire Cannon Parts, 50 Shield Guardian Cores, 5 Shield Guardian Gyroscopes, 50 Worker Drone Actuators, 5 Worker Drone Platings. Maetrim has no augment family for this system."
+cost = [{ ingredient = "Dampening Alloy", quantity = 1 }, { ingredient = "Reforged Glowing Ingot", quantity = 1 }, { ingredient = "Reforged Dense Ingot", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: nearly finished"
+option = "The Shattered Onyx: Insightful Intelligence +3"
+augments = []
+note = "Applied to The Shattered Onyx; removes Nearly Finished and adds Insightful Intelligence +3. Cost materials, melted at a Cannith Melting Station: 20 Iron Defender Claws, 25 Iron Defender Rivets, 20 Magefire Cannon Cores, 25 Magefire Cannon Parts, 50 Shield Guardian Cores, 5 Shield Guardian Gyroscopes, 50 Worker Drone Actuators, 5 Worker Drone Platings. Maetrim has no augment family for this system."
+cost = [{ ingredient = "Dampening Alloy", quantity = 1 }, { ingredient = "Reforged Glowing Ingot", quantity = 1 }, { ingredient = "Reforged Dense Ingot", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: nearly finished"
+option = "The Legendary Shattered Onyx: Insightful Intelligence +6"
+augments = []
+note = "Applied to The Legendary Shattered Onyx; removes Nearly Finished and adds Insightful Intelligence +6. Cost materials, melted at a Cannith Melting Station: 20 Iron Defender Claws, 25 Iron Defender Rivets, 20 Magefire Cannon Cores, 25 Magefire Cannon Parts, 50 Shield Guardian Cores, 5 Shield Guardian Gyroscopes, 50 Worker Drone Actuators, 5 Worker Drone Platings. Maetrim has no augment family for this system."
+cost = [{ ingredient = "Dampening Alloy", quantity = 1 }, { ingredient = "Reforged Glowing Ingot", quantity = 1 }, { ingredient = "Reforged Dense Ingot", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: nearly finished"
+option = "Collective Sight: Strength +8"
+augments = []
+note = "Applied to Collective Sight; removes Nearly Finished and adds Strength +8. Cost materials, melted at a Cannith Melting Station: 20 Iron Defender Claws, 25 Iron Defender Rivets, 20 Magefire Cannon Cores, 25 Magefire Cannon Parts, 50 Shield Guardian Cores, 5 Shield Guardian Gyroscopes, 50 Worker Drone Actuators, 5 Worker Drone Platings. Maetrim has no augment family for this system."
+cost = [{ ingredient = "Dampening Alloy", quantity = 1 }, { ingredient = "Reforged Glowing Ingot", quantity = 1 }, { ingredient = "Reforged Dense Ingot", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: nearly finished"
+option = "Legendary Collective Sight: Strength +13"
+augments = []
+note = "Applied to Legendary Collective Sight; removes Nearly Finished and adds Strength +13. Cost materials, melted at a Cannith Melting Station: 20 Iron Defender Claws, 25 Iron Defender Rivets, 20 Magefire Cannon Cores, 25 Magefire Cannon Parts, 50 Shield Guardian Cores, 5 Shield Guardian Gyroscopes, 50 Worker Drone Actuators, 5 Worker Drone Platings. Maetrim has no augment family for this system."
+cost = [{ ingredient = "Dampening Alloy", quantity = 1 }, { ingredient = "Reforged Glowing Ingot", quantity = 1 }, { ingredient = "Reforged Dense Ingot", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: nearly finished"
+option = "Collective Sight: Dexterity +8"
+augments = []
+note = "Applied to Collective Sight; removes Nearly Finished and adds Dexterity +8. Cost materials, melted at a Cannith Melting Station: 20 Iron Defender Claws, 25 Iron Defender Rivets, 20 Magefire Cannon Cores, 25 Magefire Cannon Parts, 50 Shield Guardian Cores, 5 Shield Guardian Gyroscopes, 50 Worker Drone Actuators, 5 Worker Drone Platings. Maetrim has no augment family for this system."
+cost = [{ ingredient = "Dampening Alloy", quantity = 1 }, { ingredient = "Reforged Glowing Ingot", quantity = 1 }, { ingredient = "Reforged Dense Ingot", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: nearly finished"
+option = "Legendary Collective Sight: Dexterity +13"
+augments = []
+note = "Applied to Legendary Collective Sight; removes Nearly Finished and adds Dexterity +13. Cost materials, melted at a Cannith Melting Station: 20 Iron Defender Claws, 25 Iron Defender Rivets, 20 Magefire Cannon Cores, 25 Magefire Cannon Parts, 50 Shield Guardian Cores, 5 Shield Guardian Gyroscopes, 50 Worker Drone Actuators, 5 Worker Drone Platings. Maetrim has no augment family for this system."
+cost = [{ ingredient = "Dampening Alloy", quantity = 1 }, { ingredient = "Reforged Glowing Ingot", quantity = 1 }, { ingredient = "Reforged Dense Ingot", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: nearly finished"
+option = "Collective Sight: Constitution +8"
+augments = []
+note = "Applied to Collective Sight; removes Nearly Finished and adds Constitution +8. Cost materials, melted at a Cannith Melting Station: 20 Iron Defender Claws, 25 Iron Defender Rivets, 20 Magefire Cannon Cores, 25 Magefire Cannon Parts, 50 Shield Guardian Cores, 5 Shield Guardian Gyroscopes, 50 Worker Drone Actuators, 5 Worker Drone Platings. Maetrim has no augment family for this system."
+cost = [{ ingredient = "Dampening Alloy", quantity = 1 }, { ingredient = "Reforged Glowing Ingot", quantity = 1 }, { ingredient = "Reforged Dense Ingot", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: nearly finished"
+option = "Legendary Collective Sight: Constitution +13"
+augments = []
+note = "Applied to Legendary Collective Sight; removes Nearly Finished and adds Constitution +13. Cost materials, melted at a Cannith Melting Station: 20 Iron Defender Claws, 25 Iron Defender Rivets, 20 Magefire Cannon Cores, 25 Magefire Cannon Parts, 50 Shield Guardian Cores, 5 Shield Guardian Gyroscopes, 50 Worker Drone Actuators, 5 Worker Drone Platings. Maetrim has no augment family for this system."
+cost = [{ ingredient = "Dampening Alloy", quantity = 1 }, { ingredient = "Reforged Glowing Ingot", quantity = 1 }, { ingredient = "Reforged Dense Ingot", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: nearly finished"
+option = "Collective Sight: Intelligence +8"
+augments = []
+note = "Applied to Collective Sight; removes Nearly Finished and adds Intelligence +8. Cost materials, melted at a Cannith Melting Station: 20 Iron Defender Claws, 25 Iron Defender Rivets, 20 Magefire Cannon Cores, 25 Magefire Cannon Parts, 50 Shield Guardian Cores, 5 Shield Guardian Gyroscopes, 50 Worker Drone Actuators, 5 Worker Drone Platings. Maetrim has no augment family for this system."
+cost = [{ ingredient = "Dampening Alloy", quantity = 1 }, { ingredient = "Reforged Glowing Ingot", quantity = 1 }, { ingredient = "Reforged Dense Ingot", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: nearly finished"
+option = "Legendary Collective Sight: Intelligence +13"
+augments = []
+note = "Applied to Legendary Collective Sight; removes Nearly Finished and adds Intelligence +13. Cost materials, melted at a Cannith Melting Station: 20 Iron Defender Claws, 25 Iron Defender Rivets, 20 Magefire Cannon Cores, 25 Magefire Cannon Parts, 50 Shield Guardian Cores, 5 Shield Guardian Gyroscopes, 50 Worker Drone Actuators, 5 Worker Drone Platings. Maetrim has no augment family for this system."
+cost = [{ ingredient = "Dampening Alloy", quantity = 1 }, { ingredient = "Reforged Glowing Ingot", quantity = 1 }, { ingredient = "Reforged Dense Ingot", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: nearly finished"
+option = "Collective Sight: Wisdom +8"
+augments = []
+note = "Applied to Collective Sight; removes Nearly Finished and adds Wisdom +8. Cost materials, melted at a Cannith Melting Station: 20 Iron Defender Claws, 25 Iron Defender Rivets, 20 Magefire Cannon Cores, 25 Magefire Cannon Parts, 50 Shield Guardian Cores, 5 Shield Guardian Gyroscopes, 50 Worker Drone Actuators, 5 Worker Drone Platings. Maetrim has no augment family for this system."
+cost = [{ ingredient = "Dampening Alloy", quantity = 1 }, { ingredient = "Reforged Glowing Ingot", quantity = 1 }, { ingredient = "Reforged Dense Ingot", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: nearly finished"
+option = "Legendary Collective Sight: Wisdom +13"
+augments = []
+note = "Applied to Legendary Collective Sight; removes Nearly Finished and adds Wisdom +13. Cost materials, melted at a Cannith Melting Station: 20 Iron Defender Claws, 25 Iron Defender Rivets, 20 Magefire Cannon Cores, 25 Magefire Cannon Parts, 50 Shield Guardian Cores, 5 Shield Guardian Gyroscopes, 50 Worker Drone Actuators, 5 Worker Drone Platings. Maetrim has no augment family for this system."
+cost = [{ ingredient = "Dampening Alloy", quantity = 1 }, { ingredient = "Reforged Glowing Ingot", quantity = 1 }, { ingredient = "Reforged Dense Ingot", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: nearly finished"
+option = "Collective Sight: Charisma +8"
+augments = []
+note = "Applied to Collective Sight; removes Nearly Finished and adds Charisma +8. Cost materials, melted at a Cannith Melting Station: 20 Iron Defender Claws, 25 Iron Defender Rivets, 20 Magefire Cannon Cores, 25 Magefire Cannon Parts, 50 Shield Guardian Cores, 5 Shield Guardian Gyroscopes, 50 Worker Drone Actuators, 5 Worker Drone Platings. Maetrim has no augment family for this system."
+cost = [{ ingredient = "Dampening Alloy", quantity = 1 }, { ingredient = "Reforged Glowing Ingot", quantity = 1 }, { ingredient = "Reforged Dense Ingot", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: nearly finished"
+option = "Legendary Collective Sight: Charisma +13"
+augments = []
+note = "Applied to Legendary Collective Sight; removes Nearly Finished and adds Charisma +13. Cost materials, melted at a Cannith Melting Station: 20 Iron Defender Claws, 25 Iron Defender Rivets, 20 Magefire Cannon Cores, 25 Magefire Cannon Parts, 50 Shield Guardian Cores, 5 Shield Guardian Gyroscopes, 50 Worker Drone Actuators, 5 Worker Drone Platings. Maetrim has no augment family for this system."
+cost = [{ ingredient = "Dampening Alloy", quantity = 1 }, { ingredient = "Reforged Glowing Ingot", quantity = 1 }, { ingredient = "Reforged Dense Ingot", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: almost there"
+option = "Collective Sight: Insightful Strength +3"
+augments = []
+note = "Applied to Collective Sight; removes Almost There and adds Insightful Strength +3. Cost materials, melted at a Cannith Melting Station: 20 Iron Defender Claws, 25 Iron Defender Rivets, 20 Magefire Cannon Cores, 25 Magefire Cannon Parts, 50 Shield Guardian Cores, 5 Shield Guardian Gyroscopes, 50 Worker Drone Actuators, 5 Worker Drone Platings. Maetrim has no augment family for this system."
+cost = [{ ingredient = "Dampening Alloy", quantity = 1 }, { ingredient = "Reforged Glowing Ingot", quantity = 1 }, { ingredient = "Reforged Dense Ingot", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: almost there"
+option = "Legendary Collective Sight: Insightful Strength +6"
+augments = []
+note = "Applied to Legendary Collective Sight; removes Almost There and adds Insightful Strength +6. Cost materials, melted at a Cannith Melting Station: 20 Iron Defender Claws, 25 Iron Defender Rivets, 20 Magefire Cannon Cores, 25 Magefire Cannon Parts, 50 Shield Guardian Cores, 5 Shield Guardian Gyroscopes, 50 Worker Drone Actuators, 5 Worker Drone Platings. Maetrim has no augment family for this system."
+cost = [{ ingredient = "Dampening Alloy", quantity = 1 }, { ingredient = "Reforged Glowing Ingot", quantity = 1 }, { ingredient = "Reforged Dense Ingot", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: almost there"
+option = "Collective Sight: Insightful Dexterity +3"
+augments = []
+note = "Applied to Collective Sight; removes Almost There and adds Insightful Dexterity +3. Cost materials, melted at a Cannith Melting Station: 20 Iron Defender Claws, 25 Iron Defender Rivets, 20 Magefire Cannon Cores, 25 Magefire Cannon Parts, 50 Shield Guardian Cores, 5 Shield Guardian Gyroscopes, 50 Worker Drone Actuators, 5 Worker Drone Platings. Maetrim has no augment family for this system."
+cost = [{ ingredient = "Dampening Alloy", quantity = 1 }, { ingredient = "Reforged Glowing Ingot", quantity = 1 }, { ingredient = "Reforged Dense Ingot", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: almost there"
+option = "Legendary Collective Sight: Insightful Dexterity +6"
+augments = []
+note = "Applied to Legendary Collective Sight; removes Almost There and adds Insightful Dexterity +6. Cost materials, melted at a Cannith Melting Station: 20 Iron Defender Claws, 25 Iron Defender Rivets, 20 Magefire Cannon Cores, 25 Magefire Cannon Parts, 50 Shield Guardian Cores, 5 Shield Guardian Gyroscopes, 50 Worker Drone Actuators, 5 Worker Drone Platings. Maetrim has no augment family for this system."
+cost = [{ ingredient = "Dampening Alloy", quantity = 1 }, { ingredient = "Reforged Glowing Ingot", quantity = 1 }, { ingredient = "Reforged Dense Ingot", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: almost there"
+option = "Collective Sight: Insightful Constitution +3"
+augments = []
+note = "Applied to Collective Sight; removes Almost There and adds Insightful Constitution +3. Cost materials, melted at a Cannith Melting Station: 20 Iron Defender Claws, 25 Iron Defender Rivets, 20 Magefire Cannon Cores, 25 Magefire Cannon Parts, 50 Shield Guardian Cores, 5 Shield Guardian Gyroscopes, 50 Worker Drone Actuators, 5 Worker Drone Platings. Maetrim has no augment family for this system."
+cost = [{ ingredient = "Dampening Alloy", quantity = 1 }, { ingredient = "Reforged Glowing Ingot", quantity = 1 }, { ingredient = "Reforged Dense Ingot", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: almost there"
+option = "Legendary Collective Sight: Insightful Constitution +6"
+augments = []
+note = "Applied to Legendary Collective Sight; removes Almost There and adds Insightful Constitution +6. Cost materials, melted at a Cannith Melting Station: 20 Iron Defender Claws, 25 Iron Defender Rivets, 20 Magefire Cannon Cores, 25 Magefire Cannon Parts, 50 Shield Guardian Cores, 5 Shield Guardian Gyroscopes, 50 Worker Drone Actuators, 5 Worker Drone Platings. Maetrim has no augment family for this system."
+cost = [{ ingredient = "Dampening Alloy", quantity = 1 }, { ingredient = "Reforged Glowing Ingot", quantity = 1 }, { ingredient = "Reforged Dense Ingot", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: almost there"
+option = "Collective Sight: Insightful Intelligence +3"
+augments = []
+note = "Applied to Collective Sight; removes Almost There and adds Insightful Intelligence +3. Cost materials, melted at a Cannith Melting Station: 20 Iron Defender Claws, 25 Iron Defender Rivets, 20 Magefire Cannon Cores, 25 Magefire Cannon Parts, 50 Shield Guardian Cores, 5 Shield Guardian Gyroscopes, 50 Worker Drone Actuators, 5 Worker Drone Platings. Maetrim has no augment family for this system."
+cost = [{ ingredient = "Dampening Alloy", quantity = 1 }, { ingredient = "Reforged Glowing Ingot", quantity = 1 }, { ingredient = "Reforged Dense Ingot", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: almost there"
+option = "Legendary Collective Sight: Insightful Intelligence +6"
+augments = []
+note = "Applied to Legendary Collective Sight; removes Almost There and adds Insightful Intelligence +6. Cost materials, melted at a Cannith Melting Station: 20 Iron Defender Claws, 25 Iron Defender Rivets, 20 Magefire Cannon Cores, 25 Magefire Cannon Parts, 50 Shield Guardian Cores, 5 Shield Guardian Gyroscopes, 50 Worker Drone Actuators, 5 Worker Drone Platings. Maetrim has no augment family for this system."
+cost = [{ ingredient = "Dampening Alloy", quantity = 1 }, { ingredient = "Reforged Glowing Ingot", quantity = 1 }, { ingredient = "Reforged Dense Ingot", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: almost there"
+option = "Collective Sight: Insightful Wisdom +3"
+augments = []
+note = "Applied to Collective Sight; removes Almost There and adds Insightful Wisdom +3. Cost materials, melted at a Cannith Melting Station: 20 Iron Defender Claws, 25 Iron Defender Rivets, 20 Magefire Cannon Cores, 25 Magefire Cannon Parts, 50 Shield Guardian Cores, 5 Shield Guardian Gyroscopes, 50 Worker Drone Actuators, 5 Worker Drone Platings. Maetrim has no augment family for this system."
+cost = [{ ingredient = "Dampening Alloy", quantity = 1 }, { ingredient = "Reforged Glowing Ingot", quantity = 1 }, { ingredient = "Reforged Dense Ingot", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: almost there"
+option = "Legendary Collective Sight: Insightful Wisdom +6"
+augments = []
+note = "Applied to Legendary Collective Sight; removes Almost There and adds Insightful Wisdom +6. Cost materials, melted at a Cannith Melting Station: 20 Iron Defender Claws, 25 Iron Defender Rivets, 20 Magefire Cannon Cores, 25 Magefire Cannon Parts, 50 Shield Guardian Cores, 5 Shield Guardian Gyroscopes, 50 Worker Drone Actuators, 5 Worker Drone Platings. Maetrim has no augment family for this system."
+cost = [{ ingredient = "Dampening Alloy", quantity = 1 }, { ingredient = "Reforged Glowing Ingot", quantity = 1 }, { ingredient = "Reforged Dense Ingot", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: almost there"
+option = "Collective Sight: Insightful Charisma +3"
+augments = []
+note = "Applied to Collective Sight; removes Almost There and adds Insightful Charisma +3. Cost materials, melted at a Cannith Melting Station: 20 Iron Defender Claws, 25 Iron Defender Rivets, 20 Magefire Cannon Cores, 25 Magefire Cannon Parts, 50 Shield Guardian Cores, 5 Shield Guardian Gyroscopes, 50 Worker Drone Actuators, 5 Worker Drone Platings. Maetrim has no augment family for this system."
+cost = [{ ingredient = "Dampening Alloy", quantity = 1 }, { ingredient = "Reforged Glowing Ingot", quantity = 1 }, { ingredient = "Reforged Dense Ingot", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: almost there"
+option = "Legendary Collective Sight: Insightful Charisma +6"
+augments = []
+note = "Applied to Legendary Collective Sight; removes Almost There and adds Insightful Charisma +6. Cost materials, melted at a Cannith Melting Station: 20 Iron Defender Claws, 25 Iron Defender Rivets, 20 Magefire Cannon Cores, 25 Magefire Cannon Parts, 50 Shield Guardian Cores, 5 Shield Guardian Gyroscopes, 50 Worker Drone Actuators, 5 Worker Drone Platings. Maetrim has no augment family for this system."
+cost = [{ ingredient = "Dampening Alloy", quantity = 1 }, { ingredient = "Reforged Glowing Ingot", quantity = 1 }, { ingredient = "Reforged Dense Ingot", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: nearly finished"
+option = "The Cornerstone Champion: Quality Strength +3"
+augments = []
+note = "Applied to The Cornerstone Champion; removes Nearly Finished and adds Quality Strength +3. Cost materials, melted at a Cannith Melting Station: Iron Defender Rivets, Iron Defender Claws, Worker Drone Actuators, Worker Drone Platings, Shield Guardian Gyroscopes, Shield Guardian Cores, Magefire Cannon Parts, Magefire Cannon Cores (no quantities given). Raid item; the page gives no tier, Maetrim's copy is ML29."
+cost = [{ ingredient = "Dampening Alloy", quantity = 1 }, { ingredient = "Caustic Compound", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }, { ingredient = "Threads of Fate", quantity = 250 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: nearly finished"
+option = "The Cornerstone Champion: Quality Dexterity +3"
+augments = []
+note = "Applied to The Cornerstone Champion; removes Nearly Finished and adds Quality Dexterity +3. Cost materials, melted at a Cannith Melting Station: Iron Defender Rivets, Iron Defender Claws, Worker Drone Actuators, Worker Drone Platings, Shield Guardian Gyroscopes, Shield Guardian Cores, Magefire Cannon Parts, Magefire Cannon Cores (no quantities given). Raid item; the page gives no tier, Maetrim's copy is ML29."
+cost = [{ ingredient = "Dampening Alloy", quantity = 1 }, { ingredient = "Caustic Compound", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }, { ingredient = "Threads of Fate", quantity = 250 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: nearly finished"
+option = "The Cornerstone Champion: Quality Wisdom +3"
+augments = []
+note = "Applied to The Cornerstone Champion; removes Nearly Finished and adds Quality Wisdom +3. Cost materials, melted at a Cannith Melting Station: Iron Defender Rivets, Iron Defender Claws, Worker Drone Actuators, Worker Drone Platings, Shield Guardian Gyroscopes, Shield Guardian Cores, Magefire Cannon Parts, Magefire Cannon Cores (no quantities given). Raid item; the page gives no tier, Maetrim's copy is ML29."
+cost = [{ ingredient = "Dampening Alloy", quantity = 1 }, { ingredient = "Caustic Compound", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }, { ingredient = "Threads of Fate", quantity = 250 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: nearly finished"
+option = "Silver Dragonscale Capelet: Insightful Strength +6"
+augments = []
+note = "Applied to Silver Dragonscale Capelet; removes Nearly Finished and adds Insightful Strength +6. Cost materials, melted at a Cannith Melting Station: 35 Iron Defender Rivets, 25 Iron Defender Claws, 30 Worker Drone Actuators, 45 Worker Drone Platings, 45 Shield Guardian Gyroscopes, 30 Shield Guardian Cores, 35 Magefire Cannon Parts, 25 Magefire Cannon Cores. Raid item; the page gives no tier, Maetrim's copy is ML29."
+cost = [{ ingredient = "Energizing Alloy", quantity = 1 }, { ingredient = "Caustic Compound", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }, { ingredient = "Threads of Fate", quantity = 250 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: nearly finished"
+option = "Silver Dragonscale Capelet: Insightful Dexterity +6"
+augments = []
+note = "Applied to Silver Dragonscale Capelet; removes Nearly Finished and adds Insightful Dexterity +6. Cost materials, melted at a Cannith Melting Station: 35 Iron Defender Rivets, 25 Iron Defender Claws, 30 Worker Drone Actuators, 45 Worker Drone Platings, 45 Shield Guardian Gyroscopes, 30 Shield Guardian Cores, 35 Magefire Cannon Parts, 25 Magefire Cannon Cores. Raid item; the page gives no tier, Maetrim's copy is ML29."
+cost = [{ ingredient = "Energizing Alloy", quantity = 1 }, { ingredient = "Caustic Compound", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }, { ingredient = "Threads of Fate", quantity = 250 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: nearly finished"
+option = "Silver Dragonscale Capelet: Insightful Intelligence +6"
+augments = []
+note = "Applied to Silver Dragonscale Capelet; removes Nearly Finished and adds Insightful Intelligence +6. Cost materials, melted at a Cannith Melting Station: 35 Iron Defender Rivets, 25 Iron Defender Claws, 30 Worker Drone Actuators, 45 Worker Drone Platings, 45 Shield Guardian Gyroscopes, 30 Shield Guardian Cores, 35 Magefire Cannon Parts, 25 Magefire Cannon Cores. Raid item; the page gives no tier, Maetrim's copy is ML29."
+cost = [{ ingredient = "Energizing Alloy", quantity = 1 }, { ingredient = "Caustic Compound", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }, { ingredient = "Threads of Fate", quantity = 250 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: nearly finished"
+option = "Silver Dragonscale Helmet: Insightful Strength +6"
+augments = []
+note = "Applied to Silver Dragonscale Helmet; removes Nearly Finished and adds Insightful Strength +6. Cost materials, melted at a Cannith Melting Station: 35 Iron Defender Rivets, 25 Iron Defender Claws, 30 Worker Drone Actuators, 45 Worker Drone Platings, 45 Shield Guardian Gyroscopes, 30 Shield Guardian Cores, 35 Magefire Cannon Parts, 25 Magefire Cannon Cores. Raid item; the page gives no tier, Maetrim's copy is ML29."
+cost = [{ ingredient = "Energizing Alloy", quantity = 1 }, { ingredient = "Caustic Compound", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }, { ingredient = "Threads of Fate", quantity = 250 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: nearly finished"
+option = "Silver Dragonscale Helmet: Insightful Dexterity +6"
+augments = []
+note = "Applied to Silver Dragonscale Helmet; removes Nearly Finished and adds Insightful Dexterity +6. Cost materials, melted at a Cannith Melting Station: 35 Iron Defender Rivets, 25 Iron Defender Claws, 30 Worker Drone Actuators, 45 Worker Drone Platings, 45 Shield Guardian Gyroscopes, 30 Shield Guardian Cores, 35 Magefire Cannon Parts, 25 Magefire Cannon Cores. Raid item; the page gives no tier, Maetrim's copy is ML29."
+cost = [{ ingredient = "Energizing Alloy", quantity = 1 }, { ingredient = "Caustic Compound", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }, { ingredient = "Threads of Fate", quantity = 250 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: nearly finished"
+option = "Silver Dragonscale Helmet: Insightful Intelligence +6"
+augments = []
+note = "Applied to Silver Dragonscale Helmet; removes Nearly Finished and adds Insightful Intelligence +6. Cost materials, melted at a Cannith Melting Station: 35 Iron Defender Rivets, 25 Iron Defender Claws, 30 Worker Drone Actuators, 45 Worker Drone Platings, 45 Shield Guardian Gyroscopes, 30 Shield Guardian Cores, 35 Magefire Cannon Parts, 25 Magefire Cannon Cores. Raid item; the page gives no tier, Maetrim's copy is ML29."
+cost = [{ ingredient = "Energizing Alloy", quantity = 1 }, { ingredient = "Caustic Compound", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }, { ingredient = "Threads of Fate", quantity = 250 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: nearly finished"
+option = "Wildwood Wrists: Intelligence +13"
+augments = []
+note = "Applied to Wildwood Wrists; removes Nearly Finished and adds Intelligence +13. Cost materials, melted at a Cannith Melting Station: 35 Iron Defender Rivets, 25 Iron Defender Claws, 45 Worker Drone Actuators, 30 Worker Drone Platings, 30 Shield Guardian Gyroscopes, 45 Shield Guardian Cores, 35 Magefire Cannon Parts, 25 Magefire Cannon Cores. Raid item; the page gives no tier, Maetrim's copy is ML29."
+cost = [{ ingredient = "Dampening Alloy", quantity = 1 }, { ingredient = "Caustic Compound", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }, { ingredient = "Threads of Fate", quantity = 250 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: nearly finished"
+option = "Wildwood Wrists: Wisdom +13"
+augments = []
+note = "Applied to Wildwood Wrists; removes Nearly Finished and adds Wisdom +13. Cost materials, melted at a Cannith Melting Station: 35 Iron Defender Rivets, 25 Iron Defender Claws, 45 Worker Drone Actuators, 30 Worker Drone Platings, 30 Shield Guardian Gyroscopes, 45 Shield Guardian Cores, 35 Magefire Cannon Parts, 25 Magefire Cannon Cores. Raid item; the page gives no tier, Maetrim's copy is ML29."
+cost = [{ ingredient = "Dampening Alloy", quantity = 1 }, { ingredient = "Caustic Compound", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }, { ingredient = "Threads of Fate", quantity = 250 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: nearly finished"
+option = "Wildwood Wrists: Dexterity +13"
+augments = []
+note = "Applied to Wildwood Wrists; removes Nearly Finished and adds Dexterity +13. Cost materials, melted at a Cannith Melting Station: 35 Iron Defender Rivets, 25 Iron Defender Claws, 45 Worker Drone Actuators, 30 Worker Drone Platings, 30 Shield Guardian Gyroscopes, 45 Shield Guardian Cores, 35 Magefire Cannon Parts, 25 Magefire Cannon Cores. Raid item; the page gives no tier, Maetrim's copy is ML29."
+cost = [{ ingredient = "Dampening Alloy", quantity = 1 }, { ingredient = "Caustic Compound", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }, { ingredient = "Threads of Fate", quantity = 250 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: nearly finished"
+option = "Fetters of the Forgewraith: Purple Augment Slot"
+augments = []
+grants_slot = "purple"
+note = "Applied to Fetters of the Forgewraith; removes Nearly Finished and adds Purple Augment Slot. Also adds Almost There. Cost materials, melted at a Cannith Melting Station: 35 Iron Defender Rivets, 25 Iron Defender Claws, 30 Worker Drone Actuators, 45 Worker Drone Platings, 45 Shield Guardian Gyroscopes, 30 Shield Guardian Cores, 35 Magefire Cannon Parts, 25 Magefire Cannon Cores. Raid item; the page gives no tier, Maetrim's copy is ML29."
+cost = [{ ingredient = "Energizing Alloy", quantity = 1 }, { ingredient = "Caustic Compound", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }, { ingredient = "Threads of Fate", quantity = 100 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: almost there"
+option = "Fetters of the Forgewraith: Fetters of Unreality"
+augments = []
+grants_slot = "crafting: finishing touch"
+note = "Applied to Fetters of the Forgewraith; removes Almost There and adds Fetters of Unreality. Also adds Finishing Touch. Cost materials, melted at a Cannith Melting Station: 35 Iron Defender Rivets, 25 Iron Defender Claws, 45 Worker Drone Actuators, 30 Worker Drone Platings, 30 Shield Guardian Gyroscopes, 45 Shield Guardian Cores, 35 Magefire Cannon Parts, 25 Magefire Cannon Cores. Raid item; the page gives no tier, Maetrim's copy is ML29."
+cost = [{ ingredient = "Dampening Alloy", quantity = 1 }, { ingredient = "Caustic Compound", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }, { ingredient = "Threads of Fate", quantity = 250 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: finishing touch"
+option = "Fetters of the Forgewraith: Completed Weapon"
+augments = []
+note = "Applied to Fetters of the Forgewraith; removes Finishing Touch and adds Completed Weapon. Cost materials, melted at a Cannith Melting Station: 35 Iron Defender Rivets, 25 Iron Defender Claws, 30 Worker Drone Actuators, 45 Worker Drone Platings, 45 Shield Guardian Gyroscopes, 30 Shield Guardian Cores, 35 Magefire Cannon Parts, 25 Magefire Cannon Cores. Raid item; the page gives no tier, Maetrim's copy is ML29."
+cost = [{ ingredient = "Energizing Alloy", quantity = 1 }, { ingredient = "Caustic Compound", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }, { ingredient = "Threads of Fate", quantity = 500 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: nearly finished"
+option = "Hoarfrost, Herald of the Bitter Ice: Purple Augment Slot"
+augments = []
+grants_slot = "purple"
+note = "Applied to Hoarfrost, Herald of the Bitter Ice; removes Nearly Finished and adds Purple Augment Slot. Also adds Almost There. Cost materials, melted at a Cannith Melting Station: 35 Iron Defender Rivets, 25 Iron Defender Claws, 30 Worker Drone Actuators, 45 Worker Drone Platings, 45 Shield Guardian Gyroscopes, 30 Shield Guardian Cores, 35 Magefire Cannon Parts, 25 Magefire Cannon Cores. Raid item; the page gives no tier, Maetrim's copy is ML29."
+cost = [{ ingredient = "Energizing Alloy", quantity = 1 }, { ingredient = "Caustic Compound", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }, { ingredient = "Threads of Fate", quantity = 100 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: almost there"
+option = "Hoarfrost, Herald of the Bitter Ice: Fetters of Unreality"
+augments = []
+grants_slot = "crafting: finishing touch"
+note = "Applied to Hoarfrost, Herald of the Bitter Ice; removes Almost There and adds Fetters of Unreality. Also adds Finishing Touch. Cost materials, melted at a Cannith Melting Station: 35 Iron Defender Rivets, 25 Iron Defender Claws, 45 Worker Drone Actuators, 30 Worker Drone Platings, 30 Shield Guardian Gyroscopes, 45 Shield Guardian Cores, 35 Magefire Cannon Parts, 25 Magefire Cannon Cores. Raid item; the page gives no tier, Maetrim's copy is ML29."
+cost = [{ ingredient = "Dampening Alloy", quantity = 1 }, { ingredient = "Caustic Compound", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }, { ingredient = "Threads of Fate", quantity = 250 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: finishing touch"
+option = "Hoarfrost, Herald of the Bitter Ice: Completed Weapon"
+augments = []
+note = "Applied to Hoarfrost, Herald of the Bitter Ice; removes Finishing Touch and adds Completed Weapon. Cost materials, melted at a Cannith Melting Station: 35 Iron Defender Rivets, 25 Iron Defender Claws, 30 Worker Drone Actuators, 45 Worker Drone Platings, 45 Shield Guardian Gyroscopes, 30 Shield Guardian Cores, 35 Magefire Cannon Parts, 25 Magefire Cannon Cores. Raid item; the page gives no tier, Maetrim's copy is ML29."
+cost = [{ ingredient = "Energizing Alloy", quantity = 1 }, { ingredient = "Caustic Compound", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }, { ingredient = "Threads of Fate", quantity = 500 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: nearly finished"
+option = "The Hallowed Splinters: Purple Augment Slot"
+augments = []
+grants_slot = "purple"
+note = "Applied to The Hallowed Splinters; removes Nearly Finished and adds Purple Augment Slot. Also adds Almost There. Cost materials, melted at a Cannith Melting Station: 35 Iron Defender Rivets, 25 Iron Defender Claws, 30 Worker Drone Actuators, 45 Worker Drone Platings, 45 Shield Guardian Gyroscopes, 30 Shield Guardian Cores, 35 Magefire Cannon Parts, 25 Magefire Cannon Cores. Raid item; the page gives no tier, Maetrim's copy is ML29."
+cost = [{ ingredient = "Energizing Alloy", quantity = 1 }, { ingredient = "Caustic Compound", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }, { ingredient = "Threads of Fate", quantity = 100 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: almost there"
+option = "The Hallowed Splinters: Conjure Radiant Bolt"
+augments = []
+grants_slot = "crafting: finishing touch"
+note = "Applied to The Hallowed Splinters; removes Almost There and adds Conjure Radiant Bolt. Also adds Finishing Touch. Cost materials, melted at a Cannith Melting Station: 35 Iron Defender Rivets, 25 Iron Defender Claws, 45 Worker Drone Actuators, 30 Worker Drone Platings, 30 Shield Guardian Gyroscopes, 45 Shield Guardian Cores, 35 Magefire Cannon Parts, 25 Magefire Cannon Cores. Raid item; the page gives no tier, Maetrim's copy is ML29."
+cost = [{ ingredient = "Dampening Alloy", quantity = 1 }, { ingredient = "Caustic Compound", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }, { ingredient = "Threads of Fate", quantity = 250 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: finishing touch"
+option = "The Hallowed Splinters: Completed Weapon"
+augments = []
+note = "Applied to The Hallowed Splinters; removes Finishing Touch and adds Completed Weapon. Cost materials, melted at a Cannith Melting Station: 35 Iron Defender Rivets, 25 Iron Defender Claws, 30 Worker Drone Actuators, 45 Worker Drone Platings, 45 Shield Guardian Gyroscopes, 30 Shield Guardian Cores, 35 Magefire Cannon Parts, 25 Magefire Cannon Cores. Raid item; the page gives no tier, Maetrim's copy is ML29."
+cost = [{ ingredient = "Energizing Alloy", quantity = 1 }, { ingredient = "Caustic Compound", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }, { ingredient = "Threads of Fate", quantity = 500 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: nearly finished"
+option = "The Labrythine Edge: Purple Augment Slot"
+augments = []
+grants_slot = "purple"
+note = "Applied to The Labrythine Edge; removes Nearly Finished and adds Purple Augment Slot. Also adds Almost There. Cost materials, melted at a Cannith Melting Station: 35 Iron Defender Rivets, 25 Iron Defender Claws, 30 Worker Drone Actuators, 45 Worker Drone Platings, 45 Shield Guardian Gyroscopes, 30 Shield Guardian Cores, 35 Magefire Cannon Parts, 25 Magefire Cannon Cores. Raid item; the page gives no tier, Maetrim's copy is ML29."
+cost = [{ ingredient = "Energizing Alloy", quantity = 1 }, { ingredient = "Caustic Compound", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }, { ingredient = "Threads of Fate", quantity = 100 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: almost there"
+option = "The Labrythine Edge: Fetters of Unreality"
+augments = []
+grants_slot = "crafting: finishing touch"
+note = "Applied to The Labrythine Edge; removes Almost There and adds Fetters of Unreality. Also adds Finishing Touch. Cost materials, melted at a Cannith Melting Station: 35 Iron Defender Rivets, 25 Iron Defender Claws, 45 Worker Drone Actuators, 30 Worker Drone Platings, 30 Shield Guardian Gyroscopes, 45 Shield Guardian Cores, 35 Magefire Cannon Parts, 25 Magefire Cannon Cores. Raid item; the page gives no tier, Maetrim's copy is ML29."
+cost = [{ ingredient = "Dampening Alloy", quantity = 1 }, { ingredient = "Caustic Compound", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }, { ingredient = "Threads of Fate", quantity = 250 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: finishing touch"
+option = "The Labrythine Edge: Completed Weapon"
+augments = []
+note = "Applied to The Labrythine Edge; removes Finishing Touch and adds Completed Weapon. Cost materials, melted at a Cannith Melting Station: 35 Iron Defender Rivets, 25 Iron Defender Claws, 30 Worker Drone Actuators, 45 Worker Drone Platings, 45 Shield Guardian Gyroscopes, 30 Shield Guardian Cores, 35 Magefire Cannon Parts, 25 Magefire Cannon Cores. Raid item; the page gives no tier, Maetrim's copy is ML29."
+cost = [{ ingredient = "Energizing Alloy", quantity = 1 }, { ingredient = "Caustic Compound", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }, { ingredient = "Threads of Fate", quantity = 500 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: nearly finished"
+option = "The Fractured Elegance: Purple Augment Slot"
+augments = []
+grants_slot = "purple"
+note = "Applied to The Fractured Elegance; removes Nearly Finished and adds Purple Augment Slot. Also adds Almost There. Cost materials, melted at a Cannith Melting Station: 35 Iron Defender Rivets, 25 Iron Defender Claws, 30 Worker Drone Actuators, 45 Worker Drone Platings, 45 Shield Guardian Gyroscopes, 30 Shield Guardian Cores, 35 Magefire Cannon Parts, 25 Magefire Cannon Cores. Raid item; the page gives no tier, Maetrim's copy is ML29."
+cost = [{ ingredient = "Energizing Alloy", quantity = 1 }, { ingredient = "Caustic Compound", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }, { ingredient = "Threads of Fate", quantity = 100 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: almost there"
+option = "The Fractured Elegance: Sovereign Vorpal"
+augments = []
+grants_slot = "crafting: finishing touch"
+note = "Applied to The Fractured Elegance; removes Almost There and adds Sovereign Vorpal. Also adds Finishing Touch. Cost materials, melted at a Cannith Melting Station: 35 Iron Defender Rivets, 25 Iron Defender Claws, 45 Worker Drone Actuators, 30 Worker Drone Platings, 30 Shield Guardian Gyroscopes, 45 Shield Guardian Cores, 35 Magefire Cannon Parts, 25 Magefire Cannon Cores. Raid item; the page gives no tier, Maetrim's copy is ML29."
+cost = [{ ingredient = "Dampening Alloy", quantity = 1 }, { ingredient = "Caustic Compound", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }, { ingredient = "Threads of Fate", quantity = 250 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: finishing touch"
+option = "The Fractured Elegance: Completed Weapon"
+augments = []
+note = "Applied to The Fractured Elegance; removes Finishing Touch and adds Completed Weapon. Cost materials, melted at a Cannith Melting Station: 35 Iron Defender Rivets, 25 Iron Defender Claws, 30 Worker Drone Actuators, 45 Worker Drone Platings, 45 Shield Guardian Gyroscopes, 30 Shield Guardian Cores, 35 Magefire Cannon Parts, 25 Magefire Cannon Cores. Raid item; the page gives no tier, Maetrim's copy is ML29."
+cost = [{ ingredient = "Energizing Alloy", quantity = 1 }, { ingredient = "Caustic Compound", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }, { ingredient = "Threads of Fate", quantity = 500 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: nearly finished"
+option = "Untold, Crack in the Sky: Purple Augment Slot"
+augments = []
+grants_slot = "purple"
+note = "Applied to Untold, Crack in the Sky; removes Nearly Finished and adds Purple Augment Slot. Also adds Almost There. Cost materials, melted at a Cannith Melting Station: 35 Iron Defender Rivets, 25 Iron Defender Claws, 30 Worker Drone Actuators, 45 Worker Drone Platings, 45 Shield Guardian Gyroscopes, 30 Shield Guardian Cores, 35 Magefire Cannon Parts, 25 Magefire Cannon Cores. Raid item; the page gives no tier, Maetrim's copy is ML29."
+cost = [{ ingredient = "Energizing Alloy", quantity = 1 }, { ingredient = "Caustic Compound", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }, { ingredient = "Threads of Fate", quantity = 100 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: almost there"
+option = "Untold, Crack in the Sky: Armor-Piercing 21%"
+augments = []
+grants_slot = "crafting: finishing touch"
+note = "Applied to Untold, Crack in the Sky; removes Almost There and adds Armor-Piercing 21%. Also adds Finishing Touch. Cost materials, melted at a Cannith Melting Station: 35 Iron Defender Rivets, 25 Iron Defender Claws, 45 Worker Drone Actuators, 30 Worker Drone Platings, 30 Shield Guardian Gyroscopes, 45 Shield Guardian Cores, 35 Magefire Cannon Parts, 25 Magefire Cannon Cores. Raid item; the page gives no tier, Maetrim's copy is ML29."
+cost = [{ ingredient = "Dampening Alloy", quantity = 1 }, { ingredient = "Caustic Compound", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }, { ingredient = "Threads of Fate", quantity = 250 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: finishing touch"
+option = "Untold, Crack in the Sky: Completed Weapon"
+augments = []
+note = "Applied to Untold, Crack in the Sky; removes Finishing Touch and adds Completed Weapon. Cost materials, melted at a Cannith Melting Station: 35 Iron Defender Rivets, 25 Iron Defender Claws, 30 Worker Drone Actuators, 45 Worker Drone Platings, 45 Shield Guardian Gyroscopes, 30 Shield Guardian Cores, 35 Magefire Cannon Parts, 25 Magefire Cannon Cores. Raid item; the page gives no tier, Maetrim's copy is ML29."
+cost = [{ ingredient = "Energizing Alloy", quantity = 1 }, { ingredient = "Caustic Compound", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }, { ingredient = "Threads of Fate", quantity = 500 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: nearly finished"
+option = "The Everstorm, Maelstrom Courser: Purple Augment Slot"
+augments = []
+grants_slot = "purple"
+note = "Applied to The Everstorm, Maelstrom Courser; removes Nearly Finished and adds Purple Augment Slot. Also adds Almost There. Cost materials, melted at a Cannith Melting Station: 35 Iron Defender Rivets, 25 Iron Defender Claws, 30 Worker Drone Actuators, 45 Worker Drone Platings, 45 Shield Guardian Gyroscopes, 30 Shield Guardian Cores, 35 Magefire Cannon Parts, 25 Magefire Cannon Cores. Raid item; the page gives no tier, Maetrim's copy is ML29."
+cost = [{ ingredient = "Energizing Alloy", quantity = 1 }, { ingredient = "Caustic Compound", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }, { ingredient = "Threads of Fate", quantity = 100 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: almost there"
+option = "The Everstorm, Maelstrom Courser: Utter Disintegration"
+augments = []
+grants_slot = "crafting: finishing touch"
+note = "Applied to The Everstorm, Maelstrom Courser; removes Almost There and adds Utter Disintegration. Also adds Finishing Touch. Cost materials, melted at a Cannith Melting Station: 35 Iron Defender Rivets, 25 Iron Defender Claws, 45 Worker Drone Actuators, 30 Worker Drone Platings, 30 Shield Guardian Gyroscopes, 45 Shield Guardian Cores, 35 Magefire Cannon Parts, 25 Magefire Cannon Cores. Raid item; the page gives no tier, Maetrim's copy is ML29."
+cost = [{ ingredient = "Dampening Alloy", quantity = 1 }, { ingredient = "Caustic Compound", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }, { ingredient = "Threads of Fate", quantity = 250 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: finishing touch"
+option = "The Everstorm, Maelstrom Courser: Completed Weapon"
+augments = []
+note = "Applied to The Everstorm, Maelstrom Courser; removes Finishing Touch and adds Completed Weapon. Cost materials, melted at a Cannith Melting Station: 35 Iron Defender Rivets, 25 Iron Defender Claws, 30 Worker Drone Actuators, 45 Worker Drone Platings, 45 Shield Guardian Gyroscopes, 30 Shield Guardian Cores, 35 Magefire Cannon Parts, 25 Magefire Cannon Cores. Raid item; the page gives no tier, Maetrim's copy is ML29."
+cost = [{ ingredient = "Energizing Alloy", quantity = 1 }, { ingredient = "Caustic Compound", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }, { ingredient = "Threads of Fate", quantity = 500 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: nearly finished"
+option = "The Wide Open Sky: Purple Augment Slot"
+augments = []
+grants_slot = "purple"
+note = "Applied to The Wide Open Sky; removes Nearly Finished and adds Purple Augment Slot. Also adds Almost There. Cost materials, melted at a Cannith Melting Station: 35 Iron Defender Rivets, 25 Iron Defender Claws, 30 Worker Drone Actuators, 45 Worker Drone Platings, 45 Shield Guardian Gyroscopes, 30 Shield Guardian Cores, 35 Magefire Cannon Parts, 25 Magefire Cannon Cores. Raid item; the page gives no tier, Maetrim's copy is ML29."
+cost = [{ ingredient = "Energizing Alloy", quantity = 1 }, { ingredient = "Caustic Compound", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }, { ingredient = "Threads of Fate", quantity = 100 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: almost there"
+option = "The Wide Open Sky: Aligned"
+augments = []
+grants_slot = "crafting: finishing touch"
+note = "Applied to The Wide Open Sky; removes Almost There and adds Aligned. Also adds Finishing Touch. Cost materials, melted at a Cannith Melting Station: 35 Iron Defender Rivets, 25 Iron Defender Claws, 45 Worker Drone Actuators, 30 Worker Drone Platings, 30 Shield Guardian Gyroscopes, 45 Shield Guardian Cores, 35 Magefire Cannon Parts, 25 Magefire Cannon Cores. Raid item; the page gives no tier, Maetrim's copy is ML29."
+cost = [{ ingredient = "Dampening Alloy", quantity = 1 }, { ingredient = "Caustic Compound", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }, { ingredient = "Threads of Fate", quantity = 250 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: finishing touch"
+option = "The Wide Open Sky: Completed Weapon"
+augments = []
+note = "Applied to The Wide Open Sky; removes Finishing Touch and adds Completed Weapon. Cost materials, melted at a Cannith Melting Station: 35 Iron Defender Rivets, 25 Iron Defender Claws, 30 Worker Drone Actuators, 45 Worker Drone Platings, 45 Shield Guardian Gyroscopes, 30 Shield Guardian Cores, 35 Magefire Cannon Parts, 25 Magefire Cannon Cores. Raid item; the page gives no tier, Maetrim's copy is ML29."
+cost = [{ ingredient = "Energizing Alloy", quantity = 1 }, { ingredient = "Caustic Compound", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }, { ingredient = "Threads of Fate", quantity = 500 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: nearly finished"
+option = "Stickerclick, the Bitter Hail of Bolts: Purple Augment Slot"
+augments = []
+grants_slot = "purple"
+note = "Applied to Stickerclick, the Bitter Hail of Bolts; removes Nearly Finished and adds Purple Augment Slot. Also adds Almost There. Cost materials, melted at a Cannith Melting Station: 35 Iron Defender Rivets, 25 Iron Defender Claws, 30 Worker Drone Actuators, 45 Worker Drone Platings, 45 Shield Guardian Gyroscopes, 30 Shield Guardian Cores, 35 Magefire Cannon Parts, 25 Magefire Cannon Cores. Raid item; the page gives no tier, Maetrim's copy is ML29."
+cost = [{ ingredient = "Energizing Alloy", quantity = 1 }, { ingredient = "Caustic Compound", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }, { ingredient = "Threads of Fate", quantity = 100 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: almost there"
+option = "Stickerclick, the Bitter Hail of Bolts: Fetters of Unreality"
+augments = []
+grants_slot = "crafting: finishing touch"
+note = "Applied to Stickerclick, the Bitter Hail of Bolts; removes Almost There and adds Fetters of Unreality. Also adds Finishing Touch. Cost materials, melted at a Cannith Melting Station: 35 Iron Defender Rivets, 25 Iron Defender Claws, 45 Worker Drone Actuators, 30 Worker Drone Platings, 30 Shield Guardian Gyroscopes, 45 Shield Guardian Cores, 35 Magefire Cannon Parts, 25 Magefire Cannon Cores. Raid item; the page gives no tier, Maetrim's copy is ML29."
+cost = [{ ingredient = "Dampening Alloy", quantity = 1 }, { ingredient = "Caustic Compound", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }, { ingredient = "Threads of Fate", quantity = 250 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: finishing touch"
+option = "Stickerclick, the Bitter Hail of Bolts: Completed Weapon"
+augments = []
+note = "Applied to Stickerclick, the Bitter Hail of Bolts; removes Finishing Touch and adds Completed Weapon. Cost materials, melted at a Cannith Melting Station: 35 Iron Defender Rivets, 25 Iron Defender Claws, 30 Worker Drone Actuators, 45 Worker Drone Platings, 45 Shield Guardian Gyroscopes, 30 Shield Guardian Cores, 35 Magefire Cannon Parts, 25 Magefire Cannon Cores. Raid item; the page gives no tier, Maetrim's copy is ML29."
+cost = [{ ingredient = "Energizing Alloy", quantity = 1 }, { ingredient = "Caustic Compound", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }, { ingredient = "Threads of Fate", quantity = 500 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: nearly finished"
+option = "Constellation, Cursed Blade: Purple Augment Slot"
+augments = []
+grants_slot = "purple"
+note = "Applied to Constellation, Cursed Blade; removes Nearly Finished and adds Purple Augment Slot. Also adds Almost There. Cost materials, melted at a Cannith Melting Station: 35 Iron Defender Rivets, 25 Iron Defender Claws, 30 Worker Drone Actuators, 45 Worker Drone Platings, 45 Shield Guardian Gyroscopes, 30 Shield Guardian Cores, 35 Magefire Cannon Parts, 25 Magefire Cannon Cores. Raid item; the page gives no tier, Maetrim's copy is ML29."
+cost = [{ ingredient = "Energizing Alloy", quantity = 1 }, { ingredient = "Caustic Compound", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }, { ingredient = "Threads of Fate", quantity = 100 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: almost there"
+option = "Constellation, Cursed Blade: Fetters of Unreality"
+augments = []
+grants_slot = "crafting: finishing touch"
+note = "Applied to Constellation, Cursed Blade; removes Almost There and adds Fetters of Unreality. Also adds Finishing Touch. Cost materials, melted at a Cannith Melting Station: 35 Iron Defender Rivets, 25 Iron Defender Claws, 45 Worker Drone Actuators, 30 Worker Drone Platings, 30 Shield Guardian Gyroscopes, 45 Shield Guardian Cores, 35 Magefire Cannon Parts, 25 Magefire Cannon Cores. Raid item; the page gives no tier, Maetrim's copy is ML29."
+cost = [{ ingredient = "Dampening Alloy", quantity = 1 }, { ingredient = "Caustic Compound", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }, { ingredient = "Threads of Fate", quantity = 250 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: finishing touch"
+option = "Constellation, Cursed Blade: Completed Weapon"
+augments = []
+note = "Applied to Constellation, Cursed Blade; removes Finishing Touch and adds Completed Weapon. Cost materials, melted at a Cannith Melting Station: 35 Iron Defender Rivets, 25 Iron Defender Claws, 30 Worker Drone Actuators, 45 Worker Drone Platings, 45 Shield Guardian Gyroscopes, 30 Shield Guardian Cores, 35 Magefire Cannon Parts, 25 Magefire Cannon Cores. Raid item; the page gives no tier, Maetrim's copy is ML29."
+cost = [{ ingredient = "Energizing Alloy", quantity = 1 }, { ingredient = "Caustic Compound", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }, { ingredient = "Threads of Fate", quantity = 500 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: nearly finished"
+option = "The Shattered Hilt of Constellation: Purple Augment Slot"
+augments = []
+grants_slot = "purple"
+note = "Applied to The Shattered Hilt of Constellation; removes Nearly Finished and adds Purple Augment Slot. Also adds Almost There. Cost materials, melted at a Cannith Melting Station: 35 Iron Defender Rivets, 25 Iron Defender Claws, 30 Worker Drone Actuators, 45 Worker Drone Platings, 45 Shield Guardian Gyroscopes, 30 Shield Guardian Cores, 35 Magefire Cannon Parts, 25 Magefire Cannon Cores. Raid item; the page gives no tier, Maetrim's copy is ML29."
+cost = [{ ingredient = "Energizing Alloy", quantity = 1 }, { ingredient = "Caustic Compound", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }, { ingredient = "Threads of Fate", quantity = 100 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: almost there"
+option = "The Shattered Hilt of Constellation: Fetters of Unreality"
+augments = []
+grants_slot = "crafting: finishing touch"
+note = "Applied to The Shattered Hilt of Constellation; removes Almost There and adds Fetters of Unreality. Also adds Finishing Touch. Cost materials, melted at a Cannith Melting Station: 35 Iron Defender Rivets, 25 Iron Defender Claws, 45 Worker Drone Actuators, 30 Worker Drone Platings, 30 Shield Guardian Gyroscopes, 45 Shield Guardian Cores, 35 Magefire Cannon Parts, 25 Magefire Cannon Cores. Raid item; the page gives no tier, Maetrim's copy is ML29."
+cost = [{ ingredient = "Dampening Alloy", quantity = 1 }, { ingredient = "Caustic Compound", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }, { ingredient = "Threads of Fate", quantity = 250 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: finishing touch"
+option = "The Shattered Hilt of Constellation: Completed Weapon"
+augments = []
+note = "Applied to The Shattered Hilt of Constellation; removes Finishing Touch and adds Completed Weapon. Cost materials, melted at a Cannith Melting Station: 35 Iron Defender Rivets, 25 Iron Defender Claws, 30 Worker Drone Actuators, 45 Worker Drone Platings, 45 Shield Guardian Gyroscopes, 30 Shield Guardian Cores, 35 Magefire Cannon Parts, 25 Magefire Cannon Cores. Raid item; the page gives no tier, Maetrim's copy is ML29."
+cost = [{ ingredient = "Energizing Alloy", quantity = 1 }, { ingredient = "Caustic Compound", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }, { ingredient = "Threads of Fate", quantity = 500 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: nearly finished"
+option = "The Broken Blade of Constellation: Purple Augment Slot"
+augments = []
+grants_slot = "purple"
+note = "Applied to The Broken Blade of Constellation; removes Nearly Finished and adds Purple Augment Slot. Also adds Almost There. Cost materials, melted at a Cannith Melting Station: 35 Iron Defender Rivets, 25 Iron Defender Claws, 30 Worker Drone Actuators, 45 Worker Drone Platings, 45 Shield Guardian Gyroscopes, 30 Shield Guardian Cores, 35 Magefire Cannon Parts, 25 Magefire Cannon Cores. Raid item; the page gives no tier, Maetrim's copy is ML29."
+cost = [{ ingredient = "Energizing Alloy", quantity = 1 }, { ingredient = "Caustic Compound", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }, { ingredient = "Threads of Fate", quantity = 100 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: almost there"
+option = "The Broken Blade of Constellation: Fetters of Unreality"
+augments = []
+grants_slot = "crafting: finishing touch"
+note = "Applied to The Broken Blade of Constellation; removes Almost There and adds Fetters of Unreality. Also adds Finishing Touch. Cost materials, melted at a Cannith Melting Station: 35 Iron Defender Rivets, 25 Iron Defender Claws, 45 Worker Drone Actuators, 30 Worker Drone Platings, 30 Shield Guardian Gyroscopes, 45 Shield Guardian Cores, 35 Magefire Cannon Parts, 25 Magefire Cannon Cores. Raid item; the page gives no tier, Maetrim's copy is ML29."
+cost = [{ ingredient = "Dampening Alloy", quantity = 1 }, { ingredient = "Caustic Compound", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }, { ingredient = "Threads of Fate", quantity = 250 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: finishing touch"
+option = "The Broken Blade of Constellation: Completed Weapon"
+augments = []
+note = "Applied to The Broken Blade of Constellation; removes Finishing Touch and adds Completed Weapon. Cost materials, melted at a Cannith Melting Station: 35 Iron Defender Rivets, 25 Iron Defender Claws, 30 Worker Drone Actuators, 45 Worker Drone Platings, 45 Shield Guardian Gyroscopes, 30 Shield Guardian Cores, 35 Magefire Cannon Parts, 25 Magefire Cannon Cores. Raid item; the page gives no tier, Maetrim's copy is ML29."
+cost = [{ ingredient = "Energizing Alloy", quantity = 1 }, { ingredient = "Caustic Compound", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }, { ingredient = "Threads of Fate", quantity = 500 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: nearly finished"
+option = "The Eclipse Itself: Purple Augment Slot"
+augments = []
+grants_slot = "purple"
+note = "Applied to The Eclipse Itself; removes Nearly Finished and adds Purple Augment Slot. Also adds an Orange Augment Slot and Almost There. Cost materials, melted at a Cannith Melting Station: 35 Iron Defender Rivets, 25 Iron Defender Claws, 30 Worker Drone Actuators, 45 Worker Drone Platings, 45 Shield Guardian Gyroscopes, 30 Shield Guardian Cores, 35 Magefire Cannon Parts, 25 Magefire Cannon Cores. Raid item; the page gives no tier, Maetrim's copy is ML29."
+cost = [{ ingredient = "Energizing Alloy", quantity = 1 }, { ingredient = "Caustic Compound", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }, { ingredient = "Threads of Fate", quantity = 100 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: almost there"
+option = "The Eclipse Itself: Combustion +148 and Fire Lore +22%"
+augments = []
+grants_slot = "crafting: finishing touch"
+note = "Applied to The Eclipse Itself; removes Almost There and adds Combustion +148 and Fire Lore +22%. Also adds Finishing Touch. Cost materials, melted at a Cannith Melting Station: 35 Iron Defender Rivets, 25 Iron Defender Claws, 45 Worker Drone Actuators, 30 Worker Drone Platings, 30 Shield Guardian Gyroscopes, 45 Shield Guardian Cores, 35 Magefire Cannon Parts, 25 Magefire Cannon Cores. Raid item; the page gives no tier, Maetrim's copy is ML29."
+cost = [{ ingredient = "Dampening Alloy", quantity = 1 }, { ingredient = "Caustic Compound", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }, { ingredient = "Threads of Fate", quantity = 250 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: almost there"
+option = "The Eclipse Itself: Glaciation +148 and Ice Lore +22%"
+augments = []
+grants_slot = "crafting: finishing touch"
+note = "Applied to The Eclipse Itself; removes Almost There and adds Glaciation +148 and Ice Lore +22%. Also adds Finishing Touch. Cost materials, melted at a Cannith Melting Station: 35 Iron Defender Rivets, 25 Iron Defender Claws, 45 Worker Drone Actuators, 30 Worker Drone Platings, 30 Shield Guardian Gyroscopes, 45 Shield Guardian Cores, 35 Magefire Cannon Parts, 25 Magefire Cannon Cores. Raid item; the page gives no tier, Maetrim's copy is ML29."
+cost = [{ ingredient = "Dampening Alloy", quantity = 1 }, { ingredient = "Caustic Compound", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }, { ingredient = "Threads of Fate", quantity = 250 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: almost there"
+option = "The Eclipse Itself: Magnetism +148 and Lightning Lore +22%"
+augments = []
+grants_slot = "crafting: finishing touch"
+note = "Applied to The Eclipse Itself; removes Almost There and adds Magnetism +148 and Lightning Lore +22%. Also adds Finishing Touch. Cost materials, melted at a Cannith Melting Station: 35 Iron Defender Rivets, 25 Iron Defender Claws, 45 Worker Drone Actuators, 30 Worker Drone Platings, 30 Shield Guardian Gyroscopes, 45 Shield Guardian Cores, 35 Magefire Cannon Parts, 25 Magefire Cannon Cores. Raid item; the page gives no tier, Maetrim's copy is ML29."
+cost = [{ ingredient = "Dampening Alloy", quantity = 1 }, { ingredient = "Caustic Compound", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }, { ingredient = "Threads of Fate", quantity = 250 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: almost there"
+option = "The Eclipse Itself: Corrosion +148 and Acid Lore +22%"
+augments = []
+grants_slot = "crafting: finishing touch"
+note = "Applied to The Eclipse Itself; removes Almost There and adds Corrosion +148 and Acid Lore +22%. Also adds Finishing Touch. Cost materials, melted at a Cannith Melting Station: 35 Iron Defender Rivets, 25 Iron Defender Claws, 45 Worker Drone Actuators, 30 Worker Drone Platings, 30 Shield Guardian Gyroscopes, 45 Shield Guardian Cores, 35 Magefire Cannon Parts, 25 Magefire Cannon Cores. Raid item; the page gives no tier, Maetrim's copy is ML29."
+cost = [{ ingredient = "Dampening Alloy", quantity = 1 }, { ingredient = "Caustic Compound", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }, { ingredient = "Threads of Fate", quantity = 250 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: almost there"
+option = "The Eclipse Itself: Nullification +148 and Void Lore +22%"
+augments = []
+grants_slot = "crafting: finishing touch"
+note = "Applied to The Eclipse Itself; removes Almost There and adds Nullification +148 and Void Lore +22%. Also adds Finishing Touch. Cost materials, melted at a Cannith Melting Station: 35 Iron Defender Rivets, 25 Iron Defender Claws, 45 Worker Drone Actuators, 30 Worker Drone Platings, 30 Shield Guardian Gyroscopes, 45 Shield Guardian Cores, 35 Magefire Cannon Parts, 25 Magefire Cannon Cores. Raid item; the page gives no tier, Maetrim's copy is ML29."
+cost = [{ ingredient = "Dampening Alloy", quantity = 1 }, { ingredient = "Caustic Compound", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }, { ingredient = "Threads of Fate", quantity = 250 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: almost there"
+option = "The Eclipse Itself: Devotion +148 and Healing Lore +22%"
+augments = []
+grants_slot = "crafting: finishing touch"
+note = "Applied to The Eclipse Itself; removes Almost There and adds Devotion +148 and Healing Lore +22%. Also adds Finishing Touch. Cost materials, melted at a Cannith Melting Station: 35 Iron Defender Rivets, 25 Iron Defender Claws, 45 Worker Drone Actuators, 30 Worker Drone Platings, 30 Shield Guardian Gyroscopes, 45 Shield Guardian Cores, 35 Magefire Cannon Parts, 25 Magefire Cannon Cores. Raid item; the page gives no tier, Maetrim's copy is ML29."
+cost = [{ ingredient = "Dampening Alloy", quantity = 1 }, { ingredient = "Caustic Compound", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }, { ingredient = "Threads of Fate", quantity = 250 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: almost there"
+option = "The Eclipse Itself: Impulse +148 and Kinetic Lore +22%"
+augments = []
+grants_slot = "crafting: finishing touch"
+note = "Applied to The Eclipse Itself; removes Almost There and adds Impulse +148 and Kinetic Lore +22%. Also adds Finishing Touch. Cost materials, melted at a Cannith Melting Station: 35 Iron Defender Rivets, 25 Iron Defender Claws, 45 Worker Drone Actuators, 30 Worker Drone Platings, 30 Shield Guardian Gyroscopes, 45 Shield Guardian Cores, 35 Magefire Cannon Parts, 25 Magefire Cannon Cores. Raid item; the page gives no tier, Maetrim's copy is ML29."
+cost = [{ ingredient = "Dampening Alloy", quantity = 1 }, { ingredient = "Caustic Compound", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }, { ingredient = "Threads of Fate", quantity = 250 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: almost there"
+option = "The Eclipse Itself: Resonance +148 and Sonic Lore +22%"
+augments = []
+grants_slot = "crafting: finishing touch"
+note = "Applied to The Eclipse Itself; removes Almost There and adds Resonance +148 and Sonic Lore +22%. Also adds Finishing Touch. Cost materials, melted at a Cannith Melting Station: 35 Iron Defender Rivets, 25 Iron Defender Claws, 45 Worker Drone Actuators, 30 Worker Drone Platings, 30 Shield Guardian Gyroscopes, 45 Shield Guardian Cores, 35 Magefire Cannon Parts, 25 Magefire Cannon Cores. Raid item; the page gives no tier, Maetrim's copy is ML29."
+cost = [{ ingredient = "Dampening Alloy", quantity = 1 }, { ingredient = "Caustic Compound", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }, { ingredient = "Threads of Fate", quantity = 250 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: finishing touch"
+option = "The Eclipse Itself: Abjuration Focus +8"
+augments = []
+note = "Applied to The Eclipse Itself; removes Finishing Touch and adds Abjuration Focus +8. Cost materials, melted at a Cannith Melting Station: 35 Iron Defender Rivets, 25 Iron Defender Claws, 30 Worker Drone Actuators, 45 Worker Drone Platings, 45 Shield Guardian Gyroscopes, 30 Shield Guardian Cores, 35 Magefire Cannon Parts, 25 Magefire Cannon Cores. Raid item; the page gives no tier, Maetrim's copy is ML29."
+cost = [{ ingredient = "Energizing Alloy", quantity = 1 }, { ingredient = "Caustic Compound", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }, { ingredient = "Threads of Fate", quantity = 500 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: finishing touch"
+option = "The Eclipse Itself: Conjuration Focus +8"
+augments = []
+note = "Applied to The Eclipse Itself; removes Finishing Touch and adds Conjuration Focus +8. Cost materials, melted at a Cannith Melting Station: 35 Iron Defender Rivets, 25 Iron Defender Claws, 30 Worker Drone Actuators, 45 Worker Drone Platings, 45 Shield Guardian Gyroscopes, 30 Shield Guardian Cores, 35 Magefire Cannon Parts, 25 Magefire Cannon Cores. Raid item; the page gives no tier, Maetrim's copy is ML29."
+cost = [{ ingredient = "Energizing Alloy", quantity = 1 }, { ingredient = "Caustic Compound", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }, { ingredient = "Threads of Fate", quantity = 500 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: finishing touch"
+option = "The Eclipse Itself: Enchantment Focus +8"
+augments = []
+note = "Applied to The Eclipse Itself; removes Finishing Touch and adds Enchantment Focus +8. Cost materials, melted at a Cannith Melting Station: 35 Iron Defender Rivets, 25 Iron Defender Claws, 30 Worker Drone Actuators, 45 Worker Drone Platings, 45 Shield Guardian Gyroscopes, 30 Shield Guardian Cores, 35 Magefire Cannon Parts, 25 Magefire Cannon Cores. Raid item; the page gives no tier, Maetrim's copy is ML29."
+cost = [{ ingredient = "Energizing Alloy", quantity = 1 }, { ingredient = "Caustic Compound", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }, { ingredient = "Threads of Fate", quantity = 500 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: finishing touch"
+option = "The Eclipse Itself: Evocation Focus +8"
+augments = []
+note = "Applied to The Eclipse Itself; removes Finishing Touch and adds Evocation Focus +8. Cost materials, melted at a Cannith Melting Station: 35 Iron Defender Rivets, 25 Iron Defender Claws, 30 Worker Drone Actuators, 45 Worker Drone Platings, 45 Shield Guardian Gyroscopes, 30 Shield Guardian Cores, 35 Magefire Cannon Parts, 25 Magefire Cannon Cores. Raid item; the page gives no tier, Maetrim's copy is ML29."
+cost = [{ ingredient = "Energizing Alloy", quantity = 1 }, { ingredient = "Caustic Compound", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }, { ingredient = "Threads of Fate", quantity = 500 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: finishing touch"
+option = "The Eclipse Itself: Illusion Focus +8"
+augments = []
+note = "Applied to The Eclipse Itself; removes Finishing Touch and adds Illusion Focus +8. Cost materials, melted at a Cannith Melting Station: 35 Iron Defender Rivets, 25 Iron Defender Claws, 30 Worker Drone Actuators, 45 Worker Drone Platings, 45 Shield Guardian Gyroscopes, 30 Shield Guardian Cores, 35 Magefire Cannon Parts, 25 Magefire Cannon Cores. Raid item; the page gives no tier, Maetrim's copy is ML29."
+cost = [{ ingredient = "Energizing Alloy", quantity = 1 }, { ingredient = "Caustic Compound", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }, { ingredient = "Threads of Fate", quantity = 500 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: finishing touch"
+option = "The Eclipse Itself: Necromancy Focus +8"
+augments = []
+note = "Applied to The Eclipse Itself; removes Finishing Touch and adds Necromancy Focus +8. Cost materials, melted at a Cannith Melting Station: 35 Iron Defender Rivets, 25 Iron Defender Claws, 30 Worker Drone Actuators, 45 Worker Drone Platings, 45 Shield Guardian Gyroscopes, 30 Shield Guardian Cores, 35 Magefire Cannon Parts, 25 Magefire Cannon Cores. Raid item; the page gives no tier, Maetrim's copy is ML29."
+cost = [{ ingredient = "Energizing Alloy", quantity = 1 }, { ingredient = "Caustic Compound", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }, { ingredient = "Threads of Fate", quantity = 500 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: finishing touch"
+option = "The Eclipse Itself: Transmutation Focus +8"
+augments = []
+note = "Applied to The Eclipse Itself; removes Finishing Touch and adds Transmutation Focus +8. Cost materials, melted at a Cannith Melting Station: 35 Iron Defender Rivets, 25 Iron Defender Claws, 30 Worker Drone Actuators, 45 Worker Drone Platings, 45 Shield Guardian Gyroscopes, 30 Shield Guardian Cores, 35 Magefire Cannon Parts, 25 Magefire Cannon Cores. Raid item; the page gives no tier, Maetrim's copy is ML29."
+cost = [{ ingredient = "Energizing Alloy", quantity = 1 }, { ingredient = "Caustic Compound", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }, { ingredient = "Threads of Fate", quantity = 500 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: nearly finished"
+option = "Baz'Morath, the Curator of Decay: Purple Augment Slot"
+augments = []
+grants_slot = "purple"
+note = "Applied to Baz'Morath, the Curator of Decay; removes Nearly Finished and adds Purple Augment Slot. Also adds Almost There. Cost materials, melted at a Cannith Melting Station: 25 Iron Defender Rivets, 25 Iron Defender Claws, 30 Worker Drone Actuators, 45 Worker Drone Platings, 45 Shield Guardian Gyroscopes, 30 Shield Guardian Cores, 35 Magefire Cannon Parts, 25 Magefire Cannon Cores. Raid item; the page gives no tier, Maetrim's copy is ML29."
+cost = [{ ingredient = "Energizing Alloy", quantity = 1 }, { ingredient = "Caustic Compound", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }, { ingredient = "Threads of Fate", quantity = 100 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: almost there"
+option = "Baz'Morath, the Curator of Decay: Fetters of Unreality"
+augments = []
+grants_slot = "crafting: finishing touch"
+note = "Applied to Baz'Morath, the Curator of Decay; removes Almost There and adds Fetters of Unreality. Also adds Finishing Touch. Cost materials, melted at a Cannith Melting Station: 35 Iron Defender Rivets, 25 Iron Defender Claws, 45 Worker Drone Actuators, 30 Worker Drone Platings, 30 Shield Guardian Gyroscopes, 45 Shield Guardian Cores, 35 Magefire Cannon Parts, 25 Magefire Cannon Cores. Raid item; the page gives no tier, Maetrim's copy is ML29."
+cost = [{ ingredient = "Dampening Alloy", quantity = 1 }, { ingredient = "Caustic Compound", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }, { ingredient = "Threads of Fate", quantity = 250 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: finishing touch"
+option = "Baz'Morath, the Curator of Decay: Completed Weapon"
+augments = []
+note = "Applied to Baz'Morath, the Curator of Decay; removes Finishing Touch and adds Completed Weapon. Cost materials, melted at a Cannith Melting Station: 35 Iron Defender Rivets, 25 Iron Defender Claws, 30 Worker Drone Actuators, 45 Worker Drone Platings, 45 Shield Guardian Gyroscopes, 30 Shield Guardian Cores, 35 Magefire Cannon Parts, 25 Magefire Cannon Cores. Raid item; the page gives no tier, Maetrim's copy is ML29."
+cost = [{ ingredient = "Energizing Alloy", quantity = 1 }, { ingredient = "Caustic Compound", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }, { ingredient = "Threads of Fate", quantity = 500 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: nearly finished"
+option = "Cloak of Balance: Quality Strength +1"
+augments = []
+note = "Applied to Cloak of Balance; removes Nearly Finished and adds Quality Strength +1. Cost materials, melted at a Cannith Melting Station: 20 Iron Defender Claws, 25 Iron Defender Rivets, 20 Magefire Cannon Cores, 25 Magefire Cannon Parts, 50 Shield Guardian Cores, 5 Shield Guardian Gyroscopes, 50 Worker Drone Actuators, 5 Worker Drone Platings. Maetrim has no augment family for this system."
+cost = [{ ingredient = "Dampening Alloy", quantity = 1 }, { ingredient = "Reforged Glowing Ingot", quantity = 1 }, { ingredient = "Reforged Dense Ingot", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: nearly finished"
+option = "Legendary Cloak of Balance: Quality Strength +3"
+augments = []
+note = "Applied to Legendary Cloak of Balance; removes Nearly Finished and adds Quality Strength +3. Cost materials, melted at a Cannith Melting Station: 20 Iron Defender Claws, 25 Iron Defender Rivets, 20 Magefire Cannon Cores, 25 Magefire Cannon Parts, 50 Shield Guardian Cores, 5 Shield Guardian Gyroscopes, 50 Worker Drone Actuators, 5 Worker Drone Platings. Maetrim has no augment family for this system."
+cost = [{ ingredient = "Dampening Alloy", quantity = 1 }, { ingredient = "Reforged Glowing Ingot", quantity = 1 }, { ingredient = "Reforged Dense Ingot", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: nearly finished"
+option = "Cloak of Balance: Quality Dexterity +1"
+augments = []
+note = "Applied to Cloak of Balance; removes Nearly Finished and adds Quality Dexterity +1. Cost materials, melted at a Cannith Melting Station: 20 Iron Defender Claws, 25 Iron Defender Rivets, 20 Magefire Cannon Cores, 25 Magefire Cannon Parts, 50 Shield Guardian Cores, 5 Shield Guardian Gyroscopes, 50 Worker Drone Actuators, 5 Worker Drone Platings. Maetrim has no augment family for this system."
+cost = [{ ingredient = "Dampening Alloy", quantity = 1 }, { ingredient = "Reforged Glowing Ingot", quantity = 1 }, { ingredient = "Reforged Dense Ingot", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: nearly finished"
+option = "Legendary Cloak of Balance: Quality Dexterity +3"
+augments = []
+note = "Applied to Legendary Cloak of Balance; removes Nearly Finished and adds Quality Dexterity +3. Cost materials, melted at a Cannith Melting Station: 20 Iron Defender Claws, 25 Iron Defender Rivets, 20 Magefire Cannon Cores, 25 Magefire Cannon Parts, 50 Shield Guardian Cores, 5 Shield Guardian Gyroscopes, 50 Worker Drone Actuators, 5 Worker Drone Platings. Maetrim has no augment family for this system."
+cost = [{ ingredient = "Dampening Alloy", quantity = 1 }, { ingredient = "Reforged Glowing Ingot", quantity = 1 }, { ingredient = "Reforged Dense Ingot", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: nearly finished"
+option = "Cloak of Balance: Quality Constitution +1"
+augments = []
+note = "Applied to Cloak of Balance; removes Nearly Finished and adds Quality Constitution +1. Cost materials, melted at a Cannith Melting Station: 20 Iron Defender Claws, 25 Iron Defender Rivets, 20 Magefire Cannon Cores, 25 Magefire Cannon Parts, 50 Shield Guardian Cores, 5 Shield Guardian Gyroscopes, 50 Worker Drone Actuators, 5 Worker Drone Platings. Maetrim has no augment family for this system."
+cost = [{ ingredient = "Dampening Alloy", quantity = 1 }, { ingredient = "Reforged Glowing Ingot", quantity = 1 }, { ingredient = "Reforged Dense Ingot", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: nearly finished"
+option = "Legendary Cloak of Balance: Quality Constitution +3"
+augments = []
+note = "Applied to Legendary Cloak of Balance; removes Nearly Finished and adds Quality Constitution +3. Cost materials, melted at a Cannith Melting Station: 20 Iron Defender Claws, 25 Iron Defender Rivets, 20 Magefire Cannon Cores, 25 Magefire Cannon Parts, 50 Shield Guardian Cores, 5 Shield Guardian Gyroscopes, 50 Worker Drone Actuators, 5 Worker Drone Platings. Maetrim has no augment family for this system."
+cost = [{ ingredient = "Dampening Alloy", quantity = 1 }, { ingredient = "Reforged Glowing Ingot", quantity = 1 }, { ingredient = "Reforged Dense Ingot", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: nearly finished"
+option = "Concentrated Chaos: Quality Intelligence +1"
+augments = []
+note = "Applied to Concentrated Chaos; removes Nearly Finished and adds Quality Intelligence +1. Cost materials, melted at a Cannith Melting Station: 20 Iron Defender Claws, 25 Iron Defender Rivets, 20 Magefire Cannon Cores, 25 Magefire Cannon Parts, 50 Shield Guardian Cores, 5 Shield Guardian Gyroscopes, 50 Worker Drone Actuators, 5 Worker Drone Platings. Maetrim has no augment family for this system."
+cost = [{ ingredient = "Dampening Alloy", quantity = 1 }, { ingredient = "Reforged Glowing Ingot", quantity = 1 }, { ingredient = "Reforged Dense Ingot", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: nearly finished"
+option = "Legendary Concentrated Chaos: Quality Intelligence +3"
+augments = []
+note = "Applied to Legendary Concentrated Chaos; removes Nearly Finished and adds Quality Intelligence +3. Cost materials, melted at a Cannith Melting Station: 20 Iron Defender Claws, 25 Iron Defender Rivets, 20 Magefire Cannon Cores, 25 Magefire Cannon Parts, 50 Shield Guardian Cores, 5 Shield Guardian Gyroscopes, 50 Worker Drone Actuators, 5 Worker Drone Platings. Maetrim has no augment family for this system."
+cost = [{ ingredient = "Dampening Alloy", quantity = 1 }, { ingredient = "Reforged Glowing Ingot", quantity = 1 }, { ingredient = "Reforged Dense Ingot", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: nearly finished"
+option = "Concentrated Chaos: Quality Wisdom +1"
+augments = []
+note = "Applied to Concentrated Chaos; removes Nearly Finished and adds Quality Wisdom +1. Cost materials, melted at a Cannith Melting Station: 20 Iron Defender Claws, 25 Iron Defender Rivets, 20 Magefire Cannon Cores, 25 Magefire Cannon Parts, 50 Shield Guardian Cores, 5 Shield Guardian Gyroscopes, 50 Worker Drone Actuators, 5 Worker Drone Platings. Maetrim has no augment family for this system."
+cost = [{ ingredient = "Dampening Alloy", quantity = 1 }, { ingredient = "Reforged Glowing Ingot", quantity = 1 }, { ingredient = "Reforged Dense Ingot", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: nearly finished"
+option = "Legendary Concentrated Chaos: Quality Wisdom +3"
+augments = []
+note = "Applied to Legendary Concentrated Chaos; removes Nearly Finished and adds Quality Wisdom +3. Cost materials, melted at a Cannith Melting Station: 20 Iron Defender Claws, 25 Iron Defender Rivets, 20 Magefire Cannon Cores, 25 Magefire Cannon Parts, 50 Shield Guardian Cores, 5 Shield Guardian Gyroscopes, 50 Worker Drone Actuators, 5 Worker Drone Platings. Maetrim has no augment family for this system."
+cost = [{ ingredient = "Dampening Alloy", quantity = 1 }, { ingredient = "Reforged Glowing Ingot", quantity = 1 }, { ingredient = "Reforged Dense Ingot", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: nearly finished"
+option = "Concentrated Chaos: Quality Charisma +1"
+augments = []
+note = "Applied to Concentrated Chaos; removes Nearly Finished and adds Quality Charisma +1. Cost materials, melted at a Cannith Melting Station: 20 Iron Defender Claws, 25 Iron Defender Rivets, 20 Magefire Cannon Cores, 25 Magefire Cannon Parts, 50 Shield Guardian Cores, 5 Shield Guardian Gyroscopes, 50 Worker Drone Actuators, 5 Worker Drone Platings. Maetrim has no augment family for this system."
+cost = [{ ingredient = "Dampening Alloy", quantity = 1 }, { ingredient = "Reforged Glowing Ingot", quantity = 1 }, { ingredient = "Reforged Dense Ingot", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: nearly finished"
+option = "Legendary Concentrated Chaos: Quality Charisma +3"
+augments = []
+note = "Applied to Legendary Concentrated Chaos; removes Nearly Finished and adds Quality Charisma +3. Cost materials, melted at a Cannith Melting Station: 20 Iron Defender Claws, 25 Iron Defender Rivets, 20 Magefire Cannon Cores, 25 Magefire Cannon Parts, 50 Shield Guardian Cores, 5 Shield Guardian Gyroscopes, 50 Worker Drone Actuators, 5 Worker Drone Platings. Maetrim has no augment family for this system."
+cost = [{ ingredient = "Dampening Alloy", quantity = 1 }, { ingredient = "Reforged Glowing Ingot", quantity = 1 }, { ingredient = "Reforged Dense Ingot", quantity = 1 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: nearly finished"
+option = "Solid Sound: Quality Intelligence +1"
+augments = []
+note = "Applied to Solid Sound; removes Nearly Finished and adds Quality Intelligence +1. Cost materials, melted at a Cannith Melting Station: 20 Iron Defender Claws, 25 Iron Defender Rivets, 20 Magefire Cannon Cores, 25 Magefire Cannon Parts, 5 Shield Guardian Cores, 50 Shield Guardian Gyroscopes, 5 Worker Drone Actuators, 50 Worker Drone Platings. Maetrim has no augment family for this system."
+cost = [{ ingredient = "Energizing Alloy", quantity = 1 }, { ingredient = "Reforged Pliable Ingot", quantity = 1 }, { ingredient = "Reforged Metallic Ingot", quantity = 1 }, { ingredient = "Caustic Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: nearly finished"
+option = "Legendary Solid Sound: Quality Intelligence +3"
+augments = []
+note = "Applied to Legendary Solid Sound; removes Nearly Finished and adds Quality Intelligence +3. Cost materials, melted at a Cannith Melting Station: 20 Iron Defender Claws, 25 Iron Defender Rivets, 20 Magefire Cannon Cores, 25 Magefire Cannon Parts, 5 Shield Guardian Cores, 50 Shield Guardian Gyroscopes, 5 Worker Drone Actuators, 50 Worker Drone Platings. Maetrim has no augment family for this system."
+cost = [{ ingredient = "Energizing Alloy", quantity = 1 }, { ingredient = "Reforged Pliable Ingot", quantity = 1 }, { ingredient = "Reforged Metallic Ingot", quantity = 1 }, { ingredient = "Caustic Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: nearly finished"
+option = "Solid Sound: Quality Wisdom +1"
+augments = []
+note = "Applied to Solid Sound; removes Nearly Finished and adds Quality Wisdom +1. Cost materials, melted at a Cannith Melting Station: 20 Iron Defender Claws, 25 Iron Defender Rivets, 20 Magefire Cannon Cores, 25 Magefire Cannon Parts, 5 Shield Guardian Cores, 50 Shield Guardian Gyroscopes, 5 Worker Drone Actuators, 50 Worker Drone Platings. Maetrim has no augment family for this system."
+cost = [{ ingredient = "Energizing Alloy", quantity = 1 }, { ingredient = "Reforged Pliable Ingot", quantity = 1 }, { ingredient = "Reforged Metallic Ingot", quantity = 1 }, { ingredient = "Caustic Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: nearly finished"
+option = "Legendary Solid Sound: Quality Wisdom +3"
+augments = []
+note = "Applied to Legendary Solid Sound; removes Nearly Finished and adds Quality Wisdom +3. Cost materials, melted at a Cannith Melting Station: 20 Iron Defender Claws, 25 Iron Defender Rivets, 20 Magefire Cannon Cores, 25 Magefire Cannon Parts, 5 Shield Guardian Cores, 50 Shield Guardian Gyroscopes, 5 Worker Drone Actuators, 50 Worker Drone Platings. Maetrim has no augment family for this system."
+cost = [{ ingredient = "Energizing Alloy", quantity = 1 }, { ingredient = "Reforged Pliable Ingot", quantity = 1 }, { ingredient = "Reforged Metallic Ingot", quantity = 1 }, { ingredient = "Caustic Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: nearly finished"
+option = "Solid Sound: Quality Charisma +1"
+augments = []
+note = "Applied to Solid Sound; removes Nearly Finished and adds Quality Charisma +1. Cost materials, melted at a Cannith Melting Station: 20 Iron Defender Claws, 25 Iron Defender Rivets, 20 Magefire Cannon Cores, 25 Magefire Cannon Parts, 5 Shield Guardian Cores, 50 Shield Guardian Gyroscopes, 5 Worker Drone Actuators, 50 Worker Drone Platings. Maetrim has no augment family for this system."
+cost = [{ ingredient = "Energizing Alloy", quantity = 1 }, { ingredient = "Reforged Pliable Ingot", quantity = 1 }, { ingredient = "Reforged Metallic Ingot", quantity = 1 }, { ingredient = "Caustic Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: nearly finished"
+option = "Legendary Solid Sound: Quality Charisma +3"
+augments = []
+note = "Applied to Legendary Solid Sound; removes Nearly Finished and adds Quality Charisma +3. Cost materials, melted at a Cannith Melting Station: 20 Iron Defender Claws, 25 Iron Defender Rivets, 20 Magefire Cannon Cores, 25 Magefire Cannon Parts, 5 Shield Guardian Cores, 50 Shield Guardian Gyroscopes, 5 Worker Drone Actuators, 50 Worker Drone Platings. Maetrim has no augment family for this system."
+cost = [{ ingredient = "Energizing Alloy", quantity = 1 }, { ingredient = "Reforged Pliable Ingot", quantity = 1 }, { ingredient = "Reforged Metallic Ingot", quantity = 1 }, { ingredient = "Caustic Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: nearly finished"
+option = "Sunken Chains: Quality Strength +1"
+augments = []
+note = "Applied to Sunken Chains; removes Nearly Finished and adds Quality Strength +1. Cost materials, melted at a Cannith Melting Station: 20 Iron Defender Claws, 25 Iron Defender Rivets, 20 Magefire Cannon Cores, 25 Magefire Cannon Parts, 5 Shield Guardian Cores, 50 Shield Guardian Gyroscopes, 5 Worker Drone Actuators, 50 Worker Drone Platings. Maetrim has no augment family for this system."
+cost = [{ ingredient = "Energizing Alloy", quantity = 1 }, { ingredient = "Reforged Pliable Ingot", quantity = 1 }, { ingredient = "Reforged Metallic Ingot", quantity = 1 }, { ingredient = "Caustic Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: nearly finished"
+option = "Legendary Sunken Chains: Quality Strength +3"
+augments = []
+note = "Applied to Legendary Sunken Chains; removes Nearly Finished and adds Quality Strength +3. Cost materials, melted at a Cannith Melting Station: 20 Iron Defender Claws, 25 Iron Defender Rivets, 20 Magefire Cannon Cores, 25 Magefire Cannon Parts, 5 Shield Guardian Cores, 50 Shield Guardian Gyroscopes, 5 Worker Drone Actuators, 50 Worker Drone Platings. Maetrim has no augment family for this system."
+cost = [{ ingredient = "Energizing Alloy", quantity = 1 }, { ingredient = "Reforged Pliable Ingot", quantity = 1 }, { ingredient = "Reforged Metallic Ingot", quantity = 1 }, { ingredient = "Caustic Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: nearly finished"
+option = "Sunken Chains: Quality Dexterity +1"
+augments = []
+note = "Applied to Sunken Chains; removes Nearly Finished and adds Quality Dexterity +1. Cost materials, melted at a Cannith Melting Station: 20 Iron Defender Claws, 25 Iron Defender Rivets, 20 Magefire Cannon Cores, 25 Magefire Cannon Parts, 5 Shield Guardian Cores, 50 Shield Guardian Gyroscopes, 5 Worker Drone Actuators, 50 Worker Drone Platings. Maetrim has no augment family for this system."
+cost = [{ ingredient = "Energizing Alloy", quantity = 1 }, { ingredient = "Reforged Pliable Ingot", quantity = 1 }, { ingredient = "Reforged Metallic Ingot", quantity = 1 }, { ingredient = "Caustic Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: nearly finished"
+option = "Legendary Sunken Chains: Quality Dexterity +3"
+augments = []
+note = "Applied to Legendary Sunken Chains; removes Nearly Finished and adds Quality Dexterity +3. Cost materials, melted at a Cannith Melting Station: 20 Iron Defender Claws, 25 Iron Defender Rivets, 20 Magefire Cannon Cores, 25 Magefire Cannon Parts, 5 Shield Guardian Cores, 50 Shield Guardian Gyroscopes, 5 Worker Drone Actuators, 50 Worker Drone Platings. Maetrim has no augment family for this system."
+cost = [{ ingredient = "Energizing Alloy", quantity = 1 }, { ingredient = "Reforged Pliable Ingot", quantity = 1 }, { ingredient = "Reforged Metallic Ingot", quantity = 1 }, { ingredient = "Caustic Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: nearly finished"
+option = "Sunken Chains: Quality Intelligence +1"
+augments = []
+note = "Applied to Sunken Chains; removes Nearly Finished and adds Quality Intelligence +1. Cost materials, melted at a Cannith Melting Station: 20 Iron Defender Claws, 25 Iron Defender Rivets, 20 Magefire Cannon Cores, 25 Magefire Cannon Parts, 5 Shield Guardian Cores, 50 Shield Guardian Gyroscopes, 5 Worker Drone Actuators, 50 Worker Drone Platings. Maetrim has no augment family for this system."
+cost = [{ ingredient = "Energizing Alloy", quantity = 1 }, { ingredient = "Reforged Pliable Ingot", quantity = 1 }, { ingredient = "Reforged Metallic Ingot", quantity = 1 }, { ingredient = "Caustic Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: nearly finished"
+option = "Legendary Sunken Chains: Quality Intelligence +3"
+augments = []
+note = "Applied to Legendary Sunken Chains; removes Nearly Finished and adds Quality Intelligence +3. Cost materials, melted at a Cannith Melting Station: 20 Iron Defender Claws, 25 Iron Defender Rivets, 20 Magefire Cannon Cores, 25 Magefire Cannon Parts, 5 Shield Guardian Cores, 50 Shield Guardian Gyroscopes, 5 Worker Drone Actuators, 50 Worker Drone Platings. Maetrim has no augment family for this system."
+cost = [{ ingredient = "Energizing Alloy", quantity = 1 }, { ingredient = "Reforged Pliable Ingot", quantity = 1 }, { ingredient = "Reforged Metallic Ingot", quantity = 1 }, { ingredient = "Caustic Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: nearly finished"
+option = "Sunken Slippers: Quality Intelligence +1"
+augments = []
+note = "Applied to Sunken Slippers; removes Nearly Finished and adds Quality Intelligence +1. Cost materials, melted at a Cannith Melting Station: 20 Iron Defender Claws, 25 Iron Defender Rivets, 20 Magefire Cannon Cores, 25 Magefire Cannon Parts, 5 Shield Guardian Cores, 50 Shield Guardian Gyroscopes, 5 Worker Drone Actuators, 50 Worker Drone Platings. Maetrim has no augment family for this system."
+cost = [{ ingredient = "Energizing Alloy", quantity = 1 }, { ingredient = "Reforged Pliable Ingot", quantity = 1 }, { ingredient = "Reforged Metallic Ingot", quantity = 1 }, { ingredient = "Caustic Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: nearly finished"
+option = "Legendary Sunken Slippers: Quality Intelligence +3"
+augments = []
+note = "Applied to Legendary Sunken Slippers; removes Nearly Finished and adds Quality Intelligence +3. Cost materials, melted at a Cannith Melting Station: 20 Iron Defender Claws, 25 Iron Defender Rivets, 20 Magefire Cannon Cores, 25 Magefire Cannon Parts, 5 Shield Guardian Cores, 50 Shield Guardian Gyroscopes, 5 Worker Drone Actuators, 50 Worker Drone Platings. Maetrim has no augment family for this system."
+cost = [{ ingredient = "Energizing Alloy", quantity = 1 }, { ingredient = "Reforged Pliable Ingot", quantity = 1 }, { ingredient = "Reforged Metallic Ingot", quantity = 1 }, { ingredient = "Caustic Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: nearly finished"
+option = "Sunken Slippers: Quality Wisdom +1"
+augments = []
+note = "Applied to Sunken Slippers; removes Nearly Finished and adds Quality Wisdom +1. Cost materials, melted at a Cannith Melting Station: 20 Iron Defender Claws, 25 Iron Defender Rivets, 20 Magefire Cannon Cores, 25 Magefire Cannon Parts, 5 Shield Guardian Cores, 50 Shield Guardian Gyroscopes, 5 Worker Drone Actuators, 50 Worker Drone Platings. Maetrim has no augment family for this system."
+cost = [{ ingredient = "Energizing Alloy", quantity = 1 }, { ingredient = "Reforged Pliable Ingot", quantity = 1 }, { ingredient = "Reforged Metallic Ingot", quantity = 1 }, { ingredient = "Caustic Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: nearly finished"
+option = "Legendary Sunken Slippers: Quality Wisdom +3"
+augments = []
+note = "Applied to Legendary Sunken Slippers; removes Nearly Finished and adds Quality Wisdom +3. Cost materials, melted at a Cannith Melting Station: 20 Iron Defender Claws, 25 Iron Defender Rivets, 20 Magefire Cannon Cores, 25 Magefire Cannon Parts, 5 Shield Guardian Cores, 50 Shield Guardian Gyroscopes, 5 Worker Drone Actuators, 50 Worker Drone Platings. Maetrim has no augment family for this system."
+cost = [{ ingredient = "Energizing Alloy", quantity = 1 }, { ingredient = "Reforged Pliable Ingot", quantity = 1 }, { ingredient = "Reforged Metallic Ingot", quantity = 1 }, { ingredient = "Caustic Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: nearly finished"
+option = "Sunken Slippers: Quality Charisma +1"
+augments = []
+note = "Applied to Sunken Slippers; removes Nearly Finished and adds Quality Charisma +1. Cost materials, melted at a Cannith Melting Station: 20 Iron Defender Claws, 25 Iron Defender Rivets, 20 Magefire Cannon Cores, 25 Magefire Cannon Parts, 5 Shield Guardian Cores, 50 Shield Guardian Gyroscopes, 5 Worker Drone Actuators, 50 Worker Drone Platings. Maetrim has no augment family for this system."
+cost = [{ ingredient = "Energizing Alloy", quantity = 1 }, { ingredient = "Reforged Pliable Ingot", quantity = 1 }, { ingredient = "Reforged Metallic Ingot", quantity = 1 }, { ingredient = "Caustic Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: nearly finished"
+option = "Legendary Sunken Slippers: Quality Charisma +3"
+augments = []
+note = "Applied to Legendary Sunken Slippers; removes Nearly Finished and adds Quality Charisma +3. Cost materials, melted at a Cannith Melting Station: 20 Iron Defender Claws, 25 Iron Defender Rivets, 20 Magefire Cannon Cores, 25 Magefire Cannon Parts, 5 Shield Guardian Cores, 50 Shield Guardian Gyroscopes, 5 Worker Drone Actuators, 50 Worker Drone Platings. Maetrim has no augment family for this system."
+cost = [{ ingredient = "Energizing Alloy", quantity = 1 }, { ingredient = "Reforged Pliable Ingot", quantity = 1 }, { ingredient = "Reforged Metallic Ingot", quantity = 1 }, { ingredient = "Caustic Compound", quantity = 1 }]
+
+[[system.recipe]]
+tier = "any"
+slot = "crafting: nearly finished"
+option = "Tinker's Set"
+augments = []
+note = "Secrets of the Artificers pack. Completing the Nearly Finished recipe on both Tinker's Gloves and Tinker's Goggles at a Cannith Reforging Station unlocks the set bonus: True Seeing; Sneak Attack Bonus +5 (+5 to hit and +8 to damage with sneak attacks). Standard non-stacking effects unless stated; the items become Bound to Character. The page gives no cost or tier."
+cost = []
+
+[[system.recipe]]
+tier = "any"
+slot = "crafting: nearly finished"
+option = "Magewright's Set"
+augments = []
+note = "Secrets of the Artificers pack. Completing the Nearly Finished recipe on both Magewright's Cloak and Magewright's Spectacles at a Cannith Reforging Station unlocks the set bonus: Spell Focus Mastery (+1 to all spell DCs); Magewright's Quick Wits (chance of a 10-second +12 Alchemical bonus to Universal Spell Power each time the wearer is hit by a physical attack). Standard non-stacking effects unless stated; the items become Bound to Character. The page gives no cost or tier."
+cost = []
+
+[[system.recipe]]
+tier = "any"
+slot = "crafting: nearly finished"
+option = "Fabricator's Set"
+augments = []
+note = "Secrets of the Artificers pack. Completing the Nearly Finished recipe on both Fabricator's Bracers and Fabricator's Gauntlets at a Cannith Reforging Station unlocks the set bonus: +25% stacking fortification (does not stack with Exceptional Fortification +10%); +2 Artifact bonus to hit and damage. Standard non-stacking effects unless stated; the items become Bound to Character. The page gives no cost or tier."
+cost = []
+
+[[system.recipe]]
+tier = "any"
+slot = "crafting: nearly finished"
+option = "Alchemist's Set"
+augments = []
+note = "Secrets of the Artificers pack. Completing the Nearly Finished recipe on both Alchemist's Crown and Alchemist's Pendant at a Cannith Reforging Station unlocks the set bonus: Empower, Maximize and Empower Healing metamagic cost 2 fewer spell points each; -10% spell cost between 50% and 25% HP, -20% between 25% and 10%, -30% below 10%. Standard non-stacking effects unless stated; the items become Bound to Character. The page gives no cost or tier."
+cost = []

@@ -1,0 +1,172 @@
+[[system]]
+name = "Lost Purpose"
+page = "https://ddowiki.com/page/Lost_Purpose"
+read = "2026-09-29"
+pack = "Vecna Unleashed"
+families = ["LostPurpose"]
+npc = "Cannith Repurposing Station, Morgrave University - Upper Commons (introduced in Update 61)"
+
+[[system.ingredient]]
+name = "Esoteric Relic"
+tier = "heroic"
+
+[[system.ingredient]]
+name = "Legendary Esoteric Relic"
+tier = "legendary"
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: lost purpose"
+option = "Awaken Set Bonus: Heart of Blades"
+augments = ["Heart of Blades"]
+note = "All recipes are on this page. Awakens one Vecna Unleashed set bonus on a Lost Purpose item (the page lists 44 such items); the item can be brought back to choose another set bonus, which erases the old one."
+cost = [{ ingredient = "Esoteric Relic", quantity = 10 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: lost purpose"
+option = "Awaken Set Bonus: Vol's Influence"
+augments = ["Vol's Influence"]
+cost = [{ ingredient = "Esoteric Relic", quantity = 10 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: lost purpose"
+option = "Awaken Set Bonus: The Fury's Rage"
+augments = ["The Fury's Rage"]
+cost = [{ ingredient = "Esoteric Relic", quantity = 10 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: lost purpose"
+option = "Awaken Set Bonus: Delight of the Devourer"
+augments = ["Delight of the Devourer"]
+cost = [{ ingredient = "Esoteric Relic", quantity = 10 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: lost purpose"
+option = "Awaken Set Bonus: Minion of the Mockery"
+augments = ["Minion of the Mockery"]
+cost = [{ ingredient = "Esoteric Relic", quantity = 10 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: lost purpose"
+option = "Awaken Set Bonus: The Keeper's Coffin"
+augments = ["The Keeper's Coffin"]
+cost = [{ ingredient = "Esoteric Relic", quantity = 10 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: lost purpose"
+option = "Awaken Set Bonus: The Shadow's Emptiness"
+augments = ["The Shadow's Emptiness"]
+cost = [{ ingredient = "Esoteric Relic", quantity = 10 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: lost purpose"
+option = "Awaken Set Bonus: The Traveler's Guidance"
+augments = ["The Traveler's Guidance"]
+cost = [{ ingredient = "Esoteric Relic", quantity = 10 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: lost purpose"
+option = "Awaken Set Bonus: Devils' Infernal Dance"
+augments = ["Devil's Infernal Dance"]
+note = "The wiki spells it Devils'; Maetrim's augment is Devil's Infernal Dance."
+cost = [{ ingredient = "Esoteric Relic", quantity = 10 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: lost purpose"
+option = "Awaken Set Bonus: Armaments of the Archons"
+augments = ["Armaments of the Archons"]
+cost = [{ ingredient = "Esoteric Relic", quantity = 10 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: lost purpose"
+option = "Awaken Set Bonus: Forbidden Knowledge"
+augments = ["Forbidden Knowledge"]
+cost = [{ ingredient = "Esoteric Relic", quantity = 10 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: lost purpose"
+option = "Awaken Set Bonus: Legendary Heart of Blades"
+augments = ["Legendary Heart of Blades"]
+cost = [{ ingredient = "Legendary Esoteric Relic", quantity = 20 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: lost purpose"
+option = "Awaken Set Bonus: Legendary Vol's Influence"
+augments = ["Legendary Vol's Influence"]
+cost = [{ ingredient = "Legendary Esoteric Relic", quantity = 20 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: lost purpose"
+option = "Awaken Set Bonus: Legendary The Fury's Rage"
+augments = ["Legendary The Fury's Rage"]
+cost = [{ ingredient = "Legendary Esoteric Relic", quantity = 20 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: lost purpose"
+option = "Awaken Set Bonus: Legendary Delight of the Devourer"
+augments = ["Legendary Delight of the Devourer"]
+cost = [{ ingredient = "Legendary Esoteric Relic", quantity = 20 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: lost purpose"
+option = "Awaken Set Bonus: Legendary Minion of the Mockery"
+augments = ["Legendary Minion of the Mockery"]
+cost = [{ ingredient = "Legendary Esoteric Relic", quantity = 20 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: lost purpose"
+option = "Awaken Set Bonus: Legendary The Keeper's Coffin"
+augments = ["Legendary The Keeper's Coffin"]
+cost = [{ ingredient = "Legendary Esoteric Relic", quantity = 20 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: lost purpose"
+option = "Awaken Set Bonus: Legendary The Shadow's Emptiness"
+augments = ["Legendary The Shadow's Emptiness"]
+cost = [{ ingredient = "Legendary Esoteric Relic", quantity = 20 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: lost purpose"
+option = "Awaken Set Bonus: Legendary The Traveler's Guidance"
+augments = ["Legendary The Traveler's Guidance"]
+cost = [{ ingredient = "Legendary Esoteric Relic", quantity = 20 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: lost purpose"
+option = "Awaken Set Bonus: Legendary Devils' Infernal Dance"
+augments = ["Legendary Devil's Infernal Dance"]
+note = "The wiki spells it Devils'; Maetrim's augment is Legendary Devil's Infernal Dance."
+cost = [{ ingredient = "Legendary Esoteric Relic", quantity = 20 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: lost purpose"
+option = "Awaken Set Bonus: Legendary Armaments of the Archons"
+augments = ["Legendary Armaments of the Archons"]
+cost = [{ ingredient = "Legendary Esoteric Relic", quantity = 20 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: lost purpose"
+option = "Awaken Set Bonus: Legendary Forbidden Knowledge"
+augments = ["Legendary Forbidden Knowledge"]
+cost = [{ ingredient = "Legendary Esoteric Relic", quantity = 20 }]

@@ -1,0 +1,799 @@
+[[system]]
+name = "Deck of Many Curses"
+page = "https://ddowiki.com/page/Item:Deck_of_Many_Curses"
+read = "2026-09-29"
+pack = "Illithid Invasion"
+families = ["DeckOfManyCurses"]
+
+[[system.ingredient]]
+name = "Accursed Card"
+tier = "any"
+bind = "Unbound"
+source = "Primary drop: Pilgrims' Peril (Illithid Invasion). Legendary Sagas: Mists of Ravenloft, Fables of the Feywild, The Chill of Ravenloft (Normal 30, Hard 60, Elite 90, True Elite 120). All four cards appear in each Illithid Invasion quest, in the end chests and one optional chest per quest; also on the Auction House and Shard Exchange, and as later-content rewards. Festivult (from 2023, Update 65) doubles the natural drop rate, adds card stacks to Legendary Saga rewards and sells stacks of 6 from the Jester of Festivult for Gold coins"
+
+[[system.ingredient]]
+name = "Uncanny Card"
+tier = "any"
+bind = "Unbound"
+source = "Primary drop: Stolen Power (Illithid Invasion). Legendary Sagas: Masterminds of Sharn, Cogs Explorer Dungeons, Terror of Demogorgon (Normal 30, Hard 60, Elite 90, True Elite 120). All four cards appear in each Illithid Invasion quest, in the end chests and one optional chest per quest; also on the Auction House and Shard Exchange, and as later-content rewards. Festivult (from 2023, Update 65) doubles the natural drop rate, adds card stacks to Legendary Saga rewards and sells stacks of 6 from the Jester of Festivult for Gold coins"
+
+[[system.ingredient]]
+name = "Otherworldly Card"
+tier = "any"
+bind = "Unbound"
+source = "Primary drop: Horde of the Illithid Controller (Illithid Invasion). Legendary Sagas: Sinister Secret of Saltmarsh, Isle of Dread (Normal 30, Hard 60, Elite 90, True Elite 120). All four cards appear in each Illithid Invasion quest, in the end chests and one optional chest per quest; also on the Auction House and Shard Exchange, and as later-content rewards. Festivult (from 2023, Update 65) doubles the natural drop rate, adds card stacks to Legendary Saga rewards and sells stacks of 6 from the Jester of Festivult for Gold coins"
+
+[[system.ingredient]]
+name = "Forbidden Card"
+tier = "any"
+bind = "Unbound"
+source = "Primary drop: Astral Ambush (Illithid Invasion). Legendary Sagas: Vecna Unleashed, Magic of Myth Drannor (Normal 30, Hard 60, Elite 90, True Elite 120). All four cards appear in each Illithid Invasion quest, in the end chests and one optional chest per quest; also on the Auction House and Shard Exchange, and as later-content rewards. Festivult (from 2023, Update 65) doubles the natural drop rate, adds card stacks to Legendary Saga rewards and sells stacks of 6 from the Jester of Festivult for Gold coins"
+
+[[system.ingredient]]
+name = "Deck of Many Curses"
+tier = "any"
+bind = "Bound to Account on Acquire"
+source = "Turned in for 12 each of Accursed, Uncanny, Otherworldly and Forbidden Cards; minimum level 1, base value 10pp, stack size 1"
+
+[[system.ingredient]]
+name = "Card of Curse Cleansing"
+tier = "any"
+source = "Extremely rare; the page gives no drop location"
+
+[[system.recipe]]
+tier = "any"
+option = "Deck of Many Curses"
+augments = []
+note = "All recipe facts are on this page. Turning in the cards creates the Deck, which places one permanent, random, positive curse (a Fortune bonus) on an item; you cannot choose the curse. Eligible: named, random and crafted items; ineligible: augments, cosmetics, wands, scrolls, quivers and ammunition, so a character can wear at most 14 curses (13 with a two-handed weapon). Curses do not change binding or minimum level; Fortune bonuses to the same statistic do not stack. Upgrades that recreate the item (Epic Crafting, the Altar of Epic Rituals) remove the curse. The curse rows below are the possible outcomes, each costing one Deck."
+cost = [{ ingredient = "Accursed Card", quantity = 12 }, { ingredient = "Uncanny Card", quantity = 12 }, { ingredient = "Otherworldly Card", quantity = 12 }, { ingredient = "Forbidden Card", quantity = 12 }]
+
+[[system.recipe]]
+tier = "any"
+slot = "crafting: deck curse"
+option = "Curse of Minor Strength"
+augments = ["Curse of Minor Strength"]
+note = "Random outcome; +1 Fortune Bonus to Strength; rarity Common."
+cost = [{ ingredient = "Deck of Many Curses", quantity = 1 }]
+
+[[system.recipe]]
+tier = "any"
+slot = "crafting: deck curse"
+option = "Curse of Major Strength"
+augments = ["Curse of Major Strength"]
+note = "Random outcome; +2 Fortune Bonus to Strength; rarity Uncommon."
+cost = [{ ingredient = "Deck of Many Curses", quantity = 1 }]
+
+[[system.recipe]]
+tier = "any"
+slot = "crafting: deck curse"
+option = "Curse of Minor Dexterity"
+augments = ["Curse of Minor Dexterity"]
+note = "Random outcome; +1 Fortune Bonus to Dexterity; rarity Common."
+cost = [{ ingredient = "Deck of Many Curses", quantity = 1 }]
+
+[[system.recipe]]
+tier = "any"
+slot = "crafting: deck curse"
+option = "Curse of Major Dexterity"
+augments = ["Curse of Major Dexterity"]
+note = "Random outcome; +2 Fortune Bonus to Dexterity; rarity Uncommon."
+cost = [{ ingredient = "Deck of Many Curses", quantity = 1 }]
+
+[[system.recipe]]
+tier = "any"
+slot = "crafting: deck curse"
+option = "Curse of Minor Constitution"
+augments = ["Curse of Minor Constitution"]
+note = "Random outcome; +1 Fortune Bonus to Constitution; rarity Common."
+cost = [{ ingredient = "Deck of Many Curses", quantity = 1 }]
+
+[[system.recipe]]
+tier = "any"
+slot = "crafting: deck curse"
+option = "Curse of Major Constitution"
+augments = ["Curse of Major Constitution"]
+note = "Random outcome; +2 Fortune Bonus to Constitution; rarity Uncommon."
+cost = [{ ingredient = "Deck of Many Curses", quantity = 1 }]
+
+[[system.recipe]]
+tier = "any"
+slot = "crafting: deck curse"
+option = "Curse of Minor Intelligence"
+augments = ["Curse of Minor Intelligence"]
+note = "Random outcome; +1 Fortune Bonus to Intelligence; rarity Common."
+cost = [{ ingredient = "Deck of Many Curses", quantity = 1 }]
+
+[[system.recipe]]
+tier = "any"
+slot = "crafting: deck curse"
+option = "Curse of Major Intelligence"
+augments = ["Curse of Major Intelligence"]
+note = "Random outcome; +2 Fortune Bonus to Intelligence; rarity Uncommon."
+cost = [{ ingredient = "Deck of Many Curses", quantity = 1 }]
+
+[[system.recipe]]
+tier = "any"
+slot = "crafting: deck curse"
+option = "Curse of Minor Wisdom"
+augments = ["Curse of Minor Wisdom"]
+note = "Random outcome; +1 Fortune Bonus to Wisdom; rarity Common."
+cost = [{ ingredient = "Deck of Many Curses", quantity = 1 }]
+
+[[system.recipe]]
+tier = "any"
+slot = "crafting: deck curse"
+option = "Curse of Major Wisdom"
+augments = ["Curse of Major Wisdom"]
+note = "Random outcome; +2 Fortune Bonus to Wisdom; rarity Uncommon."
+cost = [{ ingredient = "Deck of Many Curses", quantity = 1 }]
+
+[[system.recipe]]
+tier = "any"
+slot = "crafting: deck curse"
+option = "Curse of Minor Charisma"
+augments = ["Curse of Minor Charisma"]
+note = "Random outcome; +1 Fortune Bonus to Charisma; rarity Common."
+cost = [{ ingredient = "Deck of Many Curses", quantity = 1 }]
+
+[[system.recipe]]
+tier = "any"
+slot = "crafting: deck curse"
+option = "Curse of Major Charisma"
+augments = ["Curse of Major Charisma"]
+note = "Random outcome; +2 Fortune Bonus to Charisma; rarity Uncommon."
+cost = [{ ingredient = "Deck of Many Curses", quantity = 1 }]
+
+[[system.recipe]]
+tier = "any"
+slot = "crafting: deck curse"
+option = "Curse of Minor Fortitude"
+augments = ["Curse of Minor Fortitude"]
+note = "Random outcome; +1 Fortune Bonus to Fortitude Saving Throws; rarity Common."
+cost = [{ ingredient = "Deck of Many Curses", quantity = 1 }]
+
+[[system.recipe]]
+tier = "any"
+slot = "crafting: deck curse"
+option = "Curse of Major Fortitude"
+augments = ["Curse of Major Fortitude"]
+note = "Random outcome; +2 Fortune Bonus to Fortitude Saving Throws; rarity Uncommon."
+cost = [{ ingredient = "Deck of Many Curses", quantity = 1 }]
+
+[[system.recipe]]
+tier = "any"
+slot = "crafting: deck curse"
+option = "Curse of Minor Reflexes"
+augments = ["Curse of Minor Reflex"]
+note = "Random outcome; +1 Fortune Bonus to Reflex Saving Throws; rarity Common. Maetrim spells it Curse of Minor Reflex."
+cost = [{ ingredient = "Deck of Many Curses", quantity = 1 }]
+
+[[system.recipe]]
+tier = "any"
+slot = "crafting: deck curse"
+option = "Curse of Major Reflexes"
+augments = ["Curse of Major Reflex"]
+note = "Random outcome; +2 Fortune Bonus to Reflex Saving Throws; rarity Uncommon. Maetrim spells it Curse of Major Reflex."
+cost = [{ ingredient = "Deck of Many Curses", quantity = 1 }]
+
+[[system.recipe]]
+tier = "any"
+slot = "crafting: deck curse"
+option = "Curse of Minor Will"
+augments = ["Curse of Minor Will"]
+note = "Random outcome; +1 Fortune Bonus to Will Saving Throws; rarity Common."
+cost = [{ ingredient = "Deck of Many Curses", quantity = 1 }]
+
+[[system.recipe]]
+tier = "any"
+slot = "crafting: deck curse"
+option = "Curse of Major Will"
+augments = ["Curse of Major Will"]
+note = "Random outcome; +2 Fortune Bonus to Will Saving Throws; rarity Uncommon."
+cost = [{ ingredient = "Deck of Many Curses", quantity = 1 }]
+
+[[system.recipe]]
+tier = "any"
+slot = "crafting: deck curse"
+option = "Curse of Minor Sheltering"
+augments = ["Curse of Minor Sheltering"]
+note = "Random outcome; +2 Fortune Bonus to Physical Resistance Rating; rarity Common."
+cost = [{ ingredient = "Deck of Many Curses", quantity = 1 }]
+
+[[system.recipe]]
+tier = "any"
+slot = "crafting: deck curse"
+option = "Curse of Major Sheltering"
+augments = ["Curse of Major Sheltering"]
+note = "Random outcome; +5 Fortune Bonus to Physical Resistance Rating; rarity Uncommon."
+cost = [{ ingredient = "Deck of Many Curses", quantity = 1 }]
+
+[[system.recipe]]
+tier = "any"
+slot = "crafting: deck curse"
+option = "Curse of Minor Warding"
+augments = ["Curse of Minor Warding"]
+note = "Random outcome; +2 Fortune Bonus to Magical Resistance Rating; rarity Common."
+cost = [{ ingredient = "Deck of Many Curses", quantity = 1 }]
+
+[[system.recipe]]
+tier = "any"
+slot = "crafting: deck curse"
+option = "Curse of Major Warding"
+augments = ["Curse of Major Warding"]
+note = "Random outcome; +5 Fortune Bonus to Magical Resistance Rating; rarity Uncommon."
+cost = [{ ingredient = "Deck of Many Curses", quantity = 1 }]
+
+[[system.recipe]]
+tier = "any"
+slot = "crafting: deck curse"
+option = "Curse of Minor Prowess"
+augments = ["Curse of Minor Prowess"]
+note = "Random outcome; +1 Fortune Bonus to Attack and Damage; rarity Common."
+cost = [{ ingredient = "Deck of Many Curses", quantity = 1 }]
+
+[[system.recipe]]
+tier = "any"
+slot = "crafting: deck curse"
+option = "Curse of Major Prowess"
+augments = ["Curse of Major Prowess"]
+note = "Random outcome; +2 Fortune Bonus to Attack and Damage; rarity Uncommon."
+cost = [{ ingredient = "Deck of Many Curses", quantity = 1 }]
+
+[[system.recipe]]
+tier = "any"
+slot = "crafting: deck curse"
+option = "Curse of Minor Archery"
+augments = ["Curse of Minor Archery"]
+note = "Random outcome; +2 Fortune Bonus to Ranged Power; rarity Common."
+cost = [{ ingredient = "Deck of Many Curses", quantity = 1 }]
+
+[[system.recipe]]
+tier = "any"
+slot = "crafting: deck curse"
+option = "Curse of Major Archery"
+augments = ["Curse of Major Archery"]
+note = "Random outcome; +5 Fortune Bonus to Ranged Power; rarity Uncommon."
+cost = [{ ingredient = "Deck of Many Curses", quantity = 1 }]
+
+[[system.recipe]]
+tier = "any"
+slot = "crafting: deck curse"
+option = "Curse of the Minor Combatant"
+augments = ["Curse of Minor Combatant"]
+note = "Random outcome; +2 Fortune Bonus to Melee Power; rarity Common. Maetrim spells it Curse of Minor Combatant."
+cost = [{ ingredient = "Deck of Many Curses", quantity = 1 }]
+
+[[system.recipe]]
+tier = "any"
+slot = "crafting: deck curse"
+option = "Curse of the Major Combatant"
+augments = ["Curse of Major Combatant"]
+note = "Random outcome; +5 Fortune Bonus to Melee Power; rarity Uncommon. Maetrim spells it Curse of Major Combatant."
+cost = [{ ingredient = "Deck of Many Curses", quantity = 1 }]
+
+[[system.recipe]]
+tier = "any"
+slot = "crafting: deck curse"
+option = "Curse of the Minor Tactician"
+augments = ["Curse of Minor Tactician"]
+note = "Random outcome; +1 Fortune Bonus to Tactical Feat DCs; rarity Common. Maetrim spells it Curse of Minor Tactician."
+cost = [{ ingredient = "Deck of Many Curses", quantity = 1 }]
+
+[[system.recipe]]
+tier = "any"
+slot = "crafting: deck curse"
+option = "Curse of the Major Tactician"
+augments = ["Curse of Major Tactician"]
+note = "Random outcome; +2 Fortune Bonus to Tactical Feat DCs; rarity Uncommon. Maetrim spells it Curse of Major Tactician."
+cost = [{ ingredient = "Deck of Many Curses", quantity = 1 }]
+
+[[system.recipe]]
+tier = "any"
+slot = "crafting: deck curse"
+option = "Curse of the Minor Assassin"
+augments = ["Curse of Minor Assassin"]
+note = "Random outcome; +1 Fortune Bonus to Assassinate DCs; rarity Common. Maetrim spells it Curse of Minor Assassin."
+cost = [{ ingredient = "Deck of Many Curses", quantity = 1 }]
+
+[[system.recipe]]
+tier = "any"
+slot = "crafting: deck curse"
+option = "Curse of the Major Assassin"
+augments = ["Curse of Major Assassin"]
+note = "Random outcome; +2 Fortune Bonus to Assassinate DCs; rarity Uncommon. Maetrim spells it Curse of Major Assassin."
+cost = [{ ingredient = "Deck of Many Curses", quantity = 1 }]
+
+[[system.recipe]]
+tier = "any"
+slot = "crafting: deck curse"
+option = "Curse of Minor Betrayal"
+augments = ["Curse of Minor Betrayal"]
+note = "Random outcome; +1 Fortune Bonus to Sneak Attack Dice; rarity Common."
+cost = [{ ingredient = "Deck of Many Curses", quantity = 1 }]
+
+[[system.recipe]]
+tier = "any"
+slot = "crafting: deck curse"
+option = "Curse of Major Betrayal"
+augments = ["Curse of Major Betrayal"]
+note = "Random outcome; +2 Fortune Bonus to Sneak Attack Dice; rarity Uncommon."
+cost = [{ ingredient = "Deck of Many Curses", quantity = 1 }]
+
+[[system.recipe]]
+tier = "any"
+slot = "crafting: deck curse"
+option = "Curse of Minor Imbuement"
+augments = ["Curse of Minor Imbuement"]
+note = "Random outcome; +1 Fortune Bonus to Imbue Dice; rarity Uncommon."
+cost = [{ ingredient = "Deck of Many Curses", quantity = 1 }]
+
+[[system.recipe]]
+tier = "any"
+slot = "crafting: deck curse"
+option = "Curse of Major Imbuement"
+augments = ["Curse of Major Imbuement"]
+note = "Random outcome; +2 Fortune Bonus to Imbue Dice; rarity Rare."
+cost = [{ ingredient = "Deck of Many Curses", quantity = 1 }]
+
+[[system.recipe]]
+tier = "any"
+slot = "crafting: deck curse"
+option = "Curse of Minor Spellwork"
+augments = ["Curse of Minor Spellwork"]
+note = "Random outcome; +4 Fortune Bonus to Universal Spell Power; rarity Common."
+cost = [{ ingredient = "Deck of Many Curses", quantity = 1 }]
+
+[[system.recipe]]
+tier = "any"
+slot = "crafting: deck curse"
+option = "Curse of Major Spellwork"
+augments = ["Curse of Major Spellwork"]
+note = "Random outcome; +10 Fortune Bonus to Universal Spell Power; rarity Uncommon."
+cost = [{ ingredient = "Deck of Many Curses", quantity = 1 }]
+
+[[system.recipe]]
+tier = "any"
+slot = "crafting: deck curse"
+option = "Curse of Minor Breath"
+augments = ["Curse of Minor Breath"]
+note = "Random outcome; +1 Fortune Bonus to Breath Attack DCs; rarity Common."
+cost = [{ ingredient = "Deck of Many Curses", quantity = 1 }]
+
+[[system.recipe]]
+tier = "any"
+slot = "crafting: deck curse"
+option = "Curse of Major Breath"
+augments = ["Curse of Major Breath"]
+note = "Random outcome; +2 Fortune Bonus to Breath Attack DCs; rarity Uncommon."
+cost = [{ ingredient = "Deck of Many Curses", quantity = 1 }]
+
+[[system.recipe]]
+tier = "any"
+slot = "crafting: deck curse"
+option = "Curse of Minor Technica"
+augments = ["Curse of Minor Technica"]
+note = "Random outcome; +1 Fortune Bonus to Rune Arm DCs; rarity Common."
+cost = [{ ingredient = "Deck of Many Curses", quantity = 1 }]
+
+[[system.recipe]]
+tier = "any"
+slot = "crafting: deck curse"
+option = "Curse of Major Technica"
+augments = ["Curse of Major Technica"]
+note = "Random outcome; +2 Fortune Bonus to Rune Arm DCs; rarity Uncommon."
+cost = [{ ingredient = "Deck of Many Curses", quantity = 1 }]
+
+[[system.recipe]]
+tier = "any"
+slot = "crafting: deck curse"
+option = "Curse of Minor Perception"
+augments = ["Curse of Minor Perception"]
+note = "Random outcome; +1 Fortune Bonus to Search and Spot; rarity Common."
+cost = [{ ingredient = "Deck of Many Curses", quantity = 1 }]
+
+[[system.recipe]]
+tier = "any"
+slot = "crafting: deck curse"
+option = "Curse of Major Perception"
+augments = ["Curse of Major Perception"]
+note = "Random outcome; +2 Fortune Bonus to Search and Spot; rarity Uncommon."
+cost = [{ ingredient = "Deck of Many Curses", quantity = 1 }]
+
+[[system.recipe]]
+tier = "any"
+slot = "crafting: deck curse"
+option = "Curse of Minor Mechanics"
+augments = ["Curse of Minor Mechanics"]
+note = "Random outcome; +1 Fortune Bonus to Open Lock and Disable Device; rarity Common."
+cost = [{ ingredient = "Deck of Many Curses", quantity = 1 }]
+
+[[system.recipe]]
+tier = "any"
+slot = "crafting: deck curse"
+option = "Curse of Major Mechanics"
+augments = ["Curse of Major Mechanics"]
+note = "Random outcome; +2 Fortune Bonus to Open Lock and Disable Device; rarity Uncommon."
+cost = [{ ingredient = "Deck of Many Curses", quantity = 1 }]
+
+[[system.recipe]]
+tier = "any"
+slot = "crafting: deck curse"
+option = "Curse of Minor Obscurity"
+augments = ["Curse of Minor Obscurity"]
+note = "Random outcome; +1 Fortune Bonus to Hide and Move Silently; rarity Common."
+cost = [{ ingredient = "Deck of Many Curses", quantity = 1 }]
+
+[[system.recipe]]
+tier = "any"
+slot = "crafting: deck curse"
+option = "Curse of Major Obscurity"
+augments = ["Curse of Major Obscurity"]
+note = "Random outcome; +2 Fortune Bonus to Hide and Move Silently; rarity Uncommon."
+cost = [{ ingredient = "Deck of Many Curses", quantity = 1 }]
+
+[[system.recipe]]
+tier = "any"
+slot = "crafting: deck curse"
+option = "Curse of Minor Arcana"
+augments = ["Curse of Minor Arcana"]
+note = "Random outcome; +1 Fortune Bonus to Spellcraft and Concentration; rarity Common."
+cost = [{ ingredient = "Deck of Many Curses", quantity = 1 }]
+
+[[system.recipe]]
+tier = "any"
+slot = "crafting: deck curse"
+option = "Curse of Major Arcana"
+augments = ["Curse of Major Arcana"]
+note = "Random outcome; +2 Fortune Bonus to Spellcraft and Concentration; rarity Uncommon."
+cost = [{ ingredient = "Deck of Many Curses", quantity = 1 }]
+
+[[system.recipe]]
+tier = "any"
+slot = "crafting: deck curse"
+option = "Curse of Minor Renewal"
+augments = ["Curse of Minor Renewal"]
+note = "Random outcome; +1 Fortune Bonus to Heal and Repair; rarity Common."
+cost = [{ ingredient = "Deck of Many Curses", quantity = 1 }]
+
+[[system.recipe]]
+tier = "any"
+slot = "crafting: deck curse"
+option = "Curse of Major Renewal"
+augments = ["Curse of Major Renewal"]
+note = "Random outcome; +2 Fortune Bonus to Heal and Repair; rarity Uncommon."
+cost = [{ ingredient = "Deck of Many Curses", quantity = 1 }]
+
+[[system.recipe]]
+tier = "any"
+slot = "crafting: deck curse"
+option = "Curse of Minor Masterworks"
+augments = ["Curse of Minor Masterworks"]
+note = "Random outcome; The power of some effects on this item has been increased as if it were one level higher; rarity Uncommon."
+cost = [{ ingredient = "Deck of Many Curses", quantity = 1 }]
+
+[[system.recipe]]
+tier = "any"
+slot = "crafting: deck curse"
+option = "Curse of Major Masterworks"
+augments = ["Curse of Major Masterworks"]
+note = "Random outcome; The power of some effects on this item has been increased as if it were two levels higher; rarity Rare."
+cost = [{ ingredient = "Deck of Many Curses", quantity = 1 }]
+
+[[system.recipe]]
+tier = "any"
+slot = "crafting: deck curse"
+option = "Curse of the Power of Body"
+augments = ["Curse of the Power of Body"]
+note = "Random outcome; +1 Fortune Bonus to Strength, Dexterity, and Constitution; rarity Uncommon."
+cost = [{ ingredient = "Deck of Many Curses", quantity = 1 }]
+
+[[system.recipe]]
+tier = "any"
+slot = "crafting: deck curse"
+option = "Curse of the Power of Mind"
+augments = ["Curse of the Power of Mind"]
+note = "Random outcome; +1 Fortune Bonus to Intelligence, Wisdom, and Charisma; rarity Uncommon."
+cost = [{ ingredient = "Deck of Many Curses", quantity = 1 }]
+
+[[system.recipe]]
+tier = "any"
+slot = "crafting: deck curse"
+option = "Curse of the Abjurer"
+augments = ["Curse of the Abjurer"]
+note = "Random outcome; +1 Fortune Bonus to Abjuration DCs; rarity Common."
+cost = [{ ingredient = "Deck of Many Curses", quantity = 1 }]
+
+[[system.recipe]]
+tier = "any"
+slot = "crafting: deck curse"
+option = "Curse of the Conjurer"
+augments = ["Curse of the Conjurer"]
+note = "Random outcome; +1 Fortune Bonus to Conjuration DCs; rarity Common."
+cost = [{ ingredient = "Deck of Many Curses", quantity = 1 }]
+
+[[system.recipe]]
+tier = "any"
+slot = "crafting: deck curse"
+option = "Curse of the Enchanter"
+augments = ["Curse of the Enchanter"]
+note = "Random outcome; +1 Fortune Bonus to Enchantment DCs; rarity Common."
+cost = [{ ingredient = "Deck of Many Curses", quantity = 1 }]
+
+[[system.recipe]]
+tier = "any"
+slot = "crafting: deck curse"
+option = "Curse of the Evoker"
+augments = ["Curse of the Evoker"]
+note = "Random outcome; +1 Fortune Bonus to Evocation DCs; rarity Common."
+cost = [{ ingredient = "Deck of Many Curses", quantity = 1 }]
+
+[[system.recipe]]
+tier = "any"
+slot = "crafting: deck curse"
+option = "Curse of the Illusionist"
+augments = ["Curse of the Illusionist"]
+note = "Random outcome; +1 Fortune Bonus to Illusion DCs; rarity Common."
+cost = [{ ingredient = "Deck of Many Curses", quantity = 1 }]
+
+[[system.recipe]]
+tier = "any"
+slot = "crafting: deck curse"
+option = "Curse of the Necromancer"
+augments = ["Curse of the Necromancer"]
+note = "Random outcome; +1 Fortune Bonus to Necromancy DCs; rarity Common."
+cost = [{ ingredient = "Deck of Many Curses", quantity = 1 }]
+
+[[system.recipe]]
+tier = "any"
+slot = "crafting: deck curse"
+option = "Curse of the Transmuter"
+augments = ["Curse of the Transmuter"]
+note = "Random outcome; +1 Fortune Bonus to Transmutation DCs; rarity Common."
+cost = [{ ingredient = "Deck of Many Curses", quantity = 1 }]
+
+[[system.recipe]]
+tier = "any"
+slot = "crafting: deck curse"
+option = "Curse of the Caustic One"
+augments = ["Curse of the Caustic One"]
+note = "Random outcome; +5 Fortune Bonus to Acid Spell Power, +1% Fortune Bonus to Acid Absorption, +3 Fortune Bonus to Acid Resistance; rarity Uncommon."
+cost = [{ ingredient = "Deck of Many Curses", quantity = 1 }]
+
+[[system.recipe]]
+tier = "any"
+slot = "crafting: deck curse"
+option = "Curse of the Voltaic Way"
+augments = ["Curse of the Voltaic Way"]
+note = "Random outcome; +5 Fortune Bonus to Electric Spell Power, +1% Fortune Bonus to Electric Absorption, +3 Fortune Bonus to Electric Resistance; rarity Uncommon."
+cost = [{ ingredient = "Deck of Many Curses", quantity = 1 }]
+
+[[system.recipe]]
+tier = "any"
+slot = "crafting: deck curse"
+option = "Curse of the Icebreaker"
+augments = ["Curse of the Icebreaker"]
+note = "Random outcome; +5 Fortune Bonus to Cold Spell Power, +1% Fortune Bonus to Cold Absorption, +3 Fortune Bonus to Cold Resistance; rarity Uncommon."
+cost = [{ ingredient = "Deck of Many Curses", quantity = 1 }]
+
+[[system.recipe]]
+tier = "any"
+slot = "crafting: deck curse"
+option = "Curse of the Flametouched"
+augments = ["Curse of the Flametouched"]
+note = "Random outcome; +5 Fortune Bonus to Fire Spell Power, +1% Fortune Bonus to Fire Absorption, +3 Fortune Bonus to Fire Resistance; rarity Uncommon."
+cost = [{ ingredient = "Deck of Many Curses", quantity = 1 }]
+
+[[system.recipe]]
+tier = "any"
+slot = "crafting: deck curse"
+option = "Curse of Uncontrollable Energy"
+augments = ["Curse of Uncontrollable Energy"]
+note = "Random outcome; +2% Fortune Bonus to Spell Crit Damage; rarity Rare."
+cost = [{ ingredient = "Deck of Many Curses", quantity = 1 }]
+
+[[system.recipe]]
+tier = "any"
+slot = "crafting: deck curse"
+option = "Curse of the Pact"
+augments = ["Curse of the Pact"]
+note = "Random outcome; +1 Fortune Bonus to Pact Dice; rarity Uncommon."
+cost = [{ ingredient = "Deck of Many Curses", quantity = 1 }]
+
+[[system.recipe]]
+tier = "any"
+slot = "crafting: deck curse"
+option = "Curse of Divine Fortune"
+augments = ["Curse of Divine Fortune"]
+note = "Random outcome; If the item is a weapon, it is always considered a Favored Weapon. Additionally, +4 Fortune Bonus to PRR, +1% Fortune Bonus to Acid, Cold, and Electricity Absorption, and +1 Fortune Bonus to Saves vs. Spells; rarity Rare."
+cost = [{ ingredient = "Deck of Many Curses", quantity = 1 }]
+
+[[system.recipe]]
+tier = "any"
+slot = "crafting: deck curse"
+option = "Curse of the Sentient's Meal"
+augments = ["Curse of the Sentient's Meal"]
+note = "Random outcome; This item is now worth 10,000 Sentient XP and its sale value has increased by 100,000 Platinum. Note: This particular curse is slightly detrimental on a Bound item from Essence Crafting, which cannot be sold or fed to a Sentient Weapon, and will have its repair costs drastically increased; rarity Rare."
+cost = [{ ingredient = "Deck of Many Curses", quantity = 1 }]
+
+[[system.recipe]]
+tier = "any"
+slot = "crafting: deck curse"
+option = "Curse of Cruelty"
+augments = ["Curse of Cruelty"]
+note = "Random outcome; +2% Fortune Bonus to Damage vs. Helpless targets; rarity Rare."
+cost = [{ ingredient = "Deck of Many Curses", quantity = 1 }]
+
+[[system.recipe]]
+tier = "any"
+slot = "crafting: deck curse"
+option = "Curse of Intangibility"
+augments = ["Curse of Intangibility"]
+note = "Random outcome; +2% Fortune Bonus to Dodge Cap, +2 Fortune Bonus to Maximum Dexterity Bonus of equipped armor; rarity Rare."
+cost = [{ ingredient = "Deck of Many Curses", quantity = 1 }]
+
+[[system.recipe]]
+tier = "any"
+slot = "crafting: deck curse"
+option = "Curse of the Mechanical Marvel"
+augments = ["Curse of the Mechanical Marvel"]
+note = "Random outcome; +3% Fortune Bonus to Rune Arm Charge Rate, -3% Fortune Bonus to Rune Arm Cooldown Rate, +3 Fortune Bonus to Repair Amplification; rarity Rare."
+cost = [{ ingredient = "Deck of Many Curses", quantity = 1 }]
+
+[[system.recipe]]
+tier = "any"
+slot = "crafting: deck curse"
+option = "Curse of the Unstoppable One"
+augments = ["Curse of the Unstoppable One"]
+note = "Random outcome; +2% Fortune Bonus to Maximum Hit Points, +3% Fortune Bonus to Armor Class; rarity Rare."
+cost = [{ ingredient = "Deck of Many Curses", quantity = 1 }]
+
+[[system.recipe]]
+tier = "any"
+slot = "crafting: deck curse"
+option = "Curse of Unparalleled Might"
+augments = ["Curse of Unparalleled Might"]
+note = "Random outcome; While under the effects of any Action Boost, you gain a +6 Fortune Bonus to Strength; rarity Rare."
+cost = [{ ingredient = "Deck of Many Curses", quantity = 1 }]
+
+[[system.recipe]]
+tier = "any"
+slot = "crafting: deck curse"
+option = "Curse of Weapon's Touch"
+augments = ["Curse of Weapon's Touch"]
+note = "Random outcome; +5% Fortune Bonus to Strikethrough, +2% Fortune Bonus to Offhand Strike Chance, +2% Fortune Bonus to Doublestrike and Doubleshot; rarity Rare."
+cost = [{ ingredient = "Deck of Many Curses", quantity = 1 }]
+
+[[system.recipe]]
+tier = "any"
+slot = "crafting: deck curse"
+option = "Curse of Charming Presence"
+augments = ["Curse of Charming Presence"]
+note = "Random outcome; +2 Fortune Bonus to Bluff; rarity Misc."
+cost = [{ ingredient = "Deck of Many Curses", quantity = 1 }]
+
+[[system.recipe]]
+tier = "any"
+slot = "crafting: deck curse"
+option = "Curse of the Anger's Heart"
+augments = ["Curse of Anger's Heart"]
+note = "Random outcome; +2 Fortune Bonus to Intimidate; rarity Misc. Maetrim spells it Curse of Anger's Heart."
+cost = [{ ingredient = "Deck of Many Curses", quantity = 1 }]
+
+[[system.recipe]]
+tier = "any"
+slot = "crafting: deck curse"
+option = "Curse of the Unending Song"
+augments = ["Curse of Unending Song"]
+note = "Random outcome; +2 Fortune Bonus to Perform, +1 Bard Song; rarity Misc. Maetrim spells it Curse of Unending Song."
+cost = [{ ingredient = "Deck of Many Curses", quantity = 1 }]
+
+[[system.recipe]]
+tier = "any"
+slot = "crafting: deck curse"
+option = "Curse of the Depths"
+augments = ["Curse of the Depths"]
+note = "Random outcome; +2 Fortune Bonus to Swim, Water Breathing; rarity Misc."
+cost = [{ ingredient = "Deck of Many Curses", quantity = 1 }]
+
+[[system.recipe]]
+tier = "any"
+slot = "crafting: deck curse"
+option = "Curse of the Visionary"
+augments = ["Curse of the Visionary"]
+note = "Random outcome; +2 Fortune Bonus to Spot, True Seeing; rarity Misc."
+cost = [{ ingredient = "Deck of Many Curses", quantity = 1 }]
+
+[[system.recipe]]
+tier = "any"
+slot = "crafting: deck curse"
+option = "Curse of the Shadowtouched"
+augments = ["Curse of the Shadowtouched"]
+note = "Random outcome; Deathblock; rarity Misc."
+cost = [{ ingredient = "Deck of Many Curses", quantity = 1 }]
+
+[[system.recipe]]
+tier = "any"
+slot = "crafting: deck curse"
+option = "Curse of Butterflies"
+augments = ["Curse of Butterflies"]
+note = "Random outcome; Feather Falling, Cosmetic Butterflies; rarity Misc."
+cost = [{ ingredient = "Deck of Many Curses", quantity = 1 }]
+
+[[system.recipe]]
+tier = "any"
+slot = "crafting: deck curse"
+option = "Curse of the Forest's Embrace"
+augments = ["Curse of the Forest's Embrace"]
+note = "Random outcome; Fear Immunity, Cosmetic Fireflies; rarity Misc."
+cost = [{ ingredient = "Deck of Many Curses", quantity = 1 }]
+
+[[system.recipe]]
+tier = "any"
+slot = "crafting: deck curse"
+option = "Curse of the Commander"
+augments = ["Curse of the Commander"]
+note = "Random outcome; Your pets and summoned creatures gain a +1 Fortune Bonus to all Ability Scores; rarity Misc."
+cost = [{ ingredient = "Deck of Many Curses", quantity = 1 }]
+
+[[system.recipe]]
+tier = "any"
+slot = "crafting: deck curse"
+option = "Curse of the Unbreakable"
+augments = ["Curse of the Unbreakable"]
+note = "Random outcome; This item is now immune to item damage; rarity Misc."
+cost = [{ ingredient = "Deck of Many Curses", quantity = 1 }]
+
+[[system.recipe]]
+tier = "any"
+slot = "crafting: deck curse"
+option = "Curse of Future Sight"
+augments = ["Curse of Future Sight"]
+note = "Random outcome; +5% Fortune Bonus to Dodge Bypass; rarity Rare."
+cost = [{ ingredient = "Deck of Many Curses", quantity = 1 }]
+
+[[system.recipe]]
+tier = "any"
+slot = "crafting: deck curse"
+option = "Curse of the Winding Dirge"
+augments = ["Curse of the Winding Dirge"]
+note = "Random outcome; Your Inspire Courage grants you and your allies an additional +1 Fortune bonus to Attack, Damage, Saves versus Fear, and an additional +3 Fortune bonus to Universal Spell Power; rarity Rare."
+cost = [{ ingredient = "Deck of Many Curses", quantity = 1 }]
+
+[[system.recipe]]
+tier = "any"
+slot = "crafting: deck curse"
+option = "Curse of the Merciless"
+augments = ["Curse of the Merciless"]
+note = "Random outcome; +2 Fortune Bonus to Critical Confirmation and Critical Damage; rarity Rare."
+cost = [{ ingredient = "Deck of Many Curses", quantity = 1 }]
+
+[[system.recipe]]
+tier = "any"
+slot = "crafting: deck curse"
+option = "Curse of the Unfeeling"
+augments = ["Curse of the Unfeeling"]
+note = "Random outcome; +2% Fortune Bonus to MRR Cap; rarity Rare."
+cost = [{ ingredient = "Deck of Many Curses", quantity = 1 }]
+
+[[system.recipe]]
+tier = "any"
+slot = "crafting: deck curse"
+option = "Curse of Ghostly Haunting"
+augments = ["Curse of Ghostly Haunting"]
+note = "Random outcome; Ghost Touch; rarity Rare."
+cost = [{ ingredient = "Deck of Many Curses", quantity = 1 }]
+
+[[system.recipe]]
+tier = "any"
+slot = "crafting: deck curse"
+option = "Curse of the Overloaded"
+augments = []
+note = "Introduced in Update 66, appearing on items with multiple curses. Has no effect. No augment counterpart in Maetrim's DeckOfManyCurses family."
+cost = [{ ingredient = "Deck of Many Curses", quantity = 1 }]
+
+[[system.recipe]]
+tier = "any"
+option = "Remove a curse"
+augments = []
+note = "A Card of Curse Cleansing removes an item's existing curse; no augment counterpart."
+cost = [{ ingredient = "Card of Curse Cleansing", quantity = 1 }]

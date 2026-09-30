@@ -1,0 +1,561 @@
+[[system]]
+name = "Nearly Complete"
+page = "https://ddowiki.com/page/Nearly_Complete"
+read = "2026-09-29"
+pack = "Terror of Demogorgon"
+families = ["NearlyComplete"]
+npc = "Duergar Completion Forge, Gravenhollow"
+
+[[system.ingredient]]
+name = "Abyssal Gem"
+tier = "heroic"
+source = "Terror of Demogorgon end chests"
+
+[[system.ingredient]]
+name = "Legendary Abyssal Gem"
+tier = "legendary"
+source = "Terror of Demogorgon end chests"
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: nearly complete: ability score (heroic)"
+option = "Charisma +6"
+augments = ["+6 Charisma"]
+note = "All recipe facts are on this page, one table of effect sets. An item's Nearly Complete enchantment names its effect set; the upgrade cannot be replaced once chosen, so a different effect needs a new copy of the item. Effect set: Ability Score. Maetrim names it +6 Charisma."
+cost = [{ ingredient = "Abyssal Gem", quantity = 25 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: nearly complete: ability score (heroic)"
+option = "Constitution +6"
+augments = ["+6 Constitution"]
+note = "Effect set: Ability Score. Maetrim names it +6 Constitution."
+cost = [{ ingredient = "Abyssal Gem", quantity = 25 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: nearly complete: ability score (heroic)"
+option = "Dexterity +6"
+augments = ["+6 Dexterity"]
+note = "Effect set: Ability Score. Maetrim names it +6 Dexterity."
+cost = [{ ingredient = "Abyssal Gem", quantity = 25 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: nearly complete: ability score (heroic)"
+option = "Intelligence +6"
+augments = ["+6 Intelligence"]
+note = "Effect set: Ability Score. Maetrim names it +6 Intelligence."
+cost = [{ ingredient = "Abyssal Gem", quantity = 25 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: nearly complete: ability score (heroic)"
+option = "Strength +6"
+augments = ["+6 Strength"]
+note = "Effect set: Ability Score. Maetrim names it +6 Strength."
+cost = [{ ingredient = "Abyssal Gem", quantity = 25 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: nearly complete: ability score (heroic)"
+option = "Wisdom +6"
+augments = ["+6 Wisdom"]
+note = "Effect set: Ability Score. Maetrim names it +6 Wisdom."
+cost = [{ ingredient = "Abyssal Gem", quantity = 25 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: nearly complete: ability score (legendary)"
+option = "Charisma +15"
+augments = ["+15 Charisma"]
+note = "Effect set: Ability Score. Maetrim names it +15 Charisma."
+cost = [{ ingredient = "Legendary Abyssal Gem", quantity = 25 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: nearly complete: ability score (legendary)"
+option = "Constitution +15"
+augments = ["+15 Constitution"]
+note = "Effect set: Ability Score. Maetrim names it +15 Constitution."
+cost = [{ ingredient = "Legendary Abyssal Gem", quantity = 25 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: nearly complete: ability score (legendary)"
+option = "Dexterity +15"
+augments = ["+15 Dexterity"]
+note = "Effect set: Ability Score. Maetrim names it +15 Dexterity."
+cost = [{ ingredient = "Legendary Abyssal Gem", quantity = 25 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: nearly complete: ability score (legendary)"
+option = "Intelligence +15"
+augments = ["+15 Intelligence"]
+note = "Effect set: Ability Score. Maetrim names it +15 Intelligence."
+cost = [{ ingredient = "Legendary Abyssal Gem", quantity = 25 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: nearly complete: ability score (legendary)"
+option = "Strength +15"
+augments = ["+15 Strength"]
+note = "Effect set: Ability Score. Maetrim names it +15 Strength."
+cost = [{ ingredient = "Legendary Abyssal Gem", quantity = 25 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: nearly complete: ability score (legendary)"
+option = "Wisdom +15"
+augments = ["+15 Wisdom"]
+note = "Effect set: Ability Score. Maetrim names it +15 Wisdom."
+cost = [{ ingredient = "Legendary Abyssal Gem", quantity = 25 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: nearly complete: healing amplification (heroic)"
+option = "Competence Healing Amplification +24"
+augments = ["+24 Enhancement Healing Amplification"]
+note = "Effect set: Healing Amplification. The wiki lists a Competence bonus; Maetrim's augment is +24 Enhancement Healing Amplification."
+cost = [{ ingredient = "Abyssal Gem", quantity = 25 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: nearly complete: healing amplification (heroic)"
+option = "Profane Negative Amplification +24"
+augments = ["+24 Negative Healing Amplification"]
+note = "Effect set: Healing Amplification. The wiki lists a Profane bonus; Maetrim's augment is +24 Negative Healing Amplification."
+cost = [{ ingredient = "Abyssal Gem", quantity = 25 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: nearly complete: healing amplification (heroic)"
+option = "Repair Amplification +24"
+augments = ["+24 Enhancement Repair Amplification"]
+note = "Effect set: Healing Amplification. Maetrim's augment is +24 Enhancement Repair Amplification."
+cost = [{ ingredient = "Abyssal Gem", quantity = 25 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: nearly complete: healing amplification (legendary)"
+option = "Competence Healing Amplification +62"
+augments = ["+62 Enhancement Healing Amplification"]
+note = "Effect set: Healing Amplification. The wiki lists a Competence bonus; Maetrim's augment is +62 Enhancement Healing Amplification."
+cost = [{ ingredient = "Legendary Abyssal Gem", quantity = 25 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: nearly complete: healing amplification (legendary)"
+option = "Profane Negative Amplification +62"
+augments = ["+62 Negative Healing Amplification"]
+note = "Effect set: Healing Amplification. The wiki lists a Profane bonus; Maetrim's augment is +62 Negative Healing Amplification."
+cost = [{ ingredient = "Legendary Abyssal Gem", quantity = 25 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: nearly complete: healing amplification (legendary)"
+option = "Repair Amplification +62"
+augments = ["+62 Enhancement Repair Amplification"]
+note = "Effect set: Healing Amplification. Maetrim's augment is +62 Enhancement Repair Amplification."
+cost = [{ ingredient = "Legendary Abyssal Gem", quantity = 25 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: nearly complete: insightful ability score (heroic)"
+option = "Insightful Charisma +2"
+augments = ["+2 Insightful Charisma"]
+note = "Effect set: Insightful Ability Score. Maetrim names it +2 Insightful Charisma."
+cost = [{ ingredient = "Abyssal Gem", quantity = 25 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: nearly complete: insightful ability score (heroic)"
+option = "Insightful Constitution +2"
+augments = ["+2 Insightful Constitution"]
+note = "Effect set: Insightful Ability Score. Maetrim names it +2 Insightful Constitution."
+cost = [{ ingredient = "Abyssal Gem", quantity = 25 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: nearly complete: insightful ability score (heroic)"
+option = "Insightful Dexterity +2"
+augments = ["+2 Insightful Dexterity"]
+note = "Effect set: Insightful Ability Score. Maetrim names it +2 Insightful Dexterity."
+cost = [{ ingredient = "Abyssal Gem", quantity = 25 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: nearly complete: insightful ability score (heroic)"
+option = "Insightful Intelligence +2"
+augments = ["+2 Insightful Intelligence"]
+note = "Effect set: Insightful Ability Score. Maetrim names it +2 Insightful Intelligence."
+cost = [{ ingredient = "Abyssal Gem", quantity = 25 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: nearly complete: insightful ability score (heroic)"
+option = "Insightful Strength +2"
+augments = ["+2 Insightful Strength"]
+note = "Effect set: Insightful Ability Score. Maetrim names it +2 Insightful Strength."
+cost = [{ ingredient = "Abyssal Gem", quantity = 25 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: nearly complete: insightful ability score (heroic)"
+option = "Insightful Wisdom +2"
+augments = ["+2 Insightful Wisdom"]
+note = "Effect set: Insightful Ability Score. Maetrim names it +2 Insightful Wisdom."
+cost = [{ ingredient = "Abyssal Gem", quantity = 25 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: nearly complete: insightful ability score (legendary)"
+option = "Insightful Charisma +7"
+augments = ["+7 Insightful Charisma"]
+note = "Effect set: Insightful Ability Score. Maetrim names it +7 Insightful Charisma."
+cost = [{ ingredient = "Legendary Abyssal Gem", quantity = 25 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: nearly complete: insightful ability score (legendary)"
+option = "Insightful Constitution +7"
+augments = ["+7 Insightful Constitution"]
+note = "Effect set: Insightful Ability Score. Maetrim names it +7 Insightful Constitution."
+cost = [{ ingredient = "Legendary Abyssal Gem", quantity = 25 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: nearly complete: insightful ability score (legendary)"
+option = "Insightful Dexterity +7"
+augments = ["+7 Insightful Dexterity"]
+note = "Effect set: Insightful Ability Score. Maetrim names it +7 Insightful Dexterity."
+cost = [{ ingredient = "Legendary Abyssal Gem", quantity = 25 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: nearly complete: insightful ability score (legendary)"
+option = "Insightful Intelligence +7"
+augments = ["+7 Insightful Intelligence"]
+note = "Effect set: Insightful Ability Score. Maetrim names it +7 Insightful Intelligence."
+cost = [{ ingredient = "Legendary Abyssal Gem", quantity = 25 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: nearly complete: insightful ability score (legendary)"
+option = "Insightful Strength +7"
+augments = ["+7 Insightful Strength"]
+note = "Effect set: Insightful Ability Score. Maetrim names it +7 Insightful Strength."
+cost = [{ ingredient = "Legendary Abyssal Gem", quantity = 25 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: nearly complete: insightful ability score (legendary)"
+option = "Insightful Wisdom +7"
+augments = ["+7 Insightful Wisdom"]
+note = "Effect set: Insightful Ability Score. Maetrim names it +7 Insightful Wisdom."
+cost = [{ ingredient = "Legendary Abyssal Gem", quantity = 25 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: nearly complete: quality ability score (heroic)"
+option = "Quality Charisma +1"
+augments = ["+1 Quality Charisma"]
+note = "Effect set: Quality Ability Score. Maetrim names it +1 Quality Charisma."
+cost = [{ ingredient = "Abyssal Gem", quantity = 25 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: nearly complete: quality ability score (heroic)"
+option = "Quality Constitution +1"
+augments = ["+1 Quality Constitution"]
+note = "Effect set: Quality Ability Score. Maetrim names it +1 Quality Constitution."
+cost = [{ ingredient = "Abyssal Gem", quantity = 25 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: nearly complete: quality ability score (heroic)"
+option = "Quality Dexterity +1"
+augments = ["+1 Quality Dexterity"]
+note = "Effect set: Quality Ability Score. Maetrim names it +1 Quality Dexterity."
+cost = [{ ingredient = "Abyssal Gem", quantity = 25 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: nearly complete: quality ability score (heroic)"
+option = "Quality Intelligence +1"
+augments = ["+1 Quality Intelligence"]
+note = "Effect set: Quality Ability Score. Maetrim names it +1 Quality Intelligence."
+cost = [{ ingredient = "Abyssal Gem", quantity = 25 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: nearly complete: quality ability score (heroic)"
+option = "Quality Strength +1"
+augments = ["+1 Quality Strength"]
+note = "Effect set: Quality Ability Score. Maetrim names it +1 Quality Strength."
+cost = [{ ingredient = "Abyssal Gem", quantity = 25 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: nearly complete: quality ability score (heroic)"
+option = "Quality Wisdom +1"
+augments = ["+1 Quality Wisdom"]
+note = "Effect set: Quality Ability Score. Maetrim names it +1 Quality Wisdom."
+cost = [{ ingredient = "Abyssal Gem", quantity = 25 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: nearly complete: quality ability score (legendary)"
+option = "Quality Charisma +3"
+augments = ["+3 Quality Charisma"]
+note = "Effect set: Quality Ability Score. Maetrim names it +3 Quality Charisma."
+cost = [{ ingredient = "Legendary Abyssal Gem", quantity = 25 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: nearly complete: quality ability score (legendary)"
+option = "Quality Constitution +3"
+augments = ["+3 Quality Constitution"]
+note = "Effect set: Quality Ability Score. Maetrim names it +3 Quality Constitution."
+cost = [{ ingredient = "Legendary Abyssal Gem", quantity = 25 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: nearly complete: quality ability score (legendary)"
+option = "Quality Dexterity +3"
+augments = ["+3 Quality Dexterity"]
+note = "Effect set: Quality Ability Score. Maetrim names it +3 Quality Dexterity."
+cost = [{ ingredient = "Legendary Abyssal Gem", quantity = 25 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: nearly complete: quality ability score (legendary)"
+option = "Quality Intelligence +3"
+augments = ["+3 Quality Intelligence"]
+note = "Effect set: Quality Ability Score. Maetrim names it +3 Quality Intelligence."
+cost = [{ ingredient = "Legendary Abyssal Gem", quantity = 25 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: nearly complete: quality ability score (legendary)"
+option = "Quality Strength +3"
+augments = ["+3 Quality Strength"]
+note = "Effect set: Quality Ability Score. Maetrim names it +3 Quality Strength."
+cost = [{ ingredient = "Legendary Abyssal Gem", quantity = 25 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: nearly complete: quality ability score (legendary)"
+option = "Quality Wisdom +3"
+augments = ["+3 Quality Wisdom"]
+note = "Effect set: Quality Ability Score. Maetrim names it +3 Quality Wisdom."
+cost = [{ ingredient = "Legendary Abyssal Gem", quantity = 25 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: nearly complete: exceptional skills (heroic)"
+option = "Charisma Skills - Exceptional Bonus +6"
+augments = ["Charisma Skills - Exceptional Bonus +6"]
+note = "Effect set: Skill."
+cost = [{ ingredient = "Abyssal Gem", quantity = 25 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: nearly complete: exceptional skills (heroic)"
+option = "Constitution Skills - Exceptional Bonus +6"
+augments = ["Constitution Skills - Exceptional Bonus +6"]
+note = "Effect set: Skill."
+cost = [{ ingredient = "Abyssal Gem", quantity = 25 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: nearly complete: exceptional skills (heroic)"
+option = "Dexterity Skills - Exceptional Bonus +6"
+augments = ["Dexterity Skills - Exceptional Bonus +6"]
+note = "Effect set: Skill."
+cost = [{ ingredient = "Abyssal Gem", quantity = 25 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: nearly complete: exceptional skills (heroic)"
+option = "Intelligence Skills - Exceptional Bonus +6"
+augments = ["Intelligence Skills - Exceptional Bonus +6"]
+note = "Effect set: Skill."
+cost = [{ ingredient = "Abyssal Gem", quantity = 25 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: nearly complete: exceptional skills (heroic)"
+option = "Strength Skills - Exceptional Bonus +6"
+augments = ["Strength Skills - Exceptional Bonus +6"]
+note = "Effect set: Skill."
+cost = [{ ingredient = "Abyssal Gem", quantity = 25 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: nearly complete: exceptional skills (heroic)"
+option = "Wisdom Skills - Exceptional Bonus +6"
+augments = ["Wisdom Skills - Exceptional Bonus +6"]
+note = "Effect set: Skill."
+cost = [{ ingredient = "Abyssal Gem", quantity = 25 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: nearly complete: exceptional skills (legendary)"
+option = "Charisma Skills - Exceptional Bonus +11"
+augments = ["Charisma Skills - Exceptional Bonus +11"]
+note = "Effect set: Skill."
+cost = [{ ingredient = "Legendary Abyssal Gem", quantity = 25 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: nearly complete: exceptional skills (legendary)"
+option = "Constitution Skills - Exceptional Bonus +11"
+augments = ["Constitution Skills - Exceptional Bonus +11"]
+note = "Effect set: Skill."
+cost = [{ ingredient = "Legendary Abyssal Gem", quantity = 25 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: nearly complete: exceptional skills (legendary)"
+option = "Dexterity Skills - Exceptional Bonus +11"
+augments = ["Dexterity Skills - Exceptional Bonus +11"]
+note = "Effect set: Skill."
+cost = [{ ingredient = "Legendary Abyssal Gem", quantity = 25 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: nearly complete: exceptional skills (legendary)"
+option = "Intelligence Skills - Exceptional Bonus +11"
+augments = ["Intelligence Skills - Exceptional Bonus +11"]
+note = "Effect set: Skill."
+cost = [{ ingredient = "Legendary Abyssal Gem", quantity = 25 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: nearly complete: exceptional skills (legendary)"
+option = "Strength Skills - Exceptional Bonus +11"
+augments = ["Strength Skills - Exceptional Bonus +11"]
+note = "Effect set: Skill."
+cost = [{ ingredient = "Legendary Abyssal Gem", quantity = 25 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: nearly complete: exceptional skills (legendary)"
+option = "Wisdom Skills - Exceptional Bonus +11"
+augments = ["Wisdom Skills - Exceptional Bonus +11"]
+note = "Effect set: Skill."
+cost = [{ ingredient = "Legendary Abyssal Gem", quantity = 25 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: nearly complete: spell focus (heroic)"
+option = "Abjuration Focus +4"
+augments = ["Abjuration Focus +4"]
+note = "Effect set: Spell Focus."
+cost = [{ ingredient = "Abyssal Gem", quantity = 25 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: nearly complete: spell focus (heroic)"
+option = "Conjuration Focus +4"
+augments = ["Conjuration Focus +4"]
+note = "Effect set: Spell Focus."
+cost = [{ ingredient = "Abyssal Gem", quantity = 25 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: nearly complete: spell focus (heroic)"
+option = "Enchantment Focus +4"
+augments = ["Enchantment Focus +4"]
+note = "Effect set: Spell Focus."
+cost = [{ ingredient = "Abyssal Gem", quantity = 25 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: nearly complete: spell focus (heroic)"
+option = "Evocation Focus +4"
+augments = ["Evocation Focus +4"]
+note = "Effect set: Spell Focus."
+cost = [{ ingredient = "Abyssal Gem", quantity = 25 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: nearly complete: spell focus (heroic)"
+option = "Illusion Focus +4"
+augments = ["Illusion Focus +4"]
+note = "Effect set: Spell Focus."
+cost = [{ ingredient = "Abyssal Gem", quantity = 25 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: nearly complete: spell focus (heroic)"
+option = "Necromancy Focus +4"
+augments = ["Necromancy Focus +4"]
+note = "Effect set: Spell Focus."
+cost = [{ ingredient = "Abyssal Gem", quantity = 25 }]
+
+[[system.recipe]]
+tier = "heroic"
+slot = "crafting: nearly complete: spell focus (heroic)"
+option = "Transmutation Focus +4"
+augments = ["Transmutation Focus +4"]
+note = "Effect set: Spell Focus."
+cost = [{ ingredient = "Abyssal Gem", quantity = 25 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: nearly complete: spell focus (legendary)"
+option = "Abjuration Focus +13"
+augments = ["Abjuration Focus +13"]
+note = "Effect set: Spell Focus."
+cost = [{ ingredient = "Legendary Abyssal Gem", quantity = 25 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: nearly complete: spell focus (legendary)"
+option = "Conjuration Focus +13"
+augments = ["Conjuration Focus +13"]
+note = "Effect set: Spell Focus."
+cost = [{ ingredient = "Legendary Abyssal Gem", quantity = 25 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: nearly complete: spell focus (legendary)"
+option = "Enchantment Focus +13"
+augments = ["Enchantment Focus +13"]
+note = "Effect set: Spell Focus."
+cost = [{ ingredient = "Legendary Abyssal Gem", quantity = 25 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: nearly complete: spell focus (legendary)"
+option = "Evocation Focus +13"
+augments = ["Evocation Focus +13"]
+note = "Effect set: Spell Focus."
+cost = [{ ingredient = "Legendary Abyssal Gem", quantity = 25 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: nearly complete: spell focus (legendary)"
+option = "Illusion Focus +13"
+augments = ["Illusion Focus +13"]
+note = "Effect set: Spell Focus."
+cost = [{ ingredient = "Legendary Abyssal Gem", quantity = 25 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: nearly complete: spell focus (legendary)"
+option = "Necromancy Focus +13"
+augments = ["Necromancy Focus +13"]
+note = "Effect set: Spell Focus."
+cost = [{ ingredient = "Legendary Abyssal Gem", quantity = 25 }]
+
+[[system.recipe]]
+tier = "legendary"
+slot = "crafting: nearly complete: spell focus (legendary)"
+option = "Transmutation Focus +13"
+augments = ["Transmutation Focus +13"]
+note = "Effect set: Spell Focus."
+cost = [{ ingredient = "Legendary Abyssal Gem", quantity = 25 }]

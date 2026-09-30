@@ -1,0 +1,127 @@
+[[system]]
+name = "Sealed Altar"
+page = "https://ddowiki.com/page/Sealed_Altar"
+read = "2026-09-29"
+pack = "Terror of Demogorgon"
+npc = "Sealed Altar, upstairs in Gravenhollow; invisible until you stand at the furthest south point of the upper floor (near the glowing green spike) for ten seconds"
+
+[[system.ingredient]]
+name = "Abyssal Gem"
+tier = "heroic"
+source = "Terror of Demogorgon"
+
+[[system.ingredient]]
+name = "Legendary Abyssal Gem"
+tier = "legendary"
+source = "Terror of Demogorgon"
+
+[[system.ingredient]]
+name = "Black Globe of Slime"
+tier = "any"
+bind = "Bound to Account on Acquire"
+source = "Terror of Demogorgon (Heroic) / Terror of Demogorgon (Legendary)"
+
+[[system.ingredient]]
+name = "Green Globe of Slime"
+tier = "any"
+bind = "Bound to Account on Acquire"
+source = "ToEE: Lower Temple Complex, Living Pool's chest"
+
+[[system.ingredient]]
+name = "Gold Globe of Slime"
+tier = "any"
+bind = "Bound to Account on Acquire"
+source = "The Underdark, northern shrine after slaying Digestive Slimes"
+
+[[system.ingredient]]
+name = "Blue Globe of Slime"
+tier = "any"
+bind = "Bound to Account on Acquire"
+source = "Durk's Got A Secret, Muck's second chest"
+
+[[system.ingredient]]
+name = "Gray Globe of Slime"
+tier = "any"
+bind = "Bound to Account on Acquire"
+source = "White Plume Mountain, Huge Black Pudding's chest"
+
+[[system.ingredient]]
+name = "Pink Globe of Slime"
+tier = "any"
+bind = "Bound to Account on Acquire"
+source = "The Pit, Avatar of Juiblex's second chest"
+
+[[system.ingredient]]
+name = "Top of the Slime Emblem"
+tier = "any"
+bind = "Bound to Account on Acquire"
+source = "Fetid Cauldron"
+
+[[system.ingredient]]
+name = "Bottom of the Slime Emblem"
+tier = "any"
+bind = "Bound to Account on Acquire"
+source = "Fetid Cauldron"
+
+[[system.recipe]]
+tier = "heroic"
+option = "<Type> of the Oozing Hunger (Shields)"
+augments = []
+note = "All recipe facts are on this page. Introduced in Update 81; the page says all equipment crafted here is Bound to Character on Acquire, though its tables list some items as Bound to Account. Upgrades the corresponding heroic Duergarcraft item into a new item: 1.50[W], Bound to Account on Acquire, +5 Enhancement Bonus, Acid Blast 3, Insightful Shield Bashing +4, Acidic 3, Destructive Acid +2, Red Augment Slot. Needs a Slime Emblem in inventory, which is not consumed. A new item, not an augment; Maetrim has no augment family for this system."
+cost = [{ ingredient = "Abyssal Gem", quantity = 50 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "<Type> of the Oozing Hunger (Sceptre)"
+augments = []
+note = "Upgrades the corresponding heroic Duergarcraft item into a new item: 1.50[1d6], Bound to Account on Acquire, +5 Enhancement Bonus, Potency +49, Blighted Lore +12%, Insightful Acid Intensity +7%, Acid Intensity +12%, Red Augment Slot. Needs a Slime Emblem in inventory, which is not consumed. A new item, not an augment; Maetrim has no augment family for this system."
+cost = [{ ingredient = "Abyssal Gem", quantity = 50 }]
+
+[[system.recipe]]
+tier = "heroic"
+option = "<Type> of the Oozing Hunger (Other weapons)"
+augments = []
+note = "Upgrades the corresponding heroic Duergarcraft item into a new item: 1.50[W], Bound to Account on Acquire, +5 Enhancement Bonus, Acid Blast 3, Slime, Acidic 3, Destructive Acid +2, Red Augment Slot. Needs a Slime Emblem in inventory, which is not consumed. A new item, not an augment; Maetrim has no augment family for this system."
+cost = [{ ingredient = "Abyssal Gem", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary <Type> of the Oozing Hunger (Shields)"
+augments = []
+note = "Upgrades the corresponding Legendary Duergarcraft item into a new item: 6[W], Bound to Account on Acquire, +16 Enhancement Bonus, Lingering Acidic Burn, Insightful Shield Bashing +11, Acidic 7, Destructive Acid +7, Orange Augment Slot, Purple Augment Slot. Needs a Slime Emblem in inventory, which is not consumed. A new item, not an augment; Maetrim has no augment family for this system."
+cost = [{ ingredient = "Legendary Abyssal Gem", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary <Type> of the Oozing Hunger (Sceptre)"
+augments = []
+note = "Upgrades the corresponding Legendary Duergarcraft item into a new item: 6[1d6+3], Bound to Character on Acquire, +16 Enhancement Bonus, Lingering Acidic Burn, Blighted Lore +25%, Insightful Acid Intensity +14%, Acid Intensity +25%, Orange Augment Slot, Purple Augment Slot. Needs a Slime Emblem in inventory, which is not consumed. A new item, not an augment; Maetrim has no augment family for this system."
+cost = [{ ingredient = "Legendary Abyssal Gem", quantity = 50 }]
+
+[[system.recipe]]
+tier = "legendary"
+option = "Legendary <Type> of the Oozing Hunger (Other weapons)"
+augments = []
+note = "Upgrades the corresponding Legendary Duergarcraft item into a new item: 6[W], Bound to Character on Acquire, +16 Enhancement Bonus, Lingering Acidic Burn, Legendary Slime, Acidic 7, Destructive Acid +7, Orange Augment Slot, Purple Augment Slot. Needs a Slime Emblem in inventory, which is not consumed. A new item, not an augment; Maetrim has no augment family for this system."
+cost = [{ ingredient = "Legendary Abyssal Gem", quantity = 50 }]
+
+[[system.recipe]]
+tier = "any"
+option = "Top of the Slime Emblem"
+augments = []
+note = "Made at the Fetid Cauldron in Gravenhollow, next to the Stoneaxe brothers; a Slime Emblem part, no augment counterpart."
+cost = [{ ingredient = "Black Globe of Slime", quantity = 1 }, { ingredient = "Green Globe of Slime", quantity = 1 }, { ingredient = "Gold Globe of Slime", quantity = 1 }]
+
+[[system.recipe]]
+tier = "any"
+option = "Bottom of the Slime Emblem"
+augments = []
+note = "Made at the Fetid Cauldron; a Slime Emblem part, no augment counterpart."
+cost = [{ ingredient = "Blue Globe of Slime", quantity = 1 }, { ingredient = "Gray Globe of Slime", quantity = 1 }, { ingredient = "Pink Globe of Slime", quantity = 1 }]
+
+[[system.recipe]]
+tier = "any"
+option = "Slime Emblem"
+augments = []
+note = "Made at the Fetid Cauldron; opens the Sealed Altar and persists through Reincarnation (can pass through the Account Bank; discarding it means reflagging). No augment counterpart. Using the altar needs Terror of Demogorgon plus access to Menace of the Underdark, White Plume Mountain and Other Tales, and The Temple of Elemental Evil."
+cost = [{ ingredient = "Top of the Slime Emblem", quantity = 1 }, { ingredient = "Bottom of the Slime Emblem", quantity = 1 }]
