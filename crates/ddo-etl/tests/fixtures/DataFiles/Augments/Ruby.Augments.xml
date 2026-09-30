@@ -81,4 +81,17 @@ Drops in U48 Quest: Wake me up Inside</Description>
          <AType>NotNeeded</AType>
       </Effect>
    </Augment>
+   <Augment>
+      <Name>Ruby of Acid Blast</Name>
+      <Description>Critical hits with this weapon deal additional Acid Damage:
+x2: 1d10, x3 - 2d10, x3 - 3d10. Additionally, if you roll a 20 when attacking
+and confirm the critical hit, the weapon blasts your target, doing 4d6 damage.
+Drops in: Drop Location: ToEE: First Level and Earth Temple, and ToEE: Lower
+Temple Complex, rare encounter chests</Description>
+      <MinLevel>8</MinLevel>
+      <Type>Red</Type>
+      <Type>Purple</Type>
+      <Type>Orange</Type>
+      <Icon>Ruby</Icon>
+   </Augment>
    </Augments>

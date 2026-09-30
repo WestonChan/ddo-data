@@ -233,7 +233,7 @@ fn writes_augment_slots_and_presets() {
 #[test]
 fn links_items_to_quests_from_drop_location() {
     let (db, report) = built_fixture_db();
-    assert_eq!(count(&db, "SELECT COUNT(*) FROM quests WHERE NOT is_challenge AND source = 'maetrim'"), 17);
+    assert_eq!(count(&db, "SELECT COUNT(*) FROM quests WHERE NOT is_challenge AND source = 'maetrim'"), 19);
     assert_eq!(count(&db, "SELECT COUNT(*) FROM patrons"), 22);
     assert!(count(&db, "SELECT COUNT(*) FROM adventure_packs") >= 5);
     let (level, epic_level, is_raid, pack): (i64, Option<i64>, bool, String) = db
@@ -295,7 +295,7 @@ fn links_augments_to_the_quests_their_descriptions_name() {
         "the quests his text names that the fixture lacks link nothing; the wiki fixture marks this one rare"
     );
     assert!(augment_links("Lunar Gem of Evocation (Heroic)").is_empty(), "'Drops in: ?' names no quest");
-    assert_eq!((report.quest_augment_loot_link_count, report.drop_text_rare_augment_link_count), (4, 1));
+    assert_eq!((report.quest_augment_loot_link_count, report.drop_text_rare_augment_link_count), (6, 1));
     let description: String = db
         .query_row(
             "SELECT description FROM augments WHERE name = 'Lunar Gem of Magical Protection (Heroic)'",
@@ -368,6 +368,28 @@ fn matches_quest_names_his_drop_text_capitalises_differently() {
 }
 
 #[test]
+fn matches_a_quest_name_his_drop_text_wraps_onto_the_next_line() {
+    let (db, _) = built_fixture_db();
+    let mut statement = db
+        .prepare(
+            "SELECT q.name, qal.is_rare, qal.chest FROM quest_augment_loot qal JOIN quests q ON q.id = qal.quest_id
+               JOIN augments a ON a.id = qal.augment_id WHERE a.name = 'Ruby of Acid Blast' ORDER BY q.name",
+        )
+        .unwrap();
+    let links: Vec<(String, bool, Option<String>)> =
+        statement.query_map([], |r| Ok((r.get(0)?, r.get(1)?, r.get(2)?))).unwrap().map(Result::unwrap).collect();
+    let rare_encounter_chests = Some("rare encounter chests".to_string());
+    assert_eq!(
+        links,
+        [
+            ("ToEE: First Level and Earth Temple".to_string(), false, rare_encounter_chests.clone()),
+            ("ToEE: Lower Temple Complex".to_string(), false, rare_encounter_chests),
+        ],
+        "'ToEE: Lower\\nTemple Complex' is one quest name, not the chest 'and toee: lower'"
+    );
+}
+
+#[test]
 fn writes_quest_difficulties_and_epic_name() {
     let (db, _) = built_fixture_db();
     let quest = |name: &str| -> (String, Option<String>) {
@@ -411,7 +433,7 @@ fn diff_reports_coverage_against_a_legacy_database() {
 #[test]
 fn writes_augments_with_slots_bonuses_and_modifiers() {
     let (db, report) = built_fixture_db();
-    assert_eq!(report.augment_count, 15);
+    assert_eq!(report.augment_count, 16);
     let ruby: i64 =
         db.query_row("SELECT id FROM augments WHERE name = 'Ruby of Acid Damage'", [], |r| r.get(0)).unwrap();
     let (family, has_selectable_level, levels, values): (String, bool, String, String) = db

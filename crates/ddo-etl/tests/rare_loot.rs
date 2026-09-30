@@ -126,7 +126,11 @@ fn finds_a_quest_name_spelt_with_other_capitals_or_spacing_only_as_whole_words()
     );
     assert!(spans_of("The pitiless ice", "The Pit").is_empty(), "a folded match must end at a word boundary");
     assert_eq!(spans_of("The Pitiless", "The Pit"), ["The Pit"], "an exact match needs no boundary, as before");
-    assert!(spans_of("Wake me up\nInside", "Wake Me Up Inside").is_empty(), "a line break ends a segment");
+    assert_eq!(
+        spans_of("and ToEE: Lower\nTemple Complex, rare encounter chests", "ToEE: Lower Temple Complex"),
+        ["ToEE: Lower\nTemple Complex"],
+        "a name his text wraps onto the next line"
+    );
 }
 
 #[test]

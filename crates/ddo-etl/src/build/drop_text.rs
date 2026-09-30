@@ -1,5 +1,5 @@
 use super::TableWriter;
-use crate::map::drop_location::{chest_following, marks_rare_loot, quest_name_spans, segment_containing};
+use crate::map::drop_location::{chest_following, marks_rare_loot, quest_name_spans, segment_spanning};
 use anyhow::Result;
 use ddo_model::enums::{LootType, RowSource};
 use rusqlite::{params, Transaction};
@@ -57,8 +57,7 @@ impl DropTextQuests {
             if quest_name_spans.is_empty() {
                 continue;
             }
-            let is_rare =
-                quest_name_spans.iter().any(|span| marks_rare_loot(segment_containing(drop_text, span.start)));
+            let is_rare = quest_name_spans.iter().any(|span| marks_rare_loot(segment_spanning(drop_text, span)));
             for span in &quest_name_spans {
                 unmatched_text.replace_range(span.clone(), &MATCHED_TEXT_MASK.repeat(span.len()));
             }

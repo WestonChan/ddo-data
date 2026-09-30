@@ -190,4 +190,28 @@
       <Elite/>
       <Reaper/>
    </Quest>
+   <Quest>
+      <Name>ToEE: First Level and Earth Temple</Name>
+      <Patron>The Gatekeepers</Patron>
+      <AdventurePack>The Temple of Elemental Evil</AdventurePack>
+      <Favor>5</Favor>
+      <Levels size="2">8 34</Levels>
+      <Casual/>
+      <Normal/>
+      <Hard/>
+      <Elite/>
+      <Reaper/>
+   </Quest>
+   <Quest>
+      <Name>ToEE: Lower Temple Complex</Name>
+      <Patron>The Gatekeepers</Patron>
+      <AdventurePack>The Temple of Elemental Evil</AdventurePack>
+      <Favor>6</Favor>
+      <Levels size="2">8 34</Levels>
+      <Casual/>
+      <Normal/>
+      <Hard/>
+      <Elite/>
+      <Reaper/>
+   </Quest>
 </Quests>

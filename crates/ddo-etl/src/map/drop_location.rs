@@ -9,9 +9,11 @@ pub fn marks_rare_loot(segment: &str) -> bool {
     RARE_LOOT_MARKERS.iter().any(|m| segment.contains(m)) && !segment.contains(RARE_MONSTER_MARKER)
 }
 
-pub fn segment_containing(drop_location: &str, byte_offset: usize) -> &str {
-    let start = drop_location[..byte_offset].rfind(SEGMENT_SEPARATORS).map_or(0, |i| i + 1);
-    let end = drop_location[byte_offset..].find(SEGMENT_SEPARATORS).map_or(drop_location.len(), |i| byte_offset + i);
+pub fn segment_spanning<'text>(drop_location: &'text str, quest_name_span: &Range<usize>) -> &'text str {
+    let start = drop_location[..quest_name_span.start].rfind(SEGMENT_SEPARATORS).map_or(0, |i| i + 1);
+    let end = drop_location[quest_name_span.end..]
+        .find(SEGMENT_SEPARATORS)
+        .map_or(drop_location.len(), |i| quest_name_span.end + i);
     &drop_location[start..end]
 }
 
@@ -42,8 +44,8 @@ fn quest_name_end(drop_text: &str, start: usize, quest_name: &str) -> Option<usi
     while let Some(name_character) = name_characters.next() {
         if name_character.is_whitespace() {
             while name_characters.next_if(|character| character.is_whitespace()).is_some() {}
-            text_characters.next_if(|(_, character)| is_whitespace_within_a_line(*character))?;
-            while text_characters.next_if(|(_, character)| is_whitespace_within_a_line(*character)).is_some() {}
+            text_characters.next_if(|(_, character)| character.is_whitespace())?;
+            while text_characters.next_if(|(_, character)| character.is_whitespace()).is_some() {}
             continue;
         }
         let (_, text_character) = text_characters.next()?;
@@ -52,10 +54,6 @@ fn quest_name_end(drop_text: &str, start: usize, quest_name: &str) -> Option<usi
         }
     }
     Some(text_characters.peek().map_or(drop_text.len(), |(offset, _)| start + offset))
-}
-
-fn is_whitespace_within_a_line(character: char) -> bool {
-    character.is_whitespace() && !SEGMENT_SEPARATORS.contains(&character)
 }
 
 fn characters_match_ignoring_case(text_character: char, name_character: char) -> bool {
