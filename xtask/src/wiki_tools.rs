@@ -2,6 +2,7 @@ use crate::dataset::{build_in_memory_database, wiki_overrides_from};
 use anyhow::{Context, Result};
 use ddo_etl::build::BuildReport;
 use ddo_etl::wiki::DescriptionKind;
+use ddo_model::enums::ItemSource;
 use rusqlite::Connection;
 use std::collections::BTreeMap;
 use std::path::Path;
@@ -87,7 +88,8 @@ pub fn write_wiki_batch(data_files_dir: &Path, wiki_dir: Option<&Path>, out_dir:
     let (db, _) = build_in_memory_database(data_files_dir, &wiki_overrides)?;
     std::fs::create_dir_all(out_dir).with_context(|| format!("creating {}", out_dir.display()))?;
     let batch_files = [
-        ("item_names.txt", as_lines(maetrim_item_names(&db)?)),
+        ("item_names.txt", as_lines(item_names_from(&db, ItemSource::Maetrim)?)),
+        ("wiki_source_items.txt", as_lines(item_names_from(&db, ItemSource::Wiki)?)),
         ("augment_names.txt", as_lines(augment_name_lines(&db)?)),
         ("quest_pages.json", serde_json::to_string_pretty(&quest_page_urls(&db)?)? + "\n"),
         ("crafting_systems.json", CRAFTING_SYSTEMS_JSON.to_string()),
@@ -126,9 +128,9 @@ fn as_lines(lines: Vec<String>) -> String {
     lines.iter().map(|line| format!("{line}\n")).collect()
 }
 
-fn maetrim_item_names(db: &Connection) -> Result<Vec<String>> {
-    let mut statement = db.prepare("SELECT name FROM items WHERE source = 'maetrim' ORDER BY name")?;
-    let names = statement.query_map([], |row| row.get(0))?.collect::<rusqlite::Result<_>>()?;
+fn item_names_from(db: &Connection, source: ItemSource) -> Result<Vec<String>> {
+    let mut statement = db.prepare("SELECT name FROM items WHERE source = ?1 ORDER BY name")?;
+    let names = statement.query_map([source.as_str()], |row| row.get(0))?.collect::<rusqlite::Result<_>>()?;
     Ok(names)
 }
 

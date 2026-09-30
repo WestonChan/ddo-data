@@ -52,7 +52,7 @@ A clean run prints the report, whose `wiki_quest_loot_entry_count`, `wiki_rare_d
 
 ## `quests.toml`
 
-One `[[quest]]` table per quest, carrying the quest facts Maetrim's `Quests.xml` has no field for. The loader reads a file by its name: `quest_loot*.toml` holds loot entries, `quests*.toml` holds these, `crafting*.toml` holds crafting systems and `descriptions*.toml` holds descriptions, so a quest may appear once in each of the first two; any other name fails the build. The first 548 entries were read from the one index page, [Quests by level and XP](https://ddowiki.com/page/Quests_by_level_and_XP); a later read of a quest's own page updates its entry, `page` and `read` and adds the per-page fields.
+One `[[quest]]` table per quest, carrying the quest facts Maetrim's `Quests.xml` has no field for. The loader reads a file by its name: `quest_loot*.toml` holds loot entries, `quests*.toml` holds these, `crafting*.toml` holds crafting systems, `descriptions*.toml` holds descriptions and `items*.toml` holds items, so a quest may appear once in each of the first two; any other name fails the build. The first 548 entries were read from the one index page, [Quests by level and XP](https://ddowiki.com/page/Quests_by_level_and_XP); a later read of a quest's own page updates its entry, `page` and `read` and adds the per-page fields.
 
 ```toml
 [[quest]]
@@ -127,3 +127,46 @@ description = "..."
 - `description` (required): the page's description text, not empty and with no leading or trailing whitespace.
 
 The merge writes the description only where Maetrim's is empty (or, for an augment, where his text is the `Drops in: ?` placeholder or ends in a `Drops in: ?` line, which is then the only line replaced), so a wiki description never replaces text he wrote; for such an augment, write the drop line in his form (`Drops in: The House of Gems, end chest`). Besides the citation checks above, the build fails, naming the entry, when a field is missing or unknown, `kind` is not one of the five, `description` is empty or untrimmed, a (`kind`, `name`) pair repeats, or `name` matches no row of that kind. The report's `wiki_description_entry_count` counts the entries applied, `wiki_description_filled_count` the rows filled and `wiki_description_skipped_count` the rows left alone because he already had a description. `cargo xtask wiki-batch` writes the work list, `blank_descriptions.txt`: one `kind<TAB>name<TAB>suggested page URL` line per name still blank after the current overrides.
+
+## `items.toml`
+
+One `[[item]]` table per wiki item page for a named item Maetrim's `Items/` does not have, so the item exists in the database until his files carry it. This is the one file type that adds rows he could have written himself, which is why it has its own rule: the moment his files carry an item of the same name, his row wins and the wiki entry is dropped from the build and reported so it can be deleted here. A tiered item is recorded once per level variant, each its own entry named `<Name> (Level N)`, matching the way his files name tiered items.
+
+```toml
+[[item]]
+name = "Longsword of the Oozing Hunger"
+page = "https://ddowiki.com/page/Item:Longsword_of_the_Oozing_Hunger"
+read = "2026-09-29"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Longsword"
+minimum_level = 29
+enhancement_bonus = 15
+material = "Steel"
+drop_location = "Sealed Altar, crafted from ..."
+quests = [{ name = "Some Quest", loot_type = "chest" }]
+augment_slots = ["red", "colorless"]
+bonuses = [{ stat = "Strength", bonus_type = "Enhancement", value = 15 }]
+effects = [{ name = "Vorpal", description = "...", value = 3, target = "..." }]
+
+[item.weapon]
+damage_dice_count = 2
+damage_dice_sides = 8
+damage_dice_bonus = 0
+critical_threat_range = 2
+critical_multiplier = 2
+handedness = "One-handed"
+dr_bypass = ["Magic", "Slash"]
+```
+
+- `name` (required, unique across files), `slot` (an `equipment_slots.name`, as `/v1/equipment-slots` lists it), `category` (`Armor`, `Shield`, `Weapon`, `Jewelry` or `Clothing`), `minimum_level` and `drop_location` (the page's source line, free text) are required.
+- `item_type`: for a weapon or shield, a weapon type as `/v1/weapon-types` lists it (required); for armor, the armor type (`Cloth`, `Light`, `Medium`, `Heavy`, `Docent`), or omitted; otherwise free text or omitted.
+- `enhancement_bonus`, `material` (a material his items carry), `race_required`, `description` (flavour text) and `set` (a set in his `SetBonuses.xml` or `FiligreeSets/`) are optional; `accepts_sentience` and `is_minor_artifact` default to `false`.
+- `quests`: each `{ name, loot_type }`, the name spelled as his `Quests.xml` or `Challenges.xml` has it and `loot_type` one of `chest`, `raid`, `reward`.
+- `augment_slots`: socket labels as `/v1/augment-slot-types` lists them, in the item's order.
+- `bonuses`: each `{ stat, bonus_type, value }` with optional `value2`; the stat and bonus type as `/v1/stats` and `/v1/bonus-types` name them.
+- `effects`: each `{ name }` with optional `description`, `value` and `target`. A name he already uses reuses his effect and his description; a new name creates the effect with the given description.
+- `[item.weapon]` (required for `Weapon`, allowed for `Shield`): `damage_dice_count`, `damage_dice_sides`, `critical_threat_range` (the count of threatening faces: `19-20` is 2), `critical_multiplier` and `handedness` (`One-handed`, `Two-handed`, `Off-hand` or `Thrown`) are required; `damage_dice_bonus`, `damage_multiplier` (the `[W]` multiplier, when the page gives one) and `dr_bypass` are optional.
+- `[item.armor]` (required for `Armor` and `Shield`, only for them): `armor_type` (`Shield` for shields, otherwise one of the armor types, matching `item_type`), and optional `armor_bonus`, `max_dex_bonus`, `arcane_spell_failure`, `armor_check_penalty` and `shield_bonus`.
+
+The merge runs after his items, sets and sockets are written. An entry whose `name` equals one of his item names writes nothing and is counted in `wiki_item_superseded_count`; every other entry writes an `items` row with `source = 'wiki'` and `wiki_url` its `page`, plus its weapon or armor stats, bonuses, effects, sockets, quest links (never rare) and set link, and is counted in `wiki_item_written_count`. An entry whose name matches one of his once case, punctuation, spaces and a trailing `(level N)` are ignored is still written, and is counted in `wiki_item_probable_duplicate_count` so a person can decide whether it is the same item. Besides the citation checks above, the build fails, naming the file, the item and the value, when a field is missing or unknown, a value is outside the vocabularies above, a weapon lacks `[item.weapon]`, an item carries a table its category does not allow, or a quest, material, set or socket label matches nothing in his files. `cargo xtask wiki-check` prints the three counts and, under `warnings:`, one line per superseded entry (`warning: wiki item "<name>" is now in Maetrim's files; delete it from <file>`) and one per probable duplicate (`warning: wiki item "<name>" may duplicate Maetrim's "<his name>"`). `cargo xtask wiki-batch` writes `wiki_source_items.txt`, the names still supplied by the wiki; its `item_names.txt` lists only his items. The API reports each item's `source`, and `/v1/version` counts them as `wiki_items`.

@@ -11,7 +11,8 @@
       "minimum_level": 5,
       "name": "Cloak of Winter",
       "pack": "Fables of the Feywild",
-      "slot": "Back"
+      "slot": "Back",
+      "source": "maetrim"
     },
     {
       "category": "Clothing",
@@ -24,7 +25,8 @@
       "minimum_level": 12,
       "name": "Cloak of Winter's End (level 12)",
       "pack": null,
-      "slot": "Back"
+      "slot": "Back",
+      "source": "maetrim"
     }
   ],
   "limit": 2,

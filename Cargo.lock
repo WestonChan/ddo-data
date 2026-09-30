@@ -1926,6 +1926,7 @@ dependencies = [
  "clap",
  "ddo-api",
  "ddo-etl",
+ "ddo-model",
  "http-body-util",
  "ra-ap-rustc_lexer",
  "rusqlite",

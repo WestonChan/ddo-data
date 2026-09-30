@@ -103,6 +103,25 @@ async fn items_list_filters_and_pages() {
 }
 
 #[tokio::test]
+async fn items_say_whether_maetrim_or_the_wiki_supplied_them() {
+    let (_, _, axe_matches) = get("/v1/items?q=oozing").await;
+    let axe_row = &axe_matches["items"][0];
+    assert_eq!(axe_row["name"], "Battle Axe of the Oozing Hunger");
+    assert_eq!(axe_row["source"], "wiki");
+    let (_, _, sireth_matches) = get("/v1/items?q=sireth").await;
+    assert_eq!(sireth_matches["items"][0]["source"], "maetrim");
+
+    let (_, _, axe) = get(&format!("/v1/items/{}", axe_row["id"])).await;
+    assert_eq!(axe["source"], "wiki");
+    assert_eq!(axe["weapon"]["weapon_type"], "Battle Axe");
+    let (_, _, sireth) = get(&format!("/v1/items/{}", sireth_matches["items"][0]["id"])).await;
+    assert_eq!(sireth["source"], "maetrim");
+
+    let (_, _, version) = get("/v1/version").await;
+    assert_eq!(version["counts"]["wiki_items"], 1);
+}
+
+#[tokio::test]
 async fn item_detail_joins_every_satellite() {
     let (_, _, list) = get("/v1/items?q=sireth").await;
     let id = list["items"][0]["id"].as_i64().unwrap();

@@ -46,8 +46,10 @@ pub(super) struct ItemListQuery {
     summary = "List items",
     description = "One page of equipment matching every filter given, ordered by name. Each row carries what a picker \
                    needs: id, name, slot, category, item type, minimum level, enhancement bonus, icon name, the \
-                   alphabetically first adventure pack it drops in, whether any of its sources is a raid, and whether \
-                   it is rare loot from at least one quest (marked rare in Maetrim's drop text or on ddowiki). Use the detail endpoint for bonuses, sockets and quests. `total` counts every match, not just this page.",
+                   alphabetically first adventure pack it drops in, whether any of its sources is a raid, whether \
+                   it is rare loot from at least one quest (marked rare in Maetrim's drop text or on ddowiki), and \
+                   `source`: `maetrim` for an item from DDOBuilderV2's files, `wiki` for one read from ddowiki \
+                   because his files lack it (dropped as soon as his files carry an item of that name). Use the detail endpoint for bonuses, sockets and quests. `total` counts every match, not just this page.",
     params(
         ("q" = Option<String>, Query, description = "Case-insensitive substring of the item name"),
         ("slot" = Option<String>, Query, description = "Equipment slot name exactly as /v1/equipment-slots lists it, e.g. `Main Hand`"),
@@ -114,7 +116,7 @@ async fn items(
             let from_sql = format!("FROM items i JOIN equipment_slots es ON es.id = i.slot_id {where_sql}");
             let total = row_count(db, &format!("SELECT COUNT(*) {from_sql}"), where_clause.params())?;
             let page_sql = format!(
-                "SELECT i.id, i.name, es.name AS slot, i.item_category AS category, i.item_type, i.minimum_level, i.enhancement_bonus, i.icon,
+                "SELECT i.id, i.name, es.name AS slot, i.item_category AS category, i.item_type, i.minimum_level, i.enhancement_bonus, i.icon, i.source,
                         (SELECT MIN(ap.name) FROM quest_loot ql JOIN quests q ON q.id = ql.quest_id LEFT JOIN adventure_packs ap ON ap.id = q.pack_id WHERE ql.item_id = i.id) AS pack,
                         EXISTS (SELECT 1 FROM quest_loot ql WHERE ql.item_id = i.id AND ql.loot_type = 'raid') AS is_raid,
                         EXISTS (SELECT 1 FROM quest_loot ql WHERE ql.item_id = i.id AND ql.is_rare) AS is_rare
@@ -136,7 +138,8 @@ async fn items(
     summary = "Get an item",
     description = "One item with everything the dataset knows about it: the core row (slot, category, type, minimum \
                    level, enhancement bonus, material, race restriction, description, drop location text, set name, \
-                   sentience and minor-artifact flags, wiki URL), then `weapon` (dice, threat range, multipliers, \
+                   sentience and minor-artifact flags, wiki URL, and `source`, `maetrim` or `wiki` as in the list), \
+                   then `weapon` (dice, threat range, multipliers, \
                    proficiency, `dr_bypass`) or `armor` (AC, max Dex, spell failure, check penalty) when the item is \
                    one, `bonuses` (stat, bonus type, value), `effects` (named effects with value and target), \
                    `augment_slots` (sockets in order with their fixed `options`), `clickies`, `set`, `quests` it drops \
@@ -152,7 +155,7 @@ async fn item_detail(State(state): State<AppState>, Path(id): Path<i64>) -> Resu
                 db,
                 "SELECT i.id, i.name, es.name AS slot, i.item_category AS category, i.item_type, i.minimum_level, i.enhancement_bonus,
                         m.name AS material, i.race_required, i.icon, i.description, i.drop_location, i.set_bonus AS set_name,
-                        i.accepts_sentience, i.is_minor_artifact, i.wiki_url
+                        i.accepts_sentience, i.is_minor_artifact, i.wiki_url, i.source
                    FROM items i JOIN equipment_slots es ON es.id = i.slot_id LEFT JOIN item_materials m ON m.id = i.material_id
                   WHERE i.id = ?1",
                 [id],

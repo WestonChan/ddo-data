@@ -23,28 +23,29 @@ pub(super) struct VersionReport {
     pub counts: BTreeMap<String, i64>,
 }
 
-const COUNTED_TABLES: &[&str] = &[
-    "items",
-    "augments",
-    "set_bonuses",
-    "filigrees",
-    "sentient_gems",
-    "guild_buffs",
-    "clickies",
-    "feats",
-    "races",
-    "classes",
-    "enhancement_trees",
-    "enhancements",
-    "spells",
-    "optional_buffs",
-    "quests",
-    "modifiers",
-    "requirements",
-    "bonuses",
-    "crafting_systems",
-    "crafting_recipes",
-    "crafting_ingredients",
+const COUNTED_ROWS: &[(&str, &str)] = &[
+    ("items", "items"),
+    ("augments", "augments"),
+    ("set_bonuses", "set_bonuses"),
+    ("filigrees", "filigrees"),
+    ("sentient_gems", "sentient_gems"),
+    ("guild_buffs", "guild_buffs"),
+    ("clickies", "clickies"),
+    ("feats", "feats"),
+    ("races", "races"),
+    ("classes", "classes"),
+    ("enhancement_trees", "enhancement_trees"),
+    ("enhancements", "enhancements"),
+    ("spells", "spells"),
+    ("optional_buffs", "optional_buffs"),
+    ("quests", "quests"),
+    ("modifiers", "modifiers"),
+    ("requirements", "requirements"),
+    ("bonuses", "bonuses"),
+    ("crafting_systems", "crafting_systems"),
+    ("crafting_recipes", "crafting_recipes"),
+    ("crafting_ingredients", "crafting_ingredients"),
+    ("wiki_items", "items WHERE source = 'wiki'"),
 ];
 
 #[utoipa::path(
@@ -54,27 +55,27 @@ const COUNTED_TABLES: &[&str] = &[
     summary = "Get the dataset version",
     description = "Which DDOBuilderV2 commit the data was built from and when, which ddo-data commit the API binary \
                    was built from (`api_commit`, null for local builds), the schema version, and row counts for \
-                   the main tables. The dataset SHA is the same value every response carries in its \
-                   `X-Dataset-Version` header; a change in it means every cached response is stale.",
+                   the main tables plus `wiki_items`, the items read from ddowiki because DDOBuilderV2 lacks them. \
+                   The dataset SHA is the same value every response carries in its `X-Dataset-Version` header; a change in it means every cached response is stale.",
     responses((status = 200, description = "Dataset, schema and counts", body = VersionReport))
 )]
 async fn version_report(State(state): State<AppState>) -> Result<Json<VersionReport>, ApiError> {
     let dataset = state.dataset_version().clone();
     let schema_version = state.schema_version();
-    let row_counts_by_table = state
+    let row_counts_by_name = state
         .read_db(|db| {
-            let mut row_counts_by_table = BTreeMap::new();
-            for table in COUNTED_TABLES {
-                let table_row_count = row_count(db, &format!("SELECT COUNT(*) FROM {table}"), [])?;
-                row_counts_by_table.insert((*table).to_string(), table_row_count);
+            let mut row_counts_by_name = BTreeMap::new();
+            for (count_name, counted_rows_sql) in COUNTED_ROWS {
+                let counted_row_count = row_count(db, &format!("SELECT COUNT(*) FROM {counted_rows_sql}"), [])?;
+                row_counts_by_name.insert((*count_name).to_string(), counted_row_count);
             }
-            Ok(row_counts_by_table)
+            Ok(row_counts_by_name)
         })
         .await?;
     Ok(Json(VersionReport {
         schema_version,
         api_commit: option_env!("DDO_API_COMMIT"),
         dataset,
-        counts: row_counts_by_table,
+        counts: row_counts_by_name,
     }))
 }

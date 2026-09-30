@@ -12,6 +12,7 @@ axum = "0.8"
 clap = { workspace = true }
 ddo-api = { path = "../crates/ddo-api" }
 ddo-etl = { path = "../crates/ddo-etl" }
+ddo-model = { path = "../crates/ddo-model" }
 http-body-util = "0.1"
 ra-ap-rustc_lexer = "0.174"
 rusqlite = { workspace = true }

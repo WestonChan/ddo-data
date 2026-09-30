@@ -45,7 +45,7 @@ use utoipa_axum::router::OpenApiRouter;
     ),
     tags(
         (name = "meta", description = "Which DDOBuilderV2 commit the data came from, the schema version and row counts"),
-        (name = "items", description = "Equipment: weapons, armor, shields, jewelry and clothing with their bonuses, sockets and drop sources, plus the slot, weapon, damage and socket vocabularies they use"),
+        (name = "items", description = "Equipment: weapons, armor, shields, jewelry and clothing with their bonuses, sockets and drop sources, plus the slot, weapon, damage and socket vocabularies they use. A few items come from ddowiki (`source` = `wiki`) until DDOBuilderV2 carries them"),
         (name = "augments", description = "Augments and crafting-family inserts, with the sockets each one fits and the crafting recipes that yield them"),
         (name = "crafting", description = "Crafting systems from the wiki: ingredients, and recipes that turn ingredients into the augments Maetrim's files carry"),
         (name = "sets", description = "Gear set bonuses, sentient-weapon filigree sets, the filigrees themselves and the sentient gems they slot into"),

@@ -149,6 +149,10 @@ fn wiki_batch_writes_the_reading_agent_inputs() {
     write_wiki_batch(&fixtures_dir().join("DataFiles"), Some(&fixtures_dir().join("wiki")), out_dir.path()).unwrap();
 
     assert_eq!(line_count(&out_dir.path().join("item_names.txt")), 15);
+    assert_eq!(
+        std::fs::read_to_string(out_dir.path().join("wiki_source_items.txt")).unwrap(),
+        "Battle Axe of the Oozing Hunger\n"
+    );
     let augment_lines = std::fs::read_to_string(out_dir.path().join("augment_names.txt")).unwrap();
     assert_eq!(augment_lines.lines().count(), 11);
     assert!(augment_lines.lines().any(|line| line == "Alchemical\tFire I: Combustion\t29"), "{augment_lines}");
