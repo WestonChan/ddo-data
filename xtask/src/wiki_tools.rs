@@ -2,7 +2,7 @@ use crate::dataset::{build_in_memory_database, corrections_from, wiki_overrides_
 use anyhow::{Context, Result};
 use ddo_etl::build::BuildReport;
 use ddo_etl::wiki::DescriptionKind;
-use ddo_model::enums::ItemSource;
+use ddo_model::enums::RowSource;
 use rusqlite::Connection;
 use std::collections::BTreeMap;
 use std::path::Path;
@@ -23,6 +23,7 @@ pub fn wiki_check_report(
     report_lines.push("warnings:".to_string());
     report_lines.extend(unused_family_augment_warnings(&db)?);
     report_lines.extend(socket_label_warnings(&db)?);
+    report_lines.extend(wiki_quest_warnings(&report));
     report_lines.extend(wiki_item_warnings(&report));
     report_lines.extend(stale_correction_warnings(&report));
     report_lines.extend(looks_variant_warnings(&db)?);
@@ -59,6 +60,9 @@ fn wiki_report_lines(report: &BuildReport) -> Vec<String> {
         ("wiki_added_quest_loot_link_count", report.wiki_added_quest_loot_link_count),
         ("drop_text_rare_link_count", report.drop_text_rare_link_count),
         ("wiki_quest_entry_count", report.wiki_quest_entry_count),
+        ("wiki_quest_created_count", report.wiki_quest_created_count),
+        ("wiki_quest_superseded_count", report.wiki_quest_superseded_count),
+        ("wiki_quest_probable_duplicate_count", report.wiki_quest_probable_duplicate_count),
         ("wiki_crafting_system_count", report.wiki_crafting_system_count),
         ("wiki_crafting_recipe_count", report.wiki_crafting_recipe_count),
         ("wiki_crafting_ingredient_count", report.wiki_crafting_ingredient_count),
@@ -74,6 +78,22 @@ fn wiki_report_lines(report: &BuildReport) -> Vec<String> {
     .iter()
     .map(|(field_name, count)| format!("{field_name}: {count}"))
     .collect()
+}
+
+fn wiki_quest_warnings(report: &BuildReport) -> Vec<String> {
+    let superseded_warnings = report.superseded_wiki_quests.iter().map(|superseded_quest| {
+        format!(
+            "warning: wiki quest {:?} is now in Maetrim's files; delete its quest fields from {}",
+            superseded_quest.name, superseded_quest.file_name
+        )
+    });
+    let probable_duplicate_warnings = report.probable_duplicate_wiki_quests.iter().map(|duplicate_quest| {
+        format!(
+            "warning: wiki quest {:?} may duplicate Maetrim's {:?}",
+            duplicate_quest.name, duplicate_quest.maetrim_name
+        )
+    });
+    superseded_warnings.chain(probable_duplicate_warnings).collect()
 }
 
 fn wiki_item_warnings(report: &BuildReport) -> Vec<String> {
@@ -109,7 +129,7 @@ fn maetrim_effect_names(db: &Connection) -> Result<Vec<String>> {
          JOIN items ON items.id = item_effects.item_id
          WHERE items.source = ?1
          ORDER BY effects.id",
-        &[ItemSource::Maetrim.as_str()],
+        &[RowSource::Maetrim.as_str()],
     )
 }
 
@@ -126,7 +146,7 @@ fn wiki_created_effect_names(db: &Connection) -> Result<Vec<String>> {
              JOIN items AS maetrim_items ON maetrim_items.id = maetrim_item_effects.item_id
              WHERE maetrim_item_effects.effect_id = effects.id AND maetrim_items.source = ?1)
          ORDER BY effects.name",
-        &[ItemSource::Maetrim.as_str(), ItemSource::Wiki.as_str()],
+        &[RowSource::Maetrim.as_str(), RowSource::Wiki.as_str()],
     )
 }
 
@@ -184,7 +204,7 @@ fn looks_variant_warnings(db: &Connection) -> Result<Vec<String>> {
          ORDER BY wiki_items.name, maetrim_items.name",
     )?;
     let warnings = statement
-        .query_map([ItemSource::Wiki.as_str(), ItemSource::Maetrim.as_str()], |row| {
+        .query_map([RowSource::Wiki.as_str(), RowSource::Maetrim.as_str()], |row| {
             let (wiki_name, maetrim_name): (String, String) = (row.get(0)?, row.get(1)?);
             Ok(format!(
                 "warning: wiki item {wiki_name:?} looks like a variant of Maetrim's {maetrim_name:?} (same level and drop location)"
@@ -204,8 +224,9 @@ pub fn write_wiki_batch(
     let (db, _) = build_in_memory_database(data_files_dir, &wiki_overrides, &corrections_from(corrections_dir)?)?;
     std::fs::create_dir_all(out_dir).with_context(|| format!("creating {}", out_dir.display()))?;
     let batch_files = [
-        ("item_names.txt", as_lines(item_names_from(&db, ItemSource::Maetrim)?)),
-        ("wiki_source_items.txt", as_lines(item_names_from(&db, ItemSource::Wiki)?)),
+        ("item_names.txt", as_lines(names_from(&db, "items", RowSource::Maetrim)?)),
+        ("wiki_source_items.txt", as_lines(names_from(&db, "items", RowSource::Wiki)?)),
+        ("wiki_source_quests.txt", as_lines(names_from(&db, "quests", RowSource::Wiki)?)),
         ("augment_names.txt", as_lines(augment_name_lines(&db)?)),
         ("quest_pages.json", serde_json::to_string_pretty(&quest_page_urls(&db)?)? + "\n"),
         ("crafting_systems.json", CRAFTING_SYSTEMS_JSON.to_string()),
@@ -244,8 +265,8 @@ fn as_lines(lines: Vec<String>) -> String {
     lines.iter().map(|line| format!("{line}\n")).collect()
 }
 
-fn item_names_from(db: &Connection, source: ItemSource) -> Result<Vec<String>> {
-    let mut statement = db.prepare("SELECT name FROM items WHERE source = ?1 ORDER BY name")?;
+fn names_from(db: &Connection, table_name: &str, source: RowSource) -> Result<Vec<String>> {
+    let mut statement = db.prepare(&format!("SELECT name FROM {table_name} WHERE source = ?1 ORDER BY name"))?;
     let names = statement.query_map([source.as_str()], |row| row.get(0))?.collect::<rusqlite::Result<_>>()?;
     Ok(names)
 }

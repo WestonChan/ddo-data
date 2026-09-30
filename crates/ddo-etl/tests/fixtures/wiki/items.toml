@@ -1,4 +1,4 @@
-# Only vocabulary the fixture DataFiles carry. Both items are test values shaped like a wiki item page, not text
+# Only vocabulary the fixture DataFiles and the fixture wiki quests carry. Both items are test values shaped like a wiki item page, not text
 # read from ddowiki; the second takes the name of one of Maetrim's fixture items, so the build must drop it.
 [[item]]
 name = "Battle Axe of the Oozing Hunger"
@@ -12,7 +12,7 @@ enhancement_bonus = 15
 material = "Steel"
 description = "Test description: an axe that drips."
 drop_location = "Test source: The Grotto, end chest"
-quests = [{ name = "The Grotto", loot_type = "chest" }]
+quests = [{ name = "The Grotto", loot_type = "chest" }, { name = "The Oozing Pit", loot_type = "reward" }]
 set = "Inevitable Balance"
 augment_slots = ["red", "colorless"]
 bonuses = [

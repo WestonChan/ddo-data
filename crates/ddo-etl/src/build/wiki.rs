@@ -1,8 +1,10 @@
 use super::items::{ArmorStatsRow, ItemRow, WeaponStatsRow};
-use super::{BuildReport, ProbableDuplicateWikiItem, SupersededWikiItem, TableWriter};
-use crate::wiki::{CraftingRecipe, CraftingSystem, WikiDescription, WikiItem, WikiItemEffect, WikiOverrides};
+use super::{BuildReport, ProbableDuplicateWikiEntry, SupersededWikiEntry, TableWriter};
+use crate::wiki::{
+    CraftingRecipe, CraftingSystem, WikiDescription, WikiItem, WikiItemEffect, WikiOverrides, WikiQuest,
+};
 use anyhow::{bail, Context, Result};
-use ddo_model::enums::{ItemSource, LootType};
+use ddo_model::enums::{LootType, RowSource};
 use rusqlite::{params, OptionalExtension, Transaction};
 use std::collections::{HashMap, HashSet};
 
@@ -34,11 +36,11 @@ pub(super) fn apply_wiki_overrides(
         }
         report.wiki_quest_loot_entry_count += 1;
     }
-    for quest_facts in &wiki_overrides.quest_facts {
-        let citation = format!("wiki quests {:?} ({})", quest_facts.name, quest_facts.page);
-        let quest_id = id_by_name(transaction, "quests", &quest_facts.name)?.with_context(|| {
+    for wiki_quest in &wiki_overrides.quests {
+        let citation = format!("wiki quests {:?} ({})", wiki_quest.name, wiki_quest.page);
+        let quest_id = id_by_name(transaction, "quests", &wiki_quest.name)?.with_context(|| {
             format!(
-                "{citation}: no quest has this name in Quests.xml or Challenges.xml; fix the name to match Maetrim's"
+                "{citation}: no quest has this name in Quests.xml or Challenges.xml; fix the name to match Maetrim's, or give the quest fields that create it"
             )
         })?;
         transaction.execute(
@@ -46,11 +48,11 @@ pub(super) fn apply_wiki_overrides(
               WHERE id = ?1",
             params![
                 quest_id,
-                quest_facts.free_to_play,
-                quest_facts.legendary_level,
-                quest_facts.zone,
-                quest_facts.bestowed_by,
-                quest_facts.flagging
+                wiki_quest.free_to_play,
+                wiki_quest.legendary_level,
+                wiki_quest.zone,
+                wiki_quest.bestowed_by,
+                wiki_quest.flagging
             ],
         )?;
         report.wiki_quest_entry_count += 1;
@@ -69,6 +71,72 @@ pub(super) fn apply_wiki_overrides(
             )
         })?;
     }
+    Ok(())
+}
+
+pub(super) fn write_wiki_quests(
+    transaction: &Transaction,
+    wiki_quests: &[WikiQuest],
+    report: &mut BuildReport,
+) -> Result<()> {
+    let maetrim_quest_names: Vec<String> = {
+        let mut statement = transaction.prepare("SELECT name FROM quests ORDER BY name")?;
+        let names = statement.query_map([], |r| r.get(0))?.collect::<rusqlite::Result<_>>()?;
+        names
+    };
+    let maetrim_quest_name_set: HashSet<&str> = maetrim_quest_names.iter().map(String::as_str).collect();
+    let maetrim_quest_names_by_normalised_name = names_by_normalised_name(&maetrim_quest_names);
+    for wiki_quest in wiki_quests.iter().filter(|wiki_quest| wiki_quest.carries_quest_fields()) {
+        if maetrim_quest_name_set.contains(wiki_quest.name.as_str()) {
+            report
+                .superseded_wiki_quests
+                .push(SupersededWikiEntry { name: wiki_quest.name.clone(), file_name: wiki_quest.file_name.clone() });
+            report.wiki_quest_superseded_count += 1;
+            continue;
+        }
+        insert_wiki_quest(transaction, wiki_quest).with_context(|| {
+            format!("wiki {} quest {:?} ({})", wiki_quest.file_name, wiki_quest.name, wiki_quest.page)
+        })?;
+        report.wiki_quest_created_count += 1;
+        if let Some(maetrim_name) = maetrim_quest_names_by_normalised_name.get(&normalised_name(&wiki_quest.name)) {
+            report.probable_duplicate_wiki_quests.push(ProbableDuplicateWikiEntry {
+                name: wiki_quest.name.clone(),
+                maetrim_name: (*maetrim_name).to_string(),
+            });
+            report.wiki_quest_probable_duplicate_count += 1;
+        }
+    }
+    Ok(())
+}
+
+fn insert_wiki_quest(transaction: &Transaction, wiki_quest: &WikiQuest) -> Result<()> {
+    let pack_name = wiki_quest.pack.as_deref().expect("validated pack");
+    let pack_id = id_by_name(transaction, "adventure_packs", pack_name)?.with_context(|| {
+        format!(
+            "pack {pack_name:?} is not an adventure pack in Maetrim's Quests.xml or Challenges.xml; use his spelling"
+        )
+    })?;
+    let patron_id = match &wiki_quest.patron {
+        Some(patron_name) => Some(id_by_name(transaction, "patrons", patron_name)?.with_context(|| {
+            format!("patron {patron_name:?} is not a patron in Maetrim's Patrons.xml; use his spelling")
+        })?),
+        None => None,
+    };
+    transaction.execute(
+        "INSERT INTO quests (name, pack_id, patron_id, level, epic_level, favor, is_raid, difficulties, source)
+         VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9)",
+        params![
+            wiki_quest.name,
+            pack_id,
+            patron_id,
+            wiki_quest.level,
+            wiki_quest.epic_level,
+            wiki_quest.favor,
+            wiki_quest.is_raid.unwrap_or_default(),
+            serde_json::to_string(wiki_quest.difficulties.as_deref().unwrap_or_default())?,
+            RowSource::Wiki.as_str(),
+        ],
+    )?;
     Ok(())
 }
 
@@ -257,12 +325,7 @@ impl TableWriter<'_> {
             names
         };
         let maetrim_item_name_set: HashSet<&str> = maetrim_item_names.iter().map(String::as_str).collect();
-        let mut maetrim_item_names_by_normalised_name: HashMap<String, &str> = HashMap::new();
-        for maetrim_item_name in &maetrim_item_names {
-            maetrim_item_names_by_normalised_name
-                .entry(normalised_item_name(maetrim_item_name))
-                .or_insert(maetrim_item_name);
-        }
+        let maetrim_item_names_by_normalised_name = names_by_normalised_name(&maetrim_item_names);
         let mut effect_ids_by_folded_name: HashMap<String, i64> = HashMap::new();
         let mut effect_names_by_id: Vec<(&String, &i64)> = self.written.effect_ids_by_name.iter().collect();
         effect_names_by_id.sort_by_key(|(_, id)| **id);
@@ -273,7 +336,7 @@ impl TableWriter<'_> {
             if maetrim_item_name_set.contains(wiki_item.name.as_str()) {
                 report
                     .superseded_wiki_items
-                    .push(SupersededWikiItem { name: wiki_item.name.clone(), file_name: wiki_item.file_name.clone() });
+                    .push(SupersededWikiEntry { name: wiki_item.name.clone(), file_name: wiki_item.file_name.clone() });
                 report.wiki_item_superseded_count += 1;
                 continue;
             }
@@ -281,10 +344,8 @@ impl TableWriter<'_> {
                 format!("wiki {} item {:?} ({})", wiki_item.file_name, wiki_item.name, wiki_item.page)
             })?;
             report.wiki_item_written_count += 1;
-            if let Some(maetrim_name) =
-                maetrim_item_names_by_normalised_name.get(&normalised_item_name(&wiki_item.name))
-            {
-                report.probable_duplicate_wiki_items.push(ProbableDuplicateWikiItem {
+            if let Some(maetrim_name) = maetrim_item_names_by_normalised_name.get(&normalised_name(&wiki_item.name)) {
+                report.probable_duplicate_wiki_items.push(ProbableDuplicateWikiEntry {
                     name: wiki_item.name.clone(),
                     maetrim_name: (*maetrim_name).to_string(),
                 });
@@ -325,9 +386,9 @@ impl TableWriter<'_> {
             .quests
             .iter()
             .map(|quest| {
-                let quest_id = self.written_quests.id_named(&quest.name).with_context(|| {
+                let quest_id = id_by_name(self.transaction, "quests", &quest.name)?.with_context(|| {
                     format!(
-                        "quest {:?} is not a quest in Maetrim's Quests.xml or Challenges.xml; use his spelling",
+                        "quest {:?} is not a quest in Maetrim's Quests.xml or Challenges.xml or the wiki quests; use his spelling",
                         quest.name
                     )
                 })?;
@@ -351,7 +412,7 @@ impl TableWriter<'_> {
             accepts_sentience: wiki_item.accepts_sentience,
             is_minor_artifact: wiki_item.is_minor_artifact,
             wiki_url: wiki_item.page.clone(),
-            source: ItemSource::Wiki,
+            source: RowSource::Wiki,
         })?;
         if let (Some(weapon), Some(weapon_type)) = (&wiki_item.weapon, wiki_item.weapon_type()) {
             self.insert_weapon_stats(
@@ -435,8 +496,16 @@ fn folded_effect_name(effect_name: &str) -> String {
         .collect()
 }
 
-fn normalised_item_name(item_name: &str) -> String {
-    let lowercase_name = item_name.trim().to_lowercase();
+fn names_by_normalised_name(names: &[String]) -> HashMap<String, &str> {
+    let mut names_by_normalised_name = HashMap::new();
+    for name in names {
+        names_by_normalised_name.entry(normalised_name(name)).or_insert(name.as_str());
+    }
+    names_by_normalised_name
+}
+
+fn normalised_name(name: &str) -> String {
+    let lowercase_name = name.trim().to_lowercase();
     let name_without_level = lowercase_name
         .strip_suffix(')')
         .and_then(|before_paren| before_paren.rsplit_once("(level "))

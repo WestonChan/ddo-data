@@ -1,4 +1,4 @@
-use ddo_etl::build::{build_database, ProbableDuplicateWikiItem, SupersededWikiItem};
+use ddo_etl::build::{build_database, ProbableDuplicateWikiEntry, SupersededWikiEntry};
 use ddo_etl::corrections::Corrections;
 use ddo_etl::wiki::{DescriptionKind, WikiOverrides};
 use ddo_model::DatasetVersion;
@@ -169,8 +169,8 @@ fn quest_facts_toml(name: &str, extra_lines: &str) -> String {
 #[test]
 fn reads_quest_facts_from_quests_files() {
     let wiki = WikiOverrides::from_dir(&fixtures_dir().join("wiki")).unwrap();
-    assert_eq!(wiki.quest_facts.len(), 3);
-    let chronoscope = &wiki.quest_facts[0];
+    assert_eq!(wiki.quests.len(), 4);
+    let chronoscope = &wiki.quests[0];
     assert_eq!(chronoscope.name, "The Chronoscope");
     assert!(!chronoscope.free_to_play);
     assert_eq!(chronoscope.legendary_level, Some(34));
@@ -183,7 +183,7 @@ fn reads_quest_facts_from_quests_files() {
 #[test]
 fn embedded_quests_file_loads() {
     let wiki = WikiOverrides::embedded().unwrap();
-    assert!(wiki.quest_facts.iter().any(|q| q.name == "A Blood Pact" && q.legendary_level == Some(37)));
+    assert!(wiki.quests.iter().any(|q| q.name == "A Blood Pact" && q.legendary_level == Some(37)));
 }
 
 #[test]
@@ -287,7 +287,7 @@ fn fills_the_wiki_only_quest_columns() {
     );
     assert_eq!(wiki_columns(&db, "The Grotto"), (true, None, None, None, None));
     assert_eq!(wiki_columns(&db, "Caught in the Web"), (false, None, None, None, None));
-    assert_eq!(report.wiki_quest_entry_count, 3);
+    assert_eq!(report.wiki_quest_entry_count, 4);
 }
 
 #[test]
@@ -297,6 +297,197 @@ fn quest_facts_never_change_maetrims_quest_columns() {
     for quest in ["The Chronoscope", "The Grotto", "Book Burning"] {
         assert_eq!(maetrim_columns(&with, quest), maetrim_columns(&without, quest), "{quest}");
     }
+}
+
+const WIKI_QUEST: &str = "The Oozing Pit";
+
+fn wiki_quest_fields_toml(name: &str, extra_lines: &str) -> String {
+    quest_facts_toml(
+        name,
+        &format!(
+            "pack = \"Chill of Ravenloft\"\nlevel = 32\nfavor = 150\nis_raid = false\ndifficulties = [\"normal\"]\n{extra_lines}"
+        ),
+    )
+}
+
+#[test]
+fn reads_the_quest_fields_a_wiki_quest_carries() {
+    let wiki = WikiOverrides::from_dir(&fixtures_dir().join("wiki")).unwrap();
+    let oozing_pit = wiki.quests.iter().find(|q| q.name == WIKI_QUEST).unwrap();
+    assert_eq!(oozing_pit.file_name, "quests.toml");
+    assert_eq!(
+        (oozing_pit.pack.as_deref(), oozing_pit.patron.as_deref()),
+        (Some("Chill of Ravenloft"), Some("The Coin Lords"))
+    );
+    assert_eq!(
+        (oozing_pit.level, oozing_pit.epic_level, oozing_pit.favor, oozing_pit.is_raid),
+        (Some(32), Some(33), Some(150), Some(false))
+    );
+    assert_eq!(oozing_pit.difficulties.as_deref(), Some(&["normal", "hard", "elite", "reaper"].map(String::from)[..]));
+    assert!(oozing_pit.carries_quest_fields());
+    assert!(!wiki.quests[0].carries_quest_fields(), "The Chronoscope only adds facts");
+}
+
+#[test]
+fn rejects_a_quest_carrying_some_quest_fields_but_not_all_naming_the_missing_one() {
+    for missing_field in ["pack", "level", "favor", "is_raid", "difficulties"] {
+        let toml_text = wiki_quest_fields_toml(WIKI_QUEST, "")
+            .lines()
+            .filter(|line| !line.starts_with(&format!("{missing_field} =")))
+            .map(|line| format!("{line}\n"))
+            .collect::<String>();
+        let error = parsed_wiki(&[("quests.toml", &toml_text)]).unwrap_err();
+        assert!(
+            error.contains("quests.toml") && error.contains(WIKI_QUEST) && error.contains(missing_field),
+            "{missing_field}: {error}"
+        );
+    }
+}
+
+#[test]
+fn rejects_a_difficulty_outside_the_six() {
+    let toml_text = wiki_quest_fields_toml(WIKI_QUEST, "").replace("[\"normal\"]", "[\"Normal\"]");
+    let error = parsed_wiki(&[("quests.toml", &toml_text)]).unwrap_err();
+    assert!(error.contains(WIKI_QUEST) && error.contains("Normal") && error.contains("reaper"), "{error}");
+}
+
+type CreatedQuestRow = (
+    String,
+    Option<String>,
+    Option<i64>,
+    Option<i64>,
+    Option<i64>,
+    bool,
+    String,
+    bool,
+    Option<i64>,
+    Option<String>,
+    String,
+);
+
+#[test]
+fn creates_a_wiki_quest_maetrims_files_lack() {
+    let (db, report) = built_db_with_fixture_wiki();
+    let quest_row: CreatedQuestRow = db
+        .query_row(
+            "SELECT ap.name, p.name, q.level, q.epic_level, q.favor, q.is_raid, q.difficulties, q.is_free_to_play,
+                    q.legendary_level, q.zone, q.source
+               FROM quests q JOIN adventure_packs ap ON ap.id = q.pack_id LEFT JOIN patrons p ON p.id = q.patron_id
+              WHERE q.name = ?1",
+            [WIKI_QUEST],
+            |r| {
+                Ok((
+                    r.get(0)?,
+                    r.get(1)?,
+                    r.get(2)?,
+                    r.get(3)?,
+                    r.get(4)?,
+                    r.get(5)?,
+                    r.get(6)?,
+                    r.get(7)?,
+                    r.get(8)?,
+                    r.get(9)?,
+                    r.get(10)?,
+                ))
+            },
+        )
+        .unwrap();
+    assert_eq!(
+        quest_row,
+        (
+            "Chill of Ravenloft".into(),
+            Some("The Coin Lords".into()),
+            Some(32),
+            Some(33),
+            Some(150),
+            false,
+            "[\"normal\",\"hard\",\"elite\",\"reaper\"]".into(),
+            false,
+            Some(34),
+            Some("Test zone".into()),
+            "wiki".into()
+        )
+    );
+    assert_eq!(report.wiki_quest_created_count, 1);
+    let wiki_quest_count: i64 =
+        db.query_row("SELECT COUNT(*) FROM quests WHERE source = 'wiki'", [], |r| r.get(0)).unwrap();
+    assert_eq!(wiki_quest_count, 1);
+    let maetrim_quest_count: i64 =
+        db.query_row("SELECT COUNT(*) FROM quests WHERE source = 'maetrim'", [], |r| r.get(0)).unwrap();
+    assert_eq!(maetrim_quest_count as usize, report.quest_count + report.challenge_count);
+}
+
+#[test]
+fn skips_creating_a_quest_maetrim_already_carries_and_still_adds_its_facts() {
+    let (db, report) = built_db_with_fixture_wiki();
+    assert_eq!(report.wiki_quest_superseded_count, 1);
+    assert_eq!(
+        report.superseded_wiki_quests,
+        [SupersededWikiEntry { name: "The Grotto".into(), file_name: "quests.toml".into() }]
+    );
+    let (level, favor, source): (Option<i64>, Option<i64>, String) = db
+        .query_row("SELECT level, favor, source FROM quests WHERE name = 'The Grotto'", [], |r| {
+            Ok((r.get(0)?, r.get(1)?, r.get(2)?))
+        })
+        .unwrap();
+    assert_ne!((level, favor), (Some(99), Some(999)), "his level and favor stand");
+    assert_eq!(source, "maetrim");
+    assert!(wiki_columns(&db, "The Grotto").0, "free_to_play still applies to his row");
+}
+
+#[test]
+fn creates_a_probable_duplicate_wiki_quest_and_reports_both_names() {
+    let wiki = parsed_wiki(&[("quests.toml", &wiki_quest_fields_toml("The Chrono-scope", ""))]).unwrap();
+    let (db, report) = built_db_with(&wiki);
+    let created_count: i64 = db
+        .query_row("SELECT COUNT(*) FROM quests WHERE name = 'The Chrono-scope' AND source = 'wiki'", [], |r| r.get(0))
+        .unwrap();
+    assert_eq!(created_count, 1);
+    assert_eq!((report.wiki_quest_created_count, report.wiki_quest_probable_duplicate_count), (1, 1));
+    assert_eq!(
+        report.probable_duplicate_wiki_quests,
+        [ProbableDuplicateWikiEntry { name: "The Chrono-scope".into(), maetrim_name: "The Chronoscope".into() }]
+    );
+}
+
+#[test]
+fn a_wiki_quest_with_a_new_name_is_no_probable_duplicate() {
+    let (_, report) = built_db_with_fixture_wiki();
+    assert_eq!(report.wiki_quest_probable_duplicate_count, 0);
+    assert!(report.probable_duplicate_wiki_quests.is_empty());
+}
+
+#[test]
+fn build_fails_naming_a_wiki_quest_pack_or_patron_absent_from_maetrims_files() {
+    for (field, toml_text) in [
+        ("pack", wiki_quest_fields_toml(WIKI_QUEST, "").replace("Chill of Ravenloft", "No Such Pack")),
+        ("patron", wiki_quest_fields_toml(WIKI_QUEST, "patron = \"No Such Patron\"\n")),
+    ] {
+        let wiki = parsed_wiki(&[("quests.toml", &toml_text)]).unwrap();
+        let error = build_report_with(&wiki).unwrap_err();
+        let bad_value = if field == "pack" { "No Such Pack" } else { "No Such Patron" };
+        assert!(
+            error.contains("quests.toml")
+                && error.contains(WIKI_QUEST)
+                && error.contains(field)
+                && error.contains(bad_value),
+            "{field}: {error}"
+        );
+    }
+}
+
+#[test]
+fn wiki_quests_never_change_maetrims_quests() {
+    let (without, _) = built_db_with(&WikiOverrides::default());
+    let (with, _) = built_db_with_fixture_wiki();
+    let maetrim_quests = |db: &Connection| {
+        string_column(
+            db,
+            "SELECT name || '|' || COALESCE(level, '') || '|' || COALESCE(favor, '') || '|' || difficulties
+               FROM quests WHERE source = 'maetrim' ORDER BY name",
+        )
+    };
+    assert_eq!(maetrim_quests(&with), maetrim_quests(&without));
 }
 
 fn crafting_fixture_toml() -> String {
@@ -326,7 +517,7 @@ fn reads_crafting_systems_from_crafting_files() {
     assert_eq!(upgrade_system.name, "Test Upgrade Altar");
     assert!(upgrade_system.families.is_empty());
     assert_eq!(upgrade_system.recipes[0].grants_slot.as_deref(), Some("upgrade: tier 2"));
-    assert_eq!(wiki.quest_facts.len(), 3, "crafting.toml tables are not read as quests");
+    assert_eq!(wiki.quests.len(), 4, "crafting.toml tables are not read as quests");
 }
 
 #[test]
@@ -638,7 +829,7 @@ fn reads_descriptions_from_descriptions_files() {
     assert_eq!(crossbow.read, "2026-09-29");
     assert_eq!(crossbow.description, "Test description: a repeating crossbow that burns.");
     assert_eq!(wiki.descriptions[2].kind, DescriptionKind::Augment);
-    assert_eq!(wiki.quest_facts.len(), 3, "descriptions.toml tables are not read as quests");
+    assert_eq!(wiki.quests.len(), 4, "descriptions.toml tables are not read as quests");
 }
 
 #[test]
@@ -767,7 +958,8 @@ fn items_fixture_toml() -> String {
 }
 
 fn parsed_edited_items(edit: impl Fn(String) -> String) -> Result<WikiOverrides, String> {
-    parsed_wiki(&[("items.toml", &edit(items_fixture_toml()))])
+    let quests_fixture_toml = std::fs::read_to_string(fixtures_dir().join("wiki/quests.toml")).unwrap();
+    parsed_wiki(&[("items.toml", &edit(items_fixture_toml())), ("quests.toml", &quests_fixture_toml)])
 }
 
 const WIKI_AXE: &str = "Battle Axe of the Oozing Hunger";
@@ -797,7 +989,7 @@ fn reads_wiki_items_from_items_files() {
     assert_eq!(weapon.dr_bypass, ["Magic", "Slash"]);
     assert!(axe.armor.is_none());
     assert!(wiki.items[1].weapon.is_none() && wiki.items[1].quests.is_empty());
-    assert_eq!(wiki.quest_facts.len(), 3, "items.toml tables are not read as quests");
+    assert_eq!(wiki.quests.len(), 4, "items.toml tables are not read as quests");
 }
 
 #[test]
@@ -893,7 +1085,7 @@ fn drops_a_wiki_item_maetrim_already_carries_and_reports_it() {
     assert_eq!(report.wiki_item_superseded_count, 1);
     assert_eq!(
         report.superseded_wiki_items,
-        [SupersededWikiItem { name: "Five Rings".into(), file_name: "items.toml".into() }]
+        [SupersededWikiEntry { name: "Five Rings".into(), file_name: "items.toml".into() }]
     );
 }
 
@@ -980,6 +1172,7 @@ fn writes_a_new_wiki_item_with_its_stats_bonuses_effects_sockets_set_and_quests(
         ["Inevitable Balance"]
     );
     assert_eq!(quest_loot_row(&db, "The Grotto", WIKI_AXE), Some(("chest".into(), false)));
+    assert_eq!(quest_loot_row(&db, WIKI_QUEST, WIKI_AXE), Some(("reward".into(), false)), "links the wiki quest");
     assert_eq!(report.wiki_item_written_count, 1);
     assert_eq!(item_count(&db, "source = 'wiki'"), report.wiki_item_written_count as i64);
 }
@@ -992,7 +1185,7 @@ fn writes_a_probable_duplicate_of_a_maetrim_item_and_reports_both_names() {
     assert_eq!((report.wiki_item_written_count, report.wiki_item_probable_duplicate_count), (1, 1));
     assert_eq!(
         report.probable_duplicate_wiki_items,
-        [ProbableDuplicateWikiItem {
+        [ProbableDuplicateWikiEntry {
             name: "Argentis Armor (Level 12)".into(),
             maetrim_name: "Argenti's Armor".into()
         }]

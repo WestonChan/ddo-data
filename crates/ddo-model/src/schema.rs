@@ -1,10 +1,10 @@
 use crate::enums::{
     AbilityOwner, ArmorType, CorrectionKind, CraftingTier, EnhancementTreeKind, FeatSource, Handedness, ItemCategory,
-    ItemSource, LootType, ModifierSource, RequirementGroupKind, RequirementOwner, SaveProgression,
+    LootType, ModifierSource, RequirementGroupKind, RequirementOwner, RowSource, SaveProgression,
 };
 use std::sync::LazyLock;
 
-pub const SCHEMA_VERSION: i64 = 4;
+pub const SCHEMA_VERSION: i64 = 5;
 
 fn sql_in_clause<'a>(allowed_values: impl Iterator<Item = &'a str>) -> String {
     let quoted_values: Vec<String> = allowed_values.map(|value| format!("'{value}'")).collect();
@@ -13,7 +13,7 @@ fn sql_in_clause<'a>(allowed_values: impl Iterator<Item = &'a str>) -> String {
 
 static DDL: LazyLock<String> = LazyLock::new(|| {
     let item_category = sql_in_clause(ItemCategory::ALL.iter().map(|c| c.as_str()));
-    let item_source = sql_in_clause(ItemSource::ALL.iter().map(|s| s.as_str()));
+    let row_source = sql_in_clause(RowSource::ALL.iter().map(|s| s.as_str()));
     let handedness = sql_in_clause(Handedness::ALL.iter().map(|h| h.as_str()));
     let armor_type = sql_in_clause(ArmorType::ALL.iter().map(|a| a.as_str()));
     let loot_type = sql_in_clause(LootType::ALL.iter().map(|l| l.as_str()));
@@ -125,7 +125,8 @@ CREATE TABLE IF NOT EXISTS quests (
     legendary_level INTEGER,                          -- data/wiki quests `legendary_level`
     zone       TEXT,                                  -- data/wiki quests `zone`: the page's "Takes place in"
     bestowed_by TEXT,                                 -- data/wiki quests `bestowed_by`
-    flagging   TEXT                                   -- data/wiki quests `flagging`, free text
+    flagging   TEXT,                                  -- data/wiki quests `flagging`, free text
+    source     TEXT    NOT NULL DEFAULT 'maetrim' CHECK (source {row_source})  -- 'wiki' for a data/wiki quests entry that creates the quest
 );
 
 -- Items --------------------------------------------------------------------------
@@ -154,7 +155,7 @@ CREATE TABLE IF NOT EXISTS items (
     accepts_sentience INTEGER NOT NULL DEFAULT 0 CHECK (accepts_sentience IN (0, 1)),  -- <IsAcceptsSentience/>
     is_minor_artifact INTEGER NOT NULL DEFAULT 0 CHECK (is_minor_artifact IN (0, 1)),  -- <MinorArtifact/>
     wiki_url          TEXT,                           -- computed from name, or data/wiki items `page`
-    source            TEXT    NOT NULL DEFAULT 'maetrim' CHECK (source {item_source})  -- 'wiki' for a data/wiki items entry
+    source            TEXT    NOT NULL DEFAULT 'maetrim' CHECK (source {row_source})  -- 'wiki' for a data/wiki items entry
 );
 CREATE INDEX IF NOT EXISTS idx_items_slot ON items(slot_id);
 CREATE INDEX IF NOT EXISTS idx_items_minimum_level ON items(minimum_level);

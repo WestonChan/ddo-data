@@ -384,6 +384,16 @@ fn corrects_only_his_items_not_the_wikis() {
 }
 
 #[test]
+fn corrects_only_his_quests_not_the_wikis() {
+    let wiki = WikiOverrides::from_dir(&fixtures_dir().join("wiki")).unwrap();
+    let corrections =
+        parsed_corrections(&[("corrections.toml", &correction_toml("quest", "The Oozing Pit", "level", "32", "31"))])
+            .unwrap();
+    let error = built_db_with_wiki(&wiki, &corrections).unwrap_err();
+    assert!(error.contains("The Oozing Pit"), "{error}");
+}
+
+#[test]
 fn runs_before_the_wiki_merge_so_a_corrected_description_is_his() {
     let wiki = WikiOverrides::from_dir(&fixtures_dir().join("wiki")).unwrap();
     let corrections = parsed_corrections(&[(

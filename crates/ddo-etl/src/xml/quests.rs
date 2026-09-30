@@ -93,6 +93,9 @@ pub enum Difficulty {
 }
 
 impl Difficulty {
+    pub const ALL: &'static [Difficulty] =
+        &[Self::Casual, Self::Normal, Self::Hard, Self::Elite, Self::Reaper, Self::Solo];
+
     pub const fn as_str(self) -> &'static str {
         match self {
             Self::Casual => "casual",

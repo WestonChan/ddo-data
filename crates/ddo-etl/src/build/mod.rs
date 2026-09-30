@@ -57,6 +57,11 @@ pub struct BuildReport {
     pub wiki_rare_drop_count: usize,
     pub wiki_added_quest_loot_link_count: usize,
     pub wiki_quest_entry_count: usize,
+    pub wiki_quest_created_count: usize,
+    pub wiki_quest_superseded_count: usize,
+    pub wiki_quest_probable_duplicate_count: usize,
+    pub superseded_wiki_quests: Vec<SupersededWikiEntry>,
+    pub probable_duplicate_wiki_quests: Vec<ProbableDuplicateWikiEntry>,
     pub wiki_crafting_system_count: usize,
     pub wiki_crafting_recipe_count: usize,
     pub wiki_crafting_ingredient_count: usize,
@@ -66,8 +71,8 @@ pub struct BuildReport {
     pub wiki_item_written_count: usize,
     pub wiki_item_superseded_count: usize,
     pub wiki_item_probable_duplicate_count: usize,
-    pub superseded_wiki_items: Vec<SupersededWikiItem>,
-    pub probable_duplicate_wiki_items: Vec<ProbableDuplicateWikiItem>,
+    pub superseded_wiki_items: Vec<SupersededWikiEntry>,
+    pub probable_duplicate_wiki_items: Vec<ProbableDuplicateWikiEntry>,
     pub correction_applied_count: usize,
     pub correction_stale_count: usize,
     pub stale_corrections: Vec<StaleCorrection>,
@@ -75,7 +80,7 @@ pub struct BuildReport {
 }
 
 #[derive(Debug, Clone, PartialEq, Eq)]
-pub struct SupersededWikiItem {
+pub struct SupersededWikiEntry {
     pub name: String,
     pub file_name: String,
 }
@@ -91,7 +96,7 @@ pub struct StaleCorrection {
 }
 
 #[derive(Debug, Clone, PartialEq, Eq)]
-pub struct ProbableDuplicateWikiItem {
+pub struct ProbableDuplicateWikiEntry {
     pub name: String,
     pub maetrim_name: String,
 }
@@ -132,6 +137,7 @@ pub fn build_database(
     let written_quests = write_quests(&transaction, &parsed_quests)?;
     report.quest_count = written_quests.quest_count();
     report.challenge_count = write_challenges(&transaction, &parsed_challenges)?;
+    wiki::write_wiki_quests(&transaction, &wiki_overrides.quests, &mut report)?;
 
     let mut writer = TableWriter {
         transaction: &transaction,
@@ -226,10 +232,6 @@ pub(crate) struct WrittenQuests {
 impl WrittenQuests {
     fn quest_count(&self) -> usize {
         self.longest_name_first.len()
-    }
-
-    fn id_named(&self, quest_name: &str) -> Option<i64> {
-        self.longest_name_first.iter().find(|quest| quest.name == quest_name).map(|quest| quest.id)
     }
 }
 

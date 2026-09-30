@@ -14,6 +14,12 @@ fn fixture_corrections_dir() -> PathBuf {
     fixtures_dir().join("corrections")
 }
 
+fn draft_dir_with_fixture_quests() -> tempfile::TempDir {
+    let draft_dir = tempfile::tempdir().unwrap();
+    std::fs::copy(fixtures_dir().join("wiki/quests.toml"), draft_dir.path().join("quests.toml")).unwrap();
+    draft_dir
+}
+
 fn line_count(path: &Path) -> usize {
     std::fs::read_to_string(path).unwrap_or_else(|e| panic!("{}: {e}", path.display())).lines().count()
 }
@@ -48,7 +54,10 @@ fn wiki_check_reports_the_wiki_counts_for_a_valid_wiki_dir() {
 
     for expected_line in [
         "wiki_quest_loot_entry_count: 1",
-        "wiki_quest_entry_count: 3",
+        "wiki_quest_entry_count: 4",
+        "wiki_quest_created_count: 1",
+        "wiki_quest_superseded_count: 1",
+        "wiki_quest_probable_duplicate_count: 0",
         "wiki_crafting_system_count: 2",
         "wiki_crafting_recipe_count: 5",
         "wiki_crafting_ingredient_count: 5",
@@ -67,7 +76,7 @@ fn wiki_check_reports_the_wiki_counts_for_a_valid_wiki_dir() {
 #[test]
 fn wiki_check_warns_about_superseded_and_probably_duplicate_wiki_items() {
     let fixture_items = std::fs::read_to_string(fixtures_dir().join("wiki/items.toml")).unwrap();
-    let draft_dir = tempfile::tempdir().unwrap();
+    let draft_dir = draft_dir_with_fixture_quests();
     std::fs::write(
         draft_dir.path().join("items_draft.toml"),
         fixture_items.replace("Battle Axe of the Oozing Hunger", "Argentis Armor (Level 12)"),
@@ -92,6 +101,33 @@ fn wiki_check_warns_about_superseded_and_probably_duplicate_wiki_items() {
 }
 
 #[test]
+fn wiki_check_warns_about_superseded_and_probably_duplicate_wiki_quests() {
+    let fixture_quests = std::fs::read_to_string(fixtures_dir().join("wiki/quests.toml")).unwrap();
+    let draft_dir = tempfile::tempdir().unwrap();
+    std::fs::write(
+        draft_dir.path().join("quests_draft.toml"),
+        fixture_quests.replace("name = \"The Oozing Pit\"", "name = \"The Chrono-scope\""),
+    )
+    .unwrap();
+
+    let report =
+        wiki_check_report(&fixtures_dir().join("DataFiles"), Some(draft_dir.path()), Some(&fixture_corrections_dir()))
+            .unwrap();
+
+    let warnings_start = report.find("\nwarnings:").unwrap_or_else(|| panic!("no warnings section in\n{report}"));
+    for expected_warning in [
+        "warning: wiki quest \"The Grotto\" is now in Maetrim's files; delete its quest fields from quests_draft.toml",
+        "warning: wiki quest \"The Chrono-scope\" may duplicate Maetrim's \"The Chronoscope\"",
+    ] {
+        assert!(
+            report[warnings_start..].lines().any(|line| line == expected_warning),
+            "missing {expected_warning:?} in\n{report}"
+        );
+    }
+    assert!(report[..warnings_start].lines().any(|line| line == "wiki_quest_probable_duplicate_count: 1"), "{report}");
+}
+
+#[test]
 fn wiki_check_warns_about_a_wiki_item_that_looks_like_a_variant_of_a_maetrim_item() {
     let fixture_items = std::fs::read_to_string(fixtures_dir().join("wiki/items.toml")).unwrap();
     let variant_items = fixture_items.replace("name = \"Five Rings\"", "name = \"Five Rings (plain)\"").replace(
@@ -102,7 +138,7 @@ fn wiki_check_warns_about_a_wiki_item_that_looks_like_a_variant_of_a_maetrim_ite
     let variant_warning = "warning: wiki item \"Five Rings (plain)\" looks like a variant of Maetrim's \"Five Rings\" (same level and drop location)";
 
     let report_for = |items_toml: &str| {
-        let draft_dir = tempfile::tempdir().unwrap();
+        let draft_dir = draft_dir_with_fixture_quests();
         std::fs::write(draft_dir.path().join("items_draft.toml"), items_toml).unwrap();
         wiki_check_report(&fixtures_dir().join("DataFiles"), Some(draft_dir.path()), Some(&fixture_corrections_dir()))
             .unwrap()
@@ -129,7 +165,7 @@ fn wiki_check_warns_about_a_wiki_effect_spelled_like_a_maetrim_effect_apart_from
         )
     };
     let report_for = |items_toml: &str| {
-        let draft_dir = tempfile::tempdir().unwrap();
+        let draft_dir = draft_dir_with_fixture_quests();
         std::fs::write(draft_dir.path().join("items_draft.toml"), items_toml).unwrap();
         wiki_check_report(&fixtures_dir().join("DataFiles"), Some(draft_dir.path()), Some(&fixture_corrections_dir()))
             .unwrap()
@@ -262,12 +298,14 @@ fn wiki_batch_writes_the_reading_agent_inputs() {
         std::fs::read_to_string(out_dir.path().join("wiki_source_items.txt")).unwrap(),
         "Battle Axe of the Oozing Hunger\n"
     );
+    assert_eq!(std::fs::read_to_string(out_dir.path().join("wiki_source_quests.txt")).unwrap(), "The Oozing Pit\n");
     let augment_lines = std::fs::read_to_string(out_dir.path().join("augment_names.txt")).unwrap();
     assert_eq!(augment_lines.lines().count(), 11);
     assert!(augment_lines.lines().any(|line| line == "Alchemical\tFire I: Combustion\t29"), "{augment_lines}");
     let quest_pages: Value =
         serde_json::from_str(&std::fs::read_to_string(out_dir.path().join("quest_pages.json")).unwrap()).unwrap();
-    assert_eq!(quest_pages.as_object().unwrap().len(), 13);
+    assert_eq!(quest_pages.as_object().unwrap().len(), 14, "Maetrim's 13 quests and challenges and the wiki quest");
+    assert_eq!(quest_pages["The Oozing Pit"], likely_wiki_page_url("The Oozing Pit"));
     assert_eq!(
         quest_pages["Dr. Rushmore's Mansion - Behind the Door"],
         likely_wiki_page_url("Dr. Rushmore's Mansion - Behind the Door")

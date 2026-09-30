@@ -233,7 +233,7 @@ fn writes_augment_slots_and_presets() {
 #[test]
 fn links_items_to_quests_from_drop_location() {
     let (db, report) = built_fixture_db();
-    assert_eq!(count(&db, "SELECT COUNT(*) FROM quests WHERE NOT is_challenge"), 10);
+    assert_eq!(count(&db, "SELECT COUNT(*) FROM quests WHERE NOT is_challenge AND source = 'maetrim'"), 10);
     assert_eq!(count(&db, "SELECT COUNT(*) FROM patrons"), 22);
     assert!(count(&db, "SELECT COUNT(*) FROM adventure_packs") >= 5);
     let (level, epic_level, is_raid, pack): (i64, Option<i64>, bool, String) = db

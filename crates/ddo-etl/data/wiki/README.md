@@ -6,6 +6,12 @@ Facts read from [ddowiki](https://ddowiki.com) that Maetrim's DDOBuilderV2 files
 
 Maetrim's files are authoritative for every field they carry. A wiki row may **add** a fact he has no field for; it never replaces one he has. When the wiki and his files disagree about something he carries (a name, a level, a drop location, a loot type), his value stands and the disagreement is reported upstream at [Maetrim/DDOBuilderV2](https://github.com/Maetrim/DDOBuilderV2), not patched here. A value of his that is plainly a mistake is fixed in [`../corrections/`](../corrections/README.md), the one layer allowed to override him, and never here.
 
+## Entities his files lack
+
+A wiki entry may also supply a whole row his files could have written but do not, so the thing exists in the database until he adds it. Such a row carries `source = 'wiki'` (his rows are `source = 'maetrim'`), and the rule is the same for every kind: **his row wins by name**. The moment his files carry a row of that name, the wiki entry creates nothing, is counted as superseded, and `cargo xtask wiki-check` warns that it can be deleted. An entry whose name matches one of his only once case, punctuation, spaces and a trailing `(level N)` are ignored is still created, and is reported as a probable duplicate so a person can decide whether it is the same thing. Corrections never apply to a wiki row, and the API reports every such row's `source`.
+
+This applies to items (`items*.toml`) and quests (`quests*.toml`) today, and any future kind his files lack is added the same way: a `source` column, the fields his rows carry, the supersede and probable-duplicate counts, the `wiki-check` warnings, and a `wiki_source_<kind>.txt` list from `cargo xtask wiki-batch`. Wiki quests are created before anything else reads the quests table, so an item entry, a `quest_loot` entry or a quest's own facts may name a wiki quest.
+
 ## Citing the source
 
 Every entry names the page it was read from (`page`, a full `https://ddowiki.com/page/...` URL) and the date it was read (`read`, `YYYY-MM-DD`). Re-reading a page means updating that entry and its `read` date, not adding a second one. Read pages in a real browser, one page per navigation at a human pace; ddowiki's bot challenge blocks `api.php`, curl and scripted clients, and working around it is off limits. Wiki content is CC BY-SA.
@@ -39,7 +45,7 @@ The build fails, naming the file and entry, when:
 - `page` does not start with `https://ddowiki.com/page/`;
 - `read` is not a real `YYYY-MM-DD` date;
 - the same quest `name` appears twice, in one file or across files;
-- `name` matches no quest in Maetrim's `Quests.xml` or `Challenges.xml` (names must match his exactly);
+- `name` matches no quest in Maetrim's `Quests.xml` or `Challenges.xml` or a quest a `quests*.toml` entry creates (names must match his exactly);
 - an item in `rare` matches no item in his `Items/`. Items missing from his files are reported upstream, not stored here.
 
 Validate a file from the `ddo-data` root:
@@ -67,7 +73,34 @@ legendary_level = 37
 - `legendary_level` (optional): the legendary version's level. Heroic and epic levels are Maetrim's and are not repeated here.
 - `zone`, `bestowed_by`, `flagging` (optional, per-page reads): the page's "Takes place in" value, the quest giver, and free text on what must be run first.
 
-The merge fills `quests.is_free_to_play`, `legendary_level`, `zone`, `bestowed_by` and `flagging`. It never writes the columns Maetrim's files fill (`level`, `epic_level`, `pack_id`, `patron_id`, `favor`, `is_raid`, `difficulties`). Besides the checks above, the build fails when `free_to_play` is missing or a key is not one of those listed; quest duration and XP are deliberately not kept, so a `duration` or `xp` key fails as an unknown field. The report's `wiki_quest_entry_count` counts what was applied.
+The merge fills `quests.is_free_to_play`, `legendary_level`, `zone`, `bestowed_by` and `flagging`. It never writes the columns Maetrim's files fill (`level`, `epic_level`, `pack_id`, `patron_id`, `favor`, `is_raid`, `difficulties`) on one of his quests. Besides the checks above, the build fails when `free_to_play` is missing or a key is not one of those listed; quest duration and XP are deliberately not kept, so a `duration` or `xp` key fails as an unknown field. The report's `wiki_quest_entry_count` counts what was applied.
+
+### Quests his files lack
+
+An entry for a quest Maetrim's `Quests.xml` and `Challenges.xml` lack creates it, following [Entities his files lack](#entities-his-files-lack), when it carries the fields his quests have besides the facts above:
+
+```toml
+[[quest]]
+name = "Some New Quest"
+page = "https://ddowiki.com/page/Some_New_Quest"
+read = "2026-09-30"
+free_to_play = false
+pack = "Vecna Unleashed"
+patron = "The Free Agents"
+level = 32
+favor = 150
+is_raid = false
+difficulties = ["normal", "hard", "elite", "reaper"]
+legendary_level = 34
+```
+
+- `pack` (required to create): the adventure pack, spelled as his `adventure_packs.name` (what `/v1/adventure-packs` lists); it must already exist.
+- `patron` (optional): a patron from his `Patrons.xml`, as `/v1/patrons` lists it.
+- `level` (required to create), `epic_level` (optional): the heroic and epic levels, as his `<Levels>` gives them.
+- `favor` and `is_raid` (required to create).
+- `difficulties` (required to create): the difficulties offered, each `casual`, `normal`, `hard`, `elite`, `reaper` or `solo`.
+
+Giving any of these makes all the required ones required; the build fails, naming the file, the quest and the missing field or the value, when one is missing, a difficulty is not one of the six, or `pack` or `patron` matches nothing in his files. A created quest is written with `source = 'wiki'` and counted in `wiki_quest_created_count`, before his items are written, so an `items*.toml` entry's `quests` may name it. An entry with these fields whose name is one of his quests creates nothing and is counted in `wiki_quest_superseded_count`; its facts (`free_to_play` and the rest) still apply to his quest as above, and `cargo xtask wiki-check` warns `warning: wiki quest "<name>" is now in Maetrim's files; delete its quest fields from <file>`. A probable duplicate is counted in `wiki_quest_probable_duplicate_count` and warned as `warning: wiki quest "<name>" may duplicate Maetrim's "<his name>"`. `cargo xtask wiki-batch` lists the quests still supplied by the wiki in `wiki_source_quests.txt`, and its `quest_pages.json` includes them. The API reports each quest's `source`, and `/v1/version` counts them as `wiki_quests`.
 
 ## `crafting.toml`
 
@@ -130,7 +163,7 @@ The merge writes the description only where Maetrim's is empty (or, for an augme
 
 ## `items.toml`
 
-One `[[item]]` table per wiki item page for a named item Maetrim's `Items/` does not have, so the item exists in the database until his files carry it. This is the one file type that adds rows he could have written himself, which is why it has its own rule: the moment his files carry an item of the same name, his row wins and the wiki entry is dropped from the build and reported so it can be deleted here. A tiered item is recorded once per level variant, each its own entry named `<Name> (Level N)`, matching the way his files name tiered items.
+One `[[item]]` table per wiki item page for a named item Maetrim's `Items/` does not have, so the item exists in the database until his files carry it, under the rule in [Entities his files lack](#entities-his-files-lack). A tiered item is recorded once per level variant, each its own entry named `<Name> (Level N)`, matching the way his files name tiered items.
 
 ```toml
 [[item]]
@@ -162,7 +195,7 @@ dr_bypass = ["Magic", "Slash"]
 - `name` (required, unique across files), `slot` (an `equipment_slots.name`, as `/v1/equipment-slots` lists it), `category` (`Armor`, `Shield`, `Weapon`, `Jewelry` or `Clothing`), `minimum_level` and `drop_location` (the page's source line, free text) are required.
 - `item_type`: for a weapon or shield, a weapon type as `/v1/weapon-types` lists it (required); for armor, the armor type (`Cloth`, `Light`, `Medium`, `Heavy`, `Docent`), or omitted; otherwise free text or omitted.
 - `enhancement_bonus`, `material` (a material his items carry), `race_required`, `description` (flavour text) and `set` (a set in his `SetBonuses.xml` or `FiligreeSets/`) are optional; `accepts_sentience` and `is_minor_artifact` default to `false`.
-- `quests`: each `{ name, loot_type }`, the name spelled as his `Quests.xml` or `Challenges.xml` has it and `loot_type` one of `chest`, `raid`, `reward`.
+- `quests`: each `{ name, loot_type }`, the name spelled as his `Quests.xml` or `Challenges.xml` has it (or a quest a `quests*.toml` entry creates) and `loot_type` one of `chest`, `raid`, `reward`.
 - `augment_slots`: socket labels as `/v1/augment-slot-types` lists them, in the item's order.
 - `bonuses`: each `{ stat, bonus_type, value }` with optional `value2`; the stat and bonus type as `/v1/stats` and `/v1/bonus-types` name them.
 - `effects`: each `{ name }` with optional `description`, `value` and `target`. A name he already uses reuses his effect and his description; a new name creates the effect with the given description. Effect names are matched to his ignoring case, spaces, hyphens, colons, commas, periods and apostrophes, so `Nightmare Guard` reuses his `NightmareGuard` and `Rune Arm Imbue: Light IV` his `Rune Arm Imbue - Light IV`, with his description; two of his own names are never merged. `cargo xtask wiki-check` warns about a wiki effect that still differs from one of his only by other characters that are not letters or digits.

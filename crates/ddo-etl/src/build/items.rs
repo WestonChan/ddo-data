@@ -5,7 +5,7 @@ use crate::map::material;
 use crate::map::placement::placement_of;
 use crate::xml::items::Item;
 use anyhow::{bail, Result};
-use ddo_model::enums::{ArmorType, EquipmentSlot, Handedness, ItemCategory, ItemSource, LootType, ModifierSource};
+use ddo_model::enums::{ArmorType, EquipmentSlot, Handedness, ItemCategory, LootType, ModifierSource, RowSource};
 use rusqlite::params;
 
 pub(super) struct ItemRow<'a> {
@@ -24,7 +24,7 @@ pub(super) struct ItemRow<'a> {
     pub(super) accepts_sentience: bool,
     pub(super) is_minor_artifact: bool,
     pub(super) wiki_url: String,
-    pub(super) source: ItemSource,
+    pub(super) source: RowSource,
 }
 
 pub(super) struct WeaponStatsRow<'a> {
@@ -112,7 +112,7 @@ impl TableWriter<'_> {
             accepts_sentience: item.accepts_sentience,
             is_minor_artifact: item.is_minor_artifact,
             wiki_url: item_wiki_url(item_name),
-            source: ItemSource::Maetrim,
+            source: RowSource::Maetrim,
         })?;
 
         if let Some(weapon_type) = placement.weapon_type() {

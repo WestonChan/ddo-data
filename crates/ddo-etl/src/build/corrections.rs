@@ -1,7 +1,7 @@
 use super::{BuildReport, StaleCorrection};
 use crate::corrections::{CorrectableField, Correction, CorrectionValue, Corrections, FieldShape};
 use anyhow::{bail, Context, Result};
-use ddo_model::enums::{CorrectionKind, ItemSource};
+use ddo_model::enums::{CorrectionKind, RowSource};
 use rusqlite::types::Value as SqlValue;
 use rusqlite::{params, OptionalExtension, Transaction};
 
@@ -94,7 +94,7 @@ fn apply_correction(transaction: &Transaction, correction: &Correction, report: 
 
 fn maetrim_row_ids_named(transaction: &Transaction, kind: CorrectionKind, name: &str) -> Result<Vec<i64>> {
     let maetrim_rows_only = match kind {
-        CorrectionKind::Item => format!(" AND source = '{}'", ItemSource::Maetrim.as_str()),
+        CorrectionKind::Item | CorrectionKind::Quest => format!(" AND source = '{}'", RowSource::Maetrim.as_str()),
         _ => String::new(),
     };
     let mut statement = transaction

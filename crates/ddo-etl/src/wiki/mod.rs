@@ -8,7 +8,7 @@ pub use crafting::{CraftingIngredient, CraftingRecipe, CraftingSystem, Ingredien
 pub use descriptions::{DescriptionKind, WikiDescription};
 pub use items::{WikiArmorStats, WikiItem, WikiItemBonus, WikiItemEffect, WikiItemQuest, WikiWeaponStats};
 pub use quest_loot::QuestLoot;
-pub use quests::QuestFacts;
+pub use quests::WikiQuest;
 
 use anyhow::{bail, Context, Result};
 use serde::de::DeserializeOwned;
@@ -21,7 +21,7 @@ const WIKI_PAGE_URL_PREFIX: &str = "https://ddowiki.com/page/";
 #[derive(Debug, Default, Clone, PartialEq)]
 pub struct WikiOverrides {
     pub quest_loot: Vec<QuestLoot>,
-    pub quest_facts: Vec<QuestFacts>,
+    pub quests: Vec<WikiQuest>,
     pub crafting_systems: Vec<CraftingSystem>,
     pub descriptions: Vec<WikiDescription>,
     pub items: Vec<WikiItem>,
@@ -50,13 +50,19 @@ impl WikiEntry for QuestLoot {
     }
 }
 
-impl WikiEntry for QuestFacts {
+impl WikiEntry for WikiQuest {
     const TOML_TABLE_NAME: &'static str = "quest";
     fn name(&self) -> &str {
         &self.name
     }
     fn citation(&self) -> (&str, &str) {
         (&self.page, &self.read)
+    }
+    fn validate(&self) -> Result<()> {
+        WikiQuest::validate(self)
+    }
+    fn record_file_name(&mut self, file_name: &str) {
+        file_name.clone_into(&mut self.file_name);
     }
 }
 
@@ -107,7 +113,7 @@ impl WikiEntry for WikiItem {
 
 enum WikiFileKind {
     QuestLoot,
-    QuestFacts,
+    Quests,
     CraftingSystems,
     Descriptions,
     Items,
@@ -119,7 +125,7 @@ impl WikiFileKind {
         if stem.starts_with("quest_loot") {
             Ok(Self::QuestLoot)
         } else if stem.starts_with("quests") {
-            Ok(Self::QuestFacts)
+            Ok(Self::Quests)
         } else if stem.starts_with("crafting") {
             Ok(Self::CraftingSystems)
         } else if stem.starts_with("descriptions") {
@@ -200,7 +206,7 @@ impl WikiOverrides {
 
     pub fn from_toml_files(toml_files: &[(&str, &str)]) -> Result<Self> {
         let mut overrides = Self::default();
-        let (mut quest_loot_file_by_quest, mut quest_facts_file_by_quest, mut crafting_file_by_system) =
+        let (mut quest_loot_file_by_quest, mut quest_file_by_quest, mut crafting_file_by_system) =
             (HashMap::new(), HashMap::new(), HashMap::new());
         let (mut description_file_by_kind_and_name, mut item_file_by_name) = (HashMap::new(), HashMap::new());
         for (file_name, toml_text) in toml_files {
@@ -210,11 +216,9 @@ impl WikiOverrides {
                     toml_text,
                     &mut quest_loot_file_by_quest,
                 )?),
-                WikiFileKind::QuestFacts => overrides.quest_facts.extend(parse_wiki_entries(
-                    file_name,
-                    toml_text,
-                    &mut quest_facts_file_by_quest,
-                )?),
+                WikiFileKind::Quests => {
+                    overrides.quests.extend(parse_wiki_entries(file_name, toml_text, &mut quest_file_by_quest)?)
+                }
                 WikiFileKind::CraftingSystems => overrides.crafting_systems.extend(parse_wiki_entries(
                     file_name,
                     toml_text,
