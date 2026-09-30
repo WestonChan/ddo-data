@@ -12,8 +12,33 @@ const CRAFTING_SYSTEMS_JSON: &str = include_str!("../data/crafting_systems.json"
 
 pub fn wiki_check_report(data_files_dir: &Path, wiki_dir: Option<&Path>) -> Result<String> {
     let wiki_overrides = wiki_overrides_from(wiki_dir)?;
-    let (_, report) = build_in_memory_database(data_files_dir, &wiki_overrides)?;
-    Ok(wiki_report_lines(&report).join("\n"))
+    let (db, report) = build_in_memory_database(data_files_dir, &wiki_overrides)?;
+    let mut report_lines = wiki_report_lines(&report);
+    report_lines.push("warnings:".to_string());
+    report_lines.extend(unused_family_augment_warnings(&db)?);
+    Ok(report_lines.join("\n"))
+}
+
+fn unused_family_augment_warnings(db: &Connection) -> Result<Vec<String>> {
+    let mut statement = db.prepare(
+        "SELECT DISTINCT crafting_systems.name, augments.family, augments.name
+         FROM crafting_systems
+         JOIN crafting_system_families ON crafting_system_families.system_id = crafting_systems.id
+         JOIN augments ON augments.family = crafting_system_families.family
+         WHERE NOT EXISTS (
+             SELECT 1 FROM crafting_recipe_augments
+             JOIN crafting_recipes ON crafting_recipes.id = crafting_recipe_augments.recipe_id
+             WHERE crafting_recipes.system_id = crafting_systems.id AND crafting_recipe_augments.augment_id = augments.id
+         )
+         ORDER BY crafting_systems.name, augments.family, augments.name",
+    )?;
+    let warnings = statement
+        .query_map([], |row| {
+            let (system_name, family, augment_name): (String, String, String) = (row.get(0)?, row.get(1)?, row.get(2)?);
+            Ok(format!("warning: {system_name}: {family} augment {augment_name:?} has no recipe"))
+        })?
+        .collect::<rusqlite::Result<_>>()?;
+    Ok(warnings)
 }
 
 fn wiki_report_lines(report: &BuildReport) -> Vec<String> {

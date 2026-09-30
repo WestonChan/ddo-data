@@ -31,6 +31,35 @@ fn wiki_check_reports_the_wiki_counts_for_a_valid_wiki_dir() {
 }
 
 #[test]
+fn wiki_check_warns_about_family_augments_no_recipe_yields() {
+    let fixture_crafting = std::fs::read_to_string(fixtures_dir().join("wiki/crafting.toml")).unwrap();
+    let minor_fire_guard_recipe = "[[system.recipe]]\ntier = \"heroic\"\nslot = \"crafting: accessory invasion\"\noption = \"Minor Fire Guard\"\naugments = [\"Minor Fire Guard\"]\n";
+    let recipe_start = fixture_crafting.find(minor_fire_guard_recipe).expect("the fixture Minor Fire Guard recipe");
+    let recipe_end = recipe_start + fixture_crafting[recipe_start..].find("\n\n").unwrap() + 2;
+    let draft_dir = tempfile::tempdir().unwrap();
+    std::fs::write(
+        draft_dir.path().join("crafting.toml"),
+        format!("{}{}", &fixture_crafting[..recipe_start], &fixture_crafting[recipe_end..]),
+    )
+    .unwrap();
+
+    let full_report = wiki_check_report(&fixtures_dir().join("DataFiles"), Some(&fixtures_dir().join("wiki"))).unwrap();
+    let draft_report = wiki_check_report(&fixtures_dir().join("DataFiles"), Some(draft_dir.path())).unwrap();
+
+    let unused_augment_warning =
+        "warning: Heroic Green Steel: Greensteel_Heroic augment \"Minor Fire Guard\" has no recipe";
+    assert!(!full_report.contains(unused_augment_warning), "{full_report}");
+    let warnings_start =
+        draft_report.find("\nwarnings:\n").unwrap_or_else(|| panic!("no warnings section in\n{draft_report}"));
+    assert!(
+        draft_report[..warnings_start].lines().any(|line| line == "wiki_crafting_recipe_count: 4"),
+        "{draft_report}"
+    );
+    assert!(draft_report[warnings_start..].lines().any(|line| line == unused_augment_warning), "{draft_report}");
+    assert!(!draft_report.contains("\"+5 Fortitude Save\" has no recipe"), "{draft_report}");
+}
+
+#[test]
 fn wiki_check_fails_naming_an_unknown_quest() {
     let draft_dir = tempfile::tempdir().unwrap();
     std::fs::write(
