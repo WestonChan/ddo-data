@@ -297,9 +297,10 @@ cost = [{ ingredient = "Elocator's Habiliment", quantity = 1 }, { ingredient = "
 
 [[system.recipe]]
 tier = "heroic"
+slot = "crafting: suppressed power"
 option = "Gloves of Titan's Grip upgrade"
 augments = []
-note = "Unlocks the Suppressed Power of Gloves of Titan's Grip (Gloves; Titan's Grip (3 Charges, Recharged/Day: 1), Strength +6, Suppressed Power): gains Reconstruction +84, Repair Lore V, Repair Systems. Upgraded items become Bound to Character on Acquire; existing Stone of Change rituals stay. Maetrim's item has no Suppressed Power socket."
+note = "Unlocks the Suppressed Power of Gloves of Titan's Grip (Gloves; Titan's Grip (3 Charges, Recharged/Day: 1), Strength +6, Suppressed Power): gains Reconstruction +84, Repair Lore V, Repair Systems. Upgraded items become Bound to Character on Acquire; existing Stone of Change rituals stay."
 cost = [{ ingredient = "Gloves of Titan's Grip", quantity = 1 }, { ingredient = "Crystal Disc of Dreams", quantity = 1 }]
 
 [[system.recipe]]
@@ -328,9 +329,10 @@ cost = [{ ingredient = "Rahl's Might", quantity = 1 }, { ingredient = "Crystal D
 
 [[system.recipe]]
 tier = "heroic"
+slot = "crafting: suppressed power"
 option = "Regalia of the Phoenix upgrade"
 augments = []
-note = "Unlocks the Suppressed Power of Regalia of the Phoenix (Robe; Greater Inferno (3 Charges, Recharged/Day: 3), Evocation Focus I, Combustion +78, Fire Lore III, Feather Falling, Suppressed Power): loses Evocation Focus I, Fire Lore III, gains Evocation Focus II, Fire Lore V. Upgraded items become Bound to Character on Acquire; existing Stone of Change rituals stay. Maetrim's item has no Suppressed Power socket."
+note = "Unlocks the Suppressed Power of Regalia of the Phoenix (Robe; Greater Inferno (3 Charges, Recharged/Day: 3), Evocation Focus I, Combustion +78, Fire Lore III, Feather Falling, Suppressed Power): loses Evocation Focus I, Fire Lore III, gains Evocation Focus II, Fire Lore V. Upgraded items become Bound to Character on Acquire; existing Stone of Change rituals stay."
 cost = [{ ingredient = "Regalia of the Phoenix", quantity = 1 }, { ingredient = "Crystal Disc of Dreams", quantity = 1 }]
 
 [[system.recipe]]

@@ -43,23 +43,25 @@ source = "The Haunted Halls of Eveningstar named loot"
 
 [[system.recipe]]
 tier = "epic"
+slot = "crafting: zhentarim attuned"
 option = "Lantern Ring upgrade"
 augments = []
 grants_slot = "green"
-note = "Upgrades Lantern Ring (Ring; Radiance +144, Insightful Wisdom +2, Radiant Glory 2, Colorless Augment Slot, Zhentarim Attuned): gains Radiant Glory damage increased to 3 to 18, Radiance Lore VIII, Green Augment Slot. The item changes from Bind on Equip to Bound to Character. Introduced in Update 21. Maetrim's item has no Zhentarim Attuned socket."
+note = "Upgrades Lantern Ring (Ring; Radiance +144, Insightful Wisdom +2, Radiant Glory 2, Colorless Augment Slot, Zhentarim Attuned): gains Radiant Glory damage increased to 3 to 18, Radiance Lore VIII, Green Augment Slot. The item changes from Bind on Equip to Bound to Character. Introduced in Update 21."
 cost = [{ ingredient = "Lantern Ring", quantity = 1 }, { ingredient = "Black Stone", quantity = 150 }]
 
 [[system.recipe]]
 tier = "epic"
+slot = "crafting: zhentarim attuned"
 option = "Libram of Silver Magic upgrade"
 augments = []
 grants_slot = "orange"
-note = "Upgrades Libram of Silver Magic (Orb; +8 Orb Bonus, Insightful Potency +10, Insightful Spell Lore I, Intelligence +10, Charisma +10, Spellcraft +20, Zhentarim Attuned): loses +8 Orb Bonus, Insightful Spell Lore I, Intelligence +10, Charisma +10, gains +11 Orb Bonus, Insightful Spell Lore II, Intelligence +11, Charisma +11, Orange Augment Slot. The item changes from Bind on Equip to Bound to Character. Introduced in Update 21. Maetrim's item has no Zhentarim Attuned socket."
+note = "Upgrades Libram of Silver Magic (Orb; +8 Orb Bonus, Insightful Potency +10, Insightful Spell Lore I, Intelligence +10, Charisma +10, Spellcraft +20, Zhentarim Attuned): loses +8 Orb Bonus, Insightful Spell Lore I, Intelligence +10, Charisma +10, gains +11 Orb Bonus, Insightful Spell Lore II, Intelligence +11, Charisma +11, Orange Augment Slot. The item changes from Bind on Equip to Bound to Character. Introduced in Update 21."
 cost = [{ ingredient = "Libram of Silver Magic", quantity = 1 }, { ingredient = "Black Stone", quantity = 150 }]
 
 [[system.recipe]]
 tier = "epic"
-slot = "crafting: zentarim attuned"
+slot = "crafting: zhentarim attuned"
 option = "Magestar upgrade"
 augments = []
 grants_slot = "green"

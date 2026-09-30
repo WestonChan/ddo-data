@@ -1,0 +1,239 @@
+[[correction]]
+kind = "item_socket"
+name = "Stormreaver's Napkin"
+field = "add"
+from = "null"
+to = "crafting: upgradeable item (stormreaver)"
+reason = "The wiki's Stormreaver Monument upgrades Stormreaver's Napkin; his item has no upgrade socket."
+source = "https://ddowiki.com/page/Stormreaver_Monument"
+read = "2026-09-30"
+
+[[correction]]
+kind = "item_socket"
+name = "Lantern Ring"
+field = "add"
+from = "null"
+to = "crafting: zhentarim attuned"
+reason = "The wiki's Lantern Ring is Zhentarim Attuned; his item has no Zhentarim Attuned socket."
+source = "https://ddowiki.com/page/Zhentarim_Attuned"
+read = "2026-09-30"
+
+[[correction]]
+kind = "item_socket"
+name = "Libram of Silver Magic"
+field = "add"
+from = "null"
+to = "crafting: zhentarim attuned"
+reason = "The wiki's Libram of Silver Magic is Zhentarim Attuned; his item has no Zhentarim Attuned socket."
+source = "https://ddowiki.com/page/Zhentarim_Attuned"
+read = "2026-09-30"
+
+[[correction]]
+kind = "item_socket"
+name = "Gloves of Titan's Grip"
+field = "add"
+from = "null"
+to = "crafting: suppressed power"
+reason = "The wiki's Gloves of Titan's Grip carry a Suppressed Power; his item has no Suppressed Power socket."
+source = "https://ddowiki.com/page/Dreamforge"
+read = "2026-09-30"
+
+[[correction]]
+kind = "item_socket"
+name = "Regalia of the Phoenix"
+field = "add"
+from = "null"
+to = "crafting: suppressed power"
+reason = "The wiki's Regalia of the Phoenix carries a Suppressed Power; his item has no Suppressed Power socket."
+source = "https://ddowiki.com/page/Dreamforge"
+read = "2026-09-30"
+
+[[correction]]
+kind = "item_socket"
+name = "Spidersilk Robes"
+field = "add"
+from = "null"
+to = "crafting: upgrade"
+reason = "The wiki's Mikrom Sum upgrades Spidersilk Robes into the Battle Arcanist set; his item has no upgrade socket."
+source = "https://ddowiki.com/page/Mikrom_Sum"
+read = "2026-09-30"
+
+[[correction]]
+kind = "item_socket"
+name = "Spider-spun Caparison"
+field = "add"
+from = "null"
+to = "crafting: upgrade"
+reason = "The wiki's Mikrom Sum upgrades Spider-spun Caparison into the Way of the Sun Soul set; his item has no upgrade socket."
+source = "https://ddowiki.com/page/Mikrom_Sum"
+read = "2026-09-30"
+
+[[correction]]
+kind = "item_socket"
+name = "Hide of the Goristro"
+field = "add"
+from = "null"
+to = "crafting: upgrade"
+reason = "The wiki's Mikrom Sum upgrades Hide of the Goristro into the Woodsman's Guile set; his item has no upgrade socket."
+source = "https://ddowiki.com/page/Mikrom_Sum"
+read = "2026-09-30"
+
+[[correction]]
+kind = "item_socket"
+name = "Embrace of the Spider Queen"
+field = "add"
+from = "null"
+to = "crafting: upgrade"
+reason = "The wiki's Mikrom Sum upgrades Embrace of the Spider Queen into the Knight's Loyalty set; his item has no upgrade socket."
+source = "https://ddowiki.com/page/Mikrom_Sum"
+read = "2026-09-30"
+
+[[correction]]
+kind = "socket_label"
+name = "crafting: zentarim attuned"
+field = "name"
+from = "crafting: zentarim attuned"
+to = "crafting: zhentarim attuned"
+reason = "Zentarim is a misspelling of the wiki's Zhentarim Attuned, the label his other items use."
+source = "https://ddowiki.com/page/Zhentarim_Attuned"
+read = "2026-09-30"
+
+[[correction]]
+kind = "socket_label"
+name = "crafting: upgradable item"
+field = "name"
+from = "crafting: upgradable item"
+to = "crafting: upgradeable item"
+reason = "Upgradable is a misspelling of the wiki's Upgradeable Item, the label his other items use."
+source = "https://ddowiki.com/page/Stormreaver_Monument"
+read = "2026-09-30"
+
+[[correction]]
+kind = "socket_label"
+name = "crafting: upgradeable - tier 2"
+field = "name"
+from = "crafting: upgradeable - tier 2"
+to = "crafting: upgradeable tier 2"
+reason = "One upgrade tier spelled two ways in his files; the wiki names it Tier 2, and his other items use Upgradeable Tier 2."
+source = "https://ddowiki.com/page/Cavalry_Plate"
+read = "2026-09-30"
+
+[[correction]]
+kind = "socket_label"
+name = "crafting: upgradeable - tier 3"
+field = "name"
+from = "crafting: upgradeable - tier 3"
+to = "crafting: upgradeable tier 3"
+reason = "One upgrade tier spelled two ways in his files; the wiki names it Tier 3, and his other items use Upgradeable Tier 3."
+source = "https://ddowiki.com/page/Cavalry_Plate"
+read = "2026-09-30"
+
+[[correction]]
+kind = "socket_label"
+name = "crafting: attuned to heroism 1"
+field = "name"
+from = "crafting: attuned to heroism 1"
+to = "crafting: attuned by heroism: tier 1"
+reason = "The wiki names the Fall of Truth upgrade Attuned by Heroism: Tier 1, the label his Stormreaver items use."
+source = "https://ddowiki.com/page/Stormreaver_Monument"
+read = "2026-09-30"
+
+[[correction]]
+kind = "socket_label"
+name = "crafting: attuned to heroism tier 1"
+field = "name"
+from = "crafting: attuned to heroism tier 1"
+to = "crafting: attuned by heroism: tier 1"
+reason = "The wiki names the Fall of Truth upgrade Attuned by Heroism: Tier 1, the label his Stormreaver items use."
+source = "https://ddowiki.com/page/Stormreaver_Monument"
+read = "2026-09-30"
+
+[[correction]]
+kind = "socket_label"
+name = "crafting: attuned to heroism 2"
+field = "name"
+from = "crafting: attuned to heroism 2"
+to = "crafting: attuned by heroism: tier 2"
+reason = "The wiki names the Fall of Truth upgrade Attuned by Heroism: Tier 2, the label his Stormreaver items use."
+source = "https://ddowiki.com/page/Stormreaver_Monument"
+read = "2026-09-30"
+
+[[correction]]
+kind = "socket_label"
+name = "crafting: attuned to heroism tier 2"
+field = "name"
+from = "crafting: attuned to heroism tier 2"
+to = "crafting: attuned by heroism: tier 2"
+reason = "The wiki names the Fall of Truth upgrade Attuned by Heroism: Tier 2, the label his Stormreaver items use."
+source = "https://ddowiki.com/page/Stormreaver_Monument"
+read = "2026-09-30"
+
+[[correction]]
+kind = "socket_label"
+name = "crafting: attuned to heroism 3"
+field = "name"
+from = "crafting: attuned to heroism 3"
+to = "crafting: attuned by heroism: tier 3"
+reason = "The wiki names the Fall of Truth upgrade Attuned by Heroism: Tier 3."
+source = "https://ddowiki.com/page/Stormreaver_Monument"
+read = "2026-09-30"
+
+[[correction]]
+kind = "socket_label"
+name = "crafting: attuned to heroism 4"
+field = "name"
+from = "crafting: attuned to heroism 4"
+to = "crafting: attuned by heroism: tier 4"
+reason = "The wiki names the Fall of Truth upgrade Attuned by Heroism: Tier 4."
+source = "https://ddowiki.com/page/Stormreaver_Monument"
+read = "2026-09-30"
+
+[[correction]]
+kind = "item"
+name = "Mining Sights"
+field = "remove"
+from = 0
+to = 1
+reason = "The wiki redirects Mining Sights to Mining Lenses; his Mining Sights repeats Mining Lenses' stats and drop."
+source = "https://ddowiki.com/page/Item:Mining_Sights"
+read = "2026-09-30"
+
+[[correction]]
+kind = "item"
+name = "Legendary Mining Sights"
+field = "remove"
+from = 0
+to = 1
+reason = "The wiki has no Legendary Mining Sights; his row repeats Legendary Mining Lenses' drop, level and sockets."
+source = "https://ddowiki.com/page/Item:Legendary_Mining_Sights"
+read = "2026-09-30"
+
+[[correction]]
+kind = "item"
+name = "Unicorn's Rememberance"
+field = "remove"
+from = 0
+to = 1
+reason = "A misspelled duplicate of his Unicorn's Remembrance, identical in every field; the wiki spells it Remembrance."
+source = "https://ddowiki.com/page/Item:Unicorn%27s_Remembrance"
+read = "2026-09-30"
+
+[[correction]]
+kind = "item"
+name = "Epic Unicorn's Rememberance"
+field = "remove"
+from = 0
+to = 1
+reason = "A misspelled duplicate of his Epic Unicorn's Remembrance, identical in every field; the wiki spells it Remembrance."
+source = "https://ddowiki.com/page/Item:Epic_Unicorn%27s_Remembrance"
+read = "2026-09-30"
+
+[[correction]]
+kind = "item"
+name = "Dark Power's Demands"
+field = "name"
+from = "Dark Power's Demands"
+to = "Dark Powers' Demands"
+reason = "The wiki spells it Dark Powers' Demands."
+source = "https://ddowiki.com/page/Item:Dark_Powers%27_Demands"
+read = "2026-09-30"
