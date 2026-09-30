@@ -1,4 +1,5 @@
 use super::crafting::crafting_recipes_yielding;
+use super::quests::quests_dropping_via;
 use crate::db::{
     bonuses_via, clamped_page, convert_to_booleans, json_row, json_rows, modifiers_for, row_count,
     substring_like_pattern, WhereClause,
@@ -115,9 +116,11 @@ async fn augments(
     path = "/v1/augments/{id}",
     tag = "augments",
     summary = "Get an augment",
-    description = "One augment as the list returns it, including its `crafting` recipes, plus the raw `modifiers` \
-                   its bonuses were derived from, including the conditional and dice-valued ones that do not reduce \
-                   to a bonus.",
+    description = "One augment as the list returns it, including its `crafting` recipes, plus `quests`, the quests \
+                   it drops in, read from the `Drops in` text of Maetrim's description and ddowiki's rare drops, each \
+                   with the fields item detail `quests` carry (loot type, raid flag, `is_rare`, `chest`, difficulties, \
+                   pack, patron, `source`; empty when neither names a quest), and the raw `modifiers` its bonuses were \
+                   derived from, including the conditional and dice-valued ones that do not reduce to a bonus.",
     params(("id" = i64, Path, description = "The augment's numeric id from the list endpoint")), responses((status = 200, description = "The augment with its child collections", body = Value), (status = 404, description = "No augment has this id", body = crate::error::ErrorBody))
 )]
 async fn augment_detail(State(state): State<AppState>, Path(id): Path<i64>) -> Result<Json<Value>, ApiError> {
@@ -126,6 +129,7 @@ async fn augment_detail(State(state): State<AppState>, Path(id): Path<i64>) -> R
             let mut augment = json_row(db, &format!("SELECT {AUGMENT_COLUMNS} FROM augments a WHERE a.id = ?1"), [id])?;
             convert_to_booleans(&mut augment, AUGMENT_FLAG_COLUMNS);
             attach_child_collections(db, &mut augment)?;
+            augment["quests"] = Value::Array(quests_dropping_via(db, "quest_augment_loot", "augment_id", id)?);
             augment["modifiers"] = Value::Array(modifiers_for(db, "augment", id)?);
             Ok(Json(augment))
         })

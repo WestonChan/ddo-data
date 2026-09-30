@@ -39,6 +39,7 @@ const COUNTED_ROWS: &[(&str, &str)] = &[
     ("spells", "spells"),
     ("optional_buffs", "optional_buffs"),
     ("quests", "quests"),
+    ("quest_augment_loot", "quest_augment_loot"),
     ("modifiers", "modifiers"),
     ("requirements", "requirements"),
     ("bonuses", "bonuses"),
@@ -56,7 +57,7 @@ const COUNTED_ROWS: &[(&str, &str)] = &[
     summary = "Get the dataset version",
     description = "Which DDOBuilderV2 commit the data was built from and when, which ddo-data commit the API binary \
                    was built from (`api_commit`, null for local builds), the schema version, and row counts for \
-                   the main tables plus `wiki_items` and `wiki_quests`, the items and quests read from ddowiki because \
+                   the main tables (`quest_augment_loot` counts the quest-to-augment drop links) plus `wiki_items` and `wiki_quests`, the items and quests read from ddowiki because \
                    DDOBuilderV2 lacks them. \
                    The dataset SHA is the same value every response carries in its `X-Dataset-Version` header; a change in it means every cached response is stale.",
     responses((status = 200, description = "Dataset, schema and counts", body = VersionReport))

@@ -52,7 +52,7 @@ async fn patrons(State(state): State<AppState>) -> Result<Json<Vec<Value>>, ApiE
                    place), `bestowed_by` (the quest giver) and `flagging` (free text on what must be run first), \
                    each null or false when the wiki has not been read for that quest. `source` is `maetrim` for a quest \
                    from his files and `wiki` for one read from ddowiki because his files lack it, replaced by his \
-                   as soon as his files carry a quest of that name. Item detail responses reference these in `quests`.",
+                   as soon as his files carry a quest of that name. Item and augment detail responses reference these in `quests`.",
     responses((status = 200, description = "The whole table with each quest's wiki facts", body = Vec<Value>))
 )]
 async fn quests(State(state): State<AppState>) -> Result<Json<Vec<Value>>, ApiError> {
@@ -74,4 +74,27 @@ async fn quests(State(state): State<AppState>) -> Result<Json<Vec<Value>>, ApiEr
         })
         .await?;
     Ok(Json(quests))
+}
+
+pub(super) fn quests_dropping_via(
+    db: &rusqlite::Connection,
+    loot_table: &str,
+    loot_id_column: &str,
+    loot_id: i64,
+) -> Result<Vec<Value>, ApiError> {
+    let mut quests = json_rows(
+        db,
+        &format!(
+            "SELECT q.id, q.name, q.level, q.epic_level, q.is_raid, q.difficulties, q.is_free_to_play, q.source, ap.name AS pack,
+                    pt.name AS patron, loot.loot_type, loot.is_rare, loot.chest
+               FROM {loot_table} loot JOIN quests q ON q.id = loot.quest_id
+               LEFT JOIN adventure_packs ap ON ap.id = q.pack_id LEFT JOIN patrons pt ON pt.id = q.patron_id
+              WHERE loot.{loot_id_column} = ?1 ORDER BY q.name"
+        ),
+        [loot_id],
+    )?;
+    for quest in &mut quests {
+        convert_to_booleans(quest, &["is_raid", "is_free_to_play", "is_rare"]);
+    }
+    Ok(quests)
 }

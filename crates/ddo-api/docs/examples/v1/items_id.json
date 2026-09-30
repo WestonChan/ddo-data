@@ -66,6 +66,7 @@
   "name": "Agony's Eyes",
   "quests": [
     {
+      "chest": "end chest",
       "difficulties": [
         "casual",
         "normal",

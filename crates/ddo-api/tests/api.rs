@@ -62,6 +62,7 @@ async fn version_reports_dataset_and_schema() {
     assert_eq!(json["schema_version"], ddo_model::SCHEMA_VERSION);
     assert!(json.get("api_commit").is_some(), "version must report the API build commit, null when unknown");
     assert_eq!(json["counts"]["items"], 16, "15 of Maetrim's and the wiki fixture's axe");
+    assert_eq!(json["counts"]["quest_augment_loot"], 2);
     assert_eq!(
         (
             &json["counts"]["crafting_systems"],
@@ -169,6 +170,36 @@ async fn item_detail_joins_every_satellite() {
     assert_eq!(buckler["quests"][0]["name"], "Book Burning");
     assert_eq!(buckler["quests"][0]["loot_type"], "chest");
     assert_eq!(buckler["quests"][0]["is_rare"], true);
+    assert_eq!(buckler["quests"][0]["chest"], "end chest");
+}
+
+#[tokio::test]
+async fn augment_detail_lists_the_quests_it_drops_in_as_item_detail_does() {
+    let (_, _, list) = get("/v1/augments?q=elemental+absorption").await;
+    let id = list["augments"][0]["id"].as_i64().unwrap();
+    let (_, _, augment) = get(&format!("/v1/augments/{id}")).await;
+    let quests = augment["quests"].as_array().unwrap();
+    assert_eq!(quests.len(), 1, "{quests:?}");
+    assert_eq!(quests[0]["name"], "Land of Lamordia");
+    assert_eq!(quests[0]["loot_type"], "chest");
+    assert_eq!(quests[0]["is_rare"], true);
+    assert_eq!(quests[0]["chest"], "vornir frosthelm's chest");
+    assert_eq!(quests[0]["source"], "maetrim");
+    assert_eq!(quests[0]["pack"], "Chill of Ravenloft");
+
+    let (_, _, list) = get("/v1/items?q=buckler+of+the+golden").await;
+    let item_id = list["items"][0]["id"].as_i64().unwrap();
+    let (_, _, buckler) = get(&format!("/v1/items/{item_id}")).await;
+    let mut item_quest_fields: Vec<&String> = buckler["quests"][0].as_object().unwrap().keys().collect();
+    let mut augment_quest_fields: Vec<&String> = quests[0].as_object().unwrap().keys().collect();
+    item_quest_fields.sort();
+    augment_quest_fields.sort();
+    assert_eq!(augment_quest_fields, item_quest_fields);
+
+    let (_, _, ruby_list) = get("/v1/augments?q=ruby+of+acid+damage").await;
+    let ruby_id = ruby_list["augments"][0]["id"].as_i64().unwrap();
+    let (_, _, ruby) = get(&format!("/v1/augments/{ruby_id}")).await;
+    assert_eq!(ruby["quests"], serde_json::json!([]));
 }
 
 #[tokio::test]

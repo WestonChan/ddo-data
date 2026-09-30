@@ -4,24 +4,24 @@
     {
       "bonus_type": "Artifact",
       "description": null,
-      "id": 4519,
-      "name": "Abjuration Spell Focus +2",
-      "stat": "Abjuration Spell Focus",
-      "stat_category": "magical",
-      "value": 2,
+      "id": 4435,
+      "name": "Physical Resistance Rating +10",
+      "stat": "Physical Resistance Rating",
+      "stat_category": "defensive",
+      "value": 10,
       "value2": null
     }
   ],
   "choose_level": false,
   "crafting": [],
-  "description": "Artifact Abjuration Focus +2\nDrops in: Locked Away (Part Two), end chest (rare)\nThe Chill of Ravenloft (Heroic), any difficulty\nTerror of Demogorgon (Heroic), any difficulty",
+  "description": "+10 Artifact Bonus to Physical Resistance Rating.\nDrops in: Secrets of the Red Wizards, end chest\nThe Darkness and the Light, end chest\nThe Covered Culvert, optional chest\nZoo Creeper, end chest",
   "dual_values": false,
   "effect_description": null,
   "enter_value": false,
   "family": "SunAndMoon",
   "grants_augment": null,
   "icon": "HistoryBookWhite",
-  "id": 1961,
+  "id": 1902,
   "level_values": null,
   "level_values2": null,
   "levels": null,
@@ -30,7 +30,7 @@
     {
       "amount_type": "Simple",
       "amounts": [
-        2
+        10
       ],
       "apply_as_item_effect": false,
       "bonus": "Artifact",
@@ -42,9 +42,9 @@
       "dice_number": null,
       "dice_sides": null,
       "display_name": null,
-      "effect_type": "SpellDC",
+      "effect_type": "PRR",
       "extra_types": null,
-      "id": 11272,
+      "id": 11213,
       "is_item_specific": false,
       "is_rare": false,
       "percent": false,
@@ -52,13 +52,70 @@
       "requirements": [],
       "sort_order": 0,
       "stack_source": null,
-      "targets": [
-        "Abjuration"
-      ],
+      "targets": null,
       "value": null
     }
   ],
-  "name": "Solar Gem of Abjuration (Heroic)",
+  "name": "Solar Gem of Physical Resistance Rating (Heroic)",
+  "quests": [
+    {
+      "chest": "end chest",
+      "difficulties": [
+        "normal",
+        "hard",
+        "elite"
+      ],
+      "epic_level": 35,
+      "id": 360,
+      "is_free_to_play": false,
+      "is_raid": false,
+      "is_rare": false,
+      "level": 13,
+      "loot_type": "chest",
+      "name": "Secrets of the Red Wizards",
+      "pack": "Magic of Myth Drannor",
+      "patron": "Cormanthor Elves",
+      "source": "maetrim"
+    },
+    {
+      "chest": "optional chest",
+      "difficulties": [
+        "casual",
+        "normal",
+        "hard"
+      ],
+      "epic_level": 35,
+      "id": 104,
+      "is_free_to_play": false,
+      "is_raid": false,
+      "is_rare": false,
+      "level": 4,
+      "loot_type": "chest",
+      "name": "The Covered Culvert",
+      "pack": "Tavern Tales",
+      "patron": "The Free Agents",
+      "source": "maetrim"
+    },
+    {
+      "chest": "end chest",
+      "difficulties": [
+        "casual",
+        "normal",
+        "hard"
+      ],
+      "epic_level": 35,
+      "id": 103,
+      "is_free_to_play": false,
+      "is_raid": false,
+      "is_rare": false,
+      "level": 4,
+      "loot_type": "chest",
+      "name": "The Darkness and the Light",
+      "pack": "Fall of the Night Brigade",
+      "patron": "The Harpers",
+      "source": "maetrim"
+    }
+  ],
   "set_bonus": null,
   "slots": [
     "sun"

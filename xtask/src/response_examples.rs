@@ -34,7 +34,7 @@ pub const EXAMPLE_REQUESTS: &[ExampleRequest<'static>] = &[
     sample("items", "/v1/items?q=cloak%20of%20winter&limit=2"),
     sample("items_id", "/v1/items/497"),
     sample("augments", "/v1/augments?slot=sun&limit=2"),
-    sample("augments_id", "/v1/augments/1961"),
+    sample("augments_id", "/v1/augments/1902"),
     sample("crafting-systems", "/v1/crafting-systems"),
     sample("crafting-systems_id", "/v1/crafting-systems/1"),
     sample("sets", "/v1/sets"),
