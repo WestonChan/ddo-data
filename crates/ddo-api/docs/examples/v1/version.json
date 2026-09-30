@@ -5,9 +5,9 @@
     "bonuses": 4752,
     "classes": 28,
     "clickies": 219,
-    "crafting_ingredients": 16,
-    "crafting_recipes": 74,
-    "crafting_systems": 1,
+    "crafting_ingredients": 155,
+    "crafting_recipes": 776,
+    "crafting_systems": 3,
     "enhancement_trees": 114,
     "enhancements": 3228,
     "feats": 1022,
@@ -24,7 +24,7 @@
     "spells": 706
   },
   "dataset": {
-    "built_at": "2026-09-29T23:31:03Z",
+    "built_at": "2026-09-30T00:19:16Z",
     "upstream_sha": "31ef0201ea8e28604de2b6242988aee6d63733b0"
   },
   "schema_version": 2
