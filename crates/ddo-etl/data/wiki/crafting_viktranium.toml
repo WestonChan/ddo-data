@@ -276,8 +276,8 @@ cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 50 }, { ingredie
 tier = "heroic"
 slot = "lamordia: dolorous (weapon)"
 option = "Dolorous Focus"
-augments = ["Dolorous Arcana (Heroic)"]
-note = "The page notes the game lists this Heroic augment as Dreadful instead of Dolorous. Maetrim names the Heroic augment Dolorous Arcana (Heroic); its text is the page's Heroic Dolorous Focus (+2 Equipment bonus to all Spell DCs)."
+augments = ["Dolorous Focus (Heroic)"]
+note = "The page notes the game lists this Heroic augment as Dreadful instead of Dolorous."
 cost = [{ ingredient = "Bleak Alternator", quantity = 10 }, { ingredient = "Bleak Conductor", quantity = 10 }, { ingredient = "Bleak Insulator", quantity = 10 }, { ingredient = "Bleak Resistor", quantity = 10 }]
 
 [[system.recipe]]
@@ -663,8 +663,7 @@ cost = [{ ingredient = "Bleak Alternator", quantity = 5 }, { ingredient = "Bleak
 tier = "legendary"
 slot = "lamordia: miserable (weapon)"
 option = "Miserable (Improved) Destruction"
-augments = ["Miserable Destruction (Legendary)"]
-note = "The page names the Legendary version Miserable Improved Destruction, triggering once every second; Maetrim's Miserable Destruction (Legendary) triggers once every three seconds, and his value stands."
+augments = ["Miserable Improved Destruction (Legendary)"]
 cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 25 }, { ingredient = "Legendary Bleak Conductor", quantity = 25 }, { ingredient = "Legendary Bleak Insulator", quantity = 25 }, { ingredient = "Legendary Bleak Resistor", quantity = 25 }, { ingredient = "Legendary Bleak Wire", quantity = 100 }]
 
 [[system.recipe]]

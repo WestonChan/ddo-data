@@ -388,8 +388,8 @@ cost = [{ ingredient = "Volatile Alloy", quantity = 1 }]
 tier = "heroic"
 slot = "crafting: alchemical tier 2"
 option = "Martial Tier 2: Air"
-augments = ["Martial: Alchemical Dexterity +2, Lighting Strike, Doublestrike 6%"]
-note = "Cannith Binding Station. The page shows the compound's icon without a count; recorded as 1. Maetrim's augment name spells Lightning Strike as Lighting Strike."
+augments = ["Martial: Alchemical Dexterity +2, Lightning Strike, Doublestrike 6%"]
+note = "Cannith Binding Station. The page shows the compound's icon without a count; recorded as 1."
 cost = [{ ingredient = "Durable Alloy", quantity = 1 }, { ingredient = "Fortified Compound", quantity = 1 }]
 
 [[system.recipe]]
@@ -576,8 +576,7 @@ cost = [{ ingredient = "Thread of Fate", quantity = 50 }]
 tier = "legendary"
 slot = "crafting: legendary alchemical tier 1"
 option = "Air: Shocking Blast 6, Sovereign Lightning Strike"
-augments = ["Air I: Electric Blast + Lightning Strike"]
-note = "The page gives Shocking Blast 6 and Sovereign Lightning Strike; Maetrim names it Electric Blast + Lightning Strike."
+augments = ["Air I: Shocking Blast + Lightning Strike"]
 cost = [{ ingredient = "Thread of Fate", quantity = 50 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
 
 [[system.recipe]]
@@ -648,8 +647,8 @@ cost = [{ ingredient = "Thread of Fate", quantity = 50 }, { ingredient = "Stabil
 tier = "legendary"
 slot = "crafting: legendary alchemical tier 1"
 option = "Water: Icy Blast 6, Concentrated Corrosive Salt"
-augments = ["Cold I: Cold Blast + Corrosive Salt"]
-note = "The page gives Icy Blast 6; Maetrim names it Cold Blast. The page's Water element is Maetrim's Cold."
+augments = ["Cold I: Icy Blast + Corrosive Salt"]
+note = "The page's Water element is Maetrim's Cold."
 cost = [{ ingredient = "Thread of Fate", quantity = 50 }, { ingredient = "Stabilizing Compound", quantity = 1 }]
 
 [[system.recipe]]

@@ -3769,8 +3769,8 @@ cost = [{ ingredient = "Legendary Inferior Focus of Air", quantity = 1 }, { ingr
 tier = "legendary"
 slot = "crafting: greensteel weapon tier 1"
 option = "Magnetism 139"
-augments = ["Electric Spell Power - +150 Equipment"]
-note = "Weapon augment for Air/Dominion/Ethereal, made at the Legendary Altar of Invasion. The page gives Magnetism 139; Maetrim's augment is +150 Equipment spell power, and his value stands."
+augments = ["Electric Spell Power - +139 Equipment"]
+note = "Weapon augment for Air/Dominion/Ethereal, made at the Legendary Altar of Invasion."
 cost = [{ ingredient = "Legendary Inferior Focus of Air", quantity = 1 }, { ingredient = "Legendary Cloudy Gem of Dominion", quantity = 1 }, { ingredient = "Legendary Diluted Ethereal Essence", quantity = 1 }]
 
 [[system.recipe]]
@@ -3785,8 +3785,8 @@ cost = [{ ingredient = "Legendary Inferior Focus of Earth", quantity = 1 }, { in
 tier = "legendary"
 slot = "crafting: greensteel weapon tier 1"
 option = "Corrosion 139"
-augments = ["Acid Spell Power - +150 Equipment"]
-note = "Weapon augment for Earth/Dominion/Ethereal, made at the Legendary Altar of Invasion. The page gives Corrosion 139; Maetrim's augment is +150 Equipment spell power, and his value stands."
+augments = ["Acid Spell Power - +139 Equipment"]
+note = "Weapon augment for Earth/Dominion/Ethereal, made at the Legendary Altar of Invasion."
 cost = [{ ingredient = "Legendary Inferior Focus of Earth", quantity = 1 }, { ingredient = "Legendary Cloudy Gem of Dominion", quantity = 1 }, { ingredient = "Legendary Diluted Ethereal Essence", quantity = 1 }]
 
 [[system.recipe]]
@@ -3801,8 +3801,8 @@ cost = [{ ingredient = "Legendary Inferior Focus of Fire", quantity = 1 }, { ing
 tier = "legendary"
 slot = "crafting: greensteel weapon tier 1"
 option = "Combustion 139"
-augments = ["Fire Spell Power - +150 Equipment"]
-note = "Weapon augment for Fire/Dominion/Ethereal, made at the Legendary Altar of Invasion. The page gives Combustion 139; Maetrim's augment is +150 Equipment spell power, and his value stands."
+augments = ["Fire Spell Power - +139 Equipment"]
+note = "Weapon augment for Fire/Dominion/Ethereal, made at the Legendary Altar of Invasion."
 cost = [{ ingredient = "Legendary Inferior Focus of Fire", quantity = 1 }, { ingredient = "Legendary Cloudy Gem of Dominion", quantity = 1 }, { ingredient = "Legendary Diluted Ethereal Essence", quantity = 1 }]
 
 [[system.recipe]]
@@ -3817,8 +3817,8 @@ cost = [{ ingredient = "Legendary Inferior Focus of Water", quantity = 1 }, { in
 tier = "legendary"
 slot = "crafting: greensteel weapon tier 1"
 option = "Glaciation 139"
-augments = ["Cold Spell Power - +150 Equipment"]
-note = "Weapon augment for Water/Dominion/Ethereal, made at the Legendary Altar of Invasion. The page gives Glaciation 139; Maetrim's augment is +150 Equipment spell power, and his value stands."
+augments = ["Cold Spell Power - +139 Equipment"]
+note = "Weapon augment for Water/Dominion/Ethereal, made at the Legendary Altar of Invasion."
 cost = [{ ingredient = "Legendary Inferior Focus of Water", quantity = 1 }, { ingredient = "Legendary Cloudy Gem of Dominion", quantity = 1 }, { ingredient = "Legendary Diluted Ethereal Essence", quantity = 1 }]
 
 [[system.recipe]]
@@ -3833,8 +3833,8 @@ cost = [{ ingredient = "Legendary Inferior Focus of Negative Energy", quantity =
 tier = "legendary"
 slot = "crafting: greensteel weapon tier 1"
 option = "Nullification 139"
-augments = ["Negative Spell Power - +150 Equipment"]
-note = "Weapon augment for Negative/Dominion/Ethereal, made at the Legendary Altar of Invasion. The page gives Nullification 139; Maetrim's augment is +150 Equipment spell power, and his value stands."
+augments = ["Negative Spell Power - +139 Equipment"]
+note = "Weapon augment for Negative/Dominion/Ethereal, made at the Legendary Altar of Invasion."
 cost = [{ ingredient = "Legendary Inferior Focus of Negative Energy", quantity = 1 }, { ingredient = "Legendary Cloudy Gem of Dominion", quantity = 1 }, { ingredient = "Legendary Diluted Ethereal Essence", quantity = 1 }]
 
 [[system.recipe]]
@@ -3849,8 +3849,8 @@ cost = [{ ingredient = "Legendary Inferior Focus of Positive Energy", quantity =
 tier = "legendary"
 slot = "crafting: greensteel weapon tier 1"
 option = "Devotion 139"
-augments = ["Positive Spell Power - +150 Equipment"]
-note = "Weapon augment for Positive/Dominion/Ethereal, made at the Legendary Altar of Invasion. The page gives Devotion 139; Maetrim's augment is +150 Equipment spell power, and his value stands."
+augments = ["Positive Spell Power - +139 Equipment"]
+note = "Weapon augment for Positive/Dominion/Ethereal, made at the Legendary Altar of Invasion."
 cost = [{ ingredient = "Legendary Inferior Focus of Positive Energy", quantity = 1 }, { ingredient = "Legendary Cloudy Gem of Dominion", quantity = 1 }, { ingredient = "Legendary Diluted Ethereal Essence", quantity = 1 }]
 
 [[system.recipe]]
@@ -4974,8 +4974,8 @@ cost = [{ ingredient = "Legendary Focus of Negative Energy", quantity = 1 }, { i
 tier = "legendary"
 slot = "crafting: equipment tier 2"
 option = "Insightful Undying +64, Insightful Positive Healing every 10 seconds +8"
-augments = ["+64 Unconsciousness Range (Insightful), 16 healing every 10 seconds (Insightful)"]
-note = "Equipment augment for Positive/Opposition/Material, made at the Legendary Altar of Subjugation. The page gives +8 healing every 10 seconds; Maetrim's augment gives 16, and his value stands."
+augments = ["+64 Unconsciousness Range (Insightful), 8 healing every 10 seconds (Insightful)"]
+note = "Equipment augment for Positive/Opposition/Material, made at the Legendary Altar of Subjugation."
 cost = [{ ingredient = "Legendary Focus of Positive Energy", quantity = 1 }, { ingredient = "Legendary Gem of Opposition", quantity = 1 }, { ingredient = "Legendary Material Essence", quantity = 1 }]
 
 [[system.recipe]]

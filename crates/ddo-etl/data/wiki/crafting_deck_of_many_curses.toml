@@ -259,48 +259,48 @@ cost = [{ ingredient = "Deck of Many Curses", quantity = 1 }]
 tier = "any"
 slot = "crafting: deck curse"
 option = "Curse of the Minor Combatant"
-augments = ["Curse of Minor Combatant"]
-note = "Random outcome; +2 Fortune Bonus to Melee Power; rarity Common. Maetrim spells it Curse of Minor Combatant."
+augments = ["Curse of the Minor Combatant"]
+note = "Random outcome; +2 Fortune Bonus to Melee Power; rarity Common."
 cost = [{ ingredient = "Deck of Many Curses", quantity = 1 }]
 
 [[system.recipe]]
 tier = "any"
 slot = "crafting: deck curse"
 option = "Curse of the Major Combatant"
-augments = ["Curse of Major Combatant"]
-note = "Random outcome; +5 Fortune Bonus to Melee Power; rarity Uncommon. Maetrim spells it Curse of Major Combatant."
+augments = ["Curse of the Major Combatant"]
+note = "Random outcome; +5 Fortune Bonus to Melee Power; rarity Uncommon."
 cost = [{ ingredient = "Deck of Many Curses", quantity = 1 }]
 
 [[system.recipe]]
 tier = "any"
 slot = "crafting: deck curse"
 option = "Curse of the Minor Tactician"
-augments = ["Curse of Minor Tactician"]
-note = "Random outcome; +1 Fortune Bonus to Tactical Feat DCs; rarity Common. Maetrim spells it Curse of Minor Tactician."
+augments = ["Curse of the Minor Tactician"]
+note = "Random outcome; +1 Fortune Bonus to Tactical Feat DCs; rarity Common."
 cost = [{ ingredient = "Deck of Many Curses", quantity = 1 }]
 
 [[system.recipe]]
 tier = "any"
 slot = "crafting: deck curse"
 option = "Curse of the Major Tactician"
-augments = ["Curse of Major Tactician"]
-note = "Random outcome; +2 Fortune Bonus to Tactical Feat DCs; rarity Uncommon. Maetrim spells it Curse of Major Tactician."
+augments = ["Curse of the Major Tactician"]
+note = "Random outcome; +2 Fortune Bonus to Tactical Feat DCs; rarity Uncommon."
 cost = [{ ingredient = "Deck of Many Curses", quantity = 1 }]
 
 [[system.recipe]]
 tier = "any"
 slot = "crafting: deck curse"
 option = "Curse of the Minor Assassin"
-augments = ["Curse of Minor Assassin"]
-note = "Random outcome; +1 Fortune Bonus to Assassinate DCs; rarity Common. Maetrim spells it Curse of Minor Assassin."
+augments = ["Curse of the Minor Assassin"]
+note = "Random outcome; +1 Fortune Bonus to Assassinate DCs; rarity Common."
 cost = [{ ingredient = "Deck of Many Curses", quantity = 1 }]
 
 [[system.recipe]]
 tier = "any"
 slot = "crafting: deck curse"
 option = "Curse of the Major Assassin"
-augments = ["Curse of Major Assassin"]
-note = "Random outcome; +2 Fortune Bonus to Assassinate DCs; rarity Uncommon. Maetrim spells it Curse of Major Assassin."
+augments = ["Curse of the Major Assassin"]
+note = "Random outcome; +2 Fortune Bonus to Assassinate DCs; rarity Uncommon."
 cost = [{ ingredient = "Deck of Many Curses", quantity = 1 }]
 
 [[system.recipe]]
@@ -675,16 +675,16 @@ cost = [{ ingredient = "Deck of Many Curses", quantity = 1 }]
 tier = "any"
 slot = "crafting: deck curse"
 option = "Curse of the Anger's Heart"
-augments = ["Curse of Anger's Heart"]
-note = "Random outcome; +2 Fortune Bonus to Intimidate; rarity Misc. Maetrim spells it Curse of Anger's Heart."
+augments = ["Curse of the Anger's Heart"]
+note = "Random outcome; +2 Fortune Bonus to Intimidate; rarity Misc."
 cost = [{ ingredient = "Deck of Many Curses", quantity = 1 }]
 
 [[system.recipe]]
 tier = "any"
 slot = "crafting: deck curse"
 option = "Curse of the Unending Song"
-augments = ["Curse of Unending Song"]
-note = "Random outcome; +2 Fortune Bonus to Perform, +1 Bard Song; rarity Misc. Maetrim spells it Curse of Unending Song."
+augments = ["Curse of the Unending Song"]
+note = "Random outcome; +2 Fortune Bonus to Perform, +1 Bard Song; rarity Misc."
 cost = [{ ingredient = "Deck of Many Curses", quantity = 1 }]
 
 [[system.recipe]]

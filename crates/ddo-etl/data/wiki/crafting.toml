@@ -357,8 +357,7 @@ cost = [{ ingredient = "Broken Collar", quantity = 50 }]
 tier = "legendary"
 slot = "crafting: legendary slavelords extra"
 option = "Spell Focus Mastery +6"
-augments = ["Spell Focus Mastery +4"]
-note = "The page gives +6; Maetrim's Slavelords_Legendary augment is Spell Focus Mastery +4, and his value stands."
+augments = ["Spell Focus Mastery +6"]
 cost = [{ ingredient = "Legendary Broken Collar", quantity = 100 }]
 
 [[system.recipe]]

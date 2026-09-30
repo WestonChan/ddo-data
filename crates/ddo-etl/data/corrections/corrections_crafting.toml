@@ -1,0 +1,709 @@
+[[correction]]
+kind = "augment_bonus"
+name = "Spell Focus Mastery +4"
+stat = "Spell DCs"
+bonus_type = "Equipment"
+field = "value"
+from = 4
+to = 6
+reason = "The wiki's legendary Slave Lords Spell Focus Mastery is +6."
+source = "https://ddowiki.com/page/Slave_Lords_Crafting"
+read = "2026-09-30"
+
+[[correction]]
+kind = "augment"
+name = "Spell Focus Mastery +4"
+field = "name"
+from = "Spell Focus Mastery +4"
+to = "Spell Focus Mastery +6"
+reason = "The wiki's legendary Slave Lords Spell Focus Mastery is +6."
+source = "https://ddowiki.com/page/Slave_Lords_Crafting"
+read = "2026-09-30"
+
+[[correction]]
+kind = "augment_bonus"
+name = "Electric Spell Power - +150 Equipment"
+stat = "Electric Spell Power"
+bonus_type = "Equipment"
+field = "value"
+from = 150
+to = 139
+reason = "The wiki's Legendary Green Steel tier 1 equipment spell power is Magnetism 139."
+source = "https://ddowiki.com/page/Legendary_Green_Steel_items/Tier_1"
+read = "2026-09-30"
+
+[[correction]]
+kind = "augment"
+name = "Electric Spell Power - +150 Equipment"
+field = "description"
+from = "Dominion/Air: +150 Equipment bonus increase to Electric spell power."
+to = "Dominion/Air: +139 Equipment bonus increase to Electric spell power."
+reason = "The wiki's Legendary Green Steel tier 1 equipment spell power is Magnetism 139."
+source = "https://ddowiki.com/page/Legendary_Green_Steel_items/Tier_1"
+read = "2026-09-30"
+
+[[correction]]
+kind = "augment"
+name = "Electric Spell Power - +150 Equipment"
+field = "name"
+from = "Electric Spell Power - +150 Equipment"
+to = "Electric Spell Power - +139 Equipment"
+reason = "The wiki's Legendary Green Steel tier 1 equipment spell power is Magnetism 139."
+source = "https://ddowiki.com/page/Legendary_Green_Steel_items/Tier_1"
+read = "2026-09-30"
+
+[[correction]]
+kind = "augment_bonus"
+name = "Acid Spell Power - +150 Equipment"
+stat = "Acid Spell Power"
+bonus_type = "Equipment"
+field = "value"
+from = 150
+to = 139
+reason = "The wiki's Legendary Green Steel tier 1 equipment spell power is Corrosion 139."
+source = "https://ddowiki.com/page/Legendary_Green_Steel_items/Tier_1"
+read = "2026-09-30"
+
+[[correction]]
+kind = "augment"
+name = "Acid Spell Power - +150 Equipment"
+field = "description"
+from = "Dominion/Earth: +150 Equipment bonus increase to Acid spell power."
+to = "Dominion/Earth: +139 Equipment bonus increase to Acid spell power."
+reason = "The wiki's Legendary Green Steel tier 1 equipment spell power is Corrosion 139."
+source = "https://ddowiki.com/page/Legendary_Green_Steel_items/Tier_1"
+read = "2026-09-30"
+
+[[correction]]
+kind = "augment"
+name = "Acid Spell Power - +150 Equipment"
+field = "name"
+from = "Acid Spell Power - +150 Equipment"
+to = "Acid Spell Power - +139 Equipment"
+reason = "The wiki's Legendary Green Steel tier 1 equipment spell power is Corrosion 139."
+source = "https://ddowiki.com/page/Legendary_Green_Steel_items/Tier_1"
+read = "2026-09-30"
+
+[[correction]]
+kind = "augment_bonus"
+name = "Fire Spell Power - +150 Equipment"
+stat = "Fire Spell Power"
+bonus_type = "Equipment"
+field = "value"
+from = 150
+to = 139
+reason = "The wiki's Legendary Green Steel tier 1 equipment spell power is Combustion 139."
+source = "https://ddowiki.com/page/Legendary_Green_Steel_items/Tier_1"
+read = "2026-09-30"
+
+[[correction]]
+kind = "augment"
+name = "Fire Spell Power - +150 Equipment"
+field = "description"
+from = "Dominion/Fire: +150 Equipment bonus increase to Fire spell power."
+to = "Dominion/Fire: +139 Equipment bonus increase to Fire spell power."
+reason = "The wiki's Legendary Green Steel tier 1 equipment spell power is Combustion 139."
+source = "https://ddowiki.com/page/Legendary_Green_Steel_items/Tier_1"
+read = "2026-09-30"
+
+[[correction]]
+kind = "augment"
+name = "Fire Spell Power - +150 Equipment"
+field = "name"
+from = "Fire Spell Power - +150 Equipment"
+to = "Fire Spell Power - +139 Equipment"
+reason = "The wiki's Legendary Green Steel tier 1 equipment spell power is Combustion 139."
+source = "https://ddowiki.com/page/Legendary_Green_Steel_items/Tier_1"
+read = "2026-09-30"
+
+[[correction]]
+kind = "augment_bonus"
+name = "Cold Spell Power - +150 Equipment"
+stat = "Cold Spell Power"
+bonus_type = "Equipment"
+field = "value"
+from = 150
+to = 139
+reason = "The wiki's Legendary Green Steel tier 1 equipment spell power is Glaciation 139."
+source = "https://ddowiki.com/page/Legendary_Green_Steel_items/Tier_1"
+read = "2026-09-30"
+
+[[correction]]
+kind = "augment"
+name = "Cold Spell Power - +150 Equipment"
+field = "description"
+from = "Dominion/Water: +150 Equipment bonus increase to Cold spell power."
+to = "Dominion/Water: +139 Equipment bonus increase to Cold spell power."
+reason = "The wiki's Legendary Green Steel tier 1 equipment spell power is Glaciation 139."
+source = "https://ddowiki.com/page/Legendary_Green_Steel_items/Tier_1"
+read = "2026-09-30"
+
+[[correction]]
+kind = "augment"
+name = "Cold Spell Power - +150 Equipment"
+field = "name"
+from = "Cold Spell Power - +150 Equipment"
+to = "Cold Spell Power - +139 Equipment"
+reason = "The wiki's Legendary Green Steel tier 1 equipment spell power is Glaciation 139."
+source = "https://ddowiki.com/page/Legendary_Green_Steel_items/Tier_1"
+read = "2026-09-30"
+
+[[correction]]
+kind = "augment_bonus"
+name = "Negative Spell Power - +150 Equipment"
+stat = "Negative Spell Power"
+bonus_type = "Equipment"
+field = "value"
+from = 150
+to = 139
+reason = "The wiki's Legendary Green Steel tier 1 equipment spell power is Nullification 139."
+source = "https://ddowiki.com/page/Legendary_Green_Steel_items/Tier_1"
+read = "2026-09-30"
+
+[[correction]]
+kind = "augment_bonus"
+name = "Negative Spell Power - +150 Equipment"
+stat = "Poison Spell Power"
+bonus_type = "Equipment"
+field = "value"
+from = 150
+to = 139
+reason = "The wiki's Legendary Green Steel tier 1 equipment spell power is Nullification 139."
+source = "https://ddowiki.com/page/Legendary_Green_Steel_items/Tier_1"
+read = "2026-09-30"
+
+[[correction]]
+kind = "augment"
+name = "Negative Spell Power - +150 Equipment"
+field = "description"
+from = "Dominion/Negative: +150 Equipment bonus increase to Negative/Poison spell power."
+to = "Dominion/Negative: +139 Equipment bonus increase to Negative/Poison spell power."
+reason = "The wiki's Legendary Green Steel tier 1 equipment spell power is Nullification 139."
+source = "https://ddowiki.com/page/Legendary_Green_Steel_items/Tier_1"
+read = "2026-09-30"
+
+[[correction]]
+kind = "augment"
+name = "Negative Spell Power - +150 Equipment"
+field = "name"
+from = "Negative Spell Power - +150 Equipment"
+to = "Negative Spell Power - +139 Equipment"
+reason = "The wiki's Legendary Green Steel tier 1 equipment spell power is Nullification 139."
+source = "https://ddowiki.com/page/Legendary_Green_Steel_items/Tier_1"
+read = "2026-09-30"
+
+[[correction]]
+kind = "augment_bonus"
+name = "Positive Spell Power - +150 Equipment"
+stat = "Positive Spell Power"
+bonus_type = "Equipment"
+field = "value"
+from = 150
+to = 139
+reason = "The wiki's Legendary Green Steel tier 1 equipment spell power is Devotion 139."
+source = "https://ddowiki.com/page/Legendary_Green_Steel_items/Tier_1"
+read = "2026-09-30"
+
+[[correction]]
+kind = "augment"
+name = "Positive Spell Power - +150 Equipment"
+field = "description"
+from = "Dominion/Positive: +150 Equipment bonus increase to Positive spell power."
+to = "Dominion/Positive: +139 Equipment bonus increase to Positive spell power."
+reason = "The wiki's Legendary Green Steel tier 1 equipment spell power is Devotion 139."
+source = "https://ddowiki.com/page/Legendary_Green_Steel_items/Tier_1"
+read = "2026-09-30"
+
+[[correction]]
+kind = "augment"
+name = "Positive Spell Power - +150 Equipment"
+field = "name"
+from = "Positive Spell Power - +150 Equipment"
+to = "Positive Spell Power - +139 Equipment"
+reason = "The wiki's Legendary Green Steel tier 1 equipment spell power is Devotion 139."
+source = "https://ddowiki.com/page/Legendary_Green_Steel_items/Tier_1"
+read = "2026-09-30"
+
+[[correction]]
+kind = "augment"
+name = "+64 Unconsciousness Range (Insightful), 16 healing every 10 seconds (Insightful)"
+field = "description"
+from = "Material/Opposition: +64 Unconsciousness Range (Insightful), 16 healing every 10 seconds (Insightful)"
+to = "Material/Opposition: +64 Unconsciousness Range (Insightful), 8 healing every 10 seconds (Insightful)"
+reason = "The wiki's Legendary Green Steel tier 2 positive equipment heals 8 every 10 seconds."
+source = "https://ddowiki.com/page/Legendary_Green_Steel_items/Tier_2"
+read = "2026-09-30"
+
+[[correction]]
+kind = "augment"
+name = "+64 Unconsciousness Range (Insightful), 16 healing every 10 seconds (Insightful)"
+field = "name"
+from = "+64 Unconsciousness Range (Insightful), 16 healing every 10 seconds (Insightful)"
+to = "+64 Unconsciousness Range (Insightful), 8 healing every 10 seconds (Insightful)"
+reason = "The wiki's Legendary Green Steel tier 2 positive equipment heals 8 every 10 seconds."
+source = "https://ddowiki.com/page/Legendary_Green_Steel_items/Tier_2"
+read = "2026-09-30"
+
+[[correction]]
+kind = "augment"
+name = "Martial: Alchemical Dexterity +2, Lighting Strike, Doublestrike 6%"
+field = "name"
+from = "Martial: Alchemical Dexterity +2, Lighting Strike, Doublestrike 6%"
+to = "Martial: Alchemical Dexterity +2, Lightning Strike, Doublestrike 6%"
+reason = "Lighting Strike is a typo for the wiki's Lightning Strike."
+source = "https://ddowiki.com/page/Alchemical_Crafting"
+read = "2026-09-30"
+
+[[correction]]
+kind = "augment"
+name = "Air I: Electric Blast + Lightning Strike"
+field = "effect_description"
+from = "Electric Blast + Lightning Strike: No effects"
+to = "Shocking Blast + Lightning Strike: No effects"
+reason = "The wiki's legendary Air tier 1 effect is Shocking Blast 6, not Electric Blast."
+source = "https://ddowiki.com/page/Alchemical_Crafting"
+read = "2026-09-30"
+
+[[correction]]
+kind = "augment"
+name = "Air I: Electric Blast + Lightning Strike"
+field = "name"
+from = "Air I: Electric Blast + Lightning Strike"
+to = "Air I: Shocking Blast + Lightning Strike"
+reason = "The wiki's legendary Air tier 1 effect is Shocking Blast 6, not Electric Blast."
+source = "https://ddowiki.com/page/Alchemical_Crafting"
+read = "2026-09-30"
+
+[[correction]]
+kind = "augment"
+name = "Cold I: Cold Blast + Corrosive Salt"
+field = "effect_description"
+from = "Cold Blast + Corrosive Salt: No effects"
+to = "Icy Blast + Corrosive Salt: No effects"
+reason = "The wiki's legendary Water tier 1 effect is Icy Blast 6, not Cold Blast."
+source = "https://ddowiki.com/page/Alchemical_Crafting"
+read = "2026-09-30"
+
+[[correction]]
+kind = "augment"
+name = "Cold I: Cold Blast + Corrosive Salt"
+field = "name"
+from = "Cold I: Cold Blast + Corrosive Salt"
+to = "Cold I: Icy Blast + Corrosive Salt"
+reason = "The wiki's legendary Water tier 1 effect is Icy Blast 6, not Cold Blast."
+source = "https://ddowiki.com/page/Alchemical_Crafting"
+read = "2026-09-30"
+
+[[correction]]
+kind = "augment_bonus"
+name = "Horn: +21 Armor Piercing"
+stat = "Fortification Bypass"
+bonus_type = "Enhancement"
+field = "value"
+from = 21
+to = 22
+reason = "The wiki's Horn: Armor Piercing is +22%, not +21."
+source = "https://ddowiki.com/page/Dinosaur_Bone_crafting"
+read = "2026-09-30"
+
+[[correction]]
+kind = "augment"
+name = "Horn: +21 Armor Piercing"
+field = "description"
+from = "+21 Enhancement bonus to Armor piercing"
+to = "+22 Enhancement bonus to Armor piercing"
+reason = "The wiki's Horn: Armor Piercing is +22%, not +21."
+source = "https://ddowiki.com/page/Dinosaur_Bone_crafting"
+read = "2026-09-30"
+
+[[correction]]
+kind = "augment"
+name = "Horn: +21 Armor Piercing"
+field = "name"
+from = "Horn: +21 Armor Piercing"
+to = "Horn: +22 Armor Piercing"
+reason = "The wiki's Horn: Armor Piercing is +22%, not +21."
+source = "https://ddowiki.com/page/Dinosaur_Bone_crafting"
+read = "2026-09-30"
+
+[[correction]]
+kind = "augment_bonus"
+name = "Horn: +23 Armor Piercing"
+stat = "Fortification Bypass"
+bonus_type = "Enhancement"
+field = "value"
+from = 23
+to = 24
+reason = "The wiki's Horn: Armor Piercing is +24%, not +23."
+source = "https://ddowiki.com/page/Dinosaur_Bone_crafting"
+read = "2026-09-30"
+
+[[correction]]
+kind = "augment"
+name = "Horn: +23 Armor Piercing"
+field = "description"
+from = "+23 Enhancement bonus to Armor piercing"
+to = "+24 Enhancement bonus to Armor piercing"
+reason = "The wiki's Horn: Armor Piercing is +24%, not +23."
+source = "https://ddowiki.com/page/Dinosaur_Bone_crafting"
+read = "2026-09-30"
+
+[[correction]]
+kind = "augment"
+name = "Horn: +23 Armor Piercing"
+field = "name"
+from = "Horn: +23 Armor Piercing"
+to = "Horn: +24 Armor Piercing"
+reason = "The wiki's Horn: Armor Piercing is +24%, not +23."
+source = "https://ddowiki.com/page/Dinosaur_Bone_crafting"
+read = "2026-09-30"
+
+[[correction]]
+kind = "augment"
+name = "Dolorous Arcana (Heroic)"
+field = "name"
+from = "Dolorous Arcana (Heroic)"
+to = "Dolorous Focus (Heroic)"
+reason = "The wiki names the heroic augment Dolorous Focus, like his legendary Dolorous Focus (Legendary)."
+source = "https://ddowiki.com/page/Viktranium_Experiment_crafting"
+read = "2026-09-30"
+
+[[correction]]
+kind = "augment"
+name = "Miserable Destruction (Legendary)"
+field = "description"
+from = "Your attacks apply a stack of Armor Destruction.\n-1 penalty to Armor Class, -1% of its Fortification. 20 Second Duration.\nStacks up to 15 times. This effect may trigger once every three seconds."
+to = "Your attacks apply a stack of Armor Destruction.\n-1 penalty to Armor Class, -1% of its Fortification. 20 Second Duration.\nStacks up to 15 times. This effect may trigger once every second."
+reason = "The wiki names the legendary augment Miserable Improved Destruction, triggering once every second."
+source = "https://ddowiki.com/page/Viktranium_Experiment_crafting"
+read = "2026-09-30"
+
+[[correction]]
+kind = "augment"
+name = "Miserable Destruction (Legendary)"
+field = "name"
+from = "Miserable Destruction (Legendary)"
+to = "Miserable Improved Destruction (Legendary)"
+reason = "The wiki names the legendary augment Miserable Improved Destruction, triggering once every second."
+source = "https://ddowiki.com/page/Viktranium_Experiment_crafting"
+read = "2026-09-30"
+
+[[correction]]
+kind = "augment_bonus"
+name = "+24 Enhancement Healing Amplification"
+stat = "Healing Amplification"
+bonus_type = "Enhancement"
+field = "bonus_type"
+from = "Enhancement"
+to = "Competence"
+reason = "The wiki gives the Nearly Complete healing amplification a Competence bonus, not Enhancement."
+source = "https://ddowiki.com/page/Nearly_Complete"
+read = "2026-09-30"
+
+[[correction]]
+kind = "augment"
+name = "+24 Enhancement Healing Amplification"
+field = "description"
+from = "+24 Enhancement bonus to Healing Amplification"
+to = "+24 Competence bonus to Healing Amplification"
+reason = "The wiki gives the Nearly Complete healing amplification a Competence bonus, not Enhancement."
+source = "https://ddowiki.com/page/Nearly_Complete"
+read = "2026-09-30"
+
+[[correction]]
+kind = "augment"
+name = "+24 Enhancement Healing Amplification"
+field = "name"
+from = "+24 Enhancement Healing Amplification"
+to = "+24 Competence Healing Amplification"
+reason = "The wiki gives the Nearly Complete healing amplification a Competence bonus, not Enhancement."
+source = "https://ddowiki.com/page/Nearly_Complete"
+read = "2026-09-30"
+
+[[correction]]
+kind = "augment_bonus"
+name = "+24 Negative Healing Amplification"
+stat = "Negative Healing Amplification"
+bonus_type = "Enhancement"
+field = "bonus_type"
+from = "Enhancement"
+to = "Profane"
+reason = "The wiki gives the Nearly Complete negative amplification a Profane bonus, not Enhancement."
+source = "https://ddowiki.com/page/Nearly_Complete"
+read = "2026-09-30"
+
+[[correction]]
+kind = "augment"
+name = "+24 Negative Healing Amplification"
+field = "description"
+from = "+24 Enhancement bonus to Negative Healing Amplification"
+to = "+24 Profane bonus to Negative Healing Amplification"
+reason = "The wiki gives the Nearly Complete negative amplification a Profane bonus, not Enhancement."
+source = "https://ddowiki.com/page/Nearly_Complete"
+read = "2026-09-30"
+
+[[correction]]
+kind = "augment_bonus"
+name = "+62 Enhancement Healing Amplification"
+stat = "Healing Amplification"
+bonus_type = "Enhancement"
+field = "bonus_type"
+from = "Enhancement"
+to = "Competence"
+reason = "The wiki gives the Nearly Complete healing amplification a Competence bonus, not Enhancement."
+source = "https://ddowiki.com/page/Nearly_Complete"
+read = "2026-09-30"
+
+[[correction]]
+kind = "augment"
+name = "+62 Enhancement Healing Amplification"
+field = "description"
+from = "+62 Enhancement bonus to Healing Amplification"
+to = "+62 Competence bonus to Healing Amplification"
+reason = "The wiki gives the Nearly Complete healing amplification a Competence bonus, not Enhancement."
+source = "https://ddowiki.com/page/Nearly_Complete"
+read = "2026-09-30"
+
+[[correction]]
+kind = "augment"
+name = "+62 Enhancement Healing Amplification"
+field = "name"
+from = "+62 Enhancement Healing Amplification"
+to = "+62 Competence Healing Amplification"
+reason = "The wiki gives the Nearly Complete healing amplification a Competence bonus, not Enhancement."
+source = "https://ddowiki.com/page/Nearly_Complete"
+read = "2026-09-30"
+
+[[correction]]
+kind = "augment_bonus"
+name = "+62 Negative Healing Amplification"
+stat = "Negative Healing Amplification"
+bonus_type = "Enhancement"
+field = "bonus_type"
+from = "Enhancement"
+to = "Profane"
+reason = "The wiki gives the Nearly Complete negative amplification a Profane bonus, not Enhancement."
+source = "https://ddowiki.com/page/Nearly_Complete"
+read = "2026-09-30"
+
+[[correction]]
+kind = "augment"
+name = "+62 Negative Healing Amplification"
+field = "description"
+from = "+62 Enhancement bonus to Negative Healing Amplification"
+to = "+62 Profane bonus to Negative Healing Amplification"
+reason = "The wiki gives the Nearly Complete negative amplification a Profane bonus, not Enhancement."
+source = "https://ddowiki.com/page/Nearly_Complete"
+read = "2026-09-30"
+
+[[correction]]
+kind = "augment_bonus"
+name = "Shadow Construct - Repair Amplification 10%"
+stat = "Repair Amplification"
+bonus_type = "Enhancement"
+field = "bonus_type"
+from = "Enhancement"
+to = "Profane"
+reason = "The wiki's Shadow Construct is Profane Repair Amplification +10, a Profane bonus like its siblings, not a percentage."
+source = "https://ddowiki.com/page/Thunder-Forged"
+read = "2026-09-30"
+
+[[correction]]
+kind = "augment"
+name = "Shadow Construct - Repair Amplification 10%"
+field = "description"
+from = "Repair Amplification 10%"
+to = "+10 Profane Repair Amplification"
+reason = "The wiki's Shadow Construct is Profane Repair Amplification +10, a Profane bonus like its siblings, not a percentage."
+source = "https://ddowiki.com/page/Thunder-Forged"
+read = "2026-09-30"
+
+[[correction]]
+kind = "augment"
+name = "Shadow Construct - Repair Amplification 10%"
+field = "name"
+from = "Shadow Construct - Repair Amplification 10%"
+to = "Shadow Construct - +10 Profane Repair Amplification"
+reason = "The wiki's Shadow Construct is Profane Repair Amplification +10, a Profane bonus like its siblings, not a percentage."
+source = "https://ddowiki.com/page/Thunder-Forged"
+read = "2026-09-30"
+
+[[correction]]
+kind = "augment_bonus"
+name = "+2 Melee/Ranged and Spell Power"
+field = "add"
+from = "null"
+to = { stat = "Physical Resistance Rating", bonus_type = "Reaper", value = 2 }
+reason = "The wiki's Reaper necklace enchantment also gives +2 Reaper Physical Resistance Rating."
+source = "https://ddowiki.com/page/Reaper_Forge"
+read = "2026-09-30"
+
+[[correction]]
+kind = "augment_bonus"
+name = "+2 Melee/Ranged and Spell Power"
+field = "add"
+from = "null"
+to = { stat = "Magical Resistance Rating", bonus_type = "Reaper", value = 2 }
+reason = "The wiki's Reaper necklace enchantment also gives +2 Reaper Magical Resistance Rating."
+source = "https://ddowiki.com/page/Reaper_Forge"
+read = "2026-09-30"
+
+[[correction]]
+kind = "augment"
+name = "Curse of Minor Combatant"
+field = "name"
+from = "Curse of Minor Combatant"
+to = "Curse of the Minor Combatant"
+reason = "The wiki names the curse Curse of the Minor Combatant."
+source = "https://ddowiki.com/page/Item:Deck_of_Many_Curses"
+read = "2026-09-30"
+
+[[correction]]
+kind = "augment"
+name = "Curse of Major Combatant"
+field = "name"
+from = "Curse of Major Combatant"
+to = "Curse of the Major Combatant"
+reason = "The wiki names the curse Curse of the Major Combatant."
+source = "https://ddowiki.com/page/Item:Deck_of_Many_Curses"
+read = "2026-09-30"
+
+[[correction]]
+kind = "augment"
+name = "Curse of Minor Tactician"
+field = "name"
+from = "Curse of Minor Tactician"
+to = "Curse of the Minor Tactician"
+reason = "The wiki names the curse Curse of the Minor Tactician."
+source = "https://ddowiki.com/page/Item:Deck_of_Many_Curses"
+read = "2026-09-30"
+
+[[correction]]
+kind = "augment"
+name = "Curse of Major Tactician"
+field = "name"
+from = "Curse of Major Tactician"
+to = "Curse of the Major Tactician"
+reason = "The wiki names the curse Curse of the Major Tactician."
+source = "https://ddowiki.com/page/Item:Deck_of_Many_Curses"
+read = "2026-09-30"
+
+[[correction]]
+kind = "augment"
+name = "Curse of Minor Assassin"
+field = "name"
+from = "Curse of Minor Assassin"
+to = "Curse of the Minor Assassin"
+reason = "The wiki names the curse Curse of the Minor Assassin."
+source = "https://ddowiki.com/page/Item:Deck_of_Many_Curses"
+read = "2026-09-30"
+
+[[correction]]
+kind = "augment"
+name = "Curse of Major Assassin"
+field = "name"
+from = "Curse of Major Assassin"
+to = "Curse of the Major Assassin"
+reason = "The wiki names the curse Curse of the Major Assassin."
+source = "https://ddowiki.com/page/Item:Deck_of_Many_Curses"
+read = "2026-09-30"
+
+[[correction]]
+kind = "augment"
+name = "Curse of Anger's Heart"
+field = "name"
+from = "Curse of Anger's Heart"
+to = "Curse of the Anger's Heart"
+reason = "The wiki names the curse Curse of the Anger's Heart."
+source = "https://ddowiki.com/page/Item:Deck_of_Many_Curses"
+read = "2026-09-30"
+
+[[correction]]
+kind = "augment"
+name = "Curse of Unending Song"
+field = "name"
+from = "Curse of Unending Song"
+to = "Curse of the Unending Song"
+reason = "The wiki names the curse Curse of the Unending Song."
+source = "https://ddowiki.com/page/Item:Deck_of_Many_Curses"
+read = "2026-09-30"
+
+[[correction]]
+kind = "augment"
+name = "Devil's Infernal Dance"
+field = "name"
+from = "Devil's Infernal Dance"
+to = "Devils' Infernal Dance"
+reason = "The wiki spells it Devils' Infernal Dance."
+source = "https://ddowiki.com/page/Lost_Purpose"
+read = "2026-09-30"
+
+[[correction]]
+kind = "augment"
+name = "Legendary Devil's Infernal Dance"
+field = "name"
+from = "Legendary Devil's Infernal Dance"
+to = "Legendary Devils' Infernal Dance"
+reason = "The wiki spells it Devils' Infernal Dance."
+source = "https://ddowiki.com/page/Lost_Purpose"
+read = "2026-09-30"
+
+[[correction]]
+kind = "augment"
+name = "Eldritch Rune of Skill: Strength"
+field = "name"
+from = "Eldritch Rune of Skill: Strength"
+to = "Eldritch Rune of Skill:Strength"
+reason = "The wiki spells it Eldritch Rune of Skill:Strength, with no space."
+source = "https://ddowiki.com/page/Dragontouched_Armor"
+read = "2026-09-30"
+
+[[correction]]
+kind = "augment"
+name = "Eldritch Rune of Skill: Dexterity"
+field = "name"
+from = "Eldritch Rune of Skill: Dexterity"
+to = "Eldritch Rune of Skill:Dexterity"
+reason = "The wiki spells it Eldritch Rune of Skill:Dexterity, with no space."
+source = "https://ddowiki.com/page/Dragontouched_Armor"
+read = "2026-09-30"
+
+[[correction]]
+kind = "augment"
+name = "Eldritch Rune of Skill: Constitution"
+field = "name"
+from = "Eldritch Rune of Skill: Constitution"
+to = "Eldritch Rune of Skill:Constitution"
+reason = "The wiki spells it Eldritch Rune of Skill:Constitution, with no space."
+source = "https://ddowiki.com/page/Dragontouched_Armor"
+read = "2026-09-30"
+
+[[correction]]
+kind = "augment"
+name = "Eldritch Rune of Skill: Intelligence"
+field = "name"
+from = "Eldritch Rune of Skill: Intelligence"
+to = "Eldritch Rune of Skill:Intelligence"
+reason = "The wiki spells it Eldritch Rune of Skill:Intelligence, with no space."
+source = "https://ddowiki.com/page/Dragontouched_Armor"
+read = "2026-09-30"
+
+[[correction]]
+kind = "augment"
+name = "Eldritch Rune of Skill: Wisdom"
+field = "name"
+from = "Eldritch Rune of Skill: Wisdom"
+to = "Eldritch Rune of Skill:Wisdom"
+reason = "The wiki spells it Eldritch Rune of Skill:Wisdom, with no space."
+source = "https://ddowiki.com/page/Dragontouched_Armor"
+read = "2026-09-30"
+
+[[correction]]
+kind = "augment"
+name = "Eldritch Rune of Skill: Charisma"
+field = "name"
+from = "Eldritch Rune of Skill: Charisma"
+to = "Eldritch Rune of Skill:Charisma"
+reason = "The wiki spells it Eldritch Rune of Skill:Charisma, with no space."
+source = "https://ddowiki.com/page/Dragontouched_Armor"
+read = "2026-09-30"

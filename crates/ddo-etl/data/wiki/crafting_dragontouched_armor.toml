@@ -121,48 +121,48 @@ cost = [{ ingredient = "Eldritch Rune", quantity = 1 }]
 tier = "heroic"
 slot = "crafting: eldritch rune"
 option = "Eldritch Rune of Skill:Strength"
-augments = ["Eldritch Rune of Skill: Strength"]
-note = "Effect: Exceptional Strength Skills +6. The in-game text says +3; the actual bonus is +6. Maetrim spells it Eldritch Rune of Skill: Strength."
+augments = ["Eldritch Rune of Skill:Strength"]
+note = "Effect: Exceptional Strength Skills +6. The in-game text says +3; the actual bonus is +6."
 cost = [{ ingredient = "Eldritch Rune", quantity = 1 }]
 
 [[system.recipe]]
 tier = "heroic"
 slot = "crafting: eldritch rune"
 option = "Eldritch Rune of Skill:Dexterity"
-augments = ["Eldritch Rune of Skill: Dexterity"]
-note = "Effect: Exceptional Dexterity Skills +6. The in-game text says +3; the actual bonus is +6. Maetrim spells it Eldritch Rune of Skill: Dexterity."
+augments = ["Eldritch Rune of Skill:Dexterity"]
+note = "Effect: Exceptional Dexterity Skills +6. The in-game text says +3; the actual bonus is +6."
 cost = [{ ingredient = "Eldritch Rune", quantity = 1 }]
 
 [[system.recipe]]
 tier = "heroic"
 slot = "crafting: eldritch rune"
 option = "Eldritch Rune of Skill:Constitution"
-augments = ["Eldritch Rune of Skill: Constitution"]
-note = "Effect: Exceptional Constitution Skills +6. The in-game text says +3; the actual bonus is +6. Maetrim spells it Eldritch Rune of Skill: Constitution."
+augments = ["Eldritch Rune of Skill:Constitution"]
+note = "Effect: Exceptional Constitution Skills +6. The in-game text says +3; the actual bonus is +6."
 cost = [{ ingredient = "Eldritch Rune", quantity = 1 }]
 
 [[system.recipe]]
 tier = "heroic"
 slot = "crafting: eldritch rune"
 option = "Eldritch Rune of Skill:Intelligence"
-augments = ["Eldritch Rune of Skill: Intelligence"]
-note = "Effect: Exceptional Intelligence Skills +6. The in-game text says +3; the actual bonus is +6. Maetrim spells it Eldritch Rune of Skill: Intelligence."
+augments = ["Eldritch Rune of Skill:Intelligence"]
+note = "Effect: Exceptional Intelligence Skills +6. The in-game text says +3; the actual bonus is +6."
 cost = [{ ingredient = "Eldritch Rune", quantity = 1 }]
 
 [[system.recipe]]
 tier = "heroic"
 slot = "crafting: eldritch rune"
 option = "Eldritch Rune of Skill:Wisdom"
-augments = ["Eldritch Rune of Skill: Wisdom"]
-note = "Effect: Exceptional Wisdom Skills +6. The in-game text says +3; the actual bonus is +6. Maetrim spells it Eldritch Rune of Skill: Wisdom."
+augments = ["Eldritch Rune of Skill:Wisdom"]
+note = "Effect: Exceptional Wisdom Skills +6. The in-game text says +3; the actual bonus is +6."
 cost = [{ ingredient = "Eldritch Rune", quantity = 1 }]
 
 [[system.recipe]]
 tier = "heroic"
 slot = "crafting: eldritch rune"
 option = "Eldritch Rune of Skill:Charisma"
-augments = ["Eldritch Rune of Skill: Charisma"]
-note = "Effect: Exceptional Charisma Skills +6. The in-game text says +3; the actual bonus is +6. Maetrim spells it Eldritch Rune of Skill: Charisma."
+augments = ["Eldritch Rune of Skill:Charisma"]
+note = "Effect: Exceptional Charisma Skills +6. The in-game text says +3; the actual bonus is +6."
 cost = [{ ingredient = "Eldritch Rune", quantity = 1 }]
 
 [[system.recipe]]

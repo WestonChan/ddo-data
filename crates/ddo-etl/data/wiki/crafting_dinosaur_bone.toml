@@ -745,8 +745,8 @@ cost = [{ ingredient = "Black Pearl", quantity = 50 }, { ingredient = "Fossilize
 tier = "legendary"
 slot = "isle of dread: horn (accessory)"
 option = "Horn: Armor Piercing"
-augments = ["Horn: +21 Armor Piercing", "Horn: +23 Armor Piercing"]
-note = "Yields the regular and the Minor Artifact version of Maetrim's augment. The page gives +22%, or +24% in a Minor Artifact; Maetrim's augments are +21 and +23, and his values stand."
+augments = ["Horn: +22 Armor Piercing", "Horn: +24 Armor Piercing"]
+note = "Yields the regular and the Minor Artifact version of Maetrim's augment. The page gives +22%, or +24% in a Minor Artifact."
 cost = [{ ingredient = "Black Pearl", quantity = 50 }, { ingredient = "Fossilized Raptor Claw", quantity = 50 }, { ingredient = "Fossilized Triceratops Horn", quantity = 50 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 50 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 50 }]
 
 [[system.recipe]]

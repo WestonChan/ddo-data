@@ -397,7 +397,7 @@ cost = [{ ingredient = "Shadow Dragon Scale", quantity = 50 }, { ingredient = "C
 [[system.recipe]]
 tier = "epic"
 option = "Shadow Construct"
-augments = ["Shadow Construct - Repair Amplification 10%"]
+augments = ["Shadow Construct - +10 Profane Repair Amplification"]
 grants_slot = "green"
-note = "Flawless (ML28) upgrade, one choice per armor; compatible with docent. Every choice also adds a Green augment slot. The page gives Profane Repair Amplification +10; Maetrim's augment is Repair Amplification 10%."
+note = "Flawless (ML28) upgrade, one choice per armor; compatible with docent. Every choice also adds a Green augment slot."
 cost = [{ ingredient = "Shadow Dragon Scale", quantity = 50 }, { ingredient = "Commendation of Valor", quantity = 240 }]

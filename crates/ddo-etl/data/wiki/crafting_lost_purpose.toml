@@ -75,8 +75,7 @@ cost = [{ ingredient = "Esoteric Relic", quantity = 10 }]
 tier = "heroic"
 slot = "crafting: lost purpose"
 option = "Awaken Set Bonus: Devils' Infernal Dance"
-augments = ["Devil's Infernal Dance"]
-note = "The wiki spells it Devils'; Maetrim's augment is Devil's Infernal Dance."
+augments = ["Devils' Infernal Dance"]
 cost = [{ ingredient = "Esoteric Relic", quantity = 10 }]
 
 [[system.recipe]]
@@ -153,8 +152,7 @@ cost = [{ ingredient = "Legendary Esoteric Relic", quantity = 20 }]
 tier = "legendary"
 slot = "crafting: lost purpose"
 option = "Awaken Set Bonus: Legendary Devils' Infernal Dance"
-augments = ["Legendary Devil's Infernal Dance"]
-note = "The wiki spells it Devils'; Maetrim's augment is Legendary Devil's Infernal Dance."
+augments = ["Legendary Devils' Infernal Dance"]
 cost = [{ ingredient = "Legendary Esoteric Relic", quantity = 20 }]
 
 [[system.recipe]]

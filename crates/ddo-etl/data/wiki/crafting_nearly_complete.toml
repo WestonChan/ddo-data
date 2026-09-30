@@ -116,8 +116,8 @@ cost = [{ ingredient = "Legendary Abyssal Gem", quantity = 25 }]
 tier = "heroic"
 slot = "crafting: nearly complete: healing amplification (heroic)"
 option = "Competence Healing Amplification +24"
-augments = ["+24 Enhancement Healing Amplification"]
-note = "Effect set: Healing Amplification. The wiki lists a Competence bonus; Maetrim's augment is +24 Enhancement Healing Amplification."
+augments = ["+24 Competence Healing Amplification"]
+note = "Effect set: Healing Amplification."
 cost = [{ ingredient = "Abyssal Gem", quantity = 25 }]
 
 [[system.recipe]]
@@ -125,7 +125,7 @@ tier = "heroic"
 slot = "crafting: nearly complete: healing amplification (heroic)"
 option = "Profane Negative Amplification +24"
 augments = ["+24 Negative Healing Amplification"]
-note = "Effect set: Healing Amplification. The wiki lists a Profane bonus; Maetrim's augment is +24 Negative Healing Amplification."
+note = "Effect set: Healing Amplification."
 cost = [{ ingredient = "Abyssal Gem", quantity = 25 }]
 
 [[system.recipe]]
@@ -140,8 +140,8 @@ cost = [{ ingredient = "Abyssal Gem", quantity = 25 }]
 tier = "legendary"
 slot = "crafting: nearly complete: healing amplification (legendary)"
 option = "Competence Healing Amplification +62"
-augments = ["+62 Enhancement Healing Amplification"]
-note = "Effect set: Healing Amplification. The wiki lists a Competence bonus; Maetrim's augment is +62 Enhancement Healing Amplification."
+augments = ["+62 Competence Healing Amplification"]
+note = "Effect set: Healing Amplification."
 cost = [{ ingredient = "Legendary Abyssal Gem", quantity = 25 }]
 
 [[system.recipe]]
@@ -149,7 +149,7 @@ tier = "legendary"
 slot = "crafting: nearly complete: healing amplification (legendary)"
 option = "Profane Negative Amplification +62"
 augments = ["+62 Negative Healing Amplification"]
-note = "Effect set: Healing Amplification. The wiki lists a Profane bonus; Maetrim's augment is +62 Negative Healing Amplification."
+note = "Effect set: Healing Amplification."
 cost = [{ ingredient = "Legendary Abyssal Gem", quantity = 25 }]
 
 [[system.recipe]]
