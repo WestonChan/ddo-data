@@ -30,7 +30,7 @@ pub(super) struct AugmentListQuery {
 
 const AUGMENT_FLAG_COLUMNS: &[&str] = &["choose_level", "dual_values", "enter_value", "suppress_set_bonus"];
 
-fn attach_slot_labels_and_bonuses(db: &rusqlite::Connection, augment: &mut Value) -> Result<(), ApiError> {
+fn attach_child_collections(db: &rusqlite::Connection, augment: &mut Value) -> Result<(), ApiError> {
     let augment_id = augment["id"].as_i64().unwrap_or(0);
     let slot_labels: Vec<Value> = json_rows(
         db,
@@ -42,6 +42,7 @@ fn attach_slot_labels_and_bonuses(db: &rusqlite::Connection, augment: &mut Value
     .collect();
     augment["slots"] = Value::Array(slot_labels);
     augment["bonuses"] = Value::Array(bonuses_via(db, "augment_bonuses", "augment_id", augment_id)?);
+    augment["crafting"] = Value::Array(crafting_recipes_yielding(db, augment_id)?);
     Ok(())
 }
 
@@ -56,8 +57,11 @@ const AUGMENT_COLUMNS: &str =
     tag = "augments",
     summary = "List augments",
     description = "One page of augments ordered by name then minimum level, each with the socket labels it fits \
-                   (`slots`), its `bonuses`, and the crafting fields DDOBuilderV2 records (level tables, dual values, \
-                   set bonus, granted augments). Filter by `slot` to get the candidates for one socket on an item.",
+                   (`slots`), its `bonuses`, the crafting fields DDOBuilderV2 records (level tables, dual values, \
+                   set bonus, granted augments), and `crafting`: the wiki crafting recipes that yield it, each with \
+                   its `system` name, `tier`, the wiki's `option` label and its `cost` as \
+                   `{ ingredient, tier, quantity }` entries (see /v1/crafting-systems); empty when no recipe read \
+                   from the wiki yields it. Filter by `slot` to get the candidates for one socket on an item.",
     params(
         ("q" = Option<String>, Query, description = "Case-insensitive substring of the augment name"),
         ("slot" = Option<String>, Query, description = "Socket label as /v1/augment-slot-types lists it, e.g. `red` or `lamordia: melancholic (accessory)`; case-insensitive"),
@@ -99,7 +103,7 @@ async fn augments(
             let mut augments = json_rows(db, &page_sql, where_clause.params())?;
             for augment in &mut augments {
                 convert_to_booleans(augment, AUGMENT_FLAG_COLUMNS);
-                attach_slot_labels_and_bonuses(db, augment)?;
+                attach_child_collections(db, augment)?;
             }
             Ok(Json(json!({ "total": total, "limit": limit, "offset": offset, "augments": augments })))
         })
@@ -111,11 +115,9 @@ async fn augments(
     path = "/v1/augments/{id}",
     tag = "augments",
     summary = "Get an augment",
-    description = "One augment as the list returns it, plus the raw `modifiers` its bonuses were derived from, \
-                   including the conditional and dice-valued ones that do not reduce to a bonus, and `crafting`: the \
-                   wiki crafting recipes that yield this augment, each with its `system` name, `tier`, the wiki's \
-                   `option` label and its `cost` as `{ ingredient, tier, quantity }` entries (see \
-                   /v1/crafting-systems); empty when no recipe read from the wiki yields it.",
+    description = "One augment as the list returns it, including its `crafting` recipes, plus the raw `modifiers` \
+                   its bonuses were derived from, including the conditional and dice-valued ones that do not reduce \
+                   to a bonus.",
     params(("id" = i64, Path, description = "The augment's numeric id from the list endpoint")), responses((status = 200, description = "The augment with its child collections", body = Value), (status = 404, description = "No augment has this id", body = crate::error::ErrorBody))
 )]
 async fn augment_detail(State(state): State<AppState>, Path(id): Path<i64>) -> Result<Json<Value>, ApiError> {
@@ -123,9 +125,8 @@ async fn augment_detail(State(state): State<AppState>, Path(id): Path<i64>) -> R
         .read_db(move |db| {
             let mut augment = json_row(db, &format!("SELECT {AUGMENT_COLUMNS} FROM augments a WHERE a.id = ?1"), [id])?;
             convert_to_booleans(&mut augment, AUGMENT_FLAG_COLUMNS);
-            attach_slot_labels_and_bonuses(db, &mut augment)?;
+            attach_child_collections(db, &mut augment)?;
             augment["modifiers"] = Value::Array(modifiers_for(db, "augment", id)?);
-            augment["crafting"] = Value::Array(crafting_recipes_yielding(db, id)?);
             Ok(Json(augment))
         })
         .await

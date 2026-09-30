@@ -733,3 +733,27 @@ async fn augment_detail_lists_the_crafting_recipes_that_yield_it() {
     let (_, _, augment) = get(&format!("/v1/augments/{id}")).await;
     assert_eq!(augment["crafting"], serde_json::json!([]));
 }
+
+#[tokio::test]
+async fn augment_list_rows_carry_the_crafting_recipes_that_yield_them() {
+    let (status, _, found) = get("/v1/augments?q=fortitude+save&family=Greensteel_Heroic").await;
+    assert_eq!(status, StatusCode::OK);
+    let augments = found["augments"].as_array().unwrap();
+    assert_eq!(augments.len(), 2, "{augments:?}");
+    for augment in augments {
+        assert_eq!(
+            augment["crafting"],
+            serde_json::json!([{
+                "system": "Heroic Green Steel",
+                "tier": "heroic",
+                "option": "+5 Fortitude Save",
+                "cost": [
+                    { "ingredient": "Small Shard of Power", "tier": "heroic", "quantity": 1 },
+                    { "ingredient": "Small Focus of Earth", "tier": "heroic", "quantity": 1 }
+                ]
+            }])
+        );
+    }
+    let (_, _, ruby) = get("/v1/augments?q=ruby+of+acid").await;
+    assert_eq!(ruby["augments"][0]["crafting"], serde_json::json!([]));
+}
