@@ -1,7 +1,8 @@
-use crate::map::drop_location::{marks_rare_loot, segment_containing};
+use crate::map::drop_location::{chest_following, marks_rare_loot, segment_containing};
 use anyhow::Result;
 use ddo_model::enums::{LootType, RowSource};
 use rusqlite::{params, Transaction};
+use std::ops::Range;
 
 struct DropTextQuest {
     name: String,
@@ -18,6 +19,7 @@ pub(super) struct DropTextQuestLink {
     pub(super) quest_id: i64,
     pub(super) loot_type: LootType,
     pub(super) is_rare: bool,
+    pub(super) chest: Option<String>,
     pub(super) is_wiki_quest: bool,
 }
 
@@ -38,14 +40,18 @@ impl DropTextQuests {
         let mut unmatched_text = drop_text.to_string();
         let mentions_reward = drop_text.to_lowercase().contains("reward");
         let mut quest_links = Vec::new();
+        let mut quest_name_spans_by_link = Vec::new();
         for quest in &self.longest_name_first {
             let quest_name = quest.name.as_str();
             if quest_name.is_empty() || !unmatched_text.contains(quest_name) {
                 continue;
             }
-            let is_rare = unmatched_text
+            let quest_name_spans: Vec<Range<usize>> = unmatched_text
                 .match_indices(quest_name)
-                .any(|(byte_offset, _)| marks_rare_loot(segment_containing(drop_text, byte_offset)));
+                .map(|(byte_offset, _)| byte_offset..byte_offset + quest_name.len())
+                .collect();
+            let is_rare =
+                quest_name_spans.iter().any(|span| marks_rare_loot(segment_containing(drop_text, span.start)));
             unmatched_text = unmatched_text.replace(quest_name, &" ".repeat(quest_name.len()));
             let loot_type = if quest.is_raid {
                 LootType::Raid
@@ -58,8 +64,15 @@ impl DropTextQuests {
                 quest_id: quest.id,
                 loot_type,
                 is_rare,
+                chest: None,
                 is_wiki_quest: quest.is_wiki,
             });
+            quest_name_spans_by_link.push(quest_name_spans);
+        }
+        let every_quest_name_span: Vec<Range<usize>> = quest_name_spans_by_link.iter().flatten().cloned().collect();
+        for (quest_link, quest_name_spans) in quest_links.iter_mut().zip(&quest_name_spans_by_link) {
+            quest_link.chest =
+                quest_name_spans.iter().find_map(|span| chest_following(drop_text, span.end, &every_quest_name_span));
         }
         quest_links
     }

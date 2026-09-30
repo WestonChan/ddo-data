@@ -1,6 +1,6 @@
 use ddo_etl::build::{build_database, BuildReport};
 use ddo_etl::corrections::Corrections;
-use ddo_etl::map::drop_location::marks_rare_loot;
+use ddo_etl::map::drop_location::{chest_following, chest_label, marks_rare_loot};
 use ddo_etl::wiki::WikiOverrides;
 use ddo_model::DatasetVersion;
 use rusqlite::Connection;
@@ -64,4 +64,46 @@ fn classifies_drop_text_segments_by_their_rarity_marker() {
     ] {
         assert!(!marks_rare_loot(common), "{common}");
     }
+}
+
+#[test]
+fn labels_the_chest_named_after_a_quest_without_rarity_or_asides() {
+    for (text_after_quest_name, expected_chest) in [
+        (", end chest", Some("end chest")),
+        (", End Chest", Some("end chest")),
+        (", Althea's chest", Some("althea's chest")),
+        (", Vornir Frosthelm's chest (rare)", Some("vornir frosthelm's chest")),
+        (", end chest (rare )", Some("end chest")),
+        (", rare drop in any end chest", Some("any end chest")),
+        (" (heroic), Brine 's Chest (Rare Encounter)", Some("brine 's chest")),
+        (", red-named rare encounter chests", Some("red-named rare encounter chests")),
+        (": Any Feywild rare encounter chest.", Some("any feywild rare encounter chest")),
+        ("", None),
+        (" (rare)", None),
+        (",  ", None),
+        (" and ", None),
+        (", Rantha 's chest &amp", Some("rantha 's chest")),
+    ] {
+        assert_eq!(chest_label(text_after_quest_name).as_deref(), expected_chest, "{text_after_quest_name:?}");
+    }
+}
+
+#[test]
+fn gives_quests_listed_together_the_chest_named_after_the_last_of_them() {
+    let drop_location =
+        "Lines of Supply, Breaking the Ranks and A Break in the Ice, end chest; Cold Snap, Althea's chest";
+    let quest_name_spans: Vec<std::ops::Range<usize>> =
+        ["Lines of Supply", "Breaking the Ranks", "A Break in the Ice", "Cold Snap"]
+            .iter()
+            .map(|quest_name| {
+                let start = drop_location.find(quest_name).unwrap();
+                start..start + quest_name.len()
+            })
+            .collect();
+    let chests: Vec<Option<String>> =
+        quest_name_spans.iter().map(|span| chest_following(drop_location, span.end, &quest_name_spans)).collect();
+    assert_eq!(
+        chests.iter().map(Option::as_deref).collect::<Vec<_>>(),
+        [Some("end chest"), Some("end chest"), Some("end chest"), Some("althea's chest")]
+    );
 }

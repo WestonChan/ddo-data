@@ -269,6 +269,30 @@ fn links_items_to_quests_from_drop_location() {
 }
 
 #[test]
+fn records_the_chest_each_item_drops_from() {
+    let (db, _) = built_fixture_db();
+    let chest_of = |quest: &str, item: &str| -> Option<String> {
+        db.query_row(
+            "SELECT ql.chest FROM quest_loot ql JOIN quests q ON q.id = ql.quest_id JOIN items i ON i.id = ql.item_id
+              WHERE q.name = ?1 AND i.name = ?2",
+            [quest, item],
+            |r| r.get(0),
+        )
+        .unwrap()
+    };
+    assert_eq!(chest_of("The Cursed Crypt", "Docent of Defiance").as_deref(), Some("end chest"));
+    assert_eq!(
+        chest_of("Book Burning", "Buckler of the Golden Age").as_deref(),
+        Some("end chest"),
+        "rare marker trimmed"
+    );
+    assert_eq!(
+        chest_of("Land of Lamordia", "Gravekeeper's Docent").as_deref(),
+        Some("red-named rare encounter chests")
+    );
+}
+
+#[test]
 fn writes_quest_difficulties_and_epic_name() {
     let (db, _) = built_fixture_db();
     let quest = |name: &str| -> (String, Option<String>) {

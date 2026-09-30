@@ -344,18 +344,24 @@ impl TableWriter<'_> {
         item_id: i64,
         loot_type: LootType,
         is_rare: bool,
+        chest: Option<&str>,
     ) -> Result<usize> {
         Ok(self.transaction.execute(
-            "INSERT INTO quest_loot (quest_id, item_id, loot_type, is_rare) VALUES (?1, ?2, ?3, ?4)
+            "INSERT INTO quest_loot (quest_id, item_id, loot_type, is_rare, chest) VALUES (?1, ?2, ?3, ?4, ?5)
              ON CONFLICT (quest_id, item_id) DO UPDATE SET is_rare = 1 WHERE excluded.is_rare > quest_loot.is_rare",
-            params![quest_id, item_id, loot_type.as_str(), is_rare],
+            params![quest_id, item_id, loot_type.as_str(), is_rare, chest],
         )?)
     }
 
     fn link_item_to_quests(&self, item_id: i64, drop_location: &str, report: &mut BuildReport) -> Result<()> {
         for quest_link in self.drop_text_quests.quest_links_in(drop_location) {
-            let changed_row_count =
-                self.insert_quest_loot_link(quest_link.quest_id, item_id, quest_link.loot_type, quest_link.is_rare)?;
+            let changed_row_count = self.insert_quest_loot_link(
+                quest_link.quest_id,
+                item_id,
+                quest_link.loot_type,
+                quest_link.is_rare,
+                quest_link.chest.as_deref(),
+            )?;
             report.quest_loot_link_count += 1;
             if quest_link.is_wiki_quest {
                 report.drop_text_wiki_quest_link_count += 1;

@@ -208,7 +208,15 @@ fn corrections_record_each_kind_field_and_value_change_once() {
         insert_correction(new_kind, "").unwrap();
     }
     assert!(insert_correction("gem", "").is_err(), "kind is one of the correctable tables");
-    assert_eq!(SCHEMA_VERSION, 6);
+    assert_eq!(SCHEMA_VERSION, 7);
+}
+
+#[test]
+fn quest_loot_records_the_chest_as_free_text() {
+    let db = fresh_db();
+    let mut statement = db.prepare("SELECT name FROM pragma_table_info('quest_loot') ORDER BY cid").unwrap();
+    let columns: Vec<String> = statement.query_map([], |r| r.get(0)).unwrap().map(Result::unwrap).collect();
+    assert_eq!(columns, ["quest_id", "item_id", "loot_type", "is_rare", "chest"]);
 }
 
 #[test]

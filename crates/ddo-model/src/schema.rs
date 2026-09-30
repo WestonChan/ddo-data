@@ -4,7 +4,7 @@ use crate::enums::{
 };
 use std::sync::LazyLock;
 
-pub const SCHEMA_VERSION: i64 = 6;
+pub const SCHEMA_VERSION: i64 = 7;
 
 fn sql_in_clause<'a>(allowed_values: impl Iterator<Item = &'a str>) -> String {
     let quoted_values: Vec<String> = allowed_values.map(|value| format!("'{value}'")).collect();
@@ -260,6 +260,7 @@ CREATE TABLE IF NOT EXISTS quest_loot (
     item_id   INTEGER NOT NULL REFERENCES items(id) ON DELETE CASCADE,
     loot_type TEXT CHECK (loot_type {loot_type}),     -- computed from <DropLocation> and quest is_raid
     is_rare   INTEGER NOT NULL DEFAULT 0 CHECK (is_rare IN (0, 1)),  -- (rare) / rare drop in <DropLocation>, or data/wiki quest_loot `rare`
+    chest     TEXT,                                    -- lower-cased phrase after the quest name in its <DropLocation> segment, or data/wiki quest_loot `chest`
     PRIMARY KEY (quest_id, item_id)
 );
 CREATE INDEX IF NOT EXISTS idx_quest_loot_item ON quest_loot(item_id);
