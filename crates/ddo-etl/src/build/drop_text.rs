@@ -1,12 +1,15 @@
 use super::TableWriter;
-use crate::map::drop_location::{chest_following, marks_rare_loot, segment_containing};
+use crate::map::drop_location::{chest_following, marks_rare_loot, quest_name_spans, segment_containing};
 use anyhow::Result;
 use ddo_model::enums::{LootType, RowSource};
 use rusqlite::{params, Transaction};
 use std::ops::Range;
 
+const MATCHED_TEXT_MASK: &str = "\0";
+
 struct DropTextQuest {
     name: String,
+    lowercase_first_word: String,
     id: i64,
     is_raid: bool,
     is_wiki: bool,
@@ -30,30 +33,35 @@ impl DropTextQuests {
             transaction.prepare("SELECT name, id, is_raid, source = ?1 FROM quests WHERE is_challenge = 0")?;
         let mut longest_name_first = statement
             .query_map(params![RowSource::Wiki.as_str()], |r| {
-                Ok(DropTextQuest { name: r.get(0)?, id: r.get(1)?, is_raid: r.get(2)?, is_wiki: r.get(3)? })
+                let name: String = r.get(0)?;
+                let lowercase_first_word = name.split_whitespace().next().unwrap_or_default().to_lowercase();
+                Ok(DropTextQuest { name, lowercase_first_word, id: r.get(1)?, is_raid: r.get(2)?, is_wiki: r.get(3)? })
             })?
             .collect::<rusqlite::Result<Vec<_>>>()?;
+        longest_name_first.retain(|quest| !quest.lowercase_first_word.is_empty());
         longest_name_first.sort_by(|a, b| b.name.len().cmp(&a.name.len()).then_with(|| a.name.cmp(&b.name)));
         Ok(Self { longest_name_first })
     }
 
     fn quest_links_in(&self, drop_text: &str) -> Vec<DropTextQuestLink> {
         let mut unmatched_text = drop_text.to_string();
-        let mentions_reward = drop_text.to_lowercase().contains("reward");
+        let lowercase_drop_text = drop_text.to_lowercase();
+        let mentions_reward = lowercase_drop_text.contains("reward");
         let mut quest_links = Vec::new();
         let mut quest_name_spans_by_link = Vec::new();
         for quest in &self.longest_name_first {
-            let quest_name = quest.name.as_str();
-            if quest_name.is_empty() || !unmatched_text.contains(quest_name) {
+            if !lowercase_drop_text.contains(&quest.lowercase_first_word) {
                 continue;
             }
-            let quest_name_spans: Vec<Range<usize>> = unmatched_text
-                .match_indices(quest_name)
-                .map(|(byte_offset, _)| byte_offset..byte_offset + quest_name.len())
-                .collect();
+            let quest_name_spans = quest_name_spans(&unmatched_text, &quest.name);
+            if quest_name_spans.is_empty() {
+                continue;
+            }
             let is_rare =
                 quest_name_spans.iter().any(|span| marks_rare_loot(segment_containing(drop_text, span.start)));
-            unmatched_text = unmatched_text.replace(quest_name, &" ".repeat(quest_name.len()));
+            for span in &quest_name_spans {
+                unmatched_text.replace_range(span.clone(), &MATCHED_TEXT_MASK.repeat(span.len()));
+            }
             let loot_type = if quest.is_raid {
                 LootType::Raid
             } else if mentions_reward {

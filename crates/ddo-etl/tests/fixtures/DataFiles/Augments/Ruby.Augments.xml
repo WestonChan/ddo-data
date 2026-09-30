@@ -35,4 +35,50 @@
          <AType>NotNeeded</AType>
       </Effect>
    </Augment>
+   <Augment>
+      <Name>Ruby of Fey Bane</Name>
+      <Description>Additional 2d8 Bane Damage to Fey creatures on hit.
+Drops in U48 Quest: Wake me up Inside</Description>
+      <MinLevel>6</MinLevel>
+      <Type>Red</Type>
+      <Type>Purple</Type>
+      <Type>Orange</Type>
+      <Icon>Ruby</Icon>
+      <Effect>
+         <Type>WeaponOtherDamageBonus</Type>
+         <Bonus>Enhancement</Bonus>
+         <Dice>
+            <Number size="1">2</Number>
+            <Sides size="1">8</Sides>
+            <Damage>Bane</Damage>
+         </Dice>
+         <Item>All</Item>
+         <Requirements>
+            <Requirement>
+               <Type>Stance</Type>
+               <Item>Fey</Item>
+            </Requirement>
+         </Requirements>
+         <IsItemSpecific/>
+         <AType>NotNeeded</AType>
+      </Effect>
+      <Effect>
+         <Type>WeaponOtherDamageBonusCritical</Type>
+         <Bonus>Enhancement</Bonus>
+         <Dice>
+            <Number size="1">2</Number>
+            <Sides size="1">8</Sides>
+            <Damage>Bane</Damage>
+         </Dice>
+         <Item>All</Item>
+         <Requirements>
+            <Requirement>
+               <Type>Stance</Type>
+               <Item>Fey</Item>
+            </Requirement>
+         </Requirements>
+         <IsItemSpecific/>
+         <AType>NotNeeded</AType>
+      </Effect>
+   </Augment>
    </Augments>

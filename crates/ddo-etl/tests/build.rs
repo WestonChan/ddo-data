@@ -40,9 +40,9 @@ fn item_id(db: &Connection, name: &str) -> i64 {
 #[test]
 fn builds_items_and_skips_cosmetics() {
     let (db, report) = built_fixture_db();
-    assert_eq!(report.written_item_count, 15);
+    assert_eq!(report.written_item_count, 16);
     assert_eq!(report.skipped_cosmetic_item_count, 1);
-    assert_eq!(count(&db, "SELECT COUNT(*) FROM items WHERE source = 'maetrim'"), 15);
+    assert_eq!(count(&db, "SELECT COUNT(*) FROM items WHERE source = 'maetrim'"), 16);
     assert_eq!(count(&db, "SELECT COUNT(*) FROM items WHERE name = '17th Anniversary Dark Helm'"), 0);
     let reason: String = db
         .query_row("SELECT reason FROM excluded_items WHERE name = '17th Anniversary Dark Helm'", [], |r| r.get(0))
@@ -233,7 +233,7 @@ fn writes_augment_slots_and_presets() {
 #[test]
 fn links_items_to_quests_from_drop_location() {
     let (db, report) = built_fixture_db();
-    assert_eq!(count(&db, "SELECT COUNT(*) FROM quests WHERE NOT is_challenge AND source = 'maetrim'"), 10);
+    assert_eq!(count(&db, "SELECT COUNT(*) FROM quests WHERE NOT is_challenge AND source = 'maetrim'"), 17);
     assert_eq!(count(&db, "SELECT COUNT(*) FROM patrons"), 22);
     assert!(count(&db, "SELECT COUNT(*) FROM adventure_packs") >= 5);
     let (level, epic_level, is_raid, pack): (i64, Option<i64>, bool, String) = db
@@ -295,7 +295,7 @@ fn links_augments_to_the_quests_their_descriptions_name() {
         "the quests his text names that the fixture lacks link nothing; the wiki fixture marks this one rare"
     );
     assert!(augment_links("Lunar Gem of Evocation (Heroic)").is_empty(), "'Drops in: ?' names no quest");
-    assert_eq!((report.quest_augment_loot_link_count, report.drop_text_rare_augment_link_count), (2, 1));
+    assert_eq!((report.quest_augment_loot_link_count, report.drop_text_rare_augment_link_count), (4, 1));
     let description: String = db
         .query_row(
             "SELECT description FROM augments WHERE name = 'Lunar Gem of Magical Protection (Heroic)'",
@@ -328,6 +328,43 @@ fn records_the_chest_each_item_drops_from() {
         chest_of("Land of Lamordia", "Gravekeeper's Docent").as_deref(),
         Some("red-named rare encounter chests")
     );
+}
+
+#[test]
+fn matches_quest_names_his_drop_text_capitalises_differently() {
+    let (db, _) = built_fixture_db();
+    let item_chests = |item: &str| -> Vec<(String, Option<String>)> {
+        let mut statement = db
+            .prepare(
+                "SELECT q.name, ql.chest FROM quest_loot ql JOIN quests q ON q.id = ql.quest_id
+                   JOIN items i ON i.id = ql.item_id WHERE i.name = ?1 ORDER BY q.name",
+            )
+            .unwrap();
+        statement.query_map([item], |r| Ok((r.get(0)?, r.get(1)?))).unwrap().map(Result::unwrap).collect()
+    };
+    let end_chest = Some("end chest".to_string());
+    assert_eq!(
+        item_chests("Prismatic Cloak, Grey (Level 27)"),
+        [
+            ("A Break in the Ice".to_string(), end_chest.clone()),
+            ("Breaking the Ranks".to_string(), end_chest.clone()),
+            ("Lines of Supply".to_string(), end_chest.clone()),
+            ("The Tracker's Trap".to_string(), end_chest.clone()),
+            ("What Goes Up".to_string(), end_chest.clone()),
+        ],
+        "'A Break In the Ice' is the quest 'A Break in the Ice', not the chest of the quests before it"
+    );
+    let augment_quests = |augment: &str| -> Vec<String> {
+        let mut statement = db
+            .prepare(
+                "SELECT q.name FROM quest_augment_loot qal JOIN quests q ON q.id = qal.quest_id
+                   JOIN augments a ON a.id = qal.augment_id WHERE a.name = ?1",
+            )
+            .unwrap();
+        statement.query_map([augment], |r| r.get(0)).unwrap().map(Result::unwrap).collect()
+    };
+    assert_eq!(augment_quests("Ruby of Fey Bane"), ["Wake Me Up Inside"]);
+    assert_eq!(augment_quests("Storm's Bulwark"), ["The Knight Who Cried Windmill"]);
 }
 
 #[test]
@@ -367,14 +404,14 @@ fn diff_reports_coverage_against_a_legacy_database() {
         vec!["17th Anniversary Dark Helm".to_string()],
         "cosmetics are not gaps"
     );
-    assert_eq!(coverage.names_only_in_built.len(), 13, "the wiki fixture item is only in the build");
+    assert_eq!(coverage.names_only_in_built.len(), 14, "the wiki fixture item is only in the build");
     assert!((coverage.coverage_ratio() - 0.75).abs() < 1e-9);
 }
 
 #[test]
 fn writes_augments_with_slots_bonuses_and_modifiers() {
     let (db, report) = built_fixture_db();
-    assert_eq!(report.augment_count, 13);
+    assert_eq!(report.augment_count, 15);
     let ruby: i64 =
         db.query_row("SELECT id FROM augments WHERE name = 'Ruby of Acid Damage'", [], |r| r.get(0)).unwrap();
     let (family, has_selectable_level, levels, values): (String, bool, String, String) = db

@@ -111,4 +111,83 @@
       <Elite/>
       <Reaper/>
    </Quest>
+   <Quest>
+      <Name>The Tracker's Trap</Name>
+      <Patron>The Harpers</Patron>
+      <AdventurePack>Shadowfell Conspiracy</AdventurePack>
+      <Favor>6</Favor>
+      <Levels size="2">19 27</Levels>
+      <Normal/>
+      <Hard/>
+      <Elite/>
+      <Reaper/>
+   </Quest>
+   <Quest>
+      <Name>Lines of Supply</Name>
+      <Patron>The Harpers</Patron>
+      <AdventurePack>Shadowfell Conspiracy</AdventurePack>
+      <Favor>6</Favor>
+      <Levels size="2">19 27</Levels>
+      <Normal/>
+      <Hard/>
+      <Elite/>
+      <Reaper/>
+   </Quest>
+   <Quest>
+      <Name>Breaking the Ranks</Name>
+      <Patron>The Harpers</Patron>
+      <AdventurePack>Shadowfell Conspiracy</AdventurePack>
+      <Favor>6</Favor>
+      <Levels size="2">19 27</Levels>
+      <Normal/>
+      <Hard/>
+      <Elite/>
+      <Reaper/>
+   </Quest>
+   <Quest>
+      <Name>A Break in the Ice</Name>
+      <Patron>The Harpers</Patron>
+      <AdventurePack>Shadowfell Conspiracy</AdventurePack>
+      <Favor>7</Favor>
+      <Levels size="2">19 27</Levels>
+      <Normal/>
+      <Hard/>
+      <Elite/>
+      <Reaper/>
+   </Quest>
+   <Quest>
+      <Name>What Goes Up</Name>
+      <Patron>The Harpers</Patron>
+      <AdventurePack>Shadowfell Conspiracy</AdventurePack>
+      <Favor>7</Favor>
+      <Levels size="2">19 27</Levels>
+      <Normal/>
+      <Hard/>
+      <Elite/>
+      <Reaper/>
+   </Quest>
+   <Quest>
+      <Name>Wake Me Up Inside</Name>
+      <Patron>The Summer Court</Patron>
+      <AdventurePack>Fables of the Feywild</AdventurePack>
+      <Favor>3</Favor>
+      <Levels size="2">5 32</Levels>
+      <Casual/>
+      <Normal/>
+      <Hard/>
+      <Elite/>
+      <Reaper/>
+   </Quest>
+   <Quest>
+      <Name>The Knight Who Cried Windmill</Name>
+      <Patron>The Summer Court</Patron>
+      <AdventurePack>Fables of the Feywild</AdventurePack>
+      <Favor>3</Favor>
+      <Levels size="2">6 32</Levels>
+      <Casual/>
+      <Normal/>
+      <Hard/>
+      <Elite/>
+      <Reaper/>
+   </Quest>
 </Quests>

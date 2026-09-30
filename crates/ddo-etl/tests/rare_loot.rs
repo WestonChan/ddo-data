@@ -1,6 +1,8 @@
 use ddo_etl::build::{build_database, BuildReport};
 use ddo_etl::corrections::Corrections;
-use ddo_etl::map::drop_location::{chest_following, chest_label, drop_text_in_description, marks_rare_loot};
+use ddo_etl::map::drop_location::{
+    chest_following, chest_label, drop_text_in_description, marks_rare_loot, quest_name_spans,
+};
 use ddo_etl::wiki::WikiOverrides;
 use ddo_model::DatasetVersion;
 use rusqlite::Connection;
@@ -106,6 +108,25 @@ fn gives_quests_listed_together_the_chest_named_after_the_last_of_them() {
         chests.iter().map(Option::as_deref).collect::<Vec<_>>(),
         [Some("end chest"), Some("end chest"), Some("end chest"), Some("althea's chest")]
     );
+}
+
+#[test]
+fn finds_a_quest_name_spelt_with_other_capitals_or_spacing_only_as_whole_words() {
+    let spans_of = |drop_text: &str, quest_name: &str| -> Vec<String> {
+        quest_name_spans(drop_text, quest_name).into_iter().map(|span| drop_text[span].to_string()).collect()
+    };
+    assert_eq!(
+        spans_of("Lines of Supply, A Break In the Ice, end chest", "A Break in the Ice"),
+        ["A Break In the Ice"]
+    );
+    assert_eq!(spans_of("Quest: Wake me up  Inside", "Wake Me Up Inside"), ["Wake me up  Inside"]);
+    assert!(
+        spans_of("Fables of the Feywild, any chest", "The Feywild").is_empty(),
+        "a lower-case first letter is prose"
+    );
+    assert!(spans_of("The pitiless ice", "The Pit").is_empty(), "a folded match must end at a word boundary");
+    assert_eq!(spans_of("The Pitiless", "The Pit"), ["The Pit"], "an exact match needs no boundary, as before");
+    assert!(spans_of("Wake me up\nInside", "Wake Me Up Inside").is_empty(), "a line break ends a segment");
 }
 
 #[test]

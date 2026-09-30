@@ -18,4 +18,18 @@ Requires: 50 Threads of Fate, Empty Soul Vessel and Vestments of Ravenloft
     <EffectDescription>This augment will suppress any set bonus this item may have.</EffectDescription>
     <SuppressSetBonus />
   </Augment>
+  <Augment>
+    <Name>Storm's Bulwark</Name>
+    <Description>Wards against the Knockdowns and Slows of an Air Elemental.
+Drops in U48 Quest: The Knight who Cried Windmill</Description>
+    <MinLevel>1</MinLevel>
+    <Type>Green</Type>
+    <Icon>Topaz</Icon>
+    <Effect>
+      <Type>Immunity</Type>
+      <AType>NotNeeded</AType>
+      <Item>Air Elemental Knockdown and Slow</Item>
+      <Bonus>Stacking</Bonus>
+    </Effect>
+  </Augment>
   </Augments>

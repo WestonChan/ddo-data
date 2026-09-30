@@ -15,6 +15,59 @@ pub fn segment_containing(drop_location: &str, byte_offset: usize) -> &str {
     &drop_location[start..end]
 }
 
+pub fn quest_name_spans(drop_text: &str, quest_name: &str) -> Vec<Range<usize>> {
+    let Some(first_name_character) = quest_name.chars().next() else {
+        return Vec::new();
+    };
+    let mut spans: Vec<Range<usize>> = Vec::new();
+    for (start, text_character) in drop_text.char_indices() {
+        let is_inside_previous_span = spans.last().is_some_and(|span| start < span.end);
+        if is_inside_previous_span || !characters_match_ignoring_case(text_character, first_name_character) {
+            continue;
+        }
+        let matched_end = quest_name_end(drop_text, start, quest_name).filter(|end| {
+            drop_text[start..*end] == *quest_name
+                || (text_character == first_name_character && is_whole_words(drop_text, start..*end))
+        });
+        if let Some(end) = matched_end {
+            spans.push(start..end);
+        }
+    }
+    spans
+}
+
+fn quest_name_end(drop_text: &str, start: usize, quest_name: &str) -> Option<usize> {
+    let mut text_characters = drop_text[start..].char_indices().peekable();
+    let mut name_characters = quest_name.chars().peekable();
+    while let Some(name_character) = name_characters.next() {
+        if name_character.is_whitespace() {
+            while name_characters.next_if(|character| character.is_whitespace()).is_some() {}
+            text_characters.next_if(|(_, character)| is_whitespace_within_a_line(*character))?;
+            while text_characters.next_if(|(_, character)| is_whitespace_within_a_line(*character)).is_some() {}
+            continue;
+        }
+        let (_, text_character) = text_characters.next()?;
+        if !characters_match_ignoring_case(text_character, name_character) {
+            return None;
+        }
+    }
+    Some(text_characters.peek().map_or(drop_text.len(), |(offset, _)| start + offset))
+}
+
+fn is_whitespace_within_a_line(character: char) -> bool {
+    character.is_whitespace() && !SEGMENT_SEPARATORS.contains(&character)
+}
+
+fn characters_match_ignoring_case(text_character: char, name_character: char) -> bool {
+    text_character == name_character || text_character.to_lowercase().eq(name_character.to_lowercase())
+}
+
+fn is_whole_words(text: &str, span: Range<usize>) -> bool {
+    let is_word_character = |character: char| character.is_alphanumeric();
+    !text[..span.start].chars().next_back().is_some_and(is_word_character)
+        && !text[span.end..].chars().next().is_some_and(is_word_character)
+}
+
 pub fn chest_following(
     drop_location: &str,
     quest_name_end: usize,
