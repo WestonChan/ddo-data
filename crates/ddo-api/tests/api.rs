@@ -657,6 +657,9 @@ async fn crafting_systems_list_their_families_and_counts() {
         (&crafting_system["ingredient_count"], &crafting_system["recipe_count"]),
         (&serde_json::json!(4), &serde_json::json!(3))
     );
+    let upgrade_system = &crafting_systems[1];
+    assert_eq!(upgrade_system["name"], "Test Upgrade Altar");
+    assert_eq!(upgrade_system["families"], serde_json::json!([]));
 }
 
 #[tokio::test]
@@ -680,6 +683,7 @@ async fn crafting_system_detail_carries_ingredients_and_recipes_with_augments_an
     assert_eq!(fortitude["tier"], "heroic");
     assert_eq!(fortitude["slot"], "crafting: accessory invasion");
     assert!(fortitude["note"].is_null());
+    assert!(recipes.iter().all(|r| r.get("grants_slot").is_some_and(Value::is_null)), "{recipes:?}");
     let augments = fortitude["augments"].as_array().unwrap();
     assert_eq!(augments.len(), 2, "both +5 Fortitude Save augments in the family");
     assert!(augments.iter().all(|a| a["name"] == "+5 Fortitude Save" && a["min_level"] == 11 && a["id"].is_number()));
@@ -695,6 +699,13 @@ async fn crafting_system_detail_carries_ingredients_and_recipes_with_augments_an
     assert_eq!(cleanse["augments"], serde_json::json!([]));
     assert_eq!(cleanse["note"], "Returns a crafted item to its blank state; no augment counterpart.");
     assert_eq!(cleanse["cost"][0]["tier"], "any");
+
+    let upgrade_id = list[1]["id"].as_i64().unwrap();
+    let (_, _, upgrade_system) = get(&format!("/v1/crafting-systems/{upgrade_id}")).await;
+    let upgrade_recipes = upgrade_system["recipes"].as_array().unwrap();
+    let granted_slots: Vec<&Value> = upgrade_recipes.iter().map(|r| &r["grants_slot"]).collect();
+    assert_eq!(granted_slots, [&serde_json::json!("upgrade: tier 2"), &serde_json::json!("colorless")]);
+    assert!(upgrade_recipes.iter().all(|r| r["augments"] == serde_json::json!([]) && r["slot"].is_null()));
 
     let (status, _, _) = get("/v1/crafting-systems/9999").await;
     assert_eq!(status, StatusCode::NOT_FOUND);

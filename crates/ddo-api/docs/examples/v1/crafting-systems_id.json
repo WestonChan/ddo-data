@@ -59,6 +59,7 @@
           "tier": "heroic"
         }
       ],
+      "grants_slot": null,
       "id": 1,
       "note": null,
       "option": "Attributes +5",
@@ -90,6 +91,7 @@
           "tier": "legendary"
         }
       ],
+      "grants_slot": null,
       "id": 2,
       "note": null,
       "option": "Attributes +13",
@@ -111,6 +113,7 @@
           "tier": "heroic"
         }
       ],
+      "grants_slot": null,
       "id": 3,
       "note": null,
       "option": "False Life +18",
