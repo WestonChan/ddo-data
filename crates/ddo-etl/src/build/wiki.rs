@@ -1,6 +1,6 @@
 use super::items::{ArmorStatsRow, ItemRow, WeaponStatsRow};
 use super::{BuildReport, ProbableDuplicateWikiItem, SupersededWikiItem, TableWriter};
-use crate::wiki::{CraftingRecipe, CraftingSystem, WikiDescription, WikiItem, WikiOverrides};
+use crate::wiki::{CraftingRecipe, CraftingSystem, WikiDescription, WikiItem, WikiItemEffect, WikiOverrides};
 use anyhow::{bail, Context, Result};
 use ddo_model::enums::{ItemSource, LootType};
 use rusqlite::{params, OptionalExtension, Transaction};
@@ -263,6 +263,12 @@ impl TableWriter<'_> {
                 .entry(normalised_item_name(maetrim_item_name))
                 .or_insert(maetrim_item_name);
         }
+        let mut effect_ids_by_folded_name: HashMap<String, i64> = HashMap::new();
+        let mut effect_names_by_id: Vec<(&String, &i64)> = self.written.effect_ids_by_name.iter().collect();
+        effect_names_by_id.sort_by_key(|(_, id)| **id);
+        for (effect_name, effect_id) in effect_names_by_id {
+            effect_ids_by_folded_name.entry(folded_effect_name(effect_name)).or_insert(*effect_id);
+        }
         for wiki_item in wiki_items {
             if maetrim_item_name_set.contains(wiki_item.name.as_str()) {
                 report
@@ -271,7 +277,7 @@ impl TableWriter<'_> {
                 report.wiki_item_superseded_count += 1;
                 continue;
             }
-            self.write_wiki_item(wiki_item).with_context(|| {
+            self.write_wiki_item(wiki_item, &mut effect_ids_by_folded_name).with_context(|| {
                 format!("wiki {} item {:?} ({})", wiki_item.file_name, wiki_item.name, wiki_item.page)
             })?;
             report.wiki_item_written_count += 1;
@@ -288,7 +294,11 @@ impl TableWriter<'_> {
         Ok(())
     }
 
-    fn write_wiki_item(&mut self, wiki_item: &WikiItem) -> Result<()> {
+    fn write_wiki_item(
+        &mut self,
+        wiki_item: &WikiItem,
+        effect_ids_by_folded_name: &mut HashMap<String, i64>,
+    ) -> Result<()> {
         let material_id = match &wiki_item.material {
             Some(material_name) => Some(*self.written.material_ids_by_name.get(material_name).with_context(|| {
                 format!(
@@ -384,7 +394,7 @@ impl TableWriter<'_> {
             self.insert_item_bonus(item_id, bonus_id, sort_order)?;
         }
         for (sort_order, effect) in wiki_item.effects.iter().enumerate() {
-            let effect_id = self.ensure_effect(&effect.name, effect.description.as_deref())?;
+            let effect_id = self.wiki_effect_id(effect, effect_ids_by_folded_name)?;
             self.insert_item_effect(item_id, effect_id, sort_order, effect.value, effect.target.as_deref())?;
         }
         for (sort_order, slot_type_id) in slot_type_ids.into_iter().enumerate() {
@@ -398,6 +408,27 @@ impl TableWriter<'_> {
         }
         Ok(())
     }
+
+    fn wiki_effect_id(
+        &mut self,
+        effect: &WikiItemEffect,
+        effect_ids_by_folded_name: &mut HashMap<String, i64>,
+    ) -> Result<i64> {
+        if let Some(effect_id) = self.written.effect_ids_by_name.get(&effect.name) {
+            return Ok(*effect_id);
+        }
+        let folded_name = folded_effect_name(&effect.name);
+        if let Some(effect_id) = effect_ids_by_folded_name.get(&folded_name) {
+            return Ok(*effect_id);
+        }
+        let effect_id = self.ensure_effect(&effect.name, effect.description.as_deref())?;
+        effect_ids_by_folded_name.insert(folded_name, effect_id);
+        Ok(effect_id)
+    }
+}
+
+fn folded_effect_name(effect_name: &str) -> String {
+    effect_name.to_lowercase().chars().filter(|character| !matches!(character, ' ' | '-')).collect()
 }
 
 fn normalised_item_name(item_name: &str) -> String {
