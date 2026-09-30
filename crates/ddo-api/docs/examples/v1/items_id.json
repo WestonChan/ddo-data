@@ -81,7 +81,8 @@
       "loot_type": "chest",
       "name": "Cold Snap",
       "pack": "Chill of Ravenloft",
-      "patron": "Keepers of Lamordia"
+      "patron": "Keepers of Lamordia",
+      "source": "maetrim"
     }
   ],
   "race_required": null,

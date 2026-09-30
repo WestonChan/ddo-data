@@ -21,6 +21,7 @@
     "name": "A Blood Pact",
     "pack": "Terror of Demogorgon",
     "patron": "Battlehammer Expedition",
+    "source": "maetrim",
     "zone": null
   },
   {
@@ -45,6 +46,7 @@
     "name": "A Break in the Ice",
     "pack": "Shadowfell Conspiracy",
     "patron": "The Harpers",
+    "source": "maetrim",
     "zone": null
   },
   {
@@ -69,6 +71,7 @@
     "name": "A Cabal for One",
     "pack": "Ruins of Gianthold",
     "patron": "Agents of Argonnessen",
+    "source": "maetrim",
     "zone": null
   }
 ]

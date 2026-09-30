@@ -250,6 +250,33 @@ async fn quests_carry_the_wiki_facts() {
 }
 
 #[tokio::test]
+async fn quests_say_whether_maetrim_or_the_wiki_supplied_them() {
+    let (_, _, quests) = get("/v1/quests").await;
+    let quests = quests.as_array().unwrap();
+    let quest_named = |name: &str| quests.iter().find(|q| q["name"] == name).unwrap_or_else(|| panic!("{name}"));
+    let oozing_pit = quest_named("The Oozing Pit");
+    assert_eq!(oozing_pit["source"], "wiki");
+    assert_eq!(
+        (&oozing_pit["pack"], &oozing_pit["level"]),
+        (&serde_json::json!("Chill of Ravenloft"), &serde_json::json!(32))
+    );
+    assert_eq!(quest_named("The Grotto")["source"], "maetrim");
+
+    let (_, _, axe_matches) = get("/v1/items?q=oozing").await;
+    let (_, _, axe) = get(&format!("/v1/items/{}", axe_matches["items"][0]["id"])).await;
+    let axe_quest_sources: Vec<(&str, &str)> = axe["quests"]
+        .as_array()
+        .unwrap()
+        .iter()
+        .map(|quest| (quest["name"].as_str().unwrap(), quest["source"].as_str().unwrap()))
+        .collect();
+    assert_eq!(axe_quest_sources, [("The Grotto", "maetrim"), ("The Oozing Pit", "wiki")]);
+
+    let (_, _, version) = get("/v1/version").await;
+    assert_eq!(version["counts"]["wiki_quests"], 1);
+}
+
+#[tokio::test]
 async fn item_quests_carry_free_to_play() {
     let (_, _, list) = get("/v1/items?q=buckler+of+the+golden").await;
     let id = list["items"][0]["id"].as_i64().unwrap();

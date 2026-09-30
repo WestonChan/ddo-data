@@ -144,8 +144,8 @@ async fn items(
                    one, `bonuses` (stat, bonus type, value), `effects` (named effects with value and target), \
                    `augment_slots` (sockets in order with their fixed `options`), `clickies`, `set`, `quests` it drops \
                    from with loot type, raid flag, `is_rare` (rare loot in that quest, per Maetrim's drop text or ddowiki), the \
-                   `difficulties` each offers, and ddowiki's `is_free_to_play` for each (see /v1/quests for the rest of \
-                   the quest), the raw `modifiers` the ETL derived the bonuses from, and `corrections`: each known \
+                   `difficulties` each offers, ddowiki's `is_free_to_play` for each and its `source` (`maetrim`, or `wiki` \
+                   for a quest read from ddowiki because his files lack it; see /v1/quests for the rest of the quest), the raw `modifiers` the ETL derived the bonuses from, and `corrections`: each known \
                    mistake in Maetrim's value for this item that the dataset replaced, as \
                    `{ field, from, to, reason, source }` with `from` his value and `to` the value shown (empty when \
                    none).",
@@ -233,8 +233,8 @@ async fn item_detail(State(state): State<AppState>, Path(id): Path<i64>) -> Resu
             .unwrap_or(Value::Null);
             let mut quests = json_rows(
                 db,
-                "SELECT q.id, q.name, q.level, q.epic_level, q.is_raid, q.difficulties, q.is_free_to_play, ap.name AS pack, pt.name AS patron,
-                        ql.loot_type, ql.is_rare
+                "SELECT q.id, q.name, q.level, q.epic_level, q.is_raid, q.difficulties, q.is_free_to_play, q.source, ap.name AS pack,
+                        pt.name AS patron, ql.loot_type, ql.is_rare
                    FROM quest_loot ql JOIN quests q ON q.id = ql.quest_id
                    LEFT JOIN adventure_packs ap ON ap.id = q.pack_id LEFT JOIN patrons pt ON pt.id = q.patron_id
                   WHERE ql.item_id = ?1 ORDER BY q.name",
