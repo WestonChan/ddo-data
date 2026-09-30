@@ -114,6 +114,33 @@ fn ddl_drops_the_columns_with_no_source() {
 }
 
 #[test]
+fn items_come_from_maetrim_unless_the_wiki_supplied_them() {
+    let db = fresh_db();
+    ddo_model::seeds::insert_all(&db).unwrap();
+    db.execute("INSERT INTO items (name, slot_id, item_category) VALUES ('His Ring', 15, 'Jewelry')", []).unwrap();
+    db.execute(
+        "INSERT INTO items (name, slot_id, item_category, source) VALUES ('Wiki Ring', 15, 'Jewelry', 'wiki')",
+        [],
+    )
+    .unwrap();
+    let sources: Vec<String> = db
+        .prepare("SELECT source FROM items ORDER BY id")
+        .unwrap()
+        .query_map([], |r| r.get(0))
+        .unwrap()
+        .map(Result::unwrap)
+        .collect();
+    assert_eq!(sources, ["maetrim", "wiki"]);
+    assert!(db
+        .execute(
+            "INSERT INTO items (name, slot_id, item_category, source) VALUES ('Odd Ring', 15, 'Jewelry', 'ddowiki')",
+            []
+        )
+        .is_err());
+    assert_eq!(SCHEMA_VERSION, 3);
+}
+
+#[test]
 fn quests_carry_no_duration_and_no_xp_table_exists() {
     let db = fresh_db();
     assert!(!table_names(&db).contains("quest_xp"));

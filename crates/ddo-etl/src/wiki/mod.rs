@@ -1,10 +1,12 @@
 mod crafting;
 mod descriptions;
+mod items;
 mod quest_loot;
 mod quests;
 
 pub use crafting::{CraftingIngredient, CraftingRecipe, CraftingSystem, IngredientCost};
 pub use descriptions::{DescriptionKind, WikiDescription};
+pub use items::{WikiArmorStats, WikiItem, WikiItemBonus, WikiItemEffect, WikiItemQuest, WikiWeaponStats};
 pub use quest_loot::QuestLoot;
 pub use quests::QuestFacts;
 
@@ -16,12 +18,13 @@ use std::path::Path;
 const EMBEDDED_WIKI_FILES: &[(&str, &str)] = include!(concat!(env!("OUT_DIR"), "/wiki_files.rs"));
 const WIKI_PAGE_URL_PREFIX: &str = "https://ddowiki.com/page/";
 
-#[derive(Debug, Default, Clone, PartialEq, Eq)]
+#[derive(Debug, Default, Clone, PartialEq)]
 pub struct WikiOverrides {
     pub quest_loot: Vec<QuestLoot>,
     pub quest_facts: Vec<QuestFacts>,
     pub crafting_systems: Vec<CraftingSystem>,
     pub descriptions: Vec<WikiDescription>,
+    pub items: Vec<WikiItem>,
 }
 
 trait WikiEntry: DeserializeOwned {
@@ -34,6 +37,7 @@ trait WikiEntry: DeserializeOwned {
     fn validate(&self) -> Result<()> {
         Ok(())
     }
+    fn record_file_name(&mut self, _file_name: &str) {}
 }
 
 impl WikiEntry for QuestLoot {
@@ -85,11 +89,28 @@ impl WikiEntry for WikiDescription {
     }
 }
 
+impl WikiEntry for WikiItem {
+    const TOML_TABLE_NAME: &'static str = "item";
+    fn name(&self) -> &str {
+        &self.name
+    }
+    fn citation(&self) -> (&str, &str) {
+        (&self.page, &self.read)
+    }
+    fn validate(&self) -> Result<()> {
+        WikiItem::validate(self)
+    }
+    fn record_file_name(&mut self, file_name: &str) {
+        file_name.clone_into(&mut self.file_name);
+    }
+}
+
 enum WikiFileKind {
     QuestLoot,
     QuestFacts,
     CraftingSystems,
     Descriptions,
+    Items,
 }
 
 impl WikiFileKind {
@@ -103,9 +124,11 @@ impl WikiFileKind {
             Ok(Self::CraftingSystems)
         } else if stem.starts_with("descriptions") {
             Ok(Self::Descriptions)
+        } else if stem.starts_with("items") {
+            Ok(Self::Items)
         } else {
             bail!(
-                "wiki file {file_name}: the name must start with quest_loot, quests, crafting or descriptions, which says what it holds"
+                "wiki file {file_name}: the name must start with quest_loot, quests, crafting, descriptions or items, which says what it holds"
             )
         }
     }
@@ -134,7 +157,8 @@ fn parse_wiki_entries<'a, T: WikiEntry>(
             Some(name) => format!("{table_name} {name:?}"),
             None => format!("{table_name} #{}", index + 1),
         };
-        let entry: T = table.try_into().with_context(|| format!("wiki file {file_name}: {entry_label}"))?;
+        let mut entry: T = table.try_into().with_context(|| format!("wiki file {file_name}: {entry_label}"))?;
+        entry.record_file_name(file_name);
         let (page, read) = entry.citation();
         validate_citation(page, read)
             .and_then(|()| entry.validate())
@@ -178,7 +202,7 @@ impl WikiOverrides {
         let mut overrides = Self::default();
         let (mut quest_loot_file_by_quest, mut quest_facts_file_by_quest, mut crafting_file_by_system) =
             (HashMap::new(), HashMap::new(), HashMap::new());
-        let mut description_file_by_kind_and_name = HashMap::new();
+        let (mut description_file_by_kind_and_name, mut item_file_by_name) = (HashMap::new(), HashMap::new());
         for (file_name, toml_text) in toml_files {
             match WikiFileKind::from_file_name(file_name)? {
                 WikiFileKind::QuestLoot => overrides.quest_loot.extend(parse_wiki_entries(
@@ -201,6 +225,9 @@ impl WikiOverrides {
                     toml_text,
                     &mut description_file_by_kind_and_name,
                 )?),
+                WikiFileKind::Items => {
+                    overrides.items.extend(parse_wiki_entries(file_name, toml_text, &mut item_file_by_name)?)
+                }
             }
         }
         Ok(overrides)

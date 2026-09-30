@@ -179,7 +179,8 @@ fn rejects_a_file_name_that_names_no_wiki_file_type() {
         error.contains("loot.toml")
             && error.contains("quest_loot")
             && error.contains("quests")
-            && error.contains("crafting"),
+            && error.contains("crafting")
+            && error.contains("items"),
         "{error}"
     );
 }
@@ -739,4 +740,107 @@ fn build_fails_naming_an_item_description_for_a_race_name() {
     let wiki = parsed_wiki(&[("descriptions.toml", &description_toml("item", "Dwarf", "Short."))]).unwrap();
     let error = build_report_with(&wiki).unwrap_err();
     assert!(error.contains("Dwarf") && error.contains("item"), "{error}");
+}
+
+fn items_fixture_toml() -> String {
+    std::fs::read_to_string(fixtures_dir().join("wiki/items.toml")).unwrap()
+}
+
+fn parsed_edited_items(edit: impl Fn(String) -> String) -> Result<WikiOverrides, String> {
+    parsed_wiki(&[("items.toml", &edit(items_fixture_toml()))])
+}
+
+const WIKI_AXE: &str = "Battle Axe of the Oozing Hunger";
+
+#[test]
+fn reads_wiki_items_from_items_files() {
+    let wiki = WikiOverrides::from_dir(&fixtures_dir().join("wiki")).unwrap();
+    assert_eq!(wiki.items.len(), 2);
+    let axe = &wiki.items[0];
+    assert_eq!(axe.name, WIKI_AXE);
+    assert_eq!(axe.file_name, "items.toml");
+    assert_eq!(
+        (axe.slot.as_str(), axe.category.as_str(), axe.item_type.as_deref()),
+        ("Main Hand", "Weapon", Some("Battle Axe"))
+    );
+    assert_eq!((axe.minimum_level, axe.enhancement_bonus), (29, Some(15)));
+    assert_eq!(axe.quests[0].name, "The Grotto");
+    assert_eq!(axe.quests[0].loot_type, "chest");
+    assert_eq!(axe.augment_slots, ["red", "colorless"]);
+    assert_eq!(axe.bonuses[1].stat, "Doublestrike");
+    assert_eq!(axe.effects[1].name, "Ethereal");
+    let weapon = axe.weapon.as_ref().unwrap();
+    assert_eq!((weapon.damage_dice_count, weapon.damage_dice_sides, weapon.damage_multiplier), (1, 8, Some(3.0)));
+    assert_eq!(weapon.dr_bypass, ["Magic", "Slash"]);
+    assert!(axe.armor.is_none());
+    assert!(wiki.items[1].weapon.is_none() && wiki.items[1].quests.is_empty());
+    assert_eq!(wiki.quest_facts.len(), 3, "items.toml tables are not read as quests");
+}
+
+#[test]
+fn rejects_a_wiki_item_listed_twice_across_items_files() {
+    let error =
+        parsed_wiki(&[("items.toml", &items_fixture_toml()), ("items_more.toml", &items_fixture_toml())]).unwrap_err();
+    assert!(error.contains(WIKI_AXE) && error.contains("items.toml") && error.contains("items_more.toml"), "{error}");
+}
+
+#[test]
+fn rejects_a_wiki_item_value_outside_maetrims_vocabularies_naming_the_item_and_field() {
+    for (field, good, bad) in [
+        ("slot", "slot = \"Main Hand\"", "slot = \"Main hand\""),
+        ("category", "category = \"Weapon\"", "category = \"Weapons\""),
+        ("item_type", "item_type = \"Battle Axe\"", "item_type = \"Battleaxe\""),
+        ("stat", "stat = \"Strength\"", "stat = \"Strenght\""),
+        ("bonus_type", "bonus_type = \"Insight\"", "bonus_type = \"Insightful\""),
+        ("loot_type", "loot_type = \"chest\"", "loot_type = \"end chest\""),
+        ("handedness", "handedness = \"One-handed\"", "handedness = \"One handed\""),
+    ] {
+        let error = parsed_edited_items(|s| s.replacen(good, bad, 1)).unwrap_err();
+        let bad_value = bad.split('"').nth(1).unwrap();
+        assert!(
+            error.contains("items.toml")
+                && error.contains(WIKI_AXE)
+                && error.contains(field)
+                && error.contains(bad_value),
+            "{field}: {error}"
+        );
+    }
+}
+
+#[test]
+fn rejects_a_weapon_without_weapon_stats_and_weapon_stats_on_jewelry() {
+    let error = parsed_edited_items(|s| {
+        let weapon_start = s.find("[item.weapon]").unwrap();
+        let weapon_end = weapon_start + s[weapon_start..].find("[[item]]").unwrap();
+        format!("{}{}", &s[..weapon_start], &s[weapon_end..])
+    })
+    .unwrap_err();
+    assert!(error.contains(WIKI_AXE) && error.contains("weapon"), "{error}");
+    let error = parsed_edited_items(|s| s.replace("category = \"Weapon\"", "category = \"Jewelry\"")).unwrap_err();
+    assert!(error.contains(WIKI_AXE) && error.contains("weapon"), "{error}");
+}
+
+#[test]
+fn rejects_armor_without_a_known_armor_type() {
+    let armor_item = "[[item]]\nname = \"Test Plate of the Oozing Hunger\"\npage = \"https://ddowiki.com/page/Item:Test\"\nread = \"2026-09-29\"\nslot = \"Body\"\ncategory = \"Armor\"\nitem_type = \"Heavy\"\nminimum_level = 29\ndrop_location = \"Test source\"\n\n[item.armor]\narmor_type = \"Heavy\"\narmor_bonus = 30\n";
+    assert!(parsed_wiki(&[("items.toml", armor_item)]).is_ok());
+    let error = parsed_wiki(&[("items.toml", &armor_item.replace("armor_type = \"Heavy\"", "armor_type = \"Plate\""))])
+        .unwrap_err();
+    assert!(
+        error.contains("Test Plate of the Oozing Hunger") && error.contains("armor_type") && error.contains("Plate"),
+        "{error}"
+    );
+    let error = parsed_wiki(&[(
+        "items.toml",
+        &armor_item.replace("\n[item.armor]\narmor_type = \"Heavy\"\narmor_bonus = 30\n", ""),
+    )])
+    .unwrap_err();
+    assert!(error.contains("Test Plate of the Oozing Hunger") && error.contains("armor"), "{error}");
+}
+
+#[test]
+fn rejects_unknown_wiki_item_fields() {
+    let error = parsed_edited_items(|s| s.replacen("minimum_level = 29", "minimum_level = 29\nrarity = \"Rare\"", 1))
+        .unwrap_err();
+    assert!(error.contains(WIKI_AXE) && error.contains("rarity"), "{error}");
 }

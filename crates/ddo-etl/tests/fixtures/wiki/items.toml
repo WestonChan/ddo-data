@@ -1,0 +1,45 @@
+# Only vocabulary the fixture DataFiles carry. Both items are test values shaped like a wiki item page, not text
+# read from ddowiki; the second takes the name of one of Maetrim's fixture items, so the build must drop it.
+[[item]]
+name = "Battle Axe of the Oozing Hunger"
+page = "https://ddowiki.com/page/Item:Battle_Axe_of_the_Oozing_Hunger"
+read = "2026-09-29"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Battle Axe"
+minimum_level = 29
+enhancement_bonus = 15
+material = "Steel"
+description = "Test description: an axe that drips."
+drop_location = "Test source: The Grotto, end chest"
+quests = [{ name = "The Grotto", loot_type = "chest" }]
+set = "Perfect Silence"
+augment_slots = ["red", "colorless"]
+bonuses = [
+  { stat = "Strength", bonus_type = "Enhancement", value = 15 },
+  { stat = "Doublestrike", bonus_type = "Insight", value = 5 },
+]
+effects = [
+  { name = "Test Oozing Hunger", description = "Test description: on hit, the target oozes.", value = 3, target = "All" },
+  { name = "Ethereal" },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 8
+damage_dice_bonus = 0
+damage_multiplier = 3.0
+critical_threat_range = 2
+critical_multiplier = 3
+handedness = "One-handed"
+dr_bypass = ["Magic", "Slash"]
+
+[[item]]
+name = "Five Rings"
+page = "https://ddowiki.com/page/Item:Five_Rings"
+read = "2026-09-29"
+slot = "Ring"
+category = "Jewelry"
+minimum_level = 8
+drop_location = "Test source: a wiki copy of an item Maetrim already carries"
+bonuses = [{ stat = "Wisdom", bonus_type = "Enhancement", value = 3 }]

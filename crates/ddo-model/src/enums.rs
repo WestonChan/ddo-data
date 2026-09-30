@@ -493,6 +493,23 @@ impl ItemCategory {
 }
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
+pub enum ItemSource {
+    Maetrim,
+    Wiki,
+}
+
+impl ItemSource {
+    pub const ALL: &'static [ItemSource] = &[Self::Maetrim, Self::Wiki];
+
+    pub const fn as_str(self) -> &'static str {
+        match self {
+            Self::Maetrim => "maetrim",
+            Self::Wiki => "wiki",
+        }
+    }
+}
+
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
 pub enum Handedness {
     OneHanded,
     TwoHanded,
