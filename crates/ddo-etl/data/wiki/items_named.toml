@@ -970,3 +970,168 @@ effects = [
   { name = "Greater Marksmanship", description = "This item is enchanted to enhance your skill with ranged weapons. You gain a +3 Competence Bonus to Ranged Attack and a +2 Competence Bonus to Ranged Damage." },
   { name = "Mythic Hands Boost +1 or +3", description = "+1 or +3 Mythic bonus to Melee, Ranged, and Universal Spell Power.(This is a rare enchantment that does not show up on all drops of this item.)" },
 ]
+
+[[item]]
+name = "Necronomicannon"
+page = "https://ddowiki.com/page/Item:Necronomicannon"
+read = "2026-09-30"
+slot = "Runearm"
+category = "Weapon"
+item_type = "Rune Arm"
+minimum_level = 5
+material = "Gem"
+description = "This Runearm seems to generate terrible and forbidden knowledge at a moment's notice. Thankfully, these accursed books are used for little else other than blunt force trauma."
+drop_location = "The Feywild, rare encounters"
+set = "Seasons of the Feywild"
+augment_slots = ["green"]
+bonuses = [
+  { stat = "Sunder DC", bonus_type = "Insight", value = 1 },
+  { stat = "Hit Points", bonus_type = "Profane", value = 12 },
+]
+effects = [
+  { name = "Maximum Charge Tier: II" },
+  { name = "Book Shot", description = "Hurls books at enemies. At higher charge levels multiple books are rapidly fired. Opponents struck by the books receive a Reflex save for half damage." },
+  { name = "Ghostly", description = "Equipping this item causes you to become partially incorporeal. Your melee attacks do not roll a miss chance for Incorporeal targets. Enemy attacks have a 10% chance to miss you due to incorporeality. You receive a +5 enhancement bonus to your Hide and Move Silently skills." },
+  { name = "Trap the Soul", description = "This equipment stores an overwhelming, merciless power deep within. When you strike an enemy with a melee or missile attack, this power occasionally comes to the surface, sucking out the life force of an enemy and imprisoning the essence of their body and soul in a gem." },
+  { name = "Mythic Weapon Boost +2 or +4 and/or Mythic Shield Boost +2 or +4", description = "+2 or +4 Mythic bonus to Melee, Ranged, and Universal Spell Power.(This is a rare enchantment that does not show up on all drops of this item.)" },
+  { name = "Rune Arm Imbue: Evil Shot I", description = "Wearing this Rune Arm will imbue any weapon you wield, dealing 1d2 points of Evil damage per hit." },
+]
+
+[item.weapon]
+handedness = "Off-hand"
+
+[[item]]
+name = "Resplendence"
+page = "https://ddowiki.com/page/Item:Resplendence"
+read = "2026-09-30"
+slot = "Runearm"
+category = "Weapon"
+item_type = "Rune Arm"
+minimum_level = 18
+material = "Gem"
+description = "Polished so finely, this runearm appears to magnify even the dimmest of lights to a brilliant glare."
+drop_location = "Fashion Madness, End chest"
+quests = [{ name = "Fashion Madness", loot_type = "chest" }]
+augment_slots = ["yellow"]
+bonuses = [
+  { stat = "Light Spell Power", bonus_type = "Equipment", value = 90 },
+]
+effects = [
+  { name = "Maximum Charge Tier: V" },
+  { name = "Light Spirals", description = "Fires chaotic bolts of light the damage your enemies. At light charge levels multiple bolts are rapidly fired. Opponents struck by these bolts receive a Will save for half damage." },
+  { name = "Ghostly", description = "Equipping this item causes you to become partially incorporeal. Your melee attacks do not roll a miss chance for Incorporeal targets. Enemy attacks have a 10% chance to miss you due to incorporeality. You receive a +5 enhancement bonus to your Hide and Move Silently skills." },
+  { name = "Life Shield", description = "Every time you are hit while wearing a Life Shield item there is a 10% chance you gain 15 temporary hitpoints that last for up to 1 minute." },
+  { name = "Undead Guard", description = "This armor burns those Undead that attack the wearer, causing 3d8 Good damage on a successful melee attack." },
+  { name = "Mythic Weapon Boost +2 or +4 and/or Mythic Shield Boost +2 or +4", description = "+2 or +4 Mythic bonus to Melee, Ranged, and Universal Spell Power.(This is a rare enchantment that does not show up on all drops of this item.)" },
+  { name = "Rune Arm Imbue: Light IV", description = "Wearing this Rune Arm will imbue any weapon you wield, dealing 2d6 points of light damage per hit." },
+]
+
+[item.weapon]
+handedness = "Off-hand"
+
+[[item]]
+name = "The Unspeakable Maw"
+page = "https://ddowiki.com/page/Item:The_Unspeakable_Maw"
+read = "2026-09-30"
+slot = "Runearm"
+category = "Weapon"
+item_type = "Rune Arm"
+minimum_level = 35
+material = "Gem"
+description = "Praise."
+drop_location = "Terror of the Demon Lords, end chest"
+augment_slots = ["green", "yellow"]
+bonuses = [
+  { stat = "Acid Spell Lore", bonus_type = "Equipment", value = 25 },
+  { stat = "Spell Lore", bonus_type = "Insight", value = 2 },
+  { stat = "Rune Arm Spell Focus", bonus_type = "Insight", value = 7 },
+  { stat = "Rune Arm Charge Rate", bonus_type = "Enhancement", value = 30 },
+]
+effects = [
+  { name = "Maximum Charge Tier: V" },
+  { name = "Acid Shot", description = "Fires a missile of acid that corrodes your enemies. At higher charge levels multiple projectiles are fired in a spray. Opponents struck by a projectile receive a Fortitude save for half damage." },
+  { name = "Legendary Ash", description = "Your attacks and offensive spells have a chance to reduce enemy Magical Resistance Rating and Universal Spell Power." },
+  { name = "Mythic Weapon Boost +2 or +4 and/or Mythic Shield Boost +2 or +4", description = "+2 or +4 Mythic bonus to Melee, Ranged, and Universal Spell Power.(This is a rare enchantment that does not show up on all drops of this item.)" },
+  { name = "Rune Arm Imbue: Acid VI", description = "Wearing this Rune Arm will imbue any weapon you wield, dealing 2d12 points of acid damage per hit." },
+]
+
+[item.weapon]
+handedness = "Off-hand"
+
+[[item]]
+name = "Glass Cannon (legacy) (tier 1)"
+page = "https://ddowiki.com/page/Item:Glass_Cannon_%28legacy%29_%28tier_1%29"
+read = "2026-09-30"
+slot = "Runearm"
+category = "Weapon"
+item_type = "Rune Arm"
+minimum_level = 24
+material = "Glass"
+description = "Made of hardened volcanic glass, this rune arm fires conjured stones which will explode upon impact."
+drop_location = "Treasure of Crystal Cove, Turn in Euphonia's Barter Box"
+bonuses = [
+  { stat = "Fortification", bonus_type = "Penalty", value = -25 },
+]
+effects = [
+  { name = "Maximum Charge Tier: V" },
+  { name = "Exploding Cannon Shot" },
+  { name = "Upgradeable - Tier 1" },
+  { name = "Mythic Weapon Boost +2 or +4 and/or Mythic Shield Boost +2 or +4", description = "+2 or +4 Mythic bonus to Melee, Ranged, and Universal Spell Power.(This is a rare enchantment that does not show up on all drops of this item.)" },
+  { name = "Rune Arm Imbue: Fire V, Bludgeon V", description = "Wearing this Rune Arm will imbue any weapon you wield, dealing 2d10+2d8 points of fire/bludgeon damage per hit." },
+]
+
+[item.weapon]
+handedness = "Off-hand"
+
+[[item]]
+name = "Glass Cannon (legacy) (tier 2)"
+page = "https://ddowiki.com/page/Item:Glass_Cannon_%28legacy%29_%28tier_2%29"
+read = "2026-09-30"
+slot = "Runearm"
+category = "Weapon"
+item_type = "Rune Arm"
+minimum_level = 24
+material = "Glass"
+description = "Made of hardened volcanic glass, this rune arm fires conjured stones which will explode upon impact."
+drop_location = "Treasure of Crystal Cove, Turn in 80 Stolen Star Rubies, 750 Gold Doubloons, 750 Silver Doubloons"
+bonuses = [
+  { stat = "Force Spell Power", bonus_type = "Equipment", value = 114 },
+  { stat = "Fortification", bonus_type = "Penalty", value = -25 },
+]
+effects = [
+  { name = "Maximum Charge Tier: V" },
+  { name = "Exploding Cannon Shot" },
+  { name = "Upgradeable - Tier 2" },
+  { name = "Mythic Weapon Boost +2 or +4 and/or Mythic Shield Boost +2 or +4", description = "+2 or +4 Mythic bonus to Melee, Ranged, and Universal Spell Power.(This is a rare enchantment that does not show up on all drops of this item.)" },
+  { name = "Rune Arm Imbue: Fire V, Bludgeon V", description = "Wearing this Rune Arm will imbue any weapon you wield, dealing 2d10+2d8 points of fire/bludgeon damage per hit." },
+]
+
+[item.weapon]
+handedness = "Off-hand"
+
+[[item]]
+name = "Glass Cannon (legacy) (tier 3)"
+page = "https://ddowiki.com/page/Item:Glass_Cannon_%28legacy%29_%28tier_3%29"
+read = "2026-09-30"
+slot = "Runearm"
+category = "Weapon"
+item_type = "Rune Arm"
+minimum_level = 24
+material = "Glass"
+description = "Made of hardened volcanic glass, this rune arm fires conjured stones which will explode upon impact."
+drop_location = "Treasure of Crystal Cove, Turn in 80 Stolen Star Rubies, 750 Gold Doubloons, 750 Silver Doubloons"
+augment_slots = ["yellow"]
+bonuses = [
+  { stat = "Force Spell Power", bonus_type = "Equipment", value = 120 },
+  { stat = "Fortification", bonus_type = "Penalty", value = -25 },
+]
+effects = [
+  { name = "Maximum Charge Tier: V" },
+  { name = "Exploding Cannon Shot" },
+  { name = "Upgradeable - Tier 3" },
+  { name = "Mythic Weapon Boost +2 or +4 and/or Mythic Shield Boost +2 or +4", description = "+2 or +4 Mythic bonus to Melee, Ranged, and Universal Spell Power.(This is a rare enchantment that does not show up on all drops of this item.)" },
+  { name = "Rune Arm Imbue: Fire V, Bludgeon V", description = "Wearing this Rune Arm will imbue any weapon you wield, dealing 2d10+2d8 points of fire/bludgeon damage per hit." },
+]
+
+[item.weapon]
+handedness = "Off-hand"
