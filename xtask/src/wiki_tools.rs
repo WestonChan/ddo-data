@@ -20,6 +20,7 @@ pub fn wiki_check_report(data_files_dir: &Path, wiki_dir: Option<&Path>) -> Resu
     report_lines.extend(unused_family_augment_warnings(&db)?);
     report_lines.extend(socket_label_warnings(&db)?);
     report_lines.extend(wiki_item_warnings(&report));
+    report_lines.extend(looks_variant_warnings(&db)?);
     Ok(report_lines.join("\n"))
 }
 
@@ -81,6 +82,30 @@ fn wiki_item_warnings(report: &BuildReport) -> Vec<String> {
         )
     });
     superseded_warnings.chain(probable_duplicate_warnings).collect()
+}
+
+fn looks_variant_warnings(db: &Connection) -> Result<Vec<String>> {
+    let mut statement = db.prepare(
+        "SELECT wiki_items.name, maetrim_items.name
+         FROM items AS wiki_items
+         JOIN items AS maetrim_items
+           ON maetrim_items.source = ?2
+          AND maetrim_items.minimum_level = wiki_items.minimum_level
+          AND maetrim_items.drop_location = wiki_items.drop_location
+         WHERE wiki_items.source = ?1
+           AND substr(wiki_items.name, 1, length(maetrim_items.name) + 2) = maetrim_items.name || ' ('
+           AND wiki_items.name LIKE '%)'
+         ORDER BY wiki_items.name, maetrim_items.name",
+    )?;
+    let warnings = statement
+        .query_map([ItemSource::Wiki.as_str(), ItemSource::Maetrim.as_str()], |row| {
+            let (wiki_name, maetrim_name): (String, String) = (row.get(0)?, row.get(1)?);
+            Ok(format!(
+                "warning: wiki item {wiki_name:?} looks like a variant of Maetrim's {maetrim_name:?} (same level and drop location)"
+            ))
+        })?
+        .collect::<rusqlite::Result<_>>()?;
+    Ok(warnings)
 }
 
 pub fn write_wiki_batch(data_files_dir: &Path, wiki_dir: Option<&Path>, out_dir: &Path) -> Result<Vec<String>> {

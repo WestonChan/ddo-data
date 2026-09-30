@@ -62,6 +62,32 @@ fn wiki_check_warns_about_superseded_and_probably_duplicate_wiki_items() {
 }
 
 #[test]
+fn wiki_check_warns_about_a_wiki_item_that_looks_like_a_variant_of_a_maetrim_item() {
+    let fixture_items = std::fs::read_to_string(fixtures_dir().join("wiki/items.toml")).unwrap();
+    let variant_items = fixture_items.replace("name = \"Five Rings\"", "name = \"Five Rings (plain)\"").replace(
+        "drop_location = \"Test source: a wiki copy of an item Maetrim already carries\"",
+        "drop_location = \"Secret of the Slavers' Stockade, Small chest\"",
+    );
+    let other_level_items = variant_items.replace("minimum_level = 8", "minimum_level = 9");
+    let variant_warning = "warning: wiki item \"Five Rings (plain)\" looks like a variant of Maetrim's \"Five Rings\" (same level and drop location)";
+
+    let report_for = |items_toml: &str| {
+        let draft_dir = tempfile::tempdir().unwrap();
+        std::fs::write(draft_dir.path().join("items_draft.toml"), items_toml).unwrap();
+        wiki_check_report(&fixtures_dir().join("DataFiles"), Some(draft_dir.path())).unwrap()
+    };
+
+    let report = report_for(&variant_items);
+    let warnings_start = report.find("\nwarnings:").unwrap_or_else(|| panic!("no warnings section in\n{report}"));
+    assert!(
+        report[warnings_start..].lines().any(|line| line == variant_warning),
+        "missing {variant_warning:?} in\n{report}"
+    );
+    assert!(!report_for(&other_level_items).contains("looks like a variant"), "a different level is no variant");
+    assert!(!report_for(&fixture_items).contains("looks like a variant"));
+}
+
+#[test]
 fn wiki_check_warns_about_family_augments_no_recipe_yields() {
     let fixture_crafting = std::fs::read_to_string(fixtures_dir().join("wiki/crafting.toml")).unwrap();
     let minor_fire_guard_recipe = "[[system.recipe]]\ntier = \"heroic\"\nslot = \"crafting: accessory invasion\"\noption = \"Minor Fire Guard\"\naugments = [\"Minor Fire Guard\"]\n";
