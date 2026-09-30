@@ -1138,3 +1138,19 @@ effects = [
 
 [item.weapon]
 handedness = "Off-hand"
+
+[[item]]
+name = "Cormyrian Docent"
+page = "https://ddowiki.com/page/Item:Cormyrian_Docent"
+read = "2026-09-30"
+slot = "Body"
+category = "Armor"
+item_type = "Docent"
+minimum_level = 16
+material = "Dwarven Iron"
+race_required = "Warforged"
+description = "This exquisite light plate is a suit that any knight would be proud to own. The smithies of Cormyr are renowned for the quality of their work, and equipment intended for use in service to the kingdom is layered with powerful enchantments by the War Wizards."
+drop_location = "Eveningstar Challenge Pack, Turn in various Eveningstar Challenge Pack ingredients"
+
+[item.armor]
+armor_type = "Docent"
