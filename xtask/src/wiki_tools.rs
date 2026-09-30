@@ -21,6 +21,7 @@ pub fn wiki_check_report(data_files_dir: &Path, wiki_dir: Option<&Path>) -> Resu
     report_lines.extend(socket_label_warnings(&db)?);
     report_lines.extend(wiki_item_warnings(&report));
     report_lines.extend(looks_variant_warnings(&db)?);
+    report_lines.extend(effect_spelling_warnings(&db)?);
     Ok(report_lines.join("\n"))
 }
 
@@ -82,6 +83,66 @@ fn wiki_item_warnings(report: &BuildReport) -> Vec<String> {
         )
     });
     superseded_warnings.chain(probable_duplicate_warnings).collect()
+}
+
+fn effect_names_from(db: &Connection, sql: &str, item_sources: &[&str]) -> Result<Vec<String>> {
+    let mut statement = db.prepare(sql)?;
+    let effect_names = statement
+        .query_map(rusqlite::params_from_iter(item_sources), |row| row.get(0))?
+        .collect::<rusqlite::Result<_>>()?;
+    Ok(effect_names)
+}
+
+fn maetrim_effect_names(db: &Connection) -> Result<Vec<String>> {
+    effect_names_from(
+        db,
+        "SELECT DISTINCT effects.name
+         FROM effects
+         JOIN item_effects ON item_effects.effect_id = effects.id
+         JOIN items ON items.id = item_effects.item_id
+         WHERE items.source = ?1
+         ORDER BY effects.id",
+        &[ItemSource::Maetrim.as_str()],
+    )
+}
+
+fn wiki_created_effect_names(db: &Connection) -> Result<Vec<String>> {
+    effect_names_from(
+        db,
+        "SELECT DISTINCT effects.name
+         FROM effects
+         JOIN item_effects ON item_effects.effect_id = effects.id
+         JOIN items ON items.id = item_effects.item_id
+         WHERE items.source = ?2
+           AND NOT EXISTS (
+             SELECT 1 FROM item_effects AS maetrim_item_effects
+             JOIN items AS maetrim_items ON maetrim_items.id = maetrim_item_effects.item_id
+             WHERE maetrim_item_effects.effect_id = effects.id AND maetrim_items.source = ?1)
+         ORDER BY effects.name",
+        &[ItemSource::Maetrim.as_str(), ItemSource::Wiki.as_str()],
+    )
+}
+
+fn effect_spelling_warnings(db: &Connection) -> Result<Vec<String>> {
+    let maetrim_effect_names = maetrim_effect_names(db)?;
+    let mut maetrim_effect_names_by_spelling_key: BTreeMap<String, &str> = BTreeMap::new();
+    for maetrim_effect_name in &maetrim_effect_names {
+        maetrim_effect_names_by_spelling_key
+            .entry(lowercase_letters_and_digits(maetrim_effect_name))
+            .or_insert(maetrim_effect_name);
+    }
+    let wiki_effect_names = wiki_created_effect_names(db)?;
+    let warnings = wiki_effect_names
+        .iter()
+        .filter_map(|wiki_effect_name| {
+            let maetrim_effect_name =
+                maetrim_effect_names_by_spelling_key.get(&lowercase_letters_and_digits(wiki_effect_name))?;
+            Some(format!(
+                "warning: wiki effect {wiki_effect_name:?} may be Maetrim's {maetrim_effect_name:?} spelled differently"
+            ))
+        })
+        .collect();
+    Ok(warnings)
 }
 
 fn looks_variant_warnings(db: &Connection) -> Result<Vec<String>> {
@@ -203,12 +264,14 @@ fn blank_description_lines(db: &Connection) -> Result<Vec<String>> {
     Ok(lines)
 }
 
+fn lowercase_letters_and_digits(text: &str) -> String {
+    text.chars().filter(|character| character.is_alphanumeric()).flat_map(char::to_lowercase).collect()
+}
+
 pub fn socket_label_spelling_key(label: &str) -> String {
-    let letters_and_digits: String =
-        label.chars().filter(|character| character.is_alphanumeric()).flat_map(char::to_lowercase).collect();
     KNOWN_SOCKET_LABEL_MISSPELLINGS
         .iter()
-        .fold(letters_and_digits, |key, (misspelling, spelling)| key.replace(misspelling, spelling))
+        .fold(lowercase_letters_and_digits(label), |key, (misspelling, spelling)| key.replace(misspelling, spelling))
 }
 
 pub fn socket_label_spelling_warnings(labels: &[String]) -> Vec<String> {

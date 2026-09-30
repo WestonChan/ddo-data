@@ -1109,3 +1109,32 @@ fn reuses_maetrims_effect_whose_name_differs_only_by_case_spaces_and_hyphens() {
         |db: &Connection| -> i64 { db.query_row("SELECT COUNT(*) FROM effects", [], |r| r.get(0)).unwrap() };
     assert_eq!(effect_count(&db), effect_count(&without) + 1, "only Test Oozing Hunger is new");
 }
+
+#[test]
+fn reuses_maetrims_effect_whose_name_differs_only_by_colons_commas_periods_and_apostrophes() {
+    let wiki = parsed_edited_items(|s| {
+        s.replacen(
+            "{ name = \"Ethereal\" },",
+            "{ name = \"Ethereal\" },\n  { name = \"Maximum Charge Tier: III\" },\n  { name = \"Rune Arm Imbue: Acid II\" },\n  { name = \"Rune Arm Imbue - 'Acid', II.\" },",
+            1,
+        )
+    })
+    .unwrap();
+    let (without, _) = built_db_with(&WikiOverrides::default());
+    let (db, _) = built_db_with(&wiki);
+    let effect_names = string_column(
+        &db,
+        &format!(
+            "SELECT e.name FROM item_effects ie JOIN effects e ON e.id = ie.effect_id
+               JOIN items i ON i.id = ie.item_id WHERE i.name = '{WIKI_AXE}' ORDER BY ie.sort_order"
+        ),
+    );
+    assert_eq!(
+        effect_names[2..],
+        ["MaximumChargeTierIII", "Rune Arm Imbue - Acid II", "Rune Arm Imbue - Acid II"],
+        "{effect_names:?}"
+    );
+    let effect_count =
+        |db: &Connection| -> i64 { db.query_row("SELECT COUNT(*) FROM effects", [], |r| r.get(0)).unwrap() };
+    assert_eq!(effect_count(&db), effect_count(&without) + 1, "only Test Oozing Hunger is new");
+}

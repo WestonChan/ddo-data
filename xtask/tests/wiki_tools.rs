@@ -88,6 +88,37 @@ fn wiki_check_warns_about_a_wiki_item_that_looks_like_a_variant_of_a_maetrim_ite
 }
 
 #[test]
+fn wiki_check_warns_about_a_wiki_effect_spelled_like_a_maetrim_effect_apart_from_punctuation() {
+    let fixture_items = std::fs::read_to_string(fixtures_dir().join("wiki/items.toml")).unwrap();
+    let items_with_effect = |effect_name: &str| {
+        fixture_items.replacen(
+            "{ name = \"Ethereal\" },",
+            &format!("{{ name = \"Ethereal\" }},\n  {{ name = \"{effect_name}\" }},"),
+            1,
+        )
+    };
+    let report_for = |items_toml: &str| {
+        let draft_dir = tempfile::tempdir().unwrap();
+        std::fs::write(draft_dir.path().join("items_draft.toml"), items_toml).unwrap();
+        wiki_check_report(&fixtures_dir().join("DataFiles"), Some(draft_dir.path())).unwrap()
+    };
+
+    let report = report_for(&items_with_effect("Maximum Charge Tier / III"));
+    let effect_warning =
+        "warning: wiki effect \"Maximum Charge Tier / III\" may be Maetrim's \"MaximumChargeTierIII\" spelled differently";
+    let warnings_start = report.find("\nwarnings:").unwrap_or_else(|| panic!("no warnings section in\n{report}"));
+    assert!(
+        report[warnings_start..].lines().any(|line| line == effect_warning),
+        "missing {effect_warning:?} in\n{report}"
+    );
+    assert!(
+        !report_for(&items_with_effect("Maximum Charge Tier: III")).contains("wiki effect"),
+        "the build reuses his"
+    );
+    assert!(!report_for(&fixture_items).contains("wiki effect"), "Test Oozing Hunger is no one's spelling");
+}
+
+#[test]
 fn wiki_check_warns_about_family_augments_no_recipe_yields() {
     let fixture_crafting = std::fs::read_to_string(fixtures_dir().join("wiki/crafting.toml")).unwrap();
     let minor_fire_guard_recipe = "[[system.recipe]]\ntier = \"heroic\"\nslot = \"crafting: accessory invasion\"\noption = \"Minor Fire Guard\"\naugments = [\"Minor Fire Guard\"]\n";

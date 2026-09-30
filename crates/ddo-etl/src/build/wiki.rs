@@ -428,7 +428,11 @@ impl TableWriter<'_> {
 }
 
 fn folded_effect_name(effect_name: &str) -> String {
-    effect_name.to_lowercase().chars().filter(|character| !matches!(character, ' ' | '-')).collect()
+    effect_name
+        .to_lowercase()
+        .chars()
+        .filter(|character| !matches!(character, ' ' | '-' | ':' | ',' | '.' | '\''))
+        .collect()
 }
 
 fn normalised_item_name(item_name: &str) -> String {
