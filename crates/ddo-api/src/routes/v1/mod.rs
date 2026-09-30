@@ -74,6 +74,7 @@ declare_response_examples! { "v1":
     ("/v1/adventure-packs", "adventure-packs"),
     ("/v1/patrons", "patrons"),
     ("/v1/quests", "quests"),
+    ("/v1/quests/{id}", "quests_id"),
     ("/v1/items", "items"),
     ("/v1/items/{id}", "items_id"),
     ("/v1/augments", "augments"),

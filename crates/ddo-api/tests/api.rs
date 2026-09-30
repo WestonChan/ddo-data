@@ -203,6 +203,44 @@ async fn augment_detail_lists_the_quests_it_drops_in_as_item_detail_does() {
 }
 
 #[tokio::test]
+async fn quest_detail_is_the_list_row_plus_the_items_and_augments_it_drops() {
+    let (_, _, quest_list) = get("/v1/quests").await;
+    let book_burning_row =
+        quest_list.as_array().unwrap().iter().find(|quest| quest["name"] == "Book Burning").unwrap().clone();
+    let id = book_burning_row["id"].as_i64().unwrap();
+    let (status, _, quest) = get(&format!("/v1/quests/{id}")).await;
+    assert_eq!(status, StatusCode::OK);
+    for (field_name, value) in book_burning_row.as_object().unwrap() {
+        assert_eq!(&quest[field_name], value, "{field_name} as the list returns it");
+    }
+
+    let items = quest["items"].as_array().unwrap();
+    let buckler = items.iter().find(|item| item["name"] == "Buckler of the Golden Age").expect("{items:?}");
+    let mut item_fields: Vec<&String> = buckler.as_object().unwrap().keys().collect();
+    item_fields.sort();
+    assert_eq!(item_fields, ["chest", "id", "is_rare", "loot_type", "minimum_level", "name", "slot"]);
+    assert_eq!(
+        (&buckler["loot_type"], &buckler["is_rare"], &buckler["chest"]),
+        (&serde_json::json!("chest"), &serde_json::json!(true), &serde_json::json!("end chest"))
+    );
+    assert!(buckler["slot"].is_string() && buckler["minimum_level"].is_i64(), "{buckler}");
+
+    let augments = quest["augments"].as_array().unwrap();
+    let lunar_gem = augments
+        .iter()
+        .find(|augment| augment["name"] == "Lunar Gem of Magical Protection (Heroic)")
+        .expect("{augments:?}");
+    let mut augment_fields: Vec<&String> = lunar_gem.as_object().unwrap().keys().collect();
+    augment_fields.sort();
+    assert_eq!(augment_fields, ["chest", "family", "id", "is_rare", "loot_type", "min_level", "name"]);
+    assert_eq!(lunar_gem["family"], "SunAndMoon");
+    assert_eq!(lunar_gem["is_rare"], true);
+
+    let (status, _, _) = get("/v1/quests/999999").await;
+    assert_eq!(status, StatusCode::NOT_FOUND);
+}
+
+#[tokio::test]
 async fn etag_roundtrip_returns_not_modified() {
     let (_, headers, _) = get("/v1/items?q=sireth").await;
     let etag = headers.get(header::ETAG).unwrap().clone();

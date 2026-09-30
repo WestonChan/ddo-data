@@ -1,0 +1,82 @@
+{
+  "augments": [
+    {
+      "chest": "end chest",
+      "family": "SunAndMoon",
+      "id": 1894,
+      "is_rare": false,
+      "loot_type": "chest",
+      "min_level": 1,
+      "name": "Lunar Gem of Magical Protection (Heroic)"
+    },
+    {
+      "chest": "end chest",
+      "family": "SunAndMoon",
+      "id": 2056,
+      "is_rare": false,
+      "loot_type": "chest",
+      "min_level": 30,
+      "name": "Lunar Gem of Magical Protection (Legendary)"
+    },
+    {
+      "chest": "end chest",
+      "family": "SunAndMoon",
+      "id": 1899,
+      "is_rare": false,
+      "loot_type": "chest",
+      "min_level": 1,
+      "name": "Lunar Gem of Swift Charging (Heroic)"
+    }
+  ],
+  "bestowed_by": null,
+  "difficulties": [
+    "normal",
+    "hard",
+    "elite"
+  ],
+  "epic_level": 35,
+  "epic_name": null,
+  "favor": 4,
+  "flagging": null,
+  "id": 364,
+  "is_challenge": false,
+  "is_free_to_play": false,
+  "is_raid": false,
+  "items": [
+    {
+      "chest": "end chest",
+      "id": 975,
+      "is_rare": false,
+      "loot_type": "chest",
+      "minimum_level": 13,
+      "name": "Boots of Fleet and Fortune",
+      "slot": "Feet"
+    },
+    {
+      "chest": "end chest",
+      "id": 1131,
+      "is_rare": false,
+      "loot_type": "chest",
+      "minimum_level": 13,
+      "name": "Buckler of the Fallen Age",
+      "slot": "Off Hand"
+    },
+    {
+      "chest": "end chest",
+      "id": 1132,
+      "is_rare": true,
+      "loot_type": "chest",
+      "minimum_level": 13,
+      "name": "Buckler of the Golden Age",
+      "slot": "Off Hand"
+    }
+  ],
+  "legendary_level": 35,
+  "level": 13,
+  "max_level": null,
+  "name": "Book Burning",
+  "pack": "Magic of Myth Drannor",
+  "patron": "Cormanthor Elves",
+  "source": "maetrim",
+  "zone": null
+}

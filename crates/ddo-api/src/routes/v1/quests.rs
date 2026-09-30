@@ -1,15 +1,26 @@
-use crate::db::{convert_to_booleans, json_rows, whole_table_json};
+use crate::db::{convert_to_booleans, json_row, json_rows, whole_table_json};
 use crate::error::ApiError;
 use crate::state::AppState;
-use axum::extract::State;
+use axum::extract::{Path, State};
 use axum::Json;
 use serde_json::Value;
 use utoipa_axum::router::OpenApiRouter;
 use utoipa_axum::routes;
 
 pub(super) fn router() -> OpenApiRouter<AppState> {
-    OpenApiRouter::new().routes(routes!(adventure_packs)).routes(routes!(patrons)).routes(routes!(quests))
+    OpenApiRouter::new()
+        .routes(routes!(adventure_packs))
+        .routes(routes!(patrons))
+        .routes(routes!(quests))
+        .routes(routes!(quest_detail))
 }
+
+const QUEST_SELECT: &str =
+    "SELECT q.id, q.name, p.name AS pack, pt.name AS patron, q.level, q.epic_level, q.favor, q.is_raid,
+        q.epic_name, q.difficulties, q.is_challenge, q.max_level, q.is_free_to_play,
+        q.legendary_level, q.zone, q.bestowed_by, q.flagging, q.source
+   FROM quests q LEFT JOIN adventure_packs p ON p.id = q.pack_id LEFT JOIN patrons pt ON pt.id = q.patron_id";
+const QUEST_FLAG_COLUMNS: &[&str] = &["is_raid", "is_challenge", "is_free_to_play"];
 
 #[utoipa::path(
     get,
@@ -52,28 +63,71 @@ async fn patrons(State(state): State<AppState>) -> Result<Json<Vec<Value>>, ApiE
                    place), `bestowed_by` (the quest giver) and `flagging` (free text on what must be run first), \
                    each null or false when the wiki has not been read for that quest. `source` is `maetrim` for a quest \
                    from his files and `wiki` for one read from ddowiki because his files lack it, replaced by his \
-                   as soon as his files carry a quest of that name. Item and augment detail responses reference these in `quests`.",
+                   as soon as his files carry a quest of that name. Item and augment detail responses reference these in `quests`; \
+                   /v1/quests/{id} adds the items and augments each one drops.",
     responses((status = 200, description = "The whole table with each quest's wiki facts", body = Vec<Value>))
 )]
 async fn quests(State(state): State<AppState>) -> Result<Json<Vec<Value>>, ApiError> {
     let quests = state
         .read_db(|db| {
-            let mut quests = json_rows(
-                db,
-                "SELECT q.id, q.name, p.name AS pack, pt.name AS patron, q.level, q.epic_level, q.favor, q.is_raid,
-                        q.epic_name, q.difficulties, q.is_challenge, q.max_level, q.is_free_to_play,
-                        q.legendary_level, q.zone, q.bestowed_by, q.flagging, q.source
-                   FROM quests q LEFT JOIN adventure_packs p ON p.id = q.pack_id LEFT JOIN patrons pt ON pt.id = q.patron_id
-                  ORDER BY q.name",
-                [],
-            )?;
+            let mut quests = json_rows(db, &format!("{QUEST_SELECT} ORDER BY q.name"), [])?;
             for quest in &mut quests {
-                convert_to_booleans(quest, &["is_raid", "is_challenge", "is_free_to_play"]);
+                convert_to_booleans(quest, QUEST_FLAG_COLUMNS);
             }
             Ok(quests)
         })
         .await?;
     Ok(Json(quests))
+}
+
+#[utoipa::path(
+    get,
+    path = "/v1/quests/{id}",
+    tag = "quests",
+    summary = "Get a quest",
+    description = "One quest as the list returns it, plus the loot it drops: `items`, each named item linked to the \
+                   quest with its `minimum_level` and `slot`, and `augments`, each augment with its `family` and \
+                   `min_level`. Every loot row carries `id`, `name`, `loot_type` (chest, raid or reward), `is_rare` \
+                   and `chest` (the chest Maetrim's drop text names, lower-cased, null when it names none), the same \
+                   link item and augment detail `quests` report from the other side. Both arrays are sorted by name \
+                   and empty when nothing is known to drop there.",
+    params(("id" = i64, Path, description = "The quest's numeric id from /v1/quests")),
+    responses(
+        (status = 200, description = "The quest with the items and augments it drops", body = Value),
+        (status = 404, description = "No quest has this id", body = crate::error::ErrorBody)
+    )
+)]
+async fn quest_detail(State(state): State<AppState>, Path(id): Path<i64>) -> Result<Json<Value>, ApiError> {
+    state
+        .read_db(move |db| {
+            let mut quest = json_row(db, &format!("{QUEST_SELECT} WHERE q.id = ?1"), [id])?;
+            convert_to_booleans(&mut quest, QUEST_FLAG_COLUMNS);
+            quest["items"] = Value::Array(loot_rows(
+                db,
+                "SELECT i.id, i.name, loot.loot_type, loot.is_rare, loot.chest, i.minimum_level, es.name AS slot
+                   FROM quest_loot loot JOIN items i ON i.id = loot.item_id
+                   LEFT JOIN equipment_slots es ON es.id = i.slot_id
+                  WHERE loot.quest_id = ?1 ORDER BY i.name, i.id",
+                id,
+            )?);
+            quest["augments"] = Value::Array(loot_rows(
+                db,
+                "SELECT a.id, a.name, loot.loot_type, loot.is_rare, loot.chest, a.family, a.min_level
+                   FROM quest_augment_loot loot JOIN augments a ON a.id = loot.augment_id
+                  WHERE loot.quest_id = ?1 ORDER BY a.name, a.id",
+                id,
+            )?);
+            Ok(Json(quest))
+        })
+        .await
+}
+
+fn loot_rows(db: &rusqlite::Connection, sql: &str, quest_id: i64) -> Result<Vec<Value>, ApiError> {
+    let mut loot_rows = json_rows(db, sql, [quest_id])?;
+    for loot_row in &mut loot_rows {
+        convert_to_booleans(loot_row, &["is_rare"]);
+    }
+    Ok(loot_rows)
 }
 
 pub(super) fn quests_dropping_via(
