@@ -1,0 +1,2489 @@
+[[item]]
+name = "Duergarcraft Bastard Sword"
+page = "https://ddowiki.com/page/Item:Duergarcraft_Bastard_Sword"
+read = "2026-09-29"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Bastard Sword"
+minimum_level = 11
+enhancement_bonus = 5
+material = "Steel"
+description = "Crafted long ago in Gauntlygrym, these weapons seem to have scattered far and wide."
+drop_location = "Terror of Demogorgon, any end chest, most optional chests"
+augment_slots = ["red"]
+effects = [
+  { name = "Slashing 3", description = "The edges of this weapon are sharpened, dealing an additional 3d6 slashing damage on each hit." },
+  { name = "Gashing 7", description = "The edges of this weapon are sharpened beyond belief, dealing an additional 7d6 slashing damage on each critical hit." },
+  { name = "Banishing 45", description = "On Hit: 3d6 Bane damage to Outsiders.On Vorpal Hit: If an outsider struck by this weapon has fewer than 1880 Hit Points, it is instantly slain. If the outsider has above 1880 Hit Points, it takes 3d20 damage." },
+  { name = "Improved Destruction", description = "On Hit: Your target gains a stack of Armor Destruction. (-1 penalty to Armor Class, -1% of its Fortification. 20 Second Duration. Stacks up to 15 times.) This effect may trigger once every second." },
+  { name = "Mythic Weapon Boost +2 or +4", description = "+2 or +4 Mythic bonus to Melee, Ranged, and Universal Spell Power.(This is a rare enchantment that does not show up on all drops of this item.)" },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 10
+damage_multiplier = 1.5
+critical_threat_range = 2
+critical_multiplier = 2
+handedness = "One-handed"
+dr_bypass = ["Slash", "Magic"]
+
+[[item]]
+name = "Duergarcraft Battle Axe"
+page = "https://ddowiki.com/page/Item:Duergarcraft_Battle_Axe"
+read = "2026-09-29"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Battle Axe"
+minimum_level = 11
+enhancement_bonus = 5
+material = "Steel"
+description = "Crafted long ago in Gauntlygrym, these weapons seem to have scattered far and wide."
+drop_location = "Terror of Demogorgon, any end chest, most optional chests"
+augment_slots = ["red"]
+effects = [
+  { name = "Slashing 3", description = "The edges of this weapon are sharpened, dealing an additional 3d6 slashing damage on each hit." },
+  { name = "Gashing 7", description = "The edges of this weapon are sharpened beyond belief, dealing an additional 7d6 slashing damage on each critical hit." },
+  { name = "Banishing 45", description = "On Hit: 3d6 Bane damage to Outsiders.On Vorpal Hit: If an outsider struck by this weapon has fewer than 1880 Hit Points, it is instantly slain. If the outsider has above 1880 Hit Points, it takes 3d20 damage." },
+  { name = "Improved Destruction", description = "On Hit: Your target gains a stack of Armor Destruction. (-1 penalty to Armor Class, -1% of its Fortification. 20 Second Duration. Stacks up to 15 times.) This effect may trigger once every second." },
+  { name = "Mythic Weapon Boost +2 or +4", description = "+2 or +4 Mythic bonus to Melee, Ranged, and Universal Spell Power.(This is a rare enchantment that does not show up on all drops of this item.)" },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 8
+damage_multiplier = 1.5
+critical_threat_range = 1
+critical_multiplier = 3
+handedness = "One-handed"
+dr_bypass = ["Slash", "Magic"]
+
+[[item]]
+name = "Duergarcraft Club"
+page = "https://ddowiki.com/page/Item:Duergarcraft_Club"
+read = "2026-09-29"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Club"
+minimum_level = 11
+enhancement_bonus = 5
+material = "Steel"
+description = "Crafted long ago in Gauntlygrym, these weapons seem to have scattered far and wide."
+drop_location = "Terror of Demogorgon, any end chest, most optional chests"
+augment_slots = ["red"]
+effects = [
+  { name = "Bludgeoning 3", description = "The edges of this weapon are blunted, dealing an additional 3d6 bludgeon damage on each hit." },
+  { name = "Slashing 7", description = "The edges of this weapon are sharpened, dealing an additional 7d6 slashing damage on each hit." },
+  { name = "Banishing 45", description = "On Hit: 3d6 Bane damage to Outsiders.On Vorpal Hit: If an outsider struck by this weapon has fewer than 1880 Hit Points, it is instantly slain. If the outsider has above 1880 Hit Points, it takes 3d20 damage." },
+  { name = "Improved Destruction", description = "On Hit: Your target gains a stack of Armor Destruction. (-1 penalty to Armor Class, -1% of its Fortification. 20 Second Duration. Stacks up to 15 times.) This effect may trigger once every second." },
+  { name = "Mythic Weapon Boost +2 or +4", description = "+2 or +4 Mythic bonus to Melee, Ranged, and Universal Spell Power.(This is a rare enchantment that does not show up on all drops of this item.)" },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 6
+damage_multiplier = 1.5
+critical_threat_range = 1
+critical_multiplier = 2
+handedness = "One-handed"
+dr_bypass = ["Bludgeon", "Magic"]
+
+[[item]]
+name = "Duergarcraft Dagger"
+page = "https://ddowiki.com/page/Item:Duergarcraft_Dagger"
+read = "2026-09-29"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Dagger"
+minimum_level = 11
+enhancement_bonus = 5
+material = "Steel"
+description = "Crafted long ago in Gauntlygrym, these weapons seem to have scattered far and wide."
+drop_location = "Terror of Demogorgon, any end chest, most optional chests"
+augment_slots = ["red"]
+effects = [
+  { name = "Piercing 3", description = "The edges of this weapon have serrated edges, dealing an additional 3d6 piercing damage on each hit." },
+  { name = "Stabbing 7", description = "The edges of this weapon are serrated, dealing an additional 7d6 piercing damage on each critical hit." },
+  { name = "Banishing 45", description = "On Hit: 3d6 Bane damage to Outsiders.On Vorpal Hit: If an outsider struck by this weapon has fewer than 1880 Hit Points, it is instantly slain. If the outsider has above 1880 Hit Points, it takes 3d20 damage." },
+  { name = "Improved Destruction", description = "On Hit: Your target gains a stack of Armor Destruction. (-1 penalty to Armor Class, -1% of its Fortification. 20 Second Duration. Stacks up to 15 times.) This effect may trigger once every second." },
+  { name = "Mythic Weapon Boost +2 or +4", description = "+2 or +4 Mythic bonus to Melee, Ranged, and Universal Spell Power.(This is a rare enchantment that does not show up on all drops of this item.)" },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 4
+damage_multiplier = 1.5
+critical_threat_range = 2
+critical_multiplier = 2
+handedness = "One-handed"
+dr_bypass = ["Pierce", "Magic"]
+
+[[item]]
+name = "Duergarcraft Dart"
+page = "https://ddowiki.com/page/Item:Duergarcraft_Dart"
+read = "2026-09-29"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Dart"
+minimum_level = 11
+enhancement_bonus = 5
+material = "Steel"
+description = "Crafted long ago in Gauntlgrym, these weapons seem to have scattered far and wide."
+drop_location = "Terror of Demogorgon, any end chest, most optional chests"
+augment_slots = ["red"]
+effects = [
+  { name = "Piercing 3", description = "The edges of this weapon have serrated edges, dealing an additional 3d6 piercing damage on each hit." },
+  { name = "Stabbing 7", description = "The edges of this weapon are serrated, dealing an additional 7d6 piercing damage on each critical hit." },
+  { name = "Banishing 45", description = "On Hit: 3d6 Bane damage to Outsiders.On Vorpal Hit: If an outsider struck by this weapon has fewer than 1880 Hit Points, it is instantly slain. If the outsider has above 1880 Hit Points, it takes 3d20 damage." },
+  { name = "Improved Destruction", description = "On Hit: Your target gains a stack of Armor Destruction. (-1 penalty to Armor Class, -1% of its Fortification. 20 Second Duration. Stacks up to 15 times.) This effect may trigger once every second." },
+  { name = "Returning", description = "This missile will return to you." },
+  { name = "Mythic Weapon Boost +2 or +4", description = "+2 or +4 Mythic bonus to Melee, Ranged, and Universal Spell Power.(This is a rare enchantment that does not show up on all drops of this item.)" },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 4
+damage_multiplier = 1.5
+critical_threat_range = 1
+critical_multiplier = 2
+handedness = "Thrown"
+dr_bypass = ["Pierce", "Magic"]
+
+[[item]]
+name = "Duergarcraft Dwarven Waraxe"
+page = "https://ddowiki.com/page/Item:Duergarcraft_Dwarven_Waraxe"
+read = "2026-09-29"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Dwarven Axe"
+minimum_level = 11
+enhancement_bonus = 5
+material = "Steel"
+description = "Crafted long ago in Gauntlygrym, these weapons seem to have scattered far and wide."
+drop_location = "Terror of Demogorgon, any end chest, most optional chests"
+augment_slots = ["red"]
+effects = [
+  { name = "Slashing 3", description = "The edges of this weapon are sharpened, dealing an additional 3d6 slashing damage on each hit." },
+  { name = "Gashing 7", description = "The edges of this weapon are sharpened beyond belief, dealing an additional 7d6 slashing damage on each critical hit." },
+  { name = "Banishing 45", description = "On Hit: 3d6 Bane damage to Outsiders.On Vorpal Hit: If an outsider struck by this weapon has fewer than 1880 Hit Points, it is instantly slain. If the outsider has above 1880 Hit Points, it takes 3d20 damage." },
+  { name = "Improved Destruction", description = "On Hit: Your target gains a stack of Armor Destruction. (-1 penalty to Armor Class, -1% of its Fortification. 20 Second Duration. Stacks up to 15 times.) This effect may trigger once every second." },
+  { name = "Mythic Weapon Boost +2 or +4", description = "+2 or +4 Mythic bonus to Melee, Ranged, and Universal Spell Power.(This is a rare enchantment that does not show up on all drops of this item.)" },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 10
+damage_multiplier = 1.5
+critical_threat_range = 1
+critical_multiplier = 3
+handedness = "One-handed"
+dr_bypass = ["Slash", "Magic"]
+
+[[item]]
+name = "Duergarcraft Falchion"
+page = "https://ddowiki.com/page/Item:Duergarcraft_Falchion"
+read = "2026-09-29"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Falchion"
+minimum_level = 11
+enhancement_bonus = 5
+material = "Steel"
+description = "Crafted long ago in Gauntlygrym, these weapons seem to have scattered far and wide."
+drop_location = "Terror of Demogorgon, any end chest, most optional chests"
+augment_slots = ["red"]
+effects = [
+  { name = "Slashing 3", description = "The edges of this weapon are sharpened, dealing an additional 3d6 slashing damage on each hit." },
+  { name = "Gashing 7", description = "The edges of this weapon are sharpened beyond belief, dealing an additional 7d6 slashing damage on each critical hit." },
+  { name = "Banishing 45", description = "On Hit: 3d6 Bane damage to Outsiders.On Vorpal Hit: If an outsider struck by this weapon has fewer than 1880 Hit Points, it is instantly slain. If the outsider has above 1880 Hit Points, it takes 3d20 damage." },
+  { name = "Improved Destruction", description = "On Hit: Your target gains a stack of Armor Destruction. (-1 penalty to Armor Class, -1% of its Fortification. 20 Second Duration. Stacks up to 15 times.) This effect may trigger once every second." },
+  { name = "Mythic Weapon Boost +2 or +4", description = "+2 or +4 Mythic bonus to Melee, Ranged, and Universal Spell Power.(This is a rare enchantment that does not show up on all drops of this item.)" },
+]
+
+[item.weapon]
+damage_dice_count = 2
+damage_dice_sides = 4
+damage_multiplier = 1.5
+critical_threat_range = 3
+critical_multiplier = 2
+handedness = "Two-handed"
+dr_bypass = ["Slash", "Magic"]
+
+[[item]]
+name = "Duergarcraft Great Crossbow"
+page = "https://ddowiki.com/page/Item:Duergarcraft_Great_Crossbow"
+read = "2026-09-29"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Great Crossbow"
+minimum_level = 11
+enhancement_bonus = 5
+material = "Steel"
+description = "Crafted long ago in Gauntlygrym, these weapons seem to have scattered far and wide."
+drop_location = "Terror of Demogorgon, any end chest, most optional chests"
+augment_slots = ["red"]
+effects = [
+  { name = "Piercing 3", description = "The edges of this weapon have serrated edges, dealing an additional 3d6 piercing damage on each hit." },
+  { name = "Stabbing 7", description = "The edges of this weapon are serrated, dealing an additional 7d6 piercing damage on each critical hit." },
+  { name = "Banishing 45", description = "On Hit: 3d6 Bane damage to Outsiders.On Vorpal Hit: If an outsider struck by this weapon has fewer than 1880 Hit Points, it is instantly slain. If the outsider has above 1880 Hit Points, it takes 3d20 damage." },
+  { name = "Improved Destruction", description = "On Hit: Your target gains a stack of Armor Destruction. (-1 penalty to Armor Class, -1% of its Fortification. 20 Second Duration. Stacks up to 15 times.) This effect may trigger once every second." },
+  { name = "Mythic Weapon Boost +2 or +4", description = "+2 or +4 Mythic bonus to Melee, Ranged, and Universal Spell Power.(This is a rare enchantment that does not show up on all drops of this item.)" },
+]
+
+[item.weapon]
+damage_dice_count = 2
+damage_dice_sides = 8
+damage_multiplier = 1.5
+critical_threat_range = 3
+critical_multiplier = 2
+handedness = "Two-handed"
+dr_bypass = ["Pierce", "Magic"]
+
+[[item]]
+name = "Duergarcraft Greataxe"
+page = "https://ddowiki.com/page/Item:Duergarcraft_Greataxe"
+read = "2026-09-29"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Great Axe"
+minimum_level = 11
+enhancement_bonus = 5
+material = "Steel"
+description = "Crafted long ago in Gauntlygrym, these weapons seem to have scattered far and wide."
+drop_location = "Terror of Demogorgon, any end chest, most optional chests"
+augment_slots = ["red"]
+effects = [
+  { name = "Slashing 3", description = "The edges of this weapon are sharpened, dealing an additional 3d6 slashing damage on each hit." },
+  { name = "Gashing 7", description = "The edges of this weapon are sharpened beyond belief, dealing an additional 7d6 slashing damage on each critical hit." },
+  { name = "Banishing 45", description = "On Hit: 3d6 Bane damage to Outsiders.On Vorpal Hit: If an outsider struck by this weapon has fewer than 1880 Hit Points, it is instantly slain. If the outsider has above 1880 Hit Points, it takes 3d20 damage." },
+  { name = "Improved Destruction", description = "On Hit: Your target gains a stack of Armor Destruction. (-1 penalty to Armor Class, -1% of its Fortification. 20 Second Duration. Stacks up to 15 times.) This effect may trigger once every second." },
+  { name = "Mythic Weapon Boost +2 or +4", description = "+2 or +4 Mythic bonus to Melee, Ranged, and Universal Spell Power.(This is a rare enchantment that does not show up on all drops of this item.)" },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 12
+damage_multiplier = 1.5
+critical_threat_range = 1
+critical_multiplier = 3
+handedness = "Two-handed"
+dr_bypass = ["Slash", "Magic"]
+
+[[item]]
+name = "Duergarcraft Greatclub"
+page = "https://ddowiki.com/page/Item:Duergarcraft_Greatclub"
+read = "2026-09-29"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Great Club"
+minimum_level = 11
+enhancement_bonus = 5
+material = "Steel"
+description = "Crafted long ago in Gauntlygrym, these weapons seem to have scattered far and wide."
+drop_location = "Terror of Demogorgon, any end chest, most optional chests"
+augment_slots = ["red"]
+effects = [
+  { name = "Bludgeoning 3", description = "The edges of this weapon are blunted, dealing an additional 3d6 bludgeon damage on each hit." },
+  { name = "Smashing 7", description = "The edges of this weapon are blunted, dealing an additional 7d6 bludgeoning damage on each critical hit." },
+  { name = "Banishing 45", description = "On Hit: 3d6 Bane damage to Outsiders.On Vorpal Hit: If an outsider struck by this weapon has fewer than 1880 Hit Points, it is instantly slain. If the outsider has above 1880 Hit Points, it takes 3d20 damage." },
+  { name = "Improved Destruction", description = "On Hit: Your target gains a stack of Armor Destruction. (-1 penalty to Armor Class, -1% of its Fortification. 20 Second Duration. Stacks up to 15 times.) This effect may trigger once every second." },
+  { name = "Mythic Weapon Boost +2 or +4", description = "+2 or +4 Mythic bonus to Melee, Ranged, and Universal Spell Power.(This is a rare enchantment that does not show up on all drops of this item.)" },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 10
+damage_multiplier = 1.5
+critical_threat_range = 1
+critical_multiplier = 2
+handedness = "Two-handed"
+dr_bypass = ["Bludgeon", "Magic"]
+
+[[item]]
+name = "Duergarcraft Greatsword"
+page = "https://ddowiki.com/page/Item:Duergarcraft_Greatsword"
+read = "2026-09-29"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Great Sword"
+minimum_level = 11
+enhancement_bonus = 5
+material = "Steel"
+description = "Crafted long ago in Gauntlygrym, these weapons seem to have scattered far and wide."
+drop_location = "Terror of Demogorgon, any end chest, most optional chests"
+augment_slots = ["red"]
+effects = [
+  { name = "Slashing 3", description = "The edges of this weapon are sharpened, dealing an additional 3d6 slashing damage on each hit." },
+  { name = "Gashing 7", description = "The edges of this weapon are sharpened beyond belief, dealing an additional 7d6 slashing damage on each critical hit." },
+  { name = "Banishing 45", description = "On Hit: 3d6 Bane damage to Outsiders.On Vorpal Hit: If an outsider struck by this weapon has fewer than 1880 Hit Points, it is instantly slain. If the outsider has above 1880 Hit Points, it takes 3d20 damage." },
+  { name = "Improved Destruction", description = "On Hit: Your target gains a stack of Armor Destruction. (-1 penalty to Armor Class, -1% of its Fortification. 20 Second Duration. Stacks up to 15 times.) This effect may trigger once every second." },
+  { name = "Mythic Weapon Boost +2 or +4", description = "+2 or +4 Mythic bonus to Melee, Ranged, and Universal Spell Power.(This is a rare enchantment that does not show up on all drops of this item.)" },
+]
+
+[item.weapon]
+damage_dice_count = 2
+damage_dice_sides = 6
+damage_multiplier = 1.5
+critical_threat_range = 2
+critical_multiplier = 2
+handedness = "Two-handed"
+dr_bypass = ["Slash", "Magic"]
+
+[[item]]
+name = "Duergarcraft Hand Axe"
+page = "https://ddowiki.com/page/Item:Duergarcraft_Hand_Axe"
+read = "2026-09-29"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Hand Axe"
+minimum_level = 11
+enhancement_bonus = 5
+material = "Steel"
+description = "Crafted long ago in Gauntlygrym, these weapons seem to have scattered far and wide."
+drop_location = "Terror of Demogorgon, any end chest, most optional chests"
+augment_slots = ["red"]
+effects = [
+  { name = "Slashing 3", description = "The edges of this weapon are sharpened, dealing an additional 3d6 slashing damage on each hit." },
+  { name = "Gashing 7", description = "The edges of this weapon are sharpened beyond belief, dealing an additional 7d6 slashing damage on each critical hit." },
+  { name = "Banishing 45", description = "On Hit: 3d6 Bane damage to Outsiders.On Vorpal Hit: If an outsider struck by this weapon has fewer than 1880 Hit Points, it is instantly slain. If the outsider has above 1880 Hit Points, it takes 3d20 damage." },
+  { name = "Improved Destruction", description = "On Hit: Your target gains a stack of Armor Destruction. (-1 penalty to Armor Class, -1% of its Fortification. 20 Second Duration. Stacks up to 15 times.) This effect may trigger once every second." },
+  { name = "Mythic Weapon Boost +2 or +4", description = "+2 or +4 Mythic bonus to Melee, Ranged, and Universal Spell Power.(This is a rare enchantment that does not show up on all drops of this item.)" },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 6
+damage_multiplier = 1.5
+critical_threat_range = 1
+critical_multiplier = 3
+handedness = "One-handed"
+dr_bypass = ["Slash", "Magic"]
+
+[[item]]
+name = "Duergarcraft Handwraps"
+page = "https://ddowiki.com/page/Item:Duergarcraft_Handwraps"
+read = "2026-09-29"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Handwraps"
+minimum_level = 11
+enhancement_bonus = 5
+material = "Steel"
+description = "Crafted long ago in Gauntlygrym, these weapons seem to have scattered far and wide."
+drop_location = "Terror of Demogorgon, any end chest, most optional chests"
+augment_slots = ["red"]
+effects = [
+  { name = "Bludgeoning 3", description = "The edges of this weapon are blunted, dealing an additional 3d6 bludgeon damage on each hit." },
+  { name = "Smashing 7", description = "The edges of this weapon are blunted, dealing an additional 7d6 bludgeoning damage on each critical hit." },
+  { name = "Banishing 45", description = "On Hit: 3d6 Bane damage to Outsiders.On Vorpal Hit: If an outsider struck by this weapon has fewer than 1880 Hit Points, it is instantly slain. If the outsider has above 1880 Hit Points, it takes 3d20 damage." },
+  { name = "Improved Destruction", description = "On Hit: Your target gains a stack of Armor Destruction. (-1 penalty to Armor Class, -1% of its Fortification. 20 Second Duration. Stacks up to 15 times.) This effect may trigger once every second." },
+  { name = "Mythic Weapon Boost +2 or +4", description = "+2 or +4 Mythic bonus to Melee, Ranged, and Universal Spell Power.(This is a rare enchantment that does not show up on all drops of this item.)" },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 6
+damage_multiplier = 1.5
+critical_threat_range = 1
+critical_multiplier = 2
+handedness = "Two-handed"
+dr_bypass = ["Bludgeon", "Magic"]
+
+[[item]]
+name = "Duergarcraft Heavy Crossbow"
+page = "https://ddowiki.com/page/Item:Duergarcraft_Heavy_Crossbow"
+read = "2026-09-29"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Heavy Crossbow"
+minimum_level = 11
+enhancement_bonus = 5
+material = "Steel"
+description = "Crafted long ago in Gauntlygrym, these weapons seem to have scattered far and wide."
+drop_location = "Terror of Demogorgon, any end chest, most optional chests"
+augment_slots = ["red"]
+effects = [
+  { name = "Piercing 3", description = "The edges of this weapon have serrated edges, dealing an additional 3d6 piercing damage on each hit." },
+  { name = "Stabbing 7", description = "The edges of this weapon are serrated, dealing an additional 7d6 piercing damage on each critical hit." },
+  { name = "Banishing 45", description = "On Hit: 3d6 Bane damage to Outsiders.On Vorpal Hit: If an outsider struck by this weapon has fewer than 1880 Hit Points, it is instantly slain. If the outsider has above 1880 Hit Points, it takes 3d20 damage." },
+  { name = "Improved Destruction", description = "On Hit: Your target gains a stack of Armor Destruction. (-1 penalty to Armor Class, -1% of its Fortification. 20 Second Duration. Stacks up to 15 times.) This effect may trigger once every second." },
+  { name = "Mythic Weapon Boost +2 or +4", description = "+2 or +4 Mythic bonus to Melee, Ranged, and Universal Spell Power.(This is a rare enchantment that does not show up on all drops of this item.)" },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 10
+damage_multiplier = 1.5
+critical_threat_range = 2
+critical_multiplier = 2
+handedness = "Two-handed"
+dr_bypass = ["Pierce", "Magic"]
+
+[[item]]
+name = "Duergarcraft Heavy Mace"
+page = "https://ddowiki.com/page/Item:Duergarcraft_Heavy_Mace"
+read = "2026-09-29"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Heavy Mace"
+minimum_level = 11
+enhancement_bonus = 5
+material = "Steel"
+description = "Crafted long ago in Gauntlygrym, these weapons seem to have scattered far and wide."
+drop_location = "Terror of Demogorgon, any end chest, most optional chests"
+augment_slots = ["red"]
+effects = [
+  { name = "Bludgeoning 3", description = "The edges of this weapon are blunted, dealing an additional 3d6 bludgeon damage on each hit." },
+  { name = "Smashing 7", description = "The edges of this weapon are blunted, dealing an additional 7d6 bludgeoning damage on each critical hit." },
+  { name = "Banishing 45", description = "On Hit: 3d6 Bane damage to Outsiders.On Vorpal Hit: If an outsider struck by this weapon has fewer than 1880 Hit Points, it is instantly slain. If the outsider has above 1880 Hit Points, it takes 3d20 damage." },
+  { name = "Improved Destruction", description = "On Hit: Your target gains a stack of Armor Destruction. (-1 penalty to Armor Class, -1% of its Fortification. 20 Second Duration. Stacks up to 15 times.) This effect may trigger once every second." },
+  { name = "Mythic Weapon Boost +2 or +4", description = "+2 or +4 Mythic bonus to Melee, Ranged, and Universal Spell Power.(This is a rare enchantment that does not show up on all drops of this item.)" },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 8
+damage_multiplier = 1.5
+critical_threat_range = 1
+critical_multiplier = 2
+handedness = "One-handed"
+dr_bypass = ["Bludgeon", "Magic"]
+
+[[item]]
+name = "Duergarcraft Heavy Pick"
+page = "https://ddowiki.com/page/Item:Duergarcraft_Heavy_Pick"
+read = "2026-09-29"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Heavy Pick"
+minimum_level = 11
+enhancement_bonus = 5
+material = "Steel"
+description = "Crafted long ago in Gauntlygrym, these weapons seem to have scattered far and wide."
+drop_location = "Terror of Demogorgon, any end chest, most optional chests"
+augment_slots = ["red"]
+effects = [
+  { name = "Piercing 3", description = "The edges of this weapon have serrated edges, dealing an additional 3d6 piercing damage on each hit." },
+  { name = "Stabbing 7", description = "The edges of this weapon are serrated, dealing an additional 7d6 piercing damage on each critical hit." },
+  { name = "Banishing 45", description = "On Hit: 3d6 Bane damage to Outsiders.On Vorpal Hit: If an outsider struck by this weapon has fewer than 1880 Hit Points, it is instantly slain. If the outsider has above 1880 Hit Points, it takes 3d20 damage." },
+  { name = "Improved Destruction", description = "On Hit: Your target gains a stack of Armor Destruction. (-1 penalty to Armor Class, -1% of its Fortification. 20 Second Duration. Stacks up to 15 times.) This effect may trigger once every second." },
+  { name = "Mythic Weapon Boost +2 or +4", description = "+2 or +4 Mythic bonus to Melee, Ranged, and Universal Spell Power.(This is a rare enchantment that does not show up on all drops of this item.)" },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 6
+damage_multiplier = 1.5
+critical_threat_range = 1
+critical_multiplier = 4
+handedness = "One-handed"
+dr_bypass = ["Pierce", "Magic"]
+
+[[item]]
+name = "Duergarcraft Kama"
+page = "https://ddowiki.com/page/Item:Duergarcraft_Kama"
+read = "2026-09-29"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Kama"
+minimum_level = 11
+enhancement_bonus = 5
+material = "Steel"
+description = "Crafted long ago in Gauntlygrym, these weapons seem to have scattered far and wide."
+drop_location = "Terror of Demogorgon, any end chest, most optional chests"
+augment_slots = ["red"]
+effects = [
+  { name = "Slashing 3", description = "The edges of this weapon are sharpened, dealing an additional 3d6 slashing damage on each hit." },
+  { name = "Gashing 7", description = "The edges of this weapon are sharpened beyond belief, dealing an additional 7d6 slashing damage on each critical hit." },
+  { name = "Banishing 45", description = "On Hit: 3d6 Bane damage to Outsiders.On Vorpal Hit: If an outsider struck by this weapon has fewer than 1880 Hit Points, it is instantly slain. If the outsider has above 1880 Hit Points, it takes 3d20 damage." },
+  { name = "Improved Destruction", description = "On Hit: Your target gains a stack of Armor Destruction. (-1 penalty to Armor Class, -1% of its Fortification. 20 Second Duration. Stacks up to 15 times.) This effect may trigger once every second." },
+  { name = "Mythic Weapon Boost +2 or +4", description = "+2 or +4 Mythic bonus to Melee, Ranged, and Universal Spell Power.(This is a rare enchantment that does not show up on all drops of this item.)" },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 6
+damage_multiplier = 1.5
+critical_threat_range = 1
+critical_multiplier = 2
+handedness = "One-handed"
+dr_bypass = ["Slash", "Magic"]
+
+[[item]]
+name = "Duergarcraft Khopesh"
+page = "https://ddowiki.com/page/Item:Duergarcraft_Khopesh"
+read = "2026-09-29"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Khopesh"
+minimum_level = 11
+enhancement_bonus = 5
+material = "Steel"
+description = "Crafted long ago in Gauntlygrym, these weapons seem to have scattered far and wide."
+drop_location = "Terror of Demogorgon, any end chest, most optional chests"
+augment_slots = ["red"]
+effects = [
+  { name = "Slashing 3", description = "The edges of this weapon are sharpened, dealing an additional 3d6 slashing damage on each hit." },
+  { name = "Gashing 7", description = "The edges of this weapon are sharpened beyond belief, dealing an additional 7d6 slashing damage on each critical hit." },
+  { name = "Banishing 45", description = "On Hit: 3d6 Bane damage to Outsiders.On Vorpal Hit: If an outsider struck by this weapon has fewer than 1880 Hit Points, it is instantly slain. If the outsider has above 1880 Hit Points, it takes 3d20 damage." },
+  { name = "Improved Destruction", description = "On Hit: Your target gains a stack of Armor Destruction. (-1 penalty to Armor Class, -1% of its Fortification. 20 Second Duration. Stacks up to 15 times.) This effect may trigger once every second." },
+  { name = "Mythic Weapon Boost +2 or +4", description = "+2 or +4 Mythic bonus to Melee, Ranged, and Universal Spell Power.(This is a rare enchantment that does not show up on all drops of this item.)" },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 8
+damage_multiplier = 1.5
+critical_threat_range = 2
+critical_multiplier = 3
+handedness = "One-handed"
+dr_bypass = ["Slash", "Magic"]
+
+[[item]]
+name = "Duergarcraft Kukri"
+page = "https://ddowiki.com/page/Item:Duergarcraft_Kukri"
+read = "2026-09-29"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Kukri"
+minimum_level = 11
+enhancement_bonus = 5
+material = "Steel"
+description = "Crafted long ago in Gauntlygrym, these weapons seem to have scattered far and wide."
+drop_location = "Terror of Demogorgon, any end chest, most optional chests"
+augment_slots = ["red"]
+effects = [
+  { name = "Slashing 3", description = "The edges of this weapon are sharpened, dealing an additional 3d6 slashing damage on each hit." },
+  { name = "Gashing 7", description = "The edges of this weapon are sharpened beyond belief, dealing an additional 7d6 slashing damage on each critical hit." },
+  { name = "Banishing 45", description = "On Hit: 3d6 Bane damage to Outsiders.On Vorpal Hit: If an outsider struck by this weapon has fewer than 1880 Hit Points, it is instantly slain. If the outsider has above 1880 Hit Points, it takes 3d20 damage." },
+  { name = "Improved Destruction", description = "On Hit: Your target gains a stack of Armor Destruction. (-1 penalty to Armor Class, -1% of its Fortification. 20 Second Duration. Stacks up to 15 times.) This effect may trigger once every second." },
+  { name = "Mythic Weapon Boost +2 or +4", description = "+2 or +4 Mythic bonus to Melee, Ranged, and Universal Spell Power.(This is a rare enchantment that does not show up on all drops of this item.)" },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 4
+damage_multiplier = 1.5
+critical_threat_range = 3
+critical_multiplier = 2
+handedness = "One-handed"
+dr_bypass = ["Slash", "Magic"]
+
+[[item]]
+name = "Duergarcraft Light Crossbow"
+page = "https://ddowiki.com/page/Item:Duergarcraft_Light_Crossbow"
+read = "2026-09-29"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Light Crossbow"
+minimum_level = 11
+enhancement_bonus = 5
+material = "Steel"
+description = "Crafted long ago in Gauntlygrym, these weapons seem to have scattered far and wide."
+drop_location = "Terror of Demogorgon, any end chest, most optional chests"
+augment_slots = ["red"]
+effects = [
+  { name = "Piercing 3", description = "The edges of this weapon have serrated edges, dealing an additional 3d6 piercing damage on each hit." },
+  { name = "Stabbing 7", description = "The edges of this weapon are serrated, dealing an additional 7d6 piercing damage on each critical hit." },
+  { name = "Banishing 45", description = "On Hit: 3d6 Bane damage to Outsiders.On Vorpal Hit: If an outsider struck by this weapon has fewer than 1880 Hit Points, it is instantly slain. If the outsider has above 1880 Hit Points, it takes 3d20 damage." },
+  { name = "Improved Destruction", description = "On Hit: Your target gains a stack of Armor Destruction. (-1 penalty to Armor Class, -1% of its Fortification. 20 Second Duration. Stacks up to 15 times.) This effect may trigger once every second." },
+  { name = "Mythic Weapon Boost +2 or +4", description = "+2 or +4 Mythic bonus to Melee, Ranged, and Universal Spell Power.(This is a rare enchantment that does not show up on all drops of this item.)" },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 8
+damage_multiplier = 1.5
+critical_threat_range = 2
+critical_multiplier = 2
+handedness = "Two-handed"
+dr_bypass = ["Pierce", "Magic"]
+
+[[item]]
+name = "Duergarcraft Light Hammer"
+page = "https://ddowiki.com/page/Item:Duergarcraft_Light_Hammer"
+read = "2026-09-29"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Light Hammer"
+minimum_level = 11
+enhancement_bonus = 5
+material = "Steel"
+description = "Crafted long ago in Gauntlygrym, these weapons seem to have scattered far and wide."
+drop_location = "Terror of Demogorgon, any end chest, most optional chests"
+augment_slots = ["red"]
+effects = [
+  { name = "Bludgeoning 3", description = "The edges of this weapon are blunted, dealing an additional 3d6 bludgeon damage on each hit." },
+  { name = "Smashing 7", description = "The edges of this weapon are blunted, dealing an additional 7d6 bludgeoning damage on each critical hit." },
+  { name = "Banishing 45", description = "On Hit: 3d6 Bane damage to Outsiders.On Vorpal Hit: If an outsider struck by this weapon has fewer than 1880 Hit Points, it is instantly slain. If the outsider has above 1880 Hit Points, it takes 3d20 damage." },
+  { name = "Improved Destruction", description = "On Hit: Your target gains a stack of Armor Destruction. (-1 penalty to Armor Class, -1% of its Fortification. 20 Second Duration. Stacks up to 15 times.) This effect may trigger once every second." },
+  { name = "Mythic Weapon Boost +2 or +4", description = "+2 or +4 Mythic bonus to Melee, Ranged, and Universal Spell Power.(This is a rare enchantment that does not show up on all drops of this item.)" },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 4
+damage_multiplier = 1.5
+critical_threat_range = 1
+critical_multiplier = 2
+handedness = "One-handed"
+dr_bypass = ["Bludgeon", "Magic"]
+
+[[item]]
+name = "Duergarcraft Light Mace"
+page = "https://ddowiki.com/page/Item:Duergarcraft_Light_Mace"
+read = "2026-09-29"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Light Mace"
+minimum_level = 11
+enhancement_bonus = 5
+material = "Steel"
+description = "Crafted long ago in Gauntlygrym, these weapons seem to have scattered far and wide."
+drop_location = "Terror of Demogorgon, any end chest, most optional chests"
+augment_slots = ["red"]
+effects = [
+  { name = "Bludgeoning 3", description = "The edges of this weapon are blunted, dealing an additional 3d6 bludgeon damage on each hit." },
+  { name = "Smashing 7", description = "The edges of this weapon are blunted, dealing an additional 7d6 bludgeoning damage on each critical hit." },
+  { name = "Banishing 45", description = "On Hit: 3d6 Bane damage to Outsiders.On Vorpal Hit: If an outsider struck by this weapon has fewer than 1880 Hit Points, it is instantly slain. If the outsider has above 1880 Hit Points, it takes 3d20 damage." },
+  { name = "Improved Destruction", description = "On Hit: Your target gains a stack of Armor Destruction. (-1 penalty to Armor Class, -1% of its Fortification. 20 Second Duration. Stacks up to 15 times.) This effect may trigger once every second." },
+  { name = "Mythic Weapon Boost +2 or +4", description = "+2 or +4 Mythic bonus to Melee, Ranged, and Universal Spell Power.(This is a rare enchantment that does not show up on all drops of this item.)" },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 6
+damage_multiplier = 1.5
+critical_threat_range = 1
+critical_multiplier = 2
+handedness = "One-handed"
+dr_bypass = ["Bludgeon", "Magic"]
+
+[[item]]
+name = "Duergarcraft Light Pick"
+page = "https://ddowiki.com/page/Item:Duergarcraft_Light_Pick"
+read = "2026-09-29"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Light Pick"
+minimum_level = 11
+enhancement_bonus = 5
+material = "Steel"
+description = "Crafted long ago in Gauntlygrym, these weapons seem to have scattered far and wide."
+drop_location = "Terror of Demogorgon, any end chest, most optional chests"
+augment_slots = ["red"]
+effects = [
+  { name = "Piercing 3", description = "The edges of this weapon have serrated edges, dealing an additional 3d6 piercing damage on each hit." },
+  { name = "Stabbing 7", description = "The edges of this weapon are serrated, dealing an additional 7d6 piercing damage on each critical hit." },
+  { name = "Banishing 45", description = "On Hit: 3d6 Bane damage to Outsiders.On Vorpal Hit: If an outsider struck by this weapon has fewer than 1880 Hit Points, it is instantly slain. If the outsider has above 1880 Hit Points, it takes 3d20 damage." },
+  { name = "Improved Destruction", description = "On Hit: Your target gains a stack of Armor Destruction. (-1 penalty to Armor Class, -1% of its Fortification. 20 Second Duration. Stacks up to 15 times.) This effect may trigger once every second." },
+  { name = "Mythic Weapon Boost +2 or +4", description = "+2 or +4 Mythic bonus to Melee, Ranged, and Universal Spell Power.(This is a rare enchantment that does not show up on all drops of this item.)" },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 4
+damage_multiplier = 1.5
+critical_threat_range = 1
+critical_multiplier = 4
+handedness = "One-handed"
+dr_bypass = ["Pierce", "Magic"]
+
+[[item]]
+name = "Duergarcraft Longbow"
+page = "https://ddowiki.com/page/Item:Duergarcraft_Longbow"
+read = "2026-09-29"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Longbow"
+minimum_level = 11
+enhancement_bonus = 5
+material = "Steel"
+description = "Crafted long ago in Gauntlygrym, these weapons seem to have scattered far and wide."
+drop_location = "Terror of Demogorgon, any end chest, most optional chests"
+augment_slots = ["red"]
+effects = [
+  { name = "Piercing 3", description = "The edges of this weapon have serrated edges, dealing an additional 3d6 piercing damage on each hit." },
+  { name = "Stabbing 7", description = "The edges of this weapon are serrated, dealing an additional 7d6 piercing damage on each critical hit." },
+  { name = "Banishing 45", description = "On Hit: 3d6 Bane damage to Outsiders.On Vorpal Hit: If an outsider struck by this weapon has fewer than 1880 Hit Points, it is instantly slain. If the outsider has above 1880 Hit Points, it takes 3d20 damage." },
+  { name = "Improved Destruction", description = "On Hit: Your target gains a stack of Armor Destruction. (-1 penalty to Armor Class, -1% of its Fortification. 20 Second Duration. Stacks up to 15 times.) This effect may trigger once every second." },
+  { name = "Mythic Weapon Boost +2 or +4", description = "+2 or +4 Mythic bonus to Melee, Ranged, and Universal Spell Power.(This is a rare enchantment that does not show up on all drops of this item.)" },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 8
+damage_multiplier = 1.5
+critical_threat_range = 1
+critical_multiplier = 3
+handedness = "Two-handed"
+dr_bypass = ["Pierce", "Magic"]
+
+[[item]]
+name = "Duergarcraft Longsword"
+page = "https://ddowiki.com/page/Item:Duergarcraft_Longsword"
+read = "2026-09-29"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Longsword"
+minimum_level = 11
+enhancement_bonus = 5
+material = "Steel"
+description = "Crafted long ago in Gauntlygrym, these weapons seem to have scattered far and wide."
+drop_location = "Terror of Demogorgon, any end chest, most optional chests"
+augment_slots = ["red"]
+effects = [
+  { name = "Slashing 3", description = "The edges of this weapon are sharpened, dealing an additional 3d6 slashing damage on each hit." },
+  { name = "Gashing 7", description = "The edges of this weapon are sharpened beyond belief, dealing an additional 7d6 slashing damage on each critical hit." },
+  { name = "Banishing 45", description = "On Hit: 3d6 Bane damage to Outsiders.On Vorpal Hit: If an outsider struck by this weapon has fewer than 1880 Hit Points, it is instantly slain. If the outsider has above 1880 Hit Points, it takes 3d20 damage." },
+  { name = "Improved Destruction", description = "On Hit: Your target gains a stack of Armor Destruction. (-1 penalty to Armor Class, -1% of its Fortification. 20 Second Duration. Stacks up to 15 times.) This effect may trigger once every second." },
+  { name = "Mythic Weapon Boost +2 or +4", description = "+2 or +4 Mythic bonus to Melee, Ranged, and Universal Spell Power.(This is a rare enchantment that does not show up on all drops of this item.)" },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 8
+damage_multiplier = 1.5
+critical_threat_range = 2
+critical_multiplier = 2
+handedness = "One-handed"
+dr_bypass = ["Slash", "Magic"]
+
+[[item]]
+name = "Duergarcraft Maul"
+page = "https://ddowiki.com/page/Item:Duergarcraft_Maul"
+read = "2026-09-29"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Maul"
+minimum_level = 11
+enhancement_bonus = 5
+material = "Steel"
+description = "Crafted long ago in Gauntlygrym, these weapons seem to have scattered far and wide."
+drop_location = "Terror of Demogorgon, any end chest, most optional chests"
+augment_slots = ["red"]
+effects = [
+  { name = "Bludgeoning 3", description = "The edges of this weapon are blunted, dealing an additional 3d6 bludgeon damage on each hit." },
+  { name = "Smashing 7", description = "The edges of this weapon are blunted, dealing an additional 7d6 bludgeoning damage on each critical hit." },
+  { name = "Banishing 45", description = "On Hit: 3d6 Bane damage to Outsiders.On Vorpal Hit: If an outsider struck by this weapon has fewer than 1880 Hit Points, it is instantly slain. If the outsider has above 1880 Hit Points, it takes 3d20 damage." },
+  { name = "Improved Destruction", description = "On Hit: Your target gains a stack of Armor Destruction. (-1 penalty to Armor Class, -1% of its Fortification. 20 Second Duration. Stacks up to 15 times.) This effect may trigger once every second." },
+  { name = "Mythic Weapon Boost +2 or +4", description = "+2 or +4 Mythic bonus to Melee, Ranged, and Universal Spell Power.(This is a rare enchantment that does not show up on all drops of this item.)" },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 10
+damage_multiplier = 1.5
+critical_threat_range = 1
+critical_multiplier = 3
+handedness = "Two-handed"
+dr_bypass = ["Bludgeon", "Magic"]
+
+[[item]]
+name = "Duergarcraft Morningstar"
+page = "https://ddowiki.com/page/Item:Duergarcraft_Morningstar"
+read = "2026-09-29"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Morningstar"
+minimum_level = 11
+enhancement_bonus = 5
+material = "Steel"
+description = "Crafted long ago in Gauntlygrym, these weapons seem to have scattered far and wide."
+drop_location = "Terror of Demogorgon, any end chest, most optional chests"
+augment_slots = ["red"]
+effects = [
+  { name = "Bludgeoning 3", description = "The edges of this weapon are blunted, dealing an additional 3d6 bludgeon damage on each hit." },
+  { name = "Slashing 7", description = "The edges of this weapon are sharpened, dealing an additional 7d6 slashing damage on each hit." },
+  { name = "Banishing 45", description = "On Hit: 3d6 Bane damage to Outsiders.On Vorpal Hit: If an outsider struck by this weapon has fewer than 1880 Hit Points, it is instantly slain. If the outsider has above 1880 Hit Points, it takes 3d20 damage." },
+  { name = "Improved Destruction", description = "On Hit: Your target gains a stack of Armor Destruction. (-1 penalty to Armor Class, -1% of its Fortification. 20 Second Duration. Stacks up to 15 times.) This effect may trigger once every second." },
+  { name = "Mythic Weapon Boost +2 or +4", description = "+2 or +4 Mythic bonus to Melee, Ranged, and Universal Spell Power.(This is a rare enchantment that does not show up on all drops of this item.)" },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 8
+damage_multiplier = 1.5
+critical_threat_range = 1
+critical_multiplier = 2
+handedness = "One-handed"
+dr_bypass = ["Bludgeon", "Magic"]
+
+[[item]]
+name = "Duergarcraft Quarterstaff"
+page = "https://ddowiki.com/page/Item:Duergarcraft_Quarterstaff"
+read = "2026-09-29"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Quarterstaff"
+minimum_level = 11
+enhancement_bonus = 5
+material = "Steel"
+description = "Crafted long ago in Gauntlygrym, these weapons seem to have scattered far and wide."
+drop_location = "Terror of Demogorgon, any end chest, most optional chests"
+augment_slots = ["red"]
+effects = [
+  { name = "Bludgeoning 3", description = "The edges of this weapon are blunted, dealing an additional 3d6 bludgeon damage on each hit." },
+  { name = "Smashing 7", description = "The edges of this weapon are blunted, dealing an additional 7d6 bludgeoning damage on each critical hit." },
+  { name = "Banishing 45", description = "On Hit: 3d6 Bane damage to Outsiders.On Vorpal Hit: If an outsider struck by this weapon has fewer than 1880 Hit Points, it is instantly slain. If the outsider has above 1880 Hit Points, it takes 3d20 damage." },
+  { name = "Improved Destruction", description = "On Hit: Your target gains a stack of Armor Destruction. (-1 penalty to Armor Class, -1% of its Fortification. 20 Second Duration. Stacks up to 15 times.) This effect may trigger once every second." },
+  { name = "Mythic Weapon Boost +2 or +4", description = "+2 or +4 Mythic bonus to Melee, Ranged, and Universal Spell Power.(This is a rare enchantment that does not show up on all drops of this item.)" },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 6
+damage_multiplier = 1.5
+critical_threat_range = 1
+critical_multiplier = 2
+handedness = "Two-handed"
+dr_bypass = ["Bludgeon", "Magic"]
+
+[[item]]
+name = "Duergarcraft Rapier"
+page = "https://ddowiki.com/page/Item:Duergarcraft_Rapier"
+read = "2026-09-29"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Rapier"
+minimum_level = 11
+enhancement_bonus = 5
+material = "Steel"
+description = "Crafted long ago in Gauntlygrym, these weapons seem to have scattered far and wide."
+drop_location = "Terror of Demogorgon, any end chest, most optional chests"
+augment_slots = ["red"]
+effects = [
+  { name = "Piercing 3", description = "The edges of this weapon have serrated edges, dealing an additional 3d6 piercing damage on each hit." },
+  { name = "Stabbing 7", description = "The edges of this weapon are serrated, dealing an additional 7d6 piercing damage on each critical hit." },
+  { name = "Banishing 45", description = "On Hit: 3d6 Bane damage to Outsiders.On Vorpal Hit: If an outsider struck by this weapon has fewer than 1880 Hit Points, it is instantly slain. If the outsider has above 1880 Hit Points, it takes 3d20 damage." },
+  { name = "Improved Destruction", description = "On Hit: Your target gains a stack of Armor Destruction. (-1 penalty to Armor Class, -1% of its Fortification. 20 Second Duration. Stacks up to 15 times.) This effect may trigger once every second." },
+  { name = "Mythic Weapon Boost +2 or +4", description = "+2 or +4 Mythic bonus to Melee, Ranged, and Universal Spell Power.(This is a rare enchantment that does not show up on all drops of this item.)" },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 6
+damage_multiplier = 1.5
+critical_threat_range = 3
+critical_multiplier = 2
+handedness = "One-handed"
+dr_bypass = ["Pierce", "Magic"]
+
+[[item]]
+name = "Duergarcraft Repeating Heavy Crossbow"
+page = "https://ddowiki.com/page/Item:Duergarcraft_Repeating_Heavy_Crossbow"
+read = "2026-09-29"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Repeating Heavy Crossbow"
+minimum_level = 11
+enhancement_bonus = 5
+material = "Steel"
+description = "Crafted long ago in Gauntlygrym, these weapons seem to have scattered far and wide."
+drop_location = "Terror of Demogorgon, any end chest, most optional chests"
+augment_slots = ["red"]
+effects = [
+  { name = "Piercing 3", description = "The edges of this weapon have serrated edges, dealing an additional 3d6 piercing damage on each hit." },
+  { name = "Stabbing 7", description = "The edges of this weapon are serrated, dealing an additional 7d6 piercing damage on each critical hit." },
+  { name = "Banishing 45", description = "On Hit: 3d6 Bane damage to Outsiders.On Vorpal Hit: If an outsider struck by this weapon has fewer than 1880 Hit Points, it is instantly slain. If the outsider has above 1880 Hit Points, it takes 3d20 damage." },
+  { name = "Improved Destruction", description = "On Hit: Your target gains a stack of Armor Destruction. (-1 penalty to Armor Class, -1% of its Fortification. 20 Second Duration. Stacks up to 15 times.) This effect may trigger once every second." },
+  { name = "Mythic Weapon Boost +2 or +4", description = "+2 or +4 Mythic bonus to Melee, Ranged, and Universal Spell Power.(This is a rare enchantment that does not show up on all drops of this item.)" },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 10
+damage_multiplier = 1.5
+critical_threat_range = 2
+critical_multiplier = 2
+handedness = "Two-handed"
+dr_bypass = ["Pierce", "Magic"]
+
+[[item]]
+name = "Duergarcraft Repeating Light Crossbow"
+page = "https://ddowiki.com/page/Item:Duergarcraft_Repeating_Light_Crossbow"
+read = "2026-09-29"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Repeating Light Crossbow"
+minimum_level = 11
+enhancement_bonus = 5
+material = "Steel"
+description = "Crafted long ago in Gauntlygrym, these weapons seem to have scattered far and wide."
+drop_location = "Terror of Demogorgon, any end chest, most optional chests"
+augment_slots = ["red"]
+effects = [
+  { name = "Piercing 3", description = "The edges of this weapon have serrated edges, dealing an additional 3d6 piercing damage on each hit." },
+  { name = "Stabbing 7", description = "The edges of this weapon are serrated, dealing an additional 7d6 piercing damage on each critical hit." },
+  { name = "Banishing 45", description = "On Hit: 3d6 Bane damage to Outsiders.On Vorpal Hit: If an outsider struck by this weapon has fewer than 1880 Hit Points, it is instantly slain. If the outsider has above 1880 Hit Points, it takes 3d20 damage." },
+  { name = "Improved Destruction", description = "On Hit: Your target gains a stack of Armor Destruction. (-1 penalty to Armor Class, -1% of its Fortification. 20 Second Duration. Stacks up to 15 times.) This effect may trigger once every second." },
+  { name = "Mythic Weapon Boost +2 or +4", description = "+2 or +4 Mythic bonus to Melee, Ranged, and Universal Spell Power.(This is a rare enchantment that does not show up on all drops of this item.)" },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 8
+damage_multiplier = 1.5
+critical_threat_range = 2
+critical_multiplier = 2
+handedness = "Two-handed"
+dr_bypass = ["Pierce", "Magic"]
+
+[[item]]
+name = "Duergarcraft Scimitar"
+page = "https://ddowiki.com/page/Item:Duergarcraft_Scimitar"
+read = "2026-09-29"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Scimitar"
+minimum_level = 11
+enhancement_bonus = 5
+material = "Steel"
+description = "Crafted long ago in Gauntlgrym, these weapons seem to have scattered far and wide."
+drop_location = "Terror of Demogorgon, any end chest, most optional chests"
+augment_slots = ["red"]
+effects = [
+  { name = "Slashing 3", description = "The edges of this weapon are sharpened, dealing an additional 3d6 slashing damage on each hit." },
+  { name = "Gashing 7", description = "The edges of this weapon are sharpened beyond belief, dealing an additional 7d6 slashing damage on each critical hit." },
+  { name = "Banishing 45", description = "On Hit: 3d6 Bane damage to Outsiders.On Vorpal Hit: If an outsider struck by this weapon has fewer than 1880 Hit Points, it is instantly slain. If the outsider has above 1880 Hit Points, it takes 3d20 damage." },
+  { name = "Improved Destruction", description = "On Hit: Your target gains a stack of Armor Destruction. (-1 penalty to Armor Class, -1% of its Fortification. 20 Second Duration. Stacks up to 15 times.) This effect may trigger once every second." },
+  { name = "Mythic Weapon Boost +2 or +4", description = "+2 or +4 Mythic bonus to Melee, Ranged, and Universal Spell Power.(This is a rare enchantment that does not show up on all drops of this item.)" },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 6
+damage_multiplier = 1.5
+critical_threat_range = 3
+critical_multiplier = 2
+handedness = "One-handed"
+dr_bypass = ["Slash", "Magic"]
+
+[[item]]
+name = "Duergarcraft Shortbow"
+page = "https://ddowiki.com/page/Item:Duergarcraft_Shortbow"
+read = "2026-09-29"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Shortbow"
+minimum_level = 11
+enhancement_bonus = 5
+material = "Steel"
+description = "Crafted long ago in Gauntlgrym, these weapons seem to have scattered far and wide."
+drop_location = "Terror of Demogorgon, any end chest, most optional chests"
+augment_slots = ["red"]
+effects = [
+  { name = "Piercing 3", description = "The edges of this weapon have serrated edges, dealing an additional 3d6 piercing damage on each hit." },
+  { name = "Stabbing 7", description = "The edges of this weapon are serrated, dealing an additional 7d6 piercing damage on each critical hit." },
+  { name = "Banishing 45", description = "On Hit: 3d6 Bane damage to Outsiders.On Vorpal Hit: If an outsider struck by this weapon has fewer than 1880 Hit Points, it is instantly slain. If the outsider has above 1880 Hit Points, it takes 3d20 damage." },
+  { name = "Improved Destruction", description = "On Hit: Your target gains a stack of Armor Destruction. (-1 penalty to Armor Class, -1% of its Fortification. 20 Second Duration. Stacks up to 15 times.) This effect may trigger once every second." },
+  { name = "Mythic Weapon Boost +2 or +4", description = "+2 or +4 Mythic bonus to Melee, Ranged, and Universal Spell Power.(This is a rare enchantment that does not show up on all drops of this item.)" },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 6
+damage_multiplier = 1.5
+critical_threat_range = 1
+critical_multiplier = 3
+handedness = "Two-handed"
+dr_bypass = ["Pierce", "Magic"]
+
+[[item]]
+name = "Duergarcraft Shortsword"
+page = "https://ddowiki.com/page/Item:Duergarcraft_Shortsword"
+read = "2026-09-29"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Shortsword"
+minimum_level = 11
+enhancement_bonus = 5
+material = "Steel"
+description = "Crafted long ago in Gauntlgrym, these weapons seem to have scattered far and wide."
+drop_location = "Terror of Demogorgon, any end chest, most optional chests"
+augment_slots = ["red"]
+effects = [
+  { name = "Piercing 3", description = "The edges of this weapon have serrated edges, dealing an additional 3d6 piercing damage on each hit." },
+  { name = "Stabbing 7", description = "The edges of this weapon are serrated, dealing an additional 7d6 piercing damage on each critical hit." },
+  { name = "Banishing 45", description = "On Hit: 3d6 Bane damage to Outsiders.On Vorpal Hit: If an outsider struck by this weapon has fewer than 1880 Hit Points, it is instantly slain. If the outsider has above 1880 Hit Points, it takes 3d20 damage." },
+  { name = "Improved Destruction", description = "On Hit: Your target gains a stack of Armor Destruction. (-1 penalty to Armor Class, -1% of its Fortification. 20 Second Duration. Stacks up to 15 times.) This effect may trigger once every second." },
+  { name = "Mythic Weapon Boost +2 or +4", description = "+2 or +4 Mythic bonus to Melee, Ranged, and Universal Spell Power.(This is a rare enchantment that does not show up on all drops of this item.)" },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 6
+damage_multiplier = 1.5
+critical_threat_range = 2
+critical_multiplier = 2
+handedness = "One-handed"
+dr_bypass = ["Pierce", "Magic"]
+
+[[item]]
+name = "Duergarcraft Shuriken"
+page = "https://ddowiki.com/page/Item:Duergarcraft_Shuriken"
+read = "2026-09-29"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Shuriken"
+minimum_level = 11
+enhancement_bonus = 5
+material = "Steel"
+description = "Crafted long ago in Gauntlgrym, these weapons seem to have scattered far and wide."
+drop_location = "Terror of Demogorgon, any end chest, most optional chests"
+augment_slots = ["red"]
+effects = [
+  { name = "Slashing 3", description = "The edges of this weapon are sharpened, dealing an additional 3d6 slashing damage on each hit." },
+  { name = "Gashing 7", description = "The edges of this weapon are sharpened beyond belief, dealing an additional 7d6 slashing damage on each critical hit." },
+  { name = "Banishing 45", description = "On Hit: 3d6 Bane damage to Outsiders.On Vorpal Hit: If an outsider struck by this weapon has fewer than 1880 Hit Points, it is instantly slain. If the outsider has above 1880 Hit Points, it takes 3d20 damage." },
+  { name = "Improved Destruction", description = "On Hit: Your target gains a stack of Armor Destruction. (-1 penalty to Armor Class, -1% of its Fortification. 20 Second Duration. Stacks up to 15 times.) This effect may trigger once every second." },
+  { name = "Returning", description = "This missile will return to you." },
+  { name = "Mythic Weapon Boost +2 or +4", description = "+2 or +4 Mythic bonus to Melee, Ranged, and Universal Spell Power.(This is a rare enchantment that does not show up on all drops of this item.)" },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 2
+damage_multiplier = 1.5
+critical_threat_range = 1
+critical_multiplier = 2
+handedness = "Thrown"
+dr_bypass = ["Slash", "Magic"]
+
+[[item]]
+name = "Duergarcraft Sickle"
+page = "https://ddowiki.com/page/Item:Duergarcraft_Sickle"
+read = "2026-09-29"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Sickle"
+minimum_level = 11
+enhancement_bonus = 5
+material = "Steel"
+description = "Crafted long ago in Gauntlgrym, these weapons seem to have scattered far and wide."
+drop_location = "Terror of Demogorgon, any end chest, most optional chests"
+augment_slots = ["red"]
+effects = [
+  { name = "Slashing 3", description = "The edges of this weapon are sharpened, dealing an additional 3d6 slashing damage on each hit." },
+  { name = "Gashing 7", description = "The edges of this weapon are sharpened beyond belief, dealing an additional 7d6 slashing damage on each critical hit." },
+  { name = "Banishing 45", description = "On Hit: 3d6 Bane damage to Outsiders.On Vorpal Hit: If an outsider struck by this weapon has fewer than 1880 Hit Points, it is instantly slain. If the outsider has above 1880 Hit Points, it takes 3d20 damage." },
+  { name = "Improved Destruction", description = "On Hit: Your target gains a stack of Armor Destruction. (-1 penalty to Armor Class, -1% of its Fortification. 20 Second Duration. Stacks up to 15 times.) This effect may trigger once every second." },
+  { name = "Mythic Weapon Boost +2 or +4", description = "+2 or +4 Mythic bonus to Melee, Ranged, and Universal Spell Power.(This is a rare enchantment that does not show up on all drops of this item.)" },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 6
+damage_multiplier = 1.5
+critical_threat_range = 1
+critical_multiplier = 2
+handedness = "One-handed"
+dr_bypass = ["Slash", "Magic"]
+
+[[item]]
+name = "Duergarcraft Throwing Axe"
+page = "https://ddowiki.com/page/Item:Duergarcraft_Throwing_Axe"
+read = "2026-09-29"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Throwing Axe"
+minimum_level = 11
+enhancement_bonus = 5
+material = "Steel"
+description = "Crafted long ago in Gauntlgrym, these weapons seem to have scattered far and wide."
+drop_location = "Terror of Demogorgon, any end chest, most optional chests"
+augment_slots = ["red"]
+effects = [
+  { name = "Slashing 3", description = "The edges of this weapon are sharpened, dealing an additional 3d6 slashing damage on each hit." },
+  { name = "Gashing 7", description = "The edges of this weapon are sharpened beyond belief, dealing an additional 7d6 slashing damage on each critical hit." },
+  { name = "Banishing 45", description = "On Hit: 3d6 Bane damage to Outsiders.On Vorpal Hit: If an outsider struck by this weapon has fewer than 1880 Hit Points, it is instantly slain. If the outsider has above 1880 Hit Points, it takes 3d20 damage." },
+  { name = "Improved Destruction", description = "On Hit: Your target gains a stack of Armor Destruction. (-1 penalty to Armor Class, -1% of its Fortification. 20 Second Duration. Stacks up to 15 times.) This effect may trigger once every second." },
+  { name = "Returning", description = "This missile will return to you." },
+  { name = "Mythic Weapon Boost +2 or +4", description = "+2 or +4 Mythic bonus to Melee, Ranged, and Universal Spell Power.(This is a rare enchantment that does not show up on all drops of this item.)" },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 6
+damage_multiplier = 1.5
+critical_threat_range = 1
+critical_multiplier = 3
+handedness = "Thrown"
+dr_bypass = ["Slash", "Magic"]
+
+[[item]]
+name = "Duergarcraft Throwing Dagger"
+page = "https://ddowiki.com/page/Item:Duergarcraft_Throwing_Dagger"
+read = "2026-09-29"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Throwing Dagger"
+minimum_level = 11
+enhancement_bonus = 5
+material = "Steel"
+description = "Crafted long ago in Gauntlgrym, these weapons seem to have scattered far and wide."
+drop_location = "Terror of Demogorgon, any end chest, most optional chests"
+augment_slots = ["red"]
+effects = [
+  { name = "Piercing 3", description = "The edges of this weapon have serrated edges, dealing an additional 3d6 piercing damage on each hit." },
+  { name = "Stabbing 7", description = "The edges of this weapon are serrated, dealing an additional 7d6 piercing damage on each critical hit." },
+  { name = "Banishing 45", description = "On Hit: 3d6 Bane damage to Outsiders.On Vorpal Hit: If an outsider struck by this weapon has fewer than 1880 Hit Points, it is instantly slain. If the outsider has above 1880 Hit Points, it takes 3d20 damage." },
+  { name = "Improved Destruction", description = "On Hit: Your target gains a stack of Armor Destruction. (-1 penalty to Armor Class, -1% of its Fortification. 20 Second Duration. Stacks up to 15 times.) This effect may trigger once every second." },
+  { name = "Returning", description = "This missile will return to you." },
+  { name = "Mythic Weapon Boost +2 or +4", description = "+2 or +4 Mythic bonus to Melee, Ranged, and Universal Spell Power.(This is a rare enchantment that does not show up on all drops of this item.)" },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 4
+damage_multiplier = 1.5
+critical_threat_range = 2
+critical_multiplier = 2
+handedness = "Thrown"
+dr_bypass = ["Pierce", "Magic"]
+
+[[item]]
+name = "Duergarcraft Throwing Hammer"
+page = "https://ddowiki.com/page/Item:Duergarcraft_Throwing_Hammer"
+read = "2026-09-29"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Throwing Hammer"
+minimum_level = 11
+enhancement_bonus = 5
+material = "Steel"
+description = "Crafted long ago in Gauntlgrym, these weapons seem to have scattered far and wide."
+drop_location = "Terror of Demogorgon, any end chest, most optional chests"
+augment_slots = ["red"]
+effects = [
+  { name = "Bludgeoning 3", description = "The edges of this weapon are blunted, dealing an additional 3d6 bludgeon damage on each hit." },
+  { name = "Smashing 7", description = "The edges of this weapon are blunted, dealing an additional 7d6 bludgeoning damage on each critical hit." },
+  { name = "Banishing 45", description = "On Hit: 3d6 Bane damage to Outsiders.On Vorpal Hit: If an outsider struck by this weapon has fewer than 1880 Hit Points, it is instantly slain. If the outsider has above 1880 Hit Points, it takes 3d20 damage." },
+  { name = "Improved Destruction", description = "On Hit: Your target gains a stack of Armor Destruction. (-1 penalty to Armor Class, -1% of its Fortification. 20 Second Duration. Stacks up to 15 times.) This effect may trigger once every second." },
+  { name = "Returning", description = "This missile will return to you." },
+  { name = "Mythic Weapon Boost +2 or +4", description = "+2 or +4 Mythic bonus to Melee, Ranged, and Universal Spell Power.(This is a rare enchantment that does not show up on all drops of this item.)" },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 4
+damage_multiplier = 1.5
+critical_threat_range = 1
+critical_multiplier = 2
+handedness = "Thrown"
+dr_bypass = ["Bludgeon", "Magic"]
+
+[[item]]
+name = "Duergarcraft Warhammer"
+page = "https://ddowiki.com/page/Item:Duergarcraft_Warhammer"
+read = "2026-09-29"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Warhammer"
+minimum_level = 11
+enhancement_bonus = 5
+material = "Steel"
+description = "Crafted long ago in Gauntlgrym, these weapons seem to have scattered far and wide."
+drop_location = "Terror of Demogorgon, any end chest, most optional chests"
+augment_slots = ["red"]
+effects = [
+  { name = "Bludgeoning 3", description = "The edges of this weapon are blunted, dealing an additional 3d6 bludgeon damage on each hit." },
+  { name = "Smashing 7", description = "The edges of this weapon are blunted, dealing an additional 7d6 bludgeoning damage on each critical hit." },
+  { name = "Banishing 45", description = "On Hit: 3d6 Bane damage to Outsiders.On Vorpal Hit: If an outsider struck by this weapon has fewer than 1880 Hit Points, it is instantly slain. If the outsider has above 1880 Hit Points, it takes 3d20 damage." },
+  { name = "Improved Destruction", description = "On Hit: Your target gains a stack of Armor Destruction. (-1 penalty to Armor Class, -1% of its Fortification. 20 Second Duration. Stacks up to 15 times.) This effect may trigger once every second." },
+  { name = "Mythic Weapon Boost +2 or +4", description = "+2 or +4 Mythic bonus to Melee, Ranged, and Universal Spell Power.(This is a rare enchantment that does not show up on all drops of this item.)" },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 8
+damage_multiplier = 1.5
+critical_threat_range = 1
+critical_multiplier = 3
+handedness = "One-handed"
+dr_bypass = ["Bludgeon", "Magic"]
+
+[[item]]
+name = "Legendary Duergarcraft Bastard Sword"
+page = "https://ddowiki.com/page/Item:Legendary_Duergarcraft_Bastard_Sword"
+read = "2026-09-29"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Bastard Sword"
+minimum_level = 35
+enhancement_bonus = 16
+material = "Steel"
+description = "Crafted long ago in Gauntlygrym, these weapons seem to have scattered far and wide."
+drop_location = "Terror of Demogorgon, any end chest, most optional chests"
+accepts_sentience = true
+augment_slots = ["orange", "purple"]
+effects = [
+  { name = "Slashing 7", description = "The edges of this weapon are sharpened, dealing an additional 7d6 slashing damage on each hit." },
+  { name = "Gashing 16", description = "The edges of this weapon are sharpened beyond belief, dealing an additional 16d6 slashing damage on each critical hit." },
+  { name = "Banishing 117", description = "On Hit: 7d6 Bane damage to Outsiders.On Vorpal Hit: If an outsider struck by this weapon has fewer than 3320 Hit Points, it is instantly slain. If the outsider has above 3320 Hit Points, it takes 7d20 damage." },
+  { name = "Improved Destruction", description = "On Hit: Your target gains a stack of Armor Destruction. (-1 penalty to Armor Class, -1% of its Fortification. 20 Second Duration. Stacks up to 15 times.) This effect may trigger once every second." },
+  { name = "Mythic Weapon Boost +2 or +4", description = "+2 or +4 Mythic bonus to Melee, Ranged, and Universal Spell Power.(This is a rare enchantment that does not show up on all drops of this item.)" },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 10
+damage_dice_bonus = 2
+damage_multiplier = 6.0
+critical_threat_range = 2
+critical_multiplier = 2
+handedness = "One-handed"
+dr_bypass = ["Slash", "Magic"]
+
+[[item]]
+name = "Legendary Duergarcraft Battle Axe"
+page = "https://ddowiki.com/page/Item:Legendary_Duergarcraft_Battle_Axe"
+read = "2026-09-29"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Battle Axe"
+minimum_level = 35
+enhancement_bonus = 16
+material = "Steel"
+description = "Crafted long ago in Gauntlygrym, these weapons seem to have scattered far and wide."
+drop_location = "Terror of Demogorgon, any end chest, most optional chests"
+accepts_sentience = true
+augment_slots = ["orange", "purple"]
+effects = [
+  { name = "Slashing 7", description = "The edges of this weapon are sharpened, dealing an additional 7d6 slashing damage on each hit." },
+  { name = "Gashing 16", description = "The edges of this weapon are sharpened beyond belief, dealing an additional 16d6 slashing damage on each critical hit." },
+  { name = "Banishing 117", description = "On Hit: 7d6 Bane damage to Outsiders.On Vorpal Hit: If an outsider struck by this weapon has fewer than 3320 Hit Points, it is instantly slain. If the outsider has above 3320 Hit Points, it takes 7d20 damage." },
+  { name = "Improved Destruction", description = "On Hit: Your target gains a stack of Armor Destruction. (-1 penalty to Armor Class, -1% of its Fortification. 20 Second Duration. Stacks up to 15 times.) This effect may trigger once every second." },
+  { name = "Mythic Weapon Boost +2 or +4", description = "+2 or +4 Mythic bonus to Melee, Ranged, and Universal Spell Power.(This is a rare enchantment that does not show up on all drops of this item.)" },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 8
+damage_dice_bonus = 2
+damage_multiplier = 6.0
+critical_threat_range = 1
+critical_multiplier = 3
+handedness = "One-handed"
+dr_bypass = ["Slash", "Magic"]
+
+[[item]]
+name = "Legendary Duergarcraft Club"
+page = "https://ddowiki.com/page/Item:Legendary_Duergarcraft_Club"
+read = "2026-09-29"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Club"
+minimum_level = 35
+enhancement_bonus = 16
+material = "Steel"
+description = "Crafted long ago in Gauntlygrym, these weapons seem to have scattered far and wide."
+drop_location = "Terror of Demogorgon, any end chest, most optional chests"
+accepts_sentience = true
+augment_slots = ["orange", "purple"]
+effects = [
+  { name = "Bludgeoning 7", description = "The edges of this weapon are blunted, dealing an additional 7d6 bludgeon damage on each hit." },
+  { name = "Smashing 16", description = "The edges of this weapon are blunted, dealing an additional 16d6 bludgeoning damage on each critical hit." },
+  { name = "Banishing 117", description = "On Hit: 7d6 Bane damage to Outsiders.On Vorpal Hit: If an outsider struck by this weapon has fewer than 3320 Hit Points, it is instantly slain. If the outsider has above 3320 Hit Points, it takes 7d20 damage." },
+  { name = "Improved Destruction", description = "On Hit: Your target gains a stack of Armor Destruction. (-1 penalty to Armor Class, -1% of its Fortification. 20 Second Duration. Stacks up to 15 times.) This effect may trigger once every second." },
+  { name = "Mythic Weapon Boost +2 or +4", description = "+2 or +4 Mythic bonus to Melee, Ranged, and Universal Spell Power.(This is a rare enchantment that does not show up on all drops of this item.)" },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 6
+damage_dice_bonus = 2
+damage_multiplier = 6.0
+critical_threat_range = 1
+critical_multiplier = 2
+handedness = "One-handed"
+dr_bypass = ["Bludgeon", "Magic"]
+
+[[item]]
+name = "Legendary Duergarcraft Dagger"
+page = "https://ddowiki.com/page/Item:Legendary_Duergarcraft_Dagger"
+read = "2026-09-29"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Dagger"
+minimum_level = 35
+enhancement_bonus = 16
+material = "Steel"
+description = "Crafted long ago in Gauntlygrym, these weapons seem to have scattered far and wide."
+drop_location = "Terror of Demogorgon, any end chest, most optional chests"
+accepts_sentience = true
+augment_slots = ["orange", "purple"]
+effects = [
+  { name = "Piercing 7", description = "The edges of this weapon have serrated edges, dealing an additional 7d6 piercing damage on each hit." },
+  { name = "Stabbing 16", description = "The edges of this weapon are serrated, dealing an additional 16d6 piercing damage on each critical hit." },
+  { name = "Banishing 117", description = "On Hit: 7d6 Bane damage to Outsiders.On Vorpal Hit: If an outsider struck by this weapon has fewer than 3320 Hit Points, it is instantly slain. If the outsider has above 3320 Hit Points, it takes 7d20 damage." },
+  { name = "Improved Destruction", description = "On Hit: Your target gains a stack of Armor Destruction. (-1 penalty to Armor Class, -1% of its Fortification. 20 Second Duration. Stacks up to 15 times.) This effect may trigger once every second." },
+  { name = "Mythic Weapon Boost +2 or +4", description = "+2 or +4 Mythic bonus to Melee, Ranged, and Universal Spell Power.(This is a rare enchantment that does not show up on all drops of this item.)" },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 4
+damage_dice_bonus = 2
+damage_multiplier = 6.0
+critical_threat_range = 2
+critical_multiplier = 2
+handedness = "One-handed"
+dr_bypass = ["Slash", "Magic"]
+
+[[item]]
+name = "Legendary Duergarcraft Dart"
+page = "https://ddowiki.com/page/Item:Legendary_Duergarcraft_Dart"
+read = "2026-09-29"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Dart"
+minimum_level = 35
+enhancement_bonus = 16
+material = "Steel"
+description = "Crafted long ago in Gauntlgrym, these weapons seem to have scattered far and wide."
+drop_location = "Terror of Demogorgon, any end chest, most optional chests"
+accepts_sentience = true
+augment_slots = ["orange", "purple"]
+effects = [
+  { name = "Piercing 7", description = "The edges of this weapon have serrated edges, dealing an additional 7d6 piercing damage on each hit." },
+  { name = "Stabbing 16", description = "The edges of this weapon are serrated, dealing an additional 16d6 piercing damage on each critical hit." },
+  { name = "Banishing 117", description = "On Hit: 7d6 Bane damage to Outsiders.On Vorpal Hit: If an outsider struck by this weapon has fewer than 3320 Hit Points, it is instantly slain. If the outsider has above 3320 Hit Points, it takes 7d20 damage." },
+  { name = "Improved Destruction", description = "On Hit: Your target gains a stack of Armor Destruction. (-1 penalty to Armor Class, -1% of its Fortification. 20 Second Duration. Stacks up to 15 times.) This effect may trigger once every second." },
+  { name = "Returning", description = "This missile will return to you." },
+  { name = "Mythic Weapon Boost +2 or +4", description = "+2 or +4 Mythic bonus to Melee, Ranged, and Universal Spell Power.(This is a rare enchantment that does not show up on all drops of this item.)" },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 4
+damage_dice_bonus = 2
+damage_multiplier = 6.0
+critical_threat_range = 1
+critical_multiplier = 2
+handedness = "Thrown"
+dr_bypass = ["Pierce", "Magic"]
+
+[[item]]
+name = "Legendary Duergarcraft Dwarven Waraxe"
+page = "https://ddowiki.com/page/Item:Legendary_Duergarcraft_Dwarven_Waraxe"
+read = "2026-09-29"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Dwarven Axe"
+minimum_level = 35
+enhancement_bonus = 16
+material = "Steel"
+description = "Crafted long ago in Gauntlygrym, these weapons seem to have scattered far and wide."
+drop_location = "Terror of Demogorgon, any end chest, most optional chests"
+accepts_sentience = true
+augment_slots = ["orange", "purple"]
+effects = [
+  { name = "Slashing 7", description = "The edges of this weapon are sharpened, dealing an additional 7d6 slashing damage on each hit." },
+  { name = "Gashing 16", description = "The edges of this weapon are sharpened beyond belief, dealing an additional 16d6 slashing damage on each critical hit." },
+  { name = "Banishing 117", description = "On Hit: 7d6 Bane damage to Outsiders.On Vorpal Hit: If an outsider struck by this weapon has fewer than 3320 Hit Points, it is instantly slain. If the outsider has above 3320 Hit Points, it takes 7d20 damage." },
+  { name = "Improved Destruction", description = "On Hit: Your target gains a stack of Armor Destruction. (-1 penalty to Armor Class, -1% of its Fortification. 20 Second Duration. Stacks up to 15 times.) This effect may trigger once every second." },
+  { name = "Mythic Weapon Boost +2 or +4", description = "+2 or +4 Mythic bonus to Melee, Ranged, and Universal Spell Power.(This is a rare enchantment that does not show up on all drops of this item.)" },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 10
+damage_dice_bonus = 2
+damage_multiplier = 6.0
+critical_threat_range = 1
+critical_multiplier = 3
+handedness = "One-handed"
+dr_bypass = ["Slash", "Magic"]
+
+[[item]]
+name = "Legendary Duergarcraft Falchion"
+page = "https://ddowiki.com/page/Item:Legendary_Duergarcraft_Falchion"
+read = "2026-09-29"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Falchion"
+minimum_level = 35
+enhancement_bonus = 16
+material = "Steel"
+description = "Crafted long ago in Gauntlygrym, these weapons seem to have scattered far and wide."
+drop_location = "Terror of Demogorgon, any end chest, most optional chests"
+accepts_sentience = true
+augment_slots = ["orange", "purple"]
+effects = [
+  { name = "Slashing 7", description = "The edges of this weapon are sharpened, dealing an additional 7d6 slashing damage on each hit." },
+  { name = "Gashing 16", description = "The edges of this weapon are sharpened beyond belief, dealing an additional 16d6 slashing damage on each critical hit." },
+  { name = "Banishing 117", description = "On Hit: 7d6 Bane damage to Outsiders.On Vorpal Hit: If an outsider struck by this weapon has fewer than 3320 Hit Points, it is instantly slain. If the outsider has above 3320 Hit Points, it takes 7d20 damage." },
+  { name = "Improved Destruction", description = "On Hit: Your target gains a stack of Armor Destruction. (-1 penalty to Armor Class, -1% of its Fortification. 20 Second Duration. Stacks up to 15 times.) This effect may trigger once every second." },
+  { name = "Mythic Weapon Boost +2 or +4", description = "+2 or +4 Mythic bonus to Melee, Ranged, and Universal Spell Power.(This is a rare enchantment that does not show up on all drops of this item.)" },
+]
+
+[item.weapon]
+damage_dice_count = 2
+damage_dice_sides = 4
+damage_dice_bonus = 4
+damage_multiplier = 6.0
+critical_threat_range = 3
+critical_multiplier = 2
+handedness = "Two-handed"
+dr_bypass = ["Slash", "Magic"]
+
+[[item]]
+name = "Legendary Duergarcraft Great Crossbow"
+page = "https://ddowiki.com/page/Item:Legendary_Duergarcraft_Great_Crossbow"
+read = "2026-09-29"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Great Crossbow"
+minimum_level = 35
+enhancement_bonus = 16
+material = "Steel"
+description = "Crafted long ago in Gauntlygrym, these weapons seem to have scattered far and wide."
+drop_location = "Terror of Demogorgon, any end chest, most optional chests"
+accepts_sentience = true
+augment_slots = ["orange", "purple"]
+effects = [
+  { name = "Piercing 7", description = "The edges of this weapon have serrated edges, dealing an additional 7d6 piercing damage on each hit." },
+  { name = "Stabbing 16", description = "The edges of this weapon are serrated, dealing an additional 16d6 piercing damage on each critical hit." },
+  { name = "Banishing 117", description = "On Hit: 7d6 Bane damage to Outsiders.On Vorpal Hit: If an outsider struck by this weapon has fewer than 3320 Hit Points, it is instantly slain. If the outsider has above 3320 Hit Points, it takes 7d20 damage." },
+  { name = "Improved Destruction", description = "On Hit: Your target gains a stack of Armor Destruction. (-1 penalty to Armor Class, -1% of its Fortification. 20 Second Duration. Stacks up to 15 times.) This effect may trigger once every second." },
+  { name = "Mythic Weapon Boost +2 or +4", description = "+2 or +4 Mythic bonus to Melee, Ranged, and Universal Spell Power.(This is a rare enchantment that does not show up on all drops of this item.)" },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 10
+damage_dice_bonus = 2
+damage_multiplier = 6.0
+critical_threat_range = 3
+critical_multiplier = 2
+handedness = "Two-handed"
+dr_bypass = ["Slash", "Magic"]
+
+[[item]]
+name = "Legendary Duergarcraft Greataxe"
+page = "https://ddowiki.com/page/Item:Legendary_Duergarcraft_Greataxe"
+read = "2026-09-29"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Great Axe"
+minimum_level = 35
+enhancement_bonus = 16
+material = "Steel"
+description = "Crafted long ago in Gauntlygrym, these weapons seem to have scattered far and wide."
+drop_location = "Terror of Demogorgon, any end chest, most optional chests"
+accepts_sentience = true
+augment_slots = ["orange", "purple"]
+effects = [
+  { name = "Slashing 7", description = "The edges of this weapon are sharpened, dealing an additional 7d6 slashing damage on each hit." },
+  { name = "Gashing 16", description = "The edges of this weapon are sharpened beyond belief, dealing an additional 16d6 slashing damage on each critical hit." },
+  { name = "Banishing 117", description = "On Hit: 7d6 Bane damage to Outsiders.On Vorpal Hit: If an outsider struck by this weapon has fewer than 3320 Hit Points, it is instantly slain. If the outsider has above 3320 Hit Points, it takes 7d20 damage." },
+  { name = "Improved Destruction", description = "On Hit: Your target gains a stack of Armor Destruction. (-1 penalty to Armor Class, -1% of its Fortification. 20 Second Duration. Stacks up to 15 times.) This effect may trigger once every second." },
+  { name = "Mythic Weapon Boost +2 or +4", description = "+2 or +4 Mythic bonus to Melee, Ranged, and Universal Spell Power.(This is a rare enchantment that does not show up on all drops of this item.)" },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 12
+damage_dice_bonus = 4
+damage_multiplier = 6.0
+critical_threat_range = 1
+critical_multiplier = 3
+handedness = "Two-handed"
+dr_bypass = ["Slash", "Magic"]
+
+[[item]]
+name = "Legendary Duergarcraft Greatclub"
+page = "https://ddowiki.com/page/Item:Legendary_Duergarcraft_Greatclub"
+read = "2026-09-29"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Great Club"
+minimum_level = 35
+enhancement_bonus = 16
+material = "Steel"
+description = "Crafted long ago in Gauntlygrym, these weapons seem to have scattered far and wide."
+drop_location = "Terror of Demogorgon, any end chest, most optional chests"
+accepts_sentience = true
+augment_slots = ["orange", "purple"]
+effects = [
+  { name = "Bludgeoning 7", description = "The edges of this weapon are blunted, dealing an additional 7d6 bludgeon damage on each hit." },
+  { name = "Smashing 16", description = "The edges of this weapon are blunted, dealing an additional 16d6 bludgeoning damage on each critical hit." },
+  { name = "Banishing 117", description = "On Hit: 7d6 Bane damage to Outsiders.On Vorpal Hit: If an outsider struck by this weapon has fewer than 3320 Hit Points, it is instantly slain. If the outsider has above 3320 Hit Points, it takes 7d20 damage." },
+  { name = "Improved Destruction", description = "On Hit: Your target gains a stack of Armor Destruction. (-1 penalty to Armor Class, -1% of its Fortification. 20 Second Duration. Stacks up to 15 times.) This effect may trigger once every second." },
+  { name = "Mythic Weapon Boost +2 or +4", description = "+2 or +4 Mythic bonus to Melee, Ranged, and Universal Spell Power.(This is a rare enchantment that does not show up on all drops of this item.)" },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 10
+damage_dice_bonus = 4
+damage_multiplier = 6.0
+critical_threat_range = 1
+critical_multiplier = 2
+handedness = "Two-handed"
+dr_bypass = ["Bludgeon", "Magic"]
+
+[[item]]
+name = "Legendary Duergarcraft Greatsword"
+page = "https://ddowiki.com/page/Item:Legendary_Duergarcraft_Greatsword"
+read = "2026-09-29"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Great Sword"
+minimum_level = 35
+enhancement_bonus = 16
+material = "Steel"
+description = "Crafted long ago in Gauntlygrym, these weapons seem to have scattered far and wide."
+drop_location = "Terror of Demogorgon, any end chest, most optional chests"
+accepts_sentience = true
+augment_slots = ["orange", "purple"]
+effects = [
+  { name = "Slashing 7", description = "The edges of this weapon are sharpened, dealing an additional 7d6 slashing damage on each hit." },
+  { name = "Gashing 16", description = "The edges of this weapon are sharpened beyond belief, dealing an additional 16d6 slashing damage on each critical hit." },
+  { name = "Banishing 117", description = "On Hit: 7d6 Bane damage to Outsiders.On Vorpal Hit: If an outsider struck by this weapon has fewer than 3320 Hit Points, it is instantly slain. If the outsider has above 3320 Hit Points, it takes 7d20 damage." },
+  { name = "Improved Destruction", description = "On Hit: Your target gains a stack of Armor Destruction. (-1 penalty to Armor Class, -1% of its Fortification. 20 Second Duration. Stacks up to 15 times.) This effect may trigger once every second." },
+  { name = "Mythic Weapon Boost +2 or +4", description = "+2 or +4 Mythic bonus to Melee, Ranged, and Universal Spell Power.(This is a rare enchantment that does not show up on all drops of this item.)" },
+]
+
+[item.weapon]
+damage_dice_count = 2
+damage_dice_sides = 6
+damage_dice_bonus = 4
+damage_multiplier = 6.0
+critical_threat_range = 2
+critical_multiplier = 2
+handedness = "Two-handed"
+dr_bypass = ["Slash", "Magic"]
+
+[[item]]
+name = "Legendary Duergarcraft Hand Axe"
+page = "https://ddowiki.com/page/Item:Legendary_Duergarcraft_Hand_Axe"
+read = "2026-09-29"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Hand Axe"
+minimum_level = 35
+enhancement_bonus = 16
+material = "Steel"
+description = "Crafted long ago in Gauntlygrym, these weapons seem to have scattered far and wide."
+drop_location = "Terror of Demogorgon, any end chest, most optional chests"
+accepts_sentience = true
+augment_slots = ["orange", "purple"]
+effects = [
+  { name = "Slashing 7", description = "The edges of this weapon are sharpened, dealing an additional 7d6 slashing damage on each hit." },
+  { name = "Gashing 16", description = "The edges of this weapon are sharpened beyond belief, dealing an additional 16d6 slashing damage on each critical hit." },
+  { name = "Banishing 117", description = "On Hit: 7d6 Bane damage to Outsiders.On Vorpal Hit: If an outsider struck by this weapon has fewer than 3320 Hit Points, it is instantly slain. If the outsider has above 3320 Hit Points, it takes 7d20 damage." },
+  { name = "Improved Destruction", description = "On Hit: Your target gains a stack of Armor Destruction. (-1 penalty to Armor Class, -1% of its Fortification. 20 Second Duration. Stacks up to 15 times.) This effect may trigger once every second." },
+  { name = "Mythic Weapon Boost +2 or +4", description = "+2 or +4 Mythic bonus to Melee, Ranged, and Universal Spell Power.(This is a rare enchantment that does not show up on all drops of this item.)" },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 6
+damage_dice_bonus = 2
+damage_multiplier = 6.0
+critical_threat_range = 1
+critical_multiplier = 3
+handedness = "One-handed"
+dr_bypass = ["Slash", "Magic"]
+
+[[item]]
+name = "Legendary Duergarcraft Handwraps"
+page = "https://ddowiki.com/page/Item:Legendary_Duergarcraft_Handwraps"
+read = "2026-09-29"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Handwraps"
+minimum_level = 35
+enhancement_bonus = 16
+material = "Steel"
+description = "Crafted long ago in Gauntlygrym, these weapons seem to have scattered far and wide."
+drop_location = "Terror of Demogorgon, any end chest, most optional chests"
+accepts_sentience = true
+augment_slots = ["orange", "purple"]
+effects = [
+  { name = "Bludgeoning 7", description = "The edges of this weapon are blunted, dealing an additional 7d6 bludgeon damage on each hit." },
+  { name = "Smashing 16", description = "The edges of this weapon are blunted, dealing an additional 16d6 bludgeoning damage on each critical hit." },
+  { name = "Banishing 117", description = "On Hit: 7d6 Bane damage to Outsiders.On Vorpal Hit: If an outsider struck by this weapon has fewer than 3320 Hit Points, it is instantly slain. If the outsider has above 3320 Hit Points, it takes 7d20 damage." },
+  { name = "Improved Destruction", description = "On Hit: Your target gains a stack of Armor Destruction. (-1 penalty to Armor Class, -1% of its Fortification. 20 Second Duration. Stacks up to 15 times.) This effect may trigger once every second." },
+  { name = "Mythic Weapon Boost +2 or +4", description = "+2 or +4 Mythic bonus to Melee, Ranged, and Universal Spell Power.(This is a rare enchantment that does not show up on all drops of this item.)" },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 6
+damage_dice_bonus = 2
+damage_multiplier = 6.0
+critical_threat_range = 1
+critical_multiplier = 2
+handedness = "Two-handed"
+dr_bypass = ["Bludgeon", "Magic"]
+
+[[item]]
+name = "Legendary Duergarcraft Heavy Crossbow"
+page = "https://ddowiki.com/page/Item:Legendary_Duergarcraft_Heavy_Crossbow"
+read = "2026-09-29"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Heavy Crossbow"
+minimum_level = 35
+enhancement_bonus = 16
+material = "Steel"
+description = "Crafted long ago in Gauntlygrym, these weapons seem to have scattered far and wide."
+drop_location = "Terror of Demogorgon, any end chest, most optional chests"
+accepts_sentience = true
+augment_slots = ["orange", "purple"]
+effects = [
+  { name = "Piercing 7", description = "The edges of this weapon have serrated edges, dealing an additional 7d6 piercing damage on each hit." },
+  { name = "Stabbing 16", description = "The edges of this weapon are serrated, dealing an additional 16d6 piercing damage on each critical hit." },
+  { name = "Banishing 117", description = "On Hit: 7d6 Bane damage to Outsiders.On Vorpal Hit: If an outsider struck by this weapon has fewer than 3320 Hit Points, it is instantly slain. If the outsider has above 3320 Hit Points, it takes 7d20 damage." },
+  { name = "Improved Destruction", description = "On Hit: Your target gains a stack of Armor Destruction. (-1 penalty to Armor Class, -1% of its Fortification. 20 Second Duration. Stacks up to 15 times.) This effect may trigger once every second." },
+  { name = "Mythic Weapon Boost +2 or +4", description = "+2 or +4 Mythic bonus to Melee, Ranged, and Universal Spell Power.(This is a rare enchantment that does not show up on all drops of this item.)" },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 10
+damage_dice_bonus = 2
+damage_multiplier = 6.0
+critical_threat_range = 2
+critical_multiplier = 2
+handedness = "Two-handed"
+dr_bypass = ["Pierce", "Magic"]
+
+[[item]]
+name = "Legendary Duergarcraft Heavy Mace"
+page = "https://ddowiki.com/page/Item:Legendary_Duergarcraft_Heavy_Mace"
+read = "2026-09-29"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Heavy Mace"
+minimum_level = 35
+enhancement_bonus = 16
+material = "Steel"
+description = "Crafted long ago in Gauntlygrym, these weapons seem to have scattered far and wide."
+drop_location = "Terror of Demogorgon, any end chest, most optional chests"
+accepts_sentience = true
+augment_slots = ["orange", "purple"]
+effects = [
+  { name = "Bludgeoning 7", description = "The edges of this weapon are blunted, dealing an additional 7d6 bludgeon damage on each hit." },
+  { name = "Smashing 16", description = "The edges of this weapon are blunted, dealing an additional 16d6 bludgeoning damage on each critical hit." },
+  { name = "Banishing 117", description = "On Hit: 7d6 Bane damage to Outsiders.On Vorpal Hit: If an outsider struck by this weapon has fewer than 3320 Hit Points, it is instantly slain. If the outsider has above 3320 Hit Points, it takes 7d20 damage." },
+  { name = "Improved Destruction", description = "On Hit: Your target gains a stack of Armor Destruction. (-1 penalty to Armor Class, -1% of its Fortification. 20 Second Duration. Stacks up to 15 times.) This effect may trigger once every second." },
+  { name = "Mythic Weapon Boost +2 or +4", description = "+2 or +4 Mythic bonus to Melee, Ranged, and Universal Spell Power.(This is a rare enchantment that does not show up on all drops of this item.)" },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 8
+damage_dice_bonus = 2
+damage_multiplier = 6.0
+critical_threat_range = 1
+critical_multiplier = 2
+handedness = "One-handed"
+dr_bypass = ["Bludgeon", "Magic"]
+
+[[item]]
+name = "Legendary Duergarcraft Heavy Pick"
+page = "https://ddowiki.com/page/Item:Legendary_Duergarcraft_Heavy_Pick"
+read = "2026-09-29"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Heavy Pick"
+minimum_level = 35
+enhancement_bonus = 16
+material = "Steel"
+description = "Crafted long ago in Gauntlygrym, these weapons seem to have scattered far and wide."
+drop_location = "Terror of Demogorgon, any end chest, most optional chests"
+accepts_sentience = true
+augment_slots = ["orange", "purple"]
+effects = [
+  { name = "Piercing 7", description = "The edges of this weapon have serrated edges, dealing an additional 7d6 piercing damage on each hit." },
+  { name = "Stabbing 16", description = "The edges of this weapon are serrated, dealing an additional 16d6 piercing damage on each critical hit." },
+  { name = "Banishing 117", description = "On Hit: 7d6 Bane damage to Outsiders.On Vorpal Hit: If an outsider struck by this weapon has fewer than 3320 Hit Points, it is instantly slain. If the outsider has above 3320 Hit Points, it takes 7d20 damage." },
+  { name = "Improved Destruction", description = "On Hit: Your target gains a stack of Armor Destruction. (-1 penalty to Armor Class, -1% of its Fortification. 20 Second Duration. Stacks up to 15 times.) This effect may trigger once every second." },
+  { name = "Mythic Weapon Boost +2 or +4", description = "+2 or +4 Mythic bonus to Melee, Ranged, and Universal Spell Power.(This is a rare enchantment that does not show up on all drops of this item.)" },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 6
+damage_dice_bonus = 2
+damage_multiplier = 6.0
+critical_threat_range = 1
+critical_multiplier = 4
+handedness = "One-handed"
+dr_bypass = ["Pierce", "Magic"]
+
+[[item]]
+name = "Legendary Duergarcraft Kama"
+page = "https://ddowiki.com/page/Item:Legendary_Duergarcraft_Kama"
+read = "2026-09-29"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Kama"
+minimum_level = 35
+enhancement_bonus = 16
+material = "Steel"
+description = "Crafted long ago in Gauntlygrym, these weapons seem to have scattered far and wide."
+drop_location = "Terror of Demogorgon, any end chest, most optional chests"
+accepts_sentience = true
+augment_slots = ["orange", "purple"]
+effects = [
+  { name = "Slashing 7", description = "The edges of this weapon are sharpened, dealing an additional 7d6 slashing damage on each hit." },
+  { name = "Gashing 16", description = "The edges of this weapon are sharpened beyond belief, dealing an additional 16d6 slashing damage on each critical hit." },
+  { name = "Banishing 117", description = "On Hit: 7d6 Bane damage to Outsiders.On Vorpal Hit: If an outsider struck by this weapon has fewer than 3320 Hit Points, it is instantly slain. If the outsider has above 3320 Hit Points, it takes 7d20 damage." },
+  { name = "Improved Destruction", description = "On Hit: Your target gains a stack of Armor Destruction. (-1 penalty to Armor Class, -1% of its Fortification. 20 Second Duration. Stacks up to 15 times.) This effect may trigger once every second." },
+  { name = "Mythic Weapon Boost +2 or +4", description = "+2 or +4 Mythic bonus to Melee, Ranged, and Universal Spell Power.(This is a rare enchantment that does not show up on all drops of this item.)" },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 6
+damage_dice_bonus = 2
+damage_multiplier = 6.0
+critical_threat_range = 1
+critical_multiplier = 2
+handedness = "One-handed"
+dr_bypass = ["Slash", "Magic"]
+
+[[item]]
+name = "Legendary Duergarcraft Khopesh"
+page = "https://ddowiki.com/page/Item:Legendary_Duergarcraft_Khopesh"
+read = "2026-09-29"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Khopesh"
+minimum_level = 35
+enhancement_bonus = 16
+material = "Steel"
+description = "Crafted long ago in Gauntlygrym, these weapons seem to have scattered far and wide."
+drop_location = "Terror of Demogorgon, any end chest, most optional chests"
+accepts_sentience = true
+augment_slots = ["orange", "purple"]
+effects = [
+  { name = "Slashing 7", description = "The edges of this weapon are sharpened, dealing an additional 7d6 slashing damage on each hit." },
+  { name = "Gashing 16", description = "The edges of this weapon are sharpened beyond belief, dealing an additional 16d6 slashing damage on each critical hit." },
+  { name = "Banishing 117", description = "On Hit: 7d6 Bane damage to Outsiders.On Vorpal Hit: If an outsider struck by this weapon has fewer than 3320 Hit Points, it is instantly slain. If the outsider has above 3320 Hit Points, it takes 7d20 damage." },
+  { name = "Improved Destruction", description = "On Hit: Your target gains a stack of Armor Destruction. (-1 penalty to Armor Class, -1% of its Fortification. 20 Second Duration. Stacks up to 15 times.) This effect may trigger once every second." },
+  { name = "Mythic Weapon Boost +2 or +4", description = "+2 or +4 Mythic bonus to Melee, Ranged, and Universal Spell Power.(This is a rare enchantment that does not show up on all drops of this item.)" },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 8
+damage_dice_bonus = 2
+damage_multiplier = 6.0
+critical_threat_range = 2
+critical_multiplier = 3
+handedness = "One-handed"
+dr_bypass = ["Slash", "Magic"]
+
+[[item]]
+name = "Legendary Duergarcraft Kukri"
+page = "https://ddowiki.com/page/Item:Legendary_Duergarcraft_Kukri"
+read = "2026-09-29"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Kukri"
+minimum_level = 35
+enhancement_bonus = 16
+material = "Steel"
+description = "Crafted long ago in Gauntlygrym, these weapons seem to have scattered far and wide."
+drop_location = "Terror of Demogorgon, any end chest, most optional chests"
+accepts_sentience = true
+augment_slots = ["orange", "purple"]
+effects = [
+  { name = "Slashing 7", description = "The edges of this weapon are sharpened, dealing an additional 7d6 slashing damage on each hit." },
+  { name = "Gashing 16", description = "The edges of this weapon are sharpened beyond belief, dealing an additional 16d6 slashing damage on each critical hit." },
+  { name = "Banishing 117", description = "On Hit: 7d6 Bane damage to Outsiders.On Vorpal Hit: If an outsider struck by this weapon has fewer than 3320 Hit Points, it is instantly slain. If the outsider has above 3320 Hit Points, it takes 7d20 damage." },
+  { name = "Improved Destruction", description = "On Hit: Your target gains a stack of Armor Destruction. (-1 penalty to Armor Class, -1% of its Fortification. 20 Second Duration. Stacks up to 15 times.) This effect may trigger once every second." },
+  { name = "Mythic Weapon Boost +2 or +4", description = "+2 or +4 Mythic bonus to Melee, Ranged, and Universal Spell Power.(This is a rare enchantment that does not show up on all drops of this item.)" },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 4
+damage_dice_bonus = 2
+damage_multiplier = 6.0
+critical_threat_range = 3
+critical_multiplier = 2
+handedness = "One-handed"
+dr_bypass = ["Slash", "Magic"]
+
+[[item]]
+name = "Legendary Duergarcraft Light Crossbow"
+page = "https://ddowiki.com/page/Item:Legendary_Duergarcraft_Light_Crossbow"
+read = "2026-09-29"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Light Crossbow"
+minimum_level = 35
+enhancement_bonus = 16
+material = "Steel"
+description = "Crafted long ago in Gauntlygrym, these weapons seem to have scattered far and wide."
+drop_location = "Terror of Demogorgon, any end chest, most optional chests"
+accepts_sentience = true
+augment_slots = ["orange", "purple"]
+effects = [
+  { name = "Piercing 7", description = "The edges of this weapon have serrated edges, dealing an additional 7d6 piercing damage on each hit." },
+  { name = "Stabbing 16", description = "The edges of this weapon are serrated, dealing an additional 16d6 piercing damage on each critical hit." },
+  { name = "Banishing 117", description = "On Hit: 7d6 Bane damage to Outsiders.On Vorpal Hit: If an outsider struck by this weapon has fewer than 3320 Hit Points, it is instantly slain. If the outsider has above 3320 Hit Points, it takes 7d20 damage." },
+  { name = "Improved Destruction", description = "On Hit: Your target gains a stack of Armor Destruction. (-1 penalty to Armor Class, -1% of its Fortification. 20 Second Duration. Stacks up to 15 times.) This effect may trigger once every second." },
+  { name = "Mythic Weapon Boost +2 or +4", description = "+2 or +4 Mythic bonus to Melee, Ranged, and Universal Spell Power.(This is a rare enchantment that does not show up on all drops of this item.)" },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 8
+damage_dice_bonus = 2
+damage_multiplier = 6.0
+critical_threat_range = 2
+critical_multiplier = 2
+handedness = "Two-handed"
+dr_bypass = ["Pierce", "Magic"]
+
+[[item]]
+name = "Legendary Duergarcraft Light Hammer"
+page = "https://ddowiki.com/page/Item:Legendary_Duergarcraft_Light_Hammer"
+read = "2026-09-29"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Light Hammer"
+minimum_level = 35
+enhancement_bonus = 16
+material = "Steel"
+description = "Crafted long ago in Gauntlygrym, these weapons seem to have scattered far and wide."
+drop_location = "Terror of Demogorgon, any end chest, most optional chests"
+accepts_sentience = true
+augment_slots = ["orange", "purple"]
+effects = [
+  { name = "Bludgeoning 7", description = "The edges of this weapon are blunted, dealing an additional 7d6 bludgeon damage on each hit." },
+  { name = "Smashing 16", description = "The edges of this weapon are blunted, dealing an additional 16d6 bludgeoning damage on each critical hit." },
+  { name = "Banishing 117", description = "On Hit: 7d6 Bane damage to Outsiders.On Vorpal Hit: If an outsider struck by this weapon has fewer than 3320 Hit Points, it is instantly slain. If the outsider has above 3320 Hit Points, it takes 7d20 damage." },
+  { name = "Improved Destruction", description = "On Hit: Your target gains a stack of Armor Destruction. (-1 penalty to Armor Class, -1% of its Fortification. 20 Second Duration. Stacks up to 15 times.) This effect may trigger once every second." },
+  { name = "Mythic Weapon Boost +2 or +4", description = "+2 or +4 Mythic bonus to Melee, Ranged, and Universal Spell Power.(This is a rare enchantment that does not show up on all drops of this item.)" },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 10
+damage_dice_bonus = 2
+damage_multiplier = 6.0
+critical_threat_range = 1
+critical_multiplier = 2
+handedness = "One-handed"
+dr_bypass = ["Slash", "Magic"]
+
+[[item]]
+name = "Legendary Duergarcraft Light Mace"
+page = "https://ddowiki.com/page/Item:Legendary_Duergarcraft_Light_Mace"
+read = "2026-09-29"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Light Mace"
+minimum_level = 35
+enhancement_bonus = 16
+material = "Steel"
+description = "Crafted long ago in Gauntlygrym, these weapons seem to have scattered far and wide."
+drop_location = "Terror of Demogorgon, any end chest, most optional chests"
+accepts_sentience = true
+augment_slots = ["orange", "purple"]
+effects = [
+  { name = "Bludgeoning 7", description = "The edges of this weapon are blunted, dealing an additional 7d6 bludgeon damage on each hit." },
+  { name = "Smashing 16", description = "The edges of this weapon are blunted, dealing an additional 16d6 bludgeoning damage on each critical hit." },
+  { name = "Banishing 117", description = "On Hit: 7d6 Bane damage to Outsiders.On Vorpal Hit: If an outsider struck by this weapon has fewer than 3320 Hit Points, it is instantly slain. If the outsider has above 3320 Hit Points, it takes 7d20 damage." },
+  { name = "Improved Destruction", description = "On Hit: Your target gains a stack of Armor Destruction. (-1 penalty to Armor Class, -1% of its Fortification. 20 Second Duration. Stacks up to 15 times.) This effect may trigger once every second." },
+  { name = "Mythic Weapon Boost +2 or +4", description = "+2 or +4 Mythic bonus to Melee, Ranged, and Universal Spell Power.(This is a rare enchantment that does not show up on all drops of this item.)" },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 6
+damage_dice_bonus = 2
+damage_multiplier = 6.0
+critical_threat_range = 1
+critical_multiplier = 2
+handedness = "One-handed"
+dr_bypass = ["Bludgeon", "Magic"]
+
+[[item]]
+name = "Legendary Duergarcraft Light Pick"
+page = "https://ddowiki.com/page/Item:Legendary_Duergarcraft_Light_Pick"
+read = "2026-09-29"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Light Pick"
+minimum_level = 35
+enhancement_bonus = 16
+material = "Steel"
+description = "Crafted long ago in Gauntlygrym, these weapons seem to have scattered far and wide."
+drop_location = "Terror of Demogorgon, any end chest, most optional chests"
+accepts_sentience = true
+augment_slots = ["orange", "purple"]
+effects = [
+  { name = "Piercing 7", description = "The edges of this weapon have serrated edges, dealing an additional 7d6 piercing damage on each hit." },
+  { name = "Stabbing 16", description = "The edges of this weapon are serrated, dealing an additional 16d6 piercing damage on each critical hit." },
+  { name = "Banishing 117", description = "On Hit: 7d6 Bane damage to Outsiders.On Vorpal Hit: If an outsider struck by this weapon has fewer than 3320 Hit Points, it is instantly slain. If the outsider has above 3320 Hit Points, it takes 7d20 damage." },
+  { name = "Improved Destruction", description = "On Hit: Your target gains a stack of Armor Destruction. (-1 penalty to Armor Class, -1% of its Fortification. 20 Second Duration. Stacks up to 15 times.) This effect may trigger once every second." },
+  { name = "Mythic Weapon Boost +2 or +4", description = "+2 or +4 Mythic bonus to Melee, Ranged, and Universal Spell Power.(This is a rare enchantment that does not show up on all drops of this item.)" },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 4
+damage_dice_bonus = 2
+damage_multiplier = 6.0
+critical_threat_range = 1
+critical_multiplier = 4
+handedness = "One-handed"
+dr_bypass = ["Pierce", "Magic"]
+
+[[item]]
+name = "Legendary Duergarcraft Longbow"
+page = "https://ddowiki.com/page/Item:Legendary_Duergarcraft_Longbow"
+read = "2026-09-29"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Longbow"
+minimum_level = 35
+enhancement_bonus = 16
+material = "Steel"
+description = "Crafted long ago in Gauntlygrym, these weapons seem to have scattered far and wide."
+drop_location = "Terror of Demogorgon, any end chest, most optional chests"
+accepts_sentience = true
+augment_slots = ["orange", "purple"]
+effects = [
+  { name = "Piercing 7", description = "The edges of this weapon have serrated edges, dealing an additional 7d6 piercing damage on each hit." },
+  { name = "Stabbing 16", description = "The edges of this weapon are serrated, dealing an additional 16d6 piercing damage on each critical hit." },
+  { name = "Banishing 117", description = "On Hit: 7d6 Bane damage to Outsiders.On Vorpal Hit: If an outsider struck by this weapon has fewer than 3320 Hit Points, it is instantly slain. If the outsider has above 3320 Hit Points, it takes 7d20 damage." },
+  { name = "Improved Destruction", description = "On Hit: Your target gains a stack of Armor Destruction. (-1 penalty to Armor Class, -1% of its Fortification. 20 Second Duration. Stacks up to 15 times.) This effect may trigger once every second." },
+  { name = "Mythic Weapon Boost +2 or +4", description = "+2 or +4 Mythic bonus to Melee, Ranged, and Universal Spell Power.(This is a rare enchantment that does not show up on all drops of this item.)" },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 8
+damage_dice_bonus = 2
+damage_multiplier = 6.0
+critical_threat_range = 1
+critical_multiplier = 3
+handedness = "Two-handed"
+dr_bypass = ["Pierce", "Magic"]
+
+[[item]]
+name = "Legendary Duergarcraft Longsword"
+page = "https://ddowiki.com/page/Item:Legendary_Duergarcraft_Longsword"
+read = "2026-09-29"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Longsword"
+minimum_level = 35
+enhancement_bonus = 16
+material = "Steel"
+description = "Crafted long ago in Gauntlygrym, these weapons seem to have scattered far and wide."
+drop_location = "Terror of Demogorgon, any end chest, most optional chests"
+accepts_sentience = true
+augment_slots = ["orange", "purple"]
+effects = [
+  { name = "Slashing 7", description = "The edges of this weapon are sharpened, dealing an additional 7d6 slashing damage on each hit." },
+  { name = "Gashing 16", description = "The edges of this weapon are sharpened beyond belief, dealing an additional 16d6 slashing damage on each critical hit." },
+  { name = "Banishing 117", description = "On Hit: 7d6 Bane damage to Outsiders.On Vorpal Hit: If an outsider struck by this weapon has fewer than 3320 Hit Points, it is instantly slain. If the outsider has above 3320 Hit Points, it takes 7d20 damage." },
+  { name = "Improved Destruction", description = "On Hit: Your target gains a stack of Armor Destruction. (-1 penalty to Armor Class, -1% of its Fortification. 20 Second Duration. Stacks up to 15 times.) This effect may trigger once every second." },
+  { name = "Mythic Weapon Boost +2 or +4", description = "+2 or +4 Mythic bonus to Melee, Ranged, and Universal Spell Power.(This is a rare enchantment that does not show up on all drops of this item.)" },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 8
+damage_dice_bonus = 2
+damage_multiplier = 6.0
+critical_threat_range = 2
+critical_multiplier = 2
+handedness = "One-handed"
+dr_bypass = ["Slash", "Magic"]
+
+[[item]]
+name = "Legendary Duergarcraft Maul"
+page = "https://ddowiki.com/page/Item:Legendary_Duergarcraft_Maul"
+read = "2026-09-29"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Maul"
+minimum_level = 35
+enhancement_bonus = 16
+material = "Steel"
+description = "Crafted long ago in Gauntlygrym, these weapons seem to have scattered far and wide."
+drop_location = "Terror of Demogorgon, any end chest, most optional chests"
+accepts_sentience = true
+augment_slots = ["orange", "purple"]
+effects = [
+  { name = "Bludgeoning 7", description = "The edges of this weapon are blunted, dealing an additional 7d6 bludgeon damage on each hit." },
+  { name = "Smashing 16", description = "The edges of this weapon are blunted, dealing an additional 16d6 bludgeoning damage on each critical hit." },
+  { name = "Banishing 117", description = "On Hit: 7d6 Bane damage to Outsiders.On Vorpal Hit: If an outsider struck by this weapon has fewer than 3320 Hit Points, it is instantly slain. If the outsider has above 3320 Hit Points, it takes 7d20 damage." },
+  { name = "Improved Destruction", description = "On Hit: Your target gains a stack of Armor Destruction. (-1 penalty to Armor Class, -1% of its Fortification. 20 Second Duration. Stacks up to 15 times.) This effect may trigger once every second." },
+  { name = "Mythic Weapon Boost +2 or +4", description = "+2 or +4 Mythic bonus to Melee, Ranged, and Universal Spell Power.(This is a rare enchantment that does not show up on all drops of this item.)" },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 10
+damage_dice_bonus = 4
+damage_multiplier = 6.0
+critical_threat_range = 1
+critical_multiplier = 3
+handedness = "Two-handed"
+dr_bypass = ["Bludgeon", "Magic"]
+
+[[item]]
+name = "Legendary Duergarcraft Morningstar"
+page = "https://ddowiki.com/page/Item:Legendary_Duergarcraft_Morningstar"
+read = "2026-09-29"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Morningstar"
+minimum_level = 35
+enhancement_bonus = 16
+material = "Steel"
+description = "Crafted long ago in Gauntlygrym, these weapons seem to have scattered far and wide."
+drop_location = "Terror of Demogorgon, any end chest, most optional chests"
+accepts_sentience = true
+augment_slots = ["orange", "purple"]
+effects = [
+  { name = "Bludgeoning 7", description = "The edges of this weapon are blunted, dealing an additional 7d6 bludgeon damage on each hit." },
+  { name = "Smashing 16", description = "The edges of this weapon are blunted, dealing an additional 16d6 bludgeoning damage on each critical hit." },
+  { name = "Banishing 117", description = "On Hit: 7d6 Bane damage to Outsiders.On Vorpal Hit: If an outsider struck by this weapon has fewer than 3320 Hit Points, it is instantly slain. If the outsider has above 3320 Hit Points, it takes 7d20 damage." },
+  { name = "Improved Destruction", description = "On Hit: Your target gains a stack of Armor Destruction. (-1 penalty to Armor Class, -1% of its Fortification. 20 Second Duration. Stacks up to 15 times.) This effect may trigger once every second." },
+  { name = "Mythic Weapon Boost +2 or +4", description = "+2 or +4 Mythic bonus to Melee, Ranged, and Universal Spell Power.(This is a rare enchantment that does not show up on all drops of this item.)" },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 8
+damage_dice_bonus = 2
+damage_multiplier = 6.0
+critical_threat_range = 1
+critical_multiplier = 2
+handedness = "One-handed"
+dr_bypass = ["Slash", "Magic"]
+
+[[item]]
+name = "Legendary Duergarcraft Quarterstaff"
+page = "https://ddowiki.com/page/Item:Legendary_Duergarcraft_Quarterstaff"
+read = "2026-09-29"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Quarterstaff"
+minimum_level = 35
+enhancement_bonus = 16
+material = "Steel"
+description = "Crafted long ago in Gauntlygrym, these weapons seem to have scattered far and wide."
+drop_location = "Terror of Demogorgon, any end chest, most optional chests"
+accepts_sentience = true
+augment_slots = ["orange", "purple"]
+effects = [
+  { name = "Bludgeoning 7", description = "The edges of this weapon are blunted, dealing an additional 7d6 bludgeon damage on each hit." },
+  { name = "Smashing 16", description = "The edges of this weapon are blunted, dealing an additional 16d6 bludgeoning damage on each critical hit." },
+  { name = "Banishing 117", description = "On Hit: 7d6 Bane damage to Outsiders.On Vorpal Hit: If an outsider struck by this weapon has fewer than 3320 Hit Points, it is instantly slain. If the outsider has above 3320 Hit Points, it takes 7d20 damage." },
+  { name = "Improved Destruction", description = "On Hit: Your target gains a stack of Armor Destruction. (-1 penalty to Armor Class, -1% of its Fortification. 20 Second Duration. Stacks up to 15 times.) This effect may trigger once every second." },
+  { name = "Mythic Weapon Boost +2 or +4", description = "+2 or +4 Mythic bonus to Melee, Ranged, and Universal Spell Power.(This is a rare enchantment that does not show up on all drops of this item.)" },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 6
+damage_dice_bonus = 4
+damage_multiplier = 6.0
+critical_threat_range = 1
+critical_multiplier = 2
+handedness = "Two-handed"
+dr_bypass = ["Slash", "Magic"]
+
+[[item]]
+name = "Legendary Duergarcraft Rapier"
+page = "https://ddowiki.com/page/Item:Legendary_Duergarcraft_Rapier"
+read = "2026-09-29"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Rapier"
+minimum_level = 35
+enhancement_bonus = 16
+material = "Steel"
+description = "Crafted long ago in Gauntlygrym, these weapons seem to have scattered far and wide."
+drop_location = "Terror of Demogorgon, any end chest, most optional chests"
+accepts_sentience = true
+augment_slots = ["orange", "purple"]
+effects = [
+  { name = "Piercing 7", description = "The edges of this weapon have serrated edges, dealing an additional 7d6 piercing damage on each hit." },
+  { name = "Stabbing 16", description = "The edges of this weapon are serrated, dealing an additional 16d6 piercing damage on each critical hit." },
+  { name = "Banishing 117", description = "On Hit: 7d6 Bane damage to Outsiders.On Vorpal Hit: If an outsider struck by this weapon has fewer than 3320 Hit Points, it is instantly slain. If the outsider has above 3320 Hit Points, it takes 7d20 damage." },
+  { name = "Improved Destruction", description = "On Hit: Your target gains a stack of Armor Destruction. (-1 penalty to Armor Class, -1% of its Fortification. 20 Second Duration. Stacks up to 15 times.) This effect may trigger once every second." },
+  { name = "Mythic Weapon Boost +2 or +4", description = "+2 or +4 Mythic bonus to Melee, Ranged, and Universal Spell Power.(This is a rare enchantment that does not show up on all drops of this item.)" },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 6
+damage_dice_bonus = 2
+damage_multiplier = 6.0
+critical_threat_range = 3
+critical_multiplier = 2
+handedness = "One-handed"
+dr_bypass = ["Pierce", "Magic"]
+
+[[item]]
+name = "Legendary Duergarcraft Repeating Heavy Crossbow"
+page = "https://ddowiki.com/page/Item:Legendary_Duergarcraft_Repeating_Heavy_Crossbow"
+read = "2026-09-29"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Repeating Heavy Crossbow"
+minimum_level = 35
+enhancement_bonus = 16
+material = "Steel"
+description = "Crafted long ago in Gauntlygrym, these weapons seem to have scattered far and wide."
+drop_location = "Terror of Demogorgon, any end chest, most optional chests"
+accepts_sentience = true
+augment_slots = ["orange", "purple"]
+effects = [
+  { name = "Piercing 7", description = "The edges of this weapon have serrated edges, dealing an additional 7d6 piercing damage on each hit." },
+  { name = "Stabbing 16", description = "The edges of this weapon are serrated, dealing an additional 16d6 piercing damage on each critical hit." },
+  { name = "Banishing 117", description = "On Hit: 7d6 Bane damage to Outsiders.On Vorpal Hit: If an outsider struck by this weapon has fewer than 3320 Hit Points, it is instantly slain. If the outsider has above 3320 Hit Points, it takes 7d20 damage." },
+  { name = "Improved Destruction", description = "On Hit: Your target gains a stack of Armor Destruction. (-1 penalty to Armor Class, -1% of its Fortification. 20 Second Duration. Stacks up to 15 times.) This effect may trigger once every second." },
+  { name = "Mythic Weapon Boost +2 or +4", description = "+2 or +4 Mythic bonus to Melee, Ranged, and Universal Spell Power.(This is a rare enchantment that does not show up on all drops of this item.)" },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 10
+damage_dice_bonus = 2
+damage_multiplier = 6.0
+critical_threat_range = 2
+critical_multiplier = 2
+handedness = "Two-handed"
+dr_bypass = ["Pierce", "Magic"]
+
+[[item]]
+name = "Legendary Duergarcraft Repeating Light Crossbow"
+page = "https://ddowiki.com/page/Item:Legendary_Duergarcraft_Repeating_Light_Crossbow"
+read = "2026-09-29"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Repeating Light Crossbow"
+minimum_level = 35
+enhancement_bonus = 16
+material = "Steel"
+description = "Crafted long ago in Gauntlygrym, these weapons seem to have scattered far and wide."
+drop_location = "Terror of Demogorgon, any end chest, most optional chests"
+accepts_sentience = true
+augment_slots = ["orange", "purple"]
+effects = [
+  { name = "Piercing 7", description = "The edges of this weapon have serrated edges, dealing an additional 7d6 piercing damage on each hit." },
+  { name = "Stabbing 16", description = "The edges of this weapon are serrated, dealing an additional 16d6 piercing damage on each critical hit." },
+  { name = "Banishing 117", description = "On Hit: 7d6 Bane damage to Outsiders.On Vorpal Hit: If an outsider struck by this weapon has fewer than 3320 Hit Points, it is instantly slain. If the outsider has above 3320 Hit Points, it takes 7d20 damage." },
+  { name = "Improved Destruction", description = "On Hit: Your target gains a stack of Armor Destruction. (-1 penalty to Armor Class, -1% of its Fortification. 20 Second Duration. Stacks up to 15 times.) This effect may trigger once every second." },
+  { name = "Mythic Weapon Boost +2 or +4", description = "+2 or +4 Mythic bonus to Melee, Ranged, and Universal Spell Power.(This is a rare enchantment that does not show up on all drops of this item.)" },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 10
+damage_dice_bonus = 2
+damage_multiplier = 6.0
+critical_threat_range = 2
+critical_multiplier = 2
+handedness = "Two-handed"
+dr_bypass = ["Pierce", "Magic"]
+
+[[item]]
+name = "Legendary Duergarcraft Scimitar"
+page = "https://ddowiki.com/page/Item:Legendary_Duergarcraft_Scimitar"
+read = "2026-09-29"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Scimitar"
+minimum_level = 35
+enhancement_bonus = 16
+material = "Steel"
+description = "Crafted long ago in Gauntlgrym, these weapons seem to have scattered far and wide."
+drop_location = "Terror of Demogorgon, any end chest, most optional chests"
+accepts_sentience = true
+augment_slots = ["orange", "purple"]
+effects = [
+  { name = "Slashing 7", description = "The edges of this weapon are sharpened, dealing an additional 7d6 slashing damage on each hit." },
+  { name = "Gashing 16", description = "The edges of this weapon are sharpened beyond belief, dealing an additional 16d6 slashing damage on each critical hit." },
+  { name = "Banishing 117", description = "On Hit: 7d6 Bane damage to Outsiders.On Vorpal Hit: If an outsider struck by this weapon has fewer than 3320 Hit Points, it is instantly slain. If the outsider has above 3320 Hit Points, it takes 7d20 damage." },
+  { name = "Improved Destruction", description = "On Hit: Your target gains a stack of Armor Destruction. (-1 penalty to Armor Class, -1% of its Fortification. 20 Second Duration. Stacks up to 15 times.) This effect may trigger once every second." },
+  { name = "Mythic Weapon Boost +2 or +4", description = "+2 or +4 Mythic bonus to Melee, Ranged, and Universal Spell Power.(This is a rare enchantment that does not show up on all drops of this item.)" },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 6
+damage_dice_bonus = 2
+damage_multiplier = 6.0
+critical_threat_range = 3
+critical_multiplier = 2
+handedness = "One-handed"
+dr_bypass = ["Slash", "Magic"]
+
+[[item]]
+name = "Legendary Duergarcraft Shortbow"
+page = "https://ddowiki.com/page/Item:Legendary_Duergarcraft_Shortbow"
+read = "2026-09-29"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Shortbow"
+minimum_level = 35
+enhancement_bonus = 16
+material = "Steel"
+description = "Crafted long ago in Gauntlgrym, these weapons seem to have scattered far and wide."
+drop_location = "Terror of Demogorgon, any end chest, most optional chests"
+accepts_sentience = true
+augment_slots = ["orange", "purple"]
+effects = [
+  { name = "Piercing 7", description = "The edges of this weapon have serrated edges, dealing an additional 7d6 piercing damage on each hit." },
+  { name = "Stabbing 16", description = "The edges of this weapon are serrated, dealing an additional 16d6 piercing damage on each critical hit." },
+  { name = "Banishing 117", description = "On Hit: 7d6 Bane damage to Outsiders.On Vorpal Hit: If an outsider struck by this weapon has fewer than 3320 Hit Points, it is instantly slain. If the outsider has above 3320 Hit Points, it takes 7d20 damage." },
+  { name = "Improved Destruction", description = "On Hit: Your target gains a stack of Armor Destruction. (-1 penalty to Armor Class, -1% of its Fortification. 20 Second Duration. Stacks up to 15 times.) This effect may trigger once every second." },
+  { name = "Mythic Weapon Boost +2 or +4", description = "+2 or +4 Mythic bonus to Melee, Ranged, and Universal Spell Power.(This is a rare enchantment that does not show up on all drops of this item.)" },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 6
+damage_dice_bonus = 2
+damage_multiplier = 6.0
+critical_threat_range = 1
+critical_multiplier = 3
+handedness = "Two-handed"
+dr_bypass = ["Pierce", "Magic"]
+
+[[item]]
+name = "Legendary Duergarcraft Shortsword"
+page = "https://ddowiki.com/page/Item:Legendary_Duergarcraft_Shortsword"
+read = "2026-09-29"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Shortsword"
+minimum_level = 35
+enhancement_bonus = 16
+material = "Steel"
+description = "Crafted long ago in Gauntlgrym, these weapons seem to have scattered far and wide."
+drop_location = "Terror of Demogorgon, any end chest, most optional chests"
+accepts_sentience = true
+augment_slots = ["orange", "purple"]
+effects = [
+  { name = "Piercing 7", description = "The edges of this weapon have serrated edges, dealing an additional 7d6 piercing damage on each hit." },
+  { name = "Stabbing 16", description = "The edges of this weapon are serrated, dealing an additional 16d6 piercing damage on each critical hit." },
+  { name = "Banishing 117", description = "On Hit: 7d6 Bane damage to Outsiders.On Vorpal Hit: If an outsider struck by this weapon has fewer than 3320 Hit Points, it is instantly slain. If the outsider has above 3320 Hit Points, it takes 7d20 damage." },
+  { name = "Improved Destruction", description = "On Hit: Your target gains a stack of Armor Destruction. (-1 penalty to Armor Class, -1% of its Fortification. 20 Second Duration. Stacks up to 15 times.) This effect may trigger once every second." },
+  { name = "Mythic Weapon Boost +2 or +4", description = "+2 or +4 Mythic bonus to Melee, Ranged, and Universal Spell Power.(This is a rare enchantment that does not show up on all drops of this item.)" },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 6
+damage_dice_bonus = 2
+damage_multiplier = 6.0
+critical_threat_range = 2
+critical_multiplier = 2
+handedness = "One-handed"
+dr_bypass = ["Pierce", "Magic"]
+
+[[item]]
+name = "Legendary Duergarcraft Shuriken"
+page = "https://ddowiki.com/page/Item:Legendary_Duergarcraft_Shuriken"
+read = "2026-09-29"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Shuriken"
+minimum_level = 35
+enhancement_bonus = 16
+material = "Steel"
+description = "Crafted long ago in Gauntlgrym, these weapons seem to have scattered far and wide."
+drop_location = "Terror of Demogorgon, any end chest, most optional chests"
+accepts_sentience = true
+augment_slots = ["orange", "purple"]
+effects = [
+  { name = "Slashing 7", description = "The edges of this weapon are sharpened, dealing an additional 7d6 slashing damage on each hit." },
+  { name = "Gashing 16", description = "The edges of this weapon are sharpened beyond belief, dealing an additional 16d6 slashing damage on each critical hit." },
+  { name = "Banishing 117", description = "On Hit: 7d6 Bane damage to Outsiders.On Vorpal Hit: If an outsider struck by this weapon has fewer than 3320 Hit Points, it is instantly slain. If the outsider has above 3320 Hit Points, it takes 7d20 damage." },
+  { name = "Improved Destruction", description = "On Hit: Your target gains a stack of Armor Destruction. (-1 penalty to Armor Class, -1% of its Fortification. 20 Second Duration. Stacks up to 15 times.) This effect may trigger once every second." },
+  { name = "Returning", description = "This missile will return to you." },
+  { name = "Mythic Weapon Boost +2 or +4", description = "+2 or +4 Mythic bonus to Melee, Ranged, and Universal Spell Power.(This is a rare enchantment that does not show up on all drops of this item.)" },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 2
+damage_dice_bonus = 2
+damage_multiplier = 6.0
+critical_threat_range = 1
+critical_multiplier = 2
+handedness = "Thrown"
+dr_bypass = ["Slash", "Magic"]
+
+[[item]]
+name = "Legendary Duergarcraft Sickle"
+page = "https://ddowiki.com/page/Item:Legendary_Duergarcraft_Sickle"
+read = "2026-09-29"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Sickle"
+minimum_level = 35
+enhancement_bonus = 16
+material = "Steel"
+description = "Crafted long ago in Gauntlgrym, these weapons seem to have scattered far and wide."
+drop_location = "Terror of Demogorgon, any end chest, most optional chests"
+accepts_sentience = true
+augment_slots = ["orange", "purple"]
+effects = [
+  { name = "Slashing 7", description = "The edges of this weapon are sharpened, dealing an additional 7d6 slashing damage on each hit." },
+  { name = "Gashing 16", description = "The edges of this weapon are sharpened beyond belief, dealing an additional 16d6 slashing damage on each critical hit." },
+  { name = "Banishing 117", description = "On Hit: 7d6 Bane damage to Outsiders.On Vorpal Hit: If an outsider struck by this weapon has fewer than 3320 Hit Points, it is instantly slain. If the outsider has above 3320 Hit Points, it takes 7d20 damage." },
+  { name = "Improved Destruction", description = "On Hit: Your target gains a stack of Armor Destruction. (-1 penalty to Armor Class, -1% of its Fortification. 20 Second Duration. Stacks up to 15 times.) This effect may trigger once every second." },
+  { name = "Mythic Weapon Boost +2 or +4", description = "+2 or +4 Mythic bonus to Melee, Ranged, and Universal Spell Power.(This is a rare enchantment that does not show up on all drops of this item.)" },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 6
+damage_dice_bonus = 2
+damage_multiplier = 6.0
+critical_threat_range = 1
+critical_multiplier = 2
+handedness = "One-handed"
+dr_bypass = ["Slash", "Magic"]
+
+[[item]]
+name = "Legendary Duergarcraft Throwing Axe"
+page = "https://ddowiki.com/page/Item:Legendary_Duergarcraft_Throwing_Axe"
+read = "2026-09-29"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Throwing Axe"
+minimum_level = 35
+enhancement_bonus = 16
+material = "Steel"
+description = "Crafted long ago in Gauntlgrym, these weapons seem to have scattered far and wide."
+drop_location = "Terror of Demogorgon, any end chest, most optional chests"
+accepts_sentience = true
+augment_slots = ["orange", "purple"]
+effects = [
+  { name = "Slashing 7", description = "The edges of this weapon are sharpened, dealing an additional 7d6 slashing damage on each hit." },
+  { name = "Gashing 16", description = "The edges of this weapon are sharpened beyond belief, dealing an additional 16d6 slashing damage on each critical hit." },
+  { name = "Banishing 117", description = "On Hit: 7d6 Bane damage to Outsiders.On Vorpal Hit: If an outsider struck by this weapon has fewer than 3320 Hit Points, it is instantly slain. If the outsider has above 3320 Hit Points, it takes 7d20 damage." },
+  { name = "Improved Destruction", description = "On Hit: Your target gains a stack of Armor Destruction. (-1 penalty to Armor Class, -1% of its Fortification. 20 Second Duration. Stacks up to 15 times.) This effect may trigger once every second." },
+  { name = "Returning", description = "This missile will return to you." },
+  { name = "Mythic Weapon Boost +2 or +4", description = "+2 or +4 Mythic bonus to Melee, Ranged, and Universal Spell Power.(This is a rare enchantment that does not show up on all drops of this item.)" },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 6
+damage_dice_bonus = 2
+damage_multiplier = 6.0
+critical_threat_range = 1
+critical_multiplier = 3
+handedness = "Thrown"
+dr_bypass = ["Slash", "Magic"]
+
+[[item]]
+name = "Legendary Duergarcraft Throwing Dagger"
+page = "https://ddowiki.com/page/Item:Legendary_Duergarcraft_Throwing_Dagger"
+read = "2026-09-29"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Throwing Dagger"
+minimum_level = 35
+enhancement_bonus = 16
+material = "Steel"
+description = "Crafted long ago in Gauntlgrym, these weapons seem to have scattered far and wide."
+drop_location = "Terror of Demogorgon, any end chest, most optional chests"
+accepts_sentience = true
+augment_slots = ["orange", "purple"]
+effects = [
+  { name = "Piercing 7", description = "The edges of this weapon have serrated edges, dealing an additional 7d6 piercing damage on each hit." },
+  { name = "Stabbing 16", description = "The edges of this weapon are serrated, dealing an additional 16d6 piercing damage on each critical hit." },
+  { name = "Banishing 117", description = "On Hit: 7d6 Bane damage to Outsiders.On Vorpal Hit: If an outsider struck by this weapon has fewer than 3320 Hit Points, it is instantly slain. If the outsider has above 3320 Hit Points, it takes 7d20 damage." },
+  { name = "Improved Destruction", description = "On Hit: Your target gains a stack of Armor Destruction. (-1 penalty to Armor Class, -1% of its Fortification. 20 Second Duration. Stacks up to 15 times.) This effect may trigger once every second." },
+  { name = "Returning", description = "This missile will return to you." },
+  { name = "Mythic Weapon Boost +2 or +4", description = "+2 or +4 Mythic bonus to Melee, Ranged, and Universal Spell Power.(This is a rare enchantment that does not show up on all drops of this item.)" },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 4
+damage_dice_bonus = 2
+damage_multiplier = 6.0
+critical_threat_range = 2
+critical_multiplier = 2
+handedness = "Thrown"
+dr_bypass = ["Pierce", "Magic"]
+
+[[item]]
+name = "Legendary Duergarcraft Throwing Hammer"
+page = "https://ddowiki.com/page/Item:Legendary_Duergarcraft_Throwing_Hammer"
+read = "2026-09-29"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Throwing Hammer"
+minimum_level = 35
+enhancement_bonus = 16
+material = "Steel"
+description = "Crafted long ago in Gauntlgrym, these weapons seem to have scattered far and wide."
+drop_location = "Terror of Demogorgon, any end chest, most optional chests"
+accepts_sentience = true
+augment_slots = ["orange", "purple"]
+effects = [
+  { name = "Bludgeoning 7", description = "The edges of this weapon are blunted, dealing an additional 7d6 bludgeon damage on each hit." },
+  { name = "Smashing 16", description = "The edges of this weapon are blunted, dealing an additional 16d6 bludgeoning damage on each critical hit." },
+  { name = "Banishing 117", description = "On Hit: 7d6 Bane damage to Outsiders.On Vorpal Hit: If an outsider struck by this weapon has fewer than 3320 Hit Points, it is instantly slain. If the outsider has above 3320 Hit Points, it takes 7d20 damage." },
+  { name = "Improved Destruction", description = "On Hit: Your target gains a stack of Armor Destruction. (-1 penalty to Armor Class, -1% of its Fortification. 20 Second Duration. Stacks up to 15 times.) This effect may trigger once every second." },
+  { name = "Returning", description = "This missile will return to you." },
+  { name = "Mythic Weapon Boost +2 or +4", description = "+2 or +4 Mythic bonus to Melee, Ranged, and Universal Spell Power.(This is a rare enchantment that does not show up on all drops of this item.)" },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 4
+damage_dice_bonus = 2
+damage_multiplier = 6.0
+critical_threat_range = 1
+critical_multiplier = 2
+handedness = "Thrown"
+dr_bypass = ["Bludgeon", "Magic"]
+
+[[item]]
+name = "Legendary Duergarcraft Warhammer"
+page = "https://ddowiki.com/page/Item:Legendary_Duergarcraft_Warhammer"
+read = "2026-09-29"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Warhammer"
+minimum_level = 35
+enhancement_bonus = 16
+material = "Steel"
+description = "Crafted long ago in Gauntlgrym, these weapons seem to have scattered far and wide."
+drop_location = "Terror of Demogorgon, any end chest, most optional chests"
+accepts_sentience = true
+augment_slots = ["orange", "purple"]
+effects = [
+  { name = "Bludgeoning 7", description = "The edges of this weapon are blunted, dealing an additional 7d6 bludgeon damage on each hit." },
+  { name = "Smashing 16", description = "The edges of this weapon are blunted, dealing an additional 16d6 bludgeoning damage on each critical hit." },
+  { name = "Banishing 117", description = "On Hit: 7d6 Bane damage to Outsiders.On Vorpal Hit: If an outsider struck by this weapon has fewer than 3320 Hit Points, it is instantly slain. If the outsider has above 3320 Hit Points, it takes 7d20 damage." },
+  { name = "Improved Destruction", description = "On Hit: Your target gains a stack of Armor Destruction. (-1 penalty to Armor Class, -1% of its Fortification. 20 Second Duration. Stacks up to 15 times.) This effect may trigger once every second." },
+  { name = "Mythic Weapon Boost +2 or +4", description = "+2 or +4 Mythic bonus to Melee, Ranged, and Universal Spell Power.(This is a rare enchantment that does not show up on all drops of this item.)" },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 8
+damage_dice_bonus = 2
+damage_multiplier = 6.0
+critical_threat_range = 1
+critical_multiplier = 3
+handedness = "One-handed"
+dr_bypass = ["Bludgeon", "Magic"]

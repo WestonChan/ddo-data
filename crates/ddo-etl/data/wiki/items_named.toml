@@ -1,0 +1,972 @@
+[[item]]
+name = "A Garbage Can Lid?"
+page = "https://ddowiki.com/page/Item:A_Garbage_Can_Lid%3F"
+read = "2026-09-30"
+slot = "Off Hand"
+category = "Shield"
+item_type = "Small Shield"
+minimum_level = 15
+enhancement_bonus = 5
+material = "Densewood"
+description = "This is... a garbage can lid. It's dented."
+drop_location = "Scavenger Hunt, End Chest, The Magma Must Flow End Chest"
+quests = [
+  { name = "Scavenger Hunt", loot_type = "chest" },
+  { name = "The Magma Must Flow", loot_type = "chest" },
+]
+augment_slots = ["blue"]
+bonuses = [
+  { stat = "Positive Healing Amplification", bonus_type = "Exceptional", value = 8 },
+]
+effects = [
+  { name = "Impact", description = "Passive: The base critical threat range of this weapon is doubled. This does not stack with Improved Critical feat. Vorpal Strikes by this weapon also bypass all Fortification." },
+  { name = "Bludgeoning 4", description = "The edges of this weapon are blunted, dealing an additional 4d6 bludgeon damage on each hit." },
+  { name = "Shield Bashing +12", description = "+12 Enhancement bonus to Increased chance of Secondary Shield Bash." },
+  { name = "Mythic Weapon Boost +2 or +4 and/or Mythic Shield Boost +2 or +4", description = "+2 or +4 Mythic bonus to Melee, Ranged, and Universal Spell Power.(This is a rare enchantment that does not show up on all drops of this item.)" },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 8
+damage_multiplier = 2.0
+critical_threat_range = 3
+critical_multiplier = 3
+handedness = "Off-hand"
+dr_bypass = ["Bludgeon", "Magic"]
+
+[item.armor]
+armor_type = "Shield"
+arcane_spell_failure = 5
+armor_check_penalty = 0
+shield_bonus = 9
+
+[[item]]
+name = "An Inexplicably Legendary Garbage Can Lid?"
+page = "https://ddowiki.com/page/Item:An_Inexplicably_Legendary_Garbage_Can_Lid%3F"
+read = "2026-09-30"
+slot = "Off Hand"
+category = "Shield"
+item_type = "Small Shield"
+minimum_level = 29
+enhancement_bonus = 15
+material = "Densewood"
+description = "This is... a garbage can lid. It's dented."
+drop_location = "Scavenger Hunt, End Chest, The Magma Must Flow End Chest"
+quests = [
+  { name = "Scavenger Hunt", loot_type = "chest" },
+  { name = "The Magma Must Flow", loot_type = "chest" },
+]
+augment_slots = ["blue"]
+bonuses = [
+  { stat = "Positive Healing Amplification", bonus_type = "Exceptional", value = 15 },
+]
+effects = [
+  { name = "Impact", description = "Passive: The base critical threat range of this weapon is doubled. This does not stack with Improved Critical feat. Vorpal Strikes by this weapon also bypass all Fortification." },
+  { name = "Bludgeoning 6", description = "The edges of this weapon are blunted, dealing an additional 6d6 bludgeon damage on each hit." },
+  { name = "Shield Bashing +20%", description = "+20% Enhancement bonus to your chance of a Secondary Shield Bash. This stacks with bonuses granted by any relevant feats." },
+  { name = "Mythic Weapon Boost +2 or +4 and/or Mythic Shield Boost +2 or +4", description = "+2 or +4 Mythic bonus to Melee, Ranged, and Universal Spell Power.(This is a rare enchantment that does not show up on all drops of this item.)" },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 8
+damage_dice_bonus = 4
+damage_multiplier = 4.8
+critical_threat_range = 3
+critical_multiplier = 3
+handedness = "Off-hand"
+dr_bypass = ["Bludgeon", "Magic"]
+
+[item.armor]
+armor_type = "Shield"
+arcane_spell_failure = 5
+armor_check_penalty = 0
+shield_bonus = 21
+
+[[item]]
+name = "Dark Bargainer's Armor"
+page = "https://ddowiki.com/page/Item:Dark_Bargainer%27s_Armor"
+read = "2026-09-30"
+slot = "Body"
+category = "Armor"
+item_type = "Light"
+minimum_level = 15
+enhancement_bonus = 4
+material = "Spiritcraft Leather"
+race_required = "Dhampir Dark Bargainer"
+description = "This armor was fashionable in your homeland... where ever that was."
+drop_location = "Advance to level 15, End reward"
+bonuses = [
+  { stat = "Physical and Magical Resistance Rating", bonus_type = "Enhancement", value = 15 },
+  { stat = "Armor Class", bonus_type = "Insight", value = 2 },
+  { stat = "Saving Throws", bonus_type = "Insight", value = 2 },
+]
+
+[item.armor]
+armor_type = "Light"
+armor_bonus = 9
+max_dex_bonus = 11
+arcane_spell_failure = 10
+
+[[item]]
+name = "Dark Bargainer's Pactscroll"
+page = "https://ddowiki.com/page/Item:Dark_Bargainer%27s_Pactscroll"
+read = "2026-09-30"
+slot = "Trinket"
+category = "Jewelry"
+minimum_level = 15
+material = "Steel"
+race_required = "Dhampir Dark Bargainer"
+description = "A small scroll case that bears the terms of the deals you've made."
+drop_location = "Advance to level 15, End reward"
+bonuses = [
+  { stat = "Dodge", bonus_type = "Enhancement", value = 6 },
+  { stat = "Hit Points", bonus_type = "Vitality", value = 20 },
+]
+
+[[item]]
+name = "Decorated Belt"
+page = "https://ddowiki.com/page/Item:Decorated_Belt"
+read = "2026-09-30"
+slot = "Waist"
+category = "Clothing"
+minimum_level = 15
+material = "Steel"
+race_required = "Dhampir Dark Bargainer"
+drop_location = "Advance to level 15, End reward"
+bonuses = [
+  { stat = "Concentration", bonus_type = "Competence", value = 14 },
+  { stat = "Charisma", bonus_type = "Insight", value = 2 },
+]
+
+[[item]]
+name = "Echo of Heartcleaver"
+page = "https://ddowiki.com/page/Item:Echo_of_Heartcleaver"
+read = "2026-09-30"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Dwarven Axe"
+minimum_level = 35
+enhancement_bonus = 16
+material = "Steel"
+description = "A powerful axe that echoes with the power of Baphomet's own."
+drop_location = "Terror of the Demon Lords, end chest"
+accepts_sentience = true
+augment_slots = ["orange", "purple"]
+effects = [
+  { name = "Legendary Dust", description = "Your attacks and offensive spells have a chance to reduce enemy Physical Resistance Rating and Positive Healing Amplification." },
+  { name = "Revel in Blood (Slashing)", description = "Your weapon hungers to let blood flow. Your attacks and offensive spells have a high chance to deal very strong Bane damage over time to creatures vulnerable to Bleeding. On weapon crit: 16d6 Slashing Damage." },
+  { name = "Serrated", description = "This weapon's edge is jagged and saw-toothed. When rolling a 19 or 20 on a melee attack, your critical multiplier is increased by +1." },
+  { name = "Baphomet's Tactics", description = "+13 Enhancement bonus to the DC to resist the character's Trip, Improved Trip, Sunder, Improved Sunder, Stunning Blow, and Stunning Fist attempts. In addition, on hit with this weapon, you deal an extra 15d6 Bludgeoning Damage to Bosses and creatures who have been knocked down." },
+  { name = "Mythic Weapon Boost +2 or +4", description = "+2 or +4 Mythic bonus to Melee, Ranged, and Universal Spell Power.(This is a rare enchantment that does not show up on all drops of this item.)" },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 10
+damage_dice_bonus = 3
+damage_multiplier = 6.0
+critical_threat_range = 1
+critical_multiplier = 3
+handedness = "One-handed"
+dr_bypass = ["Slash", "Magic"]
+
+[[item]]
+name = "Echo of the Wand of Orcus"
+page = "https://ddowiki.com/page/Item:Echo_of_the_Wand_of_Orcus"
+read = "2026-09-30"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Club"
+minimum_level = 35
+enhancement_bonus = 16
+material = "Steel"
+description = "A manifestation of Orcus' power. Incomplete, it only holds a fraction of the real one's power, but that's more than enough."
+drop_location = "Terror of the Demon Lords, end chest"
+accepts_sentience = true
+augment_slots = ["orange", "purple"]
+bonuses = [
+  { stat = "Universal Spell Power", bonus_type = "Implement", value = 35 },
+  { stat = "Acid Spell Power", bonus_type = "Equipment", value = 169 },
+  { stat = "Negative Spell Power", bonus_type = "Equipment", value = 169 },
+  { stat = "Poison Spell Power", bonus_type = "Equipment", value = 169 },
+  { stat = "Evil Spell Power", bonus_type = "Equipment", value = 169 },
+  { stat = "Negative Spell Power", bonus_type = "Insight", value = 84 },
+  { stat = "Poison Spell Power", bonus_type = "Insight", value = 84 },
+]
+effects = [
+  { name = "Legendary Negation", description = "Attacks and offensive spells have a chance to inflict 1d3 Negative Levels. Cooldown: 30 seconds." },
+  { name = "Orcus' Magic: Nightmares", description = "The tremendous power of the Wand sits within this Echo. When you hit an enemy with an offensive spell, there is a small chance this power rises to the surface. When it does, if your target has fewer than 3,420 Hit Points, a burst of pure terror emanates from this weapon, snuffing out its life as if it were the subject of a Phantasmal Killer spell if it fails a DC 122 Will saving throw. If your target has above 3,420 Hit Points, they take 15d20 Force damage." },
+  { name = "Overwhelming Despair", description = "The moon empowers your Necromancy spells - causing them to bring Terror to your enemies. Your offensive Necromancy spells automatically apply Crushing Despair with no save." },
+  { name = "Mythic Weapon Boost +2 or +4", description = "+2 or +4 Mythic bonus to Melee, Ranged, and Universal Spell Power.(This is a rare enchantment that does not show up on all drops of this item.)" },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 4
+damage_dice_bonus = 3
+damage_multiplier = 6.0
+critical_threat_range = 2
+critical_multiplier = 2
+handedness = "One-handed"
+dr_bypass = ["Pierce", "Magic"]
+
+[[item]]
+name = "Enhanced Guardian of Stormreach Shield (angular)"
+page = "https://ddowiki.com/page/Item:Enhanced_Guardian_of_Stormreach_Shield_%28angular%29"
+read = "2026-09-30"
+slot = "Off Hand"
+category = "Shield"
+item_type = "Large Shield"
+minimum_level = 10
+enhancement_bonus = 3
+material = "Steel"
+description = "Guardian of Stormreach use this sun and water motif shield as a symbol of the city's Harbor. This shield now has the powerful treasure effects of the Battered Guardian Shield and the impressive appearance of a new Guardian of Stormreach Shield."
+drop_location = "Stone of Change, Battered Guardian Shield (angular) + Guardian of Stormreach Shield (angular)"
+bonuses = [
+  { stat = "Saving Throws", bonus_type = "Resistance", value = 2 },
+]
+effects = [
+  { name = "Life Shield", description = "Every time you are hit while wearing a Life Shield item there is a 10% chance you gain 15 temporary hitpoints that last for up to 1 minute." },
+  { name = "Immunity to Fear", description = "The wearer of this item is immune to all fear effects." },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 6
+critical_threat_range = 1
+critical_multiplier = 2
+handedness = "Off-hand"
+dr_bypass = ["Bludgeon", "Magic"]
+
+[item.armor]
+armor_type = "Shield"
+arcane_spell_failure = 15
+armor_check_penalty = -1
+shield_bonus = 6
+
+[[item]]
+name = "Enhanced Guardian of Stormreach Shield (round)"
+page = "https://ddowiki.com/page/Item:Enhanced_Guardian_of_Stormreach_Shield_%28round%29"
+read = "2026-09-30"
+slot = "Off Hand"
+category = "Shield"
+item_type = "Large Shield"
+minimum_level = 10
+enhancement_bonus = 3
+material = "Steel"
+description = "Guardian of Stormreach use this sun and water motif shield as a symbol of the city's Harbor. This shield now has the powerful treasure effects of the Battered Guardian Shield and the impressive appearance of a new Guardian of Stormreach Shield."
+drop_location = "Stone of Change, Battered Guardian Shield (round) + Guardian of Stormreach Shield (round)"
+bonuses = [
+  { stat = "Saving Throws", bonus_type = "Resistance", value = 2 },
+]
+effects = [
+  { name = "Life Shield", description = "Every time you are hit while wearing a Life Shield item there is a 10% chance you gain 15 temporary hitpoints that last for up to 1 minute." },
+  { name = "Immunity to Fear", description = "The wearer of this item is immune to all fear effects." },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 6
+critical_threat_range = 1
+critical_multiplier = 2
+handedness = "Off-hand"
+dr_bypass = ["Bludgeon", "Magic"]
+
+[item.armor]
+armor_type = "Shield"
+arcane_spell_failure = 15
+armor_check_penalty = -1
+shield_bonus = 6
+
+[[item]]
+name = "Enhanced Phiarlan Veil Shield (angular)"
+page = "https://ddowiki.com/page/Item:Enhanced_Phiarlan_Veil_Shield_%28angular%29"
+read = "2026-09-30"
+slot = "Off Hand"
+category = "Shield"
+item_type = "Large Shield"
+minimum_level = 4
+enhancement_bonus = 3
+material = "Steel"
+description = "This shield has a mysterious vine motif that draws one in and hints at House Phiarlan's secretive ways. This shield now has the powerful treasure effects of the Battered Phiarlan Shield and the impressive appearance of a new Phiarlan Veil Shield."
+drop_location = "Stone of Change, Battered Phiarlan Shield (angular) + Phiarlan Veil Shield (angular)"
+effects = [
+  { name = "Acid Guard +2", description = "Chance to deal 2d8 Acid damage when hit." },
+  { name = "Absorb Enchantment Spells - 5 Charges (Recharged/Day: 5)", description = "This effect absorbs most enchantment-based spells. Only a few such spells can be absorbed before the item ceases to function and must have time to dissipate the absorbed energy." },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 6
+critical_threat_range = 1
+critical_multiplier = 2
+handedness = "Off-hand"
+dr_bypass = ["Bludgeon", "Magic"]
+
+[item.armor]
+armor_type = "Shield"
+arcane_spell_failure = 15
+armor_check_penalty = -1
+shield_bonus = 6
+
+[[item]]
+name = "Enhanced Phiarlan Veil Shield (round)"
+page = "https://ddowiki.com/page/Item:Enhanced_Phiarlan_Veil_Shield_%28round%29"
+read = "2026-09-30"
+slot = "Off Hand"
+category = "Shield"
+item_type = "Large Shield"
+minimum_level = 4
+enhancement_bonus = 3
+material = "Steel"
+description = "This shield has a mysterious vine motif that draws one in and hints at House Phiarlan's secretive ways. This shield now has the powerful treasure effects of the Battered Phiarlan Shield and the impressive appearance of a new Phiarlan Veil Shield."
+drop_location = "Stone of Change, Battered Phiarlan Shield (round) + Phiarlan Veil Shield (round)"
+effects = [
+  { name = "Acid Guard +2", description = "Chance to deal 2d8 Acid damage when hit." },
+  { name = "Absorb Enchantment Spells - 5 Charges (Recharged/Day: 5)", description = "This effect absorbs most enchantment-based spells. Only a few such spells can be absorbed before the item ceases to function and must have time to dissipate the absorbed energy." },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 6
+critical_threat_range = 1
+critical_multiplier = 2
+handedness = "Off-hand"
+dr_bypass = ["Bludgeon", "Magic"]
+
+[item.armor]
+armor_type = "Shield"
+arcane_spell_failure = 15
+armor_check_penalty = -1
+shield_bonus = 6
+
+[[item]]
+name = "Enhanced Stormreach Marketplace Shield (angular)"
+page = "https://ddowiki.com/page/Item:Enhanced_Stormreach_Marketplace_Shield_%28angular%29"
+read = "2026-09-30"
+slot = "Off Hand"
+category = "Shield"
+item_type = "Large Shield"
+minimum_level = 1
+enhancement_bonus = 3
+material = "Steel"
+description = "This shield depicts the market tent, center of Stormreach commerce and trade. This shield now has the powerful treasure effects of the Battered Markeplace Shield and the impressive appearance of a new Stoormreach Marketplace Shield."
+drop_location = "Stone of Change, Battered Marketplace Shield (angular) + Stormreach Marketplace Shield (angular)"
+bonuses = [
+  { stat = "Haggle", bonus_type = "Enhancement", value = 3 },
+]
+effects = [
+  { name = "Regeneration", description = "Causes the wearer to regenerate 1 hit point a minute using positive energy." },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 6
+critical_threat_range = 1
+critical_multiplier = 2
+handedness = "Off-hand"
+dr_bypass = ["Bludgeon", "Magic"]
+
+[item.armor]
+armor_type = "Shield"
+arcane_spell_failure = 15
+armor_check_penalty = -1
+shield_bonus = 6
+
+[[item]]
+name = "Enhanced Stormreach Marketplace Shield (round)"
+page = "https://ddowiki.com/page/Item:Enhanced_Stormreach_Marketplace_Shield_%28round%29"
+read = "2026-09-30"
+slot = "Off Hand"
+category = "Shield"
+item_type = "Large Shield"
+minimum_level = 1
+enhancement_bonus = 3
+material = "Steel"
+description = "This shield depicts the market tent, center of Stormreach commerce and trade. This shield now has the powerful treasure effects of the Battered Markeplace Shield and the impressive appearance of a new Stoormreach Marketplace Shield."
+drop_location = "Stone of Change, Battered Marketplace Shield (round) + Stormreach Marketplace Shield (round)"
+bonuses = [
+  { stat = "Haggle", bonus_type = "Enhancement", value = 3 },
+]
+effects = [
+  { name = "Regeneration", description = "Causes the wearer to regenerate 1 hit point a minute using positive energy." },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 6
+critical_threat_range = 1
+critical_multiplier = 2
+handedness = "Off-hand"
+dr_bypass = ["Bludgeon", "Magic"]
+
+[item.armor]
+armor_type = "Shield"
+arcane_spell_failure = 15
+armor_check_penalty = -1
+shield_bonus = 6
+
+[[item]]
+name = "Legendary Pair of Mind Flayer Nickels"
+page = "https://ddowiki.com/page/Item:Legendary_Pair_of_Mind_Flayer_Nickels"
+read = "2026-09-30"
+slot = "Trinket"
+category = "Jewelry"
+minimum_level = 32
+material = "Flesh"
+description = "If I had a nickel for every time..."
+drop_location = "Fred's First Date, end chest"
+quests = [
+  { name = "Fred's First Date", loot_type = "chest" },
+]
+set = "Legendary Date With a Mind Flayer"
+augment_slots = ["green", "colorless"]
+bonuses = [
+  { stat = "Doublestrike", bonus_type = "Enhancement", value = 16 },
+  { stat = "Doubleshot", bonus_type = "Enhancement", value = 9 },
+  { stat = "Search", bonus_type = "Competence", value = 21 },
+  { stat = "Spot", bonus_type = "Competence", value = 21 },
+]
+effects = [
+  { name = "Mythic Trinket Boost +1 or +3", description = "+1 or +3 Mythic bonus to Melee, Ranged, and Universal Spell Power.(This is a rare enchantment that does not show up on all drops of this item.)" },
+]
+
+[[item]]
+name = "Lousy Chain Docent?"
+page = "https://ddowiki.com/page/Item:Lousy_Chain_Docent%3F"
+read = "2026-09-30"
+slot = "Body"
+category = "Armor"
+item_type = "Docent"
+minimum_level = 1
+material = "Gem"
+race_required = "Warforged"
+description = "You participated in a Live Event, but all you got was this lousy chain docent."
+drop_location = "Special event items, New Theater Event for wrong answer"
+
+[item.armor]
+armor_type = "Docent"
+
+[[item]]
+name = "Pair of Mind Flayer Nickels"
+page = "https://ddowiki.com/page/Item:Pair_of_Mind_Flayer_Nickels"
+read = "2026-09-30"
+slot = "Trinket"
+category = "Jewelry"
+minimum_level = 18
+material = "Flesh"
+description = "If I had a nickel for every time..."
+drop_location = "Fred's First Date, end chest"
+quests = [
+  { name = "Fred's First Date", loot_type = "chest" },
+]
+set = "Date With a Mind Flayer"
+augment_slots = ["blue"]
+bonuses = [
+  { stat = "Doublestrike", bonus_type = "Enhancement", value = 10 },
+  { stat = "Doubleshot", bonus_type = "Enhancement", value = 6 },
+  { stat = "Search", bonus_type = "Competence", value = 17 },
+  { stat = "Spot", bonus_type = "Competence", value = 17 },
+]
+effects = [
+  { name = "Mythic Trinket Boost +1 or +3", description = "+1 or +3 Mythic bonus to Melee, Ranged, and Universal Spell Power.(This is a rare enchantment that does not show up on all drops of this item.)" },
+]
+
+[[item]]
+name = "Robe of Armor +1"
+page = "https://ddowiki.com/page/Item:Robe_of_Armor_%2B1"
+read = "2026-09-30"
+slot = "Body"
+category = "Armor"
+item_type = "Cloth"
+minimum_level = 1
+material = "Cloth"
+description = "This high quality robe is enchanted to protect the wearer like light armor."
+drop_location = "DDO Store"
+bonuses = [
+  { stat = "Armor Class", bonus_type = "Armor", value = 1 },
+]
+
+[item.armor]
+armor_type = "Cloth"
+armor_bonus = 1
+
+[[item]]
+name = "The Butcher's Mind"
+page = "https://ddowiki.com/page/Item:The_Butcher%27s_Mind"
+read = "2026-09-30"
+slot = "Off Hand"
+category = "Weapon"
+item_type = "Orb"
+minimum_level = 35
+material = "Wood"
+description = "This spiked ball from Yeenoghu's flail takes his rage, and forces it back out through magic."
+drop_location = "Terror of the Demon Lords, end chest"
+augment_slots = ["crafting: nearly complete: spell focus (legendary)", "orange", "purple"]
+bonuses = [
+  { stat = "Negative Spell Power", bonus_type = "Equipment", value = 169 },
+  { stat = "Force Spell Power", bonus_type = "Equipment", value = 169 },
+  { stat = "Poison Spell Power", bonus_type = "Equipment", value = 169 },
+  { stat = "Negative Spell Lore", bonus_type = "Equipment", value = 25 },
+  { stat = "Force Spell Lore", bonus_type = "Equipment", value = 25 },
+  { stat = "Poison Spell Lore", bonus_type = "Equipment", value = 25 },
+]
+effects = [
+  { name = "+16 Orb Bonus", description = "While this orb is equipped and you are actively blocking, you gain a +16 orb bonus to all saving throws, as well as Acid, Cold, Fire, Electric, and Sonic resistances." },
+  { name = "Legendary Ash", description = "Your attacks and offensive spells have a chance to reduce enemy Magical Resistance Rating and Universal Spell Power." },
+  { name = "Quality Kinetic Intensity +7%", description = "+7% Quality bonus to critical damage with Force and Physical spells." },
+  { name = "Mythic Weapon Boost +2 or +4 and/or Mythic Shield Boost +2 or +4", description = "+2 or +4 Mythic bonus to Melee, Ranged, and Universal Spell Power.(This is a rare enchantment that does not show up on all drops of this item.)" },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 4
+critical_threat_range = 1
+critical_multiplier = 2
+handedness = "Off-hand"
+
+[[item]]
+name = "The Butcher's Mouth"
+page = "https://ddowiki.com/page/Item:The_Butcher%27s_Mouth"
+read = "2026-09-30"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Morningstar"
+minimum_level = 35
+enhancement_bonus = 16
+material = "Steel"
+description = "One of the heads of Yeenoghu's mighty flail, attached to a sturdy haft. It carries its former owner's desire for violence."
+drop_location = "Terror of the Demon Lords, end chest"
+accepts_sentience = true
+augment_slots = ["orange", "purple"]
+effects = [
+  { name = "Legendary Vacuum", description = "Your Attacks and offensive spells have a chance to inflict multiple stacks of Vulnerable." },
+  { name = "Revel in Blood (Piercing)", description = "Your weapon hungers to let blood flow. Your attacks and offensive spells have a high chance to deal very strong Bane damage over time to creatures vulnerable to Bleeding. On weapon crit: 16d6 Piercing Damage." },
+  { name = "Paralyzing 122", description = "Any creature struck by this weapon must succeed on a DC 122 Will save or be paralyzed. The target may attempt a new save to end the effect every several seconds; otherwise the paralysis lasts for 1 minute." },
+  { name = "Yeenoghu's Butchery", description = "+18% Enhancement bonus to Doublestrike chance. In addition, on hit with this weapon, you deal an extra 15d6 Piercing Damage to Bosses and creatures who have been Paralyzed." },
+  { name = "Mythic Weapon Boost +2 or +4", description = "+2 or +4 Mythic bonus to Melee, Ranged, and Universal Spell Power.(This is a rare enchantment that does not show up on all drops of this item.)" },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 8
+damage_dice_bonus = 3
+damage_multiplier = 6.0
+critical_threat_range = 1
+critical_multiplier = 2
+handedness = "One-handed"
+dr_bypass = ["Pierce", "Bludgeon", "Magic"]
+
+[[item]]
+name = "The Butcher's Teeth"
+page = "https://ddowiki.com/page/Item:The_Butcher%27s_Teeth"
+read = "2026-09-30"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Heavy Mace"
+minimum_level = 35
+enhancement_bonus = 16
+material = "Steel"
+description = "One of the heads of Yeenoghu's flail, attached to a sturdy haft. It carries its former owner's desire for violence."
+drop_location = "Terror of the Demon Lords, end chest"
+accepts_sentience = true
+augment_slots = ["orange", "purple"]
+effects = [
+  { name = "Legendary Vacuum", description = "Your Attacks and offensive spells have a chance to inflict multiple stacks of Vulnerable." },
+  { name = "Revel in Blood (Piercing)", description = "Your weapon hungers to let blood flow. Your attacks and offensive spells have a high chance to deal very strong Bane damage over time to creatures vulnerable to Bleeding. On weapon crit: 16d6 Piercing Damage." },
+  { name = "Paralyzing 122", description = "Any creature struck by this weapon must succeed on a DC 122 Will save or be paralyzed. The target may attempt a new save to end the effect every several seconds; otherwise the paralysis lasts for 1 minute." },
+  { name = "Yeenoghu's Butchery", description = "+18% Enhancement bonus to Doublestrike chance. In addition, on hit with this weapon, you deal an extra 15d6 Piercing Damage to Bosses and creatures who have been Paralyzed." },
+  { name = "Mythic Weapon Boost +2 or +4", description = "+2 or +4 Mythic bonus to Melee, Ranged, and Universal Spell Power.(This is a rare enchantment that does not show up on all drops of this item.)" },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 8
+damage_dice_bonus = 3
+damage_multiplier = 6.0
+critical_threat_range = 1
+critical_multiplier = 2
+handedness = "One-handed"
+dr_bypass = ["Pierce", "Bludgeon", "Magic"]
+
+[[item]]
+name = "The Butcher's Tongue"
+page = "https://ddowiki.com/page/Item:The_Butcher%27s_Tongue"
+read = "2026-09-30"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Light Mace"
+minimum_level = 35
+enhancement_bonus = 16
+material = "Steel"
+description = "One of the heads of Yeenoghu's mighty flail, attached to a sturdy haft. It carries its former owner's desire for violence."
+drop_location = "Terror of the Demon Lords, end chest"
+accepts_sentience = true
+augment_slots = ["orange", "purple"]
+effects = [
+  { name = "Legendary Vacuum", description = "Your Attacks and offensive spells have a chance to inflict multiple stacks of Vulnerable." },
+  { name = "Revel in Blood (Piercing)", description = "Your weapon hungers to let blood flow. Your attacks and offensive spells have a high chance to deal very strong Bane damage over time to creatures vulnerable to Bleeding. On weapon crit: 16d6 Piercing Damage." },
+  { name = "Paralyzing 122", description = "Any creature struck by this weapon must succeed on a DC 122 Will save or be paralyzed. The target may attempt a new save to end the effect every several seconds; otherwise the paralysis lasts for 1 minute." },
+  { name = "Yeenoghu's Butchery", description = "+18% Enhancement bonus to Doublestrike chance. In addition, on hit with this weapon, you deal an extra 15d6 Piercing Damage to Bosses and creatures who have been Paralyzed." },
+  { name = "Mythic Weapon Boost +2 or +4", description = "+2 or +4 Mythic bonus to Melee, Ranged, and Universal Spell Power.(This is a rare enchantment that does not show up on all drops of this item.)" },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 6
+damage_dice_bonus = 3
+damage_multiplier = 6.0
+critical_threat_range = 1
+critical_multiplier = 2
+handedness = "One-handed"
+dr_bypass = ["Pierce", "Bludgeon", "Magic"]
+
+[[item]]
+name = "The Deep Father's Fang"
+page = "https://ddowiki.com/page/Item:The_Deep_Father%27s_Fang"
+read = "2026-09-30"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Dagger"
+minimum_level = 35
+enhancement_bonus = 16
+material = "Steel"
+description = "A tooth from Demogorgon himself."
+drop_location = "Terror of the Demon Lords, end chest"
+accepts_sentience = true
+augment_slots = ["orange", "purple"]
+effects = [
+  { name = "Legendary Ash", description = "Your attacks and offensive spells have a chance to reduce enemy Magical Resistance Rating and Universal Spell Power." },
+  { name = "Revel in Blood (Piercing)", description = "Your weapon hungers to let blood flow. Your attacks and offensive spells have a high chance to deal very strong Bane damage over time to creatures vulnerable to Bleeding. On weapon crit: 16d6 Piercing Damage." },
+  { name = "Serrated", description = "This weapon's edge is jagged and saw-toothed. When rolling a 19 or 20 on a melee attack, your critical multiplier is increased by +1." },
+  { name = "Murderous Point", description = "On hit: 16d6 Piercing Damage. This item is considered Metalline, bypassing all kinds of material damage resistance." },
+  { name = "Mythic Weapon Boost +2 or +4", description = "+2 or +4 Mythic bonus to Melee, Ranged, and Universal Spell Power.(This is a rare enchantment that does not show up on all drops of this item.)" },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 4
+damage_dice_bonus = 3
+damage_multiplier = 6.0
+critical_threat_range = 2
+critical_multiplier = 2
+handedness = "One-handed"
+dr_bypass = ["Pierce", "Silver", "Adamantine", "Mithral", "Cold", "Magic", "Byeshk"]
+
+[[item]]
+name = "The Diadem of Rot"
+page = "https://ddowiki.com/page/Item:The_Diadem_of_Rot"
+read = "2026-09-30"
+slot = "Head"
+category = "Clothing"
+minimum_level = 35
+material = "Flesh"
+description = "Flailing remnants of Zuggtmoy's mark on the world as she retreats."
+drop_location = "Terror of the Demon Lords, end chest"
+augment_slots = ["crafting: nearly complete: ability score (legendary)", "green", "yellow", "sun"]
+bonuses = [
+  { stat = "Hit Points", bonus_type = "Enhancement", value = 61 },
+  { stat = "Armor Class", bonus_type = "Natural Armor", value = 16 },
+]
+effects = [
+  { name = "Lifeblood of the Undead Prince", description = "This artifact displays incredible regenerative abilities. You gain a +65 Competence Bonus to Positive Healing Amplification, a +65 Enhancement Bonus to Repair Healing Amplification and +65 Profane Bonus to Negative Healing Amplification." },
+  { name = "Legendary Demonic Curse", description = "Each time you are hit in melee combat there is a chance that your attacker will be Cursed." },
+  { name = "Mythic Head Boost +1 or +3", description = "+1 or +3 Mythic bonus to Physical and Magical Resistance Ratings.(This is a rare enchantment that does not show up on all drops of this item.)" },
+]
+
+[[item]]
+name = "The Faceless Lord's Reach"
+page = "https://ddowiki.com/page/Item:The_Faceless_Lord%27s_Reach"
+read = "2026-09-30"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Longbow"
+minimum_level = 35
+enhancement_bonus = 16
+material = "Steel"
+description = "Juiblex's power continues to manifest in his absence."
+drop_location = "Terror of the Demon Lords, end chest"
+accepts_sentience = true
+augment_slots = ["orange", "purple"]
+effects = [
+  { name = "Legendary Slime", description = "Attacks and offensive spells reduce enemy PRR and MRR by 10 each. This debuff does not stack, but refreshes on each hit." },
+  { name = "Revel in Blood (Piercing)", description = "Your weapon hungers to let blood flow. Your attacks and offensive spells have a high chance to deal very strong Bane damage over time to creatures vulnerable to Bleeding. On weapon crit: 16d6 Piercing Damage." },
+  { name = "Elasticity", description = "This bow is strung with special fibers that cause it to occasionally launch arrows with shocking force. When rolling a 19 or 20 on a ranged attack, your critical multiplier is increased by +1." },
+  { name = "Disintegrate 7", description = "Strikes with this weapon have a small chance to call forth a strike of entropic force, dealing 7d20+72 untyped damage." },
+  { name = "Mythic Weapon Boost +2 or +4", description = "+2 or +4 Mythic bonus to Melee, Ranged, and Universal Spell Power.(This is a rare enchantment that does not show up on all drops of this item.)" },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 8
+damage_dice_bonus = 3
+damage_multiplier = 6.0
+critical_threat_range = 1
+critical_multiplier = 3
+handedness = "Two-handed"
+dr_bypass = ["Pierce", "Magic"]
+
+[[item]]
+name = "The Fetid Prince's Fury"
+page = "https://ddowiki.com/page/Item:The_Fetid_Prince%27s_Fury"
+read = "2026-09-30"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Maul"
+minimum_level = 35
+enhancement_bonus = 16
+material = "Steel"
+description = "Juiblex's power continues to manifest in his absence."
+drop_location = "Terror of the Demon Lords, end chest"
+accepts_sentience = true
+augment_slots = ["orange", "purple"]
+effects = [
+  { name = "Legendary Slime", description = "Attacks and offensive spells reduce enemy PRR and MRR by 10 each. This debuff does not stack, but refreshes on each hit." },
+  { name = "Revel in Blood (Bludgeoning)", description = "Your weapon hungers to let blood flow. Your attacks and offensive spells have a high chance to deal very strong Bane damage over time to creatures vulnerable to Bleeding. On weapon crit: 16d6 Bludgeoning Damage." },
+  { name = "Blunt Trauma", description = "This weapon is incredibly dense and delivers especially powerful blows. When rolling a 19 or 20 on a melee attack, your critical multiplier is increased by +1." },
+  { name = "Disintegrate 7", description = "Strikes with this weapon have a small chance to call forth a strike of entropic force, dealing 7d20+72 untyped damage." },
+  { name = "Mythic Weapon Boost +2 or +4", description = "+2 or +4 Mythic bonus to Melee, Ranged, and Universal Spell Power.(This is a rare enchantment that does not show up on all drops of this item.)" },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 10
+damage_dice_bonus = 6
+damage_multiplier = 6.0
+critical_threat_range = 1
+critical_multiplier = 3
+handedness = "Two-handed"
+dr_bypass = ["Bludgeon", "Magic"]
+
+[[item]]
+name = "The Prince of Demons"
+page = "https://ddowiki.com/page/Item:The_Prince_of_Demons"
+read = "2026-09-30"
+slot = "Body"
+category = "Armor"
+item_type = "Medium"
+minimum_level = 35
+enhancement_bonus = 16
+material = "Leather"
+drop_location = "Terror of the Demon Lords, end chest"
+augment_slots = ["crafting: nearly complete: ability score (legendary)", "green", "colorless", "sun"]
+bonuses = [
+  { stat = "Fortification Bypass", bonus_type = "Legendary", value = 6 },
+  { stat = "Seeker", bonus_type = "Enhancement", value = 15 },
+  { stat = "Well Rounded", bonus_type = "Profane", value = 3 },
+]
+effects = [
+  { name = "Legendary Conditioning +10%", description = "You have a +10% Legendary bonus to Maximum Hit Points." },
+  { name = "Mythic Armor Boost +2 or +4", description = "+2 or +4 Mythic bonus to Physical and Magical Resistance Ratings.(This is a rare enchantment that does not show up on all drops of this item.)" },
+]
+
+[item.armor]
+armor_type = "Medium"
+armor_bonus = 55
+max_dex_bonus = 10
+arcane_spell_failure = 25
+armor_check_penalty = -1
+
+[[item]]
+name = "The Queen of Rot"
+page = "https://ddowiki.com/page/Item:The_Queen_of_Rot"
+read = "2026-09-30"
+slot = "Back"
+category = "Clothing"
+minimum_level = 35
+material = "Flesh"
+description = "Flailing remnants of Zuggtmoy's mark on the world as she retreats."
+drop_location = "Terror of the Demon Lords, end chest"
+augment_slots = ["crafting: nearly complete: insightful ability score (legendary)", "green", "yellow", "sun"]
+bonuses = [
+  { stat = "Physical and Magical Resistance Rating", bonus_type = "Enhancement", value = 41 },
+  { stat = "Saving Throws", bonus_type = "Resistance", value = 13 },
+  { stat = "Fortification", bonus_type = "Insight", value = 84 },
+]
+effects = [
+  { name = "Freedom of Movement", description = "This item grants its wearer the ability to move and attack normally while under the influence of magic that impedes movement, such as paralysis, solid fog, slow and web." },
+]
+
+[[item]]
+name = "The Shadow Lord's Arcana"
+page = "https://ddowiki.com/page/Item:The_Shadow_Lord%27s_Arcana"
+read = "2026-09-30"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Club"
+minimum_level = 35
+enhancement_bonus = 16
+material = "Steel"
+description = "A sceptre oft used in secret by Graz'zt."
+drop_location = "Terror of the Demon Lords, end chest"
+accepts_sentience = true
+augment_slots = ["crafting: nearly complete: spell focus (legendary)", "orange", "purple"]
+bonuses = [
+  { stat = "Universal Spell Power", bonus_type = "Implement", value = 35 },
+  { stat = "Conjuration Spell Focus", bonus_type = "Equipment", value = 14 },
+]
+effects = [
+  { name = "Legendary Negation", description = "Attacks and offensive spells have a chance to inflict 1d3 Negative Levels. Cooldown: 30 seconds." },
+  { name = "Graz'zt's Magic: Trap the Soul", description = "This weapon stores the innate magic of the Dark Prince. When you hit an enemy with an offensive spell, this power occasionally comes to the surface, sucking out the life force of an enemy with Hit Points less than 3,420 and imprisoning the essence of their body and soul in a gem if they fail a DC 122 Will saving throw." },
+  { name = "Mythic Weapon Boost +2 or +4", description = "+2 or +4 Mythic bonus to Melee, Ranged, and Universal Spell Power.(This is a rare enchantment that does not show up on all drops of this item.)" },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 6
+damage_dice_bonus = 3
+damage_multiplier = 6.0
+critical_threat_range = 1
+critical_multiplier = 2
+handedness = "One-handed"
+dr_bypass = ["Bludgeon", "Magic"]
+
+[[item]]
+name = "The Sixth Toe of the Shadow King"
+page = "https://ddowiki.com/page/Item:The_Sixth_Toe_of_the_Shadow_King"
+read = "2026-09-30"
+slot = "Trinket"
+category = "Jewelry"
+minimum_level = 35
+material = "Leather"
+description = "The toe of Graz'zt. A gift, really. He wanted you to have it. It's unclear if this makes things better or worse."
+drop_location = "Terror of the Demon Lords, end chest"
+augment_slots = ["crafting: nearly complete: insightful ability score (legendary)", "green", "yellow", "sun"]
+bonuses = [
+  { stat = "Concealment", bonus_type = "Enhancement", value = 40 },
+  { stat = "Enchantment Spell Focus", bonus_type = "Quality", value = 3 },
+]
+effects = [
+  { name = "Shielded by Moonlight", description = "Being struck in melee has a small chance to return some lost Hitpoints and Spellpoints to you. Offensive spells have a chance to grant 100 temporary spellpoints. This has a one minute cooldown." },
+  { name = "Legendary Demonic Shield", description = "Each time you are hit in melee combat there is a chance that a shield of demonic energy will grant you a +240 Profane bonus to temporary hit points." },
+  { name = "Mythic Trinket Boost +1 or +3", description = "+1 or +3 Mythic bonus to Melee, Ranged, and Universal Spell Power.(This is a rare enchantment that does not show up on all drops of this item.)" },
+]
+
+[[item]]
+name = "The Skull of the Horned King"
+page = "https://ddowiki.com/page/Item:The_Skull_of_the_Horned_King"
+read = "2026-09-30"
+slot = "Head"
+category = "Clothing"
+minimum_level = 35
+material = "Flesh"
+description = "The skull of Baphomet, taken as his form faded away. He may regenerate in the Abyss, but this will be a lasting reminder of his defeat."
+drop_location = "Terror of the Demon Lords, end chest"
+augment_slots = ["crafting: nearly complete: ability score (legendary)", "green", "yellow", "sun"]
+bonuses = [
+  { stat = "Fortification Bypass", bonus_type = "Enhancement", value = 25 },
+  { stat = "Doublestrike", bonus_type = "Enhancement", value = 18 },
+]
+effects = [
+  { name = "Relentless Fury", description = "While this item is equipped, any killing blows you strike against enemies may drive you into a furious rage, providing a 5% Enhancement damage bonus to your melee, ranged and unarmed attacks for 30 seconds. Slaying weaker opponents has a reduced chance of producing this effect." },
+  { name = "Enhanced Bloodrage", description = "This weapon is enhanced by blood - your blood! Each time you take damage or kill an enemy, there is a small chance that you will fall into an unholy bloodrage, greatly increasing your Melee Power, Constitution, and Damage. However, this rage will leave you more vulnerable to Physical attacks, slightly reducing your Armor Class." },
+  { name = "Mythic Head Boost +1 or +3", description = "+1 or +3 Mythic bonus to Physical and Magical Resistance Ratings.(This is a rare enchantment that does not show up on all drops of this item.)" },
+]
+
+[[item]]
+name = "The Slime Father's Staff"
+page = "https://ddowiki.com/page/Item:The_Slime_Father%27s_Staff"
+read = "2026-09-30"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Quarterstaff"
+minimum_level = 35
+enhancement_bonus = 16
+material = "Steel"
+description = "Juiblex's power continues to manifest in his absence."
+drop_location = "Terror of the Demon Lords, end chest"
+accepts_sentience = true
+augment_slots = ["orange", "purple"]
+effects = [
+  { name = "Legendary Slime", description = "Attacks and offensive spells reduce enemy PRR and MRR by 10 each. This debuff does not stack, but refreshes on each hit." },
+  { name = "Revel in Blood (Bludgeoning)", description = "Your weapon hungers to let blood flow. Your attacks and offensive spells have a high chance to deal very strong Bane damage over time to creatures vulnerable to Bleeding. On weapon crit: 16d6 Bludgeoning Damage." },
+  { name = "Blunt Trauma", description = "This weapon is incredibly dense and delivers especially powerful blows. When rolling a 19 or 20 on a melee attack, your critical multiplier is increased by +1." },
+  { name = "Disintegrate 7", description = "Strikes with this weapon have a small chance to call forth a strike of entropic force, dealing 7d20+72 untyped damage." },
+  { name = "Mythic Weapon Boost +2 or +4", description = "+2 or +4 Mythic bonus to Melee, Ranged, and Universal Spell Power.(This is a rare enchantment that does not show up on all drops of this item.)" },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 6
+damage_dice_bonus = 6
+damage_multiplier = 6.0
+critical_threat_range = 1
+critical_multiplier = 2
+handedness = "Two-handed"
+dr_bypass = ["Bludgeon", "Magic"]
+
+[[item]]
+name = "The Unbreakable Divinity"
+page = "https://ddowiki.com/page/Item:The_Unbreakable_Divinity"
+read = "2026-09-30"
+slot = "Neck"
+category = "Jewelry"
+minimum_level = 35
+material = "Leather"
+description = "A small spark of good divinity. One of the Demon Lords sought to destroy it, but found they could not."
+drop_location = "Terror of the Demon Lords, end chest"
+augment_slots = ["crafting: nearly complete: insightful ability score (legendary)", "green", "yellow", "moon"]
+bonuses = [
+  { stat = "Deadly", bonus_type = "Quality", value = 4 },
+  { stat = "Deadly", bonus_type = "Legendary", value = 3 },
+]
+effects = [
+  { name = "Extra Smites 3", description = "+3 Smite Evil uses per rest. Smite Evil uses regenerate 15% faster." },
+  { name = "Temperance of Spirit", description = "You have a +1 Quality Bonus to Physical Resistance Rating per Religious Lore Feat." },
+  { name = "Mythic Neck Boost +1 or +3", description = "+1 or +3 Mythic bonus to Physical and Magical Resistance Ratings.(This is a rare enchantment that does not show up on all drops of this item.)" },
+]
+
+[[item]]
+name = "The Unspeakable Power"
+page = "https://ddowiki.com/page/Item:The_Unspeakable_Power"
+read = "2026-09-30"
+slot = "Off Hand"
+category = "Weapon"
+item_type = "Orb"
+minimum_level = 35
+material = "Wood"
+description = "Praise."
+drop_location = "Terror of the Demon Lords, end chest"
+augment_slots = ["crafting: nearly complete: spell focus (legendary)", "orange", "purple"]
+bonuses = [
+  { stat = "Necromancy Spell Focus", bonus_type = "Equipment", value = 14 },
+  { stat = "Negative Spell Power", bonus_type = "Insight", value = 84 },
+  { stat = "Poison Spell Power", bonus_type = "Insight", value = 84 },
+]
+effects = [
+  { name = "+16 Orb Bonus", description = "While this orb is equipped and you are actively blocking, you gain a +16 orb bonus to all saving throws, as well as Acid, Cold, Fire, Electric, and Sonic resistances." },
+  { name = "Legendary Ash", description = "Your attacks and offensive spells have a chance to reduce enemy Magical Resistance Rating and Universal Spell Power." },
+  { name = "Quality Void Intensity +7%", description = "+7% Quality bonus to critical damage with Negative and Poison spells." },
+  { name = "Mythic Weapon Boost +2 or +4 and/or Mythic Shield Boost +2 or +4", description = "+2 or +4 Mythic bonus to Melee, Ranged, and Universal Spell Power.(This is a rare enchantment that does not show up on all drops of this item.)" },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 4
+critical_threat_range = 1
+critical_multiplier = 2
+handedness = "Off-hand"
+
+[[item]]
+name = "The Volley's Aria"
+page = "https://ddowiki.com/page/Item:The_Volley%27s_Aria"
+read = "2026-09-30"
+slot = "Hands"
+category = "Clothing"
+minimum_level = 35
+material = "Leather"
+description = "A song of the epic battle that was waged here, spun into these fine gloves. Projectiles fired while using them carry that song."
+drop_location = "Terror of the Demon Lords, end chest"
+augment_slots = ["crafting: nearly complete: ability score (legendary)", "green", "yellow", "moon"]
+bonuses = [
+  { stat = "Cold Spell Power", bonus_type = "Equipment", value = 169 },
+  { stat = "Sonic Spell Power", bonus_type = "Equipment", value = 169 },
+  { stat = "Electric Spell Power", bonus_type = "Equipment", value = 169 },
+  { stat = "Enchantment Spell Focus", bonus_type = "Insight", value = 7 },
+]
+effects = [
+  { name = "Shadow Striker", description = "Passive: +3% Profane bonus to Doublestrike and Doubleshot. (Doublestrike/Doubleshot is a chance to score an additional hit with a melee/ranged attack.) +15% Enhancement Bonus to Melee Attack Speed. +20% Enhancement Bonus to Ranged Attack Speed." },
+  { name = "Greater Marksmanship", description = "This item is enchanted to enhance your skill with ranged weapons. You gain a +3 Competence Bonus to Ranged Attack and a +2 Competence Bonus to Ranged Damage." },
+  { name = "Mythic Hands Boost +1 or +3", description = "+1 or +3 Mythic bonus to Melee, Ranged, and Universal Spell Power.(This is a rare enchantment that does not show up on all drops of this item.)" },
+]

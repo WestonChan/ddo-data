@@ -1,0 +1,1363 @@
+[[item]]
+name = "Epic Cloak of Night (Level 20)"
+page = "https://ddowiki.com/page/Item:Epic_Cloak_of_Night_%28level_20%29"
+read = "2026-09-29"
+slot = "Back"
+category = "Clothing"
+minimum_level = 20
+material = "Leather"
+description = "This Cloak is as smooth and dark as the most pitch-black of nights. Wearing it makes you difficult to spot and attack, and by awakening its powers you will enable it to aid you against creatures native to the darkness."
+drop_location = "The Night Revels, Turn in Cloak of Night (level 16) and 150 Piece of Darkest Chocolate, 40 Pinch of Sinister Cinnamon, 80 Shadowy Caramel at Joe Candymaker"
+bonuses = [
+  { stat = "Dodge", bonus_type = "Enhancement", value = 4 },
+]
+effects = [
+  { name = "Invisibility Guard", description = "This item has a chance of granting you temporary invisibility when you are hit by foes. The invisibility will not be removed when you attack or take damage, but it will wear off after 10 seconds." },
+  { name = "Ghostly", description = "Equipping this item causes you to become partially incorporeal. Your melee attacks do not roll a miss chance for Incorporeal targets. Enemy attacks have a 10% chance to miss you due to incorporeality. You receive a +5 enhancement bonus to your Hide and Move Silently skills." },
+  { name = "Deathblock", description = "The wearer of this item is immune to all death spells and magical death effects." },
+  { name = "Nightmare Guard", description = "This item has a chance to terrorizing foes that hit you, applying a Mind Thrust effect, when you are hit by them (dealing 5d8 force damage, Will save vs. Enchantments negates). It may also expose your foes to their greatest fears, acting as a Phantasmal Killer spell." },
+  { name = "DR 5/Good", description = "Reduces physical damage by 5, except from Good attacks." },
+]
+
+[[item]]
+name = "Epic Cloak of Night (Level 24)"
+page = "https://ddowiki.com/page/Item:Epic_Cloak_of_Night_%28level_24%29"
+read = "2026-09-29"
+slot = "Back"
+category = "Clothing"
+minimum_level = 24
+material = "Leather"
+description = "This cloak is as smooth and dark as the most pitch-black of nights. Wearing it makes you difficult to spot and attack, and by awakening its powers you will enable it to aid you against creatures native to the darkness."
+drop_location = "The Night Revels, Turn in Cloak of Night (level 20) and 200 Piece of Darkest Chocolate, 100 Spooky Almond, 60 Black Apple at Joe Candymaker"
+bonuses = [
+  { stat = "Dodge", bonus_type = "Enhancement", value = 6 },
+]
+effects = [
+  { name = "Invisibility Guard", description = "This item has a chance of granting you temporary invisibility when you are hit by foes. The invisibility will not be removed when you attack or take damage, but it will wear off after 10 seconds." },
+  { name = "Ghostly", description = "Equipping this item causes you to become partially incorporeal. Your melee attacks do not roll a miss chance for Incorporeal targets. Enemy attacks have a 10% chance to miss you due to incorporeality. You receive a +5 enhancement bonus to your Hide and Move Silently skills." },
+  { name = "Deathblock", description = "The wearer of this item is immune to all death spells and magical death effects." },
+  { name = "Nightmare Guard", description = "This item has a chance to terrorizing foes that hit you, applying a Mind Thrust effect, when you are hit by them (dealing 5d8 force damage, Will save vs. Enchantments negates). It may also expose your foes to their greatest fears, acting as a Phantasmal Killer spell." },
+  { name = "DR 10/Good", description = "Reduces physical damage by 10, except from Good attacks." },
+]
+
+[[item]]
+name = "Epic Cloak of Night (Level 28)"
+page = "https://ddowiki.com/page/Item:Epic_Cloak_of_Night_%28level_28%29"
+read = "2026-09-29"
+slot = "Back"
+category = "Clothing"
+minimum_level = 28
+material = "Leather"
+description = "This cloak is as smooth and dark as the most pitch-black of nights. Wearing it makes you difficult to spot and attack, and by awakening its powers you will enable it to aid you against creatures native to the darkness."
+drop_location = "The Night Revels, Turn in Cloak of Night (level 24) and 250 Piece of Darkest Chocolate, 120 Spooky Almond, 100 Black Apple at Joe Candymaker"
+bonuses = [
+  { stat = "Dodge", bonus_type = "Enhancement", value = 12 },
+]
+effects = [
+  { name = "Invisibility Guard", description = "This item has a chance of granting you temporary invisibility when you are hit by foes. The invisibility will not be removed when you attack or take damage, but it will wear off after 10 seconds." },
+  { name = "Ghostly", description = "Equipping this item causes you to become partially incorporeal. Your melee attacks do not roll a miss chance for Incorporeal targets. Enemy attacks have a 10% chance to miss you due to incorporeality. You receive a +5 enhancement bonus to your Hide and Move Silently skills." },
+  { name = "Deathblock", description = "The wearer of this item is immune to all death spells and magical death effects." },
+  { name = "Nightmare Guard", description = "This item has a chance to terrorizing foes that hit you, applying a Mind Thrust effect, when you are hit by them (dealing 5d8 force damage, Will save vs. Enchantments negates). It may also expose your foes to their greatest fears, acting as a Phantasmal Killer spell." },
+  { name = "DR 15/Good", description = "Reduces physical damage by 15, except from Good attacks." },
+]
+
+[[item]]
+name = "Epic Docent of Shadow (Level 20)"
+page = "https://ddowiki.com/page/Item:Epic_Docent_of_Shadow_%28level_20%29"
+read = "2026-09-29"
+slot = "Body"
+category = "Armor"
+item_type = "Docent"
+minimum_level = 20
+material = "Gem"
+description = "This docent is as dark as the night sky and almost seems to crawl visibly with moving shadows. It boosts the power of its wearer's negative energy magic, and grants a measure of necromantic protection against enemy attacks."
+drop_location = "The Night Revels, Turn in Docent of Shadow (level 16) and 150 Piece of Darkest Chocolate, 80 Spooky Almond, 40 Black Apple"
+bonuses = [
+  { stat = "Negative Spell Power", bonus_type = "Equipment", value = 90 },
+  { stat = "Poison Spell Power", bonus_type = "Equipment", value = 90 },
+  { stat = "Negative Spell Lore", bonus_type = "Equipment", value = 16 },
+  { stat = "Poison Spell Lore", bonus_type = "Equipment", value = 16 },
+  { stat = "Necromancy Spell Focus", bonus_type = "Equipment", value = 2 },
+]
+effects = [
+  { name = "Nightshield — 5 Charges", description = "Caster level: 14 Charges: 5 (5/day)" },
+  { name = "Superior False Life", description = "This item grants the wearer +40 maximum health." },
+  { name = "Boon of Undeath", description = "Undead take solace in the hate of others. Every time a character wearing a Boon of Undeath item is struck in combat, an Inflict Light Wounds spell will be cast on the character." },
+]
+
+[item.armor]
+armor_type = "Docent"
+
+[[item]]
+name = "Epic Docent of Shadow (Level 24)"
+page = "https://ddowiki.com/page/Item:Epic_Docent_of_Shadow_%28level_24%29"
+read = "2026-09-29"
+slot = "Body"
+category = "Armor"
+item_type = "Docent"
+minimum_level = 24
+material = "Gem"
+description = "This docent is as dark as the night sky and almost seems to crawl visibly with moving shadows. It boosts the power of its wearer's negative energy magic, and grants a measure of necromantic protection against enemy attacks."
+drop_location = "The Night Revels, Turn in Docent of Shadow (level 20) and 200 Piece of Darkest Chocolate, 100 Shadowy Caramel, 60 Pinch of Sinister Cinnamon"
+bonuses = [
+  { stat = "Negative Spell Power", bonus_type = "Equipment", value = 114 },
+  { stat = "Poison Spell Power", bonus_type = "Equipment", value = 114 },
+  { stat = "Negative Spell Lore", bonus_type = "Equipment", value = 16 },
+  { stat = "Poison Spell Lore", bonus_type = "Equipment", value = 16 },
+  { stat = "Necromancy Spell Focus", bonus_type = "Equipment", value = 3 },
+]
+effects = [
+  { name = "Nightshield — 5 Charges", description = "Caster level: 14 Charges: 5 (5/day)" },
+  { name = "Superior False Life", description = "This item grants the wearer +40 maximum health." },
+  { name = "Boon of Undeath", description = "Undead take solace in the hate of others. Every time a character wearing a Boon of Undeath item is struck in combat, an Inflict Light Wounds spell will be cast on the character." },
+]
+
+[item.armor]
+armor_type = "Docent"
+
+[[item]]
+name = "Epic Docent of Shadow (Level 28)"
+page = "https://ddowiki.com/page/Item:Epic_Docent_of_Shadow_%28level_28%29"
+read = "2026-09-29"
+slot = "Body"
+category = "Armor"
+item_type = "Docent"
+minimum_level = 28
+material = "Gem"
+description = "This docent is as dark as the night sky and almost seems to crawl visibly with moving shadows. It boosts the power of its wearer's negative energy magic, and grants a measure of necromantic protection against enemy attacks."
+drop_location = "The Night Revels, Turn in Docent of Shadow (level 24) and 250 Piece of Darkest Chocolate, 120 Shadowy Caramel, 100 Pinch of Sinister Cinnamon"
+bonuses = [
+  { stat = "Negative Spell Power", bonus_type = "Equipment", value = 139 },
+  { stat = "Poison Spell Power", bonus_type = "Equipment", value = 139 },
+  { stat = "Negative Spell Lore", bonus_type = "Equipment", value = 20 },
+  { stat = "Poison Spell Lore", bonus_type = "Equipment", value = 20 },
+  { stat = "Necromancy Spell Focus", bonus_type = "Equipment", value = 7 },
+]
+effects = [
+  { name = "Nightshield — 5 Charges", description = "Caster level: 14 Charges: 5 (5/day)" },
+  { name = "Superior False Life", description = "This item grants the wearer +40 maximum health." },
+  { name = "Boon of Undeath", description = "Undead take solace in the hate of others. Every time a character wearing a Boon of Undeath item is struck in combat, an Inflict Light Wounds spell will be cast on the character." },
+]
+
+[item.armor]
+armor_type = "Docent"
+
+[[item]]
+name = "Epic Robe of Shadow (Level 20)"
+page = "https://ddowiki.com/page/Item:Epic_Robe_of_Shadow_%28level_20%29"
+read = "2026-09-29"
+slot = "Body"
+category = "Armor"
+item_type = "Cloth"
+minimum_level = 20
+material = "Cloth"
+description = "This robe is as dark as the night sky and almost seems to crawl visibly with moving shadows. It boosts the power of the wearer's negative energy magic, and grants a measure of necromantic protection against enemy attacks."
+drop_location = "The Night Revels, Turn in Upgrade of Robe of Shadow (level 16)"
+bonuses = [
+  { stat = "Negative Spell Power", bonus_type = "Equipment", value = 90 },
+  { stat = "Poison Spell Power", bonus_type = "Equipment", value = 90 },
+  { stat = "Negative Spell Lore", bonus_type = "Equipment", value = 16 },
+  { stat = "Poison Spell Lore", bonus_type = "Equipment", value = 16 },
+  { stat = "Necromancy Spell Focus", bonus_type = "Equipment", value = 2 },
+]
+effects = [
+  { name = "Nightshield — 5 Charges", description = "Caster level: 14 Charges: 5 (5/day)" },
+  { name = "Superior False Life", description = "This item grants the wearer +40 maximum health." },
+  { name = "Boon of Undeath", description = "Undead take solace in the hate of others. Every time a character wearing a Boon of Undeath item is struck in combat, an Inflict Light Wounds spell will be cast on the character." },
+]
+
+[item.armor]
+armor_type = "Cloth"
+armor_bonus = 0
+
+[[item]]
+name = "Epic Robe of Shadow (Level 24)"
+page = "https://ddowiki.com/page/Item:Epic_Robe_of_Shadow_%28level_24%29"
+read = "2026-09-29"
+slot = "Body"
+category = "Armor"
+item_type = "Cloth"
+minimum_level = 24
+material = "Cloth"
+description = "This robe is as dark as the night sky and almost seems to crawl visibly with moving shadows. It boosts the power of the wearer's negative energy magic, and grants a measure of necromantic protection against enemy attacks."
+drop_location = "The Night Revels, Turn in Upgrade of Robe of Shadow (level 20)"
+bonuses = [
+  { stat = "Negative Spell Power", bonus_type = "Equipment", value = 114 },
+  { stat = "Poison Spell Power", bonus_type = "Equipment", value = 114 },
+  { stat = "Negative Spell Lore", bonus_type = "Equipment", value = 16 },
+  { stat = "Poison Spell Lore", bonus_type = "Equipment", value = 16 },
+  { stat = "Necromancy Spell Focus", bonus_type = "Equipment", value = 3 },
+]
+effects = [
+  { name = "Nightshield — 5 Charges", description = "Caster level: 14 Charges: 5 (5/day)" },
+  { name = "Superior False Life", description = "This item grants the wearer +40 maximum health." },
+  { name = "Boon of Undeath", description = "Undead take solace in the hate of others. Every time a character wearing a Boon of Undeath item is struck in combat, an Inflict Light Wounds spell will be cast on the character." },
+]
+
+[item.armor]
+armor_type = "Cloth"
+armor_bonus = 0
+
+[[item]]
+name = "Epic Robe of Shadow (Level 28)"
+page = "https://ddowiki.com/page/Item:Epic_Robe_of_Shadow_%28level_28%29"
+read = "2026-09-29"
+slot = "Body"
+category = "Armor"
+item_type = "Cloth"
+minimum_level = 28
+material = "Cloth"
+description = "This robe is as dark as the night sky and almost seems to crawl visibly with moving shadows. It boosts the power of the wearer's negative energy magic, and grants a measure of necromantic protection against enemy attacks."
+drop_location = "The Night Revels, Turn in Upgrade of Robe of Shadow (level 24)"
+bonuses = [
+  { stat = "Negative Spell Power", bonus_type = "Equipment", value = 139 },
+  { stat = "Poison Spell Power", bonus_type = "Equipment", value = 139 },
+  { stat = "Negative Spell Lore", bonus_type = "Equipment", value = 20 },
+  { stat = "Poison Spell Lore", bonus_type = "Equipment", value = 20 },
+  { stat = "Necromancy Spell Focus", bonus_type = "Equipment", value = 7 },
+]
+effects = [
+  { name = "Nightshield — 5 Charges", description = "Caster level: 14 Charges: 5 (5/day)" },
+  { name = "Superior False Life", description = "This item grants the wearer +40 maximum health." },
+  { name = "Boon of Undeath", description = "Undead take solace in the hate of others. Every time a character wearing a Boon of Undeath item is struck in combat, an Inflict Light Wounds spell will be cast on the character." },
+]
+
+[item.armor]
+armor_type = "Cloth"
+armor_bonus = 0
+
+[[item]]
+name = "Epic Wraps of Endless Light (Level 20)"
+page = "https://ddowiki.com/page/Item:Epic_Wraps_of_Endless_Light_%28level_20%29"
+read = "2026-09-29"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Handwraps"
+minimum_level = 20
+enhancement_bonus = 6
+material = "Cloth"
+description = "These silken wraps blaze with an aura of light."
+drop_location = "The Night Revels, Turn in various ingredients to Joe Candymaker"
+effects = [
+  { name = "Greater Undead Bane", description = "A bane weapon excels at attacking one type or subtype of creature. Against Undeads, this weapon's effective enhancement bonus is +4 better than its normal enhancement bonus. It deals an extra 3 to 18 points of damage against the foe." },
+  { name = "Brilliance", description = "This weapon glows with the light of Irian. This weapon deals an extra 1 to 6 points of light damage on a successful hit. In addition, critical hits deal an additional 1 to 10 light damage for weapons with a x2 critical multiplier, 2 to 20 for a x3 critical multiplier and 3 to 30 for a x4 multiplier." },
+  { name = "Light Bringer", description = "On Vorpal Hit: If an undead struck by this weapon has fewer than 1000 Hit Points, it is instantly slain. If the undead has above 1000 hit points, it takes 100 damage." },
+  { name = "Radiant Blast", description = "This weapon stores the power of the plane of Irian deep within. Occasionally, this dynamic power comes to the surface, devastating enemies with a massive blast of radiant light." },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 6
+damage_multiplier = 3.0
+critical_threat_range = 1
+critical_multiplier = 2
+handedness = "Two-handed"
+dr_bypass = ["Bludgeon", "Magic"]
+
+[[item]]
+name = "Epic Wraps of Endless Light (Level 24)"
+page = "https://ddowiki.com/page/Item:Epic_Wraps_of_Endless_Light_%28level_24%29"
+read = "2026-09-29"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Handwraps"
+minimum_level = 24
+enhancement_bonus = 7
+material = "Cloth"
+description = "These silken wraps blaze with an aura of light."
+drop_location = "The Night Revels, Turn in various ingredients to Joe Candymaker"
+effects = [
+  { name = "Greater Undead Bane", description = "A bane weapon excels at attacking one type or subtype of creature. Against Undeads, this weapon's effective enhancement bonus is +4 better than its normal enhancement bonus. It deals an extra 3 to 18 points of damage against the foe." },
+  { name = "Coruscating", description = "This weapon shines with an inner light. A coruscating weapon deals an extra 2 to 12 points of light damage on a successful hit." },
+  { name = "Light Bringer", description = "On Vorpal Hit: If an undead struck by this weapon has fewer than 1000 Hit Points, it is instantly slain. If the undead has above 1000 hit points, it takes 100 damage." },
+  { name = "Greater Sunburst", description = "This item blazes with the eternal fury at the heart of a sun. Occasionally, this power comes to the surface, unleashing a nova of light which will blind the struck enemy, dealing severe light damage to it and any other nearby foes." },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 6
+damage_multiplier = 3.8
+critical_threat_range = 1
+critical_multiplier = 2
+handedness = "Two-handed"
+dr_bypass = ["Bludgeon", "Magic"]
+
+[[item]]
+name = "Epic Wraps of Endless Light (Level 28)"
+page = "https://ddowiki.com/page/Item:Epic_Wraps_of_Endless_Light_%28level_28%29"
+read = "2026-09-29"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Handwraps"
+minimum_level = 28
+enhancement_bonus = 12
+material = "Cloth"
+description = "These silken wraps blaze with an aura of light."
+drop_location = "The Night Revels, Turn in various ingredients to Joe Candymaker"
+accepts_sentience = true
+effects = [
+  { name = "Greater Undead Bane", description = "A bane weapon excels at attacking one type or subtype of creature. Against Undeads, this weapon's effective enhancement bonus is +4 better than its normal enhancement bonus. It deals an extra 3 to 18 points of damage against the foe." },
+  { name = "Coruscating", description = "This weapon shines with an inner light. A coruscating weapon deals an extra 2 to 12 points of light damage on a successful hit." },
+  { name = "Light Bringer", description = "On Vorpal Hit: If an undead struck by this weapon has fewer than 1000 Hit Points, it is instantly slain. If the undead has above 1000 hit points, it takes 100 damage." },
+  { name = "Greater Sunburst", description = "This item blazes with the eternal fury at the heart of a sun. Occasionally, this power comes to the surface, unleashing a nova of light which will blind the struck enemy, dealing severe light damage to it and any other nearby foes." },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 6
+damage_multiplier = 4.6
+critical_threat_range = 1
+critical_multiplier = 2
+handedness = "Two-handed"
+dr_bypass = ["Bludgeon", "Magic"]
+
+[[item]]
+name = "Flame Blade (Level 1)"
+page = "https://ddowiki.com/page/Item:Flame_Blade_%28level_1%29"
+read = "2026-09-29"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Scimitar"
+minimum_level = 1
+enhancement_bonus = 1
+material = "Fire"
+description = "A blazing beam of red hot fire that sprang forth from your hands with the casting of the Flame Blade spell. The flames respond to the willpower and intuition of the wielder. As the Flame Blade is not physical, monks may use it without becoming uncentered."
+drop_location = "The page gives no location"
+effects = [
+  { name = "Flameblade", description = "This blade is made of pure fire and is surprisingly light to the touch. It bypasses the Incorporeal chances of Ethereal monsters innately." },
+  { name = "Fiery 1", description = "This effect causes the edges of this weapon to burn with enchanted flames, dealing 1d6 Fire damage on each hit." },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 6
+critical_threat_range = 3
+critical_multiplier = 2
+handedness = "One-handed"
+
+[[item]]
+name = "Flame Blade (Level 10)"
+page = "https://ddowiki.com/page/Item:Flame_Blade_%28level_10%29"
+read = "2026-09-29"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Scimitar"
+minimum_level = 10
+enhancement_bonus = 4
+material = "Fire"
+description = "A blazing beam of red hot fire that sprang forth from your hands with the casting of the Flame Blade spell. The flames respond to the willpower and intuition of the wielder. As the Flame Blade is not physical, monks may use it without becoming uncentered."
+drop_location = "The page gives no location"
+effects = [
+  { name = "Flameblade", description = "This blade is made of pure fire and is surprisingly light to the touch. It bypasses the Incorporeal chances of Ethereal monsters innately." },
+  { name = "Fiery 3", description = "This effect causes the edges of this weapon to burn with enchanted flames, dealing 3d6 Fire damage on each hit." },
+  { name = "Flaming Blast 3", description = "This weapon burns with deadly magical fire, dealing 3d6 Fire damage on a successful hit, and an additional 3d6 Fire damage on a critical hit." },
+  { name = "Incineration", description = "This weapon stores the power of a raging inferno deep within. Occasionally, this destructive power comes to the surface, devastating enemies with massive fire damage." },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 6
+damage_multiplier = 1.5
+critical_threat_range = 3
+critical_multiplier = 2
+handedness = "One-handed"
+
+[[item]]
+name = "Flame Blade (Level 15)"
+page = "https://ddowiki.com/page/Item:Flame_Blade_%28level_15%29"
+read = "2026-09-29"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Scimitar"
+minimum_level = 15
+enhancement_bonus = 6
+material = "Fire"
+description = "A blazing beam of red hot fire that sprang forth from your hands with the casting of the Flame Blade spell. The flames respond to the willpower and intuition of the wielder. As the Flame Blade is not physical, monks may use it without becoming uncentered."
+drop_location = "The page gives no location"
+effects = [
+  { name = "Flameblade", description = "This blade is made of pure fire and is surprisingly light to the touch. It bypasses the Incorporeal chances of Ethereal monsters innately." },
+  { name = "Fiery 4", description = "This effect causes the edges of this weapon to burn with enchanted flames, dealing 4d6 Fire damage on each hit." },
+  { name = "Flaming Blast 4", description = "This weapon burns with deadly magical fire, dealing 4d6 Fire damage on a successful hit, and an additional 4d6 Fire damage on a critical hit." },
+  { name = "Incineration", description = "This weapon stores the power of a raging inferno deep within. Occasionally, this destructive power comes to the surface, devastating enemies with massive fire damage." },
+  { name = "Blinding Embers", description = "This weapon sheds tiny embers that can impair a creatures sight. If you roll a 20 when attacking and confirm the critical hit, the target will become blinded by a burst of fiery sparks." },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 6
+damage_multiplier = 2.0
+critical_threat_range = 3
+critical_multiplier = 2
+handedness = "One-handed"
+
+[[item]]
+name = "Flame Blade (Level 20)"
+page = "https://ddowiki.com/page/Item:Flame_Blade_%28level_20%29"
+read = "2026-09-29"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Scimitar"
+minimum_level = 20
+enhancement_bonus = 8
+material = "Fire"
+description = "A blazing beam of red hot fire that sprang forth from your hands with the casting of the Flame Blade spell. The flames respond to the willpower and intuition of the wielder. As the Flame Blade is not physical, monks may use it without becoming uncentered."
+drop_location = "The page gives no location"
+effects = [
+  { name = "Flameblade", description = "This blade is made of pure fire and is surprisingly light to the touch. It bypasses the Incorporeal chances of Ethereal monsters innately." },
+  { name = "Fiery 4", description = "This effect causes the edges of this weapon to burn with enchanted flames, dealing 4d6 Fire damage on each hit." },
+  { name = "Flaming Blast 4", description = "This weapon burns with deadly magical fire, dealing 4d6 Fire damage on a successful hit, and an additional 4d6 Fire damage on a critical hit." },
+  { name = "Overwhelming Incineration", description = "This weapon stores the power of a raging inferno deep within. Occasionally, this destructive power comes to the surface, devastating enemies with overwhelming fire damage." },
+  { name = "Blinding Embers", description = "This weapon sheds tiny embers that can impair a creatures sight. If you roll a 20 when attacking and confirm the critical hit, the target will become blinded by a burst of fiery sparks." },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 6
+damage_multiplier = 3.0
+critical_threat_range = 3
+critical_multiplier = 2
+handedness = "One-handed"
+
+[[item]]
+name = "Flame Blade (Level 25)"
+page = "https://ddowiki.com/page/Item:Flame_Blade_%28level_25%29"
+read = "2026-09-29"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Scimitar"
+minimum_level = 25
+enhancement_bonus = 10
+material = "Fire"
+description = "A blazing beam of red hot fire that sprang forth from your hands with the casting of the Flame Blade spell. The flames respond to the willpower and intuition of the wielder. As the Flame Blade is not physical, monks may use it without becoming uncentered."
+drop_location = "The page gives no location"
+effects = [
+  { name = "Flameblade", description = "This blade is made of pure fire and is surprisingly light to the touch. It bypasses the Incorporeal chances of Ethereal monsters innately." },
+  { name = "Fiery 5", description = "This effect causes the edges of this weapon to burn with enchanted flames, dealing 5d6 Fire damage on each hit." },
+  { name = "Flaming Blast 5", description = "This weapon burns with deadly magical fire, dealing 5d6 Fire damage on a successful hit, and an additional 5d6 Fire damage on a critical hit." },
+  { name = "Overwhelming Incineration", description = "This weapon stores the power of a raging inferno deep within. Occasionally, this destructive power comes to the surface, devastating enemies with overwhelming fire damage." },
+  { name = "Blinding Embers", description = "This weapon sheds tiny embers that can impair a creatures sight. If you roll a 20 when attacking and confirm the critical hit, the target will become blinded by a burst of fiery sparks." },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 6
+damage_multiplier = 4.0
+critical_threat_range = 3
+critical_multiplier = 2
+handedness = "One-handed"
+
+[[item]]
+name = "Flame Blade (Level 30)"
+page = "https://ddowiki.com/page/Item:Flame_Blade_%28level_30%29"
+read = "2026-09-29"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Scimitar"
+minimum_level = 30
+enhancement_bonus = 15
+material = "Fire"
+description = "A blazing beam of red hot fire that sprang forth from your hands with the casting of the Flame Blade spell. The flames respond to the willpower and intuition of the wielder. As the Flame Blade is not physical, monks may use it without becoming uncentered."
+drop_location = "The page gives no location"
+effects = [
+  { name = "Flameblade", description = "This blade is made of pure fire and is surprisingly light to the touch. It bypasses the Incorporeal chances of Ethereal monsters innately." },
+  { name = "Fiery 9", description = "This effect causes the edges of this weapon to burn with enchanted flames, dealing 9d6 Fire damage on each hit." },
+  { name = "Flaming Blast 9", description = "This weapon burns with deadly magical fire, dealing 9d6 Fire damage on a successful hit, and an additional 9d6 Fire damage on a critical hit." },
+  { name = "Overwhelming Incineration", description = "This weapon stores the power of a raging inferno deep within. Occasionally, this destructive power comes to the surface, devastating enemies with overwhelming fire damage." },
+  { name = "Legendary Blinding Embers", description = "This weapon sheds tiny embers that can impair a creatures sight. If you roll a 20 when attacking and confirm the critical hit, the target will become blinded by a burst of fiery sparks." },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 6
+damage_dice_bonus = 2
+damage_multiplier = 5.0
+critical_threat_range = 3
+critical_multiplier = 2
+handedness = "One-handed"
+
+[[item]]
+name = "Flame Blade (Level 5)"
+page = "https://ddowiki.com/page/Item:Flame_Blade_%28level_5%29"
+read = "2026-09-29"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Scimitar"
+minimum_level = 5
+enhancement_bonus = 2
+material = "Fire"
+description = "="
+drop_location = "The page gives no location"
+effects = [
+  { name = "Flameblade", description = "This blade is made of pure fire and is surprisingly light to the touch. It bypasses the Incorporeal chances of Ethereal monsters innately." },
+  { name = "Fiery 2", description = "This effect causes the edges of this weapon to burn with enchanted flames, dealing 2d6 Fire damage on each hit." },
+  { name = "Flaming Blast 2", description = "This weapon burns with deadly magical fire, dealing 2d6 Fire damage on a successful hit, and an additional 2d6 Fire damage on a critical hit." },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 6
+critical_threat_range = 3
+critical_multiplier = 2
+handedness = "One-handed"
+
+[[item]]
+name = "Legendary Cloak of Night (Level 32)"
+page = "https://ddowiki.com/page/Item:Legendary_Cloak_of_Night_%28level_32%29"
+read = "2026-09-29"
+slot = "Back"
+category = "Clothing"
+minimum_level = 32
+material = "Leather"
+description = "This Cloak is as smooth and dark as the most pitch-black of nights. Wearing it makes you difficult to spot and attack, and by awakening its powers you will enable it to aid you against creatures native to the darkness."
+drop_location = "The Night Revels, Turn in Cloak of Night (level 28) and 300 Piece of Darkest Chocolate, 120 Spooky Almond, 100 Black Apple at Joe Candymaker"
+bonuses = [
+  { stat = "Dodge", bonus_type = "Enhancement", value = 14 },
+]
+effects = [
+  { name = "Invisibility Guard", description = "This item has a chance of granting you temporary invisibility when you are hit by foes. The invisibility will not be removed when you attack or take damage, but it will wear off after 10 seconds." },
+  { name = "Enhanced Ghostly", description = "Equipping this item causes you to become partially incorporeal. Your melee attacks do not roll a miss chance for Incorporeal targets. Enemy attacks have a 15% chance to miss you due to incorporeality. You receive a +5 enhancement bonus to your Hide and Move Silently skills." },
+  { name = "Deathblock", description = "The wearer of this item is immune to all death spells and magical death effects." },
+  { name = "Nightmare Guard", description = "This item has a chance to terrorizing foes that hit you, applying a Mind Thrust effect, when you are hit by them (dealing 5d8 force damage, Will save vs. Enchantments negates). It may also expose your foes to their greatest fears, acting as a Phantasmal Killer spell." },
+  { name = "DR 15/Good", description = "Reduces physical damage by 15, except from Good attacks." },
+]
+
+[[item]]
+name = "Legendary Docent of Shadow (Level 32)"
+page = "https://ddowiki.com/page/Item:Legendary_Docent_of_Shadow_%28level_32%29"
+read = "2026-09-29"
+slot = "Body"
+category = "Armor"
+item_type = "Docent"
+minimum_level = 32
+material = "Gem"
+description = "This docent is as dark as the night sky and almost seems to crawl visibly with moving shadows. It boosts the power of its wearer's negative energy magic, and grants a measure of necromantic protection against enemy attacks."
+drop_location = "The Night Revels, Turn in Docent of Shadow (level 28) and 300 Piece of Darkest Chocolate, 120 Shadowy Caramel, 100 Pinch of Sinister Cinnamon"
+bonuses = [
+  { stat = "Negative Spell Power", bonus_type = "Equipment", value = 153 },
+  { stat = "Poison Spell Power", bonus_type = "Equipment", value = 153 },
+  { stat = "Negative Spell Lore", bonus_type = "Equipment", value = 22 },
+  { stat = "Poison Spell Lore", bonus_type = "Equipment", value = 22 },
+  { stat = "Necromancy Spell Focus", bonus_type = "Equipment", value = 10 },
+]
+effects = [
+  { name = "Nightshield — 5 Charges", description = "Caster level: 14 Charges: 5 (5/day)" },
+  { name = "Superior False Life", description = "This item grants the wearer +40 maximum health." },
+  { name = "Boon of Undeath", description = "Undead take solace in the hate of others. Every time a character wearing a Boon of Undeath item is struck in combat, an Inflict Light Wounds spell will be cast on the character." },
+]
+
+[item.armor]
+armor_type = "Docent"
+
+[[item]]
+name = "Legendary Robe of Shadow (Level 32)"
+page = "https://ddowiki.com/page/Item:Legendary_Robe_of_Shadow_%28level_32%29"
+read = "2026-09-29"
+slot = "Body"
+category = "Armor"
+item_type = "Cloth"
+minimum_level = 32
+material = "Cloth"
+description = "This robe is as dark as the night sky and almost seems to crawl visibly with moving shadows. It boosts the power of the wearer's negative energy magic, and grants a measure of necromantic protection against enemy attacks."
+drop_location = "The Night Revels, Turn in Upgrade of Robe of Shadow (level 28)"
+bonuses = [
+  { stat = "Negative Spell Power", bonus_type = "Equipment", value = 153 },
+  { stat = "Poison Spell Power", bonus_type = "Equipment", value = 153 },
+  { stat = "Negative Spell Lore", bonus_type = "Equipment", value = 22 },
+  { stat = "Poison Spell Lore", bonus_type = "Equipment", value = 22 },
+  { stat = "Necromancy Spell Focus", bonus_type = "Equipment", value = 10 },
+]
+effects = [
+  { name = "Nightshield — 5 Charges", description = "Caster level: 14 Charges: 5 (5/day)" },
+  { name = "Superior False Life", description = "This item grants the wearer +40 maximum health." },
+  { name = "Boon of Undeath", description = "Undead take solace in the hate of others. Every time a character wearing a Boon of Undeath item is struck in combat, an Inflict Light Wounds spell will be cast on the character." },
+]
+
+[item.armor]
+armor_type = "Cloth"
+armor_bonus = 0
+
+[[item]]
+name = "Mindcleaver (Level 1)"
+page = "https://ddowiki.com/page/Item:Mindcleaver_%28level_1%29"
+read = "2026-09-29"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Dwarven Axe"
+minimum_level = 1
+enhancement_bonus = 1
+material = "Force"
+description = "The manifestation of your mind has been sharpened to a keen edge. As you increase in level, this weapon will also grow in power. Because it is a manifestation of pure mind rather than a physical weapon, it will dissipate if unequipped."
+drop_location = "The page gives no location"
+bonuses = [
+  { stat = "Combat Mastery", bonus_type = "Enhancement", value = 2 },
+]
+effects = [
+  { name = "Mindcleaver", description = "This blade is made of pure force and is surprisingly light to the touch. It bypasses the Incorporeal chances of Ethereal monsters innately." },
+  { name = "Impactful 2", description = "This effect causes the edges of this weapon to ripple with force, dealing 2 to 12 force on each hit." },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 10
+critical_threat_range = 1
+critical_multiplier = 3
+handedness = "One-handed"
+
+[[item]]
+name = "Mindcleaver (Level 10)"
+page = "https://ddowiki.com/page/Item:Mindcleaver_%28level_10%29"
+read = "2026-09-29"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Dwarven Axe"
+minimum_level = 10
+enhancement_bonus = 4
+material = "Force"
+description = "The manifestation of your mind has been sharpened to a keen edge. As you increase in level, this weapon will also grow in power. Because it is a manifestation of pure mind rather than a physical weapon, it will dissipate if unequipped."
+drop_location = "The page gives no location"
+bonuses = [
+  { stat = "Combat Mastery", bonus_type = "Enhancement", value = 5 },
+]
+effects = [
+  { name = "Mindcleaver", description = "This blade is made of pure force and is surprisingly light to the touch. It bypasses the Incorporeal chances of Ethereal monsters innately." },
+  { name = "Impactful 3", description = "This effect causes the edges of this weapon to ripple with force, dealing 3 to 18 force on each hit." },
+  { name = "Force Blast 3", description = "This weapon ripples with intense force, dealing 3d6 Force damage on a successful hit, and an additional 3d6 Force damage on a critical hit." },
+  { name = "Destruction", description = "On Hit: Your target gains a stack of Armor Destruction. (-1 penalty to Armor Class, -1% of its Fortification. 20 Second Duration. Stacks up to 15 times.) This effect may trigger once every three seconds." },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 10
+damage_multiplier = 1.5
+critical_threat_range = 1
+critical_multiplier = 3
+handedness = "One-handed"
+
+[[item]]
+name = "Mindcleaver (Level 15)"
+page = "https://ddowiki.com/page/Item:Mindcleaver_%28level_15%29"
+read = "2026-09-29"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Dwarven Axe"
+minimum_level = 15
+enhancement_bonus = 6
+material = "Force"
+description = "The manifestation of your mind has been sharpened to a keen edge. As you increase in level, this weapon will also grow in power. Because it is a manifestation of pure mind rather than a physical weapon, it will dissipate if unequipped."
+drop_location = "The page gives no location"
+bonuses = [
+  { stat = "Combat Mastery", bonus_type = "Enhancement", value = 6 },
+]
+effects = [
+  { name = "Mindcleaver", description = "This blade is made of pure force and is surprisingly light to the touch. It bypasses the Incorporeal chances of Ethereal monsters innately." },
+  { name = "Impactful 4", description = "This effect causes the edges of this weapon to ripple with force, dealing 4 to 24 force on each hit." },
+  { name = "Force Blast 4", description = "This weapon ripples with intense force, dealing 4d6 Force damage on a successful hit, and an additional 4d6 Force damage on a critical hit." },
+  { name = "Improved Destruction", description = "On Hit: Your target gains a stack of Armor Destruction. (-1 penalty to Armor Class, -1% of its Fortification. 20 Second Duration. Stacks up to 15 times.) This effect may trigger once every second." },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 10
+damage_multiplier = 2.0
+critical_threat_range = 1
+critical_multiplier = 3
+handedness = "One-handed"
+
+[[item]]
+name = "Mindcleaver (Level 20)"
+page = "https://ddowiki.com/page/Item:Mindcleaver_%28level_20%29"
+read = "2026-09-29"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Dwarven Axe"
+minimum_level = 20
+enhancement_bonus = 8
+material = "Force"
+description = "The manifestation of your mind has been sharpened to a keen edge. As you increase in level, this weapon will also grow in power. Because it is a manifestation of pure mind rather than a physical weapon, it will dissipate if unequipped."
+drop_location = "The page gives no location"
+bonuses = [
+  { stat = "Combat Mastery", bonus_type = "Enhancement", value = 8 },
+]
+effects = [
+  { name = "Mindcleaver", description = "This blade is made of pure force and is surprisingly light to the touch. It bypasses the Incorporeal chances of Ethereal monsters innately." },
+  { name = "Impactful 4", description = "This effect causes the edges of this weapon to ripple with force, dealing 4 to 24 force on each hit." },
+  { name = "Force Blast 4", description = "This weapon ripples with intense force, dealing 4d6 Force damage on a successful hit, and an additional 4d6 Force damage on a critical hit." },
+  { name = "Improved Destruction", description = "On Hit: Your target gains a stack of Armor Destruction. (-1 penalty to Armor Class, -1% of its Fortification. 20 Second Duration. Stacks up to 15 times.) This effect may trigger once every second." },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 10
+damage_multiplier = 3.0
+critical_threat_range = 1
+critical_multiplier = 3
+handedness = "One-handed"
+
+[[item]]
+name = "Mindcleaver (Level 25)"
+page = "https://ddowiki.com/page/Item:Mindcleaver_%28level_25%29"
+read = "2026-09-29"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Dwarven Axe"
+minimum_level = 25
+enhancement_bonus = 10
+material = "Force"
+description = "The manifestation of your mind has been sharpened to a keen edge. As you increase in level, this weapon will also grow in power. Because it is a manifestation of pure mind rather than a physical weapon, it will dissipate if unequipped."
+drop_location = "The page gives no location"
+bonuses = [
+  { stat = "Combat Mastery", bonus_type = "Enhancement", value = 9 },
+]
+effects = [
+  { name = "Mindcleaver", description = "This blade is made of pure force and is surprisingly light to the touch. It bypasses the Incorporeal chances of Ethereal monsters innately." },
+  { name = "Impactful 5", description = "This effect causes the edges of this weapon to ripple with force, dealing 5 to 30 force on each hit." },
+  { name = "Force Blast 4", description = "This weapon ripples with intense force, dealing 4d6 Force damage on a successful hit, and an additional 4d6 Force damage on a critical hit." },
+  { name = "Improved Destruction", description = "On Hit: Your target gains a stack of Armor Destruction. (-1 penalty to Armor Class, -1% of its Fortification. 20 Second Duration. Stacks up to 15 times.) This effect may trigger once every second." },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 10
+damage_multiplier = 4.0
+critical_threat_range = 1
+critical_multiplier = 3
+handedness = "One-handed"
+
+[[item]]
+name = "Mindcleaver (Level 30)"
+page = "https://ddowiki.com/page/Item:Mindcleaver_%28level_30%29"
+read = "2026-09-29"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Dwarven Axe"
+minimum_level = 30
+enhancement_bonus = 15
+material = "Force"
+description = "The manifestation of your mind has been sharpened to a keen edge. As you increase in level, this weapon will also grow in power. Because it is a manifestation of pure mind rather than a physical weapon, it will dissipate if unequipped."
+drop_location = "The page gives no location"
+bonuses = [
+  { stat = "Combat Mastery", bonus_type = "Enhancement", value = 11 },
+]
+effects = [
+  { name = "Mindcleaver", description = "This blade is made of pure force and is surprisingly light to the touch. It bypasses the Incorporeal chances of Ethereal monsters innately." },
+  { name = "Impactful 6", description = "This effect causes the edges of this weapon to ripple with force, dealing 6 to 36 force on each hit." },
+  { name = "Force Blast 6", description = "This weapon ripples with intense force, dealing 6d6 Force damage on a successful hit, and an additional 6d6 Force damage on a critical hit." },
+  { name = "Improved Destruction", description = "On Hit: Your target gains a stack of Armor Destruction. (-1 penalty to Armor Class, -1% of its Fortification. 20 Second Duration. Stacks up to 15 times.) This effect may trigger once every second." },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 10
+damage_dice_bonus = 2
+damage_multiplier = 5.0
+critical_threat_range = 1
+critical_multiplier = 3
+handedness = "One-handed"
+
+[[item]]
+name = "Mindcleaver (Level 5)"
+page = "https://ddowiki.com/page/Item:Mindcleaver_%28level_5%29"
+read = "2026-09-29"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Dwarven Axe"
+minimum_level = 5
+enhancement_bonus = 2
+material = "Force"
+description = "The manifestation of your mind has been sharpened to a keen edge. As you increase in level, this weapon will also grow in power. Because it is a manifestation of pure mind rather than a physical weapon, it will dissipate if unequipped."
+drop_location = "The page gives no location"
+bonuses = [
+  { stat = "Combat Mastery", bonus_type = "Enhancement", value = 3 },
+]
+effects = [
+  { name = "Mindcleaver", description = "This blade is made of pure force and is surprisingly light to the touch. It bypasses the Incorporeal chances of Ethereal monsters innately." },
+  { name = "Impactful 2", description = "This effect causes the edges of this weapon to ripple with force, dealing 2 to 12 force on each hit." },
+  { name = "Force Blast 2", description = "This weapon ripples with intense force, dealing 2d6 Force damage on a successful hit, and an additional 2d6 Force damage on a critical hit." },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 10
+critical_threat_range = 1
+critical_multiplier = 3
+handedness = "One-handed"
+
+[[item]]
+name = "Quorforged Docent of Victory (Level 12)"
+page = "https://ddowiki.com/page/Item:Quorforged_Docent_of_Victory_%28level_12%29"
+read = "2026-09-29"
+slot = "Body"
+category = "Armor"
+item_type = "Docent"
+minimum_level = 12
+enhancement_bonus = 5
+material = "Crystal"
+description = "Time-Twisted version of Quorforged Docent of Battle This docent belongs to the servants of the Quori that still run Stormreach to this day."
+drop_location = "Timeline Fragment Exchange, Turn in 50 Timeline Fragments"
+augment_slots = ["blue", "sun"]
+bonuses = [
+  { stat = "Will Save", bonus_type = "Resistance", value = 6 },
+  { stat = "Combat Mastery", bonus_type = "Enhancement", value = 5 },
+  { stat = "Fortification", bonus_type = "Quality", value = 20 },
+  { stat = "Chaos Absorption", bonus_type = "Enhancement", value = 15 },
+]
+
+[item.armor]
+armor_type = "Docent"
+
+[[item]]
+name = "Quorforged Docent of Victory (Level 16)"
+page = "https://ddowiki.com/page/Item:Quorforged_Docent_of_Victory_%28level_16%29"
+read = "2026-09-29"
+slot = "Body"
+category = "Armor"
+item_type = "Docent"
+minimum_level = 16
+enhancement_bonus = 5
+material = "Crystal"
+description = "Time-Twisted version of Quorforged Docent of Battle This docent belongs to the servants of the Quori that still run Stormreach to this day."
+drop_location = "Timeline Fragment Exchange, Turn in 50 Timeline Fragments"
+augment_slots = ["blue", "sun"]
+bonuses = [
+  { stat = "Will Save", bonus_type = "Resistance", value = 7 },
+  { stat = "Combat Mastery", bonus_type = "Enhancement", value = 6 },
+  { stat = "Fortification", bonus_type = "Quality", value = 23 },
+  { stat = "Chaos Absorption", bonus_type = "Enhancement", value = 15 },
+]
+
+[item.armor]
+armor_type = "Docent"
+
+[[item]]
+name = "Quorforged Docent of Victory (Level 20)"
+page = "https://ddowiki.com/page/Item:Quorforged_Docent_of_Victory_%28level_20%29"
+read = "2026-09-29"
+slot = "Body"
+category = "Armor"
+item_type = "Docent"
+minimum_level = 20
+enhancement_bonus = 6
+material = "Crystal"
+description = "Time-Twisted version of Quorforged Docent of Battle This docent belongs to the servants of the Quori that still run Stormreach to this day."
+drop_location = "Timeline Fragment Exchange, Turn in 50 Timeline Fragments"
+augment_slots = ["green", "colorless", "sun"]
+bonuses = [
+  { stat = "Will Save", bonus_type = "Resistance", value = 9 },
+  { stat = "Combat Mastery", bonus_type = "Enhancement", value = 8 },
+  { stat = "Fortification", bonus_type = "Quality", value = 27 },
+  { stat = "Chaos Absorption", bonus_type = "Enhancement", value = 18 },
+]
+
+[item.armor]
+armor_type = "Docent"
+
+[[item]]
+name = "Quorforged Docent of Victory (Level 24)"
+page = "https://ddowiki.com/page/Item:Quorforged_Docent_of_Victory_%28level_24%29"
+read = "2026-09-29"
+slot = "Body"
+category = "Armor"
+item_type = "Docent"
+minimum_level = 24
+enhancement_bonus = 7
+material = "Crystal"
+description = "Time-Twisted version of Quorforged Docent of Battle This docent belongs to the servants of the Quori that still run Stormreach to this day."
+drop_location = "Timeline Fragment Exchange, Turn in 50 Timeline Fragments"
+augment_slots = ["green", "colorless", "sun"]
+bonuses = [
+  { stat = "Will Save", bonus_type = "Resistance", value = 10 },
+  { stat = "Combat Mastery", bonus_type = "Enhancement", value = 9 },
+  { stat = "Fortification", bonus_type = "Quality", value = 30 },
+  { stat = "Chaos Absorption", bonus_type = "Enhancement", value = 20 },
+]
+
+[item.armor]
+armor_type = "Docent"
+
+[[item]]
+name = "Quorforged Docent of Victory (Level 28)"
+page = "https://ddowiki.com/page/Item:Quorforged_Docent_of_Victory_%28level_28%29"
+read = "2026-09-29"
+slot = "Body"
+category = "Armor"
+item_type = "Docent"
+minimum_level = 28
+enhancement_bonus = 14
+material = "Crystal"
+description = "Time-Twisted version of Quorforged Docent of Battle This docent belongs to the servants of the Quori that still run Stormreach to this day."
+drop_location = "Timeline Fragment Exchange, Turn in 50 Timeline Fragments"
+augment_slots = ["green", "colorless", "sun"]
+bonuses = [
+  { stat = "Will Save", bonus_type = "Resistance", value = 11 },
+  { stat = "Combat Mastery", bonus_type = "Enhancement", value = 10 },
+  { stat = "Fortification", bonus_type = "Quality", value = 34 },
+  { stat = "Chaos Absorption", bonus_type = "Enhancement", value = 21 },
+]
+
+[item.armor]
+armor_type = "Docent"
+
+[[item]]
+name = "Quorforged Docent of Victory (Level 32)"
+page = "https://ddowiki.com/page/Item:Quorforged_Docent_of_Victory_%28level_32%29"
+read = "2026-09-29"
+slot = "Body"
+category = "Armor"
+item_type = "Docent"
+minimum_level = 32
+enhancement_bonus = 15
+material = "Crystal"
+description = "Time-Twisted version of Quorforged Docent of Battle This docent belongs to the servants of the Quori that still run Stormreach to this day."
+drop_location = "Timeline Fragment Exchange, Turn in 50 Timeline Fragments"
+augment_slots = ["green", "colorless", "sun"]
+bonuses = [
+  { stat = "Will Save", bonus_type = "Resistance", value = 12 },
+  { stat = "Combat Mastery", bonus_type = "Enhancement", value = 11 },
+  { stat = "Fortification", bonus_type = "Quality", value = 37 },
+  { stat = "Chaos Absorption", bonus_type = "Enhancement", value = 23 },
+]
+
+[item.armor]
+armor_type = "Docent"
+
+[[item]]
+name = "Quorforged Docent of Victory (Level 36)"
+page = "https://ddowiki.com/page/Item:Quorforged_Docent_of_Victory_%28level_36%29"
+read = "2026-09-29"
+slot = "Body"
+category = "Armor"
+item_type = "Docent"
+minimum_level = 36
+enhancement_bonus = 15
+material = "Crystal"
+description = "Time-Twisted version of Quorforged Docent of Battle This docent belongs to the servants of the Quori that still run Stormreach to this day."
+drop_location = "Timeline Fragment Exchange, Turn in 50 Timeline Fragments"
+augment_slots = ["green", "colorless", "sun"]
+bonuses = [
+  { stat = "Will Save", bonus_type = "Resistance", value = 13 },
+  { stat = "Combat Mastery", bonus_type = "Enhancement", value = 12 },
+  { stat = "Fortification", bonus_type = "Quality", value = 41 },
+  { stat = "Chaos Absorption", bonus_type = "Enhancement", value = 24 },
+]
+
+[item.armor]
+armor_type = "Docent"
+
+[[item]]
+name = "Quorforged Docent of Victory (Level 4)"
+page = "https://ddowiki.com/page/Item:Quorforged_Docent_of_Victory_%28level_4%29"
+read = "2026-09-29"
+slot = "Body"
+category = "Armor"
+item_type = "Docent"
+minimum_level = 4
+enhancement_bonus = 2
+material = "Crystal"
+description = "Time-Twisted version of Quorforged Docent of Battle This docent belongs to the servants of the Quori that still run Stormreach to this day."
+drop_location = "Timeline Fragment Exchange, Turn in 50 Timeline Fragments"
+augment_slots = ["blue", "sun"]
+bonuses = [
+  { stat = "Will Save", bonus_type = "Resistance", value = 4 },
+  { stat = "Combat Mastery", bonus_type = "Enhancement", value = 3 },
+  { stat = "Fortification", bonus_type = "Quality", value = 13 },
+  { stat = "Chaos Absorption", bonus_type = "Enhancement", value = 12 },
+]
+
+[item.armor]
+armor_type = "Docent"
+
+[[item]]
+name = "Quorforged Docent of Victory (Level 8)"
+page = "https://ddowiki.com/page/Item:Quorforged_Docent_of_Victory_%28level_8%29"
+read = "2026-09-29"
+slot = "Body"
+category = "Armor"
+item_type = "Docent"
+minimum_level = 8
+enhancement_bonus = 4
+material = "Crystal"
+description = "Time-Twisted version of Quorforged Docent of Battle This docent belongs to the servants of the Quori that still run Stormreach to this day."
+drop_location = "Timeline Fragment Exchange, Turn in 50 Timeline Fragments"
+augment_slots = ["blue", "sun"]
+bonuses = [
+  { stat = "Will Save", bonus_type = "Resistance", value = 5 },
+  { stat = "Combat Mastery", bonus_type = "Enhancement", value = 4 },
+  { stat = "Fortification", bonus_type = "Quality", value = 17 },
+  { stat = "Chaos Absorption", bonus_type = "Enhancement", value = 14 },
+]
+
+[item.armor]
+armor_type = "Docent"
+
+[[item]]
+name = "Shadowblade (Level 1)"
+page = "https://ddowiki.com/page/Item:Shadowblade_%28level_1%29"
+read = "2026-09-29"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Shortsword"
+minimum_level = 1
+enhancement_bonus = 1
+material = "Force"
+description = "This manifestation of Illusion Magic is made real by your touch. As you increase in level, this weapon will also increase in power. Because it is a manifestation of pure magic rather than a physical weapon, it will dissipate if unequipped."
+drop_location = "The page gives no location"
+effects = [
+  { name = "Shadowblade", description = "This blade is made of pure force and is surprisingly light to the touch. It bypasses the Incorporeal chances of Ethereal monsters innately." },
+  { name = "Impactful 1", description = "This effect causes the edges of this weapon to ripple with force, dealing 1 to 6 force on each hit." },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 6
+critical_threat_range = 2
+critical_multiplier = 2
+handedness = "One-handed"
+
+[[item]]
+name = "Shadowblade (Level 10)"
+page = "https://ddowiki.com/page/Item:Shadowblade_%28level_10%29"
+read = "2026-09-29"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Shortsword"
+minimum_level = 10
+enhancement_bonus = 4
+material = "Force"
+description = "This manifestation of Illusion Magic is made real by your touch. As you increase in level, this weapon will also increase in power. Because it is a manifestation of pure magic rather than a physical weapon, it will dissipate if unequipped."
+drop_location = "The page gives no location"
+effects = [
+  { name = "Shadowblade", description = "This blade is made of pure force and is surprisingly light to the touch. It bypasses the Incorporeal chances of Ethereal monsters innately." },
+  { name = "Impactful 3", description = "This effect causes the edges of this weapon to ripple with force, dealing 3 to 18 force on each hit." },
+  { name = "Force Blast 3", description = "This weapon ripples with intense force, dealing 3d6 Force damage on a successful hit, and an additional 3d6 Force damage on a critical hit." },
+  { name = "Nightmares", description = "On Vorpal Hit: If your target has below 500 Hit Points, a burst of pure terror emanates from this weapon, snuffing out its life as if it were the subject of a Phantasmal Killer spell. If your target has above 500 Hit Points, they instead take significant Force damage." },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 6
+damage_multiplier = 1.5
+critical_threat_range = 2
+critical_multiplier = 2
+handedness = "One-handed"
+
+[[item]]
+name = "Shadowblade (Level 15)"
+page = "https://ddowiki.com/page/Item:Shadowblade_%28level_15%29"
+read = "2026-09-29"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Shortsword"
+minimum_level = 15
+enhancement_bonus = 6
+material = "Force"
+description = "This manifestation of Illusion Magic is made real by your touch. As you increase in level, this weapon will also increase in power. Because it is a manifestation of pure magic rather than a physical weapon, it will dissipate if unequipped."
+drop_location = "The page gives no location"
+effects = [
+  { name = "Shadowblade", description = "This blade is made of pure force and is surprisingly light to the touch. It bypasses the Incorporeal chances of Ethereal monsters innately." },
+  { name = "Impactful 4", description = "This effect causes the edges of this weapon to ripple with force, dealing 4 to 24 force on each hit." },
+  { name = "Force Blast 4", description = "This weapon ripples with intense force, dealing 4d6 Force damage on a successful hit, and an additional 4d6 Force damage on a critical hit." },
+  { name = "Greater Nightmares", description = "On Vorpal Hit: If your target has below 1,500 Hit Points, a burst of pure terror emanates from this weapon, snuffing out its life as if it were the subject of a Phantasmal Killer spell. If your target has above 1,500 Hit Points, they instead take significant Force damage." },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 6
+damage_multiplier = 2.0
+critical_threat_range = 2
+critical_multiplier = 2
+handedness = "One-handed"
+
+[[item]]
+name = "Shadowblade (Level 20)"
+page = "https://ddowiki.com/page/Item:Shadowblade_%28level_20%29"
+read = "2026-09-29"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Shortsword"
+minimum_level = 20
+enhancement_bonus = 8
+material = "Force"
+description = "This manifestation of Illusion Magic is made real by your touch. As you increase in level, this weapon will also increase in power. Because it is a manifestation of pure magic rather than a physical weapon, it will dissipate if unequipped."
+drop_location = "The page gives no location"
+effects = [
+  { name = "Shadowblade", description = "This blade is made of pure force and is surprisingly light to the touch. It bypasses the Incorporeal chances of Ethereal monsters innately." },
+  { name = "Impactful 4", description = "This effect causes the edges of this weapon to ripple with force, dealing 4 to 24 force on each hit." },
+  { name = "Force Blast 4", description = "This weapon ripples with intense force, dealing 4d6 Force damage on a successful hit, and an additional 4d6 Force damage on a critical hit." },
+  { name = "Improved Nightmares", description = "On Vorpal Hit: If your target has below 1,000 Hit Points, a burst of pure terror emanates from this weapon, snuffing out its life as if it were the subject of a Phantasmal Killer spell. If your target has above 1,000 Hit Points, they instead take significant Force damage." },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 6
+damage_multiplier = 3.0
+critical_threat_range = 2
+critical_multiplier = 2
+handedness = "One-handed"
+
+[[item]]
+name = "Shadowblade (Level 25)"
+page = "https://ddowiki.com/page/Item:Shadowblade_%28level_25%29"
+read = "2026-09-29"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Shortsword"
+minimum_level = 25
+enhancement_bonus = 10
+material = "Force"
+description = "This manifestation of Illusion Magic is made real by your touch. As you increase in level, this weapon will also increase in power. Because it is a manifestation of pure magic rather than a physical weapon, it will dissipate if unequipped."
+drop_location = "The page gives no location"
+effects = [
+  { name = "Shadowblade", description = "This blade is made of pure force and is surprisingly light to the touch. It bypasses the Incorporeal chances of Ethereal monsters innately." },
+  { name = "Impactful 5", description = "This effect causes the edges of this weapon to ripple with force, dealing 5 to 30 force on each hit." },
+  { name = "Force Blast 5", description = "This weapon ripples with intense force, dealing 5d6 Force damage on a successful hit, and an additional 5d6 Force damage on a critical hit." },
+  { name = "Superior Nightmares", description = "On Vorpal Hit: If your target has below 2,500 Hit Points, a burst of pure terror emanates from this weapon, snuffing out its life as if it were the subject of a Phantasmal Killer spell. If your target has above 2,500 Hit Points, they instead take significant Force damage." },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 6
+damage_multiplier = 4.0
+critical_threat_range = 2
+critical_multiplier = 2
+handedness = "One-handed"
+
+[[item]]
+name = "Shadowblade (Level 30)"
+page = "https://ddowiki.com/page/Item:Shadowblade_%28level_30%29"
+read = "2026-09-29"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Shortsword"
+minimum_level = 30
+enhancement_bonus = 15
+material = "Force"
+description = "This manifestation of Illusion Magic is made real by your touch. As you increase in level, this weapon will also increase in power. Because it is a manifestation of pure magic rather than a physical weapon, it will dissipate if unequipped."
+drop_location = "The page gives no location"
+effects = [
+  { name = "Shadowblade", description = "This blade is made of pure force and is surprisingly light to the touch. It bypasses the Incorporeal chances of Ethereal monsters innately." },
+  { name = "Impactful 6", description = "This effect causes the edges of this weapon to ripple with force, dealing 6 to 36 force on each hit." },
+  { name = "Force Blast 6", description = "This weapon ripples with intense force, dealing 6d6 Force damage on a successful hit, and an additional 6d6 Force damage on a critical hit." },
+  { name = "Sovereign Nightmares", description = "On Vorpal Hit: If your target has below 5,000 Hit Points, a burst of pure terror emanates from this weapon, snuffing out its life as if it were the subject of a Phantasmal Killer spell. If your target has above 5,000 Hit Points, they instead take significant Force damage." },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 6
+damage_dice_bonus = 2
+damage_multiplier = 5.0
+critical_threat_range = 2
+critical_multiplier = 2
+handedness = "One-handed"
+
+[[item]]
+name = "Shadowblade (Level 5)"
+page = "https://ddowiki.com/page/Item:Shadowblade_%28level_5%29"
+read = "2026-09-29"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Shortsword"
+minimum_level = 5
+enhancement_bonus = 2
+material = "Force"
+description = "This manifestation of Illusion Magic is made real by your touch. As you increase in level, this weapon will also increase in power. Because it is a manifestation of pure magic rather than a physical weapon, it will dissipate if unequipped."
+drop_location = "The page gives no location"
+effects = [
+  { name = "Shadowblade", description = "This blade is made of pure force and is surprisingly light to the touch. It bypasses the Incorporeal chances of Ethereal monsters innately." },
+  { name = "Impactful 2", description = "This effect causes the edges of this weapon to ripple with force, dealing 2 to 12 force on each hit." },
+  { name = "Force Blast 2", description = "This weapon ripples with intense force, dealing 2d6 Force damage on a successful hit, and an additional 2d6 Force damage on a critical hit." },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 6
+critical_threat_range = 2
+critical_multiplier = 2
+handedness = "One-handed"
+
+[[item]]
+name = "Thorn Blade (Level 1)"
+page = "https://ddowiki.com/page/Item:Thorn_Blade_%28level_1%29"
+read = "2026-09-29"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Scimitar"
+minimum_level = 1
+enhancement_bonus = 1
+material = "Wood"
+description = "A thorny mass of poisoned bines that sprang forth from your hands with the casting of the Thorn Blade spell. The thorns respond to the willpower and intuition of the wielder. As the Thorn Blade is not physical, monks may use it without becoming uncentered."
+drop_location = "The page gives no location"
+effects = [
+  { name = "Thornblade", description = "This blade is made of acidic thorns that drip with an etheric poison. It bypasses the Incorporeal chances of Ethereal monsters innately." },
+  { name = "Acidic 1", description = "This effect causes the edges of this weapon to drip with acid, dealing 1d6 Acid damage on each hit." },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 6
+critical_threat_range = 3
+critical_multiplier = 2
+handedness = "One-handed"
+
+[[item]]
+name = "Thorn Blade (Level 10)"
+page = "https://ddowiki.com/page/Item:Thorn_Blade_%28level_10%29"
+read = "2026-09-29"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Scimitar"
+minimum_level = 10
+enhancement_bonus = 4
+material = "Wood"
+description = "A thorny mass of poisoned bines that sprang forth from your hands with the casting of the Thorn Blade spell. The thorns respond to the willpower and intuition of the wielder. As the Thorn Blade is not physical, monks may use it without becoming uncentered."
+drop_location = "The page gives no location"
+effects = [
+  { name = "Thornblade", description = "This blade is made of acidic thorns that drip with an etheric poison. It bypasses the Incorporeal chances of Ethereal monsters innately." },
+  { name = "Acidic 3", description = "This effect causes the edges of this weapon to drip with acid, dealing 3d6 Acid damage on each hit." },
+  { name = "Poison Blast 3", description = "This weapon drips with vile poison, dealing 3d6 Poison damage on a successful hit, and an additional 3d6 Poison damage on a critical hit." },
+  { name = "Critical Wounding 2", description = "This deadly weapon saps the health from your enemies, dealing 2 Constitution damage on each critical hit." },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 6
+damage_multiplier = 1.5
+critical_threat_range = 3
+critical_multiplier = 2
+handedness = "One-handed"
+
+[[item]]
+name = "Thorn Blade (Level 15)"
+page = "https://ddowiki.com/page/Item:Thorn_Blade_%28level_15%29"
+read = "2026-09-29"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Scimitar"
+minimum_level = 15
+enhancement_bonus = 6
+material = "Wood"
+description = "A thorny mass of poisoned bines that sprang forth from your hands with the casting of the Thorn Blade spell. The thorns respond to the willpower and intuition of the wielder. As the Thorn Blade is not physical, monks may use it without becoming uncentered."
+drop_location = "The page gives no location"
+effects = [
+  { name = "Thornblade", description = "This blade is made of acidic thorns that drip with an etheric poison. It bypasses the Incorporeal chances of Ethereal monsters innately." },
+  { name = "Acidic 4", description = "This effect causes the edges of this weapon to drip with acid, dealing 4d6 Acid damage on each hit." },
+  { name = "Poison Blast 4", description = "This weapon drips with vile poison, dealing 4d6 Poison damage on a successful hit, and an additional 4d6 Poison damage on a critical hit." },
+  { name = "Critical Wounding 2", description = "This deadly weapon saps the health from your enemies, dealing 2 Constitution damage on each critical hit." },
+  { name = "Cursespewing", description = "On Vorpal Hit: Your enemy is cursed with a -4 morale penalty on attack rolls, saving throws, and skill checks. This painful curse also causes the victim to take 1d6 damage every two seconds for a duration of twelve seconds. Additional vorpal strikes while the curse is active will extend the duration by another twelve seconds." },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 6
+damage_multiplier = 2.0
+critical_threat_range = 3
+critical_multiplier = 2
+handedness = "One-handed"
+
+[[item]]
+name = "Thorn Blade (Level 20)"
+page = "https://ddowiki.com/page/Item:Thorn_Blade_%28level_20%29"
+read = "2026-09-29"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Scimitar"
+minimum_level = 20
+enhancement_bonus = 8
+material = "Wood"
+description = "A thorny mass of poisoned bines that sprang forth from your hands with the casting of the Thorn Blade spell. The thorns respond to the willpower and intuition of the wielder. As the Thorn Blade is not physical, monks may use it without becoming uncentered."
+drop_location = "The page gives no location"
+effects = [
+  { name = "Thornblade", description = "This blade is made of acidic thorns that drip with an etheric poison. It bypasses the Incorporeal chances of Ethereal monsters innately." },
+  { name = "Acidic 4", description = "This effect causes the edges of this weapon to drip with acid, dealing 4d6 Acid damage on each hit." },
+  { name = "Poison Blast 4", description = "This weapon drips with vile poison, dealing 4d6 Poison damage on a successful hit, and an additional 4d6 Poison damage on a critical hit." },
+  { name = "Critical Wounding 2", description = "This deadly weapon saps the health from your enemies, dealing 2 Constitution damage on each critical hit." },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 6
+damage_multiplier = 3.0
+critical_threat_range = 3
+critical_multiplier = 2
+handedness = "One-handed"
+
+[[item]]
+name = "Thorn Blade (Level 25)"
+page = "https://ddowiki.com/page/Item:Thorn_Blade_%28level_25%29"
+read = "2026-09-29"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Scimitar"
+minimum_level = 25
+enhancement_bonus = 10
+material = "Wood"
+description = "A thorny mass of poisoned bines that sprang forth from your hands with the casting of the Thorn Blade spell. The thorns respond to the willpower and intuition of the wielder. As the Thorn Blade is not physical, monks may use it without becoming uncentered."
+drop_location = "The page gives no location"
+effects = [
+  { name = "Thornblade", description = "This blade is made of acidic thorns that drip with an etheric poison. It bypasses the Incorporeal chances of Ethereal monsters innately." },
+  { name = "Acidic 5", description = "This effect causes the edges of this weapon to drip with acid, dealing 5d6 Acid damage on each hit." },
+  { name = "Poison Blast 5", description = "This weapon drips with vile poison, dealing 5d6 Poison damage on a successful hit, and an additional 5d6 Poison damage on a critical hit." },
+  { name = "Critical Wounding 3", description = "This deadly weapon saps the health from your enemies, dealing 3 Constitution damage on each critical hit." },
+  { name = "Cursespewing", description = "On Vorpal Hit: Your enemy is cursed with a -4 morale penalty on attack rolls, saving throws, and skill checks. This painful curse also causes the victim to take 1d6 damage every two seconds for a duration of twelve seconds. Additional vorpal strikes while the curse is active will extend the duration by another twelve seconds." },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 6
+damage_multiplier = 4.0
+critical_threat_range = 3
+critical_multiplier = 2
+handedness = "One-handed"
+
+[[item]]
+name = "Thorn Blade (Level 30)"
+page = "https://ddowiki.com/page/Item:Thorn_Blade_%28level_30%29"
+read = "2026-09-29"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Scimitar"
+minimum_level = 30
+enhancement_bonus = 15
+material = "Wood"
+description = "A thorny mass of poisoned bines that sprang forth from your hands with the casting of the Thorn Blade spell. The thorns respond to the willpower and intuition of the wielder. As the Thorn Blade is not physical, monks may use it without becoming uncentered."
+drop_location = "The page gives no location"
+effects = [
+  { name = "Thornblade", description = "This blade is made of acidic thorns that drip with an etheric poison. It bypasses the Incorporeal chances of Ethereal monsters innately." },
+  { name = "Acidic 6", description = "This effect causes the edges of this weapon to drip with acid, dealing 6d6 Acid damage on each hit." },
+  { name = "Poison Blast 6", description = "This weapon drips with vile poison, dealing 6d6 Poison damage on a successful hit, and an additional 6d6 Poison damage on a critical hit." },
+  { name = "Critical Wounding 3", description = "This deadly weapon saps the health from your enemies, dealing 3 Constitution damage on each critical hit." },
+  { name = "Legendary Cursespewing", description = "On Vorpal Hit: Your enemy is cursed with a -4 morale penalty on attack rolls, saving throws, and skill checks. This painful curse also causes the victim to take 6d6+6 damage every two seconds for a duration of twelve seconds. Additional vorpal strikes while the curse is active will extend the duration by another twelve seconds." },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 6
+damage_dice_bonus = 2
+damage_multiplier = 5.0
+critical_threat_range = 3
+critical_multiplier = 2
+handedness = "One-handed"
+
+[[item]]
+name = "Thorn Blade (Level 5)"
+page = "https://ddowiki.com/page/Item:Thorn_Blade_%28level_5%29"
+read = "2026-09-29"
+slot = "Main Hand"
+category = "Weapon"
+item_type = "Scimitar"
+minimum_level = 5
+enhancement_bonus = 2
+material = "Wood"
+description = "A thorny mass of poisoned bines that sprang forth from your hands with the casting of the Thorn Blade spell. The thorns respond to the willpower and intuition of the wielder. As the Thorn Blade is not physical, monks may use it without becoming uncentered."
+drop_location = "The page gives no location"
+effects = [
+  { name = "Thornblade", description = "This blade is made of acidic thorns that drip with an etheric poison. It bypasses the Incorporeal chances of Ethereal monsters innately." },
+  { name = "Acidic 2", description = "This effect causes the edges of this weapon to drip with acid, dealing 2d6 Acid damage on each hit." },
+  { name = "Poison Blast 2", description = "This weapon drips with vile poison, dealing 2d6 Poison damage on a successful hit, and an additional 2d6 Poison damage on a critical hit." },
+]
+
+[item.weapon]
+damage_dice_count = 1
+damage_dice_sides = 6
+critical_threat_range = 3
+critical_multiplier = 2
+handedness = "One-handed"
