@@ -2,7 +2,7 @@
   "api_commit": "9dd551f2c0b1e8c4a7d6f5e4b3a2c1d0e9f8a7b6",
   "counts": {
     "augments": 2246,
-    "bonuses": 4798,
+    "bonuses": 4806,
     "classes": 28,
     "clickies": 219,
     "crafting_ingredients": 702,
@@ -13,20 +13,20 @@
     "feats": 1022,
     "filigrees": 437,
     "guild_buffs": 37,
-    "items": 8749,
+    "items": 8746,
     "modifiers": 13817,
     "optional_buffs": 138,
-    "quests": 603,
+    "quests": 604,
     "races": 30,
     "requirements": 9771,
     "sentient_gems": 14,
     "set_bonuses": 327,
     "spells": 706,
-    "wiki_items": 262,
-    "wiki_quests": 0
+    "wiki_items": 263,
+    "wiki_quests": 1
   },
   "dataset": {
-    "built_at": "2026-09-30T07:16:58Z",
+    "built_at": "2026-09-30T07:45:15Z",
     "upstream_sha": "31ef0201ea8e28604de2b6242988aee6d63733b0"
   },
   "schema_version": 6
