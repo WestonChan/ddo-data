@@ -75,6 +75,7 @@ pub struct BuildReport {
     pub wiki_description_entry_count: usize,
     pub wiki_description_filled_count: usize,
     pub wiki_description_skipped_count: usize,
+    pub wiki_description_augment_link_count: usize,
     pub wiki_item_written_count: usize,
     pub wiki_item_superseded_count: usize,
     pub wiki_item_probable_duplicate_count: usize,
@@ -201,7 +202,7 @@ pub fn build_database(
     writer.write_guild_buffs(&data_files_dir.join("GuildBuffs.xml"), &mut report)?;
     writer.write_optional_buffs(&data_files_dir.join("SelfAndPartyBuffs.xml"), &mut report)?;
     corrections::apply_corrections(&transaction, corrections, &mut report)?;
-    wiki::apply_wiki_overrides(&transaction, wiki_overrides, &mut report)?;
+    wiki::apply_wiki_overrides(&transaction, wiki_overrides, &drop_text_quests, &mut report)?;
 
     report.bonus_count = writer.written.bonus_ids_by_key.len();
     report.effect_count = writer.written.effect_ids_by_name.len();

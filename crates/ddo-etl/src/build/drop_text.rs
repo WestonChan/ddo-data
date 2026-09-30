@@ -132,36 +132,42 @@ pub(super) struct LinkedDropTextQuest {
     pub(super) is_newly_rare: bool,
 }
 
-impl TableWriter<'_> {
-    pub(super) fn insert_quest_loot_link(
-        &self,
-        table: QuestLootTable,
-        quest_id: i64,
-        loot_id: i64,
-        loot_type: LootType,
-        is_rare: bool,
-        chest: Option<&str>,
-    ) -> Result<usize> {
-        Ok(self
-            .transaction
-            .execute(table.insert_link_sql(), params![quest_id, loot_id, loot_type.as_str(), is_rare, chest])?)
-    }
+pub(super) struct QuestLootLink<'a> {
+    pub(super) table: QuestLootTable,
+    pub(super) quest_id: i64,
+    pub(super) loot_id: i64,
+    pub(super) loot_type: LootType,
+    pub(super) is_rare: bool,
+    pub(super) chest: Option<&'a str>,
+}
 
-    pub(super) fn link_to_drop_text_quests(
+pub(super) fn insert_quest_loot_link(transaction: &Transaction, link: &QuestLootLink) -> Result<usize> {
+    Ok(transaction.execute(
+        link.table.insert_link_sql(),
+        params![link.quest_id, link.loot_id, link.loot_type.as_str(), link.is_rare, link.chest],
+    )?)
+}
+
+impl DropTextQuests {
+    pub(super) fn link_loot_to_quests_named_in(
         &self,
+        transaction: &Transaction,
         table: QuestLootTable,
         loot_id: i64,
         drop_text: &str,
     ) -> Result<Vec<LinkedDropTextQuest>> {
         let mut linked_quests = Vec::new();
-        for quest_link in self.drop_text_quests.quest_links_in(drop_text) {
-            let changed_row_count = self.insert_quest_loot_link(
-                table,
-                quest_link.quest_id,
-                loot_id,
-                quest_link.loot_type,
-                quest_link.is_rare,
-                quest_link.chest.as_deref(),
+        for quest_link in self.quest_links_in(drop_text) {
+            let changed_row_count = insert_quest_loot_link(
+                transaction,
+                &QuestLootLink {
+                    table,
+                    quest_id: quest_link.quest_id,
+                    loot_id,
+                    loot_type: quest_link.loot_type,
+                    is_rare: quest_link.is_rare,
+                    chest: quest_link.chest.as_deref(),
+                },
             )?;
             linked_quests.push(LinkedDropTextQuest {
                 is_wiki_quest: quest_link.is_wiki_quest,
@@ -169,5 +175,16 @@ impl TableWriter<'_> {
             });
         }
         Ok(linked_quests)
+    }
+}
+
+impl TableWriter<'_> {
+    pub(super) fn link_to_drop_text_quests(
+        &self,
+        table: QuestLootTable,
+        loot_id: i64,
+        drop_text: &str,
+    ) -> Result<Vec<LinkedDropTextQuest>> {
+        self.drop_text_quests.link_loot_to_quests_named_in(self.transaction, table, loot_id, drop_text)
     }
 }

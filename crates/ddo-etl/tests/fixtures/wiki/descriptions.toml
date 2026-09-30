@@ -18,7 +18,7 @@ kind = "augment"
 name = "Lunar Gem of Evocation (Heroic)"
 page = "https://ddowiki.com/page/Item:Lunar_Gem_of_Evocation_(Heroic)"
 read = "2026-09-29"
-description = "Drops in: Test Quest, end chest"
+description = "Drops in: Book Burning, end chest"
 
 [[entry]]
 kind = "feat"

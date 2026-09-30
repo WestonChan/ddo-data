@@ -958,7 +958,34 @@ fn fills_the_drops_in_placeholder_line_of_an_augment_and_keeps_his_lines_before_
     let (db, _) = built_db_with(&WikiOverrides::from_dir(&fixtures_dir().join("wiki")).unwrap());
     assert_eq!(
         description_of(&db, "augments", "Lunar Gem of Evocation (Heroic)"),
-        [Some("+2 Profane Bonus to Evocation DCs\nDrops in: Test Quest, end chest".to_string())]
+        [Some("+2 Profane Bonus to Evocation DCs\nDrops in: Book Burning, end chest".to_string())]
+    );
+}
+
+#[test]
+fn links_an_augment_to_the_quests_its_wiki_description_names_before_wiki_quest_loot_marks_it() {
+    let description = "Drops in: Book Burning, end chest (rare)\nThe Cursed Crypt, optional chest";
+    let quest_loot_text = format!(
+        "{BOOK_BURNING_CITATION}rare_augments = [{{ name = \"Lunar Gem of Evocation (Heroic)\", chest = \"end chest\" }}]\n"
+    );
+    let wiki = parsed_wiki(&[
+        ("descriptions.toml", &description_toml("augment", "Lunar Gem of Evocation (Heroic)", description)),
+        ("quest_loot.toml", &quest_loot_text),
+    ])
+    .unwrap();
+    let (db, report) = built_db_with(&wiki);
+    assert_eq!(
+        quest_augment_loot_row(&db, "Book Burning", "Lunar Gem of Evocation (Heroic)"),
+        Some(("chest".into(), true, Some("end chest".into())))
+    );
+    assert_eq!(
+        quest_augment_loot_row(&db, "The Cursed Crypt", "Lunar Gem of Evocation (Heroic)"),
+        Some(("chest".into(), false, Some("optional chest".into())))
+    );
+    assert_eq!(
+        (report.wiki_description_augment_link_count, report.wiki_added_quest_augment_loot_link_count),
+        (2, 0),
+        "the description's links exist before the wiki quest loot marks one rare"
     );
 }
 

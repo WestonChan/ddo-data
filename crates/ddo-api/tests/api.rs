@@ -62,7 +62,7 @@ async fn version_reports_dataset_and_schema() {
     assert_eq!(json["schema_version"], ddo_model::SCHEMA_VERSION);
     assert!(json.get("api_commit").is_some(), "version must report the API build commit, null when unknown");
     assert_eq!(json["counts"]["items"], 17, "16 of Maetrim's and the wiki fixture's axe");
-    assert_eq!(json["counts"]["quest_augment_loot"], 6);
+    assert_eq!(json["counts"]["quest_augment_loot"], 7);
     assert_eq!(
         (
             &json["counts"]["crafting_systems"],

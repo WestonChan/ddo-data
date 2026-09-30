@@ -1,8 +1,10 @@
-use super::drop_text::QuestLootTable;
+use super::drop_text::{insert_quest_loot_link, DropTextQuests, QuestLootLink, QuestLootTable};
 use super::items::{ArmorStatsRow, ItemRow, WeaponStatsRow};
 use super::{BuildReport, ProbableDuplicateWikiEntry, SupersededWikiEntry, TableWriter};
+use crate::map::drop_location::drop_text_in_description;
 use crate::wiki::{
-    CraftingRecipe, CraftingSystem, WikiDescription, WikiItem, WikiItemEffect, WikiOverrides, WikiQuest,
+    CraftingRecipe, CraftingSystem, DescriptionKind, WikiDescription, WikiItem, WikiItemEffect, WikiOverrides,
+    WikiQuest,
 };
 use anyhow::{bail, Context, Result};
 use ddo_model::enums::{LootType, RowSource};
@@ -12,8 +14,19 @@ use std::collections::{HashMap, HashSet};
 pub(super) fn apply_wiki_overrides(
     transaction: &Transaction,
     wiki_overrides: &WikiOverrides,
+    drop_text_quests: &DropTextQuests,
     report: &mut BuildReport,
 ) -> Result<()> {
+    for wiki_description in &wiki_overrides.descriptions {
+        fill_blank_descriptions(transaction, wiki_description, drop_text_quests, report).with_context(|| {
+            format!(
+                "wiki descriptions {} {:?} ({})",
+                wiki_description.kind.as_str(),
+                wiki_description.name,
+                wiki_description.page
+            )
+        })?;
+    }
     for quest_loot in &wiki_overrides.quest_loot {
         let citation = format!("wiki quest_loot {:?} ({})", quest_loot.name, quest_loot.page);
         let quest_id = id_by_name(transaction, "quests", &quest_loot.name)?.with_context(|| {
@@ -68,16 +81,6 @@ pub(super) fn apply_wiki_overrides(
     for crafting_system in &wiki_overrides.crafting_systems {
         insert_crafting_system(transaction, crafting_system, report)
             .with_context(|| format!("wiki crafting {:?} ({})", crafting_system.name, crafting_system.page))?;
-    }
-    for wiki_description in &wiki_overrides.descriptions {
-        fill_blank_descriptions(transaction, wiki_description, report).with_context(|| {
-            format!(
-                "wiki descriptions {} {:?} ({})",
-                wiki_description.kind.as_str(),
-                wiki_description.name,
-                wiki_description.page
-            )
-        })?;
     }
     Ok(())
 }
@@ -151,6 +154,7 @@ fn insert_wiki_quest(transaction: &Transaction, wiki_quest: &WikiQuest) -> Resul
 fn fill_blank_descriptions(
     transaction: &Transaction,
     wiki_description: &WikiDescription,
+    drop_text_quests: &DropTextQuests,
     report: &mut BuildReport,
 ) -> Result<()> {
     let table_name = wiki_description.kind.table_name();
@@ -172,12 +176,30 @@ fn fill_blank_descriptions(
                     params![row_id, filled_description],
                 )?;
                 report.wiki_description_filled_count += 1;
+                if wiki_description.kind == DescriptionKind::Augment {
+                    report.wiki_description_augment_link_count +=
+                        link_augment_to_quests_named_in(transaction, drop_text_quests, row_id, &filled_description)?;
+                }
             }
             None => report.wiki_description_skipped_count += 1,
         }
     }
     report.wiki_description_entry_count += 1;
     Ok(())
+}
+
+fn link_augment_to_quests_named_in(
+    transaction: &Transaction,
+    drop_text_quests: &DropTextQuests,
+    augment_id: i64,
+    description: &str,
+) -> Result<usize> {
+    let Some(drop_text) = drop_text_in_description(description) else {
+        return Ok(0);
+    };
+    Ok(drop_text_quests
+        .link_loot_to_quests_named_in(transaction, QuestLootTable::Augments, augment_id, drop_text)?
+        .len())
 }
 
 fn insert_crafting_system(
@@ -489,7 +511,17 @@ impl TableWriter<'_> {
             self.insert_item_augment_slot(item_id, sort_order, slot_type_id)?;
         }
         for (quest_id, loot_type) in quest_links {
-            self.insert_quest_loot_link(QuestLootTable::Items, quest_id, item_id, loot_type, false, None)?;
+            insert_quest_loot_link(
+                self.transaction,
+                &QuestLootLink {
+                    table: QuestLootTable::Items,
+                    quest_id,
+                    loot_id: item_id,
+                    loot_type,
+                    is_rare: false,
+                    chest: None,
+                },
+            )?;
         }
         if let Some(set_name) = &wiki_item.set {
             self.pending_set_item_links.push((item_id, set_name.clone()));

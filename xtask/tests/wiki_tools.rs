@@ -69,6 +69,7 @@ fn wiki_check_reports_the_wiki_counts_for_a_valid_wiki_dir() {
         "wiki_description_entry_count: 4",
         "wiki_description_filled_count: 2",
         "wiki_description_skipped_count: 3",
+        "wiki_description_augment_link_count: 1",
         "wiki_item_written_count: 1",
         "wiki_item_superseded_count: 1",
         "wiki_item_probable_duplicate_count: 0",

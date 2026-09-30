@@ -74,6 +74,7 @@ fn wiki_report_lines(report: &BuildReport) -> Vec<String> {
         ("wiki_description_entry_count", report.wiki_description_entry_count),
         ("wiki_description_filled_count", report.wiki_description_filled_count),
         ("wiki_description_skipped_count", report.wiki_description_skipped_count),
+        ("wiki_description_augment_link_count", report.wiki_description_augment_link_count),
         ("wiki_item_written_count", report.wiki_item_written_count),
         ("wiki_item_superseded_count", report.wiki_item_superseded_count),
         ("wiki_item_probable_duplicate_count", report.wiki_item_probable_duplicate_count),

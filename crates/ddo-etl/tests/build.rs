@@ -294,7 +294,12 @@ fn links_augments_to_the_quests_their_descriptions_name() {
         [("Book Burning".into(), "chest".into(), true, Some("end chest".into()))],
         "the quests his text names that the fixture lacks link nothing; the wiki fixture marks this one rare"
     );
-    assert!(augment_links("Lunar Gem of Evocation (Heroic)").is_empty(), "'Drops in: ?' names no quest");
+    assert_eq!(
+        augment_links("Lunar Gem of Evocation (Heroic)"),
+        [("Book Burning".into(), "chest".into(), false, Some("end chest".into()))],
+        "his 'Drops in: ?' names no quest; the wiki fixture's description names Book Burning"
+    );
+    assert_eq!(report.wiki_description_augment_link_count, 1);
     assert_eq!((report.quest_augment_loot_link_count, report.drop_text_rare_augment_link_count), (6, 1));
     let description: String = db
         .query_row(
