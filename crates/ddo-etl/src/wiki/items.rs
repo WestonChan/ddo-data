@@ -66,12 +66,12 @@ pub struct WikiItemEffect {
 #[derive(Debug, Clone, PartialEq, Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct WikiWeaponStats {
-    pub damage_dice_count: i64,
-    pub damage_dice_sides: i64,
+    pub damage_dice_count: Option<i64>,
+    pub damage_dice_sides: Option<i64>,
     pub damage_dice_bonus: Option<i64>,
     pub damage_multiplier: Option<f64>,
-    pub critical_threat_range: i64,
-    pub critical_multiplier: i64,
+    pub critical_threat_range: Option<i64>,
+    pub critical_multiplier: Option<i64>,
     pub handedness: String,
     #[serde(default)]
     pub dr_bypass: Vec<String>,

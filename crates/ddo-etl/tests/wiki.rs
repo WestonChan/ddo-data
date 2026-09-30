@@ -776,7 +776,10 @@ fn reads_wiki_items_from_items_files() {
     assert_eq!(axe.bonuses[1].stat, "Doublestrike");
     assert_eq!(axe.effects[1].name, "Ethereal");
     let weapon = axe.weapon.as_ref().unwrap();
-    assert_eq!((weapon.damage_dice_count, weapon.damage_dice_sides, weapon.damage_multiplier), (1, 8, Some(3.0)));
+    assert_eq!(
+        (weapon.damage_dice_count, weapon.damage_dice_sides, weapon.damage_multiplier),
+        (Some(1), Some(8), Some(3.0))
+    );
     assert_eq!(weapon.dr_bypass, ["Magic", "Slash"]);
     assert!(axe.armor.is_none());
     assert!(wiki.items[1].weapon.is_none() && wiki.items[1].quests.is_empty());
@@ -1016,4 +1019,63 @@ fn wiki_items_never_change_maetrims_items() {
     let (with, _) = built_db_with_fixture_wiki();
     assert_eq!(item_count(&with, "source = 'maetrim'"), item_count(&without, "1"));
     assert_eq!(item_count(&without, "source = 'wiki'"), 0);
+}
+
+const WIKI_RUNE_ARM: &str = "[[item]]\nname = \"Test Rune Arm of the Oozing Hunger\"\npage = \"https://ddowiki.com/page/Item:Test\"\nread = \"2026-09-29\"\nslot = \"Runearm\"\ncategory = \"Weapon\"\nitem_type = \"Rune Arm\"\nminimum_level = 29\ndrop_location = \"Test source\"\n\n[item.weapon]\nhandedness = \"Off-hand\"\n";
+
+type WeaponStatsColumns = (
+    String,
+    Option<i64>,
+    Option<i64>,
+    Option<i64>,
+    Option<f64>,
+    Option<i64>,
+    Option<i64>,
+    Option<String>,
+    Option<String>,
+    Option<String>,
+);
+
+fn weapon_stats_columns(db: &Connection, item_name: &str) -> WeaponStatsColumns {
+    db.query_row(
+        "SELECT wt.name, w.base_dice_count, w.base_dice_sides, w.base_dice_bonus, w.damage_multiplier,
+                w.critical_threat_range, w.critical_multiplier, w.handedness, w.damage, w.critical
+           FROM item_weapon_stats w JOIN weapon_types wt ON wt.id = w.weapon_type_id JOIN items i ON i.id = w.item_id
+          WHERE i.name = ?1",
+        [item_name],
+        |r| {
+            Ok((
+                r.get(0)?,
+                r.get(1)?,
+                r.get(2)?,
+                r.get(3)?,
+                r.get(4)?,
+                r.get(5)?,
+                r.get(6)?,
+                r.get(7)?,
+                r.get(8)?,
+                r.get(9)?,
+            ))
+        },
+    )
+    .unwrap()
+}
+
+#[test]
+fn writes_a_rune_arm_without_dice_as_maetrims_rune_arms_are_written() {
+    let wiki = parsed_wiki(&[("items.toml", WIKI_RUNE_ARM)]).unwrap();
+    let (db, report) = built_db_with(&wiki);
+    assert_eq!(report.wiki_item_written_count, 1);
+    let wiki_rune_arm = weapon_stats_columns(&db, "Test Rune Arm of the Oozing Hunger");
+    assert_eq!(wiki_rune_arm, weapon_stats_columns(&db, "Acid Rune Arm"));
+    assert_eq!(
+        wiki_rune_arm,
+        ("Rune Arm".into(), None, None, None, None, None, None, Some("Off-hand".into()), None, None)
+    );
+}
+
+#[test]
+fn rejects_weapon_stats_without_handedness() {
+    let error = parsed_wiki(&[("items.toml", &WIKI_RUNE_ARM.replace("handedness = \"Off-hand\"\n", ""))]).unwrap_err();
+    assert!(error.contains("Test Rune Arm of the Oozing Hunger") && error.contains("handedness"), "{error}");
 }
