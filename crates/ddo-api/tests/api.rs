@@ -806,44 +806,26 @@ async fn id_of_item_named(item_name: &str) -> i64 {
 }
 
 #[tokio::test]
-async fn items_augments_and_quests_report_the_corrections_applied_to_them() {
+async fn items_augments_and_quests_carry_corrected_values_without_exposing_the_corrections() {
     let (_, _, docent) = get(&format!("/v1/items/{}", id_of_item_named("Docent of Defiance").await)).await;
     assert_eq!(docent["minimum_level"], 11);
-    assert_eq!(
-        docent["corrections"],
-        serde_json::json!([{
-            "field": "minimum_level",
-            "from": 10,
-            "to": 11,
-            "reason": "Test correction of an item's level.",
-            "source": "https://ddowiki.com/page/Item:Docent_of_Defiance"
-        }])
-    );
-    let (_, _, crossbow) =
-        get(&format!("/v1/items/{}", id_of_item_named("+1 Ember Repeating Light Crossbow").await)).await;
-    assert_eq!(crossbow["corrections"], serde_json::json!([]));
+    assert!(docent.get("corrections").is_none(), "item detail exposes corrections: {docent}");
 
     let (_, _, augments) = get("/v1/augments?q=voidscale").await;
     let voidscale_id = augments["augments"][0]["id"].as_i64().unwrap();
     let (_, _, voidscale) = get(&format!("/v1/augments/{voidscale_id}")).await;
     assert_eq!(voidscale["min_level"], 30);
-    assert_eq!(voidscale["corrections"][0]["field"], "min_level");
-    assert_eq!(
-        (&voidscale["corrections"][0]["from"], &voidscale["corrections"][0]["to"]),
-        (&serde_json::json!(31), &serde_json::json!(30))
-    );
+    assert!(voidscale.get("corrections").is_none(), "augment detail exposes corrections: {voidscale}");
 
     let (_, _, quests) = get("/v1/quests").await;
     let quests = quests.as_array().unwrap();
     let plane_of_night = quests.iter().find(|quest| quest["name"] == "Plane of Night").unwrap();
     assert_eq!(plane_of_night["favor"], 6);
-    assert_eq!(plane_of_night["corrections"][0]["field"], "favor");
-    assert_eq!(plane_of_night["corrections"][0]["reason"], "Test correction of a quest's favor.");
-    assert!(quests
-        .iter()
-        .filter(|quest| quest["name"] != "Plane of Night")
-        .all(|quest| quest["corrections"] == serde_json::json!([])));
+    assert!(
+        quests.iter().all(|quest| quest.get("corrections").is_none()),
+        "a quest row exposes corrections: {plane_of_night}"
+    );
 
     let (_, _, version) = get("/v1/version").await;
-    assert_eq!(version["counts"]["corrections"], 3);
+    assert!(version["counts"].get("corrections").is_none(), "version counts expose corrections: {}", version["counts"]);
 }

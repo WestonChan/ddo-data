@@ -1,6 +1,6 @@
 use super::crafting::crafting_recipes_yielding;
 use crate::db::{
-    bonuses_via, clamped_page, convert_to_booleans, corrections_for, json_row, json_rows, modifiers_for, row_count,
+    bonuses_via, clamped_page, convert_to_booleans, json_row, json_rows, modifiers_for, row_count,
     substring_like_pattern, WhereClause,
 };
 use crate::error::ApiError;
@@ -8,7 +8,6 @@ use crate::query::ApiQuery;
 use crate::state::AppState;
 use axum::extract::{Path, State};
 use axum::Json;
-use ddo_model::enums::CorrectionKind;
 use serde::Deserialize;
 use serde_json::{json, Value};
 use utoipa_axum::router::OpenApiRouter;
@@ -118,9 +117,7 @@ async fn augments(
     summary = "Get an augment",
     description = "One augment as the list returns it, including its `crafting` recipes, plus the raw `modifiers` \
                    its bonuses were derived from, including the conditional and dice-valued ones that do not reduce \
-                   to a bonus, and `corrections`: each known mistake in Maetrim's value for augments of this name \
-                   that the dataset replaced, as `{ field, from, to, reason, source }` with `from` his value and \
-                   `to` the value shown (empty when none).",
+                   to a bonus.",
     params(("id" = i64, Path, description = "The augment's numeric id from the list endpoint")), responses((status = 200, description = "The augment with its child collections", body = Value), (status = 404, description = "No augment has this id", body = crate::error::ErrorBody))
 )]
 async fn augment_detail(State(state): State<AppState>, Path(id): Path<i64>) -> Result<Json<Value>, ApiError> {
@@ -130,8 +127,6 @@ async fn augment_detail(State(state): State<AppState>, Path(id): Path<i64>) -> R
             convert_to_booleans(&mut augment, AUGMENT_FLAG_COLUMNS);
             attach_child_collections(db, &mut augment)?;
             augment["modifiers"] = Value::Array(modifiers_for(db, "augment", id)?);
-            let augment_name = augment["name"].as_str().unwrap_or_default().to_string();
-            augment["corrections"] = Value::Array(corrections_for(db, CorrectionKind::Augment, &augment_name)?);
             Ok(Json(augment))
         })
         .await

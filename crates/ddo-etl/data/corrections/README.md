@@ -6,6 +6,8 @@ Known mistakes in Maetrim's DDOBuilderV2 files, each replaced with the right val
 
 This is the only place our data overrides his. Everywhere else his files win, and the wiki layer only adds facts he has no field for. A correction is for a value that is plainly wrong (a typo, a level no sibling shares), not for a disagreement of judgement; report those upstream at [Maetrim/DDOBuilderV2](https://github.com/Maetrim/DDOBuilderV2). Every correction cites a source for the right value and records the value he has now, and it expires the moment his value changes: the build then leaves his new value alone and `wiki-check` asks for the entry to be deleted. Report the mistake upstream as well, so the correction can go away.
 
+Corrections are internal. The ETL applies them and stores each applied one in the `corrections` table of `ddo.db` for provenance and for `wiki-check`'s stale-correction warnings; the API never returns them, so a corrected value reads like any other.
+
 ## The shape
 
 One `[[correction]]` table per corrected field, in any `*.toml` file here (`corrections.toml` for now).
@@ -56,7 +58,7 @@ The build fails, naming the file and the correction, when:
 - `name` matches no row of that kind in his files;
 - a `slot`, `material`, `pack`, `patron` or `set_bonus` value names nothing in his files, or a rename's `to` is already another row's name.
 
-When `from` equals his stored value (on every row with that name), the build writes `to` and records the correction in the `corrections` table, which the API reports on the corrected item, augment or quest. When it does not, the build writes nothing for that entry and counts it as stale; a stale correction never fails the build.
+When `from` equals his stored value (on every row with that name), the build writes `to` and records the correction in the `corrections` table. When it does not, the build writes nothing for that entry and counts it as stale; a stale correction never fails the build.
 
 ## Checking
 
