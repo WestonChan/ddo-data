@@ -1,0 +1,15 @@
+[[quest]]
+name = "Terror of the Demon Lords"
+page = "https://ddowiki.com/page/Terror_of_the_Demon_Lords"
+read = "2026-09-30"
+free_to_play = false
+pack = "Terror of Demogorgon"
+patron = "Battlehammer Expedition"
+level = 37
+legendary_level = 37
+favor = 10
+is_raid = true
+difficulties = ["normal", "hard", "elite", "reaper"]
+zone = "Vision of an Alternate History"
+bestowed_by = "Vision of Future Graz'zt"
+flagging = "No flagging required."
