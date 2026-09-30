@@ -1077,7 +1077,8 @@ effects = [
   { name = "Exploding Cannon Shot" },
   { name = "Upgradeable - Tier 1" },
   { name = "Mythic Weapon Boost +2 or +4 and/or Mythic Shield Boost +2 or +4", description = "+2 or +4 Mythic bonus to Melee, Ranged, and Universal Spell Power.(This is a rare enchantment that does not show up on all drops of this item.)" },
-  { name = "Rune Arm Imbue: Fire V, Bludgeon V", description = "Wearing this Rune Arm will imbue any weapon you wield, dealing 2d10+2d8 points of fire/bludgeon damage per hit." },
+  { name = "Rune Arm Imbue - Fire V" },
+  { name = "Rune Arm Imbue - Bludgeon V" },
 ]
 
 [item.weapon]
@@ -1103,7 +1104,8 @@ effects = [
   { name = "Exploding Cannon Shot" },
   { name = "Upgradeable - Tier 2" },
   { name = "Mythic Weapon Boost +2 or +4 and/or Mythic Shield Boost +2 or +4", description = "+2 or +4 Mythic bonus to Melee, Ranged, and Universal Spell Power.(This is a rare enchantment that does not show up on all drops of this item.)" },
-  { name = "Rune Arm Imbue: Fire V, Bludgeon V", description = "Wearing this Rune Arm will imbue any weapon you wield, dealing 2d10+2d8 points of fire/bludgeon damage per hit." },
+  { name = "Rune Arm Imbue - Fire V" },
+  { name = "Rune Arm Imbue - Bludgeon V" },
 ]
 
 [item.weapon]
@@ -1130,7 +1132,8 @@ effects = [
   { name = "Exploding Cannon Shot" },
   { name = "Upgradeable - Tier 3" },
   { name = "Mythic Weapon Boost +2 or +4 and/or Mythic Shield Boost +2 or +4", description = "+2 or +4 Mythic bonus to Melee, Ranged, and Universal Spell Power.(This is a rare enchantment that does not show up on all drops of this item.)" },
-  { name = "Rune Arm Imbue: Fire V, Bludgeon V", description = "Wearing this Rune Arm will imbue any weapon you wield, dealing 2d10+2d8 points of fire/bludgeon damage per hit." },
+  { name = "Rune Arm Imbue - Fire V" },
+  { name = "Rune Arm Imbue - Bludgeon V" },
 ]
 
 [item.weapon]
