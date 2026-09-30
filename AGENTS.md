@@ -45,6 +45,17 @@ This is the data half of a two-repo project. The site is `ddo-tools`, a sibling 
 
 **Wiki overrides.** `crates/ddo-etl/data/wiki/*.toml` holds facts read from ddowiki that Maetrim's files have no field for (so far, which quest drops are rare; each quest's free-to-play status and legendary level, and the zone, quest giver and flagging its own page gives; crafting systems' ingredients and the recipes that turn them into Maetrim's crafting augments; and the descriptions his files leave blank). His files win for every field they carry; a wiki row only adds. Every row cites its page and read date, and the build fails on any name his files lack. The format, the validation rules and the command that checks a file are in [`crates/ddo-etl/data/wiki/README.md`](crates/ddo-etl/data/wiki/README.md); read it before adding or editing an entry. `cargo xtask wiki-check` builds everything in memory in a few seconds and prints the wiki counts or the validation error, then a `warnings:` section that never fails the check: each augment in a crafting system's families that none of the system's recipes yields, and each group of Maetrim's socket labels that differ only by case, spacing, punctuation or a known misspelling; `--wiki DIR` checks a directory of drafts in place of the embedded files. `cargo xtask wiki-batch` writes what a reading agent needs to `target/wiki-batch/`: every item name, every augment as `family<TAB>name<TAB>min_level`, each quest's likely ddowiki URL, the wiki's crafting systems list (`xtask/data/crafting_systems.json`), and every item, augment, race, feat and enhancement still without a description as `kind<TAB>name<TAB>page URL` (`blank_descriptions.txt`).
 
+## Worktrees
+
+Any change goes in a git worktree, never in a checkout someone else may be using:
+
+```bash
+git worktree add -b <branch> /tmp/ddo-data-<branch> main
+export DDO_UPSTREAM="/Users/weston/Documents/Personal Projects/ddo-data/upstream"   # the ETL and xtasks then need no --source
+```
+
+The worktree compiles from scratch into its own `target/` (a few minutes the first time). When done: commit on the branch, fast-forward `main` from the main checkout, push, `git worktree remove` the directory and delete the branch. Never run a bare `git stash`; the stash is shared across worktrees.
+
 ## Code Quality
 
 - **No comments, no doc comments.** Code carries its meaning in names, types, and tests. Do not write `//`, `/* */`, `///`, or `//!`. If something needs a comment to be understood, rename, split, or restructure it until it doesn't. Reasoning that cannot live in code goes in the ddo-tools roadmap or `docs/` there. `cargo lint` fails on any comment; `cargo xtask no-comments --fix` strips them.
