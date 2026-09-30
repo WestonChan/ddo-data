@@ -20,7 +20,16 @@ pub enum CorrectionValue {
     Integer(i64),
     Float(f64),
     Text(String),
+    Bonus(BonusAddition),
     Null,
+}
+
+#[derive(Debug, Clone, PartialEq, Eq, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct BonusAddition {
+    pub stat: String,
+    pub bonus_type: String,
+    pub value: i64,
 }
 
 #[derive(Deserialize)]
@@ -29,6 +38,7 @@ enum TomlCorrectionValue {
     Integer(i64),
     Float(f64),
     Text(String),
+    Bonus(BonusAddition),
 }
 
 impl From<TomlCorrectionValue> for CorrectionValue {
@@ -38,6 +48,7 @@ impl From<TomlCorrectionValue> for CorrectionValue {
             TomlCorrectionValue::Float(number) => Self::Float(number),
             TomlCorrectionValue::Text(text) if text == NULL_SPELLING => Self::Null,
             TomlCorrectionValue::Text(text) => Self::Text(text),
+            TomlCorrectionValue::Bonus(bonus) => Self::Bonus(bonus),
         }
     }
 }
@@ -48,6 +59,12 @@ impl CorrectionValue {
             Self::Integer(number) => number.to_string(),
             Self::Float(number) => serde_json::Value::from(*number).to_string(),
             Self::Text(text) => serde_json::Value::from(text.as_str()).to_string(),
+            Self::Bonus(bonus) => format!(
+                "{{\"bonus_type\":{},\"stat\":{},\"value\":{}}}",
+                serde_json::Value::from(bonus.bonus_type.as_str()),
+                serde_json::Value::from(bonus.stat.as_str()),
+                bonus.value
+            ),
             Self::Null => NULL_SPELLING.to_string(),
         }
     }
@@ -57,6 +74,7 @@ impl CorrectionValue {
             Self::Integer(number) => SqlValue::Integer(*number),
             Self::Float(number) => SqlValue::Real(*number),
             Self::Text(text) => SqlValue::Text(text.clone()),
+            Self::Bonus(_) => SqlValue::Text(self.to_json()),
             Self::Null => SqlValue::Null,
         }
     }
@@ -85,7 +103,11 @@ impl CorrectionValue {
             (Self::Integer(flag), FieldShape::Flag) => matches!(flag, 0 | 1),
             (
                 Self::Text(_),
-                FieldShape::Text | FieldShape::NamedReference { .. } | FieldShape::SetName | FieldShape::RowName,
+                FieldShape::Text
+                | FieldShape::NamedReference { .. }
+                | FieldShape::SetName
+                | FieldShape::RowName
+                | FieldShape::BonusTypeName,
             ) => true,
             _ => false,
         }
@@ -99,6 +121,9 @@ pub struct Correction {
     pub field: String,
     pub from: CorrectionValue,
     pub to: CorrectionValue,
+    pub family: Option<String>,
+    pub stat: Option<String>,
+    pub bonus_type: Option<String>,
     pub reason: String,
     pub source: String,
     pub read: String,
@@ -127,16 +152,101 @@ impl Correction {
     }
 
     pub fn label(&self) -> String {
-        format!("{} {:?}.{}", self.kind.as_str(), self.name, self.field)
+        let qualifier = self.qualifier();
+        if qualifier.is_empty() {
+            format!("{} {:?}.{}", self.kind.as_str(), self.name, self.field)
+        } else {
+            format!("{} {:?} [{qualifier}].{}", self.kind.as_str(), self.name, self.field)
+        }
+    }
+
+    pub fn qualifier(&self) -> String {
+        let mut qualifier_parts: Vec<String> = Vec::new();
+        if let Some(family) = &self.family {
+            qualifier_parts.push(format!("family {family:?}"));
+        }
+        if let (Some(stat), Some(bonus_type)) = (&self.stat, &self.bonus_type) {
+            qualifier_parts.push(format!("{stat} / {bonus_type}"));
+        }
+        match &self.to {
+            CorrectionValue::Bonus(bonus) => qualifier_parts.push(format!("{} / {}", bonus.stat, bonus.bonus_type)),
+            CorrectionValue::Text(socket_label) if self.kind == CorrectionKind::ItemSocket => {
+                qualifier_parts.push(socket_label.clone())
+            }
+            _ => {}
+        }
+        qualifier_parts.join(", ")
+    }
+
+    pub fn bonus_key(&self) -> Option<(&str, &str)> {
+        match (&self.stat, &self.bonus_type, &self.to) {
+            (Some(stat), Some(bonus_type), _) => Some((stat, bonus_type)),
+            (_, _, CorrectionValue::Bonus(bonus)) => Some((&bonus.stat, &bonus.bonus_type)),
+            _ => None,
+        }
+    }
+
+    fn validate_qualifier_keys(&self, field: &CorrectableField) -> Result<()> {
+        if self.family.is_some() && !matches!(self.kind, CorrectionKind::Augment | CorrectionKind::AugmentBonus) {
+            bail!("family narrows only an augment or augment_bonus correction, not a {}", self.kind.as_str());
+        }
+        let names_a_bonus = self.stat.is_some() || self.bonus_type.is_some();
+        let needs_a_bonus = self.kind == CorrectionKind::AugmentBonus && field.shape != FieldShape::BonusAddition;
+        if needs_a_bonus && (self.stat.is_none() || self.bonus_type.is_none()) {
+            bail!("an augment_bonus {} correction names the bonus with stat and bonus_type", field.name);
+        }
+        if names_a_bonus && !needs_a_bonus {
+            bail!(
+                "stat and bonus_type name the bonus of an augment_bonus value or bonus_type correction; an add names them in to"
+            );
+        }
+        if field.shape == FieldShape::BonusTypeName
+            && self.bonus_type.as_ref() != self.from.as_text().map(str::to_string).as_ref()
+        {
+            bail!("from must be the bonus_type the correction names, his current type");
+        }
+        Ok(())
+    }
+
+    fn validate_values(&self, field: &CorrectableField) -> Result<()> {
+        match field.shape {
+            FieldShape::Removal => {
+                if (&self.from, &self.to) != (&CorrectionValue::Integer(0), &CorrectionValue::Integer(1)) {
+                    bail!("a remove takes from = 0 (his files still carry the row) and to = 1");
+                }
+            }
+            FieldShape::BonusAddition => {
+                if !matches!((&self.from, &self.to), (CorrectionValue::Null, CorrectionValue::Bonus(_))) {
+                    bail!(
+                        "an add takes from = \"null\" and to = {{ stat = \"...\", bonus_type = \"...\", value = N }}"
+                    );
+                }
+            }
+            FieldShape::SocketAddition => {
+                if !matches!((&self.from, &self.to), (CorrectionValue::Null, CorrectionValue::Text(_))) {
+                    bail!("an add takes from = \"null\" and to = the socket label to add");
+                }
+            }
+            _ => {
+                for (value_role, value) in [("from", &self.from), ("to", &self.to)] {
+                    if !value.fits(field) {
+                        bail!(
+                            "{value_role} = {} does not fit {}: {}",
+                            value.to_json(),
+                            field.name,
+                            expected_value_text(field)
+                        );
+                    }
+                }
+            }
+        }
+        Ok(())
     }
 
     fn validate(&self) -> Result<()> {
         let field = self.correctable_field()?;
-        for (value_role, value) in [("from", &self.from), ("to", &self.to)] {
-            if !value.fits(field) {
-                bail!("{value_role} = {} does not fit {}: {}", value.to_json(), field.name, expected_value_text(field));
-            }
-        }
+        self.validate_qualifier_keys(field)?;
+        self.validate_values(field)?;
         if self.from == self.to {
             bail!("to equals from ({}); a correction must change the value", self.to.to_json());
         }
@@ -158,8 +268,13 @@ fn expected_value_text(field: &CorrectableField) -> String {
         FieldShape::Integer => "an integer",
         FieldShape::Flag => "0 or 1",
         FieldShape::Text => "a string",
-        FieldShape::NamedReference { .. } | FieldShape::SetName => "the name of the row it refers to",
+        FieldShape::NamedReference { .. } | FieldShape::SetName | FieldShape::BonusTypeName => {
+            "the name of the row it refers to"
+        }
         FieldShape::RowName => "the row's name",
+        FieldShape::Removal => "0 for from and 1 for to",
+        FieldShape::BonusAddition => "a { stat, bonus_type, value } table",
+        FieldShape::SocketAddition => "a socket label",
     };
     if field.is_nullable {
         format!("{non_null_text}, or \"null\"")
@@ -174,6 +289,9 @@ struct TomlCorrection {
     kind: String,
     name: String,
     field: String,
+    family: Option<String>,
+    stat: Option<String>,
+    bonus_type: Option<String>,
     from: CorrectionValue,
     to: CorrectionValue,
     reason: String,
@@ -193,6 +311,9 @@ impl TomlCorrection {
             field: self.field,
             from: self.from,
             to: self.to,
+            family: self.family,
+            stat: self.stat,
+            bonus_type: self.bonus_type,
             reason: self.reason,
             source: self.source,
             read: self.read,

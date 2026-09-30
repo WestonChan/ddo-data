@@ -8,6 +8,10 @@ pub enum FieldShape {
     NamedReference { referenced_table: &'static str },
     SetName,
     RowName,
+    Removal,
+    BonusTypeName,
+    BonusAddition,
+    SocketAddition,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
@@ -44,6 +48,8 @@ const ITEM_FIELDS: &[CorrectableField] = &[
     field("item_type", FieldShape::Text, true),
     named_reference("material", "material_id", "item_materials", true),
     field("set_bonus", FieldShape::SetName, true),
+    field("name", FieldShape::RowName, false),
+    field("remove", FieldShape::Removal, false),
 ];
 
 const AUGMENT_FIELDS: &[CorrectableField] = &[
@@ -51,6 +57,8 @@ const AUGMENT_FIELDS: &[CorrectableField] = &[
     field("description", FieldShape::Text, true),
     field("effect_description", FieldShape::Text, true),
     field("family", FieldShape::Text, false),
+    field("name", FieldShape::RowName, false),
+    field("remove", FieldShape::Removal, false),
 ];
 
 const QUEST_FIELDS: &[CorrectableField] = &[
@@ -60,7 +68,16 @@ const QUEST_FIELDS: &[CorrectableField] = &[
     field("is_raid", FieldShape::Flag, false),
     named_reference("pack", "pack_id", "adventure_packs", true),
     named_reference("patron", "patron_id", "patrons", true),
+    field("name", FieldShape::RowName, false),
 ];
+
+const AUGMENT_BONUS_FIELDS: &[CorrectableField] = &[
+    field("value", FieldShape::Integer, false),
+    field("bonus_type", FieldShape::BonusTypeName, false),
+    field("add", FieldShape::BonusAddition, false),
+];
+
+const ITEM_SOCKET_FIELDS: &[CorrectableField] = &[field("add", FieldShape::SocketAddition, false)];
 
 const DESCRIPTION_FIELDS: &[CorrectableField] = &[field("description", FieldShape::Text, true)];
 
@@ -79,7 +96,12 @@ pub fn correctable_fields(kind: CorrectionKind) -> &'static [CorrectableField] {
         | CorrectionKind::Race
         | CorrectionKind::Class
         | CorrectionKind::Spell => DESCRIPTION_FIELDS,
-        CorrectionKind::AdventurePack | CorrectionKind::Patron | CorrectionKind::SetBonus => ROW_NAME_FIELDS,
+        CorrectionKind::AdventurePack
+        | CorrectionKind::Patron
+        | CorrectionKind::SetBonus
+        | CorrectionKind::SocketLabel => ROW_NAME_FIELDS,
+        CorrectionKind::AugmentBonus => AUGMENT_BONUS_FIELDS,
+        CorrectionKind::ItemSocket => ITEM_SOCKET_FIELDS,
     }
 }
 

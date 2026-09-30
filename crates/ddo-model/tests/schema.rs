@@ -154,7 +154,6 @@ fn quests_come_from_maetrim_unless_the_wiki_supplied_them() {
         .collect();
     assert_eq!(sources, ["maetrim", "wiki"]);
     assert!(db.execute("INSERT INTO quests (name, source) VALUES ('Odd Quest', 'ddowiki')", []).is_err());
-    assert_eq!(SCHEMA_VERSION, 5);
 }
 
 #[test]
@@ -191,17 +190,25 @@ fn corrections_record_each_kind_field_and_value_change_once() {
     let db = fresh_db();
     let mut statement = db.prepare("SELECT name FROM pragma_table_info('corrections') ORDER BY cid").unwrap();
     let columns: Vec<String> = statement.query_map([], |r| r.get(0)).unwrap().map(Result::unwrap).collect();
-    assert_eq!(columns, ["id", "kind", "name", "field", "from_value", "to_value", "reason", "source", "read"]);
-    let insert_correction = |kind: &str| {
+    assert_eq!(
+        columns,
+        ["id", "kind", "name", "qualifier", "field", "from_value", "to_value", "reason", "source", "read"]
+    );
+    let insert_correction = |kind: &str, qualifier: &str| {
         db.execute(
-            "INSERT INTO corrections (kind, name, field, from_value, to_value, reason, source, read)
-             VALUES (?1, 'The Fury''s Rage', 'min_level', '318', '18', 'typo', 'https://ddowiki.com/page/Lost_Purpose', '2026-09-29')",
-            [kind],
+            "INSERT INTO corrections (kind, name, qualifier, field, from_value, to_value, reason, source, read)
+             VALUES (?1, 'The Fury''s Rage', ?2, 'min_level', '318', '18', 'typo', 'https://ddowiki.com/page/Lost_Purpose', '2026-09-29')",
+            [kind, qualifier],
         )
     };
-    insert_correction("augment").unwrap();
-    assert!(insert_correction("augment").is_err(), "a (kind, name, field) is corrected once");
-    assert!(insert_correction("gem").is_err(), "kind is one of the correctable tables");
+    insert_correction("augment", "").unwrap();
+    assert!(insert_correction("augment", "").is_err(), "a (kind, name, qualifier, field) is corrected once");
+    insert_correction("augment", "family \"LostPurpose\"").unwrap();
+    for new_kind in ["augment_bonus", "item_socket", "socket_label"] {
+        insert_correction(new_kind, "").unwrap();
+    }
+    assert!(insert_correction("gem", "").is_err(), "kind is one of the correctable tables");
+    assert_eq!(SCHEMA_VERSION, 6);
 }
 
 #[test]

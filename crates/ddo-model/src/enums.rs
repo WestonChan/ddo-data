@@ -885,6 +885,9 @@ pub enum CorrectionKind {
     Patron,
     SetBonus,
     Spell,
+    AugmentBonus,
+    ItemSocket,
+    SocketLabel,
 }
 
 impl CorrectionKind {
@@ -900,6 +903,9 @@ impl CorrectionKind {
         Self::Patron,
         Self::SetBonus,
         Self::Spell,
+        Self::AugmentBonus,
+        Self::ItemSocket,
+        Self::SocketLabel,
     ];
 
     pub const fn as_str(self) -> &'static str {
@@ -915,6 +921,9 @@ impl CorrectionKind {
             Self::Patron => "patron",
             Self::SetBonus => "set_bonus",
             Self::Spell => "spell",
+            Self::AugmentBonus => "augment_bonus",
+            Self::ItemSocket => "item_socket",
+            Self::SocketLabel => "socket_label",
         }
     }
 
@@ -931,6 +940,16 @@ impl CorrectionKind {
             Self::Patron => "patrons",
             Self::SetBonus => "set_bonuses",
             Self::Spell => "spells",
+            Self::AugmentBonus => "augments",
+            Self::ItemSocket => "items",
+            Self::SocketLabel => "augment_slot_types",
+        }
+    }
+
+    pub const fn name_column(self) -> &'static str {
+        match self {
+            Self::SocketLabel => "label",
+            _ => "name",
         }
     }
 

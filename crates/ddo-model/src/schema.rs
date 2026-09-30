@@ -4,7 +4,7 @@ use crate::enums::{
 };
 use std::sync::LazyLock;
 
-pub const SCHEMA_VERSION: i64 = 5;
+pub const SCHEMA_VERSION: i64 = 6;
 
 fn sql_in_clause<'a>(allowed_values: impl Iterator<Item = &'a str>) -> String {
     let quoted_values: Vec<String> = allowed_values.map(|value| format!("'{value}'")).collect();
@@ -718,13 +718,14 @@ CREATE TABLE IF NOT EXISTS corrections (
     id         INTEGER PRIMARY KEY,
     kind       TEXT NOT NULL CHECK (kind {correction_kind}),
     name       TEXT NOT NULL,                          -- the row's name in Maetrim's files
+    qualifier  TEXT NOT NULL DEFAULT '',               -- the part of the row it narrows to: a family, a bonus, a socket
     field      TEXT NOT NULL,
     from_value TEXT NOT NULL,                          -- his value, as JSON
     to_value   TEXT NOT NULL,                          -- the value written, as JSON
     reason     TEXT NOT NULL,
     source     TEXT NOT NULL,                          -- URL citing the right value
     read       TEXT NOT NULL,                          -- YYYY-MM-DD the source was read
-    UNIQUE (kind, name, field)
+    UNIQUE (kind, name, qualifier, field)
 );
 CREATE INDEX IF NOT EXISTS idx_corrections_kind_name ON corrections(kind, name);
 

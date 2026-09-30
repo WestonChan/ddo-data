@@ -105,7 +105,7 @@ fn rejects_a_kind_outside_the_correctable_tables() {
 
 #[test]
 fn rejects_a_field_outside_the_kinds_allow_list() {
-    for (kind, field) in [("augment", "name"), ("augment", "id"), ("item", "icon"), ("feat", "icon"), ("quest", "name")]
+    for (kind, field) in [("augment", "icon"), ("augment", "id"), ("item", "icon"), ("feat", "icon"), ("quest", "icon")]
     {
         let error =
             parsed_corrections(&[("corrections.toml", &correction_toml(kind, "Perfect Silence", field, "1", "2"))])
@@ -425,4 +425,380 @@ fn a_boolean_field_takes_zero_or_one() {
         parsed_corrections(&[("corrections.toml", &correction_toml("quest", "Plane of Night", "is_raid", "1", "2"))])
             .unwrap_err();
     assert!(error.contains("is_raid") && error.contains('2'), "{error}");
+}
+
+fn qualified_correction_toml(
+    kind: &str,
+    name: &str,
+    qualifier_keys: &str,
+    field: &str,
+    from: &str,
+    to: &str,
+) -> String {
+    correction_toml(kind, name, field, from, to).replacen("\nfield = ", &format!("\n{qualifier_keys}\nfield = "), 1)
+}
+
+fn item_names(db: &Connection) -> Vec<String> {
+    db.prepare("SELECT name FROM items ORDER BY id")
+        .unwrap()
+        .query_map([], |r| r.get(0))
+        .unwrap()
+        .map(Result::unwrap)
+        .collect()
+}
+
+fn augment_bonus_rows(db: &Connection, augment_name: &str) -> Vec<(String, Option<String>, Option<i64>)> {
+    db.prepare(
+        "SELECT s.name, bt.name, b.value FROM augments a JOIN augment_bonuses ab ON ab.augment_id = a.id
+           JOIN bonuses b ON b.id = ab.bonus_id JOIN stats s ON s.id = b.stat_id LEFT JOIN bonus_types bt ON bt.id = b.bonus_type_id
+          WHERE a.name = ?1 ORDER BY a.id, ab.sort_order",
+    )
+    .unwrap()
+    .query_map([augment_name], |r| Ok((r.get(0)?, r.get(1)?, r.get(2)?)))
+    .unwrap()
+    .map(Result::unwrap)
+    .collect()
+}
+
+fn item_socket_labels(db: &Connection, item_name: &str) -> Vec<String> {
+    db.prepare(
+        "SELECT t.label FROM items i JOIN item_augment_slots s ON s.item_id = i.id JOIN augment_slot_types t ON t.id = s.slot_id
+          WHERE i.name = ?1 ORDER BY s.sort_order",
+    )
+    .unwrap()
+    .query_map([item_name], |r| r.get(0))
+    .unwrap()
+    .map(Result::unwrap)
+    .collect()
+}
+
+fn row_count(db: &Connection, sql: &str) -> i64 {
+    db.query_row(sql, [], |r| r.get(0)).unwrap()
+}
+
+#[test]
+fn renames_an_item_augment_and_quest_after_their_other_corrections() {
+    let (db, report) = built_db_with(&[(
+        "corrections.toml",
+        &(correction_toml("item", "Docent of Defiance", "name", "\"Docent of Defiance\"", "\"Docent of the Defiant\"")
+            + &correction_toml("item", "Docent of Defiance", "minimum_level", "10", "11")
+            + &correction_toml("augment", "Voidscale", "name", "\"Voidscale\"", "\"Void Scale\"")
+            + &correction_toml("augment", "Voidscale", "min_level", "31", "30")
+            + &correction_toml("quest", "Plane of Night", "name", "\"Plane of Night\"", "\"The Plane of Night\"")),
+    )])
+    .unwrap();
+    assert_eq!(report.correction_applied_count, 5, "{:?}", report.stale_corrections);
+    let (minimum_level, wiki_url): (i64, String) = db
+        .query_row("SELECT minimum_level, wiki_url FROM items WHERE name = 'Docent of the Defiant'", [], |r| {
+            Ok((r.get(0)?, r.get(1)?))
+        })
+        .unwrap();
+    assert_eq!((minimum_level, wiki_url.as_str()), (11, "https://ddowiki.com/page/Item:Docent_of_the_Defiant"));
+    assert!(!item_names(&db).contains(&"Docent of Defiance".to_string()));
+    assert_eq!(augment_min_levels(&db, "Void Scale"), [Some(30)]);
+    assert_eq!(row_count(&db, "SELECT COUNT(*) FROM quests WHERE name = 'The Plane of Night'"), 1);
+}
+
+#[test]
+fn renaming_an_item_or_quest_to_a_name_already_taken_fails() {
+    let error = built_db_with(&[(
+        "corrections.toml",
+        &correction_toml("item", "Docent of Defiance", "name", "\"Docent of Defiance\"", "\"Five Rings\""),
+    )])
+    .unwrap_err();
+    assert!(error.contains("Five Rings") && error.contains("Docent of Defiance"), "{error}");
+}
+
+#[test]
+fn a_wiki_file_naming_the_old_spelling_fails_the_build() {
+    let wiki = WikiOverrides::from_dir(&fixtures_dir().join("wiki")).unwrap();
+    let corrections = parsed_corrections(&[(
+        "corrections.toml",
+        &correction_toml("augment", "Minor Fire Guard", "name", "\"Minor Fire Guard\"", "\"Lesser Fire Guard\""),
+    )])
+    .unwrap();
+    let error = built_db_with_wiki(&wiki, &corrections).unwrap_err();
+    assert!(error.contains("Minor Fire Guard"), "{error}");
+}
+
+#[test]
+fn a_family_narrows_an_augment_correction() {
+    let (db, report) = built_db_with(&[(
+        "corrections.toml",
+        &(qualified_correction_toml(
+            "augment",
+            "+5 Fortitude Save",
+            "family = \"Greensteel_Heroic\"",
+            "min_level",
+            "11",
+            "12",
+        ) + &qualified_correction_toml(
+            "augment",
+            "+5 Fortitude Save",
+            "family = \"Greensteel_Heroic\"",
+            "name",
+            "\"+5 Fortitude Save\"",
+            "\"+5 Fortitude\"",
+        )),
+    )])
+    .unwrap();
+    assert_eq!(report.correction_applied_count, 2, "{:?}", report.stale_corrections);
+    assert_eq!(augment_min_levels(&db, "+5 Fortitude"), [Some(12), Some(12)]);
+    let qualifiers: Vec<String> = db
+        .prepare("SELECT qualifier FROM corrections ORDER BY field")
+        .unwrap()
+        .query_map([], |r| r.get(0))
+        .unwrap()
+        .map(Result::unwrap)
+        .collect();
+    assert_eq!(qualifiers, ["family \"Greensteel_Heroic\"", "family \"Greensteel_Heroic\""]);
+    let error = built_db_with(&[(
+        "corrections.toml",
+        &qualified_correction_toml("augment", "+5 Fortitude Save", "family = \"Ruby\"", "min_level", "11", "12"),
+    )])
+    .unwrap_err();
+    assert!(error.contains("+5 Fortitude Save") && error.contains("Ruby"), "{error}");
+    let error = parsed_corrections(&[(
+        "corrections.toml",
+        &qualified_correction_toml("item", "Five Rings", "family = \"Ruby\"", "minimum_level", "1", "2"),
+    )])
+    .unwrap_err();
+    assert!(error.contains("family") && error.contains("Five Rings"), "{error}");
+}
+
+#[test]
+fn removes_an_item_with_its_child_rows() {
+    let item_ids: Vec<i64> = {
+        let db = built_db_with(&[]).unwrap().0;
+        ["Legendary Cloak of Winter", "Acid Rune Arm"]
+            .iter()
+            .map(|name| db.query_row("SELECT id FROM items WHERE name = ?1", [name], |r| r.get(0)).unwrap())
+            .collect()
+    };
+    let (db, report) = built_db_with(&[(
+        "corrections.toml",
+        &(correction_toml("item", "Legendary Cloak of Winter", "remove", "0", "1")
+            + &correction_toml("item", "Acid Rune Arm", "remove", "0", "1")),
+    )])
+    .unwrap();
+    assert_eq!(report.correction_applied_count, 2, "{:?}", report.stale_corrections);
+    assert!(!item_names(&db).iter().any(|name| name == "Legendary Cloak of Winter" || name == "Acid Rune Arm"));
+    let id_list = format!("({}, {})", item_ids[0], item_ids[1]);
+    for child_table in
+        ["item_bonuses", "item_effects", "item_augment_slots", "quest_loot", "set_bonus_items", "item_clickies"]
+    {
+        assert_eq!(
+            row_count(&db, &format!("SELECT COUNT(*) FROM {child_table} WHERE item_id IN {id_list}")),
+            0,
+            "{child_table}"
+        );
+    }
+    assert_eq!(
+        row_count(
+            &db,
+            &format!("SELECT COUNT(*) FROM modifiers WHERE source_kind = 'item' AND source_id IN {id_list}")
+        ),
+        0
+    );
+    assert_eq!(
+        recorded_corrections(&db)[0],
+        ("item".into(), "Acid Rune Arm".into(), "remove".into(), "0".into(), "1".into())
+    );
+    let error =
+        parsed_corrections(&[("corrections.toml", &correction_toml("item", "Acid Rune Arm", "remove", "1", "0"))])
+            .unwrap_err();
+    assert!(error.contains("remove") && error.contains("Acid Rune Arm"), "{error}");
+}
+
+#[test]
+fn removes_an_augment_with_its_child_rows() {
+    let (db, report) = built_db_with(&[(
+        "corrections.toml",
+        &(correction_toml("augment", "Perfect Silence", "remove", "0", "1")
+            + &correction_toml("augment", "Ruby of Acid Damage", "remove", "0", "1")),
+    )])
+    .unwrap();
+    assert_eq!(report.correction_applied_count, 2, "{:?}", report.stale_corrections);
+    assert_eq!(
+        row_count(&db, "SELECT COUNT(*) FROM augments WHERE name IN ('Perfect Silence', 'Ruby of Acid Damage')"),
+        0
+    );
+    for orphan_sql in [
+        "SELECT COUNT(*) FROM augment_slots WHERE augment_id NOT IN (SELECT id FROM augments)",
+        "SELECT COUNT(*) FROM augment_bonuses WHERE augment_id NOT IN (SELECT id FROM augments)",
+        "SELECT COUNT(*) FROM set_bonus_augments WHERE augment_id NOT IN (SELECT id FROM augments)",
+        "SELECT COUNT(*) FROM modifiers WHERE source_kind = 'augment' AND source_id NOT IN (SELECT id FROM augments)",
+    ] {
+        assert_eq!(row_count(&db, orphan_sql), 0, "{orphan_sql}");
+    }
+}
+
+#[test]
+fn corrects_an_augment_bonus_value_and_type_without_touching_the_shared_bonus() {
+    let (db, report) = built_db_with(&[(
+        "corrections.toml",
+        &(qualified_correction_toml(
+            "augment_bonus",
+            "Silverscale",
+            "stat = \"Healing Amplification\"\nbonus_type = \"Competence\"",
+            "value",
+            "56",
+            "60",
+        ) + &qualified_correction_toml(
+            "augment_bonus",
+            "Silverscale",
+            "stat = \"Repair Amplification\"\nbonus_type = \"Enhancement\"",
+            "bonus_type",
+            "\"Enhancement\"",
+            "\"Competence\"",
+        ) + &qualified_correction_toml(
+            "augment_bonus",
+            "Silverscale",
+            "stat = \"Negative Healing Amplification\"\nbonus_type = \"Profane\"",
+            "value",
+            "55",
+            "57",
+        )),
+    )])
+    .unwrap();
+    assert_eq!((report.correction_applied_count, report.correction_stale_count), (2, 1));
+    assert_eq!(
+        augment_bonus_rows(&db, "Silverscale"),
+        [
+            ("Healing Amplification".into(), Some("Competence".into()), Some(60)),
+            ("Negative Healing Amplification".into(), Some("Profane".into()), Some(56)),
+            ("Repair Amplification".into(), Some("Competence".into()), Some(56)),
+        ]
+    );
+    assert_eq!(report.stale_corrections[0].maetrim_value, "56");
+    assert_eq!(
+        row_count(&db, "SELECT COUNT(*) FROM bonuses WHERE name = 'Healing Amplification +56'"),
+        1,
+        "the old bonus row stays for anything else that carries it"
+    );
+    let qualifiers: Vec<String> = db
+        .prepare("SELECT qualifier FROM corrections ORDER BY qualifier")
+        .unwrap()
+        .query_map([], |r| r.get(0))
+        .unwrap()
+        .map(Result::unwrap)
+        .collect();
+    assert_eq!(qualifiers, ["Healing Amplification / Competence", "Repair Amplification / Enhancement"]);
+}
+
+#[test]
+fn adds_a_bonus_an_augment_lacks_and_goes_stale_once_he_carries_it() {
+    let (db, report) = built_db_with(&[(
+        "corrections.toml",
+        &(correction_toml(
+            "augment_bonus",
+            "Voidscale",
+            "add",
+            "\"null\"",
+            "{ stat = \"Physical Resistance Rating\", bonus_type = \"Exceptional\", value = 2 }",
+        ) + &correction_toml(
+            "augment_bonus",
+            "Voidscale",
+            "add",
+            "\"null\"",
+            "{ stat = \"Universal Spell Lore\", bonus_type = \"Exceptional\", value = 5 }",
+        )),
+    )])
+    .unwrap();
+    assert_eq!((report.correction_applied_count, report.correction_stale_count), (1, 1));
+    assert_eq!(
+        augment_bonus_rows(&db, "Voidscale"),
+        [
+            ("Universal Spell Lore".into(), Some("Exceptional".into()), Some(5)),
+            ("Physical Resistance Rating".into(), Some("Exceptional".into()), Some(2)),
+        ]
+    );
+    let to_value: String = db.query_row("SELECT to_value FROM corrections", [], |r| r.get(0)).unwrap();
+    assert_eq!(to_value, r#"{"bonus_type":"Exceptional","stat":"Physical Resistance Rating","value":2}"#);
+    let error = built_db_with(&[(
+        "corrections.toml",
+        &correction_toml(
+            "augment_bonus",
+            "Voidscale",
+            "add",
+            "\"null\"",
+            "{ stat = \"Physical Resistence\", bonus_type = \"Exceptional\", value = 2 }",
+        ),
+    )])
+    .unwrap_err();
+    assert!(error.contains("Physical Resistence"), "{error}");
+    let error =
+        parsed_corrections(&[("corrections.toml", &correction_toml("augment_bonus", "Voidscale", "value", "5", "6"))])
+            .unwrap_err();
+    assert!(error.contains("stat") && error.contains("Voidscale"), "{error}");
+}
+
+#[test]
+fn adds_a_socket_an_item_lacks_and_goes_stale_once_he_carries_it() {
+    let (db, report) = built_db_with(&[(
+        "corrections.toml",
+        &(correction_toml("item_socket", "Docent of Defiance", "add", "\"null\"", "\"red\"")
+            + &correction_toml(
+                "item_socket",
+                "Docent of Defiance",
+                "add",
+                "\"null\"",
+                "\"crafting: slavelords extra\"",
+            )
+            + &correction_toml("item_socket", "Buckler of the Golden Age", "add", "\"null\"", "\"red\"")),
+    )])
+    .unwrap();
+    assert_eq!((report.correction_applied_count, report.correction_stale_count), (2, 1));
+    assert_eq!(item_socket_labels(&db, "Docent of Defiance"), ["red", "crafting: slavelords extra"]);
+    assert_eq!(item_socket_labels(&db, "Buckler of the Golden Age"), ["red"]);
+    let error = built_db_with(&[(
+        "corrections.toml",
+        &correction_toml("item_socket", "Docent of Defiance", "add", "\"null\"", "\"crafting: no such socket\""),
+    )])
+    .unwrap_err();
+    assert!(error.contains("crafting: no such socket"), "{error}");
+}
+
+#[test]
+fn renames_a_socket_label_everywhere_and_merges_into_an_existing_one() {
+    let (db, report) = built_db_with(&[(
+        "corrections.toml",
+        &(correction_toml(
+            "socket_label",
+            "crafting: attuned to heroism 1",
+            "name",
+            "\"crafting: attuned to heroism 1\"",
+            "\"crafting: attuned by heroism: tier 1\"",
+        ) + &correction_toml(
+            "socket_label",
+            "crafting: attuned to heroism 3",
+            "name",
+            "\"crafting: attuned to heroism 3\"",
+            "\"crafting: attuned to heroism 2\"",
+        )),
+    )])
+    .unwrap();
+    assert_eq!(report.correction_applied_count, 2, "{:?}", report.stale_corrections);
+    assert_eq!(
+        item_socket_labels(&db, "Sireth, Spear of the Sky"),
+        [
+            "crafting: attuned by heroism: tier 1",
+            "crafting: attuned to heroism 2",
+            "crafting: attuned to heroism 2",
+            "crafting: attuned to heroism 4"
+        ]
+    );
+    assert_eq!(
+        row_count(&db, "SELECT COUNT(*) FROM augment_slot_types WHERE label LIKE 'crafting: attuned to heroism 3'"),
+        0
+    );
+    let (family, variant): (String, String) = db
+        .query_row(
+            "SELECT family, variant FROM augment_slot_types WHERE label = 'crafting: attuned by heroism: tier 1'",
+            [],
+            |r| Ok((r.get(0)?, r.get(1)?)),
+        )
+        .unwrap();
+    assert_eq!((family.as_str(), variant.as_str()), ("crafting", "attuned by heroism: tier 1"));
+    assert_eq!(report.augment_slot_type_count, row_count(&db, "SELECT COUNT(*) FROM augment_slot_types") as usize);
 }

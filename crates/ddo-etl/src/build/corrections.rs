@@ -1,7 +1,8 @@
-use super::{BuildReport, StaleCorrection};
-use crate::corrections::{CorrectableField, Correction, CorrectionValue, Corrections, FieldShape};
+use super::items::item_wiki_url;
+use super::{bonus_name, BuildReport, StaleCorrection};
+use crate::corrections::{BonusAddition, CorrectableField, Correction, CorrectionValue, Corrections, FieldShape};
 use anyhow::{bail, Context, Result};
-use ddo_model::enums::{CorrectionKind, RowSource};
+use ddo_model::enums::{CorrectionKind, ModifierSource, RowSource};
 use rusqlite::types::Value as SqlValue;
 use rusqlite::{params, OptionalExtension, Transaction};
 
@@ -23,18 +24,23 @@ pub(super) fn apply_corrections(
 
 fn apply_correction(transaction: &Transaction, correction: &Correction, report: &mut BuildReport) -> Result<()> {
     let field = correction.correctable_field()?;
-    let row_ids = maetrim_row_ids_named(transaction, correction.kind, &correction.name)?;
+    let row_ids = maetrim_row_ids_named(transaction, correction)?;
     if row_ids.is_empty() {
+        let family_text = match &correction.family {
+            Some(family) => format!(" in family {family:?}"),
+            None => String::new(),
+        };
         bail!(
-            "no {} in Maetrim's files is named {:?} (matched against {}.name); use his exact name",
+            "no {} in Maetrim's files{family_text} is named {:?} (matched against {}.{}); use his exact name",
             correction.kind.as_str(),
             correction.name,
-            correction.kind.table_name()
+            correction.kind.table_name(),
+            correction.kind.name_column()
         );
     }
     let mut maetrim_values: Vec<CorrectionValue> = Vec::new();
     for row_id in &row_ids {
-        let maetrim_value = current_value(transaction, correction.kind, field, *row_id)?;
+        let maetrim_value = current_value(transaction, correction, field, *row_id)?;
         if !maetrim_values.contains(&maetrim_value) {
             maetrim_values.push(maetrim_value);
         }
@@ -52,10 +58,59 @@ fn apply_correction(transaction: &Transaction, correction: &Correction, report: 
         report.correction_stale_count += 1;
         return Ok(());
     }
+    write_correction(transaction, correction, field, &row_ids)?;
+    transaction.execute(
+        "INSERT INTO corrections (kind, name, qualifier, field, from_value, to_value, reason, source, read)
+         VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9)",
+        params![
+            correction.kind.as_str(),
+            correction.name,
+            correction.qualifier(),
+            correction.field,
+            correction.from.to_json(),
+            correction.to.to_json(),
+            correction.reason,
+            correction.source,
+            correction.read
+        ],
+    )?;
+    report.correction_applied_count += 1;
+    Ok(())
+}
+
+fn write_correction(
+    transaction: &Transaction,
+    correction: &Correction,
+    field: &CorrectableField,
+    row_ids: &[i64],
+) -> Result<()> {
     let table_name = correction.kind.table_name();
     match field.shape {
+        FieldShape::Integer if correction.kind == CorrectionKind::AugmentBonus => {
+            let (stat_id, bonus_type_id) = bonus_key_ids(transaction, correction)?;
+            let new_value = match correction.to {
+                CorrectionValue::Integer(number) => number,
+                _ => bail!("a bonus value is an integer"),
+            };
+            repoint_augment_bonuses(transaction, row_ids, stat_id, bonus_type_id, bonus_type_id, Some(new_value))?;
+        }
+        FieldShape::BonusTypeName => {
+            let (stat_id, bonus_type_id) = bonus_key_ids(transaction, correction)?;
+            let new_type_name = correction.to.as_text().context("a bonus type cannot be null")?;
+            let new_type_id = bonus_type_id_named(transaction, new_type_name)?;
+            repoint_augment_bonuses(transaction, row_ids, stat_id, bonus_type_id, new_type_id, None)?;
+        }
+        FieldShape::BonusAddition => {
+            let CorrectionValue::Bonus(bonus) = &correction.to else { bail!("an add names the bonus in to") };
+            add_augment_bonus(transaction, row_ids, bonus)?;
+        }
+        FieldShape::SocketAddition => {
+            let socket_label = correction.to.as_text().context("an add names the socket label in to")?;
+            add_item_socket(transaction, row_ids, socket_label)?;
+        }
+        FieldShape::Removal => remove_rows(transaction, correction.kind, row_ids)?,
         FieldShape::Integer | FieldShape::Flag | FieldShape::Text => {
-            write_column(transaction, table_name, field.column, &row_ids, correction.to.to_sql())?;
+            write_column(transaction, table_name, field.column, row_ids, correction.to.to_sql())?;
         }
         FieldShape::NamedReference { referenced_table } => {
             let referenced_id = match correction.to.as_text() {
@@ -69,56 +124,226 @@ fn apply_correction(transaction: &Transaction, correction: &Correction, report: 
                 }
                 None => SqlValue::Null,
             };
-            write_column(transaction, table_name, field.column, &row_ids, referenced_id)?;
+            write_column(transaction, table_name, field.column, row_ids, referenced_id)?;
         }
-        FieldShape::SetName => relink_item_sets(transaction, &row_ids, correction.to.as_text())?,
-        FieldShape::RowName => rename_row(transaction, correction)?,
+        FieldShape::SetName => relink_item_sets(transaction, row_ids, correction.to.as_text())?,
+        FieldShape::RowName => rename_rows(transaction, correction, row_ids)?,
     }
-    transaction.execute(
-        "INSERT INTO corrections (kind, name, field, from_value, to_value, reason, source, read)
-         VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8)",
-        params![
-            correction.kind.as_str(),
-            correction.name,
-            correction.field,
-            correction.from.to_json(),
-            correction.to.to_json(),
-            correction.reason,
-            correction.source,
-            correction.read
-        ],
-    )?;
-    report.correction_applied_count += 1;
     Ok(())
 }
 
-fn maetrim_row_ids_named(transaction: &Transaction, kind: CorrectionKind, name: &str) -> Result<Vec<i64>> {
+fn maetrim_row_ids_named(transaction: &Transaction, correction: &Correction) -> Result<Vec<i64>> {
+    let kind = correction.kind;
     let maetrim_rows_only = match kind {
-        CorrectionKind::Item | CorrectionKind::Quest => format!(" AND source = '{}'", RowSource::Maetrim.as_str()),
+        CorrectionKind::Item | CorrectionKind::ItemSocket | CorrectionKind::Quest => {
+            format!(" AND source = '{}'", RowSource::Maetrim.as_str())
+        }
         _ => String::new(),
     };
-    let mut statement = transaction
-        .prepare(&format!("SELECT id FROM {} WHERE name = ?1{maetrim_rows_only} ORDER BY id", kind.table_name()))?;
-    let row_ids = statement.query_map(params![name], |r| r.get(0))?.collect::<rusqlite::Result<_>>()?;
+    let family_only = if correction.family.is_some() { " AND family = ?2" } else { " AND ?2 IS NULL" };
+    let mut statement = transaction.prepare(&format!(
+        "SELECT id FROM {} WHERE {} = ?1{maetrim_rows_only}{family_only} ORDER BY id",
+        kind.table_name(),
+        kind.name_column()
+    ))?;
+    let row_ids = statement
+        .query_map(params![correction.name, correction.family], |r| r.get(0))?
+        .collect::<rusqlite::Result<_>>()?;
     Ok(row_ids)
 }
 
 fn current_value(
     transaction: &Transaction,
-    kind: CorrectionKind,
+    correction: &Correction,
     field: &CorrectableField,
     row_id: i64,
 ) -> Result<CorrectionValue> {
-    let table_name = kind.table_name();
+    let table_name = correction.kind.table_name();
     let value_sql = match field.shape {
+        FieldShape::Removal => return Ok(CorrectionValue::Integer(0)),
+        FieldShape::Integer if correction.kind == CorrectionKind::AugmentBonus => {
+            let (stat_id, bonus_type_id) = bonus_key_ids(transaction, correction)?;
+            return augment_bonus_value(transaction, row_id, stat_id, bonus_type_id);
+        }
+        FieldShape::BonusTypeName => {
+            let (stat_id, bonus_type_id) = bonus_key_ids(transaction, correction)?;
+            return augment_bonus_type_on_stat(transaction, row_id, stat_id, bonus_type_id);
+        }
+        FieldShape::BonusAddition => {
+            let (stat_id, bonus_type_id) = bonus_key_ids(transaction, correction)?;
+            return augment_bonus_value(transaction, row_id, stat_id, bonus_type_id);
+        }
+        FieldShape::SocketAddition => {
+            let socket_label = correction.to.as_text().context("an add names the socket label in to")?;
+            let carries_label: bool = transaction.query_row(
+                "SELECT EXISTS (SELECT 1 FROM item_augment_slots JOIN augment_slot_types ON augment_slot_types.id = item_augment_slots.slot_id
+                                 WHERE item_augment_slots.item_id = ?1 AND augment_slot_types.label = ?2)",
+                params![row_id, socket_label],
+                |r| r.get(0),
+            )?;
+            return Ok(if carries_label { correction.to.clone() } else { CorrectionValue::Null });
+        }
         FieldShape::NamedReference { referenced_table } => format!(
             "SELECT {referenced_table}.name FROM {table_name} LEFT JOIN {referenced_table} ON {referenced_table}.id = {table_name}.{} WHERE {table_name}.id = ?1",
             field.column
         ),
+        FieldShape::RowName => format!("SELECT {} FROM {table_name} WHERE id = ?1", correction.kind.name_column()),
         _ => format!("SELECT {} FROM {table_name} WHERE id = ?1", field.column),
     };
     let sql_value: SqlValue = transaction.query_row(&value_sql, params![row_id], |r| r.get(0))?;
     Ok(CorrectionValue::from_sql(sql_value))
+}
+
+fn bonus_key_ids(transaction: &Transaction, correction: &Correction) -> Result<(i64, i64)> {
+    let (stat_name, bonus_type_name) = correction.bonus_key().context("an augment_bonus correction names its bonus")?;
+    let stat_id = id_named(transaction, "stats", stat_name)?
+        .with_context(|| format!("stat {stat_name:?} is not in the stats table; use its exact name"))?;
+    Ok((stat_id, bonus_type_id_named(transaction, bonus_type_name)?))
+}
+
+fn bonus_type_id_named(transaction: &Transaction, bonus_type_name: &str) -> Result<i64> {
+    id_named(transaction, "bonus_types", bonus_type_name)?
+        .with_context(|| format!("bonus type {bonus_type_name:?} is not in the bonus_types table; use its exact name"))
+}
+
+fn augment_bonus_value(
+    transaction: &Transaction,
+    augment_id: i64,
+    stat_id: i64,
+    bonus_type_id: i64,
+) -> Result<CorrectionValue> {
+    let bonus_value: Option<Option<i64>> = transaction
+        .query_row(
+            "SELECT bonuses.value FROM augment_bonuses JOIN bonuses ON bonuses.id = augment_bonuses.bonus_id
+              WHERE augment_bonuses.augment_id = ?1 AND bonuses.stat_id = ?2 AND bonuses.bonus_type_id = ?3
+              ORDER BY augment_bonuses.sort_order LIMIT 1",
+            params![augment_id, stat_id, bonus_type_id],
+            |r| r.get(0),
+        )
+        .optional()?;
+    Ok(bonus_value.flatten().map_or(CorrectionValue::Null, CorrectionValue::Integer))
+}
+
+fn augment_bonus_type_on_stat(
+    transaction: &Transaction,
+    augment_id: i64,
+    stat_id: i64,
+    expected_bonus_type_id: i64,
+) -> Result<CorrectionValue> {
+    let mut statement = transaction.prepare(
+        "SELECT bonuses.bonus_type_id, bonus_types.name FROM augment_bonuses JOIN bonuses ON bonuses.id = augment_bonuses.bonus_id
+           LEFT JOIN bonus_types ON bonus_types.id = bonuses.bonus_type_id
+          WHERE augment_bonuses.augment_id = ?1 AND bonuses.stat_id = ?2 ORDER BY augment_bonuses.sort_order",
+    )?;
+    let bonus_types_on_stat: Vec<(Option<i64>, Option<String>)> = statement
+        .query_map(params![augment_id, stat_id], |r| Ok((r.get(0)?, r.get(1)?)))?
+        .collect::<rusqlite::Result<_>>()?;
+    let matching_type = bonus_types_on_stat.iter().find(|(type_id, _)| *type_id == Some(expected_bonus_type_id));
+    Ok(match matching_type.or(bonus_types_on_stat.first()) {
+        Some((_, Some(type_name))) => CorrectionValue::Text(type_name.clone()),
+        _ => CorrectionValue::Null,
+    })
+}
+
+fn repoint_augment_bonuses(
+    transaction: &Transaction,
+    augment_ids: &[i64],
+    stat_id: i64,
+    bonus_type_id: i64,
+    new_bonus_type_id: i64,
+    new_value: Option<i64>,
+) -> Result<()> {
+    for augment_id in augment_ids {
+        let mut statement = transaction.prepare(
+            "SELECT augment_bonuses.sort_order, bonuses.value, bonuses.value2 FROM augment_bonuses
+               JOIN bonuses ON bonuses.id = augment_bonuses.bonus_id
+              WHERE augment_bonuses.augment_id = ?1 AND bonuses.stat_id = ?2 AND bonuses.bonus_type_id = ?3",
+        )?;
+        let matching_bonuses: Vec<(i64, Option<i64>, Option<i64>)> = statement
+            .query_map(params![augment_id, stat_id, bonus_type_id], |r| Ok((r.get(0)?, r.get(1)?, r.get(2)?)))?
+            .collect::<rusqlite::Result<_>>()?;
+        for (sort_order, value, second_value) in matching_bonuses {
+            let bonus_id =
+                ensure_bonus_row(transaction, stat_id, new_bonus_type_id, new_value.or(value), second_value)?;
+            transaction.execute(
+                "UPDATE augment_bonuses SET bonus_id = ?3 WHERE augment_id = ?1 AND sort_order = ?2",
+                params![augment_id, sort_order, bonus_id],
+            )?;
+        }
+    }
+    Ok(())
+}
+
+fn add_augment_bonus(transaction: &Transaction, augment_ids: &[i64], bonus: &BonusAddition) -> Result<()> {
+    let stat_id = id_named(transaction, "stats", &bonus.stat)?
+        .with_context(|| format!("stat {:?} is not in the stats table; use its exact name", bonus.stat))?;
+    let bonus_type_id = bonus_type_id_named(transaction, &bonus.bonus_type)?;
+    let bonus_id = ensure_bonus_row(transaction, stat_id, bonus_type_id, Some(bonus.value), None)?;
+    for augment_id in augment_ids {
+        transaction.execute(
+            "INSERT INTO augment_bonuses (augment_id, bonus_id, sort_order)
+             SELECT ?1, ?2, COALESCE(MAX(sort_order) + 1, 0) FROM augment_bonuses WHERE augment_id = ?1",
+            params![augment_id, bonus_id],
+        )?;
+    }
+    Ok(())
+}
+
+fn ensure_bonus_row(
+    transaction: &Transaction,
+    stat_id: i64,
+    bonus_type_id: i64,
+    value: Option<i64>,
+    second_value: Option<i64>,
+) -> Result<i64> {
+    let existing_bonus_id: Option<i64> = transaction
+        .query_row(
+            "SELECT id FROM bonuses WHERE stat_id = ?1 AND bonus_type_id = ?2
+                AND COALESCE(value, -1) = COALESCE(?3, -1) AND COALESCE(value2, -1) = COALESCE(?4, -1)",
+            params![stat_id, bonus_type_id, value, second_value],
+            |r| r.get(0),
+        )
+        .optional()?;
+    if let Some(bonus_id) = existing_bonus_id {
+        return Ok(bonus_id);
+    }
+    let stat_name: String =
+        transaction.query_row("SELECT name FROM stats WHERE id = ?1", params![stat_id], |r| r.get(0))?;
+    transaction.execute(
+        "INSERT INTO bonuses (name, stat_id, bonus_type_id, value, value2) VALUES (?1, ?2, ?3, ?4, ?5)",
+        params![bonus_name(&stat_name, value), stat_id, bonus_type_id, value, second_value],
+    )?;
+    Ok(transaction.last_insert_rowid())
+}
+
+fn add_item_socket(transaction: &Transaction, item_ids: &[i64], socket_label: &str) -> Result<()> {
+    let slot_type_id = socket_label_id(transaction, socket_label)?.with_context(|| {
+        format!("to {socket_label:?} is not a socket label in Maetrim's files; use one /v1/augment-slot-types lists")
+    })?;
+    for item_id in item_ids {
+        transaction.execute(
+            "INSERT INTO item_augment_slots (item_id, sort_order, slot_id)
+             SELECT ?1, COALESCE(MAX(sort_order) + 1, 0), ?2 FROM item_augment_slots WHERE item_id = ?1",
+            params![item_id, slot_type_id],
+        )?;
+    }
+    Ok(())
+}
+
+fn remove_rows(transaction: &Transaction, kind: CorrectionKind, row_ids: &[i64]) -> Result<()> {
+    let modifier_source = match kind {
+        CorrectionKind::Item => ModifierSource::Item,
+        CorrectionKind::Augment => ModifierSource::Augment,
+        _ => bail!("only an item or an augment can be removed"),
+    };
+    for row_id in row_ids {
+        transaction.execute(
+            "DELETE FROM modifiers WHERE source_kind = ?1 AND source_id = ?2",
+            params![modifier_source.as_str(), row_id],
+        )?;
+        transaction.execute(&format!("DELETE FROM {} WHERE id = ?1", kind.table_name()), params![row_id])?;
+    }
+    Ok(())
 }
 
 fn write_column(
@@ -153,26 +378,102 @@ fn relink_item_sets(transaction: &Transaction, item_ids: &[i64], set_name: Optio
     Ok(())
 }
 
-fn rename_row(transaction: &Transaction, correction: &Correction) -> Result<()> {
-    let table_name = correction.kind.table_name();
+fn rename_rows(transaction: &Transaction, correction: &Correction, row_ids: &[i64]) -> Result<()> {
     let new_name = correction.to.as_text().context("a row's name cannot be null")?;
-    if id_named(transaction, table_name, new_name)?.is_some() {
-        bail!(
-            "to {new_name:?} is already the name of another {}; a rename cannot merge two rows",
-            correction.kind.as_str()
-        );
+    match correction.kind {
+        CorrectionKind::SocketLabel => return rename_socket_label(transaction, row_ids[0], new_name),
+        CorrectionKind::Augment => refuse_an_augment_name_taken_in_its_families(transaction, row_ids, new_name)?,
+        _ => {
+            if id_named(transaction, correction.kind.table_name(), new_name)?.is_some() {
+                bail!(
+                    "to {new_name:?} is already the name of another {}; a rename cannot merge two rows",
+                    correction.kind.as_str()
+                );
+            }
+        }
     }
-    transaction
-        .execute(&format!("UPDATE {table_name} SET name = ?2 WHERE name = ?1"), params![correction.name, new_name])?;
-    if correction.kind == CorrectionKind::SetBonus {
-        for set_naming_table in ["items", "augments"] {
-            transaction.execute(
-                &format!("UPDATE {set_naming_table} SET set_bonus = ?2 WHERE set_bonus = ?1"),
-                params![correction.name, new_name],
-            )?;
+    write_column(transaction, correction.kind.table_name(), "name", row_ids, SqlValue::Text(new_name.to_string()))?;
+    match correction.kind {
+        CorrectionKind::Item => {
+            write_column(transaction, "items", "wiki_url", row_ids, SqlValue::Text(item_wiki_url(new_name)))?;
+        }
+        CorrectionKind::SetBonus => {
+            for set_naming_table in ["items", "augments"] {
+                transaction.execute(
+                    &format!("UPDATE {set_naming_table} SET set_bonus = ?2 WHERE set_bonus = ?1"),
+                    params![correction.name, new_name],
+                )?;
+            }
+        }
+        _ => {}
+    }
+    Ok(())
+}
+
+fn refuse_an_augment_name_taken_in_its_families(
+    transaction: &Transaction,
+    augment_ids: &[i64],
+    new_name: &str,
+) -> Result<()> {
+    for augment_id in augment_ids {
+        let taken_family: Option<String> = transaction
+            .query_row(
+                "SELECT other.family FROM augments AS renamed JOIN augments AS other ON other.family = renamed.family
+                  WHERE renamed.id = ?1 AND other.name = ?2",
+                params![augment_id, new_name],
+                |r| r.get(0),
+            )
+            .optional()?;
+        if let Some(family) = taken_family {
+            bail!("to {new_name:?} is already the name of another augment in family {family:?}; a rename cannot merge two rows");
         }
     }
     Ok(())
+}
+
+fn rename_socket_label(transaction: &Transaction, slot_type_id: i64, new_label: &str) -> Result<()> {
+    if let Some(merged_slot_type_id) = socket_label_id(transaction, new_label)? {
+        for (table_name, column) in
+            [("item_augment_slots", "slot_id"), ("crafting_recipes", "slot_id"), ("crafting_recipes", "grants_slot_id")]
+        {
+            transaction.execute(
+                &format!("UPDATE {table_name} SET {column} = ?2 WHERE {column} = ?1"),
+                params![slot_type_id, merged_slot_type_id],
+            )?;
+        }
+        transaction.execute(
+            "UPDATE OR IGNORE augment_slots SET slot_id = ?2 WHERE slot_id = ?1",
+            params![slot_type_id, merged_slot_type_id],
+        )?;
+        transaction.execute("DELETE FROM augment_slots WHERE slot_id = ?1", params![slot_type_id])?;
+        transaction.execute("DELETE FROM augment_slot_types WHERE id = ?1", params![slot_type_id])?;
+        return Ok(());
+    }
+    let (old_label, qualifier): (String, Option<String>) = transaction.query_row(
+        "SELECT label, qualifier FROM augment_slot_types WHERE id = ?1",
+        params![slot_type_id],
+        |r| Ok((r.get(0)?, r.get(1)?)),
+    )?;
+    if qualifier.is_some() {
+        bail!("{old_label:?} carries a qualifier; rename it only into a label his files already use");
+    }
+    let new_variant = match old_label.split_once(": ") {
+        Some((label_prefix, _)) => new_label
+            .strip_prefix(&format!("{label_prefix}: "))
+            .with_context(|| format!("to {new_label:?} must keep the {label_prefix:?} prefix of {old_label:?}"))?,
+        None => new_label,
+    };
+    transaction.execute(
+        "UPDATE augment_slot_types SET label = ?2, variant = ?3 WHERE id = ?1",
+        params![slot_type_id, new_label, new_variant],
+    )?;
+    Ok(())
+}
+
+fn socket_label_id(transaction: &Transaction, label: &str) -> Result<Option<i64>> {
+    Ok(transaction
+        .query_row("SELECT id FROM augment_slot_types WHERE label = ?1", params![label], |r| r.get(0))
+        .optional()?)
 }
 
 fn id_named(transaction: &Transaction, table_name: &str, name: &str) -> Result<Option<i64>> {

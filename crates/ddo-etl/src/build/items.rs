@@ -412,6 +412,6 @@ fn weapon_damage_text(
     Some(text)
 }
 
-fn item_wiki_url(item_name: &str) -> String {
+pub(super) fn item_wiki_url(item_name: &str) -> String {
     format!("https://ddowiki.com/page/Item:{}", item_name.replace(' ', "_").replace('+', "%2B"))
 }

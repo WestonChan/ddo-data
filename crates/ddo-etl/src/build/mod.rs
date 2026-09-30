@@ -199,7 +199,8 @@ pub fn build_database(
 
     report.bonus_count = writer.written.bonus_ids_by_key.len();
     report.effect_count = writer.written.effect_ids_by_name.len();
-    report.augment_slot_type_count = writer.written.augment_slot_type_ids_by_label.len();
+    report.augment_slot_type_count =
+        transaction.query_row("SELECT COUNT(*) FROM augment_slot_types", [], |r| r.get::<_, i64>(0))? as usize;
     report.set_bonus_count = writer.written.set_bonus_ids_by_name.len();
     report.modifier_count = writer.written.modifier_count;
     report.unmapped_effect_type_counts = effect_map.unmapped_type_counts();
@@ -341,11 +342,7 @@ impl TableWriter<'_> {
         if let Some(id) = self.written.bonus_ids_by_key.get(&key) {
             return Ok(*id);
         }
-        let bonus_name = match value {
-            Some(v) if v < 0 => format!("{} {v}", stat.name),
-            Some(v) => format!("{} +{v}", stat.name),
-            None => stat.name.to_string(),
-        };
+        let bonus_name = bonus_name(stat.name, value);
         self.transaction.execute(
             "INSERT INTO bonuses (name, description, stat_id, bonus_type_id, value, value2) VALUES (?1, ?2, ?3, ?4, ?5, ?6)",
             params![bonus_name, description, stat.id, key.1, value, second_value],
@@ -396,6 +393,14 @@ impl TableWriter<'_> {
             self.write_modifiers(ModifierSource::Clickie, id, &clickie.effects)?;
         }
         Ok(())
+    }
+}
+
+pub(crate) fn bonus_name(stat_name: &str, value: Option<i64>) -> String {
+    match value {
+        Some(v) if v < 0 => format!("{stat_name} {v}"),
+        Some(v) => format!("{stat_name} +{v}"),
+        None => stat_name.to_string(),
     }
 }
 
