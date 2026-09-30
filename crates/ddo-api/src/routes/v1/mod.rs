@@ -57,7 +57,7 @@ use utoipa_axum::router::OpenApiRouter;
         (name = "enhancements", description = "Enhancement, epic destiny and reaper trees with every enhancement and selection"),
         (name = "spells", description = "Spells with damage, saves and class lists, and the clickies items grant"),
         (name = "bonuses", description = "The stats a bonus can apply to and the bonus types that decide whether two bonuses stack"),
-        (name = "quests", description = "Quests, challenges, adventure packs and favor patrons: the sources items drop from, with each quest's duration, XP by tier and difficulty, and free-to-play status from ddowiki"),
+        (name = "quests", description = "Quests, challenges, adventure packs and favor patrons: the sources items drop from, with each quest's free-to-play status, legendary level, zone, quest giver and flagging from ddowiki"),
         (name = "bulk", description = "The whole dataset as one SQLite download")
     )
 )]

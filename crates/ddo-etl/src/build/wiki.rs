@@ -41,12 +41,10 @@ pub(super) fn apply_wiki_overrides(
             )
         })?;
         transaction.execute(
-            "UPDATE quests SET duration = ?2, is_free_to_play = ?3, legendary_level = ?4, zone = ?5, bestowed_by = ?6,
-                    flagging = ?7
+            "UPDATE quests SET is_free_to_play = ?2, legendary_level = ?3, zone = ?4, bestowed_by = ?5, flagging = ?6
               WHERE id = ?1",
             params![
                 quest_id,
-                quest_facts.duration().map(|d| d.as_str()),
                 quest_facts.free_to_play,
                 quest_facts.legendary_level,
                 quest_facts.zone,
@@ -54,12 +52,6 @@ pub(super) fn apply_wiki_overrides(
                 quest_facts.flagging
             ],
         )?;
-        for (tier, xp) in quest_facts.xp.by_tier() {
-            report.wiki_quest_xp_row_count += transaction.execute(
-                "INSERT INTO quest_xp (quest_id, tier, casual, normal, hard, elite) VALUES (?1, ?2, ?3, ?4, ?5, ?6)",
-                params![quest_id, tier.as_str(), xp.casual, xp.normal, xp.hard, xp.elite],
-            )?;
-        }
         report.wiki_quest_entry_count += 1;
     }
     for crafting_system in &wiki_overrides.crafting_systems {

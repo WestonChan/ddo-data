@@ -50,7 +50,6 @@ fn wiki_report_lines(report: &BuildReport) -> Vec<String> {
         ("wiki_added_quest_loot_link_count", report.wiki_added_quest_loot_link_count),
         ("drop_text_rare_link_count", report.drop_text_rare_link_count),
         ("wiki_quest_entry_count", report.wiki_quest_entry_count),
-        ("wiki_quest_xp_row_count", report.wiki_quest_xp_row_count),
         ("wiki_crafting_system_count", report.wiki_crafting_system_count),
         ("wiki_crafting_recipe_count", report.wiki_crafting_recipe_count),
         ("wiki_crafting_ingredient_count", report.wiki_crafting_ingredient_count),

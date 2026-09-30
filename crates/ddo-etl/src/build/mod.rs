@@ -55,7 +55,6 @@ pub struct BuildReport {
     pub wiki_rare_drop_count: usize,
     pub wiki_added_quest_loot_link_count: usize,
     pub wiki_quest_entry_count: usize,
-    pub wiki_quest_xp_row_count: usize,
     pub wiki_crafting_system_count: usize,
     pub wiki_crafting_recipe_count: usize,
     pub wiki_crafting_ingredient_count: usize,

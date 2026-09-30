@@ -1,4898 +1,3515 @@
 # Quest facts from https://ddowiki.com/page/Quests_by_level_and_XP (one index page), read 2026-09-27.
-# Fields Maetrim's Quests.xml has no equivalent for: duration, per-difficulty XP per tier, legendary level, free-to-play.
+# Fields Maetrim's Quests.xml has no equivalent for: legendary level, free-to-play.
 
 [[quest]]
 name = "A Blood Pact"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
 legendary_level = 37
-xp.heroic = { casual = 3480, normal = 6100, hard = 6399, elite = 6700 }
-xp.legendary = { casual = 23256, normal = 39615, hard = 40469, elite = 41325 }
 
 [[quest]]
 name = "A Break in the Ice"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
-xp.heroic = { casual = 3973, normal = 6864, hard = 7106, elite = 7347 }
-xp.epic = { casual = 15290, normal = 26203, hard = 26923, elite = 27643 }
 
 [[quest]]
 name = "A Cabal for One"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
-xp.heroic = { casual = 1855, normal = 3228, hard = 3364, elite = 3500 }
 
 [[quest]]
 name = "A Cry for Help"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Very long"
 free_to_play = false
-xp.heroic = { casual = 2915, normal = 5086, hard = 5313, elite = 5540 }
-xp.epic = { casual = 12574, normal = 21602, hard = 22248, elite = 22894 }
 
 [[quest]]
 name = "A Frosty Reception"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
 legendary_level = 32
-xp.heroic = { casual = 2056, normal = 3684, hard = 3940, elite = 4196 }
-xp.legendary = { casual = 17681, normal = 30198, hard = 30928, elite = 31657 }
 
 [[quest]]
 name = "A Lesson in Deception"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
-xp.heroic = { casual = 2701, normal = 4685, hard = 4869, elite = 5052 }
-xp.epic = { casual = 10947, normal = 18774, hard = 19302, elite = 19830 }
 
 [[quest]]
 name = "A Light in the Attic"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
 legendary_level = 36
-xp.heroic = { casual = 1730, normal = 3058, hard = 3232, elite = 3406 }
-xp.legendary = { casual = 14090, normal = 24011, hard = 24538, elite = 25065 }
 
 [[quest]]
 name = "A Long Way to Mushrooms"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
 legendary_level = 37
-xp.heroic = { casual = 2180, normal = 3820, hard = 4006, elite = 4192 }
-xp.legendary = { casual = 15176, normal = 25849, hard = 26405, elite = 26961 }
 
 [[quest]]
 name = "A Miner Sacrifice"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
 legendary_level = 36
-xp.heroic = { casual = 1730, normal = 3058, hard = 3232, elite = 3406 }
-xp.legendary = { casual = 14090, normal = 24011, hard = 24538, elite = 25065 }
 
 [[quest]]
 name = "A New Invasion"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
-xp.heroic = { casual = 5308, normal = 9172, hard = 9496, elite = 9820 }
 
 [[quest]]
 name = "A Raven at the Door"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
 legendary_level = 31
-xp.heroic = { casual = 3069, normal = 5380, hard = 5643, elite = 5908 }
-xp.legendary = { casual = 17777, normal = 30380, hard = 31133, elite = 31885 }
 
 [[quest]]
 name = "A Relic of a Sovereign Past"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Very long"
 free_to_play = true
-xp.heroic = { casual = 3260, normal = 5699, hard = 5966, elite = 6233 }
 
 [[quest]]
 name = "A Sharn Welcome"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
 legendary_level = 32
-xp.heroic = { casual = 2958, normal = 5140, hard = 5350, elite = 5560 }
-xp.legendary = { casual = 14535, normal = 24823, hard = 25422, elite = 26020 }
 
 [[quest]]
 name = "A Small Problem"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
-xp.heroic = { casual = 1807, normal = 3236, hard = 3460, elite = 3684 }
-xp.epic = { casual = 10896, normal = 18798, hard = 19437, elite = 20075 }
 
 [[quest]]
 name = "A Stay at the Inn"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
-xp.heroic = { casual = 2025, normal = 3502, hard = 3628, elite = 3754 }
-xp.epic = { casual = 7065, normal = 12135, hard = 12494, elite = 12853 }
 
 [[quest]]
 name = "A Study in Sable"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = true
-xp.epic = { casual = 13194, normal = 22629, hard = 23267, elite = 23905 }
 
 [[quest]]
 name = "A Vision of Destruction"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Very long"
 free_to_play = false
-xp.heroic = { normal = 8200, hard = 8500, elite = 8800 }
 
 [[quest]]
 name = "Acid Wit"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = true
-xp.heroic = { casual = 2378, normal = 4132, hard = 4300, elite = 4467 }
 
 [[quest]]
 name = "Acute Delirium"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
-xp.heroic = { casual = 3485, normal = 6036, hard = 6265, elite = 6493 }
 
 [[quest]]
 name = "Against the Demon Queen"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Very long"
 free_to_play = false
-xp.heroic = { casual = 3660, normal = 6400, hard = 6700, elite = 7000 }
-xp.epic = { casual = 15560, normal = 26790, hard = 22550, elite = 23000 }
 
 [[quest]]
 name = "All Hail the King"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
 legendary_level = 33
-xp.heroic = { casual = 2058, normal = 3652, hard = 3874, elite = 4096 }
-xp.legendary = { casual = 14894, normal = 25422, hard = 26020, elite = 26619 }
 
 [[quest]]
 name = "An Element of Chaos"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
 legendary_level = 32
-xp.heroic = { casual = 1788, normal = 3123, hard = 3268, elite = 3412 }
-xp.legendary = { casual = 10020, normal = 17111, hard = 17521, elite = 17932 }
 
 [[quest]]
 name = "An Explosive Situation"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Short"
 free_to_play = true
-xp.heroic = { casual = 444, normal = 793, hard = 846, elite = 900 }
 
 [[quest]]
 name = "An Invitation to Dinner"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Very long"
 free_to_play = false
 legendary_level = 32
-xp.heroic = { casual = 4380, normal = 7700, hard = 8100, elite = 8500 }
-xp.legendary = { casual = 27531, normal = 47025, hard = 48165, elite = 49305 }
 
 [[quest]]
 name = "An Offering of Blood"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Very long"
 free_to_play = false
-xp.heroic = { casual = 3024, normal = 5300, hard = 5559, elite = 5820 }
-xp.epic = { casual = 13064, normal = 22515, hard = 23256, elite = 23997 }
 
 [[quest]]
 name = "And the Dead Shall Rise..."
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
-xp.heroic = { casual = 2112, normal = 3700, hard = 3879, elite = 4060 }
 
 [[quest]]
 name = "Another Man's Treasure"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
-xp.heroic = { casual = 1773, normal = 3160, hard = 3364, elite = 3568 }
-xp.epic = { casual = 10287, normal = 17727, hard = 18308, elite = 18889 }
 
 [[quest]]
 name = "Arachnophobia"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Short"
 free_to_play = true
-xp.heroic = { casual = 173 }
 
 [[quest]]
 name = "Archer Point Defense"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = true
-xp.heroic = { casual = 434, normal = 772, hard = 820, elite = 868 }
 
 [[quest]]
 name = "Army of Eternal Night"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
 legendary_level = 33
-xp.heroic = { casual = 2479, normal = 4300, hard = 4468, elite = 4636 }
-xp.legendary = { casual = 14193, normal = 24225, hard = 24795, elite = 25365 }
 
 [[quest]]
 name = "Army of Shadow"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
-xp.heroic = { casual = 3057, normal = 5303, hard = 5511, elite = 5719 }
-xp.epic = { casual = 13113, normal = 22490, hard = 23124, elite = 23759 }
 
 [[quest]]
 name = "Ascension Chamber"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
-xp.heroic = { normal = 6340, hard = 6580, elite = 6820 }
 
 [[quest]]
 name = "Assault on Summerfield"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
 legendary_level = 34
-xp.heroic = { casual = 1874, normal = 3268, hard = 3412, elite = 3556 }
-xp.legendary = { casual = 10513, normal = 17932, hard = 18342, elite = 18753 }
 
 [[quest]]
 name = "Assault on the Aerie of the Slave Lords"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
 legendary_level = 31
-xp.heroic = { casual = 2748, normal = 4860, hard = 5140, elite = 5420 }
-xp.legendary = { casual = 18844, normal = 32204, hard = 33003, elite = 33800 }
 
 [[quest]]
 name = "Astral Ambush"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
 legendary_level = 34
-xp.legendary = { casual = 17407, normal = 29696, hard = 30380, elite = 31064 }
 
 [[quest]]
 name = "Back to Basics"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
 legendary_level = 32
-xp.heroic = { casual = 508, normal = 916, hard = 983, elite = 1052 }
-xp.legendary = { casual = 8036, normal = 13722, hard = 14050, elite = 14378 }
 
 [[quest]]
 name = "Back to the Abyss"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
 legendary_level = 37
-xp.heroic = { casual = 2317, normal = 4060, hard = 4258, elite = 4456 }
-xp.legendary = { casual = 17869, normal = 30438, hard = 31093, elite = 31748 }
 
 [[quest]]
 name = "Bargain of Blood"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
-xp.heroic = { casual = 1003, normal = 1778, hard = 1882, elite = 1987 }
-xp.epic = { casual = 5192, normal = 8953, hard = 9252, elite = 9551 }
 
 [[quest]]
 name = "Bastion of Power"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
-xp.heroic = { casual = 4118, normal = 7114, hard = 7364, elite = 7615 }
 
 [[quest]]
 name = "Beautiful Nightmares"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
 legendary_level = 32
-xp.heroic = { casual = 2940, normal = 5140, hard = 5380, elite = 5620 }
-xp.legendary = { casual = 16587, normal = 28329, hard = 29013, elite = 29696 }
 
 [[quest]]
 name = "Beneath the City Streets"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
 legendary_level = 36
-xp.heroic = { casual = 2844, normal = 5030, hard = 5320, elite = 5610 }
-xp.legendary = { casual = 21990, normal = 37477, hard = 38304, elite = 39130 }
 
 [[quest]]
 name = "Best Laid Plans"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
 legendary_level = 32
-xp.heroic = { casual = 3372, normal = 5860, hard = 6100, elite = 6340 }
-xp.legendary = { casual = 16587, normal = 28329, hard = 29013, elite = 29696 }
 
 [[quest]]
 name = "Beyond the Rift"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = true
-xp.heroic = { casual = 3957, normal = 6866, hard = 7137, elite = 7408 }
-xp.epic = { casual = 13593, normal = 23427, hard = 24198, elite = 24969 }
 
 [[quest]]
 name = "Black and Blue"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
 legendary_level = 31
-xp.heroic = { casual = 3170, normal = 5572, hard = 5860, elite = 6147 }
-xp.legendary = { casual = 19377, normal = 33117, hard = 33937, elite = 34758 }
 
 [[quest]]
 name = "Blockade Buster"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
 legendary_level = 34
-xp.heroic = { casual = 1949, normal = 3400, hard = 3550, elite = 3700 }
-xp.legendary = { casual = 10943, normal = 18667, hard = 19095, elite = 19522 }
 
 [[quest]]
 name = "Blown Deadline"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
 legendary_level = 32
-xp.heroic = { casual = 3084, normal = 5350, hard = 5560, elite = 5770 }
-xp.legendary = { casual = 14535, normal = 24823, hard = 25422, elite = 26020 }
 
 [[quest]]
 name = "Blown to Bits"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
-xp.heroic = { casual = 3614, normal = 6243, hard = 6463, elite = 6682 }
 
 [[quest]]
 name = "Body and Mind"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = true
 legendary_level = 36
-xp.heroic = { casual = 2133, normal = 3772, hard = 3988, elite = 4204 }
-xp.legendary = { casual = 16422, normal = 27987, hard = 28602, elite = 29218 }
 
 [[quest]]
 name = "Book Burning"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Short"
 free_to_play = false
 legendary_level = 35
-xp.heroic = { casual = 1236, normal = 2153, hard = 2246, elite = 2340 }
-xp.legendary = { casual = 7033, normal = 11989, hard = 12255, elite = 12521 }
 
 [[quest]]
 name = "Breaking the Ranks"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
-xp.heroic = { casual = 2593, normal = 4478, hard = 4634, elite = 4790 }
-xp.epic = { casual = 8642, normal = 14807, hard = 15210, elite = 15613 }
 
 [[quest]]
 name = "Bring Me the Head of Ghola-Fan!"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Very long"
 free_to_play = false
-xp.heroic = { casual = 2220, normal = 3900, hard = 4100, elite = 4299 }
 
 [[quest]]
 name = "Bringing the Light"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Short"
 free_to_play = true
-xp.heroic = { casual = 168, normal = 298, hard = 316, elite = 334 }
 
 [[quest]]
 name = "Brood of Flame"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
-xp.heroic = { casual = 1230, normal = 2200, hard = 2350, elite = 2500 }
 
 [[quest]]
 name = "Brothers of the Forge"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = true
-xp.epic = { casual = 10430, normal = 17859, hard = 18334, elite = 18809 }
 
 [[quest]]
 name = "Bullywugs and Booby Traps"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
 legendary_level = 33
-xp.heroic = { casual = 2130, normal = 3780, hard = 4010, elite = 4240 }
-xp.legendary = { casual = 18399, normal = 31406, hard = 32148, elite = 32889 }
 
 [[quest]]
 name = "Burning Down the House"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
 legendary_level = 36
-xp.heroic = { casual = 1550, normal = 2722, hard = 2860, elite = 2998 }
-xp.legendary = { casual = 10554, normal = 17983, hard = 18376, elite = 18770 }
 
 [[quest]]
 name = "Caged Beast"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Short"
 free_to_play = false
-xp.heroic = { casual = 264, normal = 440, hard = 474, elite = 508 }
-xp.epic = { casual = 4485, normal = 7723, hard = 7971, elite = 8219 }
 
 [[quest]]
 name = "Caged Trolls"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = true
-xp.heroic = { casual = 463, normal = 820, hard = 868, elite = 916 }
 
 [[quest]]
 name = "Captive of the Hidden God"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
 legendary_level = 33
-xp.heroic = { casual = 1140, normal = 2020, hard = 2140, elite = 2260 }
-xp.legendary = { casual = 12089, normal = 20633, hard = 21118, elite = 21603 }
 
 [[quest]]
 name = "Catastrophe"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = true
 legendary_level = 34
-xp.heroic = { casual = 794, normal = 1426, hard = 1528, elite = 1630 }
-xp.legendary = { casual = 7496, normal = 12785, hard = 13075, elite = 13366 }
 
 [[quest]]
 name = "Caught in the Web"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
-xp.epic = { normal = 18342, hard = 18889, elite = 19437 }
 
 [[quest]]
 name = "Caverns of Korromar"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = true
-xp.heroic = { casual = 1212, normal = 2140, hard = 2260, elite = 2380 }
 
 [[quest]]
 name = "Chains of Flame"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Very long"
 free_to_play = false
-xp.heroic = { casual = 2556, normal = 4468, hard = 4676, elite = 4884 }
-xp.epic = { casual = 16530, normal = 28459, hard = 29368, elite = 30277 }
 
 [[quest]]
 name = "Cold Snap"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
 legendary_level = 36
-xp.heroic = { casual = 1730, normal = 3058, hard = 3232, elite = 3406 }
-xp.legendary = { casual = 14090, normal = 24011, hard = 24538, elite = 25065 }
 
 [[quest]]
 name = "Combatting Corruption"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Short"
 free_to_play = false
 legendary_level = 32
-xp.heroic = { casual = 788, normal = 1406, hard = 1500, elite = 1593 }
-xp.legendary = { casual = 6555, normal = 11191, hard = 11457, elite = 11723 }
 
 [[quest]]
 name = "Come Out and Slay"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Short"
 free_to_play = false
-xp.heroic = { casual = 444, normal = 793, hard = 846, elite = 900 }
 
 [[quest]]
 name = "Creeping Death"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
 legendary_level = 31
-xp.heroic = { casual = 3254, normal = 5655, hard = 5886, elite = 6118 }
-xp.legendary = { casual = 15607, normal = 26672, hard = 27331, elite = 27991 }
 
 [[quest]]
 name = "Danger at Dunwater"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
 legendary_level = 32
-xp.heroic = { casual = 1116, normal = 2020, hard = 2180, elite = 2340 }
-xp.legendary = { casual = 20691, normal = 35340, hard = 36194, elite = 37050 }
 
 [[quest]]
 name = "Dead Predators"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = true
-xp.heroic = { casual = 368, normal = 650, hard = 686, elite = 723 }
 
 [[quest]]
 name = "Death Hosts This Banquet"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
 legendary_level = 35
-xp.heroic = { casual = 2328, normal = 4060, hard = 4240, elite = 4420 }
-xp.legendary = { casual = 13406, normal = 22857, hard = 23370, elite = 23883 }
 
 [[quest]]
 name = "Death House"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
 legendary_level = 31
-xp.heroic = { casual = 1485, normal = 2608, hard = 2740, elite = 2871 }
-xp.legendary = { casual = 8974, normal = 15332, hard = 15709, elite = 16085 }
 
 [[quest]]
 name = "Defiler of the Just"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
 legendary_level = 30
-xp.legendary = { normal = 17328, hard = 17764, elite = 18202 }
 
 [[quest]]
 name = "Delirium"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = true
-xp.heroic = { casual = 2212, normal = 3844, hard = 4000, elite = 4156 }
 
 [[quest]]
 name = "Demon Assault"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
 legendary_level = 30
-xp.heroic = { casual = 2112, normal = 3684, hard = 3847, elite = 4010 }
-xp.legendary = { casual = 10578, normal = 18395, hard = 18859, elite = 19323 }
 
 [[quest]]
 name = "Demon in the Rough"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
 legendary_level = 37
-xp.heroic = { casual = 1906, normal = 3340, hard = 3501, elite = 3664 }
-xp.legendary = { casual = 14791, normal = 25194, hard = 25735, elite = 26277 }
 
 [[quest]]
 name = "Den of Vipers"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = true
 legendary_level = 36
-xp.legendary = { normal = 36195, hard = 36993, elite = 37790 }
 
 [[quest]]
 name = "Desecrated Temple of Vol"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
-xp.heroic = { casual = 3069, normal = 5344, hard = 5572, elite = 5800 }
-xp.epic = { normal = 24977, hard = 25627, elite = 26277 }
 
 [[quest]]
 name = "Desert Caravan"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
-xp.heroic = { casual = 1701, normal = 2980, hard = 3123, elite = 3268 }
 
 [[quest]]
 name = "Desire in the Dark"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
 legendary_level = 31
-xp.heroic = { casual = 3217, normal = 5591, hard = 5820, elite = 6048 }
-xp.legendary = { casual = 15429, normal = 26368, hard = 27020, elite = 27672 }
 
 [[quest]]
 name = "Detour"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
-xp.heroic = { casual = 3352, normal = 5798, hard = 6009, elite = 6220 }
-xp.epic = { casual = 11719, normal = 20134, hard = 20735, elite = 21337 }
 
 [[quest]]
 name = "Devil Assault (Elite)"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
-xp.heroic = { casual = 1704, normal = 3037, hard = 4211, elite = 5386 }
-xp.epic = { casual = 9881, normal = 17026, hard = 17584, elite = 18142 }
 
 [[quest]]
 name = "Devil Assault (Hard)"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
-xp.heroic = { casual = 1704, normal = 3037, hard = 4211, elite = 5386 }
-xp.epic = { casual = 9881, normal = 17026, hard = 17584, elite = 18142 }
 
 [[quest]]
 name = "Devil Assault (Normal)"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
-xp.heroic = { casual = 1704, normal = 3037, hard = 4211, elite = 5386 }
-xp.epic = { casual = 9881, normal = 17026, hard = 17584, elite = 18142 }
 
 [[quest]]
 name = "Dinosaur Crisis"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = true
-xp.heroic = { casual = 1949, normal = 3400, hard = 3550, elite = 3700 }
-xp.epic = { casual = 9405, normal = 16102, hard = 16530, elite = 16957 }
 
 [[quest]]
 name = "Diplomatic Impunity"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = true
 legendary_level = 34
-xp.heroic = { casual = 2100, normal = 3669, hard = 3839, elite = 4010 }
-xp.legendary = { casual = 12380, normal = 21118, hard = 21602, elite = 22087 }
 
 [[quest]]
 name = "Dirty Laundry"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Short"
 free_to_play = false
-xp.heroic = { casual = 444, normal = 793, hard = 846, elite = 900 }
 
 [[quest]]
 name = "Disciples of Shar"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = true
-xp.heroic = { casual = 2260, normal = 3927, hard = 4086, elite = 4246 }
 
 [[quest]]
 name = "Don't Drink the Water"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
-xp.epic = { casual = 8351, normal = 14373, hard = 14828, elite = 15282 }
 
 [[quest]]
 name = "Doom Of The Witch Doctor: Zulkash, Herald Of Woe"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
-xp.heroic = { casual = 726, normal = 1290, hard = 1369, elite = 1448 }
 
 [[quest]]
 name = "Doom of the Witchdoctor: The Way to Zulkash"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
-xp.heroic = { casual = 687, normal = 1220, hard = 1294, elite = 1369 }
 
 [[quest]]
 name = "Down You Go"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
 legendary_level = 32
-xp.heroic = { casual = 508, normal = 916, hard = 983, elite = 1052 }
-xp.legendary = { casual = 8036, normal = 13722, hard = 14050, elite = 14378 }
 
 [[quest]]
 name = "Dread Sea Scrolls"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = true
 legendary_level = 32
-xp.heroic = { casual = 1141, normal = 2032, hard = 2160, elite = 2289 }
-xp.legendary = { casual = 8980, normal = 15335, hard = 15702, elite = 16069 }
 
 [[quest]]
 name = "Dream Conspiracy"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
-xp.heroic = { casual = 2212, normal = 3826, hard = 3964, elite = 4102 }
 
 [[quest]]
 name = "Dreams of Insanity"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = true
-xp.heroic = { casual = 2385, normal = 4180, hard = 4384, elite = 4588 }
 
 [[quest]]
 name = "Durk's Got a Secret"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = true
-xp.heroic = { casual = 500, normal = 906, hard = 980, elite = 1053 }
 
 [[quest]]
 name = "Endgame: Marguerite"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Short"
 free_to_play = false
-xp.heroic = { casual = 324, normal = 580, hard = 620, elite = 660 }
-xp.epic = { casual = 7843, normal = 13484, hard = 13897, elite = 14309 }
 
 [[quest]]
 name = "Endgame: The Archbishop's Fate"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Short"
 free_to_play = false
-xp.heroic = { casual = 57, normal = 104, hard = 112, elite = 120 }
-xp.epic = { casual = 3182, normal = 5475, hard = 5646, elite = 5817 }
 
 [[quest]]
 name = "Ends and Means"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
 legendary_level = 36
-xp.heroic = { casual = 1730, normal = 3058, hard = 3232, elite = 3406 }
-xp.legendary = { casual = 14090, normal = 24011, hard = 24538, elite = 25065 }
 
 [[quest]]
 name = "Enemy of My Enemy"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
 legendary_level = 34
-xp.heroic = { casual = 3336, normal = 5770, hard = 5980, elite = 6190 }
-xp.legendary = { casual = 15253, normal = 26020, hard = 26619, elite = 27217 }
 
 [[quest]]
 name = "Enter the Kobold"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Very long"
 free_to_play = false
-xp.heroic = { casual = 5099, normal = 8835, hard = 9172, elite = 9508 }
 
 [[quest]]
 name = "Entering the Gate Chamber"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
-xp.heroic = { casual = 2553, normal = 4535, hard = 4762, elite = 4989 }
 
 [[quest]]
 name = "Escape Plan"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = true
-xp.heroic = { casual = 1837, normal = 3191, hard = 3320, elite = 3448 }
 
 [[quest]]
 name = "Escort the Expedition"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Very long"
 free_to_play = false
-xp.heroic = { casual = 2561, normal = 4500, hard = 4732, elite = 4963 }
 
 [[quest]]
 name = "Ettercap Incursion"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
 legendary_level = 35
-xp.heroic = { casual = 2328, normal = 4060, hard = 4240, elite = 4420 }
-xp.legendary = { casual = 13406, normal = 22857, hard = 23370, elite = 23883 }
 
 [[quest]]
 name = "Eye Know Whodunnit"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
 legendary_level = 32
-xp.heroic = { casual = 2940, normal = 5140, hard = 5380, elite = 5620 }
-xp.legendary = { casual = 16587, normal = 28329, hard = 29013, elite = 29696 }
 
 [[quest]]
 name = "Eye of the Titan"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
-xp.heroic = { casual = 2490, normal = 4300, hard = 4450, elite = 4600 }
 
 [[quest]]
 name = "Eyes of Stone"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = true
 legendary_level = 34
-xp.heroic = { casual = 2652, normal = 4636, hard = 4852, elite = 5068 }
-xp.legendary = { casual = 15684, normal = 26755, hard = 27371, elite = 27987 }
 
 [[quest]]
 name = "Fall of the Forbidden Temple"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
 legendary_level = 34
-xp.heroic = { casual = 3516, normal = 6220, hard = 6580, elite = 6940 }
-xp.legendary = { casual = 26026, normal = 44403, hard = 45429, elite = 46455 }
 
 [[quest]]
 name = "Fashion Madness"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
-xp.heroic = { casual = 2971, normal = 5139, hard = 5326, elite = 5513 }
-xp.epic = { casual = 11023, normal = 18904, hard = 19436, elite = 19968 }
 
 [[quest]]
 name = "Fathom the Depths"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
-xp.epic = { casual = 11477, normal = 19779, hard = 20428, elite = 21078 }
 
 [[quest]]
 name = "Fear Factory"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
-xp.heroic = { casual = 2524, normal = 4386, hard = 4565, elite = 4744 }
 
 [[quest]]
 name = "Feast or Famine"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
-xp.heroic = { casual = 2748, normal = 4793, hard = 5006, elite = 5220 }
-xp.epic = { casual = 11844, normal = 20349, hard = 20957, elite = 21565 }
 
 [[quest]]
 name = "Finding Dorris"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
 legendary_level = 32
-xp.heroic = { casual = 4560, normal = 7899, hard = 8200, elite = 8500 }
-xp.legendary = { casual = 20691, normal = 35340, hard = 36194, elite = 37050 }
 
 [[quest]]
 name = "Finding the Path"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
-xp.heroic = { casual = 2212, normal = 3826, hard = 3964, elite = 4102 }
 
 [[quest]]
 name = "Fire Over Morgrave"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
 legendary_level = 34
-xp.legendary = { normal = 16069, hard = 16436, elite = 16803 }
 
 [[quest]]
 name = "Fire on Thunder Peak"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
 legendary_level = 30
-xp.legendary = { normal = 17328, hard = 17764, elite = 18202 }
 
 [[quest]]
 name = "First Strike"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
-xp.heroic = { casual = 429, normal = 772, hard = 828, elite = 884 }
 
 [[quest]]
 name = "Flesh Maker's Laboratory"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
-xp.heroic = { casual = 3069, normal = 5344, hard = 5572, elite = 5800 }
-xp.epic = { casual = 14596, normal = 24977, hard = 25627, elite = 26277 }
 
 [[quest]]
 name = "Flocked Together"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
 legendary_level = 37
-xp.heroic = { casual = 2180, normal = 3820, hard = 4006, elite = 4192 }
-xp.legendary = { casual = 15176, normal = 25849, hard = 26405, elite = 26961 }
 
 [[quest]]
 name = "For Want of a Heart"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
 legendary_level = 37
-xp.heroic = { casual = 1906, normal = 3340, hard = 3501, elite = 3664 }
-xp.legendary = { casual = 14791, normal = 25194, hard = 25735, elite = 26277 }
 
 [[quest]]
 name = "Foundation of Discord"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
-xp.heroic = { casual = 2344, normal = 4089, hard = 4270, elite = 4452 }
-xp.epic = { casual = 10093, normal = 17339, hard = 17856, elite = 18373 }
 
 [[quest]]
 name = "Frame Work"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = true
 legendary_level = 34
-xp.heroic = { casual = 2220, normal = 3879, hard = 4060, elite = 4240 }
-xp.legendary = { casual = 13098, normal = 22344, hard = 22857, elite = 23370 }
 
 [[quest]]
 name = "Fred's First Date"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
 legendary_level = 34
-xp.heroic = { casual = 2587, normal = 4474, hard = 4636, elite = 4798 }
-xp.legendary = { casual = 11805, normal = 20138, hard = 20599, elite = 21061 }
 
 [[quest]]
 name = "Free Delera"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
-xp.heroic = { casual = 1212, normal = 2148, hard = 2276, elite = 2404 }
-xp.epic = { casual = 12143, normal = 20808, hard = 21378, elite = 21948 }
 
 [[quest]]
 name = "Fresh-baked Dreams"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
 legendary_level = 31
-xp.heroic = { casual = 1485, normal = 2608, hard = 2740, elite = 2871 }
-xp.legendary = { casual = 8974, normal = 15332, hard = 15709, elite = 16085 }
 
 [[quest]]
 name = "Freshen the Air"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = true
-xp.heroic = { casual = 559, normal = 1001, hard = 1070, elite = 1140 }
 
 [[quest]]
 name = "Friends in Low Places"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
-xp.heroic = { casual = 3487, normal = 6050, hard = 6288, elite = 6526 }
-xp.epic = { casual = 15627, normal = 26804, hard = 27562, elite = 28319 }
 
 [[quest]]
 name = "From Beyond the Grave"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
-xp.heroic = { casual = 744, normal = 1300, hard = 1360, elite = 1420 }
 
 [[quest]]
 name = "Garrison's Missing Pack"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = true
-xp.heroic = { casual = 419, normal = 759, hard = 819, elite = 879 }
 
 [[quest]]
 name = "Genesis Point"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Very long"
 free_to_play = false
-xp.heroic = { casual = 5244, normal = 9060, hard = 9380, elite = 9700 }
 
 [[quest]]
 name = "Ghost of a Chance"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
-xp.heroic = { casual = 1620, normal = 2900, hard = 3100, elite = 3300 }
-xp.epic = { casual = 11457, normal = 19665, hard = 20235, elite = 20805 }
 
 [[quest]]
 name = "Ghosts of Perdition"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
-xp.heroic = { casual = 3703, normal = 6448, hard = 6724, elite = 7000 }
-xp.epic = { casual = 17633, normal = 30175, hard = 30962, elite = 31749 }
 
 [[quest]]
 name = "Gianthold Tor"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Very long"
 free_to_play = false
-xp.heroic = { casual = 3650, normal = 6356, hard = 6628, elite = 6900 }
 
 [[quest]]
 name = "Gladewatch Outpost Defense"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = true
-xp.heroic = { casual = 916, normal = 1630, hard = 1732, elite = 1834 }
 
 [[quest]]
 name = "Going Rogue"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
 legendary_level = 36
-xp.heroic = { casual = 1485, normal = 2608, hard = 2740, elite = 2871 }
-xp.legendary = { casual = 10102, normal = 17214, hard = 17590, elite = 17966 }
 
 [[quest]]
 name = "Good Intentions"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = true
 legendary_level = 31
-xp.heroic = { casual = 3609, normal = 6253, hard = 6489, elite = 6726 }
-xp.legendary = { casual = 15954, normal = 27264, hard = 27939, elite = 28613 }
 
 [[quest]]
 name = "Grand Theft Aureon"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
 legendary_level = 34
-xp.heroic = { casual = 4428, normal = 7660, hard = 7940, elite = 8220 }
-xp.legendary = { casual = 20280, normal = 34599, hard = 35397, elite = 36195 }
 
 [[quest]]
 name = "Graveyard Shift"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
 legendary_level = 31
-xp.heroic = { casual = 2731, normal = 4746, hard = 4940, elite = 5133 }
-xp.legendary = { casual = 13082, normal = 22355, hard = 22907, elite = 23458 }
 
 [[quest]]
 name = "Grim and Barett"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
 legendary_level = 30
-xp.heroic = { casual = 2439, normal = 4246, hard = 4426, elite = 4606 }
-xp.legendary = { casual = 11884, normal = 20321, hard = 20835, elite = 21349 }
 
 [[quest]]
 name = "Growing Pains"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
 legendary_level = 33
-xp.heroic = { casual = 2479, normal = 4300, hard = 4468, elite = 4636 }
-xp.legendary = { casual = 14193, normal = 24225, hard = 24795, elite = 25365 }
 
 [[quest]]
 name = "Guard Duty"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
-xp.heroic = { casual = 709, normal = 1266, hard = 1349, elite = 1433 }
 
 [[quest]]
 name = "Gwylan's Stand"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Very long"
 free_to_play = true
-xp.heroic = { casual = 2220, normal = 3940, hard = 4180, elite = 4420 }
 
 [[quest]]
 name = "Hall of the Mark"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Short"
 free_to_play = true
-xp.heroic = { casual = 0 }
 
 [[quest]]
 name = "Haunted Library"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = true
-xp.heroic = { casual = 1672, normal = 2956, hard = 3124, elite = 3292 }
 
 [[quest]]
 name = "Haverdasher"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Short"
 free_to_play = true
-xp.heroic = { casual = 204, normal = 364, hard = 388, elite = 412 }
 
 [[quest]]
 name = "Haywire Foundry"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Very long"
 free_to_play = false
-xp.epic = { casual = 14124, normal = 24316, hard = 25091, elite = 25866 }
 
 [[quest]]
 name = "Heart of the Problem"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
 legendary_level = 32
-xp.heroic = { casual = 658, normal = 1188, hard = 1278, elite = 1369 }
-xp.legendary = { casual = 7045, normal = 12028, hard = 12314, elite = 12601 }
 
 [[quest]]
 name = "Heyton's Rest"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Short"
 free_to_play = true
-xp.heroic = { casual = 188, normal = 313, hard = 334, elite = 356 }
 
 [[quest]]
 name = "Hideous to Behold"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
 legendary_level = 37
-xp.heroic = { casual = 3069, normal = 5380, hard = 5643, elite = 5908 }
-xp.legendary = { casual = 20485, normal = 34895, hard = 35647, elite = 36400 }
 
 [[quest]]
 name = "Hiding in Plain Sight"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = true
-xp.heroic = { casual = 1572, normal = 2760, hard = 2900, elite = 3040 }
 
 [[quest]]
 name = "Hold for Reinforcements"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Short"
 free_to_play = false
-xp.heroic = { casual = 1140, normal = 2000, hard = 2100, elite = 2200 }
 
 [[quest]]
 name = "Home Sweet Sewer"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Short"
 free_to_play = true
-xp.heroic = { casual = 182 }
 
 [[quest]]
 name = "Horde of the Illithid Controller"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
 legendary_level = 34
-xp.legendary = { casual = 19562, normal = 33373, hard = 34143, elite = 34912 }
 
 [[quest]]
 name = "Hound of Xoriat"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Very long"
 free_to_play = false
-xp.heroic = { normal = 8200, hard = 8500, elite = 8800 }
 
 [[quest]]
 name = "House of Pain"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
 legendary_level = 32
-xp.heroic = { casual = 3516, normal = 6100, hard = 6340, elite = 6580 }
-xp.legendary = { casual = 16587, normal = 28329, hard = 29013, elite = 29696 }
 
 [[quest]]
 name = "Housekeeping"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
 legendary_level = 32
-xp.heroic = { casual = 658, normal = 1188, hard = 1278, elite = 1369 }
-xp.legendary = { casual = 7352, normal = 12554, hard = 12853, elite = 13152 }
 
 [[quest]]
 name = "Hunt or Be Hunted"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
 legendary_level = 32
-xp.legendary = { normal = 49362, hard = 50559, elite = 51756 }
 
 [[quest]]
 name = "I Dream of Jeets"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
-xp.heroic = { casual = 2753, normal = 4761, hard = 4933, elite = 5106 }
 
 [[quest]]
 name = "If It Wasn't For Bad Luck"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
 legendary_level = 37
-xp.heroic = { casual = 2180, normal = 3820, hard = 4006, elite = 4192 }
-xp.legendary = { casual = 15176, normal = 25849, hard = 26405, elite = 26961 }
 
 [[quest]]
 name = "Immortality Lessons"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
 legendary_level = 32
-xp.heroic = { casual = 2277, normal = 4060, hard = 4324, elite = 4588 }
-xp.legendary = { casual = 18228, normal = 31133, hard = 31885, elite = 32638 }
 
 [[quest]]
 name = "Impossible Demands"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
-xp.epic = { casual = 6254, normal = 10773, hard = 11122, elite = 11472 }
 
 [[quest]]
 name = "In Need of Supplies"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Short"
 free_to_play = false
-xp.heroic = { casual = 444, normal = 780, hard = 820, elite = 860 }
 
 [[quest]]
 name = "In The Flesh"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
-xp.heroic = { casual = 3657, normal = 6356, hard = 6616, elite = 6877 }
 
 [[quest]]
 name = "In the Belly of the Beast"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
-xp.epic = { casual = 13688, normal = 23565, hard = 24316, elite = 25067 }
 
 [[quest]]
 name = "In the Demon's Den"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = true
-xp.heroic = { casual = 2493, normal = 4312, hard = 4468, elite = 4624 }
 
 [[quest]]
 name = "Inferno of the Damned"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
-xp.heroic = { casual = 4619, normal = 8044, hard = 8390, elite = 8735 }
-xp.epic = { normal = 27576, hard = 28294, elite = 29013 }
 
 [[quest]]
 name = "Information is Key"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = true
-xp.heroic = { casual = 540, normal = 980, hard = 1060, elite = 1140 }
 
 [[quest]]
 name = "Into the Deep"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
-xp.heroic = { casual = 3120, normal = 5500, hard = 5800, elite = 6100 }
-xp.epic = { casual = 15047, normal = 25935, hard = 26790, elite = 27645 }
 
 [[quest]]
 name = "Into the Mists"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Short"
 free_to_play = false
 legendary_level = 31
-xp.heroic = { casual = 693, normal = 1214, hard = 1273, elite = 1332 }
-xp.legendary = { casual = 4083, normal = 6973, hard = 7140, elite = 7307 }
 
 [[quest]]
 name = "Invaders!"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Very long"
 free_to_play = true
-xp.heroic = { casual = 2460, normal = 4299, hard = 4500, elite = 4700 }
 
 [[quest]]
 name = "Irestone Inlet"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = true
-xp.heroic = { casual = 837, normal = 1504, hard = 1612, elite = 1720 }
 
 [[quest]]
 name = "Jungle of Khyber"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Very long"
 free_to_play = false
-xp.epic = { casual = 13534, normal = 23299, hard = 24042, elite = 24784 }
 
 [[quest]]
 name = "Just Business"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
 legendary_level = 32
-xp.heroic = { casual = 3372, normal = 5860, hard = 6100, elite = 6340 }
-xp.legendary = { casual = 16587, normal = 28329, hard = 29013, elite = 29696 }
 
 [[quest]]
 name = "Kill Ten Rats"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = true
 legendary_level = 34
-xp.heroic = { casual = 2069, normal = 3577, hard = 3706, elite = 3835 }
-xp.legendary = { casual = 9421, normal = 16069, hard = 16436, elite = 16803 }
 
 [[quest]]
 name = "Killing Time"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Very long"
 free_to_play = false
 legendary_level = 32
-xp.legendary = { normal = 47025, hard = 48165, elite = 49305 }
 
 [[quest]]
 name = "Kind of a Big Deal"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
-xp.heroic = { casual = 1723, normal = 3070, hard = 3268, elite = 3466 }
-xp.epic = { casual = 9989, normal = 17214, hard = 17778, elite = 18342 }
 
 [[quest]]
 name = "Kobold Assault"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = true
-xp.heroic = { casual = 733, normal = 1324, hard = 1426, elite = 1528 }
 
 [[quest]]
 name = "Law and Order"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
 legendary_level = 34
-xp.heroic = { casual = 4552, normal = 7876, hard = 8164, elite = 8452 }
-xp.legendary = { casual = 20855, normal = 35579, hard = 36400, elite = 37221 }
 
 [[quest]]
 name = "Legendary Hound of Xoriat"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Very long"
 free_to_play = true
 legendary_level = 32
-xp.legendary = { normal = 35340, hard = 36194, elite = 37050 }
 
 [[quest]]
 name = "Legendary Lord of Blades"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
 legendary_level = 32
-xp.legendary = { normal = 25602, hard = 26220, elite = 26837 }
 
 [[quest]]
 name = "Legendary Master Artificer"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
 legendary_level = 32
-xp.legendary = { normal = 18981, hard = 19436, elite = 19893 }
 
 [[quest]]
 name = "Legendary Tempest's Spine"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Very long"
 free_to_play = true
 legendary_level = 32
-xp.legendary = { normal = 43285, hard = 44334, elite = 45383 }
 
 [[quest]]
 name = "Legendary Vision of Destruction"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Very long"
 free_to_play = false
 legendary_level = 32
-xp.legendary = { normal = 35340, hard = 36194, elite = 37050 }
 
 [[quest]]
 name = "Let Sleeping Dust Lie"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Very long"
 free_to_play = false
-xp.heroic = { casual = 3900, normal = 6766, hard = 7033, elite = 7299 }
 
 [[quest]]
 name = "Lines of Supply"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
-xp.heroic = { casual = 2741, normal = 4734, hard = 4900, elite = 5066 }
-xp.epic = { casual = 9564, normal = 16388, hard = 16835, elite = 17283 }
 
 [[quest]]
 name = "Litany of the Dead"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
-xp.heroic = { casual = 4200, normal = 7300, hard = 7600, elite = 7899 }
 
 [[quest]]
 name = "Locked Away (Part One)"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
 legendary_level = 36
-xp.heroic = { casual = 1903, normal = 3364, hard = 3556, elite = 3748 }
-xp.legendary = { casual = 14090, normal = 24011, hard = 24538, elite = 25065 }
 
 [[quest]]
 name = "Locked Away (Part Two)"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
 legendary_level = 36
-xp.heroic = { casual = 1903, normal = 3364, hard = 3556, elite = 3748 }
-xp.legendary = { casual = 14090, normal = 24011, hard = 24538, elite = 25065 }
 
 [[quest]]
 name = "Lost at Sea"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = true
 legendary_level = 32
-xp.heroic = { casual = 1738, normal = 3018, hard = 3140, elite = 3261 }
-xp.legendary = { casual = 8488, normal = 14493, hard = 14840, elite = 15187 }
 
 [[quest]]
 name = "Lost in the Swamp"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
-xp.heroic = { casual = 2587, normal = 4474, hard = 4636, elite = 4798 }
-xp.epic = { casual = 9035, normal = 15521, hard = 15982, elite = 16444 }
 
 [[quest]]
 name = "Made to Order"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = true
-xp.heroic = { casual = 1838, normal = 3220, hard = 3375, elite = 3532 }
 
 [[quest]]
 name = "Madstone Crater"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Very long"
 free_to_play = false
-xp.heroic = { casual = 4002, normal = 6969, hard = 7268, elite = 7566 }
 
 [[quest]]
 name = "Make Believe"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
 legendary_level = 32
-xp.heroic = { casual = 1276, normal = 2284, hard = 2440, elite = 2596 }
-xp.legendary = { casual = 12483, normal = 21318, hard = 21830, elite = 22344 }
 
 [[quest]]
 name = "Maraud the Mines"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
-xp.heroic = { casual = 1808, normal = 3166, hard = 3320, elite = 3473 }
 
 [[quest]]
 name = "Members Only"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
 legendary_level = 32
-xp.heroic = { casual = 2400, normal = 4156, hard = 4312, elite = 4468 }
-xp.legendary = { casual = 10841, normal = 18513, hard = 18958, elite = 19402 }
 
 [[quest]]
 name = "Memory Lapse"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
-xp.heroic = { casual = 1723, normal = 3070, hard = 3268, elite = 3466 }
-xp.epic = { casual = 10666, normal = 18342, hard = 18906, elite = 19471 }
 
 [[quest]]
 name = "Mining for Ancient Secrets"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
-xp.heroic = { casual = 1651, normal = 2850, hard = 2948, elite = 3046 }
 
 [[quest]]
 name = "Mired in Kobolds"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = true
-xp.heroic = { casual = 1420, normal = 2476, hard = 2584, elite = 2692 }
 
 [[quest]]
 name = "Mirra's Sleepless Nights"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = true
-xp.heroic = { casual = 429, normal = 760, hard = 804, elite = 848 }
 
 [[quest]]
 name = "Misery's Peak"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = true
-xp.heroic = { casual = 780, normal = 1420, hard = 1540, elite = 1660 }
 
 [[quest]]
 name = "Missing"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
-xp.heroic = { casual = 3025, normal = 5258, hard = 5472, elite = 5687 }
 
 [[quest]]
 name = "Missing in Action"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = true
-xp.heroic = { casual = 552, normal = 996, hard = 1070, elite = 1145 }
 
 [[quest]]
 name = "Monastery of the Scorpion"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Very long"
 free_to_play = false
-xp.heroic = { casual = 4860, normal = 8420, hard = 8740, elite = 9060 }
 
 [[quest]]
 name = "Multitude of Menace"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
 legendary_level = 30
-xp.heroic = { casual = 3122, normal = 5436, hard = 5668, elite = 5900 }
-xp.legendary = { casual = 15246, normal = 26071, hard = 26733, elite = 27394 }
 
 [[quest]]
 name = "Murder by Night"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
-xp.heroic = { casual = 2146, normal = 3706, hard = 3835, elite = 3964 }
 
 [[quest]]
 name = "Necromancer's Doom"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Short"
 free_to_play = true
-xp.heroic = { casual = 192, normal = 320, hard = 342, elite = 364 }
 
 [[quest]]
 name = "Needle in a Fey Stack"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
 legendary_level = 32
-xp.heroic = { casual = 2277, normal = 4060, hard = 4324, elite = 4588 }
-xp.legendary = { casual = 18228, normal = 31133, hard = 31885, elite = 32638 }
 
 [[quest]]
 name = "Night Falls on Stormreach"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
 legendary_level = 31
-xp.heroic = { casual = 2356, normal = 4102, hard = 4276, elite = 4450 }
-xp.legendary = { casual = 11775, normal = 20121, hard = 20616, elite = 21112 }
 
 [[quest]]
 name = "No Refunds"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
 legendary_level = 32
-xp.heroic = { casual = 3084, normal = 5350, hard = 5560, elite = 5770 }
-xp.legendary = { casual = 14535, normal = 24823, hard = 25422, elite = 26020 }
 
 [[quest]]
 name = "Oath of Vengeance"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
 legendary_level = 31
-xp.heroic = { casual = 2910, normal = 5100, hard = 5350, elite = 5600 }
-xp.legendary = { casual = 16843, normal = 28785, hard = 29497, elite = 30209 }
 
 [[quest]]
 name = "Obstructing the Orcs"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Short"
 free_to_play = false
-xp.heroic = { casual = 228, normal = 380, hard = 408, elite = 436 }
-xp.epic = { casual = 4138, normal = 7125, hard = 7352, elite = 7580 }
 
 [[quest]]
 name = "Oghma's Song"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
 legendary_level = 35
-xp.heroic = { casual = 2328, normal = 4060, hard = 4240, elite = 4420 }
-xp.legendary = { casual = 13406, normal = 22857, hard = 23370, elite = 23883 }
 
 [[quest]]
 name = "Old Baba's Hut"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
 legendary_level = 32
-xp.legendary = { normal = 15335, hard = 15702, elite = 16069 }
 
 [[quest]]
 name = "Old Grey Garl"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
-xp.heroic = { casual = 1908, normal = 3385, hard = 3590, elite = 3796 }
 
 [[quest]]
 name = "One Dame Thing After Another"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
 legendary_level = 32
-xp.heroic = { casual = 1302, normal = 2308, hard = 2446, elite = 2584 }
-xp.legendary = { casual = 12483, normal = 21318, hard = 21830, elite = 22344 }
 
 [[quest]]
 name = "Order in the Court!"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
 legendary_level = 33
-xp.heroic = { casual = 2479, normal = 4300, hard = 4468, elite = 4636 }
-xp.legendary = { casual = 14193, normal = 24225, hard = 24795, elite = 25365 }
 
 [[quest]]
 name = "Outbreak"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
-xp.heroic = { casual = 1682, normal = 2912, hard = 3020, elite = 3129 }
-xp.epic = { casual = 7611, normal = 13085, hard = 13485, elite = 13885 }
 
 [[quest]]
 name = "Overgrowth"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
-xp.heroic = { casual = 1660, normal = 2873, hard = 2980, elite = 3086 }
-xp.epic = { casual = 5825, normal = 10013, hard = 10317, elite = 10621 }
 
 [[quest]]
 name = "Palace of Stone"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
-xp.heroic = { casual = 3263, normal = 5644, hard = 5849, elite = 6054 }
-xp.epic = { casual = 12109, normal = 20767, hard = 21352, elite = 21937 }
 
 [[quest]]
 name = "Paper Trail"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
 legendary_level = 34
-xp.heroic = { casual = 2868, normal = 4960, hard = 5140, elite = 5320 }
-xp.legendary = { casual = 13098, normal = 22344, hard = 22857, elite = 23370 }
 
 [[quest]]
 name = "Party 101"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Short"
 free_to_play = false
 legendary_level = 34
-xp.heroic = { casual = 1682, normal = 2908, hard = 3012, elite = 3116 }
-xp.legendary = { casual = 7640, normal = 13030, hard = 13326, elite = 13623 }
 
 [[quest]]
 name = "Partycrashers"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
-xp.heroic = { casual = 1620, normal = 2900, hard = 3100, elite = 3300 }
-xp.epic = { casual = 8860, normal = 15284, hard = 15801, elite = 16318 }
 
 [[quest]]
 name = "Pilgrims' Peril"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
 legendary_level = 34
-xp.legendary = { casual = 19562, normal = 33373, hard = 34143, elite = 34912 }
 
 [[quest]]
 name = "Plane of Night"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
-xp.heroic = { normal = 2000, hard = 2100, elite = 2199 }
-xp.epic = { normal = 9100, hard = 9404, elite = 9689 }
 
 [[quest]]
 name = "Plundering Pirates' Point"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
 legendary_level = 33
-xp.heroic = { casual = 1734, normal = 3076, hard = 3262, elite = 3448 }
-xp.legendary = { casual = 13491, normal = 23027, hard = 23569, elite = 24111 }
 
 [[quest]]
 name = "Portal to Below"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
 legendary_level = 35
-xp.heroic = { casual = 2328, normal = 4060, hard = 4240, elite = 4420 }
-xp.legendary = { casual = 13406, normal = 22857, hard = 23370, elite = 23883 }
 
 [[quest]]
 name = "Power Play"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
-xp.heroic = { casual = 5620, normal = 9709, hard = 10053, elite = 10396 }
 
 [[quest]]
 name = "Precious Cargo"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
-xp.epic = { casual = 11231, normal = 19277, hard = 19836, elite = 20394 }
 
 [[quest]]
 name = "Prey on the Hunter"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Very long"
 free_to_play = false
-xp.heroic = { casual = 3660, normal = 6340, hard = 6580, elite = 6820 }
 
 [[quest]]
 name = "Project Nemesis"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
 legendary_level = 32
-xp.legendary = { normal = 63384, hard = 64922, elite = 66462 }
 
 [[quest]]
 name = "Proof is in the Poison"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Very long"
 free_to_play = true
-xp.heroic = { casual = 1442, normal = 2596, hard = 2788, elite = 2980 }
 
 [[quest]]
 name = "Protect Baudry's Interests"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Short"
 free_to_play = true
-xp.heroic = { casual = 228, normal = 408, hard = 436, elite = 464 }
 
 [[quest]]
 name = "Prove Your Worth"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
-xp.heroic = { casual = 1723, normal = 3086, hard = 3300, elite = 3513 }
-xp.epic = { casual = 12209, normal = 20957, hard = 21564, elite = 22173 }
 
 [[quest]]
 name = "Purge the Fallen Shrine"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
-xp.heroic = { casual = 1428, normal = 2500, hard = 2620, elite = 2740 }
 
 [[quest]]
 name = "Purge the Heretics"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = true
-xp.heroic = { casual = 368, normal = 650, hard = 686, elite = 723 }
 
 [[quest]]
 name = "Quarantine"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
 legendary_level = 31
-xp.heroic = { casual = 2040, normal = 3550, hard = 3700, elite = 3850 }
-xp.legendary = { casual = 10174, normal = 17385, hard = 17812, elite = 18329 }
 
 [[quest]]
 name = "Quid Pro Quo"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
 legendary_level = 32
-xp.heroic = { casual = 1471, normal = 2620, hard = 2788, elite = 2956 }
-xp.legendary = { casual = 12825, normal = 21902, hard = 22429, elite = 22956 }
 
 [[quest]]
 name = "Raid the Vulkoorim"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
-xp.heroic = { casual = 1200, normal = 2100, hard = 2199, elite = 2300 }
 
 [[quest]]
 name = "Raiding the Giants' Vault"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
-xp.heroic = { casual = 5000 }
 
 [[quest]]
 name = "Raiding the Raiders"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
 legendary_level = 37
-xp.heroic = { casual = 2180, normal = 3820, hard = 4006, elite = 4192 }
-xp.legendary = { casual = 15176, normal = 25849, hard = 26405, elite = 26961 }
 
 [[quest]]
 name = "Rainbow in the Dark"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Very long"
 free_to_play = false
-xp.heroic = { casual = 4860, normal = 8433, hard = 8766, elite = 9099 }
 
 [[quest]]
 name = "Rats in a Cage"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
 legendary_level = 34
-xp.heroic = { casual = 1053, normal = 1894, hard = 2032, elite = 2170 }
-xp.legendary = { casual = 10082, normal = 17196, hard = 17590, elite = 17983 }
 
 [[quest]]
 name = "Ravens' Bane"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
 legendary_level = 31
-xp.heroic = { casual = 2220, normal = 3879, hard = 4060, elite = 4240 }
-xp.legendary = { casual = 12175, normal = 20805, hard = 21318, elite = 21830 }
 
 [[quest]]
 name = "Reach for the Sky"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
 legendary_level = 32
-xp.heroic = { casual = 5071, normal = 8800, hard = 9148, elite = 9496 }
-xp.legendary = { casual = 23974, normal = 40948, hard = 41940, elite = 42932 }
 
 [[quest]]
 name = "Reclaiming Memories"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
-xp.heroic = { casual = 1750, normal = 3022, hard = 3126, elite = 3231 }
 
 [[quest]]
 name = "Reclaiming the Rift"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
-xp.epic = { casual = 9006, normal = 15484, hard = 15959, elite = 16434 }
 
 [[quest]]
 name = "Reclamation"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = true
-xp.heroic = { casual = 1788, normal = 3140, hard = 3300, elite = 3459 }
 
 [[quest]]
 name = "Records of the Past"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
 legendary_level = 31
-xp.heroic = { casual = 2893, normal = 5028, hard = 5233, elite = 5438 }
-xp.legendary = { casual = 13864, normal = 23693, hard = 24278, elite = 24863 }
 
 [[quest]]
 name = "Recovering the Lost Tome"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = true
-xp.heroic = { casual = 476, normal = 862, hard = 932, elite = 1001 }
 
 [[quest]]
 name = "Red Rain"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
 legendary_level = 32
-xp.heroic = { casual = 2958, normal = 5140, hard = 5350, elite = 5560 }
-xp.legendary = { casual = 14535, normal = 24823, hard = 25422, elite = 26020 }
 
 [[quest]]
 name = "Redemption"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = true
-xp.heroic = { casual = 324, normal = 540, hard = 584, elite = 628 }
 
 [[quest]]
 name = "Redfang the Unruled"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = true
-xp.heroic = { casual = 416, normal = 748, hard = 802, elite = 856 }
 
 [[quest]]
 name = "Redwillow's Ruins"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = true
-xp.heroic = { casual = 1168, normal = 2080, hard = 2212, elite = 2344 }
 
 [[quest]]
 name = "Relentless"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Very long"
 free_to_play = false
 legendary_level = 36
-xp.legendary = { normal = 61844, hard = 63213, elite = 64580 }
 
 [[quest]]
 name = "Repossession"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Short"
 free_to_play = false
-xp.heroic = { casual = 444, normal = 793, hard = 846, elite = 900 }
 
 [[quest]]
 name = "Rest Stop"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
-xp.heroic = { casual = 2442, normal = 4223, hard = 4375, elite = 4528 }
-xp.epic = { casual = 8527, normal = 14647, hard = 15082, elite = 15517 }
 
 [[quest]]
 name = "Rest for the Night"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
 legendary_level = 32
-xp.heroic = { casual = 508, normal = 916, hard = 983, elite = 1052 }
-xp.legendary = { casual = 8036, normal = 13722, hard = 14050, elite = 14378 }
 
 [[quest]]
 name = "Rest for the Restless"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = true
-xp.heroic = { casual = 578, normal = 1036, hard = 1108, elite = 1180 }
 
 [[quest]]
 name = "Retrieve the Stolen Goods"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = true
-xp.heroic = { casual = 348, normal = 628, hard = 676, elite = 724 }
 
 [[quest]]
 name = "Return to Delera's Tomb"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Short"
 free_to_play = false
-xp.heroic = { casual = 0, normal = 0, hard = 0, elite = 0 }
-xp.epic = { casual = 0, normal = 0, hard = 0, elite = 0 }
 
 [[quest]]
 name = "Return to the Sanctuary"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
-xp.heroic = { casual = 552, normal = 996, hard = 1070, elite = 1145 }
-xp.epic = { casual = 5192, normal = 8924, hard = 9194, elite = 9464 }
 
 [[quest]]
 name = "Riding the Storm Out"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
 legendary_level = 32
-xp.legendary = { normal = 16644, hard = 17042, elite = 17442 }
 
 [[quest]]
 name = "Ritual Sacrifice"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Very long"
 free_to_play = false
-xp.heroic = { casual = 4284, normal = 7433, hard = 7726, elite = 8020 }
 
 [[quest]]
 name = "Roll Call"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Short"
 free_to_play = false
 legendary_level = 32
-xp.heroic = { casual = 1826, normal = 3166, hard = 3289, elite = 3412 }
-xp.legendary = { casual = 8561, normal = 14618, hard = 14968, elite = 15317 }
 
 [[quest]]
 name = "Rosemary's Ballad"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
 legendary_level = 32
-xp.heroic = { casual = 658, normal = 1188, hard = 1278, elite = 1369 }
-xp.legendary = { casual = 7045, normal = 12028, hard = 12314, elite = 12601 }
 
 [[quest]]
 name = "Ruined Halls"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = true
-xp.heroic = { casual = 765, normal = 1360, hard = 1444, elite = 1528 }
 
 [[quest]]
 name = "Ruinous Schemes"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Short"
 free_to_play = false
 legendary_level = 32
-xp.heroic = { casual = 1495, normal = 2596, hard = 2700, elite = 2804 }
-xp.legendary = { casual = 7284, normal = 12437, hard = 12733, elite = 13030 }
 
 [[quest]]
 name = "Running with the Devils"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Very long"
 free_to_play = false
-xp.heroic = { casual = 4091, normal = 7099, hard = 7379, elite = 7659 }
 
 [[quest]]
 name = "Sacrifices"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = true
-xp.heroic = { casual = 324, normal = 540, hard = 584, elite = 628 }
 
 [[quest]]
 name = "Safety in Numbers"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
 legendary_level = 32
-xp.heroic = { casual = 1810, normal = 3133, hard = 3250, elite = 3366 }
-xp.legendary = { casual = 8150, normal = 13917, hard = 14249, elite = 14582 }
 
 [[quest]]
 name = "Scavenger Hunt"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Short"
 free_to_play = false
 legendary_level = 32
-xp.heroic = { casual = 1826, normal = 3166, hard = 3289, elite = 3412 }
-xp.legendary = { casual = 8561, normal = 14618, hard = 14968, elite = 15317 }
 
 [[quest]]
 name = "Schemes of the Enemy"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
-xp.heroic = { casual = 7398, normal = 12783, hard = 13236, elite = 13689 }
 
 [[quest]]
 name = "Sealed in Amber"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
 legendary_level = 31
-xp.heroic = { casual = 3069, normal = 5380, hard = 5643, elite = 5908 }
-xp.legendary = { casual = 17777, normal = 30380, hard = 31133, elite = 31885 }
 
 [[quest]]
 name = "Search and Rescue"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = true
 legendary_level = 31
-xp.heroic = { casual = 3372, normal = 5860, hard = 6100, elite = 6340 }
-xp.legendary = { casual = 16017, normal = 27654, hard = 28329, elite = 29013 }
 
 [[quest]]
 name = "Secret of the Slavers' Stockade"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Very long"
 free_to_play = false
 legendary_level = 31
-xp.heroic = { casual = 3900, normal = 6900, hard = 7300, elite = 7700 }
-xp.legendary = { casual = 26847, normal = 45885, hard = 47025, elite = 48165 }
 
 [[quest]]
 name = "Secrets of the Red Wizards"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
 legendary_level = 35
-xp.heroic = { casual = 3839, normal = 6700, hard = 7000, elite = 7300 }
-xp.legendary = { casual = 22230, normal = 37905, hard = 38760, elite = 39615 }
 
 [[quest]]
 name = "Secure the Area"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
-xp.heroic = { casual = 1226, normal = 2152, hard = 2260, elite = 2368 }
 
 [[quest]]
 name = "Security Detail"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Short"
 free_to_play = false
 legendary_level = 32
-xp.heroic = { casual = 1557, normal = 2700, hard = 2804, elite = 2908 }
-xp.legendary = { casual = 7284, normal = 12437, hard = 12733, elite = 13030 }
 
 [[quest]]
 name = "Seeds of Decay"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
 legendary_level = 35
-xp.heroic = { casual = 2328, normal = 4060, hard = 4240, elite = 4420 }
-xp.legendary = { casual = 13406, normal = 22857, hard = 23370, elite = 23883 }
 
 [[quest]]
 name = "Seizing the Dawn"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
 legendary_level = 32
-xp.heroic = { casual = 1788, normal = 3123, hard = 3268, elite = 3412 }
-xp.legendary = { casual = 10020, normal = 17111, hard = 17521, elite = 17932 }
 
 [[quest]]
 name = "Servants of the Overlord"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = true
-xp.heroic = { casual = 3900, normal = 6766, hard = 7033, elite = 7300 }
-xp.epic = { casual = 13395, normal = 23085, hard = 23845, elite = 24605 }
 
 [[quest]]
 name = "Setting the Wards: The Lower Cathedral"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
-xp.heroic = { casual = 456, normal = 820, hard = 880, elite = 940 }
-xp.epic = { casual = 9963, normal = 17132, hard = 17659, elite = 18185 }
 
 [[quest]]
 name = "Setting the Wards: The Patriarch's Crypt"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
-xp.heroic = { casual = 508, normal = 916, hard = 984, elite = 1052 }
-xp.epic = { casual = 9963, normal = 17132, hard = 17659, elite = 18185 }
 
 [[quest]]
 name = "Shadow of a Doubt"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
-xp.heroic = { casual = 2360, normal = 4100, hard = 4266, elite = 4433 }
 
 [[quest]]
 name = "Siegebreaker"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
 legendary_level = 34
-xp.heroic = { casual = 3210, normal = 5600, hard = 5850, elite = 6100 }
-xp.legendary = { casual = 18126, normal = 30922, hard = 31634, elite = 32347 }
 
 [[quest]]
 name = "Sinister Storage"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
-xp.heroic = { casual = 1219, normal = 2116, hard = 2200, elite = 2284 }
 
 [[quest]]
 name = "Sins of Attrition"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
-xp.heroic = { casual = 4142, normal = 7156, hard = 7408, elite = 7660 }
 
 [[quest]]
 name = "Skeletons in the Closet"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
 legendary_level = 34
-xp.legendary = { normal = 54697, hard = 55962, elite = 57228 }
 
 [[quest]]
 name = "Slave Pits of the Undercity"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
 legendary_level = 31
-xp.heroic = { casual = 2748, normal = 4860, hard = 5140, elite = 5420 }
-xp.legendary = { casual = 18844, normal = 32204, hard = 33003, elite = 33800 }
 
 [[quest]]
 name = "Slavers of the Shrieking Mines"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Very long"
 free_to_play = false
-xp.heroic = { casual = 2220, normal = 3900, hard = 4100, elite = 4299 }
 
 [[quest]]
 name = "Sleeping with the Fishes"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
 legendary_level = 35
-xp.heroic = { casual = 1380, normal = 2500, hard = 2700, elite = 2900 }
-xp.legendary = { casual = 14876, normal = 25365, hard = 25935, elite = 26505 }
 
 [[quest]]
 name = "Smash and Burn"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
 legendary_level = 32
-xp.heroic = { casual = 2544, normal = 4420, hard = 4600, elite = 4780 }
-xp.legendary = { casual = 12483, normal = 21318, hard = 21830, elite = 22344 }
 
 [[quest]]
 name = "Snowfall and Sunlight"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Very long"
 free_to_play = false
 legendary_level = 36
-xp.heroic = { casual = 3772, normal = 6673, hard = 7059, elite = 7446 }
-xp.legendary = { casual = 29263, normal = 49875, hard = 50977, elite = 52078 }
 
 [[quest]]
 name = "Soul Survivor"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
 legendary_level = 32
-xp.heroic = { casual = 4560, normal = 7899, hard = 8200, elite = 8500 }
-xp.legendary = { casual = 20691, normal = 35340, hard = 36194, elite = 37050 }
 
 [[quest]]
 name = "Special Delivery"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
 legendary_level = 36
-xp.heroic = { casual = 1845, normal = 3262, hard = 3448, elite = 3634 }
-xp.legendary = { casual = 14090, normal = 24011, hard = 24538, elite = 25065 }
 
 [[quest]]
 name = "Spiders and Flies"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
 legendary_level = 33
-xp.heroic = { casual = 1356, normal = 2404, hard = 2548, elite = 2692 }
-xp.legendary = { casual = 12790, normal = 21830, hard = 22344, elite = 22857 }
 
 [[quest]]
 name = "Spies in the House"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
-xp.heroic = { casual = 3708, normal = 6560, hard = 6940, elite = 7320 }
-xp.epic = { casual = 19015, normal = 32775, hard = 33858, elite = 34941 }
 
 [[quest]]
 name = "Stand Your Ground"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Short"
 free_to_play = false
-xp.heroic = { casual = 444, normal = 793, hard = 846, elite = 900 }
 
 [[quest]]
 name = "Stealer of Souls"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Very long"
 free_to_play = false
-xp.heroic = { casual = 5340, normal = 9252, hard = 9604, elite = 9956 }
 
 [[quest]]
 name = "Stealing from Sorcere"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
 legendary_level = 37
-xp.heroic = { casual = 1906, normal = 3340, hard = 3501, elite = 3664 }
-xp.legendary = { casual = 14791, normal = 25194, hard = 25735, elite = 26277 }
 
 [[quest]]
 name = "Stealthy Repossession"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = true
-xp.heroic = { casual = 536, normal = 972, hard = 1052, elite = 1131 }
 
 [[quest]]
 name = "Stolen Power"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
 legendary_level = 34
-xp.legendary = { casual = 19562, normal = 33373, hard = 34143, elite = 34912 }
 
 [[quest]]
 name = "Stop Hazadill's Shipment"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Short"
 free_to_play = true
-xp.heroic = { casual = 204, normal = 364, hard = 388, elite = 412 }
 
 [[quest]]
 name = "Stopping the Sahuagin"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = true
-xp.heroic = { casual = 324, normal = 540, hard = 584, elite = 628 }
 
 [[quest]]
 name = "Storm the Beaches"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
-xp.heroic = { casual = 1215, normal = 2153, hard = 2282, elite = 2410 }
-xp.epic = { casual = 6317, normal = 10894, hard = 11260, elite = 11625 }
 
 [[quest]]
 name = "Stormcleave Outpost"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Very long"
 free_to_play = true
-xp.heroic = { casual = 2056, normal = 3636, hard = 3844, elite = 4052 }
 
 [[quest]]
 name = "Strike Back"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
 legendary_level = 31
-xp.heroic = { casual = 3217, normal = 5591, hard = 5820, elite = 6048 }
-xp.legendary = { casual = 15429, normal = 26368, hard = 27020, elite = 27672 }
 
 [[quest]]
 name = "Stromvauld's Mine"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = true
-xp.heroic = { casual = 1557, normal = 2752, hard = 2908, elite = 3064 }
 
 [[quest]]
 name = "Subversion"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
 legendary_level = 30
-xp.heroic = { casual = 3333, normal = 5804, hard = 6052, elite = 6300 }
-xp.legendary = { casual = 16286, normal = 27850, hard = 28557, elite = 29263 }
 
 [[quest]]
 name = "Sunrise"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
 legendary_level = 31
-xp.heroic = { casual = 2172, normal = 3795, hard = 3972, elite = 4148 }
-xp.legendary = { casual = 11908, normal = 20349, hard = 20850, elite = 21352 }
 
 [[quest]]
 name = "Swim at Your Own Risk"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Short"
 free_to_play = false
 legendary_level = 32
-xp.heroic = { casual = 456, normal = 820, hard = 880, elite = 940 }
-xp.legendary = { casual = 6669, normal = 11385, hard = 11656, elite = 11927 }
 
 [[quest]]
 name = "Sykros' Jewel"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = true
-xp.heroic = { casual = 1788, normal = 3140, hard = 3300, elite = 3459 }
 
 [[quest]]
 name = "Taken in Hand"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
 legendary_level = 34
-xp.heroic = { casual = 3429, normal = 5932, hard = 6148, elite = 6364 }
-xp.legendary = { casual = 15684, normal = 26755, hard = 27371, elite = 27987 }
 
 [[quest]]
 name = "Taming the Flames"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = true
-xp.heroic = { casual = 996, normal = 1764, hard = 1868, elite = 1972 }
 
 [[quest]]
 name = "Tavern Brawl"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Short"
 free_to_play = false
 legendary_level = 30
-xp.heroic = { casual = 772, normal = 1342, hard = 1396, elite = 1450 }
-xp.legendary = { casual = 3679, normal = 6287, hard = 6441, elite = 6594 }
 
 [[quest]]
 name = "Tempest's Spine"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Very long"
 free_to_play = true
-xp.heroic = { normal = 6484, hard = 6819, elite = 7155 }
 
 [[quest]]
 name = "Temple of Elemental Evil: Fire Node"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
 legendary_level = 34
-xp.heroic = { casual = 2133, normal = 3772, hard = 3988, elite = 4204 }
-xp.legendary = { casual = 15971, normal = 27246, hard = 27873, elite = 28500 }
 
 [[quest]]
 name = "Temple of Elemental Evil: Water Node"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
 legendary_level = 34
-xp.heroic = { casual = 2133, normal = 3772, hard = 3988, elite = 4204 }
-xp.legendary = { casual = 15971, normal = 27246, hard = 27873, elite = 28500 }
 
 [[quest]]
 name = "Temple of the Deathwyrm"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
 legendary_level = 30
-xp.legendary = { normal = 29332, hard = 30076, elite = 30821 }
 
 [[quest]]
 name = "Terminal Delirium"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
-xp.heroic = { casual = 4677, normal = 8092, hard = 8388, elite = 8684 }
-xp.epic = { casual = 17380, normal = 29810, hard = 30654, elite = 31498 }
 
 [[quest]]
 name = "Tharashk Arena"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
-xp.heroic = { casual = 1135, normal = 2004, hard = 2116, elite = 2228 }
-xp.epic = { casual = 5725, normal = 9861, hard = 10180, elite = 10499 }
 
 [[quest]]
 name = "The Archons' Trial"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
 legendary_level = 30
-xp.heroic = { casual = 2999, normal = 5233, hard = 5466, elite = 5700 }
-xp.legendary = { casual = 15332, normal = 26220, hard = 26884, elite = 27550 }
 
 [[quest]]
 name = "The Bark and the Blade"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
 legendary_level = 34
-xp.heroic = { casual = 4428, normal = 7660, hard = 7940, elite = 8220 }
-xp.legendary = { casual = 20280, normal = 34599, hard = 35397, elite = 36195 }
 
 [[quest]]
 name = "The Battle for Eveningstar"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
-xp.epic = { casual = 10717, normal = 18468, hard = 19074, elite = 19680 }
 
 [[quest]]
 name = "The Black Loch"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
-xp.heroic = { casual = 1279, normal = 2268, hard = 2404, elite = 2539 }
-xp.epic = { casual = 6660, normal = 11486, hard = 11873, elite = 12259 }
 
 [[quest]]
 name = "The Bloody Crypt"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Very long"
 free_to_play = false
-xp.heroic = { casual = 2916, normal = 5200, hard = 5540, elite = 5880 }
 
 [[quest]]
 name = "The Body Snatchers"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
 legendary_level = 36
-xp.heroic = { casual = 1730, normal = 3058, hard = 3232, elite = 3406 }
-xp.legendary = { casual = 14090, normal = 24011, hard = 24538, elite = 25065 }
 
 [[quest]]
 name = "The Bookbinder Rescue"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Short"
 free_to_play = false
-xp.heroic = { casual = 540, normal = 966, hard = 1033, elite = 1100 }
 
 [[quest]]
 name = "The Bounty Hunter"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = true
-xp.heroic = { casual = 732, normal = 1300, hard = 1380, elite = 1460 }
 
 [[quest]]
 name = "The Bugbear Bandits"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Short"
 free_to_play = false
-xp.heroic = { casual = 240, normal = 400, hard = 430, elite = 460 }
-xp.epic = { casual = 4138, normal = 7125, hard = 7352, elite = 7580 }
 
 [[quest]]
 name = "The Cannith Crystal"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Short"
 free_to_play = true
-xp.heroic = { casual = 132, normal = 220, hard = 232, elite = 244 }
 
 [[quest]]
 name = "The Captives"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = true
-xp.heroic = { casual = 482, normal = 868, hard = 932, elite = 996 }
 
 [[quest]]
 name = "The Chamber of Insanity"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = true
-xp.heroic = { casual = 496, normal = 884, hard = 940, elite = 996 }
 
 [[quest]]
 name = "The Chamber of Kourush"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
-xp.heroic = { casual = 820, normal = 1433, hard = 1500, elite = 1566 }
 
 [[quest]]
 name = "The Chamber of Rahmat"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
-xp.heroic = { casual = 779, normal = 1367, hard = 1433, elite = 1499 }
 
 [[quest]]
 name = "The Chamber of Raiyum"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Very long"
 free_to_play = false
-xp.heroic = { casual = 3660, normal = 6399, hard = 6700, elite = 7000 }
-xp.epic = { casual = 15560, normal = 26790, hard = 27645, elite = 28500 }
 
 [[quest]]
 name = "The Chronoscope"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
-xp.heroic = { normal = 4240, hard = 4516, elite = 4792 }
-xp.epic = { normal = 23883, hard = 24669, elite = 25456 }
 
 [[quest]]
 name = "The Chronoscope (Legendary)"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
 legendary_level = 32
-xp.legendary = { normal = 49362, hard = 50559, elite = 51756 }
 
 [[quest]]
 name = "The Claw of Vulkoor"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
-xp.heroic = { casual = 1712, normal = 3016, hard = 3178, elite = 3340 }
-xp.epic = { casual = 8204, normal = 14136, hard = 14597, elite = 15059 }
 
 [[quest]]
 name = "The Cloven-jaw Scourge: The Caverns of Shaagh"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
-xp.heroic = { casual = 1039, normal = 1867, hard = 2004, elite = 2140 }
 
 [[quest]]
 name = "The Coalescence Chamber"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Very long"
 free_to_play = false
-xp.heroic = { casual = 5359, normal = 9300, hard = 9668, elite = 10036 }
 
 [[quest]]
 name = "The Codex and the Shroud"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Very long"
 free_to_play = false
 legendary_level = 32
-xp.legendary = { normal = 107787, hard = 110409, elite = 113031 }
 
 [[quest]]
 name = "The Collaborator"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = true
-xp.heroic = { casual = 419, normal = 699, hard = 759, elite = 819 }
 
 [[quest]]
 name = "The Covered Culvert"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
 legendary_level = 35
-xp.heroic = { casual = 1140, normal = 2050, hard = 2200, elite = 2530 }
-xp.legendary = { casual = 11200, normal = 19095, hard = 19522, elite = 19950 }
 
 [[quest]]
 name = "The Crucible"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Very long"
 free_to_play = false
-xp.heroic = { casual = 6257, normal = 10898, hard = 11368, elite = 11837 }
-xp.epic = { casual = 26288, normal = 45175, hard = 46535, elite = 47895 }
 
 [[quest]]
 name = "The Crypt of Gerard Dryden"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
-xp.heroic = { casual = 887, normal = 1604, hard = 1729, elite = 1854 }
-xp.epic = { casual = 9963, normal = 17132, hard = 17659, elite = 18185 }
 
 [[quest]]
 name = "The Curse and the Captive Crustacean"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
 legendary_level = 33
-xp.heroic = { casual = 1194, normal = 2116, hard = 2242, elite = 2368 }
-xp.legendary = { casual = 10687, normal = 18239, hard = 18667, elite = 19095 }
 
 [[quest]]
 name = "The Curse of Strahd"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Very long"
 free_to_play = false
 legendary_level = 32
-xp.legendary = { normal = 23655, hard = 24225, elite = 24795 }
 
 [[quest]]
 name = "The Cursed Crypt"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Very long"
 free_to_play = false
-xp.heroic = { casual = 3900, normal = 6819, hard = 7140, elite = 7460 }
 
 [[quest]]
 name = "The Darkness and the Light"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
 legendary_level = 35
-xp.heroic = { casual = 1384, normal = 2492, hard = 2676, elite = 2860 }
-xp.legendary = { casual = 13700, normal = 23358, hard = 23883, elite = 24407 }
 
 [[quest]]
 name = "The Deadly Package: Agent of Darguul"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
-xp.heroic = { casual = 116, normal = 202, hard = 209, elite = 216 }
 
 [[quest]]
 name = "The Deadly Package: The Stronghold Key"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
-xp.heroic = { casual = 767, normal = 1369, hard = 1460, elite = 1550 }
 
 [[quest]]
 name = "The Deal and the Demon"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
-xp.epic = { casual = 9006, normal = 15484, hard = 15959, elite = 16434 }
 
 [[quest]]
 name = "The Depths of Darkness"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = true
-xp.heroic = { casual = 448, normal = 802, hard = 856, elite = 910 }
 
 [[quest]]
 name = "The Depths of Despair"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = true
-xp.heroic = { casual = 362, normal = 645, hard = 687, elite = 729 }
 
 [[quest]]
 name = "The Depths of Discord"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = true
-xp.heroic = { casual = 481, normal = 856, hard = 910, elite = 964 }
 
 [[quest]]
 name = "The Depths of Doom"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = true
-xp.heroic = { casual = 434, normal = 772, hard = 820, elite = 868 }
 
 [[quest]]
 name = "The Devil's Details"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
 legendary_level = 30
-xp.heroic = { casual = 2580, normal = 4500, hard = 4700, elite = 4900 }
-xp.legendary = { casual = 13167, normal = 22515, hard = 23085, elite = 23665 }
 
 [[quest]]
 name = "The Devils to Pay"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Short"
 free_to_play = false
 legendary_level = 34
-xp.heroic = { casual = 1682, normal = 2908, hard = 3012, elite = 3116 }
-xp.legendary = { casual = 7640, normal = 13030, hard = 13326, elite = 13623 }
 
 [[quest]]
 name = "The Dreaming Dark"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
-xp.heroic = { casual = 2781, normal = 4798, hard = 4960, elite = 5122 }
 
 [[quest]]
 name = "The Druid's Curse"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
-xp.heroic = { casual = 2810, normal = 4866, hard = 5050, elite = 5233 }
-xp.epic = { casual = 12331, normal = 21206, hard = 21859, elite = 22513 }
 
 [[quest]]
 name = "The Dryad and the Demigod"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
 legendary_level = 32
-xp.legendary = { normal = 41182, hard = 42179, elite = 43177 }
 
 [[quest]]
 name = "The End of the Road"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
-xp.heroic = { casual = 3412, normal = 5903, hard = 6118, elite = 6333 }
-xp.epic = { casual = 11932, normal = 20499, hard = 21112, elite = 21724 }
 
 [[quest]]
 name = "The Endless Revels"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
 legendary_level = 32
-xp.heroic = { casual = 1370, normal = 2452, hard = 2620, elite = 2788 }
-xp.legendary = { casual = 13167, normal = 22468, hard = 23027, elite = 23569 }
 
 [[quest]]
 name = "The Enemy Within"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Very long"
 free_to_play = true
-xp.heroic = { casual = 3024, normal = 5300, hard = 5560, elite = 5820 }
 
 [[quest]]
 name = "The Evil We Know"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
 legendary_level = 34
-xp.heroic = { casual = 3336, normal = 5770, hard = 5980, elite = 6190 }
-xp.legendary = { casual = 15253, normal = 26020, hard = 26619, elite = 27217 }
 
 [[quest]]
 name = "The Faithful Departed"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = true
-xp.heroic = { casual = 1154, normal = 2038, hard = 2152, elite = 2266 }
 
 [[quest]]
 name = "The Fall of Truth"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
-xp.epic = { normal = 27417, hard = 28215, elite = 29013 }
 
 [[quest]]
 name = "The Fetid Wedding"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
 legendary_level = 37
-xp.heroic = { casual = 3480, normal = 6100, hard = 6399, elite = 6700 }
-xp.legendary = { casual = 23256, normal = 39615, hard = 40469, elite = 41325 }
 
 [[quest]]
 name = "The Final Draw"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
 legendary_level = 36
-xp.heroic = { casual = 1550, normal = 2722, hard = 2860, elite = 2998 }
-xp.legendary = { casual = 10554, normal = 17983, hard = 18376, elite = 18770 }
 
 [[quest]]
 name = "The Final Enemy"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
 legendary_level = 32
-xp.heroic = { casual = 1406, normal = 2548, hard = 2752, elite = 2956 }
-xp.legendary = { casual = 24111, normal = 41182, hard = 42179, elite = 43177 }
 
 [[quest]]
 name = "The Final Vintage"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Short"
 free_to_play = false
 legendary_level = 31
-xp.heroic = { casual = 1744, normal = 3048, hard = 3188, elite = 3329 }
-xp.legendary = { casual = 4617, normal = 7885, hard = 8075, elite = 8265 }
 
 [[quest]]
 name = "The Forgotten Caverns"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = true
-xp.heroic = { casual = 614, normal = 1090, hard = 1156, elite = 1222 }
 
 [[quest]]
 name = "The Friar's Niece"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Short"
 free_to_play = false
-xp.heroic = { casual = 288, normal = 516, hard = 550, elite = 585 }
-xp.epic = { casual = 4662, normal = 8012, hard = 8254, elite = 8495 }
 
 [[quest]]
 name = "The Gate Chamber"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Short"
 free_to_play = false
-xp.heroic = { casual = 145, normal = 245, hard = 255, elite = 265 }
 
 [[quest]]
 name = "The Giants' Supplies"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Short"
 free_to_play = false
-xp.heroic = { casual = 276, normal = 480, hard = 500, elite = 520 }
 
 [[quest]]
 name = "The Graverobber"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = true
-xp.heroic = { casual = 1140, normal = 2020, hard = 2140, elite = 2260 }
 
 [[quest]]
 name = "The Grey Moon's Den: Extermination"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
-xp.heroic = { casual = 690, normal = 1220, hard = 1290, elite = 1360 }
 
 [[quest]]
 name = "The Grey Moon's Den: The Trollish Scourge"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
-xp.heroic = { casual = 780, normal = 1380, hard = 1460, elite = 1540 }
 
 [[quest]]
 name = "The Grotto"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = true
-xp.heroic = { casual = 304 }
 
 [[quest]]
 name = "The Halls of Shan-To-Kor"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
-xp.heroic = { casual = 1120, normal = 2004, hard = 2140, elite = 2276 }
 
 [[quest]]
 name = "The Hand and the Eyes"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
 legendary_level = 33
-xp.heroic = { casual = 3170, normal = 5500, hard = 5716, elite = 5932 }
-xp.legendary = { casual = 19100, normal = 32603, hard = 33373, elite = 34143 }
 
 [[quest]]
 name = "The Haunted Halls of Eveningstar"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
-xp.epic = { casual = 16258, normal = 27842, hard = 28587, elite = 29332 }
 
 [[quest]]
 name = "The Haunting of Saltmarsh"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
 legendary_level = 32
-xp.heroic = { casual = 645, normal = 1164, hard = 1252, elite = 1341 }
-xp.legendary = { casual = 6235, normal = 10645, hard = 10898, elite = 11151 }
 
 [[quest]]
 name = "The Hijacked Haul"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
 legendary_level = 32
-xp.heroic = { casual = 508, normal = 916, hard = 983, elite = 1052 }
-xp.legendary = { casual = 8036, normal = 13722, hard = 14050, elite = 14378 }
 
 [[quest]]
 name = "The Hobgoblin Horde"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
-xp.heroic = { casual = 396, normal = 660, hard = 716, elite = 772 }
-xp.epic = { casual = 5625, normal = 9690, hard = 10003, elite = 10317 }
 
 [[quest]]
 name = "The Hobgoblins' Captives"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
-xp.heroic = { casual = 456, normal = 820, hard = 880, elite = 940 }
 
 [[quest]]
 name = "The Home of Memory"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
 legendary_level = 32
-xp.heroic = { casual = 522, normal = 940, hard = 1009, elite = 1080 }
-xp.legendary = { casual = 6669, normal = 11385, hard = 11656, elite = 11927 }
 
 [[quest]]
 name = "The House of Broken Chains"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
-xp.epic = { casual = 8823, normal = 15186, hard = 15667, elite = 16148 }
 
 [[quest]]
 name = "The House of Death Undone"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
-xp.epic = { casual = 8425, normal = 14500, hard = 14959, elite = 15417 }
 
 [[quest]]
 name = "The House of Gems"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
 legendary_level = 35
-xp.heroic = { casual = 2328, normal = 4060, hard = 4240, elite = 4420 }
-xp.legendary = { casual = 13406, normal = 22857, hard = 23370, elite = 23883 }
 
 [[quest]]
 name = "The House of Rusted Blades"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
-xp.epic = { casual = 6573, normal = 11311, hard = 11666, elite = 12022 }
 
 [[quest]]
 name = "The Icemount Curse"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
 legendary_level = 32
-xp.heroic = { casual = 1740, normal = 3100, hard = 3300, elite = 3500 }
-xp.legendary = { casual = 13851, normal = 23655, hard = 24225, elite = 24795 }
 
 [[quest]]
 name = "The Iron Mines: Freeing Achka"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Short"
 free_to_play = false
-xp.heroic = { casual = 295, normal = 520, hard = 548, elite = 576 }
 
 [[quest]]
 name = "The Iron Mines: Justice for Grust"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
-xp.heroic = { casual = 496, normal = 880, hard = 932, elite = 984 }
 
 [[quest]]
 name = "The Key to the Mythal"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Very long"
 free_to_play = false
 legendary_level = 35
-xp.heroic = { casual = 4293, normal = 7491, hard = 7828, elite = 8163 }
-xp.legendary = { casual = 24877, normal = 42419, hard = 43376, elite = 44334 }
 
 [[quest]]
 name = "The Knife's Edge"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
 legendary_level = 34
-xp.heroic = { casual = 1140, normal = 2050, hard = 2200, elite = 2350 }
-xp.legendary = { casual = 10943, normal = 18667, hard = 19095, elite = 19522 }
 
 [[quest]]
 name = "The Knight Who Cried Windmill"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Short"
 free_to_play = false
 legendary_level = 32
-xp.heroic = { casual = 732, normal = 1300, hard = 1380, elite = 1460 }
-xp.legendary = { casual = 5643, normal = 9633, hard = 9861, elite = 10089 }
 
 [[quest]]
 name = "The Kobold's Den: Clan Gnashtooth"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = true
-xp.heroic = { casual = 588, normal = 1060, hard = 1140, elite = 1220 }
 
 [[quest]]
 name = "The Kobold's Den: Rescuing Arlos"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = true
-xp.heroic = { casual = 746, normal = 1348, hard = 1452, elite = 1556 }
 
 [[quest]]
 name = "The Kobold's New Ringleader"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = true
-xp.heroic = { casual = 684, normal = 1244, hard = 1348, elite = 1452 }
 
 [[quest]]
 name = "The Lair of Summoning"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = true
-xp.heroic = { casual = 559, normal = 996, hard = 1060, elite = 1124 }
 
 [[quest]]
 name = "The Last Move: The Way to Yarkuch"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Short"
 free_to_play = false
-xp.heroic = { casual = 348, normal = 612, hard = 644, elite = 676 }
 
 [[quest]]
 name = "The Last Move: Yarkuch's Last Stand"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
-xp.heroic = { casual = 708, normal = 1252, hard = 1324, elite = 1396 }
 
 [[quest]]
 name = "The Last Stand"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
-xp.epic = { casual = 6419, normal = 11058, hard = 11417, elite = 11776 }
 
 [[quest]]
 name = "The Legend of Two-Toed Tobias"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
-xp.heroic = { casual = 2056, normal = 3684, hard = 3940, elite = 4196 }
 
 [[quest]]
 name = "The Legend of the Lost Locket"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
 legendary_level = 32
-xp.heroic = { casual = 1058, normal = 1892, hard = 2020, elite = 2148 }
-xp.legendary = { casual = 11799, normal = 20149, hard = 20633, elite = 21118 }
 
 [[quest]]
 name = "The Lord of Blades"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
-xp.heroic = { normal = 6383, hard = 6600, elite = 6816 }
 
 [[quest]]
 name = "The Lord of Eyes"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
-xp.heroic = { casual = 3792, normal = 6570, hard = 6819, elite = 7067 }
 
 [[quest]]
 name = "The Lord of Stone"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
-xp.heroic = { casual = 3142, normal = 5443, hard = 5648, elite = 5854 }
 
 [[quest]]
 name = "The Lords of Dust"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = true
-xp.heroic = { casual = 2940, normal = 5100, hard = 5300, elite = 5500 }
-xp.epic = { casual = 10089, normal = 17385, hard = 17955, elite = 18525 }
 
 [[quest]]
 name = "The Lost Thread"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
-xp.epic = { casual = 9989, normal = 17214, hard = 17778, elite = 18342 }
 
 [[quest]]
 name = "The Madness of Crowds"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
 legendary_level = 31
-xp.heroic = { casual = 2040, normal = 3550, hard = 3700, elite = 3850 }
-xp.legendary = { casual = 10174, normal = 17385, hard = 17812, elite = 18239 }
 
 [[quest]]
 name = "The Magma Must Flow"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Short"
 free_to_play = false
 legendary_level = 32
-xp.heroic = { casual = 1557, normal = 2700, hard = 2804, elite = 2908 }
-xp.legendary = { casual = 7284, normal = 12437, hard = 12733, elite = 13030 }
 
 [[quest]]
 name = "The Mark of Death"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
 legendary_level = 30
-xp.legendary = { normal = 17328, hard = 17764, elite = 18202 }
 
 [[quest]]
 name = "The Mask of Deception"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = true
 legendary_level = 30
-xp.heroic = { casual = 2425, normal = 4206, hard = 4370, elite = 4535 }
-xp.legendary = { casual = 10845, normal = 18543, hard = 19011, elite = 19479 }
 
 [[quest]]
 name = "The Master Artificer"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
-xp.heroic = { normal = 4580, hard = 4740, elite = 4900 }
 
 [[quest]]
 name = "The Maze of Madness"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
-xp.heroic = { casual = 2076, normal = 3620, hard = 3780, elite = 3940 }
-xp.epic = { casual = 8926, normal = 15332, hard = 15788, elite = 16244 }
 
 [[quest]]
 name = "The Miller's Debt"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Short"
 free_to_play = true
-xp.heroic = { casual = 273 }
 
 [[quest]]
 name = "The Mindsunder"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
-xp.heroic = { casual = 2212, normal = 3826, hard = 3964, elite = 4102 }
 
 [[quest]]
 name = "The Missing Party"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Very long"
 free_to_play = false
-xp.heroic = { casual = 2568, normal = 4558, hard = 4837, elite = 5116 }
-xp.epic = { casual = 16849, normal = 28876, hard = 29670, elite = 30464 }
 
 [[quest]]
 name = "The Mystery of Delera's Tomb"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
-xp.heroic = { casual = 975, normal = 1742, hard = 1860, elite = 1977 }
-xp.epic = { casual = 12143, normal = 20808, hard = 21378, elite = 21948 }
 
 [[quest]]
 name = "The Newcomers"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
 legendary_level = 31
-xp.heroic = { casual = 3516, normal = 6180, hard = 6500, elite = 6819 }
-xp.legendary = { casual = 21511, normal = 36765, hard = 37677, elite = 38588 }
 
 [[quest]]
 name = "The Offshore Account"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
 legendary_level = 32
-xp.heroic = { casual = 2400, normal = 4156, hard = 4312, elite = 4468 }
-xp.legendary = { casual = 10841, normal = 18513, hard = 18958, elite = 19402 }
 
 [[quest]]
 name = "The Old Archives"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
-xp.heroic = { casual = 456, normal = 820, hard = 880, elite = 940 }
-xp.epic = { casual = 7313, normal = 12572, hard = 12956, elite = 13340 }
 
 [[quest]]
 name = "The Path to Madness"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Short"
 free_to_play = true
-xp.heroic = { casual = 392, normal = 689, hard = 724, elite = 758 }
 
 [[quest]]
 name = "The Pit"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Very long"
 free_to_play = true
-xp.heroic = { casual = 4380, normal = 7780, hard = 8260, elite = 8740 }
 
 [[quest]]
 name = "The Portal Opens"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
-xp.epic = { casual = 10328, normal = 17778, hard = 18342, elite = 18906 }
 
 [[quest]]
 name = "The Price of Freedom"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
-xp.heroic = { casual = 2277, normal = 4060, hard = 4324, elite = 4588 }
-xp.epic = { casual = 15068, normal = 25866, hard = 26619, elite = 27371 }
 
 [[quest]]
 name = "The Price of an Egg"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
 legendary_level = 37
-xp.heroic = { casual = 2180, normal = 3820, hard = 4006, elite = 4192 }
-xp.legendary = { casual = 15176, normal = 25849, hard = 26405, elite = 26961 }
 
 [[quest]]
 name = "The Prison of the Planes"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
-xp.heroic = { casual = 2436, normal = 4240, hard = 4420, elite = 4600 }
 
 [[quest]]
 name = "The Prisoner"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
-xp.heroic = { casual = 1788, normal = 3160, hard = 3340, elite = 3520 }
-xp.epic = { casual = 9097, normal = 15674, hard = 16188, elite = 16701 }
 
 [[quest]]
 name = "The Promise of Fire"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = true
-xp.heroic = { casual = 1141, normal = 2032, hard = 2160, elite = 2289 }
-xp.epic = { casual = 7879, normal = 13499, hard = 13866, elite = 14234 }
 
 [[quest]]
 name = "The Proper Authorities"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
 legendary_level = 36
-xp.heroic = { casual = 1730, normal = 3058, hard = 3232, elite = 3406 }
-xp.legendary = { casual = 13262, normal = 22600, hard = 23096, elite = 23592 }
 
 [[quest]]
 name = "The Reaver's Fate"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
-xp.heroic = { normal = 6540, hard = 6820, elite = 7100 }
 
 [[quest]]
 name = "The Rescue"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
-xp.heroic = { casual = 1692, normal = 2990, hard = 3160, elite = 3330 }
 
 [[quest]]
 name = "The Riddle"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
-xp.heroic = { casual = 3151, normal = 5442, hard = 5633, elite = 5824 }
 
 [[quest]]
 name = "The Sacred Bounty"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Short"
 free_to_play = false
 legendary_level = 32
-xp.heroic = { casual = 464, normal = 836, hard = 897, elite = 958 }
-xp.legendary = { casual = 6327, normal = 10801, hard = 11057, elite = 11314 }
 
 [[quest]]
 name = "The Sacred Helm"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
-xp.heroic = { casual = 689, normal = 1244, hard = 1339, elite = 1434 }
 
 [[quest]]
 name = "The Safehold"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
 legendary_level = 35
-xp.heroic = { casual = 2328, normal = 4060, hard = 4240, elite = 4420 }
-xp.legendary = { casual = 13406, normal = 22857, hard = 23370, elite = 23883 }
 
 [[quest]]
 name = "The Same Old Song"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
 legendary_level = 32
-xp.heroic = { casual = 2958, normal = 5140, hard = 5350, elite = 5560 }
-xp.legendary = { casual = 14535, normal = 24823, hard = 25422, elite = 26020 }
 
 [[quest]]
 name = "The Sanctum: Church of the Fury"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
-xp.heroic = { casual = 1161, normal = 2038, hard = 2140, elite = 2242 }
 
 [[quest]]
 name = "The Sanctum: Quench the Flames"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
-xp.heroic = { casual = 1161, normal = 2038, hard = 2140, elite = 2242 }
 
 [[quest]]
 name = "The Sane Asylum"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
-xp.heroic = { casual = 3110, normal = 5386, hard = 5590, elite = 5793 }
 
 [[quest]]
 name = "The Scoundrel's Run"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
-xp.heroic = { casual = 1500, normal = 2660, hard = 2820, elite = 2980 }
 
 [[quest]]
 name = "The Shipwrecked Spy"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
-xp.heroic = { casual = 2400, normal = 4150, hard = 4300, elite = 4450 }
 
 [[quest]]
 name = "The Shroud"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Very long"
 free_to_play = false
-xp.heroic = { normal = 11540, hard = 11980, elite = 12420 }
 
 [[quest]]
 name = "The Smuggler's Warehouse"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = true
-xp.heroic = { casual = 384, normal = 694, hard = 748, elite = 802 }
 
 [[quest]]
 name = "The Snitch"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
-xp.heroic = { casual = 1297, normal = 2321, hard = 2480, elite = 2638 }
-xp.epic = { casual = 7767, normal = 13398, hard = 13851, elite = 14303 }
 
 [[quest]]
 name = "The Spawn of Whisperdoom"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = true
-xp.heroic = { casual = 2112, normal = 3700, hard = 3880, elite = 4060 }
 
 [[quest]]
 name = "The Spinner of Shadows"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = true
-xp.heroic = { casual = 3544, normal = 6150, hard = 6392, elite = 6634 }
-xp.epic = { casual = 12171, normal = 20976, hard = 21665, elite = 22355 }
 
 [[quest]]
 name = "The Stone Crypt Chronicle"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
 legendary_level = 33
-xp.heroic = { casual = 2436, normal = 4324, hard = 4588, elite = 4852 }
-xp.legendary = { casual = 18680, normal = 31885, hard = 32638, elite = 33390 }
 
 [[quest]]
 name = "The Stones Run Red"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
-xp.heroic = { casual = 2140, normal = 3833, hard = 4100, elite = 4366 }
 
 [[quest]]
 name = "The Storehouse's Secret"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Short"
 free_to_play = true
-xp.heroic = { casual = 156, normal = 260, hard = 276, elite = 292 }
 
 [[quest]]
 name = "The Stormreaver Fresco"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Short"
 free_to_play = false
-xp.heroic = { casual = 444, normal = 793, hard = 846, elite = 900 }
 
 [[quest]]
 name = "The Sunken Sewer"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = true
-xp.heroic = { casual = 508, normal = 916, hard = 983, elite = 1052 }
 
 [[quest]]
 name = "The Swiped Signet"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = true
-xp.heroic = { casual = 746, normal = 1348, hard = 1452, elite = 1556 }
 
 [[quest]]
 name = "The Tear of Dhakaan"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Very long"
 free_to_play = true
-xp.heroic = { casual = 2220, normal = 3940, hard = 4180, elite = 4420 }
 
 [[quest]]
 name = "The Temple Outpost: Captives of the Cult"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
-xp.heroic = { casual = 808, normal = 1426, hard = 1504, elite = 1582 }
 
 [[quest]]
 name = "The Temple Outpost: The Libram of the Six"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
-xp.heroic = { casual = 981, normal = 1732, hard = 1828, elite = 1924 }
 
 [[quest]]
 name = "The Thornwright"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Short"
 free_to_play = false
 legendary_level = 32
-xp.heroic = { casual = 732, normal = 1300, hard = 1380, elite = 1460 }
-xp.legendary = { casual = 5643, normal = 9633, hard = 9860, elite = 10089 }
 
 [[quest]]
 name = "The Threnal Arena"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Short"
 free_to_play = false
-xp.heroic = { normal = 1514 }
 
 [[quest]]
 name = "The Thrill of the Hunt"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
-xp.heroic = { casual = 2469, normal = 4283, hard = 4450, elite = 4617 }
-xp.epic = { casual = 10269, normal = 17611, hard = 18106, elite = 18601 }
 
 [[quest]]
 name = "The Tide Turns"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
-xp.heroic = { casual = 1498, normal = 2657, hard = 2817, elite = 2977 }
-xp.epic = { casual = 7823, normal = 13495, hard = 13951, elite = 14406 }
 
 [[quest]]
 name = "The Titan Awakes"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
-xp.heroic = { normal = 2620, hard = 2740, elite = 2860 }
 
 [[quest]]
 name = "The Tracker's Trap"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
-xp.heroic = { casual = 4498, normal = 7771, hard = 8045, elite = 8319 }
-xp.epic = { casual = 17418, normal = 29851, hard = 30672, elite = 31494 }
 
 [[quest]]
 name = "The Troglodytes' Get"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
-xp.heroic = { casual = 1320, normal = 2350, hard = 2500, elite = 2650 }
 
 [[quest]]
 name = "The Trouble with Tar Pits"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
 legendary_level = 33
-xp.heroic = { casual = 1680, normal = 2980, hard = 3160, elite = 3340 }
-xp.legendary = { casual = 12790, normal = 21830, hard = 22344, elite = 22857 }
 
 [[quest]]
 name = "The Twilight Forge"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Very long"
 free_to_play = false
-xp.heroic = { normal = 12100, hard = 12699, elite = 13300 }
 
 [[quest]]
 name = "The Underlane Assignment"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
 legendary_level = 32
-xp.heroic = { casual = 2400, normal = 4156, hard = 4312, elite = 4468 }
-xp.legendary = { casual = 10841, normal = 18513, hard = 18958, elite = 19402 }
 
 [[quest]]
 name = "The Unquiet Graves"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
-xp.epic = { casual = 6650, normal = 11457, hard = 11829, elite = 12201 }
 
 [[quest]]
 name = "The Vault of Night"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Very long"
 free_to_play = false
-xp.heroic = { normal = 11500, hard = 12100, elite = 12699 }
-xp.epic = { normal = 53295, hard = 55005, elite = 56715 }
 
 [[quest]]
 name = "The Weapons Shipment"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
-xp.heroic = { casual = 3723, normal = 6432, hard = 6658, elite = 6885 }
 
 [[quest]]
 name = "The Wish"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
 legendary_level = 36
-xp.heroic = { casual = 3400, normal = 6016, hard = 6364, elite = 6712 }
-xp.legendary = { casual = 26354, normal = 44916, hard = 45907, elite = 46899 }
 
 [[quest]]
 name = "The Wizard's Labyrinth"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
 legendary_level = 34
-xp.heroic = { casual = 924, normal = 1660, hard = 1780, elite = 1900 }
-xp.legendary = { casual = 8789, normal = 14990, hard = 15332, elite = 15674 }
 
 [[quest]]
 name = "The Wraithcallers"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Short"
 free_to_play = false
 legendary_level = 32
-xp.heroic = { casual = 1274, normal = 2212, hard = 2300, elite = 2388 }
-xp.legendary = { casual = 6190, normal = 10567, hard = 10818, elite = 11069 }
 
 [[quest]]
 name = "The Xorian Cipher"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Very long"
 free_to_play = true
-xp.heroic = { casual = 2556, normal = 4520, hard = 4780, elite = 5040 }
 
 [[quest]]
 name = "The Zulkir's Plan"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
 legendary_level = 35
-xp.heroic = { casual = 3839, normal = 6700, hard = 7000, elite = 7300 }
-xp.legendary = { casual = 22230, normal = 37905, hard = 38760, elite = 39615 }
 
 [[quest]]
 name = "Third Time's a Charm"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
 legendary_level = 31
-xp.heroic = { casual = 3217, normal = 5591, hard = 5820, elite = 6048 }
-xp.legendary = { casual = 15429, normal = 26368, hard = 27020, elite = 27672 }
 
 [[quest]]
 name = "This Old Haunt"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
 legendary_level = 34
-xp.heroic = { casual = 2389, normal = 4132, hard = 4281, elite = 4430 }
-xp.legendary = { casual = 10896, normal = 18585, hard = 19011, elite = 19437 }
 
 [[quest]]
 name = "Thorn and Paw"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
-xp.heroic = { casual = 2441, normal = 4227, hard = 4386, elite = 4544 }
-xp.epic = { casual = 11554, normal = 19868, hard = 20480, elite = 21092 }
 
 [[quest]]
 name = "Thrall of Duty"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
 legendary_level = 36
-xp.heroic = { casual = 2220, normal = 3900, hard = 4100, elite = 4300 }
-xp.legendary = { casual = 15218, normal = 25935, hard = 26505, elite = 27075 }
 
 [[quest]]
 name = "Thrall of the Necromancer"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Very long"
 free_to_play = false
-xp.heroic = { casual = 1979, normal = 3499, hard = 3699, elite = 3899 }
-xp.epic = { casual = 16091, normal = 27576, hard = 28334, elite = 29092 }
 
 [[quest]]
 name = "Thralls of the Fungus Lord"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
 legendary_level = 32
-xp.heroic = { casual = 2544, normal = 4420, hard = 4600, elite = 4780 }
-xp.legendary = { casual = 12483, normal = 21318, hard = 21830, elite = 22344 }
 
 [[quest]]
 name = "Threats Old and New"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
 legendary_level = 35
-xp.legendary = { normal = 16436, hard = 16803, elite = 17170 }
 
 [[quest]]
 name = "Three Paths to Battle"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
 legendary_level = 33
-xp.heroic = { casual = 3151, normal = 5466, hard = 5681, elite = 5896 }
-xp.legendary = { casual = 19100, normal = 32603, hard = 33373, elite = 34143 }
 
 [[quest]]
 name = "Through a Mirror Darkly"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
-xp.heroic = { casual = 5103, normal = 8855, hard = 9205, elite = 9555 }
-xp.epic = { casual = 24668, normal = 42314, hard = 43515, elite = 44716 }
 
 [[quest]]
 name = "Through the Tulgey Wood"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
 legendary_level = 32
-xp.heroic = { casual = 1571, normal = 2787, hard = 2955, elite = 3123 }
-xp.legendary = { casual = 13167, normal = 22486, hard = 23027, elite = 23569 }
 
 [[quest]]
 name = "Times Long Past"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Very long"
 free_to_play = false
 legendary_level = 35
-xp.heroic = { casual = 4696, normal = 8196, hard = 8564, elite = 8932 }
-xp.legendary = { casual = 27230, normal = 46432, hard = 47481, elite = 48529 }
 
 [[quest]]
 name = "To Curse the Sky"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
 legendary_level = 31
-xp.heroic = { casual = 3648, normal = 6340, hard = 6600, elite = 6859 }
-xp.legendary = { casual = 17510, normal = 29924, hard = 30666, elite = 31406 }
 
 [[quest]]
 name = "ToEE: Air Node"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
 legendary_level = 34
-xp.heroic = { casual = 2133, normal = 3772, hard = 3988, elite = 4204 }
-xp.legendary = { casual = 15971, normal = 27246, hard = 27873, elite = 28500 }
 
 [[quest]]
 name = "ToEE: Depths of the Temple"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
 legendary_level = 34
-xp.heroic = { casual = 2018, normal = 3568, hard = 3772, elite = 3976 }
-xp.legendary = { casual = 14822, normal = 25285, hard = 25866, elite = 26448 }
 
 [[quest]]
 name = "ToEE: Earth Node"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
 legendary_level = 34
-xp.heroic = { casual = 2133, normal = 3772, hard = 3988, elite = 4204 }
-xp.legendary = { casual = 15971, normal = 27246, hard = 27873, elite = 28500 }
 
 [[quest]]
 name = "ToEE: First Level and Earth Temple"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
 legendary_level = 34
-xp.heroic = { casual = 2287, normal = 4044, hard = 4276, elite = 4508 }
-xp.legendary = { casual = 16833, normal = 28716, hard = 29377, elite = 30038 }
 
 [[quest]]
 name = "ToEE: Lower Temple Complex"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Very long"
 free_to_play = false
 legendary_level = 34
-xp.heroic = { casual = 4053, normal = 7172, hard = 7588, elite = 8004 }
-xp.legendary = { casual = 30048, normal = 51256, hard = 52451, elite = 53637 }
 
 [[quest]]
 name = "Toil and Trouble"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
-xp.heroic = { casual = 1230, normal = 2200, hard = 2350, elite = 2500 }
-xp.epic = { casual = 9405, normal = 16102, hard = 16530, elite = 16957 }
 
 [[quest]]
 name = "Tomb of the Blighted"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
-xp.heroic = { casual = 2796, normal = 4900, hard = 5140, elite = 5380 }
 
 [[quest]]
 name = "Tomb of the Burning Heart"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
-xp.heroic = { casual = 762, normal = 1360, hard = 1450, elite = 1540 }
 
 [[quest]]
 name = "Tomb of the Crimson Heart"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
-xp.heroic = { casual = 871, normal = 1556, hard = 1660, elite = 1764 }
 
 [[quest]]
 name = "Tomb of the Forbidden"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
-xp.heroic = { casual = 2659, normal = 4660, hard = 4888, elite = 5116 }
 
 [[quest]]
 name = "Tomb of the Immortal Heart"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
-xp.heroic = { casual = 871, normal = 1556, hard = 1660, elite = 1764 }
 
 [[quest]]
 name = "Tomb of the Sanguine Heart"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
-xp.heroic = { casual = 871, normal = 1556, hard = 1660, elite = 1764 }
 
 [[quest]]
 name = "Tomb of the Shadow Guard"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
-xp.heroic = { casual = 2133, normal = 3772, hard = 3988, elite = 4204 }
 
 [[quest]]
 name = "Tomb of the Shadow King"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
-xp.heroic = { casual = 2364, normal = 4180, hard = 4420, elite = 4660 }
 
 [[quest]]
 name = "Tomb of the Shadow Knight"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
-xp.heroic = { casual = 2133, normal = 3772, hard = 3988, elite = 4204 }
 
 [[quest]]
 name = "Tomb of the Shadow Lord"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
-xp.heroic = { casual = 1672, normal = 2956, hard = 3124, elite = 3292 }
 
 [[quest]]
 name = "Tomb of the Tormented"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
-xp.heroic = { casual = 4164, normal = 7300, hard = 7660, elite = 8020 }
 
 [[quest]]
 name = "Tomb of the Unhallowed"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
-xp.heroic = { casual = 2385, normal = 4180, hard = 4384, elite = 4588 }
 
 [[quest]]
 name = "Too Hot to Handle"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
 legendary_level = 32
-xp.legendary = { normal = 49362, hard = 50559, elite = 51576 }
 
 [[quest]]
 name = "Too Many Cooks"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
 legendary_level = 34
-xp.heroic = { casual = 2587, normal = 4474, hard = 4636, elite = 4798 }
-xp.legendary = { casual = 11805, normal = 20138, hard = 20599, elite = 21061 }
 
 [[quest]]
 name = "Total Chaos"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
-xp.heroic = { casual = 468, normal = 848, hard = 916, elite = 983 }
-xp.epic = { casual = 7865, normal = 13537, hard = 13965, elite = 14392 }
 
 [[quest]]
 name = "Tower of Despair"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Very long"
 free_to_play = false
-xp.heroic = { normal = 11700, hard = 12100, elite = 12500 }
 
 [[quest]]
 name = "Tower of Frost"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = true
-xp.heroic = { casual = 3756, normal = 6540, hard = 6820, elite = 7100 }
-xp.epic = { casual = 17407, normal = 29810, hard = 30608, elite = 31406 }
 
 [[quest]]
 name = "Tower of Vengeance"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
 legendary_level = 37
-xp.heroic = { casual = 2180, normal = 3820, hard = 4006, elite = 4192 }
-xp.legendary = { casual = 15176, normal = 25849, hard = 26405, elite = 26961 }
 
 [[quest]]
 name = "Toxic Treatment"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
 legendary_level = 31
-xp.heroic = { casual = 2911, normal = 5068, hard = 5284, elite = 5500 }
-xp.legendary = { casual = 14576, normal = 24909, hard = 25524, elite = 26140 }
 
 [[quest]]
 name = "Treasure Hunt"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Short"
 free_to_play = false
-xp.heroic = { casual = 252, normal = 420, hard = 452, elite = 484 }
-xp.epic = { casual = 4386, normal = 7552, hard = 7794, elite = 8036 }
 
 [[quest]]
 name = "Trial by Fire"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
-xp.heroic = { casual = 2412, normal = 4206, hard = 4393, elite = 4580 }
-xp.epic = { casual = 10385, normal = 17841, hard = 18372, elite = 18904 }
 
 [[quest]]
 name = "Trial by Fury"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
-xp.epic = { casual = 14938, normal = 25692, hard = 26486, elite = 27280 }
 
 [[quest]]
 name = "Trials of the Triceratops"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
 legendary_level = 33
-xp.heroic = { casual = 1788, normal = 3172, hard = 3364, elite = 3556 }
-xp.legendary = { casual = 14193, normal = 24225, hard = 24795, elite = 25365 }
 
 [[quest]]
 name = "Turn the Page"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
 legendary_level = 34
-xp.heroic = { casual = 3336, normal = 5770, hard = 5980, elite = 6190 }
-xp.legendary = { casual = 15253, normal = 26020, hard = 26619, elite = 27217 }
 
 [[quest]]
 name = "Under the Big Top"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
-xp.heroic = { casual = 1464, normal = 2620, hard = 2800, elite = 2980 }
-xp.epic = { casual = 8789, normal = 15162, hard = 15675, elite = 16188 }
 
 [[quest]]
 name = "Under the Cover of Darkness"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Short"
 free_to_play = false
 legendary_level = 32
-xp.heroic = { casual = 456, normal = 820, hard = 880, elite = 940 }
-xp.legendary = { casual = 7352, normal = 12554, hard = 12853, elite = 13152 }
 
 [[quest]]
 name = "Undermine"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
 legendary_level = 34
-xp.heroic = { casual = 3069, normal = 5355, hard = 5593, elite = 5832 }
-xp.legendary = { casual = 18844, normal = 32148, hard = 32889, elite = 33630 }
 
 [[quest]]
 name = "Valak's Mausoleum"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
-xp.heroic = { casual = 900, normal = 1600, hard = 1700, elite = 1800 }
 
 [[quest]]
 name = "Vecna Denied"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
 legendary_level = 34
-xp.heroic = { casual = 4677, normal = 8092, hard = 8388, elite = 8684 }
-xp.legendary = { casual = 21429, normal = 36559, hard = 37403, elite = 38247 }
 
 [[quest]]
 name = "Vecna Unleashed"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
 legendary_level = 34
-xp.heroic = { casual = 3336, normal = 5770, hard = 5980, elite = 6190 }
-xp.legendary = { casual = 15253, normal = 26020, hard = 26619, elite = 27217 }
 
 [[quest]]
 name = "Venn's Trail: Clan Tunnelworm"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = true
-xp.heroic = { casual = 1000, normal = 1798, hard = 1929, elite = 2060 }
 
 [[quest]]
 name = "Venn's Trail: Venn's Fate"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = true
-xp.heroic = { casual = 496, normal = 888, hard = 949, elite = 1009 }
 
 [[quest]]
 name = "Violent Delights"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Short"
 free_to_play = false
-xp.heroic = { casual = 228, normal = 380, hard = 408, elite = 436 }
-xp.epic = { casual = 4138, normal = 7125, hard = 7352, elite = 7580 }
 
 [[quest]]
 name = "Voices of the Dead"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
 legendary_level = 35
-xp.heroic = { casual = 2328, normal = 4060, hard = 4240, elite = 4420 }
-xp.legendary = { casual = 13406, normal = 22857, hard = 23370, elite = 23883 }
 
 [[quest]]
 name = "Wake Me Up Inside"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
 legendary_level = 32
-xp.heroic = { casual = 1370, normal = 2452, hard = 2620, elite = 2788 }
-xp.legendary = { casual = 13167, normal = 22486, hard = 23027, elite = 23569 }
 
 [[quest]]
 name = "Walk the Butcher's Path"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = true
-xp.heroic = { casual = 632, normal = 1148, hard = 1244, elite = 1339 }
 
 [[quest]]
 name = "Watch Your Step"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Short"
 free_to_play = false
-xp.heroic = { casual = 216, normal = 360, hard = 386, elite = 412 }
-xp.epic = { casual = 3890, normal = 6697, hard = 6911, elite = 7125 }
 
 [[quest]]
 name = "What Dreams May Come"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Short"
 free_to_play = false
 legendary_level = 34
-xp.heroic = { casual = 1516, normal = 2620, hard = 2713, elite = 2806 }
-xp.legendary = { casual = 6993, normal = 11927, hard = 12198, elite = 12468 }
 
 [[quest]]
 name = "What Goes Up"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
-xp.heroic = { casual = 9174, normal = 15854, hard = 16416, elite = 16979 }
-xp.epic = { casual = 35652, normal = 61110, hard = 62800, elite = 64490 }
 
 [[quest]]
 name = "What Sleeps Below"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
 legendary_level = 32
-xp.heroic = { casual = 508, normal = 916, hard = 983, elite = 1052 }
-xp.legendary = { casual = 8036, normal = 13722, hard = 14050, elite = 14378 }
 
 [[quest]]
 name = "Where There's Smoke..."
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = true
-xp.heroic = { casual = 517, normal = 932, hard = 1001, elite = 1070 }
 
 [[quest]]
 name = "Whisperdoom's Spawn"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
-xp.heroic = { casual = 674, normal = 1209, hard = 1294, elite = 1380 }
 
 [[quest]]
 name = "Whispers of Return"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
 legendary_level = 33
-xp.heroic = { casual = 1356, normal = 2404, hard = 2548, elite = 2692 }
-xp.legendary = { casual = 14193, normal = 24225, hard = 24795, elite = 25365 }
 
 [[quest]]
 name = "White Plume Mountain"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
 legendary_level = 32
-xp.legendary = { casual = 23153, normal = 39546, hard = 40504, elite = 41461 }
 
 [[quest]]
 name = "Wild Thing"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Short"
 free_to_play = false
 legendary_level = 33
-xp.heroic = { casual = 1140, normal = 2020, hard = 2140, elite = 2260 }
-xp.legendary = { casual = 11388, normal = 19436, hard = 19893, elite = 20349 }
 
 [[quest]]
 name = "Wish Upon a Card"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
 legendary_level = 36
-xp.heroic = { casual = 1356, normal = 2380, hard = 2500, elite = 2620 }
-xp.legendary = { casual = 9199, normal = 15674, hard = 16017, elite = 16358 }
 
 [[quest]]
 name = "Witch Hunt"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
 legendary_level = 32
-xp.heroic = { casual = 1370, normal = 2452, hard = 2620, elite = 2788 }
-xp.legendary = { casual = 13167, normal = 22486, hard = 23027, elite = 23569 }
 
 [[quest]]
 name = "Wrath of the Earth"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
 legendary_level = 32
-xp.heroic = { casual = 1605, normal = 2804, hard = 2933, elite = 3062 }
-xp.legendary = { casual = 8980, normal = 15335, hard = 15702, elite = 16069 }
 
 [[quest]]
 name = "Wrath of the Flame"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
-xp.heroic = { casual = 1486, normal = 2566, hard = 2654, elite = 2742 }
 
 [[quest]]
 name = "Yarkuch's War Plans"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
-xp.heroic = { casual = 597, normal = 1070, hard = 1145, elite = 1220 }
 
 [[quest]]
 name = "Zawabi's Revenge"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Long"
 free_to_play = false
-xp.heroic = { normal = 5140, hard = 5380, elite = 5620 }
-xp.epic = { normal = 21489, hard = 22173, elite = 22857 }
 
 [[quest]]
 name = "Zoo Creeper"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
-duration = "Medium"
 free_to_play = false
 legendary_level = 36
-xp.heroic = { casual = 1730, normal = 3058, hard = 3232, elite = 3406 }
-xp.legendary = { casual = 14090, normal = 24011, hard = 24538, elite = 25065 }

@@ -158,15 +158,11 @@ fn reads_quest_facts_from_quests_files() {
     assert_eq!(wiki.quest_facts.len(), 3);
     let chronoscope = &wiki.quest_facts[0];
     assert_eq!(chronoscope.name, "The Chronoscope");
-    assert_eq!(chronoscope.duration.as_deref(), Some("Long"));
     assert!(!chronoscope.free_to_play);
     assert_eq!(chronoscope.legendary_level, Some(34));
     assert_eq!(chronoscope.zone.as_deref(), Some("The Harbor"));
     assert_eq!(chronoscope.bestowed_by.as_deref(), Some("A harbor quest giver"));
     assert_eq!(chronoscope.flagging.as_deref(), Some("None; open to all."));
-    let epic = chronoscope.xp.epic.as_ref().unwrap();
-    assert_eq!((epic.casual, epic.normal, epic.hard, epic.elite), (None, Some(23883), Some(24669), Some(25456)));
-    assert!(chronoscope.xp.legendary.is_none());
     assert_eq!(wiki.quest_loot.len(), 1, "quests.toml tables are not read as quest loot");
 }
 
@@ -189,16 +185,11 @@ fn rejects_a_file_name_that_names_no_wiki_file_type() {
 }
 
 #[test]
-fn rejects_a_duration_outside_the_four_the_wiki_uses() {
-    let error = parsed_wiki(&[("quests.toml", &quest_facts_toml("The Grotto", "duration = \"Epic\"\n"))]).unwrap_err();
-    assert!(error.contains("The Grotto") && error.contains("Epic") && error.contains("Very long"), "{error}");
-}
-
-#[test]
-fn rejects_negative_xp() {
-    let toml_text = quest_facts_toml("The Grotto", "xp.epic = { normal = -1 }\n");
-    let error = parsed_wiki(&[("quests.toml", &toml_text)]).unwrap_err();
-    assert!(error.contains("The Grotto") && error.contains("epic") && error.contains("-1"), "{error}");
+fn rejects_quest_duration_and_xp_as_unknown_fields() {
+    for removed_field_line in ["duration = \"Long\"\n", "xp.epic = { normal = 100 }\n"] {
+        let error = parsed_wiki(&[("quests.toml", &quest_facts_toml("The Grotto", removed_field_line))]).unwrap_err();
+        assert!(error.contains("quests.toml") && error.contains("unknown field"), "{error}");
+    }
 }
 
 #[test]
@@ -244,31 +235,15 @@ fn build_fails_naming_quest_facts_for_a_quest_absent_from_the_quests_table() {
     assert!(error.contains("The Missing Quest") && error.contains("quests"), "{error}");
 }
 
-type WikiQuestColumns = (Option<String>, bool, Option<i64>, Option<String>, Option<String>, Option<String>);
+type WikiQuestColumns = (bool, Option<i64>, Option<String>, Option<String>, Option<String>);
 
 fn wiki_columns(db: &Connection, quest: &str) -> WikiQuestColumns {
     db.query_row(
-        "SELECT duration, is_free_to_play, legendary_level, zone, bestowed_by, flagging FROM quests WHERE name = ?1",
+        "SELECT is_free_to_play, legendary_level, zone, bestowed_by, flagging FROM quests WHERE name = ?1",
         [quest],
-        |r| Ok((r.get(0)?, r.get(1)?, r.get(2)?, r.get(3)?, r.get(4)?, r.get(5)?)),
+        |r| Ok((r.get(0)?, r.get(1)?, r.get(2)?, r.get(3)?, r.get(4)?)),
     )
     .unwrap()
-}
-
-type XpRow = (String, Option<i64>, Option<i64>, Option<i64>, Option<i64>);
-
-fn xp_rows(db: &Connection, quest: &str) -> Vec<XpRow> {
-    let mut statement = db
-        .prepare(
-            "SELECT x.tier, x.casual, x.normal, x.hard, x.elite FROM quest_xp x JOIN quests q ON q.id = x.quest_id
-              WHERE q.name = ?1 ORDER BY x.tier",
-        )
-        .unwrap();
-    statement
-        .query_map([quest], |r| Ok((r.get(0)?, r.get(1)?, r.get(2)?, r.get(3)?, r.get(4)?)))
-        .unwrap()
-        .map(Result::unwrap)
-        .collect()
 }
 
 type MaetrimQuestColumns = (Option<i64>, Option<i64>, Option<i64>, Option<i64>, Option<i64>, bool, String);
@@ -283,12 +258,11 @@ fn maetrim_columns(db: &Connection, quest: &str) -> MaetrimQuestColumns {
 }
 
 #[test]
-fn fills_the_wiki_only_quest_columns_and_xp_rows() {
+fn fills_the_wiki_only_quest_columns() {
     let (db, report) = built_db_with(&WikiOverrides::from_dir(&fixtures_dir().join("wiki")).unwrap());
     assert_eq!(
         wiki_columns(&db, "The Chronoscope"),
         (
-            Some("Long".into()),
             false,
             Some(34),
             Some("The Harbor".into()),
@@ -296,18 +270,9 @@ fn fills_the_wiki_only_quest_columns_and_xp_rows() {
             Some("None; open to all.".into())
         )
     );
-    assert_eq!(wiki_columns(&db, "The Grotto"), (None, true, None, None, None, None));
-    assert_eq!(
-        xp_rows(&db, "The Chronoscope"),
-        vec![
-            ("epic".into(), None, Some(23883), Some(24669), Some(25456)),
-            ("heroic".into(), None, Some(4240), Some(4516), Some(4792)),
-        ]
-    );
-    assert_eq!(xp_rows(&db, "The Grotto"), vec![("heroic".into(), Some(304), None, None, None)]);
-    assert_eq!(wiki_columns(&db, "Caught in the Web"), (None, false, None, None, None, None));
+    assert_eq!(wiki_columns(&db, "The Grotto"), (true, None, None, None, None));
+    assert_eq!(wiki_columns(&db, "Caught in the Web"), (false, None, None, None, None));
     assert_eq!(report.wiki_quest_entry_count, 3);
-    assert_eq!(report.wiki_quest_xp_row_count, 5);
 }
 
 #[test]

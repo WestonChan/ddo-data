@@ -34,7 +34,6 @@ fn ddl_creates_every_v2_table() {
         "adventure_packs",
         "patrons",
         "quests",
-        "quest_xp",
         "items",
         "excluded_items",
         "item_weapon_stats",
@@ -115,15 +114,11 @@ fn ddl_drops_the_columns_with_no_source() {
 }
 
 #[test]
-fn quest_xp_accepts_only_the_three_tiers_and_quests_only_the_wiki_durations() {
+fn quests_carry_no_duration_and_no_xp_table_exists() {
     let db = fresh_db();
-    db.execute("INSERT INTO quests (id, name, duration) VALUES (1, 'The Grotto', 'Very long')", []).unwrap();
-    assert!(db.execute("INSERT INTO quests (id, name, duration) VALUES (2, 'Other', 'Forever')", []).is_err());
-    for tier in ["heroic", "epic", "legendary"] {
-        db.execute("INSERT INTO quest_xp (quest_id, tier, normal) VALUES (1, ?1, 100)", [tier]).unwrap();
-    }
-    assert!(db.execute("INSERT INTO quest_xp (quest_id, tier) VALUES (1, 'mythic')", []).is_err());
-    assert!(db.execute("INSERT INTO quest_xp (quest_id, tier) VALUES (1, 'heroic')", []).is_err());
+    assert!(!table_names(&db).contains("quest_xp"));
+    let error = db.execute("INSERT INTO quests (id, name, duration) VALUES (1, 'The Grotto', 'Long')", []).unwrap_err();
+    assert!(error.to_string().contains("duration"), "{error}");
 }
 
 #[test]

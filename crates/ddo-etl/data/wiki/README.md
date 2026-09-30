@@ -59,20 +59,15 @@ One `[[quest]]` table per quest, carrying the quest facts Maetrim's `Quests.xml`
 name = "A Blood Pact"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-28"
-duration = "Long"
 free_to_play = false
 legendary_level = 37
-xp.heroic = { casual = 3480, normal = 6100, hard = 6399, elite = 6700 }
-xp.legendary = { casual = 23256, normal = 39615, hard = 40469, elite = 41325 }
 ```
 
 - `free_to_play` (required): whether the quest itself is free to play, which the wiki marks per quest; `adventure_packs.is_free_to_play` stays Maetrim's per-pack flag.
-- `duration` (optional): `Short`, `Medium`, `Long` or `Very long`, as the wiki spells them.
 - `legendary_level` (optional): the legendary version's level. Heroic and epic levels are Maetrim's and are not repeated here.
-- `xp` (optional): `heroic`, `epic` and `legendary` tables, each with optional `casual`, `normal`, `hard` and `elite` base XP. Leave out a tier the quest does not run at and a difficulty the tier lacks.
 - `zone`, `bestowed_by`, `flagging` (optional, per-page reads): the page's "Takes place in" value, the quest giver, and free text on what must be run first.
 
-The merge fills `quests.duration`, `is_free_to_play`, `legendary_level`, `zone`, `bestowed_by` and `flagging`, and writes one `quest_xp` row per tier. It never writes the columns Maetrim's files fill (`level`, `epic_level`, `pack_id`, `patron_id`, `favor`, `is_raid`, `difficulties`). Besides the checks above, the build fails when `free_to_play` is missing, `duration` is not one of the four values, or an XP value is negative. The report's `wiki_quest_entry_count` and `wiki_quest_xp_row_count` count what was applied.
+The merge fills `quests.is_free_to_play`, `legendary_level`, `zone`, `bestowed_by` and `flagging`. It never writes the columns Maetrim's files fill (`level`, `epic_level`, `pack_id`, `patron_id`, `favor`, `is_raid`, `difficulties`). Besides the checks above, the build fails when `free_to_play` is missing or a key is not one of those listed; quest duration and XP are deliberately not kept, so a `duration` or `xp` key fails as an unknown field. The report's `wiki_quest_entry_count` counts what was applied.
 
 ## `crafting.toml`
 

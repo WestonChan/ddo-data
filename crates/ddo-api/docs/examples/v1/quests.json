@@ -6,7 +6,6 @@
       "normal",
       "hard"
     ],
-    "duration": "Long",
     "epic_level": 37,
     "epic_name": null,
     "favor": 6,
@@ -21,20 +20,6 @@
     "name": "A Blood Pact",
     "pack": "Terror of Demogorgon",
     "patron": "Battlehammer Expedition",
-    "xp": {
-      "heroic": {
-        "casual": 3480,
-        "elite": 6700,
-        "hard": 6399,
-        "normal": 6100
-      },
-      "legendary": {
-        "casual": 23256,
-        "elite": 41325,
-        "hard": 40469,
-        "normal": 39615
-      }
-    },
     "zone": null
   },
   {
@@ -44,7 +29,6 @@
       "hard",
       "elite"
     ],
-    "duration": "Long",
     "epic_level": 27,
     "epic_name": null,
     "favor": 7,
@@ -59,20 +43,6 @@
     "name": "A Break in the Ice",
     "pack": "Shadowfell Conspiracy",
     "patron": "The Harpers",
-    "xp": {
-      "epic": {
-        "casual": 15290,
-        "elite": 27643,
-        "hard": 26923,
-        "normal": 26203
-      },
-      "heroic": {
-        "casual": 3973,
-        "elite": 7347,
-        "hard": 7106,
-        "normal": 6864
-      }
-    },
     "zone": null
   },
   {
@@ -82,7 +52,6 @@
       "hard",
       "elite"
     ],
-    "duration": "Long",
     "epic_level": 24,
     "epic_name": "Return to Cabal for One",
     "favor": 6,
@@ -97,14 +66,6 @@
     "name": "A Cabal for One",
     "pack": "Ruins of Gianthold",
     "patron": "Agents of Argonnessen",
-    "xp": {
-      "heroic": {
-        "casual": 1855,
-        "elite": 3500,
-        "hard": 3364,
-        "normal": 3228
-      }
-    },
     "zone": null
   }
 ]

@@ -6,7 +6,7 @@ mod quests;
 pub use crafting::{CraftingIngredient, CraftingRecipe, CraftingSystem, IngredientCost};
 pub use descriptions::{DescriptionKind, WikiDescription};
 pub use quest_loot::QuestLoot;
-pub use quests::{QuestFacts, QuestXp, TierXp};
+pub use quests::QuestFacts;
 
 use anyhow::{bail, Context, Result};
 use serde::de::DeserializeOwned;
@@ -53,9 +53,6 @@ impl WikiEntry for QuestFacts {
     }
     fn citation(&self) -> (&str, &str) {
         (&self.page, &self.read)
-    }
-    fn validate(&self) -> Result<()> {
-        QuestFacts::validate(self)
     }
 }
 
