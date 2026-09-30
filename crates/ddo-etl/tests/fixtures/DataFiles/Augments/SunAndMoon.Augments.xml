@@ -36,4 +36,19 @@ The Proper Authorities, end chest</Description>
       <Item>Strength</Item>
     </Effect>
   </Augment>
+  <Augment>
+    <Name>Lunar Gem of Evocation (Heroic)</Name>
+    <Description>+2 Profane Bonus to Evocation DCs
+Drops in: ?</Description>
+    <MinLevel>1</MinLevel>
+    <Type>Moon</Type>
+    <Icon>HistoryBookWhite</Icon>
+    <Effect>
+      <Type>SpellDC</Type>
+      <Bonus>Profane</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">2</Amount>
+      <Item>Evocation</Item>
+    </Effect>
+  </Augment>
   </Augments>

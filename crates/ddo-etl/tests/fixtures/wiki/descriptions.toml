@@ -1,0 +1,28 @@
+# Only names the fixture DataFiles carry. Every description is a test value, not text read from ddowiki.
+[[entry]]
+kind = "item"
+name = "+1 Ember Repeating Light Crossbow"
+page = "https://ddowiki.com/page/Item:+1_Ember_Repeating_Light_Crossbow"
+read = "2026-09-29"
+description = "Test description: a repeating crossbow that burns."
+
+[[entry]]
+kind = "item"
+name = "Buckler of the Golden Age"
+page = "https://ddowiki.com/page/Item:Buckler_of_the_Golden_Age"
+read = "2026-09-29"
+description = "Test description that Maetrim's own text outranks."
+
+[[entry]]
+kind = "augment"
+name = "Lunar Gem of Evocation (Heroic)"
+page = "https://ddowiki.com/page/Item:Lunar_Gem_of_Evocation_(Heroic)"
+read = "2026-09-29"
+description = "Drops in: Test Quest, end chest"
+
+[[entry]]
+kind = "feat"
+name = "Lay on Hands"
+page = "https://ddowiki.com/page/Lay_on_Hands"
+read = "2026-09-29"
+description = "Test description for a feat two classes define."

@@ -1,6 +1,7 @@
+use ddo_etl::wiki::DescriptionKind;
 use serde_json::Value;
 use std::path::{Path, PathBuf};
-use xtask::wiki_tools::{likely_wiki_page_url, wiki_check_report, write_wiki_batch};
+use xtask::wiki_tools::{blank_description_page_url, likely_wiki_page_url, wiki_check_report, write_wiki_batch};
 
 fn fixtures_dir() -> PathBuf {
     Path::new(env!("CARGO_MANIFEST_DIR")).join("../crates/ddo-etl/tests/fixtures")
@@ -20,6 +21,9 @@ fn wiki_check_reports_the_wiki_counts_for_a_valid_wiki_dir() {
         "wiki_crafting_system_count: 2",
         "wiki_crafting_recipe_count: 5",
         "wiki_crafting_ingredient_count: 5",
+        "wiki_description_entry_count: 4",
+        "wiki_description_filled_count: 2",
+        "wiki_description_skipped_count: 3",
     ] {
         assert!(report.lines().any(|line| line == expected_line), "missing {expected_line:?} in\n{report}");
     }
@@ -48,7 +52,7 @@ fn wiki_batch_writes_the_reading_agent_inputs() {
 
     assert_eq!(line_count(&out_dir.path().join("item_names.txt")), 15);
     let augment_lines = std::fs::read_to_string(out_dir.path().join("augment_names.txt")).unwrap();
-    assert_eq!(augment_lines.lines().count(), 10);
+    assert_eq!(augment_lines.lines().count(), 11);
     assert!(augment_lines.lines().any(|line| line == "Alchemical\tFire I: Combustion\t29"), "{augment_lines}");
     let quest_pages: Value =
         serde_json::from_str(&std::fs::read_to_string(out_dir.path().join("quest_pages.json")).unwrap()).unwrap();
@@ -60,6 +64,47 @@ fn wiki_batch_writes_the_reading_agent_inputs() {
     let crafting_systems: Value =
         serde_json::from_str(&std::fs::read_to_string(out_dir.path().join("crafting_systems.json")).unwrap()).unwrap();
     assert_eq!(crafting_systems.as_object().unwrap().len(), 41);
+}
+
+#[test]
+fn wiki_batch_lists_every_blank_description_the_wiki_files_have_not_filled() {
+    let empty_wiki_dir = tempfile::tempdir().unwrap();
+    let unfilled_out_dir = tempfile::tempdir().unwrap();
+    let filled_out_dir = tempfile::tempdir().unwrap();
+
+    write_wiki_batch(&fixtures_dir().join("DataFiles"), Some(empty_wiki_dir.path()), unfilled_out_dir.path()).unwrap();
+    write_wiki_batch(&fixtures_dir().join("DataFiles"), Some(&fixtures_dir().join("wiki")), filled_out_dir.path())
+        .unwrap();
+
+    assert_eq!(
+        std::fs::read_to_string(unfilled_out_dir.path().join("blank_descriptions.txt")).unwrap(),
+        "item\t+1 Ember Repeating Light Crossbow\thttps://ddowiki.com/page/Item:+1_Ember_Repeating_Light_Crossbow\n\
+         item\t+1 Starter Heavy Steel Shield\thttps://ddowiki.com/page/Item:+1_Starter_Heavy_Steel_Shield\n\
+         augment\tLunar Gem of Evocation (Heroic)\thttps://ddowiki.com/page/Item:Lunar_Gem_of_Evocation_(Heroic)\n"
+    );
+    assert_eq!(
+        std::fs::read_to_string(filled_out_dir.path().join("blank_descriptions.txt")).unwrap(),
+        "item\t+1 Starter Heavy Steel Shield\thttps://ddowiki.com/page/Item:+1_Starter_Heavy_Steel_Shield\n"
+    );
+}
+
+#[test]
+fn blank_description_page_urls_prefix_items_and_augments_only() {
+    assert_eq!(
+        blank_description_page_url(DescriptionKind::Item, "Royal Guard Mask"),
+        "https://ddowiki.com/page/Item:Royal_Guard_Mask"
+    );
+    assert_eq!(
+        blank_description_page_url(DescriptionKind::Augment, "Lunar Gem of Evocation (Heroic)"),
+        "https://ddowiki.com/page/Item:Lunar_Gem_of_Evocation_(Heroic)"
+    );
+    for kind in [DescriptionKind::Race, DescriptionKind::Feat, DescriptionKind::Enhancement] {
+        assert_eq!(
+            blank_description_page_url(kind, "Dhampir Dark Bargainer"),
+            "https://ddowiki.com/page/Dhampir_Dark_Bargainer",
+            "{kind:?}"
+        );
+    }
 }
 
 #[test]

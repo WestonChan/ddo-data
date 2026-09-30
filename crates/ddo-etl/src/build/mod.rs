@@ -59,6 +59,9 @@ pub struct BuildReport {
     pub wiki_crafting_system_count: usize,
     pub wiki_crafting_recipe_count: usize,
     pub wiki_crafting_ingredient_count: usize,
+    pub wiki_description_entry_count: usize,
+    pub wiki_description_filled_count: usize,
+    pub wiki_description_skipped_count: usize,
     pub unmapped_effect_type_counts: BTreeMap<String, usize>,
 }
 

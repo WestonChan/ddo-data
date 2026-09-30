@@ -1,5 +1,5 @@
 use ddo_etl::build::build_database;
-use ddo_etl::wiki::WikiOverrides;
+use ddo_etl::wiki::{DescriptionKind, WikiOverrides};
 use ddo_model::DatasetVersion;
 use rusqlite::Connection;
 use std::path::PathBuf;
@@ -628,4 +628,150 @@ fn crafting_never_adds_innate_item_bonuses_or_augments() {
             |c: &Connection| c.query_row(&format!("SELECT COUNT(*) FROM {table}"), [], |r| r.get::<_, i64>(0)).unwrap();
         assert_eq!(count(&with), count(&without), "{table}");
     }
+}
+
+fn description_toml(kind: &str, name: &str, description: &str) -> String {
+    format!(
+        "[[entry]]\nkind = {kind:?}\nname = {name:?}\npage = \"https://ddowiki.com/page/{}\"\nread = \"2026-09-29\"\ndescription = {description:?}\n",
+        name.replace(' ', "_")
+    )
+}
+
+fn description_of(db: &Connection, table: &str, name: &str) -> Vec<Option<String>> {
+    let mut statement = db.prepare(&format!("SELECT description FROM {table} WHERE name = ?1 ORDER BY id")).unwrap();
+    statement.query_map([name], |r| r.get(0)).unwrap().map(Result::unwrap).collect()
+}
+
+#[test]
+fn reads_descriptions_from_descriptions_files() {
+    let wiki = WikiOverrides::from_dir(&fixtures_dir().join("wiki")).unwrap();
+    assert_eq!(wiki.descriptions.len(), 4);
+    let crossbow = &wiki.descriptions[0];
+    assert_eq!(crossbow.kind, DescriptionKind::Item);
+    assert_eq!(crossbow.name, "+1 Ember Repeating Light Crossbow");
+    assert_eq!(crossbow.read, "2026-09-29");
+    assert_eq!(crossbow.description, "Test description: a repeating crossbow that burns.");
+    assert_eq!(wiki.descriptions[2].kind, DescriptionKind::Augment);
+    assert_eq!(wiki.quest_facts.len(), 3, "descriptions.toml tables are not read as quests");
+}
+
+#[test]
+fn fills_a_blank_item_description() {
+    let (db, _) = built_db_with(&WikiOverrides::from_dir(&fixtures_dir().join("wiki")).unwrap());
+    assert_eq!(
+        description_of(&db, "items", "+1 Ember Repeating Light Crossbow"),
+        [Some("Test description: a repeating crossbow that burns.".to_string())]
+    );
+}
+
+#[test]
+fn never_replaces_an_item_description_maetrim_wrote() {
+    let (without, _) = built_db_with(&WikiOverrides::default());
+    let (with, _) = built_db_with(&WikiOverrides::from_dir(&fixtures_dir().join("wiki")).unwrap());
+    let maetrims_description = description_of(&without, "items", "Buckler of the Golden Age");
+    assert!(maetrims_description[0].as_deref().is_some_and(|text| text.starts_with("Forged in the Glory")));
+    assert_eq!(description_of(&with, "items", "Buckler of the Golden Age"), maetrims_description);
+}
+
+#[test]
+fn fills_the_drops_in_placeholder_line_of_an_augment_and_keeps_his_lines_before_it() {
+    let (db, _) = built_db_with(&WikiOverrides::from_dir(&fixtures_dir().join("wiki")).unwrap());
+    assert_eq!(
+        description_of(&db, "augments", "Lunar Gem of Evocation (Heroic)"),
+        [Some("+2 Profane Bonus to Evocation DCs\nDrops in: Test Quest, end chest".to_string())]
+    );
+}
+
+#[test]
+fn never_replaces_an_augment_description_without_the_placeholder() {
+    let wiki = parsed_wiki(&[(
+        "descriptions.toml",
+        &description_toml("augment", "Lunar Gem of Strength (Heroic)", "Drops in: Test Quest"),
+    )])
+    .unwrap();
+    let (db, report) = built_db_with(&wiki);
+    let description = description_of(&db, "augments", "Lunar Gem of Strength (Heroic)");
+    assert!(description[0].as_deref().is_some_and(|text| text.contains("Seeds of Decay")), "{description:?}");
+    assert_eq!((report.wiki_description_filled_count, report.wiki_description_skipped_count), (0, 1));
+}
+
+#[test]
+fn weighs_a_feat_description_against_every_feat_with_that_name() {
+    let (without, _) = built_db_with(&WikiOverrides::default());
+    let (with, _) = built_db_with(&WikiOverrides::from_dir(&fixtures_dir().join("wiki")).unwrap());
+    let maetrims_descriptions = description_of(&without, "feats", "Lay on Hands");
+    assert_eq!(maetrims_descriptions.len(), 2);
+    assert_eq!(description_of(&with, "feats", "Lay on Hands"), maetrims_descriptions);
+}
+
+#[test]
+fn build_reports_description_entries_filled_and_skipped() {
+    let report = build_report_with(&WikiOverrides::from_dir(&fixtures_dir().join("wiki")).unwrap()).unwrap();
+    assert_eq!(
+        (
+            report.wiki_description_entry_count,
+            report.wiki_description_filled_count,
+            report.wiki_description_skipped_count
+        ),
+        (4, 2, 3)
+    );
+}
+
+#[test]
+fn rejects_a_description_kind_outside_the_five() {
+    let error = parsed_wiki(&[("descriptions.toml", &description_toml("spell", "Fireball", "Burns."))]).unwrap_err();
+    assert!(
+        error.contains("descriptions.toml")
+            && error.contains("Fireball")
+            && error.contains("spell")
+            && error.contains("enhancement"),
+        "{error}"
+    );
+}
+
+#[test]
+fn rejects_an_empty_or_untrimmed_description() {
+    for bad in ["", "   ", " Leading space.", "Trailing newline.\n"] {
+        let error = parsed_wiki(&[("descriptions.toml", &description_toml("item", "Five Rings", bad))]).unwrap_err();
+        assert!(error.contains("Five Rings") && error.contains("description"), "{bad:?}: {error}");
+    }
+}
+
+#[test]
+fn rejects_a_kind_and_name_listed_twice_across_descriptions_files() {
+    let error = parsed_wiki(&[
+        ("descriptions.toml", &description_toml("item", "Five Rings", "One.")),
+        ("descriptions_more.toml", &description_toml("item", "Five Rings", "Two.")),
+    ])
+    .unwrap_err();
+    assert!(
+        error.contains("Five Rings") && error.contains("descriptions.toml") && error.contains("descriptions_more.toml"),
+        "{error}"
+    );
+}
+
+#[test]
+fn a_name_may_carry_a_description_for_each_kind() {
+    let wiki = parsed_wiki(&[(
+        "descriptions.toml",
+        &(description_toml("feat", "Lay on Hands", "One.") + &description_toml("enhancement", "Lay on Hands", "Two.")),
+    )]);
+    assert!(wiki.is_ok(), "{wiki:?}");
+}
+
+#[test]
+fn build_fails_naming_a_description_for_a_name_absent_from_its_kind() {
+    for kind in ["item", "augment", "race", "feat", "enhancement"] {
+        let wiki =
+            parsed_wiki(&[("descriptions.toml", &description_toml(kind, "The Missing Thing", "Missing."))]).unwrap();
+        let error = build_report_with(&wiki).unwrap_err();
+        assert!(error.contains("The Missing Thing") && error.contains(kind), "{kind}: {error}");
+    }
+}
+
+#[test]
+fn build_fails_naming_an_item_description_for_a_race_name() {
+    let wiki = parsed_wiki(&[("descriptions.toml", &description_toml("item", "Dwarf", "Short."))]).unwrap();
+    let error = build_report_with(&wiki).unwrap_err();
+    assert!(error.contains("Dwarf") && error.contains("item"), "{error}");
 }

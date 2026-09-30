@@ -1,8 +1,10 @@
 mod crafting;
+mod descriptions;
 mod quest_loot;
 mod quests;
 
 pub use crafting::{CraftingIngredient, CraftingRecipe, CraftingSystem, IngredientCost};
+pub use descriptions::{DescriptionKind, WikiDescription};
 pub use quest_loot::QuestLoot;
 pub use quests::{QuestFacts, QuestXp, TierXp};
 
@@ -19,12 +21,16 @@ pub struct WikiOverrides {
     pub quest_loot: Vec<QuestLoot>,
     pub quest_facts: Vec<QuestFacts>,
     pub crafting_systems: Vec<CraftingSystem>,
+    pub descriptions: Vec<WikiDescription>,
 }
 
 trait WikiEntry: DeserializeOwned {
     const TOML_TABLE_NAME: &'static str;
     fn name(&self) -> &str;
     fn citation(&self) -> (&str, &str);
+    fn unique_key(&self) -> String {
+        self.name().to_owned()
+    }
     fn validate(&self) -> Result<()> {
         Ok(())
     }
@@ -66,10 +72,27 @@ impl WikiEntry for CraftingSystem {
     }
 }
 
+impl WikiEntry for WikiDescription {
+    const TOML_TABLE_NAME: &'static str = "entry";
+    fn name(&self) -> &str {
+        &self.name
+    }
+    fn citation(&self) -> (&str, &str) {
+        (&self.page, &self.read)
+    }
+    fn unique_key(&self) -> String {
+        format!("{} {}", self.kind.as_str(), self.name)
+    }
+    fn validate(&self) -> Result<()> {
+        WikiDescription::validate(self)
+    }
+}
+
 enum WikiFileKind {
     QuestLoot,
     QuestFacts,
     CraftingSystems,
+    Descriptions,
 }
 
 impl WikiFileKind {
@@ -81,9 +104,11 @@ impl WikiFileKind {
             Ok(Self::QuestFacts)
         } else if stem.starts_with("crafting") {
             Ok(Self::CraftingSystems)
+        } else if stem.starts_with("descriptions") {
+            Ok(Self::Descriptions)
         } else {
             bail!(
-                "wiki file {file_name}: the name must start with quest_loot, quests or crafting, which says what it holds"
+                "wiki file {file_name}: the name must start with quest_loot, quests, crafting or descriptions, which says what it holds"
             )
         }
     }
@@ -92,7 +117,7 @@ impl WikiFileKind {
 fn parse_wiki_entries<'a, T: WikiEntry>(
     file_name: &'a str,
     toml_text: &str,
-    first_file_by_entry_name: &mut HashMap<String, &'a str>,
+    first_file_by_entry_key: &mut HashMap<String, &'a str>,
 ) -> Result<Vec<T>> {
     let table_name = T::TOML_TABLE_NAME;
     let mut document: toml::Table = toml::from_str(toml_text).with_context(|| format!("wiki file {file_name}"))?;
@@ -117,7 +142,7 @@ fn parse_wiki_entries<'a, T: WikiEntry>(
         validate_citation(page, read)
             .and_then(|()| entry.validate())
             .with_context(|| format!("wiki file {file_name}: {entry_label}"))?;
-        if let Some(first_file) = first_file_by_entry_name.insert(entry.name().to_owned(), file_name) {
+        if let Some(first_file) = first_file_by_entry_key.insert(entry.unique_key(), file_name) {
             bail!("wiki file {file_name}: {entry_label} is already listed in {first_file}");
         }
         entries.push(entry);
@@ -156,6 +181,7 @@ impl WikiOverrides {
         let mut overrides = Self::default();
         let (mut quest_loot_file_by_quest, mut quest_facts_file_by_quest, mut crafting_file_by_system) =
             (HashMap::new(), HashMap::new(), HashMap::new());
+        let mut description_file_by_kind_and_name = HashMap::new();
         for (file_name, toml_text) in toml_files {
             match WikiFileKind::from_file_name(file_name)? {
                 WikiFileKind::QuestLoot => overrides.quest_loot.extend(parse_wiki_entries(
@@ -172,6 +198,11 @@ impl WikiOverrides {
                     file_name,
                     toml_text,
                     &mut crafting_file_by_system,
+                )?),
+                WikiFileKind::Descriptions => overrides.descriptions.extend(parse_wiki_entries(
+                    file_name,
+                    toml_text,
+                    &mut description_file_by_kind_and_name,
                 )?),
             }
         }

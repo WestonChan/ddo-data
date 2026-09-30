@@ -1,5 +1,5 @@
 use super::BuildReport;
-use crate::wiki::{CraftingRecipe, CraftingSystem, WikiOverrides};
+use crate::wiki::{CraftingRecipe, CraftingSystem, WikiDescription, WikiOverrides};
 use anyhow::{bail, Context, Result};
 use ddo_model::enums::LootType;
 use rusqlite::{params, OptionalExtension, Transaction};
@@ -66,6 +66,48 @@ pub(super) fn apply_wiki_overrides(
         insert_crafting_system(transaction, crafting_system, report)
             .with_context(|| format!("wiki crafting {:?} ({})", crafting_system.name, crafting_system.page))?;
     }
+    for wiki_description in &wiki_overrides.descriptions {
+        fill_blank_descriptions(transaction, wiki_description, report).with_context(|| {
+            format!(
+                "wiki descriptions {} {:?} ({})",
+                wiki_description.kind.as_str(),
+                wiki_description.name,
+                wiki_description.page
+            )
+        })?;
+    }
+    Ok(())
+}
+
+fn fill_blank_descriptions(
+    transaction: &Transaction,
+    wiki_description: &WikiDescription,
+    report: &mut BuildReport,
+) -> Result<()> {
+    let table_name = wiki_description.kind.table_name();
+    let mut statement = transaction.prepare(&format!("SELECT id, description FROM {table_name} WHERE name = ?1"))?;
+    let maetrim_descriptions_by_id = statement
+        .query_map(params![wiki_description.name], |r| Ok((r.get::<_, i64>(0)?, r.get::<_, Option<String>>(1)?)))?
+        .collect::<rusqlite::Result<Vec<_>>>()?;
+    if maetrim_descriptions_by_id.is_empty() {
+        bail!(
+            "no {} in Maetrim's files has this name (matched against {table_name}.name); fix the name to match his",
+            wiki_description.kind.as_str()
+        );
+    }
+    for (row_id, maetrim_description) in maetrim_descriptions_by_id {
+        match wiki_description.kind.filled_description(maetrim_description.as_deref(), &wiki_description.description) {
+            Some(filled_description) => {
+                transaction.execute(
+                    &format!("UPDATE {table_name} SET description = ?2 WHERE id = ?1"),
+                    params![row_id, filled_description],
+                )?;
+                report.wiki_description_filled_count += 1;
+            }
+            None => report.wiki_description_skipped_count += 1,
+        }
+    }
+    report.wiki_description_entry_count += 1;
     Ok(())
 }
 

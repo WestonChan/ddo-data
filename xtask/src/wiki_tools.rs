@@ -1,6 +1,7 @@
 use crate::dataset::{build_in_memory_database, wiki_overrides_from};
 use anyhow::{Context, Result};
 use ddo_etl::build::BuildReport;
+use ddo_etl::wiki::DescriptionKind;
 use rusqlite::Connection;
 use std::collections::BTreeMap;
 use std::path::Path;
@@ -26,6 +27,9 @@ fn wiki_report_lines(report: &BuildReport) -> Vec<String> {
         ("wiki_crafting_system_count", report.wiki_crafting_system_count),
         ("wiki_crafting_recipe_count", report.wiki_crafting_recipe_count),
         ("wiki_crafting_ingredient_count", report.wiki_crafting_ingredient_count),
+        ("wiki_description_entry_count", report.wiki_description_entry_count),
+        ("wiki_description_filled_count", report.wiki_description_filled_count),
+        ("wiki_description_skipped_count", report.wiki_description_skipped_count),
     ]
     .iter()
     .map(|(field_name, count)| format!("{field_name}: {count}"))
@@ -41,6 +45,7 @@ pub fn write_wiki_batch(data_files_dir: &Path, wiki_dir: Option<&Path>, out_dir:
         ("augment_names.txt", as_lines(augment_name_lines(&db)?)),
         ("quest_pages.json", serde_json::to_string_pretty(&quest_page_urls(&db)?)? + "\n"),
         ("crafting_systems.json", CRAFTING_SYSTEMS_JSON.to_string()),
+        ("blank_descriptions.txt", as_lines(blank_description_lines(&db)?)),
     ];
     batch_files
         .into_iter()
@@ -57,6 +62,17 @@ pub fn likely_wiki_page_url(quest_name: &str) -> String {
         .iter()
         .find_map(|difficulty_suffix| quest_name.strip_suffix(difficulty_suffix))
         .unwrap_or(quest_name);
+    wiki_page_url(page_name)
+}
+
+pub fn blank_description_page_url(kind: DescriptionKind, name: &str) -> String {
+    match kind {
+        DescriptionKind::Item | DescriptionKind::Augment => wiki_page_url(&format!("Item:{name}")),
+        DescriptionKind::Race | DescriptionKind::Feat | DescriptionKind::Enhancement => wiki_page_url(name),
+    }
+}
+
+fn wiki_page_url(page_name: &str) -> String {
     format!("{WIKI_PAGE_URL_PREFIX}{}", page_name.replace(' ', "_").replace('\'', "%27"))
 }
 
@@ -91,4 +107,25 @@ fn quest_page_urls(db: &Connection) -> Result<BTreeMap<String, String>> {
             (quest_name, page_url)
         })
         .collect())
+}
+
+fn blank_description_lines(db: &Connection) -> Result<Vec<String>> {
+    let mut lines = Vec::new();
+    for kind in DescriptionKind::ALL {
+        let mut statement =
+            db.prepare(&format!("SELECT DISTINCT name, description FROM {} ORDER BY name", kind.table_name()))?;
+        let names_and_descriptions: Vec<(String, Option<String>)> =
+            statement.query_map([], |row| Ok((row.get(0)?, row.get(1)?)))?.collect::<rusqlite::Result<_>>()?;
+        let mut names_awaiting_description: Vec<String> = names_and_descriptions
+            .into_iter()
+            .filter(|(_, description)| kind.is_awaiting_description(description.as_deref()))
+            .map(|(name, _)| name)
+            .collect();
+        names_awaiting_description.dedup();
+        lines.extend(names_awaiting_description.into_iter().map(|name| {
+            let page_url = blank_description_page_url(kind, &name);
+            format!("{}\t{name}\t{page_url}", kind.as_str())
+        }));
+    }
+    Ok(lines)
 }

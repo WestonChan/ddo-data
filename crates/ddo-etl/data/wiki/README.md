@@ -52,7 +52,7 @@ A clean run prints the report, whose `wiki_quest_loot_entry_count`, `wiki_rare_d
 
 ## `quests.toml`
 
-One `[[quest]]` table per quest, carrying the quest facts Maetrim's `Quests.xml` has no field for. The loader reads a file by its name: `quest_loot*.toml` holds loot entries, `quests*.toml` holds these and `crafting*.toml` holds crafting systems, so a quest may appear once in each of the first two; any other name fails the build. The first 548 entries were read from the one index page, [Quests by level and XP](https://ddowiki.com/page/Quests_by_level_and_XP); a later read of a quest's own page updates its entry, `page` and `read` and adds the per-page fields.
+One `[[quest]]` table per quest, carrying the quest facts Maetrim's `Quests.xml` has no field for. The loader reads a file by its name: `quest_loot*.toml` holds loot entries, `quests*.toml` holds these, `crafting*.toml` holds crafting systems and `descriptions*.toml` holds descriptions, so a quest may appear once in each of the first two; any other name fails the build. The first 548 entries were read from the one index page, [Quests by level and XP](https://ddowiki.com/page/Quests_by_level_and_XP); a later read of a quest's own page updates its entry, `page` and `read` and adds the per-page fields.
 
 ```toml
 [[quest]]
@@ -112,4 +112,23 @@ An augment name resolves to every augment of that name in any of the system's fa
 
 The merge writes `crafting_systems`, `crafting_system_families`, `crafting_ingredients`, `crafting_recipes` (with `sort_order` the recipe's position in the entry and `grants_slot_id` the granted socket's `augment_slot_types` row), `crafting_recipe_augments` and `crafting_recipe_ingredients`. Besides the citation checks above, the build fails, naming the system and the value, when a system has a field or table other than the ones above; a required field is missing; a system without `families` has a recipe listing `augments`; a tier is not one of the four; an ingredient repeats at one tier; a recipe has no `augments`, no `grants_slot` and no `note`; a cost names an undeclared ingredient, repeats one, or has a quantity below 1; or `pack`, a family, a `slot` or `grants_slot` label or an augment name matches nothing in Maetrim's files. The report's `wiki_crafting_system_count`, `wiki_crafting_recipe_count` and `wiki_crafting_ingredient_count` count what was applied.
 
-To check a draft without embedding it, point the check at a directory holding only that file: `cargo xtask wiki-check --wiki /path/to/draft-dir`. It reads that directory in place of the embedded files, builds into memory, and prints the wiki counts or the validation error in a few seconds. `cargo xtask wiki-batch` writes the item, augment and quest name lists a reading agent matches against, under `target/wiki-batch/`.
+To check a draft without embedding it, point the check at a directory holding only that file: `cargo xtask wiki-check --wiki /path/to/draft-dir`. It reads that directory in place of the embedded files, builds into memory, and prints the wiki counts or the validation error in a few seconds. `cargo xtask wiki-batch` writes the item, augment and quest name lists a reading agent matches against, and `blank_descriptions.txt` (below), under `target/wiki-batch/`.
+
+## `descriptions.toml`
+
+One `[[entry]]` table per item, augment, race, feat or enhancement whose description Maetrim's files leave blank, carrying the description text from its wiki page.
+
+```toml
+[[entry]]
+kind = "item"
+name = "Royal Guard Mask"
+page = "https://ddowiki.com/page/Item:Royal_Guard_Mask"
+read = "2026-09-29"
+description = "..."
+```
+
+- `kind` (required): `item`, `augment`, `race`, `feat` or `enhancement`.
+- `name` (required, unique per `kind` across files): the name exactly as Maetrim's `items.name`, `augments.name`, `races.name`, `feats.name` or `enhancements.name` spells it. An augment, feat or enhancement name applies to every row with that name, since names repeat across augment families, class files and enhancement trees.
+- `description` (required): the page's description text, not empty and with no leading or trailing whitespace.
+
+The merge writes the description only where Maetrim's is empty (or, for an augment, where his text is the `Drops in: ?` placeholder or ends in a `Drops in: ?` line, which is then the only line replaced), so a wiki description never replaces text he wrote; for such an augment, write the drop line in his form (`Drops in: The House of Gems, end chest`). Besides the citation checks above, the build fails, naming the entry, when a field is missing or unknown, `kind` is not one of the five, `description` is empty or untrimmed, a (`kind`, `name`) pair repeats, or `name` matches no row of that kind. The report's `wiki_description_entry_count` counts the entries applied, `wiki_description_filled_count` the rows filled and `wiki_description_skipped_count` the rows left alone because he already had a description. `cargo xtask wiki-batch` writes the work list, `blank_descriptions.txt`: one `kind<TAB>name<TAB>suggested page URL` line per name still blank after the current overrides.
