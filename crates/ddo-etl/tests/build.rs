@@ -269,6 +269,44 @@ fn links_items_to_quests_from_drop_location() {
 }
 
 #[test]
+fn links_augments_to_the_quests_their_descriptions_name() {
+    let (db, report) = built_fixture_db();
+    let augment_links = |augment: &str| -> Vec<(String, String, bool, Option<String>)> {
+        let mut statement = db
+            .prepare(
+                "SELECT q.name, qal.loot_type, qal.is_rare, qal.chest FROM quest_augment_loot qal
+                   JOIN quests q ON q.id = qal.quest_id JOIN augments a ON a.id = qal.augment_id
+                  WHERE a.name = ?1 ORDER BY q.name",
+            )
+            .unwrap();
+        statement
+            .query_map([augment], |r| Ok((r.get(0)?, r.get(1)?, r.get(2)?, r.get(3)?)))
+            .unwrap()
+            .map(Result::unwrap)
+            .collect()
+    };
+    assert_eq!(
+        augment_links("Solar Gem of Elemental Absorption (Heroic)"),
+        [("Land of Lamordia".into(), "chest".into(), true, Some("vornir frosthelm's chest".into()))]
+    );
+    assert_eq!(
+        augment_links("Lunar Gem of Magical Protection (Heroic)"),
+        [("Book Burning".into(), "chest".into(), false, Some("end chest".into()))],
+        "the quests his text names that the fixture lacks link nothing"
+    );
+    assert!(augment_links("Lunar Gem of Evocation (Heroic)").is_empty(), "'Drops in: ?' names no quest");
+    assert_eq!((report.quest_augment_loot_link_count, report.drop_text_rare_augment_link_count), (2, 1));
+    let description: String = db
+        .query_row(
+            "SELECT description FROM augments WHERE name = 'Lunar Gem of Magical Protection (Heroic)'",
+            [],
+            |r| r.get(0),
+        )
+        .unwrap();
+    assert!(description.ends_with("A Light in the Attic, secret area chest"), "the description keeps its drop text");
+}
+
+#[test]
 fn records_the_chest_each_item_drops_from() {
     let (db, _) = built_fixture_db();
     let chest_of = |quest: &str, item: &str| -> Option<String> {
@@ -336,7 +374,7 @@ fn diff_reports_coverage_against_a_legacy_database() {
 #[test]
 fn writes_augments_with_slots_bonuses_and_modifiers() {
     let (db, report) = built_fixture_db();
-    assert_eq!(report.augment_count, 11);
+    assert_eq!(report.augment_count, 13);
     let ruby: i64 =
         db.query_row("SELECT id FROM augments WHERE name = 'Ruby of Acid Damage'", [], |r| r.get(0)).unwrap();
     let (family, has_selectable_level, levels, values): (String, bool, String, String) = db

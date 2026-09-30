@@ -1,3 +1,4 @@
+use super::drop_text::QuestLootTable;
 use super::items::{ArmorStatsRow, ItemRow, WeaponStatsRow};
 use super::{BuildReport, ProbableDuplicateWikiEntry, SupersededWikiEntry, TableWriter};
 use crate::wiki::{
@@ -462,7 +463,7 @@ impl TableWriter<'_> {
             self.insert_item_augment_slot(item_id, sort_order, slot_type_id)?;
         }
         for (quest_id, loot_type) in quest_links {
-            self.insert_quest_loot_link(quest_id, item_id, loot_type, false, None)?;
+            self.insert_quest_loot_link(QuestLootTable::Items, quest_id, item_id, loot_type, false, None)?;
         }
         if let Some(set_name) = &wiki_item.set {
             self.pending_set_item_links.push((item_id, set_name.clone()));

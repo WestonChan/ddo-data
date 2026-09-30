@@ -38,6 +38,8 @@ pub struct BuildReport {
     pub quest_loot_link_count: usize,
     pub drop_text_rare_link_count: usize,
     pub drop_text_wiki_quest_link_count: usize,
+    pub quest_augment_loot_link_count: usize,
+    pub drop_text_rare_augment_link_count: usize,
     pub augment_slot_type_count: usize,
     pub augment_count: usize,
     pub set_bonus_count: usize,
@@ -182,7 +184,7 @@ pub fn build_database(
     }
 
     for path in files_with_extension(&data_files_dir.join("Augments"), "xml")? {
-        report.augment_count += writer.write_augments_file(&path).with_context(|| format!("{}", path.display()))?;
+        writer.write_augments_file(&path, &mut report).with_context(|| format!("{}", path.display()))?;
     }
 
     writer.write_set_bonus_file(&data_files_dir.join("SetBonuses.xml"), false, &mut report)?;

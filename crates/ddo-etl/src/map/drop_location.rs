@@ -64,3 +64,21 @@ fn text_without_parentheticals(text: &str) -> String {
     }
     kept_text
 }
+
+const DROP_TEXT_MARKER: &str = "Drops in";
+const DROP_LOCATION_MARKER: &str = "Drop Location:";
+
+pub fn drop_text_in_description(description: &str) -> Option<&str> {
+    let Some((_, text_after_marker)) = description.split_once(DROP_TEXT_MARKER) else {
+        let (_, text_after_drop_location_marker) = description.split_once(DROP_LOCATION_MARKER)?;
+        return Some(text_after_drop_location_marker.trim());
+    };
+    let text_after_update = text_after_marker
+        .trim_start()
+        .strip_prefix('U')
+        .filter(|text| text.starts_with(|character: char| character.is_ascii_digit()))
+        .map_or(text_after_marker, |text| text.trim_start_matches(|character: char| character.is_ascii_digit()));
+    let text_after_quest_word = text_after_update.trim_start().strip_prefix("Quest").unwrap_or(text_after_update);
+    let drop_text = text_after_quest_word.trim_start().trim_start_matches([':', ';']).trim_start();
+    Some(drop_text.strip_prefix(DROP_LOCATION_MARKER).unwrap_or(drop_text).trim())
+}

@@ -1,10 +1,11 @@
+use super::drop_text::QuestLootTable;
 use super::{joined_non_empty, trimmed_non_empty, BuildReport, TableWriter};
 use crate::map::buff::ResolvedBuff;
 use crate::map::material;
 use crate::map::placement::placement_of;
 use crate::xml::items::Item;
 use anyhow::{bail, Result};
-use ddo_model::enums::{ArmorType, EquipmentSlot, Handedness, ItemCategory, LootType, ModifierSource, RowSource};
+use ddo_model::enums::{ArmorType, EquipmentSlot, Handedness, ItemCategory, ModifierSource, RowSource};
 use rusqlite::params;
 
 pub(super) struct ItemRow<'a> {
@@ -338,35 +339,13 @@ impl TableWriter<'_> {
         Ok(())
     }
 
-    pub(super) fn insert_quest_loot_link(
-        &self,
-        quest_id: i64,
-        item_id: i64,
-        loot_type: LootType,
-        is_rare: bool,
-        chest: Option<&str>,
-    ) -> Result<usize> {
-        Ok(self.transaction.execute(
-            "INSERT INTO quest_loot (quest_id, item_id, loot_type, is_rare, chest) VALUES (?1, ?2, ?3, ?4, ?5)
-             ON CONFLICT (quest_id, item_id) DO UPDATE SET is_rare = 1 WHERE excluded.is_rare > quest_loot.is_rare",
-            params![quest_id, item_id, loot_type.as_str(), is_rare, chest],
-        )?)
-    }
-
     fn link_item_to_quests(&self, item_id: i64, drop_location: &str, report: &mut BuildReport) -> Result<()> {
-        for quest_link in self.drop_text_quests.quest_links_in(drop_location) {
-            let changed_row_count = self.insert_quest_loot_link(
-                quest_link.quest_id,
-                item_id,
-                quest_link.loot_type,
-                quest_link.is_rare,
-                quest_link.chest.as_deref(),
-            )?;
+        for linked_quest in self.link_to_drop_text_quests(QuestLootTable::Items, item_id, drop_location)? {
             report.quest_loot_link_count += 1;
-            if quest_link.is_wiki_quest {
+            if linked_quest.is_wiki_quest {
                 report.drop_text_wiki_quest_link_count += 1;
             }
-            if quest_link.is_rare && changed_row_count > 0 {
+            if linked_quest.is_newly_rare {
                 report.drop_text_rare_link_count += 1;
             }
         }

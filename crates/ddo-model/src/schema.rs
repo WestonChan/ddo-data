@@ -658,6 +658,17 @@ CREATE TABLE IF NOT EXISTS augment_bonuses (
     PRIMARY KEY (augment_id, sort_order)
 );
 
+-- The quests an augment drops in, read from the "Drops in" text of his <Description> as quest_loot reads <DropLocation>.
+CREATE TABLE IF NOT EXISTS quest_augment_loot (
+    quest_id   INTEGER NOT NULL REFERENCES quests(id) ON DELETE CASCADE,
+    augment_id INTEGER NOT NULL REFERENCES augments(id) ON DELETE CASCADE,
+    loot_type  TEXT CHECK (loot_type {loot_type}),
+    is_rare    INTEGER NOT NULL DEFAULT 0 CHECK (is_rare IN (0, 1)),  -- (rare) / rare drop in the text, or data/wiki quest_loot `rare_augments`
+    chest      TEXT,                                   -- as quest_loot.chest
+    PRIMARY KEY (quest_id, augment_id)
+);
+CREATE INDEX IF NOT EXISTS idx_quest_augment_loot_augment ON quest_augment_loot(augment_id);
+
 -- Crafting (data/wiki crafting) --------------------------------------------------
 
 -- A crafting system as one wiki page describes it. Its options are Maetrim's augments in `families`.

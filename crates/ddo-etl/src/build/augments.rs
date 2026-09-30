@@ -1,4 +1,6 @@
-use super::{joined_non_empty, json_number_array, trimmed_non_empty, TableWriter};
+use super::drop_text::QuestLootTable;
+use super::{joined_non_empty, json_number_array, trimmed_non_empty, BuildReport, TableWriter};
+use crate::map::drop_location::drop_text_in_description;
 use crate::xml::augments::parse_augments_file;
 use anyhow::Result;
 use ddo_model::enums::ModifierSource;
@@ -6,7 +8,7 @@ use rusqlite::params;
 use std::path::Path;
 
 impl TableWriter<'_> {
-    pub(super) fn write_augments_file(&mut self, path: &Path) -> Result<usize> {
+    pub(super) fn write_augments_file(&mut self, path: &Path, report: &mut BuildReport) -> Result<()> {
         let (family, augments) = parse_augments_file(path)?;
         for augment in &augments {
             self.transaction.execute(
@@ -45,6 +47,9 @@ impl TableWriter<'_> {
                     params![augment_id, slot_type_id],
                 )?;
             }
+            if let Some(description) = augment.description.as_deref() {
+                self.link_augment_to_quests(augment_id, description, report)?;
+            }
             self.write_modifiers(ModifierSource::Augment, augment_id, &augment.effects)?;
             for (sort_order, bonus_id) in self.ensure_derived_bonuses(&augment.effects)?.into_iter().enumerate() {
                 self.transaction.execute(
@@ -53,6 +58,20 @@ impl TableWriter<'_> {
                 )?;
             }
         }
-        Ok(augments.len())
+        report.augment_count += augments.len();
+        Ok(())
+    }
+
+    fn link_augment_to_quests(&self, augment_id: i64, description: &str, report: &mut BuildReport) -> Result<()> {
+        let Some(drop_text) = drop_text_in_description(description) else {
+            return Ok(());
+        };
+        for linked_quest in self.link_to_drop_text_quests(QuestLootTable::Augments, augment_id, drop_text)? {
+            report.quest_augment_loot_link_count += 1;
+            if linked_quest.is_newly_rare {
+                report.drop_text_rare_augment_link_count += 1;
+            }
+        }
+        Ok(())
     }
 }

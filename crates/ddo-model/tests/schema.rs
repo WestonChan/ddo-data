@@ -46,6 +46,7 @@ fn ddl_creates_every_v2_table() {
         "item_augment_slots",
         "item_augment_slot_options",
         "quest_loot",
+        "quest_augment_loot",
         "modifiers",
         "requirements",
         "augments",
@@ -209,6 +210,31 @@ fn corrections_record_each_kind_field_and_value_change_once() {
     }
     assert!(insert_correction("gem", "").is_err(), "kind is one of the correctable tables");
     assert_eq!(SCHEMA_VERSION, 7);
+}
+
+#[test]
+fn quest_augment_loot_links_quests_to_augments_as_quest_loot_links_them_to_items() {
+    let db = fresh_db();
+    let mut statement = db.prepare("SELECT name FROM pragma_table_info('quest_augment_loot') ORDER BY cid").unwrap();
+    let columns: Vec<String> = statement.query_map([], |r| r.get(0)).unwrap().map(Result::unwrap).collect();
+    assert_eq!(columns, ["quest_id", "augment_id", "loot_type", "is_rare", "chest"]);
+    db.execute_batch(
+        "INSERT INTO quests (id, name) VALUES (1, 'Book Burning');
+         INSERT INTO augments (id, name, family) VALUES (1, 'Lunar Gem of Magical Protection (Heroic)', 'SunAndMoon');
+         INSERT INTO quest_augment_loot (quest_id, augment_id, loot_type) VALUES (1, 1, 'chest');",
+    )
+    .unwrap();
+    assert!(
+        db.execute("INSERT INTO quest_augment_loot (quest_id, augment_id, loot_type) VALUES (1, 1, 'raid')", [])
+            .is_err(),
+        "one link per quest and augment"
+    );
+    db.execute("DELETE FROM quest_augment_loot", []).unwrap();
+    assert!(
+        db.execute("INSERT INTO quest_augment_loot (quest_id, augment_id, loot_type) VALUES (1, 1, 'bag')", [])
+            .is_err(),
+        "loot_type is one of quest_loot's"
+    );
 }
 
 #[test]

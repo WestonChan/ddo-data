@@ -1,6 +1,6 @@
 use ddo_etl::build::{build_database, BuildReport};
 use ddo_etl::corrections::Corrections;
-use ddo_etl::map::drop_location::{chest_following, chest_label, marks_rare_loot};
+use ddo_etl::map::drop_location::{chest_following, chest_label, drop_text_in_description, marks_rare_loot};
 use ddo_etl::wiki::WikiOverrides;
 use ddo_model::DatasetVersion;
 use rusqlite::Connection;
@@ -106,4 +106,36 @@ fn gives_quests_listed_together_the_chest_named_after_the_last_of_them() {
         chests.iter().map(Option::as_deref).collect::<Vec<_>>(),
         [Some("end chest"), Some("end chest"), Some("end chest"), Some("althea's chest")]
     );
+}
+
+#[test]
+fn reads_the_drop_text_after_drops_in_in_an_augment_description() {
+    for (description, expected_drop_text) in [
+        (
+            "+2 Artifact Bonus to Strength\nDrops in: The House of Gems, end chest\nDinosaur Crisis, optional chest",
+            Some("The House of Gems, end chest\nDinosaur Crisis, optional chest"),
+        ),
+        (
+            "Wards against Slows.\nDrops in U48 Quest: The Knight who Cried Windmill",
+            Some("The Knight who Cried Windmill"),
+        ),
+        (
+            "Grants the feat \"Quick Draw\"\nDrops in U48: Any Feywild rare encounter chest.",
+            Some("Any Feywild rare encounter chest."),
+        ),
+        ("Drops in; Isle of Dread, any chest", Some("Isle of Dread, any chest")),
+        ("Drops in Isle of Dread, any chest", Some("Isle of Dread, any chest")),
+        (
+            "Acid on crits.\nDrops in: Drop Location: ToEE: First Level and Earth Temple",
+            Some("ToEE: First Level and Earth Temple"),
+        ),
+        ("+2 Profane Bonus to Evocation DCs\nDrops in: ?", Some("?")),
+        (
+            "Crushing Wave.\nDrop Location: Ghost of a Chance (epic), puzzle chest",
+            Some("Ghost of a Chance (epic), puzzle chest"),
+        ),
+        ("+2 Artifact Bonus to Strength", None),
+    ] {
+        assert_eq!(drop_text_in_description(description), expected_drop_text, "{description:?}");
+    }
 }

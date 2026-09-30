@@ -54,6 +54,8 @@ fn wiki_check_reports_the_wiki_counts_for_a_valid_wiki_dir() {
 
     for expected_line in [
         "wiki_quest_loot_entry_count: 1",
+        "quest_augment_loot_link_count: 2",
+        "drop_text_rare_augment_link_count: 1",
         "wiki_quest_entry_count: 4",
         "wiki_quest_created_count: 1",
         "drop_text_wiki_quest_link_count: 1",
@@ -304,7 +306,7 @@ fn wiki_batch_writes_the_reading_agent_inputs() {
         "Ghosts of Perdition\n"
     );
     let augment_lines = std::fs::read_to_string(out_dir.path().join("augment_names.txt")).unwrap();
-    assert_eq!(augment_lines.lines().count(), 11);
+    assert_eq!(augment_lines.lines().count(), 13);
     assert!(augment_lines.lines().any(|line| line == "Alchemical\tFire I: Combustion\t29"), "{augment_lines}");
     let quest_pages: Value =
         serde_json::from_str(&std::fs::read_to_string(out_dir.path().join("quest_pages.json")).unwrap()).unwrap();

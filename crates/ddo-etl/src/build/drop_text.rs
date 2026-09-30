@@ -1,3 +1,4 @@
+use super::TableWriter;
 use crate::map::drop_location::{chest_following, marks_rare_loot, segment_containing};
 use anyhow::Result;
 use ddo_model::enums::{LootType, RowSource};
@@ -15,12 +16,12 @@ pub(crate) struct DropTextQuests {
     longest_name_first: Vec<DropTextQuest>,
 }
 
-pub(super) struct DropTextQuestLink {
-    pub(super) quest_id: i64,
-    pub(super) loot_type: LootType,
-    pub(super) is_rare: bool,
-    pub(super) chest: Option<String>,
-    pub(super) is_wiki_quest: bool,
+struct DropTextQuestLink {
+    quest_id: i64,
+    loot_type: LootType,
+    is_rare: bool,
+    chest: Option<String>,
+    is_wiki_quest: bool,
 }
 
 impl DropTextQuests {
@@ -36,7 +37,7 @@ impl DropTextQuests {
         Ok(Self { longest_name_first })
     }
 
-    pub(super) fn quest_links_in(&self, drop_text: &str) -> Vec<DropTextQuestLink> {
+    fn quest_links_in(&self, drop_text: &str) -> Vec<DropTextQuestLink> {
         let mut unmatched_text = drop_text.to_string();
         let mentions_reward = drop_text.to_lowercase().contains("reward");
         let mut quest_links = Vec::new();
@@ -75,5 +76,71 @@ impl DropTextQuests {
                 quest_name_spans.iter().find_map(|span| chest_following(drop_text, span.end, &every_quest_name_span));
         }
         quest_links
+    }
+}
+
+#[derive(Clone, Copy)]
+pub(super) enum QuestLootTable {
+    Items,
+    Augments,
+}
+
+impl QuestLootTable {
+    fn insert_link_sql(self) -> &'static str {
+        match self {
+            Self::Items => {
+                "INSERT INTO quest_loot (quest_id, item_id, loot_type, is_rare, chest) VALUES (?1, ?2, ?3, ?4, ?5)
+                 ON CONFLICT (quest_id, item_id) DO UPDATE SET is_rare = 1 WHERE excluded.is_rare > quest_loot.is_rare"
+            }
+            Self::Augments => {
+                "INSERT INTO quest_augment_loot (quest_id, augment_id, loot_type, is_rare, chest) VALUES (?1, ?2, ?3, ?4, ?5)
+                 ON CONFLICT (quest_id, augment_id) DO UPDATE SET is_rare = 1 WHERE excluded.is_rare > quest_augment_loot.is_rare"
+            }
+        }
+    }
+}
+
+pub(super) struct LinkedDropTextQuest {
+    pub(super) is_wiki_quest: bool,
+    pub(super) is_newly_rare: bool,
+}
+
+impl TableWriter<'_> {
+    pub(super) fn insert_quest_loot_link(
+        &self,
+        table: QuestLootTable,
+        quest_id: i64,
+        loot_id: i64,
+        loot_type: LootType,
+        is_rare: bool,
+        chest: Option<&str>,
+    ) -> Result<usize> {
+        Ok(self
+            .transaction
+            .execute(table.insert_link_sql(), params![quest_id, loot_id, loot_type.as_str(), is_rare, chest])?)
+    }
+
+    pub(super) fn link_to_drop_text_quests(
+        &self,
+        table: QuestLootTable,
+        loot_id: i64,
+        drop_text: &str,
+    ) -> Result<Vec<LinkedDropTextQuest>> {
+        let mut linked_quests = Vec::new();
+        for quest_link in self.drop_text_quests.quest_links_in(drop_text) {
+            let changed_row_count = self.insert_quest_loot_link(
+                table,
+                quest_link.quest_id,
+                loot_id,
+                quest_link.loot_type,
+                quest_link.is_rare,
+                quest_link.chest.as_deref(),
+            )?;
+            linked_quests.push(LinkedDropTextQuest {
+                is_wiki_quest: quest_link.is_wiki_quest,
+                is_newly_rare: quest_link.is_rare && changed_row_count > 0,
+            });
+        }
+        Ok(linked_quests)
     }
 }
