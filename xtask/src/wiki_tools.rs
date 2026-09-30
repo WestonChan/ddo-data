@@ -24,6 +24,7 @@ pub fn wiki_check_report(
     report_lines.extend(unused_family_augment_warnings(&db)?);
     report_lines.extend(socket_label_warnings(&db)?);
     report_lines.extend(wiki_item_warnings(&report));
+    report_lines.extend(stale_correction_warnings(&report));
     report_lines.extend(looks_variant_warnings(&db)?);
     report_lines.extend(effect_spelling_warnings(&db)?);
     Ok(report_lines.join("\n"))
@@ -67,6 +68,8 @@ fn wiki_report_lines(report: &BuildReport) -> Vec<String> {
         ("wiki_item_written_count", report.wiki_item_written_count),
         ("wiki_item_superseded_count", report.wiki_item_superseded_count),
         ("wiki_item_probable_duplicate_count", report.wiki_item_probable_duplicate_count),
+        ("correction_applied_count", report.correction_applied_count),
+        ("correction_stale_count", report.correction_stale_count),
     ]
     .iter()
     .map(|(field_name, count)| format!("{field_name}: {count}"))
@@ -147,6 +150,24 @@ fn effect_spelling_warnings(db: &Connection) -> Result<Vec<String>> {
         })
         .collect();
     Ok(warnings)
+}
+
+fn stale_correction_warnings(report: &BuildReport) -> Vec<String> {
+    report
+        .stale_corrections
+        .iter()
+        .map(|stale_correction| {
+            format!(
+                "warning: correction {} {:?}.{} expects {} but Maetrim now has {}; delete it from {}",
+                stale_correction.kind,
+                stale_correction.name,
+                stale_correction.field,
+                stale_correction.expected_value,
+                stale_correction.maetrim_value,
+                stale_correction.file_name
+            )
+        })
+        .collect()
 }
 
 fn looks_variant_warnings(db: &Connection) -> Result<Vec<String>> {

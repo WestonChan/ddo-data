@@ -4,7 +4,7 @@ Facts read from [ddowiki](https://ddowiki.com) that Maetrim's DDOBuilderV2 files
 
 ## The principle
 
-Maetrim's files are authoritative for every field they carry. A wiki row may **add** a fact he has no field for; it never replaces one he has. When the wiki and his files disagree about something he carries (a name, a level, a drop location, a loot type), his value stands and the disagreement is reported upstream at [Maetrim/DDOBuilderV2](https://github.com/Maetrim/DDOBuilderV2), not patched here.
+Maetrim's files are authoritative for every field they carry. A wiki row may **add** a fact he has no field for; it never replaces one he has. When the wiki and his files disagree about something he carries (a name, a level, a drop location, a loot type), his value stands and the disagreement is reported upstream at [Maetrim/DDOBuilderV2](https://github.com/Maetrim/DDOBuilderV2), not patched here. A value of his that is plainly a mistake is fixed in [`../corrections/`](../corrections/README.md), the one layer allowed to override him, and never here.
 
 ## Citing the source
 

@@ -19,6 +19,25 @@ fn line_count(path: &Path) -> usize {
 }
 
 #[test]
+fn wiki_check_counts_corrections_and_warns_about_each_stale_one() {
+    let report = wiki_check_report(
+        &fixtures_dir().join("DataFiles"),
+        Some(&fixtures_dir().join("wiki")),
+        Some(&fixture_corrections_dir()),
+    )
+    .unwrap();
+    for expected_line in ["correction_applied_count: 3", "correction_stale_count: 1"] {
+        assert!(report.lines().any(|line| line == expected_line), "missing {expected_line:?} in\n{report}");
+    }
+    let (_, warnings) = report.split_once("warnings:\n").unwrap();
+    assert!(
+        warnings.lines().any(|line| line
+            == "warning: correction augment \"Ruby of Acid Damage\".min_level expects 7 but Maetrim now has null; delete it from corrections.toml"),
+        "{warnings}"
+    );
+}
+
+#[test]
 fn wiki_check_reports_the_wiki_counts_for_a_valid_wiki_dir() {
     let report = wiki_check_report(
         &fixtures_dir().join("DataFiles"),
