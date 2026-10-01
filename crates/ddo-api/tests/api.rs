@@ -618,6 +618,16 @@ async fn each_api_version_has_its_own_docs_and_the_bare_paths_point_at_the_lates
     }
 }
 
+#[tokio::test]
+async fn docs_page_carries_the_api_title_and_the_site_mark_as_its_icon() {
+    let response = app(fixture_state()).oneshot(Request::get("/v1/docs").body(Body::empty()).unwrap()).await.unwrap();
+    let page_bytes = response.into_body().collect().await.unwrap().to_bytes();
+    let page = String::from_utf8(page_bytes.to_vec()).unwrap();
+    assert!(page.contains("<title>DDO Tools data API</title>"), "docs page title is not the API title");
+    assert!(page.contains(r#"<link rel="icon" type="image/svg+xml""#), "docs page has no SVG icon");
+    assert!(page.contains(r#""paths":"#), "docs page no longer embeds the spec");
+}
+
 const FILTERED_LIST_PATHS: [&str; 4] = ["/v1/items", "/v1/augments", "/v1/feats", "/v1/spells"];
 
 fn param_schema_type(param: &Value) -> &str {

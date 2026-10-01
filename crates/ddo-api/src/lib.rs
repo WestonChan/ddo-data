@@ -34,9 +34,11 @@ fn versioned_api(state: &AppState, api_version: &'static str) -> (Router<AppStat
     (router, spec)
 }
 
+const DOCS_PAGE_HTML: &str = include_str!("../res/docs.html");
+
 fn mount_docs(router: Router<AppState>, api_version: &'static str, spec: OpenApi) -> Router<AppState> {
     let shared_spec = Arc::new(spec.clone());
-    router.merge(Scalar::with_url(format!("/{api_version}/docs"), spec)).route(
+    router.merge(Scalar::with_url(format!("/{api_version}/docs"), spec).custom_html(DOCS_PAGE_HTML)).route(
         &format!("/{api_version}/openapi.json"),
         get(move || {
             let shared_spec = shared_spec.clone();
