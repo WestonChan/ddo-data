@@ -10,6 +10,8 @@ use std::path::Path;
 const WIKI_PAGE_URL_PREFIX: &str = "https://ddowiki.com/page/";
 const DIFFICULTY_NAME_SUFFIXES: &[&str] = &[" (Casual)", " (Normal)", " (Hard)", " (Elite)"];
 const CRAFTING_SYSTEMS_JSON: &str = include_str!("../data/crafting_systems.json");
+const CORRECTION_CANDIDATE_NOTE_PHRASES: &[&str] =
+    &["his value stands", "maetrim spells", "maetrim names", "his augment"];
 const KNOWN_SOCKET_LABEL_MISSPELLINGS: &[(&str, &str)] = &[("zentarim", "zhentarim"), ("upgradable", "upgradeable")];
 
 pub fn wiki_check_report(
@@ -22,6 +24,7 @@ pub fn wiki_check_report(
     let mut report_lines = wiki_report_lines(&report);
     report_lines.push("warnings:".to_string());
     report_lines.extend(unused_family_augment_warnings(&db)?);
+    report_lines.extend(correction_candidate_note_warnings(&db)?);
     report_lines.extend(socket_label_warnings(&db)?);
     report_lines.extend(wiki_quest_warnings(&report));
     report_lines.extend(wiki_item_warnings(&report));
@@ -52,6 +55,28 @@ fn unused_family_augment_warnings(db: &Connection) -> Result<Vec<String>> {
         })?
         .collect::<rusqlite::Result<_>>()?;
     Ok(warnings)
+}
+
+fn correction_candidate_note_warnings(db: &Connection) -> Result<Vec<String>> {
+    let mut statement = db.prepare(
+        "SELECT crafting_systems.name, crafting_recipes.option, crafting_recipes.note
+         FROM crafting_recipes
+         JOIN crafting_systems ON crafting_systems.id = crafting_recipes.system_id
+         WHERE crafting_recipes.note IS NOT NULL
+         ORDER BY crafting_systems.name, crafting_recipes.sort_order",
+    )?;
+    let notes: Vec<(String, String, String)> =
+        statement.query_map([], |row| Ok((row.get(0)?, row.get(1)?, row.get(2)?)))?.collect::<rusqlite::Result<_>>()?;
+    Ok(notes
+        .into_iter()
+        .filter(|(_, _, note)| {
+            let lowercase_note = note.to_lowercase();
+            CORRECTION_CANDIDATE_NOTE_PHRASES.iter().any(|phrase| lowercase_note.contains(phrase))
+        })
+        .map(|(system_name, option, note)| {
+            format!("warning: crafting note is a correction candidate: {system_name} / {option}: {note}")
+        })
+        .collect())
 }
 
 fn wiki_report_lines(report: &BuildReport) -> Vec<String> {

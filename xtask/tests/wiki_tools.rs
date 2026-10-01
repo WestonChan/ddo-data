@@ -262,6 +262,44 @@ fn wiki_check_warns_about_family_augments_no_recipe_yields() {
 }
 
 #[test]
+fn wiki_check_warns_about_each_crafting_note_that_is_a_correction_candidate() {
+    let fixture_crafting = std::fs::read_to_string(fixtures_dir().join("wiki/crafting.toml")).unwrap();
+    let cleanse_note = "note = \"Returns a crafted item to its blank state; no augment counterpart.\"";
+    let test_altar_note = "note = \"Test note: adds a socket, never an augment.\"";
+    let report_with_notes = |cleanse_replacement: &str, test_altar_replacement: &str| {
+        let draft_dir = tempfile::tempdir().unwrap();
+        std::fs::write(
+            draft_dir.path().join("crafting.toml"),
+            fixture_crafting
+                .replace(cleanse_note, cleanse_replacement)
+                .replace(test_altar_note, test_altar_replacement),
+        )
+        .unwrap();
+        wiki_check_report(&fixtures_dir().join("DataFiles"), Some(draft_dir.path()), Some(&fixture_corrections_dir()))
+            .unwrap()
+    };
+    assert!(!report_with_notes(cleanse_note, test_altar_note).contains("correction candidate"));
+    for (cleanse_text, test_altar_text) in [
+        ("Test note: his value stands until a page says otherwise.", "Test note: MAETRIM SPELLS it Colourless."),
+        ("Test note: Maetrim names the socket differently.", "Test note: His Augment carries a +4 the page reads +5."),
+    ] {
+        let report = report_with_notes(&format!("note = {cleanse_text:?}"), &format!("note = {test_altar_text:?}"));
+        let (_, warnings) = report.split_once("\nwarnings:\n").unwrap_or_else(|| panic!("no warnings in\n{report}"));
+        let candidate_warnings: Vec<&str> =
+            warnings.lines().filter(|line| line.contains("correction candidate")).collect();
+        assert_eq!(
+            candidate_warnings,
+            [
+                format!("warning: crafting note is a correction candidate: Heroic Green Steel / Cleanse an item: {cleanse_text}"),
+                format!(
+                    "warning: crafting note is a correction candidate: Test Upgrade Altar / Test Colorless Augment Slot: {test_altar_text}"
+                ),
+            ]
+        );
+    }
+}
+
+#[test]
 fn socket_label_spelling_key_ignores_case_spacing_punctuation_and_known_misspellings() {
     assert_eq!(
         socket_label_spelling_key("crafting: Zentarim Attuned"),
