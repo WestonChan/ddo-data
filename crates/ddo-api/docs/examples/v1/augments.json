@@ -33,6 +33,7 @@
       "slots": [
         "sun"
       ],
+      "source": "maetrim",
       "suppress_set_bonus": false,
       "weapon_class": null
     },
@@ -69,6 +70,7 @@
       "slots": [
         "sun"
       ],
+      "source": "maetrim",
       "suppress_set_bonus": false,
       "weapon_class": null
     }

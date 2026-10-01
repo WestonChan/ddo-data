@@ -132,6 +132,27 @@ async fn items_say_whether_maetrim_or_the_wiki_supplied_them() {
 }
 
 #[tokio::test]
+async fn augments_say_whether_maetrim_or_the_wiki_supplied_them() {
+    let (_, _, gem_matches) = get("/v1/augments?q=oozing").await;
+    let gem_row = &gem_matches["augments"][0];
+    assert_eq!(gem_row["name"], "Test Gem of Oozing Resistance");
+    assert_eq!(gem_row["source"], "wiki");
+    assert_eq!(gem_row["slots"], serde_json::json!(["colorless", "green"]));
+    let (_, _, bulwark_matches) = get("/v1/augments?q=bulwark").await;
+    assert_eq!(bulwark_matches["total"], 1, "the superseded wiki entry writes no second row");
+    assert_eq!(bulwark_matches["augments"][0]["source"], "maetrim");
+
+    let (_, _, gem) = get(&format!("/v1/augments/{}", gem_row["id"])).await;
+    assert_eq!(gem["source"], "wiki");
+    assert_eq!(gem["set_bonus"], "Eminence of Winter");
+    let (_, _, bulwark) = get(&format!("/v1/augments/{}", bulwark_matches["augments"][0]["id"])).await;
+    assert_eq!(bulwark["source"], "maetrim");
+
+    let (_, _, version) = get("/v1/version").await;
+    assert_eq!(version["counts"]["wiki_augments"], 1);
+}
+
+#[tokio::test]
 async fn item_detail_joins_every_satellite() {
     let (_, _, list) = get("/v1/items?q=sireth").await;
     let id = list["items"][0]["id"].as_i64().unwrap();

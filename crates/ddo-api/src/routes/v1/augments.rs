@@ -50,7 +50,7 @@ fn attach_child_collections(db: &rusqlite::Connection, augment: &mut Value) -> R
 const AUGMENT_COLUMNS: &str =
     "a.id, a.name, a.family, a.description, a.effect_description, a.min_level, a.icon, a.choose_level, a.levels,
                        a.level_values, a.level_values2, a.dual_values, a.enter_value, a.suppress_set_bonus, a.set_bonus,
-                       a.adds_augment, a.grants_augment, a.weapon_class";
+                       a.adds_augment, a.grants_augment, a.weapon_class, a.source";
 
 #[utoipa::path(
     get,
@@ -62,7 +62,9 @@ const AUGMENT_COLUMNS: &str =
                    set bonus, granted augments), and `crafting`: the wiki crafting recipes that yield it, each with \
                    its `system` name, `tier`, the wiki's `option` label and its `cost` as \
                    `{ ingredient, tier, quantity }` entries (see /v1/crafting-systems); empty when no recipe read \
-                   from the wiki yields it. Filter by `slot` to get the candidates for one socket on an item.",
+                   from the wiki yields it, and `source`: `maetrim` for an augment from DDOBuilderV2's files, `wiki` \
+                   for one read from ddowiki because DDOBuilderV2 lacks it. Filter by `slot` to get the candidates for \
+                   one socket on an item.",
     params(
         ("q" = Option<String>, Query, description = "Case-insensitive substring of the augment name"),
         ("slot" = Option<String>, Query, description = "Socket label as /v1/augment-slot-types lists it, e.g. `red` or `lamordia: melancholic (accessory)`; case-insensitive"),
@@ -116,8 +118,8 @@ async fn augments(
     path = "/v1/augments/{id}",
     tag = "augments",
     summary = "Get an augment",
-    description = "One augment as the list returns it, including its `crafting` recipes, plus `quests`, the quests \
-                   it drops in, read from the `Drops in` text of Maetrim's description and ddowiki's rare drops, each \
+    description = "One augment as the list returns it, including its `crafting` recipes and its `source` (`maetrim` \
+                   or `wiki`), plus `quests`, the quests it drops in, read from the `Drops in` text of Maetrim's description and ddowiki's rare drops, each \
                    with the fields item detail `quests` carry (loot type, raid flag, `is_rare`, `chest`, difficulties, \
                    pack, patron, `source`; empty when neither names a quest), and the raw `modifiers` its bonuses were \
                    derived from, including the conditional and dice-valued ones that do not reduce to a bonus.",

@@ -16,19 +16,20 @@
     "items": 8746,
     "modifiers": 13817,
     "optional_buffs": 138,
-    "quest_augment_loot": 524,
+    "quest_augment_loot": 537,
     "quests": 604,
     "races": 30,
     "requirements": 9771,
     "sentient_gems": 14,
     "set_bonuses": 327,
     "spells": 706,
+    "wiki_augments": 0,
     "wiki_items": 263,
     "wiki_quests": 1
   },
   "dataset": {
-    "built_at": "2026-09-30T13:42:46Z",
+    "built_at": "2026-10-01T22:43:09Z",
     "upstream_sha": "31ef0201ea8e28604de2b6242988aee6d63733b0"
   },
-  "schema_version": 7
+  "schema_version": 8
 }
