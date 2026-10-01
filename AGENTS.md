@@ -96,3 +96,5 @@ Write the failing test first, confirm it fails for the right reason, then the mi
 ## Commits
 
 Plain imperative subjects, no prefixes. One logical change per commit, passing `cargo lint` and tests. Push to `main` directly; CI runs on every push, and the deploy workflow runs on every push that changes more than Markdown, weekly, and on dispatch.
+
+`.github/dependabot.yml` opens weekly PRs (Mondays, after a 7-day cooldown) for Cargo and GitHub Actions, minor and patch bumps grouped into one PR per ecosystem, majors separate, and `unicode-ident` with `unicode-properties` always together (see the pin above). Merging one deploys, so merge only once CI passes, then pull `main`.
