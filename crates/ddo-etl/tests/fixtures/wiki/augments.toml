@@ -1,0 +1,25 @@
+# Only vocabulary the fixture DataFiles carry. Both augments are test values shaped like a wiki augment page, not text
+# read from ddowiki; the second takes the name and family of one of Maetrim's fixture augments, so the build must drop it.
+[[augment]]
+name = "Test Gem of Oozing Resistance"
+page = "https://ddowiki.com/page/Item:Test_Gem_of_Oozing_Resistance"
+read = "2026-10-01"
+family = "Named"
+min_level = 29
+slots = ["green", "colorless"]
+description = "Test description: a gem that drips."
+effect_description = "Test effect description: the wearer resists ooze."
+set = "Eminence of Winter"
+bonuses = [
+  { stat = "Strength", bonus_type = "Insight", value = 3 },
+  { stat = "Doublestrike", bonus_type = "Enhancement", value = 5 },
+]
+
+[[augment]]
+name = "Storm's Bulwark"
+page = "https://ddowiki.com/page/Item:Storm%27s_Bulwark"
+read = "2026-10-01"
+family = "Named"
+min_level = 1
+slots = ["green"]
+description = "Test description: a wiki copy of an augment Maetrim already carries."

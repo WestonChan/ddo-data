@@ -1,7 +1,7 @@
+use super::bonuses::{validate_bonuses, WikiBonus};
 use anyhow::{bail, Context, Result};
-use ddo_model::enums::{ArmorType, BonusType, EquipmentSlot, Handedness, ItemCategory, LootType};
+use ddo_model::enums::{ArmorType, EquipmentSlot, Handedness, ItemCategory, LootType};
 use ddo_model::seeds::WeaponType;
-use ddo_model::stats::Stat;
 use serde::Deserialize;
 
 #[derive(Debug, Clone, PartialEq, Deserialize)]
@@ -29,7 +29,7 @@ pub struct WikiItem {
     #[serde(default)]
     pub augment_slots: Vec<String>,
     #[serde(default)]
-    pub bonuses: Vec<WikiItemBonus>,
+    pub bonuses: Vec<WikiBonus>,
     #[serde(default)]
     pub effects: Vec<WikiItemEffect>,
     pub weapon: Option<WikiWeaponStats>,
@@ -43,15 +43,6 @@ pub struct WikiItem {
 pub struct WikiItemQuest {
     pub name: String,
     pub loot_type: String,
-}
-
-#[derive(Debug, Clone, PartialEq, Eq, Deserialize)]
-#[serde(deny_unknown_fields)]
-pub struct WikiItemBonus {
-    pub stat: String,
-    pub bonus_type: String,
-    pub value: i64,
-    pub value2: Option<i64>,
 }
 
 #[derive(Debug, Clone, PartialEq, Eq, Deserialize)]
@@ -91,16 +82,6 @@ pub struct WikiArmorStats {
 impl WikiItemQuest {
     pub fn loot_type(&self) -> LootType {
         LootType::ALL.iter().copied().find(|l| l.as_str() == self.loot_type).expect("validated loot_type")
-    }
-}
-
-impl WikiItemBonus {
-    pub fn stat(&self) -> &'static Stat {
-        Stat::by_name(&self.stat).expect("validated stat")
-    }
-
-    pub fn bonus_type(&self) -> BonusType {
-        BonusType::parse(&self.bonus_type).expect("validated bonus_type")
     }
 }
 
@@ -148,19 +129,7 @@ impl WikiItem {
                 );
             }
         }
-        for bonus in &self.bonuses {
-            if Stat::by_name(&bonus.stat).is_none() {
-                bail!("bonus stat {:?} is not a stat /v1/stats lists; use its exact name", bonus.stat);
-            }
-            if BonusType::parse(&bonus.bonus_type).is_none() {
-                bail!(
-                    "bonus {:?}: bonus_type {:?} is not a bonus type /v1/bonus-types lists; use its exact name",
-                    bonus.stat,
-                    bonus.bonus_type
-                );
-            }
-        }
-        Ok(())
+        validate_bonuses(&self.bonuses)
     }
 
     fn validate_weapon_and_armor(&self) -> Result<()> {

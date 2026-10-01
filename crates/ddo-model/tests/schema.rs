@@ -158,6 +158,25 @@ fn quests_come_from_maetrim_unless_the_wiki_supplied_them() {
 }
 
 #[test]
+fn augments_come_from_maetrim_unless_the_wiki_supplied_them() {
+    let db = fresh_db();
+    db.execute("INSERT INTO augments (name, family) VALUES ('His Gem', 'Named')", []).unwrap();
+    db.execute("INSERT INTO augments (name, family, source) VALUES ('Wiki Gem', 'Named', 'wiki')", []).unwrap();
+    let sources: Vec<String> = db
+        .prepare("SELECT source FROM augments ORDER BY id")
+        .unwrap()
+        .query_map([], |r| r.get(0))
+        .unwrap()
+        .map(Result::unwrap)
+        .collect();
+    assert_eq!(sources, ["maetrim", "wiki"]);
+    assert!(db
+        .execute("INSERT INTO augments (name, family, source) VALUES ('Odd Gem', 'Named', 'ddowiki')", [])
+        .is_err());
+    assert_eq!(SCHEMA_VERSION, 8);
+}
+
+#[test]
 fn quests_carry_no_duration_and_no_xp_table_exists() {
     let db = fresh_db();
     assert!(!table_names(&db).contains("quest_xp"));
@@ -209,7 +228,6 @@ fn corrections_record_each_kind_field_and_value_change_once() {
         insert_correction(new_kind, "").unwrap();
     }
     assert!(insert_correction("gem", "").is_err(), "kind is one of the correctable tables");
-    assert_eq!(SCHEMA_VERSION, 7);
 }
 
 #[test]

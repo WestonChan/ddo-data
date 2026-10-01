@@ -135,7 +135,11 @@ fn write_correction(
 fn maetrim_row_ids_named(transaction: &Transaction, correction: &Correction) -> Result<Vec<i64>> {
     let kind = correction.kind;
     let maetrim_rows_only = match kind {
-        CorrectionKind::Item | CorrectionKind::ItemSocket | CorrectionKind::Quest => {
+        CorrectionKind::Item
+        | CorrectionKind::ItemSocket
+        | CorrectionKind::Quest
+        | CorrectionKind::Augment
+        | CorrectionKind::AugmentBonus => {
             format!(" AND source = '{}'", RowSource::Maetrim.as_str())
         }
         _ => String::new(),

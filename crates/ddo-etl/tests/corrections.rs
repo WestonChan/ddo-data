@@ -396,6 +396,26 @@ fn corrects_only_his_quests_not_the_wikis() {
 }
 
 #[test]
+fn corrects_only_his_augments_not_the_wikis() {
+    let wiki = WikiOverrides::from_dir(&fixtures_dir().join("wiki")).unwrap();
+    for correction_text in [
+        correction_toml("augment", "Test Gem of Oozing Resistance", "min_level", "29", "30"),
+        qualified_correction_toml(
+            "augment_bonus",
+            "Test Gem of Oozing Resistance",
+            "stat = \"Strength\"\nbonus_type = \"Insight\"",
+            "value",
+            "3",
+            "4",
+        ),
+    ] {
+        let corrections = parsed_corrections(&[("corrections.toml", &correction_text)]).unwrap();
+        let error = built_db_with_wiki(&wiki, &corrections).unwrap_err();
+        assert!(error.contains("Test Gem of Oozing Resistance"), "{correction_text}: {error}");
+    }
+}
+
+#[test]
 fn runs_before_the_wiki_merge_so_a_corrected_description_is_his() {
     let wiki = WikiOverrides::from_dir(&fixtures_dir().join("wiki")).unwrap();
     let corrections = parsed_corrections(&[(

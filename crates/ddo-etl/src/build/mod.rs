@@ -81,6 +81,11 @@ pub struct BuildReport {
     pub wiki_item_probable_duplicate_count: usize,
     pub superseded_wiki_items: Vec<SupersededWikiEntry>,
     pub probable_duplicate_wiki_items: Vec<ProbableDuplicateWikiEntry>,
+    pub wiki_augment_written_count: usize,
+    pub wiki_augment_superseded_count: usize,
+    pub wiki_augment_probable_duplicate_count: usize,
+    pub superseded_wiki_augments: Vec<SupersededWikiEntry>,
+    pub probable_duplicate_wiki_augments: Vec<ProbableDuplicateWikiEntry>,
     pub correction_applied_count: usize,
     pub correction_stale_count: usize,
     pub stale_corrections: Vec<StaleCorrection>,
@@ -195,6 +200,7 @@ pub fn build_database(
         writer.write_set_bonus_file(&path, true, &mut report).with_context(|| format!("{}", path.display()))?;
     }
     writer.write_wiki_items(&wiki_overrides.items, &mut report)?;
+    writer.write_wiki_augments(&wiki_overrides.augments, &mut report)?;
     writer.link_pending_set_members()?;
     writer.write_sentient_gems(&data_files_dir.join("Sentient.gems.xml"), &mut report)?;
     writer.link_spell_references()?;

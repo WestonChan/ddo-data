@@ -62,7 +62,12 @@ impl TableWriter<'_> {
         Ok(())
     }
 
-    fn link_augment_to_quests(&self, augment_id: i64, description: &str, report: &mut BuildReport) -> Result<()> {
+    pub(super) fn link_augment_to_quests(
+        &self,
+        augment_id: i64,
+        description: &str,
+        report: &mut BuildReport,
+    ) -> Result<()> {
         let Some(drop_text) = drop_text_in_description(description) else {
             return Ok(());
         };

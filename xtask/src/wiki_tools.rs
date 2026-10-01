@@ -25,6 +25,7 @@ pub fn wiki_check_report(
     report_lines.extend(socket_label_warnings(&db)?);
     report_lines.extend(wiki_quest_warnings(&report));
     report_lines.extend(wiki_item_warnings(&report));
+    report_lines.extend(wiki_augment_warnings(&report));
     report_lines.extend(stale_correction_warnings(&report));
     report_lines.extend(looks_variant_warnings(&db)?);
     report_lines.extend(effect_spelling_warnings(&db)?);
@@ -78,6 +79,9 @@ fn wiki_report_lines(report: &BuildReport) -> Vec<String> {
         ("wiki_item_written_count", report.wiki_item_written_count),
         ("wiki_item_superseded_count", report.wiki_item_superseded_count),
         ("wiki_item_probable_duplicate_count", report.wiki_item_probable_duplicate_count),
+        ("wiki_augment_written_count", report.wiki_augment_written_count),
+        ("wiki_augment_superseded_count", report.wiki_augment_superseded_count),
+        ("wiki_augment_probable_duplicate_count", report.wiki_augment_probable_duplicate_count),
         ("correction_applied_count", report.correction_applied_count),
         ("correction_stale_count", report.correction_stale_count),
     ]
@@ -113,6 +117,22 @@ fn wiki_item_warnings(report: &BuildReport) -> Vec<String> {
         format!(
             "warning: wiki item {:?} may duplicate Maetrim's {:?}",
             duplicate_item.name, duplicate_item.maetrim_name
+        )
+    });
+    superseded_warnings.chain(probable_duplicate_warnings).collect()
+}
+
+fn wiki_augment_warnings(report: &BuildReport) -> Vec<String> {
+    let superseded_warnings = report.superseded_wiki_augments.iter().map(|superseded_augment| {
+        format!(
+            "warning: wiki augment {:?} is now in Maetrim's files; delete it from {}",
+            superseded_augment.name, superseded_augment.file_name
+        )
+    });
+    let probable_duplicate_warnings = report.probable_duplicate_wiki_augments.iter().map(|duplicate_augment| {
+        format!(
+            "warning: wiki augment {:?} may duplicate Maetrim's {:?}",
+            duplicate_augment.name, duplicate_augment.maetrim_name
         )
     });
     superseded_warnings.chain(probable_duplicate_warnings).collect()
@@ -233,7 +253,8 @@ pub fn write_wiki_batch(
         ("item_names.txt", as_lines(names_from(&db, "items", RowSource::Maetrim)?)),
         ("wiki_source_items.txt", as_lines(names_from(&db, "items", RowSource::Wiki)?)),
         ("wiki_source_quests.txt", as_lines(names_from(&db, "quests", RowSource::Wiki)?)),
-        ("augment_names.txt", as_lines(augment_name_lines(&db)?)),
+        ("wiki_source_augments.txt", as_lines(augment_name_lines(&db, RowSource::Wiki)?)),
+        ("augment_names.txt", as_lines(augment_name_lines(&db, RowSource::Maetrim)?)),
         ("quest_pages.json", serde_json::to_string_pretty(&quest_page_urls(&db)?)? + "\n"),
         ("crafting_systems.json", CRAFTING_SYSTEMS_JSON.to_string()),
         ("blank_descriptions.txt", as_lines(blank_description_lines(&db)?)),
@@ -277,10 +298,11 @@ fn names_from(db: &Connection, table_name: &str, source: RowSource) -> Result<Ve
     Ok(names)
 }
 
-fn augment_name_lines(db: &Connection) -> Result<Vec<String>> {
-    let mut statement = db.prepare("SELECT family, name, min_level FROM augments ORDER BY family, name, min_level")?;
+fn augment_name_lines(db: &Connection, source: RowSource) -> Result<Vec<String>> {
+    let mut statement =
+        db.prepare("SELECT family, name, min_level FROM augments WHERE source = ?1 ORDER BY family, name, min_level")?;
     let lines = statement
-        .query_map([], |row| {
+        .query_map([source.as_str()], |row| {
             let (family, name, min_level): (String, String, Option<i64>) = (row.get(0)?, row.get(1)?, row.get(2)?);
             Ok(format!("{family}\t{name}\t{}", min_level.map(|level| level.to_string()).unwrap_or_default()))
         })?

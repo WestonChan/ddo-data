@@ -3,8 +3,8 @@ use super::items::{ArmorStatsRow, ItemRow, WeaponStatsRow};
 use super::{BuildReport, ProbableDuplicateWikiEntry, SupersededWikiEntry, TableWriter};
 use crate::map::drop_location::drop_text_in_description;
 use crate::wiki::{
-    CraftingRecipe, CraftingSystem, DescriptionKind, WikiDescription, WikiItem, WikiItemEffect, WikiOverrides,
-    WikiQuest,
+    CraftingRecipe, CraftingSystem, DescriptionKind, WikiAugment, WikiBonus, WikiDescription, WikiItem, WikiItemEffect,
+    WikiOverrides, WikiQuest,
 };
 use anyhow::{bail, Context, Result};
 use ddo_model::enums::{LootType, RowSource};
@@ -499,8 +499,7 @@ impl TableWriter<'_> {
             )?;
         }
         for (sort_order, bonus) in wiki_item.bonuses.iter().enumerate() {
-            let bonus_id =
-                self.ensure_bonus(bonus.stat(), Some(bonus.bonus_type()), Some(bonus.value), bonus.value2, None)?;
+            let bonus_id = self.ensure_wiki_bonus(bonus)?;
             self.insert_item_bonus(item_id, bonus_id, sort_order)?;
         }
         for (sort_order, effect) in wiki_item.effects.iter().enumerate() {
@@ -527,6 +526,108 @@ impl TableWriter<'_> {
             self.pending_set_item_links.push((item_id, set_name.clone()));
         }
         Ok(())
+    }
+
+    fn ensure_wiki_bonus(&mut self, bonus: &WikiBonus) -> Result<i64> {
+        self.ensure_bonus(bonus.stat(), Some(bonus.bonus_type()), Some(bonus.value), bonus.value2, None)
+    }
+
+    pub(super) fn write_wiki_augments(
+        &mut self,
+        wiki_augments: &[WikiAugment],
+        report: &mut BuildReport,
+    ) -> Result<()> {
+        let maetrim_augment_names_by_family: HashMap<String, Vec<String>> = {
+            let mut statement = self
+                .transaction
+                .prepare("SELECT family, name FROM augments WHERE source = ?1 ORDER BY family, name")?;
+            let mut names_by_family: HashMap<String, Vec<String>> = HashMap::new();
+            for family_and_name in statement
+                .query_map([RowSource::Maetrim.as_str()], |r| Ok((r.get::<_, String>(0)?, r.get::<_, String>(1)?)))?
+            {
+                let (family, name) = family_and_name?;
+                names_by_family.entry(family).or_default().push(name);
+            }
+            names_by_family
+        };
+        for wiki_augment in wiki_augments {
+            let citation =
+                format!("wiki {} augment {:?} ({})", wiki_augment.file_name, wiki_augment.name, wiki_augment.page);
+            let maetrim_family_names = maetrim_augment_names_by_family.get(&wiki_augment.family).with_context(|| {
+                format!(
+                    "{citation}: family {:?} has no augments in Maetrim's Augments/; a family is an augment file's name before .Augments.xml",
+                    wiki_augment.family
+                )
+            })?;
+            if maetrim_family_names.contains(&wiki_augment.name) {
+                report.superseded_wiki_augments.push(SupersededWikiEntry {
+                    name: wiki_augment.name.clone(),
+                    file_name: wiki_augment.file_name.clone(),
+                });
+                report.wiki_augment_superseded_count += 1;
+                continue;
+            }
+            self.write_wiki_augment(wiki_augment, report).with_context(|| citation.clone())?;
+            report.wiki_augment_written_count += 1;
+            if let Some(maetrim_name) =
+                names_by_normalised_name(maetrim_family_names).get(&normalised_name(&wiki_augment.name))
+            {
+                report.probable_duplicate_wiki_augments.push(ProbableDuplicateWikiEntry {
+                    name: wiki_augment.name.clone(),
+                    maetrim_name: (*maetrim_name).to_string(),
+                });
+                report.wiki_augment_probable_duplicate_count += 1;
+            }
+        }
+        Ok(())
+    }
+
+    fn write_wiki_augment(&mut self, wiki_augment: &WikiAugment, report: &mut BuildReport) -> Result<()> {
+        if let Some(set_name) = &wiki_augment.set {
+            if !self.written.set_bonus_ids_by_name.contains_key(set_name) {
+                bail!("set {set_name:?} is not a set in Maetrim's SetBonuses.xml or FiligreeSets/; use his spelling");
+            }
+        }
+        let slot_type_ids = wiki_augment
+            .slots
+            .iter()
+            .map(|label| {
+                self.written.augment_slot_type_ids_by_label.get(label).copied().with_context(|| {
+                    format!("slots label {label:?} is not a socket label in Maetrim's files; use one /v1/augment-slot-types lists")
+                })
+            })
+            .collect::<Result<Vec<i64>>>()?;
+        self.transaction.execute(
+            "INSERT INTO augments (name, family, description, effect_description, min_level, set_bonus, source)
+             VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7)",
+            params![
+                wiki_augment.name,
+                wiki_augment.family,
+                wiki_augment.description,
+                wiki_augment.effect_description,
+                wiki_augment.min_level,
+                wiki_augment.set,
+                RowSource::Wiki.as_str(),
+            ],
+        )?;
+        let augment_id = self.transaction.last_insert_rowid();
+        for slot_type_id in slot_type_ids {
+            self.transaction.execute(
+                "INSERT OR IGNORE INTO augment_slots (augment_id, slot_id) VALUES (?1, ?2)",
+                params![augment_id, slot_type_id],
+            )?;
+        }
+        for (sort_order, bonus) in wiki_augment.bonuses.iter().enumerate() {
+            let bonus_id = self.ensure_wiki_bonus(bonus)?;
+            self.transaction.execute(
+                "INSERT INTO augment_bonuses (augment_id, bonus_id, sort_order) VALUES (?1, ?2, ?3)",
+                params![augment_id, bonus_id, sort_order as i64],
+            )?;
+        }
+        if let Some(set_name) = &wiki_augment.set {
+            self.pending_set_augment_links.push((augment_id, set_name.clone()));
+        }
+        self.link_augment_to_quests(augment_id, &wiki_augment.description, report)
     }
 
     fn wiki_effect_id(

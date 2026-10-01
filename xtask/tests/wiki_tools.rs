@@ -73,6 +73,9 @@ fn wiki_check_reports_the_wiki_counts_for_a_valid_wiki_dir() {
         "wiki_item_written_count: 1",
         "wiki_item_superseded_count: 1",
         "wiki_item_probable_duplicate_count: 0",
+        "wiki_augment_written_count: 1",
+        "wiki_augment_superseded_count: 1",
+        "wiki_augment_probable_duplicate_count: 0",
     ] {
         assert!(report.lines().any(|line| line == expected_line), "missing {expected_line:?} in\n{report}");
     }
@@ -104,6 +107,36 @@ fn wiki_check_warns_about_superseded_and_probably_duplicate_wiki_items() {
         );
     }
     assert!(report[..warnings_start].lines().any(|line| line == "wiki_item_probable_duplicate_count: 1"), "{report}");
+}
+
+#[test]
+fn wiki_check_warns_about_superseded_and_probably_duplicate_wiki_augments() {
+    let fixture_augments = std::fs::read_to_string(fixtures_dir().join("wiki/augments.toml")).unwrap();
+    let draft_dir = tempfile::tempdir().unwrap();
+    std::fs::write(
+        draft_dir.path().join("augments_draft.toml"),
+        fixture_augments.replace("name = \"Test Gem of Oozing Resistance\"", "name = \"Storms Bulwark\""),
+    )
+    .unwrap();
+
+    let report =
+        wiki_check_report(&fixtures_dir().join("DataFiles"), Some(draft_dir.path()), Some(&fixture_corrections_dir()))
+            .unwrap();
+
+    let warnings_start = report.find("\nwarnings:").unwrap_or_else(|| panic!("no warnings section in\n{report}"));
+    for expected_warning in [
+        "warning: wiki augment \"Storm's Bulwark\" is now in Maetrim's files; delete it from augments_draft.toml",
+        "warning: wiki augment \"Storms Bulwark\" may duplicate Maetrim's \"Storm's Bulwark\"",
+    ] {
+        assert!(
+            report[warnings_start..].lines().any(|line| line == expected_warning),
+            "missing {expected_warning:?} in\n{report}"
+        );
+    }
+    assert!(
+        report[..warnings_start].lines().any(|line| line == "wiki_augment_probable_duplicate_count: 1"),
+        "{report}"
+    );
 }
 
 #[test]
@@ -307,6 +340,10 @@ fn wiki_batch_writes_the_reading_agent_inputs() {
     assert_eq!(
         std::fs::read_to_string(out_dir.path().join("wiki_source_quests.txt")).unwrap(),
         "Ghosts of Perdition\n"
+    );
+    assert_eq!(
+        std::fs::read_to_string(out_dir.path().join("wiki_source_augments.txt")).unwrap(),
+        "Named\tTest Gem of Oozing Resistance\t29\n"
     );
     let augment_lines = std::fs::read_to_string(out_dir.path().join("augment_names.txt")).unwrap();
     assert_eq!(augment_lines.lines().count(), 16);

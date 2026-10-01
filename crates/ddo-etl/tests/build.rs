@@ -579,7 +579,7 @@ fn links_sets_to_the_augments_that_grant_them() {
     let rows: Vec<(String, String)> = db
         .prepare(
             "SELECT s.name, a.name FROM set_bonus_augments sba JOIN set_bonuses s ON s.id = sba.set_id
-               JOIN augments a ON a.id = sba.augment_id ORDER BY s.name, a.name",
+               JOIN augments a ON a.id = sba.augment_id WHERE a.source = 'maetrim' ORDER BY s.name, a.name",
         )
         .unwrap()
         .query_map([], |r| Ok((r.get(0)?, r.get(1)?)))

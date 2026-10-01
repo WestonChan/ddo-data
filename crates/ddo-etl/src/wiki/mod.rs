@@ -1,12 +1,16 @@
+mod augments;
+mod bonuses;
 mod crafting;
 mod descriptions;
 mod items;
 mod quest_loot;
 mod quests;
 
+pub use augments::WikiAugment;
+pub use bonuses::WikiBonus;
 pub use crafting::{CraftingIngredient, CraftingRecipe, CraftingSystem, IngredientCost};
 pub use descriptions::{DescriptionKind, WikiDescription};
-pub use items::{WikiArmorStats, WikiItem, WikiItemBonus, WikiItemEffect, WikiItemQuest, WikiWeaponStats};
+pub use items::{WikiArmorStats, WikiItem, WikiItemEffect, WikiItemQuest, WikiWeaponStats};
 pub use quest_loot::{QuestLoot, RareDrop, RareDropInChest};
 pub use quests::WikiQuest;
 
@@ -25,6 +29,7 @@ pub struct WikiOverrides {
     pub crafting_systems: Vec<CraftingSystem>,
     pub descriptions: Vec<WikiDescription>,
     pub items: Vec<WikiItem>,
+    pub augments: Vec<WikiAugment>,
 }
 
 trait WikiEntry: DeserializeOwned {
@@ -111,12 +116,32 @@ impl WikiEntry for WikiItem {
     }
 }
 
+impl WikiEntry for WikiAugment {
+    const TOML_TABLE_NAME: &'static str = "augment";
+    fn name(&self) -> &str {
+        &self.name
+    }
+    fn citation(&self) -> (&str, &str) {
+        (&self.page, &self.read)
+    }
+    fn unique_key(&self) -> String {
+        format!("{} {}", self.family, self.name)
+    }
+    fn validate(&self) -> Result<()> {
+        WikiAugment::validate(self)
+    }
+    fn record_file_name(&mut self, file_name: &str) {
+        file_name.clone_into(&mut self.file_name);
+    }
+}
+
 enum WikiFileKind {
     QuestLoot,
     Quests,
     CraftingSystems,
     Descriptions,
     Items,
+    Augments,
 }
 
 impl WikiFileKind {
@@ -132,9 +157,11 @@ impl WikiFileKind {
             Ok(Self::Descriptions)
         } else if stem.starts_with("items") {
             Ok(Self::Items)
+        } else if stem.starts_with("augments") {
+            Ok(Self::Augments)
         } else {
             bail!(
-                "wiki file {file_name}: the name must start with quest_loot, quests, crafting, descriptions or items, which says what it holds"
+                "wiki file {file_name}: the name must start with quest_loot, quests, crafting, descriptions, items or augments, which says what it holds"
             )
         }
     }
@@ -208,7 +235,8 @@ impl WikiOverrides {
         let mut overrides = Self::default();
         let (mut quest_loot_file_by_quest, mut quest_file_by_quest, mut crafting_file_by_system) =
             (HashMap::new(), HashMap::new(), HashMap::new());
-        let (mut description_file_by_kind_and_name, mut item_file_by_name) = (HashMap::new(), HashMap::new());
+        let (mut description_file_by_kind_and_name, mut item_file_by_name, mut augment_file_by_family_and_name) =
+            (HashMap::new(), HashMap::new(), HashMap::new());
         for (file_name, toml_text) in toml_files {
             match WikiFileKind::from_file_name(file_name)? {
                 WikiFileKind::QuestLoot => overrides.quest_loot.extend(parse_wiki_entries(
@@ -232,6 +260,11 @@ impl WikiOverrides {
                 WikiFileKind::Items => {
                     overrides.items.extend(parse_wiki_entries(file_name, toml_text, &mut item_file_by_name)?)
                 }
+                WikiFileKind::Augments => overrides.augments.extend(parse_wiki_entries(
+                    file_name,
+                    toml_text,
+                    &mut augment_file_by_family_and_name,
+                )?),
             }
         }
         Ok(overrides)

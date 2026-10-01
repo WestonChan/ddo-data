@@ -4,7 +4,7 @@ use crate::enums::{
 };
 use std::sync::LazyLock;
 
-pub const SCHEMA_VERSION: i64 = 7;
+pub const SCHEMA_VERSION: i64 = 8;
 
 fn sql_in_clause<'a>(allowed_values: impl Iterator<Item = &'a str>) -> String {
     let quoted_values: Vec<String> = allowed_values.map(|value| format!("'{value}'")).collect();
@@ -644,7 +644,8 @@ CREATE TABLE IF NOT EXISTS augments (
     set_bonus          TEXT,                           -- <SetBonus>
     adds_augment       TEXT,                           -- <AddAugment>: slot type this augment opens next
     grants_augment     TEXT,                           -- <GrantAugment>: colour slot this augment adds
-    weapon_class       TEXT                            -- <WeaponClass>
+    weapon_class       TEXT,                           -- <WeaponClass>
+    source             TEXT    NOT NULL DEFAULT 'maetrim' CHECK (source {row_source})  -- 'wiki' for a data/wiki augments entry
 );
 -- Names repeat within a family (the same "Use Magic Device" exists for several slot sets), so
 -- the identity is the row, not the name.

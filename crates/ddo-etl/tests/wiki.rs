@@ -268,7 +268,8 @@ fn rejects_a_file_name_that_names_no_wiki_file_type() {
             && error.contains("quest_loot")
             && error.contains("quests")
             && error.contains("crafting")
-            && error.contains("items"),
+            && error.contains("items")
+            && error.contains("augments"),
         "{error}"
     );
 }
@@ -898,7 +899,7 @@ fn crafting_never_adds_innate_item_bonuses_or_augments() {
     let (without, _) = built_db_with(&WikiOverrides::default());
     let (with, _) = built_db_with(&WikiOverrides::from_dir(&fixtures_dir().join("wiki")).unwrap());
     for table in [
-        "augments",
+        "augments WHERE source = 'maetrim'",
         "item_bonuses JOIN items ON items.id = item_bonuses.item_id WHERE items.source = 'maetrim'",
         "items WHERE source = 'maetrim'",
         "adventure_packs",
