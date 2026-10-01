@@ -1620,596 +1620,803 @@ bestowed_by = "Renate Follmer"
 
 [[quest]]
 name = "Locked Away (Part Two)"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Locked_Away_(Part_Two)"
+read = "2026-10-01"
 free_to_play = false
 legendary_level = 36
+zone = "Ludendorf Asylum - Patients' Wing"
+bestowed_by = "Wenzel Brickner"
 
 [[quest]]
 name = "Lost at Sea"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Lost_at_Sea"
+read = "2026-10-01"
 free_to_play = true
 legendary_level = 32
+zone = "Beneath the Thunder Sea"
+bestowed_by = "Issabet Tremont"
 
 [[quest]]
 name = "Lost in the Swamp"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Lost_in_the_Swamp"
+read = "2026-10-01"
 free_to_play = false
+zone = "Lost Souls' Swamp"
+bestowed_by = "Eradin Krall"
 
 [[quest]]
 name = "Made to Order"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Made_to_Order"
+read = "2026-10-01"
 free_to_play = true
+zone = "Haywire Grotto"
+bestowed_by = "Hazra d'Kundarak"
 
 [[quest]]
 name = "Madstone Crater"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Madstone_Crater"
+read = "2026-10-01"
 free_to_play = false
+zone = "Madstone Crater"
+bestowed_by = "Blaze ar'Rhind"
 
 [[quest]]
 name = "Make Believe"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Make_Believe"
+read = "2026-10-01"
 free_to_play = false
 legendary_level = 32
+zone = "Viscount Xavier's Tower"
+bestowed_by = "Moscato"
 
 [[quest]]
 name = "Maraud the Mines"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Maraud_the_Mines"
+read = "2026-10-01"
 free_to_play = false
+zone = "Firebrand Mines"
+bestowed_by = "Walk-up"
 
 [[quest]]
 name = "Members Only"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Members_Only"
+read = "2026-10-01"
 free_to_play = false
 legendary_level = 32
+zone = "Cloudwrights' Club"
+bestowed_by = "Cyndrin Dorwell"
+
+[[quest]]
+name = "Memoirs of an Illusory Larcener"
+page = "https://ddowiki.com/page/Memoirs_of_an_Illusory_Larcener"
+read = "2026-10-01"
+free_to_play = true
+zone = "Memoirs of an Illusory Larcener"
+bestowed_by = "Callumnie"
 
 [[quest]]
 name = "Memory Lapse"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Memory_Lapse"
+read = "2026-10-01"
 free_to_play = false
+zone = "The Memory Library"
+bestowed_by = "Tara Fenwyth"
 
 [[quest]]
 name = "Mining for Ancient Secrets"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Mining_for_Ancient_Secrets"
+read = "2026-10-01"
 free_to_play = false
+zone = "Aspect Mine"
+bestowed_by = "Velrath"
 
 [[quest]]
 name = "Mired in Kobolds"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Mired_in_Kobolds"
+read = "2026-10-01"
 free_to_play = true
+zone = "Driftwood Mire"
+bestowed_by = "Smiley Smythe"
 
 [[quest]]
 name = "Mirra's Sleepless Nights"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Mirra%27s_Sleepless_Nights"
+read = "2026-10-01"
 free_to_play = true
+zone = "Parthilcar Tower Crypt"
+bestowed_by = "Mirra Parthilcar"
 
 [[quest]]
 name = "Misery's Peak"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Misery%27s_Peak"
+read = "2026-10-01"
 free_to_play = true
+zone = "Misery's Peak"
+bestowed_by = "Amalgam"
 
 [[quest]]
 name = "Missing"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Missing"
+read = "2026-10-01"
 free_to_play = false
+zone = "The Saltire District"
+bestowed_by = "Godwick Spurge"
 
 [[quest]]
 name = "Missing in Action"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Missing_in_Action"
+read = "2026-10-01"
 free_to_play = true
+zone = "The Foul Chambers"
+bestowed_by = "Ulcana Braddock"
 
 [[quest]]
 name = "Monastery of the Scorpion"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Monastery_of_the_Scorpion"
+read = "2026-10-01"
 free_to_play = false
+zone = "Drow Monastery"
+bestowed_by = "Milaxia"
 
 [[quest]]
 name = "Multitude of Menace"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Multitude_of_Menace"
+read = "2026-10-01"
 free_to_play = false
 legendary_level = 30
+zone = "Magewright's Hall"
+bestowed_by = "Belmont d'Cannith"
 
 [[quest]]
 name = "Murder by Night"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Murder_by_Night"
+read = "2026-10-01"
 free_to_play = false
+zone = "Eveningstar War Hospital"
+bestowed_by = "Delethir Mistveil"
 
 [[quest]]
 name = "Necromancer's Doom"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Necromancer%27s_Doom"
+read = "2026-10-01"
 free_to_play = true
+zone = "Decrepit Catacombs"
+bestowed_by = "Handsome Wilm"
 
 [[quest]]
 name = "Needle in a Fey Stack"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Needle_in_a_Fey_Stack"
+read = "2026-10-01"
 free_to_play = false
 legendary_level = 32
+zone = "The Treasure Grove"
+bestowed_by = "Farrunner"
 
 [[quest]]
 name = "Night Falls on Stormreach"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Night_Falls_on_Stormreach"
+read = "2026-10-01"
 free_to_play = false
 legendary_level = 31
+zone = "The Night Market"
+bestowed_by = "Bril Norgate"
 
 [[quest]]
 name = "No Refunds"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/No_Refunds"
+read = "2026-10-01"
 free_to_play = false
 legendary_level = 32
+zone = "Belgrave's Emporium"
+bestowed_by = "Celwyn Ulth"
 
 [[quest]]
 name = "Oath of Vengeance"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Oath_of_Vengeance"
+read = "2026-10-01"
 free_to_play = false
 legendary_level = 31
+zone = "Argynvostholt"
+bestowed_by = "Zigmund Kovalev"
 
 [[quest]]
 name = "Obstructing the Orcs"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Obstructing_the_Orcs"
+read = "2026-10-01"
 free_to_play = false
+zone = "Orc Caves"
+bestowed_by = "Sartra Esalovin"
 
 [[quest]]
 name = "Oghma's Song"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Oghma%27s_Song"
+read = "2026-10-01"
 free_to_play = false
 legendary_level = 35
+zone = "The House of Song"
+bestowed_by = "Greyarra Auvryath"
 
 [[quest]]
 name = "Old Baba's Hut"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Old_Baba%27s_Hut"
+read = "2026-10-01"
 free_to_play = false
 legendary_level = 32
+zone = "Baba Lysaga's Hut"
+bestowed_by = "Adrian Martikov"
+flagging = "Must complete Into the Mists once on the current life to reach the entrance"
 
 [[quest]]
 name = "Old Grey Garl"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Old_Grey_Garl"
+read = "2026-10-01"
 free_to_play = false
+zone = "Garl's Tomb"
+bestowed_by = "Red Tom"
 
 [[quest]]
 name = "One Dame Thing After Another"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/One_Dame_Thing_After_Another"
+read = "2026-10-01"
 free_to_play = false
 legendary_level = 32
+zone = "Hunters Hollow"
+bestowed_by = "Fernleaf"
 
 [[quest]]
 name = "Order in the Court!"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Order_in_the_Court!"
+read = "2026-10-01"
 free_to_play = false
 legendary_level = 33
+zone = "Barington Worthridge's Apartment"
+bestowed_by = "Harper Price"
 
 [[quest]]
 name = "Outbreak"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Outbreak"
+read = "2026-10-01"
 free_to_play = false
+zone = "Eveningstar War Hospital"
+bestowed_by = "Meena Follakin"
 
 [[quest]]
 name = "Overgrowth"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Overgrowth"
+read = "2026-10-01"
 free_to_play = false
+zone = "Uthe Lodge"
+bestowed_by = "Eolynn Arva"
 
 [[quest]]
 name = "Palace of Stone"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Palace_of_Stone"
+read = "2026-10-01"
 free_to_play = false
+zone = "Palace of Stone"
+bestowed_by = "Durk the Deranged"
 
 [[quest]]
 name = "Paper Trail"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Paper_Trail"
+read = "2026-10-01"
 free_to_play = false
 legendary_level = 34
+zone = "On the Trail of the Manuscript"
+bestowed_by = "Halman Best"
 
 [[quest]]
 name = "Party 101"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Party_101"
+read = "2026-10-01"
 free_to_play = false
 legendary_level = 34
+zone = "Hall of the Arcane Arts"
+bestowed_by = "Holtz"
 
 [[quest]]
 name = "Partycrashers"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Partycrashers"
+read = "2026-10-01"
 free_to_play = false
+zone = "Phiarlan Chapterhouse"
+bestowed_by = "Cyan"
 
 [[quest]]
 name = "Pilgrims' Peril"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Pilgrims%27_Peril"
+read = "2026-10-01"
 free_to_play = false
 legendary_level = 34
+zone = "Pilgrims' Temple"
+bestowed_by = "Rular Brigmore"
 
 [[quest]]
 name = "Plane of Night"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Plane_of_Night"
+read = "2026-10-01"
 free_to_play = false
+zone = "Plane of Night"
+bestowed_by = "Barrow d'Kundarak"
 
 [[quest]]
 name = "Plundering Pirates' Point"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Plundering_Pirates%27_Point"
+read = "2026-10-01"
 free_to_play = false
 legendary_level = 33
+zone = "Pirates' Point"
+bestowed_by = "Akakan"
 
 [[quest]]
 name = "Portal to Below"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Portal_to_Below"
+read = "2026-10-01"
 free_to_play = false
 legendary_level = 35
+zone = "On the Trail of Drow Kidnappers"
+bestowed_by = "Erlon Argentdawn"
 
 [[quest]]
 name = "Power Play"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Power_Play"
+read = "2026-10-01"
 free_to_play = false
+zone = "Cannith Power Works"
+bestowed_by = "Harlan d'Cannith"
 
 [[quest]]
 name = "Precious Cargo"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Precious_Cargo"
+read = "2026-10-01"
 free_to_play = false
+zone = "The Thunder Sea"
+bestowed_by = "Niles Cage"
 
 [[quest]]
 name = "Prey on the Hunter"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Prey_on_the_Hunter"
+read = "2026-10-01"
 free_to_play = false
+zone = "Dragon Sanctuary"
+bestowed_by = "H'rosin"
 
 [[quest]]
 name = "Project Nemesis"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Project_Nemesis"
+read = "2026-10-01"
 free_to_play = false
 legendary_level = 32
+zone = "Hazardous Prototype Repository"
+bestowed_by = "Lieutenant Zaira Dane"
 
 [[quest]]
 name = "Proof is in the Poison"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Proof_is_in_the_Poison"
+read = "2026-10-01"
 free_to_play = true
+zone = "Vile Apothecary"
+bestowed_by = "Ruat Acalay"
 
 [[quest]]
 name = "Protect Baudry's Interests"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Protect_Baudry%27s_Interests"
+read = "2026-10-01"
 free_to_play = true
+zone = "Cartamon's Shipping Warehouse"
+bestowed_by = "Tambor Smythe"
 
 [[quest]]
 name = "Prove Your Worth"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Prove_Your_Worth"
+read = "2026-10-01"
 free_to_play = false
+zone = "Rackam's Trial"
+bestowed_by = "Dirty Vingus"
 
 [[quest]]
 name = "Purge the Fallen Shrine"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Purge_the_Fallen_Shrine"
+read = "2026-10-01"
 free_to_play = false
+zone = "The Fallen Shrine"
+bestowed_by = "Walk-up"
 
 [[quest]]
 name = "Purge the Heretics"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Purge_the_Heretics"
+read = "2026-10-01"
 free_to_play = true
+zone = "Hidden Chapel"
+bestowed_by = "Inquisitor Gnomon"
 
 [[quest]]
 name = "Quarantine"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Quarantine"
+read = "2026-10-01"
 free_to_play = false
 legendary_level = 31
+zone = "Dannel's Pride"
+bestowed_by = "Elsa d'Jorasco"
 
 [[quest]]
 name = "Quid Pro Quo"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Quid_Pro_Quo"
+read = "2026-10-01"
 free_to_play = false
 legendary_level = 32
+zone = "Bitterspine Palace"
+bestowed_by = "Madoc Silverlight"
 
 [[quest]]
 name = "Raid the Vulkoorim"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Raid_the_Vulkoorim"
+read = "2026-10-01"
 free_to_play = false
+zone = "Vulkoorim Creche"
+bestowed_by = "Walk-up"
 
 [[quest]]
 name = "Raiding the Giants' Vault"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Raiding_the_Giants%27_Vault"
+read = "2026-10-01"
 free_to_play = false
+zone = "The Giants' Vault"
+bestowed_by = "Murkletter"
 
 [[quest]]
 name = "Raiding the Raiders"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Raiding_the_Raiders"
+read = "2026-10-01"
 free_to_play = false
 legendary_level = 37
+zone = "Drow Raiders' Camp"
+bestowed_by = "Iridin Battlethane"
 
 [[quest]]
 name = "Rainbow in the Dark"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Rainbow_in_the_Dark"
+read = "2026-10-01"
 free_to_play = false
+zone = "Den of Obscurity"
+bestowed_by = "Walk-up"
 
 [[quest]]
 name = "Rats in a Cage"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Rats_in_a_Cage"
+read = "2026-10-01"
 free_to_play = false
 legendary_level = 34
+zone = "The Battlemaster's Arenas"
+bestowed_by = "Ryndalla Cuttail"
 
 [[quest]]
 name = "Ravens' Bane"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Ravens%27_Bane"
+read = "2026-10-01"
 free_to_play = false
 legendary_level = 31
+zone = "The Ruins of Berez"
+bestowed_by = "Muriel Vinshaw"
 
 [[quest]]
 name = "Reach for the Sky"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Reach_for_the_Sky"
+read = "2026-10-01"
 free_to_play = false
 legendary_level = 32
+zone = "Skyway Odeum"
+bestowed_by = "Jix Boromar"
 
 [[quest]]
 name = "Reclaiming Memories"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Reclaiming_Memories"
+read = "2026-10-01"
 free_to_play = false
+zone = "Forgotten Ruins"
+bestowed_by = "Bitterblood"
 
 [[quest]]
 name = "Reclaiming the Rift"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Reclaiming_the_Rift"
+read = "2026-10-01"
 free_to_play = false
+zone = "The Rift Between Worlds"
+bestowed_by = "Valana"
 
 [[quest]]
 name = "Reclamation"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Reclamation"
+read = "2026-10-01"
 free_to_play = true
+zone = "Mineshaft IV"
+bestowed_by = "Leros Levithas"
 
 [[quest]]
 name = "Records of the Past"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Records_of_the_Past"
+read = "2026-10-01"
 free_to_play = false
 legendary_level = 31
+zone = "The Ruins of Ironvale Deep"
+bestowed_by = "Freygar Plumbline"
 
 [[quest]]
 name = "Recovering the Lost Tome"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Recovering_the_Lost_Tome"
+read = "2026-10-01"
 free_to_play = true
+zone = "Fallowcrest Library"
+bestowed_by = "Dalsamira Courdry"
 
 [[quest]]
 name = "Red Rain"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Red_Rain"
+read = "2026-10-01"
 free_to_play = false
 legendary_level = 32
+zone = "Cogsgate"
+bestowed_by = "Zeleth Crowspire"
 
 [[quest]]
 name = "Redemption"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Redemption_(quest)"
+read = "2026-10-01"
 free_to_play = true
+zone = "Cannith Manufactury"
+bestowed_by = "Ursa Jernsvard"
 
 [[quest]]
 name = "Redfang the Unruled"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Redfang_the_Unruled"
+read = "2026-10-01"
 free_to_play = true
+zone = "Redfang's Nesting Grounds"
+bestowed_by = "Basil Tallbarrow"
 
 [[quest]]
 name = "Redwillow's Ruins"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Redwillow%27s_Ruins"
+read = "2026-10-01"
 free_to_play = true
+zone = "Redwillow's Ruins"
+bestowed_by = "Jandul d'Jorasco"
 
 [[quest]]
 name = "Relentless"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Relentless"
+read = "2026-10-01"
 free_to_play = false
 legendary_level = 36
+zone = "Moloch's Edifying Waxworks"
+bestowed_by = "Arno Kauss"
+flagging = "Must complete The Body Snatchers this life to reach the entrance"
 
 [[quest]]
 name = "Repossession"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Repossession"
+read = "2026-10-01"
 free_to_play = false
+zone = "Goldstone Manor"
+bestowed_by = "Kear"
+flagging = "Must complete The Stormreaver Fresco and return to Burgundy Tir for the reward to flag for this quest"
 
 [[quest]]
 name = "Rest Stop"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Rest_Stop"
+read = "2026-10-01"
 free_to_play = false
+zone = "Beckside Castle Ruins"
+bestowed_by = "Freda Gambosi"
 
 [[quest]]
 name = "Rest for the Night"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Rest_for_the_Night"
+read = "2026-10-01"
 free_to_play = false
 legendary_level = 32
+zone = "Wilderness Campsite"
+bestowed_by = "Campsite"
 
 [[quest]]
 name = "Rest for the Restless"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Rest_for_the_Restless"
+read = "2026-10-01"
 free_to_play = true
+zone = "Vault of the Restless"
+bestowed_by = "Lady Nepenthe"
 
 [[quest]]
 name = "Retrieve the Stolen Goods"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Retrieve_the_Stolen_Goods"
+read = "2026-10-01"
 free_to_play = true
+zone = "Hazadill's Shipping Warehouse"
+bestowed_by = "Harmon Taft"
 
 [[quest]]
 name = "Return to Delera's Tomb"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Return_to_Delera%27s_Tomb_(quest)"
+read = "2026-10-01"
 free_to_play = false
+zone = "Delera's Tomb"
+bestowed_by = "Hargo Kimmare"
 
 [[quest]]
 name = "Return to the Sanctuary"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Return_to_the_Sanctuary"
+read = "2026-10-01"
 free_to_play = false
+zone = "The Sanctuary"
+bestowed_by = "Archbishop Dryden"
 
 [[quest]]
 name = "Riding the Storm Out"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Riding_the_Storm_Out"
+read = "2026-10-01"
 free_to_play = false
 legendary_level = 32
+zone = "Temple of the Storm"
+bestowed_by = "Dalwyneth"
 
 [[quest]]
 name = "Ritual Sacrifice"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Ritual_Sacrifice"
+read = "2026-10-01"
 free_to_play = false
+zone = "Twilight Canyon"
+bestowed_by = "Walk-up"
 
 [[quest]]
 name = "Roll Call"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Roll_Call"
+read = "2026-10-01"
 free_to_play = false
 legendary_level = 32
+zone = "Alcorin's Forge - Construct Maintenance"
+bestowed_by = "Walk-up"
 
 [[quest]]
 name = "Rosemary's Ballad"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Rosemary%27s_Ballad"
+read = "2026-10-01"
 free_to_play = false
 legendary_level = 32
+zone = "Hargrove Family Farm"
+bestowed_by = "Lily Hargrove"
 
 [[quest]]
 name = "Ruined Halls"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Ruined_Halls"
+read = "2026-10-01"
 free_to_play = true
+zone = "Ruined Halls"
+bestowed_by = "Edvag Goodgold"
 
 [[quest]]
 name = "Ruinous Schemes"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Ruinous_Schemes"
+read = "2026-10-01"
 free_to_play = false
 legendary_level = 32
+zone = "The Depths - Temple Excavation"
+bestowed_by = "Walk-up"
+
+[[quest]]
+name = "Ruins of Myth Drannor"
+page = "https://ddowiki.com/page/Ruins_of_Myth_Drannor"
+read = "2026-10-01"
+free_to_play = false
 
 [[quest]]
 name = "Running with the Devils"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Running_with_the_Devils"
+read = "2026-10-01"
 free_to_play = false
+zone = "Eladrin Stronghold"
+bestowed_by = "Walk-up"
 
 [[quest]]
 name = "Sacrifices"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Sacrifices"
+read = "2026-10-01"
 free_to_play = true
+zone = "Cannith Aqueduct"
+bestowed_by = "Viggie Storr"
 
 [[quest]]
 name = "Safety in Numbers"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Safety_in_Numbers"
+read = "2026-10-01"
 free_to_play = false
 legendary_level = 32
+zone = "Underlane Neighborhood, Rally Area"
+bestowed_by = "Lazar Greenmantle"
+
+[[quest]]
+name = "Saltmarsh"
+page = "https://ddowiki.com/page/Saltmarsh"
+read = "2026-10-01"
+free_to_play = false
 
 [[quest]]
 name = "Scavenger Hunt"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Scavenger_Hunt"
+read = "2026-10-01"
 free_to_play = false
 legendary_level = 32
+zone = "Sewer Access Point"
+bestowed_by = "Walk-up"
 
 [[quest]]
 name = "Schemes of the Enemy"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Schemes_of_the_Enemy"
+read = "2026-10-01"
 free_to_play = false
+zone = "Syrania Conduit Floor"
+bestowed_by = "Lena d'Cannith"
 
 [[quest]]
 name = "Sealed in Amber"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Sealed_in_Amber"
+read = "2026-10-01"
 free_to_play = false
 legendary_level = 31
+zone = "The Amber Temple"
+bestowed_by = "Kasimir Velikov"
 
 [[quest]]
 name = "Search and Rescue"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Search_and_Rescue"
+read = "2026-10-01"
 free_to_play = true
 legendary_level = 31
+zone = "Stonelands Crevasse"
+bestowed_by = "Popkin 'The Shiv' Shortshanks"
 
 [[quest]]
 name = "Secret of the Slavers' Stockade"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Secret_of_the_Slavers%27_Stockade"
+read = "2026-10-01"
 free_to_play = false
 legendary_level = 31
+zone = "Slavers' Stockade"
+bestowed_by = "Auto-bestowed"
 
 [[quest]]
 name = "Secrets of the Red Wizards"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Secrets_of_the_Red_Wizards"
+read = "2026-10-01"
 free_to_play = false
 legendary_level = 35
+zone = "The Irithlium"
+bestowed_by = "Maloran Herthana"
 
 [[quest]]
 name = "Secure the Area"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Secure_the_Area"
+read = "2026-10-01"
 free_to_play = false
+zone = "The Western Excavation"
+bestowed_by = "Jan Falner"
 
 [[quest]]
 name = "Security Detail"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Security_Detail"
+read = "2026-10-01"
 free_to_play = false
 legendary_level = 32
+zone = "Abandoned Vaunt Office"
+bestowed_by = "Walk-up"
 
 [[quest]]
 name = "Seeds of Decay"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Seeds_of_Decay"
+read = "2026-10-01"
 free_to_play = false
 legendary_level = 35
+zone = "Temple to Moander"
+bestowed_by = "Portal to the Temple of Moander"
 
 [[quest]]
 name = "Seizing the Dawn"
