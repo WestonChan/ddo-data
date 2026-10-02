@@ -1067,3 +1067,26 @@ items = [
   { name = "Mushroom Cap", chest = "jotun rimeblade's chest" },
   { name = "Epic Mushroom Cap", chest = "jotun rimeblade's chest" },
 ]
+
+[[quest]]
+name = "The Darklake"
+page = "https://ddowiki.com/page/The_Darklake"
+read = "2026-10-02"
+rare_augments = [
+  { name = "Solar Gem of Cruelty (Heroic)", chest = "depthdigger's chest" },
+  { name = "Solar Gem of Cruelty (Legendary)", chest = "depthdigger's chest" },
+  { name = "Solar Gem of Blast Dice (Heroic)", chest = "depthdigger's chest" },
+  { name = "Solar Gem of Blast Dice (Legendary)", chest = "depthdigger's chest" },
+  { name = "Solar Gem of Fortification Bypass (Heroic)", chest = "zarazurthu's chest" },
+  { name = "Solar Gem of Fortification Bypass (Legendary)", chest = "zarazurthu's chest" },
+  { name = "Solar Gem of Sneak Attack Dice (Heroic)", chest = "zarazurthu's chest" },
+  { name = "Solar Gem of Sneak Attack Dice (Legendary)", chest = "zarazurthu's chest" },
+  { name = "Lunar Gem of Illusion (Heroic)", chest = "j'anara's chest" },
+  { name = "Lunar Gem of Illusion (Legendary)", chest = "j'anara's chest" },
+  { name = "Lunar Gem of Disable Device and Open Lock (Heroic)", chest = "j'anara's chest" },
+  { name = "Lunar Gem of Disable Device and Open Lock (Legendary)", chest = "j'anara's chest" },
+  { name = "Lunar Gem of Enchantment (Heroic)", chest = "red-named rare encounter chests" },
+  { name = "Lunar Gem of Enchantment (Legendary)", chest = "red-named rare encounter chests" },
+  { name = "Solar Gem of Critical Confirmation (Heroic)", chest = "red-named rare encounter chests" },
+  { name = "Solar Gem of Critical Confirmation (Legendary)", chest = "red-named rare encounter chests" },
+]

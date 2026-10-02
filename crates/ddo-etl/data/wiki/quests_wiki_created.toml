@@ -13,3 +13,66 @@ difficulties = ["normal", "hard", "elite", "reaper"]
 zone = "Vision of an Alternate History"
 bestowed_by = "Vision of Future Graz'zt"
 flagging = "No flagging required."
+
+[[quest]]
+name = "Return to Prison of the Planes"
+page = "https://ddowiki.com/page/Return_to_Prison_of_the_Planes"
+read = "2026-10-02"
+free_to_play = false
+pack = "Ruins of Gianthold"
+patron = "Agents of Argonnessen"
+level = 24
+epic_level = 24
+favor = 6
+is_raid = false
+difficulties = ["normal", "hard", "elite"]
+zone = "The Prison of the Planes"
+bestowed_by = "Maragogg ar'Mawn"
+
+[[quest]]
+name = "The Darklake"
+page = "https://ddowiki.com/page/The_Darklake"
+read = "2026-10-02"
+free_to_play = false
+pack = "Terror of Demogorgon"
+level = 11
+legendary_level = 37
+favor = 0
+is_raid = false
+difficulties = ["normal", "hard", "elite", "reaper"]
+
+[[quest]]
+name = "The Borderlands"
+page = "https://ddowiki.com/page/The_Borderlands"
+read = "2026-10-02"
+free_to_play = false
+pack = "Keep on the Borderlands"
+level = 1
+epic_level = 21
+favor = 0
+is_raid = false
+difficulties = ["normal"]
+
+[[quest]]
+name = "Sands of Menechtarun"
+page = "https://ddowiki.com/page/Sands_of_Menechtarun"
+read = "2026-10-02"
+free_to_play = false
+pack = "Demon Sands"
+level = 11
+favor = 0
+is_raid = false
+difficulties = ["normal"]
+
+[[quest]]
+name = "The Voyage"
+page = "https://ddowiki.com/page/The_Voyage"
+read = "2026-10-02"
+free_to_play = true
+pack = "Free to Play"
+level = 1
+favor = 0
+is_raid = false
+difficulties = ["normal"]
+zone = "The Airship \"Heart of Wind\""
+flagging = "Requires Veteran Status; starts automatically when a new level 1 character enters the game."
