@@ -4,9 +4,9 @@ use ddo_etl::build::{
     unlinked_drop_segment_heads, unlinked_reward_givers, BuildReport, StaleCorrection, StaleCorrectionCause,
     UnlinkedRewardGiver,
 };
-use ddo_etl::wiki::DescriptionKind;
+use ddo_etl::wiki::{DescriptionKind, WikiOverrides};
 use ddo_model::enums::RowSource;
-use rusqlite::Connection;
+use rusqlite::{params, Connection};
 use std::collections::BTreeMap;
 use std::path::Path;
 
@@ -35,7 +35,39 @@ pub fn wiki_check_report(
     report_lines.extend(stale_correction_warnings(&report));
     report_lines.extend(looks_variant_warnings(&db)?);
     report_lines.extend(effect_spelling_warnings(&db)?);
+    report_lines.extend(listed_quest_series_reward_warnings(&db, &wiki_overrides)?);
     Ok(report_lines.join("\n"))
+}
+
+fn listed_quest_series_reward_warnings(db: &Connection, wiki_overrides: &WikiOverrides) -> Result<Vec<String>> {
+    let mut statement = db.prepare(
+        "SELECT 'quest chain', c.name, 'chain', 'quest_chains.toml'
+           FROM quest_chains c JOIN quest_chain_quests cq ON cq.chain_id = c.id JOIN quests q ON q.id = cq.quest_id
+          WHERE q.name = ?1 AND EXISTS (SELECT 1 FROM drops d LEFT JOIN items i ON i.id = d.item_id
+                LEFT JOIN augments a ON a.id = d.augment_id WHERE d.chain_id = c.id AND COALESCE(i.name, a.name) = ?2)
+         UNION ALL
+         SELECT 'saga', s.name, 'saga', 'sagas.toml'
+           FROM sagas s JOIN saga_quests sq ON sq.saga_id = s.id JOIN quests q ON q.id = sq.quest_id
+          WHERE q.name = ?1 AND EXISTS (SELECT 1 FROM drops d LEFT JOIN items i ON i.id = d.item_id
+                LEFT JOIN augments a ON a.id = d.augment_id WHERE d.saga_id = s.id AND COALESCE(i.name, a.name) = ?2)
+         ORDER BY 1, 2",
+    )?;
+    let mut warnings = Vec::new();
+    for quest_loot in &wiki_overrides.quest_loot {
+        for listed_drop in quest_loot.items.iter().chain(&quest_loot.augments) {
+            let quest_name = &quest_loot.name;
+            let loot_name = listed_drop.name();
+            let rewarding_series = statement.query_map(params![quest_name, loot_name], |row| {
+                let (series_kind, series_name, short_kind, file_name): (String, String, String, String) =
+                    (row.get(0)?, row.get(1)?, row.get(2)?, row.get(3)?);
+                Ok(format!(
+                    "warning: quest_loot {quest_name:?} lists {loot_name:?}, which is already a reward of {series_kind} {series_name:?}; a {short_kind}'s end reward belongs only in {file_name}"
+                ))
+            })?;
+            warnings.extend(rewarding_series.collect::<rusqlite::Result<Vec<_>>>()?);
+        }
+    }
+    Ok(warnings)
 }
 
 fn unused_family_augment_warnings(db: &Connection) -> Result<Vec<String>> {

@@ -539,3 +539,39 @@ fn wiki_batch_lists_the_chains_and_sagas_his_drop_text_credits_that_no_wiki_file
         "a saga's reward is listed though the saga's name holds a quest's"
     );
 }
+
+#[test]
+fn wiki_check_warns_about_a_listed_quest_drop_that_is_a_reward_of_the_quests_chain() {
+    let draft_dir = draft_dir_with_fixture_quests();
+    std::fs::write(
+        draft_dir.path().join("quest_chains.toml"),
+        "# Test values, not read from ddowiki.\n[[chain]]\nname = \"The Lost Seekers\"\n\
+         page = \"https://ddowiki.com/page/The_Lost_Seekers\"\nread = \"2026-10-02\"\n\
+         quests = [\"The Grotto\"]\nrewards = [\"Docent of Defiance\"]\n",
+    )
+    .unwrap();
+    std::fs::write(
+        draft_dir.path().join("quest_loot.toml"),
+        "# Test values, not read from ddowiki.\n[[quest]]\nname = \"The Grotto\"\n\
+         page = \"https://ddowiki.com/page/The_Grotto\"\nread = \"2026-10-02\"\n\
+         items = [\"Docent of Defiance\", \"Rusted Crown\"]\n",
+    )
+    .unwrap();
+    let report =
+        wiki_check_report(&fixtures_dir().join("DataFiles"), Some(draft_dir.path()), Some(&fixture_corrections_dir()))
+            .unwrap();
+    let (_, warnings) = report.split_once("warnings:\n").unwrap();
+    let chain_reward_warnings: Vec<&str> =
+        warnings.lines().filter(|line| line.contains("end reward belongs")).collect();
+    assert_eq!(
+        chain_reward_warnings,
+        ["warning: quest_loot \"The Grotto\" lists \"Docent of Defiance\", which is already a reward of quest chain \"The Lost Seekers\"; a chain's end reward belongs only in quest_chains.toml"]
+    );
+    let fixture_report = wiki_check_report(
+        &fixtures_dir().join("DataFiles"),
+        Some(&fixtures_dir().join("wiki")),
+        Some(&fixture_corrections_dir()),
+    )
+    .unwrap();
+    assert!(!fixture_report.contains("end reward belongs"), "{fixture_report}");
+}
