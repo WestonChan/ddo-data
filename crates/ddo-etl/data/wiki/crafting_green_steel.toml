@@ -3858,7 +3858,7 @@ tier = "legendary"
 slot = "crafting: equipment tier 1"
 option = "Electric Guard +10d6"
 augments = ["Electric damage on being hit - 8d6"]
-note = "Equipment augment for Air/Dominion/Material, made at the Legendary Altar of Invasion. The page gives +10d6; Maetrim's tier 1 augment is 8d6, and his value stands."
+note = "Equipment augment for Air/Dominion/Material, made at the Legendary Altar of Invasion. The wiki's tier 1 and tier 2 pages disagree with each other about the guard dice (10d6 / 14d6); Maetrim's 8d6 and 10d6 are kept until the wiki settles."
 cost = [{ ingredient = "Legendary Inferior Focus of Air", quantity = 1 }, { ingredient = "Legendary Cloudy Gem of Dominion", quantity = 1 }, { ingredient = "Legendary Diluted Material Essence", quantity = 1 }]
 
 [[system.recipe]]
@@ -3874,7 +3874,7 @@ tier = "legendary"
 slot = "crafting: equipment tier 1"
 option = "Acid Guard +10d6"
 augments = ["Acid damage on being hit - 8d6"]
-note = "Equipment augment for Earth/Dominion/Material, made at the Legendary Altar of Invasion. The page gives +10d6; Maetrim's tier 1 augment is 8d6, and his value stands."
+note = "Equipment augment for Earth/Dominion/Material, made at the Legendary Altar of Invasion. The wiki's tier 1 and tier 2 pages disagree with each other about the guard dice (10d6 / 14d6); Maetrim's 8d6 and 10d6 are kept until the wiki settles."
 cost = [{ ingredient = "Legendary Inferior Focus of Earth", quantity = 1 }, { ingredient = "Legendary Cloudy Gem of Dominion", quantity = 1 }, { ingredient = "Legendary Diluted Material Essence", quantity = 1 }]
 
 [[system.recipe]]
@@ -3890,7 +3890,7 @@ tier = "legendary"
 slot = "crafting: equipment tier 1"
 option = "Fire Guard +10d6"
 augments = ["Fire damage on being hit - 8d6"]
-note = "Equipment augment for Fire/Dominion/Material, made at the Legendary Altar of Invasion. The page gives +10d6; Maetrim's tier 1 augment is 8d6, and his value stands."
+note = "Equipment augment for Fire/Dominion/Material, made at the Legendary Altar of Invasion. The wiki's tier 1 and tier 2 pages disagree with each other about the guard dice (10d6 / 14d6); Maetrim's 8d6 and 10d6 are kept until the wiki settles."
 cost = [{ ingredient = "Legendary Inferior Focus of Fire", quantity = 1 }, { ingredient = "Legendary Cloudy Gem of Dominion", quantity = 1 }, { ingredient = "Legendary Diluted Material Essence", quantity = 1 }]
 
 [[system.recipe]]
@@ -3906,7 +3906,7 @@ tier = "legendary"
 slot = "crafting: equipment tier 1"
 option = "Cold Guard +10d6"
 augments = ["Cold damage on being hit - 8d6"]
-note = "Equipment augment for Water/Dominion/Material, made at the Legendary Altar of Invasion. The page gives +10d6; Maetrim's tier 1 augment is 8d6, and his value stands."
+note = "Equipment augment for Water/Dominion/Material, made at the Legendary Altar of Invasion. The wiki's tier 1 and tier 2 pages disagree with each other about the guard dice (10d6 / 14d6); Maetrim's 8d6 and 10d6 are kept until the wiki settles."
 cost = [{ ingredient = "Legendary Inferior Focus of Water", quantity = 1 }, { ingredient = "Legendary Cloudy Gem of Dominion", quantity = 1 }, { ingredient = "Legendary Diluted Material Essence", quantity = 1 }]
 
 [[system.recipe]]
@@ -3922,7 +3922,7 @@ tier = "legendary"
 slot = "crafting: equipment tier 1"
 option = "Evil Guard +10d6"
 augments = ["Evil damage on being hit - 8d6"]
-note = "Equipment augment for Negative/Dominion/Material, made at the Legendary Altar of Invasion. The page gives +10d6; Maetrim's tier 1 augment is 8d6, and his value stands."
+note = "Equipment augment for Negative/Dominion/Material, made at the Legendary Altar of Invasion. The wiki's tier 1 and tier 2 pages disagree with each other about the guard dice (10d6 / 14d6); Maetrim's 8d6 and 10d6 are kept until the wiki settles."
 cost = [{ ingredient = "Legendary Inferior Focus of Negative Energy", quantity = 1 }, { ingredient = "Legendary Cloudy Gem of Dominion", quantity = 1 }, { ingredient = "Legendary Diluted Material Essence", quantity = 1 }]
 
 [[system.recipe]]
@@ -3938,7 +3938,7 @@ tier = "legendary"
 slot = "crafting: equipment tier 1"
 option = "Good Guard +10d6"
 augments = ["Good damage on being hit - 8d6"]
-note = "Equipment augment for Positive/Dominion/Material, made at the Legendary Altar of Invasion. The page gives +10d6; Maetrim's tier 1 augment is 8d6, and his value stands."
+note = "Equipment augment for Positive/Dominion/Material, made at the Legendary Altar of Invasion. The wiki's tier 1 and tier 2 pages disagree with each other about the guard dice (10d6 / 14d6); Maetrim's 8d6 and 10d6 are kept until the wiki settles."
 cost = [{ ingredient = "Legendary Inferior Focus of Positive Energy", quantity = 1 }, { ingredient = "Legendary Cloudy Gem of Dominion", quantity = 1 }, { ingredient = "Legendary Diluted Material Essence", quantity = 1 }]
 
 [[system.recipe]]
