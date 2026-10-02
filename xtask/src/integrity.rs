@@ -1,6 +1,7 @@
 use anyhow::{Context, Result};
 use ddo_etl::corrections::Corrections;
 use rusqlite::Connection;
+use std::collections::{BTreeMap, HashSet};
 use std::fmt;
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
@@ -57,93 +58,338 @@ const DROP_LOCATION_HEAD_SQL: &str = "COALESCE(NULLIF(TRIM(CASE WHEN instr(i.dro
 
 const WIKI_SOURCED_TABLES: [&str; 5] = ["items", "quests", "augments", "quest_chains", "sagas"];
 
+impl IntegrityCheck {
+    const fn hard(name: &'static str, description: &'static str, offender_query: OffenderQuery) -> Self {
+        Self {
+            name,
+            severity: Severity::Hard,
+            description,
+            offender_query,
+            shown_offender_limit: SHOWN_OFFENDER_LIMIT,
+            top_detail_limit: 0,
+        }
+    }
+
+    const fn warn(name: &'static str, description: &'static str, offender_query: OffenderQuery) -> Self {
+        Self { severity: Severity::Warn, ..Self::hard(name, description, offender_query) }
+    }
+
+    const fn showing_every_offender(self) -> Self {
+        Self { shown_offender_limit: usize::MAX, ..self }
+    }
+
+    const fn ranking_top_details(self, top_detail_limit: usize) -> Self {
+        Self { top_detail_limit, ..self }
+    }
+}
+
 pub const INTEGRITY_CHECKS: &[IntegrityCheck] = &[
-    IntegrityCheck {
-        name: "drops_reference_existing_rows",
-        severity: Severity::Hard,
-        description: "every foreign key in the database, the drops table's source, item and augment ids among them, \
-                      names an existing row (PRAGMA foreign_key_check)",
-        offender_query: OffenderQuery::Sql(
+    IntegrityCheck::hard(
+        "drops_reference_existing_rows",
+        "every foreign key in the database, the drops table's source, item and augment ids among them, names an \
+         existing row (PRAGMA foreign_key_check)",
+        OffenderQuery::Sql(
             "SELECT \"table\", rowid, 'references a missing ' || parent || ' row' FROM pragma_foreign_key_check()",
         ),
-        shown_offender_limit: SHOWN_OFFENDER_LIMIT,
-        top_detail_limit: 0,
-    },
-    IntegrityCheck {
-        name: "items_have_names_and_slots",
-        severity: Severity::Hard,
-        description: "every item has a non-blank name and an equipment slot that exists; no item category is slotless",
-        offender_query: OffenderQuery::Sql(
+    ),
+    IntegrityCheck::hard(
+        "items_have_names_and_slots",
+        "every item has a non-blank name and an equipment slot that exists; no item category is slotless",
+        OffenderQuery::Sql(
             "SELECT i.name, i.id, CASE WHEN TRIM(i.name) = '' THEN 'blank name' \
              ELSE 'slot ' || COALESCE(i.slot_id, 'null') || ' is not an equipment slot' END \
              FROM items i LEFT JOIN equipment_slots s ON s.id = i.slot_id \
              WHERE TRIM(i.name) = '' OR s.id IS NULL",
         ),
-        shown_offender_limit: SHOWN_OFFENDER_LIMIT,
-        top_detail_limit: 0,
-    },
-    IntegrityCheck {
-        name: "quests_have_packs",
-        severity: Severity::Hard,
-        description: "every quest that is not a challenge belongs to an adventure pack",
-        offender_query: OffenderQuery::Sql(
+    ),
+    IntegrityCheck::hard(
+        "quests_have_packs",
+        "every quest that is not a challenge belongs to an adventure pack",
+        OffenderQuery::Sql(
             "SELECT name, id, 'no adventure pack' FROM quests WHERE is_challenge = 0 AND pack_id IS NULL",
         ),
-        shown_offender_limit: SHOWN_OFFENDER_LIMIT,
-        top_detail_limit: 0,
-    },
-    IntegrityCheck {
-        name: "wiki_rows_have_pages",
-        severity: Severity::Hard,
-        description: "every row the wiki supplies (source = 'wiki') carries the ddowiki page it was read from, \
-                      in each table that has a wiki_url column",
-        offender_query: OffenderQuery::Built(wiki_rows_without_pages),
-        shown_offender_limit: SHOWN_OFFENDER_LIMIT,
-        top_detail_limit: 0,
-    },
-    IntegrityCheck {
-        name: "legacy_items_hidden",
-        severity: Severity::Hard,
-        description: "every item flagged is_legacy has a reason: a (legacy) or (historic) name, an is_legacy \
-                      correction, or no drops row (its only sources are retired)",
-        offender_query: OffenderQuery::Built(legacy_items_without_a_reason),
-        shown_offender_limit: SHOWN_OFFENDER_LIMIT,
-        top_detail_limit: 0,
-    },
-    IntegrityCheck {
-        name: "items_without_a_source",
-        severity: Severity::Warn,
-        description: "items (other than legacy ones) with no drops row; no table links an item as a crafting output \
-                      yet, so drops is the only source. Becomes HARD once vendor, event, crafting, challenge and \
-                      starter-gear sources exist; the drop_location heads below are the work list for them",
-        offender_query: OffenderQuery::Built(items_without_a_source),
-        shown_offender_limit: SHOWN_OFFENDER_LIMIT,
-        top_detail_limit: 15,
-    },
-    IntegrityCheck {
-        name: "effects_named_after_stats",
-        severity: Severity::Warn,
-        description: "effects whose name equals a stat's ignoring case and spaces: buffs the buff map should turn \
-                      into bonuses on that stat",
-        offender_query: OffenderQuery::Sql(
+    ),
+    IntegrityCheck::hard(
+        "wiki_rows_have_pages",
+        "every row the wiki supplies (source = 'wiki') carries the ddowiki page it was read from, in each table that \
+         has a wiki_url column",
+        OffenderQuery::Built(wiki_rows_without_pages),
+    ),
+    IntegrityCheck::hard(
+        "legacy_items_hidden",
+        "every item flagged is_legacy has a reason: a (legacy) or (historic) name, an is_legacy correction, or no \
+         drops row (its only sources are retired)",
+        OffenderQuery::Built(legacy_items_without_a_reason),
+    ),
+    IntegrityCheck::hard(
+        "tables_not_empty",
+        "every table has rows, except those --allow-empty-table names",
+        OffenderQuery::Built(empty_tables),
+    ),
+    IntegrityCheck::hard(
+        "item_names_unique",
+        "no two items share a name exactly",
+        OffenderQuery::Sql(
+            "SELECT name, MIN(id), COUNT(*) || ' items share this name' FROM items GROUP BY name HAVING COUNT(*) > 1",
+        ),
+    ),
+    IntegrityCheck::hard(
+        "items_have_wiki_urls",
+        "every item links to a ddowiki page: its wiki_url starts with https://ddowiki.com/page/",
+        OffenderQuery::Sql(
+            "SELECT name, id, COALESCE(wiki_url, 'no wiki_url') FROM items \
+             WHERE wiki_url IS NULL OR wiki_url NOT GLOB 'https://ddowiki.com/page/?*'",
+        ),
+    ),
+    IntegrityCheck::hard(
+        "weapon_and_armor_stats_match_category",
+        "weapons have weapon stats only, armor has armor stats only, shields have both (a shield bashes), and \
+         jewelry and clothing have neither",
+        OffenderQuery::Sql(
+            "SELECT i.name, i.id, i.item_category \
+             || CASE WHEN w.item_id IS NULL THEN ' without' ELSE ' with' END || ' weapon stats and' \
+             || CASE WHEN a.item_id IS NULL THEN ' without' ELSE ' with' END || ' armor stats' \
+             FROM items i LEFT JOIN item_weapon_stats w ON w.item_id = i.id \
+             LEFT JOIN item_armor_stats a ON a.item_id = i.id \
+             WHERE (w.item_id IS NOT NULL) <> (i.item_category IN ('Weapon', 'Shield')) \
+             OR (a.item_id IS NOT NULL) <> (i.item_category IN ('Armor', 'Shield'))",
+        ),
+    ),
+    IntegrityCheck::hard(
+        "raid_loot_only_on_raids",
+        "a quest drop with loot type raid comes from a quest that is a raid",
+        OffenderQuery::Sql(
+            "SELECT q.name, d.id, 'raid loot ' || COALESCE(i.name, a.name, '') || ' from a quest that is not a raid' \
+             FROM drops d JOIN quests q ON q.id = d.quest_id LEFT JOIN items i ON i.id = d.item_id \
+             LEFT JOIN augments a ON a.id = d.augment_id \
+             WHERE d.loot_type = 'raid' AND q.is_raid = 0",
+        ),
+    ),
+    IntegrityCheck::hard(
+        "reward_rows_have_no_chest",
+        "an end reward (loot type reward, or a quest chain's or saga's reward) names no chest",
+        OffenderQuery::Sql(
+            "SELECT COALESCE(q.name, c.name, s.name, p.name, ''), d.id, 'reward from chest ' || d.chest \
+             FROM drops d LEFT JOIN quests q ON q.id = d.quest_id LEFT JOIN quest_chains c ON c.id = d.chain_id \
+             LEFT JOIN sagas s ON s.id = d.saga_id LEFT JOIN adventure_packs p ON p.id = d.pack_id \
+             WHERE COALESCE(d.loot_type, 'reward') = 'reward' AND d.chest IS NOT NULL",
+        ),
+    ),
+    IntegrityCheck::hard(
+        "chest_never_says_reward",
+        "no chest name contains the word reward; reward text belongs in loot type reward",
+        OffenderQuery::Sql(
+            "SELECT COALESCE(q.name, p.name, ''), d.id, 'chest ' || d.chest \
+             FROM drops d LEFT JOIN quests q ON q.id = d.quest_id LEFT JOIN adventure_packs p ON p.id = d.pack_id \
+             WHERE lower(d.chest) LIKE '%reward%'",
+        ),
+    ),
+    IntegrityCheck::hard(
+        "item_sockets_use_known_labels",
+        "every item socket is a slot type of a known family (standard, dino, lamordia, slavers, upgrade, crafting) \
+         with a variant, and a standard socket is one of the nine colours",
+        OffenderQuery::Sql(
+            "SELECT i.name, i.id, 'socket ' || COALESCE(t.label, s.slot_id) || ' of family ' \
+             || COALESCE(t.family, 'none') FROM item_augment_slots s JOIN items i ON i.id = s.item_id \
+             LEFT JOIN augment_slot_types t ON t.id = s.slot_id \
+             WHERE t.id IS NULL \
+             OR t.family NOT IN ('standard', 'dino', 'lamordia', 'slavers', 'upgrade', 'crafting') \
+             OR TRIM(t.variant) = '' \
+             OR (t.family = 'standard' AND t.variant NOT IN \
+                 ('red', 'green', 'blue', 'orange', 'purple', 'colorless', 'yellow', 'sun', 'moon'))",
+        ),
+    ),
+    IntegrityCheck::hard(
+        "no_stale_corrections",
+        "every correction in the corrections files (--corrections, default the embedded ones) was applied; one that \
+         was not has Maetrim's value changed under it or its rename done upstream, and cargo xtask wiki-check \
+         says which",
+        OffenderQuery::Built(unapplied_corrections),
+    ),
+    IntegrityCheck::hard(
+        "trees_have_enhancements",
+        "every enhancement tree has at least one enhancement",
+        OffenderQuery::Sql(
+            "SELECT t.name, t.id, 'no enhancements' FROM enhancement_trees t \
+             WHERE NOT EXISTS (SELECT 1 FROM enhancements e WHERE e.tree_id = t.id)",
+        ),
+    ),
+    IntegrityCheck::hard(
+        "classes_have_full_progression",
+        "every class has BAB and spell points for each of its 21 level entries (0 to 20); every heroic class has hit \
+         points and skill points per level, a good or poor progression for each save, and class skills. Unknown, \
+         Maetrim's placeholder for a level whose class is not chosen yet, is exempt",
+        OffenderQuery::Sql(
+            "SELECT name, id, CASE \
+             WHEN json_array_length(COALESCE(bab, '[]')) <> 21 \
+             THEN 'BAB has ' || json_array_length(COALESCE(bab, '[]')) || ' entries, not 21' \
+             WHEN json_array_length(COALESCE(spell_points_per_level, '[]')) <> 21 \
+             THEN 'spell points have ' || json_array_length(COALESCE(spell_points_per_level, '[]')) \
+                  || ' entries, not 21' \
+             WHEN COALESCE(hit_points, 0) <= 0 THEN 'no hit points per level' \
+             WHEN COALESCE(skill_points, 0) <= 0 THEN 'no skill points per level' \
+             WHEN NOT (COALESCE(fortitude, '') IN ('good', 'poor') AND COALESCE(reflex, '') IN ('good', 'poor') \
+                       AND COALESCE(will, '') IN ('good', 'poor')) THEN 'a save with no progression' \
+             ELSE 'no class skills' END \
+             FROM classes c \
+             WHERE json_array_length(COALESCE(bab, '[]')) <> 21 \
+             OR json_array_length(COALESCE(spell_points_per_level, '[]')) <> 21 \
+             OR (not_heroic = 0 AND name <> 'Unknown' AND ( \
+                 COALESCE(hit_points, 0) <= 0 OR COALESCE(skill_points, 0) <= 0 \
+                 OR NOT (COALESCE(fortitude, '') IN ('good', 'poor') AND COALESCE(reflex, '') IN ('good', 'poor') \
+                         AND COALESCE(will, '') IN ('good', 'poor')) \
+                 OR NOT EXISTS (SELECT 1 FROM class_skills s WHERE s.class_id = c.id)))",
+        ),
+    ),
+    IntegrityCheck::warn(
+        "items_without_a_source",
+        "items (other than legacy ones) with no drops row; no table links an item as a crafting output yet, so drops \
+         is the only source. Becomes HARD once vendor, event, crafting, challenge and starter-gear sources exist; the \
+         drop_location heads below are the work list for them",
+        OffenderQuery::Built(items_without_a_source),
+    )
+    .ranking_top_details(15),
+    IntegrityCheck::warn(
+        "effects_named_after_stats",
+        "effects whose name equals a stat's ignoring case and spaces: buffs the buff map should turn into bonuses on \
+         that stat",
+        OffenderQuery::Sql(
             "SELECT e.name, e.id, 'named like the stat ' || s.name FROM effects e \
              JOIN stats s ON lower(replace(e.name, ' ', '')) = lower(replace(s.name, ' ', '')) ORDER BY e.name",
         ),
-        shown_offender_limit: usize::MAX,
-        top_detail_limit: 0,
-    },
-    IntegrityCheck {
-        name: "untyped_item_bonuses",
-        severity: Severity::Warn,
-        description: "item bonuses with no bonus type, so they stack with everything; the top stats are listed",
-        offender_query: OffenderQuery::Sql(
+    )
+    .showing_every_offender(),
+    IntegrityCheck::warn(
+        "untyped_item_bonuses",
+        "item bonuses with no bonus type, so they stack with everything; the top stats are listed",
+        OffenderQuery::Sql(
             "SELECT i.name, i.id, s.name FROM item_bonuses ib JOIN bonuses b ON b.id = ib.bonus_id \
              JOIN items i ON i.id = ib.item_id JOIN stats s ON s.id = b.stat_id \
              WHERE b.bonus_type_id IS NULL ORDER BY i.name",
         ),
-        shown_offender_limit: SHOWN_OFFENDER_LIMIT,
-        top_detail_limit: 10,
-    },
+    )
+    .ranking_top_details(10),
+    IntegrityCheck::warn(
+        "items_have_minimum_level",
+        "every item has a minimum level of 1 or more. WARN until the follow-up: the Cannith Crafted blanks take their \
+         level from the crafting step, and Quiver of Alacrity has MinLevel 0 in Maetrim's file",
+        OffenderQuery::Sql(
+            "SELECT name, id, 'minimum level ' || COALESCE(minimum_level, 'null') FROM items \
+             WHERE minimum_level IS NULL OR minimum_level < 1 ORDER BY name",
+        ),
+    )
+    .showing_every_offender(),
+    IntegrityCheck::warn(
+        "augments_have_slot_and_family",
+        "every augment has a family and fits at least one socket. WARN until the follow-up: Insightful Spell Focus \
+         Mastery has no <Type> in Maetrim's file (a correction candidate), and No Augment is his empty-socket \
+         placeholder",
+        OffenderQuery::Sql(
+            "SELECT name, id, CASE WHEN TRIM(family) = '' THEN 'blank family' \
+             ELSE family || ' augment fits no socket' END FROM augments a \
+             WHERE TRIM(family) = '' OR NOT EXISTS (SELECT 1 FROM augment_slots s WHERE s.augment_id = a.id)",
+        ),
+    )
+    .showing_every_offender(),
+    IntegrityCheck::warn(
+        "chains_and_sagas_have_quests",
+        "every quest chain and saga links at least two quests. WARN until the follow-up: the wiki entries for Return \
+         to Gianthold and The Salvation of Korthos record no quests yet",
+        OffenderQuery::Sql(
+            "SELECT c.name, c.id, 'quest chain with ' || COUNT(q.quest_id) || ' quest(s)' FROM quest_chains c \
+             LEFT JOIN quest_chain_quests q ON q.chain_id = c.id GROUP BY c.id HAVING COUNT(q.quest_id) < 2 \
+             UNION ALL \
+             SELECT s.name, s.id, 'saga with ' || COUNT(q.quest_id) || ' quest(s)' FROM sagas s \
+             LEFT JOIN saga_quests q ON q.saga_id = s.id GROUP BY s.id HAVING COUNT(q.quest_id) < 2",
+        ),
+    )
+    .showing_every_offender(),
+    IntegrityCheck::warn(
+        "items_without_enchantments",
+        "items with no bonus and no effect; the top categories are listed",
+        OffenderQuery::Sql(
+            "SELECT i.name, i.id, i.item_category FROM items i \
+             WHERE NOT EXISTS (SELECT 1 FROM item_bonuses b WHERE b.item_id = i.id) \
+             AND NOT EXISTS (SELECT 1 FROM item_effects e WHERE e.item_id = i.id) ORDER BY i.name",
+        ),
+    )
+    .ranking_top_details(5),
+    IntegrityCheck::warn(
+        "items_without_description",
+        "items with a blank description; the blank_descriptions.txt list from cargo xtask wiki-batch is the work list",
+        OffenderQuery::Sql(
+            "SELECT name, id, item_category FROM items WHERE description IS NULL OR TRIM(description) = '' \
+             ORDER BY name",
+        ),
+    )
+    .ranking_top_details(5),
+    IntegrityCheck::warn(
+        "near_duplicate_item_names",
+        "items whose names differ only by case, punctuation or spaces",
+        OffenderQuery::Built(near_duplicate_item_names),
+    )
+    .showing_every_offender(),
+    IntegrityCheck::warn(
+        "raids_without_raid_loot",
+        "raids with no drops row of loot type raid",
+        OffenderQuery::Sql(
+            "SELECT q.name, q.id, 'raid without raid loot' FROM quests q WHERE q.is_raid = 1 \
+             AND NOT EXISTS (SELECT 1 FROM drops d WHERE d.quest_id = q.id AND d.loot_type = 'raid') ORDER BY q.name",
+        ),
+    )
+    .showing_every_offender(),
+    IntegrityCheck::warn(
+        "quests_without_loot",
+        "quests (not challenges) with no drops row; the database does not mark wilderness areas, so any among them \
+         are listed too. The top packs are listed",
+        OffenderQuery::Sql(
+            "SELECT q.name, q.id, COALESCE(p.name, '(no pack)') FROM quests q \
+             LEFT JOIN adventure_packs p ON p.id = q.pack_id WHERE q.is_challenge = 0 \
+             AND NOT EXISTS (SELECT 1 FROM drops d WHERE d.quest_id = q.id) ORDER BY q.name",
+        ),
+    )
+    .ranking_top_details(10),
+    IntegrityCheck::warn(
+        "unreferenced_effects",
+        "effects no row references",
+        OffenderQuery::Built(unreferenced_effects),
+    )
+    .showing_every_offender(),
+    IntegrityCheck::warn(
+        "unreferenced_bonuses",
+        "bonuses no row references",
+        OffenderQuery::Built(unreferenced_bonuses),
+    )
+    .showing_every_offender(),
+    IntegrityCheck::warn(
+        "unreferenced_stats",
+        "stats that no bonus an item, augment, feat or set tier carries is on: possible duplicates in the stat \
+         vocabulary",
+        OffenderQuery::Built(unreferenced_stats),
+    )
+    .showing_every_offender(),
+    IntegrityCheck::warn(
+        "slot_types_no_augment_fits",
+        "socket types no augment fits, with how many item sockets carry each; a crafting recipe or the item's own \
+         fixed contents may still fill them",
+        OffenderQuery::Sql(
+            "SELECT t.label, t.id, (SELECT COUNT(*) FROM item_augment_slots s WHERE s.slot_id = t.id) \
+             || ' item socket(s)' FROM augment_slot_types t \
+             WHERE NOT EXISTS (SELECT 1 FROM augment_slots a WHERE a.slot_id = t.id) ORDER BY t.label",
+        ),
+    ),
+    IntegrityCheck::warn(
+        "sets_without_members",
+        "set bonuses no item, augment or filigree belongs to",
+        OffenderQuery::Sql(
+            "SELECT s.name, s.id, CASE WHEN s.is_filigree_set = 1 THEN 'filigree set' ELSE 'set' END \
+             FROM set_bonuses s \
+             WHERE NOT EXISTS (SELECT 1 FROM set_bonus_items i WHERE i.set_id = s.id) \
+             AND NOT EXISTS (SELECT 1 FROM set_bonus_augments a WHERE a.set_id = s.id) \
+             AND NOT EXISTS (SELECT 1 FROM filigrees f WHERE f.set_id = s.id) ORDER BY s.name",
+        ),
+    )
+    .showing_every_offender(),
 ];
 
 fn has_column(db: &Connection, table: &str, column: &str) -> Result<bool> {
@@ -212,6 +458,143 @@ fn items_without_a_source(db: &Connection, _options: &IntegrityOptions) -> Resul
     )?;
     let notes = if has_is_legacy { Vec::new() } else { vec!["items.is_legacy is absent; no item is excluded".into()] };
     Ok(Findings { offenders: Some(offenders), notes })
+}
+
+fn empty_tables(db: &Connection, options: &IntegrityOptions) -> Result<Findings> {
+    let mut statement =
+        db.prepare("SELECT name FROM sqlite_master WHERE type = 'table' AND name NOT LIKE 'sqlite_%' ORDER BY name")?;
+    let table_names = statement.query_map([], |row| row.get::<_, String>(0))?.collect::<rusqlite::Result<Vec<_>>>()?;
+    let mut offenders = Vec::new();
+    for table_name in table_names {
+        let row_count: i64 = db.query_row(&format!("SELECT COUNT(*) FROM \"{table_name}\""), [], |row| row.get(0))?;
+        if row_count == 0 && !options.allowed_empty_tables.contains(&table_name) {
+            offenders.push(Offender { name: table_name, id: None, detail: "no rows".to_string() });
+        }
+    }
+    let allowed_text = match options.allowed_empty_tables.as_slice() {
+        [] => "none".to_string(),
+        allowed_tables => allowed_tables.join(", "),
+    };
+    Ok(Findings { offenders: Some(offenders), notes: vec![format!("allowed empty: {allowed_text}")] })
+}
+
+fn unapplied_corrections(db: &Connection, options: &IntegrityOptions) -> Result<Findings> {
+    let mut statement = db.prepare("SELECT kind, name, qualifier, field FROM corrections")?;
+    let applied_keys = statement
+        .query_map([], |row| Ok((row.get::<_, String>(0)?, row.get(1)?, row.get(2)?, row.get(3)?)))?
+        .collect::<rusqlite::Result<HashSet<(String, String, String, String)>>>()?;
+    let offenders = options
+        .corrections
+        .entries
+        .iter()
+        .filter(|correction| {
+            let key = (
+                correction.kind.as_str().to_string(),
+                correction.name.clone(),
+                correction.qualifier(),
+                correction.field.clone(),
+            );
+            !applied_keys.contains(&key)
+        })
+        .map(|correction| Offender {
+            name: correction.label(),
+            id: None,
+            detail: format!("in {} but not applied", correction.file_name),
+        })
+        .collect();
+    Ok(Findings { offenders: Some(offenders), notes: Vec::new() })
+}
+
+fn folded_item_name(item_name: &str) -> String {
+    item_name.chars().filter(|character| character.is_alphanumeric()).flat_map(char::to_lowercase).collect()
+}
+
+fn near_duplicate_item_names(db: &Connection, _options: &IntegrityOptions) -> Result<Findings> {
+    let mut statement = db.prepare("SELECT name, id FROM items ORDER BY name")?;
+    let items = statement
+        .query_map([], |row| Ok((row.get::<_, String>(0)?, row.get::<_, i64>(1)?)))?
+        .collect::<rusqlite::Result<Vec<_>>>()?;
+    let mut items_by_folded_name: BTreeMap<String, Vec<(String, i64)>> = BTreeMap::new();
+    for (item_name, item_id) in items {
+        items_by_folded_name.entry(folded_item_name(&item_name)).or_default().push((item_name, item_id));
+    }
+    let mut offenders = Vec::new();
+    for same_named_items in items_by_folded_name.values().filter(|same_named_items| same_named_items.len() > 1) {
+        for (item_name, item_id) in same_named_items {
+            let other_names: Vec<String> = same_named_items
+                .iter()
+                .filter(|(other_name, _)| other_name != item_name)
+                .map(|(other_name, _)| format!("{other_name:?}"))
+                .collect();
+            offenders.push(Offender {
+                name: item_name.clone(),
+                id: Some(*item_id),
+                detail: format!("same as {}", other_names.join(", ")),
+            });
+        }
+    }
+    Ok(Findings { offenders: Some(offenders), notes: Vec::new() })
+}
+
+fn referencing_columns(db: &Connection, referenced_table: &str) -> Result<Vec<(String, String)>> {
+    let mut statement = db.prepare(
+        "SELECT m.name, f.\"from\" FROM sqlite_master m JOIN pragma_foreign_key_list(m.name) f \
+         WHERE m.type = 'table' AND f.\"table\" = ?1 ORDER BY m.name",
+    )?;
+    let columns = statement
+        .query_map([referenced_table], |row| Ok((row.get::<_, String>(0)?, row.get::<_, String>(1)?)))?
+        .collect::<rusqlite::Result<Vec<_>>>()?;
+    Ok(columns)
+}
+
+fn referenced_condition(referencing_columns: &[(String, String)], referenced_id: &str) -> String {
+    let exists_clauses: Vec<String> = referencing_columns
+        .iter()
+        .map(|(table, column)| format!("EXISTS (SELECT 1 FROM \"{table}\" r WHERE r.\"{column}\" = {referenced_id})"))
+        .collect();
+    match exists_clauses.as_slice() {
+        [] => "0".to_string(),
+        _ => exists_clauses.join(" OR "),
+    }
+}
+
+fn referencing_columns_note(referencing_columns: &[(String, String)]) -> String {
+    let column_names: Vec<String> =
+        referencing_columns.iter().map(|(table, column)| format!("{table}.{column}")).collect();
+    format!("referenced from {}", column_names.join(", "))
+}
+
+fn unreferenced_rows(db: &Connection, table: &str) -> Result<Findings> {
+    let referencing_columns = referencing_columns(db, table)?;
+    let offenders = offenders_from_sql(
+        db,
+        &format!(
+            "SELECT t.name, t.id, 'no row references it' FROM {table} t WHERE NOT ({}) ORDER BY t.name",
+            referenced_condition(&referencing_columns, "t.id")
+        ),
+    )?;
+    Ok(Findings { offenders: Some(offenders), notes: vec![referencing_columns_note(&referencing_columns)] })
+}
+
+fn unreferenced_effects(db: &Connection, _options: &IntegrityOptions) -> Result<Findings> {
+    unreferenced_rows(db, "effects")
+}
+
+fn unreferenced_bonuses(db: &Connection, _options: &IntegrityOptions) -> Result<Findings> {
+    unreferenced_rows(db, "bonuses")
+}
+
+fn unreferenced_stats(db: &Connection, _options: &IntegrityOptions) -> Result<Findings> {
+    let bonus_referencing_columns = referencing_columns(db, "bonuses")?;
+    let offenders = offenders_from_sql(
+        db,
+        &format!(
+            "SELECT s.name, s.id, s.category FROM stats s WHERE NOT EXISTS \
+             (SELECT 1 FROM bonuses b WHERE b.stat_id = s.id AND ({})) ORDER BY s.name",
+            referenced_condition(&bonus_referencing_columns, "b.id")
+        ),
+    )?;
+    Ok(Findings { offenders: Some(offenders), notes: vec![referencing_columns_note(&bonus_referencing_columns)] })
 }
 
 fn findings_of(check: &IntegrityCheck, db: &Connection, options: &IntegrityOptions) -> Result<Findings> {

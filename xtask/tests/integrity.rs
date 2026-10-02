@@ -123,66 +123,194 @@ fn a_warning_never_fails_the_command() {
 
 struct InjectedViolation {
     check_name: &'static str,
-    injected_sql: &'static str,
+    injected_sql: String,
     offender_name: &'static str,
 }
 
-const INJECTED_VIOLATIONS: &[InjectedViolation] = &[
-    InjectedViolation {
-        check_name: "drops_reference_existing_rows",
-        injected_sql: "INSERT INTO drops (source_kind, quest_id, item_id, loot_type)
-                       VALUES ('quest', (SELECT MIN(id) FROM quests), 999999, 'chest');",
-        offender_name: "drops",
-    },
-    InjectedViolation {
-        check_name: "items_have_names_and_slots",
-        injected_sql: "UPDATE items SET name = '  ' WHERE id = (SELECT MIN(id) FROM items);",
-        offender_name: "  ",
-    },
-    InjectedViolation {
-        check_name: "items_have_names_and_slots",
-        injected_sql: "UPDATE items SET slot_id = 999 WHERE name = (SELECT MAX(name) FROM items);",
-        offender_name: "",
-    },
-    InjectedViolation {
-        check_name: "quests_have_packs",
-        injected_sql: "INSERT INTO quests (name, is_challenge) VALUES ('Integrity Probe Quest', 0);",
-        offender_name: "Integrity Probe Quest",
-    },
-    InjectedViolation {
-        check_name: "wiki_rows_have_pages",
-        injected_sql: "INSERT INTO items (name, slot_id, item_category, source)
-                       VALUES ('Integrity Probe Wiki Ring', (SELECT id FROM equipment_slots WHERE name = 'Ring'),
-                               'Jewelry', 'wiki');",
-        offender_name: "Integrity Probe Wiki Ring",
-    },
-    InjectedViolation {
-        check_name: "items_without_a_source",
-        injected_sql: "INSERT INTO items (name, slot_id, item_category, drop_location)
-                       VALUES ('Integrity Probe Ring', (SELECT id FROM equipment_slots WHERE name = 'Ring'),
-                               'Jewelry', 'Nowhere Keep, chest');",
-        offender_name: "Integrity Probe Ring",
-    },
-    InjectedViolation {
-        check_name: "effects_named_after_stats",
-        injected_sql: "INSERT INTO effects (name) VALUES ('hitpoints');",
-        offender_name: "hitpoints",
-    },
-    InjectedViolation {
-        check_name: "untyped_item_bonuses",
-        injected_sql: "INSERT INTO bonuses (name, stat_id, bonus_type_id, value)
-                       VALUES ('Integrity Probe +77', (SELECT MIN(id) FROM stats), NULL, 77);
-                       INSERT INTO item_bonuses (item_id, bonus_id, sort_order)
-                       VALUES ((SELECT MIN(id) FROM items), last_insert_rowid(), 900);",
-        offender_name: "",
-    },
-];
+fn violation(check_name: &'static str, injected_sql: &str, offender_name: &'static str) -> InjectedViolation {
+    InjectedViolation { check_name, injected_sql: injected_sql.to_string(), offender_name }
+}
+
+fn probe_ring_insert(name: &str) -> String {
+    format!(
+        "INSERT INTO items (name, slot_id, item_category, wiki_url, minimum_level, description)
+         VALUES ('{name}', (SELECT id FROM equipment_slots WHERE name = 'Ring'), 'Jewelry',
+                 'https://ddowiki.com/page/Item:Integrity_Probe', 1, 'A probe.');"
+    )
+}
+
+const PROBE_QUEST_INSERT: &str = "INSERT INTO quests (name, pack_id, is_raid)
+     VALUES ('Integrity Probe Quest', (SELECT MIN(id) FROM adventure_packs), 0);";
+
+fn probe_quest_drop_insert(loot_type: &str, chest: &str) -> String {
+    format!(
+        "{PROBE_QUEST_INSERT}
+         INSERT INTO drops (source_kind, quest_id, item_id, loot_type, chest)
+         VALUES ('quest', last_insert_rowid(), (SELECT MIN(id) FROM items), '{loot_type}', {chest});"
+    )
+}
+
+fn injected_violations() -> Vec<InjectedViolation> {
+    vec![
+        violation(
+            "drops_reference_existing_rows",
+            "INSERT INTO drops (source_kind, quest_id, item_id, loot_type)
+             VALUES ('quest', (SELECT MIN(id) FROM quests), 999999, 'chest');",
+            "drops",
+        ),
+        violation(
+            "items_have_names_and_slots",
+            "UPDATE items SET name = '  ' WHERE id = (SELECT MIN(id) FROM items);",
+            "  ",
+        ),
+        violation(
+            "items_have_names_and_slots",
+            "UPDATE items SET slot_id = 999 WHERE name = (SELECT MAX(name) FROM items);",
+            "",
+        ),
+        violation(
+            "quests_have_packs",
+            "INSERT INTO quests (name, is_challenge) VALUES ('Integrity Probe Quest', 0);",
+            "Integrity Probe Quest",
+        ),
+        violation(
+            "wiki_rows_have_pages",
+            "INSERT INTO items (name, slot_id, item_category, source, minimum_level)
+             VALUES ('Integrity Probe Wiki Ring', (SELECT id FROM equipment_slots WHERE name = 'Ring'),
+                     'Jewelry', 'wiki', 1);",
+            "Integrity Probe Wiki Ring",
+        ),
+        violation(
+            "items_without_a_source",
+            &format!(
+                "{} UPDATE items SET drop_location = 'Nowhere Keep, chest' WHERE name = 'Integrity Probe Ring';",
+                probe_ring_insert("Integrity Probe Ring")
+            ),
+            "Integrity Probe Ring",
+        ),
+        violation("effects_named_after_stats", "INSERT INTO effects (name) VALUES ('hitpoints');", "hitpoints"),
+        violation(
+            "untyped_item_bonuses",
+            "INSERT INTO bonuses (name, stat_id, bonus_type_id, value)
+             VALUES ('Integrity Probe +77', (SELECT MIN(id) FROM stats), NULL, 77);
+             INSERT INTO item_bonuses (item_id, bonus_id, sort_order)
+             VALUES ((SELECT MIN(id) FROM items), last_insert_rowid(), 900);",
+            "",
+        ),
+        violation("tables_not_empty", "DELETE FROM guild_buffs;", "guild_buffs"),
+        violation(
+            "items_have_wiki_urls",
+            "UPDATE items SET wiki_url = 'https://example.com/page/Probe' WHERE id = (SELECT MIN(id) FROM items);",
+            "",
+        ),
+        violation(
+            "items_have_wiki_urls",
+            &probe_ring_insert("Integrity Probe Ring").replace("'https://ddowiki.com/page/Item:Integrity_Probe'", "NULL"),
+            "Integrity Probe Ring",
+        ),
+        violation(
+            "weapon_and_armor_stats_match_category",
+            "DELETE FROM item_weapon_stats WHERE item_id = (SELECT MIN(id) FROM items WHERE item_category = 'Weapon');",
+            "",
+        ),
+        violation(
+            "weapon_and_armor_stats_match_category",
+            "INSERT INTO item_armor_stats (item_id, armor_type)
+             VALUES ((SELECT MIN(id) FROM items WHERE item_category = 'Jewelry'), 'Light');",
+            "",
+        ),
+        violation("raid_loot_only_on_raids", &probe_quest_drop_insert("raid", "NULL"), "Integrity Probe Quest"),
+        violation("reward_rows_have_no_chest", &probe_quest_drop_insert("reward", "'probe chest'"), "Integrity Probe Quest"),
+        violation(
+            "chest_never_says_reward",
+            &probe_quest_drop_insert("chest", "'end reward chest'"),
+            "Integrity Probe Quest",
+        ),
+        violation(
+            "item_sockets_use_known_labels",
+            "INSERT INTO augment_slot_types (label, family, variant) VALUES ('mystery: probe', 'mystery', 'probe');
+             INSERT INTO item_augment_slots (item_id, sort_order, slot_id)
+             VALUES ((SELECT MIN(id) FROM items), 900, last_insert_rowid());",
+            "",
+        ),
+        violation(
+            "trees_have_enhancements",
+            "DELETE FROM enhancements WHERE tree_id = (SELECT MIN(id) FROM enhancement_trees);",
+            "",
+        ),
+        violation("classes_have_full_progression", "UPDATE classes SET hit_points = 0 WHERE name = 'Paladin';", "Paladin"),
+        violation(
+            "classes_have_full_progression",
+            "UPDATE classes SET bab = '[0, 1, 2]' WHERE name = 'Dark Apostate';",
+            "Dark Apostate",
+        ),
+        violation(
+            "items_have_minimum_level",
+            &probe_ring_insert("Integrity Probe Ring").replace(", 1, 'A probe.'", ", 0, 'A probe.'"),
+            "Integrity Probe Ring",
+        ),
+        violation(
+            "augments_have_slot_and_family",
+            "INSERT INTO augments (name, family) VALUES ('Integrity Probe Augment', 'Ruby');",
+            "Integrity Probe Augment",
+        ),
+        violation(
+            "chains_and_sagas_have_quests",
+            "INSERT INTO quest_chains (name, source, wiki_url)
+             VALUES ('Integrity Probe Chain', 'wiki', 'https://ddowiki.com/page/Integrity_Probe_Chain');",
+            "Integrity Probe Chain",
+        ),
+        violation("items_without_enchantments", &probe_ring_insert("Integrity Probe Ring"), "Integrity Probe Ring"),
+        violation(
+            "items_without_description",
+            &probe_ring_insert("Integrity Probe Ring").replace("'A probe.'", "NULL"),
+            "Integrity Probe Ring",
+        ),
+        violation(
+            "near_duplicate_item_names",
+            &format!("{} {}", probe_ring_insert("Integrity Probe Ring"), probe_ring_insert("integrity-probe ring")),
+            "integrity-probe ring",
+        ),
+        violation(
+            "raids_without_raid_loot",
+            &PROBE_QUEST_INSERT.replace("adventure_packs), 0)", "adventure_packs), 1)"),
+            "Integrity Probe Quest",
+        ),
+        violation("quests_without_loot", PROBE_QUEST_INSERT, "Integrity Probe Quest"),
+        violation(
+            "unreferenced_effects",
+            "INSERT INTO effects (name) VALUES ('Integrity Probe Effect');",
+            "Integrity Probe Effect",
+        ),
+        violation(
+            "unreferenced_bonuses",
+            "INSERT INTO bonuses (name, stat_id, value) VALUES ('Integrity Probe +77', (SELECT MIN(id) FROM stats), 77);",
+            "Integrity Probe +77",
+        ),
+        violation(
+            "unreferenced_stats",
+            "INSERT INTO stats (name, category) VALUES ('Integrity Probe Stat', 'probe');",
+            "Integrity Probe Stat",
+        ),
+        violation(
+            "slot_types_no_augment_fits",
+            "INSERT INTO augment_slot_types (label, family, variant)
+             VALUES ('crafting: integrity probe', 'crafting', 'integrity probe');",
+            "crafting: integrity probe",
+        ),
+        violation(
+            "sets_without_members",
+            "INSERT INTO set_bonuses (name) VALUES ('Integrity Probe Set');",
+            "Integrity Probe Set",
+        ),
+    ]
+}
 
 #[test]
 fn each_injected_violation_fails_or_warns_its_own_check() {
-    for violation in INJECTED_VIOLATIONS {
+    for violation in injected_violations() {
         let work_dir = tempfile::tempdir().unwrap();
-        let db_path = fixture_db_copy_with(work_dir.path(), violation.injected_sql);
+        let db_path = fixture_db_copy_with(work_dir.path(), &violation.injected_sql);
         let db = Connection::open(&db_path).unwrap();
         let report = integrity_report(&db, &fixture_options()).unwrap();
         let check = INTEGRITY_CHECKS.iter().find(|check| check.name == violation.check_name).unwrap();
@@ -295,4 +423,53 @@ fn wiki_rows_have_pages_notes_each_table_without_a_wiki_url_column() {
             "{report}"
         );
     }
+}
+
+#[test]
+fn tables_not_empty_prints_the_tables_allowed_to_be_empty() {
+    let db = Connection::open(fixture_db_built_once()).unwrap();
+    let report = integrity_report(&db, &fixture_options()).unwrap();
+    let outcome = report.outcome("tables_not_empty").unwrap();
+
+    assert_eq!(outcome.status, CheckStatus::Passed, "{report}");
+    assert!(outcome.notes.iter().any(|note| note == "allowed empty: corrections, race_feat_slots"), "{report}");
+
+    let options_allowing_nothing = IntegrityOptions { allowed_empty_tables: Vec::new(), ..fixture_options() };
+    let strict_report = integrity_report(&db, &options_allowing_nothing).unwrap();
+    let strict_outcome = strict_report.outcome("tables_not_empty").unwrap();
+    assert_eq!(strict_outcome.status, CheckStatus::Failed, "{strict_report}");
+    assert!(strict_outcome.notes.iter().any(|note| note == "allowed empty: none"), "{strict_report}");
+}
+
+#[test]
+fn a_correction_the_build_did_not_apply_fails_no_stale_corrections() {
+    let work_dir = tempfile::tempdir().unwrap();
+    let db_path = work_dir.path().join("fixture-with-corrections.db");
+    let corrections = Corrections::from_dir(&fixtures_dir().join("corrections")).unwrap();
+    let wiki_overrides = WikiOverrides::from_dir(&fixtures_dir().join("wiki")).unwrap();
+    build_database_file(&fixtures_dir().join("DataFiles"), &wiki_overrides, &corrections, &db_path).unwrap();
+    let db = Connection::open(&db_path).unwrap();
+    let options = IntegrityOptions { corrections, ..fixture_options() };
+
+    let report = integrity_report(&db, &options).unwrap();
+    let outcome = report.outcome("no_stale_corrections").unwrap();
+
+    assert_eq!(outcome.status, CheckStatus::Failed, "{report}");
+    assert_eq!(outcome.offenders.len(), 1, "{report}");
+    assert!(outcome.offenders[0].name.contains("Ruby of Acid Damage"), "{report}");
+}
+
+#[test]
+fn the_unknown_placeholder_class_needs_no_progression() {
+    let work_dir = tempfile::tempdir().unwrap();
+    let db_path = fixture_db_copy_with(
+        work_dir.path(),
+        "INSERT INTO classes (name, skill_points, hit_points, fortitude, reflex, will, bab, spell_points_per_level)
+         VALUES ('Unknown', 2, 0, 'none', 'none', 'none',
+                 '[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]', '[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]');",
+    );
+    let db = Connection::open(&db_path).unwrap();
+    let report = integrity_report(&db, &fixture_options()).unwrap();
+
+    assert_eq!(report.outcome("classes_have_full_progression").unwrap().status, CheckStatus::Passed, "{report}");
 }
