@@ -40,6 +40,17 @@ impl TableWriter<'_> {
                     |r| r.get(0),
                 )?;
                 self.write_modifiers(ModifierSource::SetBonusTier, tier_id, &tier.effects)?;
+                let earlier_bonus_count: i64 = self.transaction.query_row(
+                    "SELECT COUNT(*) FROM set_bonus_tier_bonuses WHERE tier_id = ?1",
+                    params![tier_id],
+                    |r| r.get(0),
+                )?;
+                for (bonus_index, bonus_id) in self.ensure_derived_bonuses(&tier.effects)?.into_iter().enumerate() {
+                    self.transaction.execute(
+                        "INSERT INTO set_bonus_tier_bonuses (tier_id, bonus_id, sort_order) VALUES (?1, ?2, ?3)",
+                        params![tier_id, bonus_id, earlier_bonus_count + bonus_index as i64],
+                    )?;
+                }
             }
         }
         for filigree in &set_bonus_file.filigrees {

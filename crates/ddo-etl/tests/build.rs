@@ -618,6 +618,22 @@ fn writes_sets_filigrees_and_their_items() {
     assert!(tiers.iter().all(|(n, _)| *n >= 2));
     let tier_modifier_count = count(&db, &format!("SELECT COUNT(*) FROM modifiers m JOIN set_bonus_tiers t ON t.id = m.source_id WHERE m.source_kind = 'set_bonus_tier' AND t.set_id = {winter}"));
     assert!(tier_modifier_count >= 1);
+    let winter_tier_bonuses: Vec<(i64, String, i64)> = db
+        .prepare(
+            "SELECT t.equipped_count, s.name, b.value FROM set_bonus_tier_bonuses tb JOIN set_bonus_tiers t ON t.id = tb.tier_id
+               JOIN bonuses b ON b.id = tb.bonus_id JOIN stats s ON s.id = b.stat_id
+              WHERE t.set_id = ?1 ORDER BY t.equipped_count, tb.sort_order",
+        )
+        .unwrap()
+        .query_map(params![winter], |r| Ok((r.get(0)?, r.get(1)?, r.get(2)?)))
+        .unwrap()
+        .map(Result::unwrap)
+        .collect();
+    assert!(
+        winter_tier_bonuses.contains(&(2, "Physical Resistance Rating".into(), 30))
+            && winter_tier_bonuses.contains(&(6, "Constitution".into(), 3)),
+        "a tier's plain stat effects derive bonuses as a feat's do: {winter_tier_bonuses:?}"
+    );
     let members: Vec<String> = db
         .prepare("SELECT i.name FROM set_bonus_items sbi JOIN items i ON i.id = sbi.item_id WHERE sbi.set_id = ?1")
         .unwrap()

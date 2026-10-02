@@ -27,6 +27,18 @@
   "name": "Lorikk's Champion",
   "tiers": [
     {
+      "bonuses": [
+        {
+          "bonus_type": "Equipment",
+          "description": "Equipment Devotion 72: 72 Equipment bonus to Positive (Healing) spell power.",
+          "id": 934,
+          "name": "Positive Spell Power +72",
+          "stat": "Positive Spell Power",
+          "stat_category": "magical",
+          "value": 72,
+          "value2": null
+        }
+      ],
       "description": "+72 Equipment bonus to Positive (Healing) Spell Power.",
       "equipped_count": 2,
       "id": 60,
@@ -64,6 +76,18 @@
       ]
     },
     {
+      "bonuses": [
+        {
+          "bonus_type": "Equipment",
+          "description": "Equipment Devotion 78: 78 Equipment bonus to Positive (Healing) spell power.",
+          "id": 867,
+          "name": "Positive Spell Power +78",
+          "stat": "Positive Spell Power",
+          "stat_category": "magical",
+          "value": 78,
+          "value2": null
+        }
+      ],
       "description": "+78 Equipment bonus to Positive (Healing) Spell Power.",
       "equipped_count": 3,
       "id": 61,

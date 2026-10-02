@@ -57,6 +57,7 @@ fn ddl_creates_every_v2_table() {
         "augment_bonuses",
         "set_bonuses",
         "set_bonus_tiers",
+        "set_bonus_tier_bonuses",
         "set_bonus_items",
         "set_bonus_augments",
         "filigrees",
@@ -176,7 +177,7 @@ fn augments_come_from_maetrim_unless_the_wiki_supplied_them() {
     assert!(db
         .execute("INSERT INTO augments (name, family, source) VALUES ('Odd Gem', 'Named', 'ddowiki')", [])
         .is_err());
-    assert_eq!(SCHEMA_VERSION, 12);
+    assert_eq!(SCHEMA_VERSION, 13);
 }
 
 #[test]

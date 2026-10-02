@@ -1,4 +1,4 @@
-use crate::db::{convert_to_booleans, json_row, json_rows, modifiers_for, whole_table_json};
+use crate::db::{bonuses_via, convert_to_booleans, json_row, json_rows, modifiers_for, whole_table_json};
 use crate::error::ApiError;
 use crate::state::AppState;
 use axum::extract::{Path, State};
@@ -50,7 +50,8 @@ async fn sets(State(state): State<AppState>) -> Result<Json<Vec<Value>>, ApiErro
     path = "/v1/sets/{id}",
     tag = "sets",
     summary = "Get a set",
-    description = "One set with its `tiers` (how many pieces equipped unlock which raw `modifiers`), the `items` \
+    description = "One set with its `tiers` (how many pieces equipped unlock which `bonuses`, the stat, bonus type and \
+                   value derived from each tier's plain stat effects as an item's are, and which raw `modifiers`), the `items` \
                    that count towards it with slot and minimum level, the `augments` whose slotting grants it (id, \
                    name, minimum level; crafting-system and named augments), and for filigree sets the `filigrees`.",
     params(("id" = i64, Path, description = "The set's numeric id from the list endpoint")), responses((status = 200, description = "The set with its child collections", body = Value), (status = 404, description = "No set has this id", body = crate::error::ErrorBody))
@@ -67,6 +68,7 @@ async fn set_detail(State(state): State<AppState>, Path(id): Path<i64>) -> Resul
             )?;
             for tier in &mut tiers {
                 let tier_id = tier["id"].as_i64().unwrap_or(0);
+                tier["bonuses"] = Value::Array(bonuses_via(db, "set_bonus_tier_bonuses", "tier_id", tier_id)?);
                 tier["modifiers"] = Value::Array(modifiers_for(db, "set_bonus_tier", tier_id)?);
             }
             set["tiers"] = Value::Array(tiers);

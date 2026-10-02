@@ -408,6 +408,9 @@ async fn sets_feats_races_classes_trees_spells() {
     let (_, _, set) = get(&format!("/v1/sets/{}", winter["id"])).await;
     assert!(set["tiers"].as_array().unwrap().iter().all(|t| t["equipped_count"].as_i64().unwrap() >= 2));
     assert_eq!(set["items"][0]["name"], "Legendary Cloak of Winter");
+    let two_piece_tier = set["tiers"].as_array().unwrap().iter().find(|t| t["equipped_count"] == 2).unwrap();
+    assert_eq!(two_piece_tier["bonuses"][0]["stat"], "Physical Resistance Rating", "tier {two_piece_tier}");
+    assert_eq!(two_piece_tier["bonuses"][0]["value"], 30);
     let winter_augment_names: Vec<&str> =
         set["augments"].as_array().unwrap().iter().map(|augment| augment["name"].as_str().unwrap()).collect();
     assert_eq!(winter_augment_names, ["Test Gem of Oozing Resistance"], "the fixture wiki augment joins its set");

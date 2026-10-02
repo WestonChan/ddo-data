@@ -5,7 +5,7 @@ use crate::enums::{
 };
 use std::sync::LazyLock;
 
-pub const SCHEMA_VERSION: i64 = 12;
+pub const SCHEMA_VERSION: i64 = 13;
 
 fn sql_in_clause<'a>(allowed_values: impl Iterator<Item = &'a str>) -> String {
     let quoted_values: Vec<String> = allowed_values.map(|value| format!("'{value}'")).collect();
@@ -825,6 +825,15 @@ CREATE TABLE IF NOT EXISTS set_bonus_tiers (
     description    TEXT,                               -- <Buff><Description>
     UNIQUE (set_id, equipped_count)
 );
+
+-- Bonuses derived from a tier's plain stat effects, as feat_bonuses and augment_bonuses are from theirs.
+CREATE TABLE IF NOT EXISTS set_bonus_tier_bonuses (
+    tier_id    INTEGER NOT NULL REFERENCES set_bonus_tiers(id) ON DELETE CASCADE,
+    bonus_id   INTEGER NOT NULL REFERENCES bonuses(id),
+    sort_order INTEGER NOT NULL,
+    PRIMARY KEY (tier_id, sort_order)
+);
+CREATE INDEX IF NOT EXISTS idx_set_bonus_tier_bonuses_bonus ON set_bonus_tier_bonuses(bonus_id);
 
 CREATE TABLE IF NOT EXISTS set_bonus_items (
     set_id  INTEGER NOT NULL REFERENCES set_bonuses(id) ON DELETE CASCADE,
