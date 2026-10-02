@@ -1,7 +1,8 @@
 # Test values, not read from ddowiki: the saga takes the name Maetrim's fixture Band of Diani ir'Wynarn gives as
 # its epic end reward, but its quests and rewards are fixture quests and items chosen for the tests. Ghosts of
 # Perdition is the quest the fixture quests.toml creates. The second saga takes the name Maetrim's fixture Ring of the
-# Kraken gives, a name holding his fixture quest Saltmarsh's.
+# Kraken gives, a name holding his fixture quest Saltmarsh's; The Tide Turns is a second fixture quest, so the saga
+# links the two quests every saga needs.
 [[saga]]
 name = "Masterminds of Sharn"
 page = "https://ddowiki.com/page/Masterminds_of_Sharn_(saga)"
@@ -15,4 +16,4 @@ name = "The Haunting of Saltmarsh"
 page = "https://ddowiki.com/page/The_Haunting_of_Saltmarsh"
 read = "2026-10-02"
 pack = "Sinister Secret of Saltmarsh"
-quests = ["Saltmarsh"]
+quests = ["Saltmarsh", "The Tide Turns"]

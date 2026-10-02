@@ -194,6 +194,7 @@ name = "Return to Gianthold"
 page = "https://ddowiki.com/page/Return_to_Gianthold"
 read = "2026-10-02"
 pack = "Ruins of Gianthold"
+quests = ["A Cabal for One", "Madstone Crater", "The Prison of the Planes", "Gianthold Tor", "The Fall of Truth"]
 
 [[chain]]
 name = "Web of Chaos"
@@ -261,6 +262,7 @@ quests = ["Finding the Path", "I Dream of Jeets", "The Mindsunder", "Dream Consp
 name = "The Salvation of Korthos"
 page = "https://ddowiki.com/page/The_Salvation_of_Korthos"
 read = "2026-10-02"
+quests = ["Heyton's Rest", "The Storehouse's Secret", "The Cannith Crystal", "The Collaborator", "Sacrifices", "Redemption", "Necromancer's Doom", "Stopping the Sahuagin", "Misery's Peak"]
 rewards = ["Anger's Gift", "Arcane Necklace", "Archivist's Necklace", "Devoted Necklace", "Nimble Brooch", "Pathfinder's Necklace", "Protector's Brooch", "Troubleshooter's Necklace"]
 
 [[chain]]

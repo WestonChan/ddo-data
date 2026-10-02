@@ -101,7 +101,7 @@ fn writes_a_wiki_saga_whose_rewards_carry_their_tier() {
         ["Alabaster of the Twelve - 0", "Five Rings epic 0", "Five Rings legendary 1"]
     );
     assert_eq!(strings(&db, "SELECT provenance FROM sagas"), ["wiki", "wiki"]);
-    assert_eq!((report.wiki_saga_count, report.saga_quest_link_count, report.saga_reward_count), (2, 3, 3));
+    assert_eq!((report.wiki_saga_count, report.saga_quest_link_count, report.saga_reward_count), (2, 4, 3));
 }
 
 #[test]

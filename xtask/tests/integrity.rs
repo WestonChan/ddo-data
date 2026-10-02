@@ -519,3 +519,9 @@ fn a_socket_type_an_option_grants_or_holds_options_needs_no_augment() {
         "a socket holding upgrade options is filled by them:\n{report}"
     );
 }
+
+#[test]
+fn a_quest_chain_or_saga_without_quests_fails_the_deploy() {
+    let check = INTEGRITY_CHECKS.iter().find(|check| check.name == "chains_and_sagas_have_quests").unwrap();
+    assert_eq!(check.severity, Severity::Hard, "every chain and saga in the wiki files lists its quests");
+}

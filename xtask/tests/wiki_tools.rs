@@ -110,7 +110,7 @@ fn wiki_check_reports_the_wiki_counts_for_a_valid_wiki_dir() {
         "quest_chain_quest_link_count: 2",
         "quest_chain_reward_count: 2",
         "wiki_saga_count: 2",
-        "saga_quest_link_count: 3",
+        "saga_quest_link_count: 4",
         "saga_reward_count: 3",
         "drop_text_quest_chain_reward_count: 1",
         "drop_text_saga_reward_count: 2",

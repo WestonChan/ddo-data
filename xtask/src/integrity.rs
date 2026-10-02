@@ -215,10 +215,9 @@ pub const INTEGRITY_CHECKS: &[IntegrityCheck] = &[
         ),
     )
     .showing_every_offender(),
-    IntegrityCheck::warn(
+    IntegrityCheck::hard(
         "chains_and_sagas_have_quests",
-        "every quest chain and saga links at least two quests. WARN until the follow-up: the wiki entries for Return \
-         to Gianthold and The Salvation of Korthos record no quests yet",
+        "every quest chain and saga links at least two quests",
         OffenderQuery::Sql(
             "SELECT c.name, c.id, 'quest chain with ' || COUNT(q.quest_id) || ' quest(s)' FROM quest_chains c \
              LEFT JOIN quest_chain_quests q ON q.chain_id = c.id GROUP BY c.id HAVING COUNT(q.quest_id) < 2 \
