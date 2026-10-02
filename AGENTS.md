@@ -14,6 +14,7 @@ cargo xtask no-comments --fix       # strip every comment and doc comment
 cargo xtask refresh-examples        # rebuild crates/ddo-api/docs/examples/v1 from upstream/
 cargo xtask wiki-check --wiki DIR   # validate wiki override drafts against upstream in memory; prints the wiki counts, then warnings
 cargo xtask wiki-batch              # write reading-agent inputs (item, augment, quest page, crafting and blank-description lists) to target/wiki-batch/
+cargo xtask check-db ddo.db         # run the integrity checks on a built database; fails on any HARD check
 cargo run -p ddo-etl -- build --out ddo.db   # --source defaults to $DDO_UPSTREAM/Output/DataFiles, else upstream/Output/DataFiles
 DDO_DB_PATH=ddo.db ICONS_DIR=icons cargo run -p ddo-api
 ```
@@ -24,7 +25,7 @@ This is the data half of a two-repo project. The site is `ddo-tools`, a sibling 
 
 **Data flow.** Maetrim's DDOBuilderV2 `Output/DataFiles` (sparse checkout in `upstream/`, gitignored) → `ddo-etl build` → `ddo.db` (~14 MB SQLite, schema from `ddo-model`) → `ddo-api` serves it read-only with strong ETags → `ddo-tools` reads it over HTTP through `src/lib/api/`. Every response is immutable for a dataset version, so the frontend caches forever.
 
-**Deploying.** Only through `.github/workflows/deploy.yml` (every push to `main` except Markdown-only ones, weekly schedule, or `workflow_dispatch` with `force`): it refreshes `upstream/`, skips if the live `/v1/version` already reports both this commit (`api_commit`, baked in at build time from `DDO_API_COMMIT`) and the upstream SHA, runs the ETL, checks row-count floors, builds the release binary, and runs `flyctl deploy --remote-only` with the `FLY_API_TOKEN` secret. The `Dockerfile` copies prebuilt artifacts, so `fly deploy` from a laptop does not work; `fly status -a ddo-data` is fine for inspection.
+**Deploying.** Only through `.github/workflows/deploy.yml` (every push to `main` except Markdown-only ones, weekly schedule, or `workflow_dispatch` with `force`): it refreshes `upstream/`, skips if the live `/v1/version` already reports both this commit (`api_commit`, baked in at build time from `DDO_API_COMMIT`) and the upstream SHA, runs the ETL, checks row-count floors, runs `check-db` (a HARD failure stops the deploy), builds the release binary, and runs `flyctl deploy --remote-only` with the `FLY_API_TOKEN` secret. The `Dockerfile` copies prebuilt artifacts, so `fly deploy` from a laptop does not work; `fly status -a ddo-data` is fine for inspection.
 
 **Local API for the frontend.** `DDO_DB_PATH=ddo.db ICONS_DIR=icons PORT=8089 cargo run --release -p ddo-api`, then `VITE_API_URL=http://localhost:8089` in `ddo-tools/.env`. Icons come from `cargo run -p ddo-etl -- icons --out icons`.
 
@@ -87,6 +88,8 @@ Every JSON response also carries an example, attached after generation by `crate
 ## Testing
 
 Write the failing test first, confirm it fails for the right reason, then the minimum code to pass, then the full suite. Parser tests use fixtures under `crates/ddo-etl/tests/fixtures`; API tests build an in-memory database. `cargo test --workspace`, `cargo lint`, and `cargo fmt --all --check` must all pass before committing.
+
+**Integrity checks.** `cargo xtask check-db PATH` runs the named checks in `INTEGRITY_CHECKS` (`xtask/src/integrity.rs`) against a built database and prints `check <name>: ok`, or the offender count, the first offenders and any notes. A HARD check (foreign keys, item names, slots, wiki URLs and weapon and armor stats, quest packs, wiki pages, legacy items, empty tables, drop loot types and chests, socket families, unapplied corrections, trees, class progressions) fails the command; a WARN check (items without a source, effects named after stats, untyped item bonuses, and the other work lists) prints its offenders and never fails. `items_without_a_source` becomes HARD once vendor, event, crafting, challenge and starter-gear sources exist; its drop-location heads are the work list for them. `--corrections DIR` names the corrections the database was built with (default the embedded ones) and `--allow-empty-table NAME` exempts a table from `tables_not_empty`. The deploy workflow runs it on `ddo.db` after the row-count floors and before the deploy, so a HARD failure stops the deploy; CI builds the fixture database with no corrections and runs it there, allowing `corrections` and `race_feat_slots` (which the trimmed fixtures leave empty) to be empty. To add a check, append an `IntegrityCheck::hard` or `IntegrityCheck::warn` to `INTEGRITY_CHECKS` with a description and either an SQL query returning `(name, id, detail)` per offending row or a function building the findings, and add its injected violation to `injected_violations` in `xtask/tests/integrity.rs`. A new HARD check that fails on a full upstream build lands as WARN with its description naming the follow-up, so the deploy keeps passing while the data is fixed.
 
 ## Dependencies
 

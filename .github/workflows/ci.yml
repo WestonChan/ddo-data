@@ -15,3 +15,11 @@ jobs:
       - run: cargo fmt --all --check
       - run: cargo lint
       - run: cargo test --workspace
+      - name: Check the fixture database's integrity
+        run: |
+          mkdir -p target/no-corrections
+          rm -f target/fixture.db
+          cargo run -q -p ddo-etl -- build --source crates/ddo-etl/tests/fixtures/DataFiles \
+            --wiki crates/ddo-etl/tests/fixtures/wiki --corrections target/no-corrections --out target/fixture.db
+          cargo xtask check-db target/fixture.db --corrections target/no-corrections \
+            --allow-empty-table corrections --allow-empty-table race_feat_slots
