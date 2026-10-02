@@ -1,3 +1,13 @@
+[[challenge]]
+text = "Vaults of the Artificers"
+pack = "Secrets of the Artificers"
+reason = "The Vaults of the Artificers is where the ingredients the House Cannith challenges of Secrets of the Artificers drop are turned in for rewards."
+
+[[challenge]]
+text = "Eveningstar"
+pack = "Eveningstar Challenge Pack"
+reason = "His Eveningstar segments turn in commendations, which the Eveningstar challenges award, to a Challenge Trader in Eveningstar."
+
 [[crafting_system]]
 text = "Magma Forge"
 system = "Thunder-Forged"

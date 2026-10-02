@@ -1515,6 +1515,30 @@ async fn item_detail_lists_the_crafting_systems_that_make_it() {
 }
 
 #[tokio::test]
+async fn item_detail_lists_the_challenge_pack_whose_ingredients_buy_it() {
+    let (_, _, ring) = get(&format!("/v1/items/{}", id_of_item_named("Epic Ring of the Stalker").await)).await;
+    let pack_id = id_in_list_named("/v1/adventure-packs", "Secrets of the Artificers").await;
+    assert_eq!(
+        ring["challenge_packs"],
+        serde_json::json!([{
+            "id": pack_id,
+            "name": "Secrets of the Artificers",
+            "is_rare": false,
+            "wiki_url": "https://ddowiki.com/page/Secrets_of_the_Artificers"
+        }])
+    );
+    assert_eq!(ring["adventure_packs"], serde_json::json!([]), "a challenge reward is no pack-wide drop");
+    assert_eq!(
+        (&ring["sources"][0]["kind"], &ring["sources"][0]["id"]),
+        (&serde_json::json!("challenge"), &serde_json::json!(pack_id))
+    );
+    let (_, _, pack) = get(&format!("/v1/adventure-packs/{pack_id}")).await;
+    assert_eq!(pack["items"], serde_json::json!([]), "the pack detail lists pack-wide drops only");
+    let (_, _, version) = get("/v1/version").await;
+    assert_eq!(version["counts"]["challenge_rewards"], 1);
+}
+
+#[tokio::test]
 async fn version_counts_every_source_by_kind() {
     let (_, _, version) = get("/v1/version").await;
     let counts = &version["counts"];
@@ -1527,6 +1551,7 @@ async fn version_counts_every_source_by_kind() {
         "pack_loot",
         "pack_augment_loot",
         "crafting_system_sources",
+        "challenge_rewards",
     ]
     .iter()
     .map(|count_name| counts[count_name].as_i64().unwrap())

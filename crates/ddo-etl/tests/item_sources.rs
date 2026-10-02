@@ -99,7 +99,7 @@ fn every_crafting_station_alias_names_a_wiki_crafting_system() {
     let crafting_system_names: Vec<String> =
         WikiOverrides::embedded().unwrap().crafting_systems.into_iter().map(|system| system.name).collect();
     let aliases = SourceAliases::embedded().unwrap();
-    assert!(!aliases.crafting_systems.is_empty());
+    assert!(!aliases.crafting_systems.is_empty() && !aliases.challenges.is_empty());
     for alias in &aliases.crafting_systems {
         assert!(crafting_system_names.contains(&alias.system), "{alias:?} names no system in data/wiki");
     }
@@ -117,4 +117,22 @@ fn rejects_an_alias_file_with_an_unknown_field_a_blank_text_or_a_repeated_text()
     ] {
         assert!(SourceAliases::from_toml_str(&alias_file).is_err(), "{broken_rule} must fail: {alias_file}");
     }
+}
+
+#[test]
+fn links_an_item_his_text_gives_for_challenge_ingredients_to_the_challenge_pack() {
+    let (db, report) = built_with(&WikiOverrides::default());
+    assert_eq!(
+        source_rows(&db, "Epic Ring of the Stalker"),
+        ["challenge Secrets of the Artificers 0"],
+        "'Vaults of the Artificers, Turn in various ingredients', the Vaults being where the Cannith challenges of \
+         Secrets of the Artificers are turned in"
+    );
+    assert_eq!(report.drop_text_challenge_source_count, 1);
+    assert!(!unlinked_heads(&db).iter().any(|head| head == "Vaults of the Artificers"));
+    assert!(
+        report.unresolved_source_aliases.iter().any(|alias| alias == "Eveningstar"),
+        "the fixtures carry no Eveningstar Challenge Pack: {:?}",
+        report.unresolved_source_aliases
+    );
 }

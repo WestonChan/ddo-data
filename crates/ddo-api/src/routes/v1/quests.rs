@@ -68,14 +68,14 @@ async fn adventure_pack_detail(State(state): State<AppState>, Path(id): Path<i64
                 "SELECT i.id, i.name, loot.loot_type, loot.is_rare, loot.chest, i.minimum_level, es.name AS slot
                    FROM sources loot JOIN items i ON i.id = loot.item_id
                    LEFT JOIN equipment_slots es ON es.id = i.slot_id
-                  WHERE loot.pack_id = ?1 ORDER BY i.name, i.id, loot.loot_type",
+                  WHERE loot.kind = 'adventure_pack' AND loot.pack_id = ?1 ORDER BY i.name, i.id, loot.loot_type",
                 id,
             )?);
             pack["augments"] = Value::Array(loot_rows(
                 db,
                 "SELECT a.id, a.name, loot.loot_type, loot.is_rare, loot.chest, a.family, a.min_level
                    FROM sources loot JOIN augments a ON a.id = loot.augment_id
-                  WHERE loot.pack_id = ?1 ORDER BY a.name, a.id, loot.loot_type",
+                  WHERE loot.kind = 'adventure_pack' AND loot.pack_id = ?1 ORDER BY a.name, a.id, loot.loot_type",
                 id,
             )?);
             Ok(Json(pack))
@@ -214,7 +214,7 @@ pub(super) fn adventure_packs_dropping_via(
         &format!(
             "SELECT p.id, p.name, loot.loot_type, loot.is_rare, loot.chest
                FROM sources loot JOIN adventure_packs p ON p.id = loot.pack_id
-              WHERE loot.{loot_id_column} = ?1 ORDER BY p.name, loot.loot_type"
+              WHERE loot.kind = 'adventure_pack' AND loot.{loot_id_column} = ?1 ORDER BY p.name, loot.loot_type"
         ),
         [loot_id],
     )?;
@@ -241,7 +241,8 @@ pub(super) fn sources_via(
                LEFT JOIN crafting_systems cs ON cs.id = loot.crafting_system_id
               WHERE loot.{loot_id_column} = ?1
               ORDER BY CASE loot.kind WHEN 'quest' THEN 1 WHEN 'quest_chain' THEN 2 WHEN 'saga' THEN 3
-                                      WHEN 'adventure_pack' THEN 4 WHEN 'crafting_system' THEN 5 ELSE 6 END,
+                                      WHEN 'adventure_pack' THEN 4 WHEN 'challenge' THEN 5
+                                      WHEN 'crafting_system' THEN 6 ELSE 7 END,
                        name, loot.loot_type,
                        CASE loot.tier WHEN 'heroic' THEN 1 WHEN 'epic' THEN 2 WHEN 'legendary' THEN 3 ELSE 4 END"
         ),
@@ -270,4 +271,20 @@ fn wiki_page_url(page_name: &str) -> String {
         })
         .collect();
     format!("https://ddowiki.com/page/{encoded_page_name}")
+}
+
+pub(super) fn challenge_packs_rewarding(db: &rusqlite::Connection, item_id: i64) -> Result<Vec<Value>, ApiError> {
+    let mut challenge_packs = json_rows(
+        db,
+        "SELECT p.id, p.name, loot.is_rare FROM sources loot JOIN adventure_packs p ON p.id = loot.pack_id
+          WHERE loot.kind = 'challenge' AND loot.item_id = ?1 ORDER BY p.name",
+        [item_id],
+    )?;
+    for challenge_pack in &mut challenge_packs {
+        convert_to_booleans(challenge_pack, &["is_rare"]);
+        if let Some(pack_name) = challenge_pack["name"].as_str() {
+            challenge_pack["wiki_url"] = Value::String(wiki_page_url(pack_name));
+        }
+    }
+    Ok(challenge_packs)
 }

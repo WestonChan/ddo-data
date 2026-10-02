@@ -115,6 +115,7 @@ fn wiki_check_reports_the_wiki_counts_for_a_valid_wiki_dir() {
         "drop_text_quest_chain_reward_count: 1",
         "drop_text_saga_reward_count: 2",
         "drop_text_crafting_system_source_count: 2",
+        "drop_text_challenge_source_count: 1",
     ] {
         assert!(report.lines().any(|line| line == expected_line), "missing {expected_line:?} in\n{report}");
     }

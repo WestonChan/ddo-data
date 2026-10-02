@@ -5,7 +5,7 @@ The vocabularies the ETL maps Maetrim's DDOBuilderV2 files through. Each is embe
 - `buff_map.toml`: his item buff types, as stats, bonus types and effects.
 - `effect_map.toml`: his effect types, as stats and bonus types.
 - `legacy_drop_sources.toml`: the names in his drop text of quests that no longer exist, so the items only they dropped are flagged legacy (below).
-- `source_aliases.toml`: the station or place names his drop text uses for a source recorded under another name, such as a crafting system's station (below).
+- `source_aliases.toml`: the station or place names his drop text uses for a source recorded under another name: a crafting system's station, or the place a challenge pack's rewards are turned in (below).
 - `corrections/`: his values a ddowiki page contradicts; see [`corrections/README.md`](corrections/README.md).
 - `wiki/`: facts read from ddowiki that his files have no field for; see [`wiki/README.md`](wiki/README.md).
 
@@ -54,6 +54,8 @@ reason = "The Magma Forge in the Ruins of Thunderholme is where Thunder-Forged i
 - `reason`: why the name stands for that system, in one sentence.
 
 The build fails, naming the entry, when the file has a field or table other than these, a field is blank, or the same `text` appears twice ignoring case. A test checks that every `system` names a crafting system in the embedded wiki files. The build report counts the rows written as `drop_text_crafting_system_source_count`, and `wiki-batch`'s `unlinked_drop_segments.txt` leaves out every segment that links one.
+
+A `[[challenge]]` entry (`text`, `pack`, `reason`) does the same for a challenge pack, an adventure pack of Maetrim's `Challenges.xml`: a segment whose head is its `text` links the item or augment as a `challenge` source of that pack, the reward its challenges' ingredients or commendations buy. His text names no challenge, only the place: `Vaults of the Artificers, Turn in various challenge ingredients` (the House Cannith challenges, whose pack in his files is Secrets of the Artificers; nine of them are in Free to Play, which the link does not name) and `Eveningstar, Turn in 5 Commendations: ...` (Eveningstar Challenge Pack). The build report counts `drop_text_challenge_source_count`, and lists in `unresolved_source_aliases` the texts of every alias whose system or pack the build lacks.
 
 `Altar of Fecundity, Manufactured Ingredient Recipes` (93 items) is not aliased: the Altar of Fecundity makes the blanks of both Green Steel items (the 45 heroic ones) and Legendary Green Steel items (the 48 named Legendary), and a head alias cannot tell them apart.
 

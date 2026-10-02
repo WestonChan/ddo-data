@@ -3,6 +3,7 @@
   "counts": {
     "augments": 2246,
     "bonuses": 5190,
+    "challenge_rewards": 160,
     "classes": 28,
     "clickies": 219,
     "crafting_ingredients": 702,
@@ -31,14 +32,14 @@
     "sagas": 17,
     "sentient_gems": 14,
     "set_bonuses": 327,
-    "sources": 7014,
+    "sources": 7174,
     "spells": 706,
     "wiki_augments": 0,
     "wiki_items": 262,
     "wiki_quests": 1
   },
   "dataset": {
-    "built_at": "2026-10-02T17:19:23Z",
+    "built_at": "2026-10-02T17:23:22Z",
     "upstream_sha": "31ef0201ea8e28604de2b6242988aee6d63733b0"
   },
   "schema_version": 16

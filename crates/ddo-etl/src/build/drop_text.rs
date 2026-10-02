@@ -35,6 +35,8 @@ pub(crate) struct DropTextLinker {
     packs_longest_name_first: Vec<NamedDropSource>,
     crafting_systems_longest_name_first: Vec<NamedDropSource>,
     crafting_systems_by_station: Vec<NamedDropSource>,
+    challenge_packs_by_text: Vec<NamedDropSource>,
+    unresolved_alias_texts: Vec<String>,
     legacy_drop_sources: LegacyDropSources,
 }
 
@@ -77,6 +79,7 @@ impl DropTextLinker {
             .collect::<rusqlite::Result<Vec<_>>>()?;
         longest_name_first.retain(|quest| !quest.lowercase_first_word.is_empty());
         longest_name_first.sort_by(|a, b| b.name.len().cmp(&a.name.len()).then_with(|| a.name.cmp(&b.name)));
+        let mut unresolved_alias_texts = Vec::new();
         Ok(Self {
             quests_longest_name_first: longest_name_first,
             quest_chains_longest_name_first: named_sources_longest_name_first(db, "SELECT name, id FROM quest_chains")?,
@@ -90,7 +93,15 @@ impl DropTextLinker {
                 db,
                 "SELECT id FROM crafting_systems WHERE name = ?1",
                 source_aliases.crafting_systems.iter().map(|alias| (alias.text.as_str(), alias.system.as_str())),
+                &mut unresolved_alias_texts,
             )?,
+            challenge_packs_by_text: aliased_sources(
+                db,
+                "SELECT id FROM adventure_packs WHERE name = ?1",
+                source_aliases.challenges.iter().map(|alias| (alias.text.as_str(), alias.pack.as_str())),
+                &mut unresolved_alias_texts,
+            )?,
+            unresolved_alias_texts,
             legacy_drop_sources: legacy_drop_sources.clone(),
         })
     }
@@ -344,6 +355,11 @@ impl DropTextLinker {
     fn named_sources_in(&self, segment: &str) -> Vec<LootSource> {
         let mut named_sources = Vec::new();
         let head = segment_head(segment);
+        for challenge_pack in &self.challenge_packs_by_text {
+            if head.eq_ignore_ascii_case(&challenge_pack.name) {
+                named_sources.push(LootSource::Challenge(challenge_pack.id));
+            }
+        }
         for station in &self.crafting_systems_by_station {
             if head.eq_ignore_ascii_case(&station.name) {
                 named_sources.push(LootSource::CraftingSystem(station.id));
@@ -365,6 +381,10 @@ impl DropTextLinker {
             }
         }
         distinct_sources
+    }
+
+    pub(super) fn unresolved_alias_texts(&self) -> &[String] {
+        &self.unresolved_alias_texts
     }
 
     pub(super) fn link_loot_to_sources_named_in(
@@ -401,12 +421,14 @@ fn aliased_sources<'alias>(
     db: &Connection,
     target_id_sql: &str,
     texts_and_targets: impl Iterator<Item = (&'alias str, &'alias str)>,
+    unresolved_alias_texts: &mut Vec<String>,
 ) -> Result<Vec<NamedDropSource>> {
     let mut statement = db.prepare(target_id_sql)?;
     let mut aliased_sources = Vec::new();
     for (text, target_name) in texts_and_targets {
-        if let Some(id) = statement.query_row([target_name], |r| r.get(0)).optional()? {
-            aliased_sources.push(NamedDropSource { name: text.to_string(), id });
+        match statement.query_row([target_name], |r| r.get(0)).optional()? {
+            Some(id) => aliased_sources.push(NamedDropSource { name: text.to_string(), id }),
+            None => unresolved_alias_texts.push(text.to_string()),
         }
     }
     Ok(aliased_sources)
@@ -433,6 +455,7 @@ pub(super) enum LootSource {
     QuestChain(i64),
     Saga(i64),
     AdventurePack(i64),
+    Challenge(i64),
     CraftingSystem(i64),
 }
 
@@ -443,6 +466,7 @@ impl LootSource {
             Self::QuestChain(_) => SourceKind::QuestChain,
             Self::Saga(_) => SourceKind::Saga,
             Self::AdventurePack(_) => SourceKind::AdventurePack,
+            Self::Challenge(_) => SourceKind::Challenge,
             Self::CraftingSystem(_) => SourceKind::CraftingSystem,
         }
     }
@@ -452,6 +476,7 @@ impl LootSource {
         | Self::QuestChain(value)
         | Self::Saga(value)
         | Self::AdventurePack(value)
+        | Self::Challenge(value)
         | Self::CraftingSystem(value)) = self;
         value
     }
@@ -704,8 +729,10 @@ impl TableWriter<'_> {
         report: &mut BuildReport,
     ) -> Result<()> {
         for linked_kind in self.drop_text_linker.link_loot_to_sources_named_in(self.transaction, loot, drop_text)? {
-            if linked_kind == SourceKind::CraftingSystem {
-                report.drop_text_crafting_system_source_count += 1;
+            match linked_kind {
+                SourceKind::CraftingSystem => report.drop_text_crafting_system_source_count += 1,
+                SourceKind::Challenge => report.drop_text_challenge_source_count += 1,
+                _ => {}
             }
         }
         Ok(())

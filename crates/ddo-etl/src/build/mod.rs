@@ -105,6 +105,8 @@ pub struct BuildReport {
     pub drop_text_quest_chain_reward_count: usize,
     pub drop_text_saga_reward_count: usize,
     pub drop_text_crafting_system_source_count: usize,
+    pub drop_text_challenge_source_count: usize,
+    pub unresolved_source_aliases: Vec<String>,
     pub correction_applied_count: usize,
     pub correction_stale_count: usize,
     pub stale_corrections: Vec<StaleCorrection>,
@@ -184,6 +186,7 @@ pub fn build_database(
         &LegacyDropSources::embedded()?,
         &SourceAliases::embedded()?,
     )?;
+    report.unresolved_source_aliases = drop_text_linker.unresolved_alias_texts().to_vec();
 
     let mut writer = TableWriter {
         transaction: &transaction,
