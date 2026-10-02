@@ -54,10 +54,12 @@ const ENCHANTMENT_KINDS: [&str; 2] = ["stat", "effect"];
 
 const ENCHANTMENTS_CARRIED_BY_ITEMS_SQL: &str = "SELECT name, kind, item_count FROM (
          SELECT s.name, 'stat' AS kind, COUNT(DISTINCT ib.item_id) AS item_count
-         FROM stats s JOIN bonuses b ON b.stat_id = s.id JOIN item_bonuses ib ON ib.bonus_id = b.id GROUP BY s.id
+         FROM stats s JOIN bonuses b ON b.stat_id = s.id JOIN item_bonuses ib ON ib.bonus_id = b.id
+         JOIN items i ON i.id = ib.item_id WHERE NOT i.is_legacy GROUP BY s.id
          UNION ALL
          SELECT e.name, 'effect' AS kind, COUNT(DISTINCT ie.item_id) AS item_count
-         FROM effects e JOIN item_effects ie ON ie.effect_id = e.id GROUP BY e.id
+         FROM effects e JOIN item_effects ie ON ie.effect_id = e.id
+         JOIN items i ON i.id = ie.item_id WHERE NOT i.is_legacy GROUP BY e.id
      )";
 
 #[utoipa::path(
@@ -69,7 +71,8 @@ const ENCHANTMENTS_CARRIED_BY_ITEMS_SQL: &str = "SELECT name, kind, item_count F
                    /v1/stats lists it) and every named effect (as an item's `effects` give it) that at least one \
                    item carries, each as `name`, `kind` (`stat` or `effect`) and `item_count`, the number of items \
                    carrying it: items with a bonus of their own to the stat (set tiers are not counted), or items \
-                   whose `effects` name the effect. Names no item carries are left out. A name that is both a stat \
+                   whose `effects` name the effect. Legacy items (`is_legacy`) are not counted, so the counts match \
+                   what /v1/items lists by default; names only legacy items or no item carries are left out. A name that is both a stat \
                    and an effect appears once per kind. Ordered by name, a stat before an effect of the same name.",
     params(
         ("q" = Option<String>, Query, description = "Case-insensitive substring of the enchantment name; unset or blank lists every name"),
