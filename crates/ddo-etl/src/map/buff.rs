@@ -1,9 +1,11 @@
 use super::bonus_type::parse_buff_bonus_type;
 use super::{BuffVocabulary, BUFF_VOCABULARY};
+use crate::xml::item_buffs::ItemBuffDefinition;
 use crate::xml::items::Buff;
 use anyhow::{bail, Result};
 use ddo_model::enums::BonusType;
 use ddo_model::stats::Stat;
+use std::collections::HashMap;
 
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub enum ResolvedBuff {
@@ -14,17 +16,22 @@ pub enum ResolvedBuff {
 
 pub struct BuffMap {
     vocabulary: &'static BuffVocabulary,
+    definition_bonus_type_names_by_buff_kind: HashMap<String, String>,
 }
 
 impl BuffMap {
-    pub fn load() -> Result<Self> {
+    pub fn load(item_buff_definitions: &HashMap<String, ItemBuffDefinition>) -> Result<Self> {
         let vocabulary: &'static BuffVocabulary = &BUFF_VOCABULARY;
         for (buff_kind, stat_name) in &vocabulary.fixed {
             if Stat::by_name(stat_name).is_none() {
                 bail!("[fixed] {buff_kind} names unknown stat {stat_name:?}");
             }
         }
-        Ok(Self { vocabulary })
+        let definition_bonus_type_names_by_buff_kind = item_buff_definitions
+            .iter()
+            .filter_map(|(buff_kind, definition)| Some((buff_kind.clone(), definition.bonus_type_name.clone()?)))
+            .collect();
+        Ok(Self { vocabulary, definition_bonus_type_names_by_buff_kind })
     }
 
     pub fn resolved(&self, buff: &Buff) -> Result<ResolvedBuff> {
@@ -56,8 +63,18 @@ impl BuffMap {
         let Some(stat) = Stat::by_name(&stat_name) else {
             bail!("{buff_kind} with Item {:?} resolves to {stat_name:?}, which is not a stat; extend [by_item], [fixed] or the stats seed", buff.target);
         };
-        let bonus_type = parse_buff_bonus_type(buff.bonus_type.as_deref().unwrap_or(""))?;
+        let bonus_type = match parse_buff_bonus_type(buff.bonus_type.as_deref().unwrap_or(""))? {
+            Some(item_bonus_type) => Some(item_bonus_type),
+            None => self.definition_bonus_type(buff_kind)?,
+        };
         Ok(ResolvedBuff::Bonus { stat, bonus_type, value: buff.value, second_value: buff.second_value })
+    }
+
+    fn definition_bonus_type(&self, buff_kind: &str) -> Result<Option<BonusType>> {
+        match self.definition_bonus_type_names_by_buff_kind.get(buff_kind) {
+            Some(bonus_type_name) => parse_buff_bonus_type(bonus_type_name),
+            None => Ok(None),
+        }
     }
 
     pub fn description(&self, template: &str, buff: &Buff) -> String {

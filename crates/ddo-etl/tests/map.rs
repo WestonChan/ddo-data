@@ -4,9 +4,11 @@ use ddo_etl::map::buff::{BuffMap, ResolvedBuff};
 use ddo_etl::map::effect::EffectMap;
 use ddo_etl::map::placement::{placement_of, Placement};
 use ddo_etl::xml::effect::Effect;
+use ddo_etl::xml::item_buffs::{self, ItemBuffDefinition};
 use ddo_etl::xml::items::{Buff, EquipmentSlotTag, EquipmentSlots};
 use ddo_model::enums::{BonusType, EquipmentSlot, Handedness, ItemCategory, StatCategory};
-use std::collections::BTreeMap;
+use std::collections::{BTreeMap, HashMap};
+use std::path::Path;
 
 fn equipment_slots(tags: &[EquipmentSlotTag]) -> EquipmentSlots {
     EquipmentSlots { tags: tags.to_vec() }
@@ -21,6 +23,17 @@ fn buff(kind: &str, target: Option<&str>, value: Option<i64>, bonus_type: Option
         second_value: None,
         bonus_type: bonus_type.map(str::to_string),
         description: None,
+    }
+}
+
+fn fixture_item_buff_definitions() -> HashMap<String, ItemBuffDefinition> {
+    item_buffs::parse(&Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures/DataFiles/ItemBuffs.xml")).unwrap()
+}
+
+fn resolved_bonus_type(map: &BuffMap, buff: &Buff) -> Option<BonusType> {
+    match map.resolved(buff).unwrap() {
+        ResolvedBuff::Bonus { bonus_type, .. } => bonus_type,
+        other => panic!("{}: {other:?}", buff.kind),
     }
 }
 
@@ -97,7 +110,7 @@ fn placement_from_slot_tags_and_weapon_type() {
 
 #[test]
 fn buffs_resolve_to_enhancement_bonus_stat_or_effect() {
-    let map = BuffMap::load().unwrap();
+    let map = BuffMap::load(&fixture_item_buff_definitions()).unwrap();
 
     assert_eq!(
         map.resolved(&buff("WeaponEnchantment", None, Some(7), Some("Weapon Enchantment"))).unwrap(),
@@ -174,8 +187,44 @@ fn buffs_resolve_to_enhancement_bonus_stat_or_effect() {
 }
 
 #[test]
+fn an_untyped_buff_takes_the_bonus_type_its_definition_fixes() {
+    let map = BuffMap::load(&fixture_item_buff_definitions()).unwrap();
+    let cases = [
+        ("Command", Some(BonusType::Insight)),
+        ("Elemental Absorption", Some(BonusType::Enhancement)),
+        ("Illusion Save", Some(BonusType::Resistance)),
+        ("Shield", Some(BonusType::Shield)),
+        ("SpellcastingImplement", Some(BonusType::Implement)),
+        ("Damage Bonus", None),
+        ("Linguistics", None),
+    ];
+    for (buff_kind, expected_bonus_type) in cases {
+        assert_eq!(
+            resolved_bonus_type(&map, &buff(buff_kind, None, Some(2), None)),
+            expected_bonus_type,
+            "{buff_kind}"
+        );
+        assert_eq!(
+            resolved_bonus_type(&map, &buff(buff_kind, None, Some(2), Some("Not Set"))),
+            expected_bonus_type,
+            "{buff_kind} with an explicit Not Set"
+        );
+    }
+    assert_eq!(
+        resolved_bonus_type(&map, &buff("Command", None, Some(2), Some("Competence"))),
+        Some(BonusType::Competence),
+        "the item's own bonus type wins over the definition's"
+    );
+    assert_eq!(
+        resolved_bonus_type(&BuffMap::load(&HashMap::new()).unwrap(), &buff("Command", None, Some(2), None)),
+        None,
+        "without a definition the bonus stays untyped"
+    );
+}
+
+#[test]
 fn bonus_descriptions_fill_the_display_template() {
-    let map = BuffMap::load().unwrap();
+    let map = BuffMap::load(&HashMap::new()).unwrap();
     let text = map.description(
         "%b1 %i1 %v1: Passive: %v1 %b1 bonus to %i1.",
         &buff("AbilityBonus", Some("Strength"), Some(8), Some("Enhancement")),

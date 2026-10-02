@@ -145,9 +145,11 @@ pub fn build_database(
     db.execute_batch(ddo_model::ddl()).context("applying DDL")?;
     seeds::insert_all(db).context("inserting seed tables")?;
 
-    let buff_map = BuffMap::load()?;
+    let item_buff_definitions = item_buffs::parse(&data_files_dir.join("ItemBuffs.xml"))?;
+    let buff_map = BuffMap::load(&item_buff_definitions)?;
     let effect_map = EffectMap::load()?;
-    let buff_description_templates = item_buffs::parse(&data_files_dir.join("ItemBuffs.xml"))?;
+    let buff_description_templates: HashMap<String, String> =
+        item_buff_definitions.into_iter().map(|(buff_kind, definition)| (buff_kind, definition.display_text)).collect();
     let parsed_quests = quests::parse(&data_files_dir.join("Quests.xml"))?;
     let parsed_patrons = patrons::parse(&data_files_dir.join("Patrons.xml"))?;
     let challenges_path = data_files_dir.join("Challenges.xml");

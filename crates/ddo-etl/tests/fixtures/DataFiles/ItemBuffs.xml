@@ -243,6 +243,16 @@
     </Effect>
   </Buff>
   <Buff>
+    <Type>Shield</Type>
+    <DisplayText>Shield %v1: While this item is equipped, you are partially protected by a field of magical force which can deflect enemy attacks. This item provides a %v1 Shield bonus to Armor Class. It does not stack with an equipped shield.</DisplayText>
+    <Effect>
+      <Type>ACBonus</Type>
+      <Bonus>Shield</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+    </Effect>
+  </Buff>
+  <Buff>
     <Type>SkillBonus</Type>
     <DisplayText>%b1 %i1 %v1: Passive: %v1 %b1 bonus to the %i1 skill.</DisplayText>
     <Ignore>Competence</Ignore>

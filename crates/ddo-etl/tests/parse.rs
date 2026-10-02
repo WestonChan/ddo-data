@@ -129,15 +129,21 @@ fn parses_quests_patrons_and_item_buffs() {
     let parsed_patrons = patrons::parse(&data_files_fixture_dir().join("Patrons.xml")).unwrap();
     assert!(parsed_patrons.iter().any(|p| p.name == "House Cannith"));
 
-    let templates_by_buff_kind = item_buffs::parse(&data_files_fixture_dir().join("ItemBuffs.xml")).unwrap();
+    let definitions_by_buff_kind = item_buffs::parse(&data_files_fixture_dir().join("ItemBuffs.xml")).unwrap();
+    let display_text = |buff_kind: &str| definitions_by_buff_kind.get(buff_kind).map(|d| d.display_text.as_str());
     assert_eq!(
-        templates_by_buff_kind.get("WeaponEnchantment").map(String::as_str),
+        display_text("WeaponEnchantment"),
         Some("%v1 Enhancement Bonus: %v1 Enhancement bonus to attack and damage rolls.")
     );
-    assert!(templates_by_buff_kind.contains_key("Supreme Good"));
+    assert!(definitions_by_buff_kind.contains_key("Supreme Good"));
     assert_eq!(
-        templates_by_buff_kind.get("Fixture Multi Paragraph").map(String::as_str),
+        display_text("Fixture Multi Paragraph"),
         Some("First paragraph.\nSecond paragraph."),
         "repeated <DisplayText> elements are paragraphs of one description"
     );
+    let bonus_type_name = |buff_kind: &str| definitions_by_buff_kind[buff_kind].bonus_type_name.as_deref();
+    assert_eq!(bonus_type_name("Command"), Some("Insightful"), "the first <Effect> carries Value1, not the Penalty");
+    assert_eq!(bonus_type_name("Illusion Save"), Some("Resistance"));
+    assert_eq!(bonus_type_name("Damage Bonus"), Some("Not Set"));
+    assert_eq!(bonus_type_name("Linguistics"), None, "no <Effect>");
 }

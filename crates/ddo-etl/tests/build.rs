@@ -254,9 +254,13 @@ fn writes_buffs_named_after_a_stat_as_bonuses() {
     let enhancement = Some("Enhancement".to_string());
     assert_eq!(
         stat_bonuses_by_item("Backstabber's Gloves (Level 25)", "Sneak Attack"),
-        vec![(enhancement.clone(), Some(5), Some(8)), (insight, Some(3), Some(5))]
+        vec![(enhancement.clone(), Some(5), Some(8)), (insight.clone(), Some(3), Some(5))]
     );
-    assert_eq!(stat_bonuses_by_item("Grudgebearer's Plate", "Command"), vec![(None, Some(2), Some(-6))]);
+    assert_eq!(
+        stat_bonuses_by_item("Grudgebearer's Plate", "Command"),
+        vec![(insight.clone(), Some(2), Some(-6))],
+        "the definition's Insightful <Effect> types an item buff that names none"
+    );
     assert_eq!(
         stat_bonuses_by_item("Bold Trinket", "Damage Bonus"),
         vec![(Some("Competence".to_string()), Some(1), None)]
@@ -265,8 +269,14 @@ fn writes_buffs_named_after_a_stat_as_bonuses() {
         stat_bonuses_by_item("The Stablestone", "Alignment Absorption"),
         vec![(enhancement.clone(), Some(22), None)]
     );
-    assert_eq!(stat_bonuses_by_item("Cyran Guard (Level 27)", "Elemental Absorption"), vec![(None, Some(19), None)]);
-    assert_eq!(stat_bonuses_by_item("Visor of Fraz-Urb'luu", "Illusion Save"), vec![(None, Some(5), None)]);
+    assert_eq!(
+        stat_bonuses_by_item("Cyran Guard (Level 27)", "Elemental Absorption"),
+        vec![(enhancement.clone(), Some(19), None)]
+    );
+    assert_eq!(
+        stat_bonuses_by_item("Visor of Fraz-Urb'luu", "Illusion Save"),
+        vec![(Some("Resistance".to_string()), Some(5), None)]
+    );
     assert_eq!(
         stat_bonuses_by_item("Celestial Emerald Ring", "Linguistics"),
         vec![(Some("Equipment".to_string()), Some(10), None)]
