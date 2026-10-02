@@ -153,3 +153,24 @@ fn leaves_a_saga_tier_after_a_saga_name_holding_a_pack_name_to_the_saga() {
     assert!(drop_rows(&db, "Test Gem of the Long Saga").is_empty());
     assert_eq!(report.pack_augment_loot_link_count, 0);
 }
+
+#[test]
+fn links_a_wiki_item_whose_drop_text_names_a_pack_a_saga_shares_to_the_pack() {
+    let items_text =
+        "# A test item, not read from ddowiki, whose drop text names a pack a fixture saga shares a name with.\n\
+         [[item]]\nname = \"Test Ring of Sharn\"\npage = \"https://ddowiki.com/page/Item:Test_Ring_of_Sharn\"\n\
+         read = \"2026-10-02\"\nslot = \"Ring\"\ncategory = \"Jewelry\"\nminimum_level = 30\n\
+         drop_location = \"Masterminds of Sharn, any end chest, most optional chests\"\n";
+    let wiki_files = [
+        ("items_test.toml", items_text),
+        ("quests.toml", include_str!("fixtures/wiki/quests.toml")),
+        ("sagas.toml", include_str!("fixtures/wiki/sagas.toml")),
+    ];
+    let (db, report) = built_with_files(&wiki_files);
+    assert_eq!(
+        drop_rows(&db, "Test Ring of Sharn"),
+        ["adventure_pack Masterminds of Sharn chest any end chest, most optional chests 0"],
+        "a wiki item's drop text names the pack as his items' does"
+    );
+    assert_eq!(report.pack_loot_link_count, 2, "the Golden Age crossbow's link and this one");
+}

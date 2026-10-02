@@ -433,6 +433,8 @@ impl TableWriter<'_> {
             let item_id = self.write_wiki_item(wiki_item, &mut effect_ids_by_folded_name).with_context(|| {
                 format!("wiki {} item {:?} ({})", wiki_item.file_name, wiki_item.name, wiki_item.page)
             })?;
+            report.pack_loot_link_count +=
+                self.link_to_drop_text_packs(DroppedLoot::Item(item_id), &wiki_item.drop_location)?;
             self.link_to_sources_named_in_drop_text(DroppedLoot::Item(item_id), &wiki_item.drop_location, report)?;
             report.wiki_item_written_count += 1;
             if let Some(maetrim_name) = maetrim_item_names_by_normalised_name.get(&normalised_name(&wiki_item.name)) {
