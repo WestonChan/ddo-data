@@ -2,6 +2,7 @@ use super::drop_text::DroppedLoot;
 use super::quest_series::QuestSeriesTable;
 use super::{joined_non_empty, trimmed_non_empty, BuildReport, TableWriter};
 use crate::map::buff::ResolvedBuff;
+use crate::map::item_version::names_legacy_version;
 use crate::map::material;
 use crate::map::placement::placement_of;
 use crate::xml::items::Item;
@@ -209,8 +210,8 @@ impl TableWriter<'_> {
     pub(super) fn insert_item_row(&self, row: &ItemRow) -> Result<i64> {
         self.transaction.execute(
             "INSERT INTO items (name, slot_id, item_category, item_type, minimum_level, enhancement_bonus, material_id, race_required,
-                                icon, description, drop_location, set_bonus, accepts_sentience, is_minor_artifact, wiki_url, source)
-             VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11, ?12, ?13, ?14, ?15, ?16)",
+                                icon, description, drop_location, set_bonus, accepts_sentience, is_minor_artifact, is_legacy, wiki_url, source)
+             VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11, ?12, ?13, ?14, ?15, ?16, ?17)",
             params![
                 row.name,
                 row.equipment_slot.id(),
@@ -226,6 +227,7 @@ impl TableWriter<'_> {
                 row.set_bonus,
                 row.accepts_sentience,
                 row.is_minor_artifact,
+                names_legacy_version(row.name),
                 row.wiki_url,
                 row.source.as_str(),
             ],

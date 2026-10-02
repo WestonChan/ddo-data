@@ -34,6 +34,7 @@ use std::path::{Path, PathBuf};
 pub struct BuildReport {
     pub written_item_count: usize,
     pub skipped_cosmetic_item_count: usize,
+    pub legacy_item_count: usize,
     pub bonus_count: usize,
     pub effect_count: usize,
     pub quest_count: usize,
@@ -236,6 +237,8 @@ pub fn build_database(
     wiki::apply_wiki_overrides(&transaction, wiki_overrides, &drop_text_linker, &mut report)?;
     quest_series::write_wiki_quest_series_rewards(&transaction, wiki_overrides, &mut report)?;
 
+    report.legacy_item_count =
+        transaction.query_row("SELECT COUNT(*) FROM items WHERE is_legacy", [], |r| r.get::<_, i64>(0))? as usize;
     report.bonus_count = writer.written.bonus_ids_by_key.len();
     report.effect_count = writer.written.effect_ids_by_name.len();
     report.augment_slot_type_count =

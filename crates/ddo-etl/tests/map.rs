@@ -2,6 +2,7 @@ use ddo_etl::map::augment_slot::AugmentSlotType;
 use ddo_etl::map::bonus_type::parse_buff_bonus_type;
 use ddo_etl::map::buff::{BuffMap, ResolvedBuff};
 use ddo_etl::map::effect::EffectMap;
+use ddo_etl::map::item_version::names_legacy_version;
 use ddo_etl::map::placement::{placement_of, Placement};
 use ddo_etl::xml::effect::Effect;
 use ddo_etl::xml::item_buffs::{self, ItemBuffDefinition};
@@ -420,4 +421,19 @@ fn an_effect_type_cannot_be_both_mapped_and_engine_only() {
     let error =
         EffectMap::from_toml(&effect_map_toml("DR = \"Physical Resistance Rating\"")).err().expect("overlap rejected");
     assert!(error.to_string().contains("DR"), "{error}");
+}
+
+#[test]
+fn legacy_and_historic_versions_are_named_by_a_parenthesised_word() {
+    for legacy_name in [
+        "Brawling Gloves (legacy) (level 12)",
+        "Allegiance (historic)",
+        "Allegiance (Historic)",
+        "Glass Cannon (LEGACY) (tier 1)",
+    ] {
+        assert!(names_legacy_version(legacy_name), "{legacy_name}");
+    }
+    for current_name in ["Allegiance", "Legacy of Lorikk", "Historic Ring", "Brawling Gloves (level 12)"] {
+        assert!(!names_legacy_version(current_name), "{current_name}");
+    }
 }

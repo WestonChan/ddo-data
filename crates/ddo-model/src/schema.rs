@@ -176,7 +176,7 @@ CREATE TABLE IF NOT EXISTS items (
     set_bonus         TEXT,                           -- <SetBonus>, name only until the set tables land
     accepts_sentience INTEGER NOT NULL DEFAULT 0 CHECK (accepts_sentience IN (0, 1)),  -- <IsAcceptsSentience/>
     is_minor_artifact INTEGER NOT NULL DEFAULT 0 CHECK (is_minor_artifact IN (0, 1)),  -- <MinorArtifact/>
-    is_legacy         INTEGER NOT NULL DEFAULT 0 CHECK (is_legacy IN (0, 1)),  -- every <DropLocation> segment names a data/legacy_drop_sources.toml text
+    is_legacy         INTEGER NOT NULL DEFAULT 0 CHECK (is_legacy IN (0, 1)),  -- a '(legacy)' or '(historic)' name, every <DropLocation> segment a data/legacy_drop_sources.toml text, or an is_legacy correction
     wiki_url          TEXT,                           -- computed from name, or data/wiki items `page`
     source            TEXT    NOT NULL DEFAULT 'maetrim' CHECK (source {row_source})  -- 'wiki' for a data/wiki items entry
 );

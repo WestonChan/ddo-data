@@ -1132,6 +1132,19 @@ fn rejects_a_wiki_item_listed_twice_across_items_files() {
 }
 
 #[test]
+fn flags_a_wiki_item_with_a_legacy_name_as_legacy() {
+    let legacy_name = format!("{WIKI_AXE} (legacy)");
+    let wiki =
+        parsed_edited_items(|s| s.replacen(&format!("name = \"{WIKI_AXE}\""), &format!("name = {legacy_name:?}"), 1))
+            .unwrap();
+    let (db, report) = built_db_with(&wiki);
+    let is_legacy: bool =
+        db.query_row("SELECT is_legacy FROM items WHERE name = ?1", [&legacy_name], |r| r.get(0)).unwrap();
+    assert!(is_legacy);
+    assert_eq!(report.legacy_item_count, 4, "the wiki axe and the three legacy fixture items");
+}
+
+#[test]
 fn rejects_a_wiki_item_value_outside_maetrims_vocabularies_naming_the_item_and_field() {
     for (field, good, bad) in [
         ("slot", "slot = \"Main Hand\"", "slot = \"Main hand\""),
