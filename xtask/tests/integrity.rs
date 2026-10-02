@@ -482,3 +482,40 @@ fn a_set_only_an_augment_slot_option_joins_has_members() {
         "an item counts toward its option's set once the player unlocks it:\n{report}"
     );
 }
+
+#[test]
+fn a_socket_type_an_option_grants_or_holds_options_needs_no_augment() {
+    let injected_sql = "INSERT INTO augment_slot_types (label, family, variant)
+         VALUES ('crafting: integrity probe granted', 'crafting', 'integrity probe granted');
+         INSERT INTO item_augment_slot_option_grants (option_id, sort_order, slot_id)
+         VALUES ((SELECT MIN(id) FROM item_augment_slot_options), 99, last_insert_rowid());
+         INSERT INTO augment_slot_types (label, family, variant)
+         VALUES ('crafting: integrity probe upgrade', 'crafting', 'integrity probe upgrade');
+         INSERT INTO item_augment_slots (item_id, sort_order, slot_id)
+         VALUES ((SELECT MIN(id) FROM items), 99, last_insert_rowid());
+         INSERT INTO item_augment_slot_options (item_id, slot_order, option_order, name)
+         VALUES ((SELECT MIN(id) FROM items), 99, 0, 'Integrity Probe Upgrade');
+         INSERT INTO augment_slot_types (label, family, variant)
+         VALUES ('crafting: integrity probe bare', 'crafting', 'integrity probe bare');";
+    let work_dir = tempfile::tempdir().unwrap();
+    let db_path = fixture_db_copy_with(work_dir.path(), injected_sql);
+    let db = Connection::open(&db_path).unwrap();
+    let report = integrity_report(&db, &fixture_options()).unwrap();
+    let offender_names: Vec<&str> = report
+        .outcome("slot_types_no_augment_fits")
+        .unwrap()
+        .offenders
+        .iter()
+        .map(|offender| offender.name.as_str())
+        .collect();
+
+    assert!(offender_names.contains(&"crafting: integrity probe bare"), "{report}");
+    assert!(
+        !offender_names.contains(&"crafting: integrity probe granted"),
+        "an option's granted socket is filled by the option:\n{report}"
+    );
+    assert!(
+        !offender_names.contains(&"crafting: integrity probe upgrade"),
+        "a socket holding upgrade options is filled by them:\n{report}"
+    );
+}

@@ -305,14 +305,21 @@ pub const INTEGRITY_CHECKS: &[IntegrityCheck] = &[
     .showing_every_offender(),
     IntegrityCheck::warn(
         "slot_types_no_augment_fits",
-        "socket types no augment fits, with how many item sockets carry each; a crafting recipe or the item's own \
-         fixed contents may still fill them",
+        "socket types no augment fits, with how many item sockets carry each. A socket an augment slot option \
+         grants, or one holding the options an item upgrades through (item_augment_slot_options), is filled by \
+         those options and is not listed. Three stay on a full upstream build: Cannith Weapon Extra on the crafting \
+         tutorial's Fire Touch Heavy Mace, which no Cannith augment in Maetrim's files fits, and Random Effect 1 and \
+         2 on +5 Engraved Cormyrian Leather Armor, whose random enchantments his files do not model",
         OffenderQuery::Sql(
             "SELECT t.label, t.id, (SELECT COUNT(*) FROM item_augment_slots s WHERE s.slot_id = t.id) \
              || ' item socket(s)' FROM augment_slot_types t \
-             WHERE NOT EXISTS (SELECT 1 FROM augment_slots a WHERE a.slot_id = t.id) ORDER BY t.label",
+             WHERE NOT EXISTS (SELECT 1 FROM augment_slots a WHERE a.slot_id = t.id) \
+             AND NOT EXISTS (SELECT 1 FROM item_augment_slot_option_grants g WHERE g.slot_id = t.id) \
+             AND NOT EXISTS (SELECT 1 FROM item_augment_slots s JOIN item_augment_slot_options o \
+             ON o.item_id = s.item_id AND o.slot_order = s.sort_order WHERE s.slot_id = t.id) ORDER BY t.label",
         ),
-    ),
+    )
+    .showing_every_offender(),
     IntegrityCheck::warn(
         "sets_without_members",
         "set bonuses no item, augment, filigree or item augment slot option belongs to. Two stay on a full upstream \
