@@ -5,6 +5,7 @@ mod corrections;
 mod drop_text;
 mod items;
 mod modifiers;
+mod quest_series;
 mod sets;
 mod trees_spells;
 mod wiki;
@@ -12,6 +13,7 @@ mod wiki;
 use crate::corrections::Corrections;
 use crate::map::augment_slot::AugmentSlotType;
 use crate::map::buff::BuffMap;
+use crate::map::drop_location::{names_saga, reward_giver_name};
 use crate::map::effect::EffectMap;
 use crate::wiki::WikiOverrides;
 use crate::xml::challenges::{self, Challenge};
@@ -88,6 +90,12 @@ pub struct BuildReport {
     pub wiki_augment_probable_duplicate_count: usize,
     pub superseded_wiki_augments: Vec<SupersededWikiEntry>,
     pub probable_duplicate_wiki_augments: Vec<ProbableDuplicateWikiEntry>,
+    pub wiki_quest_chain_count: usize,
+    pub quest_chain_quest_link_count: usize,
+    pub quest_chain_reward_count: usize,
+    pub wiki_saga_count: usize,
+    pub saga_quest_link_count: usize,
+    pub saga_reward_count: usize,
     pub correction_applied_count: usize,
     pub correction_stale_count: usize,
     pub stale_corrections: Vec<StaleCorrection>,
@@ -158,6 +166,7 @@ pub fn build_database(
     report.challenge_count = write_challenges(&transaction, &parsed_challenges)?;
     corrections::apply_quest_corrections(&transaction, corrections, &mut report)?;
     wiki::write_wiki_quests(&transaction, &wiki_overrides.quests, &mut report)?;
+    quest_series::write_wiki_quest_series(&transaction, wiki_overrides, &mut report)?;
     let drop_text_quests = DropTextQuests::from_quests_table(&transaction)?;
 
     let mut writer = TableWriter {
@@ -217,6 +226,7 @@ pub fn build_database(
     writer.write_optional_buffs(&data_files_dir.join("SelfAndPartyBuffs.xml"), &mut report)?;
     corrections::apply_non_quest_corrections(&transaction, corrections, &mut report)?;
     wiki::apply_wiki_overrides(&transaction, wiki_overrides, &drop_text_quests, &mut report)?;
+    quest_series::write_wiki_quest_series_rewards(&transaction, wiki_overrides, &mut report)?;
 
     report.bonus_count = writer.written.bonus_ids_by_key.len();
     report.effect_count = writer.written.effect_ids_by_name.len();
@@ -227,6 +237,39 @@ pub fn build_database(
     report.unmapped_effect_type_counts = effect_map.unmapped_type_counts();
     transaction.commit()?;
     Ok(report)
+}
+
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub struct UnlinkedRewardGiver {
+    pub name: String,
+    pub is_saga: bool,
+    pub item_count: usize,
+}
+
+pub fn unlinked_reward_givers(db: &Connection) -> Result<Vec<UnlinkedRewardGiver>> {
+    let drop_text_quests = DropTextQuests::from_quests_table(db)?;
+    let mut statement =
+        db.prepare("SELECT drop_location FROM items WHERE source = ?1 AND drop_location IS NOT NULL ORDER BY id")?;
+    let drop_texts: Vec<String> = statement
+        .query_map(params![ddo_model::enums::RowSource::Maetrim.as_str()], |r| r.get(0))?
+        .collect::<rusqlite::Result<_>>()?;
+    let mut item_counts_by_reward_giver: BTreeMap<(bool, String), usize> = BTreeMap::new();
+    for drop_text in &drop_texts {
+        let mut reward_givers_in_item: Vec<(bool, String)> = drop_text_quests
+            .segments_giving_no_quest_reward(drop_text)
+            .into_iter()
+            .filter_map(|segment| reward_giver_name(segment).map(|name| (names_saga(segment), name)))
+            .collect();
+        reward_givers_in_item.sort();
+        reward_givers_in_item.dedup();
+        for reward_giver in reward_givers_in_item {
+            *item_counts_by_reward_giver.entry(reward_giver).or_default() += 1;
+        }
+    }
+    Ok(item_counts_by_reward_giver
+        .into_iter()
+        .map(|((is_saga, name), item_count)| UnlinkedRewardGiver { name, is_saga, item_count })
+        .collect())
 }
 
 fn files_with_extension(dir: &Path, extension: &str) -> Result<Vec<PathBuf>> {

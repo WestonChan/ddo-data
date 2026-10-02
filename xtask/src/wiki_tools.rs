@@ -1,6 +1,6 @@
 use crate::dataset::{build_in_memory_database, corrections_from, wiki_overrides_from};
 use anyhow::{Context, Result};
-use ddo_etl::build::{BuildReport, StaleCorrection, StaleCorrectionCause};
+use ddo_etl::build::{unlinked_reward_givers, BuildReport, StaleCorrection, StaleCorrectionCause, UnlinkedRewardGiver};
 use ddo_etl::wiki::DescriptionKind;
 use ddo_model::enums::RowSource;
 use rusqlite::Connection;
@@ -109,6 +109,12 @@ fn wiki_report_lines(report: &BuildReport) -> Vec<String> {
         ("wiki_augment_written_count", report.wiki_augment_written_count),
         ("wiki_augment_superseded_count", report.wiki_augment_superseded_count),
         ("wiki_augment_probable_duplicate_count", report.wiki_augment_probable_duplicate_count),
+        ("wiki_quest_chain_count", report.wiki_quest_chain_count),
+        ("quest_chain_quest_link_count", report.quest_chain_quest_link_count),
+        ("quest_chain_reward_count", report.quest_chain_reward_count),
+        ("wiki_saga_count", report.wiki_saga_count),
+        ("saga_quest_link_count", report.saga_quest_link_count),
+        ("saga_reward_count", report.saga_reward_count),
         ("correction_applied_count", report.correction_applied_count),
         ("correction_stale_count", report.correction_stale_count),
     ]
@@ -276,6 +282,7 @@ pub fn write_wiki_batch(
     let wiki_overrides = wiki_overrides_from(wiki_dir)?;
     let (db, _) = build_in_memory_database(data_files_dir, &wiki_overrides, &corrections_from(corrections_dir)?)?;
     std::fs::create_dir_all(out_dir).with_context(|| format!("creating {}", out_dir.display()))?;
+    let unlinked_reward_givers = unlinked_reward_givers(&db)?;
     let batch_files = [
         ("item_names.txt", as_lines(names_from(&db, "items", RowSource::Maetrim)?)),
         ("wiki_source_items.txt", as_lines(names_from(&db, "items", RowSource::Wiki)?)),
@@ -285,6 +292,8 @@ pub fn write_wiki_batch(
         ("quest_pages.json", serde_json::to_string_pretty(&quest_page_urls(&db)?)? + "\n"),
         ("crafting_systems.json", CRAFTING_SYSTEMS_JSON.to_string()),
         ("blank_descriptions.txt", as_lines(blank_description_lines(&db)?)),
+        ("quest_chain_names.txt", as_lines(unlinked_reward_giver_lines(&unlinked_reward_givers, false))),
+        ("saga_names.txt", as_lines(unlinked_reward_giver_lines(&unlinked_reward_givers, true))),
     ];
     batch_files
         .into_iter()
@@ -313,6 +322,14 @@ pub fn blank_description_page_url(kind: DescriptionKind, name: &str) -> String {
 
 fn wiki_page_url(page_name: &str) -> String {
     format!("{WIKI_PAGE_URL_PREFIX}{}", page_name.replace(' ', "_").replace('\'', "%27"))
+}
+
+fn unlinked_reward_giver_lines(unlinked_reward_givers: &[UnlinkedRewardGiver], is_saga: bool) -> Vec<String> {
+    unlinked_reward_givers
+        .iter()
+        .filter(|reward_giver| reward_giver.is_saga == is_saga)
+        .map(|reward_giver| format!("{}\t{}", reward_giver.name, reward_giver.item_count))
+        .collect()
 }
 
 fn as_lines(lines: Vec<String>) -> String {

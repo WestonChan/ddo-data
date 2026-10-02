@@ -47,6 +47,12 @@ fn ddl_creates_every_v2_table() {
         "item_augment_slot_options",
         "quest_loot",
         "quest_augment_loot",
+        "quest_chains",
+        "quest_chain_quests",
+        "quest_chain_rewards",
+        "sagas",
+        "saga_quests",
+        "saga_rewards",
         "modifiers",
         "requirements",
         "augments",
@@ -173,7 +179,7 @@ fn augments_come_from_maetrim_unless_the_wiki_supplied_them() {
     assert!(db
         .execute("INSERT INTO augments (name, family, source) VALUES ('Odd Gem', 'Named', 'ddowiki')", [])
         .is_err());
-    assert_eq!(SCHEMA_VERSION, 10);
+    assert_eq!(SCHEMA_VERSION, 11);
 }
 
 #[test]
@@ -287,6 +293,70 @@ fn both_quest_loot_tables_carry_identical_loot_columns() {
         sql[start..end].to_string()
     };
     assert_eq!(loot_column_sql("quest_augment_loot"), loot_column_sql("quest_loot"), "same CHECK constraints");
+}
+
+fn column_shapes(
+    db: &Connection,
+    table: &str,
+    columns_to_skip: &[&str],
+) -> Vec<(String, String, bool, Option<String>)> {
+    let mut statement = db
+        .prepare(&format!("SELECT name, type, \"notnull\", dflt_value FROM pragma_table_info('{table}') ORDER BY cid"))
+        .unwrap();
+    statement
+        .query_map([], |r| Ok((r.get(0)?, r.get(1)?, r.get(2)?, r.get(3)?)))
+        .unwrap()
+        .map(Result::unwrap)
+        .filter(|(name, ..): &(String, String, bool, Option<String>)| !columns_to_skip.contains(&name.as_str()))
+        .collect()
+}
+
+#[test]
+fn quest_chains_and_sagas_share_their_columns_quest_links_and_reward_shape() {
+    let db = fresh_db();
+    assert_eq!(column_shapes(&db, "quest_chains", &[]), column_shapes(&db, "sagas", &[]));
+    assert_eq!(
+        column_shapes(&db, "quest_chains", &[]).iter().map(|(name, ..)| name.as_str()).collect::<Vec<_>>(),
+        ["id", "name", "pack_id", "source", "wiki_url"]
+    );
+    assert_eq!(
+        column_shapes(&db, "quest_chain_quests", &["chain_id"]),
+        column_shapes(&db, "saga_quests", &["saga_id"])
+    );
+    assert_eq!(
+        column_shapes(&db, "quest_chain_rewards", &["chain_id"]),
+        column_shapes(&db, "saga_rewards", &["saga_id", "tier"])
+    );
+    assert_eq!(
+        column_shapes(&db, "saga_rewards", &[]).iter().map(|(name, ..)| name.as_str()).collect::<Vec<_>>(),
+        ["saga_id", "item_id", "is_rare", "tier"]
+    );
+}
+
+#[test]
+fn a_saga_reward_has_one_row_per_item_and_tier() {
+    let db = fresh_db();
+    db.execute_batch(
+        "PRAGMA foreign_keys = OFF;
+         INSERT INTO items (id, name, slot_id, item_category) VALUES (1, 'Band of Diani ir''Wynarn', 1, 'Jewelry');
+         INSERT INTO sagas (id, name, source, wiki_url)
+              VALUES (1, 'Masterminds of Sharn', 'wiki', 'https://ddowiki.com/page/Masterminds_of_Sharn');
+         INSERT INTO saga_rewards (saga_id, item_id, tier) VALUES (1, 1, 'epic');
+         INSERT INTO saga_rewards (saga_id, item_id, tier) VALUES (1, 1, 'legendary');
+         INSERT INTO saga_rewards (saga_id, item_id) VALUES (1, 1);",
+    )
+    .unwrap();
+    assert!(db.execute("INSERT INTO saga_rewards (saga_id, item_id, tier) VALUES (1, 1, 'epic')", []).is_err());
+    assert!(db.execute("INSERT INTO saga_rewards (saga_id, item_id) VALUES (1, 1)", []).is_err(), "one untiered row");
+    assert!(db.execute("INSERT INTO saga_rewards (saga_id, item_id, tier) VALUES (1, 1, 'any')", []).is_err());
+    assert!(
+        db.execute(
+            "INSERT INTO sagas (name, source, wiki_url) VALUES ('Odd Saga', 'ddowiki', 'https://ddowiki.com/page/Odd')",
+            []
+        )
+        .is_err(),
+        "source is maetrim or wiki"
+    );
 }
 
 #[test]

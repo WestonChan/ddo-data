@@ -1,10 +1,10 @@
 use crate::enums::{
     AbilityOwner, ArmorType, CorrectionKind, CraftingTier, EnhancementTreeKind, FeatSource, Handedness, ItemCategory,
-    LootType, ModifierSource, RequirementGroupKind, RequirementOwner, RowSource, SaveProgression,
+    LootType, ModifierSource, RequirementGroupKind, RequirementOwner, RowSource, SagaTier, SaveProgression,
 };
 use std::sync::LazyLock;
 
-pub const SCHEMA_VERSION: i64 = 10;
+pub const SCHEMA_VERSION: i64 = 11;
 
 fn sql_in_clause<'a>(allowed_values: impl Iterator<Item = &'a str>) -> String {
     let quoted_values: Vec<String> = allowed_values.map(|value| format!("'{value}'")).collect();
@@ -31,6 +31,17 @@ static DDL: LazyLock<String> = LazyLock::new(|| {
     is_rare   INTEGER NOT NULL DEFAULT 0 CHECK (is_rare IN (0, 1)),
     chest     TEXT,"
     );
+    let saga_tier = sql_in_clause(SagaTier::ALL.iter().map(|t| t.as_str()));
+    let quest_series_columns = format!(
+        "name     TEXT    NOT NULL UNIQUE,
+    pack_id  INTEGER REFERENCES adventure_packs(id),
+    source   TEXT    NOT NULL CHECK (source {row_source}),
+    wiki_url TEXT    NOT NULL"
+    );
+    let quest_series_quest_columns = "quest_id   INTEGER NOT NULL REFERENCES quests(id) ON DELETE CASCADE,
+    sort_order INTEGER NOT NULL,";
+    let quest_series_reward_columns = "item_id INTEGER NOT NULL REFERENCES items(id) ON DELETE CASCADE,
+    is_rare INTEGER NOT NULL DEFAULT 0 CHECK (is_rare IN (0, 1))";
     format!(
         r#"
 PRAGMA foreign_keys = ON;
@@ -271,6 +282,52 @@ CREATE TABLE IF NOT EXISTS quest_loot (
     PRIMARY KEY (quest_id, item_id, loot_type)
 );
 CREATE INDEX IF NOT EXISTS idx_quest_loot_item ON quest_loot(item_id);
+
+-- Quest chains and sagas (data/wiki quest_chains and sagas) ---------------------------
+--
+-- Both give an end reward from an NPC after several quests, not from any one quest: a quest chain is ddowiki's
+-- "story arc", a saga the saga system's reward NPC. Maetrim's files have neither, so every row is a wiki row;
+-- the name, quest link and reward columns are shared and only a saga reward carries a tier.
+CREATE TABLE IF NOT EXISTS quest_chains (
+    id       INTEGER PRIMARY KEY,
+    {quest_series_columns}
+);
+
+CREATE TABLE IF NOT EXISTS quest_chain_quests (
+    chain_id   INTEGER NOT NULL REFERENCES quest_chains(id) ON DELETE CASCADE,
+    {quest_series_quest_columns}
+    PRIMARY KEY (chain_id, quest_id)
+);
+CREATE INDEX IF NOT EXISTS idx_quest_chain_quests_quest ON quest_chain_quests(quest_id);
+
+CREATE TABLE IF NOT EXISTS quest_chain_rewards (
+    chain_id INTEGER NOT NULL REFERENCES quest_chains(id) ON DELETE CASCADE,
+    {quest_series_reward_columns},
+    PRIMARY KEY (chain_id, item_id)
+);
+CREATE INDEX IF NOT EXISTS idx_quest_chain_rewards_item ON quest_chain_rewards(item_id);
+
+CREATE TABLE IF NOT EXISTS sagas (
+    id       INTEGER PRIMARY KEY,
+    {quest_series_columns}
+);
+
+CREATE TABLE IF NOT EXISTS saga_quests (
+    saga_id    INTEGER NOT NULL REFERENCES sagas(id) ON DELETE CASCADE,
+    {quest_series_quest_columns}
+    PRIMARY KEY (saga_id, quest_id)
+);
+CREATE INDEX IF NOT EXISTS idx_saga_quests_quest ON saga_quests(quest_id);
+
+-- tier is the saga's heroic, epic or legendary reward list, null when the source names none; the unique index
+-- keeps one row per item and tier, the untiered one included, which a primary key over a nullable column would not.
+CREATE TABLE IF NOT EXISTS saga_rewards (
+    saga_id INTEGER NOT NULL REFERENCES sagas(id) ON DELETE CASCADE,
+    {quest_series_reward_columns},
+    tier    TEXT CHECK (tier {saga_tier})
+);
+CREATE UNIQUE INDEX IF NOT EXISTS idx_saga_rewards_saga_item_tier ON saga_rewards(saga_id, item_id, COALESCE(tier, ''));
+CREATE INDEX IF NOT EXISTS idx_saga_rewards_item ON saga_rewards(item_id);
 
 -- Modifiers and requirements: the two grammars every family shares ---------------
 --

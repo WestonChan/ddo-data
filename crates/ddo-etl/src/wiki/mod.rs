@@ -4,6 +4,7 @@ mod crafting;
 mod descriptions;
 mod items;
 mod quest_loot;
+mod quest_series;
 mod quests;
 
 pub use augments::WikiAugment;
@@ -12,6 +13,10 @@ pub use crafting::{CraftingIngredient, CraftingRecipe, CraftingSystem, Ingredien
 pub use descriptions::{DescriptionKind, WikiDescription};
 pub use items::{WikiArmorStats, WikiItem, WikiItemEffect, WikiItemQuest, WikiWeaponStats};
 pub use quest_loot::{DescribedListedDrop, ListedDrop, QuestLoot, RareDrop, RareDropInChest};
+pub use quest_series::{
+    DescribedQuestChainReward, DescribedSagaReward, QuestChainReward, QuestSeriesReward, SagaReward, WikiQuestChain,
+    WikiQuestSeries, WikiSaga,
+};
 pub use quests::WikiQuest;
 
 use anyhow::{bail, Context, Result};
@@ -30,6 +35,8 @@ pub struct WikiOverrides {
     pub descriptions: Vec<WikiDescription>,
     pub items: Vec<WikiItem>,
     pub augments: Vec<WikiAugment>,
+    pub quest_chains: Vec<WikiQuestChain>,
+    pub sagas: Vec<WikiSaga>,
 }
 
 trait WikiEntry: DeserializeOwned {
@@ -138,6 +145,38 @@ impl WikiEntry for WikiAugment {
     }
 }
 
+impl WikiEntry for WikiQuestChain {
+    const TOML_TABLE_NAME: &'static str = "chain";
+    fn name(&self) -> &str {
+        &self.name
+    }
+    fn citation(&self) -> (&str, &str) {
+        (&self.page, &self.read)
+    }
+    fn validate(&self) -> Result<()> {
+        WikiQuestSeries::validate(self)
+    }
+    fn record_file_name(&mut self, file_name: &str) {
+        file_name.clone_into(&mut self.file_name);
+    }
+}
+
+impl WikiEntry for WikiSaga {
+    const TOML_TABLE_NAME: &'static str = "saga";
+    fn name(&self) -> &str {
+        &self.name
+    }
+    fn citation(&self) -> (&str, &str) {
+        (&self.page, &self.read)
+    }
+    fn validate(&self) -> Result<()> {
+        WikiQuestSeries::validate(self)
+    }
+    fn record_file_name(&mut self, file_name: &str) {
+        file_name.clone_into(&mut self.file_name);
+    }
+}
+
 enum WikiFileKind {
     QuestLoot,
     Quests,
@@ -145,6 +184,8 @@ enum WikiFileKind {
     Descriptions,
     Items,
     Augments,
+    QuestChains,
+    Sagas,
 }
 
 impl WikiFileKind {
@@ -152,6 +193,10 @@ impl WikiFileKind {
         let stem = file_name.strip_suffix(".toml").unwrap_or(file_name);
         if stem.starts_with("quest_loot") {
             Ok(Self::QuestLoot)
+        } else if stem.starts_with("quest_chains") {
+            Ok(Self::QuestChains)
+        } else if stem.starts_with("sagas") {
+            Ok(Self::Sagas)
         } else if stem.starts_with("quests") {
             Ok(Self::Quests)
         } else if stem.starts_with("crafting") {
@@ -164,7 +209,7 @@ impl WikiFileKind {
             Ok(Self::Augments)
         } else {
             bail!(
-                "wiki file {file_name}: the name must start with quest_loot, quests, crafting, descriptions, items or augments, which says what it holds"
+                "wiki file {file_name}: the name must start with quest_loot, quest_chains, quests, sagas, crafting, descriptions, items or augments, which says what it holds"
             )
         }
     }
@@ -240,6 +285,7 @@ impl WikiOverrides {
             (HashMap::new(), HashMap::new(), HashMap::new());
         let (mut description_file_by_kind_and_name, mut item_file_by_name, mut augment_file_by_family_and_name) =
             (HashMap::new(), HashMap::new(), HashMap::new());
+        let (mut quest_chain_file_by_name, mut saga_file_by_name) = (HashMap::new(), HashMap::new());
         for (file_name, toml_text) in toml_files {
             match WikiFileKind::from_file_name(file_name)? {
                 WikiFileKind::QuestLoot => overrides.quest_loot.extend(parse_wiki_entries(
@@ -268,6 +314,14 @@ impl WikiOverrides {
                     toml_text,
                     &mut augment_file_by_family_and_name,
                 )?),
+                WikiFileKind::QuestChains => overrides.quest_chains.extend(parse_wiki_entries(
+                    file_name,
+                    toml_text,
+                    &mut quest_chain_file_by_name,
+                )?),
+                WikiFileKind::Sagas => {
+                    overrides.sagas.extend(parse_wiki_entries(file_name, toml_text, &mut saga_file_by_name)?)
+                }
             }
         }
         Ok(overrides)

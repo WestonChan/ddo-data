@@ -238,4 +238,12 @@
       <Reaper/>
       <IsRaid/>
    </Quest>
+   <Quest>
+      <Name>Saltmarsh</Name>
+      <Patron>None</Patron>
+      <AdventurePack>Sinister Secret of Saltmarsh</AdventurePack>
+      <Favor>0</Favor>
+      <Levels size="1">1</Levels>
+      <DoNotShow/>
+   </Quest>
 </Quests>

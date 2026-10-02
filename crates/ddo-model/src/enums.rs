@@ -607,6 +607,26 @@ impl LootType {
 }
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
+#[serde(rename_all = "lowercase")]
+pub enum SagaTier {
+    Heroic,
+    Epic,
+    Legendary,
+}
+
+impl SagaTier {
+    pub const ALL: &'static [SagaTier] = &[Self::Heroic, Self::Epic, Self::Legendary];
+
+    pub const fn as_str(self) -> &'static str {
+        match self {
+            Self::Heroic => "heroic",
+            Self::Epic => "epic",
+            Self::Legendary => "legendary",
+        }
+    }
+}
+
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
 pub enum CraftingTier {
     Heroic,
     Epic,

@@ -1,0 +1,9 @@
+# Test values, not read from ddowiki: the chain takes the name Maetrim's fixture Acrobat's Ring gives as its end
+# reward, but its quests and rewards are fixture quests and items chosen for the tests.
+[[chain]]
+name = "The Lost Seekers"
+page = "https://ddowiki.com/page/The_Lost_Seekers"
+read = "2026-10-02"
+pack = "Free to Play"
+quests = ["The Grotto", "Redemption"]
+rewards = ["Docent of Defiance", { name = "Kundarak Delving Boots", rare = true }]

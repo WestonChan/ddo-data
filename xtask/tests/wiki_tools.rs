@@ -103,6 +103,12 @@ fn wiki_check_reports_the_wiki_counts_for_a_valid_wiki_dir() {
         "wiki_augment_written_count: 1",
         "wiki_augment_superseded_count: 1",
         "wiki_augment_probable_duplicate_count: 0",
+        "wiki_quest_chain_count: 1",
+        "quest_chain_quest_link_count: 2",
+        "quest_chain_reward_count: 2",
+        "wiki_saga_count: 1",
+        "saga_quest_link_count: 2",
+        "saga_reward_count: 3",
     ] {
         assert!(report.lines().any(|line| line == expected_line), "missing {expected_line:?} in\n{report}");
     }
@@ -397,7 +403,7 @@ fn wiki_batch_writes_the_reading_agent_inputs() {
     )
     .unwrap();
 
-    assert_eq!(line_count(&out_dir.path().join("item_names.txt")), 19);
+    assert_eq!(line_count(&out_dir.path().join("item_names.txt")), 21);
     assert_eq!(
         std::fs::read_to_string(out_dir.path().join("wiki_source_items.txt")).unwrap(),
         "Battle Axe of the Oozing Hunger\n"
@@ -410,12 +416,22 @@ fn wiki_batch_writes_the_reading_agent_inputs() {
         std::fs::read_to_string(out_dir.path().join("wiki_source_augments.txt")).unwrap(),
         "Named\tTest Gem of Oozing Resistance\t29\n"
     );
+    assert_eq!(
+        std::fs::read_to_string(out_dir.path().join("quest_chain_names.txt")).unwrap(),
+        "The Lost Seekers\t1\n",
+        "his reward segments that are no quest's own end reward and say no saga, with how many of his items name each"
+    );
+    assert_eq!(
+        std::fs::read_to_string(out_dir.path().join("saga_names.txt")).unwrap(),
+        "Masterminds of Sharn\t1\nThe Haunting of Saltmarsh\t1\n",
+        "a saga's reward is listed though the saga's name holds a quest's"
+    );
     let augment_lines = std::fs::read_to_string(out_dir.path().join("augment_names.txt")).unwrap();
     assert_eq!(augment_lines.lines().count(), 16);
     assert!(augment_lines.lines().any(|line| line == "Alchemical\tFire I: Combustion\t29"), "{augment_lines}");
     let quest_pages: Value =
         serde_json::from_str(&std::fs::read_to_string(out_dir.path().join("quest_pages.json")).unwrap()).unwrap();
-    assert_eq!(quest_pages.as_object().unwrap().len(), 25, "Maetrim's 24 quests and challenges and the wiki quest");
+    assert_eq!(quest_pages.as_object().unwrap().len(), 26, "Maetrim's 25 quests and challenges and the wiki quest");
     assert_eq!(quest_pages["Ghosts of Perdition"], likely_wiki_page_url("Ghosts of Perdition"));
     assert_eq!(
         quest_pages["Dr. Rushmore's Mansion - Behind the Door"],

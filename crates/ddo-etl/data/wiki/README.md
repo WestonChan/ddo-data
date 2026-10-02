@@ -75,7 +75,7 @@ A clean run prints the report, whose `wiki_quest_loot_entry_count`, `wiki_rare_d
 
 ## `quests.toml`
 
-One `[[quest]]` table per quest, carrying the quest facts Maetrim's `Quests.xml` has no field for. The loader reads a file by its name: `quest_loot*.toml` holds loot entries, `quests*.toml` holds these, `crafting*.toml` holds crafting systems, `descriptions*.toml` holds descriptions, `items*.toml` holds items and `augments*.toml` holds augments, so a quest may appear once in each of the first two; any other name fails the build. The first 548 entries were read from the one index page, [Quests by level and XP](https://ddowiki.com/page/Quests_by_level_and_XP); a later read of a quest's own page updates its entry, `page` and `read` and adds the per-page fields.
+One `[[quest]]` table per quest, carrying the quest facts Maetrim's `Quests.xml` has no field for. The loader reads a file by its name: `quest_loot*.toml` holds loot entries, `quests*.toml` holds these, `crafting*.toml` holds crafting systems, `descriptions*.toml` holds descriptions, `items*.toml` holds items, `augments*.toml` holds augments, `quest_chains*.toml` holds quest chains and `sagas*.toml` holds sagas, so a quest may appear once in each of the first two; any other name fails the build. The first 548 entries were read from the one index page, [Quests by level and XP](https://ddowiki.com/page/Quests_by_level_and_XP); a later read of a quest's own page updates its entry, `page` and `read` and adds the per-page fields.
 
 ```toml
 [[quest]]
@@ -250,3 +250,32 @@ bonuses = [{ stat = "Strength", bonus_type = "Insight", value = 3 }]
 Named effects (an item's `effects`) are not an augment field: his augments carry their effects as `<Effect>` modifiers, which the wiki cannot supply, so text the bonuses cannot express goes in `effect_description`.
 
 The merge runs after his augments and sets are written. An entry whose `name` is already one of his augments in the same `family` writes nothing and is counted in `wiki_augment_superseded_count`; a name he uses only in another family is a different augment and is written. Every other entry writes an `augments` row with `source = 'wiki'`, its sockets, bonuses, set link and drop-text quest links, and is counted in `wiki_augment_written_count`; one whose name matches one of his in the same family once case, punctuation, spaces and a trailing `(level N)` are ignored is still written, and counted in `wiki_augment_probable_duplicate_count`. Corrections never apply to a wiki augment. Besides the citation checks above, the build fails, naming the file, the augment and the value, when a field is missing or unknown, `slots` is empty, a stat or bonus type is outside `/v1/stats` and `/v1/bonus-types`, or the family, a socket label or the set matches nothing in his files. `cargo xtask wiki-check` prints the three counts and, under `warnings:`, one line per superseded entry (`warning: wiki augment "<name>" is now in Maetrim's files; delete it from <file>`) and one per probable duplicate (`warning: wiki augment "<name>" may duplicate Maetrim's "<his name>"`). `cargo xtask wiki-batch` writes `wiki_source_augments.txt`, the augments still supplied by the wiki as `family<TAB>name<TAB>min_level` (the form of `augment_names.txt`, which lists only his). The API reports each augment's `source`, and `/v1/version` counts them as `wiki_augments`.
+
+## `quest_chains.toml` and `sagas.toml`
+
+Quest chains and sagas give an end reward from an NPC after several quests, so their rewards belong to neither the quests nor `quest_loot`. A quest chain is what ddowiki calls a story arc (The Lost Seekers, Cult of the Six), and Maetrim's drop text names its reward as `<chain>, End reward` or `<chain>, quest chain end reward`; a saga is the saga system's reward NPC (Masterminds of Sharn, The Haunting of Saltmarsh), named as `<saga> saga: Epic end reward` or `Dread saga legendary end reward`, and its rewards come in heroic, epic and legendary lists. His files model neither, so every row comes from these files, with `source = 'wiki'` and `wiki_url` the entry's `page`. `quest_chains*.toml` holds `[[chain]]` tables and `sagas*.toml` holds `[[saga]]` tables:
+
+```toml
+[[chain]]
+name = "The Lost Seekers"
+page = "https://ddowiki.com/page/The_Lost_Seekers"
+read = "2026-10-02"
+pack = "Free to Play"
+quests = ["Redemption", "The Grotto"]
+rewards = ["Acrobat's Ring", { name = "Some Rare Reward", rare = true }]
+
+[[saga]]
+name = "Masterminds of Sharn"
+page = "https://ddowiki.com/page/Masterminds_of_Sharn_(saga)"
+read = "2026-10-02"
+pack = "Masterminds of Sharn"
+quests = ["Project Nemesis", "Too Hot to Handle"]
+rewards = [{ name = "Band of Diani ir'Wynarn", tier = "epic" }, "Some Untiered Reward"]
+```
+
+- `name` (required, unique per kind across files): the chain or saga as his drop text names it, so the build can link his items to it (below); the page title when his text names none.
+- `pack` (optional): the adventure pack, spelled as his `adventure_packs.name`.
+- `quests` (optional): the quests in order, each spelled as his `Quests.xml` or `Challenges.xml` has it or a quest a `quests*.toml` entry creates; each at most once.
+- `rewards` (optional): the end rewards, each an item name (his, or an `items*.toml` entry's) or `{ name, rare }` for a chain and `{ name, tier, rare }` for a saga, with `rare` defaulting to `false` and `tier` one of `heroic`, `epic` or `legendary` (left out when the page gives none). A reward appears once per tier.
+
+The build writes `quest_chains` and `sagas` and their `quest_chain_quests` and `saga_quests` links (with `sort_order` the quest's position) right after the wiki quests, before his items are written, and the `quest_chain_rewards` and `saga_rewards` rows after the rest of the wiki merge, so a reward may name a wiki item. Besides the citation checks above, the build fails, naming the file, the entry and the value, when a field is unknown, a quest or reward repeats, a tier is not one of the three, a chain reward has a `tier`, or `pack`, a quest or a reward matches nothing in his files or the wiki files. The report's `wiki_quest_chain_count`, `quest_chain_quest_link_count` and `quest_chain_reward_count` count the chains, quest links and listed rewards applied, and `wiki_saga_count`, `saga_quest_link_count` and `saga_reward_count` the same for sagas; `cargo xtask wiki-check` prints them. `cargo xtask wiki-batch` writes the work list: `quest_chain_names.txt` and `saga_names.txt`, one `name<TAB>item count` line per name his items' drop text gives in a segment that says `reward` and is no quest's own end reward (it names no quest, or says `chain` or `saga`): the text before the first comma, parenthesis, ` saga`, ` quest chain`, ` chain end` or ` end reward`, without a leading `or`, `and` or `also`, in `saga_names.txt` when the segment says `saga`. Many are not chains at all (`Advance to level 15`, `Random`, `Special event items`); a reader records only the real ones.

@@ -1,10 +1,11 @@
 use super::TableWriter;
 use crate::map::drop_location::{
-    chest_following, marks_rare_loot, names_chest_drop, names_quest_end_reward, quest_name_spans, segment_spanning,
+    chest_following, marks_rare_loot, names_chest_drop, names_quest_end_reward, quest_name_spans, segment_ranges,
+    segment_spanning,
 };
 use anyhow::Result;
 use ddo_model::enums::{LootType, RowSource};
-use rusqlite::{params, Transaction};
+use rusqlite::{params, Connection, Transaction};
 use std::ops::Range;
 
 const MATCHED_TEXT_MASK: &str = "\0";
@@ -30,9 +31,8 @@ struct DropTextQuestLink {
 }
 
 impl DropTextQuests {
-    pub(super) fn from_quests_table(transaction: &Transaction) -> Result<Self> {
-        let mut statement =
-            transaction.prepare("SELECT name, id, is_raid, source = ?1 FROM quests WHERE is_challenge = 0")?;
+    pub(super) fn from_quests_table(db: &Connection) -> Result<Self> {
+        let mut statement = db.prepare("SELECT name, id, is_raid, source = ?1 FROM quests WHERE is_challenge = 0")?;
         let mut longest_name_first = statement
             .query_map(params![RowSource::Wiki.as_str()], |r| {
                 let name: String = r.get(0)?;
@@ -45,10 +45,9 @@ impl DropTextQuests {
         Ok(Self { longest_name_first })
     }
 
-    fn quest_links_in(&self, drop_text: &str) -> Vec<DropTextQuestLink> {
+    fn quest_name_spans_in(&self, drop_text: &str) -> Vec<(&DropTextQuest, Vec<Range<usize>>)> {
         let mut unmatched_text = drop_text.to_string();
         let lowercase_drop_text = drop_text.to_lowercase();
-        let mut quest_links = Vec::new();
         let mut quest_name_spans_by_quest = Vec::new();
         for quest in &self.longest_name_first {
             if !lowercase_drop_text.contains(&quest.lowercase_first_word) {
@@ -61,6 +60,29 @@ impl DropTextQuests {
             for span in &quest_name_spans {
                 unmatched_text.replace_range(span.clone(), &MATCHED_TEXT_MASK.repeat(span.len()));
             }
+            quest_name_spans_by_quest.push((quest, quest_name_spans));
+        }
+        quest_name_spans_by_quest
+    }
+
+    pub(super) fn segments_giving_no_quest_reward<'text>(&self, drop_text: &'text str) -> Vec<&'text str> {
+        let quest_name_spans: Vec<Range<usize>> =
+            self.quest_name_spans_in(drop_text).into_iter().flat_map(|(_, spans)| spans).collect();
+        segment_ranges(drop_text)
+            .into_iter()
+            .filter(|segment| {
+                let names_quest =
+                    quest_name_spans.iter().any(|span| span.start >= segment.start && span.end <= segment.end);
+                !(names_quest && names_quest_end_reward(&drop_text[segment.clone()]))
+            })
+            .map(|segment| &drop_text[segment])
+            .collect()
+    }
+
+    fn quest_links_in(&self, drop_text: &str) -> Vec<DropTextQuestLink> {
+        let mut quest_links = Vec::new();
+        let mut quest_name_spans_by_quest = Vec::new();
+        for (quest, quest_name_spans) in self.quest_name_spans_in(drop_text) {
             let mut rarity_by_loot_type: Vec<(LootType, bool)> = Vec::new();
             for span in &quest_name_spans {
                 let segment = segment_spanning(drop_text, span);

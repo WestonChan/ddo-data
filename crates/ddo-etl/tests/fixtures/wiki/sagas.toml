@@ -1,0 +1,10 @@
+# Test values, not read from ddowiki: the saga takes the name Maetrim's fixture Band of Diani ir'Wynarn gives as
+# its epic end reward, but its quests and rewards are fixture quests and items chosen for the tests. Ghosts of
+# Perdition is the quest the fixture quests.toml creates.
+[[saga]]
+name = "Masterminds of Sharn"
+page = "https://ddowiki.com/page/Masterminds_of_Sharn_(saga)"
+read = "2026-10-02"
+pack = "Masterminds of Sharn"
+quests = ["Project Nemesis", "Ghosts of Perdition"]
+rewards = [{ name = "Five Rings", tier = "epic" }, { name = "Five Rings", tier = "legendary", rare = true }, "Alabaster of the Twelve"]

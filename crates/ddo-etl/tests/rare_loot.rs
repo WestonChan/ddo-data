@@ -1,7 +1,8 @@
 use ddo_etl::build::{build_database, BuildReport};
 use ddo_etl::corrections::Corrections;
 use ddo_etl::map::drop_location::{
-    chest_following, chest_label, drop_text_in_description, marks_rare_loot, quest_name_spans,
+    chest_following, chest_label, drop_text_in_description, marks_rare_loot, names_saga, quest_name_spans,
+    reward_giver_name,
 };
 use ddo_etl::wiki::WikiOverrides;
 use ddo_model::DatasetVersion;
@@ -179,5 +180,28 @@ fn reads_the_drop_text_after_drops_in_in_an_augment_description() {
         ("+2 Artifact Bonus to Strength", None),
     ] {
         assert_eq!(drop_text_in_description(description), expected_drop_text, "{description:?}");
+    }
+}
+
+#[test]
+fn names_the_quest_chain_or_saga_a_reward_segment_credits() {
+    for (segment, expected_name, is_saga) in [
+        ("The Lost Seekers, End reward", Some("The Lost Seekers"), false),
+        (" Masterminds of Sharn saga: Epic end reward", Some("Masterminds of Sharn"), true),
+        (" or Dread saga legendary end reward", Some("Dread"), true),
+        (" The Haunting of Saltmarsh (Epic) saga end reward", Some("The Haunting of Saltmarsh"), true),
+        (" Return to Gianthold quest chain end reward", Some("Return to Gianthold"), false),
+        (" The Ruins of Gianthold chain end reward", Some("The Ruins of Gianthold"), false),
+        ("\nShadow Over Wheloon, Quest chain end reward (Heroic)", Some("Shadow Over Wheloon"), false),
+        (" Masterminds of Sharn (Epic) end reward", Some("Masterminds of Sharn"), false),
+        (
+            " Menace of the Underdark: The Darkening, Quest chain end reward",
+            Some("Menace of the Underdark: The Darkening"),
+            false,
+        ),
+        (" rare drop in any legendary Sharn quest", None, false),
+    ] {
+        assert_eq!(reward_giver_name(segment).as_deref(), expected_name, "{segment:?}");
+        assert_eq!(names_saga(segment), is_saga, "{segment:?}");
     }
 }

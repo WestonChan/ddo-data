@@ -1,0 +1,43 @@
+<Items>
+  <Item>
+    <NoAutoUpdate/>
+    <Name>Ring of the Kraken</Name>
+    <Icon>Ring_18a</Icon>
+    <Description>A swirling squid tentacle is engraved upon this ring.</Description>
+    <DropLocation>Saltmarsh, any legendary chest; or The Haunting of Saltmarsh (Epic) saga end reward</DropLocation>
+    <MinLevel>29</MinLevel>
+    <EquipmentSlot>
+      <Ring/>
+    </EquipmentSlot>
+    <Material>Platinum</Material>
+    <Buff>
+      <Type>AbilityBonus</Type>
+      <Value1>14</Value1>
+      <BonusType>Enhancement</BonusType>
+      <Description1>Charisma</Description1>
+      <Item>Charisma</Item>
+    </Buff>
+    <Buff>
+      <Type>SpellFocusMastery</Type>
+      <Value1>7</Value1>
+      <BonusType>Equipment</BonusType>
+    </Buff>
+    <Buff>
+      <Type>Nullmagic Guard</Type>
+    </Buff>
+    <Buff>
+      <Type>Energy Siphon XII</Type>
+    </Buff>
+    <SetBonus>Legendary Saltmarsh Explorer</SetBonus>
+    <ItemAugment>
+      <Type>Yellow</Type>
+    </ItemAugment>
+    <ItemAugment>
+      <Type>Green</Type>
+    </ItemAugment>
+    <ItemAugment>
+      <Type>Blue</Type>
+    </ItemAugment>
+    <MinorArtifact/>
+  </Item>
+</Items>

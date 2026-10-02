@@ -18,6 +18,47 @@ pub fn names_chest_drop(segment: &str) -> bool {
     !names_quest_end_reward(segment) || segment.to_lowercase().contains(CHEST_MARKER)
 }
 
+pub fn names_saga(segment: &str) -> bool {
+    segment.to_lowercase().split(|character: char| !character.is_alphanumeric()).any(|word| word == SAGA_WORD)
+}
+
+pub fn reward_giver_name(segment: &str) -> Option<String> {
+    let lowercase_segment = segment.to_ascii_lowercase();
+    if !lowercase_segment.contains(REWARD_MARKER) {
+        return None;
+    }
+    let name_end = REWARD_GIVER_NAME_ENDS
+        .iter()
+        .filter_map(|name_end_marker| lowercase_segment.find(name_end_marker))
+        .min()
+        .unwrap_or(segment.len());
+    let name = segment[..name_end].trim();
+    let name = REWARD_GIVER_LEADING_CONNECTORS
+        .iter()
+        .find_map(|connector| {
+            name.get(..connector.len())
+                .filter(|start| start.eq_ignore_ascii_case(connector))
+                .map(|_| &name[connector.len()..])
+        })
+        .unwrap_or(name)
+        .trim();
+    (!name.is_empty()).then(|| name.to_string())
+}
+
+pub fn segment_ranges(drop_text: &str) -> Vec<Range<usize>> {
+    let mut ranges = Vec::new();
+    let mut start = 0;
+    for (separator_index, _) in drop_text.match_indices(SEGMENT_SEPARATORS) {
+        ranges.push(start..separator_index);
+        start = separator_index + 1;
+    }
+    ranges.push(start..drop_text.len());
+    ranges
+}
+
+const SAGA_WORD: &str = "saga";
+const REWARD_GIVER_NAME_ENDS: [&str; 6] = [",", "(", " saga", " quest chain", " chain end", " end reward"];
+const REWARD_GIVER_LEADING_CONNECTORS: [&str; 3] = ["or ", "and ", "also "];
 const REWARD_MARKER: &str = "reward";
 const CHEST_MARKER: &str = "chest";
 const OTHER_GIVER_REWARD_MARKERS: [&str; 2] = ["chain", "saga"];

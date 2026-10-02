@@ -91,7 +91,7 @@ fn parses_every_fixture_item() {
         parse_item_file(&path).unwrap_or_else(|e| panic!("{}: {e}", path.display()));
         item_file_count += 1;
     }
-    assert_eq!(item_file_count, 20);
+    assert_eq!(item_file_count, 22);
 }
 
 #[test]
@@ -105,7 +105,7 @@ fn parses_interleaved_repeated_elements() {
 #[test]
 fn parses_quests_patrons_and_item_buffs() {
     let parsed_quests = quests::parse(&data_files_fixture_dir().join("Quests.xml")).unwrap();
-    assert_eq!(parsed_quests.len(), 21);
+    assert_eq!(parsed_quests.len(), 22);
     let chronoscope = parsed_quests.iter().find(|q| q.name == "The Chronoscope").unwrap();
     assert_eq!(chronoscope.levels, vec![6, 21]);
     assert!(chronoscope.is_raid);
