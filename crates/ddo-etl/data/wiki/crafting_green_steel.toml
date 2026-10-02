@@ -3962,7 +3962,7 @@ tier = "legendary"
 slot = "crafting: greensteel weapon tier 1"
 option = "Charisma +12"
 augments = ["+15 Charisma (Enhancement)"]
-note = "Weapon augment for Air/Escalation/Ethereal, made at the Legendary Altar of Invasion. The page gives +12; Maetrim's augment is +15 Enhancement (the main page notes tier 1 changed from +14 to +15 with U29P2), and his value stands."
+note = "Weapon augment for Air/Escalation/Ethereal, made at the Legendary Altar of Invasion."
 cost = [{ ingredient = "Legendary Inferior Focus of Air", quantity = 1 }, { ingredient = "Legendary Cloudy Gem of Escalation", quantity = 1 }, { ingredient = "Legendary Diluted Ethereal Essence", quantity = 1 }]
 
 [[system.recipe]]
@@ -3978,7 +3978,7 @@ tier = "legendary"
 slot = "crafting: greensteel weapon tier 1"
 option = "Wisdom +12"
 augments = ["+15 Wisdom (Enhancement)"]
-note = "Weapon augment for Earth/Escalation/Ethereal, made at the Legendary Altar of Invasion. The page gives +12; Maetrim's augment is +15 Enhancement (the main page notes tier 1 changed from +14 to +15 with U29P2), and his value stands."
+note = "Weapon augment for Earth/Escalation/Ethereal, made at the Legendary Altar of Invasion."
 cost = [{ ingredient = "Legendary Inferior Focus of Earth", quantity = 1 }, { ingredient = "Legendary Cloudy Gem of Escalation", quantity = 1 }, { ingredient = "Legendary Diluted Ethereal Essence", quantity = 1 }]
 
 [[system.recipe]]
@@ -3994,7 +3994,7 @@ tier = "legendary"
 slot = "crafting: greensteel weapon tier 1"
 option = "Intelligence +12"
 augments = ["+15 Intelligence (Enhancement)"]
-note = "Weapon augment for Fire/Escalation/Ethereal, made at the Legendary Altar of Invasion. The page gives +12; Maetrim's augment is +15 Enhancement (the main page notes tier 1 changed from +14 to +15 with U29P2), and his value stands."
+note = "Weapon augment for Fire/Escalation/Ethereal, made at the Legendary Altar of Invasion."
 cost = [{ ingredient = "Legendary Inferior Focus of Fire", quantity = 1 }, { ingredient = "Legendary Cloudy Gem of Escalation", quantity = 1 }, { ingredient = "Legendary Diluted Ethereal Essence", quantity = 1 }]
 
 [[system.recipe]]
@@ -4010,7 +4010,7 @@ tier = "legendary"
 slot = "crafting: greensteel weapon tier 1"
 option = "Wisdom +12"
 augments = ["+15 Wisdom (Enhancement)"]
-note = "Weapon augment for Water/Escalation/Ethereal, made at the Legendary Altar of Invasion. The page gives +12; Maetrim's augment is +15 Enhancement (the main page notes tier 1 changed from +14 to +15 with U29P2), and his value stands."
+note = "Weapon augment for Water/Escalation/Ethereal, made at the Legendary Altar of Invasion."
 cost = [{ ingredient = "Legendary Inferior Focus of Water", quantity = 1 }, { ingredient = "Legendary Cloudy Gem of Escalation", quantity = 1 }, { ingredient = "Legendary Diluted Ethereal Essence", quantity = 1 }]
 
 [[system.recipe]]
@@ -4026,7 +4026,7 @@ tier = "legendary"
 slot = "crafting: greensteel weapon tier 1"
 option = "Intelligence +12"
 augments = ["+15 Intelligence (Enhancement)"]
-note = "Weapon augment for Negative/Escalation/Ethereal, made at the Legendary Altar of Invasion. The page gives +12; Maetrim's augment is +15 Enhancement (the main page notes tier 1 changed from +14 to +15 with U29P2), and his value stands."
+note = "Weapon augment for Negative/Escalation/Ethereal, made at the Legendary Altar of Invasion."
 cost = [{ ingredient = "Legendary Inferior Focus of Negative Energy", quantity = 1 }, { ingredient = "Legendary Cloudy Gem of Escalation", quantity = 1 }, { ingredient = "Legendary Diluted Ethereal Essence", quantity = 1 }]
 
 [[system.recipe]]
@@ -4042,7 +4042,7 @@ tier = "legendary"
 slot = "crafting: greensteel weapon tier 1"
 option = "Charisma +12"
 augments = ["+15 Charisma (Enhancement)"]
-note = "Weapon augment for Positive/Escalation/Ethereal, made at the Legendary Altar of Invasion. The page gives +12; Maetrim's augment is +15 Enhancement (the main page notes tier 1 changed from +14 to +15 with U29P2), and his value stands."
+note = "Weapon augment for Positive/Escalation/Ethereal, made at the Legendary Altar of Invasion."
 cost = [{ ingredient = "Legendary Inferior Focus of Positive Energy", quantity = 1 }, { ingredient = "Legendary Cloudy Gem of Escalation", quantity = 1 }, { ingredient = "Legendary Diluted Ethereal Essence", quantity = 1 }]
 
 [[system.recipe]]
@@ -4058,7 +4058,7 @@ tier = "legendary"
 slot = "crafting: greensteel weapon tier 1"
 option = "Dexterity +12"
 augments = ["+15 Dexterity (Enhancement)"]
-note = "Weapon augment for Air/Escalation/Material, made at the Legendary Altar of Invasion. The page gives +12; Maetrim's augment is +15 Enhancement (the main page notes tier 1 changed from +14 to +15 with U29P2), and his value stands."
+note = "Weapon augment for Air/Escalation/Material, made at the Legendary Altar of Invasion."
 cost = [{ ingredient = "Legendary Inferior Focus of Air", quantity = 1 }, { ingredient = "Legendary Cloudy Gem of Escalation", quantity = 1 }, { ingredient = "Legendary Diluted Material Essence", quantity = 1 }]
 
 [[system.recipe]]
@@ -4074,7 +4074,7 @@ tier = "legendary"
 slot = "crafting: greensteel weapon tier 1"
 option = "Constitution +12"
 augments = ["+15 Constitution (Enhancement)"]
-note = "Weapon augment for Earth/Escalation/Material, made at the Legendary Altar of Invasion. The page gives +12; Maetrim's augment is +15 Enhancement (the main page notes tier 1 changed from +14 to +15 with U29P2), and his value stands."
+note = "Weapon augment for Earth/Escalation/Material, made at the Legendary Altar of Invasion."
 cost = [{ ingredient = "Legendary Inferior Focus of Earth", quantity = 1 }, { ingredient = "Legendary Cloudy Gem of Escalation", quantity = 1 }, { ingredient = "Legendary Diluted Material Essence", quantity = 1 }]
 
 [[system.recipe]]
@@ -4090,7 +4090,7 @@ tier = "legendary"
 slot = "crafting: greensteel weapon tier 1"
 option = "Dexterity +12"
 augments = ["+15 Dexterity (Enhancement)"]
-note = "Weapon augment for Fire/Escalation/Material, made at the Legendary Altar of Invasion. The page gives +12; Maetrim's augment is +15 Enhancement (the main page notes tier 1 changed from +14 to +15 with U29P2), and his value stands."
+note = "Weapon augment for Fire/Escalation/Material, made at the Legendary Altar of Invasion."
 cost = [{ ingredient = "Legendary Inferior Focus of Fire", quantity = 1 }, { ingredient = "Legendary Cloudy Gem of Escalation", quantity = 1 }, { ingredient = "Legendary Diluted Material Essence", quantity = 1 }]
 
 [[system.recipe]]
@@ -4106,7 +4106,7 @@ tier = "legendary"
 slot = "crafting: greensteel weapon tier 1"
 option = "Strength +12"
 augments = ["+15 Strength (Enhancement)"]
-note = "Weapon augment for Water/Escalation/Material, made at the Legendary Altar of Invasion. The page gives +12; Maetrim's augment is +15 Enhancement (the main page notes tier 1 changed from +14 to +15 with U29P2), and his value stands."
+note = "Weapon augment for Water/Escalation/Material, made at the Legendary Altar of Invasion."
 cost = [{ ingredient = "Legendary Inferior Focus of Water", quantity = 1 }, { ingredient = "Legendary Cloudy Gem of Escalation", quantity = 1 }, { ingredient = "Legendary Diluted Material Essence", quantity = 1 }]
 
 [[system.recipe]]
@@ -4122,7 +4122,7 @@ tier = "legendary"
 slot = "crafting: greensteel weapon tier 1"
 option = "Strength +12"
 augments = ["+15 Strength (Enhancement)"]
-note = "Weapon augment for Negative/Escalation/Material, made at the Legendary Altar of Invasion. The page gives +12; Maetrim's augment is +15 Enhancement (the main page notes tier 1 changed from +14 to +15 with U29P2), and his value stands."
+note = "Weapon augment for Negative/Escalation/Material, made at the Legendary Altar of Invasion."
 cost = [{ ingredient = "Legendary Inferior Focus of Negative Energy", quantity = 1 }, { ingredient = "Legendary Cloudy Gem of Escalation", quantity = 1 }, { ingredient = "Legendary Diluted Material Essence", quantity = 1 }]
 
 [[system.recipe]]
@@ -4138,7 +4138,7 @@ tier = "legendary"
 slot = "crafting: greensteel weapon tier 1"
 option = "Constitution +12"
 augments = ["+15 Constitution (Enhancement)"]
-note = "Weapon augment for Positive/Escalation/Material, made at the Legendary Altar of Invasion. The page gives +12; Maetrim's augment is +15 Enhancement (the main page notes tier 1 changed from +14 to +15 with U29P2), and his value stands."
+note = "Weapon augment for Positive/Escalation/Material, made at the Legendary Altar of Invasion."
 cost = [{ ingredient = "Legendary Inferior Focus of Positive Energy", quantity = 1 }, { ingredient = "Legendary Cloudy Gem of Escalation", quantity = 1 }, { ingredient = "Legendary Diluted Material Essence", quantity = 1 }]
 
 [[system.recipe]]
@@ -4583,7 +4583,7 @@ tier = "legendary"
 slot = "crafting: greensteel weapon tier 2"
 option = "Evil damage on crit"
 augments = ["Negative burst damage on critical hit"]
-note = "Weapon augment for Negative/Dominion/Material, made at the Legendary Altar of Subjugation. The page says Evil damage; Maetrim's augment is Negative burst damage, and his value stands."
+note = "Weapon augment for Negative/Dominion/Material, made at the Legendary Altar of Subjugation."
 cost = [{ ingredient = "Legendary Focus of Negative Energy", quantity = 1 }, { ingredient = "Legendary Gem of Dominion", quantity = 1 }, { ingredient = "Legendary Material Essence", quantity = 1 }]
 
 [[system.recipe]]
@@ -4615,7 +4615,7 @@ tier = "legendary"
 slot = "crafting: greensteel weapon tier 2"
 option = "Insightful Charisma +6"
 augments = ["+7 Charisma (Insight)"]
-note = "Weapon augment for Air/Escalation/Ethereal, made at the Legendary Altar of Subjugation. The page gives +6; Maetrim's augment is +7 Insight, and his value stands."
+note = "Weapon augment for Air/Escalation/Ethereal, made at the Legendary Altar of Subjugation."
 cost = [{ ingredient = "Legendary Focus of Air", quantity = 1 }, { ingredient = "Legendary Gem of Escalation", quantity = 1 }, { ingredient = "Legendary Ethereal Essence", quantity = 1 }]
 
 [[system.recipe]]
@@ -4631,7 +4631,7 @@ tier = "legendary"
 slot = "crafting: greensteel weapon tier 2"
 option = "Insightful Wisdom +6"
 augments = ["+7 Wisdom (Insight)"]
-note = "Weapon augment for Earth/Escalation/Ethereal, made at the Legendary Altar of Subjugation. The page gives +6; Maetrim's augment is +7 Insight, and his value stands."
+note = "Weapon augment for Earth/Escalation/Ethereal, made at the Legendary Altar of Subjugation."
 cost = [{ ingredient = "Legendary Focus of Earth", quantity = 1 }, { ingredient = "Legendary Gem of Escalation", quantity = 1 }, { ingredient = "Legendary Ethereal Essence", quantity = 1 }]
 
 [[system.recipe]]
@@ -4647,7 +4647,7 @@ tier = "legendary"
 slot = "crafting: greensteel weapon tier 2"
 option = "Insightful Intelligence +6"
 augments = ["+7 Intelligence (Insight)"]
-note = "Weapon augment for Fire/Escalation/Ethereal, made at the Legendary Altar of Subjugation. The page gives +6; Maetrim's augment is +7 Insight, and his value stands."
+note = "Weapon augment for Fire/Escalation/Ethereal, made at the Legendary Altar of Subjugation."
 cost = [{ ingredient = "Legendary Focus of Fire", quantity = 1 }, { ingredient = "Legendary Gem of Escalation", quantity = 1 }, { ingredient = "Legendary Ethereal Essence", quantity = 1 }]
 
 [[system.recipe]]
@@ -4663,7 +4663,7 @@ tier = "legendary"
 slot = "crafting: greensteel weapon tier 2"
 option = "Insightful Wisdom +6"
 augments = ["+7 Wisdom (Insight)"]
-note = "Weapon augment for Water/Escalation/Ethereal, made at the Legendary Altar of Subjugation. The page gives +6; Maetrim's augment is +7 Insight, and his value stands."
+note = "Weapon augment for Water/Escalation/Ethereal, made at the Legendary Altar of Subjugation."
 cost = [{ ingredient = "Legendary Focus of Water", quantity = 1 }, { ingredient = "Legendary Gem of Escalation", quantity = 1 }, { ingredient = "Legendary Ethereal Essence", quantity = 1 }]
 
 [[system.recipe]]
@@ -4679,7 +4679,7 @@ tier = "legendary"
 slot = "crafting: greensteel weapon tier 2"
 option = "Insightful Intelligence +6"
 augments = ["+7 Intelligence (Insight)"]
-note = "Weapon augment for Negative/Escalation/Ethereal, made at the Legendary Altar of Subjugation. The page gives +6; Maetrim's augment is +7 Insight, and his value stands."
+note = "Weapon augment for Negative/Escalation/Ethereal, made at the Legendary Altar of Subjugation."
 cost = [{ ingredient = "Legendary Focus of Negative Energy", quantity = 1 }, { ingredient = "Legendary Gem of Escalation", quantity = 1 }, { ingredient = "Legendary Ethereal Essence", quantity = 1 }]
 
 [[system.recipe]]
@@ -4695,7 +4695,7 @@ tier = "legendary"
 slot = "crafting: greensteel weapon tier 2"
 option = "Insightful Charisma +6"
 augments = ["+7 Charisma (Insight)"]
-note = "Weapon augment for Positive/Escalation/Ethereal, made at the Legendary Altar of Subjugation. The page gives +6; Maetrim's augment is +7 Insight, and his value stands."
+note = "Weapon augment for Positive/Escalation/Ethereal, made at the Legendary Altar of Subjugation."
 cost = [{ ingredient = "Legendary Focus of Positive Energy", quantity = 1 }, { ingredient = "Legendary Gem of Escalation", quantity = 1 }, { ingredient = "Legendary Ethereal Essence", quantity = 1 }]
 
 [[system.recipe]]
@@ -4711,7 +4711,7 @@ tier = "legendary"
 slot = "crafting: greensteel weapon tier 2"
 option = "Insightful Dexterity +6"
 augments = ["+7 Dexterity (Insight)"]
-note = "Weapon augment for Air/Escalation/Material, made at the Legendary Altar of Subjugation. The page gives +6; Maetrim's augment is +7 Insight, and his value stands."
+note = "Weapon augment for Air/Escalation/Material, made at the Legendary Altar of Subjugation."
 cost = [{ ingredient = "Legendary Focus of Air", quantity = 1 }, { ingredient = "Legendary Gem of Escalation", quantity = 1 }, { ingredient = "Legendary Material Essence", quantity = 1 }]
 
 [[system.recipe]]
@@ -4727,7 +4727,7 @@ tier = "legendary"
 slot = "crafting: greensteel weapon tier 2"
 option = "Insightful Constitution +6"
 augments = ["+7 Constitution (Insight)"]
-note = "Weapon augment for Earth/Escalation/Material, made at the Legendary Altar of Subjugation. The page gives +6; Maetrim's augment is +7 Insight, and his value stands."
+note = "Weapon augment for Earth/Escalation/Material, made at the Legendary Altar of Subjugation."
 cost = [{ ingredient = "Legendary Focus of Earth", quantity = 1 }, { ingredient = "Legendary Gem of Escalation", quantity = 1 }, { ingredient = "Legendary Material Essence", quantity = 1 }]
 
 [[system.recipe]]
@@ -4743,7 +4743,7 @@ tier = "legendary"
 slot = "crafting: greensteel weapon tier 2"
 option = "Insightful Dexterity +6"
 augments = ["+7 Dexterity (Insight)"]
-note = "Weapon augment for Fire/Escalation/Material, made at the Legendary Altar of Subjugation. The page gives +6; Maetrim's augment is +7 Insight, and his value stands."
+note = "Weapon augment for Fire/Escalation/Material, made at the Legendary Altar of Subjugation."
 cost = [{ ingredient = "Legendary Focus of Fire", quantity = 1 }, { ingredient = "Legendary Gem of Escalation", quantity = 1 }, { ingredient = "Legendary Material Essence", quantity = 1 }]
 
 [[system.recipe]]
@@ -4759,7 +4759,7 @@ tier = "legendary"
 slot = "crafting: greensteel weapon tier 2"
 option = "Insightful Strength +6"
 augments = ["+7 Strength (Insight)"]
-note = "Weapon augment for Water/Escalation/Material, made at the Legendary Altar of Subjugation. The page gives +6; Maetrim's augment is +7 Insight, and his value stands."
+note = "Weapon augment for Water/Escalation/Material, made at the Legendary Altar of Subjugation."
 cost = [{ ingredient = "Legendary Focus of Water", quantity = 1 }, { ingredient = "Legendary Gem of Escalation", quantity = 1 }, { ingredient = "Legendary Material Essence", quantity = 1 }]
 
 [[system.recipe]]
@@ -4775,7 +4775,7 @@ tier = "legendary"
 slot = "crafting: greensteel weapon tier 2"
 option = "Insightful Strength +6"
 augments = ["+7 Strength (Insight)"]
-note = "Weapon augment for Negative/Escalation/Material, made at the Legendary Altar of Subjugation. The page gives +6; Maetrim's augment is +7 Insight, and his value stands."
+note = "Weapon augment for Negative/Escalation/Material, made at the Legendary Altar of Subjugation."
 cost = [{ ingredient = "Legendary Focus of Negative Energy", quantity = 1 }, { ingredient = "Legendary Gem of Escalation", quantity = 1 }, { ingredient = "Legendary Material Essence", quantity = 1 }]
 
 [[system.recipe]]
@@ -4791,7 +4791,7 @@ tier = "legendary"
 slot = "crafting: greensteel weapon tier 2"
 option = "Insightful Constitution +6"
 augments = ["+7 Constitution (Insight)"]
-note = "Weapon augment for Positive/Escalation/Material, made at the Legendary Altar of Subjugation. The page gives +6; Maetrim's augment is +7 Insight, and his value stands."
+note = "Weapon augment for Positive/Escalation/Material, made at the Legendary Altar of Subjugation."
 cost = [{ ingredient = "Legendary Focus of Positive Energy", quantity = 1 }, { ingredient = "Legendary Gem of Escalation", quantity = 1 }, { ingredient = "Legendary Material Essence", quantity = 1 }]
 
 [[system.recipe]]
