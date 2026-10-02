@@ -457,3 +457,28 @@ fn the_unknown_placeholder_class_needs_no_progression() {
 
     assert_eq!(report.outcome("classes_have_full_progression").unwrap().status, CheckStatus::Passed, "{report}");
 }
+
+#[test]
+fn a_set_only_an_augment_slot_option_joins_has_members() {
+    let injected_sql = "INSERT INTO set_bonuses (name) VALUES ('Integrity Probe Option Set');
+         INSERT INTO item_augment_slot_option_sets (option_id, set_id)
+         VALUES ((SELECT MIN(id) FROM item_augment_slot_options), last_insert_rowid());
+         INSERT INTO set_bonuses (name) VALUES ('Integrity Probe Bare Set');";
+    let work_dir = tempfile::tempdir().unwrap();
+    let db_path = fixture_db_copy_with(work_dir.path(), injected_sql);
+    let db = Connection::open(&db_path).unwrap();
+    let report = integrity_report(&db, &fixture_options()).unwrap();
+    let offender_names: Vec<&str> = report
+        .outcome("sets_without_members")
+        .unwrap()
+        .offenders
+        .iter()
+        .map(|offender| offender.name.as_str())
+        .collect();
+
+    assert!(offender_names.contains(&"Integrity Probe Bare Set"), "{report}");
+    assert!(
+        !offender_names.contains(&"Integrity Probe Option Set"),
+        "an item counts toward its option's set once the player unlocks it:\n{report}"
+    );
+}

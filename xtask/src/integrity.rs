@@ -312,12 +312,13 @@ pub const INTEGRITY_CHECKS: &[IntegrityCheck] = &[
     ),
     IntegrityCheck::warn(
         "sets_without_members",
-        "set bonuses no item, augment or filigree belongs to",
+        "set bonuses no item, augment, filigree or item augment slot option belongs to",
         OffenderQuery::Sql(
             "SELECT s.name, s.id, CASE WHEN s.is_filigree_set = 1 THEN 'filigree set' ELSE 'set' END \
              FROM set_bonuses s \
              WHERE NOT EXISTS (SELECT 1 FROM set_bonus_items i WHERE i.set_id = s.id) \
              AND NOT EXISTS (SELECT 1 FROM set_bonus_augments a WHERE a.set_id = s.id) \
+             AND NOT EXISTS (SELECT 1 FROM item_augment_slot_option_sets o WHERE o.set_id = s.id) \
              AND NOT EXISTS (SELECT 1 FROM filigrees f WHERE f.set_id = s.id) ORDER BY s.name",
         ),
     )
