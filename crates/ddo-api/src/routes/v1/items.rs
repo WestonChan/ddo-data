@@ -147,7 +147,7 @@ async fn items(
                    `augment_slots` (sockets in order with their fixed `options`), `clickies`, `set`, `quests` it drops \
                    from (once per loot type, so a quest that both drops it and gives it as an end reward appears twice) with loot type, raid flag, `is_rare` (rare loot in that quest, per Maetrim's drop text or ddowiki), \
                    `chest` (the chest his drop text names for that quest, lower-cased, such as `end chest` or \
-                   `optional chest`; null when it names none), the \
+                   `optional chest`; null when it names none, and always null on a `reward` row), the \
                    `difficulties` each offers, ddowiki's `is_free_to_play` for each and its `source` (`maetrim`, or `wiki` \
                    for a quest read from ddowiki because his files lack it; see /v1/quests for the rest of the quest), `quest_chains` and `sagas` whose end reward offers the item (each with `id`, `name` and `is_rare`, a saga also with its reward `tier`; see /v1/quest-chains and /v1/sagas), and the raw `modifiers` the ETL derived the bonuses from.",
     params(("id" = i64, Path, description = "The item's numeric id from the list endpoint")), responses((status = 200, description = "The item with its child collections", body = Value), (status = 404, description = "No item has this id", body = crate::error::ErrorBody))

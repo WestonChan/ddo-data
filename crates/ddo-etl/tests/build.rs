@@ -300,13 +300,17 @@ fn links_items_to_quests_from_drop_location() {
 }
 
 fn quest_loot_types(db: &Connection, quest: &str, item: &str) -> Vec<String> {
+    quest_loot_chests(db, quest, item).into_iter().map(|(loot_type, _)| loot_type).collect()
+}
+
+fn quest_loot_chests(db: &Connection, quest: &str, item: &str) -> Vec<(String, Option<String>)> {
     let mut statement = db
         .prepare(
-            "SELECT ql.loot_type FROM quest_loot ql JOIN quests q ON q.id = ql.quest_id JOIN items i ON i.id = ql.item_id
+            "SELECT ql.loot_type, ql.chest FROM quest_loot ql JOIN quests q ON q.id = ql.quest_id JOIN items i ON i.id = ql.item_id
               WHERE q.name = ?1 AND i.name = ?2 ORDER BY ql.loot_type",
         )
         .unwrap();
-    statement.query_map(params![quest, item], |r| r.get(0)).unwrap().map(Result::unwrap).collect()
+    statement.query_map(params![quest, item], |r| Ok((r.get(0)?, r.get(1)?))).unwrap().map(Result::unwrap).collect()
 }
 
 #[test]
@@ -316,6 +320,11 @@ fn links_an_item_once_per_loot_type_the_quests_own_segment_names() {
         quest_loot_types(&db, "The Tide Turns", "Rusted Crown"),
         ["chest", "reward"],
         "'The Tide Turns, End Chest, End Reward' is both"
+    );
+    assert_eq!(
+        quest_loot_chests(&db, "The Tide Turns", "Rusted Crown"),
+        [("chest".to_string(), Some("end chest".to_string())), ("reward".to_string(), None)],
+        "the chest row names only the chest, and a reward is not a chest"
     );
     assert_eq!(
         quest_loot_types(&db, "Project Nemesis", "Band of Diani ir'Wynarn"),

@@ -89,7 +89,7 @@ async fn quests(State(state): State<AppState>) -> Result<Json<Vec<Value>>, ApiEr
     description = "One quest as the list returns it, plus the loot it drops: `items`, each named item linked to the \
                    quest with its `minimum_level` and `slot`, and `augments`, each augment with its `family` and \
                    `min_level`. Every loot row carries `id`, `name`, `loot_type` (chest, raid or reward), `is_rare` \
-                   and `chest` (the chest Maetrim's drop text names, lower-cased, null when it names none), the same \
+                   and `chest` (the chest Maetrim's drop text names, lower-cased, null when it names none and on every `reward` row), the same \
                    link item and augment detail `quests` report from the other side. An item or augment that is both \
                    a chest (or raid) drop and an end reward of the quest appears once per loot type. Both arrays are \
                    sorted by name, then loot type, and empty when nothing is known to drop there. `quest_chains` and `sagas` \

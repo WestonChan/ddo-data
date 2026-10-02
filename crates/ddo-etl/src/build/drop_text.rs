@@ -184,6 +184,9 @@ impl DropTextLinker {
         let every_quest_name_span: Vec<Range<usize>> =
             quest_name_spans_by_quest.iter().flat_map(|(_, spans)| spans).cloned().collect();
         for (quest_link, (_, quest_name_spans)) in quest_links.iter_mut().zip(&quest_name_spans_by_quest) {
+            if quest_link.loot_type == LootType::Reward {
+                continue;
+            }
             quest_link.chest =
                 quest_name_spans.iter().find_map(|span| chest_following(drop_text, span.end, &every_quest_name_span));
         }
@@ -234,12 +237,12 @@ impl QuestLootTable {
     pub(super) fn mark_rare_sql(self) -> &'static str {
         match self {
             Self::Items => {
-                "UPDATE quest_loot SET is_rare = 1, chest = COALESCE(chest, ?3) WHERE quest_id = ?1 AND item_id = ?2
+                "UPDATE quest_loot SET is_rare = 1, chest = CASE loot_type WHEN 'reward' THEN NULL ELSE COALESCE(chest, ?3) END WHERE quest_id = ?1 AND item_id = ?2
                     AND (loot_type <> 'reward' OR NOT EXISTS (SELECT 1 FROM quest_loot dropped
                           WHERE dropped.quest_id = ?1 AND dropped.item_id = ?2 AND dropped.loot_type <> 'reward'))"
             }
             Self::Augments => {
-                "UPDATE quest_augment_loot SET is_rare = 1, chest = COALESCE(chest, ?3) WHERE quest_id = ?1 AND augment_id = ?2
+                "UPDATE quest_augment_loot SET is_rare = 1, chest = CASE loot_type WHEN 'reward' THEN NULL ELSE COALESCE(chest, ?3) END WHERE quest_id = ?1 AND augment_id = ?2
                     AND (loot_type <> 'reward' OR NOT EXISTS (SELECT 1 FROM quest_augment_loot dropped
                           WHERE dropped.quest_id = ?1 AND dropped.augment_id = ?2 AND dropped.loot_type <> 'reward'))"
             }

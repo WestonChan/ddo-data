@@ -92,6 +92,10 @@ fn labels_the_chest_named_after_a_quest_without_rarity_or_asides() {
         (", end chest, and, ", Some("end chest")),
         (" and visits to the Cerulean Hills and ", Some("visits to the cerulean hills")),
         (", or ", None),
+        (", End Chest, End Reward", Some("end chest")),
+        (", end reward", None),
+        (", Reward", None),
+        (", end chest and end reward", Some("end chest")),
     ] {
         assert_eq!(chest_label(text_after_quest_name).as_deref(), expected_chest, "{text_after_quest_name:?}");
     }

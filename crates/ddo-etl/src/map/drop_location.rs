@@ -154,9 +154,44 @@ pub fn chest_label(text_after_quest_name: &str) -> Option<String> {
     let joined_words = words.join(" ");
     let label = joined_words.trim_start_matches(CHEST_LABEL_LEADING_PUNCTUATION).trim_start();
     let label = RARE_DROP_PREFIXES.iter().find_map(|prefix| label.strip_prefix(prefix)).unwrap_or(label);
+    let label = label_without_reward_clauses(label);
     let label = label_without_list_connectors_at_its_ends(label.trim_end_matches(CHEST_LABEL_TRAILING_PUNCTUATION));
     (!label.is_empty()).then(|| label.to_string())
 }
+
+fn label_without_reward_clauses(label: &str) -> String {
+    let mut kept_label = String::with_capacity(label.len());
+    let mut separator_before_clause = "";
+    let mut text_left = label;
+    loop {
+        let next_separator = CLAUSE_SEPARATORS
+            .iter()
+            .filter_map(|separator| text_left.find(separator).map(|start| (start, *separator)))
+            .min_by_key(|(start, _)| *start);
+        let (clause, separator_after_clause) = match next_separator {
+            Some((start, separator)) => (&text_left[..start], separator),
+            None => (text_left, ""),
+        };
+        if !names_reward(clause) {
+            if !kept_label.is_empty() {
+                kept_label.push_str(separator_before_clause);
+            }
+            kept_label.push_str(clause);
+        }
+        if separator_after_clause.is_empty() {
+            return kept_label;
+        }
+        text_left = &text_left[clause.len() + separator_after_clause.len()..];
+        separator_before_clause = separator_after_clause;
+    }
+}
+
+fn names_reward(clause: &str) -> bool {
+    clause.split(|character: char| !character.is_alphanumeric()).any(|word| REWARD_WORDS.contains(&word))
+}
+
+const CLAUSE_SEPARATORS: [&str; 3] = [",", " and ", " or "];
+const REWARD_WORDS: [&str; 2] = ["reward", "rewards"];
 
 fn label_without_list_connectors_at_its_ends(label: &str) -> &str {
     let mut label = label.trim_matches(LIST_SEPARATOR_CHARACTERS);
