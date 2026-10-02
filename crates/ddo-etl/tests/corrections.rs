@@ -446,6 +446,38 @@ fn a_boolean_field_takes_zero_or_one() {
     assert!(error.contains("is_raid") && error.contains('2'), "{error}");
 }
 
+#[test]
+fn flags_an_item_legacy_and_counts_it() {
+    let (db, report) =
+        built_db_with(&[("corrections.toml", &correction_toml("item", "Docent of Defiance", "is_legacy", "0", "1"))])
+            .unwrap();
+    let is_legacy: bool =
+        db.query_row("SELECT is_legacy FROM items WHERE name = 'Docent of Defiance'", [], |r| r.get(0)).unwrap();
+    assert!(is_legacy);
+    assert_eq!(report.legacy_item_count, 4, "the corrected item and the three legacy fixture items");
+}
+
+#[test]
+fn embedded_corrections_flag_the_tempests_spine_armours_the_wiki_says_no_longer_drop() {
+    let corrections = Corrections::embedded().unwrap();
+    for (old_name, replacement_name) in [
+        ("Mithral Breastplate of the Elements", "Elemental Mithral Breastplate"),
+        ("Platemail of Giants", "Full Plate of Giants"),
+        ("Robe of Arcane Power", "Robe of Arcane Puissance"),
+    ] {
+        let legacy_flag = corrections
+            .entries
+            .iter()
+            .find(|c| c.name == old_name && c.field == "is_legacy")
+            .unwrap_or_else(|| panic!("{old_name} has no is_legacy correction"));
+        assert_eq!(
+            (legacy_flag.from.clone(), legacy_flag.to.clone()),
+            (CorrectionValue::Integer(0), CorrectionValue::Integer(1))
+        );
+        assert!(legacy_flag.reason.contains(replacement_name), "{}", legacy_flag.reason);
+    }
+}
+
 fn qualified_correction_toml(
     kind: &str,
     name: &str,

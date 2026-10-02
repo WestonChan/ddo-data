@@ -317,3 +317,33 @@ to = 1
 reason = "A misspelled duplicate of his Glik's Bangle, identical except the name; the wiki redirects Gilk's Bangle to Glik's Bangle."
 source = "https://ddowiki.com/page/Item:Glik%27s_Bangle"
 read = "2026-10-01"
+
+[[correction]]
+kind = "item"
+name = "Mithral Breastplate of the Elements"
+field = "is_legacy"
+from = 0
+to = 1
+reason = "The wiki says it no longer drops; replaced by Elemental Mithral Breastplate."
+source = "https://ddowiki.com/page/Item:Mithral_Breastplate_of_the_Elements"
+read = "2026-10-01"
+
+[[correction]]
+kind = "item"
+name = "Platemail of Giants"
+field = "is_legacy"
+from = 0
+to = 1
+reason = "The wiki says it no longer drops; replaced by Full Plate of Giants."
+source = "https://ddowiki.com/page/Item:Platemail_of_Giants"
+read = "2026-10-01"
+
+[[correction]]
+kind = "item"
+name = "Robe of Arcane Power"
+field = "is_legacy"
+from = 0
+to = 1
+reason = "The wiki says it no longer drops; replaced by Robe of Arcane Puissance."
+source = "https://ddowiki.com/page/Item:Robe_of_Arcane_Power"
+read = "2026-10-01"

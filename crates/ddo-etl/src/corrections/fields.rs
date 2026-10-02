@@ -44,6 +44,7 @@ const ITEM_FIELDS: &[CorrectableField] = &[
     field("race_required", FieldShape::Text, true),
     field("accepts_sentience", FieldShape::Flag, false),
     field("is_minor_artifact", FieldShape::Flag, false),
+    field("is_legacy", FieldShape::Flag, false),
     named_reference("slot", "slot_id", "equipment_slots", false),
     field("item_category", FieldShape::Text, false),
     field("item_type", FieldShape::Text, true),

@@ -40,7 +40,7 @@ Only scalar columns can be corrected, never an id or a row's name (except where 
 
 | `kind` | fields |
 |---|---|
-| `item` | `minimum_level`, `enhancement_bonus`, `description`, `drop_location`, `race_required`, `accepts_sentience`, `is_minor_artifact`, `slot` (an `equipment_slots.name`), `item_category`, `item_type`, `material` (an `item_materials.name`), `set_bonus` (a set's name; the item's set link moves with it), `name` (a rename; `wiki_url` follows), `remove` |
+| `item` | `minimum_level`, `enhancement_bonus`, `description`, `drop_location`, `race_required`, `accepts_sentience`, `is_minor_artifact`, `is_legacy` (flag an old version the wiki says no longer drops), `slot` (an `equipment_slots.name`), `item_category`, `item_type`, `material` (an `item_materials.name`), `set_bonus` (a set's name; the item's set link moves with it), `name` (a rename; `wiki_url` follows), `remove` |
 | `augment` | `min_level`, `description`, `effect_description`, `family`, `name` (a rename), `remove` |
 | `quest` | `level`, `epic_level`, `favor`, `is_raid`, `pack` (an `adventure_packs.name`), `patron` (a `patrons.name`), `name` (a rename) |
 | `feat`, `enhancement`, `race`, `class`, `spell` | `description` |
