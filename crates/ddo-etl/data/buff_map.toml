@@ -11,6 +11,9 @@
 #                                              that names no stat is an error
 #   4. otherwise                            -> an effects row named by the Type
 #
+# A bonus takes the buff's Value1; a buff without one takes the amount its ItemBuffs.xml definition
+# fixes, when that definition has one Simple <Effect> with one nonzero <Amount> (Major Anger is 5).
+#
 # Stat names must match ddo-model's `stats` seed exactly.
 
 enhancement = ["WeaponEnchantment", "ArmorEnchantment", "ShieldEnchantment"]
@@ -136,6 +139,8 @@ Striding = "Movement Speed"
 "Quality Nimble Skills" = "Nimble"
 "Exceptional Prudent Skills" = "Prudent"
 "Profane Well Rounded" = "Well Rounded"
+# Class resources
+"Major Anger" = "Rage Uses"
 
 [bonus_type_aliases]
 "Weapon Enchantment" = "Enhancement"

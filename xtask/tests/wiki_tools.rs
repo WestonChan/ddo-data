@@ -417,7 +417,7 @@ fn wiki_batch_writes_the_reading_agent_inputs() {
     )
     .unwrap();
 
-    assert_eq!(line_count(&out_dir.path().join("item_names.txt")), 54);
+    assert_eq!(line_count(&out_dir.path().join("item_names.txt")), 55);
     assert_eq!(
         std::fs::read_to_string(out_dir.path().join("wiki_source_items.txt")).unwrap(),
         "Battle Axe of the Oozing Hunger\n"

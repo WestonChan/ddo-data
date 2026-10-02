@@ -333,6 +333,7 @@ fn character_wide_effect_types_resolve_to_their_stats() {
         ("TurnMaxDice", "Turn Undead Max Dice", Other),
         ("TurnBonus", "Turn Undead Bonus", Other),
         ("ExtraLayOnHands", "Lay on Hands Uses", Other),
+        ("ExtraRage", "Rage Uses", Other),
         ("KiHit", "Ki on Hit", Other),
         ("KiCritical", "Ki on Critical", Other),
         ("EldritchBlastD8", "Eldritch Blast d8 Dice", Magical),

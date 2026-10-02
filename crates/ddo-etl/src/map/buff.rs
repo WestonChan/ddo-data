@@ -17,6 +17,7 @@ pub enum ResolvedBuff {
 pub struct BuffMap {
     vocabulary: &'static BuffVocabulary,
     definition_bonus_type_names_by_buff_kind: HashMap<String, String>,
+    definition_fixed_amounts_by_buff_kind: HashMap<String, i64>,
 }
 
 impl BuffMap {
@@ -31,7 +32,11 @@ impl BuffMap {
             .iter()
             .filter_map(|(buff_kind, definition)| Some((buff_kind.clone(), definition.bonus_type_name.clone()?)))
             .collect();
-        Ok(Self { vocabulary, definition_bonus_type_names_by_buff_kind })
+        let definition_fixed_amounts_by_buff_kind = item_buff_definitions
+            .iter()
+            .filter_map(|(buff_kind, definition)| Some((buff_kind.clone(), definition.fixed_amount?)))
+            .collect();
+        Ok(Self { vocabulary, definition_bonus_type_names_by_buff_kind, definition_fixed_amounts_by_buff_kind })
     }
 
     pub fn resolved(&self, buff: &Buff) -> Result<ResolvedBuff> {
@@ -72,7 +77,8 @@ impl BuffMap {
             Some(item_bonus_type) => Some(item_bonus_type),
             None => self.definition_bonus_type(buff_kind)?,
         };
-        Ok(ResolvedBuff::Bonus { stat, bonus_type, value: buff.value, second_value: buff.second_value })
+        let value = buff.value.or_else(|| self.definition_fixed_amounts_by_buff_kind.get(buff_kind).copied());
+        Ok(ResolvedBuff::Bonus { stat, bonus_type, value, second_value: buff.second_value })
     }
 
     fn stat_name_from_template(&self, stat_template: &str, target: &str) -> String {

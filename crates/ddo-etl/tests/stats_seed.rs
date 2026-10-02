@@ -12,7 +12,6 @@ use std::collections::{BTreeMap, BTreeSet};
 use std::path::{Path, PathBuf};
 
 const STATS_KEPT_WITHOUT_A_SOURCE: &[(&str, &str)] = &[
-    ("Rage Uses", "his ExtraRage buff and effect add rages, but neither map targets this stat yet"),
     ("Pact Dice", "warlock pact damage dice, which no buff or effect type in his files carries"),
     ("Spellsword Dice", "eldritch knight spellsword dice, which no buff or effect type in his files carries"),
     ("Burning Ambition Dice", "the Burning Ambition damage dice, which no buff or effect type in his files carries"),

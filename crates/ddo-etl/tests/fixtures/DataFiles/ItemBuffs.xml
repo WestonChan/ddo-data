@@ -285,6 +285,16 @@
     <DisplayText>Linguistics %v1%: This item reduced the cooldowns of your Social skills (Diplomacy, Bluff, Intimidate) by %v1%. This does not stack with the Negotiator ability.</DisplayText>
   </Buff>
   <Buff>
+    <Type>Major Anger</Type>
+    <DisplayText>Major Anger: This will increase the total number of Rages you can use by 5. However, these additional Rages will only take effect after the wielder rests.</DisplayText>
+    <Effect>
+      <Type>ExtraRage</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">5</Amount>
+    </Effect>
+  </Buff>
+  <Buff>
     <Type>Manslayer</Type>
     <DisplayText>Manslayer: While wearing this item, your weapon attacks gain the devastating ability to defeat a humanoid opponent with a single decisive blow. On an attack roll of 20 which is confirmed as a critical hit a humanoid target will be killed. Powerful humanoids may resist the vorpal strike and instead take 100 points of damage until they have been sufficiently weakened.</DisplayText>
   </Buff>

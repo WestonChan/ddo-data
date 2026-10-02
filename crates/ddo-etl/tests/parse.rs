@@ -91,7 +91,7 @@ fn parses_every_fixture_item() {
         parse_item_file(&path).unwrap_or_else(|e| panic!("{}: {e}", path.display()));
         item_file_count += 1;
     }
-    assert_eq!(item_file_count, 56);
+    assert_eq!(item_file_count, 57);
 }
 
 #[test]
@@ -168,4 +168,9 @@ fn parses_quests_patrons_and_item_buffs() {
     assert_eq!(bonus_type_name("Illusion Save"), Some("Resistance"));
     assert_eq!(bonus_type_name("Damage Bonus"), Some("Not Set"));
     assert_eq!(bonus_type_name("Linguistics"), None, "no <Effect>");
+    let fixed_amount = |buff_kind: &str| definitions_by_buff_kind[buff_kind].fixed_amount;
+    assert_eq!(fixed_amount("Major Anger"), Some(5), "one Simple <Effect> with one nonzero <Amount>");
+    assert_eq!(fixed_amount("Command"), None, "two <Effect>s");
+    assert_eq!(fixed_amount("Illusion Save"), None, "an <Amount> of 0 stands for the item's Value1");
+    assert_eq!(fixed_amount("Linguistics"), None, "no <Effect>");
 }

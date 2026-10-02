@@ -298,7 +298,7 @@ pub const INTEGRITY_CHECKS: &[IntegrityCheck] = &[
          non-stat name in the seed is the every_seed_stat_has_a_source_or_is_kept_without_one test in \
          crates/ddo-etl/tests/stats_seed.rs, which fails on any seed stat no buff or effect map entry, fixture \
          bonus, wiki or correction bonus reaches unless its STATS_KEPT_WITHOUT_A_SOURCE list names it with a \
-         reason. A full upstream build lists ten: that list's eight, and Ki and Maximum Caster Level, which \
+         reason. A full upstream build lists nine: that list's seven, and Ki and Maximum Caster Level, which \
          effect_map.toml targets but no effect of his carries as a plain number",
         OffenderQuery::Built(unreferenced_stats),
     )

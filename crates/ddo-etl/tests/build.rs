@@ -50,9 +50,9 @@ fn excludes_cosmetic_shields_from_items() {
 #[test]
 fn builds_items_and_skips_cosmetics() {
     let (db, report) = built_fixture_db();
-    assert_eq!(report.written_item_count, 54);
+    assert_eq!(report.written_item_count, 55);
     assert_eq!(report.skipped_cosmetic_item_count, 2, "the cosmetic helm and the cosmetic shield");
-    assert_eq!(count(&db, "SELECT COUNT(*) FROM items WHERE provenance = 'maetrim'"), 54);
+    assert_eq!(count(&db, "SELECT COUNT(*) FROM items WHERE provenance = 'maetrim'"), 55);
     assert_eq!(count(&db, "SELECT COUNT(*) FROM items WHERE name = '17th Anniversary Dark Helm'"), 0);
     let reason: String = db
         .query_row("SELECT reason FROM excluded_items WHERE name = '17th Anniversary Dark Helm'", [], |r| r.get(0))
@@ -255,6 +255,36 @@ fn writes_tactical_dc_buffs_as_bonuses() {
         ),
     );
     assert_eq!(shatter_effect_count, 0);
+}
+
+#[test]
+fn writes_a_buff_without_a_value_at_the_amount_its_definition_fixes() {
+    let (db, _) = built_fixture_db();
+    let reign = item_id(&db, "Yeenoghu's Reign");
+    let rage_bonuses: Vec<(Option<String>, Option<i64>)> = db
+        .prepare(
+            "SELECT bt.name, b.value FROM item_bonuses ib JOIN bonuses b ON b.id = ib.bonus_id
+               JOIN stats s ON s.id = b.stat_id LEFT JOIN bonus_types bt ON bt.id = b.bonus_type_id
+              WHERE ib.item_id = ?1 AND s.name = 'Rage Uses'",
+        )
+        .unwrap()
+        .query_map(params![reign], |r| Ok((r.get(0)?, r.get(1)?)))
+        .unwrap()
+        .map(Result::unwrap)
+        .collect();
+    assert_eq!(
+        rage_bonuses,
+        vec![(Some("Equipment".to_string()), Some(5))],
+        "Major Anger's definition carries one Simple ExtraRage effect of 5 Equipment"
+    );
+    let major_anger_effect_count = count(
+        &db,
+        &format!(
+            "SELECT COUNT(*) FROM item_effects ie JOIN effects e ON e.id = ie.effect_id \
+             WHERE ie.item_id = {reign} AND e.name = 'Major Anger'"
+        ),
+    );
+    assert_eq!(major_anger_effect_count, 0);
 }
 
 #[test]
@@ -704,7 +734,7 @@ fn diff_reports_coverage_against_a_legacy_database() {
     );
     assert_eq!(
         coverage.names_only_in_built.len(),
-        52,
+        53,
         "the wiki fixture item and the legacy fixture items are only in the build"
     );
     assert!((coverage.coverage_ratio() - 0.75).abs() < 1e-9);

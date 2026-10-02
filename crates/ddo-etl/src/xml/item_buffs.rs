@@ -8,6 +8,7 @@ use std::path::Path;
 pub struct ItemBuffDefinition {
     pub display_text: String,
     pub bonus_type_name: Option<String>,
+    pub fixed_amount: Option<i64>,
 }
 
 #[derive(Clone, Copy)]
@@ -15,6 +16,8 @@ enum CapturedElement {
     BuffKind,
     DisplayText,
     FirstEffectBonus,
+    FirstEffectAmountType,
+    FirstEffectAmount,
 }
 
 pub fn parse(path: &Path) -> Result<HashMap<String, ItemBuffDefinition>> {
@@ -29,6 +32,8 @@ pub fn parse(path: &Path) -> Result<HashMap<String, ItemBuffDefinition>> {
     let mut paragraphs: Vec<String> = Vec::new();
     let mut effect_count = 0usize;
     let mut bonus_type_name: Option<String> = None;
+    let mut first_effect_amount_type: Option<String> = None;
+    let mut first_effect_amounts: Vec<String> = Vec::new();
     let mut captured_element: Option<CapturedElement> = None;
 
     loop {
@@ -43,6 +48,8 @@ pub fn parse(path: &Path) -> Result<HashMap<String, ItemBuffDefinition>> {
                         None
                     }
                     (4, "Bonus") if effect_count == 1 => Some(CapturedElement::FirstEffectBonus),
+                    (4, "AType") if effect_count == 1 => Some(CapturedElement::FirstEffectAmountType),
+                    (4, "Amount") if effect_count == 1 => Some(CapturedElement::FirstEffectAmount),
                     _ => None,
                 };
             }
@@ -54,6 +61,10 @@ pub fn parse(path: &Path) -> Result<HashMap<String, ItemBuffDefinition>> {
                     Some(CapturedElement::FirstEffectBonus) if !content.is_empty() => {
                         bonus_type_name = Some(content);
                     }
+                    Some(CapturedElement::FirstEffectAmountType) => first_effect_amount_type = Some(content),
+                    Some(CapturedElement::FirstEffectAmount) => {
+                        first_effect_amounts = content.split_whitespace().map(str::to_string).collect();
+                    }
                     _ => {}
                 }
             }
@@ -62,11 +73,20 @@ pub fn parse(path: &Path) -> Result<HashMap<String, ItemBuffDefinition>> {
                 if depth == 2 && end.name().as_ref() == "Buff" {
                     let display_text = std::mem::take(&mut paragraphs).join("\n");
                     let first_effect_bonus_type_name = bonus_type_name.take();
+                    let fixed_amount = fixed_amount_of_sole_effect(
+                        effect_count,
+                        first_effect_amount_type.take().as_deref(),
+                        &std::mem::take(&mut first_effect_amounts),
+                    );
                     effect_count = 0;
                     if let Some(kind) = buff_kind.take() {
                         definitions_by_buff_kind.insert(
                             kind,
-                            ItemBuffDefinition { display_text, bonus_type_name: first_effect_bonus_type_name },
+                            ItemBuffDefinition {
+                                display_text,
+                                bonus_type_name: first_effect_bonus_type_name,
+                                fixed_amount,
+                            },
                         );
                     }
                 }
@@ -83,4 +103,14 @@ pub fn parse(path: &Path) -> Result<HashMap<String, ItemBuffDefinition>> {
         }
     }
     Ok(definitions_by_buff_kind)
+}
+
+fn fixed_amount_of_sole_effect(effect_count: usize, amount_type: Option<&str>, amounts: &[String]) -> Option<i64> {
+    if effect_count != 1 || amount_type != Some("Simple") {
+        return None;
+    }
+    match amounts {
+        [amount] => amount.parse().ok().filter(|&amount: &i64| amount != 0),
+        _ => None,
+    }
 }
