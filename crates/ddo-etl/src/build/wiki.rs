@@ -3,8 +3,8 @@ use super::items::{ArmorStatsRow, ItemRow, WeaponStatsRow};
 use super::{BuildReport, ProbableDuplicateWikiEntry, SupersededWikiEntry, TableWriter};
 use crate::map::drop_location::drop_text_in_description;
 use crate::wiki::{
-    CraftingRecipe, CraftingSystem, DescriptionKind, WikiAugment, WikiBonus, WikiDescription, WikiItem, WikiItemEffect,
-    WikiOverrides, WikiQuest,
+    CraftingRecipe, CraftingSystem, DescriptionKind, ListedDrop, WikiAugment, WikiBonus, WikiDescription, WikiItem,
+    WikiItemEffect, WikiOverrides, WikiQuest,
 };
 use anyhow::{bail, Context, Result};
 use ddo_model::enums::{LootType, RowSource};
@@ -34,6 +34,32 @@ pub(super) fn apply_wiki_overrides(
                 "{citation}: no quest has this name in Quests.xml or Challenges.xml; fix the name to match Maetrim's"
             )
         })?;
+        for listed_item in &quest_loot.items {
+            let item_name = listed_item.name();
+            let item_id = id_by_name(transaction, "items", item_name)?.with_context(|| {
+                format!("{citation}: listed item {item_name:?} is not in Maetrim's items or a wiki item; names must match exactly")
+            })?;
+            report.wiki_added_quest_loot_link_count +=
+                insert_listed_loot_link(transaction, QuestLootTable::Items, quest_id, item_id, listed_item)?;
+            report.wiki_loot_drop_count += 1;
+        }
+        for listed_augment in &quest_loot.augments {
+            let augment_name = listed_augment.name();
+            let augment_ids = ids_by_name(transaction, "augments", augment_name)?;
+            if augment_ids.is_empty() {
+                bail!("{citation}: listed augment {augment_name:?} is not in Maetrim's augments or a wiki augment; names must match exactly");
+            }
+            for augment_id in augment_ids {
+                report.wiki_added_quest_augment_loot_link_count += insert_listed_loot_link(
+                    transaction,
+                    QuestLootTable::Augments,
+                    quest_id,
+                    augment_id,
+                    listed_augment,
+                )?;
+            }
+            report.wiki_loot_augment_drop_count += 1;
+        }
         for rare_item in &quest_loot.rare {
             let item_name = rare_item.name();
             let item_id = id_by_name(transaction, "items", item_name)?.with_context(|| {
@@ -352,6 +378,19 @@ fn mark_rare_loot(
         transaction.execute(table.insert_missing_link_sql(), params![quest_id, loot_id, LootType::Chest.as_str()])?;
     transaction.execute(table.mark_rare_sql(), params![quest_id, loot_id, chest])?;
     Ok(added_link_count)
+}
+
+fn insert_listed_loot_link(
+    transaction: &Transaction,
+    table: QuestLootTable,
+    quest_id: i64,
+    loot_id: i64,
+    listed_drop: &ListedDrop,
+) -> Result<usize> {
+    Ok(transaction.execute(
+        table.insert_missing_link_with_chest_sql(),
+        params![quest_id, loot_id, listed_drop.loot_type().as_str(), listed_drop.chest()],
+    )?)
 }
 
 fn ids_by_name(transaction: &Transaction, table: &str, name: &str) -> Result<Vec<i64>> {

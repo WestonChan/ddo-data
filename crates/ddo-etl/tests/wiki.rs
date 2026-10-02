@@ -1,6 +1,7 @@
 use ddo_etl::build::{build_database, ProbableDuplicateWikiEntry, SupersededWikiEntry};
 use ddo_etl::corrections::Corrections;
 use ddo_etl::wiki::{DescriptionKind, RareDrop, WikiOverrides};
+use ddo_model::enums::LootType;
 use ddo_model::DatasetVersion;
 use rusqlite::Connection;
 use std::path::PathBuf;
@@ -1475,4 +1476,100 @@ fn reuses_maetrims_effect_whose_name_differs_only_by_colons_commas_periods_and_a
     let effect_count =
         |db: &Connection| -> i64 { db.query_row("SELECT COUNT(*) FROM effects", [], |r| r.get(0)).unwrap() };
     assert_eq!(effect_count(&db), effect_count(&without) + 1, "only Test Oozing Hunger is new");
+}
+
+fn quest_loot_link_row(db: &Connection, quest: &str, item: &str) -> Option<(String, bool, Option<String>)> {
+    db.query_row(
+        "SELECT ql.loot_type, ql.is_rare, ql.chest FROM quest_loot ql JOIN quests q ON q.id = ql.quest_id
+           JOIN items i ON i.id = ql.item_id WHERE q.name = ?1 AND i.name = ?2",
+        [quest, item],
+        |r| Ok((r.get(0)?, r.get(1)?, r.get(2)?)),
+    )
+    .ok()
+}
+
+#[test]
+fn reads_a_listed_drop_as_a_name_or_a_name_with_its_loot_type_and_chest() {
+    let toml_text = format!(
+        "{BOOK_BURNING_CITATION}items = [\"Docent of Defiance\", {{ name = \"Sireth, Spear of the Sky\", loot_type = \"reward\" }}, \
+         {{ name = \"Buckler of the Golden Age\", chest = \"optional chest\" }}]\n"
+    );
+    let wiki = parsed_wiki(&[("quest_loot_a.toml", &toml_text)]).unwrap();
+    let listed_drops: Vec<(&str, LootType, Option<&str>)> =
+        wiki.quest_loot[0].items.iter().map(|drop| (drop.name(), drop.loot_type(), drop.chest())).collect();
+    assert_eq!(
+        listed_drops,
+        [
+            ("Docent of Defiance", LootType::Chest, None),
+            ("Sireth, Spear of the Sky", LootType::Reward, None),
+            ("Buckler of the Golden Age", LootType::Chest, Some("optional chest")),
+        ]
+    );
+    let bad_loot_type_text = toml_text.replace("\"reward\"", "\"quest\"");
+    let error = parsed_wiki(&[("quest_loot_a.toml", &bad_loot_type_text)]).unwrap_err();
+    assert!(error.contains("loot_type") && error.contains("Sireth, Spear of the Sky"), "{error}");
+    let unknown_field_text = toml_text.replace("chest = ", "chests = ");
+    assert!(
+        parsed_wiki(&[("quest_loot_a.toml", &unknown_field_text)]).is_err(),
+        "a listed drop object takes name, loot_type and chest"
+    );
+}
+
+#[test]
+fn adds_a_listed_item_link_without_changing_one_his_text_made() {
+    let toml_text = format!(
+        "{BOOK_BURNING_CITATION}rare = [\"Sireth, Spear of the Sky\"]\n\
+         items = [{{ name = \"Docent of Defiance\", loot_type = \"reward\", chest = \"end chest\" }}, \
+         {{ name = \"Buckler of the Golden Age\", loot_type = \"reward\", chest = \"optional chest\" }}, \
+         {{ name = \"Sireth, Spear of the Sky\", loot_type = \"reward\" }}]\n"
+    );
+    let (db, report) = built_db_with(&parsed_wiki(&[("quest_loot_a.toml", &toml_text)]).unwrap());
+    assert_eq!(
+        quest_loot_link_row(&db, "Book Burning", "Docent of Defiance"),
+        Some(("reward".into(), false, Some("end chest".into())))
+    );
+    assert_eq!(
+        quest_loot_link_row(&db, "Book Burning", "Buckler of the Golden Age"),
+        Some(("chest".into(), true, Some("end chest".into()))),
+        "his text's link keeps its loot type, chest and rarity"
+    );
+    assert_eq!(
+        quest_loot_link_row(&db, "Book Burning", "Sireth, Spear of the Sky"),
+        Some(("reward".into(), true, None)),
+        "an item also listed in rare is rare"
+    );
+    assert_eq!((report.wiki_loot_drop_count, report.wiki_added_quest_loot_link_count), (3, 2));
+}
+
+#[test]
+fn build_fails_naming_a_listed_item_absent_from_the_items_table() {
+    let toml_text = format!("{BOOK_BURNING_CITATION}items = [\"Docent of Missing Things\"]\n");
+    let error = build_report_with(&parsed_wiki(&[("quest_loot_a.toml", &toml_text)]).unwrap()).unwrap_err();
+    assert!(error.contains("Docent of Missing Things") && error.contains("Book Burning"), "{error}");
+}
+
+#[test]
+fn adds_a_listed_augment_link_that_is_not_rare() {
+    let toml_text = format!(
+        "{BOOK_BURNING_CITATION}augments = [{{ name = \"Lunar Gem of Evocation (Heroic)\", chest = \"end chest\" }}, \
+         {{ name = \"Lunar Gem of Magical Protection (Heroic)\", loot_type = \"reward\" }}]\n"
+    );
+    let (db, report) = built_db_with(&parsed_wiki(&[("quest_loot_a.toml", &toml_text)]).unwrap());
+    assert_eq!(
+        quest_augment_loot_row(&db, "Book Burning", "Lunar Gem of Evocation (Heroic)"),
+        Some(("chest".into(), false, Some("end chest".into())))
+    );
+    assert_eq!(
+        quest_augment_loot_row(&db, "Book Burning", "Lunar Gem of Magical Protection (Heroic)"),
+        Some(("chest".into(), false, Some("end chest".into()))),
+        "his description's link stands"
+    );
+    assert_eq!((report.wiki_loot_augment_drop_count, report.wiki_added_quest_augment_loot_link_count), (2, 1));
+}
+
+#[test]
+fn build_fails_naming_a_listed_augment_absent_from_the_augments_table() {
+    let toml_text = format!("{BOOK_BURNING_CITATION}augments = [\"Lunar Gem of Missing Things\"]\n");
+    let error = build_report_with(&parsed_wiki(&[("quest_loot_a.toml", &toml_text)]).unwrap()).unwrap_err();
+    assert!(error.contains("Lunar Gem of Missing Things") && error.contains("Book Burning"), "{error}");
 }

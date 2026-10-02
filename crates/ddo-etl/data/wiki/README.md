@@ -38,7 +38,17 @@ rare = [
 rare_augments = [{ name = "Lunar Gem of Magical Protection (Heroic)", chest = "end chest" }]
 ```
 
-The merge sets `quest_loot.is_rare` on each (quest, item) pair and `quest_augment_loot.is_rare` on each (quest, augment) pair, after his text has set its own; it never clears the flag. When his text did not already link the item or augment to the quest, it adds the link with `loot_type = 'chest'`; an added link is an added fact. It never changes a `loot_type` his text produced, and it writes a `chest` only where his text named none: the build takes the chest from his segment (the phrase after the quest name, without the rarity marker or parenthetical asides, lower-cased; quests listed together share the chest named after the last of them).
+`items` lists named items the page's loot table gives for the quest that Maetrim's drop text does not link to it, and `augments` the same for augments (by his exact augment name, every row of that name). Each element is a name, or `{ name = "...", loot_type = "...", chest = "..." }` with `loot_type` one of `chest`, `raid` or `reward` (default `chest`; a chain's end reward is `reward`) and `chest` optional, lower-cased as above. A listed drop is not rare; list it in `rare` or `rare_augments` too when the page marks it rare.
+
+```toml
+[[quest]]
+name = "Thrall of the Necromancer"
+page = "https://ddowiki.com/page/Thrall_of_the_Necromancer"
+read = "2026-10-01"
+items = [{ name = "Voice of the Master", loot_type = "reward" }]
+```
+
+The merge writes the `items` and `augments` links first: each adds a `quest_loot` (or `quest_augment_loot`) row with its `loot_type` and `chest` and `is_rare = 0` only when his text did not already link the item or augment to the quest, and never changes a link his text made. It then sets `quest_loot.is_rare` on each (quest, item) pair and `quest_augment_loot.is_rare` on each (quest, augment) pair, after his text has set its own; it never clears the flag. When his text did not already link the item or augment to the quest, it adds the link with `loot_type = 'chest'`; an added link is an added fact. It never changes a `loot_type` his text produced, and it writes a `chest` only where his text named none: the build takes the chest from his segment (the phrase after the quest name, without the rarity marker or parenthetical asides, lower-cased; quests listed together share the chest named after the last of them).
 
 ## Validation
 
@@ -49,8 +59,9 @@ The build fails, naming the file and entry, when:
 - `read` is not a real `YYYY-MM-DD` date;
 - the same quest `name` appears twice, in one file or across files;
 - `name` matches no quest in Maetrim's `Quests.xml` or `Challenges.xml` or a quest a `quests*.toml` entry creates (names must match his exactly);
-- an item in `rare` matches no item in his `Items/`, or an augment in `rare_augments` no augment in his `Augments/` or an `augments*.toml` entry. Items and augments missing from his files are reported upstream, not stored here;
-- an element of `rare` or `rare_augments` is neither a string nor a table of exactly `name` and `chest`.
+- an item in `rare` or `items` matches no item in his `Items/` or an `items*.toml` entry, or an augment in `rare_augments` or `augments` no augment in his `Augments/` or an `augments*.toml` entry. Items and augments missing from both are reported upstream or given their own wiki entry, not stored here;
+- an element of `rare` or `rare_augments` is neither a string nor a table of exactly `name` and `chest`;
+- an element of `items` or `augments` is neither a string nor a table of `name` with optional `loot_type` and `chest`, or its `loot_type` is not `chest`, `raid` or `reward`.
 
 Validate a file from the `ddo-data` root:
 
@@ -58,7 +69,7 @@ Validate a file from the `ddo-data` root:
 cargo xtask wiki-check
 ```
 
-A clean run prints the report, whose `wiki_quest_loot_entry_count`, `wiki_rare_drop_count`, `wiki_added_quest_loot_link_count`, `wiki_rare_augment_drop_count` and `wiki_added_quest_augment_loot_link_count` count what was applied, `quest_augment_loot_link_count` counts the quest links his augment descriptions made, and `drop_text_rare_link_count` and `drop_text_rare_augment_link_count` count the rare links his text marked on its own. The tests use their own overrides in `crates/ddo-etl/tests/fixtures/wiki/`, which only name what the fixture data files carry.
+A clean run prints the report, whose `wiki_quest_loot_entry_count`, `wiki_rare_drop_count`, `wiki_added_quest_loot_link_count`, `wiki_rare_augment_drop_count`, `wiki_added_quest_augment_loot_link_count`, `wiki_loot_drop_count` (elements of `items`) and `wiki_loot_augment_drop_count` (elements of `augments`) count what was applied (the two `wiki_added_*` counts include the links `items` and `augments` added), `quest_augment_loot_link_count` counts the quest links his augment descriptions made, and `drop_text_rare_link_count` and `drop_text_rare_augment_link_count` count the rare links his text marked on its own. The tests use their own overrides in `crates/ddo-etl/tests/fixtures/wiki/`, which only name what the fixture data files carry.
 
 ## `quests.toml`
 

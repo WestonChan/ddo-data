@@ -11,7 +11,7 @@ pub use bonuses::WikiBonus;
 pub use crafting::{CraftingIngredient, CraftingRecipe, CraftingSystem, IngredientCost};
 pub use descriptions::{DescriptionKind, WikiDescription};
 pub use items::{WikiArmorStats, WikiItem, WikiItemEffect, WikiItemQuest, WikiWeaponStats};
-pub use quest_loot::{QuestLoot, RareDrop, RareDropInChest};
+pub use quest_loot::{DescribedListedDrop, ListedDrop, QuestLoot, RareDrop, RareDropInChest};
 pub use quests::WikiQuest;
 
 use anyhow::{bail, Context, Result};
@@ -52,6 +52,9 @@ impl WikiEntry for QuestLoot {
     }
     fn citation(&self) -> (&str, &str) {
         (&self.page, &self.read)
+    }
+    fn validate(&self) -> Result<()> {
+        QuestLoot::validate(self)
     }
 }
 

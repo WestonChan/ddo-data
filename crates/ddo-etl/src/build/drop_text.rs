@@ -102,6 +102,17 @@ impl QuestLootTable {
         }
     }
 
+    pub(super) fn insert_missing_link_with_chest_sql(self) -> &'static str {
+        match self {
+            Self::Items => {
+                "INSERT OR IGNORE INTO quest_loot (quest_id, item_id, loot_type, chest) VALUES (?1, ?2, ?3, ?4)"
+            }
+            Self::Augments => {
+                "INSERT OR IGNORE INTO quest_augment_loot (quest_id, augment_id, loot_type, chest) VALUES (?1, ?2, ?3, ?4)"
+            }
+        }
+    }
+
     pub(super) fn mark_rare_sql(self) -> &'static str {
         match self {
             Self::Items => {
