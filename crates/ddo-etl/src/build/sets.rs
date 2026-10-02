@@ -1,3 +1,4 @@
+use super::bonus_types::{BonusOwner, BonusOwnerKind};
 use super::{trimmed_non_empty, BuildReport, TableWriter};
 use crate::xml::sentient_gems;
 use crate::xml::set_bonuses::parse_set_bonus_file;
@@ -45,7 +46,10 @@ impl TableWriter<'_> {
                     params![tier_id],
                     |r| r.get(0),
                 )?;
-                for (bonus_index, bonus_id) in self.ensure_derived_bonuses(&tier.effects)?.into_iter().enumerate() {
+                let tier_owner = BonusOwner { kind: BonusOwnerKind::SetBonusTier, name: set_name, family: None };
+                for (bonus_index, bonus_id) in
+                    self.ensure_derived_bonuses(&tier_owner, &tier.effects)?.into_iter().enumerate()
+                {
                     self.transaction.execute(
                         "INSERT INTO set_bonus_tier_bonuses (tier_id, bonus_id, sort_order) VALUES (?1, ?2, ?3)",
                         params![tier_id, bonus_id, earlier_bonus_count + bonus_index as i64],

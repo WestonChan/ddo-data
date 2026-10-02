@@ -5,7 +5,7 @@ use crate::enums::{
 };
 use std::sync::LazyLock;
 
-pub const SCHEMA_VERSION: i64 = 16;
+pub const SCHEMA_VERSION: i64 = 17;
 
 fn sql_in_clause<'a>(allowed_values: impl Iterator<Item = &'a str>) -> String {
     let quoted_values: Vec<String> = allowed_values.map(|value| format!("'{value}'")).collect();
@@ -225,12 +225,12 @@ CREATE TABLE IF NOT EXISTS bonuses (
     name          TEXT    NOT NULL,                   -- computed '{{stat}} +{{value}}'
     description   TEXT,                               -- ItemBuffs.xml <DisplayText> with placeholders filled
     stat_id       INTEGER NOT NULL REFERENCES stats(id),
-    bonus_type_id INTEGER REFERENCES bonus_types(id), -- <Buff><BonusType>, normalised
+    bonus_type_id INTEGER NOT NULL REFERENCES bonus_types(id), -- <Buff><BonusType>, its definition's, or a correction's
     value         INTEGER,                            -- <Buff><Value1>
     value2        INTEGER                             -- <Buff><Value2>
 );
 CREATE UNIQUE INDEX IF NOT EXISTS idx_bonuses_unique
-    ON bonuses(stat_id, COALESCE(bonus_type_id, -1), COALESCE(value, -1), COALESCE(value2, -1));
+    ON bonuses(stat_id, bonus_type_id, COALESCE(value, -1), COALESCE(value2, -1));
 CREATE INDEX IF NOT EXISTS idx_bonuses_stat ON bonuses(stat_id);
 
 CREATE TABLE IF NOT EXISTS item_bonuses (

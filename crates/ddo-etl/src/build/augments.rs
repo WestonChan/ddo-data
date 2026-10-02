@@ -1,3 +1,4 @@
+use super::bonus_types::{BonusOwner, BonusOwnerKind};
 use super::drop_text::DroppedLoot;
 use super::{joined_non_empty, json_number_array, trimmed_non_empty, BuildReport, TableWriter};
 use crate::map::drop_location::drop_text_in_description;
@@ -51,7 +52,11 @@ impl TableWriter<'_> {
                 self.link_augment_to_quests(augment_id, description, report)?;
             }
             self.write_modifiers(ModifierSource::Augment, augment_id, &augment.effects)?;
-            for (sort_order, bonus_id) in self.ensure_derived_bonuses(&augment.effects)?.into_iter().enumerate() {
+            let augment_owner =
+                BonusOwner { kind: BonusOwnerKind::Augment, name: &augment.name, family: Some(&family) };
+            for (sort_order, bonus_id) in
+                self.ensure_derived_bonuses(&augment_owner, &augment.effects)?.into_iter().enumerate()
+            {
                 self.transaction.execute(
                     "INSERT INTO augment_bonuses (augment_id, bonus_id, sort_order) VALUES (?1, ?2, ?3)",
                     params![augment_id, bonus_id, sort_order as i64],

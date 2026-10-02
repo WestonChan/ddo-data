@@ -190,12 +190,16 @@ fn injected_violations() -> Vec<InjectedViolation> {
         ),
         violation("effects_named_after_stats", "INSERT INTO effects (name) VALUES ('hitpoints');", "hitpoints"),
         violation(
-            "untyped_item_bonuses",
-            "INSERT INTO bonuses (name, stat_id, bonus_type_id, value)
+            "untyped_bonuses",
+            "PRAGMA writable_schema = ON;
+             UPDATE sqlite_master SET sql = replace(sql, 'bonus_type_id INTEGER NOT NULL', 'bonus_type_id INTEGER')
+              WHERE name = 'bonuses';
+             PRAGMA writable_schema = RESET;
+             INSERT INTO bonuses (name, stat_id, bonus_type_id, value)
              VALUES ('Integrity Probe +77', (SELECT MIN(id) FROM stats), NULL, 77);
-             INSERT INTO item_bonuses (item_id, bonus_id, sort_order)
-             VALUES ((SELECT MIN(id) FROM items), last_insert_rowid(), 900);",
-            "",
+             INSERT INTO augment_bonuses (augment_id, bonus_id, sort_order)
+             VALUES ((SELECT MIN(id) FROM augments), last_insert_rowid(), 900);",
+            "bonuses.bonus_type_id",
         ),
         violation("tables_not_empty", "DELETE FROM guild_buffs;", "guild_buffs"),
         violation(
@@ -205,7 +209,8 @@ fn injected_violations() -> Vec<InjectedViolation> {
         ),
         violation(
             "items_have_wiki_urls",
-            &probe_ring_insert("Integrity Probe Ring").replace("'https://ddowiki.com/page/Item:Integrity_Probe'", "NULL"),
+            &probe_ring_insert("Integrity Probe Ring")
+                .replace("'https://ddowiki.com/page/Item:Integrity_Probe'", "NULL"),
             "Integrity Probe Ring",
         ),
         violation(
@@ -220,7 +225,11 @@ fn injected_violations() -> Vec<InjectedViolation> {
             "",
         ),
         violation("raid_loot_only_on_raids", &probe_quest_source_insert("raid", "NULL"), "Integrity Probe Quest"),
-        violation("reward_rows_have_no_chest", &probe_quest_source_insert("reward", "'probe chest'"), "Integrity Probe Quest"),
+        violation(
+            "reward_rows_have_no_chest",
+            &probe_quest_source_insert("reward", "'probe chest'"),
+            "Integrity Probe Quest",
+        ),
         violation(
             "chest_never_says_reward",
             &probe_quest_source_insert("chest", "'end reward chest'"),
@@ -238,7 +247,11 @@ fn injected_violations() -> Vec<InjectedViolation> {
             "DELETE FROM enhancements WHERE tree_id = (SELECT MIN(id) FROM enhancement_trees);",
             "",
         ),
-        violation("classes_have_full_progression", "UPDATE classes SET hit_points = 0 WHERE name = 'Paladin';", "Paladin"),
+        violation(
+            "classes_have_full_progression",
+            "UPDATE classes SET hit_points = 0 WHERE name = 'Paladin';",
+            "Paladin",
+        ),
         violation(
             "classes_have_full_progression",
             "UPDATE classes SET bab = '[0, 1, 2]' WHERE name = 'Dark Apostate';",
@@ -284,7 +297,8 @@ fn injected_violations() -> Vec<InjectedViolation> {
         ),
         violation(
             "unreferenced_bonuses",
-            "INSERT INTO bonuses (name, stat_id, value) VALUES ('Integrity Probe +77', (SELECT MIN(id) FROM stats), 77);",
+            "INSERT INTO bonuses (name, stat_id, bonus_type_id, value)
+             VALUES ('Integrity Probe +77', (SELECT MIN(id) FROM stats), (SELECT MIN(id) FROM bonus_types), 77);",
             "Integrity Probe +77",
         ),
         violation(

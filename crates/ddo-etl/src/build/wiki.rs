@@ -573,7 +573,7 @@ impl TableWriter<'_> {
     }
 
     fn ensure_wiki_bonus(&mut self, bonus: &WikiBonus) -> Result<i64> {
-        self.ensure_bonus(bonus.stat(), Some(bonus.bonus_type()), Some(bonus.value), bonus.value2, None)
+        self.ensure_bonus(bonus.stat(), bonus.bonus_type(), Some(bonus.value), bonus.value2, None)
     }
 
     pub(super) fn write_wiki_augments(

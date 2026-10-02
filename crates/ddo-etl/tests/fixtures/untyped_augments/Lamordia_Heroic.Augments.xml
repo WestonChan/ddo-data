@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Augments>
+  <Augment>
+    <Name>Dolorous Invigorator (Heroic)</Name>
+    <Description>+1 Profane bonus to Spell DCs, Tactical DCs, and Assassinate.</Description>
+    <MinLevel>8</MinLevel>
+    <Type>Dolorous Slot (Armor) </Type>
+    <Icon>Lamordia</Icon>
+    <Effect>
+      <Type>SpellDC</Type>
+      <Bonus>Profane</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">1</Amount>
+      <Item>All</Item>
+    </Effect>
+    <Effect>
+      <Type>TacticalDC</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">1</Amount>
+      <Item>Trip</Item>
+      <Item>Sunder</Item>
+      <Item>Stun</Item>
+      <Item>General</Item>
+      <Item>Assassinate</Item>
+    </Effect>
+  </Augment>
+</Augments>

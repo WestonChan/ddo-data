@@ -1,3 +1,4 @@
+use super::bonus_types::{BonusOrigin, BonusOwner};
 use super::{json_number_array, json_string_array, trimmed_non_empty, TableWriter};
 use crate::xml::effect::Effect;
 use crate::xml::requirements::Requirements;
@@ -79,11 +80,18 @@ impl TableWriter<'_> {
         Ok(())
     }
 
-    pub(super) fn ensure_derived_bonuses(&mut self, effects: &[Effect]) -> Result<Vec<i64>> {
+    pub(super) fn ensure_derived_bonuses(&mut self, owner: &BonusOwner, effects: &[Effect]) -> Result<Vec<i64>> {
         let mut bonus_ids = Vec::new();
         for effect in effects {
             for bonus in self.effect_map.derive_bonuses(effect)? {
-                bonus_ids.push(self.ensure_bonus(bonus.stat, bonus.bonus_type, Some(bonus.value), None, None)?);
+                let bonus_origin = BonusOrigin {
+                    owner,
+                    source_name: &effect.types[0],
+                    stat_name: bonus.stat.name,
+                    value: Some(bonus.value),
+                };
+                let bonus_type = self.bonus_type_of(&bonus_origin, bonus.bonus_type)?;
+                bonus_ids.push(self.ensure_bonus(bonus.stat, bonus_type, Some(bonus.value), None, None)?);
             }
         }
         Ok(bonus_ids)

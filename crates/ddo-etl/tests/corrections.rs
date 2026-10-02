@@ -1139,12 +1139,17 @@ fn copied_directory(source_dir: &std::path::Path, copy_dir: &std::path::Path) {
     }
 }
 
-fn data_files_with_untyped_items(test_name: &str) -> PathBuf {
+const UNTYPED_ITEMS: (&str, &str) = ("untyped_items", "Items");
+const UNTYPED_AUGMENTS: (&str, &str) = ("untyped_augments", "Augments");
+
+fn data_files_with_untyped(test_name: &str, untyped_fixture_dirs: &[(&str, &str)]) -> PathBuf {
     let data_files_dir =
         std::env::temp_dir().join(format!("ddo-etl-untyped-{test_name}-{}", std::process::id())).join("DataFiles");
     let _ = std::fs::remove_dir_all(&data_files_dir);
     copied_directory(&fixtures_dir().join("DataFiles"), &data_files_dir);
-    copied_directory(&fixtures_dir().join("untyped_items"), &data_files_dir.join("Items"));
+    for (fixture_dir_name, data_files_subdir) in untyped_fixture_dirs {
+        copied_directory(&fixtures_dir().join(fixture_dir_name), &data_files_dir.join(data_files_subdir));
+    }
     data_files_dir
 }
 
@@ -1166,7 +1171,7 @@ fn built_db_from(
 
 #[test]
 fn types_an_item_bonus_his_files_leave_untyped_and_retypes_a_typed_one() {
-    let data_files_dir = data_files_with_untyped_items("item-bonus-type");
+    let data_files_dir = data_files_with_untyped("item-bonus-type", &[UNTYPED_ITEMS]);
     let (db, report) = built_db_from(
         &data_files_dir,
         &[(
@@ -1270,4 +1275,49 @@ fn corrects_an_item_bonus_value_without_touching_the_shared_bonus() {
         docent_bonuses.contains(&("Fire Resistance".into(), Some("Enhancement".into()), Some(20))),
         "{docent_bonuses:?}"
     );
+}
+
+#[test]
+fn refuses_to_write_an_item_bonus_without_a_type() {
+    let data_files_dir = data_files_with_untyped("untyped-item", &[UNTYPED_ITEMS]);
+    let error = built_db_from(&data_files_dir, &[]).unwrap_err();
+    for expected_text in ["item \"Embrace of the Spider Queen\"", "buff \"Fortification\"", "stat \"Fortification\""] {
+        assert!(error.contains(expected_text), "{expected_text} missing from {error}");
+    }
+}
+
+#[test]
+fn refuses_to_write_an_augment_bonus_without_a_type_unless_a_correction_types_it() {
+    let data_files_dir = data_files_with_untyped("untyped-augment", &[UNTYPED_AUGMENTS]);
+    let error = built_db_from(&data_files_dir, &[]).unwrap_err();
+    for expected_text in ["augment \"Dolorous Invigorator (Heroic)\"", "effect \"TacticalDC\"", "stat \"Trip DC\""] {
+        assert!(error.contains(expected_text), "{expected_text} missing from {error}");
+    }
+    let profane_corrections: String = ["Trip DC", "Sunder DC", "Stun DC", "Assassinate DC"]
+        .iter()
+        .map(|stat_name| {
+            qualified_correction_toml(
+                "augment_bonus",
+                "Dolorous Invigorator (Heroic)",
+                &format!("stat = {stat_name:?}\nbonus_type = \"null\""),
+                "bonus_type",
+                "\"null\"",
+                "\"Profane\"",
+            )
+        })
+        .collect();
+    let (db, report) = built_db_from(&data_files_dir, &[("corrections.toml", &profane_corrections)]).unwrap();
+    assert_eq!(
+        (report.correction_applied_count, report.correction_stale_count),
+        (4, 0),
+        "{:?}",
+        report.stale_corrections
+    );
+    let dolorous_bonuses = augment_bonus_rows(&db, "Dolorous Invigorator (Heroic)");
+    assert!(
+        dolorous_bonuses.iter().all(|(_, bonus_type, _)| bonus_type.as_deref() == Some("Profane")),
+        "{dolorous_bonuses:?}"
+    );
+    assert!(dolorous_bonuses.contains(&("Trip DC".into(), Some("Profane".into()), Some(1))), "{dolorous_bonuses:?}");
+    assert_eq!(row_count(&db, "SELECT COUNT(*) FROM corrections WHERE kind = 'augment_bonus'"), 4);
 }

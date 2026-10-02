@@ -1,3 +1,4 @@
+use super::bonus_types::{BonusOrigin, BonusOwner, BonusOwnerKind};
 use super::drop_text::DroppedLoot;
 use super::quest_series::QuestSeriesTable;
 use super::{joined_non_empty, trimmed_non_empty, BuildReport, TableWriter};
@@ -153,6 +154,11 @@ impl TableWriter<'_> {
                 ResolvedBuff::Bonus { stat, bonus_type, value, second_value } => {
                     let description =
                         if template.is_empty() { None } else { Some(self.buff_map.description(template, buff)) };
+                    let item_owner = BonusOwner { kind: BonusOwnerKind::Item, name: item_name, family: None };
+                    let bonus_type = self.bonus_type_of(
+                        &BonusOrigin { owner: &item_owner, source_name: buff.kind.trim(), stat_name: stat.name, value },
+                        bonus_type,
+                    )?;
                     let bonus_id = self.ensure_bonus(stat, bonus_type, value, second_value, description.as_deref())?;
                     self.insert_item_bonus(item_id, bonus_id, sort_order)?;
                 }

@@ -261,16 +261,29 @@ pub const INTEGRITY_CHECKS: &[IntegrityCheck] = &[
         ),
     )
     .showing_every_offender(),
-    IntegrityCheck::warn(
-        "untyped_item_bonuses",
-        "item bonuses with no bonus type, so they stack with everything; the top stats are listed",
+    IntegrityCheck::hard(
+        "untyped_bonuses",
+        "every bonus carries a bonus type: an untyped one would stack with everything. The ETL refuses to write one \
+         and the schema declares bonuses.bonus_type_id NOT NULL, so this fails only on a database built some other \
+         way; a new untyped buff upstream is typed by a correction or a mapping",
         OffenderQuery::Sql(
-            "SELECT i.name, i.id, s.name FROM item_bonuses ib JOIN bonuses b ON b.id = ib.bonus_id \
-             JOIN items i ON i.id = ib.item_id JOIN stats s ON s.id = b.stat_id \
-             WHERE b.bonus_type_id IS NULL ORDER BY i.name",
+            "SELECT 'bonuses.bonus_type_id', 0, 'the schema accepts a bonus with no type' \
+             FROM pragma_table_info('bonuses') WHERE name = 'bonus_type_id' AND \"notnull\" = 0 \
+             UNION ALL SELECT i.name, i.id, 'item bonus on ' || s.name FROM item_bonuses r \
+             JOIN bonuses b ON b.id = r.bonus_id JOIN items i ON i.id = r.item_id JOIN stats s ON s.id = b.stat_id \
+             WHERE b.bonus_type_id IS NULL \
+             UNION ALL SELECT a.name, a.id, 'augment bonus on ' || s.name FROM augment_bonuses r \
+             JOIN bonuses b ON b.id = r.bonus_id JOIN augments a ON a.id = r.augment_id JOIN stats s ON s.id = b.stat_id \
+             WHERE b.bonus_type_id IS NULL \
+             UNION ALL SELECT f.name, f.id, 'feat bonus on ' || s.name FROM feat_bonuses r \
+             JOIN bonuses b ON b.id = r.bonus_id JOIN feats f ON f.id = r.feat_id JOIN stats s ON s.id = b.stat_id \
+             WHERE b.bonus_type_id IS NULL \
+             UNION ALL SELECT sb.name, t.id, 'set bonus tier bonus on ' || s.name FROM set_bonus_tier_bonuses r \
+             JOIN bonuses b ON b.id = r.bonus_id JOIN set_bonus_tiers t ON t.id = r.tier_id \
+             JOIN set_bonuses sb ON sb.id = t.set_id JOIN stats s ON s.id = b.stat_id WHERE b.bonus_type_id IS NULL",
         ),
     )
-    .ranking_top_details(10),
+    .showing_every_offender(),
     IntegrityCheck::warn(
         "items_have_minimum_level",
         "every item has a minimum level of 1 or more. WARN until the follow-up: the Cannith Crafted blanks take their \

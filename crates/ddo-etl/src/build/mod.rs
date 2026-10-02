@@ -1,4 +1,5 @@
 mod augments;
+mod bonus_types;
 mod buffs;
 mod characters;
 mod corrections;
@@ -24,6 +25,7 @@ use crate::xml::items::parse_item_file;
 use crate::xml::quests::Quest;
 use crate::xml::{clickies, item_buffs, patrons, quests};
 use anyhow::{Context, Result};
+use bonus_types::{BonusOrigin, UntypedBonusCorrections};
 use ddo_model::enums::{BonusType, FeatSource, ModifierSource};
 use ddo_model::stats::Stat;
 use ddo_model::{seeds, DatasetVersion, SCHEMA_VERSION};
@@ -203,6 +205,7 @@ pub fn build_database(
         effect_map: &effect_map,
         buff_description_templates: &buff_description_templates,
         drop_text_linker: &drop_text_linker,
+        untyped_bonus_corrections: UntypedBonusCorrections::from_corrections(corrections)?,
         written: WrittenRows::default(),
         pending_set_item_links: Vec::new(),
         pending_set_augment_links: Vec::new(),
@@ -252,7 +255,18 @@ pub fn build_database(
     writer.write_standalone_stances(&data_files_dir.join("Stances.xml"), &mut report)?;
     writer.write_guild_buffs(&data_files_dir.join("GuildBuffs.xml"), &mut report)?;
     writer.write_optional_buffs(&data_files_dir.join("SelfAndPartyBuffs.xml"), &mut report)?;
-    corrections::apply_non_quest_corrections(&transaction, corrections, &mut report)?;
+    let corrections_applied_while_writing = writer.untyped_bonus_corrections.applied_corrections();
+    corrections::record_corrections_applied_while_writing(
+        &transaction,
+        &corrections_applied_while_writing,
+        &mut report,
+    )?;
+    corrections::apply_non_quest_corrections(
+        &transaction,
+        corrections,
+        &corrections_applied_while_writing,
+        &mut report,
+    )?;
     wiki::apply_wiki_overrides(&transaction, wiki_overrides, &drop_text_linker, &mut report)?;
     quest_series::write_wiki_quest_series_rewards(&transaction, wiki_overrides, &mut report)?;
     vendors_and_events::write_wiki_vendor_and_event_items(&transaction, wiki_overrides, &mut report)?;
@@ -444,7 +458,7 @@ fn write_challenges(transaction: &Transaction, challenges: &[Challenge]) -> Resu
     Ok(inserted_count)
 }
 
-type BonusKey = (i64, Option<i64>, Option<i64>, Option<i64>);
+type BonusKey = (i64, i64, Option<i64>, Option<i64>);
 
 type FeatKey = (String, FeatSource, Option<i64>);
 
@@ -466,21 +480,29 @@ pub(crate) struct TableWriter<'a> {
     effect_map: &'a EffectMap,
     buff_description_templates: &'a HashMap<String, String>,
     drop_text_linker: &'a DropTextLinker,
+    untyped_bonus_corrections: UntypedBonusCorrections<'a>,
     written: WrittenRows,
     pending_set_item_links: Vec<(i64, String)>,
     pending_set_augment_links: Vec<(i64, String)>,
 }
 
 impl TableWriter<'_> {
+    fn bonus_type_of(&mut self, bonus_origin: &BonusOrigin, bonus_type: Option<BonusType>) -> Result<BonusType> {
+        match bonus_type {
+            Some(bonus_type) => Ok(bonus_type),
+            None => self.untyped_bonus_corrections.bonus_type_for(bonus_origin),
+        }
+    }
+
     fn ensure_bonus(
         &mut self,
         stat: &'static Stat,
-        bonus_type: Option<BonusType>,
+        bonus_type: BonusType,
         value: Option<i64>,
         second_value: Option<i64>,
         description: Option<&str>,
     ) -> Result<i64> {
-        let key = (stat.id, bonus_type.map(BonusType::id), value, second_value);
+        let key = (stat.id, bonus_type.id(), value, second_value);
         if let Some(id) = self.written.bonus_ids_by_key.get(&key) {
             return Ok(*id);
         }

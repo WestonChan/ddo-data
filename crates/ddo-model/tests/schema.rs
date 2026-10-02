@@ -179,7 +179,7 @@ fn augments_come_from_maetrim_unless_the_wiki_supplied_them() {
     assert!(db
         .execute("INSERT INTO augments (name, family, provenance) VALUES ('Odd Gem', 'Named', 'ddowiki')", [])
         .is_err());
-    assert_eq!(SCHEMA_VERSION, 16);
+    assert_eq!(SCHEMA_VERSION, 17);
 }
 
 #[test]
@@ -518,4 +518,20 @@ fn save_progressions_follow_upstream_type_codes() {
     assert_eq!(SaveProgression::parse("Type1"), Some(SaveProgression::Poor));
     assert_eq!(SaveProgression::parse("None"), Some(SaveProgression::None));
     assert_eq!(SaveProgression::parse("Type3"), None);
+}
+
+#[test]
+fn every_bonus_carries_a_bonus_type() {
+    let db = fresh_db();
+    ddo_model::seeds::insert_all(&db).unwrap();
+    let insert_bonus = |bonus_type_sql: &str| {
+        db.execute(
+            &format!(
+                "INSERT INTO bonuses (name, stat_id, bonus_type_id, value) VALUES ('Probe +1', (SELECT MIN(id) FROM stats), {bonus_type_sql}, 1)"
+            ),
+            [],
+        )
+    };
+    assert!(insert_bonus("NULL").is_err(), "an untyped bonus is refused");
+    insert_bonus("(SELECT id FROM bonus_types WHERE name = 'Enhancement')").unwrap();
 }

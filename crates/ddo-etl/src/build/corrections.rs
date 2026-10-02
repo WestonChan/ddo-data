@@ -14,25 +14,42 @@ pub(super) fn apply_quest_corrections(
     corrections: &Corrections,
     report: &mut BuildReport,
 ) -> Result<()> {
-    apply_corrections_where(transaction, corrections, report, |kind| kind == CorrectionKind::Quest)
+    apply_corrections_where(transaction, corrections, report, |correction| correction.kind == CorrectionKind::Quest)
 }
 
 pub(super) fn apply_non_quest_corrections(
     transaction: &Transaction,
     corrections: &Corrections,
+    corrections_applied_while_writing: &[&Correction],
     report: &mut BuildReport,
 ) -> Result<()> {
-    apply_corrections_where(transaction, corrections, report, |kind| kind != CorrectionKind::Quest)
+    apply_corrections_where(transaction, corrections, report, |correction| {
+        correction.kind != CorrectionKind::Quest
+            && !corrections_applied_while_writing
+                .iter()
+                .any(|applied_correction| std::ptr::eq(*applied_correction, correction))
+    })
+}
+
+pub(super) fn record_corrections_applied_while_writing(
+    transaction: &Transaction,
+    corrections_applied_while_writing: &[&Correction],
+    report: &mut BuildReport,
+) -> Result<()> {
+    for correction in corrections_applied_while_writing {
+        record_applied_correction(transaction, correction, report)?;
+    }
+    Ok(())
 }
 
 fn apply_corrections_where(
     transaction: &Transaction,
     corrections: &Corrections,
     report: &mut BuildReport,
-    applies_to_kind: impl Fn(CorrectionKind) -> bool,
+    is_applied_in_this_pass: impl Fn(&Correction) -> bool,
 ) -> Result<()> {
     let (renames, field_corrections): (Vec<&Correction>, Vec<&Correction>) =
-        corrections.entries.iter().filter(|correction| applies_to_kind(correction.kind)).partition(|correction| {
+        corrections.entries.iter().filter(|correction| is_applied_in_this_pass(correction)).partition(|correction| {
             correction.correctable_field().is_ok_and(|field| field.shape == FieldShape::RowName)
         });
     for correction in field_corrections.into_iter().chain(renames) {
@@ -93,6 +110,14 @@ fn apply_correction(transaction: &Transaction, correction: &Correction, report: 
         return Ok(());
     }
     write_correction(transaction, correction, field, &row_ids)?;
+    record_applied_correction(transaction, correction, report)
+}
+
+fn record_applied_correction(
+    transaction: &Transaction,
+    correction: &Correction,
+    report: &mut BuildReport,
+) -> Result<()> {
     transaction.execute(
         "INSERT INTO corrections (kind, name, qualifier, field, from_value, to_value, reason, source, read)
          VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9)",
