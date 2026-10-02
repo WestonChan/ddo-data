@@ -96,8 +96,7 @@ cost = [{ ingredient = "Fossilized Raptor Claw", quantity = 25 }, { ingredient =
 tier = "legendary"
 slot = "isle of dread: scale (weapon)"
 option = "Iridiscent Scale"
-augments = ["Iridescent Scale"]
-note = "The page spells it Iridiscent; Maetrim spells it Iridescent."
+augments = ["Iridiscent Scale"]
 cost = [{ ingredient = "Fossilized Raptor Claw", quantity = 25 }, { ingredient = "Fossilized Triceratops Horn", quantity = 25 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 25 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 25 }]
 
 [[system.recipe]]
@@ -146,8 +145,7 @@ cost = [{ ingredient = "Fossilized Raptor Claw", quantity = 50 }, { ingredient =
 tier = "legendary"
 slot = "isle of dread: fang (weapon)"
 option = "Iridiscent Fang"
-augments = ["Iridescent Fang"]
-note = "The page spells it Iridiscent; Maetrim spells it Iridescent."
+augments = ["Iridiscent Fang"]
 cost = [{ ingredient = "Fossilized Raptor Claw", quantity = 50 }, { ingredient = "Fossilized Triceratops Horn", quantity = 50 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 50 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 50 }]
 
 [[system.recipe]]
@@ -196,80 +194,70 @@ cost = [{ ingredient = "Fossilized Tyrannosaurus Tooth", quantity = 100 }, { ing
 tier = "legendary"
 slot = "isle of dread: claw (weapon)"
 option = "Iridiscent Claw: Acid"
-augments = ["Iridescent Claw: Acid"]
-note = "The page spells it Iridiscent; Maetrim spells it Iridescent."
+augments = ["Iridiscent Claw: Acid"]
 cost = [{ ingredient = "Fossilized Tyrannosaurus Tooth", quantity = 100 }, { ingredient = "Fossilized Raptor Claw", quantity = 25 }, { ingredient = "Fossilized Triceratops Horn", quantity = 25 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 25 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 25 }]
 
 [[system.recipe]]
 tier = "legendary"
 slot = "isle of dread: claw (weapon)"
 option = "Iridiscent Claw: Cold"
-augments = ["Iridescent Claw: Cold"]
-note = "The page spells it Iridiscent; Maetrim spells it Iridescent."
+augments = ["Iridiscent Claw: Cold"]
 cost = [{ ingredient = "Fossilized Tyrannosaurus Tooth", quantity = 100 }, { ingredient = "Fossilized Raptor Claw", quantity = 25 }, { ingredient = "Fossilized Triceratops Horn", quantity = 25 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 25 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 25 }]
 
 [[system.recipe]]
 tier = "legendary"
 slot = "isle of dread: claw (weapon)"
 option = "Iridiscent Claw: Electric"
-augments = ["Iridescent Claw: Electric"]
-note = "The page spells it Iridiscent; Maetrim spells it Iridescent."
+augments = ["Iridiscent Claw: Electric"]
 cost = [{ ingredient = "Fossilized Tyrannosaurus Tooth", quantity = 100 }, { ingredient = "Fossilized Raptor Claw", quantity = 25 }, { ingredient = "Fossilized Triceratops Horn", quantity = 25 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 25 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 25 }]
 
 [[system.recipe]]
 tier = "legendary"
 slot = "isle of dread: claw (weapon)"
 option = "Iridiscent Claw: Fire"
-augments = ["Iridescent Claw: Fire"]
-note = "The page spells it Iridiscent; Maetrim spells it Iridescent."
+augments = ["Iridiscent Claw: Fire"]
 cost = [{ ingredient = "Fossilized Tyrannosaurus Tooth", quantity = 100 }, { ingredient = "Fossilized Raptor Claw", quantity = 25 }, { ingredient = "Fossilized Triceratops Horn", quantity = 25 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 25 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 25 }]
 
 [[system.recipe]]
 tier = "legendary"
 slot = "isle of dread: claw (weapon)"
 option = "Iridiscent Claw: Force"
-augments = ["Iridescent Claw: Force"]
-note = "The page spells it Iridiscent; Maetrim spells it Iridescent."
+augments = ["Iridiscent Claw: Force"]
 cost = [{ ingredient = "Fossilized Tyrannosaurus Tooth", quantity = 100 }, { ingredient = "Fossilized Raptor Claw", quantity = 25 }, { ingredient = "Fossilized Triceratops Horn", quantity = 25 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 25 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 25 }]
 
 [[system.recipe]]
 tier = "legendary"
 slot = "isle of dread: claw (weapon)"
 option = "Iridiscent Claw: Light"
-augments = ["Iridescent Claw: Light"]
-note = "The page spells it Iridiscent; Maetrim spells it Iridescent."
+augments = ["Iridiscent Claw: Light"]
 cost = [{ ingredient = "Fossilized Tyrannosaurus Tooth", quantity = 100 }, { ingredient = "Fossilized Raptor Claw", quantity = 25 }, { ingredient = "Fossilized Triceratops Horn", quantity = 25 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 25 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 25 }]
 
 [[system.recipe]]
 tier = "legendary"
 slot = "isle of dread: claw (weapon)"
 option = "Iridiscent Claw: Negative"
-augments = ["Iridescent Claw: Negative"]
-note = "The page spells it Iridiscent; Maetrim spells it Iridescent."
+augments = ["Iridiscent Claw: Negative"]
 cost = [{ ingredient = "Fossilized Tyrannosaurus Tooth", quantity = 100 }, { ingredient = "Fossilized Raptor Claw", quantity = 25 }, { ingredient = "Fossilized Triceratops Horn", quantity = 25 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 25 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 25 }]
 
 [[system.recipe]]
 tier = "legendary"
 slot = "isle of dread: claw (weapon)"
 option = "Iridiscent Claw: Positive"
-augments = ["Iridescent Claw: Positive"]
-note = "The page spells it Iridiscent; Maetrim spells it Iridescent."
+augments = ["Iridiscent Claw: Positive"]
 cost = [{ ingredient = "Fossilized Tyrannosaurus Tooth", quantity = 100 }, { ingredient = "Fossilized Raptor Claw", quantity = 25 }, { ingredient = "Fossilized Triceratops Horn", quantity = 25 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 25 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 25 }]
 
 [[system.recipe]]
 tier = "legendary"
 slot = "isle of dread: claw (weapon)"
 option = "Iridiscent Claw: Repair"
-augments = ["Iridescent Claw: Repair"]
-note = "The page spells it Iridiscent; Maetrim spells it Iridescent."
+augments = ["Iridiscent Claw: Repair"]
 cost = [{ ingredient = "Fossilized Tyrannosaurus Tooth", quantity = 100 }, { ingredient = "Fossilized Raptor Claw", quantity = 25 }, { ingredient = "Fossilized Triceratops Horn", quantity = 25 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 25 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 25 }]
 
 [[system.recipe]]
 tier = "legendary"
 slot = "isle of dread: claw (weapon)"
 option = "Iridiscent Claw: Sonic"
-augments = ["Iridescent Claw: Sonic"]
-note = "The page spells it Iridiscent; Maetrim spells it Iridescent."
+augments = ["Iridiscent Claw: Sonic"]
 cost = [{ ingredient = "Fossilized Tyrannosaurus Tooth", quantity = 100 }, { ingredient = "Fossilized Raptor Claw", quantity = 25 }, { ingredient = "Fossilized Triceratops Horn", quantity = 25 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 25 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 25 }]
 
 [[system.recipe]]
@@ -486,8 +474,8 @@ cost = [{ ingredient = "Fossilized Raptor Claw", quantity = 50 }, { ingredient =
 tier = "legendary"
 slot = "isle of dread: fang (accessory)"
 option = "Fang: Damage"
-augments = ["Fang: Deadly +11", "Fang: Deadly +12"]
-note = "Yields the regular and the Minor Artifact version of Maetrim's augment. The page gives +11, or +12 in a Minor Artifact. Maetrim names it Deadly."
+augments = ["Fang: Damage +11", "Fang: Damage +12"]
+note = "Yields the regular and the Minor Artifact version of Maetrim's augment. The page gives +11, or +12 in a Minor Artifact."
 cost = [{ ingredient = "Fossilized Raptor Claw", quantity = 50 }, { ingredient = "Fossilized Triceratops Horn", quantity = 50 }, { ingredient = "Fossilized Pteranodon Vertebrae", quantity = 50 }, { ingredient = "Fossilized Ankylosaur Rib", quantity = 50 }]
 
 [[system.recipe]]
