@@ -61,7 +61,7 @@ async fn version_reports_dataset_and_schema() {
     assert_eq!(json["dataset"]["upstream_sha"], "fixture-sha");
     assert_eq!(json["schema_version"], ddo_model::SCHEMA_VERSION);
     assert!(json.get("api_commit").is_some(), "version must report the API build commit, null when unknown");
-    assert_eq!(json["counts"]["items"], 23, "22 of Maetrim's and the wiki fixture's axe");
+    assert_eq!(json["counts"]["items"], 24, "23 of Maetrim's and the wiki fixture's axe");
     assert_eq!(json["counts"]["quest_augment_loot"], 7);
     assert_eq!(
         (
@@ -91,7 +91,7 @@ async fn items_list_filters_and_pages() {
 
     let (_, _, first_page) = get("/v1/items?limit=5&offset=0").await;
     assert_eq!(first_page["items"].as_array().unwrap().len(), 5);
-    assert_eq!(first_page["total"], 23);
+    assert_eq!(first_page["total"], 24);
     let (_, _, armor) = get("/v1/items?category=Armor").await;
     assert!(armor["items"].as_array().unwrap().iter().all(|i| i["category"] == "Armor"));
     let (_, _, level_range) = get("/v1/items?min_level=20&max_level=25").await;
@@ -111,7 +111,7 @@ async fn items_list_filters_and_pages() {
     );
     assert!(rare.iter().all(|item| item["is_rare"] == true));
     let (_, _, unfiltered) = get("/v1/items?rare=false").await;
-    assert_eq!(unfiltered["total"], 23);
+    assert_eq!(unfiltered["total"], 24);
     let (status, _, _) = get("/v1/items?category=Hat").await;
     assert_eq!(status, StatusCode::BAD_REQUEST, "unknown category is a client error");
 }
@@ -190,6 +190,39 @@ async fn items_filter_by_the_quest_quest_chain_or_saga_that_drops_or_rewards_the
         "an item offered in two tiers is listed once"
     );
     assert_eq!(saga_rewards["total"], 3);
+}
+
+#[tokio::test]
+async fn item_search_text_also_matches_a_slot_category_or_pack_name_and_ranks_exact_then_prefix_names_first() {
+    let (_, _, ring) = get("/v1/items?q=ring").await;
+    assert_eq!(
+        item_names(&ring),
+        [
+            "Ring of the Kraken",
+            "Acrobat's Ring",
+            "Epic Ring of the Stalker",
+            "Five Rings",
+            "Legendary Ring of Unbridled Might"
+        ],
+        "a name starting with the text comes before names merely containing it"
+    );
+    assert_eq!(ring["total"], 5);
+    let (_, _, boots) = get("/v1/items?q=Kundarak%20Delving%20Boots").await;
+    assert_eq!(item_names(&boots), ["Kundarak Delving Boots", "Epic Kundarak Delving Boots"], "the exact name first");
+
+    let (_, _, feet) = get("/v1/items?q=FEET").await;
+    assert_eq!(item_names(&feet), ["Epic Kundarak Delving Boots", "Kundarak Delving Boots"], "the Feet slot");
+    let (_, _, jewelry) = get("/v1/items?q=jewelry").await;
+    assert!(jewelry["items"].as_array().unwrap().iter().all(|item| item["category"] == "Jewelry"), "{jewelry}");
+    assert_eq!(jewelry["total"], 6);
+    let (_, _, free_to_play) = get("/v1/items?q=free%20to%20play").await;
+    assert_eq!(
+        item_names(&free_to_play),
+        ["Battle Axe of the Oozing Hunger"],
+        "any pack it drops in matches, not only the first one the row shows"
+    );
+    let (_, _, slot_text_in_a_name) = get("/v1/items?q=fee").await;
+    assert_eq!(slot_text_in_a_name["total"], 0, "slot, category and pack names must equal the text, not contain it");
 }
 
 #[tokio::test]

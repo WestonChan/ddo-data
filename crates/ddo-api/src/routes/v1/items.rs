@@ -1,8 +1,8 @@
 use super::quest_series::{quest_chains_rewarding, sagas_rewarding};
 use super::quests::{adventure_packs_dropping_via, drops_via, quests_dropping_via};
 use crate::db::{
-    bonuses_via, clamped_page, convert_to_booleans, json_row, json_rows, modifiers_for, row_count,
-    substring_like_pattern, whole_table_json, WhereClause,
+    bonuses_via, clamped_page, convert_to_booleans, json_row, json_rows, like_escaped_text, modifiers_for, row_count,
+    whole_table_json, WhereClause,
 };
 use crate::error::ApiError;
 use crate::query::{comma_separated_values, ApiQuery, QueryParameters};
@@ -54,14 +54,14 @@ impl QueryParameters for ItemListQuery {
     path = "/v1/items",
     tag = "items",
     summary = "List items",
-    description = "One page of equipment matching every filter given, ordered by name. Each row carries what a picker \
+    description = "One page of equipment matching every filter given, ordered by name (with `q`, exact name matches first, then names starting with it). Each row carries what a picker \
                    needs: id, name, slot, category, item type, minimum level, enhancement bonus, icon name, the \
                    alphabetically first adventure pack it drops in, whether any of its sources is a raid, whether \
                    it is rare loot from at least one quest (marked rare in Maetrim's drop text or on ddowiki), and \
                    `source`: `maetrim` for an item from DDOBuilderV2's files, `wiki` for one read from ddowiki \
                    because his files lack it (dropped as soon as his files carry an item of that name). Use the detail endpoint for bonuses, sockets and quests. `total` counts every match, not just this page.",
     params(
-        ("q" = Option<String>, Query, description = "Case-insensitive substring of the item name"),
+        ("q" = Option<String>, Query, description = "Search text, trimmed and matched ignoring case: keeps items whose name contains it, or whose slot, category or any adventure pack it drops in is named exactly it (`q=feet`, `q=jewelry`, `q=vault of night`); ranks an exact name first, then names starting with it, then the rest, each group by name"),
         ("slot" = Option<String>, Query, description = "Equipment slot name exactly as /v1/equipment-slots lists it, e.g. `Main Hand`"),
         ("category" = Option<String>, Query, description = "One of `Armor`, `Shield`, `Weapon`, `Jewelry`, `Clothing`; anything else is a 400"),
         ("min_level" = Option<i64>, Query, description = "Only items whose minimum level is at least this"),
@@ -95,8 +95,14 @@ async fn items(
     state
         .read_db(move |db| {
             let mut where_clause = WhereClause::default();
-            if let Some(search_text) = query.q.as_deref().filter(|q| !q.trim().is_empty()) {
-                where_clause.add_bound_condition("i.name LIKE ? ESCAPE '\\'", substring_like_pattern(search_text));
+            let mut order_sql = "i.name".to_string();
+            if let Some(search_text) = query.q.as_deref().map(str::trim).filter(|q| !q.is_empty()) {
+                let search_placeholder =
+                    where_clause.add_bound_condition(ITEMS_MATCHING_SEARCH_TEXT_SQL, like_escaped_text(search_text));
+                order_sql = format!(
+                    "CASE WHEN i.name LIKE {search_placeholder} ESCAPE '\\' THEN 0 \
+                          WHEN i.name LIKE {search_placeholder} || '%' ESCAPE '\\' THEN 1 ELSE 2 END, i.name"
+                );
             }
             if let Some(slot) = &query.slot {
                 where_clause.add_bound_condition("es.name = ?", slot.clone());
@@ -150,7 +156,7 @@ async fn items(
                         (SELECT MIN(ap.name) FROM drops ql LEFT JOIN quests q ON q.id = ql.quest_id JOIN adventure_packs ap ON ap.id = COALESCE(ql.pack_id, q.pack_id) WHERE ql.item_id = i.id) AS pack,
                         EXISTS (SELECT 1 FROM drops ql WHERE ql.item_id = i.id AND ql.source_kind = 'quest' AND ql.loot_type = 'raid') AS is_raid,
                         EXISTS (SELECT 1 FROM drops ql WHERE ql.item_id = i.id AND ql.source_kind IN ('quest', 'adventure_pack') AND ql.is_rare) AS is_rare
-                 {from_sql} ORDER BY i.name LIMIT {limit} OFFSET {offset}"
+                 {from_sql} ORDER BY {order_sql} LIMIT {limit} OFFSET {offset}"
             );
             let mut items = json_rows(db, &page_sql, where_clause.params())?;
             for item in &mut items {
@@ -160,6 +166,11 @@ async fn items(
         })
         .await
 }
+
+const ITEMS_MATCHING_SEARCH_TEXT_SQL: &str = "(i.name LIKE '%' || ? || '%' ESCAPE '\\' \
+     OR es.name LIKE ? ESCAPE '\\' OR i.item_category LIKE ? ESCAPE '\\' \
+     OR i.id IN (SELECT d.item_id FROM drops d LEFT JOIN quests q ON q.id = d.quest_id \
+                 JOIN adventure_packs ap ON ap.id = COALESCE(d.pack_id, q.pack_id) WHERE ap.name LIKE ? ESCAPE '\\'))";
 
 const ITEMS_WITH_OWN_BONUS_TO_STATS_SQL: &str =
     "i.id IN (SELECT ib.item_id FROM stats s JOIN bonuses b ON b.stat_id = s.id \

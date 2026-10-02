@@ -60,9 +60,11 @@ pub(crate) fn convert_to_booleans(row: &mut Value, flag_columns: &[&str]) {
 }
 
 pub(crate) fn substring_like_pattern(search_text: &str) -> String {
-    let escaped: String =
-        search_text.chars().flat_map(|c| if matches!(c, '%' | '_' | '\\') { vec!['\\', c] } else { vec![c] }).collect();
-    format!("%{}%", escaped.trim())
+    format!("%{}%", like_escaped_text(search_text.trim()))
+}
+
+pub(crate) fn like_escaped_text(text: &str) -> String {
+    text.chars().flat_map(|c| if matches!(c, '%' | '_' | '\\') { vec!['\\', c] } else { vec![c] }).collect()
 }
 
 pub(crate) fn clamped_page(limit: Option<i64>, offset: Option<i64>) -> (i64, i64) {
@@ -154,9 +156,15 @@ pub(crate) struct WhereClause {
 }
 
 impl WhereClause {
-    pub(crate) fn add_bound_condition(&mut self, condition: &str, bound_value: impl Into<rusqlite::types::Value>) {
+    pub(crate) fn add_bound_condition(
+        &mut self,
+        condition: &str,
+        bound_value: impl Into<rusqlite::types::Value>,
+    ) -> String {
         self.bound_values.push(bound_value.into());
-        self.conditions.push(condition.replace('?', &format!("?{}", self.bound_values.len())));
+        let placeholder = format!("?{}", self.bound_values.len());
+        self.conditions.push(condition.replace('?', &placeholder));
+        placeholder
     }
 
     pub(crate) fn add_bound_list_condition(
