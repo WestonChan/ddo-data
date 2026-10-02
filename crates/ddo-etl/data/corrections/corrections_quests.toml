@@ -267,3 +267,43 @@ to = "Keepers of Barovia"
 reason = "The wiki names the patron Keepers of Barovia."
 source = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-30"
+
+[[correction]]
+kind = "quest"
+name = "Temple of Elemental Evil: Fire Node"
+field = "name"
+from = "Temple of Elemental Evil: Fire Node"
+to = "ToEE: Fire Node"
+reason = "The wiki titles the quest ToEE: Fire Node, the name his own items' drop text uses."
+source = "https://ddowiki.com/page/ToEE:_Fire_Node"
+read = "2026-10-01"
+
+[[correction]]
+kind = "quest"
+name = "Temple of Elemental Evil: Water Node"
+field = "name"
+from = "Temple of Elemental Evil: Water Node"
+to = "ToEE: Water Node"
+reason = "The wiki titles the quest ToEE: Water Node, the name his own items' drop text uses."
+source = "https://ddowiki.com/page/ToEE:_Water_Node"
+read = "2026-10-01"
+
+[[correction]]
+kind = "quest"
+name = "Setting the Wards: The Patriarch's Crypt"
+field = "name"
+from = "Setting the Wards: The Patriarch's Crypt"
+to = "Setting the Wards: The Patriarchs' Crypt"
+reason = "The wiki titles the quest Setting the Wards: The Patriarchs' Crypt, the spelling his own items' drop text uses."
+source = "https://ddowiki.com/page/Setting_the_Wards:_The_Patriarchs%27_Crypt"
+read = "2026-10-01"
+
+[[correction]]
+kind = "quest"
+name = "A Mad Tea Party"
+field = "name"
+from = "A Mad Tea Party"
+to = "Mad Tea Party"
+reason = "The wiki titles the quest Mad Tea Party (A_Mad_Tea_Party redirects there), the name his own items' drop text uses."
+source = "https://ddowiki.com/page/Mad_Tea_Party"
+read = "2026-10-01"

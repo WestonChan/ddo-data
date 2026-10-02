@@ -1,6 +1,6 @@
 # Corrections
 
-Known mistakes in Maetrim's DDOBuilderV2 files, each replaced with the right value. The ETL embeds every `*.toml` in this directory and applies it after all of his files are written and before the [wiki overrides](../wiki/README.md) merge.
+Known mistakes in Maetrim's DDOBuilderV2 files, each replaced with the right value. The ETL embeds every `*.toml` in this directory. Quest corrections apply as soon as his quests are written, before wiki quests are created and before his items' and augments' drop text is linked to quests, so drop text naming a quest by its corrected name links its loot; every other correction applies after all of his files are written. All of them apply before the [wiki overrides](../wiki/README.md) merge.
 
 ## The principle
 
@@ -54,7 +54,7 @@ Only scalar columns can be corrected, never an id or a row's name (except where 
 - `item_socket` `add` appends an `item_augment_slots` row with that label, which must be one his files use; it is stale once the item carries the label.
 - `socket_label` `name` into a new label keeps the prefix (`crafting: `) and updates the variant; a label with a qualifier (`isle of dread: scale (weapon)`) can only merge into an existing label.
 
-A quest's `is_free_to_play` and `legendary_level` come from the wiki's `quests.toml`, not his files, so they are corrected there. Renames run after every other correction, so every correction (and `pack`, `patron`, `set_bonus` and `item_socket` values) names rows by his names; the wiki merge runs after the renames, so wiki files (crafting `augments` and `slot` fields, `quest_loot`, descriptions, packs) use the corrected name, and the build fails on a wiki file that still names his old spelling. The one exception is a wiki items file (`items*.toml`): wiki items are written before corrections run, so their `augment_slots` and `set_bonus` use his labels and names, and a later `socket_label` rename moves their sockets with his.
+A quest's `is_free_to_play` and `legendary_level` come from the wiki's `quests.toml`, not his files, so they are corrected there. Within each of those two passes renames run after every other correction, so every correction (and `pack`, `patron`, `set_bonus` and `item_socket` values) names rows by his names; the wiki merge runs after the renames, so wiki files (crafting `augments` and `slot` fields, `quest_loot`, descriptions, packs) use the corrected name, and the build fails on a wiki file that still names his old spelling. The one exception is a wiki items file (`items*.toml`): wiki items are written before corrections run, so their `augment_slots` and `set_bonus` use his labels and names, and a later `socket_label` rename moves their sockets with his.
 
 ## Validation
 

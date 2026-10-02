@@ -69,14 +69,6 @@ legendary_level = 37
 zone = "Myconid Cave"
 bestowed_by = "Dirnun the Healer"
 
-
-[[quest]]
-name = "A Mad Tea Party"
-page = "https://ddowiki.com/page/A_Mad_Tea_Party"
-read = "2026-10-01"
-free_to_play = false
-zone = "The Town of Vallaki"
-bestowed_by = "Jirko Lukresh"
 [[quest]]
 name = "A Miner Sacrifice"
 page = "https://ddowiki.com/page/A_Miner_Sacrifice"
@@ -1645,6 +1637,14 @@ zone = "Lost Souls' Swamp"
 bestowed_by = "Eradin Krall"
 
 [[quest]]
+name = "Mad Tea Party"
+page = "https://ddowiki.com/page/Mad_Tea_Party"
+read = "2026-10-01"
+free_to_play = false
+zone = "The Town of Vallaki"
+bestowed_by = "Jirko Lukresh"
+
+[[quest]]
 name = "Made to Order"
 page = "https://ddowiki.com/page/Made_to_Order"
 read = "2026-10-01"
@@ -2444,7 +2444,7 @@ zone = "Lower Cathedral"
 bestowed_by = "Archbishop Dryden"
 
 [[quest]]
-name = "Setting the Wards: The Patriarch's Crypt"
+name = "Setting the Wards: The Patriarchs' Crypt"
 page = "https://ddowiki.com/page/Setting_the_Wards:_The_Patriarchs%27_Crypt"
 read = "2026-10-01"
 free_to_play = false
@@ -2731,24 +2731,6 @@ read = "2026-10-01"
 free_to_play = true
 zone = "Tempest's Spine"
 bestowed_by = "Chamberlain Cyrese Embree"
-
-[[quest]]
-name = "Temple of Elemental Evil: Fire Node"
-page = "https://ddowiki.com/page/ToEE:_Fire_Node"
-read = "2026-10-01"
-free_to_play = false
-legendary_level = 34
-zone = "Lower Temple of Elemental Evil, Node of Fire"
-bestowed_by = "Jaroo Ashstaff"
-
-[[quest]]
-name = "Temple of Elemental Evil: Water Node"
-page = "https://ddowiki.com/page/ToEE:_Water_Node"
-read = "2026-10-01"
-free_to_play = false
-legendary_level = 34
-zone = "Lower Temple of Elemental Evil, Node of Water"
-bestowed_by = "Calmert the Cleric"
 
 [[quest]]
 name = "Temple of the Deathwyrm"
@@ -4000,6 +3982,15 @@ free_to_play = false
 legendary_level = 34
 
 [[quest]]
+name = "ToEE: Fire Node"
+page = "https://ddowiki.com/page/ToEE:_Fire_Node"
+read = "2026-10-01"
+free_to_play = false
+legendary_level = 34
+zone = "Lower Temple of Elemental Evil, Node of Fire"
+bestowed_by = "Jaroo Ashstaff"
+
+[[quest]]
 name = "ToEE: First Level and Earth Temple"
 page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
@@ -4012,6 +4003,15 @@ page = "https://ddowiki.com/page/Quests_by_level_and_XP"
 read = "2026-09-27"
 free_to_play = false
 legendary_level = 34
+
+[[quest]]
+name = "ToEE: Water Node"
+page = "https://ddowiki.com/page/ToEE:_Water_Node"
+read = "2026-10-01"
+free_to_play = false
+legendary_level = 34
+zone = "Lower Temple of Elemental Evil, Node of Water"
+bestowed_by = "Calmert the Cleric"
 
 [[quest]]
 name = "Toil and Trouble"

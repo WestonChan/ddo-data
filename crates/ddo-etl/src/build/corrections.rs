@@ -6,15 +6,32 @@ use ddo_model::enums::{CorrectionKind, ModifierSource, RowSource};
 use rusqlite::types::Value as SqlValue;
 use rusqlite::{params, OptionalExtension, Transaction};
 
-pub(super) fn apply_corrections(
+pub(super) fn apply_quest_corrections(
     transaction: &Transaction,
     corrections: &Corrections,
     report: &mut BuildReport,
 ) -> Result<()> {
-    let (renames, field_corrections): (Vec<&Correction>, Vec<&Correction>) = corrections
-        .entries
-        .iter()
-        .partition(|correction| correction.correctable_field().is_ok_and(|field| field.shape == FieldShape::RowName));
+    apply_corrections_where(transaction, corrections, report, |kind| kind == CorrectionKind::Quest)
+}
+
+pub(super) fn apply_non_quest_corrections(
+    transaction: &Transaction,
+    corrections: &Corrections,
+    report: &mut BuildReport,
+) -> Result<()> {
+    apply_corrections_where(transaction, corrections, report, |kind| kind != CorrectionKind::Quest)
+}
+
+fn apply_corrections_where(
+    transaction: &Transaction,
+    corrections: &Corrections,
+    report: &mut BuildReport,
+    applies_to_kind: impl Fn(CorrectionKind) -> bool,
+) -> Result<()> {
+    let (renames, field_corrections): (Vec<&Correction>, Vec<&Correction>) =
+        corrections.entries.iter().filter(|correction| applies_to_kind(correction.kind)).partition(|correction| {
+            correction.correctable_field().is_ok_and(|field| field.shape == FieldShape::RowName)
+        });
     for correction in field_corrections.into_iter().chain(renames) {
         apply_correction(transaction, correction, report)
             .with_context(|| format!("correction file {}: {}", correction.file_name, correction.label()))?;

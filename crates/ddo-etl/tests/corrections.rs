@@ -520,6 +520,34 @@ fn renames_an_item_augment_and_quest_after_their_other_corrections() {
 }
 
 #[test]
+fn a_renamed_quest_links_the_loot_his_drop_text_names_by_the_new_name() {
+    let (db, report) = built_db_with(&[(
+        "corrections.toml",
+        &correction_toml(
+            "quest",
+            "ToEE: First Level and Earth Temple",
+            "name",
+            "\"ToEE: First Level and Earth Temple\"",
+            "\"Temple of Elemental Evil Part One\"",
+        ),
+    )])
+    .unwrap();
+    assert_eq!(report.correction_applied_count, 1, "{:?}", report.stale_corrections);
+    let linked_items: Vec<String> = db
+        .prepare(
+            "SELECT items.name FROM quest_loot JOIN quests ON quests.id = quest_loot.quest_id
+               JOIN items ON items.id = quest_loot.item_id
+              WHERE quests.name = 'Temple of Elemental Evil Part One'",
+        )
+        .unwrap()
+        .query_map([], |r| r.get(0))
+        .unwrap()
+        .map(Result::unwrap)
+        .collect();
+    assert_eq!(linked_items, ["+3 Combustion Scorched Battle Axe"]);
+}
+
+#[test]
 fn renaming_an_item_or_quest_to_a_name_already_taken_fails() {
     let error = built_db_with(&[(
         "corrections.toml",

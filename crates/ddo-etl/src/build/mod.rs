@@ -149,6 +149,7 @@ pub fn build_database(
     }
     report.quest_count = write_quests(&transaction, &parsed_quests)?;
     report.challenge_count = write_challenges(&transaction, &parsed_challenges)?;
+    corrections::apply_quest_corrections(&transaction, corrections, &mut report)?;
     wiki::write_wiki_quests(&transaction, &wiki_overrides.quests, &mut report)?;
     let drop_text_quests = DropTextQuests::from_quests_table(&transaction)?;
 
@@ -207,7 +208,7 @@ pub fn build_database(
     writer.write_standalone_stances(&data_files_dir.join("Stances.xml"), &mut report)?;
     writer.write_guild_buffs(&data_files_dir.join("GuildBuffs.xml"), &mut report)?;
     writer.write_optional_buffs(&data_files_dir.join("SelfAndPartyBuffs.xml"), &mut report)?;
-    corrections::apply_corrections(&transaction, corrections, &mut report)?;
+    corrections::apply_non_quest_corrections(&transaction, corrections, &mut report)?;
     wiki::apply_wiki_overrides(&transaction, wiki_overrides, &drop_text_quests, &mut report)?;
 
     report.bonus_count = writer.written.bonus_ids_by_key.len();
