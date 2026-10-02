@@ -170,8 +170,10 @@ impl Correction {
         }
         match &self.to {
             CorrectionValue::Bonus(bonus) => qualifier_parts.push(format!("{} / {}", bonus.stat, bonus.bonus_type)),
-            CorrectionValue::Text(socket_label) if self.kind == CorrectionKind::ItemSocket => {
-                qualifier_parts.push(socket_label.clone())
+            CorrectionValue::Text(added_name)
+                if matches!(self.kind, CorrectionKind::ItemSocket | CorrectionKind::ItemEffect) =>
+            {
+                qualifier_parts.push(added_name.clone())
             }
             _ => {}
         }
@@ -227,6 +229,11 @@ impl Correction {
                     bail!("an add takes from = \"null\" and to = the socket label to add");
                 }
             }
+            FieldShape::EffectAddition => {
+                if !matches!((&self.from, &self.to), (CorrectionValue::Null, CorrectionValue::Text(_))) {
+                    bail!("an add takes from = \"null\" and to = the name of the effect to add");
+                }
+            }
             _ => {
                 for (value_role, value) in [("from", &self.from), ("to", &self.to)] {
                     if !value.fits(field) {
@@ -274,6 +281,7 @@ fn expected_value_text(field: &CorrectableField) -> String {
         FieldShape::RowName => "the row's name",
         FieldShape::Removal => "0 for from and 1 for to",
         FieldShape::BonusAddition => "a { stat, bonus_type, value } table",
+        FieldShape::EffectAddition => "an effect name",
         FieldShape::SocketAddition => "a socket label",
     };
     if field.is_nullable {

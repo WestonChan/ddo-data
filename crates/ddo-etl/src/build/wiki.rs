@@ -648,7 +648,7 @@ impl TableWriter<'_> {
     }
 }
 
-fn folded_effect_name(effect_name: &str) -> String {
+pub(super) fn folded_effect_name(effect_name: &str) -> String {
     effect_name
         .to_lowercase()
         .chars()

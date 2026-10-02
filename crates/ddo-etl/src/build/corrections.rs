@@ -1,4 +1,5 @@
 use super::items::item_wiki_url;
+use super::wiki::folded_effect_name;
 use super::{bonus_name, BuildReport, StaleCorrection, StaleCorrectionCause};
 use crate::corrections::{BonusAddition, CorrectableField, Correction, CorrectionValue, Corrections, FieldShape};
 use anyhow::{bail, Context, Result};
@@ -144,7 +145,11 @@ fn write_correction(
         }
         FieldShape::BonusAddition => {
             let CorrectionValue::Bonus(bonus) = &correction.to else { bail!("an add names the bonus in to") };
-            add_augment_bonus(transaction, row_ids, bonus)?;
+            add_bonus(transaction, BonusLinkTable::of(correction.kind)?, row_ids, bonus)?;
+        }
+        FieldShape::EffectAddition => {
+            let effect_name = correction.to.as_text().context("an add names the effect in to")?;
+            add_item_effect(transaction, row_ids, effect_name)?;
         }
         FieldShape::SocketAddition => {
             let socket_label = correction.to.as_text().context("an add names the socket label in to")?;
@@ -178,6 +183,8 @@ fn maetrim_row_ids_named(transaction: &Transaction, correction: &Correction, row
     let kind = correction.kind;
     let maetrim_rows_only = match kind {
         CorrectionKind::Item
+        | CorrectionKind::ItemBonus
+        | CorrectionKind::ItemEffect
         | CorrectionKind::ItemSocket
         | CorrectionKind::Quest
         | CorrectionKind::Augment
@@ -208,7 +215,7 @@ fn current_value(
         FieldShape::Removal => return Ok(CorrectionValue::Integer(0)),
         FieldShape::Integer if correction.kind == CorrectionKind::AugmentBonus => {
             let (stat_id, bonus_type_id) = bonus_key_ids(transaction, correction)?;
-            return augment_bonus_value(transaction, row_id, stat_id, bonus_type_id);
+            return bonus_value(transaction, BonusLinkTable::AUGMENT, row_id, stat_id, bonus_type_id);
         }
         FieldShape::BonusTypeName => {
             let (stat_id, bonus_type_id) = bonus_key_ids(transaction, correction)?;
@@ -216,7 +223,14 @@ fn current_value(
         }
         FieldShape::BonusAddition => {
             let (stat_id, bonus_type_id) = bonus_key_ids(transaction, correction)?;
-            return augment_bonus_value(transaction, row_id, stat_id, bonus_type_id);
+            return bonus_value(transaction, BonusLinkTable::of(correction.kind)?, row_id, stat_id, bonus_type_id);
+        }
+        FieldShape::EffectAddition => {
+            let effect_name = correction.to.as_text().context("an add names the effect in to")?;
+            let carries_effect = item_effect_names(transaction, row_id)?
+                .iter()
+                .any(|carried_effect_name| folded_effect_name(carried_effect_name) == folded_effect_name(effect_name));
+            return Ok(if carries_effect { correction.to.clone() } else { CorrectionValue::Null });
         }
         FieldShape::SocketAddition => {
             let socket_label = correction.to.as_text().context("an add names the socket label in to")?;
@@ -251,22 +265,54 @@ fn bonus_type_id_named(transaction: &Transaction, bonus_type_name: &str) -> Resu
         .with_context(|| format!("bonus type {bonus_type_name:?} is not in the bonus_types table; use its exact name"))
 }
 
-fn augment_bonus_value(
+#[derive(Clone, Copy)]
+struct BonusLinkTable {
+    table_name: &'static str,
+    owner_column: &'static str,
+}
+
+impl BonusLinkTable {
+    const AUGMENT: Self = Self { table_name: "augment_bonuses", owner_column: "augment_id" };
+    const ITEM: Self = Self { table_name: "item_bonuses", owner_column: "item_id" };
+
+    fn of(kind: CorrectionKind) -> Result<Self> {
+        match kind {
+            CorrectionKind::AugmentBonus => Ok(Self::AUGMENT),
+            CorrectionKind::ItemBonus => Ok(Self::ITEM),
+            _ => bail!("only an augment_bonus or item_bonus correction adds a bonus"),
+        }
+    }
+}
+
+fn bonus_value(
     transaction: &Transaction,
-    augment_id: i64,
+    link_table: BonusLinkTable,
+    owner_id: i64,
     stat_id: i64,
     bonus_type_id: i64,
 ) -> Result<CorrectionValue> {
+    let BonusLinkTable { table_name, owner_column } = link_table;
     let bonus_value: Option<Option<i64>> = transaction
         .query_row(
-            "SELECT bonuses.value FROM augment_bonuses JOIN bonuses ON bonuses.id = augment_bonuses.bonus_id
-              WHERE augment_bonuses.augment_id = ?1 AND bonuses.stat_id = ?2 AND bonuses.bonus_type_id = ?3
-              ORDER BY augment_bonuses.sort_order LIMIT 1",
-            params![augment_id, stat_id, bonus_type_id],
+            &format!(
+                "SELECT bonuses.value FROM {table_name} JOIN bonuses ON bonuses.id = {table_name}.bonus_id
+                  WHERE {table_name}.{owner_column} = ?1 AND bonuses.stat_id = ?2 AND bonuses.bonus_type_id = ?3
+                  ORDER BY {table_name}.sort_order LIMIT 1"
+            ),
+            params![owner_id, stat_id, bonus_type_id],
             |r| r.get(0),
         )
         .optional()?;
     Ok(bonus_value.flatten().map_or(CorrectionValue::Null, CorrectionValue::Integer))
+}
+
+fn item_effect_names(transaction: &Transaction, item_id: i64) -> Result<Vec<String>> {
+    let mut statement = transaction.prepare(
+        "SELECT effects.name FROM item_effects JOIN effects ON effects.id = item_effects.effect_id
+          WHERE item_effects.item_id = ?1 ORDER BY item_effects.sort_order",
+    )?;
+    let effect_names = statement.query_map(params![item_id], |r| r.get(0))?.collect::<rusqlite::Result<_>>()?;
+    Ok(effect_names)
 }
 
 fn augment_bonus_type_on_stat(
@@ -319,19 +365,59 @@ fn repoint_augment_bonuses(
     Ok(())
 }
 
-fn add_augment_bonus(transaction: &Transaction, augment_ids: &[i64], bonus: &BonusAddition) -> Result<()> {
+fn add_bonus(
+    transaction: &Transaction,
+    link_table: BonusLinkTable,
+    owner_ids: &[i64],
+    bonus: &BonusAddition,
+) -> Result<()> {
     let stat_id = id_named(transaction, "stats", &bonus.stat)?
         .with_context(|| format!("stat {:?} is not in the stats table; use its exact name", bonus.stat))?;
     let bonus_type_id = bonus_type_id_named(transaction, &bonus.bonus_type)?;
     let bonus_id = ensure_bonus_row(transaction, stat_id, bonus_type_id, Some(bonus.value), None)?;
-    for augment_id in augment_ids {
+    let BonusLinkTable { table_name, owner_column } = link_table;
+    for owner_id in owner_ids {
         transaction.execute(
-            "INSERT INTO augment_bonuses (augment_id, bonus_id, sort_order)
-             SELECT ?1, ?2, COALESCE(MAX(sort_order) + 1, 0) FROM augment_bonuses WHERE augment_id = ?1",
-            params![augment_id, bonus_id],
+            &format!(
+                "INSERT INTO {table_name} ({owner_column}, bonus_id, sort_order)
+                 SELECT ?1, ?2, COALESCE(MAX(sort_order) + 1, 0) FROM {table_name} WHERE {owner_column} = ?1"
+            ),
+            params![owner_id, bonus_id],
         )?;
     }
     Ok(())
+}
+
+fn add_item_effect(transaction: &Transaction, item_ids: &[i64], effect_name: &str) -> Result<()> {
+    let effect_id = match matching_effect_id(transaction, effect_name)? {
+        Some(effect_id) => effect_id,
+        None => {
+            transaction.execute("INSERT INTO effects (name) VALUES (?1)", params![effect_name])?;
+            transaction.last_insert_rowid()
+        }
+    };
+    for item_id in item_ids {
+        transaction.execute(
+            "INSERT INTO item_effects (item_id, effect_id, sort_order)
+             SELECT ?1, ?2, COALESCE(MAX(sort_order) + 1, 0) FROM item_effects WHERE item_id = ?1",
+            params![item_id, effect_id],
+        )?;
+    }
+    Ok(())
+}
+
+fn matching_effect_id(transaction: &Transaction, effect_name: &str) -> Result<Option<i64>> {
+    if let Some(effect_id) = id_named(transaction, "effects", effect_name)? {
+        return Ok(Some(effect_id));
+    }
+    let folded_name = folded_effect_name(effect_name);
+    let mut statement = transaction.prepare("SELECT id, name FROM effects ORDER BY id")?;
+    let effects: Vec<(i64, String)> =
+        statement.query_map([], |r| Ok((r.get(0)?, r.get(1)?)))?.collect::<rusqlite::Result<_>>()?;
+    Ok(effects
+        .into_iter()
+        .find(|(_, existing_name)| folded_effect_name(existing_name) == folded_name)
+        .map(|(effect_id, _)| effect_id))
 }
 
 fn ensure_bonus_row(

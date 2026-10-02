@@ -173,7 +173,7 @@ fn augments_come_from_maetrim_unless_the_wiki_supplied_them() {
     assert!(db
         .execute("INSERT INTO augments (name, family, source) VALUES ('Odd Gem', 'Named', 'ddowiki')", [])
         .is_err());
-    assert_eq!(SCHEMA_VERSION, 8);
+    assert_eq!(SCHEMA_VERSION, 9);
 }
 
 #[test]
@@ -224,7 +224,7 @@ fn corrections_record_each_kind_field_and_value_change_once() {
     insert_correction("augment", "").unwrap();
     assert!(insert_correction("augment", "").is_err(), "a (kind, name, qualifier, field) is corrected once");
     insert_correction("augment", "family \"LostPurpose\"").unwrap();
-    for new_kind in ["augment_bonus", "item_socket", "socket_label"] {
+    for new_kind in ["augment_bonus", "item_bonus", "item_effect", "item_socket", "socket_label"] {
         insert_correction(new_kind, "").unwrap();
     }
     assert!(insert_correction("gem", "").is_err(), "kind is one of the correctable tables");

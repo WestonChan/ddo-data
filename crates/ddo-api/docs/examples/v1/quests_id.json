@@ -28,7 +28,7 @@
       "name": "Lunar Gem of Swift Charging (Heroic)"
     }
   ],
-  "bestowed_by": null,
+  "bestowed_by": "Jurin'ildren",
   "difficulties": [
     "normal",
     "hard",
@@ -78,5 +78,5 @@
   "pack": "Magic of Myth Drannor",
   "patron": "Cormanthor Elves",
   "source": "maetrim",
-  "zone": null
+  "zone": "Burning Library"
 }

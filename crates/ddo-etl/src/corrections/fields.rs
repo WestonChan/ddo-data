@@ -11,6 +11,7 @@ pub enum FieldShape {
     Removal,
     BonusTypeName,
     BonusAddition,
+    EffectAddition,
     SocketAddition,
 }
 
@@ -77,6 +78,10 @@ const AUGMENT_BONUS_FIELDS: &[CorrectableField] = &[
     field("add", FieldShape::BonusAddition, false),
 ];
 
+const ITEM_BONUS_FIELDS: &[CorrectableField] = &[field("add", FieldShape::BonusAddition, false)];
+
+const ITEM_EFFECT_FIELDS: &[CorrectableField] = &[field("add", FieldShape::EffectAddition, false)];
+
 const ITEM_SOCKET_FIELDS: &[CorrectableField] = &[field("add", FieldShape::SocketAddition, false)];
 
 const DESCRIPTION_FIELDS: &[CorrectableField] = &[field("description", FieldShape::Text, true)];
@@ -101,6 +106,8 @@ pub fn correctable_fields(kind: CorrectionKind) -> &'static [CorrectableField] {
         | CorrectionKind::SetBonus
         | CorrectionKind::SocketLabel => ROW_NAME_FIELDS,
         CorrectionKind::AugmentBonus => AUGMENT_BONUS_FIELDS,
+        CorrectionKind::ItemBonus => ITEM_BONUS_FIELDS,
+        CorrectionKind::ItemEffect => ITEM_EFFECT_FIELDS,
         CorrectionKind::ItemSocket => ITEM_SOCKET_FIELDS,
     }
 }

@@ -10,7 +10,7 @@ Corrections are internal. The ETL applies them and stores each applied one in th
 
 ## The shape
 
-One `[[correction]]` table per corrected field, in any `*.toml` file here, split by area: `corrections_quests.toml` (quests, packs, patrons), `corrections_crafting.toml` (crafting augments and their bonuses), `corrections_items.toml` (items, their sockets, socket labels), and `corrections.toml` for the rest.
+One `[[correction]]` table per corrected field, in any `*.toml` file here, split by area: `corrections_quests.toml` (quests, packs, patrons), `corrections_crafting.toml` (crafting augments and their bonuses), `corrections_items.toml` (items, their bonuses, effects and sockets, socket labels), and `corrections.toml` for the rest.
 
 ```toml
 [[correction]]
@@ -24,8 +24,8 @@ source = "https://ddowiki.com/page/Lost_Purpose"
 read = "2026-09-29"
 ```
 
-- `kind`: the table the row is in: `item`, `augment`, `quest`, `feat`, `enhancement`, `race`, `class`, `adventure_pack`, `patron`, `set_bonus` or `spell`; or `augment_bonus` (one bonus of an augment), `item_socket` (an item's sockets) or `socket_label` (an `augment_slot_types` row).
-- `name`: the row, by his exact name (for `augment_bonus` the augment's, for `item_socket` the item's, for `socket_label` the label as `/v1/augment-slot-types` lists it, such as `"crafting: zentarim attuned"`). Augment, feat and enhancement names repeat (across augment families, class files and trees), so a correction of one of those applies to every row with that name. An `item` or `item_socket` correction matches only his items, never an item the wiki supplied.
+- `kind`: the table the row is in: `item`, `augment`, `quest`, `feat`, `enhancement`, `race`, `class`, `adventure_pack`, `patron`, `set_bonus` or `spell`; or `augment_bonus` (one bonus of an augment), `item_bonus` (a bonus an item lacks), `item_effect` (an effect an item lacks), `item_socket` (an item's sockets) or `socket_label` (an `augment_slot_types` row).
+- `name`: the row, by his exact name (for `augment_bonus` the augment's, for `item_bonus`, `item_effect` and `item_socket` the item's, for `socket_label` the label as `/v1/augment-slot-types` lists it, such as `"crafting: zentarim attuned"`). Augment, feat and enhancement names repeat (across augment families, class files and trees), so a correction of one of those applies to every row with that name. An `item`, `item_bonus`, `item_effect` or `item_socket` correction matches only his items, never an item the wiki supplied.
 - `family` (optional, `augment` and `augment_bonus` only): narrows the correction to the rows of that name in that augment family.
 - `stat` and `bonus_type` (`augment_bonus` `value` and `bonus_type` only): the bonus to correct, by the `stats.name` and his `bonus_types.name` it has now.
 - `field`: a field from the allow-list below.
@@ -46,11 +46,15 @@ Only scalar columns can be corrected, never an id or a row's name (except where 
 | `feat`, `enhancement`, `race`, `class`, `spell` | `description` |
 | `adventure_pack`, `patron`, `set_bonus` | `name`, which renames the row; a renamed set is renamed in every item's and augment's `set_bonus` too |
 | `augment_bonus` | `value` (an integer), `bonus_type` (a `bonus_types.name`), `add` (`to = { stat = "...", bonus_type = "...", value = N }`) |
+| `item_bonus` | `add` (`to = { stat = "...", bonus_type = "...", value = N }`) |
+| `item_effect` | `add` (`to` = the effect's name) |
 | `item_socket` | `add` (`to` = the socket label to add) |
 | `socket_label` | `name`, which renames the label everywhere it is used; when `to` is already a label the two merge |
 
 - `remove` drops the row and its child rows (bonuses, effects, sockets, quest loot, set links, modifiers; crafting recipes that name it would then fail the wiki merge). Use it only for a row the wiki shows is a duplicate of another he carries.
 - `augment_bonus` `value` and `bonus_type` rewrite the bonus on every augment of that name: the augment is pointed at the `bonuses` row with the corrected stat, type and value (found or inserted), so other items and augments that share his bonus row keep it. The augment's `modifiers` are his and are not rewritten. `add` appends a bonus row to the augment; it is stale once the augment already carries a bonus with that stat and type.
+- `item_bonus` `add` appends a bonus row to the item, the same way an `augment_bonus` `add` does; it is stale once the item already carries a bonus with that stat and type.
+- `item_effect` `add` appends an `item_effects` row. It reuses his `effects` row when one has that name ignoring case, spaces and the punctuation `- : , . '` (as the wiki items writer does), and otherwise creates an effect with no description; it is stale once the item carries an effect matching that way.
 - `item_socket` `add` appends an `item_augment_slots` row with that label, which must be one his files use; it is stale once the item carries the label.
 - `socket_label` `name` into a new label keeps the prefix (`crafting: `) and updates the variant; a label with a qualifier (`isle of dread: scale (weapon)`) can only merge into an existing label.
 
@@ -61,9 +65,9 @@ A quest's `is_free_to_play` and `legendary_level` come from the wiki's `quests.t
 The build fails, naming the file and the correction, when:
 
 - a file has a table or field other than the ones above;
-- `kind` is not one of the fourteen, or `field` is not in that kind's allow-list;
+- `kind` is not one of the sixteen, or `field` is not in that kind's allow-list;
 - `family` is set on a kind other than `augment` or `augment_bonus`, or `stat` and `bonus_type` are missing from (or set outside) an `augment_bonus` `value` or `bonus_type` correction;
-- the same (`kind`, `name`, qualifier, `field`) appears twice, in one file or across files; the qualifier is the `family`, the bonus's stat and type, or an added socket's label, so one augment can have several of its bonuses corrected;
+- the same (`kind`, `name`, qualifier, `field`) appears twice, in one file or across files; the qualifier is the `family`, the bonus's stat and type, or an added effect's name or socket's label, so one augment can have several of its bonuses corrected;
 - `from` or `to` does not fit the field (a string for an integer, `2` for a flag, `"null"` for a field that cannot be NULL), or `to` equals `from`;
 - `reason` is empty, `source` is not an `https://` URL, or `read` is not a real `YYYY-MM-DD` date;
 - `name` matches no row of that kind (in that `family`) in his files, unless the correction is a rename (`field = "name"`) and a row named `to` already exists, which means he fixed the spelling himself: that rename is counted stale, not failed, and the wiki files that use the corrected name keep working;

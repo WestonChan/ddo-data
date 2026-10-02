@@ -830,6 +830,121 @@ fn adds_a_bonus_an_augment_lacks_and_goes_stale_once_he_carries_it() {
     assert!(error.contains("stat") && error.contains("Voidscale"), "{error}");
 }
 
+fn item_bonus_rows(db: &Connection, item_name: &str) -> Vec<(String, Option<String>, Option<i64>)> {
+    db.prepare(
+        "SELECT s.name, bt.name, b.value FROM items i JOIN item_bonuses ib ON ib.item_id = i.id
+           JOIN bonuses b ON b.id = ib.bonus_id JOIN stats s ON s.id = b.stat_id LEFT JOIN bonus_types bt ON bt.id = b.bonus_type_id
+          WHERE i.name = ?1 ORDER BY ib.sort_order",
+    )
+    .unwrap()
+    .query_map([item_name], |r| Ok((r.get(0)?, r.get(1)?, r.get(2)?)))
+    .unwrap()
+    .map(Result::unwrap)
+    .collect()
+}
+
+fn item_effect_names(db: &Connection, item_name: &str) -> Vec<String> {
+    db.prepare(
+        "SELECT e.name FROM items i JOIN item_effects ie ON ie.item_id = i.id JOIN effects e ON e.id = ie.effect_id
+          WHERE i.name = ?1 ORDER BY ie.sort_order",
+    )
+    .unwrap()
+    .query_map([item_name], |r| r.get(0))
+    .unwrap()
+    .map(Result::unwrap)
+    .collect()
+}
+
+#[test]
+fn adds_a_bonus_an_item_lacks_and_goes_stale_once_he_carries_it() {
+    let (db, report) = built_db_with(&[(
+        "corrections.toml",
+        &(correction_toml(
+            "item_bonus",
+            "Docent of Defiance",
+            "add",
+            "\"null\"",
+            "{ stat = \"Acid Resistance\", bonus_type = \"Enhancement\", value = 20 }",
+        ) + &correction_toml(
+            "item_bonus",
+            "Docent of Defiance",
+            "add",
+            "\"null\"",
+            "{ stat = \"Fire Resistance\", bonus_type = \"Enhancement\", value = 30 }",
+        )),
+    )])
+    .unwrap();
+    assert_eq!(
+        (report.correction_applied_count, report.correction_stale_count),
+        (1, 1),
+        "{:?}",
+        report.stale_corrections
+    );
+    assert_eq!(
+        item_bonus_rows(&db, "Docent of Defiance"),
+        [
+            ("Fire Resistance".into(), Some("Enhancement".into()), Some(20)),
+            ("Electric Resistance".into(), Some("Enhancement".into()), Some(20)),
+            ("Cold Resistance".into(), Some("Enhancement".into()), Some(20)),
+            ("Acid Resistance".into(), Some("Enhancement".into()), Some(20)),
+        ]
+    );
+    let (qualifier, to_value): (String, String) =
+        db.query_row("SELECT qualifier, to_value FROM corrections", [], |r| Ok((r.get(0)?, r.get(1)?))).unwrap();
+    assert_eq!(qualifier, "Acid Resistance / Enhancement");
+    assert_eq!(to_value, r#"{"bonus_type":"Enhancement","stat":"Acid Resistance","value":20}"#);
+    let error = built_db_with(&[(
+        "corrections.toml",
+        &correction_toml(
+            "item_bonus",
+            "Docent of Defiance",
+            "add",
+            "\"null\"",
+            "{ stat = \"Acid Resistence\", bonus_type = \"Enhancement\", value = 20 }",
+        ),
+    )])
+    .unwrap_err();
+    assert!(error.contains("Acid Resistence") && error.contains("Docent of Defiance"), "{error}");
+}
+
+#[test]
+fn adds_an_effect_an_item_lacks_reusing_his_effect_row_and_goes_stale_once_he_carries_it() {
+    let effect_count_without_corrections = row_count(&built_db_with(&[]).unwrap().0, "SELECT COUNT(*) FROM effects");
+    let (db, report) = built_db_with(&[(
+        "corrections.toml",
+        &(correction_toml("item_effect", "Docent of Defiance", "add", "\"null\"", "\"Feather Falling\"")
+            + &correction_toml("item_effect", "Docent of Defiance", "add", "\"null\"", "\"Book Shot\"")
+            + &correction_toml("item_effect", "Kundarak Delving Boots", "add", "\"null\"", "\"freedom of movement\"")),
+    )])
+    .unwrap();
+    assert_eq!(
+        (report.correction_applied_count, report.correction_stale_count),
+        (2, 1),
+        "{:?}",
+        report.stale_corrections
+    );
+    assert_eq!(
+        item_effect_names(&db, "Docent of Defiance"),
+        ["Hidden Effect Cursed Defiance", "FeatherFalling", "Book Shot"]
+    );
+    assert_eq!(item_effect_names(&db, "Kundarak Delving Boots"), ["Freedom of Movement"]);
+    assert_eq!(row_count(&db, "SELECT COUNT(*) FROM effects"), effect_count_without_corrections + 1);
+    let qualifiers: Vec<String> = db
+        .prepare("SELECT qualifier FROM corrections ORDER BY qualifier")
+        .unwrap()
+        .query_map([], |r| r.get(0))
+        .unwrap()
+        .map(Result::unwrap)
+        .collect();
+    assert_eq!(qualifiers, ["Book Shot", "Feather Falling"]);
+    let error = parsed_corrections(&[(
+        "corrections.toml",
+        &correction_toml("item_effect", "Docent of Defiance", "add", "\"null\"", "3"),
+    )])
+    .unwrap_err();
+    assert!(error.contains("Docent of Defiance") && error.contains("effect"), "{error}");
+}
+
 #[test]
 fn adds_a_socket_an_item_lacks_and_goes_stale_once_he_carries_it() {
     let (db, report) = built_db_with(&[(

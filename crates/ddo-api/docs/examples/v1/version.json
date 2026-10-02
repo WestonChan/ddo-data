@@ -13,7 +13,7 @@
     "feats": 1022,
     "filigrees": 437,
     "guild_buffs": 37,
-    "items": 8746,
+    "items": 8743,
     "modifiers": 13817,
     "optional_buffs": 138,
     "quest_augment_loot": 537,
@@ -24,12 +24,12 @@
     "set_bonuses": 327,
     "spells": 706,
     "wiki_augments": 0,
-    "wiki_items": 263,
+    "wiki_items": 262,
     "wiki_quests": 1
   },
   "dataset": {
-    "built_at": "2026-10-01T22:43:09Z",
+    "built_at": "2026-10-02T00:55:08Z",
     "upstream_sha": "31ef0201ea8e28604de2b6242988aee6d63733b0"
   },
-  "schema_version": 8
+  "schema_version": 9
 }

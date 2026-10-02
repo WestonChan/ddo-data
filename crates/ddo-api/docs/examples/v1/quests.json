@@ -1,6 +1,6 @@
 [
   {
-    "bestowed_by": null,
+    "bestowed_by": "Graz'zt the Dark Prince",
     "difficulties": [
       "casual",
       "normal",
@@ -21,10 +21,10 @@
     "pack": "Terror of Demogorgon",
     "patron": "Battlehammer Expedition",
     "source": "maetrim",
-    "zone": null
+    "zone": "The Sanguine Labyrinth"
   },
   {
-    "bestowed_by": null,
+    "bestowed_by": "Renton Finne",
     "difficulties": [
       "normal",
       "hard",
@@ -45,10 +45,10 @@
     "pack": "Shadowfell Conspiracy",
     "patron": "The Harpers",
     "source": "maetrim",
-    "zone": null
+    "zone": "Mountain Glacier"
   },
   {
-    "bestowed_by": null,
+    "bestowed_by": "Jorgundal ar'Grund",
     "difficulties": [
       "normal",
       "hard",
@@ -69,6 +69,6 @@
     "pack": "Ruins of Gianthold",
     "patron": "Agents of Argonnessen",
     "source": "maetrim",
-    "zone": null
+    "zone": "Hobgoblin Lair"
   }
 ]
