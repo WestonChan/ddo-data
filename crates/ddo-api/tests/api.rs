@@ -137,6 +137,24 @@ async fn items_filter_by_any_of_several_stats_given_as_repeated_keys_or_a_comma_
 }
 
 #[tokio::test]
+async fn items_match_a_stat_on_their_sets_tiers_only_when_set_bonuses_are_included() {
+    let (_, _, own_bonuses_only) = get("/v1/items?stat=Sneak%20Attack%20Dice").await;
+    assert_eq!(own_bonuses_only["total"], 0, "no fixture item has its own Sneak Attack Dice bonus");
+    let (status, _, with_set_bonuses) = get("/v1/items?stat=Sneak%20Attack%20Dice&include_set_bonuses=true").await;
+    assert_eq!(status, StatusCode::OK, "{with_set_bonuses}");
+    assert_eq!(item_names(&with_set_bonuses), ["Kundarak Delving Boots"], "its set's three-piece tier gives the dice");
+
+    let (_, _, own_or_set) = get("/v1/items?stat=Hide,Physical%20Resistance%20Rating&include_set_bonuses=true").await;
+    assert_eq!(
+        item_names(&own_or_set),
+        ["Kundarak Delving Boots", "Legendary Cloak of Winter"],
+        "the boots' own Hide bonus still matches beside the cloak's Eminence of Winter PRR tier"
+    );
+    let (_, _, explicitly_excluded) = get("/v1/items?stat=Sneak%20Attack%20Dice&include_set_bonuses=false").await;
+    assert_eq!(explicitly_excluded["total"], 0);
+}
+
+#[tokio::test]
 async fn items_say_whether_maetrim_or_the_wiki_supplied_them() {
     let (_, _, axe_matches) = get("/v1/items?q=oozing").await;
     let axe_row = &axe_matches["items"][0];

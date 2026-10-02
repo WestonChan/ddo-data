@@ -37,6 +37,7 @@ pub(super) struct ItemListQuery {
     pub raid: Option<bool>,
     pub rare: Option<bool>,
     pub stat: Option<String>,
+    pub include_set_bonuses: Option<bool>,
     pub limit: Option<i64>,
     pub offset: Option<i64>,
 }
@@ -65,7 +66,8 @@ impl QueryParameters for ItemListQuery {
         ("pack" = Option<String>, Query, description = "Adventure pack name as /v1/adventure-packs lists it; matches items dropping from a quest in it or credited to any quest of the whole pack"),
         ("raid" = Option<bool>, Query, description = "`true` keeps only items that drop from a raid; `false` and unset apply no filter"),
         ("rare" = Option<bool>, Query, description = "`true` keeps only items that are rare loot from at least one quest or from any quest of a pack, per Maetrim's drop text or ddowiki; `false` and unset apply no filter"),
-        ("stat" = Option<String>, Query, description = "One or more stat names as /v1/stats lists them, comma-separated (`stat=Strength,Dexterity`) or as repeated keys (`stat=Strength&stat=Dexterity`); keeps items with at least one bonus to any of them; an unknown name is a 400 naming it"),
+        ("stat" = Option<String>, Query, description = "One or more stat names as /v1/stats lists them, comma-separated (`stat=Strength,Dexterity`) or as repeated keys (`stat=Strength&stat=Dexterity`); keeps items with at least one bonus of their own to any of them, and with `include_set_bonuses=true` also items whose set has a tier with a bonus to any of them; an unknown name is a 400 naming it"),
+        ("include_set_bonuses" = Option<bool>, Query, description = "`true` widens `stat` to also match an item when any tier of its set (see /v1/sets/{id}) carries a bonus to a listed stat; the item's own bonuses match either way; `false` and unset match its own bonuses only; no effect without `stat`"),
         ("limit" = Option<i64>, Query, description = "Page size, 1 to 10000; defaults to 100; out-of-range values are clamped rather than rejected"),
         ("offset" = Option<i64>, Query, description = "Rows to skip before the first returned row; defaults to 0; negative values are clamped to 0 rather than rejected")
     ),
@@ -118,10 +120,12 @@ async fn items(
                 return Err(ApiError::BadRequest(format!("unknown stat {unknown_stat_name:?}")));
             }
             if !stat_names.is_empty() {
-                where_clause.add_bound_list_condition(
-                    "EXISTS (SELECT 1 FROM item_bonuses ib JOIN bonuses b ON b.id = ib.bonus_id JOIN stats s ON s.id = b.stat_id WHERE ib.item_id = i.id AND s.name IN (?))",
-                    stat_names,
-                );
+                let stat_match_sql = if query.include_set_bonuses == Some(true) {
+                    format!("({ITEMS_WITH_OWN_BONUS_TO_STATS_SQL} OR {ITEMS_WITH_SET_TIER_BONUS_TO_STATS_SQL})")
+                } else {
+                    ITEMS_WITH_OWN_BONUS_TO_STATS_SQL.to_string()
+                };
+                where_clause.add_bound_list_condition(&stat_match_sql, stat_names);
             }
             let where_sql = where_clause.to_sql();
             let from_sql = format!("FROM items i JOIN equipment_slots es ON es.id = i.slot_id {where_sql}");
@@ -141,6 +145,15 @@ async fn items(
         })
         .await
 }
+
+const ITEMS_WITH_OWN_BONUS_TO_STATS_SQL: &str =
+    "i.id IN (SELECT ib.item_id FROM stats s JOIN bonuses b ON b.stat_id = s.id \
+     JOIN item_bonuses ib ON ib.bonus_id = b.id WHERE s.name IN (?))";
+
+const ITEMS_WITH_SET_TIER_BONUS_TO_STATS_SQL: &str =
+    "i.id IN (SELECT sbi.item_id FROM stats s JOIN bonuses b ON b.stat_id = s.id \
+     JOIN set_bonus_tier_bonuses tb ON tb.bonus_id = b.id JOIN set_bonus_tiers t ON t.id = tb.tier_id \
+     JOIN set_bonus_items sbi ON sbi.set_id = t.set_id WHERE s.name IN (?))";
 
 fn first_unknown_stat_name(db: &rusqlite::Connection, stat_names: &[String]) -> Result<Option<String>, ApiError> {
     let mut statement = db.prepare_cached("SELECT EXISTS (SELECT 1 FROM stats WHERE name = ?1)")?;
