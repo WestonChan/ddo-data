@@ -13,6 +13,21 @@
     </Effect>
   </Buff>
   <Buff>
+    <Type>Alignment Absorption</Type>
+    <DisplayText>%b1 Alignment Absorption %v1%: Passive: %v1% %b1 Bonus to Alignment Absorption. (Absorption reduces damage from an element by a percentage, after resistance have been taken into account.)</DisplayText>
+    <Ignore>Enhancement</Ignore>
+    <Effect>
+      <Type>EnergyAbsorbance</Type>
+      <Bonus>Enhancement</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+      <Item>Lawful</Item>
+      <Item>Chaos</Item>
+      <Item>Good</Item>
+      <Item>Evil</Item>
+    </Effect>
+  </Buff>
+  <Buff>
     <Type>ArmorEnchantment</Type>
     <DisplayText>%v1 Enhancement Bonus: This item has been magically enhanced. Armor with this quality gains a %v1 Enhancement bonus to AC.</DisplayText>
     <Ignore>Enhancement</Ignore>
@@ -40,6 +55,36 @@
     </Effect>
   </Buff>
   <Buff>
+    <Type>Command</Type>
+    <DisplayText>Command %v1: Passive: %v1 Insightful bonus on Charisma based skill checks. Command armor and command shields make their owners very noticeable, imposing a %v2 penalty on Hide checks.</DisplayText>
+    <Effect>
+      <Type>SkillBonusAbility</Type>
+      <Bonus>Insightful</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+      <Item>Charisma</Item>
+    </Effect>
+    <Effect>
+      <Type>SkillBonus</Type>
+      <Bonus>Penalty</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+      <Item>Hide</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Damage Bonus</Type>
+    <DisplayText>%b1 Damage Bonus %v1: Provides a %v1 %b1 bonus to damage.</DisplayText>
+    <Ignore>Competence</Ignore>
+    <Effect>
+      <Type>Weapon_Damage</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+      <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
     <Type>Deception</Type>
     <DisplayText>%b1 Deception %v1: %v1 %b1 bonus to hit and %v2 Damage for Sneak Attacks.</DisplayText>
     <Ignore>Enhancement</Ignore>
@@ -54,6 +99,21 @@
       <Bonus>Not Set</Bonus>
       <AType>Simple</AType>
       <Amount size="1">0</Amount>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Elemental Absorption</Type>
+    <DisplayText>%b1 Elemental Absorption %v1%: Passive: %v1% Enhancement Bonus to Acid, Cold, Fire, and Electrical Absorption. (Absorption reduces damage from an element by a percentage, after resistance have been taken into account.)</DisplayText>
+    <Ignore>Enhancement</Ignore>
+    <Effect>
+      <Type>EnergyAbsorbance</Type>
+      <Bonus>Enhancement</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+      <Item>Acid</Item>
+      <Item>Cold</Item>
+      <Item>Electric</Item>
+      <Item>Fire</Item>
     </Effect>
   </Buff>
   <Buff>
@@ -115,6 +175,17 @@
     <DisplayText>Hidden Effect - Cursed Defiance: 5% on-being-hit chance to be unable to move and gain DR 20/- for 20 seconds</DisplayText>
   </Buff>
   <Buff>
+    <Type>Illusion Save</Type>
+    <DisplayText>Illusion Save %v1: %v1 Resistance bonus to your saves versus illusions</DisplayText>
+    <Effect>
+      <Type>SaveBonus</Type>
+      <Bonus>Resistance</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+      <Item>Illusion</Item>
+    </Effect>
+  </Buff>
+  <Buff>
     <Type>Legendary Ice Barrier</Type>
     <DisplayText>Legendary Ice Barrier: When struck in combat, there is a small chance you will be shielded by conjured ice, preventing the next 150 Damage unless that damage is Fire. This lasts for 1 minute or until depleted.</DisplayText>
   </Buff>
@@ -141,8 +212,22 @@
     <DisplayText>Lightning Strike: This weapon stores the power of a volatile thunderstorm deep within. Occasionally, this dynamic power comes to the surface, devastating enemies with a massive lightning strike.</DisplayText>
   </Buff>
   <Buff>
+    <Type>Linguistics</Type>
+    <DisplayText>Linguistics %v1%: This item reduced the cooldowns of your Social skills (Diplomacy, Bluff, Intimidate) by %v1%. This does not stack with the Negotiator ability.</DisplayText>
+  </Buff>
+  <Buff>
     <Type>Manslayer</Type>
     <DisplayText>Manslayer: While wearing this item, your weapon attacks gain the devastating ability to defeat a humanoid opponent with a single decisive blow. On an attack roll of 20 which is confirmed as a critical hit a humanoid target will be killed. Powerful humanoids may resist the vorpal strike and instead take 100 points of damage until they have been sufficiently weakened.</DisplayText>
+  </Buff>
+  <Buff>
+    <Type>Rune Arm Charge Rate</Type>
+    <DisplayText>Rune Arm Charge Rate %v1%: This Rune Arm has a %v1% %b1 bonus to its Charge Rate.</DisplayText>
+    <Effect>
+      <Type>RuneArmChargeRate</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+    </Effect>
   </Buff>
   <Buff>
     <Type>Seeker</Type>
@@ -167,6 +252,23 @@
       <AType>Simple</AType>
       <Amount size="1">0</Amount>
       <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Sneak Attack</Type>
+    <DisplayText>%b1 Sneak Attack Bonus %v1: Provides a %v1 %b1 modifier to your attack bonus and a %v2 %b1 bonus to damage for any attack that would qualify as a Sneak Attack, even if the wielder is not a Rogue.</DisplayText>
+    <Ignore>Enhancement</Ignore>
+    <Effect>
+      <Type>SneakAttackAttack</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+    </Effect>
+    <Effect>
+      <Type>SneakAttackDamage</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
     </Effect>
   </Buff>
   <Buff>

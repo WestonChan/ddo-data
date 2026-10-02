@@ -1,0 +1,38 @@
+<Items>
+  <Item>
+    <Name>Cyran Guard (Level 27)</Name>
+    <Icon>Docent_1a</Icon>
+    <Description>There is no greater honor than to give your life for Cyre, other than to make taking your life as punishing as possible.'
+- Unknown Cyran General</Description>
+    <DropLocation>Brothers of the Forge, End chest (Epic Hard)</DropLocation>
+    <MinLevel>27</MinLevel>
+    <EquipmentSlot>
+      <Armor/>
+    </EquipmentSlot>
+    <Requirements>
+      <Requirement>
+        <Type>RaceConstruct</Type>
+      </Requirement>
+    </Requirements>
+    <Armor>Docent</Armor>
+    <ArmorBonus>-4</ArmorBonus>
+    <MithralBody>13</MithralBody>
+    <AdamantineBody>25</AdamantineBody>
+    <Material>Steel</Material>
+    <Buff>
+      <Type>ArmorEnchantment</Type>
+      <Value1>9</Value1>
+      <BonusType>Armor Enhancement</BonusType>
+    </Buff>
+    <Buff>
+      <Type>Elemental Absorption</Type>
+      <Value1>19</Value1>
+    </Buff>
+    <ItemAugment>
+      <Type>Green</Type>
+    </ItemAugment>
+    <ItemAugment>
+      <Type>Colorless</Type>
+    </ItemAugment>
+  </Item>
+</Items>

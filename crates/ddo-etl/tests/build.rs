@@ -40,9 +40,9 @@ fn item_id(db: &Connection, name: &str) -> i64 {
 #[test]
 fn builds_items_and_skips_cosmetics() {
     let (db, report) = built_fixture_db();
-    assert_eq!(report.written_item_count, 23);
+    assert_eq!(report.written_item_count, 31);
     assert_eq!(report.skipped_cosmetic_item_count, 1);
-    assert_eq!(count(&db, "SELECT COUNT(*) FROM items WHERE source = 'maetrim'"), 23);
+    assert_eq!(count(&db, "SELECT COUNT(*) FROM items WHERE source = 'maetrim'"), 31);
     assert_eq!(count(&db, "SELECT COUNT(*) FROM items WHERE name = '17th Anniversary Dark Helm'"), 0);
     let reason: String = db
         .query_row("SELECT reason FROM excluded_items WHERE name = '17th Anniversary Dark Helm'", [], |r| r.get(0))
@@ -233,6 +233,56 @@ fn writes_tactical_dc_buffs_as_bonuses() {
         ),
     );
     assert_eq!(shatter_effect_count, 0);
+}
+
+#[test]
+fn writes_buffs_named_after_a_stat_as_bonuses() {
+    let (db, _) = built_fixture_db();
+    let stat_bonuses_by_item = |item_name: &str, stat_name: &str| -> Vec<(Option<String>, Option<i64>, Option<i64>)> {
+        db.prepare(
+            "SELECT bt.name, b.value, b.value2 FROM item_bonuses ib JOIN bonuses b ON b.id = ib.bonus_id
+               JOIN stats s ON s.id = b.stat_id LEFT JOIN bonus_types bt ON bt.id = b.bonus_type_id
+              WHERE ib.item_id = ?1 AND s.name = ?2 ORDER BY ib.sort_order",
+        )
+        .unwrap()
+        .query_map(params![item_id(&db, item_name), stat_name], |r| Ok((r.get(0)?, r.get(1)?, r.get(2)?)))
+        .unwrap()
+        .map(Result::unwrap)
+        .collect()
+    };
+    let insight = Some("Insight".to_string());
+    let enhancement = Some("Enhancement".to_string());
+    assert_eq!(
+        stat_bonuses_by_item("Backstabber's Gloves (Level 25)", "Sneak Attack"),
+        vec![(enhancement.clone(), Some(5), Some(8)), (insight, Some(3), Some(5))]
+    );
+    assert_eq!(stat_bonuses_by_item("Grudgebearer's Plate", "Command"), vec![(None, Some(2), Some(-6))]);
+    assert_eq!(
+        stat_bonuses_by_item("Bold Trinket", "Damage Bonus"),
+        vec![(Some("Competence".to_string()), Some(1), None)]
+    );
+    assert_eq!(
+        stat_bonuses_by_item("The Stablestone", "Alignment Absorption"),
+        vec![(enhancement.clone(), Some(22), None)]
+    );
+    assert_eq!(stat_bonuses_by_item("Cyran Guard (Level 27)", "Elemental Absorption"), vec![(None, Some(19), None)]);
+    assert_eq!(stat_bonuses_by_item("Visor of Fraz-Urb'luu", "Illusion Save"), vec![(None, Some(5), None)]);
+    assert_eq!(
+        stat_bonuses_by_item("Celestial Emerald Ring", "Linguistics"),
+        vec![(Some("Equipment".to_string()), Some(10), None)]
+    );
+    assert_eq!(stat_bonuses_by_item("Echoes of Night", "Rune Arm Charge Rate"), vec![(enhancement, Some(5), None)]);
+    let effects_named_after_a_stat: Vec<String> = db
+        .prepare(
+            "SELECT DISTINCT e.name FROM item_effects ie JOIN effects e ON e.id = ie.effect_id
+              WHERE e.name IN (SELECT name FROM stats) ORDER BY e.name",
+        )
+        .unwrap()
+        .query_map([], |r| r.get(0))
+        .unwrap()
+        .map(Result::unwrap)
+        .collect();
+    assert_eq!(effects_named_after_a_stat, Vec::<String>::new());
 }
 
 #[test]
@@ -499,7 +549,7 @@ fn diff_reports_coverage_against_a_legacy_database() {
         vec!["17th Anniversary Dark Helm".to_string()],
         "cosmetics are not gaps"
     );
-    assert_eq!(coverage.names_only_in_built.len(), 21, "the wiki fixture item is only in the build");
+    assert_eq!(coverage.names_only_in_built.len(), 29, "the wiki fixture item is only in the build");
     assert!((coverage.coverage_ratio() - 0.75).abs() < 1e-9);
 }
 

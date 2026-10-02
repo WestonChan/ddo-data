@@ -133,6 +133,14 @@ fn buffs_resolve_to_enhancement_bonus_stat_or_effect() {
         (buff("WizardryNumber", None, Some(200), Some("Enhancement")), "Spell Points"),
         (buff("Shatter", None, Some(7), Some("Insightful")), "Sunder DC"),
         (buff("Vertigo", None, Some(15), Some("Enhancement")), "Trip DC"),
+        (buff("Sneak Attack", None, Some(5), Some("Enhancement")), "Sneak Attack"),
+        (buff("Command", None, Some(2), None), "Command"),
+        (buff("Damage Bonus", None, Some(1), Some("Competence")), "Damage Bonus"),
+        (buff("Alignment Absorption", None, Some(22), Some("Enhancement")), "Alignment Absorption"),
+        (buff("Elemental Absorption", None, Some(19), None), "Elemental Absorption"),
+        (buff("Illusion Save", None, Some(5), None), "Illusion Save"),
+        (buff("Linguistics", None, Some(10), Some("Equipment")), "Linguistics"),
+        (buff("Rune Arm Charge Rate", None, Some(5), Some("Enhancement")), "Rune Arm Charge Rate"),
     ];
     for (b, expected) in cases {
         match map.resolved(&b).unwrap() {
@@ -152,6 +160,12 @@ fn buffs_resolve_to_enhancement_bonus_stat_or_effect() {
     match map.resolved(&buff("Lifesealed", None, Some(34), Some("Enhancement"))).unwrap() {
         ResolvedBuff::Effect { value, .. } => assert_eq!(value, Some(34)),
         other => panic!("{other:?}"),
+    }
+    for prose_only_buff in [buff("Tendon Slice", None, Some(6), None), buff("Persuasion", None, None, Some(""))] {
+        match map.resolved(&prose_only_buff).unwrap() {
+            ResolvedBuff::Effect { name, .. } => assert_eq!(name, prose_only_buff.kind),
+            other => panic!("{}: {other:?}", prose_only_buff.kind),
+        }
     }
     assert!(
         map.resolved(&buff("AbilityBonus", Some("Luck"), Some(1), None)).is_err(),

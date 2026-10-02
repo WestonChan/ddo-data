@@ -1,0 +1,29 @@
+<Items>
+  <Item>
+    <NoAutoUpdate/>
+    <Name>Bold Trinket</Name>
+    <Icon>Trinket_62</Icon>
+    <Description>A pirate is courageous and leaps into battle without fear. This trinket gives
+you boosts to the damage of your attacks.</Description>
+    <DropLocation>Treasure of Crystal Cove, Turn in Lesser Bold Trinket (and other ingredients) at Dusty Old Treasure of Crystal Cove</DropLocation>
+    <MinLevel>4</MinLevel>
+    <EquipmentSlot>
+      <Trinket/>
+    </EquipmentSlot>
+    <Material>Gem (material)</Material>
+    <Buff>
+      <Type>Upgradeable - Tier 2</Type>
+      <BonusType/>
+    </Buff>
+    <Buff>
+      <Type>Damage Bonus</Type>
+      <Value1>1</Value1>
+      <BonusType>Competence</BonusType>
+    </Buff>
+    <Buff>
+      <Type>Seeker</Type>
+      <Value1>2</Value1>
+      <BonusType>Insightful</BonusType>
+    </Buff>
+  </Item>
+</Items>

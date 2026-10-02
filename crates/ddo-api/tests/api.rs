@@ -61,7 +61,7 @@ async fn version_reports_dataset_and_schema() {
     assert_eq!(json["dataset"]["upstream_sha"], "fixture-sha");
     assert_eq!(json["schema_version"], ddo_model::SCHEMA_VERSION);
     assert!(json.get("api_commit").is_some(), "version must report the API build commit, null when unknown");
-    assert_eq!(json["counts"]["items"], 24, "23 of Maetrim's and the wiki fixture's axe");
+    assert_eq!(json["counts"]["items"], 32, "31 of Maetrim's and the wiki fixture's axe");
     assert_eq!(json["counts"]["quest_augment_loot"], 7);
     assert_eq!(
         (
@@ -91,7 +91,7 @@ async fn items_list_filters_and_pages() {
 
     let (_, _, first_page) = get("/v1/items?limit=5&offset=0").await;
     assert_eq!(first_page["items"].as_array().unwrap().len(), 5);
-    assert_eq!(first_page["total"], 24);
+    assert_eq!(first_page["total"], 32);
     let (_, _, armor) = get("/v1/items?category=Armor").await;
     assert!(armor["items"].as_array().unwrap().iter().all(|i| i["category"] == "Armor"));
     let (_, _, level_range) = get("/v1/items?min_level=20&max_level=25").await;
@@ -111,7 +111,7 @@ async fn items_list_filters_and_pages() {
     );
     assert!(rare.iter().all(|item| item["is_rare"] == true));
     let (_, _, unfiltered) = get("/v1/items?rare=false").await;
-    assert_eq!(unfiltered["total"], 24);
+    assert_eq!(unfiltered["total"], 32);
     let (status, _, _) = get("/v1/items?category=Hat").await;
     assert_eq!(status, StatusCode::BAD_REQUEST, "unknown category is a client error");
 }
@@ -201,7 +201,7 @@ async fn enchantments_list_every_stat_and_effect_an_item_carries_with_its_item_c
     );
     assert!(enchantment_named(&enchantments, "Sneak Attack Dice", "stat").is_none(), "only a set tier carries it");
     let rows = enchantments.as_array().unwrap();
-    assert_eq!(rows.len(), 53, "28 stats and 25 effects carried by fixture items");
+    assert_eq!(rows.len(), 75, "44 stats and 31 effects carried by fixture items");
     assert!(rows.iter().all(|row| row["item_count"].as_i64().unwrap() > 0));
     let names: Vec<&str> = rows.iter().map(|row| row["name"].as_str().unwrap()).collect();
     let mut sorted_names = names.clone();
@@ -218,7 +218,7 @@ async fn enchantments_narrow_by_search_text_and_kind() {
 
     let (_, _, effects) = get("/v1/enchantments?kind=effect").await;
     let effects = effects.as_array().unwrap();
-    assert_eq!(effects.len(), 25);
+    assert_eq!(effects.len(), 31);
     assert!(effects.iter().all(|row| row["kind"] == "effect"), "kind=effect lists a stat");
     let (_, _, strength_stats) = get("/v1/enchantments?kind=stat&q=strength").await;
     assert_eq!(strength_stats, serde_json::json!([{ "name": "Strength", "kind": "stat", "item_count": 2 }]));
@@ -274,13 +274,14 @@ async fn item_search_text_also_matches_a_slot_category_or_pack_name_and_ranks_ex
         [
             "Ring of the Kraken",
             "Acrobat's Ring",
+            "Celestial Emerald Ring",
             "Epic Ring of the Stalker",
             "Five Rings",
             "Legendary Ring of Unbridled Might"
         ],
         "a name starting with the text comes before names merely containing it"
     );
-    assert_eq!(ring["total"], 5);
+    assert_eq!(ring["total"], 6);
     let (_, _, boots) = get("/v1/items?q=Kundarak%20Delving%20Boots").await;
     assert_eq!(item_names(&boots), ["Kundarak Delving Boots", "Epic Kundarak Delving Boots"], "the exact name first");
 
@@ -288,7 +289,7 @@ async fn item_search_text_also_matches_a_slot_category_or_pack_name_and_ranks_ex
     assert_eq!(item_names(&feet), ["Epic Kundarak Delving Boots", "Kundarak Delving Boots"], "the Feet slot");
     let (_, _, jewelry) = get("/v1/items?q=jewelry").await;
     assert!(jewelry["items"].as_array().unwrap().iter().all(|item| item["category"] == "Jewelry"), "{jewelry}");
-    assert_eq!(jewelry["total"], 6);
+    assert_eq!(jewelry["total"], 10);
     let (_, _, free_to_play) = get("/v1/items?q=free%20to%20play").await;
     assert_eq!(
         item_names(&free_to_play),
