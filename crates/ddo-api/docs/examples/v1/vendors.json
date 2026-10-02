@@ -1,5 +1,14 @@
 [
   {
+    "id": 12,
+    "item_count": 6,
+    "location": "Necropolis, Upper",
+    "name": "Balkar Aislin",
+    "pack": null,
+    "provenance": "wiki",
+    "wiki_url": "https://ddowiki.com/page/Balkar_Aislin"
+  },
+  {
     "id": 4,
     "item_count": 1,
     "location": "Hall of Heroes, Eberron",
@@ -16,14 +25,5 @@
     "pack": null,
     "provenance": "wiki",
     "wiki_url": "https://ddowiki.com/page/Captain_Xendros"
-  },
-  {
-    "id": 8,
-    "item_count": 6,
-    "location": "Hall of Heroes, Eberron and Hall of Heroes, Forgotten Realms",
-    "name": "Champion Hunter",
-    "pack": null,
-    "provenance": "wiki",
-    "wiki_url": "https://ddowiki.com/page/Monster_Hunter"
   }
 ]

@@ -323,3 +323,53 @@ name = "Champion Hunter"
 page = "https://ddowiki.com/page/Monster_Hunter"
 read = "2026-10-02"
 location = "Hall of Heroes, Eberron and Hall of Heroes, Forgotten Realms"
+
+[[vendor]]
+name = "Raam Lukresh"
+page = "https://ddowiki.com/page/Raam_Lukresh"
+read = "2026-10-02"
+location = "Blue Water Inn"
+
+[[vendor]]
+name = "Osah Lukresh"
+page = "https://ddowiki.com/page/Osah_Lukresh"
+read = "2026-10-02"
+location = "Blue Water Inn"
+
+[[vendor]]
+name = "Squire Rale"
+page = "https://ddowiki.com/page/Squire_Rale"
+read = "2026-10-02"
+location = "The Necropolis, far west side of encampment area, just north of the Banker and Auctioneer"
+items = [
+  { name = "Lumric's Longbow", cost = "Scarlet Scarab Powder" },
+  { name = "Touch of the Silver Flame", cost = "Scarlet Scarab Powder" },
+  { name = "Signal of the Silver Flame", cost = "Scarlet Scarab Powder" },
+  { name = "Morleth's Docent", cost = "Dark Scarab Powder" },
+  { name = "Righteous Bracers", cost = "Dark Scarab Powder" },
+  { name = "Signet of the Silver Flame", cost = "Dark Scarab Powder" },
+  { name = "Benign Breath", cost = "Eerie Scarab Powder" },
+  { name = "Dalorent's Seal", cost = "Eerie Scarab Powder" },
+  { name = "Ghostbane Longbow", cost = "Eerie Scarab Powder" },
+  { name = "Kaelth's Touch", cost = "Eerie Scarab Powder" },
+]
+
+[[vendor]]
+name = "Balkar Aislin"
+page = "https://ddowiki.com/page/Balkar_Aislin"
+read = "2026-10-02"
+location = "Necropolis, Upper"
+items = [
+  { name = "Muffled Veneer", cost = "20 Shred of Tapestry" },
+  { name = "Seraphim", cost = "20 Shred of Tapestry" },
+  { name = "Totemic Lavalier", cost = "20 Shred of Tapestry" },
+  { name = "Undying Gaze", cost = "20 Shred of Tapestry" },
+  { name = "Minos Legens", cost = "20 Shred of Tapestry" },
+  { name = "Tradusor", cost = "20 Shred of Tapestry" },
+]
+
+[[vendor]]
+name = "Chirugeon Laj'amal"
+page = "https://ddowiki.com/page/Chirugeon_Laj%27Amal"
+read = "2026-10-02"
+location = "House Deneith Enclave, western corner"
