@@ -82,6 +82,7 @@ fn wiki_check_reports_the_wiki_counts_for_a_valid_wiki_dir() {
         "quest_augment_loot_link_count: 6",
         "pack_loot_link_count: 1",
         "pack_augment_loot_link_count: 0",
+        "legacy_source_flagged_count: 1",
         "drop_text_rare_augment_link_count: 1",
         "wiki_rare_augment_drop_count: 1",
         "wiki_added_quest_augment_loot_link_count: 0",

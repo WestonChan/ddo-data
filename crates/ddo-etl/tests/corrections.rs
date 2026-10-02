@@ -544,6 +544,10 @@ fn a_renamed_quest_links_the_loot_his_drop_text_names_by_the_new_name() {
         .map(Result::unwrap)
         .collect();
     assert_eq!(linked_items, ["+3 Combustion Scorched Battle Axe"]);
+    let is_legacy: bool = db
+        .query_row("SELECT is_legacy FROM items WHERE name = '+3 Combustion Scorched Battle Axe'", [], |r| r.get(0))
+        .unwrap();
+    assert!(!is_legacy, "a segment naming a quest of his is current, even when it also names a legacy source");
 }
 
 #[test]

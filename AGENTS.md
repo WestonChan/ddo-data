@@ -37,7 +37,7 @@ This is the data half of a two-repo project. The site is `ddo-tools`, a sibling 
 ## Structure
 
 - `crates/ddo-model` — the schema as Rust: enums, seeds, DDL, `SCHEMA_VERSION`. Based on ddo-tools' schema, not on DDOBuilderV2's XML; the ETL is the adapter.
-- `crates/ddo-etl` — parses `Output/DataFiles` with quick-xml and writes SQLite: items, augments, sets and filigrees, sentient gems, feats, stances, races, classes, enhancement trees, spells, clickies, guild and optional buffs, quests, challenges and patrons. Only `AttackRates.xml`, `BonusTypes.xml`, `IgnoredList.xml` and `WeaponGroupings.xml` are unread. Mapping vocabularies are data in `data/*.toml`; an unmapped value fails the build on purpose.
+- `crates/ddo-etl` — parses `Output/DataFiles` with quick-xml and writes SQLite: items, augments, sets and filigrees, sentient gems, feats, stances, races, classes, enhancement trees, spells, clickies, guild and optional buffs, quests, challenges and patrons. Only `AttackRates.xml`, `BonusTypes.xml`, `IgnoredList.xml` and `WeaponGroupings.xml` are unread. Mapping vocabularies are data in `data/*.toml`, listed in `crates/ddo-etl/data/README.md` with the items the build leaves out or flags legacy; an unmapped value fails the build on purpose.
 - `crates/ddo-api` — axum read API over the ETL output. OpenAPI at `/v1/docs`, strong ETags, `X-Dataset-Version`, rate limiting, `/v1/dump.sqlite`, icons at `/icons/`.
 - `xtask` — repo tooling behind `cargo xtask`. Not published.
 - `upstream/` — gitignored sparse checkout of DDOBuilderV2 (or wherever `DDO_UPSTREAM` points); `.github/workflows/deploy.yml` refreshes it on every run and deploys to Fly.io.

@@ -199,6 +199,7 @@ impl TableWriter<'_> {
         }
 
         if let Some(drop_location) = item.drop_location.as_deref() {
+            self.flag_item_naming_only_legacy_sources(item_id, drop_location, report)?;
             self.link_item_to_quests(item_id, drop_location, report)?;
         }
         report.written_item_count += 1;
@@ -337,6 +338,20 @@ impl TableWriter<'_> {
             "INSERT INTO item_augment_slots (item_id, sort_order, slot_id) VALUES (?1, ?2, ?3)",
             params![item_id, sort_order as i64, slot_type_id],
         )?;
+        Ok(())
+    }
+
+    fn flag_item_naming_only_legacy_sources(
+        &self,
+        item_id: i64,
+        drop_location: &str,
+        report: &mut BuildReport,
+    ) -> Result<()> {
+        if self.drop_text_linker.legacy_texts_naming_every_segment(drop_location).is_none() {
+            return Ok(());
+        }
+        self.transaction.execute("UPDATE items SET is_legacy = 1 WHERE id = ?1", params![item_id])?;
+        report.legacy_source_flagged_count += 1;
         Ok(())
     }
 

@@ -177,7 +177,21 @@ fn augments_come_from_maetrim_unless_the_wiki_supplied_them() {
     assert!(db
         .execute("INSERT INTO augments (name, family, source) VALUES ('Odd Gem', 'Named', 'ddowiki')", [])
         .is_err());
-    assert_eq!(SCHEMA_VERSION, 13);
+    assert_eq!(SCHEMA_VERSION, 14);
+}
+
+#[test]
+fn items_carry_a_legacy_flag_that_defaults_to_current() {
+    let db = fresh_db();
+    let (is_not_null, default_value): (bool, String) = db
+        .query_row("SELECT \"notnull\", dflt_value FROM pragma_table_info('items') WHERE name = 'is_legacy'", [], |r| {
+            Ok((r.get(0)?, r.get(1)?))
+        })
+        .expect("items has an is_legacy column");
+    assert_eq!((is_not_null, default_value.as_str()), (true, "0"));
+    let items_sql: String =
+        db.query_row("SELECT sql FROM sqlite_master WHERE name = 'items'", [], |r| r.get(0)).unwrap();
+    assert!(items_sql.contains("CHECK (is_legacy IN (0, 1))"), "{items_sql}");
 }
 
 #[test]

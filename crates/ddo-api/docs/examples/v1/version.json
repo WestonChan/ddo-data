@@ -8,7 +8,7 @@
     "crafting_ingredients": 702,
     "crafting_recipes": 2846,
     "crafting_systems": 37,
-    "drops": 7218,
+    "drops": 6173,
     "enhancement_trees": 114,
     "enhancements": 3228,
     "feats": 1022,
@@ -19,11 +19,11 @@
     "optional_buffs": 138,
     "pack_augment_loot": 0,
     "pack_loot": 409,
-    "quest_augment_loot": 565,
+    "quest_augment_loot": 585,
     "quest_chain_rewards": 220,
     "quest_chains": 42,
-    "quest_loot": 5973,
-    "quests": 606,
+    "quest_loot": 4908,
+    "quests": 604,
     "races": 30,
     "requirements": 9771,
     "saga_rewards": 51,
@@ -33,11 +33,11 @@
     "spells": 706,
     "wiki_augments": 0,
     "wiki_items": 262,
-    "wiki_quests": 3
+    "wiki_quests": 1
   },
   "dataset": {
-    "built_at": "2026-10-02T15:10:25Z",
+    "built_at": "2026-10-02T16:07:15Z",
     "upstream_sha": "31ef0201ea8e28604de2b6242988aee6d63733b0"
   },
-  "schema_version": 13
+  "schema_version": 14
 }

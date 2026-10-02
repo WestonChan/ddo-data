@@ -5,6 +5,7 @@ use crate::map::drop_location::{
     quest_name_spans, reward_giver_name, saga_tier_credited_to, segment_ranges, segment_spanning,
     starts_with_saga_tier_aside,
 };
+use crate::map::legacy_drop_source::LegacyDropSources;
 use anyhow::Result;
 use ddo_model::enums::{DropSourceKind, LootType, RowSource, SagaTier};
 use rusqlite::{params, Connection, Transaction};
@@ -30,6 +31,7 @@ pub(crate) struct DropTextLinker {
     quest_chains_longest_name_first: Vec<NamedDropSource>,
     sagas_longest_name_first: Vec<NamedDropSource>,
     packs_longest_name_first: Vec<NamedDropSource>,
+    legacy_drop_sources: LegacyDropSources,
 }
 
 pub(super) struct RewardGiverLink {
@@ -55,7 +57,7 @@ struct DropTextQuestLink {
 }
 
 impl DropTextLinker {
-    pub(super) fn from_written_tables(db: &Connection) -> Result<Self> {
+    pub(super) fn from_written_tables(db: &Connection, legacy_drop_sources: &LegacyDropSources) -> Result<Self> {
         let mut statement = db.prepare("SELECT name, id, is_raid, source = ?1 FROM quests WHERE is_challenge = 0")?;
         let mut longest_name_first = statement
             .query_map(params![RowSource::Wiki.as_str()], |r| {
@@ -71,6 +73,7 @@ impl DropTextLinker {
             quest_chains_longest_name_first: named_sources_longest_name_first(db, "SELECT name, id FROM quest_chains")?,
             sagas_longest_name_first: named_sources_longest_name_first(db, "SELECT name, id FROM sagas")?,
             packs_longest_name_first: named_sources_longest_name_first(db, "SELECT name, id FROM adventure_packs")?,
+            legacy_drop_sources: legacy_drop_sources.clone(),
         })
     }
 
@@ -235,7 +238,7 @@ impl DropTextLinker {
         pack_links
     }
 
-    pub(super) fn unlinked_segments<'text>(&self, drop_text: &'text str) -> Vec<&'text str> {
+    fn segments_naming_no_drop_source<'text>(&self, drop_text: &'text str) -> Vec<&'text str> {
         self.segments_naming_no_quest(drop_text)
             .into_iter()
             .filter(|segment| {
@@ -244,6 +247,27 @@ impl DropTextLinker {
                     && self.pack_name_spans_in(segment).is_empty()
             })
             .collect()
+    }
+
+    pub(super) fn unlinked_segments<'text>(&self, drop_text: &'text str) -> Vec<&'text str> {
+        self.segments_naming_no_drop_source(drop_text)
+            .into_iter()
+            .filter(|segment| !self.legacy_drop_sources.names_legacy_source(segment))
+            .collect()
+    }
+
+    pub(super) fn legacy_texts_naming_every_segment(&self, drop_text: &str) -> Option<Vec<&str>> {
+        let segments: Vec<&str> = segment_ranges(drop_text)
+            .into_iter()
+            .map(|range| &drop_text[range])
+            .filter(|s| !s.trim().is_empty())
+            .collect();
+        let names_current_drop_source =
+            segments.iter().any(|segment| self.segments_naming_no_drop_source(segment).is_empty());
+        if names_current_drop_source {
+            return None;
+        }
+        self.legacy_drop_sources.texts_naming_every_segment(&segments)
     }
 
     fn quest_links_in(&self, drop_text: &str) -> Vec<DropTextQuestLink> {

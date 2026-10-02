@@ -15,6 +15,7 @@ use crate::map::augment_slot::AugmentSlotType;
 use crate::map::buff::BuffMap;
 use crate::map::drop_location::{names_saga, reward_giver_name};
 use crate::map::effect::EffectMap;
+use crate::map::legacy_drop_source::LegacyDropSources;
 use crate::wiki::WikiOverrides;
 use crate::xml::challenges::{self, Challenge};
 use crate::xml::items::parse_item_file;
@@ -44,6 +45,7 @@ pub struct BuildReport {
     pub drop_text_rare_augment_link_count: usize,
     pub pack_loot_link_count: usize,
     pub pack_augment_loot_link_count: usize,
+    pub legacy_source_flagged_count: usize,
     pub augment_slot_type_count: usize,
     pub augment_count: usize,
     pub set_bonus_count: usize,
@@ -171,7 +173,7 @@ pub fn build_database(
     corrections::apply_quest_corrections(&transaction, corrections, &mut report)?;
     wiki::write_wiki_quests(&transaction, &wiki_overrides.quests, &mut report)?;
     quest_series::write_wiki_quest_series(&transaction, wiki_overrides, &mut report)?;
-    let drop_text_linker = DropTextLinker::from_written_tables(&transaction)?;
+    let drop_text_linker = DropTextLinker::from_written_tables(&transaction, &LegacyDropSources::embedded()?)?;
 
     let mut writer = TableWriter {
         transaction: &transaction,
@@ -251,7 +253,7 @@ pub struct UnlinkedRewardGiver {
 }
 
 pub fn unlinked_reward_givers(db: &Connection) -> Result<Vec<UnlinkedRewardGiver>> {
-    let drop_text_linker = DropTextLinker::from_written_tables(db)?;
+    let drop_text_linker = DropTextLinker::from_written_tables(db, &LegacyDropSources::embedded()?)?;
     let drop_texts = maetrim_item_drop_texts(db)?;
     let mut item_counts_by_reward_giver: BTreeMap<(bool, String), usize> = BTreeMap::new();
     for drop_text in &drop_texts {
@@ -279,7 +281,7 @@ pub struct UnlinkedDropSegmentHead {
 }
 
 pub fn unlinked_drop_segment_heads(db: &Connection) -> Result<Vec<UnlinkedDropSegmentHead>> {
-    let drop_text_linker = DropTextLinker::from_written_tables(db)?;
+    let drop_text_linker = DropTextLinker::from_written_tables(db, &LegacyDropSources::embedded()?)?;
     let mut item_counts_by_head: BTreeMap<String, usize> = BTreeMap::new();
     for drop_text in &maetrim_item_drop_texts(db)? {
         let mut heads_in_item: Vec<String> = drop_text_linker
