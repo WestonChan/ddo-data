@@ -134,6 +134,7 @@ fn insert_quest_series_rewards<Reward: QuestSeriesReward>(
                 is_rare: reward.is_rare(),
                 chest: None,
                 tier: reward.tier(),
+                cost: None,
             },
         )?;
     }

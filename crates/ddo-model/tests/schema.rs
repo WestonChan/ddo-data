@@ -46,6 +46,8 @@ fn ddl_creates_every_v2_table() {
         "item_augment_slots",
         "item_augment_slot_options",
         "sources",
+        "vendors",
+        "events",
         "quest_chains",
         "quest_chain_quests",
         "sagas",
@@ -177,7 +179,7 @@ fn augments_come_from_maetrim_unless_the_wiki_supplied_them() {
     assert!(db
         .execute("INSERT INTO augments (name, family, provenance) VALUES ('Odd Gem', 'Named', 'ddowiki')", [])
         .is_err());
-    assert_eq!(SCHEMA_VERSION, 15);
+    assert_eq!(SCHEMA_VERSION, 16);
 }
 
 #[test]
@@ -262,7 +264,12 @@ fn db_with_one_source_of_each_kind() -> Connection {
          INSERT INTO quests (id, name) VALUES (1, 'Book Burning');
          INSERT INTO quest_chains (id, name, provenance, wiki_url) VALUES (1, 'The Necropolis', 'wiki', 'https://ddowiki.com/page/Necropolis');
          INSERT INTO sagas (id, name, provenance, wiki_url) VALUES (1, 'Dread', 'wiki', 'https://ddowiki.com/page/Dread');
-         INSERT INTO augments (id, name, family) VALUES (1, 'Lunar Gem of Magical Protection (Heroic)', 'SunAndMoon');",
+         INSERT INTO augments (id, name, family) VALUES (1, 'Lunar Gem of Magical Protection (Heroic)', 'SunAndMoon');
+         INSERT INTO crafting_systems (id, name, page) VALUES (1, 'Catalyst Crafting', 'https://ddowiki.com/page/Catalyst_Crafting');
+         INSERT INTO vendors (id, name, location, pack_id, provenance, wiki_url)
+              VALUES (1, 'Morten Edgewright', 'House Jorasco', NULL, 'wiki', 'https://ddowiki.com/page/Morten_Edgewright');
+         INSERT INTO events (id, name, provenance, wiki_url)
+              VALUES (1, 'Treasure of Crystal Cove', 'wiki', 'https://ddowiki.com/page/Crystal_Cove');",
     )
     .unwrap();
     db
@@ -280,6 +287,11 @@ fn sources_link_each_loot_to_exactly_one_source_of_its_kind() {
         "kind, saga_id, item_id = 'saga', 1, 1",
         "kind, pack_id, item_id, loot_type, is_rare = 'adventure_pack', 1, 1, 'chest', 1",
         "kind, pack_id, augment_id, loot_type = 'adventure_pack', 1, 1, 'chest'",
+        "kind, pack_id, item_id = 'challenge', 1, 1",
+        "kind, crafting_system_id, item_id, is_rare = 'crafting_system', 1, 1, 1",
+        "kind, vendor_id, item_id, cost = 'vendor', 1, 1, '1 Ethereal Ingot'",
+        "kind, event_id, augment_id = 'event', 1, 1",
+        "kind, character_level, item_id = 'starter', 15, 1",
     ] {
         insert_source(&db, valid_source).unwrap_or_else(|error| panic!("{valid_source}: {error}"));
     }
@@ -301,12 +313,20 @@ fn sources_link_each_loot_to_exactly_one_source_of_its_kind() {
         ("kind, chain_id, item_id = 'quest_chain', 1, 1", "a second identical chain reward"),
         ("kind, saga_id, item_id = 'saga', 1, 1", "a second untiered saga reward"),
         ("kind, pack_id, augment_id, loot_type = 'adventure_pack', 1, 1, 'chest'", "a second identical pack drop"),
+        ("kind, pack_id, item_id = 'challenge', 1, 1", "a second identical challenge reward"),
+        ("kind, pack_id, item_id, loot_type = 'challenge', 1, 1, 'chest'", "a loot type on a challenge reward"),
+        ("kind, quest_id, item_id = 'challenge', 1, 1", "a challenge reward naming a quest, not its pack"),
+        ("kind, crafting_system_id, item_id, chest = 'crafting_system', 1, 1, 'end chest'", "a chest on a crafting"),
+        ("kind, vendor_id, pack_id, item_id = 'vendor', 1, 1, 1", "two sources on a vendor"),
+        ("kind, event_id, item_id, cost = 'event', 1, 1, '5 tokens'", "a cost on an event reward"),
+        ("kind, item_id = 'starter', 1", "a starter item with no character level"),
+        ("kind, character_level, item_id, tier = 'starter', 15, 1, 'epic'", "a tier on a starter item"),
     ] {
         assert!(insert_source(&db, invalid_source).is_err(), "{broken_rule} must fail: {invalid_source}");
     }
     assert_eq!(
         db.query_row("SELECT COUNT(*) FROM sources", [], |r| r.get::<_, i64>(0)).unwrap(),
-        8,
+        13,
         "an item and an augment with one id are different loot"
     );
 }
@@ -377,15 +397,40 @@ fn sources_record_the_chest_as_free_text() {
             "chain_id",
             "saga_id",
             "pack_id",
+            "crafting_system_id",
+            "vendor_id",
+            "event_id",
+            "character_level",
             "item_id",
             "augment_id",
             "loot_type",
             "chest",
             "is_rare",
-            "tier"
+            "tier",
+            "cost"
         ]
     );
     assert!(columns.contains(&("chest".to_string(), "TEXT".to_string())));
+}
+
+#[test]
+fn vendors_and_events_carry_their_provenance_and_page() {
+    let db = fresh_db();
+    assert_eq!(
+        column_shapes(&db, "vendors", &[]).iter().map(|(name, ..)| name.as_str()).collect::<Vec<_>>(),
+        ["id", "name", "location", "pack_id", "provenance", "wiki_url"]
+    );
+    assert_eq!(
+        column_shapes(&db, "events", &[]).iter().map(|(name, ..)| name.as_str()).collect::<Vec<_>>(),
+        ["id", "name", "provenance", "wiki_url"]
+    );
+    assert!(db
+        .execute(
+            "INSERT INTO events (name, provenance, wiki_url) VALUES ('Odd', 'ddowiki', 'https://ddowiki.com/page/Odd')",
+            []
+        )
+        .is_err());
+    assert!(db.execute("INSERT INTO vendors (name, provenance) VALUES ('No Page', 'wiki')", []).is_err());
 }
 
 #[test]

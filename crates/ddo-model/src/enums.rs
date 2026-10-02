@@ -612,10 +612,25 @@ pub enum SourceKind {
     QuestChain,
     Saga,
     AdventurePack,
+    Challenge,
+    CraftingSystem,
+    Vendor,
+    Event,
+    Starter,
 }
 
 impl SourceKind {
-    pub const ALL: &'static [SourceKind] = &[Self::Quest, Self::QuestChain, Self::Saga, Self::AdventurePack];
+    pub const ALL: &'static [SourceKind] = &[
+        Self::Quest,
+        Self::QuestChain,
+        Self::Saga,
+        Self::AdventurePack,
+        Self::Challenge,
+        Self::CraftingSystem,
+        Self::Vendor,
+        Self::Event,
+        Self::Starter,
+    ];
 
     pub const fn as_str(self) -> &'static str {
         match self {
@@ -623,16 +638,35 @@ impl SourceKind {
             Self::QuestChain => "quest_chain",
             Self::Saga => "saga",
             Self::AdventurePack => "adventure_pack",
+            Self::Challenge => "challenge",
+            Self::CraftingSystem => "crafting_system",
+            Self::Vendor => "vendor",
+            Self::Event => "event",
+            Self::Starter => "starter",
         }
     }
 
-    pub const fn source_id_column(self) -> &'static str {
+    pub const fn identifying_column(self) -> &'static str {
         match self {
             Self::Quest => "quest_id",
             Self::QuestChain => "chain_id",
             Self::Saga => "saga_id",
-            Self::AdventurePack => "pack_id",
+            Self::AdventurePack | Self::Challenge => "pack_id",
+            Self::CraftingSystem => "crafting_system_id",
+            Self::Vendor => "vendor_id",
+            Self::Event => "event_id",
+            Self::Starter => "character_level",
         }
+    }
+
+    pub fn identifying_columns() -> Vec<&'static str> {
+        let mut columns: Vec<&'static str> = Vec::new();
+        for kind in Self::ALL {
+            if !columns.contains(&kind.identifying_column()) {
+                columns.push(kind.identifying_column());
+            }
+        }
+        columns
     }
 
     pub const fn has_loot_type(self) -> bool {

@@ -114,7 +114,7 @@ jobs:
 
       - name: Check the dataset's integrity
         if: steps.compare.outputs.changed == 'true'
-        run: cargo run --release -q -p xtask -- check-db ddo.db
+        run: cargo run --release -q -p xtask -- check-db ddo.db --allow-empty-table vendors --allow-empty-table events
 
       - name: Keep the dataset as a workflow artifact
         if: steps.compare.outputs.changed == 'true'

@@ -10,6 +10,7 @@ use anyhow::Result;
 use ddo_model::enums::{LootType, Provenance, SagaTier, SourceKind};
 use rusqlite::{params, Connection, Transaction};
 use std::ops::Range;
+use std::sync::LazyLock;
 
 const MATCHED_TEXT_MASK: &str = "\0";
 
@@ -351,9 +352,13 @@ impl LootSource {
         }
     }
 
-    fn id_if(self, kind: SourceKind) -> Option<i64> {
-        let (Self::Quest(id) | Self::QuestChain(id) | Self::Saga(id) | Self::AdventurePack(id)) = self;
-        (self.kind() == kind).then_some(id)
+    fn identifying_value(self) -> i64 {
+        let (Self::Quest(value) | Self::QuestChain(value) | Self::Saga(value) | Self::AdventurePack(value)) = self;
+        value
+    }
+
+    fn value_in_column(self, column: &str) -> Option<i64> {
+        (self.kind().identifying_column() == column).then_some(self.identifying_value())
     }
 }
 
@@ -386,6 +391,7 @@ pub(super) struct SourceLink<'a> {
     pub(super) is_rare: bool,
     pub(super) chest: Option<&'a str>,
     pub(super) tier: Option<SagaTier>,
+    pub(super) cost: Option<&'a str>,
 }
 
 impl SourceLink<'_> {
@@ -397,64 +403,89 @@ impl SourceLink<'_> {
             is_rare: false,
             chest: None,
             tier: None,
+            cost: None,
         }
     }
 
     fn execute(&self, transaction: &Transaction, sql: &str) -> Result<usize> {
-        Ok(transaction.execute(
-            sql,
-            params![
-                self.source.kind().as_str(),
-                self.source.id_if(SourceKind::Quest),
-                self.source.id_if(SourceKind::QuestChain),
-                self.source.id_if(SourceKind::Saga),
-                self.source.id_if(SourceKind::AdventurePack),
-                self.loot.item_id(),
-                self.loot.augment_id(),
-                self.loot_type.map(LootType::as_str),
-                self.is_rare,
-                self.chest,
-                self.tier.map(SagaTier::as_str),
-            ],
-        )?)
+        let mut values: Vec<Box<dyn rusqlite::ToSql>> = vec![Box::new(self.source.kind().as_str())];
+        for column in SourceKind::identifying_columns() {
+            values.push(Box::new(self.source.value_in_column(column)));
+        }
+        values.push(Box::new(self.loot.item_id()));
+        values.push(Box::new(self.loot.augment_id()));
+        values.push(Box::new(self.loot_type.map(LootType::as_str)));
+        values.push(Box::new(self.is_rare));
+        values.push(Box::new(self.chest));
+        values.push(Box::new(self.tier.map(SagaTier::as_str)));
+        values.push(Box::new(self.cost));
+        Ok(transaction.execute(sql, rusqlite::params_from_iter(values))?)
     }
 }
 
-const SOURCE_LINK_COLUMNS: &str =
-    "sources (kind, quest_id, chain_id, saga_id, pack_id, item_id, augment_id, loot_type, is_rare, chest, tier)";
-const SOURCE_LINK_VALUES: &str = "?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11";
-const SAME_SOURCE_AND_LOOT: &str = "kind = ?1 AND quest_id IS ?2 AND chain_id IS ?3 AND saga_id IS ?4
-    AND pack_id IS ?5 AND item_id IS ?6 AND augment_id IS ?7";
-const SOURCE_LINK_UNIQUE_KEY: &str = "kind, COALESCE(quest_id, chain_id, saga_id, pack_id), COALESCE(item_id, 0),
-    COALESCE(augment_id, 0), COALESCE(loot_type, ''), COALESCE(tier, '')";
+struct SourceLinkSql {
+    columns: String,
+    values: String,
+    same_source_and_loot: String,
+    unique_key: String,
+}
 
-pub(super) fn insert_source_link(transaction: &Transaction, loot_drop: &SourceLink) -> Result<usize> {
-    loot_drop.execute(
+static SOURCE_LINK_SQL: LazyLock<SourceLinkSql> = LazyLock::new(|| {
+    let identifying_columns = SourceKind::identifying_columns();
+    let columns: Vec<&str> = std::iter::once("kind")
+        .chain(identifying_columns.iter().copied())
+        .chain(["item_id", "augment_id", "loot_type", "is_rare", "chest", "tier", "cost"])
+        .collect();
+    let values: Vec<String> = (1..=columns.len()).map(|position| format!("?{position}")).collect();
+    let same_source_and_loot: Vec<String> = columns[..identifying_columns.len() + 3]
+        .iter()
+        .enumerate()
+        .map(|(index, column)| format!("{column} IS ?{}", index + 1))
+        .collect();
+    SourceLinkSql {
+        columns: format!("sources ({})", columns.join(", ")),
+        values: values.join(", "),
+        same_source_and_loot: same_source_and_loot.join(" AND "),
+        unique_key: format!(
+            "kind, COALESCE({}), COALESCE(item_id, 0), COALESCE(augment_id, 0), COALESCE(loot_type, ''), COALESCE(tier, '')",
+            identifying_columns.join(", ")
+        ),
+    }
+});
+
+pub(super) fn insert_source_link(transaction: &Transaction, source_link: &SourceLink) -> Result<usize> {
+    let sql = &*SOURCE_LINK_SQL;
+    source_link.execute(
         transaction,
         &format!(
-            "INSERT INTO {SOURCE_LINK_COLUMNS} VALUES ({SOURCE_LINK_VALUES})
-             ON CONFLICT ({SOURCE_LINK_UNIQUE_KEY}) DO UPDATE SET is_rare = 1 WHERE excluded.is_rare > sources.is_rare"
+            "INSERT INTO {} VALUES ({}) ON CONFLICT ({}) DO UPDATE SET is_rare = 1 WHERE excluded.is_rare > sources.is_rare",
+            sql.columns, sql.values, sql.unique_key
         ),
     )
 }
 
 pub(super) fn insert_source_link_unless_loot_linked_there(
     transaction: &Transaction,
-    loot_drop: &SourceLink,
+    source_link: &SourceLink,
 ) -> Result<usize> {
-    loot_drop.execute(
+    let sql = &*SOURCE_LINK_SQL;
+    source_link.execute(
         transaction,
         &format!(
-            "INSERT INTO {SOURCE_LINK_COLUMNS} SELECT {SOURCE_LINK_VALUES}
-              WHERE NOT EXISTS (SELECT 1 FROM sources WHERE {SAME_SOURCE_AND_LOOT})"
+            "INSERT INTO {} SELECT {} WHERE NOT EXISTS (SELECT 1 FROM sources WHERE {})",
+            sql.columns, sql.values, sql.same_source_and_loot
         ),
     )
 }
 
-pub(super) fn insert_source_link_unless_linked_as(transaction: &Transaction, loot_drop: &SourceLink) -> Result<usize> {
-    loot_drop.execute(
+pub(super) fn insert_source_link_unless_linked_as(
+    transaction: &Transaction,
+    source_link: &SourceLink,
+) -> Result<usize> {
+    let sql = &*SOURCE_LINK_SQL;
+    source_link.execute(
         transaction,
-        &format!("INSERT INTO {SOURCE_LINK_COLUMNS} VALUES ({SOURCE_LINK_VALUES}) ON CONFLICT ({SOURCE_LINK_UNIQUE_KEY}) DO NOTHING"),
+        &format!("INSERT INTO {} VALUES ({}) ON CONFLICT ({}) DO NOTHING", sql.columns, sql.values, sql.unique_key),
     )
 }
 
@@ -524,6 +555,7 @@ impl DropTextLinker {
                     is_rare: pack_link.is_rare,
                     chest: pack_link.chest.as_deref(),
                     tier: None,
+                    cost: None,
                 },
             )?;
         }
@@ -552,6 +584,7 @@ impl TableWriter<'_> {
                     is_rare: reward_giver_link.is_rare,
                     chest: None,
                     tier: reward_giver_link.tier,
+                    cost: None,
                 },
             )?;
             if changed_row_count > 0 {

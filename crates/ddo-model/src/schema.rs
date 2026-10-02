@@ -5,7 +5,7 @@ use crate::enums::{
 };
 use std::sync::LazyLock;
 
-pub const SCHEMA_VERSION: i64 = 15;
+pub const SCHEMA_VERSION: i64 = 16;
 
 fn sql_in_clause<'a>(allowed_values: impl Iterator<Item = &'a str>) -> String {
     let quoted_values: Vec<String> = allowed_values.map(|value| format!("'{value}'")).collect();
@@ -30,15 +30,15 @@ static DDL: LazyLock<String> = LazyLock::new(|| {
     let source_kind = sql_in_clause(SourceKind::ALL.iter().map(|k| k.as_str()));
     let source_id_for_kind: Vec<String> = SourceKind::ALL
         .iter()
-        .map(|kind| format!("WHEN '{}' THEN {} IS NOT NULL", kind.as_str(), kind.source_id_column()))
+        .map(|kind| format!("WHEN '{}' THEN {} IS NOT NULL", kind.as_str(), kind.identifying_column()))
         .collect();
     let source_id_for_kind = source_id_for_kind.join(" ");
     let source_id_count: Vec<String> =
-        SourceKind::ALL.iter().map(|kind| format!("({} IS NOT NULL)", kind.source_id_column())).collect();
+        SourceKind::identifying_columns().iter().map(|column| format!("({column} IS NOT NULL)")).collect();
     let source_id_count = source_id_count.join(" + ");
     let kinds_with_loot_type =
         sql_in_clause(SourceKind::ALL.iter().filter(|kind| kind.has_loot_type()).map(|kind| kind.as_str()));
-    let source_ids = SourceKind::ALL.iter().map(|kind| kind.source_id_column()).collect::<Vec<_>>().join(", ");
+    let source_ids = SourceKind::identifying_columns().join(", ");
     let saga_tier = sql_in_clause(SagaTier::ALL.iter().map(|t| t.as_str()));
     let quest_series_columns = format!(
         "name     TEXT    NOT NULL UNIQUE,
@@ -307,12 +307,34 @@ CREATE TABLE IF NOT EXISTS saga_quests (
 );
 CREATE INDEX IF NOT EXISTS idx_saga_quests_quest ON saga_quests(quest_id);
 
+-- An NPC or place that sells or trades items, from data/wiki vendors files; his files have none.
+CREATE TABLE IF NOT EXISTS vendors (
+    id         INTEGER PRIMARY KEY,
+    name       TEXT    NOT NULL UNIQUE,
+    location   TEXT,                                   -- where the vendor stands, free text as the wiki writes it
+    pack_id    INTEGER REFERENCES adventure_packs(id),
+    provenance TEXT    NOT NULL CHECK (provenance {provenance}),
+    wiki_url   TEXT    NOT NULL
+);
+
+-- A festival or limited-time event whose rewards are items, from data/wiki events files; his files have none.
+CREATE TABLE IF NOT EXISTS events (
+    id         INTEGER PRIMARY KEY,
+    name       TEXT    NOT NULL UNIQUE,
+    provenance TEXT    NOT NULL CHECK (provenance {provenance}),
+    wiki_url   TEXT    NOT NULL
+);
+
 -- Every place an item or augment drops or is given, one row per source, loot and loot type (and saga tier):
 -- a quest's chest, raid or end-reward loot, read from Maetrim's <DropLocation> and "Drops in" description text and
 -- data/wiki quest_loot; a quest chain's or saga's end reward, from data/wiki quest_chains and sagas and the drop
--- text crediting one; and loot any quest of an adventure pack drops, from drop text naming the pack and no quest.
--- loot_type is null exactly on chain and saga rewards; chest is the lower-cased phrase after the quest or pack
--- name, never on a reward; tier is the saga reward list, null when the source names none and on every other kind.
+-- text crediting one; loot any quest of an adventure pack drops, from drop text naming the pack and no quest; a
+-- challenge pack's turn-in reward (pack_id), a wiki crafting system's output, a vendor's or an event's item, from
+-- drop text naming them (or a data/source_aliases.toml text) and data/wiki vendors and events; and an iconic
+-- character's starter item, from "Advance to level N", with that character_level.
+-- loot_type is set exactly on quest and pack drops; chest is the lower-cased phrase after the quest or pack
+-- name, never on a reward; tier is the saga reward list, null when the source names none and on every other kind;
+-- cost is what a vendor asks, as the wiki writes it.
 -- The unique index keeps one row per source, loot, loot type and tier, which a primary key over nullable columns
 -- would not.
 CREATE TABLE IF NOT EXISTS sources (
@@ -322,18 +344,24 @@ CREATE TABLE IF NOT EXISTS sources (
     chain_id    INTEGER REFERENCES quest_chains(id) ON DELETE CASCADE,
     saga_id     INTEGER REFERENCES sagas(id) ON DELETE CASCADE,
     pack_id     INTEGER REFERENCES adventure_packs(id) ON DELETE CASCADE,
+    crafting_system_id INTEGER REFERENCES crafting_systems(id) ON DELETE CASCADE,
+    vendor_id   INTEGER REFERENCES vendors(id) ON DELETE CASCADE,
+    event_id    INTEGER REFERENCES events(id) ON DELETE CASCADE,
+    character_level INTEGER CHECK (character_level IS NULL OR character_level >= 1),
     item_id     INTEGER REFERENCES items(id) ON DELETE CASCADE,
     augment_id  INTEGER REFERENCES augments(id) ON DELETE CASCADE,
     loot_type   TEXT    CHECK (loot_type {loot_type}),
     chest       TEXT,
     is_rare     INTEGER NOT NULL DEFAULT 0 CHECK (is_rare IN (0, 1)),
     tier        TEXT    CHECK (tier {saga_tier}),
+    cost        TEXT,
     CHECK ({source_id_count} = 1),
     CHECK (CASE kind {source_id_for_kind} ELSE 0 END),
     CHECK ((item_id IS NOT NULL) + (augment_id IS NOT NULL) = 1),
     CHECK ((loot_type IS NOT NULL) = (kind {kinds_with_loot_type})),
     CHECK (chest IS NULL OR COALESCE(loot_type, 'reward') <> 'reward'),
-    CHECK (tier IS NULL OR kind = 'saga')
+    CHECK (tier IS NULL OR kind = 'saga'),
+    CHECK (cost IS NULL OR kind = 'vendor')
 );
 CREATE UNIQUE INDEX IF NOT EXISTS idx_sources_source_loot ON sources(
     kind, COALESCE({source_ids}), COALESCE(item_id, 0), COALESCE(augment_id, 0),
@@ -343,6 +371,9 @@ CREATE INDEX IF NOT EXISTS idx_sources_item ON sources(item_id) WHERE item_id IS
 CREATE INDEX IF NOT EXISTS idx_sources_augment ON sources(augment_id) WHERE augment_id IS NOT NULL;
 CREATE INDEX IF NOT EXISTS idx_sources_quest ON sources(quest_id) WHERE quest_id IS NOT NULL;
 CREATE INDEX IF NOT EXISTS idx_sources_pack ON sources(pack_id) WHERE pack_id IS NOT NULL;
+CREATE INDEX IF NOT EXISTS idx_sources_crafting_system ON sources(crafting_system_id) WHERE crafting_system_id IS NOT NULL;
+CREATE INDEX IF NOT EXISTS idx_sources_vendor ON sources(vendor_id) WHERE vendor_id IS NOT NULL;
+CREATE INDEX IF NOT EXISTS idx_sources_event ON sources(event_id) WHERE event_id IS NOT NULL;
 
 -- Modifiers and requirements: the two grammars every family shares ---------------
 --
