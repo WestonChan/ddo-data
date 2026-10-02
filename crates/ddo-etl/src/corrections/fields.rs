@@ -79,7 +79,7 @@ const AUGMENT_BONUS_FIELDS: &[CorrectableField] = &[
     field("add", FieldShape::BonusAddition, false),
 ];
 
-const ITEM_BONUS_FIELDS: &[CorrectableField] = &[field("add", FieldShape::BonusAddition, false)];
+const ITEM_BONUS_FIELDS: &[CorrectableField] = AUGMENT_BONUS_FIELDS;
 
 const ITEM_EFFECT_FIELDS: &[CorrectableField] = &[field("add", FieldShape::EffectAddition, false)];
 

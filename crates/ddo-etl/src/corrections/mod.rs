@@ -12,7 +12,7 @@ use std::path::Path;
 
 const EMBEDDED_CORRECTION_FILES: &[(&str, &str)] = include!(concat!(env!("OUT_DIR"), "/correction_files.rs"));
 const CORRECTION_TABLE_NAME: &str = "correction";
-const NULL_SPELLING: &str = "null";
+pub const NULL_SPELLING: &str = "null";
 
 #[derive(Debug, Clone, PartialEq, Deserialize)]
 #[serde(from = "TomlCorrectionValue")]
@@ -111,6 +111,14 @@ impl CorrectionValue {
         }
     }
 
+    pub fn as_bonus_type_name(&self) -> Option<&str> {
+        match self {
+            Self::Text(bonus_type_name) => Some(bonus_type_name),
+            Self::Null => Some(NULL_SPELLING),
+            _ => None,
+        }
+    }
+
     pub fn added_effect_name(&self) -> Option<&str> {
         match self {
             Self::Text(effect_name) => Some(effect_name),
@@ -154,6 +162,7 @@ pub struct Correction {
     pub family: Option<String>,
     pub stat: Option<String>,
     pub bonus_type: Option<String>,
+    pub bonus_value: Option<i64>,
     pub reason: String,
     pub source: String,
     pub read: String,
@@ -196,7 +205,10 @@ impl Correction {
             qualifier_parts.push(format!("family {family:?}"));
         }
         if let (Some(stat), Some(bonus_type)) = (&self.stat, &self.bonus_type) {
-            qualifier_parts.push(format!("{stat} / {bonus_type}"));
+            match self.bonus_value {
+                Some(bonus_value) => qualifier_parts.push(format!("{stat} / {bonus_type} / {bonus_value}")),
+                None => qualifier_parts.push(format!("{stat} / {bonus_type}")),
+            }
         }
         match &self.to {
             CorrectionValue::Bonus(bonus) => qualifier_parts.push(format!("{} / {}", bonus.stat, bonus.bonus_type)),
@@ -225,20 +237,19 @@ impl Correction {
         if self.family.is_some() && !matches!(self.kind, CorrectionKind::Augment | CorrectionKind::AugmentBonus) {
             bail!("family narrows only an augment or augment_bonus correction, not a {}", self.kind.as_str());
         }
-        let names_a_bonus = self.stat.is_some() || self.bonus_type.is_some();
-        let needs_a_bonus = self.kind == CorrectionKind::AugmentBonus && field.shape != FieldShape::BonusAddition;
+        let names_a_bonus = self.stat.is_some() || self.bonus_type.is_some() || self.bonus_value.is_some();
+        let needs_a_bonus = matches!(self.kind, CorrectionKind::AugmentBonus | CorrectionKind::ItemBonus)
+            && field.shape != FieldShape::BonusAddition;
         if needs_a_bonus && (self.stat.is_none() || self.bonus_type.is_none()) {
-            bail!("an augment_bonus {} correction names the bonus with stat and bonus_type", field.name);
+            bail!("a {} {} correction names the bonus with stat and bonus_type", self.kind.as_str(), field.name);
         }
         if names_a_bonus && !needs_a_bonus {
             bail!(
-                "stat and bonus_type name the bonus of an augment_bonus value or bonus_type correction; an add names them in to"
+                "stat, bonus_type and bonus_value name the bonus of an augment_bonus or item_bonus value or bonus_type correction; an add names them in to"
             );
         }
-        if field.shape == FieldShape::BonusTypeName
-            && self.bonus_type.as_ref() != self.from.as_text().map(str::to_string).as_ref()
-        {
-            bail!("from must be the bonus_type the correction names, his current type");
+        if field.shape == FieldShape::BonusTypeName && self.bonus_type.as_deref() != self.from.as_bonus_type_name() {
+            bail!("from must be the bonus_type the correction names, his current type or \"null\"");
         }
         Ok(())
     }
@@ -255,6 +266,14 @@ impl Correction {
                     bail!(
                         "an add takes from = \"null\" and to = {{ stat = \"...\", bonus_type = \"...\", value = N }}"
                     );
+                }
+            }
+            FieldShape::BonusTypeName => {
+                if !matches!(
+                    (&self.from, &self.to),
+                    (CorrectionValue::Null | CorrectionValue::Text(_), CorrectionValue::Text(_))
+                ) {
+                    bail!("a bonus_type takes from = his current type or \"null\", and to = a bonus type's name");
                 }
             }
             FieldShape::SocketAddition => {
@@ -338,6 +357,7 @@ struct TomlCorrection {
     family: Option<String>,
     stat: Option<String>,
     bonus_type: Option<String>,
+    bonus_value: Option<i64>,
     from: CorrectionValue,
     to: CorrectionValue,
     reason: String,
@@ -360,6 +380,7 @@ impl TomlCorrection {
             family: self.family,
             stat: self.stat,
             bonus_type: self.bonus_type,
+            bonus_value: self.bonus_value,
             reason: self.reason,
             source: self.source,
             read: self.read,

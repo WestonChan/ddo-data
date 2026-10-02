@@ -1,0 +1,39 @@
+<Items>
+  <Item>
+    <NoAutoUpdate/>
+    <Name>Embrace of the Spider Queen</Name>
+    <Icon>HeavyArmor_1a</Icon>
+    <Description>This disturbing armor, crafted from black metal, is engraved with the images
+of spiders.</Description>
+    <DropLocation>Reclaiming the Rift, End chest</DropLocation>
+    <MinLevel>22</MinLevel>
+    <EquipmentSlot>
+      <Armor/>
+    </EquipmentSlot>
+    <Requirements>
+      <Requirement>
+        <Type>NotConstruct</Type>
+      </Requirement>
+    </Requirements>
+    <Armor>Heavy</Armor>
+    <ArmorBonus>21</ArmorBonus>
+    <MaximumDexterityBonus>1</MaximumDexterityBonus>
+    <ArmorCheckPenalty>-5</ArmorCheckPenalty>
+    <ArcaneSpellFailure>35</ArcaneSpellFailure>
+    <DamageReduction>0</DamageReduction>
+    <Material>Adamantine</Material>
+    <Buff>
+      <Type>ArmorEnchantment</Type>
+      <Value1>6</Value1>
+      <BonusType>Armor Enhancement</BonusType>
+    </Buff>
+    <Buff>
+      <Type>Fortification</Type>
+      <Value1>100</Value1>
+    </Buff>
+    <Buff>
+      <Type>Fortification</Type>
+      <Value1>10</Value1>
+    </Buff>
+  </Item>
+</Items>

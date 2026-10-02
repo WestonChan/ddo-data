@@ -1040,6 +1040,10 @@ impl CorrectionKind {
         }
     }
 
+    pub const fn corrects_a_bonus(self) -> bool {
+        matches!(self, Self::AugmentBonus | Self::ItemBonus)
+    }
+
     pub const fn name_column(self) -> &'static str {
         match self {
             Self::SocketLabel => "label",

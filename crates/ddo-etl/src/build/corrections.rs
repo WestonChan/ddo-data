@@ -1,7 +1,9 @@
 use super::items::item_wiki_url;
 use super::wiki::folded_effect_name;
 use super::{bonus_name, BuildReport, StaleCorrection, StaleCorrectionCause};
-use crate::corrections::{BonusAddition, CorrectableField, Correction, CorrectionValue, Corrections, FieldShape};
+use crate::corrections::{
+    BonusAddition, CorrectableField, Correction, CorrectionValue, Corrections, FieldShape, NULL_SPELLING,
+};
 use anyhow::{bail, Context, Result};
 use ddo_model::enums::{CorrectionKind, ModifierSource, Provenance};
 use rusqlite::types::Value as SqlValue;
@@ -129,19 +131,19 @@ fn write_correction(
 ) -> Result<()> {
     let table_name = correction.kind.table_name();
     match field.shape {
-        FieldShape::Integer if correction.kind == CorrectionKind::AugmentBonus => {
-            let (stat_id, bonus_type_id) = bonus_key_ids(transaction, correction)?;
+        FieldShape::Integer if correction.kind.corrects_a_bonus() => {
             let new_value = match correction.to {
                 CorrectionValue::Integer(number) => number,
                 _ => bail!("a bonus value is an integer"),
             };
-            repoint_augment_bonuses(transaction, row_ids, stat_id, bonus_type_id, bonus_type_id, Some(new_value))?;
+            let corrected_bonus = CorrectedBonus::of(transaction, correction)?;
+            repoint_bonuses(transaction, &corrected_bonus, row_ids, corrected_bonus.bonus_type_id, Some(new_value))?;
         }
         FieldShape::BonusTypeName => {
-            let (stat_id, bonus_type_id) = bonus_key_ids(transaction, correction)?;
             let new_type_name = correction.to.as_text().context("a bonus type cannot be null")?;
             let new_type_id = bonus_type_id_named(transaction, new_type_name)?;
-            repoint_augment_bonuses(transaction, row_ids, stat_id, bonus_type_id, new_type_id, None)?;
+            let corrected_bonus = CorrectedBonus::of(transaction, correction)?;
+            repoint_bonuses(transaction, &corrected_bonus, row_ids, Some(new_type_id), None)?;
         }
         FieldShape::BonusAddition => {
             let CorrectionValue::Bonus(bonus) = &correction.to else { bail!("an add names the bonus in to") };
@@ -213,17 +215,14 @@ fn current_value(
     let table_name = correction.kind.table_name();
     let value_sql = match field.shape {
         FieldShape::Removal => return Ok(CorrectionValue::Integer(0)),
-        FieldShape::Integer if correction.kind == CorrectionKind::AugmentBonus => {
-            let (stat_id, bonus_type_id) = bonus_key_ids(transaction, correction)?;
-            return bonus_value(transaction, BonusLinkTable::AUGMENT, row_id, stat_id, bonus_type_id);
+        FieldShape::Integer if correction.kind.corrects_a_bonus() => {
+            return CorrectedBonus::of(transaction, correction)?.value_on(transaction, row_id);
         }
         FieldShape::BonusTypeName => {
-            let (stat_id, bonus_type_id) = bonus_key_ids(transaction, correction)?;
-            return augment_bonus_type_on_stat(transaction, row_id, stat_id, bonus_type_id);
+            return CorrectedBonus::of(transaction, correction)?.bonus_type_on(transaction, row_id);
         }
         FieldShape::BonusAddition => {
-            let (stat_id, bonus_type_id) = bonus_key_ids(transaction, correction)?;
-            return bonus_value(transaction, BonusLinkTable::of(correction.kind)?, row_id, stat_id, bonus_type_id);
+            return CorrectedBonus::of(transaction, correction)?.value_on(transaction, row_id);
         }
         FieldShape::EffectAddition => {
             let effect_name = correction.to.added_effect_name().context("an add names the effect in to")?;
@@ -253,13 +252,6 @@ fn current_value(
     Ok(CorrectionValue::from_sql(sql_value))
 }
 
-fn bonus_key_ids(transaction: &Transaction, correction: &Correction) -> Result<(i64, i64)> {
-    let (stat_name, bonus_type_name) = correction.bonus_key().context("an augment_bonus correction names its bonus")?;
-    let stat_id = id_named(transaction, "stats", stat_name)?
-        .with_context(|| format!("stat {stat_name:?} is not in the stats table; use its exact name"))?;
-    Ok((stat_id, bonus_type_id_named(transaction, bonus_type_name)?))
-}
-
 fn bonus_type_id_named(transaction: &Transaction, bonus_type_name: &str) -> Result<i64> {
     id_named(transaction, "bonus_types", bonus_type_name)?
         .with_context(|| format!("bonus type {bonus_type_name:?} is not in the bonus_types table; use its exact name"))
@@ -279,32 +271,78 @@ impl BonusLinkTable {
         match kind {
             CorrectionKind::AugmentBonus => Ok(Self::AUGMENT),
             CorrectionKind::ItemBonus => Ok(Self::ITEM),
-            _ => bail!("only an augment_bonus or item_bonus correction adds a bonus"),
+            _ => bail!("only an augment_bonus or item_bonus correction names a bonus"),
         }
     }
 }
 
-fn bonus_value(
-    transaction: &Transaction,
+struct CorrectedBonus {
     link_table: BonusLinkTable,
-    owner_id: i64,
     stat_id: i64,
-    bonus_type_id: i64,
-) -> Result<CorrectionValue> {
-    let BonusLinkTable { table_name, owner_column } = link_table;
-    let bonus_value: Option<Option<i64>> = transaction
-        .query_row(
-            &format!(
-                "SELECT bonuses.value FROM {table_name} JOIN bonuses ON bonuses.id = {table_name}.bonus_id
-                  WHERE {table_name}.{owner_column} = ?1 AND bonuses.stat_id = ?2 AND bonuses.bonus_type_id = ?3
-                  ORDER BY {table_name}.sort_order LIMIT 1"
-            ),
-            params![owner_id, stat_id, bonus_type_id],
-            |r| r.get(0),
-        )
-        .optional()?;
-    Ok(bonus_value.flatten().map_or(CorrectionValue::Null, CorrectionValue::Integer))
+    bonus_type_id: Option<i64>,
+    bonus_value: Option<i64>,
 }
+
+impl CorrectedBonus {
+    fn of(transaction: &Transaction, correction: &Correction) -> Result<Self> {
+        let (stat_name, bonus_type_name) =
+            correction.bonus_key().context("an augment_bonus or item_bonus correction names its bonus")?;
+        let stat_id = id_named(transaction, "stats", stat_name)?
+            .with_context(|| format!("stat {stat_name:?} is not in the stats table; use its exact name"))?;
+        let bonus_type_id = match bonus_type_name {
+            NULL_SPELLING => None,
+            _ => Some(bonus_type_id_named(transaction, bonus_type_name)?),
+        };
+        Ok(Self {
+            link_table: BonusLinkTable::of(correction.kind)?,
+            stat_id,
+            bonus_type_id,
+            bonus_value: correction.bonus_value,
+        })
+    }
+
+    fn matching_bonuses_sql(&self, selected_columns: &str) -> String {
+        let BonusLinkTable { table_name, owner_column } = self.link_table;
+        format!(
+            "SELECT {selected_columns} FROM {table_name} JOIN bonuses ON bonuses.id = {table_name}.bonus_id
+              WHERE {table_name}.{owner_column} = ?1 AND bonuses.stat_id = ?2 AND bonuses.bonus_type_id IS ?3
+                AND (?4 IS NULL OR bonuses.value = ?4)
+              ORDER BY {table_name}.sort_order"
+        )
+    }
+
+    fn value_on(&self, transaction: &Transaction, owner_id: i64) -> Result<CorrectionValue> {
+        let bonus_value: Option<Option<i64>> = transaction
+            .query_row(
+                &format!("{} LIMIT 1", self.matching_bonuses_sql("bonuses.value")),
+                params![owner_id, self.stat_id, self.bonus_type_id, self.bonus_value],
+                |r| r.get(0),
+            )
+            .optional()?;
+        Ok(bonus_value.flatten().map_or(CorrectionValue::Null, CorrectionValue::Integer))
+    }
+
+    fn bonus_type_on(&self, transaction: &Transaction, owner_id: i64) -> Result<CorrectionValue> {
+        let BonusLinkTable { table_name, owner_column } = self.link_table;
+        let mut statement = transaction.prepare(&format!(
+            "SELECT bonuses.bonus_type_id, bonus_types.name FROM {table_name} JOIN bonuses ON bonuses.id = {table_name}.bonus_id
+               LEFT JOIN bonus_types ON bonus_types.id = bonuses.bonus_type_id
+              WHERE {table_name}.{owner_column} = ?1 AND bonuses.stat_id = ?2 AND (?3 IS NULL OR bonuses.value = ?3)
+              ORDER BY {table_name}.sort_order"
+        ))?;
+        let bonus_types_on_stat: Vec<(Option<i64>, Option<String>)> = statement
+            .query_map(params![owner_id, self.stat_id, self.bonus_value], |r| Ok((r.get(0)?, r.get(1)?)))?
+            .collect::<rusqlite::Result<_>>()?;
+        let matching_type = bonus_types_on_stat.iter().find(|(type_id, _)| *type_id == self.bonus_type_id);
+        Ok(match matching_type.or(bonus_types_on_stat.first()) {
+            Some((_, Some(type_name))) => CorrectionValue::Text(type_name.clone()),
+            Some((_, None)) => CorrectionValue::Null,
+            None => CorrectionValue::Text(NO_SUCH_BONUS.to_string()),
+        })
+    }
+}
+
+const NO_SUCH_BONUS: &str = "no such bonus";
 
 fn item_effect_names(transaction: &Transaction, item_id: i64) -> Result<Vec<String>> {
     let mut statement = transaction.prepare(
@@ -315,50 +353,38 @@ fn item_effect_names(transaction: &Transaction, item_id: i64) -> Result<Vec<Stri
     Ok(effect_names)
 }
 
-fn augment_bonus_type_on_stat(
+fn repoint_bonuses(
     transaction: &Transaction,
-    augment_id: i64,
-    stat_id: i64,
-    expected_bonus_type_id: i64,
-) -> Result<CorrectionValue> {
-    let mut statement = transaction.prepare(
-        "SELECT bonuses.bonus_type_id, bonus_types.name FROM augment_bonuses JOIN bonuses ON bonuses.id = augment_bonuses.bonus_id
-           LEFT JOIN bonus_types ON bonus_types.id = bonuses.bonus_type_id
-          WHERE augment_bonuses.augment_id = ?1 AND bonuses.stat_id = ?2 ORDER BY augment_bonuses.sort_order",
-    )?;
-    let bonus_types_on_stat: Vec<(Option<i64>, Option<String>)> = statement
-        .query_map(params![augment_id, stat_id], |r| Ok((r.get(0)?, r.get(1)?)))?
-        .collect::<rusqlite::Result<_>>()?;
-    let matching_type = bonus_types_on_stat.iter().find(|(type_id, _)| *type_id == Some(expected_bonus_type_id));
-    Ok(match matching_type.or(bonus_types_on_stat.first()) {
-        Some((_, Some(type_name))) => CorrectionValue::Text(type_name.clone()),
-        _ => CorrectionValue::Null,
-    })
-}
-
-fn repoint_augment_bonuses(
-    transaction: &Transaction,
-    augment_ids: &[i64],
-    stat_id: i64,
-    bonus_type_id: i64,
-    new_bonus_type_id: i64,
+    corrected_bonus: &CorrectedBonus,
+    owner_ids: &[i64],
+    new_bonus_type_id: Option<i64>,
     new_value: Option<i64>,
 ) -> Result<()> {
-    for augment_id in augment_ids {
+    let BonusLinkTable { table_name, owner_column } = corrected_bonus.link_table;
+    for owner_id in owner_ids {
         let mut statement = transaction.prepare(
-            "SELECT augment_bonuses.sort_order, bonuses.value, bonuses.value2 FROM augment_bonuses
-               JOIN bonuses ON bonuses.id = augment_bonuses.bonus_id
-              WHERE augment_bonuses.augment_id = ?1 AND bonuses.stat_id = ?2 AND bonuses.bonus_type_id = ?3",
+            &corrected_bonus.matching_bonuses_sql(&format!("{table_name}.sort_order, bonuses.value, bonuses.value2")),
         )?;
         let matching_bonuses: Vec<(i64, Option<i64>, Option<i64>)> = statement
-            .query_map(params![augment_id, stat_id, bonus_type_id], |r| Ok((r.get(0)?, r.get(1)?, r.get(2)?)))?
+            .query_map(
+                params![owner_id, corrected_bonus.stat_id, corrected_bonus.bonus_type_id, corrected_bonus.bonus_value],
+                |r| Ok((r.get(0)?, r.get(1)?, r.get(2)?)),
+            )?
             .collect::<rusqlite::Result<_>>()?;
         for (sort_order, value, second_value) in matching_bonuses {
-            let bonus_id =
-                ensure_bonus_row(transaction, stat_id, new_bonus_type_id, new_value.or(value), second_value)?;
+            let bonus_type_id = new_bonus_type_id
+                .or(corrected_bonus.bonus_type_id)
+                .context("a corrected bonus keeps or gains a bonus type")?;
+            let bonus_id = ensure_bonus_row(
+                transaction,
+                corrected_bonus.stat_id,
+                bonus_type_id,
+                new_value.or(value),
+                second_value,
+            )?;
             transaction.execute(
-                "UPDATE augment_bonuses SET bonus_id = ?3 WHERE augment_id = ?1 AND sort_order = ?2",
-                params![augment_id, sort_order, bonus_id],
+                &format!("UPDATE {table_name} SET bonus_id = ?3 WHERE {owner_column} = ?1 AND sort_order = ?2"),
+                params![owner_id, sort_order, bonus_id],
             )?;
         }
     }

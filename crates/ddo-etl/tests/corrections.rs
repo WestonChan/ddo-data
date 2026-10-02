@@ -1125,3 +1125,149 @@ fn renames_a_socket_label_everywhere_and_merges_into_an_existing_one() {
     assert_eq!((family.as_str(), variant.as_str()), ("crafting", "attuned by heroism: tier 1"));
     assert_eq!(report.augment_slot_type_count, row_count(&db, "SELECT COUNT(*) FROM augment_slot_types") as usize);
 }
+
+fn copied_directory(source_dir: &std::path::Path, copy_dir: &std::path::Path) {
+    std::fs::create_dir_all(copy_dir).unwrap();
+    for entry in std::fs::read_dir(source_dir).unwrap() {
+        let entry = entry.unwrap();
+        let copy_path = copy_dir.join(entry.file_name());
+        if entry.file_type().unwrap().is_dir() {
+            copied_directory(&entry.path(), &copy_path);
+        } else {
+            std::fs::copy(entry.path(), copy_path).unwrap();
+        }
+    }
+}
+
+fn data_files_with_untyped_items(test_name: &str) -> PathBuf {
+    let data_files_dir =
+        std::env::temp_dir().join(format!("ddo-etl-untyped-{test_name}-{}", std::process::id())).join("DataFiles");
+    let _ = std::fs::remove_dir_all(&data_files_dir);
+    copied_directory(&fixtures_dir().join("DataFiles"), &data_files_dir);
+    copied_directory(&fixtures_dir().join("untyped_items"), &data_files_dir.join("Items"));
+    data_files_dir
+}
+
+fn built_db_from(
+    data_files_dir: &std::path::Path,
+    correction_files: &[(&str, &str)],
+) -> Result<(Connection, BuildReport), String> {
+    let mut db = Connection::open_in_memory().unwrap();
+    let report = build_database(
+        data_files_dir,
+        &WikiOverrides::default(),
+        &parsed_corrections(correction_files)?,
+        &mut db,
+        &fixture_dataset_version(),
+    )
+    .map_err(|e| format!("{e:#}"))?;
+    Ok((db, report))
+}
+
+#[test]
+fn types_an_item_bonus_his_files_leave_untyped_and_retypes_a_typed_one() {
+    let data_files_dir = data_files_with_untyped_items("item-bonus-type");
+    let (db, report) = built_db_from(
+        &data_files_dir,
+        &[(
+            "corrections.toml",
+            &(qualified_correction_toml(
+                "item_bonus",
+                "Embrace of the Spider Queen",
+                "stat = \"Fortification\"\nbonus_type = \"null\"\nbonus_value = 100",
+                "bonus_type",
+                "\"null\"",
+                "\"Enhancement\"",
+            ) + &qualified_correction_toml(
+                "item_bonus",
+                "Embrace of the Spider Queen",
+                "stat = \"Fortification\"\nbonus_type = \"null\"\nbonus_value = 10",
+                "bonus_type",
+                "\"null\"",
+                "\"Insight\"",
+            ) + &qualified_correction_toml(
+                "item_bonus",
+                "Docent of Defiance",
+                "stat = \"Fire Resistance\"\nbonus_type = \"Enhancement\"",
+                "bonus_type",
+                "\"Enhancement\"",
+                "\"Competence\"",
+            ) + &qualified_correction_toml(
+                "item_bonus",
+                "Docent of Defiance",
+                "stat = \"Acid Resistance\"\nbonus_type = \"null\"",
+                "bonus_type",
+                "\"null\"",
+                "\"Enhancement\"",
+            )),
+        )],
+    )
+    .unwrap();
+    assert_eq!(
+        (report.correction_applied_count, report.correction_stale_count),
+        (3, 1),
+        "{:?}",
+        report.stale_corrections
+    );
+    assert_eq!(
+        item_bonus_rows(&db, "Embrace of the Spider Queen"),
+        [
+            ("Fortification".into(), Some("Enhancement".into()), Some(100)),
+            ("Fortification".into(), Some("Insight".into()), Some(10)),
+        ]
+    );
+    assert_eq!(
+        item_bonus_rows(&db, "Docent of Defiance")[0],
+        ("Fire Resistance".into(), Some("Competence".into()), Some(20))
+    );
+    let qualifiers: Vec<String> = db
+        .prepare("SELECT qualifier FROM corrections ORDER BY qualifier")
+        .unwrap()
+        .query_map([], |r| r.get(0))
+        .unwrap()
+        .map(Result::unwrap)
+        .collect();
+    assert_eq!(
+        qualifiers,
+        ["Fire Resistance / Enhancement", "Fortification / null / 10", "Fortification / null / 100"]
+    );
+    let error = parsed_corrections(&[(
+        "corrections.toml",
+        &qualified_correction_toml(
+            "item_bonus",
+            "Embrace of the Spider Queen",
+            "stat = \"Fortification\"\nbonus_type = \"null\"",
+            "bonus_type",
+            "\"Enhancement\"",
+            "\"Insight\"",
+        ),
+    )])
+    .unwrap_err();
+    assert!(error.contains("from must be the bonus_type"), "{error}");
+}
+
+#[test]
+fn corrects_an_item_bonus_value_without_touching_the_shared_bonus() {
+    let (db, report) = built_db_with(&[(
+        "corrections.toml",
+        &qualified_correction_toml(
+            "item_bonus",
+            "Docent of Defiance",
+            "stat = \"Cold Resistance\"\nbonus_type = \"Enhancement\"",
+            "value",
+            "20",
+            "25",
+        ),
+    )])
+    .unwrap();
+    assert_eq!(report.correction_applied_count, 1, "{:?}", report.stale_corrections);
+    let docent_bonuses = item_bonus_rows(&db, "Docent of Defiance");
+    assert!(
+        docent_bonuses.contains(&("Cold Resistance".into(), Some("Enhancement".into()), Some(25))),
+        "{docent_bonuses:?}"
+    );
+    assert!(
+        docent_bonuses.contains(&("Fire Resistance".into(), Some("Enhancement".into()), Some(20))),
+        "{docent_bonuses:?}"
+    );
+}
