@@ -183,6 +183,51 @@ async fn items_match_a_stat_enchantment_on_their_sets_tiers_only_when_set_bonuse
     assert_eq!(explicitly_excluded["total"], 0);
 }
 
+fn enchantment_named<'a>(enchantments: &'a Value, name: &str, kind: &str) -> Option<&'a Value> {
+    enchantments.as_array().unwrap().iter().find(|row| row["name"] == name && row["kind"] == kind)
+}
+
+#[tokio::test]
+async fn enchantments_list_every_stat_and_effect_an_item_carries_with_its_item_count() {
+    let (status, _, enchantments) = get("/v1/enchantments").await;
+    assert_eq!(status, StatusCode::OK, "{enchantments}");
+    assert_eq!(
+        enchantment_named(&enchantments, "Strength", "stat"),
+        Some(&serde_json::json!({ "name": "Strength", "kind": "stat", "item_count": 2 }))
+    );
+    assert_eq!(
+        enchantment_named(&enchantments, "Freedom of Movement", "effect"),
+        Some(&serde_json::json!({ "name": "Freedom of Movement", "kind": "effect", "item_count": 3 }))
+    );
+    assert!(enchantment_named(&enchantments, "Sneak Attack Dice", "stat").is_none(), "only a set tier carries it");
+    let rows = enchantments.as_array().unwrap();
+    assert_eq!(rows.len(), 53, "28 stats and 25 effects carried by fixture items");
+    assert!(rows.iter().all(|row| row["item_count"].as_i64().unwrap() > 0));
+    let names: Vec<&str> = rows.iter().map(|row| row["name"].as_str().unwrap()).collect();
+    let mut sorted_names = names.clone();
+    sorted_names.sort_unstable();
+    assert_eq!(names, sorted_names, "ordered by name");
+}
+
+#[tokio::test]
+async fn enchantments_narrow_by_search_text_and_kind() {
+    let (_, _, resistances) = get("/v1/enchantments?q=RESISTANCE").await;
+    let resistance_names: Vec<&str> =
+        resistances.as_array().unwrap().iter().map(|row| row["name"].as_str().unwrap()).collect();
+    assert_eq!(resistance_names, ["Cold Resistance", "Electric Resistance", "Fire Resistance"]);
+
+    let (_, _, effects) = get("/v1/enchantments?kind=effect").await;
+    let effects = effects.as_array().unwrap();
+    assert_eq!(effects.len(), 25);
+    assert!(effects.iter().all(|row| row["kind"] == "effect"), "kind=effect lists a stat");
+    let (_, _, strength_stats) = get("/v1/enchantments?kind=stat&q=strength").await;
+    assert_eq!(strength_stats, serde_json::json!([{ "name": "Strength", "kind": "stat", "item_count": 2 }]));
+
+    let (status, _, unknown_kind) = get("/v1/enchantments?kind=bonus").await;
+    assert_eq!(status, StatusCode::BAD_REQUEST);
+    assert_eq!(unknown_kind["error"], r#"unknown kind "bonus""#);
+}
+
 async fn id_in_list_named(list_path: &str, name: &str) -> i64 {
     let (_, _, rows) = get(list_path).await;
     let rows = rows.as_array().unwrap_or_else(|| panic!("{list_path} is not a list"));
@@ -897,7 +942,7 @@ async fn openapi_lists_every_item_filter_in_the_route_description_and_parameters
         operation["parameters"].as_array().unwrap().iter().find(|p| p["name"] == "enchantment").unwrap()["description"]
             .as_str()
             .unwrap();
-    for expected_phrase in ["comma-separated", "repeated", "/v1/stats", "effect", "item_effects"] {
+    for expected_phrase in ["comma-separated", "repeated", "/v1/enchantments", "/v1/stats", "effect", "item_effects"] {
         assert!(
             enchantment_description.contains(expected_phrase),
             "missing {expected_phrase:?}: {enchantment_description}"

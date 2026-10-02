@@ -1,0 +1,17 @@
+[
+  {
+    "item_count": 57,
+    "kind": "stat",
+    "name": "Acid Absorption"
+  },
+  {
+    "item_count": 6,
+    "kind": "effect",
+    "name": "Alignment Absorption"
+  },
+  {
+    "item_count": 23,
+    "kind": "stat",
+    "name": "Chaos Absorption"
+  }
+]

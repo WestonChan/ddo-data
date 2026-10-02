@@ -57,7 +57,7 @@ use utoipa_axum::router::OpenApiRouter;
         (name = "buffs", description = "Guild buffs and the spell, potion and party buffs a planner can toggle on, with their effects"),
         (name = "enhancements", description = "Enhancement, epic destiny and reaper trees with every enhancement and selection"),
         (name = "spells", description = "Spells with damage, saves and class lists, and the clickies items grant"),
-        (name = "bonuses", description = "The stats a bonus can apply to and the bonus types that decide whether two bonuses stack"),
+        (name = "bonuses", description = "The stats a bonus can apply to, the bonus types that decide whether two bonuses stack, and the enchantments (stats and named effects) items carry, which /v1/items filters by"),
         (name = "quests", description = "Quests, challenges, adventure packs and favor patrons: the sources items drop from, with each quest's free-to-play status, legendary level, zone, quest giver and flagging from ddowiki, and the quests DDOBuilderV2 lacks read whole from ddowiki (`source` = `wiki`). Quest chains and sagas from ddowiki are listed here too, each with its quests and the end rewards its NPC gives once they are done"),
         (name = "bulk", description = "The whole dataset as one SQLite download")
     )
@@ -68,6 +68,7 @@ declare_response_examples! { "v1":
     ("/v1/version", "version"),
     ("/v1/stats", "stats"),
     ("/v1/bonus-types", "bonus-types"),
+    ("/v1/enchantments", "enchantments"),
     ("/v1/equipment-slots", "equipment-slots"),
     ("/v1/weapon-types", "weapon-types"),
     ("/v1/damage-types", "damage-types"),
