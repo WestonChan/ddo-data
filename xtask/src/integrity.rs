@@ -295,8 +295,11 @@ pub const INTEGRITY_CHECKS: &[IntegrityCheck] = &[
     .showing_every_offender(),
     IntegrityCheck::warn(
         "unreferenced_stats",
-        "stats that no bonus an item, augment, feat or set tier carries is on: possible duplicates in the stat \
-         vocabulary",
+        "stats that no bonus an item, augment, feat or set tier carries is on. The ten listed on a full upstream \
+         build are kept on purpose: real stats (ki, rage uses, pact, spellsword and burning ambition dice, maximum \
+         caster level, temporary hit points, sleep save, divination spell focus, force resistance) that only feats, \
+         enhancements or prose give today or that no current item carries; any other is a duplicate to remove from \
+         the seed or a stat a buff or effect map entry should target",
         OffenderQuery::Built(unreferenced_stats),
     )
     .showing_every_offender(),

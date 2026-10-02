@@ -456,6 +456,58 @@ fn stats_have_unique_ids_and_names() {
 }
 
 #[test]
+fn stats_carry_no_second_name_for_a_stat_the_maps_already_target() {
+    let canonical_stat_by_alias = [
+        ("Physical Sheltering", "Physical Resistance Rating"),
+        ("Magical Sheltering", "Magical Resistance Rating"),
+        ("Sheltering", "Physical and Magical Resistance Rating"),
+        ("Potency", "Universal Spell Power"),
+        ("Alignment Spell Power", "Light Spell Power"),
+        ("Protection", "Armor Class"),
+        ("Natural Armor", "Armor Class"),
+        ("Resistance", "Saving Throws"),
+        ("Shatter", "Sunder DC"),
+        ("Wizardry", "Spell Points"),
+        ("Maximum Spell Points", "Spell Points"),
+        ("Universal Spell Focus", "Spell DCs"),
+        ("Spell Critical Damage", "Universal Spell Critical Damage"),
+        ("Negative Energy Absorption", "Negative Absorption"),
+        ("Negative Energy Resistance", "Negative Resistance"),
+        ("Saving Throws vs Traps", "Trap Save"),
+        ("Sneak Attack Bonus", "Sneak Attack"),
+        ("Critical Damage Multiplier", "Critical Multiplier"),
+        ("Critical Confirmation", "Seeker"),
+        ("Critical Damage", "Seeker"),
+        ("Max Dex Bonus (Shield)", "Max Dex Bonus (Tower Shield)"),
+        ("Threat Generation", "Melee Threat Generation"),
+        ("Melee and Ranged Power", "Melee Power"),
+        ("Doublestrike and Doubleshot", "Doublestrike"),
+        ("Melee and Ranged Threat Reduction", "Threat Reduction"),
+        ("Positive and Negative Spell Power", "Positive Spell Power"),
+        ("Positive and Negative Healing Amplification", "Healing Amplification"),
+    ];
+    for (alias, canonical_stat) in canonical_stat_by_alias {
+        assert!(Stat::by_name(alias).is_none(), "{alias} duplicates {canonical_stat}");
+        assert!(Stat::by_name(canonical_stat).is_some(), "{canonical_stat} is missing");
+    }
+    let names_that_are_effects_or_bonus_types = [
+        "Persuasion",
+        "Tendon Slice",
+        "Spell Absorption",
+        "Quality",
+        "Attack and Damage vs Evil",
+        "Damage vs Evil",
+        "Saves vs Evil",
+        "Curse Absorption",
+        "Positive Absorption",
+        "Repair Absorption",
+    ];
+    for name in names_that_are_effects_or_bonus_types {
+        assert!(Stat::by_name(name).is_none(), "{name} is no stat");
+    }
+}
+
+#[test]
 fn equipment_slots_say_hands_not_arms() {
     let names: Vec<&str> = EquipmentSlot::ALL.iter().map(|s| s.name()).collect();
     assert!(names.contains(&"Hands"));
