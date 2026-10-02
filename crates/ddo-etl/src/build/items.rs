@@ -349,7 +349,8 @@ impl TableWriter<'_> {
         drop_location: &str,
         report: &mut BuildReport,
     ) -> Result<()> {
-        if self.drop_text_linker.legacy_texts_naming_every_segment(drop_location).is_none() {
+        let item_minimum_level = DroppedLoot::Item(item_id).minimum_level(self.transaction)?;
+        if self.drop_text_linker.legacy_texts_naming_every_segment(drop_location, item_minimum_level).is_none() {
             return Ok(());
         }
         self.transaction.execute("UPDATE items SET is_legacy = 1 WHERE id = ?1", params![item_id])?;

@@ -50,3 +50,15 @@ reason = "Squire Rale in the Necropolis encampment is the vendor who takes Scarl
 text = "Tattered Tapestries"
 vendor = "Balkar Aislin"
 reason = "Balkar Aislin in the Upper Necropolis is the vendor who takes the Shreds of Tapestry his text calls Tattered Tapestries."
+
+[[crafting_system]]
+text = "Altar of Fecundity"
+max_minimum_level = 20
+system = "Green Steel items"
+reason = "The Altar of Fecundity in Meridia makes the heroic Green Steel blanks, all of minimum level 20 or below."
+
+[[crafting_system]]
+text = "Altar of Fecundity"
+min_minimum_level = 21
+system = "Legendary Green Steel items"
+reason = "The Altar of Fecundity in Meridia also makes the Legendary Green Steel blanks, all of minimum level 21 or above."

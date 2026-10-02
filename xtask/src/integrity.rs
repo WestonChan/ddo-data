@@ -246,7 +246,7 @@ pub const INTEGRITY_CHECKS: &[IntegrityCheck] = &[
         "items (other than legacy ones) with no sources row. Every kind of source now has a table, but some remain \
          unmodelled: vendors and events no wiki file records yet (wiki-batch's vendor_names.txt and \
          event_names.txt), DDO Store purchases, wilderness and explorer areas that are no quest, crafting \
-         stations no alias maps (the Altar of Fecundity's Green Steel blanks), and items with no drop text. Becomes \
+         stations no alias maps, and items with no drop text. Becomes \
          HARD once those are read or modelled; the drop_location heads below are the work list",
         OffenderQuery::Built(items_without_a_source),
     )

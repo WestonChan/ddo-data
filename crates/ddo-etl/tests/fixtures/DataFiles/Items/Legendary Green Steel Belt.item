@@ -1,0 +1,15 @@
+<Items>
+  <Item>
+    <NoAutoUpdate/>
+    <Name>Legendary Green Steel Belt</Name>
+    <Icon>Belt_13</Icon>
+    <Description>A belt crafted from green steel.</Description>
+    <DropLocation>Altar of Fecundity, Manufactured Ingredient Recipes</DropLocation>
+    <MinLevel>26</MinLevel>
+    <EquipmentSlot>
+      <Belt/>
+    </EquipmentSlot>
+    <Material>Steel</Material>
+    <IsGreensteel/>
+  </Item>
+</Items>

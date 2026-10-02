@@ -292,11 +292,11 @@ pub struct UnlinkedRewardGiver {
 pub fn unlinked_reward_givers(db: &Connection) -> Result<Vec<UnlinkedRewardGiver>> {
     let drop_text_linker =
         DropTextLinker::from_written_tables(db, &LegacyDropSources::embedded()?, &SourceAliases::embedded()?)?;
-    let drop_texts = maetrim_item_drop_texts(db)?;
+    let drop_texts = maetrim_item_drop_texts_with_minimum_levels(db)?;
     let mut item_counts_by_reward_giver: BTreeMap<(bool, String), usize> = BTreeMap::new();
-    for drop_text in &drop_texts {
+    for (drop_text, item_minimum_level) in &drop_texts {
         let mut reward_givers_in_item: Vec<(bool, String)> = drop_text_linker
-            .unlinked_reward_segments(drop_text)
+            .unlinked_reward_segments(drop_text, *item_minimum_level)
             .into_iter()
             .filter_map(|segment| reward_giver_name(segment).map(|name| (names_saga(segment), name)))
             .collect();
@@ -342,9 +342,9 @@ fn unlinked_segment_heads(
     let drop_text_linker =
         DropTextLinker::from_written_tables(db, &LegacyDropSources::embedded()?, &SourceAliases::embedded()?)?;
     let mut item_counts_by_head: BTreeMap<String, usize> = BTreeMap::new();
-    for drop_text in &maetrim_item_drop_texts(db)? {
+    for (drop_text, item_minimum_level) in &maetrim_item_drop_texts_with_minimum_levels(db)? {
         let mut heads_in_item: Vec<String> = drop_text_linker
-            .unlinked_segments(drop_text)
+            .unlinked_segments(drop_text, *item_minimum_level)
             .into_iter()
             .filter_map(&head_of_segment)
             .filter(|head| !head.is_empty())
@@ -363,11 +363,12 @@ fn unlinked_segment_heads(
     Ok(unlinked_heads)
 }
 
-fn maetrim_item_drop_texts(db: &Connection) -> Result<Vec<String>> {
-    let mut statement =
-        db.prepare("SELECT drop_location FROM items WHERE provenance = ?1 AND drop_location IS NOT NULL ORDER BY id")?;
+fn maetrim_item_drop_texts_with_minimum_levels(db: &Connection) -> Result<Vec<(String, Option<i64>)>> {
+    let mut statement = db.prepare(
+        "SELECT drop_location, minimum_level FROM items WHERE provenance = ?1 AND drop_location IS NOT NULL ORDER BY id",
+    )?;
     let drop_texts = statement
-        .query_map(params![ddo_model::enums::Provenance::Maetrim.as_str()], |r| r.get(0))?
+        .query_map(params![ddo_model::enums::Provenance::Maetrim.as_str()], |r| Ok((r.get(0)?, r.get(1)?)))?
         .collect::<rusqlite::Result<_>>()?;
     Ok(drop_texts)
 }

@@ -295,3 +295,47 @@ fn rejects_a_vendor_alias_repeating_a_head_and_turn_in_but_keeps_one_whose_turn_
     assert!(SourceAliases::from_toml_str(&repeated).is_err(), "{repeated}");
     assert!(SourceAliases::from_toml_str(&alias(" ", "Raam Lukresh")).is_err(), "a blank contains must fail");
 }
+
+const GREEN_STEEL_SYSTEMS: &str =
+    "# Test values shaped like ddowiki crafting pages: the system names are real, the pages and dates test values.\n\
+     [[system]]\nname = \"Green Steel items\"\npage = \"https://ddowiki.com/page/Green_Steel_items\"\nread = \"2026-10-02\"\n\
+     [[system]]\nname = \"Legendary Green Steel items\"\npage = \"https://ddowiki.com/page/Legendary_Green_Steel_items\"\n\
+     read = \"2026-10-02\"\n";
+
+#[test]
+fn links_an_item_made_at_a_station_two_systems_share_to_the_one_its_minimum_level_falls_in() {
+    let (db, report) = built_with(&fixture_wiki_with("crafting_green_steel.toml", GREEN_STEEL_SYSTEMS));
+    assert_eq!(
+        source_rows(&db, "Green Steel Weave Boots"),
+        ["crafting_system Green Steel items 0"],
+        "'Altar of Fecundity, Manufactured Ingredient Recipes' at minimum level 11"
+    );
+    assert_eq!(
+        source_rows(&db, "Legendary Green Steel Belt"),
+        ["crafting_system Legendary Green Steel items 0"],
+        "the same text at minimum level 26"
+    );
+    assert_eq!(report.drop_text_crafting_system_source_count, 4);
+    assert!(!unlinked_heads(&db).iter().any(|head| head == "Altar of Fecundity"));
+}
+
+#[test]
+fn rejects_crafting_system_aliases_whose_minimum_levels_overlap_but_keeps_ones_that_split_them() {
+    let alias = |levels: &str, system: &str| {
+        format!("[[crafting_system]]\ntext = \"Altar of Fecundity\"\n{levels}system = {system:?}\nreason = \"Its blanks.\"\n")
+    };
+    let split = format!(
+        "{}{}",
+        alias("max_minimum_level = 20\n", "Green Steel items"),
+        alias("min_minimum_level = 21\n", "Legendary Green Steel items")
+    );
+    assert_eq!(SourceAliases::from_toml_str(&split).unwrap().crafting_systems.len(), 2);
+    let overlapping = format!(
+        "{}{}",
+        alias("max_minimum_level = 21\n", "Green Steel items"),
+        alias("min_minimum_level = 21\n", "Legendary Green Steel items")
+    );
+    assert!(SourceAliases::from_toml_str(&overlapping).is_err(), "{overlapping}");
+    let empty_range = alias("min_minimum_level = 21\nmax_minimum_level = 20\n", "Green Steel items");
+    assert!(SourceAliases::from_toml_str(&empty_range).is_err(), "{empty_range}");
+}

@@ -61,5 +61,5 @@ A `[[vendor]]` entry (`text`, an optional `contains`, `vendor`, `reason`) links 
 
 No alias is needed for an iconic hero's starter gear: a segment whose head is `Advance to level N` links the item as a `starter` source with `character_level` N (his text gives only `Advance to level 15, End reward`), counted as `drop_text_starter_source_count`. The level is the only fact his text gives, so the kind needs no table of its own.
 
-`Altar of Fecundity, Manufactured Ingredient Recipes` (93 items) is not aliased: the Altar of Fecundity makes the blanks of both Green Steel items (the 45 heroic ones) and Legendary Green Steel items (the 48 named Legendary), and a head alias cannot tell them apart.
+A `[[crafting_system]]` entry may also carry `min_minimum_level` and `max_minimum_level` (either or both, inclusive): it then links only loot whose minimum level falls in that range, so one station can stand for two systems. `Altar of Fecundity, Manufactured Ingredient Recipes` (93 items) is the case: the Altar makes the blanks of both Green Steel items (minimum level 11 or 12, so `max_minimum_level = 20`, 45 items) and Legendary Green Steel items (minimum level 26, so `min_minimum_level = 21`, 48 items). Two entries may share a `text` only when their level ranges do not overlap, and the build fails on a `min_minimum_level` above the `max_minimum_level`.
 

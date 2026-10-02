@@ -10,7 +10,7 @@ use crate::map::source_alias::SourceAliases;
 use anyhow::Result;
 use ddo_model::enums::{LootType, Provenance, SagaTier, SourceKind};
 use rusqlite::{params, Connection, OptionalExtension, Transaction};
-use std::ops::Range;
+use std::ops::{Range, RangeInclusive};
 use std::sync::LazyLock;
 
 const MATCHED_TEXT_MASK: &str = "\0";
@@ -31,19 +31,25 @@ struct NamedDropSource {
 struct AliasedDropSource {
     head: String,
     lowercase_contains: Option<String>,
+    minimum_levels: Option<RangeInclusive<i64>>,
     id: i64,
 }
 
 impl AliasedDropSource {
-    fn is_named_by(&self, segment: &str) -> bool {
+    fn is_named_by(&self, segment: &str, loot_minimum_level: Option<i64>) -> bool {
         segment_head(segment).eq_ignore_ascii_case(&self.head)
             && self.lowercase_contains.as_ref().is_none_or(|contains| segment.to_lowercase().contains(contains))
+            && self
+                .minimum_levels
+                .as_ref()
+                .is_none_or(|levels| loot_minimum_level.is_some_and(|level| levels.contains(&level)))
     }
 }
 
 struct AliasTarget<'alias> {
     head: &'alias str,
     contains: Option<&'alias str>,
+    minimum_levels: Option<RangeInclusive<i64>>,
     target_name: &'alias str,
 }
 
@@ -117,6 +123,7 @@ impl DropTextLinker {
                 source_aliases.crafting_systems.iter().map(|alias| AliasTarget {
                     head: &alias.text,
                     contains: None,
+                    minimum_levels: alias.minimum_levels(),
                     target_name: &alias.system,
                 }),
                 &mut unresolved_alias_texts,
@@ -127,6 +134,7 @@ impl DropTextLinker {
                 source_aliases.challenges.iter().map(|alias| AliasTarget {
                     head: &alias.text,
                     contains: None,
+                    minimum_levels: None,
                     target_name: &alias.pack,
                 }),
                 &mut unresolved_alias_texts,
@@ -137,6 +145,7 @@ impl DropTextLinker {
                 source_aliases.vendors.iter().map(|alias| AliasTarget {
                     head: &alias.text,
                     contains: alias.contains.as_deref(),
+                    minimum_levels: None,
                     target_name: &alias.vendor,
                 }),
                 &mut unresolved_alias_texts,
@@ -191,13 +200,17 @@ impl DropTextLinker {
             .collect()
     }
 
-    pub(super) fn unlinked_reward_segments<'text>(&self, drop_text: &'text str) -> Vec<&'text str> {
+    pub(super) fn unlinked_reward_segments<'text>(
+        &self,
+        drop_text: &'text str,
+        loot_minimum_level: Option<i64>,
+    ) -> Vec<&'text str> {
         self.segments_giving_no_quest_reward(drop_text)
             .into_iter()
             .filter(|segment| {
                 reward_giver_name(segment).is_some()
                     && self.reward_givers_in_segment(segment).is_empty()
-                    && self.named_sources_in(segment).is_empty()
+                    && self.named_sources_in(segment, loot_minimum_level).is_empty()
             })
             .collect()
     }
@@ -313,33 +326,45 @@ impl DropTextLinker {
         pack_links
     }
 
-    fn segments_naming_no_drop_source<'text>(&self, drop_text: &'text str) -> Vec<&'text str> {
+    fn segments_naming_no_drop_source<'text>(
+        &self,
+        drop_text: &'text str,
+        loot_minimum_level: Option<i64>,
+    ) -> Vec<&'text str> {
         self.segments_naming_no_quest(drop_text)
             .into_iter()
             .filter(|segment| {
                 !segment.trim().is_empty()
                     && self.reward_givers_in_segment(segment).is_empty()
                     && self.pack_name_spans_in(segment).is_empty()
-                    && self.named_sources_in(segment).is_empty()
+                    && self.named_sources_in(segment, loot_minimum_level).is_empty()
             })
             .collect()
     }
 
-    pub(super) fn unlinked_segments<'text>(&self, drop_text: &'text str) -> Vec<&'text str> {
-        self.segments_naming_no_drop_source(drop_text)
+    pub(super) fn unlinked_segments<'text>(
+        &self,
+        drop_text: &'text str,
+        loot_minimum_level: Option<i64>,
+    ) -> Vec<&'text str> {
+        self.segments_naming_no_drop_source(drop_text, loot_minimum_level)
             .into_iter()
             .filter(|segment| !self.legacy_drop_sources.names_legacy_source(segment))
             .collect()
     }
 
-    pub(super) fn legacy_texts_naming_every_segment(&self, drop_text: &str) -> Option<Vec<&str>> {
+    pub(super) fn legacy_texts_naming_every_segment(
+        &self,
+        drop_text: &str,
+        loot_minimum_level: Option<i64>,
+    ) -> Option<Vec<&str>> {
         let segments: Vec<&str> = segment_ranges(drop_text)
             .into_iter()
             .map(|range| &drop_text[range])
             .filter(|s| !s.trim().is_empty())
             .collect();
         let names_current_drop_source =
-            segments.iter().any(|segment| self.segments_naming_no_drop_source(segment).is_empty());
+            segments.iter().any(|segment| self.segments_naming_no_drop_source(segment, loot_minimum_level).is_empty());
         if names_current_drop_source {
             return None;
         }
@@ -394,7 +419,7 @@ impl DropTextLinker {
 }
 
 impl DropTextLinker {
-    fn named_sources_in(&self, segment: &str) -> Vec<LootSource> {
+    fn named_sources_in(&self, segment: &str, loot_minimum_level: Option<i64>) -> Vec<LootSource> {
         let mut named_sources = Vec::new();
         let head = segment_head(segment);
         if let Some(character_level) = starter_character_level(head) {
@@ -406,7 +431,9 @@ impl DropTextLinker {
             (&self.vendors_by_turn_in, LootSource::Vendor),
         ];
         for (aliased_sources, loot_source) in aliased_kinds {
-            for aliased_source in aliased_sources.iter().filter(|aliased_source| aliased_source.is_named_by(segment)) {
+            for aliased_source in
+                aliased_sources.iter().filter(|aliased_source| aliased_source.is_named_by(segment, loot_minimum_level))
+            {
                 named_sources.push(loot_source(aliased_source.id));
             }
         }
@@ -446,8 +473,9 @@ impl DropTextLinker {
         drop_text: &str,
     ) -> Result<Vec<SourceKind>> {
         let mut linked_kinds = Vec::new();
+        let loot_minimum_level = loot.minimum_level(transaction)?;
         for segment in segment_ranges(drop_text).into_iter().map(|range| &drop_text[range]) {
-            for named_source in self.named_sources_in(segment) {
+            for named_source in self.named_sources_in(segment, loot_minimum_level) {
                 let changed_row_count = insert_source_link(
                     transaction,
                     &SourceLink {
@@ -493,6 +521,7 @@ fn aliased_sources<'alias>(
             Some(id) => aliased_sources.push(AliasedDropSource {
                 head: alias_target.head.to_string(),
                 lowercase_contains: alias_target.contains.map(str::to_lowercase),
+                minimum_levels: alias_target.minimum_levels,
                 id,
             }),
             None => unresolved_alias_texts.push(alias_target.head.to_string()),
@@ -585,6 +614,14 @@ impl DroppedLoot {
             Self::Item(_) => None,
             Self::Augment(id) => Some(id),
         }
+    }
+
+    pub(super) fn minimum_level(self, db: &Connection) -> Result<Option<i64>> {
+        let (sql, id) = match self {
+            Self::Item(id) => ("SELECT minimum_level FROM items WHERE id = ?1", id),
+            Self::Augment(id) => ("SELECT min_level FROM augments WHERE id = ?1", id),
+        };
+        Ok(db.query_row(sql, [id], |r| r.get(0)).optional()?.flatten())
     }
 }
 
