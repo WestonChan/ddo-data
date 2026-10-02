@@ -243,9 +243,11 @@ pub const INTEGRITY_CHECKS: &[IntegrityCheck] = &[
     ),
     IntegrityCheck::warn(
         "items_without_a_source",
-        "items (other than legacy ones) with no sources row; no table links an item as a crafting output yet, so \
-         sources is the only source. Becomes HARD once vendor, event, crafting, challenge and starter-gear sources exist; the \
-         drop_location heads below are the work list for them",
+        "items (other than legacy ones) with no sources row. Every kind of source now has a table, but some remain \
+         unmodelled: vendors and events no wiki file records yet (wiki-batch's vendor_names.txt and \
+         event_names.txt), DDO Store purchases, wilderness and explorer areas that are no quest, crafting \
+         stations no alias maps (the Altar of Fecundity's Green Steel blanks), and items with no drop text. Becomes \
+         HARD once those are read or modelled; the drop_location heads below are the work list",
         OffenderQuery::Built(items_without_a_source),
     )
     .ranking_top_details(15),
