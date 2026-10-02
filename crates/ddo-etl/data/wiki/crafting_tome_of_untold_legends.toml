@@ -1,0 +1,102 @@
+[[system]]
+name = "Tome of Untold Legends"
+page = "https://ddowiki.com/page/Tome_of_Untold_Legends"
+read = "2026-10-02"
+pack = "The Necropolis, Part 4"
+families = []
+npc = "Bilk Howland, Upper Necropolis, The Necropolis (level 10 minimum; gather the 8 Tome pages into a Tome: Binding and turn it in)"
+
+[[system.ingredient]]
+name = "Tome: Binding"
+tier = "any"
+bind = "Bound to Character"
+source = "Complete set of the 8 Tome: Legend pages"
+
+[[system.ingredient]]
+name = "Tome: Legend I"
+tier = "any"
+source = "Litany of the Dead, most frequently at Cinnis chest"
+
+[[system.ingredient]]
+name = "Tome: Legend II"
+tier = "any"
+source = "Litany of the Dead, most frequently at Cholthulzz chest"
+
+[[system.ingredient]]
+name = "Tome: Legend III"
+tier = "any"
+source = "Litany of the Dead, most frequently at Mentau chest"
+
+[[system.ingredient]]
+name = "Tome: Legend IV"
+tier = "any"
+source = "Litany of the Dead, most frequently at High Priest of Vol"
+
+[[system.ingredient]]
+name = "Tome: Legend V"
+tier = "any"
+source = "Litany of the Dead, most frequently at Mentau and Cinnis chest"
+
+[[system.ingredient]]
+name = "Tome: Legend VI"
+tier = "any"
+source = "Litany of the Dead, most frequently at Cholthulzz and High Priest of Vol chest"
+
+[[system.ingredient]]
+name = "Tome: Legend VII"
+tier = "any"
+source = "Litany of the Dead, most frequently at Cinnis and Cholthulzz chest"
+
+[[system.ingredient]]
+name = "Tome: Legend VIII"
+tier = "any"
+source = "Litany of the Dead, most frequently at Mentau and High Priest of Vol chest"
+
+[[system.recipe]]
+tier = "any"
+option = "Skiver"
+note = "produces Skiver (Dagger, ML 14, Bound to Character on Acquire)"
+cost = [{ ingredient = "Tome: Binding", quantity = 1 }]
+
+[[system.recipe]]
+tier = "any"
+option = "Sever"
+note = "produces Sever (Dwarven War Axe, ML 14, Bound to Character on Acquire)"
+cost = [{ ingredient = "Tome: Binding", quantity = 1 }]
+
+[[system.recipe]]
+tier = "any"
+option = "Phosphor"
+note = "produces Phosphor (Heavy Mace, ML 14, Bound to Character on Acquire)"
+cost = [{ ingredient = "Tome: Binding", quantity = 1 }]
+
+[[system.recipe]]
+tier = "any"
+option = "Deathnip"
+note = "produces Deathnip (Heavy Pick, ML 14, Bound to Character on Acquire)"
+cost = [{ ingredient = "Tome: Binding", quantity = 1 }]
+
+[[system.recipe]]
+tier = "any"
+option = "Twinblade"
+note = "produces Twinblade (Bastard Sword, ML 14, Bound to Character on Acquire)"
+cost = [{ ingredient = "Tome: Binding", quantity = 1 }]
+
+[[system.recipe]]
+tier = "any"
+option = "Coronation"
+note = "produces Coronation (Morningstar, ML 14, Bound to Character on Acquire)"
+cost = [{ ingredient = "Tome: Binding", quantity = 1 }]
+
+[[system.recipe]]
+tier = "any"
+option = "Razorend"
+note = "produces Razorend (Short Sword, ML 14, Bound to Character on Acquire)"
+cost = [{ ingredient = "Tome: Binding", quantity = 1 }]
+
+[[system.recipe]]
+tier = "any"
+option = "Serrulae"
+note = "produces Serrulae (Battle Axe, ML 14, Bound to Character on Acquire)"
+cost = [{ ingredient = "Tome: Binding", quantity = 1 }]
+

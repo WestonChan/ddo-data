@@ -1,0 +1,41 @@
+[[system]]
+name = "Elfcraft Armor"
+page = "https://ddowiki.com/page/Elfcraft_Armor"
+read = "2026-10-02"
+families = []
+npc = "Hoorunoe, Gianthold"
+
+[[system.ingredient]]
+name = "Ancient Elven Relic"
+tier = "any"
+
+[[system.recipe]]
+tier = "any"
+option = "Elfcraft Breastplate"
+note = "produces Elfcraft Breastplate; bound to character; shared properties: +4 Enhancement Bonus, Spell Penetration II, Spell Lore III, Potency +40, Mithral (breastplate/plate armor only)"
+cost = [{ ingredient = "Ancient Elven Relic", quantity = 10 }]
+
+[[system.recipe]]
+tier = "any"
+option = "Elfcraft Leather Armor"
+note = "produces Elfcraft Leather Armor; bound to character; shared properties: +4 Enhancement Bonus, Spell Penetration II, Spell Lore III, Potency +40, Mithral (breastplate/plate armor only)"
+cost = [{ ingredient = "Ancient Elven Relic", quantity = 10 }]
+
+[[system.recipe]]
+tier = "any"
+option = "Elfcraft Plate Armor"
+note = "produces Elfcraft Plate Armor; bound to character; shared properties: +4 Enhancement Bonus, Spell Penetration II, Spell Lore III, Potency +40, Mithral (breastplate/plate armor only)"
+cost = [{ ingredient = "Ancient Elven Relic", quantity = 10 }]
+
+[[system.recipe]]
+tier = "any"
+option = "Elfcraft Robe"
+note = "produces Elfcraft Robe; bound to character; shared properties: +4 Enhancement Bonus, Spell Penetration II, Spell Lore III, Potency +40, Mithral (breastplate/plate armor only)"
+cost = [{ ingredient = "Ancient Elven Relic", quantity = 10 }]
+
+[[system.recipe]]
+tier = "any"
+option = "Elfcraft Docent"
+note = "produces Elfcraft Docent; bound to character; shared properties: +4 Enhancement Bonus, Spell Penetration II, Spell Lore III, Potency +40, Mithral (breastplate/plate armor only)"
+cost = [{ ingredient = "Ancient Elven Relic", quantity = 10 }]
+
