@@ -33,7 +33,8 @@ use utoipa_axum::router::OpenApiRouter;
                        with a new deployment. Each successful response carries a strong `ETag`, an \
                        `X-Dataset-Version` header naming the DDOBuilderV2 commit and \
                        `Cache-Control: public, max-age=300, stale-while-revalidate=3600`: fresh for five minutes, \
-                       then revalidated with `If-None-Match`, which answers 304 unless the data changed, so a \
+                       then revalidated with `If-None-Match`, which answers 304 unless the dataset or the API build \
+                       changed (the `ETag` hashes both), so a \
                        deploy is visible within minutes. `/v1/dump.sqlite` and the icons follow the same policy. \
                        `/v1/version` reports the current commit and carries `Cache-Control: no-cache`, so every use \
                        revalidates it. Error responses (every 4xx and 5xx, 429 included) carry \

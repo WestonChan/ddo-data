@@ -19,6 +19,7 @@ struct SharedAppState {
     schema_version: i64,
     is_rate_limited: bool,
     icons_dir: Option<PathBuf>,
+    api_commit: Option<String>,
 }
 
 impl AppState {
@@ -40,6 +41,7 @@ impl AppState {
                 schema_version,
                 is_rate_limited: false,
                 icons_dir: None,
+                api_commit: option_env!("DDO_API_COMMIT").map(str::to_string),
             }),
         })
     }
@@ -52,6 +54,15 @@ impl AppState {
     pub fn with_icons_dir(mut self, icons_dir: &Path) -> Self {
         Arc::get_mut(&mut self.shared).expect("state not yet shared").icons_dir = Some(icons_dir.to_path_buf());
         self
+    }
+
+    pub fn with_api_commit(mut self, api_commit: &str) -> Self {
+        Arc::get_mut(&mut self.shared).expect("state not yet shared").api_commit = Some(api_commit.to_string());
+        self
+    }
+
+    pub fn api_commit(&self) -> Option<&str> {
+        self.shared.api_commit.as_deref()
     }
 
     pub fn icons_dir(&self) -> Option<&Path> {

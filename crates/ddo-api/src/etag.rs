@@ -11,6 +11,7 @@ pub(crate) async fn apply_etag(State(state): State<AppState>, request: Request, 
     let upstream_sha = &state.dataset_version().upstream_sha;
     let mut hasher = DefaultHasher::new();
     upstream_sha.hash(&mut hasher);
+    state.api_commit().hash(&mut hasher);
     request.uri().path().hash(&mut hasher);
     request.uri().query().hash(&mut hasher);
     let etag = format!("\"{:016x}\"", hasher.finish());

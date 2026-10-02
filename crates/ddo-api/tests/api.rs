@@ -1854,3 +1854,22 @@ async fn data_responses_are_fresh_for_five_minutes_then_revalidated() {
         assert_eq!(response.headers().get(header::CACHE_CONTROL).unwrap(), DATA_CACHE_CONTROL, "{path}");
     }
 }
+
+#[tokio::test]
+async fn a_new_api_build_changes_every_etag_even_on_the_same_dataset() {
+    let etag_from = |state: AppState| async move {
+        let response =
+            app(state).oneshot(Request::get("/v1/items?q=sireth").body(Body::empty()).unwrap()).await.unwrap();
+        response.headers().get(header::ETAG).unwrap().clone()
+    };
+    let first_build_etag = etag_from(fixture_state().with_api_commit("aaaaaaa")).await;
+    let second_build_etag = etag_from(fixture_state().with_api_commit("bbbbbbb")).await;
+    assert_ne!(first_build_etag, second_build_etag);
+
+    let response = app(fixture_state().with_api_commit("bbbbbbb"))
+        .oneshot(Request::get("/v1/version").body(Body::empty()).unwrap())
+        .await
+        .unwrap();
+    let version: Value = serde_json::from_slice(&response.into_body().collect().await.unwrap().to_bytes()).unwrap();
+    assert_eq!(version["api_commit"], "bbbbbbb");
+}

@@ -17,7 +17,7 @@ pub(super) fn router() -> OpenApiRouter<AppState> {
 #[derive(Serialize, ToSchema)]
 pub(super) struct VersionReport {
     pub schema_version: i64,
-    pub api_commit: Option<&'static str>,
+    pub api_commit: Option<String>,
     #[schema(value_type = Object)]
     pub dataset: DatasetVersion,
     pub counts: BTreeMap<String, i64>,
@@ -76,7 +76,7 @@ const COUNTED_ROWS: &[(&str, &str)] = &[
                    was built from (`api_commit`, null for local builds), the schema version, and row counts for \
                    the main tables (`legacy_items` counts the items flagged `is_legacy`, which /v1/items leaves out unless `include_legacy=true`; `sources` counts every link between loot and a source, and splits by kind into `quest_loot` and `quest_augment_loot`, a quest's item and augment drops, `quest_chain_rewards` and `saga_rewards`, the items each quest chain's and saga's end reward offers, `pack_loot` and `pack_augment_loot`, the items and augments credited to any quest of an adventure pack, `challenge_rewards`, the items and augments a challenge pack's turn-in rewards offer, `crafting_system_sources`, the items and augments a wiki crafting system makes, `starter_items`, the iconic heroes' starter gear, and `vendor_items` and `event_items`, the items each vendor offers and each event rewards; `vendors` and `events` count those read from ddowiki) plus `wiki_items`, `wiki_quests` and `wiki_augments`, the items, quests and augments read from ddowiki because \
                    DDOBuilderV2 lacks them. \
-                   The dataset SHA is the same value every response carries in its `X-Dataset-Version` header; a change in it means every cached response is stale.",
+                   The dataset SHA is the same value every response carries in its `X-Dataset-Version` header; a change in it or in `api_commit` changes every `ETag`, so every cached response revalidates to fresh content.",
     responses((status = 200, description = "Dataset, schema and counts", body = VersionReport))
 )]
 async fn version_report(State(state): State<AppState>) -> Result<Json<VersionReport>, ApiError> {
@@ -94,7 +94,7 @@ async fn version_report(State(state): State<AppState>) -> Result<Json<VersionRep
         .await?;
     Ok(Json(VersionReport {
         schema_version,
-        api_commit: option_env!("DDO_API_COMMIT"),
+        api_commit: state.api_commit().map(str::to_string),
         dataset,
         counts: row_counts_by_name,
     }))
