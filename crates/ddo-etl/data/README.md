@@ -57,5 +57,7 @@ The build fails, naming the entry, when the file has a field or table other than
 
 A `[[challenge]]` entry (`text`, `pack`, `reason`) does the same for a challenge pack, an adventure pack of Maetrim's `Challenges.xml`: a segment whose head is its `text` links the item or augment as a `challenge` source of that pack, the reward its challenges' ingredients or commendations buy. His text names no challenge, only the place: `Vaults of the Artificers, Turn in various challenge ingredients` (the House Cannith challenges, whose pack in his files is Secrets of the Artificers; nine of them are in Free to Play, which the link does not name) and `Eveningstar, Turn in 5 Commendations: ...` (Eveningstar Challenge Pack). The build report counts `drop_text_challenge_source_count`, and lists in `unresolved_source_aliases` the texts of every alias whose system or pack the build lacks.
 
+No alias is needed for an iconic hero's starter gear: a segment whose head is `Advance to level N` links the item as a `starter` source with `character_level` N (his text gives only `Advance to level 15, End reward`), counted as `drop_text_starter_source_count`. The level is the only fact his text gives, so the kind needs no table of its own.
+
 `Altar of Fecundity, Manufactured Ingredient Recipes` (93 items) is not aliased: the Altar of Fecundity makes the blanks of both Green Steel items (the 45 heroic ones) and Legendary Green Steel items (the 48 named Legendary), and a head alias cannot tell them apart.
 

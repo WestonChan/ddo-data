@@ -116,6 +116,7 @@ fn wiki_check_reports_the_wiki_counts_for_a_valid_wiki_dir() {
         "drop_text_saga_reward_count: 2",
         "drop_text_crafting_system_source_count: 2",
         "drop_text_challenge_source_count: 1",
+        "drop_text_starter_source_count: 1",
     ] {
         assert!(report.lines().any(|line| line == expected_line), "missing {expected_line:?} in\n{report}");
     }
@@ -410,7 +411,7 @@ fn wiki_batch_writes_the_reading_agent_inputs() {
     )
     .unwrap();
 
-    assert_eq!(line_count(&out_dir.path().join("item_names.txt")), 41);
+    assert_eq!(line_count(&out_dir.path().join("item_names.txt")), 42);
     assert_eq!(
         std::fs::read_to_string(out_dir.path().join("wiki_source_items.txt")).unwrap(),
         "Battle Axe of the Oozing Hunger\n"
@@ -476,11 +477,13 @@ fn wiki_batch_lists_every_blank_description_the_wiki_files_have_not_filled() {
         std::fs::read_to_string(unfilled_out_dir.path().join("blank_descriptions.txt")).unwrap(),
         "item\t+1 Ember Repeating Light Crossbow\thttps://ddowiki.com/page/Item:+1_Ember_Repeating_Light_Crossbow\n\
          item\t+1 Starter Heavy Steel Shield\thttps://ddowiki.com/page/Item:+1_Starter_Heavy_Steel_Shield\n\
+         item\tBlood-Red Lenses\thttps://ddowiki.com/page/Item:Blood-Red_Lenses\n\
          augment\tLunar Gem of Evocation (Heroic)\thttps://ddowiki.com/page/Item:Lunar_Gem_of_Evocation_(Heroic)\n"
     );
     assert_eq!(
         std::fs::read_to_string(filled_out_dir.path().join("blank_descriptions.txt")).unwrap(),
-        "item\t+1 Starter Heavy Steel Shield\thttps://ddowiki.com/page/Item:+1_Starter_Heavy_Steel_Shield\n"
+        "item\t+1 Starter Heavy Steel Shield\thttps://ddowiki.com/page/Item:+1_Starter_Heavy_Steel_Shield\n\
+         item\tBlood-Red Lenses\thttps://ddowiki.com/page/Item:Blood-Red_Lenses\n"
     );
 }
 

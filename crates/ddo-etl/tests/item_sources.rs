@@ -1,4 +1,4 @@
-use ddo_etl::build::{build_database, unlinked_drop_segment_heads, BuildReport};
+use ddo_etl::build::{build_database, unlinked_drop_segment_heads, unlinked_reward_givers, BuildReport};
 use ddo_etl::corrections::Corrections;
 use ddo_etl::map::source_alias::SourceAliases;
 use ddo_etl::wiki::WikiOverrides;
@@ -135,4 +135,15 @@ fn links_an_item_his_text_gives_for_challenge_ingredients_to_the_challenge_pack(
         "the fixtures carry no Eveningstar Challenge Pack: {:?}",
         report.unresolved_source_aliases
     );
+}
+
+#[test]
+fn links_an_iconic_starter_item_to_the_level_that_earns_it() {
+    let (db, report) = built_with(&WikiOverrides::default());
+    assert_eq!(source_rows(&db, "Blood-Red Lenses"), ["starter 15 0"], "'Advance to level 15, End reward'");
+    assert_eq!(report.drop_text_starter_source_count, 1);
+    assert!(!unlinked_heads(&db).iter().any(|head| head.starts_with("Advance to level")));
+    let reward_giver_names: Vec<String> =
+        unlinked_reward_givers(&db).unwrap().into_iter().map(|reward_giver| reward_giver.name).collect();
+    assert!(!reward_giver_names.iter().any(|name| name.starts_with("Advance to level")), "{reward_giver_names:?}");
 }

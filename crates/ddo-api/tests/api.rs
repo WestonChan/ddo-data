@@ -61,7 +61,7 @@ async fn version_reports_dataset_and_schema() {
     assert_eq!(json["dataset"]["upstream_sha"], "fixture-sha");
     assert_eq!(json["schema_version"], ddo_model::SCHEMA_VERSION);
     assert!(json.get("api_commit").is_some(), "version must report the API build commit, null when unknown");
-    assert_eq!(json["counts"]["items"], 42, "41 of Maetrim's and the wiki fixture's axe");
+    assert_eq!(json["counts"]["items"], 43, "42 of Maetrim's and the wiki fixture's axe");
     assert_eq!(
         json["counts"]["legacy_items"], 3,
         "a legacy and a historic version, and an axe that drops only in a retired Temple of Elemental Evil part"
@@ -95,7 +95,7 @@ async fn items_list_filters_and_pages() {
 
     let (_, _, first_page) = get("/v1/items?limit=5&offset=0").await;
     assert_eq!(first_page["items"].as_array().unwrap().len(), 5);
-    assert_eq!(first_page["total"], 39, "the three legacy items are left out by default");
+    assert_eq!(first_page["total"], 40, "the three legacy items are left out by default");
     let (_, _, armor) = get("/v1/items?category=Armor").await;
     assert!(armor["items"].as_array().unwrap().iter().all(|i| i["category"] == "Armor"));
     let (_, _, level_range) = get("/v1/items?min_level=20&max_level=25").await;
@@ -115,7 +115,7 @@ async fn items_list_filters_and_pages() {
     );
     assert!(rare.iter().all(|item| item["is_rare"] == true));
     let (_, _, unfiltered) = get("/v1/items?rare=false").await;
-    assert_eq!(unfiltered["total"], 39);
+    assert_eq!(unfiltered["total"], 40);
     let (status, _, _) = get("/v1/items?category=Hat").await;
     assert_eq!(status, StatusCode::BAD_REQUEST, "unknown category is a client error");
 }
@@ -126,13 +126,13 @@ async fn items_list_leaves_out_legacy_items_unless_asked_to_include_them() {
     for path in ["/v1/items?limit=10000", "/v1/items?limit=10000&include_legacy=false"] {
         let (status, _, current) = get(path).await;
         assert_eq!(status, StatusCode::OK);
-        assert_eq!(current["total"], 39, "{path}");
+        assert_eq!(current["total"], 40, "{path}");
         let rows = current["items"].as_array().unwrap();
         assert!(rows.iter().all(|row| row["is_legacy"] == false), "{path}");
         assert!(legacy_names.iter().all(|name| rows.iter().all(|row| row["name"] != *name)), "{path}");
     }
     let (_, _, with_legacy) = get("/v1/items?limit=10000&include_legacy=true").await;
-    assert_eq!(with_legacy["total"], 42);
+    assert_eq!(with_legacy["total"], 43);
     let legacy_rows: Vec<&Value> =
         with_legacy["items"].as_array().unwrap().iter().filter(|row| row["is_legacy"] == true).collect();
     assert_eq!(legacy_rows.iter().map(|row| row["name"].as_str().unwrap()).collect::<Vec<_>>(), legacy_names);
@@ -242,7 +242,7 @@ async fn enchantments_list_every_stat_and_effect_an_item_carries_with_its_item_c
     assert!(enchantment_named(&enchantments, "Fire Spell Power", "stat").is_none(), "only a legacy item carries it");
     assert!(enchantment_named(&enchantments, "ElfBane", "effect").is_none(), "only a legacy item carries it");
     let rows = enchantments.as_array().unwrap();
-    assert_eq!(rows.len(), 94, "56 stats and 38 effects carried by fixture items that are not legacy");
+    assert_eq!(rows.len(), 96, "56 stats and 40 effects carried by fixture items that are not legacy");
     assert!(rows.iter().all(|row| row["item_count"].as_i64().unwrap() > 0));
     let names: Vec<&str> = rows.iter().map(|row| row["name"].as_str().unwrap()).collect();
     let mut sorted_names = names.clone();
@@ -262,7 +262,7 @@ async fn enchantments_narrow_by_search_text_and_kind() {
 
     let (_, _, effects) = get("/v1/enchantments?kind=effect").await;
     let effects = effects.as_array().unwrap();
-    assert_eq!(effects.len(), 38);
+    assert_eq!(effects.len(), 40);
     assert!(effects.iter().all(|row| row["kind"] == "effect"), "kind=effect lists a stat");
     let (_, _, strength_stats) = get("/v1/enchantments?kind=stat&q=strength").await;
     assert_eq!(strength_stats, serde_json::json!([{ "name": "Strength", "kind": "stat", "item_count": 2 }]));
@@ -335,7 +335,7 @@ async fn item_search_text_also_matches_a_slot_category_or_pack_name_and_ranks_ex
     assert_eq!(item_names(&feet), ["Epic Kundarak Delving Boots", "Kundarak Delving Boots"], "the Feet slot");
     let (_, _, jewelry) = get("/v1/items?q=jewelry").await;
     assert!(jewelry["items"].as_array().unwrap().iter().all(|item| item["category"] == "Jewelry"), "{jewelry}");
-    assert_eq!(jewelry["total"], 13);
+    assert_eq!(jewelry["total"], 14);
     let (_, _, free_to_play) = get("/v1/items?q=free%20to%20play").await;
     assert_eq!(
         item_names(&free_to_play),
@@ -1445,7 +1445,10 @@ async fn adventure_pack_detail_lists_the_loot_any_of_its_quests_drops() {
 async fn item_and_augment_detail_list_every_source_in_one_array() {
     let (_, _, band) = get(&format!("/v1/items/{}", id_of_item_named("Band of Diani ir'Wynarn").await)).await;
     let sources = band["sources"].as_array().unwrap();
-    assert_eq!(keys_of(&sources[0]), ["chest", "id", "is_rare", "kind", "loot_type", "name", "tier", "wiki_url"]);
+    assert_eq!(
+        keys_of(&sources[0]),
+        ["character_level", "chest", "id", "is_rare", "kind", "loot_type", "name", "tier", "wiki_url"]
+    );
     let source_summaries: Vec<(&str, &str, Option<&str>, Option<&str>)> = sources
         .iter()
         .map(|source| {
@@ -1539,6 +1542,28 @@ async fn item_detail_lists_the_challenge_pack_whose_ingredients_buy_it() {
 }
 
 #[tokio::test]
+async fn item_detail_lists_the_starter_level_that_earns_an_iconic_item() {
+    let (_, _, lenses) = get(&format!("/v1/items/{}", id_of_item_named("Blood-Red Lenses").await)).await;
+    assert_eq!(lenses["starter_rewards"], serde_json::json!([{ "character_level": 15 }]));
+    assert_eq!(
+        lenses["sources"],
+        serde_json::json!([{
+            "kind": "starter",
+            "id": null,
+            "name": "Advance to level 15",
+            "loot_type": null,
+            "chest": null,
+            "is_rare": false,
+            "tier": null,
+            "character_level": 15,
+            "wiki_url": null
+        }])
+    );
+    let (_, _, version) = get("/v1/version").await;
+    assert_eq!(version["counts"]["starter_items"], 1);
+}
+
+#[tokio::test]
 async fn version_counts_every_source_by_kind() {
     let (_, _, version) = get("/v1/version").await;
     let counts = &version["counts"];
@@ -1552,6 +1577,7 @@ async fn version_counts_every_source_by_kind() {
         "pack_augment_loot",
         "crafting_system_sources",
         "challenge_rewards",
+        "starter_items",
     ]
     .iter()
     .map(|count_name| counts[count_name].as_i64().unwrap())

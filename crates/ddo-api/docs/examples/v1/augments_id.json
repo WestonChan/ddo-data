@@ -124,6 +124,7 @@
   ],
   "sources": [
     {
+      "character_level": null,
       "chest": "end chest",
       "id": 360,
       "is_rare": false,
@@ -134,6 +135,7 @@
       "wiki_url": "https://ddowiki.com/page/Secrets_of_the_Red_Wizards"
     },
     {
+      "character_level": null,
       "chest": "optional chest",
       "id": 104,
       "is_rare": false,
@@ -144,6 +146,7 @@
       "wiki_url": "https://ddowiki.com/page/The_Covered_Culvert"
     },
     {
+      "character_level": null,
       "chest": "end chest",
       "id": 103,
       "is_rare": false,

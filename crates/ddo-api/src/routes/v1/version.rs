@@ -47,6 +47,7 @@ const COUNTED_ROWS: &[(&str, &str)] = &[
     ("pack_augment_loot", "sources WHERE kind = 'adventure_pack' AND augment_id IS NOT NULL"),
     ("challenge_rewards", "sources WHERE kind = 'challenge'"),
     ("crafting_system_sources", "sources WHERE kind = 'crafting_system'"),
+    ("starter_items", "sources WHERE kind = 'starter'"),
     ("modifiers", "modifiers"),
     ("requirements", "requirements"),
     ("bonuses", "bonuses"),
@@ -69,7 +70,7 @@ const COUNTED_ROWS: &[(&str, &str)] = &[
     summary = "Get the dataset version",
     description = "Which DDOBuilderV2 commit the data was built from and when, which ddo-data commit the API binary \
                    was built from (`api_commit`, null for local builds), the schema version, and row counts for \
-                   the main tables (`legacy_items` counts the items flagged `is_legacy`, which /v1/items leaves out unless `include_legacy=true`; `sources` counts every link between loot and a source, and splits by kind into `quest_loot` and `quest_augment_loot`, a quest's item and augment drops, `quest_chain_rewards` and `saga_rewards`, the items each quest chain's and saga's end reward offers, `pack_loot` and `pack_augment_loot`, the items and augments credited to any quest of an adventure pack, `challenge_rewards`, the items and augments a challenge pack's turn-in rewards offer, and `crafting_system_sources`, the items and augments a wiki crafting system makes) plus `wiki_items`, `wiki_quests` and `wiki_augments`, the items, quests and augments read from ddowiki because \
+                   the main tables (`legacy_items` counts the items flagged `is_legacy`, which /v1/items leaves out unless `include_legacy=true`; `sources` counts every link between loot and a source, and splits by kind into `quest_loot` and `quest_augment_loot`, a quest's item and augment drops, `quest_chain_rewards` and `saga_rewards`, the items each quest chain's and saga's end reward offers, `pack_loot` and `pack_augment_loot`, the items and augments credited to any quest of an adventure pack, `challenge_rewards`, the items and augments a challenge pack's turn-in rewards offer, `crafting_system_sources`, the items and augments a wiki crafting system makes, and `starter_items`, the iconic heroes' starter gear) plus `wiki_items`, `wiki_quests` and `wiki_augments`, the items, quests and augments read from ddowiki because \
                    DDOBuilderV2 lacks them. \
                    The dataset SHA is the same value every response carries in its `X-Dataset-Version` header; a change in it means every cached response is stale.",
     responses((status = 200, description = "Dataset, schema and counts", body = VersionReport))

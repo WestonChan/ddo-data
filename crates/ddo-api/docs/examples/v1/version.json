@@ -32,14 +32,15 @@
     "sagas": 17,
     "sentient_gems": 14,
     "set_bonuses": 327,
-    "sources": 7174,
+    "sources": 7348,
     "spells": 706,
+    "starter_items": 174,
     "wiki_augments": 0,
     "wiki_items": 262,
     "wiki_quests": 1
   },
   "dataset": {
-    "built_at": "2026-10-02T17:23:22Z",
+    "built_at": "2026-10-02T17:26:43Z",
     "upstream_sha": "31ef0201ea8e28604de2b6242988aee6d63733b0"
   },
   "schema_version": 16

@@ -355,6 +355,9 @@ impl DropTextLinker {
     fn named_sources_in(&self, segment: &str) -> Vec<LootSource> {
         let mut named_sources = Vec::new();
         let head = segment_head(segment);
+        if let Some(character_level) = starter_character_level(head) {
+            named_sources.push(LootSource::Starter(character_level));
+        }
         for challenge_pack in &self.challenge_packs_by_text {
             if head.eq_ignore_ascii_case(&challenge_pack.name) {
                 named_sources.push(LootSource::Challenge(challenge_pack.id));
@@ -417,6 +420,15 @@ impl DropTextLinker {
     }
 }
 
+fn starter_character_level(segment_head: &str) -> Option<i64> {
+    let level_text = segment_head
+        .get(..STARTER_HEAD_PREFIX.len())
+        .filter(|prefix| prefix.eq_ignore_ascii_case(STARTER_HEAD_PREFIX))?;
+    segment_head[level_text.len()..].trim().parse().ok().filter(|level| *level >= 1)
+}
+
+const STARTER_HEAD_PREFIX: &str = "advance to level ";
+
 fn aliased_sources<'alias>(
     db: &Connection,
     target_id_sql: &str,
@@ -457,6 +469,7 @@ pub(super) enum LootSource {
     AdventurePack(i64),
     Challenge(i64),
     CraftingSystem(i64),
+    Starter(i64),
 }
 
 impl LootSource {
@@ -468,6 +481,7 @@ impl LootSource {
             Self::AdventurePack(_) => SourceKind::AdventurePack,
             Self::Challenge(_) => SourceKind::Challenge,
             Self::CraftingSystem(_) => SourceKind::CraftingSystem,
+            Self::Starter(_) => SourceKind::Starter,
         }
     }
 
@@ -477,7 +491,8 @@ impl LootSource {
         | Self::Saga(value)
         | Self::AdventurePack(value)
         | Self::Challenge(value)
-        | Self::CraftingSystem(value)) = self;
+        | Self::CraftingSystem(value)
+        | Self::Starter(value)) = self;
         value
     }
 
@@ -732,6 +747,7 @@ impl TableWriter<'_> {
             match linked_kind {
                 SourceKind::CraftingSystem => report.drop_text_crafting_system_source_count += 1,
                 SourceKind::Challenge => report.drop_text_challenge_source_count += 1,
+                SourceKind::Starter => report.drop_text_starter_source_count += 1,
                 _ => {}
             }
         }

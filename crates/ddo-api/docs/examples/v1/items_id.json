@@ -69,6 +69,7 @@
   "slot": "Ring",
   "sources": [
     {
+      "character_level": null,
       "chest": null,
       "id": 1,
       "is_rare": false,
@@ -79,6 +80,7 @@
       "wiki_url": "https://ddowiki.com/page/The_Lost_Seekers"
     }
   ],
+  "starter_rewards": [],
   "weapon": null,
   "wiki_url": "https://ddowiki.com/page/Item:Acrobat's_Ring"
 }

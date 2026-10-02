@@ -233,8 +233,9 @@ pub(super) fn sources_via(
         db,
         &format!(
             "SELECT loot.kind, COALESCE(q.id, c.id, s.id, p.id, cs.id) AS id,
-                    COALESCE(q.name, c.name, s.name, p.name, cs.name) AS name, loot.loot_type, loot.chest,
-                    loot.is_rare, loot.tier, COALESCE(c.wiki_url, s.wiki_url, cs.page) AS wiki_url
+                    COALESCE(q.name, c.name, s.name, p.name, cs.name, 'Advance to level ' || loot.character_level) AS name,
+                    loot.loot_type, loot.chest, loot.is_rare, loot.tier, loot.character_level,
+                    COALESCE(c.wiki_url, s.wiki_url, cs.page) AS wiki_url
                FROM sources loot LEFT JOIN quests q ON q.id = loot.quest_id
                LEFT JOIN quest_chains c ON c.id = loot.chain_id LEFT JOIN sagas s ON s.id = loot.saga_id
                LEFT JOIN adventure_packs p ON p.id = loot.pack_id
@@ -242,7 +243,7 @@ pub(super) fn sources_via(
               WHERE loot.{loot_id_column} = ?1
               ORDER BY CASE loot.kind WHEN 'quest' THEN 1 WHEN 'quest_chain' THEN 2 WHEN 'saga' THEN 3
                                       WHEN 'adventure_pack' THEN 4 WHEN 'challenge' THEN 5
-                                      WHEN 'crafting_system' THEN 6 ELSE 7 END,
+                                      WHEN 'crafting_system' THEN 6 WHEN 'starter' THEN 9 ELSE 7 END,
                        name, loot.loot_type,
                        CASE loot.tier WHEN 'heroic' THEN 1 WHEN 'epic' THEN 2 WHEN 'legendary' THEN 3 ELSE 4 END"
         ),
@@ -250,7 +251,7 @@ pub(super) fn sources_via(
     )?;
     for source in &mut sources {
         convert_to_booleans(source, &["is_rare"]);
-        if source["wiki_url"].is_null() {
+        if source["wiki_url"].is_null() && source["kind"] != "starter" {
             if let Some(source_name) = source["name"].as_str() {
                 source["wiki_url"] = Value::String(wiki_page_url(source_name));
             }
@@ -287,4 +288,12 @@ pub(super) fn challenge_packs_rewarding(db: &rusqlite::Connection, item_id: i64)
         }
     }
     Ok(challenge_packs)
+}
+
+pub(super) fn starter_rewards_of(db: &rusqlite::Connection, item_id: i64) -> Result<Vec<Value>, ApiError> {
+    json_rows(
+        db,
+        "SELECT character_level FROM sources WHERE kind = 'starter' AND item_id = ?1 ORDER BY character_level",
+        [item_id],
+    )
 }

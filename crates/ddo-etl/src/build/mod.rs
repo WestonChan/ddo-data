@@ -106,6 +106,7 @@ pub struct BuildReport {
     pub drop_text_saga_reward_count: usize,
     pub drop_text_crafting_system_source_count: usize,
     pub drop_text_challenge_source_count: usize,
+    pub drop_text_starter_source_count: usize,
     pub unresolved_source_aliases: Vec<String>,
     pub correction_applied_count: usize,
     pub correction_stale_count: usize,

@@ -157,6 +157,7 @@ fn wiki_report_lines(report: &BuildReport) -> Vec<String> {
         ("drop_text_saga_reward_count", report.drop_text_saga_reward_count),
         ("drop_text_crafting_system_source_count", report.drop_text_crafting_system_source_count),
         ("drop_text_challenge_source_count", report.drop_text_challenge_source_count),
+        ("drop_text_starter_source_count", report.drop_text_starter_source_count),
         ("correction_applied_count", report.correction_applied_count),
         ("correction_stale_count", report.correction_stale_count),
     ]
