@@ -40,9 +40,9 @@ fn item_id(db: &Connection, name: &str) -> i64 {
 #[test]
 fn builds_items_and_skips_cosmetics() {
     let (db, report) = built_fixture_db();
-    assert_eq!(report.written_item_count, 49);
+    assert_eq!(report.written_item_count, 50);
     assert_eq!(report.skipped_cosmetic_item_count, 1);
-    assert_eq!(count(&db, "SELECT COUNT(*) FROM items WHERE provenance = 'maetrim'"), 49);
+    assert_eq!(count(&db, "SELECT COUNT(*) FROM items WHERE provenance = 'maetrim'"), 50);
     assert_eq!(count(&db, "SELECT COUNT(*) FROM items WHERE name = '17th Anniversary Dark Helm'"), 0);
     let reason: String = db
         .query_row("SELECT reason FROM excluded_items WHERE name = '17th Anniversary Dark Helm'", [], |r| r.get(0))
@@ -369,7 +369,7 @@ fn writes_augment_slots_and_presets() {
 #[test]
 fn links_items_to_quests_from_drop_location() {
     let (db, report) = built_fixture_db();
-    assert_eq!(count(&db, "SELECT COUNT(*) FROM quests WHERE NOT is_challenge AND provenance = 'maetrim'"), 22);
+    assert_eq!(count(&db, "SELECT COUNT(*) FROM quests WHERE NOT is_challenge AND provenance = 'maetrim'"), 23);
     assert_eq!(count(&db, "SELECT COUNT(*) FROM patrons"), 22);
     assert!(count(&db, "SELECT COUNT(*) FROM adventure_packs") >= 5);
     let (level, epic_level, is_raid, pack): (i64, Option<i64>, bool, String) = db
@@ -544,6 +544,15 @@ fn matches_quest_names_his_drop_text_capitalises_differently() {
 }
 
 #[test]
+fn matches_the_epic_name_a_quest_goes_by() {
+    let (db, _) = built_fixture_db();
+    assert_eq!(
+        quest_loot_chests(&db, "The Prison of the Planes", "Kardin's Eye (Level 24)"),
+        [("chest".to_string(), Some("xoriat room's chest".to_string()))],
+        "'Return to Prison of the Planes' is the epic name of The Prison of the Planes"
+    );
+}
+#[test]
 fn matches_a_quest_name_his_drop_text_wraps_onto_the_next_line() {
     let (db, _) = built_fixture_db();
     let mut statement = db
@@ -604,7 +613,7 @@ fn diff_reports_coverage_against_a_legacy_database() {
     );
     assert_eq!(
         coverage.names_only_in_built.len(),
-        47,
+        48,
         "the wiki fixture item and the legacy fixture items are only in the build"
     );
     assert!((coverage.coverage_ratio() - 0.75).abs() < 1e-9);

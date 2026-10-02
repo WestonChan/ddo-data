@@ -1611,3 +1611,20 @@ fn build_fails_naming_a_listed_augment_absent_from_the_augments_table() {
     let error = build_report_with(&parsed_wiki(&[("quest_loot_a.toml", &toml_text)]).unwrap()).unwrap_err();
     assert!(error.contains("Lunar Gem of Missing Things") && error.contains("Book Burning"), "{error}");
 }
+
+#[test]
+fn links_drop_text_to_his_quest_whose_epic_name_a_wiki_quest_also_has() {
+    let wiki = parsed_wiki(&[("quests.toml", &wiki_quest_fields_toml("Return to Prison of the Planes", ""))]).unwrap();
+    let (db, _) = built_db_with(&wiki);
+    let linked_quests: Vec<String> = db
+        .prepare(
+            "SELECT q.name FROM sources s JOIN quests q ON q.id = s.quest_id JOIN items i ON i.id = s.item_id
+              WHERE i.name = 'Kardin''s Eye (Level 24)' ORDER BY q.name",
+        )
+        .unwrap()
+        .query_map([], |r| r.get(0))
+        .unwrap()
+        .map(Result::unwrap)
+        .collect();
+    assert_eq!(linked_quests, ["The Prison of the Planes"], "his quest's epic name wins over the wiki quest's name");
+}

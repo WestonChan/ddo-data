@@ -16,7 +16,7 @@ use std::sync::LazyLock;
 const MATCHED_TEXT_MASK: &str = "\0";
 
 struct DropTextQuest {
-    name: String,
+    name_in_drop_text: String,
     lowercase_first_word: String,
     id: i64,
     is_raid: bool,
@@ -97,16 +97,30 @@ impl DropTextLinker {
         source_aliases: &SourceAliases,
     ) -> Result<Self> {
         let mut statement =
-            db.prepare("SELECT name, id, is_raid, provenance = ?1 FROM quests WHERE is_challenge = 0")?;
-        let mut longest_name_first = statement
+            db.prepare("SELECT name, epic_name, id, is_raid, provenance = ?1 FROM quests WHERE is_challenge = 0")?;
+        let quest_rows = statement
             .query_map(params![Provenance::Wiki.as_str()], |r| {
-                let name: String = r.get(0)?;
-                let lowercase_first_word = name.split_whitespace().next().unwrap_or_default().to_lowercase();
-                Ok(DropTextQuest { name, lowercase_first_word, id: r.get(1)?, is_raid: r.get(2)?, is_wiki: r.get(3)? })
+                Ok((r.get::<_, String>(0)?, r.get::<_, Option<String>>(1)?, r.get(2)?, r.get(3)?, r.get(4)?))
             })?
             .collect::<rusqlite::Result<Vec<_>>>()?;
+        let mut longest_name_first: Vec<DropTextQuest> = quest_rows
+            .into_iter()
+            .flat_map(|(name, epic_name, id, is_raid, is_wiki)| {
+                std::iter::once(name).chain(epic_name).map(move |name_in_drop_text| {
+                    let lowercase_first_word =
+                        name_in_drop_text.split_whitespace().next().unwrap_or_default().to_lowercase();
+                    DropTextQuest { name_in_drop_text, lowercase_first_word, id, is_raid, is_wiki }
+                })
+            })
+            .collect();
         longest_name_first.retain(|quest| !quest.lowercase_first_word.is_empty());
-        longest_name_first.sort_by(|a, b| b.name.len().cmp(&a.name.len()).then_with(|| a.name.cmp(&b.name)));
+        longest_name_first.sort_by(|a, b| {
+            b.name_in_drop_text
+                .len()
+                .cmp(&a.name_in_drop_text.len())
+                .then_with(|| a.is_wiki.cmp(&b.is_wiki))
+                .then_with(|| a.name_in_drop_text.cmp(&b.name_in_drop_text))
+        });
         let mut unresolved_alias_texts = Vec::new();
         Ok(Self {
             quests_longest_name_first: longest_name_first,
@@ -218,22 +232,29 @@ impl DropTextLinker {
     fn quest_name_spans_in(&self, drop_text: &str) -> Vec<(&DropTextQuest, Vec<Range<usize>>)> {
         let mut unmatched_text = drop_text.to_string();
         let lowercase_drop_text = drop_text.to_lowercase();
-        let mut quest_name_spans_by_quest = Vec::new();
+        let mut quest_name_spans_by_quest: Vec<(&DropTextQuest, Vec<Range<usize>>)> = Vec::new();
         let mut packs_to_mask = self.packs_longest_name_first.iter().peekable();
         for quest in &self.quests_longest_name_first {
-            while let Some(longer_pack) = packs_to_mask.next_if(|pack| pack.name.len() > quest.name.len()) {
+            while let Some(longer_pack) = packs_to_mask.next_if(|pack| pack.name.len() > quest.name_in_drop_text.len())
+            {
                 let pack_name_spans = quest_name_spans(&unmatched_text, &longer_pack.name);
                 mask_matched_spans(&mut unmatched_text, &pack_name_spans);
             }
             if !lowercase_drop_text.contains(&quest.lowercase_first_word) {
                 continue;
             }
-            let quest_name_spans = quest_name_spans(&unmatched_text, &quest.name);
+            let quest_name_spans = quest_name_spans(&unmatched_text, &quest.name_in_drop_text);
             if quest_name_spans.is_empty() {
                 continue;
             }
             mask_matched_spans(&mut unmatched_text, &quest_name_spans);
-            quest_name_spans_by_quest.push((quest, quest_name_spans));
+            match quest_name_spans_by_quest.iter_mut().find(|(known_quest, _)| known_quest.id == quest.id) {
+                Some((_, known_spans)) => {
+                    known_spans.extend(quest_name_spans);
+                    known_spans.sort_by_key(|span| span.start);
+                }
+                None => quest_name_spans_by_quest.push((quest, quest_name_spans)),
+            }
         }
         quest_name_spans_by_quest
     }
