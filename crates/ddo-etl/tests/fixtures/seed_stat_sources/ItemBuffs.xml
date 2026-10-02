@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Buffs>
+  <Buff>
+    <Type>Astute Skills Bonus</Type>
+    <DisplayText>%b1 Alluring Skills Bonus %v1: %v1 %b1 bonus to  Disable Device, Repair and Search.</DisplayText>
+    <Ignore>Competence</Ignore>
+    <Effect>
+      <Type>SkillBonus</Type>
+      <Bonus>Competence</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">3</Amount>
+      <Item>Disable Device</Item>
+      <Item>Repair</Item>
+      <Item>Search</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>FireIntensity</Type>
+    <DisplayText>%b1 Fire Intensity %v1%: %v1% %b1 bonus to critical damage with Fire spells.</DisplayText>
+    <Ignore>Equipment</Ignore>
+    <Effect>
+      <Type>SpellCriticalDamage</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+      <Item>Fire</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>HealingIntensity</Type>
+    <DisplayText>%b1 Healing Intensity %v1%: %v1% %b1 bonus to critical damage with Positive (Healing) spells.</DisplayText>
+    <Ignore>Equipment</Ignore>
+    <Effect>
+      <Type>SpellCriticalDamage</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+      <Item>Positive</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>IceIntensity</Type>
+    <DisplayText>%b1 Ice Intensity %v1%: %v1% %b1 bonus to critical damage with Cold spells.</DisplayText>
+    <Ignore>Equipment</Ignore>
+    <Effect>
+      <Type>SpellCriticalDamage</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+      <Item>Cold</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>ProofAgainstDisease</Type>
+    <DisplayText>%b1 Proof Against Disease %v1: This item grants its wearer immunity to natural diseases. This item also grants a %v1 %b1 bonus to saving throws against magical diseases, and the wearer does not fail saving throws against them on a roll of a natural 1 (this renders the wearer immune to magical diseases with a DC of less than 3 + their Fortitude save).</DisplayText>
+    <Ignore>Enhancement</Ignore>
+    <Effect>
+      <Type>SaveBonus</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+      <Item>Disease</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Radiance</Type>
+    <DisplayText>%b1 Radiance %v1: %v1 %b1 bonus to Light and Alignment spell power.</DisplayText>
+    <Ignore>Equipment</Ignore>
+    <Effect>
+      <Type>SpellPower</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+      <Item>Chaos</Item>
+      <Item>Evil</Item>
+      <Item>Good</Item>
+      <Item>Lawful</Item>
+      <Item>Light/Alignment</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>RepairIntensity</Type>
+    <DisplayText>%b1 Repair Intensity %v1%: Your Repair and Rust spells gin a %v1% %b1 bonus to critical damage.</DisplayText>
+    <Ignore>Enhancement</Ignore>
+    <Effect>
+      <Type>SpellCriticalDamage</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+      <Item>Repair</Item>
+      <Item>Rust</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>SchoolFocus</Type>
+    <DisplayText>%b1 %i1 Focus %i2: %v1 %b1 bonus to the DC of %i1 spells.</DisplayText>
+    <Ignore>Equipment</Ignore>
+    <Effect>
+      <Type>SpellDC</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+      <Item>Abjuration</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>SonicIntensity</Type>
+    <DisplayText>%b1 Sonic Intensity %v1%: %v1% %b1 bonus to critical damage with Sonic spells.</DisplayText>
+    <Ignore>Equipment</Ignore>
+    <Effect>
+      <Type>SpellCriticalDamage</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+      <Item>Sonic</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Winter's Impertinence</Type>
+    <DisplayText>Winter's Impertinence: The chill of Winter surrounds you. +20% Enhancement bonus to critical damage with force and negative spells.</DisplayText>
+    <Effect>
+      <Type>SpellCriticalDamage</Type>
+      <Bonus>Enhancement</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">20</Amount>
+      <Item>Force</Item>
+      <Item>Negative</Item>
+    </Effect>
+  </Buff>
+</Buffs>

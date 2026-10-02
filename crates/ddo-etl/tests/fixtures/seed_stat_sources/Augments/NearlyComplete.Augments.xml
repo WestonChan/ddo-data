@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Augments>
+  <Augment>
+    <Name>Transmutation Focus +4</Name>
+    <Description>+4 Equipment bonus to the DCs of Transmutation spells.</Description>
+    <MinLevel>1</MinLevel>
+    <Type>Nearly Complete: Spell Focus (Heroic)</Type>
+    <Icon>NearlyComplete</Icon>
+    <Effect>
+      <Type>SpellDC</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">4</Amount>
+      <Item>Transmutation</Item>
+    </Effect>
+  </Augment>
+</Augments>

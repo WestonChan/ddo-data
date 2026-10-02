@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GuildBuffs>
+  <GuildBuff>
+    <Name>Otto's Irresistible Dancehall</Name>
+    <Description>+[1/2/3] to Balance, Jump, Move Silently, Perform, Swim, Tumble </Description>
+    <Level>26</Level>
+    <Effect>
+      <Type>SkillBonus</Type>
+      <Bonus>Guild</Bonus>
+      <AType>TotalLevel</AType>
+      <Amount size="40">1 1 1 1 1 1 1 1 1 2 2 2 2 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3</Amount>
+      <Item>Balance</Item>
+      <Item>Jump</Item>
+      <Item>Move Silently</Item>
+      <Item>Perform</Item>
+      <Item>Swim</Item>
+      <Item>Tumble</Item>
+    </Effect>
+  </GuildBuff>
+</GuildBuffs>

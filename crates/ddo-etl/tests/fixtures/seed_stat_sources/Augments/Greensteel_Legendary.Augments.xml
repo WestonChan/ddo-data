@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Augments>
+  <Augment>
+    <Name>+25 Negative Resistance (Enhancement) and Deathblock</Name>
+    <Description>Material/Opposition: +25 Enhancement bonus to Negative Resistance and Deathblock</Description>
+    <MinLevel>1</MinLevel>
+    <Type>Equipment Tier 3</Type>
+    <Effect>
+      <Type>EnergyResistance</Type>
+      <Bonus>Enhancement</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">25</Amount>
+      <Item>Negative</Item>
+    </Effect>
+    <Effect>
+      <Type>Immunity</Type>
+      <Bonus>Stacking</Bonus>
+      <AType>NotNeeded</AType>
+      <Item>Death Effects</Item>
+    </Effect>
+    <SetBonus>Material</SetBonus>
+    <SetBonus>Opposition</SetBonus>
+  </Augment>
+</Augments>

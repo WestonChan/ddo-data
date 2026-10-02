@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Augments>
+  <Augment>
+    <Name>Insightful Poison Resistance</Name>
+    <Icon>Cannith</Icon>
+    <Description>You have an Insight bonus to resist Poison</Description>
+    <Type>Cannith Armor Extra</Type>
+    <Type>Cannith Bracers Prefix</Type>
+    <Type>Cannith Cloak Suffix</Type>
+    <Type>Cannith Shield Extra</Type>
+    <Type>Cannith Orb Extra</Type>
+    <Type>Cannith Trinket Extra</Type>
+    <Type>Random Armor Extra</Type>
+    <Type>Random Cloak Suffix</Type>
+    <Type>Random Ring Extra</Type>
+    <Type>Random Shield Extra</Type>
+    <ChooseLevel />
+    <LevelValue size="40">1 2 4 5 6 6 7 8 9 10 11 11 12 13 14 14 15 16 17 17 18 19 20 20 21 22 23 23 24 25 26 27 27 28 28 28 28 28 28 28</LevelValue>
+    <Effect>
+      <Type>EnergyResistance</Type>
+      <Bonus>Insightful</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">28</Amount>
+      <Item>Poison</Item>
+    </Effect>
+  </Augment>
+</Augments>

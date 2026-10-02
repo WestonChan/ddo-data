@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Augments>
+  <Augment>
+    <Name>Use Magic Device +1</Name>
+    <Description>Competence bonus to Use Magic Device</Description>
+    <MinLevel>8</MinLevel>
+    <Type>Slavelords Extra</Type>
+    <Icon>SlavelordsExtra</Icon>
+    <Effect>
+      <Type>SkillBonus</Type>
+      <Item>Use Magic Device</Item>
+      <Bonus>Competence</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">1</Amount>
+    </Effect>
+  </Augment>
+</Augments>

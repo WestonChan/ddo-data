@@ -294,11 +294,12 @@ pub const INTEGRITY_CHECKS: &[IntegrityCheck] = &[
     .showing_every_offender(),
     IntegrityCheck::warn(
         "unreferenced_stats",
-        "stats that no bonus an item, augment, feat or set tier carries is on. The ten listed on a full upstream \
-         build are kept on purpose: real stats (ki, rage uses, pact, spellsword and burning ambition dice, maximum \
-         caster level, temporary hit points, sleep save, divination spell focus, force resistance) that only feats, \
-         enhancements or prose give today or that no current item carries; any other is a duplicate to remove from \
-         the seed or a stat a buff or effect map entry should target",
+        "stats that no bonus an item, augment, feat or set tier carries is on. The guard against a duplicate or \
+         non-stat name in the seed is the every_seed_stat_has_a_source_or_is_kept_without_one test in \
+         crates/ddo-etl/tests/stats_seed.rs, which fails on any seed stat no buff or effect map entry, fixture \
+         bonus, wiki or correction bonus reaches unless its STATS_KEPT_WITHOUT_A_SOURCE list names it with a \
+         reason. A full upstream build lists ten: that list's eight, and Ki and Maximum Caster Level, which \
+         effect_map.toml targets but no effect of his carries as a plain number",
         OffenderQuery::Built(unreferenced_stats),
     )
     .showing_every_offender(),
