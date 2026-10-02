@@ -44,6 +44,31 @@ fn wiki_check_counts_corrections_and_warns_about_each_stale_one() {
 }
 
 #[test]
+fn wiki_check_warns_to_delete_a_rename_done_upstream() {
+    let corrections_dir = tempfile::tempdir().unwrap();
+    std::fs::write(
+        corrections_dir.path().join("corrections_items.toml"),
+        "[[correction]]\nkind = \"item\"\nname = \"Docent of Defiant\"\nfield = \"name\"\n\
+         from = \"Docent of Defiant\"\nto = \"Docent of Defiance\"\nreason = \"Test rename.\"\n\
+         source = \"https://ddowiki.com/page/Test\"\nread = \"2026-10-01\"\n",
+    )
+    .unwrap();
+    let report = wiki_check_report(
+        &fixtures_dir().join("DataFiles"),
+        Some(&fixtures_dir().join("wiki")),
+        Some(corrections_dir.path()),
+    )
+    .unwrap();
+    assert!(report.lines().any(|line| line == "correction_stale_count: 1"), "{report}");
+    let (_, warnings) = report.split_once("warnings:\n").unwrap();
+    assert!(
+        warnings.lines().any(|line| line
+            == "warning: correction item \"Docent of Defiant\".name is done upstream: \"Docent of Defiance\" exists; delete it from corrections_items.toml"),
+        "{warnings}"
+    );
+}
+
+#[test]
 fn wiki_check_reports_the_wiki_counts_for_a_valid_wiki_dir() {
     let report = wiki_check_report(
         &fixtures_dir().join("DataFiles"),

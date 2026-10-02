@@ -1,6 +1,6 @@
 use crate::dataset::{build_in_memory_database, corrections_from, wiki_overrides_from};
 use anyhow::{Context, Result};
-use ddo_etl::build::BuildReport;
+use ddo_etl::build::{BuildReport, StaleCorrection, StaleCorrectionCause};
 use ddo_etl::wiki::DescriptionKind;
 use ddo_model::enums::RowSource;
 use rusqlite::Connection;
@@ -228,15 +228,15 @@ fn stale_correction_warnings(report: &BuildReport) -> Vec<String> {
         .stale_corrections
         .iter()
         .map(|stale_correction| {
-            format!(
-                "warning: correction {} {:?}.{} expects {} but Maetrim now has {}; delete it from {}",
-                stale_correction.kind,
-                stale_correction.name,
-                stale_correction.field,
-                stale_correction.expected_value,
-                stale_correction.maetrim_value,
-                stale_correction.file_name
-            )
+            let StaleCorrection { kind, name, field, cause, file_name } = stale_correction;
+            match cause {
+                StaleCorrectionCause::ValueChanged { expected_value, maetrim_value } => format!(
+                    "warning: correction {kind} {name:?}.{field} expects {expected_value} but Maetrim now has {maetrim_value}; delete it from {file_name}"
+                ),
+                StaleCorrectionCause::RenameDoneUpstream { new_name } => format!(
+                    "warning: correction {kind} {name:?}.{field} is done upstream: {new_name:?} exists; delete it from {file_name}"
+                ),
+            }
         })
         .collect()
 }

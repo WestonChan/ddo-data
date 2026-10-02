@@ -1,5 +1,5 @@
 use super::items::item_wiki_url;
-use super::{bonus_name, BuildReport, StaleCorrection};
+use super::{bonus_name, BuildReport, StaleCorrection, StaleCorrectionCause};
 use crate::corrections::{BonusAddition, CorrectableField, Correction, CorrectionValue, Corrections, FieldShape};
 use anyhow::{bail, Context, Result};
 use ddo_model::enums::{CorrectionKind, ModifierSource, RowSource};
@@ -41,14 +41,29 @@ fn apply_corrections_where(
 
 fn apply_correction(transaction: &Transaction, correction: &Correction, report: &mut BuildReport) -> Result<()> {
     let field = correction.correctable_field()?;
-    let row_ids = maetrim_row_ids_named(transaction, correction)?;
+    let row_ids = maetrim_row_ids_named(transaction, correction, &correction.name)?;
     if row_ids.is_empty() {
+        let new_name = correction.to.as_text().filter(|_| field.shape == FieldShape::RowName);
+        if let Some(new_name) = new_name {
+            if !maetrim_row_ids_named(transaction, correction, new_name)?.is_empty() {
+                record_stale_correction(
+                    report,
+                    correction,
+                    StaleCorrectionCause::RenameDoneUpstream { new_name: new_name.to_string() },
+                );
+                return Ok(());
+            }
+        }
         let family_text = match &correction.family {
             Some(family) => format!(" in family {family:?}"),
             None => String::new(),
         };
+        let rename_text = match new_name {
+            Some(new_name) => format!(", nor {new_name:?}, the name it renames to"),
+            None => String::new(),
+        };
         bail!(
-            "no {} in Maetrim's files{family_text} is named {:?} (matched against {}.{}); use his exact name",
+            "no {} in Maetrim's files{family_text} is named {:?}{rename_text} (matched against {}.{}); use his exact name",
             correction.kind.as_str(),
             correction.name,
             correction.kind.table_name(),
@@ -64,15 +79,14 @@ fn apply_correction(transaction: &Transaction, correction: &Correction, report: 
     }
     if maetrim_values != [correction.from.clone()] {
         let maetrim_value_texts: Vec<String> = maetrim_values.iter().map(CorrectionValue::to_json).collect();
-        report.stale_corrections.push(StaleCorrection {
-            kind: correction.kind.as_str().to_string(),
-            name: correction.name.clone(),
-            field: correction.field.clone(),
-            expected_value: correction.from.to_json(),
-            maetrim_value: maetrim_value_texts.join(" / "),
-            file_name: correction.file_name.clone(),
-        });
-        report.correction_stale_count += 1;
+        record_stale_correction(
+            report,
+            correction,
+            StaleCorrectionCause::ValueChanged {
+                expected_value: correction.from.to_json(),
+                maetrim_value: maetrim_value_texts.join(" / "),
+            },
+        );
         return Ok(());
     }
     write_correction(transaction, correction, field, &row_ids)?;
@@ -93,6 +107,17 @@ fn apply_correction(transaction: &Transaction, correction: &Correction, report: 
     )?;
     report.correction_applied_count += 1;
     Ok(())
+}
+
+fn record_stale_correction(report: &mut BuildReport, correction: &Correction, cause: StaleCorrectionCause) {
+    report.stale_corrections.push(StaleCorrection {
+        kind: correction.kind.as_str().to_string(),
+        name: correction.name.clone(),
+        field: correction.field.clone(),
+        cause,
+        file_name: correction.file_name.clone(),
+    });
+    report.correction_stale_count += 1;
 }
 
 fn write_correction(
@@ -149,7 +174,7 @@ fn write_correction(
     Ok(())
 }
 
-fn maetrim_row_ids_named(transaction: &Transaction, correction: &Correction) -> Result<Vec<i64>> {
+fn maetrim_row_ids_named(transaction: &Transaction, correction: &Correction, row_name: &str) -> Result<Vec<i64>> {
     let kind = correction.kind;
     let maetrim_rows_only = match kind {
         CorrectionKind::Item
@@ -167,9 +192,8 @@ fn maetrim_row_ids_named(transaction: &Transaction, correction: &Correction) -> 
         kind.table_name(),
         kind.name_column()
     ))?;
-    let row_ids = statement
-        .query_map(params![correction.name, correction.family], |r| r.get(0))?
-        .collect::<rusqlite::Result<_>>()?;
+    let row_ids =
+        statement.query_map(params![row_name, correction.family], |r| r.get(0))?.collect::<rusqlite::Result<_>>()?;
     Ok(row_ids)
 }
 

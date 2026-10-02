@@ -103,9 +103,14 @@ pub struct StaleCorrection {
     pub kind: String,
     pub name: String,
     pub field: String,
-    pub expected_value: String,
-    pub maetrim_value: String,
+    pub cause: StaleCorrectionCause,
     pub file_name: String,
+}
+
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub enum StaleCorrectionCause {
+    ValueChanged { expected_value: String, maetrim_value: String },
+    RenameDoneUpstream { new_name: String },
 }
 
 #[derive(Debug, Clone, PartialEq, Eq)]

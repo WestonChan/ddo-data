@@ -66,7 +66,7 @@ The build fails, naming the file and the correction, when:
 - the same (`kind`, `name`, qualifier, `field`) appears twice, in one file or across files; the qualifier is the `family`, the bonus's stat and type, or an added socket's label, so one augment can have several of its bonuses corrected;
 - `from` or `to` does not fit the field (a string for an integer, `2` for a flag, `"null"` for a field that cannot be NULL), or `to` equals `from`;
 - `reason` is empty, `source` is not an `https://` URL, or `read` is not a real `YYYY-MM-DD` date;
-- `name` matches no row of that kind (in that `family`) in his files;
+- `name` matches no row of that kind (in that `family`) in his files, unless the correction is a rename (`field = "name"`) and a row named `to` already exists, which means he fixed the spelling himself: that rename is counted stale, not failed, and the wiki files that use the corrected name keep working;
 - a `slot`, `material`, `pack`, `patron`, `set_bonus`, stat, bonus type or socket label names nothing in his files, or a rename's `to` is already another row's name (for an augment, another augment in the same family).
 
 When `from` equals his stored value (on every row with that name), the build writes `to` and records the correction in the `corrections` table, with its qualifier. When it does not, the build writes nothing for that entry and counts it as stale; a stale correction never fails the build.
@@ -79,4 +79,4 @@ From the `ddo-data` root:
 cargo xtask wiki-check
 ```
 
-It builds into memory in a few seconds and prints `correction_applied_count` and `correction_stale_count` after the wiki counts, and one warning per stale correction under `warnings:` (`warning: correction <kind> "<name>".<field> expects <from> but Maetrim now has <value>; delete it from <file>`). `--corrections DIR` checks a directory of drafts in place of the embedded files. The tests use their own corrections in `crates/ddo-etl/tests/fixtures/corrections/`, which only name what the fixture data files carry.
+It builds into memory in a few seconds and prints `correction_applied_count` and `correction_stale_count` after the wiki counts, and one warning per stale correction under `warnings:` (`warning: correction <kind> "<name>".<field> expects <from> but Maetrim now has <value>; delete it from <file>`, or for a rename he has made himself `warning: correction <kind> "<name>".name is done upstream: "<to>" exists; delete it from <file>`). `--corrections DIR` checks a directory of drafts in place of the embedded files. The tests use their own corrections in `crates/ddo-etl/tests/fixtures/corrections/`, which only name what the fixture data files carry.

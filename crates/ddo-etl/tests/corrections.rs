@@ -1,4 +1,4 @@
-use ddo_etl::build::{build_database, BuildReport, StaleCorrection};
+use ddo_etl::build::{build_database, BuildReport, StaleCorrection, StaleCorrectionCause};
 use ddo_etl::corrections::{CorrectionValue, Corrections};
 use ddo_etl::wiki::WikiOverrides;
 use ddo_model::DatasetVersion;
@@ -204,8 +204,7 @@ fn leaves_his_value_and_reports_a_correction_whose_from_is_stale() {
             kind: "augment".into(),
             name: "Perfect Silence".into(),
             field: "min_level".into(),
-            expected_value: "318".into(),
-            maetrim_value: "30".into(),
+            cause: StaleCorrectionCause::ValueChanged { expected_value: "318".into(), maetrim_value: "30".into() },
             file_name: "corrections.toml".into(),
         }]
     );
@@ -548,6 +547,52 @@ fn a_renamed_quest_links_the_loot_his_drop_text_names_by_the_new_name() {
 }
 
 #[test]
+fn a_rename_his_files_already_carry_goes_stale_for_every_renamable_kind() {
+    let (db, report) = built_db_with(&[(
+        "corrections.toml",
+        &(correction_toml("item", "Docent of Defiant", "name", "\"Docent of Defiant\"", "\"Docent of Defiance\"")
+            + &correction_toml("augment", "Void Scale", "name", "\"Void Scale\"", "\"Voidscale\"")
+            + &correction_toml("quest", "Plane of Nite", "name", "\"Plane of Nite\"", "\"Plane of Night\"")
+            + &correction_toml("adventure_pack", "Vault of Nite", "name", "\"Vault of Nite\"", "\"Vault of Night\"")
+            + &correction_toml("patron", "The Twelfe", "name", "\"The Twelfe\"", "\"The Twelve\"")
+            + &correction_toml("set_bonus", "Perfect Silense", "name", "\"Perfect Silense\"", "\"Perfect Silence\"")
+            + &correction_toml("socket_label", "redd", "name", "\"redd\"", "\"red\"")),
+    )])
+    .unwrap();
+    assert_eq!(
+        (report.correction_applied_count, report.correction_stale_count),
+        (0, 7),
+        "{:?}",
+        report.stale_corrections
+    );
+    assert!(recorded_corrections(&db).is_empty());
+    assert_eq!(
+        report.stale_corrections.iter().find(|stale_correction| stale_correction.kind == "item").unwrap(),
+        &StaleCorrection {
+            kind: "item".into(),
+            name: "Docent of Defiant".into(),
+            field: "name".into(),
+            cause: StaleCorrectionCause::RenameDoneUpstream { new_name: "Docent of Defiance".into() },
+            file_name: "corrections.toml".into(),
+        }
+    );
+    assert!(item_names(&db).contains(&"Docent of Defiance".to_string()));
+}
+
+#[test]
+fn a_rename_whose_name_and_to_both_match_nothing_fails() {
+    let error = built_db_with(&[(
+        "corrections.toml",
+        &correction_toml("quest", "Plane of Nite", "name", "\"Plane of Nite\"", "\"Plain of Night\""),
+    )])
+    .unwrap_err();
+    assert!(
+        error.contains("Plane of Nite") && error.contains("Plain of Night") && error.contains("corrections.toml"),
+        "{error}"
+    );
+}
+
+#[test]
 fn renaming_an_item_or_quest_to_a_name_already_taken_fails() {
     let error = built_db_with(&[(
         "corrections.toml",
@@ -718,7 +763,11 @@ fn corrects_an_augment_bonus_value_and_type_without_touching_the_shared_bonus() 
             ("Repair Amplification".into(), Some("Competence".into()), Some(56)),
         ]
     );
-    assert_eq!(report.stale_corrections[0].maetrim_value, "56");
+    assert!(
+        matches!(&report.stale_corrections[0].cause, StaleCorrectionCause::ValueChanged { maetrim_value, .. } if maetrim_value == "56"),
+        "{:?}",
+        report.stale_corrections
+    );
     assert_eq!(
         row_count(&db, "SELECT COUNT(*) FROM bonuses WHERE name = 'Healing Amplification +56'"),
         1,
