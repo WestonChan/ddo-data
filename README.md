@@ -67,7 +67,7 @@ download the whole database once from `/v1/dump.sqlite` rather than paging the l
 | Path | What |
 |---|---|
 | `/v1/version` | Dataset and schema versions, table counts |
-| `/v1/items`, `/v1/items/{id}` | Equipment, filterable by name, slot, category, level, pack, raid, stat |
+| `/v1/items`, `/v1/items/{id}` | Equipment, filterable by name, slot, category, level, pack, raid, enchantment; legacy items (old versions such as "(legacy)" and "(historic)" names, and items that no longer drop) are flagged `is_legacy` and listed only with `include_legacy=true` |
 | `/v1/augments`, `/v1/augments/{id}` | Augments with the sockets they fit |
 | `/v1/sets`, `/v1/sets/{id}`, `/v1/filigrees`, `/v1/sentient-gems` | Gear sets, filigree sets, filigrees, the sentient gems they slot into |
 | `/v1/feats`, `/v1/feats/{id}` | Feats from the standard list, classes and races |
