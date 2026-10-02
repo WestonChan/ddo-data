@@ -257,7 +257,7 @@ fn db_with_one_source_of_each_kind() -> Connection {
     let db = fresh_db();
     db.execute_batch(
         "PRAGMA foreign_keys = OFF;
-         INSERT INTO items (id, name, slot_id, item_category) VALUES (1, 'Rusted Crown', 15, 'Jewelry');
+         INSERT INTO items (id, name, slot_id, item_category) VALUES (1, 'Rusted Crown', 1, 'Jewelry');
          INSERT INTO adventure_packs (id, name) VALUES (1, 'Magic of Myth Drannor');
          INSERT INTO quests (id, name) VALUES (1, 'Book Burning');
          INSERT INTO quest_chains (id, name, source, wiki_url) VALUES (1, 'The Necropolis', 'wiki', 'https://ddowiki.com/page/Necropolis');
