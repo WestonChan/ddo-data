@@ -1,0 +1,117 @@
+[[saga]]
+name = "The Haunting of Saltmarsh"
+page = "https://ddowiki.com/page/Sinister_Secret_of_Saltmarsh_(Legendary)"
+read = "2026-10-02"
+pack = "Sinister Secret of Saltmarsh"
+quests = ["Back to Basics", "Danger at Dunwater", "Down You Go", "Rest for the Night", "Swim at Your Own Risk", "The Final Enemy", "The Haunting of Saltmarsh", "The Hijacked Haul", "Under the Cover of Darkness", "What Sleeps Below"]
+
+[[saga]]
+name = "The Pirates of the Thunder Sea"
+page = "https://ddowiki.com/page/The_Pirates_of_the_Thunder_Sea_(Epic)"
+read = "2026-10-02"
+quests = ["Bargain of Blood", "Ghost of a Chance", "Prove Your Worth", "Spies in the House", "Storm the Beaches", "The Black Loch", "The Tide Turns", "Precious Cargo"]
+
+[[saga]]
+name = "Fables of the Feywild"
+page = "https://ddowiki.com/page/Fables_of_the_Feywild_(Legendary)"
+read = "2026-10-02"
+pack = "Fables of the Feywild"
+quests = ["A Frosty Reception", "Combatting Corruption", "Immortality Lessons", "Make Believe", "Needle in a Fey Stack", "Quid Pro Quo", "The Endless Revels", "The Icemount Curse", "The Knight Who Cried Windmill", "The Legend of the Lost Locket", "The Thornwright", "Wake Me Up Inside", "Witch Hunt"]
+
+[[saga]]
+name = "Dread"
+page = "https://ddowiki.com/page/Isle_of_Dread_(Legendary)"
+read = "2026-10-02"
+pack = "The Isle of Dread"
+quests = ["Captive of the Hidden God", "Fall of the Forbidden Temple", "The Curse and the Captive Crustacean", "All Hail the King", "Bullywugs and Booby Traps", "Plundering Pirates' Point", "Spiders and Flies", "The Stone Crypt Chronicle", "The Trouble with Tar Pits", "Trials of the Triceratops", "Whispers of Return", "Wild Thing"]
+
+[[saga]]
+name = "The Chill of Ravenloft"
+page = "https://ddowiki.com/page/The_Chill_of_Ravenloft_(Legendary)"
+read = "2026-10-02"
+pack = "Chill of Ravenloft"
+quests = ["A Light in the Attic", "A Miner Sacrifice", "Beneath the City Streets", "Cold Snap", "Ends and Means", "Locked Away (Part One)", "Locked Away (Part Two)", "Snowfall and Sunlight", "Special Delivery", "The Body Snatchers", "The Proper Authorities", "The Wish", "Zoo Creeper"]
+
+[[saga]]
+name = "Terror of Demogorgon"
+page = "https://ddowiki.com/page/Terror_of_Demogorgon_(Legendary)"
+read = "2026-10-02"
+pack = "Terror of Demogorgon"
+quests = ["A Blood Pact", "A Long Way to Mushrooms", "Back to the Abyss", "Demon in the Rough", "Flocked Together", "For Want of a Heart", "Hideous to Behold", "If It Wasn't For Bad Luck", "Stealing from Sorcere", "The Fetid Wedding", "The Price of an Egg", "Tower of Vengeance"]
+rewards = [{ name = "Juiblex's Reign", tier = "legendary" }, { name = "Orcus' Reign", tier = "legendary" }, { name = "Lolth's Reign", tier = "legendary" }, { name = "Fraz-Urb'luu's Reign", tier = "legendary" }, { name = "Demogorgon's Reign", tier = "legendary" }, { name = "Baphomet's Reign", tier = "legendary" }, { name = "Zuggtmoy's Reign", tier = "legendary" }, { name = "Yeenoghu's Reign", tier = "legendary" }, { name = "Graz'zt's Reign", tier = "legendary" }]
+
+[[saga]]
+name = "Mists of Ravenloft"
+page = "https://ddowiki.com/page/Mists_of_Ravenloft_(Epic)"
+read = "2026-10-02"
+pack = "Mists of Ravenloft"
+quests = ["A Raven at the Door", "An Invitation to Dinner", "Death House", "Fresh-baked Dreams", "Into the Mists", "Mad Tea Party", "Oath of Vengeance", "Ravens' Bane", "Sealed in Amber", "Sunrise", "The Final Vintage", "Wrath of the Earth"]
+
+[[saga]]
+name = "Magic of Myth Drannor"
+page = "https://ddowiki.com/page/Magic_of_Myth_Drannor_(Legendary)"
+read = "2026-10-02"
+pack = "Magic of Myth Drannor"
+quests = ["Book Burning", "Death Hosts This Banquet", "Ettercap Incursion", "Oghma's Song", "Portal to Below", "Secrets of the Red Wizards", "Seeds of Decay", "The House of Gems", "The Key to the Mythal", "The Safehold", "The Zulkir's Plan", "Times Long Past", "Voices of the Dead"]
+
+[[saga]]
+name = "In the Wastes of Gianthold"
+page = "https://ddowiki.com/page/In_the_Wastes_of_Gianthold_(Epic)"
+read = "2026-10-02"
+pack = "Ruins of Gianthold"
+quests = ["A Cry for Help", "Feast or Famine", "Foundation of Discord", "The Crucible", "The Maze of Madness", "Trial by Fire"]
+
+[[saga]]
+name = "Cogs Explorer Dungeons"
+page = "https://ddowiki.com/page/Cogs_Explorer_Dungeons_(Epic)"
+read = "2026-10-02"
+pack = "Masterminds of Sharn"
+quests = ["Roll Call", "Ruinous Schemes", "Scavenger Hunt", "Security Detail", "Smash and Burn", "The Magma Must Flow", "The Wraithcallers", "Thralls of the Fungus Lord"]
+
+[[saga]]
+name = "Masterminds of Sharn"
+page = "https://ddowiki.com/page/Masterminds_of_Sharn_(Legendary)"
+read = "2026-10-02"
+pack = "Masterminds of Sharn"
+quests = ["A Sharn Welcome", "Best Laid Plans", "Blown Deadline", "House of Pain", "Just Business", "Lost at Sea", "No Refunds", "Reach for the Sky", "Red Rain", "The Same Old Song"]
+
+[[saga]]
+name = "Perils of Cormyr"
+page = "https://ddowiki.com/page/Perils_of_Cormyr_(Epic)"
+read = "2026-10-02"
+quests = ["A Break in the Ice", "A Lesson in Deception", "A Stay at the Inn", "Army of Shadow", "Breaking the Ranks", "Detour", "Friends in Low Places", "Lines of Supply", "Lost in the Swamp", "Outbreak", "Overgrowth", "Rest Stop", "The Druid's Curse", "The End of the Road", "The Thrill of the Hunt", "The Tracker's Trap", "Thorn and Paw", "Through a Mirror Darkly", "What Goes Up", "Don't Drink the Water", "Impossible Demands", "In the Belly of the Beast", "The Battle for Eveningstar", "The Lost Thread", "The Unquiet Graves"]
+
+[[saga]]
+name = "Honor of the Huntsilvers"
+page = "https://ddowiki.com/page/Honor_of_the_Huntsilvers_(Epic)"
+read = "2026-10-02"
+pack = "The Druid's Deep"
+quests = ["A Break in the Ice", "A Lesson in Deception", "A Stay at the Inn", "Army of Shadow", "Breaking the Ranks", "Detour", "Friends in Low Places", "Lines of Supply", "Lost in the Swamp", "Rest Stop", "The Druid's Curse", "The End of the Road", "The Thrill of the Hunt", "The Tracker's Trap", "Through a Mirror Darkly", "What Goes Up"]
+
+[[saga]]
+name = "Vecna Unleashed"
+page = "https://ddowiki.com/page/Vecna_Unleashed_(Legendary)"
+read = "2026-10-02"
+pack = "Vecna Unleashed"
+quests = ["Enemy of My Enemy", "Grand Theft Aureon", "Law and Order", "Paper Trail", "Party 101", "Taken in Hand", "The Bark and the Blade", "The Devils to Pay", "The Evil We Know", "Turn the Page", "Vecna Denied", "Vecna Unleashed", "What Dreams May Come"]
+
+[[saga]]
+name = "Menace of the Underdark"
+page = "https://ddowiki.com/page/Menace_of_the_Underdark_(Epic)"
+read = "2026-10-02"
+pack = "Menace of the Underdark"
+quests = ["Don't Drink the Water", "Impossible Demands", "In the Belly of the Beast", "Reclaiming the Rift", "The Battle for Eveningstar", "The Deal and the Demon", "The House of Broken Chains", "The House of Death Undone", "The House of Rusted Blades", "The Lost Thread", "The Portal Opens", "The Unquiet Graves", "Trial by Fury"]
+
+[[saga]]
+name = "The End of Eberron"
+page = "https://ddowiki.com/page/The_End_of_Eberron"
+read = "2026-10-02"
+pack = "Menace of the Underdark"
+quests = ["Beyond the Rift", "Reclaiming the Rift", "Servants of the Overlord", "The Deal and the Demon", "The House of Broken Chains", "The House of Death Undone", "The House of Rusted Blades", "The Lords of Dust", "The Portal Opens", "The Spinner of Shadows", "Trial by Fury"]
+
+[[saga]]
+name = "The Planeswalker's Path"
+page = "https://ddowiki.com/page/The_Planeswalker%27s_Path"
+read = "2026-10-02"
+pack = "Menace of the Underdark"
+quests = ["A Stay at the Inn", "Beyond the Rift", "Detour", "Lost in the Swamp", "Reclaiming the Rift", "Rest Stop", "The Deal and the Demon", "The End of the Road", "The Lost Thread", "Through a Mirror Darkly", "Trial by Fury"]
