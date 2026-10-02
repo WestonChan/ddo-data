@@ -237,3 +237,23 @@ to = "Dark Powers' Demands"
 reason = "The wiki spells it Dark Powers' Demands."
 source = "https://ddowiki.com/page/Item:Dark_Powers%27_Demands"
 read = "2026-09-30"
+
+[[correction]]
+kind = "item"
+name = "Rahkat's Spangle"
+field = "remove"
+from = 0
+to = 1
+reason = "The wiki and his own drop text spell the witch doctor Rakhat; his Rahkat's Spangle repeats Rakhat's Spangle's bonuses, level and drop."
+source = "https://ddowiki.com/page/Durk%27s_Got_a_Secret"
+read = "2026-10-01"
+
+[[correction]]
+kind = "item"
+name = "Rahkat's Trifle"
+field = "remove"
+from = 0
+to = 1
+reason = "The wiki and his own drop text spell the witch doctor Rakhat; his Rahkat's Trifle repeats Rakhat's Trifle's bonuses, level and drop."
+source = "https://ddowiki.com/page/Durk%27s_Got_a_Secret"
+read = "2026-10-01"
