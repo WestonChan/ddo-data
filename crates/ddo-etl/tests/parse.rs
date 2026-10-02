@@ -91,7 +91,29 @@ fn parses_every_fixture_item() {
         parse_item_file(&path).unwrap_or_else(|e| panic!("{}: {e}", path.display()));
         item_file_count += 1;
     }
-    assert_eq!(item_file_count, 53);
+    assert_eq!(item_file_count, 55);
+}
+
+#[test]
+fn parses_what_an_augment_slot_option_gives() {
+    let axe = parsed_item("+3 Combustion Scorched Battle Axe");
+    let first_tier = &axe.augment_slots[0].options[0];
+    let effect_types: Vec<&str> = first_tier.effects.iter().map(|e| e.types[0].as_str()).collect();
+    assert_eq!(effect_types, ["SpellPenetrationBonus", "ACBonus"]);
+    assert_eq!(first_tier.effects[1].bonus.as_deref(), Some("Insightful"));
+    assert_eq!(axe.augment_slots[1].options[0].granted_augments, vec!["Purple"]);
+    let sireth = parsed_item("Sireth, Spear of the Sky");
+    assert_eq!(sireth.augment_slots[0].options[0].icon.as_deref(), Some("Heroism"));
+    assert_eq!(sireth.augment_slots[0].options[0].set_bonus_names.len(), 3);
+    let baz_morath = parsed_item("Baz'Morath, the Curator of Decay");
+    assert_eq!(
+        baz_morath.augment_slots[0].options[0].granted_augments,
+        vec!["Purple"],
+        "<AddAugment> adds a socket as <GrantAugment> does"
+    );
+    let completed_weapon = &baz_morath.augment_slots[2].options[0];
+    assert_eq!(completed_weapon.effects.len(), 1);
+    assert!(completed_weapon.effects[0].is_item_specific);
 }
 
 #[test]

@@ -491,3 +491,39 @@ to = "Enhancement"
 reason = "The wiki's Elemental Resistance +45 on this trinket is a +45 Enhancement bonus; his buff has no bonus type."
 source = "https://ddowiki.com/page/Item:Storm_in_a_Bottle"
 read = "2026-10-02"
+
+[[correction]]
+kind = "item_bonus"
+name = "Epic Bracers of Wind"
+stat = "Electric Spell Lore"
+bonus_type = "null"
+bonus_value = 17
+field = "bonus_type"
+from = "null"
+to = "Equipment"
+reason = "The wiki's Tier 2 upgrade raises the bracers' Lightning Lore +16% to +17%, the Equipment bonus his own option description names; his effect's bonus is Not Equipment."
+source = "https://ddowiki.com/page/Item:Epic_Bracers_of_Wind"
+read = "2026-10-02"
+
+[[correction]]
+kind = "item_bonus"
+name = "Epic Bracers of Wind"
+stat = "Electric Spell Lore"
+bonus_type = "null"
+bonus_value = 18
+field = "bonus_type"
+from = "null"
+to = "Equipment"
+reason = "The wiki's Tier 3 upgrade raises the bracers' Lightning Lore +17% to +18%, the Equipment bonus his own option description names; his effect's bonus is Not Equipment."
+source = "https://ddowiki.com/page/Item:Epic_Bracers_of_Wind"
+read = "2026-10-02"
+
+[[correction]]
+kind = "socket_label"
+name = "crafting: colroless"
+field = "name"
+from = "crafting: colroless"
+to = "colorless"
+reason = "Colroless is a misspelling of Colorless: the wiki's Attuned by Heroism Tier 2 on this ring adds a Colorless Augment Slot."
+source = "https://ddowiki.com/page/Item:Ring_of_Deceit"
+read = "2026-10-02"

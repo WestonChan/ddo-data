@@ -527,6 +527,13 @@ fn remove_rows(transaction: &Transaction, kind: CorrectionKind, row_ids: &[i64])
         _ => bail!("only an item or an augment can be removed"),
     };
     for row_id in row_ids {
+        if kind == CorrectionKind::Item {
+            transaction.execute(
+                "DELETE FROM modifiers WHERE source_kind = ?1
+                    AND source_id IN (SELECT id FROM item_augment_slot_options WHERE item_id = ?2)",
+                params![ModifierSource::ItemAugmentSlotOption.as_str(), row_id],
+            )?;
+        }
         transaction.execute(
             "DELETE FROM modifiers WHERE source_kind = ?1 AND source_id = ?2",
             params![modifier_source.as_str(), row_id],
@@ -623,9 +630,12 @@ fn refuse_an_augment_name_taken_in_its_families(
 
 fn rename_socket_label(transaction: &Transaction, slot_type_id: i64, new_label: &str) -> Result<()> {
     if let Some(merged_slot_type_id) = socket_label_id(transaction, new_label)? {
-        for (table_name, column) in
-            [("item_augment_slots", "slot_id"), ("crafting_recipes", "slot_id"), ("crafting_recipes", "grants_slot_id")]
-        {
+        for (table_name, column) in [
+            ("item_augment_slots", "slot_id"),
+            ("item_augment_slot_option_grants", "slot_id"),
+            ("crafting_recipes", "slot_id"),
+            ("crafting_recipes", "grants_slot_id"),
+        ] {
             transaction.execute(
                 &format!("UPDATE {table_name} SET {column} = ?2 WHERE {column} = ?1"),
                 params![slot_type_id, merged_slot_type_id],

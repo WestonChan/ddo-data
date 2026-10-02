@@ -813,6 +813,7 @@ fn corrects_an_augment_bonus_value_and_type_without_touching_the_shared_bonus() 
         row_count(
             &db,
             "SELECT COUNT(*) FROM bonuses b WHERE NOT EXISTS (SELECT 1 FROM item_bonuses r WHERE r.bonus_id = b.id)
+               AND NOT EXISTS (SELECT 1 FROM item_augment_slot_option_bonuses r WHERE r.bonus_id = b.id)
                AND NOT EXISTS (SELECT 1 FROM augment_bonuses r WHERE r.bonus_id = b.id)
                AND NOT EXISTS (SELECT 1 FROM feat_bonuses r WHERE r.bonus_id = b.id)
                AND NOT EXISTS (SELECT 1 FROM set_bonus_tier_bonuses r WHERE r.bonus_id = b.id)"
@@ -1141,6 +1142,7 @@ fn copied_directory(source_dir: &std::path::Path, copy_dir: &std::path::Path) {
 
 const UNTYPED_ITEMS: (&str, &str) = ("untyped_items", "Items");
 const UNTYPED_AUGMENTS: (&str, &str) = ("untyped_augments", "Augments");
+const UNTYPED_ITEM_AUGMENT_SLOT_OPTIONS: (&str, &str) = ("untyped_item_augment_slot_options", "Items");
 
 fn data_files_with_untyped(test_name: &str, untyped_fixture_dirs: &[(&str, &str)]) -> PathBuf {
     let data_files_dir =
@@ -1320,4 +1322,91 @@ fn refuses_to_write_an_augment_bonus_without_a_type_unless_a_correction_types_it
     );
     assert!(dolorous_bonuses.contains(&("Trip DC".into(), Some("Profane".into()), Some(1))), "{dolorous_bonuses:?}");
     assert_eq!(row_count(&db, "SELECT COUNT(*) FROM corrections WHERE kind = 'augment_bonus'"), 4);
+}
+
+#[test]
+fn removing_an_item_removes_its_augment_slot_options_and_their_modifiers() {
+    let (db, report) = built_db_with(&[(
+        "corrections.toml",
+        &correction_toml("item", "+3 Combustion Scorched Battle Axe", "remove", "0", "1"),
+    )])
+    .unwrap();
+    assert_eq!(report.correction_applied_count, 1, "{:?}", report.stale_corrections);
+    assert_eq!(
+        row_count(
+            &db,
+            "SELECT COUNT(*) FROM modifiers m WHERE m.source_kind = 'item_augment_slot_option'
+              AND NOT EXISTS (SELECT 1 FROM item_augment_slot_options o WHERE o.id = m.source_id)"
+        ),
+        0
+    );
+}
+
+#[test]
+fn merging_a_socket_label_moves_the_sockets_options_grant() {
+    let (db, report) = built_db_with(&[(
+        "corrections.toml",
+        &correction_toml("socket_label", "red", "name", "\"red\"", "\"purple\""),
+    )])
+    .unwrap();
+    assert_eq!(report.correction_applied_count, 1, "{:?}", report.stale_corrections);
+    let granted_labels: Vec<String> = db
+        .prepare(
+            "SELECT t.label FROM item_augment_slot_option_grants g JOIN augment_slot_types t ON t.id = g.slot_id
+               JOIN item_augment_slot_options o ON o.id = g.option_id JOIN items i ON i.id = o.item_id
+              WHERE i.name = 'Sireth, Spear of the Sky'",
+        )
+        .unwrap()
+        .query_map([], |r| r.get(0))
+        .unwrap()
+        .map(Result::unwrap)
+        .collect();
+    assert_eq!(granted_labels, ["purple"]);
+}
+
+#[test]
+fn refuses_an_untyped_augment_slot_option_bonus_unless_an_item_bonus_correction_types_it() {
+    let data_files_dir = data_files_with_untyped("untyped-slot-option", &[UNTYPED_ITEM_AUGMENT_SLOT_OPTIONS]);
+    let error = built_db_from(&data_files_dir, &[]).unwrap_err();
+    for expected_text in [
+        "augment slot option of item \"Epic Bracers of Wind\"",
+        "effect \"SpellLore\"",
+        "stat \"Electric Spell Lore\"",
+        "item_bonus bonus_type correction",
+    ] {
+        assert!(error.contains(expected_text), "{expected_text} missing from {error}");
+    }
+    let equipment_corrections: String = [17, 18]
+        .iter()
+        .map(|bonus_value| {
+            qualified_correction_toml(
+                "item_bonus",
+                "Epic Bracers of Wind",
+                &format!("stat = \"Electric Spell Lore\"\nbonus_type = \"null\"\nbonus_value = {bonus_value}"),
+                "bonus_type",
+                "\"null\"",
+                "\"Equipment\"",
+            )
+        })
+        .collect();
+    let (db, report) = built_db_from(&data_files_dir, &[("corrections.toml", &equipment_corrections)]).unwrap();
+    assert_eq!(
+        (report.correction_applied_count, report.correction_stale_count),
+        (2, 0),
+        "{:?}",
+        report.stale_corrections
+    );
+    let lore_bonuses: Vec<(String, i64)> = db
+        .prepare(
+            "SELECT bt.name, b.value FROM item_augment_slot_option_bonuses ob JOIN bonuses b ON b.id = ob.bonus_id
+               JOIN stats s ON s.id = b.stat_id JOIN bonus_types bt ON bt.id = b.bonus_type_id
+               JOIN item_augment_slot_options o ON o.id = ob.option_id JOIN items i ON i.id = o.item_id
+              WHERE i.name = 'Epic Bracers of Wind' AND s.name = 'Electric Spell Lore' ORDER BY b.value",
+        )
+        .unwrap()
+        .query_map([], |r| Ok((r.get(0)?, r.get(1)?)))
+        .unwrap()
+        .map(Result::unwrap)
+        .collect();
+    assert_eq!(lore_bonuses, [("Equipment".to_string(), 17), ("Equipment".to_string(), 18)]);
 }

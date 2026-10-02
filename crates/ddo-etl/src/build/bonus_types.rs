@@ -5,6 +5,7 @@ use ddo_model::enums::{BonusType, CorrectionKind};
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub(super) enum BonusOwnerKind {
     Item,
+    ItemAugmentSlotOption,
     Augment,
     Feat,
     SetBonusTier,
@@ -14,6 +15,7 @@ impl BonusOwnerKind {
     const fn as_str(self) -> &'static str {
         match self {
             Self::Item => "item",
+            Self::ItemAugmentSlotOption => "augment slot option of item",
             Self::Augment => "augment",
             Self::Feat => "feat",
             Self::SetBonusTier => "set bonus tier of",
@@ -22,7 +24,7 @@ impl BonusOwnerKind {
 
     const fn correction_kind(self) -> Option<CorrectionKind> {
         match self {
-            Self::Item => Some(CorrectionKind::ItemBonus),
+            Self::Item | Self::ItemAugmentSlotOption => Some(CorrectionKind::ItemBonus),
             Self::Augment => Some(CorrectionKind::AugmentBonus),
             Self::Feat | Self::SetBonusTier => None,
         }
@@ -31,14 +33,14 @@ impl BonusOwnerKind {
     const fn bonus_source_word(self) -> &'static str {
         match self {
             Self::Item => "buff",
-            Self::Augment | Self::Feat | Self::SetBonusTier => "effect",
+            Self::ItemAugmentSlotOption | Self::Augment | Self::Feat | Self::SetBonusTier => "effect",
         }
     }
 
     const fn type_mapping_file(self) -> &'static str {
         match self {
             Self::Item => "data/buff_map.toml",
-            Self::Augment | Self::Feat | Self::SetBonusTier => "data/effect_map.toml",
+            Self::ItemAugmentSlotOption | Self::Augment | Self::Feat | Self::SetBonusTier => "data/effect_map.toml",
         }
     }
 }

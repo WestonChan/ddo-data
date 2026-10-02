@@ -224,20 +224,62 @@ pub struct ItemAugmentSlot {
     pub options: Vec<AugmentSlotOption>,
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Default)]
 pub struct AugmentSlotOption {
-    #[serde(rename = "Name")]
     pub name: String,
-    #[serde(rename = "Description", default)]
     pub description: String,
-    #[serde(rename = "MinLevel")]
     pub minimum_level: Option<i64>,
-    #[serde(rename = "Icon")]
     pub icon: Option<String>,
-    #[serde(rename = "GrantAugment", default)]
     pub granted_augments: Vec<String>,
-    #[serde(rename = "SetBonus", default)]
     pub set_bonus_names: Vec<String>,
+    pub effects: Vec<Effect>,
+}
+
+#[derive(Debug, Deserialize)]
+struct RawAugmentSlotOption {
+    #[serde(rename = "$value", default)]
+    children: Vec<AugmentSlotOptionChild>,
+}
+
+#[derive(Debug, Deserialize)]
+enum AugmentSlotOptionChild {
+    Name(String),
+    Description(String),
+    MinLevel(i64),
+    Icon(String),
+    GrantAugment(String),
+    AddAugment(String),
+    SetBonus(String),
+    Effect(Box<Effect>),
+    Type(IgnoredAny),
+}
+
+impl<'de> Deserialize<'de> for AugmentSlotOption {
+    fn deserialize<D: serde::Deserializer<'de>>(deserializer: D) -> std::result::Result<Self, D::Error> {
+        let raw_option = RawAugmentSlotOption::deserialize(deserializer)?;
+        let mut option = AugmentSlotOption::default();
+        let mut has_name = false;
+        for child in raw_option.children {
+            match child {
+                AugmentSlotOptionChild::Name(name) => {
+                    option.name = name;
+                    has_name = true;
+                }
+                AugmentSlotOptionChild::Description(description) => option.description = description,
+                AugmentSlotOptionChild::MinLevel(minimum_level) => option.minimum_level = Some(minimum_level),
+                AugmentSlotOptionChild::Icon(icon) => option.icon = Some(icon),
+                AugmentSlotOptionChild::GrantAugment(slot_type_name)
+                | AugmentSlotOptionChild::AddAugment(slot_type_name) => option.granted_augments.push(slot_type_name),
+                AugmentSlotOptionChild::SetBonus(set_name) => option.set_bonus_names.push(set_name),
+                AugmentSlotOptionChild::Effect(effect) => option.effects.push(*effect),
+                AugmentSlotOptionChild::Type(_) => {}
+            }
+        }
+        if !has_name {
+            return Err(serde::de::Error::missing_field("Name"));
+        }
+        Ok(option)
+    }
 }
 
 impl Item {

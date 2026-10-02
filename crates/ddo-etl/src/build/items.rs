@@ -6,7 +6,7 @@ use crate::map::buff::ResolvedBuff;
 use crate::map::item_version::names_legacy_version;
 use crate::map::material;
 use crate::map::placement::placement_of;
-use crate::xml::items::Item;
+use crate::xml::items::{AugmentSlotOption, Item};
 use anyhow::{bail, Result};
 use ddo_model::enums::{ArmorType, EquipmentSlot, Handedness, ItemCategory, ModifierSource, Provenance};
 use rusqlite::params;
@@ -177,18 +177,7 @@ impl TableWriter<'_> {
             let slot_type_id = self.ensure_augment_slot_type(&augment_slot.kind)?;
             self.insert_item_augment_slot(item_id, slot_order, slot_type_id)?;
             for (option_order, slot_option) in augment_slot.options.iter().enumerate() {
-                self.transaction.execute(
-                    "INSERT INTO item_augment_slot_options (item_id, slot_order, option_order, name, description, min_level)
-                     VALUES (?1, ?2, ?3, ?4, ?5, ?6)",
-                    params![
-                        item_id,
-                        slot_order as i64,
-                        option_order as i64,
-                        slot_option.name.trim(),
-                        Some(slot_option.description.trim()).filter(|s| !s.is_empty()),
-                        slot_option.minimum_level
-                    ],
-                )?;
+                self.write_augment_slot_option(item_name, item_id, (slot_order, option_order), slot_option)?;
             }
         }
 
@@ -212,6 +201,50 @@ impl TableWriter<'_> {
             self.link_item_to_quests(item_id, drop_location, report)?;
         }
         report.written_item_count += 1;
+        Ok(())
+    }
+
+    fn write_augment_slot_option(
+        &mut self,
+        item_name: &str,
+        item_id: i64,
+        (slot_order, option_order): (usize, usize),
+        slot_option: &AugmentSlotOption,
+    ) -> Result<()> {
+        self.transaction.execute(
+            "INSERT INTO item_augment_slot_options (item_id, slot_order, option_order, name, description, min_level, icon)
+             VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7)",
+            params![
+                item_id,
+                slot_order as i64,
+                option_order as i64,
+                slot_option.name.trim(),
+                trimmed_non_empty(Some(&slot_option.description)),
+                slot_option.minimum_level,
+                trimmed_non_empty(slot_option.icon.as_deref()),
+            ],
+        )?;
+        let option_id = self.transaction.last_insert_rowid();
+        for (grant_order, slot_type_name) in slot_option.granted_augments.iter().enumerate() {
+            let granted_slot_type_id = self.ensure_augment_slot_type(slot_type_name)?;
+            self.transaction.execute(
+                "INSERT INTO item_augment_slot_option_grants (option_id, sort_order, slot_id) VALUES (?1, ?2, ?3)",
+                params![option_id, grant_order as i64, granted_slot_type_id],
+            )?;
+        }
+        for set_name in slot_option.set_bonus_names.iter().filter_map(|s| trimmed_non_empty(Some(s))) {
+            self.pending_set_option_links.push((option_id, set_name.to_string()));
+        }
+        self.write_modifiers(ModifierSource::ItemAugmentSlotOption, option_id, &slot_option.effects)?;
+        let option_owner = BonusOwner { kind: BonusOwnerKind::ItemAugmentSlotOption, name: item_name, family: None };
+        for (sort_order, bonus_id) in
+            self.ensure_derived_bonuses(&option_owner, &slot_option.effects)?.into_iter().enumerate()
+        {
+            self.transaction.execute(
+                "INSERT INTO item_augment_slot_option_bonuses (option_id, bonus_id, sort_order) VALUES (?1, ?2, ?3)",
+                params![option_id, bonus_id, sort_order as i64],
+            )?;
+        }
         Ok(())
     }
 

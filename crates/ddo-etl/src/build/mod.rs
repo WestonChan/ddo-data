@@ -209,6 +209,7 @@ pub fn build_database(
         written: WrittenRows::default(),
         pending_set_item_links: Vec::new(),
         pending_set_augment_links: Vec::new(),
+        pending_set_option_links: Vec::new(),
     };
 
     writer.write_standard_feats(&data_files_dir.join("Feats.xml"), &mut report)?;
@@ -288,6 +289,7 @@ pub fn build_database(
 fn delete_bonuses_nothing_carries(transaction: &Transaction) -> Result<()> {
     transaction.execute(
         "DELETE FROM bonuses WHERE NOT EXISTS (SELECT 1 FROM item_bonuses r WHERE r.bonus_id = bonuses.id)
+            AND NOT EXISTS (SELECT 1 FROM item_augment_slot_option_bonuses r WHERE r.bonus_id = bonuses.id)
             AND NOT EXISTS (SELECT 1 FROM augment_bonuses r WHERE r.bonus_id = bonuses.id)
             AND NOT EXISTS (SELECT 1 FROM feat_bonuses r WHERE r.bonus_id = bonuses.id)
             AND NOT EXISTS (SELECT 1 FROM set_bonus_tier_bonuses r WHERE r.bonus_id = bonuses.id)",
@@ -484,6 +486,7 @@ pub(crate) struct TableWriter<'a> {
     written: WrittenRows,
     pending_set_item_links: Vec<(i64, String)>,
     pending_set_augment_links: Vec<(i64, String)>,
+    pending_set_option_links: Vec<(i64, String)>,
 }
 
 impl TableWriter<'_> {

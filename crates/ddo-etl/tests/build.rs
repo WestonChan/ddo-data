@@ -50,9 +50,9 @@ fn excludes_cosmetic_shields_from_items() {
 #[test]
 fn builds_items_and_skips_cosmetics() {
     let (db, report) = built_fixture_db();
-    assert_eq!(report.written_item_count, 51);
+    assert_eq!(report.written_item_count, 53);
     assert_eq!(report.skipped_cosmetic_item_count, 2, "the cosmetic helm and the cosmetic shield");
-    assert_eq!(count(&db, "SELECT COUNT(*) FROM items WHERE provenance = 'maetrim'"), 51);
+    assert_eq!(count(&db, "SELECT COUNT(*) FROM items WHERE provenance = 'maetrim'"), 53);
     assert_eq!(count(&db, "SELECT COUNT(*) FROM items WHERE name = '17th Anniversary Dark Helm'"), 0);
     let reason: String = db
         .query_row("SELECT reason FROM excluded_items WHERE name = '17th Anniversary Dark Helm'", [], |r| r.get(0))
@@ -376,6 +376,87 @@ fn writes_augment_slots_and_presets() {
     assert_eq!(count(&db, &format!("SELECT COUNT(*) FROM item_augment_slot_options WHERE item_id = {cloak}")), 0);
 }
 
+fn option_id(db: &Connection, item_name: &str, slot_order: i64) -> i64 {
+    db.query_row(
+        "SELECT o.id FROM item_augment_slot_options o JOIN items i ON i.id = o.item_id
+          WHERE i.name = ?1 AND o.slot_order = ?2 AND o.option_order = 0",
+        params![item_name, slot_order],
+        |r| r.get(0),
+    )
+    .unwrap_or_else(|e| panic!("{item_name} slot {slot_order}: {e}"))
+}
+
+fn option_strings(db: &Connection, sql: &str, option_id: i64) -> Vec<String> {
+    db.prepare(sql).unwrap().query_map(params![option_id], |r| r.get(0)).unwrap().map(Result::unwrap).collect()
+}
+
+const OPTION_GRANT_LABELS_SQL: &str = "SELECT t.label FROM item_augment_slot_option_grants g
+    JOIN augment_slot_types t ON t.id = g.slot_id WHERE g.option_id = ?1 ORDER BY g.sort_order";
+
+const OPTION_BONUSES_SQL: &str =
+    "SELECT s.name || ' ' || bt.name || ' ' || b.value FROM item_augment_slot_option_bonuses ob
+    JOIN bonuses b ON b.id = ob.bonus_id JOIN stats s ON s.id = b.stat_id JOIN bonus_types bt ON bt.id = b.bonus_type_id
+    WHERE ob.option_id = ?1 ORDER BY ob.sort_order";
+
+#[test]
+fn keeps_what_an_augment_slot_option_gives_on_the_option() {
+    let (db, _) = built_fixture_db();
+    let first_tier = option_id(&db, "+3 Combustion Scorched Battle Axe", 0);
+    assert_eq!(
+        option_strings(&db, OPTION_BONUSES_SQL, first_tier),
+        ["Spell Penetration Equipment 1", "Armor Class Insight 1"],
+        "the option's simple effects become typed bonuses on the option"
+    );
+    assert_eq!(
+        option_strings(
+            &db,
+            "SELECT effect_type FROM modifiers WHERE source_kind = 'item_augment_slot_option' AND source_id = ?1 ORDER BY sort_order",
+            first_tier
+        ),
+        ["SpellPenetrationBonus", "ACBonus"]
+    );
+    let second_tier = option_id(&db, "+3 Combustion Scorched Battle Axe", 1);
+    assert_eq!(option_strings(&db, OPTION_GRANT_LABELS_SQL, second_tier), ["purple"]);
+    assert_eq!(option_strings(&db, OPTION_BONUSES_SQL, second_tier), ["Fire Spell Lore Equipment 13"]);
+    let axe = item_id(&db, "+3 Combustion Scorched Battle Axe");
+    assert_eq!(count(&db, &format!("SELECT COUNT(*) FROM item_augment_slots WHERE item_id = {axe}")), 2);
+    assert_eq!(
+        count(
+            &db,
+            &format!(
+                "SELECT COUNT(*) FROM item_bonuses ib JOIN bonuses b ON b.id = ib.bonus_id JOIN stats s ON s.id = b.stat_id
+                  WHERE ib.item_id = {axe} AND s.name IN ('Spell Penetration', 'Fire Spell Lore')"
+            )
+        ),
+        0,
+        "a tier the player still unlocks gives the item none of its bonuses"
+    );
+
+    assert_eq!(option_strings(&db, OPTION_GRANT_LABELS_SQL, option_id(&db, "Sireth, Spear of the Sky", 3)), ["red"]);
+    let planar_conflux = option_id(&db, "Sireth, Spear of the Sky", 0);
+    let icon: Option<String> = db
+        .query_row("SELECT icon FROM item_augment_slot_options WHERE id = ?1", params![planar_conflux], |r| r.get(0))
+        .unwrap();
+    assert_eq!(icon.as_deref(), Some("Heroism"));
+    assert_eq!(
+        option_strings(&db, OPTION_GRANT_LABELS_SQL, option_id(&db, "Baz'Morath, the Curator of Decay", 0)),
+        ["purple"],
+        "<AddAugment> adds a socket as <GrantAugment> does"
+    );
+
+    let fabricators_ingenuity = option_id(&db, "Fabricator's Gauntlets", 0);
+    assert_eq!(
+        option_strings(
+            &db,
+            "SELECT s.name FROM item_augment_slot_option_sets os JOIN set_bonuses s ON s.id = os.set_id WHERE os.option_id = ?1",
+            fabricators_ingenuity
+        ),
+        ["Fabricator's Ingenuity"]
+    );
+    let gauntlets = item_id(&db, "Fabricator's Gauntlets");
+    assert_eq!(count(&db, &format!("SELECT COUNT(*) FROM set_bonus_items WHERE item_id = {gauntlets}")), 0);
+}
+
 #[test]
 fn links_items_to_quests_from_drop_location() {
     let (db, report) = built_fixture_db();
@@ -623,7 +704,7 @@ fn diff_reports_coverage_against_a_legacy_database() {
     );
     assert_eq!(
         coverage.names_only_in_built.len(),
-        49,
+        51,
         "the wiki fixture item and the legacy fixture items are only in the build"
     );
     assert!((coverage.coverage_ratio() - 0.75).abs() < 1e-9);
@@ -723,7 +804,7 @@ fn writes_augments_with_slots_bonuses_and_modifiers() {
 #[test]
 fn writes_sets_filigrees_and_their_items() {
     let (db, report) = built_fixture_db();
-    assert_eq!(report.set_bonus_count, 5, "four gear sets and one filigree set");
+    assert_eq!(report.set_bonus_count, 6, "five gear sets and one filigree set");
     let (icon, filigree): (String, bool) = db
         .query_row("SELECT icon, is_filigree_set FROM set_bonuses WHERE name = 'The Inevitable Grave'", [], |r| {
             Ok((r.get(0)?, r.get(1)?))

@@ -135,4 +135,29 @@
       </Effect>
     </Buff>
   </SetBonus>
-  </SetBonuses>
+  <SetBonus>
+    <Type>Fabricator's Ingenuity</Type>
+    <Icon>FabricatorsIngenuity</Icon>
+    <Buff>
+      <EquippedCount>2</EquippedCount>
+      <Description>+25% Exceptional bonus to fortification.</Description>
+      <Effect>
+        <Type>Fortification</Type>
+        <Bonus>Exceptional</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">25</Amount>
+      </Effect>
+    </Buff>
+    <Buff>
+      <EquippedCount>2</EquippedCount>
+      <Description>+2 Artifact bonus to attack and damage.</Description>
+      <Effect>
+        <Type>Weapon_AttackAndDamage</Type>
+        <Bonus>Artifact</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+        <Item>All</Item>
+      </Effect>
+    </Buff>
+  </SetBonus>
+</SetBonuses>

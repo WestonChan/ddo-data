@@ -61,7 +61,7 @@ async fn version_reports_dataset_and_schema() {
     assert_eq!(json["dataset"]["upstream_sha"], "fixture-sha");
     assert_eq!(json["schema_version"], ddo_model::SCHEMA_VERSION);
     assert!(json.get("api_commit").is_some(), "version must report the API build commit, null when unknown");
-    assert_eq!(json["counts"]["items"], 52, "51 of Maetrim's and the wiki fixture's axe");
+    assert_eq!(json["counts"]["items"], 54, "53 of Maetrim's and the wiki fixture's axe");
     assert_eq!(
         json["counts"]["legacy_items"], 3,
         "a legacy and a historic version, and an axe that drops only in a retired Temple of Elemental Evil part"
@@ -95,7 +95,7 @@ async fn items_list_filters_and_pages() {
 
     let (_, _, first_page) = get("/v1/items?limit=5&offset=0").await;
     assert_eq!(first_page["items"].as_array().unwrap().len(), 5);
-    assert_eq!(first_page["total"], 49, "the three legacy items are left out by default");
+    assert_eq!(first_page["total"], 51, "the three legacy items are left out by default");
     let (_, _, armor) = get("/v1/items?category=Armor").await;
     assert!(armor["items"].as_array().unwrap().iter().all(|i| i["category"] == "Armor"));
     let (_, _, level_range) = get("/v1/items?min_level=20&max_level=25").await;
@@ -115,7 +115,7 @@ async fn items_list_filters_and_pages() {
     );
     assert!(rare.iter().all(|item| item["is_rare"] == true));
     let (_, _, unfiltered) = get("/v1/items?rare=false").await;
-    assert_eq!(unfiltered["total"], 49);
+    assert_eq!(unfiltered["total"], 51);
     let (status, _, _) = get("/v1/items?category=Hat").await;
     assert_eq!(status, StatusCode::BAD_REQUEST, "unknown category is a client error");
 }
@@ -126,13 +126,13 @@ async fn items_list_leaves_out_legacy_items_unless_asked_to_include_them() {
     for path in ["/v1/items?limit=10000", "/v1/items?limit=10000&include_legacy=false"] {
         let (status, _, current) = get(path).await;
         assert_eq!(status, StatusCode::OK);
-        assert_eq!(current["total"], 49, "{path}");
+        assert_eq!(current["total"], 51, "{path}");
         let rows = current["items"].as_array().unwrap();
         assert!(rows.iter().all(|row| row["is_legacy"] == false), "{path}");
         assert!(legacy_names.iter().all(|name| rows.iter().all(|row| row["name"] != *name)), "{path}");
     }
     let (_, _, with_legacy) = get("/v1/items?limit=10000&include_legacy=true").await;
-    assert_eq!(with_legacy["total"], 52);
+    assert_eq!(with_legacy["total"], 54);
     let legacy_rows: Vec<&Value> =
         with_legacy["items"].as_array().unwrap().iter().filter(|row| row["is_legacy"] == true).collect();
     assert_eq!(legacy_rows.iter().map(|row| row["name"].as_str().unwrap()).collect::<Vec<_>>(), legacy_names);
@@ -160,9 +160,14 @@ async fn items_filter_by_any_of_several_stat_enchantments_given_as_repeated_keys
     assert_eq!(status, StatusCode::OK, "repeated enchantment keys are rejected: {repeated}");
     assert_eq!(
         item_names(&repeated),
-        ["Battle Axe of the Oozing Hunger", "Legendary Ring of Unbridled Might", "Ring of the Kraken"]
+        [
+            "Battle Axe of the Oozing Hunger",
+            "Fabricator's Gauntlets",
+            "Legendary Ring of Unbridled Might",
+            "Ring of the Kraken"
+        ]
     );
-    assert_eq!(repeated["total"], 3);
+    assert_eq!(repeated["total"], 4);
 
     let (status, _, unknown) = get("/v1/items?enchantment=Strength&enchantment=Strenght").await;
     assert_eq!(status, StatusCode::BAD_REQUEST, "an unknown enchantment is a client error, not an empty page");
@@ -241,7 +246,7 @@ async fn enchantments_list_every_stat_and_effect_an_item_carries_with_its_item_c
     assert_eq!(status, StatusCode::OK, "{enchantments}");
     assert_eq!(
         enchantment_named(&enchantments, "Strength", "stat"),
-        Some(&serde_json::json!({ "name": "Strength", "kind": "stat", "item_count": 2 }))
+        Some(&serde_json::json!({ "name": "Strength", "kind": "stat", "item_count": 3 }))
     );
     assert_eq!(
         enchantment_named(&enchantments, "Freedom of Movement", "effect"),
@@ -256,7 +261,7 @@ async fn enchantments_list_every_stat_and_effect_an_item_carries_with_its_item_c
     assert!(enchantment_named(&enchantments, "Fire Spell Power", "stat").is_none(), "only a legacy item carries it");
     assert!(enchantment_named(&enchantments, "ElfBane", "effect").is_none(), "only a legacy item carries it");
     let rows = enchantments.as_array().unwrap();
-    assert_eq!(rows.len(), 99, "56 stats and 43 effects carried by fixture items that are not legacy");
+    assert_eq!(rows.len(), 100, "56 stats and 44 effects carried by fixture items that are not legacy");
     assert!(rows.iter().all(|row| row["item_count"].as_i64().unwrap() > 0));
     let names: Vec<&str> = rows.iter().map(|row| row["name"].as_str().unwrap()).collect();
     let mut sorted_names = names.clone();
@@ -276,10 +281,10 @@ async fn enchantments_narrow_by_search_text_and_kind() {
 
     let (_, _, effects) = get("/v1/enchantments?kind=effect").await;
     let effects = effects.as_array().unwrap();
-    assert_eq!(effects.len(), 43);
+    assert_eq!(effects.len(), 44);
     assert!(effects.iter().all(|row| row["kind"] == "effect"), "kind=effect lists a stat");
     let (_, _, strength_stats) = get("/v1/enchantments?kind=stat&q=strength").await;
-    assert_eq!(strength_stats, serde_json::json!([{ "name": "Strength", "kind": "stat", "item_count": 2 }]));
+    assert_eq!(strength_stats, serde_json::json!([{ "name": "Strength", "kind": "stat", "item_count": 3 }]));
 
     let (status, _, unknown_kind) = get("/v1/enchantments?kind=bonus").await;
     assert_eq!(status, StatusCode::BAD_REQUEST);

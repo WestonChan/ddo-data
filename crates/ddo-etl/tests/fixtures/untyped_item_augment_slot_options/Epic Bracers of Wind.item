@@ -1,0 +1,82 @@
+<Items>
+  <Item>
+    <NoAutoUpdate/>
+    <Name>Epic Bracers of Wind</Name>
+    <Icon>Bracers_10</Icon>
+    <Description>Bracers empowered by a bound Air Elemental. They surround you with a windy aura
+that deflects missiles occasionally, makes you harder to hit, and boosts the
+power of your electric spells.</Description>
+    <DropLocation>Vaults of the Artificers, Turn in various ingredients</DropLocation>
+    <MinLevel>20</MinLevel>
+    <EquipmentSlot>
+      <Bracers/>
+    </EquipmentSlot>
+    <Material>Leather</Material>
+    <ItemAugment>
+      <Type>Tier 2</Type>
+      <Augment>
+        <Name>Magnetism 116, Lightning Lore 17%, Dodge 10% and a Colorless Augment slot</Name>
+        <Description>Magnetism +116: Passive: +116 Equipment bonus to Electricity Spell Power.
+Lightning Lore +17: Passive: Your Electricity spells gain a 17% Equipment bonus to their chance to
+critical hit.
+Dodge +10%: +10% Enhancement bonus to Dodge.</Description>
+        <MinLevel>20</MinLevel>
+        <Icon>Upgrade</Icon>
+        <GrantAugment>Colorless</GrantAugment>
+        <Effect>
+          <Type>SpellPower</Type>
+          <Bonus>Equipment</Bonus>
+          <Item>Electric</Item>
+          <AType>Simple</AType>
+          <Amount size="1">116</Amount>
+        </Effect>
+        <Effect>
+          <Type>SpellLore</Type>
+          <Bonus>Not Equipment</Bonus>
+          <Item>Electric</Item>
+          <AType>Simple</AType>
+          <Amount size="1">17</Amount>
+        </Effect>
+        <Effect>
+          <Type>DodgeBonus</Type>
+          <Bonus>Enhancement</Bonus>
+          <AType>Simple</AType>
+          <Amount size="1">10</Amount>
+        </Effect>
+      </Augment>
+    </ItemAugment>
+    <ItemAugment>
+      <Type>Tier 3</Type>
+      <Augment>
+        <Name>Magnetism 122, Lightning Lore 18%, Dodge 11% and a Green Augment slot</Name>
+        <Description>Magnetism +122: Passive: +122 Equipment bonus to Electricity Spell Power.
+Lightning Lore +18: Passive: Your Electricity spells gain a 18% Equipment bonus to their chance to
+critical hit.
+Dodge +11%: +11% Enhancement bonus to Dodge.</Description>
+        <MinLevel>20</MinLevel>
+        <Icon>Upgrade</Icon>
+        <GrantAugment>Green</GrantAugment>
+        <Effect>
+          <Type>SpellPower</Type>
+          <Bonus>Equipment</Bonus>
+          <Item>Electric</Item>
+          <AType>Simple</AType>
+          <Amount size="1">122</Amount>
+        </Effect>
+        <Effect>
+          <Type>SpellLore</Type>
+          <Bonus>Not Equipment</Bonus>
+          <Item>Electric</Item>
+          <AType>Simple</AType>
+          <Amount size="1">18</Amount>
+        </Effect>
+        <Effect>
+          <Type>DodgeBonus</Type>
+          <Bonus>Enhancement</Bonus>
+          <AType>Simple</AType>
+          <Amount size="1">11</Amount>
+        </Effect>
+      </Augment>
+    </ItemAugment>
+  </Item>
+</Items>
