@@ -1,5 +1,6 @@
 {
   "adds_augment": null,
+  "adventure_packs": [],
   "bonuses": [
     {
       "bonus_type": "Artifact",
@@ -15,6 +16,38 @@
   "choose_level": false,
   "crafting": [],
   "description": "+10 Artifact Bonus to Physical Resistance Rating.\nDrops in: Secrets of the Red Wizards, end chest\nThe Darkness and the Light, end chest\nThe Covered Culvert, optional chest\nZoo Creeper, end chest",
+  "drops": [
+    {
+      "chest": "end chest",
+      "id": 360,
+      "is_rare": false,
+      "kind": "quest",
+      "loot_type": "chest",
+      "name": "Secrets of the Red Wizards",
+      "tier": null,
+      "wiki_url": "https://ddowiki.com/page/Secrets_of_the_Red_Wizards"
+    },
+    {
+      "chest": "optional chest",
+      "id": 104,
+      "is_rare": false,
+      "kind": "quest",
+      "loot_type": "chest",
+      "name": "The Covered Culvert",
+      "tier": null,
+      "wiki_url": "https://ddowiki.com/page/The_Covered_Culvert"
+    },
+    {
+      "chest": "end chest",
+      "id": 103,
+      "is_rare": false,
+      "kind": "quest",
+      "loot_type": "chest",
+      "name": "The Darkness and the Light",
+      "tier": null,
+      "wiki_url": "https://ddowiki.com/page/The_Darkness_and_the_Light"
+    }
+  ],
   "dual_values": false,
   "effect_description": null,
   "enter_value": false,

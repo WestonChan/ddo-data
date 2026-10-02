@@ -11,6 +11,7 @@ use utoipa_axum::routes;
 pub(super) fn router() -> OpenApiRouter<AppState> {
     OpenApiRouter::new()
         .routes(routes!(adventure_packs))
+        .routes(routes!(adventure_pack_detail))
         .routes(routes!(patrons))
         .routes(routes!(quests))
         .routes(routes!(quest_detail))
@@ -29,11 +30,56 @@ const QUEST_FLAG_COLUMNS: &[&str] = &["is_raid", "is_challenge", "is_free_to_pla
     tag = "quests",
     summary = "List adventure packs",
     description = "Every adventure pack and expansion by name with whether it is free to play. /v1/items accepts \
-                   these names in `pack`.",
+                   these names in `pack`; /v1/adventure-packs/{id} adds the loot credited to the whole pack.",
     responses((status = 200, description = "The whole table", body = Vec<Value>))
 )]
 async fn adventure_packs(State(state): State<AppState>) -> Result<Json<Vec<Value>>, ApiError> {
     whole_table_json(state, "SELECT id, name, is_free_to_play FROM adventure_packs ORDER BY name", &["is_free_to_play"])
+        .await
+}
+
+#[utoipa::path(
+    get,
+    path = "/v1/adventure-packs/{id}",
+    tag = "quests",
+    summary = "Get an adventure pack",
+    description = "One adventure pack as the list returns it (`id`, `name`, `is_free_to_play`), plus the loot any \
+                   of its quests drops, which Maetrim's drop text credits to the pack rather than to a quest \
+                   (`Magic of Myth Drannor, any end chest`): `items`, each with its `minimum_level` and `slot`, and \
+                   `augments`, each with its `family` and `min_level`. Every loot row carries `id`, `name`, \
+                   `loot_type` (chest or reward), `is_rare` and `chest` (the chest his text names, lower-cased, null \
+                   when it names none and on every `reward` row), the same link item and augment detail \
+                   `adventure_packs` report from the other side. Both arrays are sorted by name, then loot type, \
+                   and empty when nothing is credited to the pack as a whole; the loot of one quest of the pack is \
+                   on /v1/quests/{id}.",
+    params(("id" = i64, Path, description = "The adventure pack's numeric id from /v1/adventure-packs")),
+    responses(
+        (status = 200, description = "The adventure pack with the items and augments any of its quests drops", body = Value),
+        (status = 404, description = "No adventure pack has this id", body = crate::error::ErrorBody)
+    )
+)]
+async fn adventure_pack_detail(State(state): State<AppState>, Path(id): Path<i64>) -> Result<Json<Value>, ApiError> {
+    state
+        .read_db(move |db| {
+            let mut pack = json_row(db, "SELECT id, name, is_free_to_play FROM adventure_packs WHERE id = ?1", [id])?;
+            convert_to_booleans(&mut pack, &["is_free_to_play"]);
+            pack["items"] = Value::Array(loot_rows(
+                db,
+                "SELECT i.id, i.name, loot.loot_type, loot.is_rare, loot.chest, i.minimum_level, es.name AS slot
+                   FROM drops loot JOIN items i ON i.id = loot.item_id
+                   LEFT JOIN equipment_slots es ON es.id = i.slot_id
+                  WHERE loot.pack_id = ?1 ORDER BY i.name, i.id, loot.loot_type",
+                id,
+            )?);
+            pack["augments"] = Value::Array(loot_rows(
+                db,
+                "SELECT a.id, a.name, loot.loot_type, loot.is_rare, loot.chest, a.family, a.min_level
+                   FROM drops loot JOIN augments a ON a.id = loot.augment_id
+                  WHERE loot.pack_id = ?1 ORDER BY a.name, a.id, loot.loot_type",
+                id,
+            )?);
+            Ok(Json(pack))
+        })
         .await
 }
 
@@ -128,8 +174,8 @@ async fn quest_detail(State(state): State<AppState>, Path(id): Path<i64>) -> Res
         .await
 }
 
-fn loot_rows(db: &rusqlite::Connection, sql: &str, quest_id: i64) -> Result<Vec<Value>, ApiError> {
-    let mut loot_rows = json_rows(db, sql, [quest_id])?;
+fn loot_rows(db: &rusqlite::Connection, sql: &str, source_id: i64) -> Result<Vec<Value>, ApiError> {
+    let mut loot_rows = json_rows(db, sql, [source_id])?;
     for loot_row in &mut loot_rows {
         convert_to_booleans(loot_row, &["is_rare"]);
     }
@@ -156,4 +202,66 @@ pub(super) fn quests_dropping_via(
         convert_to_booleans(quest, &["is_raid", "is_free_to_play", "is_rare"]);
     }
     Ok(quests)
+}
+
+pub(super) fn adventure_packs_dropping_via(
+    db: &rusqlite::Connection,
+    loot_id_column: &str,
+    loot_id: i64,
+) -> Result<Vec<Value>, ApiError> {
+    let mut adventure_packs = json_rows(
+        db,
+        &format!(
+            "SELECT p.id, p.name, loot.loot_type, loot.is_rare, loot.chest
+               FROM drops loot JOIN adventure_packs p ON p.id = loot.pack_id
+              WHERE loot.{loot_id_column} = ?1 ORDER BY p.name, loot.loot_type"
+        ),
+        [loot_id],
+    )?;
+    for adventure_pack in &mut adventure_packs {
+        convert_to_booleans(adventure_pack, &["is_rare"]);
+    }
+    Ok(adventure_packs)
+}
+
+pub(super) fn drops_via(db: &rusqlite::Connection, loot_id_column: &str, loot_id: i64) -> Result<Vec<Value>, ApiError> {
+    let mut drops = json_rows(
+        db,
+        &format!(
+            "SELECT loot.source_kind AS kind, COALESCE(q.id, c.id, s.id, p.id) AS id,
+                    COALESCE(q.name, c.name, s.name, p.name) AS name, loot.loot_type, loot.chest, loot.is_rare,
+                    loot.tier, COALESCE(c.wiki_url, s.wiki_url) AS wiki_url
+               FROM drops loot LEFT JOIN quests q ON q.id = loot.quest_id
+               LEFT JOIN quest_chains c ON c.id = loot.chain_id LEFT JOIN sagas s ON s.id = loot.saga_id
+               LEFT JOIN adventure_packs p ON p.id = loot.pack_id
+              WHERE loot.{loot_id_column} = ?1
+              ORDER BY CASE loot.source_kind WHEN 'quest' THEN 1 WHEN 'quest_chain' THEN 2 WHEN 'saga' THEN 3 ELSE 4 END,
+                       name, loot.loot_type,
+                       CASE loot.tier WHEN 'heroic' THEN 1 WHEN 'epic' THEN 2 WHEN 'legendary' THEN 3 ELSE 4 END"
+        ),
+        [loot_id],
+    )?;
+    for drop_row in &mut drops {
+        convert_to_booleans(drop_row, &["is_rare"]);
+        if drop_row["wiki_url"].is_null() {
+            if let Some(source_name) = drop_row["name"].as_str() {
+                drop_row["wiki_url"] = Value::String(wiki_page_url(source_name));
+            }
+        }
+    }
+    Ok(drops)
+}
+
+fn wiki_page_url(page_name: &str) -> String {
+    let encoded_page_name: String = page_name
+        .replace(' ', "_")
+        .bytes()
+        .map(|byte| match byte {
+            b'A'..=b'Z' | b'a'..=b'z' | b'0'..=b'9' | b'-' | b'_' | b'.' | b'!' | b'~' | b'*' | b'\'' | b'(' | b')' => {
+                char::from(byte).to_string()
+            }
+            _ => format!("%{byte:02X}"),
+        })
+        .collect();
+    format!("https://ddowiki.com/page/{encoded_page_name}")
 }

@@ -1,5 +1,6 @@
 {
   "accepts_sentience": false,
+  "adventure_packs": [],
   "armor": null,
   "augment_slots": [],
   "bonuses": [
@@ -38,6 +39,18 @@
   "clickies": [],
   "description": "A slightly tarnished ring with a faded engraving that must have been lost down\na sewer drain. When worn, the bearer is imbued with phenomenal agility.",
   "drop_location": "The Lost Seekers, End reward",
+  "drops": [
+    {
+      "chest": null,
+      "id": 1,
+      "is_rare": false,
+      "kind": "quest_chain",
+      "loot_type": null,
+      "name": "The Lost Seekers",
+      "tier": null,
+      "wiki_url": "https://ddowiki.com/page/The_Lost_Seekers"
+    }
+  ],
   "effects": [],
   "enhancement_bonus": null,
   "icon": "Ring_7",

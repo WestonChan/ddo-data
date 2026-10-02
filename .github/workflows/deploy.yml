@@ -95,6 +95,8 @@ jobs:
           test "$(find icons -name '*.png' | wc -l)" -ge 8000
           check "drops WHERE source_kind = 'quest' AND item_id IS NOT NULL AND is_rare" 130
           check "drops WHERE source_kind = 'quest' AND augment_id IS NOT NULL" 500
+          check drops 5800
+          check "drops WHERE source_kind = 'adventure_pack'" 380
           check crafting_systems 35
           check crafting_recipes 2500
           check crafting_ingredients 600

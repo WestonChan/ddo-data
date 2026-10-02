@@ -103,9 +103,13 @@ async fn items_list_filters_and_pages() {
     assert_eq!(sireth_matches[0]["is_rare"], false);
     let (_, _, rare) = get("/v1/items?rare=true").await;
     let rare = rare["items"].as_array().unwrap();
-    assert_eq!(rare.len(), 1);
-    assert_eq!(rare[0]["name"], "Buckler of the Golden Age");
-    assert_eq!(rare[0]["is_rare"], true, "its drop text and the wiki both mark it a rare Book Burning drop");
+    let rare_names: Vec<&str> = rare.iter().map(|item| item["name"].as_str().unwrap()).collect();
+    assert_eq!(
+        rare_names,
+        ["Buckler of the Golden Age", "Light Crossbow of the Golden Age"],
+        "a rare Book Burning drop by his text and the wiki, and a rare drop of any Magic of Myth Drannor end chest"
+    );
+    assert!(rare.iter().all(|item| item["is_rare"] == true));
     let (_, _, unfiltered) = get("/v1/items?rare=false").await;
     assert_eq!(unfiltered["total"], 23);
     let (status, _, _) = get("/v1/items?category=Hat").await;
@@ -1113,4 +1117,119 @@ async fn a_not_found_response_carries_cors_headers() {
     let response = response_to_cross_origin_get(app(fixture_state()), "/no-such-route").await;
     assert_eq!(response.status(), StatusCode::NOT_FOUND);
     assert_eq!(response.headers().get(header::ACCESS_CONTROL_ALLOW_ORIGIN).map(|v| v.to_str().unwrap()), Some("*"));
+}
+
+#[tokio::test]
+async fn item_detail_lists_the_adventure_packs_whose_quests_all_drop_it() {
+    let (_, _, crossbow) =
+        get(&format!("/v1/items/{}", id_of_item_named("Light Crossbow of the Golden Age").await)).await;
+    assert_eq!(crossbow["quests"], serde_json::json!([]));
+    let packs = crossbow["adventure_packs"].as_array().unwrap();
+    assert_eq!(packs.len(), 1, "{packs:?}");
+    assert_eq!(keys_of(&packs[0]), ["chest", "id", "is_rare", "loot_type", "name"]);
+    assert_eq!(
+        (&packs[0]["name"], &packs[0]["loot_type"], &packs[0]["chest"], &packs[0]["is_rare"]),
+        (
+            &serde_json::json!("Magic of Myth Drannor"),
+            &serde_json::json!("chest"),
+            &serde_json::json!("any end chest"),
+            &serde_json::json!(true)
+        )
+    );
+    let (_, _, ring) = get(&format!("/v1/items/{}", id_of_item_named("Acrobat's Ring").await)).await;
+    assert_eq!(ring["adventure_packs"], serde_json::json!([]));
+}
+
+#[tokio::test]
+async fn adventure_pack_detail_lists_the_loot_any_of_its_quests_drops() {
+    let (_, _, packs) = get("/v1/adventure-packs").await;
+    let pack_id = packs.as_array().unwrap().iter().find(|pack| pack["name"] == "Magic of Myth Drannor").unwrap()["id"]
+        .as_i64()
+        .unwrap();
+    let (status, _, pack) = get(&format!("/v1/adventure-packs/{pack_id}")).await;
+    assert_eq!(status, StatusCode::OK);
+    assert_eq!(keys_of(&pack), ["augments", "id", "is_free_to_play", "items", "name"]);
+    assert_eq!(pack["is_free_to_play"], false);
+    let items = pack["items"].as_array().unwrap();
+    assert_eq!(items.len(), 1, "{items:?}");
+    assert_eq!(keys_of(&items[0]), ["chest", "id", "is_rare", "loot_type", "minimum_level", "name", "slot"]);
+    assert_eq!(items[0]["name"], "Light Crossbow of the Golden Age");
+    assert_eq!(items[0]["is_rare"], true);
+    assert_eq!(pack["augments"], serde_json::json!([]));
+    let (status, _, _) = get("/v1/adventure-packs/999999").await;
+    assert_eq!(status, StatusCode::NOT_FOUND);
+}
+
+#[tokio::test]
+async fn item_and_augment_detail_list_every_drop_source_in_one_array() {
+    let (_, _, band) = get(&format!("/v1/items/{}", id_of_item_named("Band of Diani ir'Wynarn").await)).await;
+    let drops = band["drops"].as_array().unwrap();
+    assert_eq!(keys_of(&drops[0]), ["chest", "id", "is_rare", "kind", "loot_type", "name", "tier", "wiki_url"]);
+    let drop_summaries: Vec<(&str, &str, Option<&str>, Option<&str>)> = drops
+        .iter()
+        .map(|drop| {
+            (
+                drop["kind"].as_str().unwrap(),
+                drop["name"].as_str().unwrap(),
+                drop["loot_type"].as_str(),
+                drop["tier"].as_str(),
+            )
+        })
+        .collect();
+    assert_eq!(
+        drop_summaries,
+        [("quest", "Project Nemesis", Some("raid"), None), ("saga", "Masterminds of Sharn", None, Some("epic"))],
+        "quests first, then chains, sagas and packs"
+    );
+    assert_eq!(drops[0]["id"], band["quests"][0]["id"]);
+    assert_eq!(drops[0]["wiki_url"], "https://ddowiki.com/page/Project_Nemesis");
+    assert_eq!(drops[1]["wiki_url"], "https://ddowiki.com/page/Masterminds_of_Sharn_(saga)");
+
+    let (_, _, crossbow) =
+        get(&format!("/v1/items/{}", id_of_item_named("Light Crossbow of the Golden Age").await)).await;
+    assert_eq!(crossbow["drops"][0]["kind"], "adventure_pack");
+    assert_eq!(crossbow["drops"][0]["id"], crossbow["adventure_packs"][0]["id"]);
+    assert_eq!(crossbow["drops"][0]["wiki_url"], "https://ddowiki.com/page/Magic_of_Myth_Drannor");
+    let (_, _, ring) = get(&format!("/v1/items/{}", id_of_item_named("Acrobat's Ring").await)).await;
+    assert_eq!(ring["drops"][0]["kind"], "quest_chain");
+    assert_eq!(ring["drops"][0]["loot_type"], Value::Null);
+
+    let (_, _, list) = get("/v1/augments?q=elemental+absorption").await;
+    let (_, _, augment) = get(&format!("/v1/augments/{}", list["augments"][0]["id"])).await;
+    assert_eq!(augment["adventure_packs"], serde_json::json!([]));
+    assert_eq!(augment["drops"][0]["kind"], "quest");
+    assert_eq!(augment["drops"][0]["name"], "Land of Lamordia");
+    assert_eq!(augment["drops"][0]["chest"], "vornir frosthelm's chest");
+    assert_eq!(augment["drops"][0]["wiki_url"], "https://ddowiki.com/page/Land_of_Lamordia");
+}
+
+#[tokio::test]
+async fn version_counts_every_drop_by_kind() {
+    let (_, _, version) = get("/v1/version").await;
+    let counts = &version["counts"];
+    assert_eq!((&counts["pack_loot"], &counts["pack_augment_loot"]), (&serde_json::json!(1), &serde_json::json!(0)));
+    let drop_count_by_kind: i64 =
+        ["quest_loot", "quest_augment_loot", "quest_chain_rewards", "saga_rewards", "pack_loot", "pack_augment_loot"]
+            .iter()
+            .map(|count_name| counts[count_name].as_i64().unwrap())
+            .sum();
+    assert_eq!(counts["drops"].as_i64().unwrap(), drop_count_by_kind);
+}
+
+#[tokio::test]
+async fn items_list_counts_pack_wide_drops_in_the_pack_and_rare_filters() {
+    let (_, _, magic) = get("/v1/items?pack=Magic%20of%20Myth%20Drannor").await;
+    let names: Vec<&str> =
+        magic["items"].as_array().unwrap().iter().map(|item| item["name"].as_str().unwrap()).collect();
+    assert!(names.contains(&"Light Crossbow of the Golden Age"), "{names:?}");
+    let crossbow = magic["items"]
+        .as_array()
+        .unwrap()
+        .iter()
+        .find(|item| item["name"] == "Light Crossbow of the Golden Age")
+        .unwrap();
+    assert_eq!(
+        (&crossbow["pack"], &crossbow["is_rare"]),
+        (&serde_json::json!("Magic of Myth Drannor"), &serde_json::json!(true))
+    );
 }

@@ -1,0 +1,35 @@
+{
+  "augments": [],
+  "id": 2,
+  "is_free_to_play": false,
+  "items": [
+    {
+      "chest": "any end chest",
+      "id": 794,
+      "is_rare": false,
+      "loot_type": "chest",
+      "minimum_level": 13,
+      "name": "Bastard Sword of the Fallen Age",
+      "slot": "Main Hand"
+    },
+    {
+      "chest": "any end chest",
+      "id": 795,
+      "is_rare": true,
+      "loot_type": "chest",
+      "minimum_level": 13,
+      "name": "Bastard Sword of the Golden Age",
+      "slot": "Main Hand"
+    },
+    {
+      "chest": "any end chest",
+      "id": 808,
+      "is_rare": false,
+      "loot_type": "chest",
+      "minimum_level": 13,
+      "name": "Battle Axe of the Fallen Age",
+      "slot": "Main Hand"
+    }
+  ],
+  "name": "Magic of Myth Drannor"
+}

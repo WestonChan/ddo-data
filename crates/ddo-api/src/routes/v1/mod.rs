@@ -73,6 +73,7 @@ declare_response_examples! { "v1":
     ("/v1/damage-types", "damage-types"),
     ("/v1/augment-slot-types", "augment-slot-types"),
     ("/v1/adventure-packs", "adventure-packs"),
+    ("/v1/adventure-packs/{id}", "adventure-packs_id"),
     ("/v1/patrons", "patrons"),
     ("/v1/quests", "quests"),
     ("/v1/quests/{id}", "quests_id"),
