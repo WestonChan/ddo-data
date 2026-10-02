@@ -163,16 +163,16 @@ cost = [{ ingredient = "Deck of Many Curses", quantity = 1 }]
 tier = "any"
 slot = "crafting: deck curse"
 option = "Curse of Minor Reflexes"
-augments = ["Curse of Minor Reflex"]
-note = "Random outcome; +1 Fortune Bonus to Reflex Saving Throws; rarity Common. Maetrim spells it Curse of Minor Reflex."
+augments = ["Curse of Minor Reflexes"]
+note = "Random outcome; +1 Fortune Bonus to Reflex Saving Throws; rarity Common."
 cost = [{ ingredient = "Deck of Many Curses", quantity = 1 }]
 
 [[system.recipe]]
 tier = "any"
 slot = "crafting: deck curse"
 option = "Curse of Major Reflexes"
-augments = ["Curse of Major Reflex"]
-note = "Random outcome; +2 Fortune Bonus to Reflex Saving Throws; rarity Uncommon. Maetrim spells it Curse of Major Reflex."
+augments = ["Curse of Major Reflexes"]
+note = "Random outcome; +2 Fortune Bonus to Reflex Saving Throws; rarity Uncommon."
 cost = [{ ingredient = "Deck of Many Curses", quantity = 1 }]
 
 [[system.recipe]]

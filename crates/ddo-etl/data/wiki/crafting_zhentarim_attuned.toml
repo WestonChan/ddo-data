@@ -65,7 +65,7 @@ slot = "crafting: zhentarim attuned"
 option = "Magestar upgrade"
 augments = []
 grants_slot = "green"
-note = "Upgrades Magestar (Trinket; Magestar Absorption (5 Charges, Recharged/Day: 5), Zhentarim Attuned): loses Magestar Absorption (5 Charges, Recharged/Day: 5), gains Magestar Absorption (10 Charges, Recharged/Day: 10), Green Augment Slot. The item changes from Bind on Equip to Bound to Character. Introduced in Update 21. Maetrim spells this item's socket Zentarim Attuned."
+note = "Upgrades Magestar (Trinket; Magestar Absorption (5 Charges, Recharged/Day: 5), Zhentarim Attuned): loses Magestar Absorption (5 Charges, Recharged/Day: 5), gains Magestar Absorption (10 Charges, Recharged/Day: 10), Green Augment Slot. The item changes from Bind on Equip to Bound to Character. Introduced in Update 21."
 cost = [{ ingredient = "Magestar", quantity = 1 }, { ingredient = "Black Stone", quantity = 150 }]
 
 [[system.recipe]]

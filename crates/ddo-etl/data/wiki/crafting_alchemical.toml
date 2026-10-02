@@ -277,7 +277,7 @@ tier = "heroic"
 slot = "crafting: alchemical material type"
 option = "Reforge Item (Adamantine)"
 augments = ["Adamantine: Mystical 1: Impulse +90, Mystical 2: Kinetic Lore VI"]
-note = "Cannith Reforging Station: reforge the prototype weapon or shield; it becomes Bound to Account and ML14. The page cautions that Cold Iron and Silver share a recipe, as do Crystal and Flametouched Iron. The Reforging Station page gives the Mystical Tier 1 effect as Laceration +90; the main page and Maetrim's augment give Impulse +90, and his value stands."
+note = "Cannith Reforging Station: reforge the prototype weapon or shield; it becomes Bound to Account and ML14. The page cautions that Cold Iron and Silver share a recipe, as do Crystal and Flametouched Iron."
 cost = [{ ingredient = "Dense Ingot", quantity = 1 }, { ingredient = "Metallic Ingot", quantity = 1 }, { ingredient = "Glowing Ingot", quantity = 1 }, { ingredient = "Cannith Power Cell", quantity = 1 }]
 
 [[system.recipe]]
