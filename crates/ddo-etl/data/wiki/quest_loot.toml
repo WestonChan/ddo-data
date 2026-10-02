@@ -844,3 +844,226 @@ rare_augments = [
   "Solar Gem of Force Absorption (Heroic)",
   "Solar Gem of Force Absorption (Legendary)",
 ]
+
+[[quest]]
+name = "ToEE: First Level and Earth Temple"
+page = "https://ddowiki.com/page/ToEE:_First_Level_and_Earth_Temple"
+read = "2026-10-02"
+items = [
+  { name = "Crystal-Lined Magegloves", chest = "end chest" },
+  { name = "Intricate Magegloves", chest = "end chest" },
+  { name = "Eternal Flameguard's Lenses", chest = "end chest" },
+  { name = "Black Earth Guardian's Lenses", chest = "end chest" },
+  { name = "Hurricane Insignia", chest = "end chest" },
+  { name = "Legendary Crystal-Lined Magegloves", chest = "end chest" },
+  { name = "Legendary Intricate Magegloves", chest = "end chest" },
+  { name = "Legendary Eternal Flameguard's Lenses", chest = "end chest" },
+  { name = "Legendary Black Earth Guardian's Lenses", chest = "end chest" },
+  { name = "Legendary Hurricane Insignia", chest = "end chest" },
+]
+augments = [
+  { name = "Ruby of Icy Blast", chest = "any rare encounter chest" },
+  { name = "Ruby of Shocking Blast", chest = "any rare encounter chest" },
+  { name = "Ruby of Implements's Flame", chest = "any rare encounter chest" },
+  { name = "Ruby of Maiming", chest = "any rare encounter chest" },
+  { name = "Ruby of Acid Blast", chest = "any rare encounter chest" },
+  { name = "Sapphire of Riposte", chest = "any rare encounter chest" },
+  { name = "Ruby of Flaming Blast", chest = "any rare encounter chest" },
+  { name = "Ruby of Implements's Frost", chest = "any rare encounter chest" },
+  { name = "Ruby of Implements's Wind", chest = "any rare encounter chest" },
+  { name = "Ruby of Implements's Acid", chest = "any rare encounter chest" },
+  { name = "Legendary Ruby of Shocking Blast", chest = "any rare encounter chest" },
+  { name = "Legendary Ruby of Acid Blast", chest = "any rare encounter chest" },
+  { name = "Legendary Ruby of Flaming Blast", chest = "any rare encounter chest" },
+  { name = "Legendary Ruby of Implements's Frost", chest = "any rare encounter chest" },
+  { name = "Legendary Ruby of Implements's Wind", chest = "any rare encounter chest" },
+  { name = "Legendary Ruby of Implements's Acid", chest = "any rare encounter chest" },
+  { name = "Legendary Ruby of Implements's Flame", chest = "any rare encounter chest" },
+  { name = "Legendary Ruby of Icy Blast", chest = "any rare encounter chest" },
+  { name = "Legendary Ruby of Maiming", chest = "any rare encounter chest" },
+  { name = "Legendary Sapphire of Riposte", chest = "any rare encounter chest" },
+]
+
+[[quest]]
+name = "ToEE: Lower Temple Complex"
+page = "https://ddowiki.com/page/ToEE:_Lower_Temple_Complex"
+read = "2026-10-02"
+items = [
+  { name = "Falrinth's Folly", chest = "end chest" },
+  { name = "Wondrous Magegloves", chest = "end chest" },
+  { name = "Blazing Sniper's Sights", chest = "end chest" },
+  { name = "Cowl of the Devotee", chest = "end chest" },
+  { name = "Pendant of Subtle Pain", chest = "end chest" },
+  { name = "Legendary Falrinth's Folly", chest = "end chest" },
+  { name = "Legendary Wondrous Magegloves", chest = "end chest" },
+  { name = "Legendary Blazing Sniper's Sights", chest = "end chest" },
+  { name = "Legendary Cowl of the Devotee", chest = "end chest" },
+  { name = "Legendary Pendant of Subtle Pain", chest = "end chest" },
+]
+augments = [
+  { name = "Ruby of Icy Blast", chest = "any rare encounter chest" },
+  { name = "Ruby of Shocking Blast", chest = "any rare encounter chest" },
+  { name = "Ruby of Implements's Flame", chest = "any rare encounter chest" },
+  { name = "Ruby of Maiming", chest = "any rare encounter chest" },
+  { name = "Ruby of Acid Blast", chest = "any rare encounter chest" },
+  { name = "Sapphire of Riposte", chest = "any rare encounter chest" },
+  { name = "Ruby of Flaming Blast", chest = "any rare encounter chest" },
+  { name = "Ruby of Implements's Frost", chest = "any rare encounter chest" },
+  { name = "Ruby of Implements's Wind", chest = "any rare encounter chest" },
+  { name = "Ruby of Implements's Acid", chest = "any rare encounter chest" },
+  { name = "Legendary Ruby of Shocking Blast", chest = "any rare encounter chest" },
+  { name = "Legendary Ruby of Acid Blast", chest = "any rare encounter chest" },
+  { name = "Legendary Ruby of Flaming Blast", chest = "any rare encounter chest" },
+  { name = "Legendary Ruby of Implements's Frost", chest = "any rare encounter chest" },
+  { name = "Legendary Ruby of Implements's Wind", chest = "any rare encounter chest" },
+  { name = "Legendary Ruby of Implements's Acid", chest = "any rare encounter chest" },
+  { name = "Legendary Ruby of Implements's Flame", chest = "any rare encounter chest" },
+  { name = "Legendary Ruby of Icy Blast", chest = "any rare encounter chest" },
+  { name = "Legendary Ruby of Maiming", chest = "any rare encounter chest" },
+  { name = "Legendary Sapphire of Riposte", chest = "any rare encounter chest" },
+]
+
+[[quest]]
+name = "ToEE: Depths of the Temple"
+page = "https://ddowiki.com/page/ToEE:_Depths_of_the_Temple"
+read = "2026-10-02"
+items = [
+  { name = "Eyes of the Lady of Rot and Decay", chest = "end chest" },
+  { name = "Legendary Eyes of the Lady of Rot and Decay", chest = "end chest" },
+  { name = "Emblem of Elemental Evil", chest = "end chest" },
+  { name = "Legendary Emblem of Elemental Evil", chest = "end chest" },
+  { name = "The Earth and the Sky", chest = "end chest" },
+  { name = "Legendary The Earth and the Sky", chest = "end chest" },
+  { name = "The Flame and the Frost", chest = "end chest" },
+  { name = "Legendary The Flame and the Frost", chest = "end chest" },
+  { name = "Legendary Flame Priest's Focus", chest = "end chest" },
+  { name = "Flame Priest's Focus", chest = "end chest" },
+  { name = "Bracelets of Subtle Life", chest = "end chest" },
+  { name = "Legendary Bracelets of Subtle Life", chest = "end chest" },
+  { name = "Elemental Victory", chest = "end chest" },
+  { name = "Epic Elemental Victory", chest = "end chest" },
+]
+augments = [
+  { name = "Ruby of Icy Blast", chest = "any rare encounter chest" },
+  { name = "Ruby of Shocking Blast", chest = "any rare encounter chest" },
+  { name = "Ruby of Implements's Flame", chest = "any rare encounter chest" },
+  { name = "Ruby of Maiming", chest = "any rare encounter chest" },
+  { name = "Ruby of Acid Blast", chest = "any rare encounter chest" },
+  { name = "Sapphire of Riposte", chest = "any rare encounter chest" },
+  { name = "Ruby of Flaming Blast", chest = "any rare encounter chest" },
+  { name = "Ruby of Implements's Frost", chest = "any rare encounter chest" },
+  { name = "Ruby of Implements's Wind", chest = "any rare encounter chest" },
+  { name = "Ruby of Implements's Acid", chest = "any rare encounter chest" },
+  { name = "Legendary Ruby of Shocking Blast", chest = "any rare encounter chest" },
+  { name = "Legendary Ruby of Acid Blast", chest = "any rare encounter chest" },
+  { name = "Legendary Ruby of Flaming Blast", chest = "any rare encounter chest" },
+  { name = "Legendary Ruby of Implements's Frost", chest = "any rare encounter chest" },
+  { name = "Legendary Ruby of Implements's Wind", chest = "any rare encounter chest" },
+  { name = "Legendary Ruby of Implements's Acid", chest = "any rare encounter chest" },
+  { name = "Legendary Ruby of Implements's Flame", chest = "any rare encounter chest" },
+  { name = "Legendary Ruby of Icy Blast", chest = "any rare encounter chest" },
+  { name = "Legendary Ruby of Maiming", chest = "any rare encounter chest" },
+  { name = "Legendary Sapphire of Riposte", chest = "any rare encounter chest" },
+]
+
+[[quest]]
+name = "ToEE: Air Node"
+page = "https://ddowiki.com/page/ToEE:_Air_Node"
+read = "2026-10-02"
+items = [
+  { name = "Legendary Robes of the Howling Hatred", chest = "end chest, tempest's chest, and random locked chest" },
+  { name = "Robes of the Howling Hatred", chest = "end chest, tempest's chest, and random locked chest" },
+  { name = "Docent of the Howling Hatred", chest = "end chest, tempest's chest, and random locked chest" },
+  { name = "Legendary Docent of the Howling Hatred", chest = "end chest, tempest's chest, and random locked chest" },
+  { name = "Heavy Armor of the Howling Hatred", chest = "end chest, tempest's chest, and random locked chest" },
+  { name = "Legendary Heavy Armor of the Howling Hatred", chest = "end chest, tempest's chest, and random locked chest" },
+  { name = "Legendary Light Armor of the Howling Hatred", chest = "end chest, tempest's chest, and random locked chest" },
+  { name = "Light Armor of the Howling Hatred", chest = "end chest, tempest's chest, and random locked chest" },
+  { name = "Legendary Medium Armor of the Howling Hatred", chest = "end chest, tempest's chest, and random locked chest" },
+  { name = "Medium Armor of the Howling Hatred", chest = "end chest, tempest's chest, and random locked chest" },
+  { name = "Eyes of the Howling Hatred", chest = "end chest, tempest's chest, and random locked chest" },
+  { name = "Legendary Eyes of the Howling Hatred", chest = "end chest, tempest's chest, and random locked chest" },
+  { name = "Leverage", chest = "dragon's hoard chests" },
+  { name = "Spinal Tap", chest = "dragon's hoard chests" },
+  { name = "Horseshoe Crab Shield (Level 7)", chest = "dragon's hoard chests" },
+  { name = "Epic Leverage", chest = "dragon's hoard chests" },
+  { name = "Epic Spinal Tap", chest = "dragon's hoard chests" },
+  { name = "Horseshoe Crab Shield (Level 26)", chest = "dragon's hoard chests" },
+  { name = "Sapphire Sting", chest = "dragon's hoard chests" },
+  { name = "Epic Sapphire Sting", chest = "dragon's hoard chests" },
+]
+
+[[quest]]
+name = "ToEE: Earth Node"
+page = "https://ddowiki.com/page/ToEE:_Earth_Node"
+read = "2026-10-02"
+items = [
+  { name = "Robes of the Black Earth", chest = "end chest and random locked chest" },
+  { name = "Legendary Docent of the Black Earth", chest = "end chest and random locked chest" },
+  { name = "Heavy Armor of the Black Earth", chest = "end chest and random locked chest" },
+  { name = "Legendary Heavy Armor of the Black Earth", chest = "end chest and random locked chest" },
+  { name = "Legendary Light Armor of the Black Earth", chest = "end chest and random locked chest" },
+  { name = "Light Armor of the Black Earth", chest = "end chest and random locked chest" },
+  { name = "Legendary Medium Armor of the Black Earth", chest = "end chest and random locked chest" },
+  { name = "Medium Armor of the Black Earth", chest = "end chest and random locked chest" },
+  { name = "Legendary Robes of the Black Earth", chest = "end chest and random locked chest" },
+  { name = "Docent of the Black Earth", chest = "end chest and random locked chest" },
+  { name = "Eyes of the Black Earth", chest = "end chest and random locked chest" },
+  { name = "Legendary Eyes of the Black Earth", chest = "end chest and random locked chest" },
+  { name = "Golden Orb of Death (Level 7)", chest = "hyrelgas' chest" },
+  { name = "Elemental Bloom", chest = "hyrelgas's chest" },
+  { name = "Epic Elemental Bloom", chest = "hyrelgas' chest" },
+  { name = "Golden Orb of Death (Level 26)", chest = "hyrelgas' chest" },
+  { name = "Epic Mushroom Cap", chest = "hyrelgas' chest" },
+  { name = "Mushroom Cap", chest = "hyrelgas' chest" },
+]
+
+[[quest]]
+name = "ToEE: Fire Node"
+page = "https://ddowiki.com/page/ToEE:_Fire_Node"
+read = "2026-10-02"
+items = [
+  { name = "Legendary Robes of the Eternal Flame", chest = "end chest and random locked chest" },
+  { name = "Robes of the Eternal Flame", chest = "end chest and random locked chest" },
+  { name = "Docent of the Eternal Flame", chest = "end chest and random locked chest" },
+  { name = "Legendary Docent of the Eternal Flame", chest = "end chest and random locked chest" },
+  { name = "Heavy Armor of the Eternal Flame", chest = "end chest and random locked chest" },
+  { name = "Legendary Heavy Armor of the Eternal Flame", chest = "end chest and random locked chest" },
+  { name = "Legendary Light Armor of the Eternal Flame", chest = "end chest and random locked chest" },
+  { name = "Light Armor of the Eternal Flame", chest = "end chest and random locked chest" },
+  { name = "Legendary Medium Armor of the Eternal Flame", chest = "end chest and random locked chest" },
+  { name = "Medium Armor of the Eternal Flame", chest = "end chest and random locked chest" },
+  { name = "Eyes of the Eternal Flame", chest = "end chest and random locked chest" },
+  { name = "Legendary Eyes of the Eternal Flame", chest = "end chest and random locked chest" },
+  { name = "Epic Thrall of the Fire Temple", chest = "periron's chest" },
+  { name = "Assassin's Kiss", chest = "periron's chest" },
+  { name = "Cranium Cracker", chest = "periron's chest" },
+  { name = "Periron's Talon", chest = "periron's chest" },
+  { name = "Thrall of the Fire Temple", chest = "periron's chest" },
+  { name = "Epic Assassin's Kiss", chest = "periron's chest" },
+  { name = "Epic Cranium Cracker", chest = "periron's chest" },
+  { name = "Epic Periron's Talon", chest = "periron's chest" },
+]
+
+[[quest]]
+name = "ToEE: Water Node"
+page = "https://ddowiki.com/page/ToEE:_Water_Node"
+read = "2026-10-02"
+items = [
+  { name = "Robes of the Crushing Wave", chest = "end chest and random locked chest" },
+  { name = "Docent of the Crushing Wave", chest = "end chest and random locked chest" },
+  { name = "Legendary Docent of the Crushing Wave", chest = "end chest and random locked chest" },
+  { name = "Heavy Armor of the Crushing Wave", chest = "end chest and random locked chest" },
+  { name = "Legendary Heavy Armor of the Crushing Wave", chest = "end chest and random locked chest" },
+  { name = "Legendary Light Armor of the Crushing Wave", chest = "end chest and random locked chest" },
+  { name = "Light Armor of the Crushing Wave", chest = "end chest and random locked chest" },
+  { name = "Legendary Medium Armor of the Crushing Wave", chest = "end chest and random locked chest" },
+  { name = "Medium Armor of the Crushing Wave", chest = "end chest and random locked chest" },
+  { name = "Legendary Robes of the Crushing Wave", chest = "end chest and random locked chest" },
+  { name = "Eyes of the Crushing Wave", chest = "end chest and random locked chest" },
+  { name = "Legendary Eyes of the Crushing Wave", chest = "end chest and random locked chest" },
+  { name = "Leopard's Chill", chest = "jotun rimeblade's chest" },
+  { name = "Epic Leopard's Chill", chest = "jotun rimeblade's chest" },
+  { name = "Mushroom Cap", chest = "jotun rimeblade's chest" },
+  { name = "Epic Mushroom Cap", chest = "jotun rimeblade's chest" },
+]
