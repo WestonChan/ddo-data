@@ -62,6 +62,10 @@ async fn version_reports_dataset_and_schema() {
     assert_eq!(json["schema_version"], ddo_model::SCHEMA_VERSION);
     assert!(json.get("api_commit").is_some(), "version must report the API build commit, null when unknown");
     assert_eq!(json["counts"]["items"], 41, "40 of Maetrim's and the wiki fixture's axe");
+    assert_eq!(
+        json["counts"]["legacy_items"], 3,
+        "a legacy and a historic version, and an axe that drops only in a retired Temple of Elemental Evil part"
+    );
     assert_eq!(json["counts"]["quest_augment_loot"], 7);
     assert_eq!(
         (
@@ -91,7 +95,7 @@ async fn items_list_filters_and_pages() {
 
     let (_, _, first_page) = get("/v1/items?limit=5&offset=0").await;
     assert_eq!(first_page["items"].as_array().unwrap().len(), 5);
-    assert_eq!(first_page["total"], 41);
+    assert_eq!(first_page["total"], 38, "the three legacy items are left out by default");
     let (_, _, armor) = get("/v1/items?category=Armor").await;
     assert!(armor["items"].as_array().unwrap().iter().all(|i| i["category"] == "Armor"));
     let (_, _, level_range) = get("/v1/items?min_level=20&max_level=25").await;
@@ -111,9 +115,39 @@ async fn items_list_filters_and_pages() {
     );
     assert!(rare.iter().all(|item| item["is_rare"] == true));
     let (_, _, unfiltered) = get("/v1/items?rare=false").await;
-    assert_eq!(unfiltered["total"], 41);
+    assert_eq!(unfiltered["total"], 38);
     let (status, _, _) = get("/v1/items?category=Hat").await;
     assert_eq!(status, StatusCode::BAD_REQUEST, "unknown category is a client error");
+}
+
+#[tokio::test]
+async fn items_list_leaves_out_legacy_items_unless_asked_to_include_them() {
+    let legacy_names = ["+3 Combustion Scorched Battle Axe", "Allegiance (historic)", "Ratkiller (legacy) (level 4)"];
+    for path in ["/v1/items?limit=10000", "/v1/items?limit=10000&include_legacy=false"] {
+        let (status, _, current) = get(path).await;
+        assert_eq!(status, StatusCode::OK);
+        assert_eq!(current["total"], 38, "{path}");
+        let rows = current["items"].as_array().unwrap();
+        assert!(rows.iter().all(|row| row["is_legacy"] == false), "{path}");
+        assert!(legacy_names.iter().all(|name| rows.iter().all(|row| row["name"] != *name)), "{path}");
+    }
+    let (_, _, with_legacy) = get("/v1/items?limit=10000&include_legacy=true").await;
+    assert_eq!(with_legacy["total"], 41);
+    let legacy_rows: Vec<&Value> =
+        with_legacy["items"].as_array().unwrap().iter().filter(|row| row["is_legacy"] == true).collect();
+    assert_eq!(legacy_rows.iter().map(|row| row["name"].as_str().unwrap()).collect::<Vec<_>>(), legacy_names);
+
+    let legacy_item_id = legacy_rows[0]["id"].as_i64().unwrap();
+    let (status, _, detail) = get(&format!("/v1/items/{legacy_item_id}")).await;
+    assert_eq!(status, StatusCode::OK, "a legacy item's detail is still served");
+    assert_eq!(detail["is_legacy"], true);
+    let (_, _, current_detail) = get(&format!("/v1/items/{}", sireth_id().await)).await;
+    assert_eq!(current_detail["is_legacy"], false);
+}
+
+async fn sireth_id() -> i64 {
+    let (_, _, json) = get("/v1/items?q=Sireth").await;
+    json["items"][0]["id"].as_i64().unwrap()
 }
 
 fn item_names(list_response: &Value) -> Vec<&str> {
@@ -935,6 +969,7 @@ async fn openapi_lists_every_item_filter_in_the_route_description_and_parameters
         "saga",
         "enchantment",
         "include_set_bonuses",
+        "include_legacy",
         "limit",
         "offset",
     ];

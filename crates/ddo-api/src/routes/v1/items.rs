@@ -41,6 +41,7 @@ pub(super) struct ItemListQuery {
     pub saga: Option<i64>,
     pub enchantment: Option<String>,
     pub include_set_bonuses: Option<bool>,
+    pub include_legacy: Option<bool>,
     pub limit: Option<i64>,
     pub offset: Option<i64>,
 }
@@ -59,13 +60,16 @@ impl QueryParameters for ItemListQuery {
                    `category`, `min_level` and `max_level`, `pack`, `raid`, `rare`, `quest`, `quest_chain` and `saga` \
                    (ids of what drops or rewards the item), `enchantment` (one or more names from \
                    /v1/enchantments, any of which the item must carry, as a stat bonus or as a named effect) and \
-                   `include_set_bonuses` (let the stat names in `enchantment` also match the item's set tiers); \
+                   `include_set_bonuses` (let the stat names in `enchantment` also match the item's set tiers) and \
+                   `include_legacy` (also list legacy items, which are left out by default); \
                    `limit` and `offset` page the matches. \
                    Ordered by name; with `q`, an exact name match comes first, then names starting with the text, \
                    then the rest, each group by name. Each row carries what a picker needs: id, name, slot, \
                    category, item type, minimum level, enhancement bonus, icon name, the alphabetically first \
                    adventure pack it drops in, whether any of its sources is a raid, whether it is rare loot from \
-                   at least one quest (marked rare in Maetrim's drop text or on ddowiki), and `source`: `maetrim` \
+                   at least one quest (marked rare in Maetrim's drop text or on ddowiki), `is_legacy` (an old version \
+                   kept beside the current one, such as a name ending `(legacy)` or `(historic)`, or an item the \
+                   wiki says no longer drops; always false unless `include_legacy=true`), and `source`: `maetrim` \
                    for an item from DDOBuilderV2's files, `wiki` for one read from ddowiki because his files lack \
                    it (dropped as soon as his files carry an item of that name). Use the detail endpoint for \
                    bonuses, sockets and quests. `total` counts every match, not just this page.",
@@ -83,6 +87,7 @@ impl QueryParameters for ItemListQuery {
         ("saga" = Option<i64>, Query, description = "Saga id as /v1/sagas lists it; keeps items its end reward offers in any tier; an id no saga has matches nothing"),
         ("enchantment" = Option<String>, Query, description = "One or more enchantment names exactly as /v1/enchantments lists them (a stat name from /v1/stats or an effect name as an item's `effects` give it), comma-separated (`enchantment=Strength,Vorpal`) or as repeated keys (`enchantment=Strength&enchantment=Vorpal`); keeps items carrying any of them. A stat name matches an item with at least one bonus of its own to that stat, and with `include_set_bonuses=true` also an item whose set has a tier with a bonus to it; an effect name matches an item whose `effects` (its `item_effects` rows) name it; a name that is both matches either way. Matching is case-sensitive; a name that is neither a stat nor an effect is a 400 naming it"),
         ("include_set_bonuses" = Option<bool>, Query, description = "`true` widens the stat names in `enchantment` to also match an item when any tier of its set (see /v1/sets/{id}) carries a bonus to one of them; the item's own bonuses and effects match either way; `false` and unset match the item's own bonuses only; no effect without `enchantment`"),
+        ("include_legacy" = Option<bool>, Query, description = "`true` also lists legacy items (`is_legacy`: old versions such as names ending `(legacy)` or `(historic)`, and items the wiki says no longer drop) and counts them in `total`; `false` and unset leave them out. /v1/items/{id} serves a legacy item either way"),
         ("limit" = Option<i64>, Query, description = "Page size, 1 to 10000; defaults to 100; out-of-range values are clamped rather than rejected"),
         ("offset" = Option<i64>, Query, description = "Rows to skip before the first returned row; defaults to 0; negative values are clamped to 0 rather than rejected")
     ),
@@ -104,6 +109,9 @@ async fn items(
     state
         .read_db(move |db| {
             let mut where_clause = WhereClause::default();
+            if query.include_legacy != Some(true) {
+                where_clause.add_condition("NOT i.is_legacy");
+            }
             let mut order_sql = "i.name".to_string();
             if let Some(search_text) = query.q.as_deref().map(str::trim).filter(|q| !q.is_empty()) {
                 let search_placeholder =
@@ -166,7 +174,7 @@ async fn items(
             let from_sql = format!("FROM items i JOIN equipment_slots es ON es.id = i.slot_id {where_sql}");
             let total = row_count(db, &format!("SELECT COUNT(*) {from_sql}"), where_clause.params())?;
             let page_sql = format!(
-                "SELECT i.id, i.name, es.name AS slot, i.item_category AS category, i.item_type, i.minimum_level, i.enhancement_bonus, i.icon, i.source,
+                "SELECT i.id, i.name, es.name AS slot, i.item_category AS category, i.item_type, i.minimum_level, i.enhancement_bonus, i.icon, i.is_legacy, i.source,
                         (SELECT MIN(ap.name) FROM drops ql LEFT JOIN quests q ON q.id = ql.quest_id JOIN adventure_packs ap ON ap.id = COALESCE(ql.pack_id, q.pack_id) WHERE ql.item_id = i.id) AS pack,
                         EXISTS (SELECT 1 FROM drops ql WHERE ql.item_id = i.id AND ql.source_kind = 'quest' AND ql.loot_type = 'raid') AS is_raid,
                         EXISTS (SELECT 1 FROM drops ql WHERE ql.item_id = i.id AND ql.source_kind IN ('quest', 'adventure_pack') AND ql.is_rare) AS is_rare
@@ -174,7 +182,7 @@ async fn items(
             );
             let mut items = json_rows(db, &page_sql, where_clause.params())?;
             for item in &mut items {
-                convert_to_booleans(item, &["is_raid", "is_rare"]);
+                convert_to_booleans(item, &["is_raid", "is_rare", "is_legacy"]);
             }
             Ok(Json(json!({ "total": total, "limit": limit, "offset": offset, "items": items })))
         })
@@ -220,7 +228,8 @@ fn first_unknown_enchantment_name(
     summary = "Get an item",
     description = "One item with everything the dataset knows about it: the core row (slot, category, type, minimum \
                    level, enhancement bonus, material, race restriction, description, drop location text, set name, \
-                   sentience and minor-artifact flags, wiki URL, and `source`, `maetrim` or `wiki` as in the list), \
+                   sentience and minor-artifact flags, `is_legacy` (served whatever its value; the list hides legacy \
+                   items by default), wiki URL, and `source`, `maetrim` or `wiki` as in the list), \
                    then `weapon` (dice, threat range, multipliers, \
                    proficiency, `dr_bypass`) or `armor` (AC, max Dex, spell failure, check penalty) when the item is \
                    one, `bonuses` (stat, bonus type, value), `effects` (named effects with value and target), \
@@ -247,12 +256,12 @@ async fn item_detail(State(state): State<AppState>, Path(id): Path<i64>) -> Resu
                 db,
                 "SELECT i.id, i.name, es.name AS slot, i.item_category AS category, i.item_type, i.minimum_level, i.enhancement_bonus,
                         m.name AS material, i.race_required, i.icon, i.description, i.drop_location, i.set_bonus AS set_name,
-                        i.accepts_sentience, i.is_minor_artifact, i.wiki_url, i.source
+                        i.accepts_sentience, i.is_minor_artifact, i.is_legacy, i.wiki_url, i.source
                    FROM items i JOIN equipment_slots es ON es.id = i.slot_id LEFT JOIN item_materials m ON m.id = i.material_id
                   WHERE i.id = ?1",
                 [id],
             )?;
-            convert_to_booleans(&mut item, &["accepts_sentience", "is_minor_artifact"]);
+            convert_to_booleans(&mut item, &["accepts_sentience", "is_minor_artifact", "is_legacy"]);
 
             let weapon = json_rows(
                 db,

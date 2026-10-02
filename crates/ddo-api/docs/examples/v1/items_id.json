@@ -55,6 +55,7 @@
   "enhancement_bonus": null,
   "icon": "Ring_7",
   "id": 468,
+  "is_legacy": false,
   "is_minor_artifact": false,
   "item_type": null,
   "material": "Gold",
