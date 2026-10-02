@@ -220,6 +220,9 @@ pub(super) fn adventure_packs_dropping_via(
     )?;
     for adventure_pack in &mut adventure_packs {
         convert_to_booleans(adventure_pack, &["is_rare"]);
+        if let Some(pack_name) = adventure_pack["name"].as_str() {
+            adventure_pack["wiki_url"] = Value::String(wiki_page_url(pack_name));
+        }
     }
     Ok(adventure_packs)
 }

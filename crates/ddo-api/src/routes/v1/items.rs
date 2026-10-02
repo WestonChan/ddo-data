@@ -244,8 +244,8 @@ fn first_unknown_enchantment_name(
                    `difficulties` each offers, ddowiki's `is_free_to_play` for each and its `provenance` (`maetrim`, or `wiki` \
                    for a quest read from ddowiki because his files lack it; see /v1/quests for the rest of the quest), `quest_chains` and `sagas` whose end reward offers the item (each with `id`, `name`, `is_rare` and the ddowiki page it was read from as `wiki_url`, a saga also with its reward `tier`; see /v1/quest-chains and /v1/sagas), \
                    `adventure_packs` any of whose quests drops it, as his drop text credits a whole pack (`Magic of \
-                   Myth Drannor, any end chest`; each with `id`, `name`, `loot_type`, `chest` and `is_rare`, once per \
-                   loot type; see /v1/adventure-packs/{id}), `challenge_packs` whose challenges' ingredients or \
+                   Myth Drannor, any end chest`; each with `id`, `name`, `loot_type`, `chest`, `is_rare` and the ddowiki \
+                   page named after the pack as `wiki_url`, once per loot type; see /v1/adventure-packs/{id}), `challenge_packs` whose challenges' ingredients or \
                    commendations are turned in for it (`Vaults of the Artificers, Turn in various challenge \
                    ingredients`; each with the pack's `id` and `name`, `is_rare` and `wiki_url`), \
                    `crafting_systems` whose station crafts or upgrades it, as \

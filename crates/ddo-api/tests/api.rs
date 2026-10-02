@@ -1411,7 +1411,8 @@ async fn item_detail_lists_the_adventure_packs_whose_quests_all_drop_it() {
     assert_eq!(crossbow["quests"], serde_json::json!([]));
     let packs = crossbow["adventure_packs"].as_array().unwrap();
     assert_eq!(packs.len(), 1, "{packs:?}");
-    assert_eq!(keys_of(&packs[0]), ["chest", "id", "is_rare", "loot_type", "name"]);
+    assert_eq!(keys_of(&packs[0]), ["chest", "id", "is_rare", "loot_type", "name", "wiki_url"]);
+    assert_eq!(packs[0]["wiki_url"], "https://ddowiki.com/page/Magic_of_Myth_Drannor", "the page named after the pack");
     assert_eq!(
         (&packs[0]["name"], &packs[0]["loot_type"], &packs[0]["chest"], &packs[0]["is_rare"]),
         (
