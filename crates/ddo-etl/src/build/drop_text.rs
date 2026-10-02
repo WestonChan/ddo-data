@@ -28,14 +28,34 @@ struct NamedDropSource {
     id: i64,
 }
 
+struct AliasedDropSource {
+    head: String,
+    lowercase_contains: Option<String>,
+    id: i64,
+}
+
+impl AliasedDropSource {
+    fn is_named_by(&self, segment: &str) -> bool {
+        segment_head(segment).eq_ignore_ascii_case(&self.head)
+            && self.lowercase_contains.as_ref().is_none_or(|contains| segment.to_lowercase().contains(contains))
+    }
+}
+
+struct AliasTarget<'alias> {
+    head: &'alias str,
+    contains: Option<&'alias str>,
+    target_name: &'alias str,
+}
+
 pub(crate) struct DropTextLinker {
     quests_longest_name_first: Vec<DropTextQuest>,
     quest_chains_longest_name_first: Vec<NamedDropSource>,
     sagas_longest_name_first: Vec<NamedDropSource>,
     packs_longest_name_first: Vec<NamedDropSource>,
     crafting_systems_longest_name_first: Vec<NamedDropSource>,
-    crafting_systems_by_station: Vec<NamedDropSource>,
-    challenge_packs_by_text: Vec<NamedDropSource>,
+    crafting_systems_by_station: Vec<AliasedDropSource>,
+    challenge_packs_by_text: Vec<AliasedDropSource>,
+    vendors_by_turn_in: Vec<AliasedDropSource>,
     vendors_longest_name_first: Vec<NamedDropSource>,
     events_longest_name_first: Vec<NamedDropSource>,
     unresolved_alias_texts: Vec<String>,
@@ -94,13 +114,31 @@ impl DropTextLinker {
             crafting_systems_by_station: aliased_sources(
                 db,
                 "SELECT id FROM crafting_systems WHERE name = ?1",
-                source_aliases.crafting_systems.iter().map(|alias| (alias.text.as_str(), alias.system.as_str())),
+                source_aliases.crafting_systems.iter().map(|alias| AliasTarget {
+                    head: &alias.text,
+                    contains: None,
+                    target_name: &alias.system,
+                }),
                 &mut unresolved_alias_texts,
             )?,
             challenge_packs_by_text: aliased_sources(
                 db,
                 "SELECT id FROM adventure_packs WHERE name = ?1",
-                source_aliases.challenges.iter().map(|alias| (alias.text.as_str(), alias.pack.as_str())),
+                source_aliases.challenges.iter().map(|alias| AliasTarget {
+                    head: &alias.text,
+                    contains: None,
+                    target_name: &alias.pack,
+                }),
+                &mut unresolved_alias_texts,
+            )?,
+            vendors_by_turn_in: aliased_sources(
+                db,
+                "SELECT id FROM vendors WHERE name = ?1",
+                source_aliases.vendors.iter().map(|alias| AliasTarget {
+                    head: &alias.text,
+                    contains: alias.contains.as_deref(),
+                    target_name: &alias.vendor,
+                }),
                 &mut unresolved_alias_texts,
             )?,
             unresolved_alias_texts,
@@ -362,14 +400,14 @@ impl DropTextLinker {
         if let Some(character_level) = starter_character_level(head) {
             named_sources.push(LootSource::Starter(character_level));
         }
-        for challenge_pack in &self.challenge_packs_by_text {
-            if head.eq_ignore_ascii_case(&challenge_pack.name) {
-                named_sources.push(LootSource::Challenge(challenge_pack.id));
-            }
-        }
-        for station in &self.crafting_systems_by_station {
-            if head.eq_ignore_ascii_case(&station.name) {
-                named_sources.push(LootSource::CraftingSystem(station.id));
+        let aliased_kinds: [(&[AliasedDropSource], LootSourceOfId); 3] = [
+            (&self.challenge_packs_by_text, LootSource::Challenge),
+            (&self.crafting_systems_by_station, LootSource::CraftingSystem),
+            (&self.vendors_by_turn_in, LootSource::Vendor),
+        ];
+        for (aliased_sources, loot_source) in aliased_kinds {
+            for aliased_source in aliased_sources.iter().filter(|aliased_source| aliased_source.is_named_by(segment)) {
+                named_sources.push(loot_source(aliased_source.id));
             }
         }
         let named_kinds: [(&[NamedDropSource], LootSourceOfId); 3] = [
@@ -445,15 +483,19 @@ const STARTER_HEAD_PREFIX: &str = "advance to level ";
 fn aliased_sources<'alias>(
     db: &Connection,
     target_id_sql: &str,
-    texts_and_targets: impl Iterator<Item = (&'alias str, &'alias str)>,
+    alias_targets: impl Iterator<Item = AliasTarget<'alias>>,
     unresolved_alias_texts: &mut Vec<String>,
-) -> Result<Vec<NamedDropSource>> {
+) -> Result<Vec<AliasedDropSource>> {
     let mut statement = db.prepare(target_id_sql)?;
     let mut aliased_sources = Vec::new();
-    for (text, target_name) in texts_and_targets {
-        match statement.query_row([target_name], |r| r.get(0)).optional()? {
-            Some(id) => aliased_sources.push(NamedDropSource { name: text.to_string(), id }),
-            None => unresolved_alias_texts.push(text.to_string()),
+    for alias_target in alias_targets {
+        match statement.query_row([alias_target.target_name], |r| r.get(0)).optional()? {
+            Some(id) => aliased_sources.push(AliasedDropSource {
+                head: alias_target.head.to_string(),
+                lowercase_contains: alias_target.contains.map(str::to_lowercase),
+                id,
+            }),
+            None => unresolved_alias_texts.push(alias_target.head.to_string()),
         }
     }
     Ok(aliased_sources)

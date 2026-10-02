@@ -5,7 +5,7 @@ The vocabularies the ETL maps Maetrim's DDOBuilderV2 files through. Each is embe
 - `buff_map.toml`: his item buff types, as stats, bonus types and effects.
 - `effect_map.toml`: his effect types, as stats and bonus types.
 - `legacy_drop_sources.toml`: the names in his drop text of quests that no longer exist, so the items only they dropped are flagged legacy (below).
-- `source_aliases.toml`: the station or place names his drop text uses for a source recorded under another name: a crafting system's station, or the place a challenge pack's rewards are turned in (below).
+- `source_aliases.toml`: the station or place names his drop text uses for a source recorded under another name: a crafting system's station, the place a challenge pack's rewards are turned in, or the place a vendor takes a turn-in (below).
 - `corrections/`: his values a ddowiki page contradicts; see [`corrections/README.md`](corrections/README.md).
 - `wiki/`: facts read from ddowiki that his files have no field for; see [`wiki/README.md`](wiki/README.md).
 
@@ -53,9 +53,11 @@ reason = "The Magma Forge in the Ruins of Thunderholme is where Thunder-Forged i
 - `system`: a crafting system's name in `wiki/crafting*.toml`; an alias whose system the wiki files lack links nothing.
 - `reason`: why the name stands for that system, in one sentence.
 
-The build fails, naming the entry, when the file has a field or table other than these, a field is blank, or the same `text` appears twice ignoring case. A test checks that every `system` names a crafting system in the embedded wiki files. The build report counts the rows written as `drop_text_crafting_system_source_count`, and `wiki-batch`'s `unlinked_drop_segments.txt` leaves out every segment that links one.
+The build fails, naming the entry, when the file has a field or table other than these, a field is blank, or the same `text` appears twice ignoring case (with the same `contains`, for a vendor alias). A test checks that every `system` names a crafting system in the embedded wiki files. The build report counts the rows written as `drop_text_crafting_system_source_count`, and `wiki-batch`'s `unlinked_drop_segments.txt` leaves out every segment that links one.
 
 A `[[challenge]]` entry (`text`, `pack`, `reason`) does the same for a challenge pack, an adventure pack of Maetrim's `Challenges.xml`: a segment whose head is its `text` links the item or augment as a `challenge` source of that pack, the reward its challenges' ingredients or commendations buy. His text names no challenge, only the place: `Vaults of the Artificers, Turn in various challenge ingredients` (the House Cannith challenges, whose pack in his files is Secrets of the Artificers; nine of them are in Free to Play, which the link does not name) and `Eveningstar, Turn in 5 Commendations: ...` (Eveningstar Challenge Pack). The build report counts `drop_text_challenge_source_count`, and lists in `unresolved_source_aliases` the texts of every alias whose system or pack the build lacks.
+
+A `[[vendor]]` entry (`text`, an optional `contains`, `vendor`, `reason`) links the item or augment as a `vendor` source of a wiki vendor (`wiki/vendors*.toml`) when the segment's head is its `text` and, if `contains` is given, the segment holds that text too, ignoring case. `contains` tells apart two vendors at one place: `Blue Water Inn, Turn in 40 Vistani Talismans` is Raam Lukresh's and `Blue Water Inn, Turn in 60 Vistani Totems` Osah Lukresh's, and `Necropolis, Turn in Dark Scarab Powder` is Squire Rale's while other Necropolis heads are not. Two entries may share a `text` only with different `contains`. A segment that names a wiki vendor itself (`Necropolis, Turn in Eerie Scarab Powder to Squire Rale`) needs no alias. The build report counts `drop_text_vendor_source_count`, a test checks that every `vendor` names a wiki vendor, and `unresolved_source_aliases` lists the texts of the ones the build lacks.
 
 No alias is needed for an iconic hero's starter gear: a segment whose head is `Advance to level N` links the item as a `starter` source with `character_level` N (his text gives only `Advance to level 15, End reward`), counted as `drop_text_starter_source_count`. The level is the only fact his text gives, so the kind needs no table of its own.
 

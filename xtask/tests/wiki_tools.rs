@@ -417,7 +417,7 @@ fn wiki_batch_writes_the_reading_agent_inputs() {
     )
     .unwrap();
 
-    assert_eq!(line_count(&out_dir.path().join("item_names.txt")), 43);
+    assert_eq!(line_count(&out_dir.path().join("item_names.txt")), 47);
     assert_eq!(
         std::fs::read_to_string(out_dir.path().join("wiki_source_items.txt")).unwrap(),
         "Battle Axe of the Oozing Hunger\n"
@@ -608,8 +608,9 @@ fn wiki_batch_lists_the_vendor_and_event_names_his_trade_segments_give_that_no_w
     .unwrap();
     assert_eq!(
         std::fs::read_to_string(unrecorded_out_dir.path().join("vendor_names.txt")).unwrap(),
-        "Eveningstar\t1\nMorten Edgewright\t1\nThe Marketplace\t1\n",
-        "every unlinked turn-in segment's head that names no event; Eveningstar's challenge pack is not in the fixtures"
+        "Blue Water Inn\t2\nEveningstar\t1\nMorten Edgewright\t1\nNecropolis\t1\nTattered Tapestries\t1\nThe Marketplace\t1\n",
+        "every unlinked turn-in segment's head that names no event; Eveningstar's challenge pack is not in the fixtures, \
+         and the vendors the Blue Water Inn, Necropolis and Tattered Tapestries aliases name are not in the fixture wiki"
     );
     assert_eq!(
         std::fs::read_to_string(unrecorded_out_dir.path().join("event_names.txt")).unwrap(),
@@ -626,7 +627,8 @@ fn wiki_batch_lists_the_vendor_and_event_names_his_trade_segments_give_that_no_w
     .unwrap();
     assert_eq!(
         std::fs::read_to_string(recorded_out_dir.path().join("vendor_names.txt")).unwrap(),
-        "Eveningstar\t1\nThe Marketplace\t1\n"
+        "Blue Water Inn\t2\nEveningstar\t1\nNecropolis\t1\nTattered Tapestries\t1\nThe Marketplace\t1\n",
+        "the fixture wiki records only Morten Edgewright, not the vendors the aliases name"
     );
     assert_eq!(std::fs::read_to_string(recorded_out_dir.path().join("event_names.txt")).unwrap(), "");
 }

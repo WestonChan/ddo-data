@@ -27,3 +27,26 @@ reason = "The Altar of Vulkoor in the Raveneye Refugee Camp cleanses and upgrade
 text = "Lahar"
 system = "Nebula Fragment Crafting"
 reason = "Lahar in The Twelve takes the Nebula Fragment that starts Nebula Fragment Crafting."
+
+[[vendor]]
+text = "Blue Water Inn"
+contains = "Vistani Talismans"
+vendor = "Raam Lukresh"
+reason = "Raam Lukresh in the Blue Water Inn is the vendor who takes Vistani Talismans; his brother Osah takes the Totems."
+
+[[vendor]]
+text = "Blue Water Inn"
+contains = "Vistani Totems"
+vendor = "Osah Lukresh"
+reason = "Osah Lukresh in the Blue Water Inn is the vendor who takes Vistani Totems; his brother Raam takes the Talismans."
+
+[[vendor]]
+text = "Necropolis"
+contains = "Scarab Powder"
+vendor = "Squire Rale"
+reason = "Squire Rale in the Necropolis encampment is the vendor who takes Scarlet, Dark and Eerie Scarab Powder."
+
+[[vendor]]
+text = "Tattered Tapestries"
+vendor = "Balkar Aislin"
+reason = "Balkar Aislin in the Upper Necropolis is the vendor who takes the Shreds of Tapestry his text calls Tattered Tapestries."

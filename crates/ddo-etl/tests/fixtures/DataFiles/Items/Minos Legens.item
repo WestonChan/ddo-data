@@ -1,0 +1,14 @@
+<Items>
+  <Item>
+    <Name>Minos Legens</Name>
+    <Icon>Helmet_35</Icon>
+    <Description>The horns on this helm were taken from the ancient minotaur champion Scarfur
+Deathhoof. The gemstone is said to contain several drops of his blood.</Description>
+    <DropLocation>Tattered Tapestries, Turn in 20 Tattered Tapestries</DropLocation>
+    <MinLevel>11</MinLevel>
+    <EquipmentSlot>
+      <Helmet/>
+    </EquipmentSlot>
+    <Material>Steel</Material>
+  </Item>
+</Items>

@@ -96,13 +96,18 @@ fn links_no_crafting_system_the_wiki_files_lack() {
 }
 
 #[test]
-fn every_crafting_station_alias_names_a_wiki_crafting_system() {
+fn every_crafting_station_and_vendor_alias_names_a_wiki_crafting_system_or_vendor() {
+    let embedded_wiki = WikiOverrides::embedded().unwrap();
     let crafting_system_names: Vec<String> =
-        WikiOverrides::embedded().unwrap().crafting_systems.into_iter().map(|system| system.name).collect();
+        embedded_wiki.crafting_systems.into_iter().map(|system| system.name).collect();
+    let vendor_names: Vec<String> = embedded_wiki.vendors.into_iter().map(|vendor| vendor.name).collect();
     let aliases = SourceAliases::embedded().unwrap();
-    assert!(!aliases.crafting_systems.is_empty() && !aliases.challenges.is_empty());
+    assert!(!aliases.crafting_systems.is_empty() && !aliases.challenges.is_empty() && !aliases.vendors.is_empty());
     for alias in &aliases.crafting_systems {
         assert!(crafting_system_names.contains(&alias.system), "{alias:?} names no system in data/wiki");
+    }
+    for alias in &aliases.vendors {
+        assert!(vendor_names.contains(&alias.vendor), "{alias:?} names no vendor in data/wiki");
     }
 }
 
@@ -238,4 +243,55 @@ fn rejects_a_vendor_or_event_naming_an_item_or_pack_his_files_lack_or_listing_an
     );
     let unknown_field = built_with_fixture_wiki_and("events.toml", &event.replace("items", "rewards")).unwrap_err();
     assert!(unknown_field.contains("rewards"), "{unknown_field}");
+}
+
+const VENDORS_HIS_TURN_IN_PLACES_STAND_FOR: &str =
+    "# Test values, not read from ddowiki: the vendors data/source_aliases.toml maps the fixture items' drop text heads\n\
+     # to, listing no items; the pages and dates are test values.\n\
+     [[vendor]]\nname = \"Raam Lukresh\"\npage = \"https://ddowiki.com/page/Raam_Lukresh\"\nread = \"2026-10-02\"\n\
+     [[vendor]]\nname = \"Osah Lukresh\"\npage = \"https://ddowiki.com/page/Osah_Lukresh\"\nread = \"2026-10-02\"\n\
+     [[vendor]]\nname = \"Squire Rale\"\npage = \"https://ddowiki.com/page/Squire_Rale\"\nread = \"2026-10-02\"\n\
+     [[vendor]]\nname = \"Balkar Aislin\"\npage = \"https://ddowiki.com/page/Balkar_Aislin\"\nread = \"2026-10-02\"\n";
+
+#[test]
+fn links_an_item_turned_in_at_a_place_to_the_vendor_an_alias_names_for_its_head_and_turn_in() {
+    let (db, report) = built_with(&fixture_wiki_with("vendors_aliased.toml", VENDORS_HIS_TURN_IN_PLACES_STAND_FOR));
+    assert_eq!(
+        source_rows(&db, "Macabre Great Crossbow"),
+        ["vendor Raam Lukresh 0"],
+        "'Blue Water Inn, Turn in 40 Vistani Talismans'"
+    );
+    assert_eq!(
+        source_rows(&db, "Nightmother's Great Crossbow"),
+        ["vendor Osah Lukresh 0"],
+        "'Blue Water Inn, Turn in 80 Vistani Totems', the same head as Raam Lukresh's"
+    );
+    assert_eq!(source_rows(&db, "Minos Legens"), ["vendor Balkar Aislin 0"]);
+    assert_eq!(
+        source_rows(&db, "Righteous Bracers"),
+        ["vendor Squire Rale 0"],
+        "'Necropolis, Turn in Dark Scarab Powder'"
+    );
+    assert_eq!(report.drop_text_vendor_source_count, 5, "the four above and the Ethereal Great Crossbow");
+    let heads = unlinked_heads(&db);
+    assert!(
+        !heads.iter().any(|head| ["Blue Water Inn", "Tattered Tapestries", "Necropolis"].contains(&head.as_str())),
+        "{heads:?}"
+    );
+}
+
+#[test]
+fn rejects_a_vendor_alias_repeating_a_head_and_turn_in_but_keeps_one_whose_turn_in_differs() {
+    let alias = |contains: &str, vendor: &str| {
+        format!(
+            "[[vendor]]\ntext = \"Blue Water Inn\"\ncontains = {contains:?}\nvendor = {vendor:?}\nreason = \"Its turn-in.\"\n"
+        )
+    };
+    let distinct_turn_ins =
+        format!("{}{}", alias("Vistani Talismans", "Raam Lukresh"), alias("Vistani Totems", "Osah Lukresh"));
+    let aliases = SourceAliases::from_toml_str(&distinct_turn_ins).unwrap();
+    assert_eq!(aliases.vendors.len(), 2);
+    let repeated = format!("{}{}", alias("Vistani Totems", "Raam Lukresh"), alias("vistani totems", "Osah Lukresh"));
+    assert!(SourceAliases::from_toml_str(&repeated).is_err(), "{repeated}");
+    assert!(SourceAliases::from_toml_str(&alias(" ", "Raam Lukresh")).is_err(), "a blank contains must fail");
 }
