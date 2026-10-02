@@ -836,6 +836,42 @@ async fn list_endpoints_accept_every_documented_query_parameter() {
 }
 
 #[tokio::test]
+async fn openapi_lists_every_item_filter_in_the_route_description_and_parameters() {
+    let (_, _, spec) = get("/v1/openapi.json").await;
+    let operation = &spec["paths"]["/v1/items"]["get"];
+    let documented_names: Vec<&str> =
+        operation["parameters"].as_array().unwrap().iter().map(|param| param["name"].as_str().unwrap()).collect();
+    let item_filters = [
+        "q",
+        "slot",
+        "category",
+        "min_level",
+        "max_level",
+        "pack",
+        "raid",
+        "rare",
+        "quest",
+        "quest_chain",
+        "saga",
+        "stat",
+        "include_set_bonuses",
+    ];
+    let route_description = operation["description"].as_str().unwrap();
+    for filter_name in item_filters {
+        assert!(documented_names.contains(&filter_name), "/v1/items does not document {filter_name}");
+        assert!(route_description.contains(&format!("`{filter_name}`")), "/v1/items description omits `{filter_name}`");
+    }
+    let stat_description = operation["parameters"].as_array().unwrap().iter().find(|p| p["name"] == "stat").unwrap()
+        ["description"]
+        .as_str()
+        .unwrap();
+    assert!(
+        stat_description.contains("comma-separated") && stat_description.contains("repeated"),
+        "{stat_description}"
+    );
+}
+
+#[tokio::test]
 async fn stances_lists_the_standalone_stances_in_file_order() {
     let (status, _, json) = get("/v1/stances").await;
     assert_eq!(status, StatusCode::OK);

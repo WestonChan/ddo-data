@@ -1,35 +1,49 @@
 {
   "items": [
     {
-      "category": "Clothing",
+      "category": "Jewelry",
       "enhancement_bonus": null,
-      "icon": "Cloak_8",
-      "id": 1429,
+      "icon": "Ring_5",
+      "id": 6805,
       "is_raid": false,
       "is_rare": false,
       "item_type": null,
-      "minimum_level": 5,
-      "name": "Cloak of Winter",
-      "pack": "Fables of the Feywild",
-      "slot": "Back",
+      "minimum_level": 11,
+      "name": "Ring of Baphomet",
+      "pack": "Demon Sands",
+      "slot": "Ring",
       "source": "maetrim"
     },
     {
-      "category": "Clothing",
+      "category": "Jewelry",
       "enhancement_bonus": null,
-      "icon": "Cloak_8",
-      "id": 1420,
+      "icon": "Ring_2",
+      "id": 6807,
       "is_raid": false,
       "is_rare": false,
       "item_type": null,
-      "minimum_level": 12,
-      "name": "Cloak of Winter's End (level 12)",
-      "pack": null,
-      "slot": "Back",
+      "minimum_level": 21,
+      "name": "Ring of Brutal Force",
+      "pack": "Keep on the Borderlands",
+      "slot": "Ring",
+      "source": "maetrim"
+    },
+    {
+      "category": "Jewelry",
+      "enhancement_bonus": null,
+      "icon": "Ring_4",
+      "id": 6809,
+      "is_raid": false,
+      "is_rare": false,
+      "item_type": null,
+      "minimum_level": 21,
+      "name": "Ring of Crystalline Vanity",
+      "pack": "Keep on the Borderlands",
+      "slot": "Ring",
       "source": "maetrim"
     }
   ],
-  "limit": 2,
+  "limit": 3,
   "offset": 0,
-  "total": 11
+  "total": 70
 }

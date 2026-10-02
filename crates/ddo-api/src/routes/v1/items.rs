@@ -54,12 +54,19 @@ impl QueryParameters for ItemListQuery {
     path = "/v1/items",
     tag = "items",
     summary = "List items",
-    description = "One page of equipment matching every filter given, ordered by name (with `q`, exact name matches first, then names starting with it). Each row carries what a picker \
-                   needs: id, name, slot, category, item type, minimum level, enhancement bonus, icon name, the \
-                   alphabetically first adventure pack it drops in, whether any of its sources is a raid, whether \
-                   it is rare loot from at least one quest (marked rare in Maetrim's drop text or on ddowiki), and \
-                   `source`: `maetrim` for an item from DDOBuilderV2's files, `wiki` for one read from ddowiki \
-                   because his files lack it (dropped as soon as his files carry an item of that name). Use the detail endpoint for bonuses, sockets and quests. `total` counts every match, not just this page.",
+    description = "One page of equipment matching every filter given, so a client needs no matching of its own. \
+                   Filters: `q` (search text against the name, or exactly a slot, category or pack name), `slot`, \
+                   `category`, `min_level` and `max_level`, `pack`, `raid`, `rare`, `quest`, `quest_chain` and `saga` \
+                   (ids of what drops or rewards the item), `stat` (one or more stats, any of which an item's \
+                   bonuses must carry) and `include_set_bonuses` (let `stat` also match the item's set tiers). \
+                   Ordered by name; with `q`, an exact name match comes first, then names starting with the text, \
+                   then the rest, each group by name. Each row carries what a picker needs: id, name, slot, \
+                   category, item type, minimum level, enhancement bonus, icon name, the alphabetically first \
+                   adventure pack it drops in, whether any of its sources is a raid, whether it is rare loot from \
+                   at least one quest (marked rare in Maetrim's drop text or on ddowiki), and `source`: `maetrim` \
+                   for an item from DDOBuilderV2's files, `wiki` for one read from ddowiki because his files lack \
+                   it (dropped as soon as his files carry an item of that name). Use the detail endpoint for \
+                   bonuses, sockets and quests. `total` counts every match, not just this page.",
     params(
         ("q" = Option<String>, Query, description = "Search text, trimmed and matched ignoring case: keeps items whose name contains it, or whose slot, category or any adventure pack it drops in is named exactly it (`q=feet`, `q=jewelry`, `q=vault of night`); ranks an exact name first, then names starting with it, then the rest, each group by name"),
         ("slot" = Option<String>, Query, description = "Equipment slot name exactly as /v1/equipment-slots lists it, e.g. `Main Hand`"),
