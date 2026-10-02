@@ -50,9 +50,9 @@ fn excludes_cosmetic_shields_from_items() {
 #[test]
 fn builds_items_and_skips_cosmetics() {
     let (db, report) = built_fixture_db();
-    assert_eq!(report.written_item_count, 53);
+    assert_eq!(report.written_item_count, 54);
     assert_eq!(report.skipped_cosmetic_item_count, 2, "the cosmetic helm and the cosmetic shield");
-    assert_eq!(count(&db, "SELECT COUNT(*) FROM items WHERE provenance = 'maetrim'"), 53);
+    assert_eq!(count(&db, "SELECT COUNT(*) FROM items WHERE provenance = 'maetrim'"), 54);
     assert_eq!(count(&db, "SELECT COUNT(*) FROM items WHERE name = '17th Anniversary Dark Helm'"), 0);
     let reason: String = db
         .query_row("SELECT reason FROM excluded_items WHERE name = '17th Anniversary Dark Helm'", [], |r| r.get(0))
@@ -704,7 +704,7 @@ fn diff_reports_coverage_against_a_legacy_database() {
     );
     assert_eq!(
         coverage.names_only_in_built.len(),
-        51,
+        52,
         "the wiki fixture item and the legacy fixture items are only in the build"
     );
     assert!((coverage.coverage_ratio() - 0.75).abs() < 1e-9);
@@ -804,7 +804,7 @@ fn writes_augments_with_slots_bonuses_and_modifiers() {
 #[test]
 fn writes_sets_filigrees_and_their_items() {
     let (db, report) = built_fixture_db();
-    assert_eq!(report.set_bonus_count, 6, "five gear sets and one filigree set");
+    assert_eq!(report.set_bonus_count, 8, "seven gear sets and one filigree set");
     let (icon, filigree): (String, bool) = db
         .query_row("SELECT icon, is_filigree_set FROM set_bonuses WHERE name = 'The Inevitable Grave'", [], |r| {
             Ok((r.get(0)?, r.get(1)?))
@@ -862,6 +862,23 @@ fn writes_sets_filigrees_and_their_items() {
         count(&db, "SELECT COUNT(*) FROM modifiers WHERE source_kind = 'filigree' AND is_rare = 1") >= 1,
         "rare filigree bonuses are flagged"
     );
+}
+
+#[test]
+fn links_an_item_to_every_set_it_names() {
+    let (db, _) = built_fixture_db();
+    let fried_sword_fish = item_id(&db, "Fried Sword Fish");
+    let set_names: Vec<String> = db
+        .prepare(
+            "SELECT s.name FROM set_bonus_items sbi JOIN set_bonuses s ON s.id = sbi.set_id
+               WHERE sbi.item_id = ?1 ORDER BY s.name",
+        )
+        .unwrap()
+        .query_map([fried_sword_fish], |r| r.get(0))
+        .unwrap()
+        .map(Result::unwrap)
+        .collect();
+    assert_eq!(set_names, ["Cooking By the Book", "Fried & Frozen Frenzy"]);
 }
 
 #[test]

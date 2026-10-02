@@ -160,4 +160,33 @@
       </Effect>
     </Buff>
   </SetBonus>
+  <SetBonus>
+    <Type>Cooking By the Book</Type>
+    <Icon>CookingByTheBook</Icon>
+    <Buff>
+      <EquippedCount>3</EquippedCount>
+      <Description>+20 Artifact bonus to Universal Spell Power</Description>
+      <Effect>
+        <Type>UniversalSpellPower</Type>
+        <Bonus>Artifact</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">20</Amount>
+      </Effect>
+    </Buff>
+  </SetBonus>
+  <SetBonus>
+    <Type>Fried &amp; Frozen Frenzy</Type>
+    <Icon>FriedAndFrozenFrenzy</Icon>
+    <Buff>
+      <EquippedCount>2</EquippedCount>
+      <Description>+1 Artifact bonus to all Ability Scores</Description>
+      <Effect>
+        <Type>AbilityBonus</Type>
+        <Bonus>Artifact</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Item>All</Item>
+      </Effect>
+    </Buff>
+  </SetBonus>
 </SetBonuses>

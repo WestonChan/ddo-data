@@ -192,7 +192,7 @@ impl TableWriter<'_> {
                 params![item_id, clickie_order as i64, clickie_name, clickie_id],
             )?;
         }
-        if let Some(set_name) = trimmed_non_empty(item.set_bonus_names.first().map(String::as_str)) {
+        for set_name in item.set_bonus_names.iter().filter_map(|s| trimmed_non_empty(Some(s))) {
             self.pending_set_item_links.push((item_id, set_name.to_string()));
         }
 
