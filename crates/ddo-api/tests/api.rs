@@ -61,7 +61,7 @@ async fn version_reports_dataset_and_schema() {
     assert_eq!(json["dataset"]["upstream_sha"], "fixture-sha");
     assert_eq!(json["schema_version"], ddo_model::SCHEMA_VERSION);
     assert!(json.get("api_commit").is_some(), "version must report the API build commit, null when unknown");
-    assert_eq!(json["counts"]["items"], 43, "42 of Maetrim's and the wiki fixture's axe");
+    assert_eq!(json["counts"]["items"], 44, "43 of Maetrim's and the wiki fixture's axe");
     assert_eq!(
         json["counts"]["legacy_items"], 3,
         "a legacy and a historic version, and an axe that drops only in a retired Temple of Elemental Evil part"
@@ -95,7 +95,7 @@ async fn items_list_filters_and_pages() {
 
     let (_, _, first_page) = get("/v1/items?limit=5&offset=0").await;
     assert_eq!(first_page["items"].as_array().unwrap().len(), 5);
-    assert_eq!(first_page["total"], 40, "the three legacy items are left out by default");
+    assert_eq!(first_page["total"], 41, "the three legacy items are left out by default");
     let (_, _, armor) = get("/v1/items?category=Armor").await;
     assert!(armor["items"].as_array().unwrap().iter().all(|i| i["category"] == "Armor"));
     let (_, _, level_range) = get("/v1/items?min_level=20&max_level=25").await;
@@ -115,7 +115,7 @@ async fn items_list_filters_and_pages() {
     );
     assert!(rare.iter().all(|item| item["is_rare"] == true));
     let (_, _, unfiltered) = get("/v1/items?rare=false").await;
-    assert_eq!(unfiltered["total"], 40);
+    assert_eq!(unfiltered["total"], 41);
     let (status, _, _) = get("/v1/items?category=Hat").await;
     assert_eq!(status, StatusCode::BAD_REQUEST, "unknown category is a client error");
 }
@@ -126,13 +126,13 @@ async fn items_list_leaves_out_legacy_items_unless_asked_to_include_them() {
     for path in ["/v1/items?limit=10000", "/v1/items?limit=10000&include_legacy=false"] {
         let (status, _, current) = get(path).await;
         assert_eq!(status, StatusCode::OK);
-        assert_eq!(current["total"], 40, "{path}");
+        assert_eq!(current["total"], 41, "{path}");
         let rows = current["items"].as_array().unwrap();
         assert!(rows.iter().all(|row| row["is_legacy"] == false), "{path}");
         assert!(legacy_names.iter().all(|name| rows.iter().all(|row| row["name"] != *name)), "{path}");
     }
     let (_, _, with_legacy) = get("/v1/items?limit=10000&include_legacy=true").await;
-    assert_eq!(with_legacy["total"], 43);
+    assert_eq!(with_legacy["total"], 44);
     let legacy_rows: Vec<&Value> =
         with_legacy["items"].as_array().unwrap().iter().filter(|row| row["is_legacy"] == true).collect();
     assert_eq!(legacy_rows.iter().map(|row| row["name"].as_str().unwrap()).collect::<Vec<_>>(), legacy_names);
@@ -242,7 +242,7 @@ async fn enchantments_list_every_stat_and_effect_an_item_carries_with_its_item_c
     assert!(enchantment_named(&enchantments, "Fire Spell Power", "stat").is_none(), "only a legacy item carries it");
     assert!(enchantment_named(&enchantments, "ElfBane", "effect").is_none(), "only a legacy item carries it");
     let rows = enchantments.as_array().unwrap();
-    assert_eq!(rows.len(), 96, "56 stats and 40 effects carried by fixture items that are not legacy");
+    assert_eq!(rows.len(), 97, "56 stats and 41 effects carried by fixture items that are not legacy");
     assert!(rows.iter().all(|row| row["item_count"].as_i64().unwrap() > 0));
     let names: Vec<&str> = rows.iter().map(|row| row["name"].as_str().unwrap()).collect();
     let mut sorted_names = names.clone();
@@ -262,7 +262,7 @@ async fn enchantments_narrow_by_search_text_and_kind() {
 
     let (_, _, effects) = get("/v1/enchantments?kind=effect").await;
     let effects = effects.as_array().unwrap();
-    assert_eq!(effects.len(), 40);
+    assert_eq!(effects.len(), 41);
     assert!(effects.iter().all(|row| row["kind"] == "effect"), "kind=effect lists a stat");
     let (_, _, strength_stats) = get("/v1/enchantments?kind=stat&q=strength").await;
     assert_eq!(strength_stats, serde_json::json!([{ "name": "Strength", "kind": "stat", "item_count": 2 }]));
@@ -1447,7 +1447,7 @@ async fn item_and_augment_detail_list_every_source_in_one_array() {
     let sources = band["sources"].as_array().unwrap();
     assert_eq!(
         keys_of(&sources[0]),
-        ["character_level", "chest", "id", "is_rare", "kind", "loot_type", "name", "tier", "wiki_url"]
+        ["character_level", "chest", "cost", "id", "is_rare", "kind", "loot_type", "name", "tier", "wiki_url"]
     );
     let source_summaries: Vec<(&str, &str, Option<&str>, Option<&str>)> = sources
         .iter()
@@ -1556,11 +1556,97 @@ async fn item_detail_lists_the_starter_level_that_earns_an_iconic_item() {
             "is_rare": false,
             "tier": null,
             "character_level": 15,
+            "cost": null,
             "wiki_url": null
         }])
     );
     let (_, _, version) = get("/v1/version").await;
     assert_eq!(version["counts"]["starter_items"], 1);
+}
+
+#[tokio::test]
+async fn vendors_list_their_location_pack_page_and_item_count_and_detail_their_items() {
+    let (status, _, vendors) = get("/v1/vendors").await;
+    assert_eq!(status, StatusCode::OK);
+    let vendor = &vendors[0];
+    assert_eq!(keys_of(vendor), ["id", "item_count", "location", "name", "pack", "provenance", "wiki_url"]);
+    assert_eq!(
+        (&vendor["name"], &vendor["location"], &vendor["pack"], &vendor["provenance"], &vendor["item_count"]),
+        (
+            &serde_json::json!("Morten Edgewright"),
+            &serde_json::json!("House Jorasco"),
+            &serde_json::json!("Free to Play"),
+            &serde_json::json!("wiki"),
+            &serde_json::json!(2)
+        )
+    );
+    let (status, _, detail) = get(&format!("/v1/vendors/{}", vendor["id"])).await;
+    assert_eq!(status, StatusCode::OK);
+    let items = detail["items"].as_array().unwrap();
+    assert_eq!(keys_of(&items[0]), ["cost", "id", "is_rare", "minimum_level", "name", "slot"]);
+    assert_eq!(
+        items.iter().map(|item| (item["name"].as_str().unwrap(), item["cost"].as_str())).collect::<Vec<_>>(),
+        [("Alabaster of the Twelve", Some("10 Planar Shards")), ("Ethereal Great Crossbow", None)]
+    );
+    let (status, _, _) = get("/v1/vendors/999999").await;
+    assert_eq!(status, StatusCode::NOT_FOUND);
+
+    let (_, _, crossbow) = get(&format!("/v1/items/{}", id_of_item_named("Ethereal Great Crossbow").await)).await;
+    assert_eq!(
+        crossbow["vendors"],
+        serde_json::json!([{
+            "id": vendor["id"],
+            "name": "Morten Edgewright",
+            "location": "House Jorasco",
+            "cost": null,
+            "is_rare": false,
+            "wiki_url": "https://ddowiki.com/page/Morten_Edgewright"
+        }])
+    );
+    assert_eq!(
+        (&crossbow["sources"][0]["kind"], &crossbow["sources"][0]["wiki_url"]),
+        (&serde_json::json!("vendor"), &serde_json::json!("https://ddowiki.com/page/Morten_Edgewright"))
+    );
+    let (_, _, alabaster) = get(&format!("/v1/items/{}", id_of_item_named("Alabaster of the Twelve").await)).await;
+    let vendor_source = alabaster["sources"].as_array().unwrap().iter().find(|source| source["kind"] == "vendor");
+    assert_eq!(vendor_source.unwrap()["cost"], "10 Planar Shards");
+}
+
+#[tokio::test]
+async fn events_list_their_page_and_item_count_and_detail_their_items() {
+    let (status, _, events) = get("/v1/events").await;
+    assert_eq!(status, StatusCode::OK);
+    let event = &events[0];
+    assert_eq!(keys_of(event), ["id", "item_count", "name", "provenance", "wiki_url"]);
+    assert_eq!(
+        (&event["name"], &event["item_count"]),
+        (&serde_json::json!("Treasure of Crystal Cove"), &serde_json::json!(3))
+    );
+    let (status, _, detail) = get(&format!("/v1/events/{}", event["id"])).await;
+    assert_eq!(status, StatusCode::OK);
+    let item_names: Vec<&str> =
+        detail["items"].as_array().unwrap().iter().map(|item| item["name"].as_str().unwrap()).collect();
+    assert_eq!(item_names, ["Acrobat's Ring", "Bold Trinket", "Ratkiller (legacy) (level 4)"]);
+    assert_eq!(keys_of(&detail["items"][0]), ["id", "is_rare", "minimum_level", "name", "slot"]);
+    let (status, _, _) = get("/v1/events/999999").await;
+    assert_eq!(status, StatusCode::NOT_FOUND);
+
+    let (_, _, trinket) = get(&format!("/v1/items/{}", id_of_item_named("Bold Trinket").await)).await;
+    assert_eq!(
+        trinket["events"],
+        serde_json::json!([{
+            "id": event["id"],
+            "name": "Treasure of Crystal Cove",
+            "is_rare": false,
+            "wiki_url": "https://ddowiki.com/page/Treasure_of_Crystal_Cove"
+        }])
+    );
+    let (_, _, version) = get("/v1/version").await;
+    let counts = &version["counts"];
+    assert_eq!(
+        (&counts["vendors"], &counts["vendor_items"], &counts["events"], &counts["event_items"]),
+        (&serde_json::json!(1), &serde_json::json!(2), &serde_json::json!(1), &serde_json::json!(3))
+    );
 }
 
 #[tokio::test]
@@ -1578,6 +1664,8 @@ async fn version_counts_every_source_by_kind() {
         "crafting_system_sources",
         "challenge_rewards",
         "starter_items",
+        "vendor_items",
+        "event_items",
     ]
     .iter()
     .map(|count_name| counts[count_name].as_i64().unwrap())

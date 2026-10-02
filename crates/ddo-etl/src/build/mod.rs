@@ -8,6 +8,7 @@ mod modifiers;
 mod quest_series;
 mod sets;
 mod trees_spells;
+mod vendors_and_events;
 mod wiki;
 
 use crate::corrections::Corrections;
@@ -107,6 +108,12 @@ pub struct BuildReport {
     pub drop_text_crafting_system_source_count: usize,
     pub drop_text_challenge_source_count: usize,
     pub drop_text_starter_source_count: usize,
+    pub wiki_vendor_count: usize,
+    pub vendor_item_count: usize,
+    pub drop_text_vendor_source_count: usize,
+    pub wiki_event_count: usize,
+    pub event_item_count: usize,
+    pub drop_text_event_source_count: usize,
     pub unresolved_source_aliases: Vec<String>,
     pub correction_applied_count: usize,
     pub correction_stale_count: usize,
@@ -182,6 +189,7 @@ pub fn build_database(
     wiki::write_wiki_quests(&transaction, &wiki_overrides.quests, &mut report)?;
     quest_series::write_wiki_quest_series(&transaction, wiki_overrides, &mut report)?;
     wiki::write_wiki_crafting_systems(&transaction, wiki_overrides)?;
+    vendors_and_events::write_wiki_vendors_and_events(&transaction, wiki_overrides, &mut report)?;
     let drop_text_linker = DropTextLinker::from_written_tables(
         &transaction,
         &LegacyDropSources::embedded()?,
@@ -247,6 +255,7 @@ pub fn build_database(
     corrections::apply_non_quest_corrections(&transaction, corrections, &mut report)?;
     wiki::apply_wiki_overrides(&transaction, wiki_overrides, &drop_text_linker, &mut report)?;
     quest_series::write_wiki_quest_series_rewards(&transaction, wiki_overrides, &mut report)?;
+    vendors_and_events::write_wiki_vendor_and_event_items(&transaction, wiki_overrides, &mut report)?;
     delete_bonuses_nothing_carries(&transaction)?;
 
     report.legacy_item_count =

@@ -1,0 +1,7 @@
+# Test values, not read from ddowiki: the event takes the name Maetrim's fixture Bold Trinket gives as its source,
+# but its page is a test value and Acrobat's Ring is a test listing.
+[[event]]
+name = "Treasure of Crystal Cove"
+page = "https://ddowiki.com/page/Treasure_of_Crystal_Cove"
+read = "2026-10-02"
+items = ["Acrobat's Ring"]

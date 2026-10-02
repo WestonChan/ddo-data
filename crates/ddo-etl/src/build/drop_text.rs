@@ -36,6 +36,8 @@ pub(crate) struct DropTextLinker {
     crafting_systems_longest_name_first: Vec<NamedDropSource>,
     crafting_systems_by_station: Vec<NamedDropSource>,
     challenge_packs_by_text: Vec<NamedDropSource>,
+    vendors_longest_name_first: Vec<NamedDropSource>,
+    events_longest_name_first: Vec<NamedDropSource>,
     unresolved_alias_texts: Vec<String>,
     legacy_drop_sources: LegacyDropSources,
 }
@@ -102,6 +104,8 @@ impl DropTextLinker {
                 &mut unresolved_alias_texts,
             )?,
             unresolved_alias_texts,
+            vendors_longest_name_first: named_sources_longest_name_first(db, "SELECT name, id FROM vendors")?,
+            events_longest_name_first: named_sources_longest_name_first(db, "SELECT name, id FROM events")?,
             legacy_drop_sources: legacy_drop_sources.clone(),
         })
     }
@@ -368,14 +372,21 @@ impl DropTextLinker {
                 named_sources.push(LootSource::CraftingSystem(station.id));
             }
         }
-        let mut unmatched_segment = segment.to_string();
-        for crafting_system in &self.crafting_systems_longest_name_first {
-            let name_spans = quest_name_spans(&unmatched_segment, &crafting_system.name);
-            if name_spans.is_empty() {
-                continue;
+        let named_kinds: [(&[NamedDropSource], LootSourceOfId); 3] = [
+            (&self.crafting_systems_longest_name_first, LootSource::CraftingSystem),
+            (&self.vendors_longest_name_first, LootSource::Vendor),
+            (&self.events_longest_name_first, LootSource::Event),
+        ];
+        for (sources_longest_name_first, loot_source) in named_kinds {
+            let mut unmatched_segment = segment.to_string();
+            for named_source in sources_longest_name_first {
+                let name_spans = quest_name_spans(&unmatched_segment, &named_source.name);
+                if name_spans.is_empty() {
+                    continue;
+                }
+                mask_matched_spans(&mut unmatched_segment, &name_spans);
+                named_sources.push(loot_source(named_source.id));
             }
-            mask_matched_spans(&mut unmatched_segment, &name_spans);
-            named_sources.push(LootSource::CraftingSystem(crafting_system.id));
         }
         let mut distinct_sources: Vec<LootSource> = Vec::new();
         for named_source in named_sources {
@@ -419,6 +430,8 @@ impl DropTextLinker {
         Ok(linked_kinds)
     }
 }
+
+type LootSourceOfId = fn(i64) -> LootSource;
 
 fn starter_character_level(segment_head: &str) -> Option<i64> {
     let level_text = segment_head
@@ -469,6 +482,8 @@ pub(super) enum LootSource {
     AdventurePack(i64),
     Challenge(i64),
     CraftingSystem(i64),
+    Vendor(i64),
+    Event(i64),
     Starter(i64),
 }
 
@@ -481,6 +496,8 @@ impl LootSource {
             Self::AdventurePack(_) => SourceKind::AdventurePack,
             Self::Challenge(_) => SourceKind::Challenge,
             Self::CraftingSystem(_) => SourceKind::CraftingSystem,
+            Self::Vendor(_) => SourceKind::Vendor,
+            Self::Event(_) => SourceKind::Event,
             Self::Starter(_) => SourceKind::Starter,
         }
     }
@@ -492,6 +509,8 @@ impl LootSource {
         | Self::AdventurePack(value)
         | Self::Challenge(value)
         | Self::CraftingSystem(value)
+        | Self::Vendor(value)
+        | Self::Event(value)
         | Self::Starter(value)) = self;
         value
     }
@@ -748,6 +767,8 @@ impl TableWriter<'_> {
                 SourceKind::CraftingSystem => report.drop_text_crafting_system_source_count += 1,
                 SourceKind::Challenge => report.drop_text_challenge_source_count += 1,
                 SourceKind::Starter => report.drop_text_starter_source_count += 1,
+                SourceKind::Vendor => report.drop_text_vendor_source_count += 1,
+                SourceKind::Event => report.drop_text_event_source_count += 1,
                 _ => {}
             }
         }

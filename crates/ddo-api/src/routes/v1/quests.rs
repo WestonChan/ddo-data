@@ -232,18 +232,21 @@ pub(super) fn sources_via(
     let mut sources = json_rows(
         db,
         &format!(
-            "SELECT loot.kind, COALESCE(q.id, c.id, s.id, p.id, cs.id) AS id,
-                    COALESCE(q.name, c.name, s.name, p.name, cs.name, 'Advance to level ' || loot.character_level) AS name,
-                    loot.loot_type, loot.chest, loot.is_rare, loot.tier, loot.character_level,
-                    COALESCE(c.wiki_url, s.wiki_url, cs.page) AS wiki_url
+            "SELECT loot.kind, COALESCE(q.id, c.id, s.id, p.id, cs.id, v.id, e.id) AS id,
+                    COALESCE(q.name, c.name, s.name, p.name, cs.name, v.name, e.name,
+                             'Advance to level ' || loot.character_level) AS name,
+                    loot.loot_type, loot.chest, loot.is_rare, loot.tier, loot.character_level, loot.cost,
+                    COALESCE(c.wiki_url, s.wiki_url, cs.page, v.wiki_url, e.wiki_url) AS wiki_url
                FROM sources loot LEFT JOIN quests q ON q.id = loot.quest_id
                LEFT JOIN quest_chains c ON c.id = loot.chain_id LEFT JOIN sagas s ON s.id = loot.saga_id
                LEFT JOIN adventure_packs p ON p.id = loot.pack_id
                LEFT JOIN crafting_systems cs ON cs.id = loot.crafting_system_id
+               LEFT JOIN vendors v ON v.id = loot.vendor_id LEFT JOIN events e ON e.id = loot.event_id
               WHERE loot.{loot_id_column} = ?1
               ORDER BY CASE loot.kind WHEN 'quest' THEN 1 WHEN 'quest_chain' THEN 2 WHEN 'saga' THEN 3
                                       WHEN 'adventure_pack' THEN 4 WHEN 'challenge' THEN 5
-                                      WHEN 'crafting_system' THEN 6 WHEN 'starter' THEN 9 ELSE 7 END,
+                                      WHEN 'crafting_system' THEN 6 WHEN 'vendor' THEN 7 WHEN 'event' THEN 8
+                                      ELSE 9 END,
                        name, loot.loot_type,
                        CASE loot.tier WHEN 'heroic' THEN 1 WHEN 'epic' THEN 2 WHEN 'legendary' THEN 3 ELSE 4 END"
         ),

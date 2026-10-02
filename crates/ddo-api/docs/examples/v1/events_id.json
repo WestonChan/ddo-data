@@ -1,0 +1,30 @@
+{
+  "id": 1,
+  "item_count": 245,
+  "items": [
+    {
+      "id": 484,
+      "is_rare": false,
+      "minimum_level": 1,
+      "name": "Admiral's Tricorne",
+      "slot": "Head"
+    },
+    {
+      "id": 957,
+      "is_rare": false,
+      "minimum_level": 4,
+      "name": "Bold Trinket",
+      "slot": "Trinket"
+    },
+    {
+      "id": 1059,
+      "is_rare": false,
+      "minimum_level": 12,
+      "name": "Brawling Gloves (legacy) (level 12)",
+      "slot": "Hands"
+    }
+  ],
+  "name": "Treasure of Crystal Cove",
+  "provenance": "wiki",
+  "wiki_url": "https://ddowiki.com/page/Treasure_of_Crystal_Cove"
+}

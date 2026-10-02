@@ -7,7 +7,7 @@ use std::sync::OnceLock;
 use xtask::dataset::build_database_file;
 use xtask::integrity::{integrity_report, CheckStatus, IntegrityOptions, Severity, INTEGRITY_CHECKS};
 
-const TABLES_EMPTY_IN_FIXTURES: [&str; 4] = ["corrections", "events", "race_feat_slots", "vendors"];
+const TABLES_EMPTY_IN_FIXTURES: [&str; 2] = ["corrections", "race_feat_slots"];
 
 fn fixtures_dir() -> PathBuf {
     Path::new(env!("CARGO_MANIFEST_DIR")).join("../crates/ddo-etl/tests/fixtures")
@@ -432,10 +432,7 @@ fn tables_not_empty_prints_the_tables_allowed_to_be_empty() {
     let outcome = report.outcome("tables_not_empty").unwrap();
 
     assert_eq!(outcome.status, CheckStatus::Passed, "{report}");
-    assert!(
-        outcome.notes.iter().any(|note| note == "allowed empty: corrections, events, race_feat_slots, vendors"),
-        "{report}"
-    );
+    assert!(outcome.notes.iter().any(|note| note == "allowed empty: corrections, race_feat_slots"), "{report}");
 
     let options_allowing_nothing = IntegrityOptions { allowed_empty_tables: Vec::new(), ..fixture_options() };
     let strict_report = integrity_report(&db, &options_allowing_nothing).unwrap();

@@ -3,6 +3,7 @@ use super::quest_series::{quest_chains_rewarding, sagas_rewarding};
 use super::quests::{
     adventure_packs_dropping_via, challenge_packs_rewarding, quests_dropping_via, sources_via, starter_rewards_of,
 };
+use super::vendors_and_events::{events_rewarding, vendors_offering};
 use crate::db::{
     bonuses_via, clamped_page, convert_to_booleans, json_row, json_rows, like_escaped_text, modifiers_for, row_count,
     whole_table_json, WhereClause,
@@ -250,15 +251,19 @@ fn first_unknown_enchantment_name(
                    `crafting_systems` whose station crafts or upgrades it, as \
                    his drop text names the system or its station (`Magma Forge, Crafted from various ingredients`; \
                    each with `id`, `name`, `is_rare` and the ddowiki page as `wiki_url`; see \
-                   /v1/crafting-systems/{id}), `starter_rewards`, the `character_level` an iconic hero reaches to \
+                   /v1/crafting-systems/{id}), `vendors` that sell or trade it (each with `id`, `name`, `location`, \
+                   `cost`, `is_rare` and `wiki_url`; see /v1/vendors/{id}), `events` that reward it (each with `id`, \
+                   `name`, `is_rare` and `wiki_url`; see /v1/events/{id}), as a wiki vendors or events file lists it \
+                   or his drop text names one, `starter_rewards`, the `character_level` an iconic hero reaches to \
                    be given it as starter gear (`Advance to level 15, End reward`), \
                    `sources`, every one of those sources in one array, each \
-                   with `kind` (`quest`, `quest_chain`, `saga`, `adventure_pack`, `challenge`, `crafting_system` or \
-                   `starter`), the source's \
+                   with `kind` (`quest`, `quest_chain`, `saga`, `adventure_pack`, `challenge`, `crafting_system`, \
+                   `vendor`, `event` or `starter`), the source's \
                    `id` and `name` (a starter row has no `id`, and `Advance to level N` as its name), \
                    `loot_type` (set only on a quest or pack drop), `chest`, `is_rare`, `tier` (a saga reward's list, \
-                   null otherwise), `character_level` (a starter row's, null otherwise) and the source's ddowiki page \
-                   as `wiki_url` (the page read for a chain, saga or crafting system, null on a starter row, the page \
+                   null otherwise), `character_level` (a starter row's, null otherwise), `cost` (a vendor row's, null \
+                   otherwise) and the source's ddowiki page as `wiki_url` (the page read for a chain, saga, crafting \
+                   system, vendor or event, null on a starter row, the page \
                    named after a quest or pack otherwise), sorted by kind in that order and then by name, and \
                    the raw `modifiers` the ETL derived the bonuses from.",
     params(("id" = i64, Path, description = "The item's numeric id from the list endpoint")), responses((status = 200, description = "The item with its child collections", body = Value), (status = 404, description = "No item has this id", body = crate::error::ErrorBody))
@@ -349,6 +354,8 @@ async fn item_detail(State(state): State<AppState>, Path(id): Path<i64>) -> Resu
             item["adventure_packs"] = Value::Array(adventure_packs_dropping_via(db, "item_id", id)?);
             item["challenge_packs"] = Value::Array(challenge_packs_rewarding(db, id)?);
             item["crafting_systems"] = Value::Array(crafting_systems_making(db, id)?);
+            item["vendors"] = Value::Array(vendors_offering(db, id)?);
+            item["events"] = Value::Array(events_rewarding(db, id)?);
             item["starter_rewards"] = Value::Array(starter_rewards_of(db, id)?);
             item["sources"] = Value::Array(sources_via(db, "item_id", id)?);
             item["modifiers"] = Value::Array(modifiers_for(db, "item", id)?);

@@ -11,7 +11,7 @@ use tower::ServiceExt;
 const TRIMMED_ARRAY_LENGTH: usize = 3;
 const VERSION_EXAMPLE_NAME: &str = "version";
 const EXAMPLES_KEPT_UNTIL_A_WIKI_FILE_RECORDS_A_ROW: &[&str] =
-    &["quest-chains", "quest-chains_id", "sagas", "sagas_id"];
+    &["quest-chains", "quest-chains_id", "sagas", "sagas_id", "vendors", "vendors_id", "events", "events_id"];
 
 pub struct ExampleRequest<'a> {
     pub example_name: &'a str,
@@ -40,6 +40,10 @@ pub const EXAMPLE_REQUESTS: &[ExampleRequest<'static>] = &[
     sample("quest-chains_id", "/v1/quest-chains/1"),
     sample("sagas", "/v1/sagas"),
     sample("sagas_id", "/v1/sagas/1"),
+    sample("vendors", "/v1/vendors"),
+    sample("vendors_id", "/v1/vendors/1"),
+    sample("events", "/v1/events"),
+    sample("events_id", "/v1/events/1"),
     sample("items", "/v1/items?q=ring&enchantment=Strength,Charisma,Manslayer&limit=3"),
     sample("items_id", "/v1/items/468"),
     sample("augments", "/v1/augments?slot=sun&limit=2"),

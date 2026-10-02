@@ -13,6 +13,7 @@ mod races;
 mod sets;
 mod spells;
 mod stances;
+mod vendors_and_events;
 mod version;
 
 use crate::docs::declare_response_examples;
@@ -27,7 +28,7 @@ use utoipa_axum::router::OpenApiRouter;
         description = "Dungeons & Dragons Online game data, parsed from Maetrim's DDOBuilderV2 data files and served \
                        read-only. Items, augments, set bonuses, filigrees, sentient gems, feats, stances, guild \
                        and optional buffs, races, classes, enhancement trees, spells and clickies, plus the \
-                       reference vocabularies they share, and the quest facts, quest chains, sagas and crafting recipes read from ddowiki.\n\n\
+                       reference vocabularies they share, and the quest facts, quest chains, sagas, vendors, events and crafting recipes read from ddowiki.\n\n\
                        **Caching.** The dataset is rebuilt only when DDOBuilderV2 changes, so every response is \
                        immutable for a dataset version. Each carries a strong `ETag`, a day-long `Cache-Control` and \
                        an `X-Dataset-Version` header naming the DDOBuilderV2 commit; send `If-None-Match` and expect \
@@ -59,6 +60,7 @@ use utoipa_axum::router::OpenApiRouter;
         (name = "spells", description = "Spells with damage, saves and class lists, and the clickies items grant"),
         (name = "bonuses", description = "The stats a bonus can apply to, the bonus types that decide whether two bonuses stack, and the enchantments (stats and named effects) items carry, which /v1/items filters by"),
         (name = "quests", description = "Quests, challenges, adventure packs and favor patrons: the sources items drop from, with each quest's free-to-play status, legendary level, zone, quest giver and flagging from ddowiki, and the quests DDOBuilderV2 lacks read whole from ddowiki (`provenance` = `wiki`). Quest chains and sagas from ddowiki are listed here too, each with its quests and the end rewards its NPC gives once they are done"),
+        (name = "sources", description = "Vendors and events from ddowiki: the NPCs that sell or trade items and the festivals that reward them, each with its items. Item detail `sources` also names the quests, chains, sagas, packs, challenge packs, crafting systems and starter levels an item comes from"),
         (name = "bulk", description = "The whole dataset as one SQLite download")
     )
 )]
@@ -82,6 +84,10 @@ declare_response_examples! { "v1":
     ("/v1/quest-chains/{id}", "quest-chains_id"),
     ("/v1/sagas", "sagas"),
     ("/v1/sagas/{id}", "sagas_id"),
+    ("/v1/vendors", "vendors"),
+    ("/v1/vendors/{id}", "vendors_id"),
+    ("/v1/events", "events"),
+    ("/v1/events/{id}", "events_id"),
     ("/v1/items", "items"),
     ("/v1/items/{id}", "items_id"),
     ("/v1/augments", "augments"),
@@ -129,5 +135,6 @@ pub(crate) fn router() -> OpenApiRouter<AppState> {
         .merge(bonuses::router())
         .merge(quests::router())
         .merge(quest_series::router())
+        .merge(vendors_and_events::router())
         .merge(dump::router())
 }

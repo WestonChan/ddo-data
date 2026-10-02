@@ -158,6 +158,12 @@ fn wiki_report_lines(report: &BuildReport) -> Vec<String> {
         ("drop_text_crafting_system_source_count", report.drop_text_crafting_system_source_count),
         ("drop_text_challenge_source_count", report.drop_text_challenge_source_count),
         ("drop_text_starter_source_count", report.drop_text_starter_source_count),
+        ("wiki_vendor_count", report.wiki_vendor_count),
+        ("vendor_item_count", report.vendor_item_count),
+        ("drop_text_vendor_source_count", report.drop_text_vendor_source_count),
+        ("wiki_event_count", report.wiki_event_count),
+        ("event_item_count", report.event_item_count),
+        ("drop_text_event_source_count", report.drop_text_event_source_count),
         ("correction_applied_count", report.correction_applied_count),
         ("correction_stale_count", report.correction_stale_count),
     ]

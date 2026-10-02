@@ -12,6 +12,8 @@
     "crafting_systems": 37,
     "enhancement_trees": 114,
     "enhancements": 3228,
+    "event_items": 0,
+    "events": 0,
     "feats": 1022,
     "filigrees": 437,
     "guild_buffs": 37,
@@ -35,12 +37,14 @@
     "sources": 7348,
     "spells": 706,
     "starter_items": 174,
+    "vendor_items": 0,
+    "vendors": 0,
     "wiki_augments": 0,
     "wiki_items": 262,
     "wiki_quests": 1
   },
   "dataset": {
-    "built_at": "2026-10-02T17:26:43Z",
+    "built_at": "2026-10-02T17:33:43Z",
     "upstream_sha": "31ef0201ea8e28604de2b6242988aee6d63733b0"
   },
   "schema_version": 16

@@ -283,3 +283,31 @@ rewards = [{ name = "Band of Diani ir'Wynarn", tier = "epic" }, "Some Untiered R
 The build writes `quest_chains` and `sagas` and their `quest_chain_quests` and `saga_quests` links (with `sort_order` the quest's position) right after the wiki quests, before his items are written, so his items' drop text links to them, and their reward `sources` rows after the rest of the wiki merge, so a reward may name a wiki item. Besides the citation checks above, the build fails, naming the file, the entry and the value, when a field is unknown, a quest or reward repeats, a tier is not one of the three, a chain reward has a `tier`, or `pack`, a quest or a reward matches nothing in his files or the wiki files. The report's `wiki_quest_chain_count`, `quest_chain_quest_link_count` and `quest_chain_reward_count` count the chains, quest links and listed rewards applied, and `wiki_saga_count`, `saga_quest_link_count` and `saga_reward_count` the same for sagas; `cargo xtask wiki-check` prints them. His drop text credits a chain or saga in a segment that says `reward` and is no quest's own end reward (it names no quest, or says `chain` or `saga`, as step one of linking quests decides). In such a segment the build matches the recorded chain and saga names, longest first, ignoring case and as whole words as it matches quest names, trying sagas first when the segment says `saga` and chains first otherwise, and stops at the first kind that matches. Each match adds a `quest_chain` source row, or a `saga` one whose `tier` is the first of `heroic`, `epic` or `legendary` the segment says from the saga's last mention on (null when it says none, so `Vecna Unleashed, any legendary end chest or Vecna Unleashed (epic) saga end reward` is epic), with `is_rare` from the segment's rarity marker; a wiki `rewards` element for the same item (and tier) only adds rarity. `The Lost Seekers, End reward` links to The Lost Seekers, `Masterminds of Sharn saga: Epic end reward` to the saga's epic tier, and `or The Haunting of Saltmarsh (Epic) saga end reward` to that saga though its name holds the quest Saltmarsh's, which keeps only the chest link its own segment gives it. A segment naming no recorded chain or saga (`Advance to level 15, End reward`, `Random, level ~4 chests/rewards`) links nothing. The report's `drop_text_quest_chain_reward_count` and `drop_text_saga_reward_count` count the rows his text added.
 
 `cargo xtask wiki-batch` writes the work list: `quest_chain_names.txt` and `saga_names.txt`, one `name<TAB>item count` line per name his items' drop text gives in such a segment that names no recorded chain or saga: the text before the first comma, parenthesis, ` saga`, ` quest chain`, ` chain end` or ` end reward`, without a leading `or`, `and` or `also`, in `saga_names.txt` when the segment says `saga`. Many are not chains at all (`Advance to level 15`, `Random`, `Special event items`); a reader records only the real ones. `unlinked_drop_segments.txt` lists, as `head<TAB>item count` with the most common first, the head (the text before the first comma or parenthesis) of every segment of his items' drop text that links to no quest, chain, saga or pack: unrecorded chains and sagas, wilderness areas his `Quests.xml` lacks, store purchases and free text.
+
+## `vendors.toml` and `events.toml`
+
+Many items are bought or traded for tokens from an NPC, or handed out by a festival, and his drop text names that source (`Morten Edgewright, Turn in 1 Ethereal Ingot`, `Treasure of Crystal Cove, Turn in ...`, `The Night Revels, Turn in ...`). His files have no table for either, so every row comes from these files, with `provenance = 'wiki'` and `wiki_url` the entry's `page`. `vendors*.toml` holds `[[vendor]]` tables and `events*.toml` holds `[[event]]` tables:
+
+```toml
+[[vendor]]
+name = "Morten Edgewright"
+page = "https://ddowiki.com/page/Morten_Edgewright"
+read = "2026-10-02"
+location = "House Jorasco"
+pack = "Free to Play"
+items = [{ name = "Ethereal Great Crossbow", cost = "1 Ethereal Ingot" }]
+
+[[event]]
+name = "Treasure of Crystal Cove"
+page = "https://ddowiki.com/page/Treasure_of_Crystal_Cove"
+read = "2026-10-02"
+items = ["Admiral's Tricorne"]
+```
+
+- `name` (required, unique across files): the name as his drop text spells it, so his items link to it.
+- `page`, `read`: the citation, as above.
+- `location` (vendor, optional): where the vendor stands, free text as the wiki writes it.
+- `pack` (vendor, optional): an adventure pack as his files spell it.
+- `items` (optional): the items the vendor sells or trades, or the event rewards, each an item name (his, or an `items*.toml` entry's), and for a vendor `{ name, cost }` with `cost` what the page says it asks, free text.
+
+The build writes the `vendors` and `events` rows right after the quest chains and sagas, before his items are written, so his items' drop text links to them: a segment naming a recorded vendor or event (as whole words, ignoring the case of every letter after the first, longest first, anywhere in the segment) adds a `vendor` or `event` row in `sources` for the item or augment, with `is_rare` from the segment's rarity marker. The listed `items` are linked after the rest of the wiki merge, so one may name a wiki item; a listed item his text already links keeps one row and gains the `cost`. Besides the citation checks, the build fails, naming the file, the entry and the value, when a field is unknown, an item repeats, or `pack` or an item matches nothing in his files or the wiki files. The report's `wiki_vendor_count`, `vendor_item_count`, `wiki_event_count` and `event_item_count` count the rows and listed items, and `drop_text_vendor_source_count` and `drop_text_event_source_count` the rows his text added; `cargo xtask wiki-check` prints them. Until a file records one, `check-db` in the deploy workflow allows the two tables to be empty.

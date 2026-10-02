@@ -126,6 +126,7 @@
     {
       "character_level": null,
       "chest": "end chest",
+      "cost": null,
       "id": 360,
       "is_rare": false,
       "kind": "quest",
@@ -137,6 +138,7 @@
     {
       "character_level": null,
       "chest": "optional chest",
+      "cost": null,
       "id": 104,
       "is_rare": false,
       "kind": "quest",
@@ -148,6 +150,7 @@
     {
       "character_level": null,
       "chest": "end chest",
+      "cost": null,
       "id": 103,
       "is_rare": false,
       "kind": "quest",

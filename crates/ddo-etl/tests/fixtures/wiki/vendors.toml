@@ -1,0 +1,9 @@
+# Test values, not read from ddowiki: the vendor takes the name Maetrim's fixture Ethereal Great Crossbow gives as its
+# source, but its page, location and pack are test values, and Alabaster of the Twelve and its cost are a test listing.
+[[vendor]]
+name = "Morten Edgewright"
+page = "https://ddowiki.com/page/Morten_Edgewright"
+read = "2026-10-02"
+location = "House Jorasco"
+pack = "Free to Play"
+items = ["Ethereal Great Crossbow", { name = "Alabaster of the Twelve", cost = "10 Planar Shards" }]

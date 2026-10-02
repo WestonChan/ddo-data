@@ -43,6 +43,7 @@
   "drop_location": "The Lost Seekers, End reward",
   "effects": [],
   "enhancement_bonus": null,
+  "events": [],
   "icon": "Ring_7",
   "id": 468,
   "is_legacy": false,
@@ -71,6 +72,7 @@
     {
       "character_level": null,
       "chest": null,
+      "cost": null,
       "id": 1,
       "is_rare": false,
       "kind": "quest_chain",
@@ -81,6 +83,7 @@
     }
   ],
   "starter_rewards": [],
+  "vendors": [],
   "weapon": null,
   "wiki_url": "https://ddowiki.com/page/Item:Acrobat's_Ring"
 }

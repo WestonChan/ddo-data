@@ -1,0 +1,35 @@
+{
+  "id": 1,
+  "item_count": 181,
+  "items": [
+    {
+      "cost": null,
+      "id": 2434,
+      "is_rare": false,
+      "minimum_level": 20,
+      "name": "Epic Ethereal Bastard Sword",
+      "slot": "Main Hand"
+    },
+    {
+      "cost": null,
+      "id": 2435,
+      "is_rare": false,
+      "minimum_level": 20,
+      "name": "Epic Ethereal Battle Axe",
+      "slot": "Main Hand"
+    },
+    {
+      "cost": null,
+      "id": 2437,
+      "is_rare": false,
+      "minimum_level": 20,
+      "name": "Epic Ethereal Club",
+      "slot": "Main Hand"
+    }
+  ],
+  "location": null,
+  "name": "Morten Edgewright",
+  "pack": null,
+  "provenance": "wiki",
+  "wiki_url": "https://ddowiki.com/page/Morten_Edgewright"
+}

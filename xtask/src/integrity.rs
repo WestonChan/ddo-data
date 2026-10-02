@@ -56,7 +56,7 @@ const DROP_LOCATION_HEAD_SQL: &str = "COALESCE(NULLIF(TRIM(CASE WHEN instr(i.dro
      THEN substr(i.drop_location, 1, instr(i.drop_location, ',') - 1) ELSE i.drop_location END), ''), \
      '(no drop location)')";
 
-const WIKI_SOURCED_TABLES: [&str; 5] = ["items", "quests", "augments", "quest_chains", "sagas"];
+const WIKI_SOURCED_TABLES: [&str; 7] = ["items", "quests", "augments", "quest_chains", "sagas", "vendors", "events"];
 
 impl IntegrityCheck {
     const fn hard(name: &'static str, description: &'static str, offender_query: OffenderQuery) -> Self {

@@ -2,15 +2,18 @@ mod augments;
 mod bonuses;
 mod crafting;
 mod descriptions;
+mod events;
 mod items;
 mod quest_loot;
 mod quest_series;
 mod quests;
+mod vendors;
 
 pub use augments::WikiAugment;
 pub use bonuses::WikiBonus;
 pub use crafting::{CraftingIngredient, CraftingRecipe, CraftingSystem, IngredientCost};
 pub use descriptions::{DescriptionKind, WikiDescription};
+pub use events::WikiEvent;
 pub use items::{WikiArmorStats, WikiItem, WikiItemEffect, WikiItemQuest, WikiWeaponStats};
 pub use quest_loot::{DescribedListedDrop, ListedDrop, QuestLoot, RareDrop, RareDropInChest};
 pub use quest_series::{
@@ -18,6 +21,7 @@ pub use quest_series::{
     WikiQuestSeries, WikiSaga,
 };
 pub use quests::WikiQuest;
+pub use vendors::{PricedVendorItem, VendorItem, WikiVendor};
 
 use anyhow::{bail, Context, Result};
 use serde::de::DeserializeOwned;
@@ -37,6 +41,8 @@ pub struct WikiOverrides {
     pub augments: Vec<WikiAugment>,
     pub quest_chains: Vec<WikiQuestChain>,
     pub sagas: Vec<WikiSaga>,
+    pub vendors: Vec<WikiVendor>,
+    pub events: Vec<WikiEvent>,
 }
 
 trait WikiEntry: DeserializeOwned {
@@ -177,6 +183,38 @@ impl WikiEntry for WikiSaga {
     }
 }
 
+impl WikiEntry for WikiVendor {
+    const TOML_TABLE_NAME: &'static str = "vendor";
+    fn name(&self) -> &str {
+        &self.name
+    }
+    fn citation(&self) -> (&str, &str) {
+        (&self.page, &self.read)
+    }
+    fn validate(&self) -> Result<()> {
+        WikiVendor::validate(self)
+    }
+    fn record_file_name(&mut self, file_name: &str) {
+        file_name.clone_into(&mut self.file_name);
+    }
+}
+
+impl WikiEntry for WikiEvent {
+    const TOML_TABLE_NAME: &'static str = "event";
+    fn name(&self) -> &str {
+        &self.name
+    }
+    fn citation(&self) -> (&str, &str) {
+        (&self.page, &self.read)
+    }
+    fn validate(&self) -> Result<()> {
+        WikiEvent::validate(self)
+    }
+    fn record_file_name(&mut self, file_name: &str) {
+        file_name.clone_into(&mut self.file_name);
+    }
+}
+
 enum WikiFileKind {
     QuestLoot,
     Quests,
@@ -186,6 +224,8 @@ enum WikiFileKind {
     Augments,
     QuestChains,
     Sagas,
+    Vendors,
+    Events,
 }
 
 impl WikiFileKind {
@@ -207,9 +247,13 @@ impl WikiFileKind {
             Ok(Self::Items)
         } else if stem.starts_with("augments") {
             Ok(Self::Augments)
+        } else if stem.starts_with("vendors") {
+            Ok(Self::Vendors)
+        } else if stem.starts_with("events") {
+            Ok(Self::Events)
         } else {
             bail!(
-                "wiki file {file_name}: the name must start with quest_loot, quest_chains, quests, sagas, crafting, descriptions, items or augments, which says what it holds"
+                "wiki file {file_name}: the name must start with quest_loot, quest_chains, quests, sagas, crafting, descriptions, items, augments, vendors or events, which says what it holds"
             )
         }
     }
@@ -286,6 +330,7 @@ impl WikiOverrides {
         let (mut description_file_by_kind_and_name, mut item_file_by_name, mut augment_file_by_family_and_name) =
             (HashMap::new(), HashMap::new(), HashMap::new());
         let (mut quest_chain_file_by_name, mut saga_file_by_name) = (HashMap::new(), HashMap::new());
+        let (mut vendor_file_by_name, mut event_file_by_name) = (HashMap::new(), HashMap::new());
         for (file_name, toml_text) in toml_files {
             match WikiFileKind::from_file_name(file_name)? {
                 WikiFileKind::QuestLoot => overrides.quest_loot.extend(parse_wiki_entries(
@@ -321,6 +366,12 @@ impl WikiOverrides {
                 )?),
                 WikiFileKind::Sagas => {
                     overrides.sagas.extend(parse_wiki_entries(file_name, toml_text, &mut saga_file_by_name)?)
+                }
+                WikiFileKind::Vendors => {
+                    overrides.vendors.extend(parse_wiki_entries(file_name, toml_text, &mut vendor_file_by_name)?)
+                }
+                WikiFileKind::Events => {
+                    overrides.events.extend(parse_wiki_entries(file_name, toml_text, &mut event_file_by_name)?)
                 }
             }
         }
