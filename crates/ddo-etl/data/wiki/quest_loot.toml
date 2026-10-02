@@ -411,7 +411,7 @@ rare_augments = [
 [[quest]]
 name = "The Proper Authorities"
 page = "https://ddowiki.com/page/The_Proper_Authorities"
-read = "2026-09-30"
+read = "2026-10-01"
 rare = [
   "Downcast Armor",
   "Downcast Brawler's Garb",
@@ -423,6 +423,10 @@ rare_augments = [
   "Solar Gem of Enduring (Legendary)",
   "Solar Gem of Spell Critical Chance (Heroic)",
   "Solar Gem of Spell Critical Chance (Legendary)",
+]
+items = [
+  { name = "Legendary Socket Chain", chest = "optional chest" },
+  { name = "Socket Chain", chest = "optional chest" },
 ]
 
 [[quest]]
@@ -534,4 +538,179 @@ rare_augments = [
   "Solar Gem of Sneak Attack Dice (Legendary)",
   "Solar Gem of Spell Critical Chance (Heroic)",
   "Solar Gem of Spell Critical Chance (Legendary)",
+]
+
+[[quest]]
+name = "Venn's Trail: Venn's Fate"
+page = "https://ddowiki.com/page/Venn%27s_Trail:_Venn%27s_Fate"
+read = "2026-10-01"
+items = [
+  { name = "Acrobat's Ring", loot_type = "reward" },
+  { name = "Armor of the Unknown Hero", loot_type = "reward" },
+  { name = "Black Widow Bracers", loot_type = "reward" },
+  { name = "Bloodletter's Knife", loot_type = "reward" },
+  { name = "Flame Warden", loot_type = "reward" },
+  { name = "Gloves of Deceit", loot_type = "reward" },
+  { name = "Gnashtooth Piecemail Chain", loot_type = "reward" },
+  { name = "Gnashtooth Sickle", loot_type = "reward" },
+  { name = "Goggles of Grabbing", loot_type = "reward" },
+  { name = "Graskitch's Skullcap", loot_type = "reward" },
+  { name = "Guardkiller Bow", loot_type = "reward" },
+  { name = "Interogator's Shield", loot_type = "reward" },
+  { name = "Lost Docent of the Mastermind", loot_type = "reward" },
+  { name = "Melt Wood Staff", loot_type = "reward" },
+  { name = "Misery's Web", loot_type = "reward" },
+  { name = "Moss Weave Cloak", loot_type = "reward" },
+  { name = "Pastemaker", loot_type = "reward" },
+  { name = "Scales of the Ancestors", loot_type = "reward" },
+  { name = "Sewer Smock", loot_type = "reward" },
+  { name = "Sludge Fin Boots", loot_type = "reward" },
+  { name = "Tunnelworm Champion's Belt", loot_type = "reward" },
+  { name = "Venn's Necklace", loot_type = "reward" },
+]
+
+[[quest]]
+name = "Thrall of the Necromancer"
+page = "https://ddowiki.com/page/Thrall_of_the_Necromancer"
+read = "2026-10-01"
+items = [
+  { name = "Voice of the Master", loot_type = "reward" },
+]
+
+[[quest]]
+name = "Zawabi's Revenge"
+page = "https://ddowiki.com/page/Zawabi%27s_Revenge"
+read = "2026-10-01"
+items = [
+  "Ring of Baphomet",
+]
+
+[[quest]]
+name = "The Mask of Deception"
+page = "https://ddowiki.com/page/The_Mask_of_Deception"
+read = "2026-10-01"
+items = [
+  { name = "Bracers of the Sun and Moon", chest = "left end chest" },
+  { name = "Hypnotic Pendant", chest = "left end chest" },
+  { name = "Knife Toed Boots", chest = "left end chest" },
+  { name = "Legendary Bracers of the Sun and Moon", chest = "left end chest" },
+  { name = "Legendary Hypnotic Pendant", chest = "left end chest" },
+  { name = "Legendary Knife Toed Boots", chest = "left end chest" },
+  { name = "Legendary Pansophic Circlet", chest = "left end chest" },
+  { name = "Legendary Paramnesial Lenses", chest = "left end chest" },
+  { name = "Pansophic Circlet", chest = "left end chest" },
+  { name = "Paramnesial Lenses", chest = "left end chest" },
+]
+
+[[quest]]
+name = "A Blood Pact"
+page = "https://ddowiki.com/page/A_Blood_Pact"
+read = "2026-10-01"
+items = [
+  "Dark Star of the Deep",
+  "Shards of the Deep",
+]
+
+[[quest]]
+name = "Burning Down the House"
+page = "https://ddowiki.com/page/Burning_Down_the_House"
+read = "2026-10-01"
+items = [
+  "Argonnessen Eye Band",
+]
+
+[[quest]]
+name = "Devil Assault (Normal)"
+page = "https://ddowiki.com/page/Devil_Assault"
+read = "2026-10-01"
+items = [
+  "Animus",
+]
+
+[[quest]]
+name = "Devil Assault (Hard)"
+page = "https://ddowiki.com/page/Devil_Assault"
+read = "2026-10-01"
+items = [
+  "Animus",
+]
+
+[[quest]]
+name = "Devil Assault (Elite)"
+page = "https://ddowiki.com/page/Devil_Assault"
+read = "2026-10-01"
+items = [
+  "Animus",
+]
+
+[[quest]]
+name = "Flocked Together"
+page = "https://ddowiki.com/page/Flocked_Together"
+read = "2026-10-01"
+items = [
+  "Duergarcraft Shroud",
+  "Legendary Duergarcraft Shroud",
+  "Legendary Spider's Bite",
+  "Spider's Bite",
+]
+
+[[quest]]
+name = "For Want of a Heart"
+page = "https://ddowiki.com/page/For_Want_of_a_Heart"
+read = "2026-10-01"
+items = [
+  "Great Forge Shroud",
+  "Legendary Great Forge Shroud",
+]
+
+[[quest]]
+name = "In The Flesh"
+page = "https://ddowiki.com/page/In_The_Flesh"
+read = "2026-10-01"
+items = [
+  "Axe of Famine",
+  "Beholder Plate Armor",
+  "Beholder Plate Docent",
+  "Bow of Sinew",
+  "Polycurse Dagger",
+  "Quivering Quiver",
+  "Scepter of Mad Trickery",
+  "Thaarak Bracelet",
+]
+
+[[quest]]
+name = "Invaders!"
+page = "https://ddowiki.com/page/Invaders!"
+read = "2026-10-01"
+items = [
+  "Demonic Breastplate",
+  "Docent of Defense",
+  "Ring of Balance",
+  "Scepter of Healing",
+]
+
+[[quest]]
+name = "Raiding the Raiders"
+page = "https://ddowiki.com/page/Raiding_the_Raiders"
+read = "2026-10-01"
+items = [
+  "Bracers of the Spider Queen",
+  "Duergarcraft Robe",
+  "Great Forge Helm",
+  "High Priestess' Focus",
+  "Legendary Bracers of the Spider Queen",
+  "Legendary Duergarcraft Robe",
+  "Legendary Great Forge Helm",
+  "Legendary High Priestess' Focus",
+]
+
+[[quest]]
+name = "Stealing from Sorcere"
+page = "https://ddowiki.com/page/Stealing_from_Sorcere"
+read = "2026-10-01"
+items = [
+  "Drow Wizard's Greaves",
+  "Legendary Drow Wizard's Greaves",
+  "Legendary Stitched Great Forge Shroud",
+  "Stitched Great Forge Shroud",
 ]
