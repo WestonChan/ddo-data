@@ -5,7 +5,7 @@ use crate::db::{
     substring_like_pattern, whole_table_json, WhereClause,
 };
 use crate::error::ApiError;
-use crate::query::ApiQuery;
+use crate::query::{comma_separated_values, ApiQuery, QueryParameters};
 use crate::state::AppState;
 use axum::extract::{Path, State};
 use axum::Json;
@@ -41,6 +41,10 @@ pub(super) struct ItemListQuery {
     pub offset: Option<i64>,
 }
 
+impl QueryParameters for ItemListQuery {
+    const REPEATABLE_KEYS: &'static [&'static str] = &["stat"];
+}
+
 #[utoipa::path(
     get,
     path = "/v1/items",
@@ -61,13 +65,13 @@ pub(super) struct ItemListQuery {
         ("pack" = Option<String>, Query, description = "Adventure pack name as /v1/adventure-packs lists it; matches items dropping from a quest in it or credited to any quest of the whole pack"),
         ("raid" = Option<bool>, Query, description = "`true` keeps only items that drop from a raid; `false` and unset apply no filter"),
         ("rare" = Option<bool>, Query, description = "`true` keeps only items that are rare loot from at least one quest or from any quest of a pack, per Maetrim's drop text or ddowiki; `false` and unset apply no filter"),
-        ("stat" = Option<String>, Query, description = "Stat name as /v1/stats lists it; keeps items with at least one bonus to it"),
+        ("stat" = Option<String>, Query, description = "One or more stat names as /v1/stats lists them, comma-separated (`stat=Strength,Dexterity`) or as repeated keys (`stat=Strength&stat=Dexterity`); keeps items with at least one bonus to any of them; an unknown name is a 400 naming it"),
         ("limit" = Option<i64>, Query, description = "Page size, 1 to 10000; defaults to 100; out-of-range values are clamped rather than rejected"),
         ("offset" = Option<i64>, Query, description = "Rows to skip before the first returned row; defaults to 0; negative values are clamped to 0 rather than rejected")
     ),
     responses(
         (status = 200, description = "`total`, `limit`, `offset` and the `items` page", body = Value),
-        (status = 400, description = "Unknown category, or an unknown or malformed query parameter", body = crate::error::ErrorBody)
+        (status = 400, description = "Unknown category or stat, or an unknown or malformed query parameter", body = crate::error::ErrorBody)
     )
 )]
 async fn items(
@@ -109,9 +113,14 @@ async fn items(
             if query.rare == Some(true) {
                 where_clause.add_condition("EXISTS (SELECT 1 FROM drops ql WHERE ql.item_id = i.id AND ql.source_kind IN ('quest', 'adventure_pack') AND ql.is_rare)");
             }
-            if let Some(stat) = &query.stat {
-                where_clause.add_bound_condition("EXISTS (SELECT 1 FROM item_bonuses ib JOIN bonuses b ON b.id = ib.bonus_id JOIN stats s ON s.id = b.stat_id WHERE ib.item_id = i.id AND s.name = ?)",
-                    stat.clone(),
+            let stat_names = query.stat.as_deref().map(comma_separated_values).unwrap_or_default();
+            if let Some(unknown_stat_name) = first_unknown_stat_name(db, &stat_names)? {
+                return Err(ApiError::BadRequest(format!("unknown stat {unknown_stat_name:?}")));
+            }
+            if !stat_names.is_empty() {
+                where_clause.add_bound_list_condition(
+                    "EXISTS (SELECT 1 FROM item_bonuses ib JOIN bonuses b ON b.id = ib.bonus_id JOIN stats s ON s.id = b.stat_id WHERE ib.item_id = i.id AND s.name IN (?))",
+                    stat_names,
                 );
             }
             let where_sql = where_clause.to_sql();
@@ -131,6 +140,16 @@ async fn items(
             Ok(Json(json!({ "total": total, "limit": limit, "offset": offset, "items": items })))
         })
         .await
+}
+
+fn first_unknown_stat_name(db: &rusqlite::Connection, stat_names: &[String]) -> Result<Option<String>, ApiError> {
+    let mut statement = db.prepare_cached("SELECT EXISTS (SELECT 1 FROM stats WHERE name = ?1)")?;
+    for stat_name in stat_names {
+        if !statement.query_row([stat_name], |row| row.get::<_, bool>(0))? {
+            return Ok(Some(stat_name.clone()));
+        }
+    }
+    Ok(None)
 }
 
 #[utoipa::path(

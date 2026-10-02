@@ -3,7 +3,7 @@ use crate::db::{
     requirements_for, row_count, stances_for, substring_like_pattern, WhereClause,
 };
 use crate::error::ApiError;
-use crate::query::ApiQuery;
+use crate::query::{ApiQuery, QueryParameters};
 use crate::state::AppState;
 use axum::extract::{Path, State};
 use axum::Json;
@@ -27,6 +27,8 @@ pub(super) struct FeatListQuery {
     pub limit: Option<i64>,
     pub offset: Option<i64>,
 }
+
+impl QueryParameters for FeatListQuery {}
 
 const FEAT_COLUMNS: &str = "f.id, f.name, f.source_kind, f.source_id,
                        CASE f.source_kind WHEN 'class' THEN (SELECT c.name FROM classes c WHERE c.id = f.source_id)

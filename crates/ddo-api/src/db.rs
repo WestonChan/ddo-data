@@ -159,6 +159,18 @@ impl WhereClause {
         self.conditions.push(condition.replace('?', &format!("?{}", self.bound_values.len())));
     }
 
+    pub(crate) fn add_bound_list_condition(
+        &mut self,
+        condition: &str,
+        bound_values: impl IntoIterator<Item = impl Into<rusqlite::types::Value>>,
+    ) {
+        let first_placeholder_number = self.bound_values.len() + 1;
+        self.bound_values.extend(bound_values.into_iter().map(Into::into));
+        let placeholders: Vec<String> =
+            (first_placeholder_number..=self.bound_values.len()).map(|number| format!("?{number}")).collect();
+        self.conditions.push(condition.replace('?', &placeholders.join(", ")));
+    }
+
     pub(crate) fn add_condition(&mut self, condition: &str) {
         self.conditions.push(condition.to_string());
     }

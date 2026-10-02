@@ -116,6 +116,26 @@ async fn items_list_filters_and_pages() {
     assert_eq!(status, StatusCode::BAD_REQUEST, "unknown category is a client error");
 }
 
+fn item_names(list_response: &Value) -> Vec<&str> {
+    list_response["items"].as_array().unwrap().iter().map(|item| item["name"].as_str().unwrap()).collect()
+}
+
+#[tokio::test]
+async fn items_filter_by_any_of_several_stats_given_as_repeated_keys_or_a_comma_list() {
+    let strength_or_charisma =
+        ["Battle Axe of the Oozing Hunger", "Legendary Ring of Unbridled Might", "Ring of the Kraken"];
+    let (status, _, repeated) = get("/v1/items?stat=Strength&stat=Charisma").await;
+    assert_eq!(status, StatusCode::OK, "repeated stat keys are rejected: {repeated}");
+    assert_eq!(item_names(&repeated), strength_or_charisma);
+    assert_eq!(repeated["total"], 3);
+    let (_, _, comma_list) = get("/v1/items?stat=Strength,%20Charisma").await;
+    assert_eq!(item_names(&comma_list), strength_or_charisma);
+
+    let (status, _, unknown) = get("/v1/items?stat=Strength,Strenght").await;
+    assert_eq!(status, StatusCode::BAD_REQUEST, "an unknown stat is a client error, not an empty page");
+    assert_eq!(unknown["error"], r#"unknown stat "Strenght""#);
+}
+
 #[tokio::test]
 async fn items_say_whether_maetrim_or_the_wiki_supplied_them() {
     let (_, _, axe_matches) = get("/v1/items?q=oozing").await;
@@ -679,6 +699,7 @@ fn accepted_sample_value(param_name: &str, schema_type: &str) -> &'static str {
     match (param_name, schema_type) {
         ("category", _) => "Armor",
         ("source", _) => "standard",
+        ("stat", _) => "Strength",
         (_, "boolean") => "true",
         (_, "integer" | "number") => "1",
         _ => "x",

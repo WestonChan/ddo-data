@@ -3,7 +3,7 @@ use crate::db::{
     substring_like_pattern, WhereClause,
 };
 use crate::error::ApiError;
-use crate::query::ApiQuery;
+use crate::query::{ApiQuery, QueryParameters};
 use crate::state::AppState;
 use axum::extract::{Path, State};
 use axum::Json;
@@ -25,6 +25,8 @@ pub(super) struct SpellListQuery {
     pub limit: Option<i64>,
     pub offset: Option<i64>,
 }
+
+impl QueryParameters for SpellListQuery {}
 
 const SPELL_COLUMNS: &str = "s.id, s.name, s.description, s.icon, s.schools, s.max_caster_level, s.cost, s.metamagics";
 

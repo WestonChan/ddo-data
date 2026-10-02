@@ -5,7 +5,7 @@ use crate::db::{
     substring_like_pattern, WhereClause,
 };
 use crate::error::ApiError;
-use crate::query::ApiQuery;
+use crate::query::{ApiQuery, QueryParameters};
 use crate::state::AppState;
 use axum::extract::{Path, State};
 use axum::Json;
@@ -28,6 +28,8 @@ pub(super) struct AugmentListQuery {
     pub limit: Option<i64>,
     pub offset: Option<i64>,
 }
+
+impl QueryParameters for AugmentListQuery {}
 
 const AUGMENT_FLAG_COLUMNS: &[&str] = &["choose_level", "dual_values", "enter_value", "suppress_set_bonus"];
 
