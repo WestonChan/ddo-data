@@ -307,3 +307,23 @@ to = "Mad Tea Party"
 reason = "The wiki titles the quest Mad Tea Party (A_Mad_Tea_Party redirects there), the name his own items' drop text uses."
 source = "https://ddowiki.com/page/Mad_Tea_Party"
 read = "2026-10-01"
+
+[[correction]]
+kind = "quest"
+name = "The Kobold's New Ringleader"
+field = "name"
+from = "The Kobold's New Ringleader"
+to = "The Kobolds' New Ringleader"
+reason = "The wiki titles the quest The Kobolds' New Ringleader, as his own item drop text spells it."
+source = "https://ddowiki.com/page/The_Kobolds%27_New_Ringleader"
+read = "2026-10-01"
+
+[[correction]]
+kind = "quest"
+name = "To Find a Witness: Archbishop Dryden"
+field = "name"
+from = "To Find a Witness: Archbishop Dryden"
+to = "Seek Dryden's Counsel"
+reason = "The wiki titles the quest Seek Dryden's Counsel."
+source = "https://ddowiki.com/page/Seek_Dryden%27s_Counsel"
+read = "2026-10-01"

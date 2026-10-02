@@ -168,7 +168,6 @@ free_to_play = false
 zone = "The Court of Lailat"
 bestowed_by = "Zawabi the Elder Djinni"
 
-
 [[quest]]
 name = "Age of Rage"
 page = "https://ddowiki.com/page/The_Age_of_Rage"
@@ -176,6 +175,7 @@ read = "2026-10-01"
 free_to_play = false
 zone = "Dockside Cartwrights"
 bestowed_by = "Urqhart Steadfast"
+
 [[quest]]
 name = "All Hail the King"
 page = "https://ddowiki.com/page/All_Hail_the_King"
@@ -2419,6 +2419,14 @@ zone = "Temple to Moander"
 bestowed_by = "Portal to the Temple of Moander"
 
 [[quest]]
+name = "Seek Dryden's Counsel"
+page = "https://ddowiki.com/page/Seek_Dryden%27s_Counsel"
+read = "2026-10-01"
+free_to_play = false
+zone = "Dryden's Chamber"
+bestowed_by = "Friar Renau"
+
+[[quest]]
 name = "Seizing the Dawn"
 page = "https://ddowiki.com/page/Seizing_the_Dawn"
 read = "2026-10-01"
@@ -3479,7 +3487,7 @@ zone = "Clan Gnashtooth Prison"
 bestowed_by = "Auto-bestowed"
 
 [[quest]]
-name = "The Kobold's New Ringleader"
+name = "The Kobolds' New Ringleader"
 page = "https://ddowiki.com/page/The_Kobolds%27_New_Ringleader"
 read = "2026-10-01"
 free_to_play = true
@@ -4257,14 +4265,6 @@ free_to_play = false
 legendary_level = 31
 zone = "House Deneith Stronghold"
 bestowed_by = "Liria d'Deneith"
-
-[[quest]]
-name = "To Find a Witness: Archbishop Dryden"
-page = "https://ddowiki.com/page/Seek_Dryden%27s_Counsel"
-read = "2026-10-01"
-free_to_play = false
-zone = "Dryden's Chamber"
-bestowed_by = "Friar Renau"
 
 [[quest]]
 name = "ToEE: Air Node"

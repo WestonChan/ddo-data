@@ -287,3 +287,33 @@ to = "Mythic Weapon Boost +2 or +4 and/or Mythic Shield Boost +2 or +4"
 reason = "The wiki's Necronomicannon has the rare Mythic Weapon Boost or Mythic Shield Boost; his item lacks it."
 source = "https://ddowiki.com/page/Item:Necronomicannon"
 read = "2026-10-01"
+
+[[correction]]
+kind = "item"
+name = "Dhovras' Amulet"
+field = "remove"
+from = 0
+to = 1
+reason = "A misnamed duplicate of his Dhovras' Armlet, identical except the name; the Toil and Trouble page lists Dhovras' Armlet."
+source = "https://ddowiki.com/page/Toil_and_Trouble"
+read = "2026-10-01"
+
+[[correction]]
+kind = "item"
+name = "Epic Dhovras' Amulet"
+field = "remove"
+from = 0
+to = 1
+reason = "A misnamed older copy of his Epic Dhovras' Armlet (Spell Focus Mastery 3 where the Armlet has 4); the Toil and Trouble page lists Epic Dhovras' Armlet."
+source = "https://ddowiki.com/page/Toil_and_Trouble"
+read = "2026-10-01"
+
+[[correction]]
+kind = "item"
+name = "Gilk's Bangle"
+field = "remove"
+from = 0
+to = 1
+reason = "A misspelled duplicate of his Glik's Bangle, identical except the name; the wiki redirects Gilk's Bangle to Glik's Bangle."
+source = "https://ddowiki.com/page/Item:Glik%27s_Bangle"
+read = "2026-10-01"
