@@ -1771,3 +1771,46 @@ async fn items_list_counts_pack_wide_drops_in_the_pack_and_rare_filters() {
         (&serde_json::json!("Magic of Myth Drannor"), &serde_json::json!(true))
     );
 }
+
+fn assert_never_cached(response: &axum::response::Response, what: &str) {
+    assert_eq!(
+        response.headers().get(header::CACHE_CONTROL).map(|v| v.to_str().unwrap()),
+        Some("no-store"),
+        "{what} ({}) must not be cached: {:?}",
+        response.status(),
+        response.headers()
+    );
+    assert!(response.headers().get(header::ETAG).is_none(), "{what} must carry no ETag: {:?}", response.headers());
+}
+
+#[tokio::test]
+async fn error_responses_are_never_cached() {
+    for (path, expected_status) in [
+        ("/v1/items/999999", StatusCode::NOT_FOUND),
+        ("/v1/items?category=Hat", StatusCode::BAD_REQUEST),
+        ("/no-such-route", StatusCode::NOT_FOUND),
+        ("/icons/items/Quarterstaff_6a.png", StatusCode::NOT_FOUND),
+    ] {
+        let response = response_to_cross_origin_get(app(fixture_state()), path).await;
+        assert_eq!(response.status(), expected_status, "{path}");
+        assert_never_cached(&response, path);
+    }
+
+    let router = app(fixture_state().with_rate_limit());
+    let mut rate_limited_response = None;
+    for _ in 0..200 {
+        let response = response_to_cross_origin_get(router.clone(), "/v1/stats").await;
+        if response.status() == StatusCode::TOO_MANY_REQUESTS {
+            rate_limited_response = Some(response);
+            break;
+        }
+    }
+    assert_never_cached(&rate_limited_response.expect("the burst of 100 runs out within 200 requests"), "a 429");
+
+    let response_without_client_address = app(fixture_state().with_rate_limit())
+        .oneshot(Request::get("/v1/stats").body(Body::empty()).unwrap())
+        .await
+        .unwrap();
+    assert_eq!(response_without_client_address.status(), StatusCode::INTERNAL_SERVER_ERROR);
+    assert_never_cached(&response_without_client_address, "the rate limiter's 500");
+}

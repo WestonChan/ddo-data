@@ -1,3 +1,4 @@
+mod cache_policy;
 mod db;
 mod docs;
 pub mod error;
@@ -9,7 +10,7 @@ pub mod state;
 pub use docs::ResponseExample;
 pub use state::AppState;
 
-use axum::http::{header, HeaderValue, Method};
+use axum::http::{header, Method};
 use axum::response::Redirect;
 use axum::routing::get;
 use axum::{middleware, Json, Router};
@@ -20,7 +21,6 @@ use tower_governor::GovernorLayer;
 use tower_http::compression::CompressionLayer;
 use tower_http::cors::{Any, CorsLayer};
 use tower_http::services::ServeDir;
-use tower_http::set_header::SetResponseHeaderLayer;
 use tower_http::trace::TraceLayer;
 use utoipa::openapi::OpenApi;
 use utoipa_axum::router::OpenApiRouter;
@@ -66,10 +66,6 @@ pub fn app(state: AppState) -> Router {
         )
         .route("/", get(move || async move { Redirect::permanent(&format!("/{latest_version}/docs")) }))
         .layer(middleware::from_fn_with_state(state.clone(), etag::apply_etag))
-        .layer(SetResponseHeaderLayer::if_not_present(
-            header::CACHE_CONTROL,
-            HeaderValue::from_static("public, max-age=86400, stale-while-revalidate=604800"),
-        ))
         .layer(CompressionLayer::new());
     if state.is_rate_limited() {
         let rate_limit_config = GovernorConfigBuilder::default()
@@ -81,6 +77,7 @@ pub fn app(state: AppState) -> Router {
         router = router.layer(GovernorLayer::new(rate_limit_config));
     }
     router
+        .layer(middleware::from_fn(cache_policy::apply_cache_policy))
         .layer(
             CorsLayer::new()
                 .allow_origin(Any)
