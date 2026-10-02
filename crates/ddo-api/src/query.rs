@@ -3,12 +3,15 @@ use axum::extract::{FromRequestParts, Query};
 use axum::http::request::Parts;
 use axum::http::Uri;
 use serde::de::DeserializeOwned;
+use serde::{Deserialize, Deserializer};
 
 pub(crate) struct ApiQuery<T>(pub T);
 
 pub(crate) trait QueryParameters: DeserializeOwned {
     const REPEATABLE_KEYS: &'static [&'static str] = &[];
 }
+
+const REPEATED_VALUE_SEPARATOR: char = '\u{1F}';
 
 impl<T: QueryParameters, S: Send + Sync> FromRequestParts<S> for ApiQuery<T> {
     type Rejection = ApiError;
@@ -31,13 +34,13 @@ impl<T: QueryParameters, S: Send + Sync> FromRequestParts<S> for ApiQuery<T> {
 fn pairs_with_repeated_keys_joined(pairs: Vec<(String, String)>, repeatable_keys: &[&str]) -> Vec<(String, String)> {
     let mut joined_pairs: Vec<(String, String)> = Vec::with_capacity(pairs.len());
     for (key, value) in pairs {
-        let earlier_pair = repeatable_keys
-            .contains(&key.as_str())
-            .then(|| joined_pairs.iter_mut().find(|(earlier_key, _)| *earlier_key == key))
-            .flatten();
+        let is_repeatable = repeatable_keys.contains(&key.as_str());
+        let value = if is_repeatable { value.replace(REPEATED_VALUE_SEPARATOR, "") } else { value };
+        let earlier_pair =
+            is_repeatable.then(|| joined_pairs.iter_mut().find(|(earlier_key, _)| *earlier_key == key)).flatten();
         match earlier_pair {
             Some((_, earlier_value)) => {
-                earlier_value.push(',');
+                earlier_value.push(REPEATED_VALUE_SEPARATOR);
                 earlier_value.push_str(&value);
             }
             None => joined_pairs.push((key, value)),
@@ -46,6 +49,12 @@ fn pairs_with_repeated_keys_joined(pairs: Vec<(String, String)>, repeatable_keys
     joined_pairs
 }
 
-pub(crate) fn comma_separated_values(list_text: &str) -> Vec<String> {
-    list_text.split(',').map(str::trim).filter(|value| !value.is_empty()).map(str::to_string).collect()
+pub(crate) fn repeated_key_values<'de, D: Deserializer<'de>>(deserializer: D) -> Result<Vec<String>, D::Error> {
+    let joined_values = String::deserialize(deserializer)?;
+    Ok(joined_values
+        .split(REPEATED_VALUE_SEPARATOR)
+        .map(str::trim)
+        .filter(|value| !value.is_empty())
+        .map(str::to_string)
+        .collect())
 }

@@ -9,7 +9,7 @@ use crate::db::{
     whole_table_json, WhereClause,
 };
 use crate::error::ApiError;
-use crate::query::{comma_separated_values, ApiQuery, QueryParameters};
+use crate::query::{repeated_key_values, ApiQuery, QueryParameters};
 use crate::state::AppState;
 use axum::extract::{Path, State};
 use axum::Json;
@@ -43,7 +43,8 @@ pub(super) struct ItemListQuery {
     pub quest: Option<i64>,
     pub quest_chain: Option<i64>,
     pub saga: Option<i64>,
-    pub enchantment: Option<String>,
+    #[serde(default, deserialize_with = "repeated_key_values")]
+    pub enchantment: Vec<String>,
     pub include_set_bonuses: Option<bool>,
     pub include_legacy: Option<bool>,
     pub limit: Option<i64>,
@@ -62,8 +63,9 @@ impl QueryParameters for ItemListQuery {
     description = "One page of equipment matching every filter given, so a client needs no matching of its own. \
                    Filters: `q` (search text against the name, or exactly a slot, category or pack name), `slot`, \
                    `category`, `min_level` and `max_level`, `pack`, `raid`, `rare`, `quest`, `quest_chain` and `saga` \
-                   (ids of what drops or rewards the item), `enchantment` (one or more names from \
-                   /v1/enchantments, any of which the item must carry, as a stat bonus or as a named effect) and \
+                   (ids of what drops or rewards the item), `enchantment` (a name from /v1/enchantments, \
+                   or several as repeated `enchantment` keys, any of which the item must carry, as a stat bonus or as \
+                   a named effect) and \
                    `include_set_bonuses` (let the stat names in `enchantment` also match the item's set tiers) and \
                    `include_legacy` (also list legacy items, which are left out by default); \
                    `limit` and `offset` page the matches. \
@@ -89,7 +91,7 @@ impl QueryParameters for ItemListQuery {
         ("quest" = Option<i64>, Query, description = "Quest id as /v1/quests lists it; keeps the items its /v1/quests/{id} `items` lists, dropped from any chest, as raid loot or as an end reward (loot his drop text credits to the whole pack is matched by `pack` instead); an id no quest has matches nothing rather than a 400, as an unknown `pack` does"),
         ("quest_chain" = Option<i64>, Query, description = "Quest chain id as /v1/quest-chains lists it; keeps items its end reward offers; an id no chain has matches nothing"),
         ("saga" = Option<i64>, Query, description = "Saga id as /v1/sagas lists it; keeps items its end reward offers in any tier; an id no saga has matches nothing"),
-        ("enchantment" = Option<String>, Query, description = "One or more enchantment names exactly as /v1/enchantments lists them (a stat name from /v1/stats or an effect name as an item's `effects` give it), comma-separated (`enchantment=Strength,Vorpal`) or as repeated keys (`enchantment=Strength&enchantment=Vorpal`); keeps items carrying any of them. A stat name matches an item with at least one bonus of its own to that stat, and with `include_set_bonuses=true` also an item whose set has a tier with a bonus to it; an effect name matches an item whose `effects` (its `item_effects` rows) name it; a name that is both matches either way. Matching is case-sensitive; a name that is neither a stat nor an effect is a 400 naming it"),
+        ("enchantment" = Option<String>, Query, description = "An enchantment name exactly as /v1/enchantments lists it (a stat name from /v1/stats or an effect name as an item's `effects` give it); several are given as repeated keys (`enchantment=Strength&enchantment=Vorpal`) and keep items carrying any of them. A name may contain commas and is matched whole (`enchantment=Constitution%20Poison%2C%20Lesser`), so a comma never separates names. A stat name matches an item with at least one bonus of its own to that stat, and with `include_set_bonuses=true` also an item whose set has a tier with a bonus to it; an effect name matches an item whose `effects` (its `item_effects` rows) name it; a name that is both matches either way. Matching is case-sensitive; a name that is neither a stat nor an effect is a 400 naming it"),
         ("include_set_bonuses" = Option<bool>, Query, description = "`true` widens the stat names in `enchantment` to also match an item when any tier of its set (see /v1/sets/{id}) carries a bonus to one of them; the item's own bonuses and effects match either way; `false` and unset match the item's own bonuses only; no effect without `enchantment`"),
         ("include_legacy" = Option<bool>, Query, description = "`true` also lists legacy items (`is_legacy`: old versions such as names ending `(legacy)` or `(historic)`, and items the wiki says no longer drop) and counts them in `total`; `false` and unset leave them out. /v1/items/{id} serves a legacy item either way"),
         ("limit" = Option<i64>, Query, description = "Page size, 1 to 10000; defaults to 100; out-of-range values are clamped rather than rejected"),
@@ -157,7 +159,7 @@ async fn items(
             if let Some(saga_id) = query.saga {
                 where_clause.add_bound_condition("i.id IN (SELECT d.item_id FROM sources d WHERE d.kind = 'saga' AND d.saga_id = ?)", saga_id);
             }
-            let enchantment_names = query.enchantment.as_deref().map(comma_separated_values).unwrap_or_default();
+            let enchantment_names = query.enchantment;
             if let Some(unknown_enchantment_name) = first_unknown_enchantment_name(db, &enchantment_names)? {
                 return Err(ApiError::BadRequest(format!("unknown enchantment {unknown_enchantment_name:?}")));
             }

@@ -50,9 +50,9 @@ fn excludes_cosmetic_shields_from_items() {
 #[test]
 fn builds_items_and_skips_cosmetics() {
     let (db, report) = built_fixture_db();
-    assert_eq!(report.written_item_count, 50);
+    assert_eq!(report.written_item_count, 51);
     assert_eq!(report.skipped_cosmetic_item_count, 2, "the cosmetic helm and the cosmetic shield");
-    assert_eq!(count(&db, "SELECT COUNT(*) FROM items WHERE provenance = 'maetrim'"), 50);
+    assert_eq!(count(&db, "SELECT COUNT(*) FROM items WHERE provenance = 'maetrim'"), 51);
     assert_eq!(count(&db, "SELECT COUNT(*) FROM items WHERE name = '17th Anniversary Dark Helm'"), 0);
     let reason: String = db
         .query_row("SELECT reason FROM excluded_items WHERE name = '17th Anniversary Dark Helm'", [], |r| r.get(0))
@@ -623,7 +623,7 @@ fn diff_reports_coverage_against_a_legacy_database() {
     );
     assert_eq!(
         coverage.names_only_in_built.len(),
-        48,
+        49,
         "the wiki fixture item and the legacy fixture items are only in the build"
     );
     assert!((coverage.coverage_ratio() - 0.75).abs() < 1e-9);

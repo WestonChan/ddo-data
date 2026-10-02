@@ -73,6 +73,22 @@
     </Effect>
   </Buff>
   <Buff>
+    <Type>Constitution Poison, Lesser</Type>
+    <ApplyToWeaponOnly />
+    <DisplayText>Constitution Poison, Lesser: The deadly poison coating this weapon deals an extra 1 to 6 points of constitution damage when you score a critical hit on an enemy. Some creatures may be immune or resistant to ability damage.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Equipment</Bonus>
+      <Item>All</Item>
+      <AType>NotNeeded</AType>
+      <Dice>
+        <Number size="1">1</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Constitution</Damage>
+      </Dice>
+    </Effect>
+  </Buff>
+  <Buff>
     <Type>Damage Bonus</Type>
     <DisplayText>%b1 Damage Bonus %v1: Provides a %v1 %b1 bonus to damage.</DisplayText>
     <Ignore>Competence</Ignore>
