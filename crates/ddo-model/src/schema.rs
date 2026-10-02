@@ -1,11 +1,11 @@
 use crate::enums::{
-    AbilityOwner, ArmorType, CorrectionKind, CraftingTier, DropSourceKind, EnhancementTreeKind, FeatSource, Handedness,
-    ItemCategory, LootType, ModifierSource, RequirementGroupKind, RequirementOwner, RowSource, SagaTier,
-    SaveProgression,
+    AbilityOwner, ArmorType, CorrectionKind, CraftingTier, EnhancementTreeKind, FeatSource, Handedness, ItemCategory,
+    LootType, ModifierSource, Provenance, RequirementGroupKind, RequirementOwner, SagaTier, SaveProgression,
+    SourceKind,
 };
 use std::sync::LazyLock;
 
-pub const SCHEMA_VERSION: i64 = 14;
+pub const SCHEMA_VERSION: i64 = 15;
 
 fn sql_in_clause<'a>(allowed_values: impl Iterator<Item = &'a str>) -> String {
     let quoted_values: Vec<String> = allowed_values.map(|value| format!("'{value}'")).collect();
@@ -14,7 +14,7 @@ fn sql_in_clause<'a>(allowed_values: impl Iterator<Item = &'a str>) -> String {
 
 static DDL: LazyLock<String> = LazyLock::new(|| {
     let item_category = sql_in_clause(ItemCategory::ALL.iter().map(|c| c.as_str()));
-    let row_source = sql_in_clause(RowSource::ALL.iter().map(|s| s.as_str()));
+    let provenance = sql_in_clause(Provenance::ALL.iter().map(|s| s.as_str()));
     let handedness = sql_in_clause(Handedness::ALL.iter().map(|h| h.as_str()));
     let armor_type = sql_in_clause(ArmorType::ALL.iter().map(|a| a.as_str()));
     let loot_type = sql_in_clause(LootType::ALL.iter().map(|l| l.as_str()));
@@ -27,23 +27,23 @@ static DDL: LazyLock<String> = LazyLock::new(|| {
     let requirement_group = sql_in_clause(RequirementGroupKind::ALL.iter().map(|g| g.as_str()));
     let crafting_tier = sql_in_clause(CraftingTier::ALL.iter().map(|t| t.as_str()));
     let correction_kind = sql_in_clause(CorrectionKind::ALL.iter().map(|k| k.as_str()));
-    let drop_source_kind = sql_in_clause(DropSourceKind::ALL.iter().map(|k| k.as_str()));
-    let source_id_for_kind: Vec<String> = DropSourceKind::ALL
+    let source_kind = sql_in_clause(SourceKind::ALL.iter().map(|k| k.as_str()));
+    let source_id_for_kind: Vec<String> = SourceKind::ALL
         .iter()
         .map(|kind| format!("WHEN '{}' THEN {} IS NOT NULL", kind.as_str(), kind.source_id_column()))
         .collect();
     let source_id_for_kind = source_id_for_kind.join(" ");
     let source_id_count: Vec<String> =
-        DropSourceKind::ALL.iter().map(|kind| format!("({} IS NOT NULL)", kind.source_id_column())).collect();
+        SourceKind::ALL.iter().map(|kind| format!("({} IS NOT NULL)", kind.source_id_column())).collect();
     let source_id_count = source_id_count.join(" + ");
     let kinds_with_loot_type =
-        sql_in_clause(DropSourceKind::ALL.iter().filter(|kind| kind.has_loot_type()).map(|kind| kind.as_str()));
-    let source_ids = DropSourceKind::ALL.iter().map(|kind| kind.source_id_column()).collect::<Vec<_>>().join(", ");
+        sql_in_clause(SourceKind::ALL.iter().filter(|kind| kind.has_loot_type()).map(|kind| kind.as_str()));
+    let source_ids = SourceKind::ALL.iter().map(|kind| kind.source_id_column()).collect::<Vec<_>>().join(", ");
     let saga_tier = sql_in_clause(SagaTier::ALL.iter().map(|t| t.as_str()));
     let quest_series_columns = format!(
         "name     TEXT    NOT NULL UNIQUE,
     pack_id  INTEGER REFERENCES adventure_packs(id),
-    source   TEXT    NOT NULL CHECK (source {row_source}),
+    provenance TEXT  NOT NULL CHECK (provenance {provenance}),
     wiki_url TEXT    NOT NULL"
     );
     let quest_series_quest_columns = "quest_id   INTEGER NOT NULL REFERENCES quests(id) ON DELETE CASCADE,
@@ -148,7 +148,7 @@ CREATE TABLE IF NOT EXISTS quests (
     zone       TEXT,                                  -- data/wiki quests `zone`: the page's "Takes place in"
     bestowed_by TEXT,                                 -- data/wiki quests `bestowed_by`
     flagging   TEXT,                                  -- data/wiki quests `flagging`, free text
-    source     TEXT    NOT NULL DEFAULT 'maetrim' CHECK (source {row_source})  -- 'wiki' for a data/wiki quests entry that creates the quest
+    provenance TEXT    NOT NULL DEFAULT 'maetrim' CHECK (provenance {provenance})  -- 'wiki' for a data/wiki quests entry that creates the quest
 );
 
 -- Items --------------------------------------------------------------------------
@@ -178,7 +178,7 @@ CREATE TABLE IF NOT EXISTS items (
     is_minor_artifact INTEGER NOT NULL DEFAULT 0 CHECK (is_minor_artifact IN (0, 1)),  -- <MinorArtifact/>
     is_legacy         INTEGER NOT NULL DEFAULT 0 CHECK (is_legacy IN (0, 1)),  -- a '(legacy)' or '(historic)' name, every <DropLocation> segment a data/legacy_drop_sources.toml text, or an is_legacy correction
     wiki_url          TEXT,                           -- computed from name, or data/wiki items `page`
-    source            TEXT    NOT NULL DEFAULT 'maetrim' CHECK (source {row_source})  -- 'wiki' for a data/wiki items entry
+    provenance        TEXT    NOT NULL DEFAULT 'maetrim' CHECK (provenance {provenance})  -- 'wiki' for a data/wiki items entry
 );
 CREATE INDEX IF NOT EXISTS idx_items_slot ON items(slot_id);
 CREATE INDEX IF NOT EXISTS idx_items_minimum_level ON items(minimum_level);
@@ -315,9 +315,9 @@ CREATE INDEX IF NOT EXISTS idx_saga_quests_quest ON saga_quests(quest_id);
 -- name, never on a reward; tier is the saga reward list, null when the source names none and on every other kind.
 -- The unique index keeps one row per source, loot, loot type and tier, which a primary key over nullable columns
 -- would not.
-CREATE TABLE IF NOT EXISTS drops (
+CREATE TABLE IF NOT EXISTS sources (
     id          INTEGER PRIMARY KEY,
-    source_kind TEXT    NOT NULL CHECK (source_kind {drop_source_kind}),
+    kind        TEXT    NOT NULL CHECK (kind {source_kind}),
     quest_id    INTEGER REFERENCES quests(id) ON DELETE CASCADE,
     chain_id    INTEGER REFERENCES quest_chains(id) ON DELETE CASCADE,
     saga_id     INTEGER REFERENCES sagas(id) ON DELETE CASCADE,
@@ -329,20 +329,20 @@ CREATE TABLE IF NOT EXISTS drops (
     is_rare     INTEGER NOT NULL DEFAULT 0 CHECK (is_rare IN (0, 1)),
     tier        TEXT    CHECK (tier {saga_tier}),
     CHECK ({source_id_count} = 1),
-    CHECK (CASE source_kind {source_id_for_kind} ELSE 0 END),
+    CHECK (CASE kind {source_id_for_kind} ELSE 0 END),
     CHECK ((item_id IS NOT NULL) + (augment_id IS NOT NULL) = 1),
-    CHECK ((loot_type IS NOT NULL) = (source_kind {kinds_with_loot_type})),
+    CHECK ((loot_type IS NOT NULL) = (kind {kinds_with_loot_type})),
     CHECK (chest IS NULL OR COALESCE(loot_type, 'reward') <> 'reward'),
-    CHECK (tier IS NULL OR source_kind = 'saga')
+    CHECK (tier IS NULL OR kind = 'saga')
 );
-CREATE UNIQUE INDEX IF NOT EXISTS idx_drops_source_loot ON drops(
-    source_kind, COALESCE({source_ids}), COALESCE(item_id, 0), COALESCE(augment_id, 0),
+CREATE UNIQUE INDEX IF NOT EXISTS idx_sources_source_loot ON sources(
+    kind, COALESCE({source_ids}), COALESCE(item_id, 0), COALESCE(augment_id, 0),
     COALESCE(loot_type, ''), COALESCE(tier, '')
 );
-CREATE INDEX IF NOT EXISTS idx_drops_item ON drops(item_id) WHERE item_id IS NOT NULL;
-CREATE INDEX IF NOT EXISTS idx_drops_augment ON drops(augment_id) WHERE augment_id IS NOT NULL;
-CREATE INDEX IF NOT EXISTS idx_drops_quest ON drops(quest_id) WHERE quest_id IS NOT NULL;
-CREATE INDEX IF NOT EXISTS idx_drops_pack ON drops(pack_id) WHERE pack_id IS NOT NULL;
+CREATE INDEX IF NOT EXISTS idx_sources_item ON sources(item_id) WHERE item_id IS NOT NULL;
+CREATE INDEX IF NOT EXISTS idx_sources_augment ON sources(augment_id) WHERE augment_id IS NOT NULL;
+CREATE INDEX IF NOT EXISTS idx_sources_quest ON sources(quest_id) WHERE quest_id IS NOT NULL;
+CREATE INDEX IF NOT EXISTS idx_sources_pack ON sources(pack_id) WHERE pack_id IS NOT NULL;
 
 -- Modifiers and requirements: the two grammars every family shares ---------------
 --
@@ -718,7 +718,7 @@ CREATE TABLE IF NOT EXISTS augments (
     adds_augment       TEXT,                           -- <AddAugment>: slot type this augment opens next
     grants_augment     TEXT,                           -- <GrantAugment>: colour slot this augment adds
     weapon_class       TEXT,                           -- <WeaponClass>
-    source             TEXT    NOT NULL DEFAULT 'maetrim' CHECK (source {row_source})  -- 'wiki' for a data/wiki augments entry
+    provenance         TEXT    NOT NULL DEFAULT 'maetrim' CHECK (provenance {provenance})  -- 'wiki' for a data/wiki augments entry
 );
 -- Names repeat within a family (the same "Use Magic Device" exists for several slot sets), so
 -- the identity is the row, not the name.

@@ -351,15 +351,15 @@ async fn items_say_whether_maetrim_or_the_wiki_supplied_them() {
     let (_, _, axe_matches) = get("/v1/items?q=oozing").await;
     let axe_row = &axe_matches["items"][0];
     assert_eq!(axe_row["name"], "Battle Axe of the Oozing Hunger");
-    assert_eq!(axe_row["source"], "wiki");
+    assert_eq!(axe_row["provenance"], "wiki");
     let (_, _, sireth_matches) = get("/v1/items?q=sireth").await;
-    assert_eq!(sireth_matches["items"][0]["source"], "maetrim");
+    assert_eq!(sireth_matches["items"][0]["provenance"], "maetrim");
 
     let (_, _, axe) = get(&format!("/v1/items/{}", axe_row["id"])).await;
-    assert_eq!(axe["source"], "wiki");
+    assert_eq!(axe["provenance"], "wiki");
     assert_eq!(axe["weapon"]["weapon_type"], "Battle Axe");
     let (_, _, sireth) = get(&format!("/v1/items/{}", sireth_matches["items"][0]["id"])).await;
-    assert_eq!(sireth["source"], "maetrim");
+    assert_eq!(sireth["provenance"], "maetrim");
 
     let (_, _, version) = get("/v1/version").await;
     assert_eq!(version["counts"]["wiki_items"], 1);
@@ -370,17 +370,17 @@ async fn augments_say_whether_maetrim_or_the_wiki_supplied_them() {
     let (_, _, gem_matches) = get("/v1/augments?q=oozing").await;
     let gem_row = &gem_matches["augments"][0];
     assert_eq!(gem_row["name"], "Test Gem of Oozing Resistance");
-    assert_eq!(gem_row["source"], "wiki");
+    assert_eq!(gem_row["provenance"], "wiki");
     assert_eq!(gem_row["slots"], serde_json::json!(["colorless", "green"]));
     let (_, _, bulwark_matches) = get("/v1/augments?q=bulwark").await;
     assert_eq!(bulwark_matches["total"], 1, "the superseded wiki entry writes no second row");
-    assert_eq!(bulwark_matches["augments"][0]["source"], "maetrim");
+    assert_eq!(bulwark_matches["augments"][0]["provenance"], "maetrim");
 
     let (_, _, gem) = get(&format!("/v1/augments/{}", gem_row["id"])).await;
-    assert_eq!(gem["source"], "wiki");
+    assert_eq!(gem["provenance"], "wiki");
     assert_eq!(gem["set_bonus"], "Eminence of Winter");
     let (_, _, bulwark) = get(&format!("/v1/augments/{}", bulwark_matches["augments"][0]["id"])).await;
-    assert_eq!(bulwark["source"], "maetrim");
+    assert_eq!(bulwark["provenance"], "maetrim");
 
     let (_, _, version) = get("/v1/version").await;
     assert_eq!(version["counts"]["wiki_augments"], 1);
@@ -439,7 +439,7 @@ async fn augment_detail_lists_the_quests_it_drops_in_as_item_detail_does() {
     assert_eq!(quests[0]["loot_type"], "chest");
     assert_eq!(quests[0]["is_rare"], true);
     assert_eq!(quests[0]["chest"], "vornir frosthelm's chest");
-    assert_eq!(quests[0]["source"], "maetrim");
+    assert_eq!(quests[0]["provenance"], "maetrim");
     assert_eq!(quests[0]["pack"], "Chill of Ravenloft");
 
     let (_, _, list) = get("/v1/items?q=buckler+of+the+golden").await;
@@ -579,22 +579,22 @@ async fn quests_say_whether_maetrim_or_the_wiki_supplied_them() {
     let quests = quests.as_array().unwrap();
     let quest_named = |name: &str| quests.iter().find(|q| q["name"] == name).unwrap_or_else(|| panic!("{name}"));
     let ghosts_of_perdition = quest_named("Ghosts of Perdition");
-    assert_eq!(ghosts_of_perdition["source"], "wiki");
+    assert_eq!(ghosts_of_perdition["provenance"], "wiki");
     assert_eq!(
         (&ghosts_of_perdition["pack"], &ghosts_of_perdition["level"]),
         (&serde_json::json!("Chill of Ravenloft"), &serde_json::json!(32))
     );
-    assert_eq!(quest_named("The Grotto")["source"], "maetrim");
+    assert_eq!(quest_named("The Grotto")["provenance"], "maetrim");
 
     let (_, _, axe_matches) = get("/v1/items?q=oozing").await;
     let (_, _, axe) = get(&format!("/v1/items/{}", axe_matches["items"][0]["id"])).await;
-    let axe_quest_sources: Vec<(&str, &str)> = axe["quests"]
+    let axe_quest_provenances: Vec<(&str, &str)> = axe["quests"]
         .as_array()
         .unwrap()
         .iter()
-        .map(|quest| (quest["name"].as_str().unwrap(), quest["source"].as_str().unwrap()))
+        .map(|quest| (quest["name"].as_str().unwrap(), quest["provenance"].as_str().unwrap()))
         .collect();
-    assert_eq!(axe_quest_sources, [("Ghosts of Perdition", "wiki"), ("The Grotto", "maetrim")]);
+    assert_eq!(axe_quest_provenances, [("Ghosts of Perdition", "wiki"), ("The Grotto", "maetrim")]);
 
     let (_, _, version) = get("/v1/version").await;
     assert_eq!(version["counts"]["wiki_quests"], 1);
@@ -1258,13 +1258,13 @@ fn keys_of(value: &Value) -> Vec<&str> {
 }
 
 #[tokio::test]
-async fn quest_chains_list_their_pack_source_page_and_counts() {
+async fn quest_chains_list_their_pack_provenance_page_and_counts() {
     let (status, _, chains) = get("/v1/quest-chains").await;
     assert_eq!(status, StatusCode::OK);
     let lost_seekers = &chains[0];
-    assert_eq!(keys_of(lost_seekers), ["id", "name", "pack", "quest_count", "reward_count", "source", "wiki_url"]);
+    assert_eq!(keys_of(lost_seekers), ["id", "name", "pack", "provenance", "quest_count", "reward_count", "wiki_url"]);
     assert_eq!(
-        (&lost_seekers["name"], &lost_seekers["pack"], &lost_seekers["source"], &lost_seekers["wiki_url"]),
+        (&lost_seekers["name"], &lost_seekers["pack"], &lost_seekers["provenance"], &lost_seekers["wiki_url"]),
         (
             &serde_json::json!("The Lost Seekers"),
             &serde_json::json!("Free to Play"),
@@ -1305,7 +1305,7 @@ async fn saga_detail_lists_its_rewards_by_tier() {
     let (status, _, sagas) = get("/v1/sagas").await;
     assert_eq!(status, StatusCode::OK);
     let sharn = sagas.as_array().unwrap().iter().find(|saga| saga["name"] == "Masterminds of Sharn").unwrap();
-    assert_eq!(keys_of(sharn), ["id", "name", "pack", "quest_count", "reward_count", "source", "wiki_url"]);
+    assert_eq!(keys_of(sharn), ["id", "name", "pack", "provenance", "quest_count", "reward_count", "wiki_url"]);
     assert_eq!((&sharn["quest_count"], &sharn["reward_count"]), (&serde_json::json!(2), &serde_json::json!(4)));
     let (_, _, saga) = get(&format!("/v1/sagas/{}", sharn["id"])).await;
     let rewards = saga["rewards"].as_array().unwrap();
@@ -1441,59 +1441,59 @@ async fn adventure_pack_detail_lists_the_loot_any_of_its_quests_drops() {
 }
 
 #[tokio::test]
-async fn item_and_augment_detail_list_every_drop_source_in_one_array() {
+async fn item_and_augment_detail_list_every_source_in_one_array() {
     let (_, _, band) = get(&format!("/v1/items/{}", id_of_item_named("Band of Diani ir'Wynarn").await)).await;
-    let drops = band["drops"].as_array().unwrap();
-    assert_eq!(keys_of(&drops[0]), ["chest", "id", "is_rare", "kind", "loot_type", "name", "tier", "wiki_url"]);
-    let drop_summaries: Vec<(&str, &str, Option<&str>, Option<&str>)> = drops
+    let sources = band["sources"].as_array().unwrap();
+    assert_eq!(keys_of(&sources[0]), ["chest", "id", "is_rare", "kind", "loot_type", "name", "tier", "wiki_url"]);
+    let source_summaries: Vec<(&str, &str, Option<&str>, Option<&str>)> = sources
         .iter()
-        .map(|drop| {
+        .map(|source| {
             (
-                drop["kind"].as_str().unwrap(),
-                drop["name"].as_str().unwrap(),
-                drop["loot_type"].as_str(),
-                drop["tier"].as_str(),
+                source["kind"].as_str().unwrap(),
+                source["name"].as_str().unwrap(),
+                source["loot_type"].as_str(),
+                source["tier"].as_str(),
             )
         })
         .collect();
     assert_eq!(
-        drop_summaries,
+        source_summaries,
         [("quest", "Project Nemesis", Some("raid"), None), ("saga", "Masterminds of Sharn", None, Some("epic"))],
         "quests first, then chains, sagas and packs"
     );
-    assert_eq!(drops[0]["id"], band["quests"][0]["id"]);
-    assert_eq!(drops[0]["wiki_url"], "https://ddowiki.com/page/Project_Nemesis");
-    assert_eq!(drops[1]["wiki_url"], "https://ddowiki.com/page/Masterminds_of_Sharn_(saga)");
+    assert_eq!(sources[0]["id"], band["quests"][0]["id"]);
+    assert_eq!(sources[0]["wiki_url"], "https://ddowiki.com/page/Project_Nemesis");
+    assert_eq!(sources[1]["wiki_url"], "https://ddowiki.com/page/Masterminds_of_Sharn_(saga)");
 
     let (_, _, crossbow) =
         get(&format!("/v1/items/{}", id_of_item_named("Light Crossbow of the Golden Age").await)).await;
-    assert_eq!(crossbow["drops"][0]["kind"], "adventure_pack");
-    assert_eq!(crossbow["drops"][0]["id"], crossbow["adventure_packs"][0]["id"]);
-    assert_eq!(crossbow["drops"][0]["wiki_url"], "https://ddowiki.com/page/Magic_of_Myth_Drannor");
+    assert_eq!(crossbow["sources"][0]["kind"], "adventure_pack");
+    assert_eq!(crossbow["sources"][0]["id"], crossbow["adventure_packs"][0]["id"]);
+    assert_eq!(crossbow["sources"][0]["wiki_url"], "https://ddowiki.com/page/Magic_of_Myth_Drannor");
     let (_, _, ring) = get(&format!("/v1/items/{}", id_of_item_named("Acrobat's Ring").await)).await;
-    assert_eq!(ring["drops"][0]["kind"], "quest_chain");
-    assert_eq!(ring["drops"][0]["loot_type"], Value::Null);
+    assert_eq!(ring["sources"][0]["kind"], "quest_chain");
+    assert_eq!(ring["sources"][0]["loot_type"], Value::Null);
 
     let (_, _, list) = get("/v1/augments?q=elemental+absorption").await;
     let (_, _, augment) = get(&format!("/v1/augments/{}", list["augments"][0]["id"])).await;
     assert_eq!(augment["adventure_packs"], serde_json::json!([]));
-    assert_eq!(augment["drops"][0]["kind"], "quest");
-    assert_eq!(augment["drops"][0]["name"], "Land of Lamordia");
-    assert_eq!(augment["drops"][0]["chest"], "vornir frosthelm's chest");
-    assert_eq!(augment["drops"][0]["wiki_url"], "https://ddowiki.com/page/Land_of_Lamordia");
+    assert_eq!(augment["sources"][0]["kind"], "quest");
+    assert_eq!(augment["sources"][0]["name"], "Land of Lamordia");
+    assert_eq!(augment["sources"][0]["chest"], "vornir frosthelm's chest");
+    assert_eq!(augment["sources"][0]["wiki_url"], "https://ddowiki.com/page/Land_of_Lamordia");
 }
 
 #[tokio::test]
-async fn version_counts_every_drop_by_kind() {
+async fn version_counts_every_source_by_kind() {
     let (_, _, version) = get("/v1/version").await;
     let counts = &version["counts"];
     assert_eq!((&counts["pack_loot"], &counts["pack_augment_loot"]), (&serde_json::json!(1), &serde_json::json!(0)));
-    let drop_count_by_kind: i64 =
+    let source_count_by_kind: i64 =
         ["quest_loot", "quest_augment_loot", "quest_chain_rewards", "saga_rewards", "pack_loot", "pack_augment_loot"]
             .iter()
             .map(|count_name| counts[count_name].as_i64().unwrap())
             .sum();
-    assert_eq!(counts["drops"].as_i64().unwrap(), drop_count_by_kind);
+    assert_eq!(counts["sources"].as_i64().unwrap(), source_count_by_kind);
 }
 
 #[tokio::test]

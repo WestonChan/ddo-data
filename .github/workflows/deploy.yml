@@ -94,10 +94,10 @@ jobs:
           check "quests WHERE is_challenge" 30
           check "quests WHERE legendary_level IS NOT NULL" 200
           test "$(find icons -name '*.png' | wc -l)" -ge 8000
-          check "drops WHERE source_kind = 'quest' AND item_id IS NOT NULL AND is_rare" 130
-          check "drops WHERE source_kind = 'quest' AND augment_id IS NOT NULL" 500
-          check drops 5800
-          check "drops WHERE source_kind = 'adventure_pack'" 380
+          check "sources WHERE kind = 'quest' AND item_id IS NOT NULL AND is_rare" 130
+          check "sources WHERE kind = 'quest' AND augment_id IS NOT NULL" 500
+          check sources 5800
+          check "sources WHERE kind = 'adventure_pack'" 380
           check crafting_systems 35
           check crafting_recipes 2500
           check crafting_ingredients 600
@@ -108,9 +108,9 @@ jobs:
           grep -E 'correction_(applied|stale)_count' build-report.txt | tr -d ' ,'
           grep -E '(wiki_quest_chain|quest_chain_quest_link|quest_chain_reward|drop_text_quest_chain_reward)_count' build-report.txt | tr -d ' ,'
           grep -E '(wiki_saga|saga_quest_link|saga_reward|drop_text_saga_reward)_count' build-report.txt | tr -d ' ,'
-          echo "wiki_items: $(sqlite3 ddo.db "SELECT COUNT(*) FROM items WHERE source = 'wiki'")"
-          echo "wiki_quests: $(sqlite3 ddo.db "SELECT COUNT(*) FROM quests WHERE source = 'wiki'")"
-          echo "wiki_augments: $(sqlite3 ddo.db "SELECT COUNT(*) FROM augments WHERE source = 'wiki'")"
+          echo "wiki_items: $(sqlite3 ddo.db "SELECT COUNT(*) FROM items WHERE provenance = 'wiki'")"
+          echo "wiki_quests: $(sqlite3 ddo.db "SELECT COUNT(*) FROM quests WHERE provenance = 'wiki'")"
+          echo "wiki_augments: $(sqlite3 ddo.db "SELECT COUNT(*) FROM augments WHERE provenance = 'wiki'")"
 
       - name: Check the dataset's integrity
         if: steps.compare.outputs.changed == 'true'

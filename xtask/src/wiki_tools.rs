@@ -5,7 +5,7 @@ use ddo_etl::build::{
     UnlinkedRewardGiver,
 };
 use ddo_etl::wiki::{DescriptionKind, WikiOverrides};
-use ddo_model::enums::RowSource;
+use ddo_model::enums::Provenance;
 use rusqlite::{params, Connection};
 use std::collections::BTreeMap;
 use std::path::Path;
@@ -43,12 +43,12 @@ fn listed_quest_series_reward_warnings(db: &Connection, wiki_overrides: &WikiOve
     let mut statement = db.prepare(
         "SELECT 'quest chain', c.name, 'chain', 'quest_chains.toml'
            FROM quest_chains c JOIN quest_chain_quests cq ON cq.chain_id = c.id JOIN quests q ON q.id = cq.quest_id
-          WHERE q.name = ?1 AND EXISTS (SELECT 1 FROM drops d LEFT JOIN items i ON i.id = d.item_id
+          WHERE q.name = ?1 AND EXISTS (SELECT 1 FROM sources d LEFT JOIN items i ON i.id = d.item_id
                 LEFT JOIN augments a ON a.id = d.augment_id WHERE d.chain_id = c.id AND COALESCE(i.name, a.name) = ?2)
          UNION ALL
          SELECT 'saga', s.name, 'saga', 'sagas.toml'
            FROM sagas s JOIN saga_quests sq ON sq.saga_id = s.id JOIN quests q ON q.id = sq.quest_id
-          WHERE q.name = ?1 AND EXISTS (SELECT 1 FROM drops d LEFT JOIN items i ON i.id = d.item_id
+          WHERE q.name = ?1 AND EXISTS (SELECT 1 FROM sources d LEFT JOIN items i ON i.id = d.item_id
                 LEFT JOIN augments a ON a.id = d.augment_id WHERE d.saga_id = s.id AND COALESCE(i.name, a.name) = ?2)
          ORDER BY 1, 2",
     )?;
@@ -226,9 +226,9 @@ fn maetrim_effect_names(db: &Connection) -> Result<Vec<String>> {
          FROM effects
          JOIN item_effects ON item_effects.effect_id = effects.id
          JOIN items ON items.id = item_effects.item_id
-         WHERE items.source = ?1
+         WHERE items.provenance = ?1
          ORDER BY effects.id",
-        &[RowSource::Maetrim.as_str()],
+        &[Provenance::Maetrim.as_str()],
     )
 }
 
@@ -239,13 +239,13 @@ fn wiki_created_effect_names(db: &Connection) -> Result<Vec<String>> {
          FROM effects
          JOIN item_effects ON item_effects.effect_id = effects.id
          JOIN items ON items.id = item_effects.item_id
-         WHERE items.source = ?2
+         WHERE items.provenance = ?2
            AND NOT EXISTS (
              SELECT 1 FROM item_effects AS maetrim_item_effects
              JOIN items AS maetrim_items ON maetrim_items.id = maetrim_item_effects.item_id
-             WHERE maetrim_item_effects.effect_id = effects.id AND maetrim_items.source = ?1)
+             WHERE maetrim_item_effects.effect_id = effects.id AND maetrim_items.provenance = ?1)
          ORDER BY effects.name",
-        &[RowSource::Maetrim.as_str(), RowSource::Wiki.as_str()],
+        &[Provenance::Maetrim.as_str(), Provenance::Wiki.as_str()],
     )
 }
 
@@ -294,16 +294,16 @@ fn looks_variant_warnings(db: &Connection) -> Result<Vec<String>> {
         "SELECT wiki_items.name, maetrim_items.name
          FROM items AS wiki_items
          JOIN items AS maetrim_items
-           ON maetrim_items.source = ?2
+           ON maetrim_items.provenance = ?2
           AND maetrim_items.minimum_level = wiki_items.minimum_level
           AND maetrim_items.drop_location = wiki_items.drop_location
-         WHERE wiki_items.source = ?1
+         WHERE wiki_items.provenance = ?1
            AND substr(wiki_items.name, 1, length(maetrim_items.name) + 2) = maetrim_items.name || ' ('
            AND wiki_items.name LIKE '%)'
          ORDER BY wiki_items.name, maetrim_items.name",
     )?;
     let warnings = statement
-        .query_map([RowSource::Wiki.as_str(), RowSource::Maetrim.as_str()], |row| {
+        .query_map([Provenance::Wiki.as_str(), Provenance::Maetrim.as_str()], |row| {
             let (wiki_name, maetrim_name): (String, String) = (row.get(0)?, row.get(1)?);
             Ok(format!(
                 "warning: wiki item {wiki_name:?} looks like a variant of Maetrim's {maetrim_name:?} (same level and drop location)"
@@ -324,11 +324,11 @@ pub fn write_wiki_batch(
     std::fs::create_dir_all(out_dir).with_context(|| format!("creating {}", out_dir.display()))?;
     let unlinked_reward_givers = unlinked_reward_givers(&db)?;
     let batch_files = [
-        ("item_names.txt", as_lines(names_from(&db, "items", RowSource::Maetrim)?)),
-        ("wiki_source_items.txt", as_lines(names_from(&db, "items", RowSource::Wiki)?)),
-        ("wiki_source_quests.txt", as_lines(names_from(&db, "quests", RowSource::Wiki)?)),
-        ("wiki_source_augments.txt", as_lines(augment_name_lines(&db, RowSource::Wiki)?)),
-        ("augment_names.txt", as_lines(augment_name_lines(&db, RowSource::Maetrim)?)),
+        ("item_names.txt", as_lines(names_from(&db, "items", Provenance::Maetrim)?)),
+        ("wiki_source_items.txt", as_lines(names_from(&db, "items", Provenance::Wiki)?)),
+        ("wiki_source_quests.txt", as_lines(names_from(&db, "quests", Provenance::Wiki)?)),
+        ("wiki_source_augments.txt", as_lines(augment_name_lines(&db, Provenance::Wiki)?)),
+        ("augment_names.txt", as_lines(augment_name_lines(&db, Provenance::Maetrim)?)),
         ("quest_pages.json", serde_json::to_string_pretty(&quest_page_urls(&db)?)? + "\n"),
         ("crafting_systems.json", CRAFTING_SYSTEMS_JSON.to_string()),
         ("blank_descriptions.txt", as_lines(blank_description_lines(&db)?)),
@@ -384,17 +384,18 @@ fn as_lines(lines: Vec<String>) -> String {
     lines.iter().map(|line| format!("{line}\n")).collect()
 }
 
-fn names_from(db: &Connection, table_name: &str, source: RowSource) -> Result<Vec<String>> {
-    let mut statement = db.prepare(&format!("SELECT name FROM {table_name} WHERE source = ?1 ORDER BY name"))?;
-    let names = statement.query_map([source.as_str()], |row| row.get(0))?.collect::<rusqlite::Result<_>>()?;
+fn names_from(db: &Connection, table_name: &str, provenance: Provenance) -> Result<Vec<String>> {
+    let mut statement = db.prepare(&format!("SELECT name FROM {table_name} WHERE provenance = ?1 ORDER BY name"))?;
+    let names = statement.query_map([provenance.as_str()], |row| row.get(0))?.collect::<rusqlite::Result<_>>()?;
     Ok(names)
 }
 
-fn augment_name_lines(db: &Connection, source: RowSource) -> Result<Vec<String>> {
-    let mut statement =
-        db.prepare("SELECT family, name, min_level FROM augments WHERE source = ?1 ORDER BY family, name, min_level")?;
+fn augment_name_lines(db: &Connection, provenance: Provenance) -> Result<Vec<String>> {
+    let mut statement = db.prepare(
+        "SELECT family, name, min_level FROM augments WHERE provenance = ?1 ORDER BY family, name, min_level",
+    )?;
     let lines = statement
-        .query_map([source.as_str()], |row| {
+        .query_map([provenance.as_str()], |row| {
             let (family, name, min_level): (String, String, Option<i64>) = (row.get(0)?, row.get(1)?, row.get(2)?);
             Ok(format!("{family}\t{name}\t{}", min_level.map(|level| level.to_string()).unwrap_or_default()))
         })?

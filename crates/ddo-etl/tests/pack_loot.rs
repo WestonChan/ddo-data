@@ -28,9 +28,9 @@ fn built_with_files(files: &[(&str, &str)]) -> (Connection, BuildReport) {
 fn drop_rows(db: &Connection, loot_name: &str) -> Vec<String> {
     let mut statement = db
         .prepare(
-            "SELECT d.source_kind || ' ' || COALESCE(q.name, c.name, s.name, p.name) || ' ' || COALESCE(d.loot_type, '-')
+            "SELECT d.kind || ' ' || COALESCE(q.name, c.name, s.name, p.name) || ' ' || COALESCE(d.loot_type, '-')
                     || ' ' || COALESCE(d.chest, '-') || ' ' || d.is_rare
-               FROM drops d LEFT JOIN quests q ON q.id = d.quest_id LEFT JOIN quest_chains c ON c.id = d.chain_id
+               FROM sources d LEFT JOIN quests q ON q.id = d.quest_id LEFT JOIN quest_chains c ON c.id = d.chain_id
                LEFT JOIN sagas s ON s.id = d.saga_id LEFT JOIN adventure_packs p ON p.id = d.pack_id
                LEFT JOIN items i ON i.id = d.item_id LEFT JOIN augments a ON a.id = d.augment_id
               WHERE COALESCE(i.name, a.name) = ?1 ORDER BY 1",

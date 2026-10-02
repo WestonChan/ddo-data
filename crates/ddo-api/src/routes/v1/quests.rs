@@ -20,7 +20,7 @@ pub(super) fn router() -> OpenApiRouter<AppState> {
 const QUEST_SELECT: &str =
     "SELECT q.id, q.name, p.name AS pack, pt.name AS patron, q.level, q.epic_level, q.favor, q.is_raid,
         q.epic_name, q.difficulties, q.is_challenge, q.max_level, q.is_free_to_play,
-        q.legendary_level, q.zone, q.bestowed_by, q.flagging, q.source
+        q.legendary_level, q.zone, q.bestowed_by, q.flagging, q.provenance
    FROM quests q LEFT JOIN adventure_packs p ON p.id = q.pack_id LEFT JOIN patrons pt ON pt.id = q.patron_id";
 const QUEST_FLAG_COLUMNS: &[&str] = &["is_raid", "is_challenge", "is_free_to_play"];
 
@@ -66,7 +66,7 @@ async fn adventure_pack_detail(State(state): State<AppState>, Path(id): Path<i64
             pack["items"] = Value::Array(loot_rows(
                 db,
                 "SELECT i.id, i.name, loot.loot_type, loot.is_rare, loot.chest, i.minimum_level, es.name AS slot
-                   FROM drops loot JOIN items i ON i.id = loot.item_id
+                   FROM sources loot JOIN items i ON i.id = loot.item_id
                    LEFT JOIN equipment_slots es ON es.id = i.slot_id
                   WHERE loot.pack_id = ?1 ORDER BY i.name, i.id, loot.loot_type",
                 id,
@@ -74,7 +74,7 @@ async fn adventure_pack_detail(State(state): State<AppState>, Path(id): Path<i64
             pack["augments"] = Value::Array(loot_rows(
                 db,
                 "SELECT a.id, a.name, loot.loot_type, loot.is_rare, loot.chest, a.family, a.min_level
-                   FROM drops loot JOIN augments a ON a.id = loot.augment_id
+                   FROM sources loot JOIN augments a ON a.id = loot.augment_id
                   WHERE loot.pack_id = ?1 ORDER BY a.name, a.id, loot.loot_type",
                 id,
             )?);
@@ -108,7 +108,7 @@ async fn patrons(State(state): State<AppState>) -> Result<Json<Vec<Value>>, ApiE
                    `max_level` null. Read from ddowiki, since Maetrim's files carry none of them: \
                    `is_free_to_play` (the quest itself, not its pack), `legendary_level`, `zone` (where it takes \
                    place), `bestowed_by` (the quest giver) and `flagging` (free text on what must be run first), \
-                   each null or false when the wiki has not been read for that quest. `source` is `maetrim` for a quest \
+                   each null or false when the wiki has not been read for that quest. `provenance` is `maetrim` for a quest \
                    from his files and `wiki` for one read from ddowiki because his files lack it, replaced by his \
                    as soon as his files carry a quest of that name. Item and augment detail responses reference these in `quests`; \
                    /v1/quests/{id} adds the items and augments each one drops.",
@@ -155,7 +155,7 @@ async fn quest_detail(State(state): State<AppState>, Path(id): Path<i64>) -> Res
             quest["items"] = Value::Array(loot_rows(
                 db,
                 "SELECT i.id, i.name, loot.loot_type, loot.is_rare, loot.chest, i.minimum_level, es.name AS slot
-                   FROM drops loot JOIN items i ON i.id = loot.item_id
+                   FROM sources loot JOIN items i ON i.id = loot.item_id
                    LEFT JOIN equipment_slots es ON es.id = i.slot_id
                   WHERE loot.quest_id = ?1 ORDER BY i.name, i.id, loot.loot_type",
                 id,
@@ -165,7 +165,7 @@ async fn quest_detail(State(state): State<AppState>, Path(id): Path<i64>) -> Res
             quest["augments"] = Value::Array(loot_rows(
                 db,
                 "SELECT a.id, a.name, loot.loot_type, loot.is_rare, loot.chest, a.family, a.min_level
-                   FROM drops loot JOIN augments a ON a.id = loot.augment_id
+                   FROM sources loot JOIN augments a ON a.id = loot.augment_id
                   WHERE loot.quest_id = ?1 ORDER BY a.name, a.id, loot.loot_type",
                 id,
             )?);
@@ -190,9 +190,9 @@ pub(super) fn quests_dropping_via(
     let mut quests = json_rows(
         db,
         &format!(
-            "SELECT q.id, q.name, q.level, q.epic_level, q.is_raid, q.difficulties, q.is_free_to_play, q.source, ap.name AS pack,
+            "SELECT q.id, q.name, q.level, q.epic_level, q.is_raid, q.difficulties, q.is_free_to_play, q.provenance, ap.name AS pack,
                     pt.name AS patron, loot.loot_type, loot.is_rare, loot.chest
-               FROM drops loot JOIN quests q ON q.id = loot.quest_id
+               FROM sources loot JOIN quests q ON q.id = loot.quest_id
                LEFT JOIN adventure_packs ap ON ap.id = q.pack_id LEFT JOIN patrons pt ON pt.id = q.patron_id
               WHERE loot.{loot_id_column} = ?1 ORDER BY q.name, loot.loot_type"
         ),
@@ -213,7 +213,7 @@ pub(super) fn adventure_packs_dropping_via(
         db,
         &format!(
             "SELECT p.id, p.name, loot.loot_type, loot.is_rare, loot.chest
-               FROM drops loot JOIN adventure_packs p ON p.id = loot.pack_id
+               FROM sources loot JOIN adventure_packs p ON p.id = loot.pack_id
               WHERE loot.{loot_id_column} = ?1 ORDER BY p.name, loot.loot_type"
         ),
         [loot_id],
@@ -224,32 +224,36 @@ pub(super) fn adventure_packs_dropping_via(
     Ok(adventure_packs)
 }
 
-pub(super) fn drops_via(db: &rusqlite::Connection, loot_id_column: &str, loot_id: i64) -> Result<Vec<Value>, ApiError> {
-    let mut drops = json_rows(
+pub(super) fn sources_via(
+    db: &rusqlite::Connection,
+    loot_id_column: &str,
+    loot_id: i64,
+) -> Result<Vec<Value>, ApiError> {
+    let mut sources = json_rows(
         db,
         &format!(
-            "SELECT loot.source_kind AS kind, COALESCE(q.id, c.id, s.id, p.id) AS id,
+            "SELECT loot.kind, COALESCE(q.id, c.id, s.id, p.id) AS id,
                     COALESCE(q.name, c.name, s.name, p.name) AS name, loot.loot_type, loot.chest, loot.is_rare,
                     loot.tier, COALESCE(c.wiki_url, s.wiki_url) AS wiki_url
-               FROM drops loot LEFT JOIN quests q ON q.id = loot.quest_id
+               FROM sources loot LEFT JOIN quests q ON q.id = loot.quest_id
                LEFT JOIN quest_chains c ON c.id = loot.chain_id LEFT JOIN sagas s ON s.id = loot.saga_id
                LEFT JOIN adventure_packs p ON p.id = loot.pack_id
               WHERE loot.{loot_id_column} = ?1
-              ORDER BY CASE loot.source_kind WHEN 'quest' THEN 1 WHEN 'quest_chain' THEN 2 WHEN 'saga' THEN 3 ELSE 4 END,
+              ORDER BY CASE loot.kind WHEN 'quest' THEN 1 WHEN 'quest_chain' THEN 2 WHEN 'saga' THEN 3 ELSE 4 END,
                        name, loot.loot_type,
                        CASE loot.tier WHEN 'heroic' THEN 1 WHEN 'epic' THEN 2 WHEN 'legendary' THEN 3 ELSE 4 END"
         ),
         [loot_id],
     )?;
-    for drop_row in &mut drops {
-        convert_to_booleans(drop_row, &["is_rare"]);
-        if drop_row["wiki_url"].is_null() {
-            if let Some(source_name) = drop_row["name"].as_str() {
-                drop_row["wiki_url"] = Value::String(wiki_page_url(source_name));
+    for source in &mut sources {
+        convert_to_booleans(source, &["is_rare"]);
+        if source["wiki_url"].is_null() {
+            if let Some(source_name) = source["name"].as_str() {
+                source["wiki_url"] = Value::String(wiki_page_url(source_name));
             }
         }
     }
-    Ok(drops)
+    Ok(sources)
 }
 
 fn wiki_page_url(page_name: &str) -> String {

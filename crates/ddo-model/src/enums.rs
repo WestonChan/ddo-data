@@ -493,13 +493,13 @@ impl ItemCategory {
 }
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
-pub enum RowSource {
+pub enum Provenance {
     Maetrim,
     Wiki,
 }
 
-impl RowSource {
-    pub const ALL: &'static [RowSource] = &[Self::Maetrim, Self::Wiki];
+impl Provenance {
+    pub const ALL: &'static [Provenance] = &[Self::Maetrim, Self::Wiki];
 
     pub const fn as_str(self) -> &'static str {
         match self {
@@ -607,15 +607,15 @@ impl LootType {
 }
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-pub enum DropSourceKind {
+pub enum SourceKind {
     Quest,
     QuestChain,
     Saga,
     AdventurePack,
 }
 
-impl DropSourceKind {
-    pub const ALL: &'static [DropSourceKind] = &[Self::Quest, Self::QuestChain, Self::Saga, Self::AdventurePack];
+impl SourceKind {
+    pub const ALL: &'static [SourceKind] = &[Self::Quest, Self::QuestChain, Self::Saga, Self::AdventurePack];
 
     pub const fn as_str(self) -> &'static str {
         match self {

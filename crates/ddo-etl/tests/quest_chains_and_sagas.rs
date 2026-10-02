@@ -45,16 +45,16 @@ fn strings(db: &Connection, sql: &str) -> Vec<String> {
 #[test]
 fn writes_a_wiki_quest_chain_with_its_pack_quests_in_order_and_rewards() {
     let (db, report) = built_with(&fixture_wiki()).unwrap();
-    let (pack, source, wiki_url): (String, String, String) = db
+    let (pack, provenance, wiki_url): (String, String, String) = db
         .query_row(
-            "SELECT p.name, c.source, c.wiki_url FROM quest_chains c JOIN adventure_packs p ON p.id = c.pack_id
+            "SELECT p.name, c.provenance, c.wiki_url FROM quest_chains c JOIN adventure_packs p ON p.id = c.pack_id
               WHERE c.name = 'The Lost Seekers'",
             [],
             |r| Ok((r.get(0)?, r.get(1)?, r.get(2)?)),
         )
         .unwrap();
     assert_eq!(
-        (pack.as_str(), source.as_str(), wiki_url.as_str()),
+        (pack.as_str(), provenance.as_str(), wiki_url.as_str()),
         ("Free to Play", "wiki", "https://ddowiki.com/page/The_Lost_Seekers")
     );
     assert_eq!(
@@ -67,8 +67,8 @@ fn writes_a_wiki_quest_chain_with_its_pack_quests_in_order_and_rewards() {
     assert_eq!(
         strings(
             &db,
-            "SELECT i.name || ' ' || cr.is_rare FROM drops cr JOIN items i ON i.id = cr.item_id
-              WHERE cr.source_kind = 'quest_chain' AND i.name <> 'Acrobat''s Ring' ORDER BY i.name"
+            "SELECT i.name || ' ' || cr.is_rare FROM sources cr JOIN items i ON i.id = cr.item_id
+              WHERE cr.kind = 'quest_chain' AND i.name <> 'Acrobat''s Ring' ORDER BY i.name"
         ),
         ["Docent of Defiance 0", "Kundarak Delving Boots 1"]
     );
@@ -93,14 +93,14 @@ fn writes_a_wiki_saga_whose_rewards_carry_their_tier() {
     assert_eq!(
         strings(
             &db,
-            "SELECT i.name || ' ' || COALESCE(sr.tier, '-') || ' ' || sr.is_rare FROM drops sr
+            "SELECT i.name || ' ' || COALESCE(sr.tier, '-') || ' ' || sr.is_rare FROM sources sr
                JOIN items i ON i.id = sr.item_id JOIN sagas s ON s.id = sr.saga_id
-              WHERE s.name = 'Masterminds of Sharn' AND i.source = 'maetrim' AND i.name <> 'Band of Diani ir''Wynarn'
+              WHERE s.name = 'Masterminds of Sharn' AND i.provenance = 'maetrim' AND i.name <> 'Band of Diani ir''Wynarn'
               ORDER BY i.name, sr.tier"
         ),
         ["Alabaster of the Twelve - 0", "Five Rings epic 0", "Five Rings legendary 1"]
     );
-    assert_eq!(strings(&db, "SELECT source FROM sagas"), ["wiki", "wiki"]);
+    assert_eq!(strings(&db, "SELECT provenance FROM sagas"), ["wiki", "wiki"]);
     assert_eq!((report.wiki_saga_count, report.saga_quest_link_count, report.saga_reward_count), (2, 3, 3));
 }
 
@@ -178,7 +178,7 @@ fn links_his_items_to_the_quest_chain_their_drop_text_credits_with_its_end_rewar
     assert_eq!(
         reward_rows(
             &db,
-            "SELECT c.name || ' / ' || i.name || ' ' || cr.is_rare FROM drops cr
+            "SELECT c.name || ' / ' || i.name || ' ' || cr.is_rare FROM sources cr
                JOIN quest_chains c ON c.id = cr.chain_id JOIN items i ON i.id = cr.item_id
               WHERE i.name = 'Acrobat''s Ring'"
         ),
@@ -194,7 +194,7 @@ fn links_his_items_to_the_saga_and_tier_their_drop_text_credits() {
     assert_eq!(
         reward_rows(
             &db,
-            "SELECT s.name || ' / ' || i.name || ' ' || COALESCE(sr.tier, '-') FROM drops sr
+            "SELECT s.name || ' / ' || i.name || ' ' || COALESCE(sr.tier, '-') FROM sources sr
                JOIN sagas s ON s.id = sr.saga_id JOIN items i ON i.id = sr.item_id
               WHERE i.name IN ('Band of Diani ir''Wynarn', 'Ring of the Kraken') ORDER BY i.name"
         ),
@@ -205,7 +205,7 @@ fn links_his_items_to_the_saga_and_tier_their_drop_text_credits() {
     assert_eq!(
         reward_rows(
             &db,
-            "SELECT q.name || ' ' || ql.loot_type FROM drops ql JOIN quests q ON q.id = ql.quest_id
+            "SELECT q.name || ' ' || ql.loot_type FROM sources ql JOIN quests q ON q.id = ql.quest_id
                JOIN items i ON i.id = ql.item_id WHERE i.name = 'Ring of the Kraken'"
         ),
         ["Saltmarsh chest"],
@@ -216,8 +216,8 @@ fn links_his_items_to_the_saga_and_tier_their_drop_text_credits() {
 #[test]
 fn leaves_reward_text_naming_no_recorded_chain_or_saga_unlinked() {
     let (db, report) = built_with(&WikiOverrides::default()).unwrap();
-    assert_eq!(strings(&db, "SELECT COUNT(*) || '' FROM drops WHERE source_kind = 'quest_chain'"), ["0"]);
-    assert_eq!(strings(&db, "SELECT COUNT(*) || '' FROM drops WHERE source_kind = 'saga'"), ["0"]);
+    assert_eq!(strings(&db, "SELECT COUNT(*) || '' FROM sources WHERE kind = 'quest_chain'"), ["0"]);
+    assert_eq!(strings(&db, "SELECT COUNT(*) || '' FROM sources WHERE kind = 'saga'"), ["0"]);
     assert_eq!((report.drop_text_quest_chain_reward_count, report.drop_text_saga_reward_count), (0, 0));
 }
 
@@ -230,8 +230,8 @@ fn gives_a_quest_chain_reward_no_tier_when_its_segment_names_one() {
     assert_eq!(
         strings(
             &db,
-            "SELECT i.name || ' ' || COALESCE(cr.tier, '-') FROM drops cr JOIN items i ON i.id = cr.item_id
-              WHERE cr.source_kind = 'quest_chain'"
+            "SELECT i.name || ' ' || COALESCE(cr.tier, '-') FROM sources cr JOIN items i ON i.id = cr.item_id
+              WHERE cr.kind = 'quest_chain'"
         ),
         ["Band of Diani ir'Wynarn -"],
         "'Masterminds of Sharn saga: Epic end reward' names a tier only a saga reward carries"

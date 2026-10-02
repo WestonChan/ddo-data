@@ -75,7 +75,7 @@ fn reads_a_rare_drop_as_a_name_or_a_name_with_its_chest() {
 
 fn quest_augment_loot_row(db: &Connection, quest: &str, augment: &str) -> Option<(String, bool, Option<String>)> {
     db.query_row(
-        "SELECT qal.loot_type, qal.is_rare, qal.chest FROM drops qal
+        "SELECT qal.loot_type, qal.is_rare, qal.chest FROM sources qal
            JOIN quests q ON q.id = qal.quest_id JOIN augments a ON a.id = qal.augment_id
           WHERE q.name = ?1 AND a.name = ?2",
         [quest, augment],
@@ -107,7 +107,7 @@ fn adds_a_chest_link_for_a_rare_augment_and_fills_only_a_chest_his_text_left_bla
     );
     let buckler_chest: Option<String> = db
         .query_row(
-            "SELECT ql.chest FROM drops ql JOIN quests q ON q.id = ql.quest_id JOIN items i ON i.id = ql.item_id
+            "SELECT ql.chest FROM sources ql JOIN quests q ON q.id = ql.quest_id JOIN items i ON i.id = ql.item_id
               WHERE q.name = 'Book Burning' AND i.name = 'Buckler of the Golden Age'",
             [],
             |r| r.get(0),
@@ -204,7 +204,7 @@ fn built_db_with(wiki: &WikiOverrides) -> (Connection, ddo_etl::build::BuildRepo
 
 fn quest_loot_row(db: &Connection, quest: &str, item: &str) -> Option<(String, bool)> {
     db.query_row(
-        "SELECT ql.loot_type, ql.is_rare FROM drops ql JOIN quests q ON q.id = ql.quest_id JOIN items i ON i.id = ql.item_id
+        "SELECT ql.loot_type, ql.is_rare FROM sources ql JOIN quests q ON q.id = ql.quest_id JOIN items i ON i.id = ql.item_id
           WHERE q.name = ?1 AND i.name = ?2",
         [quest, item],
         |r| Ok((r.get(0)?, r.get(1)?)),
@@ -417,9 +417,9 @@ fn links_maetrims_items_to_a_wiki_quest_their_drop_text_names() {
     let (db, report) = built_db_with_fixture_wiki();
     let drop_text_links: Vec<(String, String, bool)> = db
         .prepare(
-            "SELECT i.name, ql.loot_type, ql.is_rare FROM drops ql
+            "SELECT i.name, ql.loot_type, ql.is_rare FROM sources ql
                JOIN quests q ON q.id = ql.quest_id JOIN items i ON i.id = ql.item_id
-              WHERE q.name = ?1 AND i.source = 'maetrim' ORDER BY i.name",
+              WHERE q.name = ?1 AND i.provenance = 'maetrim' ORDER BY i.name",
         )
         .unwrap()
         .query_map([WIKI_QUEST], |r| Ok((r.get(0)?, r.get(1)?, r.get(2)?)))
@@ -476,7 +476,7 @@ fn creates_a_wiki_quest_maetrims_files_lack() {
     let quest_row: CreatedQuestRow = db
         .query_row(
             "SELECT ap.name, p.name, q.level, q.epic_level, q.favor, q.is_raid, q.difficulties, q.is_free_to_play,
-                    q.legendary_level, q.zone, q.source
+                    q.legendary_level, q.zone, q.provenance
                FROM quests q JOIN adventure_packs ap ON ap.id = q.pack_id LEFT JOIN patrons p ON p.id = q.patron_id
               WHERE q.name = ?1",
             [WIKI_QUEST],
@@ -515,10 +515,10 @@ fn creates_a_wiki_quest_maetrims_files_lack() {
     );
     assert_eq!(report.wiki_quest_created_count, 1);
     let wiki_quest_count: i64 =
-        db.query_row("SELECT COUNT(*) FROM quests WHERE source = 'wiki'", [], |r| r.get(0)).unwrap();
+        db.query_row("SELECT COUNT(*) FROM quests WHERE provenance = 'wiki'", [], |r| r.get(0)).unwrap();
     assert_eq!(wiki_quest_count, 1);
     let maetrim_quest_count: i64 =
-        db.query_row("SELECT COUNT(*) FROM quests WHERE source = 'maetrim'", [], |r| r.get(0)).unwrap();
+        db.query_row("SELECT COUNT(*) FROM quests WHERE provenance = 'maetrim'", [], |r| r.get(0)).unwrap();
     assert_eq!(maetrim_quest_count as usize, report.quest_count + report.challenge_count);
 }
 
@@ -530,13 +530,13 @@ fn skips_creating_a_quest_maetrim_already_carries_and_still_adds_its_facts() {
         report.superseded_wiki_quests,
         [SupersededWikiEntry { name: "The Grotto".into(), file_name: "quests.toml".into() }]
     );
-    let (level, favor, source): (Option<i64>, Option<i64>, String) = db
-        .query_row("SELECT level, favor, source FROM quests WHERE name = 'The Grotto'", [], |r| {
+    let (level, favor, provenance): (Option<i64>, Option<i64>, String) = db
+        .query_row("SELECT level, favor, provenance FROM quests WHERE name = 'The Grotto'", [], |r| {
             Ok((r.get(0)?, r.get(1)?, r.get(2)?))
         })
         .unwrap();
     assert_ne!((level, favor), (Some(99), Some(999)), "his level and favor stand");
-    assert_eq!(source, "maetrim");
+    assert_eq!(provenance, "maetrim");
     assert!(wiki_columns(&db, "The Grotto").0, "free_to_play still applies to his row");
 }
 
@@ -545,7 +545,9 @@ fn creates_a_probable_duplicate_wiki_quest_and_reports_both_names() {
     let wiki = parsed_wiki(&[("quests.toml", &wiki_quest_fields_toml("The Chrono-scope", ""))]).unwrap();
     let (db, report) = built_db_with(&wiki);
     let created_count: i64 = db
-        .query_row("SELECT COUNT(*) FROM quests WHERE name = 'The Chrono-scope' AND source = 'wiki'", [], |r| r.get(0))
+        .query_row("SELECT COUNT(*) FROM quests WHERE name = 'The Chrono-scope' AND provenance = 'wiki'", [], |r| {
+            r.get(0)
+        })
         .unwrap();
     assert_eq!(created_count, 1);
     assert_eq!((report.wiki_quest_created_count, report.wiki_quest_probable_duplicate_count), (1, 1));
@@ -589,7 +591,7 @@ fn wiki_quests_never_change_maetrims_quests() {
         string_column(
             db,
             "SELECT name || '|' || COALESCE(level, '') || '|' || COALESCE(favor, '') || '|' || difficulties
-               FROM quests WHERE source = 'maetrim' ORDER BY name",
+               FROM quests WHERE provenance = 'maetrim' ORDER BY name",
         )
     };
     assert_eq!(maetrim_quests(&with), maetrim_quests(&without));
@@ -900,9 +902,9 @@ fn crafting_never_adds_innate_item_bonuses_or_augments() {
     let (without, _) = built_db_with(&WikiOverrides::default());
     let (with, _) = built_db_with(&WikiOverrides::from_dir(&fixtures_dir().join("wiki")).unwrap());
     for table in [
-        "augments WHERE source = 'maetrim'",
-        "item_bonuses JOIN items ON items.id = item_bonuses.item_id WHERE items.source = 'maetrim'",
-        "items WHERE source = 'maetrim'",
+        "augments WHERE provenance = 'maetrim'",
+        "item_bonuses JOIN items ON items.id = item_bonuses.item_id WHERE items.provenance = 'maetrim'",
+        "items WHERE provenance = 'maetrim'",
         "adventure_packs",
         "augment_slot_types",
     ] {
@@ -1218,7 +1220,7 @@ fn drops_a_wiki_item_maetrim_already_carries_and_reports_it() {
     let (without, _) = built_db_with(&WikiOverrides::default());
     let (with, report) = built_db_with_fixture_wiki();
     assert_eq!(item_count(&with, "name = 'Five Rings'"), 1);
-    assert_eq!(item_count(&with, "name = 'Five Rings' AND source = 'maetrim'"), 1);
+    assert_eq!(item_count(&with, "name = 'Five Rings' AND provenance = 'maetrim'"), 1);
     let bonus_names = |db: &Connection| {
         string_column(
             db,
@@ -1243,7 +1245,7 @@ fn writes_a_new_wiki_item_with_its_stats_bonuses_effects_sockets_set_and_quests(
     let item_row: WikiItemRow = db
         .query_row(
             "SELECT es.name, i.item_category, i.item_type, i.minimum_level, i.enhancement_bonus, m.name, i.set_bonus,
-                    i.wiki_url, i.source
+                    i.wiki_url, i.provenance
                FROM items i JOIN equipment_slots es ON es.id = i.slot_id LEFT JOIN item_materials m ON m.id = i.material_id
               WHERE i.name = ?1",
             [WIKI_AXE],
@@ -1319,14 +1321,14 @@ fn writes_a_new_wiki_item_with_its_stats_bonuses_effects_sockets_set_and_quests(
     assert_eq!(quest_loot_row(&db, "The Grotto", WIKI_AXE), Some(("chest".into(), false)));
     assert_eq!(quest_loot_row(&db, WIKI_QUEST, WIKI_AXE), Some(("reward".into(), false)), "links the wiki quest");
     assert_eq!(report.wiki_item_written_count, 1);
-    assert_eq!(item_count(&db, "source = 'wiki'"), report.wiki_item_written_count as i64);
+    assert_eq!(item_count(&db, "provenance = 'wiki'"), report.wiki_item_written_count as i64);
 }
 
 #[test]
 fn writes_a_probable_duplicate_of_a_maetrim_item_and_reports_both_names() {
     let wiki = parsed_edited_items(|s| s.replace(WIKI_AXE, "Argentis Armor (Level 12)")).unwrap();
     let (db, report) = built_db_with(&wiki);
-    assert_eq!(item_count(&db, "name = 'Argentis Armor (Level 12)' AND source = 'wiki'"), 1);
+    assert_eq!(item_count(&db, "name = 'Argentis Armor (Level 12)' AND provenance = 'wiki'"), 1);
     assert_eq!((report.wiki_item_written_count, report.wiki_item_probable_duplicate_count), (1, 1));
     assert_eq!(
         report.probable_duplicate_wiki_items,
@@ -1369,8 +1371,8 @@ fn build_fails_naming_a_wiki_item_value_absent_from_maetrims_files() {
 fn wiki_items_never_change_maetrims_items() {
     let (without, _) = built_db_with(&WikiOverrides::default());
     let (with, _) = built_db_with_fixture_wiki();
-    assert_eq!(item_count(&with, "source = 'maetrim'"), item_count(&without, "1"));
-    assert_eq!(item_count(&without, "source = 'wiki'"), 0);
+    assert_eq!(item_count(&with, "provenance = 'maetrim'"), item_count(&without, "1"));
+    assert_eq!(item_count(&without, "provenance = 'wiki'"), 0);
 }
 
 const WIKI_RUNE_ARM: &str = "[[item]]\nname = \"Test Rune Arm of the Oozing Hunger\"\npage = \"https://ddowiki.com/page/Item:Test\"\nread = \"2026-09-29\"\nslot = \"Runearm\"\ncategory = \"Weapon\"\nitem_type = \"Rune Arm\"\nminimum_level = 29\ndrop_location = \"Test source\"\n\n[item.weapon]\nhandedness = \"Off-hand\"\n";
@@ -1494,7 +1496,7 @@ fn reuses_maetrims_effect_whose_name_differs_only_by_colons_commas_periods_and_a
 fn quest_loot_link_rows(db: &Connection, quest: &str, item: &str) -> Vec<(String, bool, Option<String>)> {
     let mut statement = db
         .prepare(
-            "SELECT ql.loot_type, ql.is_rare, ql.chest FROM drops ql JOIN quests q ON q.id = ql.quest_id
+            "SELECT ql.loot_type, ql.is_rare, ql.chest FROM sources ql JOIN quests q ON q.id = ql.quest_id
                JOIN items i ON i.id = ql.item_id WHERE q.name = ?1 AND i.name = ?2 ORDER BY ql.loot_type",
         )
         .unwrap();
@@ -1587,7 +1589,7 @@ fn adds_a_listed_augment_link_that_is_not_rare() {
     let magical_protection_links: Vec<(String, Option<String>)> = {
         let mut statement = db
             .prepare(
-                "SELECT qal.loot_type, qal.chest FROM drops qal JOIN quests q ON q.id = qal.quest_id
+                "SELECT qal.loot_type, qal.chest FROM sources qal JOIN quests q ON q.id = qal.quest_id
                    JOIN augments a ON a.id = qal.augment_id
                   WHERE q.name = 'Book Burning' AND a.name = 'Lunar Gem of Magical Protection (Heroic)'
                   ORDER BY qal.loot_type",

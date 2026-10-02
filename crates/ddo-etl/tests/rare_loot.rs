@@ -22,7 +22,7 @@ fn built_without_wiki() -> (Connection, BuildReport) {
 
 fn is_rare(db: &Connection, quest: &str, item: &str) -> Option<bool> {
     db.query_row(
-        "SELECT ql.is_rare FROM drops ql JOIN quests q ON q.id = ql.quest_id JOIN items i ON i.id = ql.item_id
+        "SELECT ql.is_rare FROM sources ql JOIN quests q ON q.id = ql.quest_id JOIN items i ON i.id = ql.item_id
           WHERE q.name = ?1 AND i.name = ?2",
         [quest, item],
         |r| r.get(0),

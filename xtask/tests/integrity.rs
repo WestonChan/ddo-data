@@ -142,10 +142,10 @@ fn probe_ring_insert(name: &str) -> String {
 const PROBE_QUEST_INSERT: &str = "INSERT INTO quests (name, pack_id, is_raid)
      VALUES ('Integrity Probe Quest', (SELECT MIN(id) FROM adventure_packs), 0);";
 
-fn probe_quest_drop_insert(loot_type: &str, chest: &str) -> String {
+fn probe_quest_source_insert(loot_type: &str, chest: &str) -> String {
     format!(
         "{PROBE_QUEST_INSERT}
-         INSERT INTO drops (source_kind, quest_id, item_id, loot_type, chest)
+         INSERT INTO sources (kind, quest_id, item_id, loot_type, chest)
          VALUES ('quest', last_insert_rowid(), (SELECT MIN(id) FROM items), '{loot_type}', {chest});"
     )
 }
@@ -153,10 +153,10 @@ fn probe_quest_drop_insert(loot_type: &str, chest: &str) -> String {
 fn injected_violations() -> Vec<InjectedViolation> {
     vec![
         violation(
-            "drops_reference_existing_rows",
-            "INSERT INTO drops (source_kind, quest_id, item_id, loot_type)
+            "sources_reference_existing_rows",
+            "INSERT INTO sources (kind, quest_id, item_id, loot_type)
              VALUES ('quest', (SELECT MIN(id) FROM quests), 999999, 'chest');",
-            "drops",
+            "sources",
         ),
         violation(
             "items_have_names_and_slots",
@@ -175,7 +175,7 @@ fn injected_violations() -> Vec<InjectedViolation> {
         ),
         violation(
             "wiki_rows_have_pages",
-            "INSERT INTO items (name, slot_id, item_category, source, minimum_level)
+            "INSERT INTO items (name, slot_id, item_category, provenance, minimum_level)
              VALUES ('Integrity Probe Wiki Ring', (SELECT id FROM equipment_slots WHERE name = 'Ring'),
                      'Jewelry', 'wiki', 1);",
             "Integrity Probe Wiki Ring",
@@ -219,11 +219,11 @@ fn injected_violations() -> Vec<InjectedViolation> {
              VALUES ((SELECT MIN(id) FROM items WHERE item_category = 'Jewelry'), 'Light');",
             "",
         ),
-        violation("raid_loot_only_on_raids", &probe_quest_drop_insert("raid", "NULL"), "Integrity Probe Quest"),
-        violation("reward_rows_have_no_chest", &probe_quest_drop_insert("reward", "'probe chest'"), "Integrity Probe Quest"),
+        violation("raid_loot_only_on_raids", &probe_quest_source_insert("raid", "NULL"), "Integrity Probe Quest"),
+        violation("reward_rows_have_no_chest", &probe_quest_source_insert("reward", "'probe chest'"), "Integrity Probe Quest"),
         violation(
             "chest_never_says_reward",
-            &probe_quest_drop_insert("chest", "'end reward chest'"),
+            &probe_quest_source_insert("chest", "'end reward chest'"),
             "Integrity Probe Quest",
         ),
         violation(
@@ -256,7 +256,7 @@ fn injected_violations() -> Vec<InjectedViolation> {
         ),
         violation(
             "chains_and_sagas_have_quests",
-            "INSERT INTO quest_chains (name, source, wiki_url)
+            "INSERT INTO quest_chains (name, provenance, wiki_url)
              VALUES ('Integrity Probe Chain', 'wiki', 'https://ddowiki.com/page/Integrity_Probe_Chain');",
             "Integrity Probe Chain",
         ),
@@ -364,31 +364,31 @@ fn legacy_outcome_status(flagging_sql: &str) -> CheckStatus {
 }
 
 #[test]
-fn legacy_item_needs_a_legacy_name_a_correction_or_no_drops() {
-    let item_with_drops = "(SELECT MIN(item_id) FROM drops)";
+fn legacy_item_needs_a_legacy_name_a_correction_or_no_sources() {
+    let item_with_sources = "(SELECT MIN(item_id) FROM sources)";
     assert_eq!(
-        legacy_outcome_status(&format!("UPDATE items SET is_legacy = 1 WHERE id = {item_with_drops};")),
+        legacy_outcome_status(&format!("UPDATE items SET is_legacy = 1 WHERE id = {item_with_sources};")),
         CheckStatus::Failed
     );
     assert_eq!(
         legacy_outcome_status(&format!(
-            "UPDATE items SET is_legacy = 1, name = name || ' (legacy)' WHERE id = {item_with_drops};"
+            "UPDATE items SET is_legacy = 1, name = name || ' (legacy)' WHERE id = {item_with_sources};"
         )),
         CheckStatus::Passed
     );
     assert_eq!(
         legacy_outcome_status(&format!(
-            "UPDATE items SET is_legacy = 1 WHERE id = {item_with_drops};
+            "UPDATE items SET is_legacy = 1 WHERE id = {item_with_sources};
              INSERT INTO corrections (kind, name, field, from_value, to_value, reason, source, read)
              SELECT 'item', name, 'is_legacy', 'false', 'true', 'Probe.', 'https://ddowiki.com/page/Probe', '2026-10-02'
-             FROM items WHERE id = {item_with_drops};"
+             FROM items WHERE id = {item_with_sources};"
         )),
         CheckStatus::Passed
     );
     assert_eq!(
         legacy_outcome_status(
             "UPDATE items SET is_legacy = 1 WHERE id = (SELECT MIN(id) FROM items i
-             WHERE NOT EXISTS (SELECT 1 FROM drops d WHERE d.item_id = i.id));"
+             WHERE NOT EXISTS (SELECT 1 FROM sources d WHERE d.item_id = i.id));"
         ),
         CheckStatus::Passed
     );

@@ -85,8 +85,8 @@ impl IntegrityCheck {
 
 pub const INTEGRITY_CHECKS: &[IntegrityCheck] = &[
     IntegrityCheck::hard(
-        "drops_reference_existing_rows",
-        "every foreign key in the database, the drops table's source, item and augment ids among them, names an \
+        "sources_reference_existing_rows",
+        "every foreign key in the database, the sources table's source, item and augment ids among them, names an \
          existing row (PRAGMA foreign_key_check)",
         OffenderQuery::Sql(
             "SELECT \"table\", rowid, 'references a missing ' || parent || ' row' FROM pragma_foreign_key_check()",
@@ -111,14 +111,14 @@ pub const INTEGRITY_CHECKS: &[IntegrityCheck] = &[
     ),
     IntegrityCheck::hard(
         "wiki_rows_have_pages",
-        "every row the wiki supplies (source = 'wiki') carries the ddowiki page it was read from, in each table that \
+        "every row the wiki supplies (provenance = 'wiki') carries the ddowiki page it was read from, in each table that \
          has a wiki_url column",
         OffenderQuery::Built(wiki_rows_without_pages),
     ),
     IntegrityCheck::hard(
         "legacy_items_hidden",
         "every item flagged is_legacy has a reason: a (legacy) or (historic) name, an is_legacy correction, or no \
-         drops row (its only sources are retired)",
+         sources row (its only sources are retired)",
         OffenderQuery::Built(legacy_items_without_a_reason),
     ),
     IntegrityCheck::hard(
@@ -160,7 +160,7 @@ pub const INTEGRITY_CHECKS: &[IntegrityCheck] = &[
         "a quest drop with loot type raid comes from a quest that is a raid",
         OffenderQuery::Sql(
             "SELECT q.name, d.id, 'raid loot ' || COALESCE(i.name, a.name, '') || ' from a quest that is not a raid' \
-             FROM drops d JOIN quests q ON q.id = d.quest_id LEFT JOIN items i ON i.id = d.item_id \
+             FROM sources d JOIN quests q ON q.id = d.quest_id LEFT JOIN items i ON i.id = d.item_id \
              LEFT JOIN augments a ON a.id = d.augment_id \
              WHERE d.loot_type = 'raid' AND q.is_raid = 0",
         ),
@@ -170,7 +170,7 @@ pub const INTEGRITY_CHECKS: &[IntegrityCheck] = &[
         "an end reward (loot type reward, or a quest chain's or saga's reward) names no chest",
         OffenderQuery::Sql(
             "SELECT COALESCE(q.name, c.name, s.name, p.name, ''), d.id, 'reward from chest ' || d.chest \
-             FROM drops d LEFT JOIN quests q ON q.id = d.quest_id LEFT JOIN quest_chains c ON c.id = d.chain_id \
+             FROM sources d LEFT JOIN quests q ON q.id = d.quest_id LEFT JOIN quest_chains c ON c.id = d.chain_id \
              LEFT JOIN sagas s ON s.id = d.saga_id LEFT JOIN adventure_packs p ON p.id = d.pack_id \
              WHERE COALESCE(d.loot_type, 'reward') = 'reward' AND d.chest IS NOT NULL",
         ),
@@ -180,7 +180,7 @@ pub const INTEGRITY_CHECKS: &[IntegrityCheck] = &[
         "no chest name contains the word reward; reward text belongs in loot type reward",
         OffenderQuery::Sql(
             "SELECT COALESCE(q.name, p.name, ''), d.id, 'chest ' || d.chest \
-             FROM drops d LEFT JOIN quests q ON q.id = d.quest_id LEFT JOIN adventure_packs p ON p.id = d.pack_id \
+             FROM sources d LEFT JOIN quests q ON q.id = d.quest_id LEFT JOIN adventure_packs p ON p.id = d.pack_id \
              WHERE lower(d.chest) LIKE '%reward%'",
         ),
     ),
@@ -243,8 +243,8 @@ pub const INTEGRITY_CHECKS: &[IntegrityCheck] = &[
     ),
     IntegrityCheck::warn(
         "items_without_a_source",
-        "items (other than legacy ones) with no drops row; no table links an item as a crafting output yet, so drops \
-         is the only source. Becomes HARD once vendor, event, crafting, challenge and starter-gear sources exist; the \
+        "items (other than legacy ones) with no sources row; no table links an item as a crafting output yet, so \
+         sources is the only source. Becomes HARD once vendor, event, crafting, challenge and starter-gear sources exist; the \
          drop_location heads below are the work list for them",
         OffenderQuery::Built(items_without_a_source),
     )
@@ -331,21 +331,21 @@ pub const INTEGRITY_CHECKS: &[IntegrityCheck] = &[
     .showing_every_offender(),
     IntegrityCheck::warn(
         "raids_without_raid_loot",
-        "raids with no drops row of loot type raid",
+        "raids with no sources row of loot type raid",
         OffenderQuery::Sql(
             "SELECT q.name, q.id, 'raid without raid loot' FROM quests q WHERE q.is_raid = 1 \
-             AND NOT EXISTS (SELECT 1 FROM drops d WHERE d.quest_id = q.id AND d.loot_type = 'raid') ORDER BY q.name",
+             AND NOT EXISTS (SELECT 1 FROM sources d WHERE d.quest_id = q.id AND d.loot_type = 'raid') ORDER BY q.name",
         ),
     )
     .showing_every_offender(),
     IntegrityCheck::warn(
         "quests_without_loot",
-        "quests (not challenges) with no drops row; the database does not mark wilderness areas, so any among them \
+        "quests (not challenges) with no sources row; the database does not mark wilderness areas, so any among them \
          are listed too. The top packs are listed",
         OffenderQuery::Sql(
             "SELECT q.name, q.id, COALESCE(p.name, '(no pack)') FROM quests q \
              LEFT JOIN adventure_packs p ON p.id = q.pack_id WHERE q.is_challenge = 0 \
-             AND NOT EXISTS (SELECT 1 FROM drops d WHERE d.quest_id = q.id) ORDER BY q.name",
+             AND NOT EXISTS (SELECT 1 FROM sources d WHERE d.quest_id = q.id) ORDER BY q.name",
         ),
     )
     .ranking_top_details(10),
@@ -419,7 +419,7 @@ fn wiki_rows_without_pages(db: &Connection, _options: &IntegrityOptions) -> Resu
         if has_column(db, table, "wiki_url")? {
             queries.push(format!(
                 "SELECT name, id, '{table} row from the wiki has no wiki_url' FROM {table} \
-                 WHERE source = 'wiki' AND (wiki_url IS NULL OR TRIM(wiki_url) = '')"
+                 WHERE provenance = 'wiki' AND (wiki_url IS NULL OR TRIM(wiki_url) = '')"
             ));
         } else {
             notes.push(format!("{table} has no wiki_url column; the wiki file parser requires each entry's page"));
@@ -435,13 +435,13 @@ fn legacy_items_without_a_reason(db: &Connection, _options: &IntegrityOptions) -
     }
     let offenders = offenders_from_sql(
         db,
-        "SELECT i.name, i.id, 'is_legacy, yet it drops, its name says neither (legacy) nor (historic), \
+        "SELECT i.name, i.id, 'is_legacy, yet it has a source, its name says neither (legacy) nor (historic), \
          and no correction sets is_legacy' FROM items i \
          WHERE i.is_legacy = 1 \
          AND lower(i.name) NOT LIKE '%(legacy)%' AND lower(i.name) NOT LIKE '%(historic)%' \
          AND NOT EXISTS (SELECT 1 FROM corrections c WHERE c.kind = 'item' AND c.name = i.name \
                          AND c.field = 'is_legacy') \
-         AND EXISTS (SELECT 1 FROM drops d WHERE d.item_id = i.id)",
+         AND EXISTS (SELECT 1 FROM sources d WHERE d.item_id = i.id)",
     )?;
     Ok(Findings { offenders: Some(offenders), notes: Vec::new() })
 }
@@ -453,7 +453,7 @@ fn items_without_a_source(db: &Connection, _options: &IntegrityOptions) -> Resul
         db,
         &format!(
             "SELECT i.name, i.id, {DROP_LOCATION_HEAD_SQL} FROM items i \
-             WHERE NOT EXISTS (SELECT 1 FROM drops d WHERE d.item_id = i.id) {legacy_filter} ORDER BY i.name"
+             WHERE NOT EXISTS (SELECT 1 FROM sources d WHERE d.item_id = i.id) {legacy_filter} ORDER BY i.name"
         ),
     )?;
     let notes = if has_is_legacy { Vec::new() } else { vec!["items.is_legacy is absent; no item is excluded".into()] };

@@ -323,9 +323,9 @@ pub fn unlinked_drop_segment_heads(db: &Connection) -> Result<Vec<UnlinkedDropSe
 
 fn maetrim_item_drop_texts(db: &Connection) -> Result<Vec<String>> {
     let mut statement =
-        db.prepare("SELECT drop_location FROM items WHERE source = ?1 AND drop_location IS NOT NULL ORDER BY id")?;
+        db.prepare("SELECT drop_location FROM items WHERE provenance = ?1 AND drop_location IS NOT NULL ORDER BY id")?;
     let drop_texts = statement
-        .query_map(params![ddo_model::enums::RowSource::Maetrim.as_str()], |r| r.get(0))?
+        .query_map(params![ddo_model::enums::Provenance::Maetrim.as_str()], |r| r.get(0))?
         .collect::<rusqlite::Result<_>>()?;
     Ok(drop_texts)
 }

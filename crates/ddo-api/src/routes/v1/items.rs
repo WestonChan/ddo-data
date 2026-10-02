@@ -1,5 +1,5 @@
 use super::quest_series::{quest_chains_rewarding, sagas_rewarding};
-use super::quests::{adventure_packs_dropping_via, drops_via, quests_dropping_via};
+use super::quests::{adventure_packs_dropping_via, quests_dropping_via, sources_via};
 use crate::db::{
     bonuses_via, clamped_page, convert_to_booleans, json_row, json_rows, like_escaped_text, modifiers_for, row_count,
     whole_table_json, WhereClause,
@@ -69,7 +69,7 @@ impl QueryParameters for ItemListQuery {
                    adventure pack it drops in, whether any of its sources is a raid, whether it is rare loot from \
                    at least one quest (marked rare in Maetrim's drop text or on ddowiki), `is_legacy` (an old version \
                    kept beside the current one, such as a name ending `(legacy)` or `(historic)`, or an item the \
-                   wiki says no longer drops; always false unless `include_legacy=true`), and `source`: `maetrim` \
+                   wiki says no longer drops; always false unless `include_legacy=true`), and `provenance`: `maetrim` \
                    for an item from DDOBuilderV2's files, `wiki` for one read from ddowiki because his files lack \
                    it (dropped as soon as his files carry an item of that name). Use the detail endpoint for \
                    bonuses, sockets and quests. `total` counts every match, not just this page.",
@@ -134,24 +134,24 @@ async fn items(
                 where_clause.add_bound_condition("i.minimum_level <= ?", max_level);
             }
             if let Some(pack) = &query.pack {
-                where_clause.add_bound_condition("EXISTS (SELECT 1 FROM drops ql LEFT JOIN quests q ON q.id = ql.quest_id JOIN adventure_packs ap ON ap.id = COALESCE(ql.pack_id, q.pack_id) WHERE ql.item_id = i.id AND ap.name = ?)",
+                where_clause.add_bound_condition("EXISTS (SELECT 1 FROM sources ql LEFT JOIN quests q ON q.id = ql.quest_id JOIN adventure_packs ap ON ap.id = COALESCE(ql.pack_id, q.pack_id) WHERE ql.item_id = i.id AND ap.name = ?)",
                     pack.clone(),
                 );
             }
             if query.raid == Some(true) {
-                where_clause.add_condition("EXISTS (SELECT 1 FROM drops ql WHERE ql.item_id = i.id AND ql.source_kind = 'quest' AND ql.loot_type = 'raid')");
+                where_clause.add_condition("EXISTS (SELECT 1 FROM sources ql WHERE ql.item_id = i.id AND ql.kind = 'quest' AND ql.loot_type = 'raid')");
             }
             if query.rare == Some(true) {
-                where_clause.add_condition("EXISTS (SELECT 1 FROM drops ql WHERE ql.item_id = i.id AND ql.source_kind IN ('quest', 'adventure_pack') AND ql.is_rare)");
+                where_clause.add_condition("EXISTS (SELECT 1 FROM sources ql WHERE ql.item_id = i.id AND ql.kind IN ('quest', 'adventure_pack') AND ql.is_rare)");
             }
             if let Some(quest_id) = query.quest {
-                where_clause.add_bound_condition("i.id IN (SELECT d.item_id FROM drops d WHERE d.source_kind = 'quest' AND d.quest_id = ?)", quest_id);
+                where_clause.add_bound_condition("i.id IN (SELECT d.item_id FROM sources d WHERE d.kind = 'quest' AND d.quest_id = ?)", quest_id);
             }
             if let Some(chain_id) = query.quest_chain {
-                where_clause.add_bound_condition("i.id IN (SELECT d.item_id FROM drops d WHERE d.source_kind = 'quest_chain' AND d.chain_id = ?)", chain_id);
+                where_clause.add_bound_condition("i.id IN (SELECT d.item_id FROM sources d WHERE d.kind = 'quest_chain' AND d.chain_id = ?)", chain_id);
             }
             if let Some(saga_id) = query.saga {
-                where_clause.add_bound_condition("i.id IN (SELECT d.item_id FROM drops d WHERE d.source_kind = 'saga' AND d.saga_id = ?)", saga_id);
+                where_clause.add_bound_condition("i.id IN (SELECT d.item_id FROM sources d WHERE d.kind = 'saga' AND d.saga_id = ?)", saga_id);
             }
             let enchantment_names = query.enchantment.as_deref().map(comma_separated_values).unwrap_or_default();
             if let Some(unknown_enchantment_name) = first_unknown_enchantment_name(db, &enchantment_names)? {
@@ -174,10 +174,10 @@ async fn items(
             let from_sql = format!("FROM items i JOIN equipment_slots es ON es.id = i.slot_id {where_sql}");
             let total = row_count(db, &format!("SELECT COUNT(*) {from_sql}"), where_clause.params())?;
             let page_sql = format!(
-                "SELECT i.id, i.name, es.name AS slot, i.item_category AS category, i.item_type, i.minimum_level, i.enhancement_bonus, i.icon, i.is_legacy, i.source,
-                        (SELECT MIN(ap.name) FROM drops ql LEFT JOIN quests q ON q.id = ql.quest_id JOIN adventure_packs ap ON ap.id = COALESCE(ql.pack_id, q.pack_id) WHERE ql.item_id = i.id) AS pack,
-                        EXISTS (SELECT 1 FROM drops ql WHERE ql.item_id = i.id AND ql.source_kind = 'quest' AND ql.loot_type = 'raid') AS is_raid,
-                        EXISTS (SELECT 1 FROM drops ql WHERE ql.item_id = i.id AND ql.source_kind IN ('quest', 'adventure_pack') AND ql.is_rare) AS is_rare
+                "SELECT i.id, i.name, es.name AS slot, i.item_category AS category, i.item_type, i.minimum_level, i.enhancement_bonus, i.icon, i.is_legacy, i.provenance,
+                        (SELECT MIN(ap.name) FROM sources ql LEFT JOIN quests q ON q.id = ql.quest_id JOIN adventure_packs ap ON ap.id = COALESCE(ql.pack_id, q.pack_id) WHERE ql.item_id = i.id) AS pack,
+                        EXISTS (SELECT 1 FROM sources ql WHERE ql.item_id = i.id AND ql.kind = 'quest' AND ql.loot_type = 'raid') AS is_raid,
+                        EXISTS (SELECT 1 FROM sources ql WHERE ql.item_id = i.id AND ql.kind IN ('quest', 'adventure_pack') AND ql.is_rare) AS is_rare
                  {from_sql} ORDER BY {order_sql} LIMIT {limit} OFFSET {offset}"
             );
             let mut items = json_rows(db, &page_sql, where_clause.params())?;
@@ -191,7 +191,7 @@ async fn items(
 
 const ITEMS_MATCHING_SEARCH_TEXT_SQL: &str = "(i.name LIKE '%' || ? || '%' ESCAPE '\\' \
      OR es.name LIKE ? ESCAPE '\\' OR i.item_category LIKE ? ESCAPE '\\' \
-     OR i.id IN (SELECT d.item_id FROM drops d LEFT JOIN quests q ON q.id = d.quest_id \
+     OR i.id IN (SELECT d.item_id FROM sources d LEFT JOIN quests q ON q.id = d.quest_id \
                  JOIN adventure_packs ap ON ap.id = COALESCE(d.pack_id, q.pack_id) WHERE ap.name LIKE ? ESCAPE '\\'))";
 
 const ITEMS_WITH_OWN_BONUS_TO_STATS_SQL: &str =
@@ -229,7 +229,7 @@ fn first_unknown_enchantment_name(
     description = "One item with everything the dataset knows about it: the core row (slot, category, type, minimum \
                    level, enhancement bonus, material, race restriction, description, drop location text, set name, \
                    sentience and minor-artifact flags, `is_legacy` (served whatever its value; the list hides legacy \
-                   items by default), wiki URL, and `source`, `maetrim` or `wiki` as in the list), \
+                   items by default), wiki URL, and `provenance`, `maetrim` or `wiki` as in the list), \
                    then `weapon` (dice, threat range, multipliers, \
                    proficiency, `dr_bypass`) or `armor` (AC, max Dex, spell failure, check penalty) when the item is \
                    one, `bonuses` (stat, bonus type, value), `effects` (named effects with value and target), \
@@ -237,11 +237,11 @@ fn first_unknown_enchantment_name(
                    from (once per loot type, so a quest that both drops it and gives it as an end reward appears twice) with loot type, raid flag, `is_rare` (rare loot in that quest, per Maetrim's drop text or ddowiki), \
                    `chest` (the chest his drop text names for that quest, lower-cased, such as `end chest` or \
                    `optional chest`; null when it names none, and always null on a `reward` row), the \
-                   `difficulties` each offers, ddowiki's `is_free_to_play` for each and its `source` (`maetrim`, or `wiki` \
+                   `difficulties` each offers, ddowiki's `is_free_to_play` for each and its `provenance` (`maetrim`, or `wiki` \
                    for a quest read from ddowiki because his files lack it; see /v1/quests for the rest of the quest), `quest_chains` and `sagas` whose end reward offers the item (each with `id`, `name`, `is_rare` and the ddowiki page it was read from as `wiki_url`, a saga also with its reward `tier`; see /v1/quest-chains and /v1/sagas), \
                    `adventure_packs` any of whose quests drops it, as his drop text credits a whole pack (`Magic of \
                    Myth Drannor, any end chest`; each with `id`, `name`, `loot_type`, `chest` and `is_rare`, once per \
-                   loot type; see /v1/adventure-packs/{id}), `drops`, every one of those sources in one array, each \
+                   loot type; see /v1/adventure-packs/{id}), `sources`, every one of those sources in one array, each \
                    with `kind` (`quest`, `quest_chain`, `saga` or `adventure_pack`), the source's `id` and `name`, \
                    `loot_type` (null on a chain or saga reward), `chest`, `is_rare`, `tier` (a saga reward's list, \
                    null otherwise) and the source's ddowiki page as `wiki_url` (the page read for a chain or saga, the \
@@ -256,7 +256,7 @@ async fn item_detail(State(state): State<AppState>, Path(id): Path<i64>) -> Resu
                 db,
                 "SELECT i.id, i.name, es.name AS slot, i.item_category AS category, i.item_type, i.minimum_level, i.enhancement_bonus,
                         m.name AS material, i.race_required, i.icon, i.description, i.drop_location, i.set_bonus AS set_name,
-                        i.accepts_sentience, i.is_minor_artifact, i.is_legacy, i.wiki_url, i.source
+                        i.accepts_sentience, i.is_minor_artifact, i.is_legacy, i.wiki_url, i.provenance
                    FROM items i JOIN equipment_slots es ON es.id = i.slot_id LEFT JOIN item_materials m ON m.id = i.material_id
                   WHERE i.id = ?1",
                 [id],
@@ -333,7 +333,7 @@ async fn item_detail(State(state): State<AppState>, Path(id): Path<i64>) -> Resu
             item["quest_chains"] = Value::Array(quest_chains_rewarding(db, id)?);
             item["sagas"] = Value::Array(sagas_rewarding(db, id)?);
             item["adventure_packs"] = Value::Array(adventure_packs_dropping_via(db, "item_id", id)?);
-            item["drops"] = Value::Array(drops_via(db, "item_id", id)?);
+            item["sources"] = Value::Array(sources_via(db, "item_id", id)?);
             item["modifiers"] = Value::Array(modifiers_for(db, "item", id)?);
             Ok(Json(item))
         })

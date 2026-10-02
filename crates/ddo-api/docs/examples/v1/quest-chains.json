@@ -3,27 +3,27 @@
     "id": 2,
     "name": "A Man Named Baudry Cartamon",
     "pack": null,
+    "provenance": "wiki",
     "quest_count": 3,
     "reward_count": 0,
-    "source": "wiki",
     "wiki_url": "https://ddowiki.com/page/A_Man_Named_Baudry_Cartamon"
   },
   {
     "id": 3,
     "name": "Against the Demon Queen",
     "pack": null,
+    "provenance": "wiki",
     "quest_count": 5,
     "reward_count": 0,
-    "source": "wiki",
     "wiki_url": "https://ddowiki.com/page/Against_the_Demon_Queen_(story_arc)"
   },
   {
     "id": 4,
     "name": "Assault on Splinterskull",
     "pack": null,
+    "provenance": "wiki",
     "quest_count": 10,
     "reward_count": 21,
-    "source": "wiki",
     "wiki_url": "https://ddowiki.com/page/Assault_on_Splinterskull"
   }
 ]

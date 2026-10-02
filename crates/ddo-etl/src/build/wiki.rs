@@ -1,6 +1,6 @@
 use super::drop_text::{
-    insert_drop, insert_drop_unless_dropped_as, insert_drop_unless_loot_drops_there, mark_quest_drop_rare,
-    DropTextLinker, DroppedLoot, LootDrop,
+    insert_source_link, insert_source_link_unless_linked_as, insert_source_link_unless_loot_linked_there,
+    mark_quest_source_link_rare, DropTextLinker, DroppedLoot, SourceLink,
 };
 use super::items::{ArmorStatsRow, ItemRow, WeaponStatsRow};
 use super::{BuildReport, ProbableDuplicateWikiEntry, SupersededWikiEntry, TableWriter};
@@ -10,7 +10,7 @@ use crate::wiki::{
     WikiItemEffect, WikiOverrides, WikiQuest,
 };
 use anyhow::{bail, Context, Result};
-use ddo_model::enums::{LootType, RowSource};
+use ddo_model::enums::{LootType, Provenance};
 use rusqlite::{params, OptionalExtension, Transaction};
 use std::collections::{HashMap, HashSet};
 
@@ -158,7 +158,7 @@ fn insert_wiki_quest(transaction: &Transaction, wiki_quest: &WikiQuest) -> Resul
         None => None,
     };
     transaction.execute(
-        "INSERT INTO quests (name, pack_id, patron_id, level, epic_level, favor, is_raid, difficulties, source)
+        "INSERT INTO quests (name, pack_id, patron_id, level, epic_level, favor, is_raid, difficulties, provenance)
          VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9)",
         params![
             wiki_quest.name,
@@ -169,7 +169,7 @@ fn insert_wiki_quest(transaction: &Transaction, wiki_quest: &WikiQuest) -> Resul
             wiki_quest.favor,
             wiki_quest.is_raid.unwrap_or_default(),
             serde_json::to_string(wiki_quest.difficulties.as_deref().unwrap_or_default())?,
-            RowSource::Wiki.as_str(),
+            Provenance::Wiki.as_str(),
         ],
     )?;
     Ok(())
@@ -364,9 +364,11 @@ fn augment_ids_named_in(transaction: &Transaction, augment_name: &str, families:
 }
 
 fn mark_rare_loot(transaction: &Transaction, quest_id: i64, loot: DroppedLoot, chest: Option<&str>) -> Result<usize> {
-    let added_link_count =
-        insert_drop_unless_loot_drops_there(transaction, &LootDrop::from_quest(quest_id, loot, LootType::Chest))?;
-    mark_quest_drop_rare(transaction, quest_id, loot, chest)?;
+    let added_link_count = insert_source_link_unless_loot_linked_there(
+        transaction,
+        &SourceLink::from_quest(quest_id, loot, LootType::Chest),
+    )?;
+    mark_quest_source_link_rare(transaction, quest_id, loot, chest)?;
     Ok(added_link_count)
 }
 
@@ -376,12 +378,12 @@ fn insert_listed_loot_link(
     loot: DroppedLoot,
     listed_drop: &ListedDrop,
 ) -> Result<usize> {
-    let listed_loot_drop =
-        LootDrop { chest: listed_drop.chest(), ..LootDrop::from_quest(quest_id, loot, listed_drop.loot_type()) };
+    let listed_source_link =
+        SourceLink { chest: listed_drop.chest(), ..SourceLink::from_quest(quest_id, loot, listed_drop.loot_type()) };
     if listed_drop.names_loot_type() {
-        insert_drop_unless_dropped_as(transaction, &listed_loot_drop)
+        insert_source_link_unless_linked_as(transaction, &listed_source_link)
     } else {
-        insert_drop_unless_loot_drops_there(transaction, &listed_loot_drop)
+        insert_source_link_unless_loot_linked_there(transaction, &listed_source_link)
     }
 }
 
@@ -492,7 +494,7 @@ impl TableWriter<'_> {
             accepts_sentience: wiki_item.accepts_sentience,
             is_minor_artifact: wiki_item.is_minor_artifact,
             wiki_url: wiki_item.page.clone(),
-            source: RowSource::Wiki,
+            provenance: Provenance::Wiki,
         })?;
         if let (Some(weapon), Some(weapon_type)) = (&wiki_item.weapon, wiki_item.weapon_type()) {
             self.insert_weapon_stats(
@@ -541,7 +543,10 @@ impl TableWriter<'_> {
             self.insert_item_augment_slot(item_id, sort_order, slot_type_id)?;
         }
         for (quest_id, loot_type) in quest_links {
-            insert_drop(self.transaction, &LootDrop::from_quest(quest_id, DroppedLoot::Item(item_id), loot_type))?;
+            insert_source_link(
+                self.transaction,
+                &SourceLink::from_quest(quest_id, DroppedLoot::Item(item_id), loot_type),
+            )?;
         }
         if let Some(set_name) = &wiki_item.set {
             self.pending_set_item_links.push((item_id, set_name.clone()));
@@ -561,10 +566,10 @@ impl TableWriter<'_> {
         let maetrim_augment_names_by_family: HashMap<String, Vec<String>> = {
             let mut statement = self
                 .transaction
-                .prepare("SELECT family, name FROM augments WHERE source = ?1 ORDER BY family, name")?;
+                .prepare("SELECT family, name FROM augments WHERE provenance = ?1 ORDER BY family, name")?;
             let mut names_by_family: HashMap<String, Vec<String>> = HashMap::new();
             for family_and_name in statement
-                .query_map([RowSource::Maetrim.as_str()], |r| Ok((r.get::<_, String>(0)?, r.get::<_, String>(1)?)))?
+                .query_map([Provenance::Maetrim.as_str()], |r| Ok((r.get::<_, String>(0)?, r.get::<_, String>(1)?)))?
             {
                 let (family, name) = family_and_name?;
                 names_by_family.entry(family).or_default().push(name);
@@ -619,7 +624,7 @@ impl TableWriter<'_> {
             })
             .collect::<Result<Vec<i64>>>()?;
         self.transaction.execute(
-            "INSERT INTO augments (name, family, description, effect_description, min_level, set_bonus, source)
+            "INSERT INTO augments (name, family, description, effect_description, min_level, set_bonus, provenance)
              VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7)",
             params![
                 wiki_augment.name,
@@ -628,7 +633,7 @@ impl TableWriter<'_> {
                 wiki_augment.effect_description,
                 wiki_augment.min_level,
                 wiki_augment.set,
-                RowSource::Wiki.as_str(),
+                Provenance::Wiki.as_str(),
             ],
         )?;
         let augment_id = self.transaction.last_insert_rowid();

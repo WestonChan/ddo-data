@@ -45,7 +45,7 @@ fn ddl_creates_every_v2_table() {
         "item_effects",
         "item_augment_slots",
         "item_augment_slot_options",
-        "drops",
+        "sources",
         "quest_chains",
         "quest_chain_quests",
         "sagas",
@@ -125,21 +125,21 @@ fn items_come_from_maetrim_unless_the_wiki_supplied_them() {
     ddo_model::seeds::insert_all(&db).unwrap();
     db.execute("INSERT INTO items (name, slot_id, item_category) VALUES ('His Ring', 15, 'Jewelry')", []).unwrap();
     db.execute(
-        "INSERT INTO items (name, slot_id, item_category, source) VALUES ('Wiki Ring', 15, 'Jewelry', 'wiki')",
+        "INSERT INTO items (name, slot_id, item_category, provenance) VALUES ('Wiki Ring', 15, 'Jewelry', 'wiki')",
         [],
     )
     .unwrap();
-    let sources: Vec<String> = db
-        .prepare("SELECT source FROM items ORDER BY id")
+    let provenances: Vec<String> = db
+        .prepare("SELECT provenance FROM items ORDER BY id")
         .unwrap()
         .query_map([], |r| r.get(0))
         .unwrap()
         .map(Result::unwrap)
         .collect();
-    assert_eq!(sources, ["maetrim", "wiki"]);
+    assert_eq!(provenances, ["maetrim", "wiki"]);
     assert!(db
         .execute(
-            "INSERT INTO items (name, slot_id, item_category, source) VALUES ('Odd Ring', 15, 'Jewelry', 'ddowiki')",
+            "INSERT INTO items (name, slot_id, item_category, provenance) VALUES ('Odd Ring', 15, 'Jewelry', 'ddowiki')",
             []
         )
         .is_err());
@@ -149,35 +149,35 @@ fn items_come_from_maetrim_unless_the_wiki_supplied_them() {
 fn quests_come_from_maetrim_unless_the_wiki_supplied_them() {
     let db = fresh_db();
     db.execute("INSERT INTO quests (name) VALUES ('His Quest')", []).unwrap();
-    db.execute("INSERT INTO quests (name, source) VALUES ('Wiki Quest', 'wiki')", []).unwrap();
-    let sources: Vec<String> = db
-        .prepare("SELECT source FROM quests ORDER BY id")
+    db.execute("INSERT INTO quests (name, provenance) VALUES ('Wiki Quest', 'wiki')", []).unwrap();
+    let provenances: Vec<String> = db
+        .prepare("SELECT provenance FROM quests ORDER BY id")
         .unwrap()
         .query_map([], |r| r.get(0))
         .unwrap()
         .map(Result::unwrap)
         .collect();
-    assert_eq!(sources, ["maetrim", "wiki"]);
-    assert!(db.execute("INSERT INTO quests (name, source) VALUES ('Odd Quest', 'ddowiki')", []).is_err());
+    assert_eq!(provenances, ["maetrim", "wiki"]);
+    assert!(db.execute("INSERT INTO quests (name, provenance) VALUES ('Odd Quest', 'ddowiki')", []).is_err());
 }
 
 #[test]
 fn augments_come_from_maetrim_unless_the_wiki_supplied_them() {
     let db = fresh_db();
     db.execute("INSERT INTO augments (name, family) VALUES ('His Gem', 'Named')", []).unwrap();
-    db.execute("INSERT INTO augments (name, family, source) VALUES ('Wiki Gem', 'Named', 'wiki')", []).unwrap();
-    let sources: Vec<String> = db
-        .prepare("SELECT source FROM augments ORDER BY id")
+    db.execute("INSERT INTO augments (name, family, provenance) VALUES ('Wiki Gem', 'Named', 'wiki')", []).unwrap();
+    let provenances: Vec<String> = db
+        .prepare("SELECT provenance FROM augments ORDER BY id")
         .unwrap()
         .query_map([], |r| r.get(0))
         .unwrap()
         .map(Result::unwrap)
         .collect();
-    assert_eq!(sources, ["maetrim", "wiki"]);
+    assert_eq!(provenances, ["maetrim", "wiki"]);
     assert!(db
-        .execute("INSERT INTO augments (name, family, source) VALUES ('Odd Gem', 'Named', 'ddowiki')", [])
+        .execute("INSERT INTO augments (name, family, provenance) VALUES ('Odd Gem', 'Named', 'ddowiki')", [])
         .is_err());
-    assert_eq!(SCHEMA_VERSION, 14);
+    assert_eq!(SCHEMA_VERSION, 15);
 }
 
 #[test]
@@ -248,9 +248,9 @@ fn corrections_record_each_kind_field_and_value_change_once() {
     assert!(insert_correction("gem", "").is_err(), "kind is one of the correctable tables");
 }
 
-fn insert_drop(db: &Connection, columns_and_values: &str) -> rusqlite::Result<usize> {
+fn insert_source(db: &Connection, columns_and_values: &str) -> rusqlite::Result<usize> {
     let (columns, values) = columns_and_values.split_once(" = ").unwrap();
-    db.execute(&format!("INSERT INTO drops ({columns}) VALUES ({values})"), [])
+    db.execute(&format!("INSERT INTO sources ({columns}) VALUES ({values})"), [])
 }
 
 fn db_with_one_source_of_each_kind() -> Connection {
@@ -260,8 +260,8 @@ fn db_with_one_source_of_each_kind() -> Connection {
          INSERT INTO items (id, name, slot_id, item_category) VALUES (1, 'Rusted Crown', 1, 'Jewelry');
          INSERT INTO adventure_packs (id, name) VALUES (1, 'Magic of Myth Drannor');
          INSERT INTO quests (id, name) VALUES (1, 'Book Burning');
-         INSERT INTO quest_chains (id, name, source, wiki_url) VALUES (1, 'The Necropolis', 'wiki', 'https://ddowiki.com/page/Necropolis');
-         INSERT INTO sagas (id, name, source, wiki_url) VALUES (1, 'Dread', 'wiki', 'https://ddowiki.com/page/Dread');
+         INSERT INTO quest_chains (id, name, provenance, wiki_url) VALUES (1, 'The Necropolis', 'wiki', 'https://ddowiki.com/page/Necropolis');
+         INSERT INTO sagas (id, name, provenance, wiki_url) VALUES (1, 'Dread', 'wiki', 'https://ddowiki.com/page/Dread');
          INSERT INTO augments (id, name, family) VALUES (1, 'Lunar Gem of Magical Protection (Heroic)', 'SunAndMoon');",
     )
     .unwrap();
@@ -269,49 +269,43 @@ fn db_with_one_source_of_each_kind() -> Connection {
 }
 
 #[test]
-fn drops_links_each_loot_to_exactly_one_source_of_its_kind() {
+fn sources_link_each_loot_to_exactly_one_source_of_its_kind() {
     let db = db_with_one_source_of_each_kind();
-    for valid_drop in [
-        "source_kind, quest_id, item_id, loot_type, chest = 'quest', 1, 1, 'chest', 'end chest'",
-        "source_kind, quest_id, item_id, loot_type = 'quest', 1, 1, 'reward'",
-        "source_kind, quest_id, augment_id, loot_type = 'quest', 1, 1, 'raid'",
-        "source_kind, chain_id, item_id = 'quest_chain', 1, 1",
-        "source_kind, saga_id, item_id, tier = 'saga', 1, 1, 'legendary'",
-        "source_kind, saga_id, item_id = 'saga', 1, 1",
-        "source_kind, pack_id, item_id, loot_type, is_rare = 'adventure_pack', 1, 1, 'chest', 1",
-        "source_kind, pack_id, augment_id, loot_type = 'adventure_pack', 1, 1, 'chest'",
+    for valid_source in [
+        "kind, quest_id, item_id, loot_type, chest = 'quest', 1, 1, 'chest', 'end chest'",
+        "kind, quest_id, item_id, loot_type = 'quest', 1, 1, 'reward'",
+        "kind, quest_id, augment_id, loot_type = 'quest', 1, 1, 'raid'",
+        "kind, chain_id, item_id = 'quest_chain', 1, 1",
+        "kind, saga_id, item_id, tier = 'saga', 1, 1, 'legendary'",
+        "kind, saga_id, item_id = 'saga', 1, 1",
+        "kind, pack_id, item_id, loot_type, is_rare = 'adventure_pack', 1, 1, 'chest', 1",
+        "kind, pack_id, augment_id, loot_type = 'adventure_pack', 1, 1, 'chest'",
     ] {
-        insert_drop(&db, valid_drop).unwrap_or_else(|error| panic!("{valid_drop}: {error}"));
+        insert_source(&db, valid_source).unwrap_or_else(|error| panic!("{valid_source}: {error}"));
     }
-    for (invalid_drop, broken_rule) in [
-        ("source_kind, quest_id, pack_id, item_id, loot_type = 'quest', 1, 1, 1, 'chest'", "two sources"),
-        ("source_kind, item_id, loot_type = 'quest', 1, 'chest'", "no source"),
-        ("source_kind, pack_id, item_id, loot_type = 'quest', 1, 1, 'chest'", "a kind its source does not match"),
-        ("source_kind, quest_id, item_id, loot_type = 'bag', 1, 1, 'chest'", "an unknown kind"),
-        ("source_kind, quest_id, item_id, augment_id, loot_type = 'quest', 1, 1, 1, 'chest'", "two loots"),
-        ("source_kind, quest_id, loot_type = 'quest', 1, 'chest'", "no loot"),
-        ("source_kind, quest_id, item_id, loot_type, tier = 'quest', 1, 1, 'chest', 'epic'", "a tier on a quest drop"),
-        (
-            "source_kind, quest_id, item_id, loot_type, chest = 'quest', 1, 1, 'reward', 'end chest'",
-            "a chest on a reward",
-        ),
-        ("source_kind, chain_id, item_id, chest = 'quest_chain', 1, 1, 'end chest'", "a chest on a chain reward"),
-        ("source_kind, quest_id, item_id = 'quest', 1, 1", "a quest drop without a loot type"),
-        ("source_kind, saga_id, item_id, loot_type = 'saga', 1, 1, 'reward'", "a loot type on a saga reward"),
-        ("source_kind, quest_id, item_id, loot_type = 'quest', 1, 1, 'bag'", "an unknown loot type"),
-        ("source_kind, saga_id, item_id, tier = 'saga', 1, 1, 'mythic'", "an unknown tier"),
-        ("source_kind, quest_id, item_id, loot_type = 'quest', 1, 1, 'chest'", "a second identical quest drop"),
-        ("source_kind, chain_id, item_id = 'quest_chain', 1, 1", "a second identical chain reward"),
-        ("source_kind, saga_id, item_id = 'saga', 1, 1", "a second untiered saga reward"),
-        (
-            "source_kind, pack_id, augment_id, loot_type = 'adventure_pack', 1, 1, 'chest'",
-            "a second identical pack drop",
-        ),
+    for (invalid_source, broken_rule) in [
+        ("kind, quest_id, pack_id, item_id, loot_type = 'quest', 1, 1, 1, 'chest'", "two sources"),
+        ("kind, item_id, loot_type = 'quest', 1, 'chest'", "no source"),
+        ("kind, pack_id, item_id, loot_type = 'quest', 1, 1, 'chest'", "a kind its source does not match"),
+        ("kind, quest_id, item_id, loot_type = 'bag', 1, 1, 'chest'", "an unknown kind"),
+        ("kind, quest_id, item_id, augment_id, loot_type = 'quest', 1, 1, 1, 'chest'", "two loots"),
+        ("kind, quest_id, loot_type = 'quest', 1, 'chest'", "no loot"),
+        ("kind, quest_id, item_id, loot_type, tier = 'quest', 1, 1, 'chest', 'epic'", "a tier on a quest drop"),
+        ("kind, quest_id, item_id, loot_type, chest = 'quest', 1, 1, 'reward', 'end chest'", "a chest on a reward"),
+        ("kind, chain_id, item_id, chest = 'quest_chain', 1, 1, 'end chest'", "a chest on a chain reward"),
+        ("kind, quest_id, item_id = 'quest', 1, 1", "a quest drop without a loot type"),
+        ("kind, saga_id, item_id, loot_type = 'saga', 1, 1, 'reward'", "a loot type on a saga reward"),
+        ("kind, quest_id, item_id, loot_type = 'quest', 1, 1, 'bag'", "an unknown loot type"),
+        ("kind, saga_id, item_id, tier = 'saga', 1, 1, 'mythic'", "an unknown tier"),
+        ("kind, quest_id, item_id, loot_type = 'quest', 1, 1, 'chest'", "a second identical quest drop"),
+        ("kind, chain_id, item_id = 'quest_chain', 1, 1", "a second identical chain reward"),
+        ("kind, saga_id, item_id = 'saga', 1, 1", "a second untiered saga reward"),
+        ("kind, pack_id, augment_id, loot_type = 'adventure_pack', 1, 1, 'chest'", "a second identical pack drop"),
     ] {
-        assert!(insert_drop(&db, invalid_drop).is_err(), "{broken_rule} must fail: {invalid_drop}");
+        assert!(insert_source(&db, invalid_source).is_err(), "{broken_rule} must fail: {invalid_source}");
     }
     assert_eq!(
-        db.query_row("SELECT COUNT(*) FROM drops", [], |r| r.get::<_, i64>(0)).unwrap(),
+        db.query_row("SELECT COUNT(*) FROM sources", [], |r| r.get::<_, i64>(0)).unwrap(),
         8,
         "an item and an augment with one id are different loot"
     );
@@ -339,7 +333,7 @@ fn quest_chains_and_sagas_share_their_columns_quest_links_and_reward_shape() {
     assert_eq!(column_shapes(&db, "quest_chains", &[]), column_shapes(&db, "sagas", &[]));
     assert_eq!(
         column_shapes(&db, "quest_chains", &[]).iter().map(|(name, ..)| name.as_str()).collect::<Vec<_>>(),
-        ["id", "name", "pack_id", "source", "wiki_url"]
+        ["id", "name", "pack_id", "provenance", "wiki_url"]
     );
     assert_eq!(
         column_shapes(&db, "quest_chain_quests", &["chain_id"]),
@@ -351,26 +345,26 @@ fn quest_chains_and_sagas_share_their_columns_quest_links_and_reward_shape() {
 fn a_saga_reward_has_one_row_per_item_and_tier() {
     let db = db_with_one_source_of_each_kind();
     for tier in ["'epic'", "'legendary'", "NULL"] {
-        insert_drop(&db, &format!("source_kind, saga_id, item_id, tier = 'saga', 1, 1, {tier}")).unwrap();
+        insert_source(&db, &format!("kind, saga_id, item_id, tier = 'saga', 1, 1, {tier}")).unwrap();
         assert!(
-            insert_drop(&db, &format!("source_kind, saga_id, item_id, tier = 'saga', 1, 1, {tier}")).is_err(),
+            insert_source(&db, &format!("kind, saga_id, item_id, tier = 'saga', 1, 1, {tier}")).is_err(),
             "one row per item and tier {tier}"
         );
     }
     assert!(
         db.execute(
-            "INSERT INTO sagas (name, source, wiki_url) VALUES ('Odd Saga', 'ddowiki', 'https://ddowiki.com/page/Odd')",
+            "INSERT INTO sagas (name, provenance, wiki_url) VALUES ('Odd Saga', 'ddowiki', 'https://ddowiki.com/page/Odd')",
             []
         )
         .is_err(),
-        "source is maetrim or wiki"
+        "provenance is maetrim or wiki"
     );
 }
 
 #[test]
-fn drops_records_the_chest_as_free_text() {
+fn sources_record_the_chest_as_free_text() {
     let db = fresh_db();
-    let mut statement = db.prepare("SELECT name, type FROM pragma_table_info('drops') ORDER BY cid").unwrap();
+    let mut statement = db.prepare("SELECT name, type FROM pragma_table_info('sources') ORDER BY cid").unwrap();
     let columns: Vec<(String, String)> =
         statement.query_map([], |r| Ok((r.get(0)?, r.get(1)?))).unwrap().map(Result::unwrap).collect();
     let column_names: Vec<&str> = columns.iter().map(|(name, _)| name.as_str()).collect();
@@ -378,7 +372,7 @@ fn drops_records_the_chest_as_free_text() {
         column_names,
         [
             "id",
-            "source_kind",
+            "kind",
             "quest_id",
             "chain_id",
             "saga_id",

@@ -46,14 +46,14 @@ fn flags_an_item_whose_every_drop_segment_names_a_legacy_source() {
     assert!(is_legacy(&db, LEGACY_TOEE_AXE), "'{PART_ONE}, and {PART_TWO} any chest' names only legacy sources");
     assert!(!is_legacy(&db, "Sireth, Spear of the Sky"));
     assert_eq!(report.legacy_source_flagged_count, 1);
-    let axe_drop_count: i64 = db
+    let axe_source_count: i64 = db
         .query_row(
-            "SELECT COUNT(*) FROM drops JOIN items ON items.id = drops.item_id WHERE items.name = ?1",
+            "SELECT COUNT(*) FROM sources JOIN items ON items.id = sources.item_id WHERE items.name = ?1",
             params![LEGACY_TOEE_AXE],
             |r| r.get(0),
         )
         .unwrap();
-    assert_eq!(axe_drop_count, 0);
+    assert_eq!(axe_source_count, 0);
 }
 
 #[test]

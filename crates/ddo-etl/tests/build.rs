@@ -42,7 +42,7 @@ fn builds_items_and_skips_cosmetics() {
     let (db, report) = built_fixture_db();
     assert_eq!(report.written_item_count, 40);
     assert_eq!(report.skipped_cosmetic_item_count, 1);
-    assert_eq!(count(&db, "SELECT COUNT(*) FROM items WHERE source = 'maetrim'"), 40);
+    assert_eq!(count(&db, "SELECT COUNT(*) FROM items WHERE provenance = 'maetrim'"), 40);
     assert_eq!(count(&db, "SELECT COUNT(*) FROM items WHERE name = '17th Anniversary Dark Helm'"), 0);
     let reason: String = db
         .query_row("SELECT reason FROM excluded_items WHERE name = '17th Anniversary Dark Helm'", [], |r| r.get(0))
@@ -369,7 +369,7 @@ fn writes_augment_slots_and_presets() {
 #[test]
 fn links_items_to_quests_from_drop_location() {
     let (db, report) = built_fixture_db();
-    assert_eq!(count(&db, "SELECT COUNT(*) FROM quests WHERE NOT is_challenge AND source = 'maetrim'"), 22);
+    assert_eq!(count(&db, "SELECT COUNT(*) FROM quests WHERE NOT is_challenge AND provenance = 'maetrim'"), 22);
     assert_eq!(count(&db, "SELECT COUNT(*) FROM patrons"), 22);
     assert!(count(&db, "SELECT COUNT(*) FROM adventure_packs") >= 5);
     let (level, epic_level, is_raid, pack): (i64, Option<i64>, bool, String) = db
@@ -384,7 +384,7 @@ fn links_items_to_quests_from_drop_location() {
     let sireth = item_id(&db, "Sireth, Spear of the Sky");
     let (quest, loot): (String, String) = db
         .query_row(
-            "SELECT q.name, ql.loot_type FROM drops ql JOIN quests q ON q.id = ql.quest_id WHERE ql.item_id = ?1",
+            "SELECT q.name, ql.loot_type FROM sources ql JOIN quests q ON q.id = ql.quest_id WHERE ql.item_id = ?1",
             params![sireth],
             |r| Ok((r.get(0)?, r.get(1)?)),
         )
@@ -393,14 +393,12 @@ fn links_items_to_quests_from_drop_location() {
 
     let docent = item_id(&db, "Docent of Defiance");
     let loot: String = db
-        .query_row("SELECT loot_type FROM drops WHERE source_kind = 'quest' AND item_id = ?1", params![docent], |r| {
-            r.get(0)
-        })
+        .query_row("SELECT loot_type FROM sources WHERE kind = 'quest' AND item_id = ?1", params![docent], |r| r.get(0))
         .unwrap();
     assert_eq!(loot, "chest", "'The Cursed Crypt, End Chest' is a non-raid chest drop");
 
     let axe = item_id(&db, "+3 Combustion Scorched Battle Axe");
-    assert_eq!(count(&db, &format!("SELECT COUNT(*) FROM drops WHERE source_kind = 'quest' AND item_id = {axe}")), 0);
+    assert_eq!(count(&db, &format!("SELECT COUNT(*) FROM sources WHERE kind = 'quest' AND item_id = {axe}")), 0);
     let drop: String =
         db.query_row("SELECT drop_location FROM items WHERE id = ?1", params![axe], |r| r.get(0)).unwrap();
     assert!(drop.starts_with("Temple of Elemental Evil Part One"));
@@ -414,7 +412,7 @@ fn quest_loot_types(db: &Connection, quest: &str, item: &str) -> Vec<String> {
 fn quest_loot_chests(db: &Connection, quest: &str, item: &str) -> Vec<(String, Option<String>)> {
     let mut statement = db
         .prepare(
-            "SELECT ql.loot_type, ql.chest FROM drops ql JOIN quests q ON q.id = ql.quest_id JOIN items i ON i.id = ql.item_id
+            "SELECT ql.loot_type, ql.chest FROM sources ql JOIN quests q ON q.id = ql.quest_id JOIN items i ON i.id = ql.item_id
               WHERE q.name = ?1 AND i.name = ?2 ORDER BY ql.loot_type",
         )
         .unwrap();
@@ -447,7 +445,7 @@ fn links_augments_to_the_quests_their_descriptions_name() {
     let augment_links = |augment: &str| -> Vec<(String, String, bool, Option<String>)> {
         let mut statement = db
             .prepare(
-                "SELECT q.name, qal.loot_type, qal.is_rare, qal.chest FROM drops qal
+                "SELECT q.name, qal.loot_type, qal.is_rare, qal.chest FROM sources qal
                    JOIN quests q ON q.id = qal.quest_id JOIN augments a ON a.id = qal.augment_id
                   WHERE a.name = ?1 ORDER BY q.name",
             )
@@ -489,7 +487,7 @@ fn records_the_chest_each_item_drops_from() {
     let (db, _) = built_fixture_db();
     let chest_of = |quest: &str, item: &str| -> Option<String> {
         db.query_row(
-            "SELECT ql.chest FROM drops ql JOIN quests q ON q.id = ql.quest_id JOIN items i ON i.id = ql.item_id
+            "SELECT ql.chest FROM sources ql JOIN quests q ON q.id = ql.quest_id JOIN items i ON i.id = ql.item_id
               WHERE q.name = ?1 AND i.name = ?2",
             [quest, item],
             |r| r.get(0),
@@ -514,7 +512,7 @@ fn matches_quest_names_his_drop_text_capitalises_differently() {
     let item_chests = |item: &str| -> Vec<(String, Option<String>)> {
         let mut statement = db
             .prepare(
-                "SELECT q.name, ql.chest FROM drops ql JOIN quests q ON q.id = ql.quest_id
+                "SELECT q.name, ql.chest FROM sources ql JOIN quests q ON q.id = ql.quest_id
                    JOIN items i ON i.id = ql.item_id WHERE i.name = ?1 ORDER BY q.name",
             )
             .unwrap();
@@ -535,7 +533,7 @@ fn matches_quest_names_his_drop_text_capitalises_differently() {
     let augment_quests = |augment: &str| -> Vec<String> {
         let mut statement = db
             .prepare(
-                "SELECT q.name FROM drops qal JOIN quests q ON q.id = qal.quest_id
+                "SELECT q.name FROM sources qal JOIN quests q ON q.id = qal.quest_id
                    JOIN augments a ON a.id = qal.augment_id WHERE a.name = ?1",
             )
             .unwrap();
@@ -550,7 +548,7 @@ fn matches_a_quest_name_his_drop_text_wraps_onto_the_next_line() {
     let (db, _) = built_fixture_db();
     let mut statement = db
         .prepare(
-            "SELECT q.name, qal.is_rare, qal.chest FROM drops qal JOIN quests q ON q.id = qal.quest_id
+            "SELECT q.name, qal.is_rare, qal.chest FROM sources qal JOIN quests q ON q.id = qal.quest_id
                JOIN augments a ON a.id = qal.augment_id WHERE a.name = 'Ruby of Acid Blast' ORDER BY q.name",
         )
         .unwrap();
@@ -772,7 +770,7 @@ fn links_sets_to_the_augments_that_grant_them() {
     let rows: Vec<(String, String)> = db
         .prepare(
             "SELECT s.name, a.name FROM set_bonus_augments sba JOIN set_bonuses s ON s.id = sba.set_id
-               JOIN augments a ON a.id = sba.augment_id WHERE a.source = 'maetrim' ORDER BY s.name, a.name",
+               JOIN augments a ON a.id = sba.augment_id WHERE a.provenance = 'maetrim' ORDER BY s.name, a.name",
         )
         .unwrap()
         .query_map([], |r| Ok((r.get(0)?, r.get(1)?)))

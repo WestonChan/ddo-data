@@ -12,8 +12,8 @@
       "minimum_level": 11,
       "name": "Ring of Baphomet",
       "pack": "Demon Sands",
-      "slot": "Ring",
-      "source": "maetrim"
+      "provenance": "maetrim",
+      "slot": "Ring"
     },
     {
       "category": "Jewelry",
@@ -27,8 +27,8 @@
       "minimum_level": 21,
       "name": "Ring of Brutal Force",
       "pack": "Keep on the Borderlands",
-      "slot": "Ring",
-      "source": "maetrim"
+      "provenance": "maetrim",
+      "slot": "Ring"
     },
     {
       "category": "Jewelry",
@@ -42,8 +42,8 @@
       "minimum_level": 21,
       "name": "Ring of Crystalline Vanity",
       "pack": "Keep on the Borderlands",
-      "slot": "Ring",
-      "source": "maetrim"
+      "provenance": "maetrim",
+      "slot": "Ring"
     }
   ],
   "limit": 3,

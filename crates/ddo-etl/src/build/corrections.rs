@@ -3,7 +3,7 @@ use super::wiki::folded_effect_name;
 use super::{bonus_name, BuildReport, StaleCorrection, StaleCorrectionCause};
 use crate::corrections::{BonusAddition, CorrectableField, Correction, CorrectionValue, Corrections, FieldShape};
 use anyhow::{bail, Context, Result};
-use ddo_model::enums::{CorrectionKind, ModifierSource, RowSource};
+use ddo_model::enums::{CorrectionKind, ModifierSource, Provenance};
 use rusqlite::types::Value as SqlValue;
 use rusqlite::{params, OptionalExtension, Transaction};
 
@@ -189,7 +189,7 @@ fn maetrim_row_ids_named(transaction: &Transaction, correction: &Correction, row
         | CorrectionKind::Quest
         | CorrectionKind::Augment
         | CorrectionKind::AugmentBonus => {
-            format!(" AND source = '{}'", RowSource::Maetrim.as_str())
+            format!(" AND provenance = '{}'", Provenance::Maetrim.as_str())
         }
         _ => String::new(),
     };

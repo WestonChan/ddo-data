@@ -7,7 +7,7 @@ use crate::map::material;
 use crate::map::placement::placement_of;
 use crate::xml::items::Item;
 use anyhow::{bail, Result};
-use ddo_model::enums::{ArmorType, EquipmentSlot, Handedness, ItemCategory, ModifierSource, RowSource};
+use ddo_model::enums::{ArmorType, EquipmentSlot, Handedness, ItemCategory, ModifierSource, Provenance};
 use rusqlite::params;
 
 pub(super) struct ItemRow<'a> {
@@ -26,7 +26,7 @@ pub(super) struct ItemRow<'a> {
     pub(super) accepts_sentience: bool,
     pub(super) is_minor_artifact: bool,
     pub(super) wiki_url: String,
-    pub(super) source: RowSource,
+    pub(super) provenance: Provenance,
 }
 
 pub(super) struct WeaponStatsRow<'a> {
@@ -114,7 +114,7 @@ impl TableWriter<'_> {
             accepts_sentience: item.accepts_sentience,
             is_minor_artifact: item.is_minor_artifact,
             wiki_url: item_wiki_url(item_name),
-            source: RowSource::Maetrim,
+            provenance: Provenance::Maetrim,
         })?;
 
         if let Some(weapon_type) = placement.weapon_type() {
@@ -210,7 +210,7 @@ impl TableWriter<'_> {
     pub(super) fn insert_item_row(&self, row: &ItemRow) -> Result<i64> {
         self.transaction.execute(
             "INSERT INTO items (name, slot_id, item_category, item_type, minimum_level, enhancement_bonus, material_id, race_required,
-                                icon, description, drop_location, set_bonus, accepts_sentience, is_minor_artifact, is_legacy, wiki_url, source)
+                                icon, description, drop_location, set_bonus, accepts_sentience, is_minor_artifact, is_legacy, wiki_url, provenance)
              VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11, ?12, ?13, ?14, ?15, ?16, ?17)",
             params![
                 row.name,
@@ -229,7 +229,7 @@ impl TableWriter<'_> {
                 row.is_minor_artifact,
                 names_legacy_version(row.name),
                 row.wiki_url,
-                row.source.as_str(),
+                row.provenance.as_str(),
             ],
         )?;
         Ok(self.transaction.last_insert_rowid())

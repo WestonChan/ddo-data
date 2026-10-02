@@ -101,7 +101,7 @@ fn writes_a_new_wiki_augment_with_its_slots_bonuses_and_set() {
     let (db, report) = built_db_with_fixture_augments();
     let augment_row: (String, Option<String>, Option<String>, i64, Option<String>, String) = db
         .query_row(
-            "SELECT family, description, effect_description, min_level, set_bonus, source FROM augments WHERE name = ?1",
+            "SELECT family, description, effect_description, min_level, set_bonus, provenance FROM augments WHERE name = ?1",
             [WIKI_GEM],
             |r| Ok((r.get(0)?, r.get(1)?, r.get(2)?, r.get(3)?, r.get(4)?, r.get(5)?)),
         )
@@ -141,7 +141,7 @@ fn writes_a_new_wiki_augment_with_its_slots_bonuses_and_set() {
         ["Eminence of Winter"]
     );
     assert_eq!(report.wiki_augment_written_count, 1);
-    assert_eq!(augment_count(&db, "source = 'wiki'"), 1);
+    assert_eq!(augment_count(&db, "provenance = 'wiki'"), 1);
     assert_eq!(report.wiki_augment_probable_duplicate_count, 0);
 }
 
@@ -150,7 +150,7 @@ fn drops_a_wiki_augment_maetrim_carries_in_that_family_and_reports_it() {
     let (without, _) = built_db_with(&WikiOverrides::default()).unwrap();
     let (with, report) = built_db_with_fixture_augments();
     assert_eq!(augment_count(&with, "name = 'Storm''s Bulwark'"), 1);
-    assert_eq!(augment_count(&with, "name = 'Storm''s Bulwark' AND source = 'maetrim'"), 1);
+    assert_eq!(augment_count(&with, "name = 'Storm''s Bulwark' AND provenance = 'maetrim'"), 1);
     let description_sql = "SELECT description FROM augments WHERE name = 'Storm''s Bulwark'";
     assert_eq!(string_column(&with, description_sql), string_column(&without, description_sql));
     assert_eq!(report.wiki_augment_superseded_count, 1);
@@ -167,7 +167,7 @@ fn writes_a_wiki_augment_whose_name_maetrim_uses_only_in_another_family() {
     })
     .unwrap();
     let (db, report) = built_db_with(&wiki).unwrap();
-    assert_eq!(augment_count(&db, "name = 'Storm''s Bulwark' AND family = 'Ruby' AND source = 'wiki'"), 1);
+    assert_eq!(augment_count(&db, "name = 'Storm''s Bulwark' AND family = 'Ruby' AND provenance = 'wiki'"), 1);
     assert_eq!((report.wiki_augment_written_count, report.wiki_augment_superseded_count), (2, 0));
 }
 
@@ -176,7 +176,7 @@ fn writes_a_probable_duplicate_of_a_maetrim_augment_and_reports_both_names() {
     let wiki =
         parsed_edited_augments(|s| s.replace("name = \"Storm's Bulwark\"", "name = \"Storms Bulwark\"")).unwrap();
     let (db, report) = built_db_with(&wiki).unwrap();
-    assert_eq!(augment_count(&db, "name = 'Storms Bulwark' AND source = 'wiki'"), 1);
+    assert_eq!(augment_count(&db, "name = 'Storms Bulwark' AND provenance = 'wiki'"), 1);
     assert_eq!((report.wiki_augment_written_count, report.wiki_augment_probable_duplicate_count), (2, 1));
     assert_eq!(
         report.probable_duplicate_wiki_augments,
@@ -208,8 +208,8 @@ fn build_fails_naming_a_wiki_augment_value_absent_from_maetrims_files() {
 fn wiki_augments_never_change_maetrims_augments() {
     let (without, _) = built_db_with(&WikiOverrides::default()).unwrap();
     let (with, _) = built_db_with_fixture_augments();
-    assert_eq!(augment_count(&with, "source = 'maetrim'"), augment_count(&without, "1"));
-    assert_eq!(augment_count(&without, "source = 'wiki'"), 0);
+    assert_eq!(augment_count(&with, "provenance = 'maetrim'"), augment_count(&without, "1"));
+    assert_eq!(augment_count(&without, "provenance = 'wiki'"), 0);
 }
 
 #[test]
@@ -225,7 +225,7 @@ fn links_a_wiki_augment_to_the_quests_its_drop_text_names() {
     assert_eq!(
         string_column(
             &db,
-            "SELECT q.name || '|' || qal.loot_type || '|' || qal.chest FROM drops qal
+            "SELECT q.name || '|' || qal.loot_type || '|' || qal.chest FROM sources qal
                JOIN quests q ON q.id = qal.quest_id JOIN augments a ON a.id = qal.augment_id
               WHERE a.name = 'Test Gem of Oozing Resistance'"
         ),
@@ -244,7 +244,7 @@ fn a_crafting_recipe_may_yield_a_wiki_augment() {
     assert_eq!(
         string_column(
             &db,
-            "SELECT r.option || '|' || a.source FROM crafting_recipe_augments cra
+            "SELECT r.option || '|' || a.provenance FROM crafting_recipe_augments cra
                JOIN crafting_recipes r ON r.id = cra.recipe_id JOIN augments a ON a.id = cra.augment_id
               WHERE a.name = 'Test Gem of Oozing Resistance'"
         ),
@@ -262,7 +262,7 @@ fn a_rare_augment_drop_may_name_a_wiki_augment() {
     assert_eq!(
         string_column(
             &db,
-            "SELECT q.name || '|' || qal.is_rare FROM drops qal
+            "SELECT q.name || '|' || qal.is_rare FROM sources qal
                JOIN quests q ON q.id = qal.quest_id JOIN augments a ON a.id = qal.augment_id
               WHERE a.name = 'Test Gem of Oozing Resistance'"
         ),

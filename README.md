@@ -79,7 +79,7 @@ download the whole database once from `/v1/dump.sqlite` rather than paging the l
 | `/v1/spells`, `/v1/spells/{id}`, `/v1/clickies` | Spells and item clickies |
 | `/v1/stats`, `/v1/bonus-types` | The stat and bonus-type vocabularies every `bonuses` array uses |
 | `/v1/equipment-slots`, `/v1/weapon-types`, `/v1/damage-types`, `/v1/augment-slot-types` | Item vocabularies, and the valid values for the item and augment filters |
-| `/v1/quests`, `/v1/adventure-packs`, `/v1/patrons` | Drop sources; `/v1/quests` includes challenges (`is_challenge`, `max_level`) |
+| `/v1/quests`, `/v1/adventure-packs`, `/v1/patrons` | Quests and packs items and augments drop in (each item's `sources`); `/v1/quests` includes challenges (`is_challenge`, `max_level`) |
 | `/v1/dump.sqlite` | The whole database |
 | `/icons/{family}/{Name}.png` | Icons; `family` is `items`, `augments`, `feats`, `enhancements`, `spells`, `classes`, `filigrees`, `sets`, `sentient-gems` or `ui`, and `Name` is the row's `icon` column |
 | `/v1/docs`, `/v1/openapi.json` | Interactive documentation and the OpenAPI 3.1 spec for that version; `/docs` and `/openapi.json` redirect to the latest |

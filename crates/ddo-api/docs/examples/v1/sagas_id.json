@@ -2,6 +2,7 @@
   "id": 1,
   "name": "The Haunting of Saltmarsh",
   "pack": "Sinister Secret of Saltmarsh",
+  "provenance": "wiki",
   "quest_count": 10,
   "quests": [
     {
@@ -47,6 +48,5 @@
       "tier": "epic"
     }
   ],
-  "source": "wiki",
   "wiki_url": "https://ddowiki.com/page/Sinister_Secret_of_Saltmarsh_(Legendary)"
 }

@@ -2,6 +2,7 @@
   "id": 1,
   "name": "The Lost Seekers",
   "pack": null,
+  "provenance": "wiki",
   "quest_count": 4,
   "quests": [
     {
@@ -44,6 +45,5 @@
       "slot": "Wrists"
     }
   ],
-  "source": "wiki",
   "wiki_url": "https://ddowiki.com/page/The_Lost_Seekers"
 }

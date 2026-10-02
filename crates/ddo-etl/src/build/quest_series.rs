@@ -1,8 +1,8 @@
-use super::drop_text::{insert_drop, DropSource, DroppedLoot, LootDrop};
+use super::drop_text::{insert_source_link, DroppedLoot, LootSource, SourceLink};
 use super::BuildReport;
 use crate::wiki::{QuestSeriesReward, WikiOverrides, WikiQuestSeries};
 use anyhow::{Context, Result};
-use ddo_model::enums::RowSource;
+use ddo_model::enums::Provenance;
 use rusqlite::{params, OptionalExtension, Transaction};
 
 #[derive(Clone, Copy)]
@@ -21,8 +21,10 @@ impl QuestSeriesTable {
 
     fn insert_series_sql(self) -> &'static str {
         match self {
-            Self::QuestChains => "INSERT INTO quest_chains (name, pack_id, source, wiki_url) VALUES (?1, ?2, ?3, ?4)",
-            Self::Sagas => "INSERT INTO sagas (name, pack_id, source, wiki_url) VALUES (?1, ?2, ?3, ?4)",
+            Self::QuestChains => {
+                "INSERT INTO quest_chains (name, pack_id, provenance, wiki_url) VALUES (?1, ?2, ?3, ?4)"
+            }
+            Self::Sagas => "INSERT INTO sagas (name, pack_id, provenance, wiki_url) VALUES (?1, ?2, ?3, ?4)",
         }
     }
 
@@ -40,10 +42,10 @@ impl QuestSeriesTable {
         }
     }
 
-    pub(super) fn drop_source(self, series_id: i64) -> DropSource {
+    pub(super) fn loot_source(self, series_id: i64) -> LootSource {
         match self {
-            Self::QuestChains => DropSource::QuestChain(series_id),
-            Self::Sagas => DropSource::Saga(series_id),
+            Self::QuestChains => LootSource::QuestChain(series_id),
+            Self::Sagas => LootSource::Saga(series_id),
         }
     }
 }
@@ -98,7 +100,7 @@ fn insert_quest_series<Reward>(
         None => None,
     };
     transaction
-        .execute(table.insert_series_sql(), params![series.name, pack_id, RowSource::Wiki.as_str(), series.page])?;
+        .execute(table.insert_series_sql(), params![series.name, pack_id, Provenance::Wiki.as_str(), series.page])?;
     let series_id = transaction.last_insert_rowid();
     for (sort_order, quest_name) in series.quests.iter().enumerate() {
         let quest_id = id_named(transaction, "SELECT id FROM quests WHERE name = ?1", quest_name)?.with_context(|| {
@@ -123,10 +125,10 @@ fn insert_quest_series_rewards<Reward: QuestSeriesReward>(
                 "{citation}: reward {item_name:?} is not in Maetrim's items or a wiki item; names must match exactly"
             )
         })?;
-        insert_drop(
+        insert_source_link(
             transaction,
-            &LootDrop {
-                source: table.drop_source(series_id),
+            &SourceLink {
+                source: table.loot_source(series_id),
                 loot: DroppedLoot::Item(item_id),
                 loot_type: None,
                 is_rare: reward.is_rare(),
