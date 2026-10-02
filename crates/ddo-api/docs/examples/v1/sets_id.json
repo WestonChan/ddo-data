@@ -12,13 +12,13 @@
   "is_filigree_set": false,
   "items": [
     {
-      "id": 5854,
+      "id": 5847,
       "minimum_level": 14,
       "name": "Lorikk's Champion",
       "slot": "Off Hand"
     },
     {
-      "id": 5857,
+      "id": 5850,
       "minimum_level": 13,
       "name": "Lorrik's Necklace",
       "slot": "Neck"
@@ -31,7 +31,7 @@
         {
           "bonus_type": "Equipment",
           "description": "Equipment Devotion 72: 72 Equipment bonus to Positive (Healing) spell power.",
-          "id": 948,
+          "id": 970,
           "name": "Positive Spell Power +72",
           "stat": "Positive Spell Power",
           "stat_category": "magical",
@@ -60,7 +60,7 @@
           "display_name": null,
           "effect_type": "SpellPower",
           "extra_types": null,
-          "id": 11866,
+          "id": 15677,
           "is_item_specific": false,
           "is_rare": false,
           "percent": false,
@@ -80,7 +80,7 @@
         {
           "bonus_type": "Equipment",
           "description": "Equipment Devotion 78: 78 Equipment bonus to Positive (Healing) spell power.",
-          "id": 881,
+          "id": 894,
           "name": "Positive Spell Power +78",
           "stat": "Positive Spell Power",
           "stat_category": "magical",
@@ -109,7 +109,7 @@
           "display_name": null,
           "effect_type": "SpellPower",
           "extra_types": null,
-          "id": 11867,
+          "id": 15678,
           "is_item_specific": false,
           "is_rare": false,
           "percent": false,

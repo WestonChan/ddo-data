@@ -409,6 +409,45 @@ async fn augments_hide_whether_maetrim_or_the_wiki_supplied_them() {
     assert_eq!(version["counts"]["wiki_augments"], 1);
 }
 
+async fn item_detail_named(search_text: &str) -> Value {
+    let (_, _, list) = get(&format!("/v1/items?include_legacy=true&q={search_text}")).await;
+    let id = list["items"][0]["id"].as_i64().unwrap();
+    let (status, _, item) = get(&format!("/v1/items/{id}")).await;
+    assert_eq!(status, StatusCode::OK, "{item}");
+    item
+}
+
+#[tokio::test]
+async fn item_detail_keeps_what_each_augment_slot_option_gives_on_the_option() {
+    let axe = item_detail_named("Combustion%20Scorched").await;
+    let first_tier = &axe["augment_slots"][0]["options"][0];
+    let bonus_lines: Vec<String> = first_tier["bonuses"]
+        .as_array()
+        .unwrap_or_else(|| panic!("an option lists its bonuses: {first_tier}"))
+        .iter()
+        .map(|bonus| format!("{} {} {}", bonus["stat"], bonus["bonus_type"], bonus["value"]))
+        .collect();
+    assert_eq!(bonus_lines, ["\"Spell Penetration\" \"Equipment\" 1", "\"Armor Class\" \"Insight\" 1"]);
+    assert_eq!(first_tier["modifiers"][1]["effect_type"], "ACBonus");
+    assert!(first_tier["grants_slot"].is_null());
+    assert_eq!(first_tier["sets"], serde_json::json!([]));
+    assert_eq!(axe["augment_slots"][1]["options"][0]["grants_slot"], "purple");
+    assert!(
+        !axe["bonuses"].as_array().unwrap().iter().any(|bonus| bonus["stat"] == "Spell Penetration"),
+        "an option's bonus is not the item's"
+    );
+
+    let sireth = item_detail_named("sireth").await;
+    assert_eq!(sireth["augment_slots"][0]["options"][0]["icon"], "Heroism");
+    assert_eq!(sireth["augment_slots"][3]["options"][0]["grants_slot"], "red");
+
+    let gauntlets = item_detail_named("Fabricator").await;
+    let option_sets = &gauntlets["augment_slots"][0]["options"][0]["sets"];
+    assert_eq!(option_sets[0]["name"], "Fabricator's Ingenuity");
+    assert!(option_sets[0]["id"].is_i64());
+    assert!(gauntlets["set"].is_null(), "the set is the option's until the player applies it");
+}
+
 #[tokio::test]
 async fn item_detail_joins_every_satellite() {
     let (_, _, list) = get("/v1/items?q=sireth").await;

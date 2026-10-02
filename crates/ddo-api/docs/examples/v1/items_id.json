@@ -2,36 +2,189 @@
   "accepts_sentience": false,
   "adventure_packs": [],
   "armor": null,
-  "augment_slots": [],
+  "augment_slots": [
+    {
+      "family": "crafting",
+      "label": "crafting: variant",
+      "options": [
+        {
+          "bonuses": [
+            {
+              "bonus_type": "Competence",
+              "description": null,
+              "id": 3827,
+              "name": "Attack Bonus +9",
+              "stat": "Attack Bonus",
+              "stat_category": "martial",
+              "value": 9,
+              "value2": null
+            }
+          ],
+          "description": "Accuracy IX: Passive: +9 Competence bonus to attack rolls",
+          "grants_slot": null,
+          "icon": null,
+          "id": 3491,
+          "min_level": 25,
+          "modifiers": [
+            {
+              "amount_type": "Simple",
+              "amounts": [
+                9
+              ],
+              "apply_as_item_effect": false,
+              "bonus": "Competence",
+              "bonus_type": "Competence",
+              "cap": null,
+              "damage": null,
+              "dice_bonus": null,
+              "dice_damage": null,
+              "dice_number": null,
+              "dice_sides": null,
+              "display_name": null,
+              "effect_type": "Weapon_Attack",
+              "extra_types": null,
+              "id": 12813,
+              "is_item_specific": false,
+              "is_rare": false,
+              "percent": false,
+              "rank": null,
+              "requirements": [],
+              "sort_order": 0,
+              "stack_source": null,
+              "targets": null,
+              "value": null
+            }
+          ],
+          "name": "Accuracy IX",
+          "sets": []
+        },
+        {
+          "bonuses": [
+            {
+              "bonus_type": "Resistance",
+              "description": null,
+              "id": 3828,
+              "name": "Armor Class +9",
+              "stat": "Armor Class",
+              "stat_category": "defensive",
+              "value": 9,
+              "value2": null
+            }
+          ],
+          "description": "Natural Armor +9: Passive: +9 Natural Armor Bonus to Armor Class.",
+          "grants_slot": null,
+          "icon": null,
+          "id": 3492,
+          "min_level": 25,
+          "modifiers": [
+            {
+              "amount_type": "Simple",
+              "amounts": [
+                9
+              ],
+              "apply_as_item_effect": false,
+              "bonus": "Resistance",
+              "bonus_type": "Resistance",
+              "cap": null,
+              "damage": null,
+              "dice_bonus": null,
+              "dice_damage": null,
+              "dice_number": null,
+              "dice_sides": null,
+              "display_name": null,
+              "effect_type": "NaturalArmor",
+              "extra_types": null,
+              "id": 12814,
+              "is_item_specific": false,
+              "is_rare": false,
+              "percent": false,
+              "rank": null,
+              "requirements": [],
+              "sort_order": 0,
+              "stack_source": null,
+              "targets": null,
+              "value": null
+            }
+          ],
+          "name": "Natural Armor +9",
+          "sets": []
+        },
+        {
+          "bonuses": [
+            {
+              "bonus_type": "Resistance",
+              "description": null,
+              "id": 2248,
+              "name": "Saving Throws +9",
+              "stat": "Saving Throws",
+              "stat_category": "defensive",
+              "value": 9,
+              "value2": null
+            }
+          ],
+          "description": "Resistance +9: Passive: +9 Resistance bonus to Fortitude, Reflex, and Will Saving Throws.",
+          "grants_slot": null,
+          "icon": null,
+          "id": 3493,
+          "min_level": 25,
+          "modifiers": [
+            {
+              "amount_type": "Simple",
+              "amounts": [
+                9
+              ],
+              "apply_as_item_effect": false,
+              "bonus": "Resistance",
+              "bonus_type": "Resistance",
+              "cap": null,
+              "damage": null,
+              "dice_bonus": null,
+              "dice_damage": null,
+              "dice_number": null,
+              "dice_sides": null,
+              "display_name": null,
+              "effect_type": "SaveBonus",
+              "extra_types": null,
+              "id": 12815,
+              "is_item_specific": false,
+              "is_rare": false,
+              "percent": false,
+              "rank": null,
+              "requirements": [],
+              "sort_order": 0,
+              "stack_source": null,
+              "targets": null,
+              "value": null
+            }
+          ],
+          "name": "Resistance +9",
+          "sets": []
+        }
+      ],
+      "qualifier": null,
+      "slot_type_id": 48,
+      "sort_order": 0,
+      "variant": "variant"
+    },
+    {
+      "family": "standard",
+      "label": "yellow",
+      "options": [],
+      "qualifier": null,
+      "slot_type_id": 7,
+      "sort_order": 1,
+      "variant": "yellow"
+    }
+  ],
   "bonuses": [
     {
       "bonus_type": "Enhancement",
       "description": null,
-      "id": 289,
-      "name": "Movement Speed +10",
-      "stat": "Movement Speed",
-      "stat_category": "other",
-      "value": 10,
-      "value2": null
-    },
-    {
-      "bonus_type": "Competence",
-      "description": "Competence Jump 7: Passive: 7 Competence bonus to the Jump skill.",
-      "id": 586,
-      "name": "Jump +7",
-      "stat": "Jump",
-      "stat_category": "skill",
-      "value": 7,
-      "value2": null
-    },
-    {
-      "bonus_type": "Competence",
-      "description": "Competence Tumble 7: Passive: 7 Competence bonus to the Tumble skill.",
-      "id": 587,
-      "name": "Tumble +7",
-      "stat": "Tumble",
-      "stat_category": "skill",
-      "value": 7,
+      "id": 1344,
+      "name": "Charisma +8",
+      "stat": "Charisma",
+      "stat_category": "ability",
+      "value": 8,
       "value2": null
     }
   ],
@@ -39,50 +192,81 @@
   "challenge_packs": [],
   "clickies": [],
   "crafting_systems": [],
-  "description": "A slightly tarnished ring with a faded engraving that must have been lost down\na sewer drain. When worn, the bearer is imbued with phenomenal agility.",
-  "drop_location": "The Lost Seekers, End reward",
+  "description": "Lost to a pocket, away from it's locket, the gem was precious indeed.\nOnce fit for a king, of whom bards did sing, the necklace is now in need.",
+  "drop_location": "Friends in Low Places, end chest (Epic Normal); Shadow Over Wheloon, quest chain end reward (Epic)",
   "effects": [],
   "enhancement_bonus": null,
   "events": [],
-  "icon": "Ring_7",
-  "id": 468,
+  "icon": "Necklace_17b",
+  "id": 7631,
   "is_legacy": false,
   "is_minor_artifact": false,
   "item_type": null,
   "material": "Gold",
-  "minimum_level": 3,
+  "minimum_level": 25,
   "modifiers": [],
-  "name": "Acrobat's Ring",
+  "name": "Stolen Necklace (Level 25)",
   "quest_chains": [
     {
-      "id": 1,
+      "id": 22,
       "is_rare": false,
-      "name": "The Lost Seekers",
-      "wiki_url": "https://ddowiki.com/page/The_Lost_Seekers"
+      "name": "Shadow Over Wheloon",
+      "wiki_url": "https://ddowiki.com/page/Shadow_Over_Wheloon"
     }
   ],
-  "quests": [],
+  "quests": [
+    {
+      "chest": "end chest",
+      "difficulties": [
+        "normal",
+        "hard",
+        "elite"
+      ],
+      "epic_level": 26,
+      "id": 423,
+      "is_free_to_play": false,
+      "is_raid": false,
+      "is_rare": false,
+      "level": 16,
+      "loot_type": "chest",
+      "name": "Friends in Low Places",
+      "pack": "Shadowfell Conspiracy",
+      "patron": "Purple Dragon Knights"
+    }
+  ],
   "race_required": null,
   "sagas": [],
   "set": null,
   "set_name": null,
-  "slot": "Ring",
+  "slot": "Neck",
   "sources": [
+    {
+      "character_level": null,
+      "chest": "end chest",
+      "cost": null,
+      "id": 423,
+      "is_rare": false,
+      "kind": "quest",
+      "loot_type": "chest",
+      "name": "Friends in Low Places",
+      "tier": null,
+      "wiki_url": "https://ddowiki.com/page/Friends_in_Low_Places"
+    },
     {
       "character_level": null,
       "chest": null,
       "cost": null,
-      "id": 1,
+      "id": 22,
       "is_rare": false,
       "kind": "quest_chain",
       "loot_type": null,
-      "name": "The Lost Seekers",
+      "name": "Shadow Over Wheloon",
       "tier": null,
-      "wiki_url": "https://ddowiki.com/page/The_Lost_Seekers"
+      "wiki_url": "https://ddowiki.com/page/Shadow_Over_Wheloon"
     }
   ],
   "starter_rewards": [],
   "vendors": [],
   "weapon": null,
-  "wiki_url": "https://ddowiki.com/page/Item:Acrobat's_Ring"
+  "wiki_url": "https://ddowiki.com/page/Item:Stolen_Necklace_(Level_25)"
 }

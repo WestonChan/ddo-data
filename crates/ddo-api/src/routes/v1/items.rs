@@ -14,6 +14,7 @@ use crate::state::AppState;
 use axum::extract::{Path, State};
 use axum::Json;
 use ddo_model::enums::ItemCategory;
+use rusqlite::Connection;
 use serde::Deserialize;
 use serde_json::{json, Value};
 use utoipa_axum::router::OpenApiRouter;
@@ -239,7 +240,16 @@ fn first_unknown_enchantment_name(
                    then `weapon` (dice, threat range, multipliers, \
                    proficiency, `dr_bypass`) or `armor` (AC, max Dex, spell failure, check penalty) when the item is \
                    one, `bonuses` (stat, bonus type, value), `effects` (named effects with value and target), \
-                   `augment_slots` (sockets in order with their fixed `options`), `clickies`, `set`, `quests` it drops \
+                   `augment_slots` (sockets in order, each with its `label` and the fixed `options` upstream gives \
+                   it: the upgrade tiers a player unlocks on Quenched, Smoldering, Thunder-Forged, Attuned to Heroism \
+                   and other upgradeable items, or the choices a crafting step offers; an open socket has none. Each \
+                   option has `id`, `name`, `description`, `min_level`, `icon` (an icon name like the item's), \
+                   `grants_slot` (the label, as /v1/augment-slot-types lists it, of the socket the option adds, or \
+                   null), `sets` (each set the option makes the item count toward, with `id` and `name`; see \
+                   /v1/sets/{id}), `bonuses` (stat, bonus type and value, as the item's) and `modifiers` (the raw \
+                   effects those bonuses come from, as the item's). What an option gives is the option's until the \
+                   player unlocks or picks it, so it is never among the item's own `bonuses`, `augment_slots` or \
+                   `set`), `clickies`, `set`, `quests` it drops \
                    from (once per loot type, so a quest that both drops it and gives it as an end reward appears twice) with loot type, raid flag, `is_rare` (rare loot in that quest, per Maetrim's drop text or ddowiki), \
                    `chest` (the chest his drop text names for that quest, lower-cased, such as `end chest` or \
                    `optional chest`; null when it names none, and always null on a `reward` row), the \
@@ -329,11 +339,7 @@ async fn item_detail(State(state): State<AppState>, Path(id): Path<i64>) -> Resu
             )?;
             for augment_slot in &mut augment_slots {
                 let slot_order = augment_slot["sort_order"].as_i64().unwrap_or(0);
-                augment_slot["options"] = Value::Array(json_rows(
-                    db,
-                    "SELECT name, description, min_level FROM item_augment_slot_options WHERE item_id = ?1 AND slot_order = ?2 ORDER BY option_order",
-                    (id, slot_order),
-                )?);
+                augment_slot["options"] = Value::Array(augment_slot_options(db, id, slot_order)?);
             }
             item["augment_slots"] = Value::Array(augment_slots);
 
@@ -364,6 +370,29 @@ async fn item_detail(State(state): State<AppState>, Path(id): Path<i64>) -> Resu
             Ok(Json(item))
         })
         .await
+}
+
+fn augment_slot_options(db: &Connection, item_id: i64, slot_order: i64) -> Result<Vec<Value>, ApiError> {
+    let mut options = json_rows(
+        db,
+        "SELECT o.id, o.name, o.description, o.min_level, o.icon,
+                (SELECT t.label FROM item_augment_slot_option_grants g JOIN augment_slot_types t ON t.id = g.slot_id
+                  WHERE g.option_id = o.id ORDER BY g.sort_order LIMIT 1) AS grants_slot
+           FROM item_augment_slot_options o WHERE o.item_id = ?1 AND o.slot_order = ?2 ORDER BY o.option_order",
+        (item_id, slot_order),
+    )?;
+    for option in &mut options {
+        let option_id = option["id"].as_i64().unwrap_or(0);
+        option["sets"] = Value::Array(json_rows(
+            db,
+            "SELECT s.id, s.name FROM item_augment_slot_option_sets os JOIN set_bonuses s ON s.id = os.set_id
+              WHERE os.option_id = ?1 ORDER BY s.name",
+            [option_id],
+        )?);
+        option["bonuses"] = Value::Array(bonuses_via(db, "item_augment_slot_option_bonuses", "option_id", option_id)?);
+        option["modifiers"] = Value::Array(modifiers_for(db, "item_augment_slot_option", option_id)?);
+    }
+    Ok(options)
 }
 
 #[utoipa::path(

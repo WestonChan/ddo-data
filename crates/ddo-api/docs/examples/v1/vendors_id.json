@@ -4,7 +4,7 @@
   "items": [
     {
       "cost": "1 Epic Ethereal Ingot",
-      "id": 2434,
+      "id": 2428,
       "is_rare": false,
       "minimum_level": 20,
       "name": "Epic Ethereal Bastard Sword",
@@ -12,7 +12,7 @@
     },
     {
       "cost": "1 Epic Ethereal Ingot",
-      "id": 2435,
+      "id": 2429,
       "is_rare": false,
       "minimum_level": 20,
       "name": "Epic Ethereal Battle Axe",
@@ -20,7 +20,7 @@
     },
     {
       "cost": "1 Epic Ethereal Ingot",
-      "id": 2437,
+      "id": 2431,
       "is_rare": false,
       "minimum_level": 20,
       "name": "Epic Ethereal Club",
