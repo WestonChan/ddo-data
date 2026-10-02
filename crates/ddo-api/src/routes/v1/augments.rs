@@ -119,7 +119,7 @@ async fn augments(
     tag = "augments",
     summary = "Get an augment",
     description = "One augment as the list returns it, including its `crafting` recipes and its `source` (`maetrim` \
-                   or `wiki`), plus `quests`, the quests it drops in, read from the `Drops in` text of Maetrim's description and ddowiki's rare drops, each \
+                   or `wiki`), plus `quests`, the quests it drops in, read from the `Drops in` text of Maetrim's description and ddowiki's rare drops, once per loot type, each \
                    with the fields item detail `quests` carry (loot type, raid flag, `is_rare`, `chest`, difficulties, \
                    pack, patron, `source`; empty when neither names a quest), and the raw `modifiers` its bonuses were \
                    derived from, including the conditional and dice-valued ones that do not reduce to a bonus.",

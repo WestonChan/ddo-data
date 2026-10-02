@@ -214,4 +214,28 @@
       <Elite/>
       <Reaper/>
    </Quest>
+   <Quest>
+      <Name>The Tide Turns</Name>
+      <Patron>House Deneith</Patron>
+      <AdventurePack>Sentinels of Stormreach</AdventurePack>
+      <Favor>5</Favor>
+      <Levels size="2">7 20</Levels>
+      <Casual/>
+      <Normal/>
+      <Hard/>
+      <Elite/>
+      <Reaper/>
+   </Quest>
+   <Quest>
+      <Name>Project Nemesis</Name>
+      <Patron>Sharn City Council</Patron>
+      <AdventurePack>Masterminds of Sharn</AdventurePack>
+      <Favor>10</Favor>
+      <Levels size="1">32</Levels>
+      <Normal/>
+      <Hard/>
+      <Elite/>
+      <Reaper/>
+      <IsRaid/>
+   </Quest>
 </Quests>

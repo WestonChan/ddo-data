@@ -374,8 +374,10 @@ fn mark_rare_loot(
     loot_id: i64,
     chest: Option<&str>,
 ) -> Result<usize> {
-    let added_link_count =
-        transaction.execute(table.insert_missing_link_sql(), params![quest_id, loot_id, LootType::Chest.as_str()])?;
+    let added_link_count = transaction.execute(
+        table.insert_link_unless_linked_sql(),
+        params![quest_id, loot_id, LootType::Chest.as_str(), Option::<&str>::None],
+    )?;
     transaction.execute(table.mark_rare_sql(), params![quest_id, loot_id, chest])?;
     Ok(added_link_count)
 }
@@ -387,10 +389,13 @@ fn insert_listed_loot_link(
     loot_id: i64,
     listed_drop: &ListedDrop,
 ) -> Result<usize> {
-    Ok(transaction.execute(
-        table.insert_missing_link_with_chest_sql(),
-        params![quest_id, loot_id, listed_drop.loot_type().as_str(), listed_drop.chest()],
-    )?)
+    let insert_sql = if listed_drop.names_loot_type() {
+        table.insert_link_unless_linked_as_sql()
+    } else {
+        table.insert_link_unless_linked_sql()
+    };
+    Ok(transaction
+        .execute(insert_sql, params![quest_id, loot_id, listed_drop.loot_type().as_str(), listed_drop.chest()])?)
 }
 
 fn ids_by_name(transaction: &Transaction, table: &str, name: &str) -> Result<Vec<i64>> {

@@ -173,7 +173,7 @@ fn augments_come_from_maetrim_unless_the_wiki_supplied_them() {
     assert!(db
         .execute("INSERT INTO augments (name, family, source) VALUES ('Odd Gem', 'Named', 'ddowiki')", [])
         .is_err());
-    assert_eq!(SCHEMA_VERSION, 9);
+    assert_eq!(SCHEMA_VERSION, 10);
 }
 
 #[test]
@@ -242,10 +242,16 @@ fn quest_augment_loot_links_quests_to_augments_as_quest_loot_links_them_to_items
          INSERT INTO quest_augment_loot (quest_id, augment_id, loot_type) VALUES (1, 1, 'chest');",
     )
     .unwrap();
+    db.execute("INSERT INTO quest_augment_loot (quest_id, augment_id, loot_type) VALUES (1, 1, 'reward')", [])
+        .expect("an augment may be both a chest drop and an end reward of one quest");
     assert!(
-        db.execute("INSERT INTO quest_augment_loot (quest_id, augment_id, loot_type) VALUES (1, 1, 'raid')", [])
+        db.execute("INSERT INTO quest_augment_loot (quest_id, augment_id, loot_type) VALUES (1, 1, 'chest')", [])
             .is_err(),
-        "one link per quest and augment"
+        "one link per quest, augment and loot type"
+    );
+    assert!(
+        db.execute("INSERT INTO quest_augment_loot (quest_id, augment_id) VALUES (1, 1)", []).is_err(),
+        "every link has a loot type"
     );
     db.execute("DELETE FROM quest_augment_loot", []).unwrap();
     assert!(

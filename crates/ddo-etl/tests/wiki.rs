@@ -1478,14 +1478,14 @@ fn reuses_maetrims_effect_whose_name_differs_only_by_colons_commas_periods_and_a
     assert_eq!(effect_count(&db), effect_count(&without) + 1, "only Test Oozing Hunger is new");
 }
 
-fn quest_loot_link_row(db: &Connection, quest: &str, item: &str) -> Option<(String, bool, Option<String>)> {
-    db.query_row(
-        "SELECT ql.loot_type, ql.is_rare, ql.chest FROM quest_loot ql JOIN quests q ON q.id = ql.quest_id
-           JOIN items i ON i.id = ql.item_id WHERE q.name = ?1 AND i.name = ?2",
-        [quest, item],
-        |r| Ok((r.get(0)?, r.get(1)?, r.get(2)?)),
-    )
-    .ok()
+fn quest_loot_link_rows(db: &Connection, quest: &str, item: &str) -> Vec<(String, bool, Option<String>)> {
+    let mut statement = db
+        .prepare(
+            "SELECT ql.loot_type, ql.is_rare, ql.chest FROM quest_loot ql JOIN quests q ON q.id = ql.quest_id
+               JOIN items i ON i.id = ql.item_id WHERE q.name = ?1 AND i.name = ?2 ORDER BY ql.loot_type",
+        )
+        .unwrap();
+    statement.query_map([quest, item], |r| Ok((r.get(0)?, r.get(1)?, r.get(2)?))).unwrap().map(Result::unwrap).collect()
 }
 
 #[test]
@@ -1516,7 +1516,7 @@ fn reads_a_listed_drop_as_a_name_or_a_name_with_its_loot_type_and_chest() {
 }
 
 #[test]
-fn adds_a_listed_item_link_without_changing_one_his_text_made() {
+fn adds_a_listed_item_link_of_its_loot_type_beside_the_one_his_text_made() {
     let toml_text = format!(
         "{BOOK_BURNING_CITATION}rare = [\"Sireth, Spear of the Sky\"]\n\
          items = [{{ name = \"Docent of Defiance\", loot_type = \"reward\", chest = \"end chest\" }}, \
@@ -1525,20 +1525,31 @@ fn adds_a_listed_item_link_without_changing_one_his_text_made() {
     );
     let (db, report) = built_db_with(&parsed_wiki(&[("quest_loot_a.toml", &toml_text)]).unwrap());
     assert_eq!(
-        quest_loot_link_row(&db, "Book Burning", "Docent of Defiance"),
-        Some(("reward".into(), false, Some("end chest".into())))
+        quest_loot_link_rows(&db, "Book Burning", "Docent of Defiance"),
+        [("reward".into(), false, Some("end chest".into()))]
     );
     assert_eq!(
-        quest_loot_link_row(&db, "Book Burning", "Buckler of the Golden Age"),
-        Some(("chest".into(), true, Some("end chest".into()))),
-        "his text's link keeps its loot type, chest and rarity"
+        quest_loot_link_rows(&db, "Book Burning", "Buckler of the Golden Age"),
+        [("chest".into(), true, Some("end chest".into())), ("reward".into(), false, Some("optional chest".into()))],
+        "his chest link keeps its chest and rarity, and the listed reward is a second link"
     );
     assert_eq!(
-        quest_loot_link_row(&db, "Book Burning", "Sireth, Spear of the Sky"),
-        Some(("reward".into(), true, None)),
-        "an item also listed in rare is rare"
+        quest_loot_link_rows(&db, "Book Burning", "Sireth, Spear of the Sky"),
+        [("reward".into(), true, None)],
+        "an item also listed in rare is rare, and rare adds no chest link beside a listed reward"
     );
-    assert_eq!((report.wiki_loot_drop_count, report.wiki_added_quest_loot_link_count), (3, 2));
+    assert_eq!((report.wiki_loot_drop_count, report.wiki_added_quest_loot_link_count), (3, 3));
+}
+
+#[test]
+fn adds_no_link_for_a_listed_name_without_a_loot_type_when_his_text_links_it_already() {
+    let toml_text = format!("{BOOK_BURNING_CITATION}items = [\"Buckler of the Golden Age\"]\n");
+    let (db, report) = built_db_with(&parsed_wiki(&[("quest_loot_a.toml", &toml_text)]).unwrap());
+    assert_eq!(
+        quest_loot_link_rows(&db, "Book Burning", "Buckler of the Golden Age"),
+        [("chest".into(), true, Some("end chest".into()))]
+    );
+    assert_eq!(report.wiki_added_quest_loot_link_count, 0);
 }
 
 #[test]
@@ -1559,12 +1570,23 @@ fn adds_a_listed_augment_link_that_is_not_rare() {
         quest_augment_loot_row(&db, "Book Burning", "Lunar Gem of Evocation (Heroic)"),
         Some(("chest".into(), false, Some("end chest".into())))
     );
+    let magical_protection_links: Vec<(String, Option<String>)> = {
+        let mut statement = db
+            .prepare(
+                "SELECT qal.loot_type, qal.chest FROM quest_augment_loot qal JOIN quests q ON q.id = qal.quest_id
+                   JOIN augments a ON a.id = qal.augment_id
+                  WHERE q.name = 'Book Burning' AND a.name = 'Lunar Gem of Magical Protection (Heroic)'
+                  ORDER BY qal.loot_type",
+            )
+            .unwrap();
+        statement.query_map([], |r| Ok((r.get(0)?, r.get(1)?))).unwrap().map(Result::unwrap).collect()
+    };
     assert_eq!(
-        quest_augment_loot_row(&db, "Book Burning", "Lunar Gem of Magical Protection (Heroic)"),
-        Some(("chest".into(), false, Some("end chest".into()))),
-        "his description's link stands"
+        magical_protection_links,
+        [("chest".into(), Some("end chest".into())), ("reward".into(), None)],
+        "his description's chest link stands beside the listed reward"
     );
-    assert_eq!((report.wiki_loot_augment_drop_count, report.wiki_added_quest_augment_loot_link_count), (2, 1));
+    assert_eq!((report.wiki_loot_augment_drop_count, report.wiki_added_quest_augment_loot_link_count), (2, 2));
 }
 
 #[test]

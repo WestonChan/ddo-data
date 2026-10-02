@@ -89,8 +89,9 @@ async fn quests(State(state): State<AppState>) -> Result<Json<Vec<Value>>, ApiEr
                    quest with its `minimum_level` and `slot`, and `augments`, each augment with its `family` and \
                    `min_level`. Every loot row carries `id`, `name`, `loot_type` (chest, raid or reward), `is_rare` \
                    and `chest` (the chest Maetrim's drop text names, lower-cased, null when it names none), the same \
-                   link item and augment detail `quests` report from the other side. Both arrays are sorted by name \
-                   and empty when nothing is known to drop there.",
+                   link item and augment detail `quests` report from the other side. An item or augment that is both \
+                   a chest (or raid) drop and an end reward of the quest appears once per loot type. Both arrays are \
+                   sorted by name, then loot type, and empty when nothing is known to drop there.",
     params(("id" = i64, Path, description = "The quest's numeric id from /v1/quests")),
     responses(
         (status = 200, description = "The quest with the items and augments it drops", body = Value),
@@ -107,14 +108,14 @@ async fn quest_detail(State(state): State<AppState>, Path(id): Path<i64>) -> Res
                 "SELECT i.id, i.name, loot.loot_type, loot.is_rare, loot.chest, i.minimum_level, es.name AS slot
                    FROM quest_loot loot JOIN items i ON i.id = loot.item_id
                    LEFT JOIN equipment_slots es ON es.id = i.slot_id
-                  WHERE loot.quest_id = ?1 ORDER BY i.name, i.id",
+                  WHERE loot.quest_id = ?1 ORDER BY i.name, i.id, loot.loot_type",
                 id,
             )?);
             quest["augments"] = Value::Array(loot_rows(
                 db,
                 "SELECT a.id, a.name, loot.loot_type, loot.is_rare, loot.chest, a.family, a.min_level
                    FROM quest_augment_loot loot JOIN augments a ON a.id = loot.augment_id
-                  WHERE loot.quest_id = ?1 ORDER BY a.name, a.id",
+                  WHERE loot.quest_id = ?1 ORDER BY a.name, a.id, loot.loot_type",
                 id,
             )?);
             Ok(Json(quest))
@@ -143,7 +144,7 @@ pub(super) fn quests_dropping_via(
                     pt.name AS patron, loot.loot_type, loot.is_rare, loot.chest
                FROM {loot_table} loot JOIN quests q ON q.id = loot.quest_id
                LEFT JOIN adventure_packs ap ON ap.id = q.pack_id LEFT JOIN patrons pt ON pt.id = q.patron_id
-              WHERE loot.{loot_id_column} = ?1 ORDER BY q.name"
+              WHERE loot.{loot_id_column} = ?1 ORDER BY q.name, loot.loot_type"
         ),
         [loot_id],
     )?;

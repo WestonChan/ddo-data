@@ -40,9 +40,9 @@ fn item_id(db: &Connection, name: &str) -> i64 {
 #[test]
 fn builds_items_and_skips_cosmetics() {
     let (db, report) = built_fixture_db();
-    assert_eq!(report.written_item_count, 17);
+    assert_eq!(report.written_item_count, 19);
     assert_eq!(report.skipped_cosmetic_item_count, 1);
-    assert_eq!(count(&db, "SELECT COUNT(*) FROM items WHERE source = 'maetrim'"), 17);
+    assert_eq!(count(&db, "SELECT COUNT(*) FROM items WHERE source = 'maetrim'"), 19);
     assert_eq!(count(&db, "SELECT COUNT(*) FROM items WHERE name = '17th Anniversary Dark Helm'"), 0);
     let reason: String = db
         .query_row("SELECT reason FROM excluded_items WHERE name = '17th Anniversary Dark Helm'", [], |r| r.get(0))
@@ -264,7 +264,7 @@ fn writes_augment_slots_and_presets() {
 #[test]
 fn links_items_to_quests_from_drop_location() {
     let (db, report) = built_fixture_db();
-    assert_eq!(count(&db, "SELECT COUNT(*) FROM quests WHERE NOT is_challenge AND source = 'maetrim'"), 19);
+    assert_eq!(count(&db, "SELECT COUNT(*) FROM quests WHERE NOT is_challenge AND source = 'maetrim'"), 21);
     assert_eq!(count(&db, "SELECT COUNT(*) FROM patrons"), 22);
     assert!(count(&db, "SELECT COUNT(*) FROM adventure_packs") >= 5);
     let (level, epic_level, is_raid, pack): (i64, Option<i64>, bool, String) = db
@@ -297,6 +297,31 @@ fn links_items_to_quests_from_drop_location() {
         db.query_row("SELECT drop_location FROM items WHERE id = ?1", params![axe], |r| r.get(0)).unwrap();
     assert!(drop.starts_with("Temple of Elemental Evil Part One"));
     assert!(report.quest_loot_link_count >= 4);
+}
+
+fn quest_loot_types(db: &Connection, quest: &str, item: &str) -> Vec<String> {
+    let mut statement = db
+        .prepare(
+            "SELECT ql.loot_type FROM quest_loot ql JOIN quests q ON q.id = ql.quest_id JOIN items i ON i.id = ql.item_id
+              WHERE q.name = ?1 AND i.name = ?2 ORDER BY ql.loot_type",
+        )
+        .unwrap();
+    statement.query_map(params![quest, item], |r| r.get(0)).unwrap().map(Result::unwrap).collect()
+}
+
+#[test]
+fn links_an_item_once_per_loot_type_the_quests_own_segment_names() {
+    let (db, _) = built_fixture_db();
+    assert_eq!(
+        quest_loot_types(&db, "The Tide Turns", "Rusted Crown"),
+        ["chest", "reward"],
+        "'The Tide Turns, End Chest, End Reward' is both"
+    );
+    assert_eq!(
+        quest_loot_types(&db, "Project Nemesis", "Band of Diani ir'Wynarn"),
+        ["raid"],
+        "a saga's end reward in another segment is not the raid's own reward"
+    );
 }
 
 #[test]
@@ -462,7 +487,7 @@ fn diff_reports_coverage_against_a_legacy_database() {
         vec!["17th Anniversary Dark Helm".to_string()],
         "cosmetics are not gaps"
     );
-    assert_eq!(coverage.names_only_in_built.len(), 15, "the wiki fixture item is only in the build");
+    assert_eq!(coverage.names_only_in_built.len(), 17, "the wiki fixture item is only in the build");
     assert!((coverage.coverage_ratio() - 0.75).abs() < 1e-9);
 }
 

@@ -144,7 +144,7 @@ async fn items(
                    proficiency, `dr_bypass`) or `armor` (AC, max Dex, spell failure, check penalty) when the item is \
                    one, `bonuses` (stat, bonus type, value), `effects` (named effects with value and target), \
                    `augment_slots` (sockets in order with their fixed `options`), `clickies`, `set`, `quests` it drops \
-                   from with loot type, raid flag, `is_rare` (rare loot in that quest, per Maetrim's drop text or ddowiki), \
+                   from (once per loot type, so a quest that both drops it and gives it as an end reward appears twice) with loot type, raid flag, `is_rare` (rare loot in that quest, per Maetrim's drop text or ddowiki), \
                    `chest` (the chest his drop text names for that quest, lower-cased, such as `end chest` or \
                    `optional chest`; null when it names none), the \
                    `difficulties` each offers, ddowiki's `is_free_to_play` for each and its `source` (`maetrim`, or `wiki` \

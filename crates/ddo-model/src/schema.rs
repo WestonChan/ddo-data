@@ -4,7 +4,7 @@ use crate::enums::{
 };
 use std::sync::LazyLock;
 
-pub const SCHEMA_VERSION: i64 = 9;
+pub const SCHEMA_VERSION: i64 = 10;
 
 fn sql_in_clause<'a>(allowed_values: impl Iterator<Item = &'a str>) -> String {
     let quoted_values: Vec<String> = allowed_values.map(|value| format!("'{value}'")).collect();
@@ -27,7 +27,7 @@ static DDL: LazyLock<String> = LazyLock::new(|| {
     let crafting_tier = sql_in_clause(CraftingTier::ALL.iter().map(|t| t.as_str()));
     let correction_kind = sql_in_clause(CorrectionKind::ALL.iter().map(|k| k.as_str()));
     let quest_loot_columns = format!(
-        "loot_type TEXT CHECK (loot_type {loot_type}),
+        "loot_type TEXT NOT NULL CHECK (loot_type {loot_type}),
     is_rare   INTEGER NOT NULL DEFAULT 0 CHECK (is_rare IN (0, 1)),
     chest     TEXT,"
     );
@@ -260,14 +260,15 @@ CREATE TABLE IF NOT EXISTS item_augment_slot_options (
     FOREIGN KEY (item_id, slot_order) REFERENCES item_augment_slots(item_id, sort_order) ON DELETE CASCADE
 );
 
--- A quest's item drops. loot_type comes from <DropLocation> and the quest's is_raid; is_rare from (rare) or rare drop
--- in it, or data/wiki quest_loot `rare`; chest is the lower-cased phrase after the quest name in its segment, or the
--- `chest` of a wiki rare drop where his text names none.
+-- A quest's item drops, one row per loot type: an item may be both a chest (or raid) drop and an end reward of one
+-- quest. loot_type comes from the <DropLocation> segments naming the quest and the quest's is_raid; is_rare from (rare)
+-- or rare drop in them, or data/wiki quest_loot `rare`; chest is the lower-cased phrase after the quest name in its
+-- segment, or the `chest` of a wiki rare drop where his text names none.
 CREATE TABLE IF NOT EXISTS quest_loot (
     quest_id  INTEGER NOT NULL REFERENCES quests(id) ON DELETE CASCADE,
     item_id   INTEGER NOT NULL REFERENCES items(id) ON DELETE CASCADE,
     {quest_loot_columns}
-    PRIMARY KEY (quest_id, item_id)
+    PRIMARY KEY (quest_id, item_id, loot_type)
 );
 CREATE INDEX IF NOT EXISTS idx_quest_loot_item ON quest_loot(item_id);
 
@@ -671,7 +672,7 @@ CREATE TABLE IF NOT EXISTS quest_augment_loot (
     quest_id   INTEGER NOT NULL REFERENCES quests(id) ON DELETE CASCADE,
     augment_id INTEGER NOT NULL REFERENCES augments(id) ON DELETE CASCADE,
     {quest_loot_columns}
-    PRIMARY KEY (quest_id, augment_id)
+    PRIMARY KEY (quest_id, augment_id, loot_type)
 );
 CREATE INDEX IF NOT EXISTS idx_quest_augment_loot_augment ON quest_augment_loot(augment_id);
 

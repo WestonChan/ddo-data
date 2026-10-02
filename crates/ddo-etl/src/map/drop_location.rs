@@ -9,6 +9,19 @@ pub fn marks_rare_loot(segment: &str) -> bool {
     RARE_LOOT_MARKERS.iter().any(|m| segment.contains(m)) && !segment.contains(RARE_MONSTER_MARKER)
 }
 
+pub fn names_quest_end_reward(segment: &str) -> bool {
+    let segment = segment.to_lowercase();
+    segment.contains(REWARD_MARKER) && !OTHER_GIVER_REWARD_MARKERS.iter().any(|m| segment.contains(m))
+}
+
+pub fn names_chest_drop(segment: &str) -> bool {
+    !names_quest_end_reward(segment) || segment.to_lowercase().contains(CHEST_MARKER)
+}
+
+const REWARD_MARKER: &str = "reward";
+const CHEST_MARKER: &str = "chest";
+const OTHER_GIVER_REWARD_MARKERS: [&str; 2] = ["chain", "saga"];
+
 pub fn segment_spanning<'text>(drop_location: &'text str, quest_name_span: &Range<usize>) -> &'text str {
     let start = drop_location[..quest_name_span.start].rfind(SEGMENT_SEPARATORS).map_or(0, |i| i + 1);
     let end = drop_location[quest_name_span.end..]

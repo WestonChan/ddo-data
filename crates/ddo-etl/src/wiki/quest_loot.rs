@@ -84,6 +84,10 @@ impl ListedDrop {
         }
     }
 
+    pub fn names_loot_type(&self) -> bool {
+        self.loot_type_name().is_some()
+    }
+
     fn loot_type_name(&self) -> Option<&str> {
         match self {
             Self::Named(_) => None,

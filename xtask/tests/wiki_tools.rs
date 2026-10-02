@@ -397,7 +397,7 @@ fn wiki_batch_writes_the_reading_agent_inputs() {
     )
     .unwrap();
 
-    assert_eq!(line_count(&out_dir.path().join("item_names.txt")), 17);
+    assert_eq!(line_count(&out_dir.path().join("item_names.txt")), 19);
     assert_eq!(
         std::fs::read_to_string(out_dir.path().join("wiki_source_items.txt")).unwrap(),
         "Battle Axe of the Oozing Hunger\n"
@@ -415,7 +415,7 @@ fn wiki_batch_writes_the_reading_agent_inputs() {
     assert!(augment_lines.lines().any(|line| line == "Alchemical\tFire I: Combustion\t29"), "{augment_lines}");
     let quest_pages: Value =
         serde_json::from_str(&std::fs::read_to_string(out_dir.path().join("quest_pages.json")).unwrap()).unwrap();
-    assert_eq!(quest_pages.as_object().unwrap().len(), 23, "Maetrim's 22 quests and challenges and the wiki quest");
+    assert_eq!(quest_pages.as_object().unwrap().len(), 25, "Maetrim's 24 quests and challenges and the wiki quest");
     assert_eq!(quest_pages["Ghosts of Perdition"], likely_wiki_page_url("Ghosts of Perdition"));
     assert_eq!(
         quest_pages["Dr. Rushmore's Mansion - Behind the Door"],

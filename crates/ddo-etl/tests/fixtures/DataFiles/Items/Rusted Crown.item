@@ -1,0 +1,21 @@
+<Items>
+  <Item>
+    <Name>Rusted Crown</Name>
+    <Icon>Helmet_11</Icon>
+    <Description>At least this helm has nothing to fear from rust monsters.</Description>
+    <DropLocation>The Tide Turns, End Chest, End Reward</DropLocation>
+    <MinLevel>5</MinLevel>
+    <EquipmentSlot>
+      <Helmet/>
+    </EquipmentSlot>
+    <Material>Rust</Material>
+    <Buff>
+      <Type>NaturalArmor</Type>
+      <Value1>1</Value1>
+      <BonusType>Natural Armor</BonusType>
+    </Buff>
+    <Buff>
+      <Type>Unraveling Enchantments</Type>
+    </Buff>
+  </Item>
+</Items>

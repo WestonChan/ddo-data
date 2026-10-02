@@ -61,7 +61,7 @@ async fn version_reports_dataset_and_schema() {
     assert_eq!(json["dataset"]["upstream_sha"], "fixture-sha");
     assert_eq!(json["schema_version"], ddo_model::SCHEMA_VERSION);
     assert!(json.get("api_commit").is_some(), "version must report the API build commit, null when unknown");
-    assert_eq!(json["counts"]["items"], 18, "17 of Maetrim's and the wiki fixture's axe");
+    assert_eq!(json["counts"]["items"], 20, "19 of Maetrim's and the wiki fixture's axe");
     assert_eq!(json["counts"]["quest_augment_loot"], 7);
     assert_eq!(
         (
@@ -91,7 +91,7 @@ async fn items_list_filters_and_pages() {
 
     let (_, _, first_page) = get("/v1/items?limit=5&offset=0").await;
     assert_eq!(first_page["items"].as_array().unwrap().len(), 5);
-    assert_eq!(first_page["total"], 18);
+    assert_eq!(first_page["total"], 20);
     let (_, _, armor) = get("/v1/items?category=Armor").await;
     assert!(armor["items"].as_array().unwrap().iter().all(|i| i["category"] == "Armor"));
     let (_, _, level_range) = get("/v1/items?min_level=20&max_level=25").await;
@@ -107,7 +107,7 @@ async fn items_list_filters_and_pages() {
     assert_eq!(rare[0]["name"], "Buckler of the Golden Age");
     assert_eq!(rare[0]["is_rare"], true, "its drop text and the wiki both mark it a rare Book Burning drop");
     let (_, _, unfiltered) = get("/v1/items?rare=false").await;
-    assert_eq!(unfiltered["total"], 18);
+    assert_eq!(unfiltered["total"], 20);
     let (status, _, _) = get("/v1/items?category=Hat").await;
     assert_eq!(status, StatusCode::BAD_REQUEST, "unknown category is a client error");
 }
@@ -900,6 +900,31 @@ async fn augment_list_rows_carry_the_crafting_recipes_that_yield_them() {
     }
     let (_, _, ruby) = get("/v1/augments?q=ruby+of+acid").await;
     assert_eq!(ruby["augments"][0]["crafting"], serde_json::json!([]));
+}
+
+#[tokio::test]
+async fn an_item_both_dropped_and_given_as_a_quests_end_reward_appears_once_per_loot_type() {
+    let crown_id = id_of_item_named("Rusted Crown").await;
+    let (_, _, crown) = get(&format!("/v1/items/{crown_id}")).await;
+    let crown_links: Vec<(&Value, &Value)> =
+        crown["quests"].as_array().unwrap().iter().map(|quest| (&quest["name"], &quest["loot_type"])).collect();
+    assert_eq!(
+        crown_links,
+        [
+            (&serde_json::json!("The Tide Turns"), &serde_json::json!("chest")),
+            (&serde_json::json!("The Tide Turns"), &serde_json::json!("reward"))
+        ]
+    );
+    let quest_id = crown["quests"][0]["id"].as_i64().unwrap();
+    let (_, _, quest) = get(&format!("/v1/quests/{quest_id}")).await;
+    let crown_loot_types: Vec<&Value> = quest["items"]
+        .as_array()
+        .unwrap()
+        .iter()
+        .filter(|item| item["id"] == crown_id)
+        .map(|item| &item["loot_type"])
+        .collect();
+    assert_eq!(crown_loot_types, [&serde_json::json!("chest"), &serde_json::json!("reward")]);
 }
 
 async fn id_of_item_named(item_name: &str) -> i64 {
