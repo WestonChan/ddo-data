@@ -29,12 +29,15 @@ use utoipa_axum::router::OpenApiRouter;
                        read-only. Items, augments, set bonuses, filigrees, sentient gems, feats, stances, guild \
                        and optional buffs, races, classes, enhancement trees, spells and clickies, plus the \
                        reference vocabularies they share, and the quest facts, quest chains, sagas, vendors, events and crafting recipes read from ddowiki.\n\n\
-                       **Caching.** The dataset is rebuilt only when DDOBuilderV2 changes, so every response is \
-                       immutable for a dataset version. Each carries a strong `ETag`, a day-long `Cache-Control` and \
-                       an `X-Dataset-Version` header naming the DDOBuilderV2 commit; send `If-None-Match` and expect \
-                       304. `/v1/version` reports the current commit and carries `Cache-Control: no-cache`, so every use \
-                       revalidates it (a 304 while the deployment is unchanged). Error responses (every 4xx and 5xx, 429 \
-                       included) carry `Cache-Control: no-store` and no `ETag`.\n\n\
+                       **Caching.** The dataset is rebuilt only when DDOBuilderV2 changes, so a response changes only \
+                       with a new deployment. Each successful response carries a strong `ETag`, an \
+                       `X-Dataset-Version` header naming the DDOBuilderV2 commit and \
+                       `Cache-Control: public, max-age=300, stale-while-revalidate=3600`: fresh for five minutes, \
+                       then revalidated with `If-None-Match`, which answers 304 unless the data changed, so a \
+                       deploy is visible within minutes. `/v1/dump.sqlite` and the icons follow the same policy. \
+                       `/v1/version` reports the current commit and carries `Cache-Control: no-cache`, so every use \
+                       revalidates it. Error responses (every 4xx and 5xx, 429 included) carry \
+                       `Cache-Control: no-store` and no `ETag`.\n\n\
                        **Shapes.** Every entity has a numeric `id`. List endpoints that take filters return \
                        `{ total, limit, offset, <name>: [...] }` and page with `limit` (max 10000) and `offset`; \
                        lookup lists return a bare array. `<name>/{id}` returns the full entity with its child \

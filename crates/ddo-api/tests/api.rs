@@ -1826,3 +1826,31 @@ async fn version_is_revalidated_on_every_use_and_answers_304_while_unchanged() {
     assert_eq!(response.status(), StatusCode::NOT_MODIFIED);
     assert_eq!(response.headers().get(header::CACHE_CONTROL).unwrap(), "no-cache");
 }
+
+#[tokio::test]
+async fn data_responses_are_fresh_for_five_minutes_then_revalidated() {
+    const DATA_CACHE_CONTROL: &str = "public, max-age=300, stale-while-revalidate=3600";
+    let icons_dir = std::env::temp_dir().join(format!("ddo-api-cache-icons-{}", std::process::id()));
+    let _ = std::fs::remove_dir_all(&icons_dir);
+    ddo_etl::icons::export_icons(&fixture_data_files_dir(), &icons_dir).unwrap();
+    let router = app(fixture_state().with_icons_dir(&icons_dir));
+    let response_to = |request: Request<Body>| router.clone().oneshot(request);
+
+    let data_response = response_to(Request::get("/v1/items?q=sireth").body(Body::empty()).unwrap()).await.unwrap();
+    assert_eq!(data_response.status(), StatusCode::OK);
+    assert_eq!(data_response.headers().get(header::CACHE_CONTROL).unwrap(), DATA_CACHE_CONTROL);
+    let etag = data_response.headers().get(header::ETAG).unwrap().clone();
+    let not_modified_response = response_to(
+        Request::get("/v1/items?q=sireth").header(header::IF_NONE_MATCH, etag).body(Body::empty()).unwrap(),
+    )
+    .await
+    .unwrap();
+    assert_eq!(not_modified_response.status(), StatusCode::NOT_MODIFIED);
+    assert_eq!(not_modified_response.headers().get(header::CACHE_CONTROL).unwrap(), DATA_CACHE_CONTROL);
+
+    for path in ["/v1/dump.sqlite", "/icons/items/Quarterstaff_6a.png"] {
+        let response = response_to(Request::get(path).body(Body::empty()).unwrap()).await.unwrap();
+        assert_eq!(response.status(), StatusCode::OK, "{path}");
+        assert_eq!(response.headers().get(header::CACHE_CONTROL).unwrap(), DATA_CACHE_CONTROL, "{path}");
+    }
+}

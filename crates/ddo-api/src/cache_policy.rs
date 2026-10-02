@@ -3,7 +3,7 @@ use axum::http::{header, HeaderValue};
 use axum::middleware::Next;
 use axum::response::Response;
 
-const DATA_CACHE_CONTROL: &str = "public, max-age=86400, stale-while-revalidate=604800";
+const DATA_CACHE_CONTROL: &str = "public, max-age=300, stale-while-revalidate=3600";
 const ERROR_CACHE_CONTROL: &str = "no-store";
 const ALWAYS_REVALIDATED_CACHE_CONTROL: &str = "no-cache";
 const ALWAYS_REVALIDATED_PATHS: &[&str] = &["/v1/version"];
