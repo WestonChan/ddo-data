@@ -670,16 +670,6 @@ read = "2026-10-01"
 rare = [
   "Mindfury Symbiont",
 ]
-items = [
-  "Axe of Famine",
-  "Beholder Plate Armor",
-  "Beholder Plate Docent",
-  "Bow of Sinew",
-  "Polycurse Dagger",
-  "Quivering Quiver",
-  "Scepter of Mad Trickery",
-  "Thaarak Bracelet",
-]
 
 [[quest]]
 name = "Invaders!"
