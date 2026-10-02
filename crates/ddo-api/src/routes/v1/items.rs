@@ -36,6 +36,9 @@ pub(super) struct ItemListQuery {
     pub pack: Option<String>,
     pub raid: Option<bool>,
     pub rare: Option<bool>,
+    pub quest: Option<i64>,
+    pub quest_chain: Option<i64>,
+    pub saga: Option<i64>,
     pub stat: Option<String>,
     pub include_set_bonuses: Option<bool>,
     pub limit: Option<i64>,
@@ -66,6 +69,9 @@ impl QueryParameters for ItemListQuery {
         ("pack" = Option<String>, Query, description = "Adventure pack name as /v1/adventure-packs lists it; matches items dropping from a quest in it or credited to any quest of the whole pack"),
         ("raid" = Option<bool>, Query, description = "`true` keeps only items that drop from a raid; `false` and unset apply no filter"),
         ("rare" = Option<bool>, Query, description = "`true` keeps only items that are rare loot from at least one quest or from any quest of a pack, per Maetrim's drop text or ddowiki; `false` and unset apply no filter"),
+        ("quest" = Option<i64>, Query, description = "Quest id as /v1/quests lists it; keeps the items its /v1/quests/{id} `items` lists, dropped from any chest, as raid loot or as an end reward (loot his drop text credits to the whole pack is matched by `pack` instead); an id no quest has matches nothing rather than a 400, as an unknown `pack` does"),
+        ("quest_chain" = Option<i64>, Query, description = "Quest chain id as /v1/quest-chains lists it; keeps items its end reward offers; an id no chain has matches nothing"),
+        ("saga" = Option<i64>, Query, description = "Saga id as /v1/sagas lists it; keeps items its end reward offers in any tier; an id no saga has matches nothing"),
         ("stat" = Option<String>, Query, description = "One or more stat names as /v1/stats lists them, comma-separated (`stat=Strength,Dexterity`) or as repeated keys (`stat=Strength&stat=Dexterity`); keeps items with at least one bonus of their own to any of them, and with `include_set_bonuses=true` also items whose set has a tier with a bonus to any of them; an unknown name is a 400 naming it"),
         ("include_set_bonuses" = Option<bool>, Query, description = "`true` widens `stat` to also match an item when any tier of its set (see /v1/sets/{id}) carries a bonus to a listed stat; the item's own bonuses match either way; `false` and unset match its own bonuses only; no effect without `stat`"),
         ("limit" = Option<i64>, Query, description = "Page size, 1 to 10000; defaults to 100; out-of-range values are clamped rather than rejected"),
@@ -114,6 +120,15 @@ async fn items(
             }
             if query.rare == Some(true) {
                 where_clause.add_condition("EXISTS (SELECT 1 FROM drops ql WHERE ql.item_id = i.id AND ql.source_kind IN ('quest', 'adventure_pack') AND ql.is_rare)");
+            }
+            if let Some(quest_id) = query.quest {
+                where_clause.add_bound_condition("i.id IN (SELECT d.item_id FROM drops d WHERE d.source_kind = 'quest' AND d.quest_id = ?)", quest_id);
+            }
+            if let Some(chain_id) = query.quest_chain {
+                where_clause.add_bound_condition("i.id IN (SELECT d.item_id FROM drops d WHERE d.source_kind = 'quest_chain' AND d.chain_id = ?)", chain_id);
+            }
+            if let Some(saga_id) = query.saga {
+                where_clause.add_bound_condition("i.id IN (SELECT d.item_id FROM drops d WHERE d.source_kind = 'saga' AND d.saga_id = ?)", saga_id);
             }
             let stat_names = query.stat.as_deref().map(comma_separated_values).unwrap_or_default();
             if let Some(unknown_stat_name) = first_unknown_stat_name(db, &stat_names)? {

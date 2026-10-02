@@ -154,6 +154,44 @@ async fn items_match_a_stat_on_their_sets_tiers_only_when_set_bonuses_are_includ
     assert_eq!(explicitly_excluded["total"], 0);
 }
 
+async fn id_in_list_named(list_path: &str, name: &str) -> i64 {
+    let (_, _, rows) = get(list_path).await;
+    let rows = rows.as_array().unwrap_or_else(|| panic!("{list_path} is not a list"));
+    rows.iter().find(|row| row["name"] == name).unwrap_or_else(|| panic!("{list_path} has no {name}"))["id"]
+        .as_i64()
+        .unwrap()
+}
+
+#[tokio::test]
+async fn items_filter_by_the_quest_quest_chain_or_saga_that_drops_or_rewards_them() {
+    let ghosts_of_perdition = id_in_list_named("/v1/quests", "Ghosts of Perdition").await;
+    let (status, _, quest_loot) = get(&format!("/v1/items?quest={ghosts_of_perdition}")).await;
+    assert_eq!(status, StatusCode::OK, "{quest_loot}");
+    assert_eq!(
+        item_names(&quest_loot),
+        ["Argenti's Armor", "Battle Axe of the Oozing Hunger"],
+        "a chest drop and an end reward of the quest both count"
+    );
+    let (status, _, unknown_quest) = get("/v1/items?quest=999999").await;
+    assert_eq!((status, &unknown_quest["total"]), (StatusCode::OK, &serde_json::json!(0)), "as an unknown pack is");
+    let (status, _, malformed) = get("/v1/items?quest=perdition").await;
+    assert_eq!(status, StatusCode::BAD_REQUEST);
+    assert!(malformed["error"].as_str().unwrap().contains("quest"), "{malformed}");
+
+    let lost_seekers = id_in_list_named("/v1/quest-chains", "The Lost Seekers").await;
+    let (_, _, chain_rewards) = get(&format!("/v1/items?quest_chain={lost_seekers}")).await;
+    assert_eq!(item_names(&chain_rewards), ["Acrobat's Ring", "Docent of Defiance", "Kundarak Delving Boots"]);
+
+    let masterminds = id_in_list_named("/v1/sagas", "Masterminds of Sharn").await;
+    let (_, _, saga_rewards) = get(&format!("/v1/items?saga={masterminds}")).await;
+    assert_eq!(
+        item_names(&saga_rewards),
+        ["Alabaster of the Twelve", "Band of Diani ir'Wynarn", "Five Rings"],
+        "an item offered in two tiers is listed once"
+    );
+    assert_eq!(saga_rewards["total"], 3);
+}
+
 #[tokio::test]
 async fn items_say_whether_maetrim_or_the_wiki_supplied_them() {
     let (_, _, axe_matches) = get("/v1/items?q=oozing").await;
