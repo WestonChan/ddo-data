@@ -5,7 +5,7 @@ use crate::enums::{
 };
 use std::sync::LazyLock;
 
-pub const SCHEMA_VERSION: i64 = 17;
+pub const SCHEMA_VERSION: i64 = 18;
 
 fn sql_in_clause<'a>(allowed_values: impl Iterator<Item = &'a str>) -> String {
     let quoted_values: Vec<String> = allowed_values.map(|value| format!("'{value}'")).collect();
@@ -266,18 +266,45 @@ CREATE TABLE IF NOT EXISTS item_augment_slots (
     PRIMARY KEY (item_id, sort_order)
 );
 
--- Content upstream has fixed for a socket. One row per slot is a crafted upgrade already applied;
--- several rows are the choices a crafting step offers; no rows is an ordinary open socket.
+-- The <Augment> choices upstream fixes for a socket: the upgrade tiers a player unlocks on Quenched, Smoldering,
+-- Energized, Thunder-Forged, Attuned to Heroism and Upgradeable items, or the choices a crafting step offers;
+-- no rows is an ordinary open socket. Whatever an option gives (a socket, set membership, bonuses, the raw <Effect>
+-- rows as modifiers with source_kind 'item_augment_slot_option') stays on the option until the player picks or
+-- unlocks it, so none of it is the item's own socket, set or bonus.
 CREATE TABLE IF NOT EXISTS item_augment_slot_options (
+    id           INTEGER PRIMARY KEY,
     item_id      INTEGER NOT NULL,
     slot_order   INTEGER NOT NULL,
     option_order INTEGER NOT NULL,                    -- <Augment> position within the <ItemAugment>
     name         TEXT    NOT NULL,                    -- <Augment><Name>
     description  TEXT,                                -- <Augment><Description>
     min_level    INTEGER,                             -- <Augment><MinLevel>
-    PRIMARY KEY (item_id, slot_order, option_order),
+    icon         TEXT,                                -- <Augment><Icon>
+    UNIQUE (item_id, slot_order, option_order),
     FOREIGN KEY (item_id, slot_order) REFERENCES item_augment_slots(item_id, sort_order) ON DELETE CASCADE
 );
+
+CREATE TABLE IF NOT EXISTS item_augment_slot_option_grants (
+    option_id  INTEGER NOT NULL REFERENCES item_augment_slot_options(id) ON DELETE CASCADE,
+    sort_order INTEGER NOT NULL,                      -- <GrantAugment> or <AddAugment> position within the option
+    slot_id    INTEGER NOT NULL REFERENCES augment_slot_types(id),  -- the socket the option adds
+    PRIMARY KEY (option_id, sort_order)
+);
+
+CREATE TABLE IF NOT EXISTS item_augment_slot_option_sets (
+    option_id INTEGER NOT NULL REFERENCES item_augment_slot_options(id) ON DELETE CASCADE,
+    set_id    INTEGER NOT NULL REFERENCES set_bonuses(id),  -- <SetBonus>: a set the option makes the item count toward
+    PRIMARY KEY (option_id, set_id)
+);
+CREATE INDEX IF NOT EXISTS idx_item_augment_slot_option_sets_set ON item_augment_slot_option_sets(set_id);
+
+CREATE TABLE IF NOT EXISTS item_augment_slot_option_bonuses (
+    option_id  INTEGER NOT NULL REFERENCES item_augment_slot_options(id) ON DELETE CASCADE,
+    bonus_id   INTEGER NOT NULL REFERENCES bonuses(id),
+    sort_order INTEGER NOT NULL,                      -- derived from the option's simple <Effect> rows, in order
+    PRIMARY KEY (option_id, sort_order)
+);
+CREATE INDEX IF NOT EXISTS idx_item_augment_slot_option_bonuses_bonus ON item_augment_slot_option_bonuses(bonus_id);
 
 -- Quest chains and sagas (data/wiki quest_chains and sagas) ---------------------------
 --

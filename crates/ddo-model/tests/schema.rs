@@ -182,7 +182,6 @@ fn augments_come_from_maetrim_unless_the_wiki_supplied_them() {
     assert!(db
         .execute("INSERT INTO augments (name, family, provenance) VALUES ('Odd Gem', 'Named', 'ddowiki')", [])
         .is_err());
-    assert_eq!(SCHEMA_VERSION, 17);
 }
 
 #[test]
@@ -589,4 +588,68 @@ fn single_table_rules_are_schema_constraints() {
             "a {table} row from the wiki carries its page"
         );
     }
+}
+
+#[test]
+fn an_item_augment_slot_option_keeps_its_granted_socket_sets_and_bonuses_on_the_option() {
+    let db = fresh_db();
+    ddo_model::seeds::insert_all(&db).unwrap();
+    db.execute_batch(
+        "PRAGMA foreign_keys = ON;
+         INSERT INTO items (id, name, slot_id, item_category, wiki_url) VALUES (1, 'Sireth', 1, 'Weapon', 'https://ddowiki.com/page/Item:Sireth');
+         INSERT INTO augment_slot_types (id, label, family, variant) VALUES (1, 'crafting: attuned to heroism 4', 'crafting', 'attuned to heroism 4'), (2, 'red', 'standard', 'red');
+         INSERT INTO item_augment_slots (item_id, sort_order, slot_id) VALUES (1, 0, 1);
+         INSERT INTO set_bonuses (id, name) VALUES (1, 'Prowess / Planar Conflux Set Bonus');
+         INSERT INTO bonuses (id, name, stat_id, bonus_type_id, value) VALUES (1, 'Strength +8', 1, 1, 8);",
+    )
+    .unwrap();
+    db.execute(
+        "INSERT INTO item_augment_slot_options (item_id, slot_order, option_order, name, icon) VALUES (1, 0, 0, 'Red Augment Slot', 'Heroism')",
+        [],
+    )
+    .unwrap();
+    let option_id = db.last_insert_rowid();
+    db.execute(
+        "INSERT INTO item_augment_slot_option_grants (option_id, sort_order, slot_id) VALUES (?1, 0, 2)",
+        [option_id],
+    )
+    .unwrap();
+    db.execute("INSERT INTO item_augment_slot_option_sets (option_id, set_id) VALUES (?1, 1)", [option_id]).unwrap();
+    db.execute(
+        "INSERT INTO item_augment_slot_option_bonuses (option_id, bonus_id, sort_order) VALUES (?1, 1, 0)",
+        [option_id],
+    )
+    .unwrap();
+    db.execute(
+        "INSERT INTO modifiers (source_kind, source_id, sort_order, effect_type) VALUES ('item_augment_slot_option', ?1, 0, 'AbilityBonus')",
+        [option_id],
+    )
+    .unwrap();
+    assert!(db
+        .execute(
+            "INSERT INTO item_augment_slot_option_grants (option_id, sort_order, slot_id) VALUES (?1, 1, 99)",
+            [option_id]
+        )
+        .is_err());
+    assert!(db
+        .execute(
+            "INSERT INTO item_augment_slot_options (item_id, slot_order, option_order, name) VALUES (1, 0, 0, 'Again')",
+            []
+        )
+        .is_err());
+    let item_socket_count: i64 =
+        db.query_row("SELECT COUNT(*) FROM item_augment_slots WHERE item_id = 1", [], |r| r.get(0)).unwrap();
+    assert_eq!(item_socket_count, 1, "a granted socket stays on the option, never an item socket");
+    db.execute("DELETE FROM items WHERE id = 1", []).unwrap();
+    for option_table in
+        ["item_augment_slot_option_grants", "item_augment_slot_option_sets", "item_augment_slot_option_bonuses"]
+    {
+        let row_count: i64 = db.query_row(&format!("SELECT COUNT(*) FROM {option_table}"), [], |r| r.get(0)).unwrap();
+        assert_eq!(row_count, 0, "{option_table} rows go with their item");
+    }
+    let options_sql: String = db
+        .query_row("SELECT sql FROM sqlite_master WHERE name = 'item_augment_slot_options'", [], |r| r.get(0))
+        .unwrap();
+    assert!(!options_sql.contains("already applied"), "{options_sql}");
+    assert_eq!(SCHEMA_VERSION, 18);
 }

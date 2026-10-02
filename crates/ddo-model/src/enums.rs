@@ -743,6 +743,7 @@ impl DamageCategory {
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
 pub enum ModifierSource {
     Item,
+    ItemAugmentSlotOption,
     Augment,
     SetBonusTier,
     Filigree,
@@ -765,6 +766,7 @@ pub enum ModifierSource {
 impl ModifierSource {
     pub const ALL: &'static [ModifierSource] = &[
         Self::Item,
+        Self::ItemAugmentSlotOption,
         Self::Augment,
         Self::SetBonusTier,
         Self::Filigree,
@@ -787,6 +789,7 @@ impl ModifierSource {
     pub const fn as_str(self) -> &'static str {
         match self {
             Self::Item => "item",
+            Self::ItemAugmentSlotOption => "item_augment_slot_option",
             Self::Augment => "augment",
             Self::SetBonusTier => "set_bonus_tier",
             Self::Filigree => "filigree",
