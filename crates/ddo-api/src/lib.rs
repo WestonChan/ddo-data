@@ -70,10 +70,7 @@ pub fn app(state: AppState) -> Router {
             header::CACHE_CONTROL,
             HeaderValue::from_static("public, max-age=86400, stale-while-revalidate=604800"),
         ))
-        .layer(CompressionLayer::new())
-        .layer(CorsLayer::new().allow_origin(Any).allow_methods([Method::GET, Method::HEAD]).allow_headers(Any))
-        .layer(TraceLayer::new_for_http());
-
+        .layer(CompressionLayer::new());
     if state.is_rate_limited() {
         let rate_limit_config = GovernorConfigBuilder::default()
             .per_second(5)
@@ -83,5 +80,14 @@ pub fn app(state: AppState) -> Router {
             .expect("valid governor config");
         router = router.layer(GovernorLayer::new(rate_limit_config));
     }
-    router.with_state(state)
+    router
+        .layer(
+            CorsLayer::new()
+                .allow_origin(Any)
+                .allow_methods([Method::GET, Method::HEAD])
+                .allow_headers(Any)
+                .expose_headers([header::RETRY_AFTER]),
+        )
+        .layer(TraceLayer::new_for_http())
+        .with_state(state)
 }

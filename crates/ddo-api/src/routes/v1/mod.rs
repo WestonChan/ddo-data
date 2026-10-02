@@ -41,7 +41,7 @@ use utoipa_axum::router::OpenApiRouter;
                        `/icons/{family}/{icon}.png`, where `family` is `items`, `augments`, `feats`, `enhancements`, \
                        `spells`, `classes`, `filigrees`, `sets`, `sentient-gems` or `ui` and `icon` is the row's \
                        `icon` field.\n\n\
-                       Requests are rate limited per IP (5 per second, bursts of 100). CORS allows any origin for GET.",
+                       Requests are rate limited per IP (5 per second, bursts of 100); a limited request gets 429 with `Retry-After` in seconds. CORS allows any origin for GET, on error responses too, and exposes `Retry-After`.",
         license(name = "MIT")
     ),
     tags(

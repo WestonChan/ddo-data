@@ -1066,3 +1066,41 @@ async fn version_counts_quest_chains_sagas_and_their_rewards() {
         (&serde_json::json!(1), &serde_json::json!(3), &serde_json::json!(2), &serde_json::json!(5))
     );
 }
+
+async fn response_to_cross_origin_get(router: axum::Router, path: &str) -> axum::response::Response {
+    let request = Request::get(path)
+        .header(header::ORIGIN, "https://ddo-tools.com")
+        .header("x-forwarded-for", "203.0.113.7")
+        .body(Body::empty())
+        .unwrap();
+    router.oneshot(request).await.unwrap()
+}
+
+#[tokio::test]
+async fn a_rate_limited_response_carries_cors_headers_and_exposes_retry_after() {
+    let router = app(fixture_state().with_rate_limit());
+    let mut rate_limited_response = None;
+    for _ in 0..200 {
+        let response = response_to_cross_origin_get(router.clone(), "/v1/version").await;
+        if response.status() == StatusCode::TOO_MANY_REQUESTS {
+            rate_limited_response = Some(response);
+            break;
+        }
+    }
+    let response = rate_limited_response.expect("the burst of 100 runs out within 200 requests");
+    assert_eq!(response.headers().get(header::ACCESS_CONTROL_ALLOW_ORIGIN).map(|v| v.to_str().unwrap()), Some("*"));
+    let exposed_headers =
+        response.headers().get(header::ACCESS_CONTROL_EXPOSE_HEADERS).map(|v| v.to_str().unwrap().to_lowercase());
+    assert!(exposed_headers.is_some_and(|names| names.contains("retry-after")), "{:?}", response.headers());
+    assert!(response.headers().get(header::RETRY_AFTER).is_some(), "{:?}", response.headers());
+}
+
+#[tokio::test]
+async fn a_not_found_response_carries_cors_headers() {
+    let response = response_to_cross_origin_get(app(fixture_state().with_rate_limit()), "/v1/items/999999").await;
+    assert_eq!(response.status(), StatusCode::NOT_FOUND);
+    assert_eq!(response.headers().get(header::ACCESS_CONTROL_ALLOW_ORIGIN).map(|v| v.to_str().unwrap()), Some("*"));
+    let response = response_to_cross_origin_get(app(fixture_state()), "/no-such-route").await;
+    assert_eq!(response.status(), StatusCode::NOT_FOUND);
+    assert_eq!(response.headers().get(header::ACCESS_CONTROL_ALLOW_ORIGIN).map(|v| v.to_str().unwrap()), Some("*"));
+}
