@@ -32,7 +32,8 @@ use utoipa_axum::router::OpenApiRouter;
                        **Caching.** The dataset is rebuilt only when DDOBuilderV2 changes, so every response is \
                        immutable for a dataset version. Each carries a strong `ETag`, a day-long `Cache-Control` and \
                        an `X-Dataset-Version` header naming the DDOBuilderV2 commit; send `If-None-Match` and expect \
-                       304. `/v1/version` reports the current commit. Error responses (every 4xx and 5xx, 429 \
+                       304. `/v1/version` reports the current commit and carries `Cache-Control: no-cache`, so every use \
+                       revalidates it (a 304 while the deployment is unchanged). Error responses (every 4xx and 5xx, 429 \
                        included) carry `Cache-Control: no-store` and no `ETag`.\n\n\
                        **Shapes.** Every entity has a numeric `id`. List endpoints that take filters return \
                        `{ total, limit, offset, <name>: [...] }` and page with `limit` (max 10000) and `offset`; \

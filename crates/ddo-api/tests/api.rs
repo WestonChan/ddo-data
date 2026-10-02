@@ -77,7 +77,6 @@ async fn version_reports_dataset_and_schema() {
     );
     assert_eq!(headers.get("x-dataset-version").unwrap(), "fixture-sha");
     assert!(headers.get(header::ETAG).is_some());
-    assert!(headers.get(header::CACHE_CONTROL).unwrap().to_str().unwrap().contains("max-age"));
 }
 
 #[tokio::test]
@@ -1813,4 +1812,17 @@ async fn error_responses_are_never_cached() {
         .unwrap();
     assert_eq!(response_without_client_address.status(), StatusCode::INTERNAL_SERVER_ERROR);
     assert_never_cached(&response_without_client_address, "the rate limiter's 500");
+}
+
+#[tokio::test]
+async fn version_is_revalidated_on_every_use_and_answers_304_while_unchanged() {
+    let (_, headers, _) = get("/v1/version").await;
+    assert_eq!(headers.get(header::CACHE_CONTROL).unwrap(), "no-cache");
+    let etag = headers.get(header::ETAG).expect("version keeps its ETag").clone();
+    let response = app(fixture_state())
+        .oneshot(Request::get("/v1/version").header(header::IF_NONE_MATCH, etag).body(Body::empty()).unwrap())
+        .await
+        .unwrap();
+    assert_eq!(response.status(), StatusCode::NOT_MODIFIED);
+    assert_eq!(response.headers().get(header::CACHE_CONTROL).unwrap(), "no-cache");
 }
