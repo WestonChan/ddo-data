@@ -78,7 +78,13 @@
   "pack": "Magic of Myth Drannor",
   "patron": "Cormanthor Elves",
   "quest_chains": [],
-  "sagas": [],
+  "sagas": [
+    {
+      "id": 8,
+      "name": "Magic of Myth Drannor",
+      "wiki_url": "https://ddowiki.com/page/Magic_of_Myth_Drannor_(Legendary)"
+    }
+  ],
   "source": "maetrim",
   "zone": "Burning Library"
 }
