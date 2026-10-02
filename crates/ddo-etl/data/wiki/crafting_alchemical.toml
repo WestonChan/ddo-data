@@ -568,8 +568,8 @@ cost = [{ ingredient = "Thread of Fate", quantity = 50 }]
 tier = "legendary"
 slot = "crafting: legendary alchemical material"
 option = "Tier 0: Mithral"
-augments = []
-note = "Cannith Reforging Station: combine the prototype blank with 50 Threads of Fate. The page lists Mithral (breaks Mithril DR); Maetrim's Alchemical family has no Mithral material augment."
+augments = ["Mithral"]
+note = "Cannith Reforging Station: combine the prototype blank with 50 Threads of Fate."
 cost = [{ ingredient = "Thread of Fate", quantity = 50 }]
 
 [[system.recipe]]

@@ -1,0 +1,38 @@
+[[augment]]
+name = "Essence of The Masque"
+page = "https://ddowiki.com/page/Item:Essence_of_The_Masque"
+read = "2026-10-02"
+family = "Named"
+min_level = 30
+slots = ["blue"]
+description = "This sapphire carries the soul of The Masque.\nSlotted Effect: Soundproof\nRequires: 50 Thread of Fate, 1 Empty Soul Vessel and 1 The Masque (The Curse of Strahd), at the Soulforge in the Hall of Heroes"
+effect_description = "Soundproof: Protects against stunning, dazing and disorientation from sound-based spells such as Soundburst and Greater Shout."
+
+[[augment]]
+name = "Essence of the Champion of the Twins"
+page = "https://ddowiki.com/page/Item:Essence_of_the_Champion_of_the_Twins"
+read = "2026-10-02"
+family = "Named"
+min_level = 30
+slots = ["blue"]
+description = "This sapphire carries the soul of the Champion of the Twins.\nSlotted Effect: Healer's Bounty\nRequires: 50 Thread of Fate, 1 Empty Soul Vessel and 1 Champion of the Twins (Legendary Vision of Destruction), at the Soulforge in the Hall of Heroes"
+effect_description = "Healers Bounty: This shield has a small percentage chance to cast a Heal spell on you when you take damage."
+
+[[augment]]
+name = "Warp the Unholy"
+page = "https://ddowiki.com/page/Esoteric_Table"
+read = "2026-10-02"
+family = "PlanarSearing"
+min_level = 32
+slots = ["crafting: planar searing"]
+description = "Truly Vile Weapon (Legendary Defiled Reliquary Weaponry). Removed: Taint of Evil. Added: Leashed Power (Tier 2), Warp Souls (-1 Will, AC, Fortification, stacks 10 times).\nRequires: 20 Burning Planar Scraps and 20 Legendary Esoteric Relics, at the Esoteric Table"
+effect_description = "Warp Souls: Your attacks and spells apply a single stack of Soul Scar, which reduces your target's Will saves, Armor Class and Fortification by 1 per stack, max 10."
+
+[[augment]]
+name = "Mithral"
+page = "https://ddowiki.com/page/Alchemical_Crafting"
+read = "2026-10-02"
+family = "Alchemical"
+min_level = 29
+slots = ["crafting: legendary alchemical material"]
+description = "Weapon/shield breaks Mithril DR\nTier 0: combine the item blank (Prototype) with 50 Threads of Fate"

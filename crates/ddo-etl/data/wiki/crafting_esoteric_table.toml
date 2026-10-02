@@ -38,9 +38,10 @@ source = "The Hand and the Eyes (north of the final shrine), part of Grip of the
 
 [[system.recipe]]
 tier = "legendary"
+slot = "crafting: planar searing"
 option = "Warp the Unholy (Truly Vile Weapon - Legendary Defiled Reliquary Weaponry)"
-augments = []
-note = "Tier 1. Removes Taint of Evil; adds Leashed Power (Tier 2) and Warp Souls (-1 Will, AC and Fortification, stacks 10 times). The page gives one cost for both Tier 1 rows. Maetrim has no Warp the Unholy augment, so the row names none."
+augments = ["Warp the Unholy"]
+note = "Tier 1. Removes Taint of Evil; adds Leashed Power (Tier 2) and Warp Souls (-1 Will, AC and Fortification, stacks 10 times). The page gives one cost for both Tier 1 rows."
 cost = [{ ingredient = "Burning Planar Scrap", quantity = 20 }, { ingredient = "Legendary Esoteric Relic", quantity = 20 }]
 
 [[system.recipe]]
