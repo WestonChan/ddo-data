@@ -156,6 +156,13 @@ pack = "Shadowfell Conspiracy"
 quests = ["A Lesson in Deception", "Army of Shadow", "Friends in Low Places", "The Thrill of the Hunt", "Through a Mirror Darkly"]
 
 [[chain]]
+name = "The Abandoned Excavation"
+page = "https://ddowiki.com/page/Ruins_of_Threnal"
+read = "2026-10-02"
+pack = "Ruins of Threnal"
+quests = ["The Gate Chamber", "Entering the Gate Chamber", "The Missing Expedition"]
+
+[[chain]]
 name = "The Catacombs"
 page = "https://ddowiki.com/page/The_Catacombs"
 read = "2026-10-02"
