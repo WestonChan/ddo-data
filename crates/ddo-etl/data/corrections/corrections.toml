@@ -87,3 +87,23 @@ to = "Legendary Ruby of Implement's Wind"
 reason = "The Temple of Elemental Evil quest loot tables spell it Implement's; Implements's is a typo."
 source = "https://ddowiki.com/page/ToEE:_First_Level_and_Earth_Temple"
 read = "2026-10-02"
+
+[[correction]]
+kind = "set_bonus"
+name = "Legacy of Levik"
+field = "name"
+from = "Legacy of Levik"
+to = "Legacy of Levikk"
+reason = "The wiki spells the set Legacy of Levikk."
+source = "https://ddowiki.com/page/Item:Legendary_Levik%27s_Bracers"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_bonus"
+name = "Legacy of Lorik"
+field = "name"
+from = "Legacy of Lorik"
+to = "Legacy of Lorikk"
+reason = "The wiki spells the set Legacy of Lorikk, matching his own Lorikk's Champion set name."
+source = "https://ddowiki.com/page/Item:Legendary_Lorik%27s_Necklace"
+read = "2026-10-02"

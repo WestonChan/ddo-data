@@ -527,3 +527,73 @@ to = "colorless"
 reason = "Colroless is a misspelling of Colorless: the wiki's Attuned by Heroism Tier 2 on this ring adds a Colorless Augment Slot."
 source = "https://ddowiki.com/page/Item:Ring_of_Deceit"
 read = "2026-10-02"
+
+[[correction]]
+kind = "item"
+name = "Legendary Levik's Bracers"
+field = "set_bonus"
+from = "null"
+to = "Legacy of Levik"
+reason = "The wiki lists Legacy of Levikk among the bracers' enchantments; his item names no set, which leaves his Legacy of Levik set without members."
+source = "https://ddowiki.com/page/Item:Legendary_Levik%27s_Bracers"
+read = "2026-10-02"
+
+[[correction]]
+kind = "item"
+name = "Legendary Lorik's Necklace"
+field = "set_bonus"
+from = "null"
+to = "Legacy of Lorik"
+reason = "The wiki lists Legacy of Lorikk among the necklace's enchantments; his item names no set, which leaves his Legacy of Lorik set without members."
+source = "https://ddowiki.com/page/Item:Legendary_Lorik%27s_Necklace"
+read = "2026-10-02"
+
+[[correction]]
+kind = "item"
+name = "Bracers of the Mountain"
+field = "set_bonus"
+from = "null"
+to = "Mountainskin"
+reason = "The wiki lists the Mountainskin Set among the bracers' enchantments; his item names no set."
+source = "https://ddowiki.com/page/Item:Bracers_of_the_Mountain"
+read = "2026-10-02"
+
+[[correction]]
+kind = "item"
+name = "Cloak of the Mountain"
+field = "set_bonus"
+from = "null"
+to = "Mountainskin"
+reason = "The wiki puts the cloak in the Mountainskin Set with the Bracers of the Mountain; his item names no set."
+source = "https://ddowiki.com/page/Item:Cloak_of_the_Mountain"
+read = "2026-10-02"
+
+[[correction]]
+kind = "item"
+name = "Voice of the Master"
+field = "set_bonus"
+from = "null"
+to = "DM's Vision"
+reason = "The wiki's DM's Vision items are Voice of the Master, its Epic version and Mantle of the Worldshaper; his item names no set."
+source = "https://ddowiki.com/page/Category:DM%27s_Vision_items"
+read = "2026-10-02"
+
+[[correction]]
+kind = "item"
+name = "Epic Voice of the Master"
+field = "set_bonus"
+from = "null"
+to = "DM's Vision"
+reason = "The wiki's DM's Vision items are Voice of the Master, its Epic version and Mantle of the Worldshaper; his item names no set."
+source = "https://ddowiki.com/page/Category:DM%27s_Vision_items"
+read = "2026-10-02"
+
+[[correction]]
+kind = "item"
+name = "Mantle of the Worldshaper"
+field = "set_bonus"
+from = "null"
+to = "DM's Vision"
+reason = "The wiki's DM's Vision items are Voice of the Master, its Epic version and Mantle of the Worldshaper; his item names no set."
+source = "https://ddowiki.com/page/Category:DM%27s_Vision_items"
+read = "2026-10-02"

@@ -315,7 +315,10 @@ pub const INTEGRITY_CHECKS: &[IntegrityCheck] = &[
     ),
     IntegrityCheck::warn(
         "sets_without_members",
-        "set bonuses no item, augment, filigree or item augment slot option belongs to",
+        "set bonuses no item, augment, filigree or item augment slot option belongs to. Two stay on a full upstream \
+         build: Anthem Melody, which no item names in Maetrim's files or on ddowiki (his dead data), and Magewright's \
+         Expertise, which the Nearly Finished upgrade of Magewright's Cloak grants on the wiki while his option names \
+         no set and no correction kind adds one to an option",
         OffenderQuery::Sql(
             "SELECT s.name, s.id, CASE WHEN s.is_filigree_set = 1 THEN 'filigree set' ELSE 'set' END \
              FROM set_bonuses s \
