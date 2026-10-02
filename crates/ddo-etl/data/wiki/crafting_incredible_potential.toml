@@ -20,7 +20,7 @@ tier = "heroic"
 slot = "crafting: incredible potential"
 option = "Magnetism 78"
 augments = ["Magnetism +78"]
-note = "All recipes are on this page; the focus, gem and essence recipes are on Altar of Subjugation - Raw Ingredients Recipes. Each recipe also consumes a Tower of Despair raid ring with Incredible Potential. Only one effect per ring; a Yellow Dopant removes it (since Update 14). Imbued Shard of Great Power made from focus type Air, gem type Dominion, essence type Ethereal. Maetrim names it Magnetism +78."
+note = "All recipes are on this page; the focus, gem and essence recipes are on Altar of Subjugation - Raw Ingredients Recipes. Each recipe also consumes a Tower of Despair raid ring with Incredible Potential. Only one effect per ring; a Yellow Dopant removes it (since Update 14). Imbued Shard of Great Power made from focus type Air, gem type Dominion, essence type Ethereal."
 cost = [{ ingredient = "Shavarath War Trophy", quantity = 9 }, { ingredient = "Imbued Shard of Great Power", quantity = 1 }]
 
 [[system.recipe]]
@@ -28,7 +28,7 @@ tier = "heroic"
 slot = "crafting: incredible potential"
 option = "Corrosion 78"
 augments = ["Corrosion +78"]
-note = "Imbued Shard of Great Power made from focus type Earth, gem type Dominion, essence type Ethereal. Maetrim names it Corrosion +78."
+note = "Imbued Shard of Great Power made from focus type Earth, gem type Dominion, essence type Ethereal."
 cost = [{ ingredient = "Shavarath War Trophy", quantity = 9 }, { ingredient = "Imbued Shard of Great Power", quantity = 1 }]
 
 [[system.recipe]]
@@ -36,7 +36,7 @@ tier = "heroic"
 slot = "crafting: incredible potential"
 option = "Combustion 78"
 augments = ["Combustion +78"]
-note = "Imbued Shard of Great Power made from focus type Fire, gem type Dominion, essence type Ethereal. Maetrim names it Combustion +78."
+note = "Imbued Shard of Great Power made from focus type Fire, gem type Dominion, essence type Ethereal."
 cost = [{ ingredient = "Shavarath War Trophy", quantity = 9 }, { ingredient = "Imbued Shard of Great Power", quantity = 1 }]
 
 [[system.recipe]]
@@ -44,7 +44,7 @@ tier = "heroic"
 slot = "crafting: incredible potential"
 option = "Glaciation 78"
 augments = ["Glaciation +78"]
-note = "Imbued Shard of Great Power made from focus type Water, gem type Dominion, essence type Ethereal. Maetrim names it Glaciation +78."
+note = "Imbued Shard of Great Power made from focus type Water, gem type Dominion, essence type Ethereal."
 cost = [{ ingredient = "Shavarath War Trophy", quantity = 9 }, { ingredient = "Imbued Shard of Great Power", quantity = 1 }]
 
 [[system.recipe]]
@@ -52,7 +52,7 @@ tier = "heroic"
 slot = "crafting: incredible potential"
 option = "Nullification 78"
 augments = ["Nullification +78"]
-note = "Imbued Shard of Great Power made from focus type Negative, gem type Dominion, essence type Ethereal. Maetrim names it Nullification +78."
+note = "Imbued Shard of Great Power made from focus type Negative, gem type Dominion, essence type Ethereal."
 cost = [{ ingredient = "Shavarath War Trophy", quantity = 9 }, { ingredient = "Imbued Shard of Great Power", quantity = 1 }]
 
 [[system.recipe]]
@@ -60,7 +60,7 @@ tier = "heroic"
 slot = "crafting: incredible potential"
 option = "Devotion 78"
 augments = ["Devotion +78"]
-note = "Imbued Shard of Great Power made from focus type Positive, gem type Dominion, essence type Ethereal. Maetrim names it Devotion +78."
+note = "Imbued Shard of Great Power made from focus type Positive, gem type Dominion, essence type Ethereal."
 cost = [{ ingredient = "Shavarath War Trophy", quantity = 9 }, { ingredient = "Imbued Shard of Great Power", quantity = 1 }]
 
 [[system.recipe]]
@@ -68,7 +68,7 @@ tier = "heroic"
 slot = "crafting: incredible potential"
 option = "Shocking Burst*"
 augments = ["Shocking Burst"]
-note = "Imbued Shard of Great Power made from focus type Air, gem type Dominion, essence type Material. Bursts apply only to unarmed attacks and do not stack with identical handwrap effects. Maetrim names it Shocking Burst."
+note = "Imbued Shard of Great Power made from focus type Air, gem type Dominion, essence type Material. Bursts apply only to unarmed attacks and do not stack with identical handwrap effects."
 cost = [{ ingredient = "Shavarath War Trophy", quantity = 9 }, { ingredient = "Imbued Shard of Great Power", quantity = 1 }]
 
 [[system.recipe]]
@@ -76,7 +76,7 @@ tier = "heroic"
 slot = "crafting: incredible potential"
 option = "Acid Burst*"
 augments = ["Acid Burst"]
-note = "Imbued Shard of Great Power made from focus type Earth, gem type Dominion, essence type Material. Bursts apply only to unarmed attacks and do not stack with identical handwrap effects. Maetrim names it Acid Burst."
+note = "Imbued Shard of Great Power made from focus type Earth, gem type Dominion, essence type Material. Bursts apply only to unarmed attacks and do not stack with identical handwrap effects."
 cost = [{ ingredient = "Shavarath War Trophy", quantity = 9 }, { ingredient = "Imbued Shard of Great Power", quantity = 1 }]
 
 [[system.recipe]]
@@ -84,7 +84,7 @@ tier = "heroic"
 slot = "crafting: incredible potential"
 option = "Flaming Burst*"
 augments = ["Flaming Burst"]
-note = "Imbued Shard of Great Power made from focus type Fire, gem type Dominion, essence type Material. Bursts apply only to unarmed attacks and do not stack with identical handwrap effects. Maetrim names it Flaming Burst."
+note = "Imbued Shard of Great Power made from focus type Fire, gem type Dominion, essence type Material. Bursts apply only to unarmed attacks and do not stack with identical handwrap effects."
 cost = [{ ingredient = "Shavarath War Trophy", quantity = 9 }, { ingredient = "Imbued Shard of Great Power", quantity = 1 }]
 
 [[system.recipe]]
@@ -92,7 +92,7 @@ tier = "heroic"
 slot = "crafting: incredible potential"
 option = "Icy Burst*"
 augments = ["Icy Burst"]
-note = "Imbued Shard of Great Power made from focus type Water, gem type Dominion, essence type Material. Bursts apply only to unarmed attacks and do not stack with identical handwrap effects. Maetrim names it Icy Burst."
+note = "Imbued Shard of Great Power made from focus type Water, gem type Dominion, essence type Material. Bursts apply only to unarmed attacks and do not stack with identical handwrap effects."
 cost = [{ ingredient = "Shavarath War Trophy", quantity = 9 }, { ingredient = "Imbued Shard of Great Power", quantity = 1 }]
 
 [[system.recipe]]
@@ -100,7 +100,7 @@ tier = "heroic"
 slot = "crafting: incredible potential"
 option = "Unholy Burst*"
 augments = ["Unholy Burst"]
-note = "Imbued Shard of Great Power made from focus type Negative, gem type Dominion, essence type Material. Bursts apply only to unarmed attacks and do not stack with identical handwrap effects. Maetrim names it Unholy Burst."
+note = "Imbued Shard of Great Power made from focus type Negative, gem type Dominion, essence type Material. Bursts apply only to unarmed attacks and do not stack with identical handwrap effects."
 cost = [{ ingredient = "Shavarath War Trophy", quantity = 9 }, { ingredient = "Imbued Shard of Great Power", quantity = 1 }]
 
 [[system.recipe]]
@@ -108,7 +108,7 @@ tier = "heroic"
 slot = "crafting: incredible potential"
 option = "Holy Burst*"
 augments = ["Holy Burst"]
-note = "Imbued Shard of Great Power made from focus type Positive, gem type Dominion, essence type Material. Bursts apply only to unarmed attacks and do not stack with identical handwrap effects. Maetrim names it Holy Burst."
+note = "Imbued Shard of Great Power made from focus type Positive, gem type Dominion, essence type Material. Bursts apply only to unarmed attacks and do not stack with identical handwrap effects."
 cost = [{ ingredient = "Shavarath War Trophy", quantity = 9 }, { ingredient = "Imbued Shard of Great Power", quantity = 1 }]
 
 [[system.recipe]]
@@ -212,7 +212,7 @@ tier = "heroic"
 slot = "crafting: incredible potential"
 option = "Heightened Awareness 2 (+2 AC Insight Bonus)"
 augments = ["Heightened Awareness +2"]
-note = "Imbued Shard of Great Power made from focus type Air, gem type Opposition, essence type Ethereal. Maetrim names it Heightened Awareness +2."
+note = "Imbued Shard of Great Power made from focus type Air, gem type Opposition, essence type Ethereal."
 cost = [{ ingredient = "Shavarath War Trophy", quantity = 9 }, { ingredient = "Imbued Shard of Great Power", quantity = 1 }]
 
 [[system.recipe]]
@@ -220,7 +220,7 @@ tier = "heroic"
 slot = "crafting: incredible potential"
 option = "Heightened Awareness 2"
 augments = ["Heightened Awareness +2"]
-note = "Imbued Shard of Great Power made from focus type Earth, gem type Opposition, essence type Ethereal. Maetrim names it Heightened Awareness +2."
+note = "Imbued Shard of Great Power made from focus type Earth, gem type Opposition, essence type Ethereal."
 cost = [{ ingredient = "Shavarath War Trophy", quantity = 9 }, { ingredient = "Imbued Shard of Great Power", quantity = 1 }]
 
 [[system.recipe]]
@@ -228,7 +228,7 @@ tier = "heroic"
 slot = "crafting: incredible potential"
 option = "Heightened Awareness 2"
 augments = ["Heightened Awareness +2"]
-note = "Imbued Shard of Great Power made from focus type Fire, gem type Opposition, essence type Ethereal. Maetrim names it Heightened Awareness +2."
+note = "Imbued Shard of Great Power made from focus type Fire, gem type Opposition, essence type Ethereal."
 cost = [{ ingredient = "Shavarath War Trophy", quantity = 9 }, { ingredient = "Imbued Shard of Great Power", quantity = 1 }]
 
 [[system.recipe]]
@@ -236,7 +236,7 @@ tier = "heroic"
 slot = "crafting: incredible potential"
 option = "Heightened Awareness 2"
 augments = ["Heightened Awareness +2"]
-note = "Imbued Shard of Great Power made from focus type Water, gem type Opposition, essence type Ethereal. Maetrim names it Heightened Awareness +2."
+note = "Imbued Shard of Great Power made from focus type Water, gem type Opposition, essence type Ethereal."
 cost = [{ ingredient = "Shavarath War Trophy", quantity = 9 }, { ingredient = "Imbued Shard of Great Power", quantity = 1 }]
 
 [[system.recipe]]
@@ -244,7 +244,7 @@ tier = "heroic"
 slot = "crafting: incredible potential"
 option = "Heightened Awareness 2"
 augments = ["Heightened Awareness +2"]
-note = "Imbued Shard of Great Power made from focus type Negative, gem type Opposition, essence type Ethereal. Maetrim names it Heightened Awareness +2."
+note = "Imbued Shard of Great Power made from focus type Negative, gem type Opposition, essence type Ethereal."
 cost = [{ ingredient = "Shavarath War Trophy", quantity = 9 }, { ingredient = "Imbued Shard of Great Power", quantity = 1 }]
 
 [[system.recipe]]
@@ -252,7 +252,7 @@ tier = "heroic"
 slot = "crafting: incredible potential"
 option = "Heightened Awareness 2"
 augments = ["Heightened Awareness +2"]
-note = "Imbued Shard of Great Power made from focus type Positive, gem type Opposition, essence type Ethereal. Maetrim names it Heightened Awareness +2."
+note = "Imbued Shard of Great Power made from focus type Positive, gem type Opposition, essence type Ethereal."
 cost = [{ ingredient = "Shavarath War Trophy", quantity = 9 }, { ingredient = "Imbued Shard of Great Power", quantity = 1 }]
 
 [[system.recipe]]
@@ -260,7 +260,7 @@ tier = "heroic"
 slot = "crafting: incredible potential"
 option = "15% Electrical Absorption"
 augments = ["+15% Electrical Absorption"]
-note = "Imbued Shard of Great Power made from focus type Air, gem type Opposition, essence type Material. Maetrim names it +15% Electrical Absorption."
+note = "Imbued Shard of Great Power made from focus type Air, gem type Opposition, essence type Material."
 cost = [{ ingredient = "Shavarath War Trophy", quantity = 9 }, { ingredient = "Imbued Shard of Great Power", quantity = 1 }]
 
 [[system.recipe]]
@@ -268,7 +268,7 @@ tier = "heroic"
 slot = "crafting: incredible potential"
 option = "15% Acid Absorption"
 augments = ["+15% Acid Absorption"]
-note = "Imbued Shard of Great Power made from focus type Earth, gem type Opposition, essence type Material. Maetrim names it +15% Acid Absorption."
+note = "Imbued Shard of Great Power made from focus type Earth, gem type Opposition, essence type Material."
 cost = [{ ingredient = "Shavarath War Trophy", quantity = 9 }, { ingredient = "Imbued Shard of Great Power", quantity = 1 }]
 
 [[system.recipe]]
@@ -276,7 +276,7 @@ tier = "heroic"
 slot = "crafting: incredible potential"
 option = "15% Fire Absorption"
 augments = ["+15% Fire Absorption"]
-note = "Imbued Shard of Great Power made from focus type Fire, gem type Opposition, essence type Material. Maetrim names it +15% Fire Absorption."
+note = "Imbued Shard of Great Power made from focus type Fire, gem type Opposition, essence type Material."
 cost = [{ ingredient = "Shavarath War Trophy", quantity = 9 }, { ingredient = "Imbued Shard of Great Power", quantity = 1 }]
 
 [[system.recipe]]
@@ -284,7 +284,7 @@ tier = "heroic"
 slot = "crafting: incredible potential"
 option = "15% Cold Absorption"
 augments = ["+15% Cold Absorption"]
-note = "Imbued Shard of Great Power made from focus type Water, gem type Opposition, essence type Material. Maetrim names it +15% Cold Absorption."
+note = "Imbued Shard of Great Power made from focus type Water, gem type Opposition, essence type Material."
 cost = [{ ingredient = "Shavarath War Trophy", quantity = 9 }, { ingredient = "Imbued Shard of Great Power", quantity = 1 }]
 
 [[system.recipe]]
@@ -292,7 +292,7 @@ tier = "heroic"
 slot = "crafting: incredible potential"
 option = "20% Negative Energy Absorption"
 augments = ["+20% Negative Absorption"]
-note = "Imbued Shard of Great Power made from focus type Negative, gem type Opposition, essence type Material. Maetrim names it +20% Negative Absorption."
+note = "Imbued Shard of Great Power made from focus type Negative, gem type Opposition, essence type Material."
 cost = [{ ingredient = "Shavarath War Trophy", quantity = 9 }, { ingredient = "Imbued Shard of Great Power", quantity = 1 }]
 
 [[system.recipe]]
@@ -300,5 +300,5 @@ tier = "heroic"
 slot = "crafting: incredible potential"
 option = "+40 Healing Amplification (Equipment bonus)"
 augments = ["+40 Healing Amplification"]
-note = "Imbued Shard of Great Power made from focus type Positive, gem type Opposition, essence type Material. Maetrim names it +40 Healing Amplification."
+note = "Imbued Shard of Great Power made from focus type Positive, gem type Opposition, essence type Material."
 cost = [{ ingredient = "Shavarath War Trophy", quantity = 9 }, { ingredient = "Imbued Shard of Great Power", quantity = 1 }]
