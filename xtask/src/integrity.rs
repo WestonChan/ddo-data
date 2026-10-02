@@ -230,11 +230,19 @@ pub const INTEGRITY_CHECKS: &[IntegrityCheck] = &[
     .showing_every_offender(),
     IntegrityCheck::warn(
         "items_without_enchantments",
-        "items with no bonus and no effect; the top categories are listed",
+        "items that carry nothing beyond their base weapon or armor stats: no bonus, effect, enhancement bonus, \
+         modifier, clicky, augment slot or set membership. Maetrim's files give these items nothing more, so each is \
+         either genuinely bare (starter and event gear, ritual components) or a correction candidate whose wiki page \
+         lists enchantments; the top categories are listed",
         OffenderQuery::Sql(
             "SELECT i.name, i.id, i.item_category FROM items i \
-             WHERE NOT EXISTS (SELECT 1 FROM item_bonuses b WHERE b.item_id = i.id) \
-             AND NOT EXISTS (SELECT 1 FROM item_effects e WHERE e.item_id = i.id) ORDER BY i.name",
+             WHERE i.enhancement_bonus IS NULL \
+             AND NOT EXISTS (SELECT 1 FROM item_bonuses b WHERE b.item_id = i.id) \
+             AND NOT EXISTS (SELECT 1 FROM item_effects e WHERE e.item_id = i.id) \
+             AND NOT EXISTS (SELECT 1 FROM modifiers m WHERE m.source_kind = 'item' AND m.source_id = i.id) \
+             AND NOT EXISTS (SELECT 1 FROM item_clickies c WHERE c.item_id = i.id) \
+             AND NOT EXISTS (SELECT 1 FROM item_augment_slots s WHERE s.item_id = i.id) \
+             AND NOT EXISTS (SELECT 1 FROM set_bonus_items sbi WHERE sbi.item_id = i.id) ORDER BY i.name",
         ),
     )
     .ranking_top_details(5),

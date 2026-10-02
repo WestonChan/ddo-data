@@ -364,6 +364,52 @@ fn items_without_a_source_ranks_the_heads_of_their_drop_locations() {
 }
 
 #[test]
+fn items_without_enchantments_counts_every_property_an_item_can_carry() {
+    let property_inserts = [
+        ("Integrity Probe Enhanced Ring", "UPDATE items SET enhancement_bonus = 3 WHERE id = last_insert_rowid();"),
+        (
+            "Integrity Probe Socketed Ring",
+            "INSERT INTO item_augment_slots (item_id, sort_order, slot_id)
+             VALUES (last_insert_rowid(), 0, (SELECT MIN(id) FROM augment_slot_types));",
+        ),
+        (
+            "Integrity Probe Clicky Ring",
+            "INSERT INTO item_clickies (item_id, sort_order, name) VALUES (last_insert_rowid(), 0, 'Probe Clicky');",
+        ),
+        (
+            "Integrity Probe Modified Ring",
+            "INSERT INTO modifiers (source_kind, source_id, sort_order, effect_type)
+             VALUES ('item', last_insert_rowid(), 0, 'MaxDexBonus');",
+        ),
+        (
+            "Integrity Probe Set Ring",
+            "INSERT INTO set_bonus_items (set_id, item_id) VALUES ((SELECT MIN(id) FROM set_bonuses), last_insert_rowid());",
+        ),
+    ];
+    let mut injected_sql = probe_ring_insert("Integrity Probe Bare Ring");
+    for (probe_name, property_insert) in property_inserts {
+        injected_sql.push_str(&probe_ring_insert(probe_name));
+        injected_sql.push_str(property_insert);
+    }
+    let work_dir = tempfile::tempdir().unwrap();
+    let db_path = fixture_db_copy_with(work_dir.path(), &injected_sql);
+    let db = Connection::open(&db_path).unwrap();
+    let report = integrity_report(&db, &fixture_options()).unwrap();
+    let offender_names: Vec<&str> = report
+        .outcome("items_without_enchantments")
+        .unwrap()
+        .offenders
+        .iter()
+        .map(|offender| offender.name.as_str())
+        .collect();
+
+    assert!(offender_names.contains(&"Integrity Probe Bare Ring"), "{report}");
+    for (probe_name, _) in property_inserts {
+        assert!(!offender_names.contains(&probe_name), "{probe_name} carries a property:\n{report}");
+    }
+}
+
+#[test]
 fn tables_not_empty_prints_the_tables_allowed_to_be_empty() {
     let db = Connection::open(fixture_db_built_once()).unwrap();
     let report = integrity_report(&db, &fixture_options()).unwrap();
