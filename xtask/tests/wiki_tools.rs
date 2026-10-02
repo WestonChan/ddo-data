@@ -587,3 +587,46 @@ fn wiki_check_warns_about_a_listed_quest_drop_that_is_a_reward_of_the_quests_cha
     .unwrap();
     assert!(!fixture_report.contains("end reward belongs"), "{fixture_report}");
 }
+
+#[test]
+fn wiki_batch_lists_the_vendor_and_event_names_his_trade_segments_give_that_no_wiki_file_records() {
+    let wiki_dir_without_vendors_or_events = tempfile::tempdir().unwrap();
+    for entry in std::fs::read_dir(fixtures_dir().join("wiki")).unwrap() {
+        let path = entry.unwrap().path();
+        let file_name = path.file_name().unwrap().to_string_lossy().into_owned();
+        if !file_name.starts_with("vendors") && !file_name.starts_with("events") {
+            std::fs::copy(&path, wiki_dir_without_vendors_or_events.path().join(file_name)).unwrap();
+        }
+    }
+    let unrecorded_out_dir = tempfile::tempdir().unwrap();
+    write_wiki_batch(
+        &fixtures_dir().join("DataFiles"),
+        Some(wiki_dir_without_vendors_or_events.path()),
+        Some(&fixture_corrections_dir()),
+        unrecorded_out_dir.path(),
+    )
+    .unwrap();
+    assert_eq!(
+        std::fs::read_to_string(unrecorded_out_dir.path().join("vendor_names.txt")).unwrap(),
+        "Eveningstar\t1\nMorten Edgewright\t1\nThe Marketplace\t1\n",
+        "every unlinked turn-in segment's head that names no event; Eveningstar's challenge pack is not in the fixtures"
+    );
+    assert_eq!(
+        std::fs::read_to_string(unrecorded_out_dir.path().join("event_names.txt")).unwrap(),
+        "Treasure of Crystal Cove\t2\n"
+    );
+
+    let recorded_out_dir = tempfile::tempdir().unwrap();
+    write_wiki_batch(
+        &fixtures_dir().join("DataFiles"),
+        Some(&fixtures_dir().join("wiki")),
+        Some(&fixture_corrections_dir()),
+        recorded_out_dir.path(),
+    )
+    .unwrap();
+    assert_eq!(
+        std::fs::read_to_string(recorded_out_dir.path().join("vendor_names.txt")).unwrap(),
+        "Eveningstar\t1\nThe Marketplace\t1\n"
+    );
+    assert_eq!(std::fs::read_to_string(recorded_out_dir.path().join("event_names.txt")).unwrap(), "");
+}

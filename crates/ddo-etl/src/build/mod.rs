@@ -14,7 +14,7 @@ mod wiki;
 use crate::corrections::Corrections;
 use crate::map::augment_slot::AugmentSlotType;
 use crate::map::buff::BuffMap;
-use crate::map::drop_location::{names_saga, reward_giver_name};
+use crate::map::drop_location::{names_saga, reward_giver_name, segment_head};
 use crate::map::effect::EffectMap;
 use crate::map::legacy_drop_source::LegacyDropSources;
 use crate::map::source_alias::SourceAliases;
@@ -319,6 +319,26 @@ pub struct UnlinkedDropSegmentHead {
 }
 
 pub fn unlinked_drop_segment_heads(db: &Connection) -> Result<Vec<UnlinkedDropSegmentHead>> {
+    unlinked_segment_heads(db, |segment| Some(segment.split([',', '(']).next().unwrap_or(segment).trim().to_string()))
+}
+
+pub fn unlinked_trade_segment_heads(db: &Connection) -> Result<Vec<UnlinkedDropSegmentHead>> {
+    unlinked_segment_heads(db, |segment| {
+        let lowercase_segment = segment.to_lowercase();
+        if !TRADE_MARKERS.iter().any(|marker| lowercase_segment.contains(marker)) {
+            return None;
+        }
+        let head = segment_head(segment);
+        Some(head.split(" sells ").next().unwrap_or(head).trim().to_string())
+    })
+}
+
+const TRADE_MARKERS: [&str; 4] = ["turn in", "sells", "exchange", "trade"];
+
+fn unlinked_segment_heads(
+    db: &Connection,
+    head_of_segment: impl Fn(&str) -> Option<String>,
+) -> Result<Vec<UnlinkedDropSegmentHead>> {
     let drop_text_linker =
         DropTextLinker::from_written_tables(db, &LegacyDropSources::embedded()?, &SourceAliases::embedded()?)?;
     let mut item_counts_by_head: BTreeMap<String, usize> = BTreeMap::new();
@@ -326,7 +346,7 @@ pub fn unlinked_drop_segment_heads(db: &Connection) -> Result<Vec<UnlinkedDropSe
         let mut heads_in_item: Vec<String> = drop_text_linker
             .unlinked_segments(drop_text)
             .into_iter()
-            .map(|segment| segment.split([',', '(']).next().unwrap_or(segment).trim().to_string())
+            .filter_map(&head_of_segment)
             .filter(|head| !head.is_empty())
             .collect();
         heads_in_item.sort();

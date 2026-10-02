@@ -1,8 +1,8 @@
 use crate::dataset::{build_in_memory_database, corrections_from, wiki_overrides_from};
 use anyhow::{Context, Result};
 use ddo_etl::build::{
-    unlinked_drop_segment_heads, unlinked_reward_givers, BuildReport, StaleCorrection, StaleCorrectionCause,
-    UnlinkedRewardGiver,
+    unlinked_drop_segment_heads, unlinked_reward_givers, unlinked_trade_segment_heads, BuildReport, StaleCorrection,
+    StaleCorrectionCause, UnlinkedRewardGiver,
 };
 use ddo_etl::wiki::{DescriptionKind, WikiOverrides};
 use ddo_model::enums::Provenance;
@@ -344,6 +344,8 @@ pub fn write_wiki_batch(
         ("quest_chain_names.txt", as_lines(unlinked_reward_giver_lines(&unlinked_reward_givers, false))),
         ("saga_names.txt", as_lines(unlinked_reward_giver_lines(&unlinked_reward_givers, true))),
         ("unlinked_drop_segments.txt", as_lines(unlinked_drop_segment_lines(&db)?)),
+        ("vendor_names.txt", as_lines(unlinked_trade_head_lines(&db, false)?)),
+        ("event_names.txt", as_lines(unlinked_trade_head_lines(&db, true)?)),
     ];
     batch_files
         .into_iter()
@@ -380,6 +382,31 @@ fn unlinked_drop_segment_lines(db: &Connection) -> Result<Vec<String>> {
         .map(|unlinked_head| format!("{}\t{}", unlinked_head.head, unlinked_head.item_count))
         .collect())
 }
+
+fn unlinked_trade_head_lines(db: &Connection, is_event: bool) -> Result<Vec<String>> {
+    Ok(unlinked_trade_segment_heads(db)?
+        .into_iter()
+        .filter(|unlinked_head| names_event(&unlinked_head.head) == is_event)
+        .map(|unlinked_head| format!("{}\t{}", unlinked_head.head, unlinked_head.item_count))
+        .collect())
+}
+
+fn names_event(head: &str) -> bool {
+    let lowercase_head = head.to_lowercase();
+    EVENT_NAME_WORDS.iter().any(|word| lowercase_head.contains(word))
+}
+
+const EVENT_NAME_WORDS: [&str; 9] = [
+    "anniversary",
+    "crystal cove",
+    "festival",
+    "festivult",
+    "invasion",
+    "mimic hunt",
+    "revels",
+    "special event",
+    "timeline fragment",
+];
 
 fn unlinked_reward_giver_lines(unlinked_reward_givers: &[UnlinkedRewardGiver], is_saga: bool) -> Vec<String> {
     unlinked_reward_givers
