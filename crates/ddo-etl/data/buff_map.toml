@@ -96,6 +96,8 @@ Deception = "Deception"
 ArmorPiercing = "Fortification Bypass"
 CombatMastery = "Combat Mastery"
 Stunning = "Stun DC"
+Shatter = "Sunder DC"
+Vertigo = "Trip DC"
 Assassinate = "Assassinate DC"
 # Threat
 Incite = "Melee Threat Generation"

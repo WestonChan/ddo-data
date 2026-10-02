@@ -40,9 +40,9 @@ fn item_id(db: &Connection, name: &str) -> i64 {
 #[test]
 fn builds_items_and_skips_cosmetics() {
     let (db, report) = built_fixture_db();
-    assert_eq!(report.written_item_count, 16);
+    assert_eq!(report.written_item_count, 17);
     assert_eq!(report.skipped_cosmetic_item_count, 1);
-    assert_eq!(count(&db, "SELECT COUNT(*) FROM items WHERE source = 'maetrim'"), 16);
+    assert_eq!(count(&db, "SELECT COUNT(*) FROM items WHERE source = 'maetrim'"), 17);
     assert_eq!(count(&db, "SELECT COUNT(*) FROM items WHERE name = '17th Anniversary Dark Helm'"), 0);
     let reason: String = db
         .query_row("SELECT reason FROM excluded_items WHERE name = '17th Anniversary Dark Helm'", [], |r| r.get(0))
@@ -202,6 +202,37 @@ fn splits_buffs_into_bonuses_and_effects() {
     let description: String =
         db.query_row("SELECT description FROM bonuses WHERE name = 'Hit Points +50'", [], |r| r.get(0)).unwrap();
     assert!(description.contains("50"), "{description}");
+}
+
+#[test]
+fn writes_tactical_dc_buffs_as_bonuses() {
+    let (db, _) = built_fixture_db();
+    let ring = item_id(&db, "Legendary Ring of Unbridled Might");
+    let tactical_dc_bonuses: Vec<(String, Option<String>, i64)> = db
+        .prepare(
+            "SELECT s.name, bt.name, b.value FROM item_bonuses ib JOIN bonuses b ON b.id = ib.bonus_id
+               JOIN stats s ON s.id = b.stat_id LEFT JOIN bonus_types bt ON bt.id = b.bonus_type_id
+              WHERE ib.item_id = ?1 AND s.name LIKE '% DC' ORDER BY s.name",
+        )
+        .unwrap()
+        .query_map(params![ring], |r| Ok((r.get(0)?, r.get(1)?, r.get(2)?)))
+        .unwrap()
+        .map(Result::unwrap)
+        .collect();
+    assert_eq!(
+        tactical_dc_bonuses,
+        vec![
+            ("Stun DC".to_string(), Some("Insight".to_string()), 7),
+            ("Sunder DC".to_string(), Some("Insight".to_string()), 7),
+        ]
+    );
+    let shatter_effect_count = count(
+        &db,
+        &format!(
+            "SELECT COUNT(*) FROM item_effects ie JOIN effects e ON e.id = ie.effect_id WHERE ie.item_id = {ring} AND e.name = 'Shatter'"
+        ),
+    );
+    assert_eq!(shatter_effect_count, 0);
 }
 
 #[test]
@@ -431,7 +462,7 @@ fn diff_reports_coverage_against_a_legacy_database() {
         vec!["17th Anniversary Dark Helm".to_string()],
         "cosmetics are not gaps"
     );
-    assert_eq!(coverage.names_only_in_built.len(), 14, "the wiki fixture item is only in the build");
+    assert_eq!(coverage.names_only_in_built.len(), 15, "the wiki fixture item is only in the build");
     assert!((coverage.coverage_ratio() - 0.75).abs() < 1e-9);
 }
 

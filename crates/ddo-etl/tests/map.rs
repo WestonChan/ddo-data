@@ -131,6 +131,8 @@ fn buffs_resolve_to_enhancement_bonus_stat_or_effect() {
         (buff("Protection", None, Some(5), Some("Deflection")), "Armor Class"),
         (buff("Resistance", None, Some(4), Some("Resistance")), "Saving Throws"),
         (buff("WizardryNumber", None, Some(200), Some("Enhancement")), "Spell Points"),
+        (buff("Shatter", None, Some(7), Some("Insightful")), "Sunder DC"),
+        (buff("Vertigo", None, Some(15), Some("Enhancement")), "Trip DC"),
     ];
     for (b, expected) in cases {
         match map.resolved(&b).unwrap() {
