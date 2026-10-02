@@ -38,14 +38,14 @@ rare = [
 rare_augments = [{ name = "Lunar Gem of Magical Protection (Heroic)", chest = "end chest" }]
 ```
 
-`items` lists named items the page's loot table gives for the quest that Maetrim's drop text does not link to it, and `augments` the same for augments (by his exact augment name, every row of that name). Each element is a name, or `{ name = "...", loot_type = "...", chest = "..." }` with `loot_type` one of `chest`, `raid` or `reward` (default `chest`; a chain's end reward is `reward`) and `chest` optional, lower-cased as above. A listed drop is not rare; list it in `rare` or `rare_augments` too when the page marks it rare.
+`items` lists named items the page's loot table gives for the quest that Maetrim's drop text does not link to it, and `augments` the same for augments (by his exact augment name, every row of that name). Each element is a name, or `{ name = "...", loot_type = "...", chest = "..." }` with `loot_type` one of `chest`, `raid` or `reward` (default `chest`; `reward` is the quest's own end reward, while a quest chain's or a saga's end reward goes in `quest_chains.toml` or `sagas.toml`, not here) and `chest` optional, lower-cased as above. A listed drop is not rare; list it in `rare` or `rare_augments` too when the page marks it rare.
 
 ```toml
 [[quest]]
-name = "Thrall of the Necromancer"
-page = "https://ddowiki.com/page/Thrall_of_the_Necromancer"
+name = "Zawabi's Revenge"
+page = "https://ddowiki.com/page/Zawabi%27s_Revenge"
 read = "2026-10-01"
-items = [{ name = "Voice of the Master", loot_type = "reward" }]
+items = ["Ring of Baphomet"]
 ```
 
 A quest links an item or augment once per loot type, so one item can be both a chest (or raid) drop and an end reward of the same quest. His text gives a quest's link a loot type from each segment naming the quest: `raid` for every segment when the quest is a raid; otherwise `reward` when the segment says `reward` and does not say `chain` or `saga` (a quest chain's or a saga's end reward comes from another NPC after several quests, not from this quest), and `chest` when the segment does not name the quest's own reward or also says `chest`. `The Tide Turns, End Chest, End Reward` makes a chest link and a reward link; `Project Nemesis, end chest; Masterminds of Sharn saga: Epic end reward` makes only Project Nemesis's raid link.

@@ -555,43 +555,6 @@ rare_augments = [
 ]
 
 [[quest]]
-name = "Venn's Trail: Venn's Fate"
-page = "https://ddowiki.com/page/Venn%27s_Trail:_Venn%27s_Fate"
-read = "2026-10-01"
-items = [
-  { name = "Acrobat's Ring", loot_type = "reward" },
-  { name = "Armor of the Unknown Hero", loot_type = "reward" },
-  { name = "Black Widow Bracers", loot_type = "reward" },
-  { name = "Bloodletter's Knife", loot_type = "reward" },
-  { name = "Flame Warden", loot_type = "reward" },
-  { name = "Gloves of Deceit", loot_type = "reward" },
-  { name = "Gnashtooth Piecemail Chain", loot_type = "reward" },
-  { name = "Gnashtooth Sickle", loot_type = "reward" },
-  { name = "Goggles of Grabbing", loot_type = "reward" },
-  { name = "Graskitch's Skullcap", loot_type = "reward" },
-  { name = "Guardkiller Bow", loot_type = "reward" },
-  { name = "Interogator's Shield", loot_type = "reward" },
-  { name = "Lost Docent of the Mastermind", loot_type = "reward" },
-  { name = "Melt Wood Staff", loot_type = "reward" },
-  { name = "Misery's Web", loot_type = "reward" },
-  { name = "Moss Weave Cloak", loot_type = "reward" },
-  { name = "Pastemaker", loot_type = "reward" },
-  { name = "Scales of the Ancestors", loot_type = "reward" },
-  { name = "Sewer Smock", loot_type = "reward" },
-  { name = "Sludge Fin Boots", loot_type = "reward" },
-  { name = "Tunnelworm Champion's Belt", loot_type = "reward" },
-  { name = "Venn's Necklace", loot_type = "reward" },
-]
-
-[[quest]]
-name = "Thrall of the Necromancer"
-page = "https://ddowiki.com/page/Thrall_of_the_Necromancer"
-read = "2026-10-01"
-items = [
-  { name = "Voice of the Master", loot_type = "reward" },
-]
-
-[[quest]]
 name = "Zawabi's Revenge"
 page = "https://ddowiki.com/page/Zawabi%27s_Revenge"
 read = "2026-10-01"
