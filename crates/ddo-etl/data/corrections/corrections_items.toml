@@ -257,3 +257,13 @@ to = 1
 reason = "The wiki and his own drop text spell the witch doctor Rakhat; his Rahkat's Trifle repeats Rakhat's Trifle's bonuses, level and drop."
 source = "https://ddowiki.com/page/Durk%27s_Got_a_Secret"
 read = "2026-10-01"
+
+[[correction]]
+kind = "item"
+name = "Necronimicannon"
+field = "name"
+from = "Necronimicannon"
+to = "Necronomicannon"
+reason = "The wiki spells the rune arm Necronomicannon; Necronimicannon is a misspelling."
+source = "https://ddowiki.com/page/Item:Necronomicannon"
+read = "2026-10-01"

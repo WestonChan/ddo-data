@@ -1029,35 +1029,6 @@ effects = [
 ]
 
 [[item]]
-name = "Necronomicannon"
-page = "https://ddowiki.com/page/Item:Necronomicannon"
-read = "2026-09-30"
-slot = "Runearm"
-category = "Weapon"
-item_type = "Rune Arm"
-minimum_level = 5
-material = "Gem"
-description = "This Runearm seems to generate terrible and forbidden knowledge at a moment's notice. Thankfully, these accursed books are used for little else other than blunt force trauma."
-drop_location = "The Feywild, rare encounters"
-set = "Seasons of the Feywild"
-augment_slots = ["green"]
-bonuses = [
-  { stat = "Sunder DC", bonus_type = "Insight", value = 1 },
-  { stat = "Hit Points", bonus_type = "Profane", value = 12 },
-]
-effects = [
-  { name = "Maximum Charge Tier: II" },
-  { name = "Book Shot", description = "Hurls books at enemies. At higher charge levels multiple books are rapidly fired. Opponents struck by the books receive a Reflex save for half damage." },
-  { name = "Ghostly", description = "Equipping this item causes you to become partially incorporeal. Your melee attacks do not roll a miss chance for Incorporeal targets. Enemy attacks have a 10% chance to miss you due to incorporeality. You receive a +5 enhancement bonus to your Hide and Move Silently skills." },
-  { name = "Trap the Soul", description = "This equipment stores an overwhelming, merciless power deep within. When you strike an enemy with a melee or missile attack, this power occasionally comes to the surface, sucking out the life force of an enemy and imprisoning the essence of their body and soul in a gem." },
-  { name = "Mythic Weapon Boost +2 or +4 and/or Mythic Shield Boost +2 or +4", description = "+2 or +4 Mythic bonus to Melee, Ranged, and Universal Spell Power.(This is a rare enchantment that does not show up on all drops of this item.)" },
-  { name = "Rune Arm Imbue: Evil Shot I", description = "Wearing this Rune Arm will imbue any weapon you wield, dealing 1d2 points of Evil damage per hit." },
-]
-
-[item.weapon]
-handedness = "Off-hand"
-
-[[item]]
 name = "Resplendence"
 page = "https://ddowiki.com/page/Item:Resplendence"
 read = "2026-09-30"
