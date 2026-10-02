@@ -58,7 +58,8 @@ impl QueryParameters for ItemListQuery {
                    Filters: `q` (search text against the name, or exactly a slot, category or pack name), `slot`, \
                    `category`, `min_level` and `max_level`, `pack`, `raid`, `rare`, `quest`, `quest_chain` and `saga` \
                    (ids of what drops or rewards the item), `stat` (one or more stats, any of which an item's \
-                   bonuses must carry) and `include_set_bonuses` (let `stat` also match the item's set tiers). \
+                   bonuses must carry) and `include_set_bonuses` (let `stat` also match the item's set tiers); \
+                   `limit` and `offset` page the matches. \
                    Ordered by name; with `q`, an exact name match comes first, then names starting with the text, \
                    then the rest, each group by name. Each row carries what a picker needs: id, name, slot, \
                    category, item type, minimum level, enhancement bonus, icon name, the alphabetically first \

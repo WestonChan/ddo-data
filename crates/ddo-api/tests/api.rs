@@ -855,6 +855,8 @@ async fn openapi_lists_every_item_filter_in_the_route_description_and_parameters
         "saga",
         "stat",
         "include_set_bonuses",
+        "limit",
+        "offset",
     ];
     let route_description = operation["description"].as_str().unwrap();
     for filter_name in item_filters {
