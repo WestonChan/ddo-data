@@ -269,16 +269,6 @@ source = "https://ddowiki.com/page/Item:Necronomicannon"
 read = "2026-10-01"
 
 [[correction]]
-kind = "item_bonus"
-name = "Necronimicannon"
-field = "add"
-from = "null"
-to = { stat = "Sunder DC", bonus_type = "Insight", value = 1 }
-reason = "The wiki's Necronomicannon has a +1 Insight bonus to Sunder DC; his item carries it only as the Shatter effect, with no bonus."
-source = "https://ddowiki.com/page/Item:Necronomicannon"
-read = "2026-10-01"
-
-[[correction]]
 kind = "item_effect"
 name = "Necronimicannon"
 field = "add"
