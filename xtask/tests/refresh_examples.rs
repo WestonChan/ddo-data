@@ -121,3 +121,30 @@ fn refresh_fails_naming_a_documented_example_without_a_sample() {
 
     assert!(format!("{error:#}").contains("clickies"), "{error:#}");
 }
+
+#[test]
+fn refresh_keeps_the_committed_quest_chain_and_saga_examples_while_no_wiki_file_records_one() {
+    let work_dir = tempfile::tempdir().unwrap();
+    let db_path = work_dir.path().join("no-chains.db");
+    let wiki_overrides = WikiOverrides {
+        quest_chains: Vec::new(),
+        sagas: Vec::new(),
+        ..WikiOverrides::from_dir(&fixtures_dir().join("wiki")).unwrap()
+    };
+    build_database_file(&fixtures_dir().join("DataFiles"), &wiki_overrides, &Corrections::default(), &db_path).unwrap();
+    let committed_examples = [
+        ("quest-chains.json", "[\n  {\n    \"id\": 1\n  }\n]\n"),
+        ("quest-chains_id.json", "{\n  \"id\": 1\n}\n"),
+        ("sagas.json", "[\n  {\n    \"id\": 2\n  }\n]\n"),
+        ("sagas_id.json", "{\n  \"id\": 2\n}\n"),
+    ];
+    for (file_name, committed_text) in committed_examples {
+        std::fs::write(work_dir.path().join(file_name), committed_text).unwrap();
+    }
+
+    write_response_examples(&db_path, &as_requests(&fixture_sample_paths()), work_dir.path()).unwrap();
+
+    for (file_name, committed_text) in committed_examples {
+        assert_eq!(std::fs::read_to_string(work_dir.path().join(file_name)).unwrap(), committed_text, "{file_name}");
+    }
+}

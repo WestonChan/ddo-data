@@ -1,0 +1,29 @@
+[
+  {
+    "id": 2,
+    "name": "Cult of the Six",
+    "pack": null,
+    "quest_count": 0,
+    "reward_count": 26,
+    "source": "wiki",
+    "wiki_url": "https://ddowiki.com/page/Cult_of_the_Six"
+  },
+  {
+    "id": 3,
+    "name": "Delera's Tomb",
+    "pack": null,
+    "quest_count": 0,
+    "reward_count": 6,
+    "source": "wiki",
+    "wiki_url": "https://ddowiki.com/page/Delera%27s_Tomb"
+  },
+  {
+    "id": 1,
+    "name": "The Lost Seekers",
+    "pack": null,
+    "quest_count": 0,
+    "reward_count": 22,
+    "source": "wiki",
+    "wiki_url": "https://ddowiki.com/page/The_Lost_Seekers"
+  }
+]

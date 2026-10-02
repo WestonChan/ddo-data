@@ -1,0 +1,29 @@
+[
+  {
+    "id": 2,
+    "name": "Dread",
+    "pack": null,
+    "quest_count": 0,
+    "reward_count": 6,
+    "source": "wiki",
+    "wiki_url": "https://ddowiki.com/page/Isle_of_Dread_(saga)"
+  },
+  {
+    "id": 1,
+    "name": "Masterminds of Sharn",
+    "pack": null,
+    "quest_count": 0,
+    "reward_count": 10,
+    "source": "wiki",
+    "wiki_url": "https://ddowiki.com/page/Masterminds_of_Sharn_(saga)"
+  },
+  {
+    "id": 3,
+    "name": "The Haunting of Saltmarsh",
+    "pack": null,
+    "quest_count": 0,
+    "reward_count": 6,
+    "source": "wiki",
+    "wiki_url": "https://ddowiki.com/page/The_Haunting_of_Saltmarsh"
+  }
+]

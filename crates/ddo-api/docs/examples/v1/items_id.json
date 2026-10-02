@@ -64,6 +64,7 @@
   "minimum_level": 8,
   "modifiers": [],
   "name": "Agony's Eyes",
+  "quest_chains": [],
   "quests": [
     {
       "chest": "end chest",
@@ -86,6 +87,7 @@
     }
   ],
   "race_required": null,
+  "sagas": [],
   "set": null,
   "set_name": null,
   "slot": "Goggles",

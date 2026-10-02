@@ -46,6 +46,10 @@ const COUNTED_ROWS: &[(&str, &str)] = &[
     ("crafting_systems", "crafting_systems"),
     ("crafting_recipes", "crafting_recipes"),
     ("crafting_ingredients", "crafting_ingredients"),
+    ("quest_chains", "quest_chains"),
+    ("quest_chain_rewards", "quest_chain_rewards"),
+    ("sagas", "sagas"),
+    ("saga_rewards", "saga_rewards"),
     ("wiki_items", "items WHERE source = 'wiki'"),
     ("wiki_quests", "quests WHERE source = 'wiki'"),
     ("wiki_augments", "augments WHERE source = 'wiki'"),
@@ -58,7 +62,7 @@ const COUNTED_ROWS: &[(&str, &str)] = &[
     summary = "Get the dataset version",
     description = "Which DDOBuilderV2 commit the data was built from and when, which ddo-data commit the API binary \
                    was built from (`api_commit`, null for local builds), the schema version, and row counts for \
-                   the main tables (`quest_augment_loot` counts the quest-to-augment drop links) plus `wiki_items`, `wiki_quests` and `wiki_augments`, the items, quests and augments read from ddowiki because \
+                   the main tables (`quest_augment_loot` counts the quest-to-augment drop links, `quest_chain_rewards` and `saga_rewards` the items each quest chain's and saga's end reward offers) plus `wiki_items`, `wiki_quests` and `wiki_augments`, the items, quests and augments read from ddowiki because \
                    DDOBuilderV2 lacks them. \
                    The dataset SHA is the same value every response carries in its `X-Dataset-Version` header; a change in it means every cached response is stale.",
     responses((status = 200, description = "Dataset, schema and counts", body = VersionReport))

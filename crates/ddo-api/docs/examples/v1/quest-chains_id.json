@@ -1,0 +1,33 @@
+{
+  "id": 1,
+  "name": "The Lost Seekers",
+  "pack": null,
+  "quest_count": 0,
+  "quests": [],
+  "reward_count": 22,
+  "rewards": [
+    {
+      "id": 468,
+      "is_rare": false,
+      "minimum_level": 3,
+      "name": "Acrobat's Ring",
+      "slot": "Ring"
+    },
+    {
+      "id": 637,
+      "is_rare": false,
+      "minimum_level": 2,
+      "name": "Armor of the Unknown Hero",
+      "slot": "Body"
+    },
+    {
+      "id": 894,
+      "is_rare": false,
+      "minimum_level": 3,
+      "name": "Black Widow Bracers",
+      "slot": "Wrists"
+    }
+  ],
+  "source": "wiki",
+  "wiki_url": "https://ddowiki.com/page/The_Lost_Seekers"
+}

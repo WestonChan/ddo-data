@@ -1,3 +1,4 @@
+use super::quest_series::{quest_chains_including, sagas_including};
 use crate::db::{convert_to_booleans, json_row, json_rows, whole_table_json};
 use crate::error::ApiError;
 use crate::state::AppState;
@@ -91,7 +92,9 @@ async fn quests(State(state): State<AppState>) -> Result<Json<Vec<Value>>, ApiEr
                    and `chest` (the chest Maetrim's drop text names, lower-cased, null when it names none), the same \
                    link item and augment detail `quests` report from the other side. An item or augment that is both \
                    a chest (or raid) drop and an end reward of the quest appears once per loot type. Both arrays are \
-                   sorted by name, then loot type, and empty when nothing is known to drop there.",
+                   sorted by name, then loot type, and empty when nothing is known to drop there. `quest_chains` and `sagas` \
+                   name (`id`, `name`) the quest chains and sagas the quest belongs to, whose end rewards come from \
+                   their NPCs rather than from the quest; see /v1/quest-chains/{id} and /v1/sagas/{id}.",
     params(("id" = i64, Path, description = "The quest's numeric id from /v1/quests")),
     responses(
         (status = 200, description = "The quest with the items and augments it drops", body = Value),
@@ -111,6 +114,8 @@ async fn quest_detail(State(state): State<AppState>, Path(id): Path<i64>) -> Res
                   WHERE loot.quest_id = ?1 ORDER BY i.name, i.id, loot.loot_type",
                 id,
             )?);
+            quest["quest_chains"] = Value::Array(quest_chains_including(db, id)?);
+            quest["sagas"] = Value::Array(sagas_including(db, id)?);
             quest["augments"] = Value::Array(loot_rows(
                 db,
                 "SELECT a.id, a.name, loot.loot_type, loot.is_rare, loot.chest, a.family, a.min_level

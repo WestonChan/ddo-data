@@ -10,6 +10,8 @@ use tower::ServiceExt;
 
 const TRIMMED_ARRAY_LENGTH: usize = 3;
 const VERSION_EXAMPLE_NAME: &str = "version";
+const EXAMPLES_KEPT_UNTIL_A_WIKI_FILE_RECORDS_A_ROW: &[&str] =
+    &["quest-chains", "quest-chains_id", "sagas", "sagas_id"];
 
 pub struct ExampleRequest<'a> {
     pub example_name: &'a str,
@@ -32,6 +34,10 @@ pub const EXAMPLE_REQUESTS: &[ExampleRequest<'static>] = &[
     sample("patrons", "/v1/patrons"),
     sample("quests", "/v1/quests"),
     sample("quests_id", "/v1/quests/364"),
+    sample("quest-chains", "/v1/quest-chains"),
+    sample("quest-chains_id", "/v1/quest-chains/1"),
+    sample("sagas", "/v1/sagas"),
+    sample("sagas_id", "/v1/sagas/1"),
     sample("items", "/v1/items?q=cloak%20of%20winter&limit=2"),
     sample("items_id", "/v1/items/497"),
     sample("augments", "/v1/augments?slot=sun&limit=2"),
@@ -74,11 +80,18 @@ pub fn write_response_examples(
     let runtime = tokio::runtime::Builder::new_current_thread().enable_all().build()?;
     let mut example_texts = Vec::with_capacity(requests.len());
     for request in requests {
-        let mut example = runtime
-            .block_on(sampled_response(&state, request.path))
+        let example_path = examples_dir.join(example_file_name(request.example_name));
+        let sampled_response = runtime.block_on(sampled_response(&state, request.path))?;
+        if let Some(committed_text) = committed_example_to_keep(request.example_name, &sampled_response, &example_path)
+        {
+            example_texts.push((example_file_name(request.example_name), committed_text));
+            continue;
+        }
+        let mut example = sampled_response
+            .into_json()
             .with_context(|| format!("example {}: GET {}", request.example_name, request.path))?;
         if request.example_name == VERSION_EXAMPLE_NAME {
-            keep_committed_api_commit(&mut example, &examples_dir.join(example_file_name(request.example_name)))?;
+            keep_committed_api_commit(&mut example, &example_path)?;
         }
         let example_text = serde_json::to_string_pretty(&trimmed_example(example))? + "\n";
         example_texts.push((example_file_name(request.example_name), example_text));
@@ -114,12 +127,46 @@ fn reject_unmatched_requests(requests: &[ExampleRequest]) -> Result<()> {
     Ok(())
 }
 
-async fn sampled_response(state: &AppState, path: &str) -> Result<Value> {
+struct SampledResponse {
+    status: StatusCode,
+    body_bytes: Vec<u8>,
+}
+
+impl SampledResponse {
+    fn into_json(self) -> Result<Value> {
+        ensure!(
+            self.status == StatusCode::OK,
+            "returned {}: {}",
+            self.status,
+            String::from_utf8_lossy(&self.body_bytes)
+        );
+        serde_json::from_slice(&self.body_bytes).context("response is not JSON")
+    }
+
+    fn is_empty_or_missing(&self) -> bool {
+        self.status == StatusCode::NOT_FOUND
+            || (self.status == StatusCode::OK
+                && serde_json::from_slice::<Value>(&self.body_bytes).is_ok_and(|body| body == Value::Array(Vec::new())))
+    }
+}
+
+async fn sampled_response(state: &AppState, path: &str) -> Result<SampledResponse> {
     let response = app(state.clone()).oneshot(Request::get(path).body(Body::empty())?).await?;
     let status = response.status();
-    let body_bytes = response.into_body().collect().await?.to_bytes();
-    ensure!(status == StatusCode::OK, "returned {status}: {}", String::from_utf8_lossy(&body_bytes));
-    serde_json::from_slice(&body_bytes).context("response is not JSON")
+    let body_bytes = response.into_body().collect().await?.to_bytes().to_vec();
+    Ok(SampledResponse { status, body_bytes })
+}
+
+fn committed_example_to_keep(
+    example_name: &str,
+    sampled_response: &SampledResponse,
+    example_path: &Path,
+) -> Option<String> {
+    if !EXAMPLES_KEPT_UNTIL_A_WIKI_FILE_RECORDS_A_ROW.contains(&example_name) || !sampled_response.is_empty_or_missing()
+    {
+        return None;
+    }
+    std::fs::read_to_string(example_path).ok()
 }
 
 fn keep_committed_api_commit(version_example: &mut Value, committed_version_path: &Path) -> Result<()> {

@@ -1,0 +1,36 @@
+{
+  "id": 1,
+  "name": "Masterminds of Sharn",
+  "pack": null,
+  "quest_count": 0,
+  "quests": [],
+  "reward_count": 10,
+  "rewards": [
+    {
+      "id": 733,
+      "is_rare": false,
+      "minimum_level": 29,
+      "name": "Band of Diani ir'Wynarn",
+      "slot": "Wrists",
+      "tier": "epic"
+    },
+    {
+      "id": 1055,
+      "is_rare": false,
+      "minimum_level": 29,
+      "name": "Brand of Kalok Shash",
+      "slot": "Wrists",
+      "tier": "epic"
+    },
+    {
+      "id": 3246,
+      "is_rare": false,
+      "minimum_level": 29,
+      "name": "Gauntlet of the Iron Council",
+      "slot": "Hands",
+      "tier": "epic"
+    }
+  ],
+  "source": "wiki",
+  "wiki_url": "https://ddowiki.com/page/Masterminds_of_Sharn_(saga)"
+}

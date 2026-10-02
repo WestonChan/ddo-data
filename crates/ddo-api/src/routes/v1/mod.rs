@@ -7,6 +7,7 @@ mod dump;
 mod enhancement_trees;
 mod feats;
 mod items;
+mod quest_series;
 mod quests;
 mod races;
 mod sets;
@@ -57,7 +58,7 @@ use utoipa_axum::router::OpenApiRouter;
         (name = "enhancements", description = "Enhancement, epic destiny and reaper trees with every enhancement and selection"),
         (name = "spells", description = "Spells with damage, saves and class lists, and the clickies items grant"),
         (name = "bonuses", description = "The stats a bonus can apply to and the bonus types that decide whether two bonuses stack"),
-        (name = "quests", description = "Quests, challenges, adventure packs and favor patrons: the sources items drop from, with each quest's free-to-play status, legendary level, zone, quest giver and flagging from ddowiki, and the quests DDOBuilderV2 lacks read whole from ddowiki (`source` = `wiki`)"),
+        (name = "quests", description = "Quests, challenges, adventure packs and favor patrons: the sources items drop from, with each quest's free-to-play status, legendary level, zone, quest giver and flagging from ddowiki, the quests DDOBuilderV2 lacks read whole from ddowiki (`source` = `wiki`), and the quest chains and sagas from ddowiki whose NPCs give end rewards after several quests"),
         (name = "bulk", description = "The whole dataset as one SQLite download")
     )
 )]
@@ -75,6 +76,10 @@ declare_response_examples! { "v1":
     ("/v1/patrons", "patrons"),
     ("/v1/quests", "quests"),
     ("/v1/quests/{id}", "quests_id"),
+    ("/v1/quest-chains", "quest-chains"),
+    ("/v1/quest-chains/{id}", "quest-chains_id"),
+    ("/v1/sagas", "sagas"),
+    ("/v1/sagas/{id}", "sagas_id"),
     ("/v1/items", "items"),
     ("/v1/items/{id}", "items_id"),
     ("/v1/augments", "augments"),
@@ -121,5 +126,6 @@ pub(crate) fn router() -> OpenApiRouter<AppState> {
         .merge(spells::router())
         .merge(bonuses::router())
         .merge(quests::router())
+        .merge(quest_series::router())
         .merge(dump::router())
 }

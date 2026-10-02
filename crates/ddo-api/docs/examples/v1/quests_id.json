@@ -77,6 +77,8 @@
   "name": "Book Burning",
   "pack": "Magic of Myth Drannor",
   "patron": "Cormanthor Elves",
+  "quest_chains": [],
+  "sagas": [],
   "source": "maetrim",
   "zone": "Burning Library"
 }

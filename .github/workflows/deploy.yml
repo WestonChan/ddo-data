@@ -103,6 +103,8 @@ jobs:
           grep -E 'wiki_quest_(created|superseded|probable_duplicate)_count' build-report.txt | tr -d ' ,'
           grep -E 'wiki_augment_(written|superseded|probable_duplicate)_count' build-report.txt | tr -d ' ,'
           grep -E 'correction_(applied|stale)_count' build-report.txt | tr -d ' ,'
+          grep -E '(wiki_quest_chain|quest_chain_quest_link|quest_chain_reward|drop_text_quest_chain_reward)_count' build-report.txt | tr -d ' ,'
+          grep -E '(wiki_saga|saga_quest_link|saga_reward|drop_text_saga_reward)_count' build-report.txt | tr -d ' ,'
           echo "wiki_items: $(sqlite3 ddo.db "SELECT COUNT(*) FROM items WHERE source = 'wiki'")"
           echo "wiki_quests: $(sqlite3 ddo.db "SELECT COUNT(*) FROM quests WHERE source = 'wiki'")"
           echo "wiki_augments: $(sqlite3 ddo.db "SELECT COUNT(*) FROM augments WHERE source = 'wiki'")"

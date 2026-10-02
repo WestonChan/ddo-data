@@ -1,3 +1,4 @@
+use super::quest_series::{quest_chains_rewarding, sagas_rewarding};
 use super::quests::quests_dropping_via;
 use crate::db::{
     bonuses_via, clamped_page, convert_to_booleans, json_row, json_rows, modifiers_for, row_count,
@@ -148,7 +149,7 @@ async fn items(
                    `chest` (the chest his drop text names for that quest, lower-cased, such as `end chest` or \
                    `optional chest`; null when it names none), the \
                    `difficulties` each offers, ddowiki's `is_free_to_play` for each and its `source` (`maetrim`, or `wiki` \
-                   for a quest read from ddowiki because his files lack it; see /v1/quests for the rest of the quest), and the raw `modifiers` the ETL derived the bonuses from.",
+                   for a quest read from ddowiki because his files lack it; see /v1/quests for the rest of the quest), `quest_chains` and `sagas` whose end reward offers the item (each with `id`, `name` and `is_rare`, a saga also with its reward `tier`; see /v1/quest-chains and /v1/sagas), and the raw `modifiers` the ETL derived the bonuses from.",
     params(("id" = i64, Path, description = "The item's numeric id from the list endpoint")), responses((status = 200, description = "The item with its child collections", body = Value), (status = 404, description = "No item has this id", body = crate::error::ErrorBody))
 )]
 async fn item_detail(State(state): State<AppState>, Path(id): Path<i64>) -> Result<Json<Value>, ApiError> {
@@ -232,6 +233,8 @@ async fn item_detail(State(state): State<AppState>, Path(id): Path<i64>) -> Resu
             .pop()
             .unwrap_or(Value::Null);
             item["quests"] = Value::Array(quests_dropping_via(db, "quest_loot", "item_id", id)?);
+            item["quest_chains"] = Value::Array(quest_chains_rewarding(db, id)?);
+            item["sagas"] = Value::Array(sagas_rewarding(db, id)?);
             item["modifiers"] = Value::Array(modifiers_for(db, "item", id)?);
             Ok(Json(item))
         })

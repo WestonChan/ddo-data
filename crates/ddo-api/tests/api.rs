@@ -956,3 +956,110 @@ async fn items_augments_and_quests_carry_corrected_values_without_exposing_the_c
     let (_, _, version) = get("/v1/version").await;
     assert!(version["counts"].get("corrections").is_none(), "version counts expose corrections: {}", version["counts"]);
 }
+
+fn keys_of(value: &Value) -> Vec<&str> {
+    let mut keys: Vec<&str> = value.as_object().unwrap().keys().map(String::as_str).collect();
+    keys.sort_unstable();
+    keys
+}
+
+#[tokio::test]
+async fn quest_chains_list_their_pack_source_page_and_counts() {
+    let (status, _, chains) = get("/v1/quest-chains").await;
+    assert_eq!(status, StatusCode::OK);
+    let lost_seekers = &chains[0];
+    assert_eq!(keys_of(lost_seekers), ["id", "name", "pack", "quest_count", "reward_count", "source", "wiki_url"]);
+    assert_eq!(
+        (&lost_seekers["name"], &lost_seekers["pack"], &lost_seekers["source"], &lost_seekers["wiki_url"]),
+        (
+            &serde_json::json!("The Lost Seekers"),
+            &serde_json::json!("Free to Play"),
+            &serde_json::json!("wiki"),
+            &serde_json::json!("https://ddowiki.com/page/The_Lost_Seekers")
+        )
+    );
+    assert_eq!(
+        (&lost_seekers["quest_count"], &lost_seekers["reward_count"]),
+        (&serde_json::json!(2), &serde_json::json!(3))
+    );
+}
+
+#[tokio::test]
+async fn quest_chain_detail_lists_its_quests_in_order_and_its_rewards() {
+    let (_, _, chains) = get("/v1/quest-chains").await;
+    let (status, _, chain) = get(&format!("/v1/quest-chains/{}", chains[0]["id"])).await;
+    assert_eq!(status, StatusCode::OK);
+    for (field_name, value) in chains[0].as_object().unwrap() {
+        assert_eq!(&chain[field_name], value, "{field_name} as the list returns it");
+    }
+    let quests = chain["quests"].as_array().unwrap();
+    assert_eq!(keys_of(&quests[0]), ["id", "level", "name"]);
+    assert_eq!(quests.iter().map(|q| q["name"].as_str().unwrap()).collect::<Vec<_>>(), ["The Grotto", "Redemption"]);
+    let rewards = chain["rewards"].as_array().unwrap();
+    assert_eq!(keys_of(&rewards[0]), ["id", "is_rare", "minimum_level", "name", "slot"]);
+    assert_eq!(
+        rewards.iter().map(|r| (r["name"].as_str().unwrap(), r["is_rare"].as_bool().unwrap())).collect::<Vec<_>>(),
+        [("Acrobat's Ring", false), ("Docent of Defiance", false), ("Kundarak Delving Boots", true)]
+    );
+    let (status, _, body) = get("/v1/quest-chains/999999").await;
+    assert_eq!(status, StatusCode::NOT_FOUND);
+    assert!(body["error"].is_string(), "{body}");
+}
+
+#[tokio::test]
+async fn saga_detail_lists_its_rewards_by_tier() {
+    let (status, _, sagas) = get("/v1/sagas").await;
+    assert_eq!(status, StatusCode::OK);
+    let sharn = sagas.as_array().unwrap().iter().find(|saga| saga["name"] == "Masterminds of Sharn").unwrap();
+    assert_eq!(keys_of(sharn), ["id", "name", "pack", "quest_count", "reward_count", "source", "wiki_url"]);
+    assert_eq!((&sharn["quest_count"], &sharn["reward_count"]), (&serde_json::json!(2), &serde_json::json!(4)));
+    let (_, _, saga) = get(&format!("/v1/sagas/{}", sharn["id"])).await;
+    let rewards = saga["rewards"].as_array().unwrap();
+    assert_eq!(keys_of(&rewards[0]), ["id", "is_rare", "minimum_level", "name", "slot", "tier"]);
+    assert_eq!(
+        rewards.iter().map(|r| (r["name"].as_str().unwrap(), r["tier"].clone())).collect::<Vec<_>>(),
+        [
+            ("Band of Diani ir'Wynarn", serde_json::json!("epic")),
+            ("Five Rings", serde_json::json!("epic")),
+            ("Five Rings", serde_json::json!("legendary")),
+            ("Alabaster of the Twelve", Value::Null)
+        ],
+        "heroic, epic, legendary, then untiered, each by name"
+    );
+    assert_eq!(
+        saga["quests"].as_array().unwrap().iter().map(|q| q["name"].as_str().unwrap()).collect::<Vec<_>>(),
+        ["Project Nemesis", "Ghosts of Perdition"]
+    );
+    let (status, _, _) = get("/v1/sagas/999999").await;
+    assert_eq!(status, StatusCode::NOT_FOUND);
+}
+
+#[tokio::test]
+async fn item_and_quest_detail_name_the_quest_chains_and_sagas_they_belong_to() {
+    let (_, _, ring) = get(&format!("/v1/items/{}", id_of_item_named("Acrobat's Ring").await)).await;
+    assert_eq!(keys_of(&ring["quest_chains"][0]), ["id", "is_rare", "name"]);
+    assert_eq!(ring["quest_chains"][0]["name"], "The Lost Seekers");
+    assert_eq!(ring["sagas"], serde_json::json!([]));
+    let (_, _, band) = get(&format!("/v1/items/{}", id_of_item_named("Band of Diani ir'Wynarn").await)).await;
+    assert_eq!(keys_of(&band["sagas"][0]), ["id", "is_rare", "name", "tier"]);
+    assert_eq!(
+        (&band["sagas"][0]["name"], &band["sagas"][0]["tier"]),
+        (&serde_json::json!("Masterminds of Sharn"), &serde_json::json!("epic"))
+    );
+
+    let quest_id = band["quests"][0]["id"].as_i64().unwrap();
+    let (_, _, project_nemesis) = get(&format!("/v1/quests/{quest_id}")).await;
+    assert_eq!(keys_of(&project_nemesis["sagas"][0]), ["id", "name"]);
+    assert_eq!(project_nemesis["sagas"][0]["name"], "Masterminds of Sharn");
+    assert_eq!(project_nemesis["quest_chains"], serde_json::json!([]));
+}
+
+#[tokio::test]
+async fn version_counts_quest_chains_sagas_and_their_rewards() {
+    let (_, _, version) = get("/v1/version").await;
+    let counts = &version["counts"];
+    assert_eq!(
+        (&counts["quest_chains"], &counts["quest_chain_rewards"], &counts["sagas"], &counts["saga_rewards"]),
+        (&serde_json::json!(1), &serde_json::json!(3), &serde_json::json!(2), &serde_json::json!(5))
+    );
+}
