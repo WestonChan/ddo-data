@@ -945,6 +945,69 @@ fn adds_an_effect_an_item_lacks_reusing_his_effect_row_and_goes_stale_once_he_ca
     assert!(error.contains("Docent of Defiance") && error.contains("effect"), "{error}");
 }
 
+fn effect_description(db: &Connection, effect_name: &str) -> Option<String> {
+    db.query_row("SELECT description FROM effects WHERE name = ?1", [effect_name], |r| r.get(0)).unwrap()
+}
+
+#[test]
+fn an_added_effect_writes_its_description_only_on_the_effect_it_creates() {
+    let (db, report) = built_db_with(&[(
+        "corrections.toml",
+        &(correction_toml(
+            "item_effect",
+            "Docent of Defiance",
+            "add",
+            "\"null\"",
+            "{ name = \"Book Shot\", description = \"Hurls books at enemies.\" }",
+        ) + &correction_toml(
+            "item_effect",
+            "Docent of Defiance",
+            "add",
+            "\"null\"",
+            "{ name = \"Feather Falling\", description = \"Not his text.\" }",
+        ) + &correction_toml(
+            "item_effect",
+            "Kundarak Delving Boots",
+            "add",
+            "\"null\"",
+            "{ name = \"freedom of movement\", description = \"Not his text either.\" }",
+        )),
+    )])
+    .unwrap();
+    assert_eq!(
+        (report.correction_applied_count, report.correction_stale_count),
+        (2, 1),
+        "{:?}",
+        report.stale_corrections
+    );
+    assert_eq!(
+        item_effect_names(&db, "Docent of Defiance"),
+        ["Hidden Effect Cursed Defiance", "Book Shot", "FeatherFalling"]
+    );
+    assert_eq!(effect_description(&db, "Book Shot").as_deref(), Some("Hurls books at enemies."));
+    assert!(
+        effect_description(&db, "FeatherFalling").unwrap().starts_with("Feather Falling: "),
+        "his description wins on the effect row the correction reuses"
+    );
+    let recorded: Vec<(String, String)> = db
+        .prepare("SELECT qualifier, to_value FROM corrections WHERE qualifier = 'Book Shot'")
+        .unwrap()
+        .query_map([], |r| Ok((r.get(0)?, r.get(1)?)))
+        .unwrap()
+        .map(Result::unwrap)
+        .collect();
+    assert_eq!(
+        recorded,
+        [("Book Shot".to_string(), r#"{"description":"Hurls books at enemies.","name":"Book Shot"}"#.to_string())]
+    );
+    let error = parsed_corrections(&[(
+        "corrections.toml",
+        &correction_toml("item_effect", "Docent of Defiance", "add", "\"null\"", "{ name = \"Book Shot\" }"),
+    )])
+    .unwrap_err();
+    assert!(error.contains("Docent of Defiance"), "{error}");
+}
+
 #[test]
 fn adds_a_socket_an_item_lacks_and_goes_stale_once_he_carries_it() {
     let (db, report) = built_db_with(&[(

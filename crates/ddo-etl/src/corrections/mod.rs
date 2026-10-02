@@ -21,6 +21,7 @@ pub enum CorrectionValue {
     Float(f64),
     Text(String),
     Bonus(BonusAddition),
+    Effect(EffectAddition),
     Null,
 }
 
@@ -32,6 +33,13 @@ pub struct BonusAddition {
     pub value: i64,
 }
 
+#[derive(Debug, Clone, PartialEq, Eq, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct EffectAddition {
+    pub name: String,
+    pub description: String,
+}
+
 #[derive(Deserialize)]
 #[serde(untagged)]
 enum TomlCorrectionValue {
@@ -39,6 +47,7 @@ enum TomlCorrectionValue {
     Float(f64),
     Text(String),
     Bonus(BonusAddition),
+    Effect(EffectAddition),
 }
 
 impl From<TomlCorrectionValue> for CorrectionValue {
@@ -49,6 +58,7 @@ impl From<TomlCorrectionValue> for CorrectionValue {
             TomlCorrectionValue::Text(text) if text == NULL_SPELLING => Self::Null,
             TomlCorrectionValue::Text(text) => Self::Text(text),
             TomlCorrectionValue::Bonus(bonus) => Self::Bonus(bonus),
+            TomlCorrectionValue::Effect(effect) => Self::Effect(effect),
         }
     }
 }
@@ -65,6 +75,11 @@ impl CorrectionValue {
                 serde_json::Value::from(bonus.stat.as_str()),
                 bonus.value
             ),
+            Self::Effect(effect) => format!(
+                "{{\"description\":{},\"name\":{}}}",
+                serde_json::Value::from(effect.description.as_str()),
+                serde_json::Value::from(effect.name.as_str())
+            ),
             Self::Null => NULL_SPELLING.to_string(),
         }
     }
@@ -74,7 +89,7 @@ impl CorrectionValue {
             Self::Integer(number) => SqlValue::Integer(*number),
             Self::Float(number) => SqlValue::Real(*number),
             Self::Text(text) => SqlValue::Text(text.clone()),
-            Self::Bonus(_) => SqlValue::Text(self.to_json()),
+            Self::Bonus(_) | Self::Effect(_) => SqlValue::Text(self.to_json()),
             Self::Null => SqlValue::Null,
         }
     }
@@ -92,6 +107,21 @@ impl CorrectionValue {
     pub fn as_text(&self) -> Option<&str> {
         match self {
             Self::Text(text) => Some(text),
+            _ => None,
+        }
+    }
+
+    pub fn added_effect_name(&self) -> Option<&str> {
+        match self {
+            Self::Text(effect_name) => Some(effect_name),
+            Self::Effect(effect) => Some(&effect.name),
+            _ => None,
+        }
+    }
+
+    pub fn added_effect_description(&self) -> Option<&str> {
+        match self {
+            Self::Effect(effect) => Some(&effect.description),
             _ => None,
         }
     }
@@ -170,10 +200,13 @@ impl Correction {
         }
         match &self.to {
             CorrectionValue::Bonus(bonus) => qualifier_parts.push(format!("{} / {}", bonus.stat, bonus.bonus_type)),
-            CorrectionValue::Text(added_name)
-                if matches!(self.kind, CorrectionKind::ItemSocket | CorrectionKind::ItemEffect) =>
-            {
-                qualifier_parts.push(added_name.clone())
+            CorrectionValue::Text(added_socket_label) if self.kind == CorrectionKind::ItemSocket => {
+                qualifier_parts.push(added_socket_label.clone())
+            }
+            added_effect if self.kind == CorrectionKind::ItemEffect => {
+                if let Some(added_effect_name) = added_effect.added_effect_name() {
+                    qualifier_parts.push(added_effect_name.to_string())
+                }
             }
             _ => {}
         }
@@ -230,8 +263,13 @@ impl Correction {
                 }
             }
             FieldShape::EffectAddition => {
-                if !matches!((&self.from, &self.to), (CorrectionValue::Null, CorrectionValue::Text(_))) {
-                    bail!("an add takes from = \"null\" and to = the name of the effect to add");
+                if !matches!(
+                    (&self.from, &self.to),
+                    (CorrectionValue::Null, CorrectionValue::Text(_) | CorrectionValue::Effect(_))
+                ) {
+                    bail!(
+                        "an add takes from = \"null\" and to = the name of the effect to add, or {{ name = \"...\", description = \"...\" }}"
+                    );
                 }
             }
             _ => {
@@ -281,7 +319,7 @@ fn expected_value_text(field: &CorrectableField) -> String {
         FieldShape::RowName => "the row's name",
         FieldShape::Removal => "0 for from and 1 for to",
         FieldShape::BonusAddition => "a { stat, bonus_type, value } table",
-        FieldShape::EffectAddition => "an effect name",
+        FieldShape::EffectAddition => "an effect name or a { name, description } table",
         FieldShape::SocketAddition => "a socket label",
     };
     if field.is_nullable {

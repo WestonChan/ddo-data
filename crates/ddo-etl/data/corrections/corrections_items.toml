@@ -273,7 +273,7 @@ kind = "item_effect"
 name = "Necronimicannon"
 field = "add"
 from = "null"
-to = "Book Shot"
+to = { name = "Book Shot", description = "Hurls books at enemies. At higher charge levels multiple books are rapidly fired. Opponents struck by the books receive a Reflex save for half damage." }
 reason = "The wiki's Necronomicannon has the Book Shot effect; his item lists it only as a spell-like ability, not an effect."
 source = "https://ddowiki.com/page/Item:Necronomicannon"
 read = "2026-10-01"

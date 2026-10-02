@@ -47,14 +47,14 @@ Only scalar columns can be corrected, never an id or a row's name (except where 
 | `adventure_pack`, `patron`, `set_bonus` | `name`, which renames the row; a renamed set is renamed in every item's and augment's `set_bonus` too |
 | `augment_bonus` | `value` (an integer), `bonus_type` (a `bonus_types.name`), `add` (`to = { stat = "...", bonus_type = "...", value = N }`) |
 | `item_bonus` | `add` (`to = { stat = "...", bonus_type = "...", value = N }`) |
-| `item_effect` | `add` (`to` = the effect's name) |
+| `item_effect` | `add` (`to` = the effect's name, or `{ name = "...", description = "..." }`) |
 | `item_socket` | `add` (`to` = the socket label to add) |
 | `socket_label` | `name`, which renames the label everywhere it is used; when `to` is already a label the two merge |
 
 - `remove` drops the row and its child rows (bonuses, effects, sockets, quest loot, set links, modifiers; crafting recipes that name it would then fail the wiki merge). Use it only for a row the wiki shows is a duplicate of another he carries.
 - `augment_bonus` `value` and `bonus_type` rewrite the bonus on every augment of that name: the augment is pointed at the `bonuses` row with the corrected stat, type and value (found or inserted), so other items and augments that share his bonus row keep it. The augment's `modifiers` are his and are not rewritten. `add` appends a bonus row to the augment; it is stale once the augment already carries a bonus with that stat and type.
 - `item_bonus` `add` appends a bonus row to the item, the same way an `augment_bonus` `add` does; it is stale once the item already carries a bonus with that stat and type.
-- `item_effect` `add` appends an `item_effects` row. It reuses his `effects` row when one has that name ignoring case, spaces and the punctuation `- : , . '` (as the wiki items writer does), and otherwise creates an effect with no description; it is stale once the item carries an effect matching that way.
+- `item_effect` `add` appends an `item_effects` row. It reuses his `effects` row when one has that name ignoring case, spaces and the punctuation `- : , . '` (as the wiki items writer does), and otherwise creates an effect, with the `description` when `to` is a `{ name, description }` table and with none when it is a name (a reused row keeps his description); it is stale once the item carries an effect matching that way.
 - `item_socket` `add` appends an `item_augment_slots` row with that label, which must be one his files use; it is stale once the item carries the label.
 - `socket_label` `name` into a new label keeps the prefix (`crafting: `) and updates the variant; a label with a qualifier (`isle of dread: scale (weapon)`) can only merge into an existing label.
 

@@ -148,8 +148,8 @@ fn write_correction(
             add_bonus(transaction, BonusLinkTable::of(correction.kind)?, row_ids, bonus)?;
         }
         FieldShape::EffectAddition => {
-            let effect_name = correction.to.as_text().context("an add names the effect in to")?;
-            add_item_effect(transaction, row_ids, effect_name)?;
+            let effect_name = correction.to.added_effect_name().context("an add names the effect in to")?;
+            add_item_effect(transaction, row_ids, effect_name, correction.to.added_effect_description())?;
         }
         FieldShape::SocketAddition => {
             let socket_label = correction.to.as_text().context("an add names the socket label in to")?;
@@ -226,7 +226,7 @@ fn current_value(
             return bonus_value(transaction, BonusLinkTable::of(correction.kind)?, row_id, stat_id, bonus_type_id);
         }
         FieldShape::EffectAddition => {
-            let effect_name = correction.to.as_text().context("an add names the effect in to")?;
+            let effect_name = correction.to.added_effect_name().context("an add names the effect in to")?;
             let carries_effect = item_effect_names(transaction, row_id)?
                 .iter()
                 .any(|carried_effect_name| folded_effect_name(carried_effect_name) == folded_effect_name(effect_name));
@@ -388,11 +388,19 @@ fn add_bonus(
     Ok(())
 }
 
-fn add_item_effect(transaction: &Transaction, item_ids: &[i64], effect_name: &str) -> Result<()> {
+fn add_item_effect(
+    transaction: &Transaction,
+    item_ids: &[i64],
+    effect_name: &str,
+    description_of_new_effect: Option<&str>,
+) -> Result<()> {
     let effect_id = match matching_effect_id(transaction, effect_name)? {
         Some(effect_id) => effect_id,
         None => {
-            transaction.execute("INSERT INTO effects (name) VALUES (?1)", params![effect_name])?;
+            transaction.execute(
+                "INSERT INTO effects (name, description) VALUES (?1, ?2)",
+                params![effect_name, description_of_new_effect],
+            )?;
             transaction.last_insert_rowid()
         }
     };
