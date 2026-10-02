@@ -7,3 +7,83 @@ to = 18
 reason = "Every sibling augment in LostPurpose is min level 18; 318 is a typo."
 source = "https://ddowiki.com/page/Lost_Purpose"
 read = "2026-09-29"
+
+[[correction]]
+kind = "augment"
+name = "Ruby of Implements's Acid"
+field = "name"
+from = "Ruby of Implements's Acid"
+to = "Ruby of Implement's Acid"
+reason = "The Temple of Elemental Evil quest loot tables spell it Implement's; Implements's is a typo."
+source = "https://ddowiki.com/page/ToEE:_First_Level_and_Earth_Temple"
+read = "2026-10-02"
+
+[[correction]]
+kind = "augment"
+name = "Ruby of Implements's Flame"
+field = "name"
+from = "Ruby of Implements's Flame"
+to = "Ruby of Implement's Flame"
+reason = "The Temple of Elemental Evil quest loot tables spell it Implement's; Implements's is a typo."
+source = "https://ddowiki.com/page/ToEE:_First_Level_and_Earth_Temple"
+read = "2026-10-02"
+
+[[correction]]
+kind = "augment"
+name = "Ruby of Implements's Frost"
+field = "name"
+from = "Ruby of Implements's Frost"
+to = "Ruby of Implement's Frost"
+reason = "The Temple of Elemental Evil quest loot tables spell it Implement's; Implements's is a typo."
+source = "https://ddowiki.com/page/ToEE:_First_Level_and_Earth_Temple"
+read = "2026-10-02"
+
+[[correction]]
+kind = "augment"
+name = "Ruby of Implements's Wind"
+field = "name"
+from = "Ruby of Implements's Wind"
+to = "Ruby of Implement's Wind"
+reason = "The Temple of Elemental Evil quest loot tables spell it Implement's; Implements's is a typo."
+source = "https://ddowiki.com/page/ToEE:_First_Level_and_Earth_Temple"
+read = "2026-10-02"
+
+[[correction]]
+kind = "augment"
+name = "Legendary Ruby of Implements's Acid"
+field = "name"
+from = "Legendary Ruby of Implements's Acid"
+to = "Legendary Ruby of Implement's Acid"
+reason = "The Temple of Elemental Evil quest loot tables spell it Implement's; Implements's is a typo."
+source = "https://ddowiki.com/page/ToEE:_First_Level_and_Earth_Temple"
+read = "2026-10-02"
+
+[[correction]]
+kind = "augment"
+name = "Legendary Ruby of Implements's Flame"
+field = "name"
+from = "Legendary Ruby of Implements's Flame"
+to = "Legendary Ruby of Implement's Flame"
+reason = "The Temple of Elemental Evil quest loot tables spell it Implement's; Implements's is a typo."
+source = "https://ddowiki.com/page/ToEE:_First_Level_and_Earth_Temple"
+read = "2026-10-02"
+
+[[correction]]
+kind = "augment"
+name = "Legendary Ruby of Implements's Frost"
+field = "name"
+from = "Legendary Ruby of Implements's Frost"
+to = "Legendary Ruby of Implement's Frost"
+reason = "The Temple of Elemental Evil quest loot tables spell it Implement's; Implements's is a typo."
+source = "https://ddowiki.com/page/ToEE:_First_Level_and_Earth_Temple"
+read = "2026-10-02"
+
+[[correction]]
+kind = "augment"
+name = "Legendary Ruby of Implements's Wind"
+field = "name"
+from = "Legendary Ruby of Implements's Wind"
+to = "Legendary Ruby of Implement's Wind"
+reason = "The Temple of Elemental Evil quest loot tables spell it Implement's; Implements's is a typo."
+source = "https://ddowiki.com/page/ToEE:_First_Level_and_Earth_Temple"
+read = "2026-10-02"
