@@ -125,9 +125,9 @@ fn ddl_drops_the_columns_with_no_source() {
 fn items_come_from_maetrim_unless_the_wiki_supplied_them() {
     let db = fresh_db();
     ddo_model::seeds::insert_all(&db).unwrap();
-    db.execute("INSERT INTO items (name, slot_id, item_category) VALUES ('His Ring', 15, 'Jewelry')", []).unwrap();
+    db.execute("INSERT INTO items (name, slot_id, item_category, wiki_url) VALUES ('His Ring', 15, 'Jewelry', 'https://ddowiki.com/page/Item:His_Ring')", []).unwrap();
     db.execute(
-        "INSERT INTO items (name, slot_id, item_category, provenance) VALUES ('Wiki Ring', 15, 'Jewelry', 'wiki')",
+        "INSERT INTO items (name, slot_id, item_category, provenance, wiki_url) VALUES ('Wiki Ring', 15, 'Jewelry', 'wiki', 'https://ddowiki.com/page/Item:Wiki_Ring')",
         [],
     )
     .unwrap();
@@ -141,7 +141,7 @@ fn items_come_from_maetrim_unless_the_wiki_supplied_them() {
     assert_eq!(provenances, ["maetrim", "wiki"]);
     assert!(db
         .execute(
-            "INSERT INTO items (name, slot_id, item_category, provenance) VALUES ('Odd Ring', 15, 'Jewelry', 'ddowiki')",
+            "INSERT INTO items (name, slot_id, item_category, provenance, wiki_url) VALUES ('Odd Ring', 15, 'Jewelry', 'ddowiki', 'https://ddowiki.com/page/Item:Odd_Ring')",
             []
         )
         .is_err());
@@ -150,8 +150,9 @@ fn items_come_from_maetrim_unless_the_wiki_supplied_them() {
 #[test]
 fn quests_come_from_maetrim_unless_the_wiki_supplied_them() {
     let db = fresh_db();
-    db.execute("INSERT INTO quests (name) VALUES ('His Quest')", []).unwrap();
-    db.execute("INSERT INTO quests (name, provenance) VALUES ('Wiki Quest', 'wiki')", []).unwrap();
+    db.execute("INSERT INTO adventure_packs (id, name) VALUES (1, 'Free to Play')", []).unwrap();
+    db.execute("INSERT INTO quests (name, pack_id) VALUES ('His Quest', 1)", []).unwrap();
+    db.execute("INSERT INTO quests (name, pack_id, provenance) VALUES ('Wiki Quest', 1, 'wiki')", []).unwrap();
     let provenances: Vec<String> = db
         .prepare("SELECT provenance FROM quests ORDER BY id")
         .unwrap()
@@ -160,7 +161,9 @@ fn quests_come_from_maetrim_unless_the_wiki_supplied_them() {
         .map(Result::unwrap)
         .collect();
     assert_eq!(provenances, ["maetrim", "wiki"]);
-    assert!(db.execute("INSERT INTO quests (name, provenance) VALUES ('Odd Quest', 'ddowiki')", []).is_err());
+    assert!(db
+        .execute("INSERT INTO quests (name, pack_id, provenance) VALUES ('Odd Quest', 1, 'ddowiki')", [])
+        .is_err());
 }
 
 #[test]
@@ -259,9 +262,10 @@ fn db_with_one_source_of_each_kind() -> Connection {
     let db = fresh_db();
     db.execute_batch(
         "PRAGMA foreign_keys = OFF;
-         INSERT INTO items (id, name, slot_id, item_category) VALUES (1, 'Rusted Crown', 1, 'Jewelry');
+         INSERT INTO items (id, name, slot_id, item_category, wiki_url)
+              VALUES (1, 'Rusted Crown', 1, 'Jewelry', 'https://ddowiki.com/page/Item:Rusted_Crown');
          INSERT INTO adventure_packs (id, name) VALUES (1, 'Magic of Myth Drannor');
-         INSERT INTO quests (id, name) VALUES (1, 'Book Burning');
+         INSERT INTO quests (id, name, pack_id) VALUES (1, 'Book Burning', 1);
          INSERT INTO quest_chains (id, name, provenance, wiki_url) VALUES (1, 'The Necropolis', 'wiki', 'https://ddowiki.com/page/Necropolis');
          INSERT INTO sagas (id, name, provenance, wiki_url) VALUES (1, 'Dread', 'wiki', 'https://ddowiki.com/page/Dread');
          INSERT INTO augments (id, name, family) VALUES (1, 'Lunar Gem of Magical Protection (Heroic)', 'SunAndMoon');
@@ -534,4 +538,55 @@ fn every_bonus_carries_a_bonus_type() {
     };
     assert!(insert_bonus("NULL").is_err(), "an untyped bonus is refused");
     insert_bonus("(SELECT id FROM bonus_types WHERE name = 'Enhancement')").unwrap();
+}
+
+#[test]
+fn single_table_rules_are_schema_constraints() {
+    let db = fresh_db();
+    ddo_model::seeds::insert_all(&db).unwrap();
+    db.execute("INSERT INTO adventure_packs (id, name) VALUES (1, 'Magic of Myth Drannor')", []).unwrap();
+    let item_insert = |name: &str, wiki_url_sql: &str| {
+        db.execute(
+            &format!(
+                "INSERT INTO items (name, slot_id, item_category, wiki_url) VALUES ('{name}', (SELECT id FROM equipment_slots WHERE name = 'Ring'), 'Jewelry', {wiki_url_sql})"
+            ),
+            [],
+        )
+    };
+    assert!(item_insert("  ", "'https://ddowiki.com/page/Item:Blank'").is_err(), "an item has a non-blank name");
+    assert!(item_insert("No Page", "NULL").is_err(), "an item links to a ddowiki page");
+    assert!(item_insert("Elsewhere", "'https://example.com/page/Item:Elsewhere'").is_err(), "the page is on ddowiki");
+    assert!(item_insert("Bare", "'https://ddowiki.com/page/'").is_err(), "the page has a title");
+    item_insert("Rusted Crown", "'https://ddowiki.com/page/Item:Rusted_Crown'").unwrap();
+
+    assert!(
+        db.execute("INSERT INTO quests (name, is_challenge) VALUES ('Packless Quest', 0)", []).is_err(),
+        "a quest that is no challenge belongs to an adventure pack"
+    );
+    db.execute("INSERT INTO quests (name, is_challenge) VALUES ('Packless Challenge', 1)", []).unwrap();
+    db.execute("INSERT INTO quests (id, name, pack_id) VALUES (10, 'Book Burning', 1)", []).unwrap();
+
+    let source_insert = |chest: &str| {
+        db.execute(
+            &format!(
+                "INSERT INTO sources (kind, quest_id, item_id, loot_type, chest) VALUES ('quest', 10, (SELECT MIN(id) FROM items), 'chest', '{chest}')"
+            ),
+            [],
+        )
+    };
+    assert!(source_insert("end Reward chest").is_err(), "a chest never says reward");
+    source_insert("end chest").unwrap();
+
+    for (table, columns_and_values) in [
+        ("items", "name, slot_id, item_category, provenance) VALUES ('Wiki Ring', 1, 'Jewelry', 'wiki'"),
+        ("quest_chains", "name, provenance) VALUES ('Wiki Chain', 'wiki'"),
+        ("sagas", "name, provenance) VALUES ('Wiki Saga', 'wiki'"),
+        ("vendors", "name, provenance) VALUES ('Wiki Vendor', 'wiki'"),
+        ("events", "name, provenance) VALUES ('Wiki Event', 'wiki'"),
+    ] {
+        assert!(
+            db.execute(&format!("INSERT INTO {table} ({columns_and_values})"), []).is_err(),
+            "a {table} row from the wiki carries its page"
+        );
+    }
 }

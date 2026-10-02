@@ -56,8 +56,6 @@ const DROP_LOCATION_HEAD_SQL: &str = "COALESCE(NULLIF(TRIM(CASE WHEN instr(i.dro
      THEN substr(i.drop_location, 1, instr(i.drop_location, ',') - 1) ELSE i.drop_location END), ''), \
      '(no drop location)')";
 
-const WIKI_SOURCED_TABLES: [&str; 7] = ["items", "quests", "augments", "quest_chains", "sagas", "vendors", "events"];
-
 impl IntegrityCheck {
     const fn hard(name: &'static str, description: &'static str, offender_query: OffenderQuery) -> Self {
         Self {
@@ -85,37 +83,6 @@ impl IntegrityCheck {
 
 pub const INTEGRITY_CHECKS: &[IntegrityCheck] = &[
     IntegrityCheck::hard(
-        "sources_reference_existing_rows",
-        "every foreign key in the database, the sources table's source, item and augment ids among them, names an \
-         existing row (PRAGMA foreign_key_check)",
-        OffenderQuery::Sql(
-            "SELECT \"table\", rowid, 'references a missing ' || parent || ' row' FROM pragma_foreign_key_check()",
-        ),
-    ),
-    IntegrityCheck::hard(
-        "items_have_names_and_slots",
-        "every item has a non-blank name and an equipment slot that exists; no item category is slotless",
-        OffenderQuery::Sql(
-            "SELECT i.name, i.id, CASE WHEN TRIM(i.name) = '' THEN 'blank name' \
-             ELSE 'slot ' || COALESCE(i.slot_id, 'null') || ' is not an equipment slot' END \
-             FROM items i LEFT JOIN equipment_slots s ON s.id = i.slot_id \
-             WHERE TRIM(i.name) = '' OR s.id IS NULL",
-        ),
-    ),
-    IntegrityCheck::hard(
-        "quests_have_packs",
-        "every quest that is not a challenge belongs to an adventure pack",
-        OffenderQuery::Sql(
-            "SELECT name, id, 'no adventure pack' FROM quests WHERE is_challenge = 0 AND pack_id IS NULL",
-        ),
-    ),
-    IntegrityCheck::hard(
-        "wiki_rows_have_pages",
-        "every row the wiki supplies (provenance = 'wiki') carries the ddowiki page it was read from, in each table that \
-         has a wiki_url column",
-        OffenderQuery::Built(wiki_rows_without_pages),
-    ),
-    IntegrityCheck::hard(
         "legacy_items_hidden",
         "every item flagged is_legacy has a reason: a (legacy) or (historic) name, an is_legacy correction, or no \
          sources row (its only sources are retired)",
@@ -125,21 +92,6 @@ pub const INTEGRITY_CHECKS: &[IntegrityCheck] = &[
         "tables_not_empty",
         "every table has rows, except those --allow-empty-table names",
         OffenderQuery::Built(empty_tables),
-    ),
-    IntegrityCheck::hard(
-        "item_names_unique",
-        "no two items share a name exactly",
-        OffenderQuery::Sql(
-            "SELECT name, MIN(id), COUNT(*) || ' items share this name' FROM items GROUP BY name HAVING COUNT(*) > 1",
-        ),
-    ),
-    IntegrityCheck::hard(
-        "items_have_wiki_urls",
-        "every item links to a ddowiki page: its wiki_url starts with https://ddowiki.com/page/",
-        OffenderQuery::Sql(
-            "SELECT name, id, COALESCE(wiki_url, 'no wiki_url') FROM items \
-             WHERE wiki_url IS NULL OR wiki_url NOT GLOB 'https://ddowiki.com/page/?*'",
-        ),
     ),
     IntegrityCheck::hard(
         "weapon_and_armor_stats_match_category",
@@ -163,25 +115,6 @@ pub const INTEGRITY_CHECKS: &[IntegrityCheck] = &[
              FROM sources d JOIN quests q ON q.id = d.quest_id LEFT JOIN items i ON i.id = d.item_id \
              LEFT JOIN augments a ON a.id = d.augment_id \
              WHERE d.loot_type = 'raid' AND q.is_raid = 0",
-        ),
-    ),
-    IntegrityCheck::hard(
-        "reward_rows_have_no_chest",
-        "an end reward (loot type reward, or a quest chain's or saga's reward) names no chest",
-        OffenderQuery::Sql(
-            "SELECT COALESCE(q.name, c.name, s.name, p.name, ''), d.id, 'reward from chest ' || d.chest \
-             FROM sources d LEFT JOIN quests q ON q.id = d.quest_id LEFT JOIN quest_chains c ON c.id = d.chain_id \
-             LEFT JOIN sagas s ON s.id = d.saga_id LEFT JOIN adventure_packs p ON p.id = d.pack_id \
-             WHERE COALESCE(d.loot_type, 'reward') = 'reward' AND d.chest IS NOT NULL",
-        ),
-    ),
-    IntegrityCheck::hard(
-        "chest_never_says_reward",
-        "no chest name contains the word reward; reward text belongs in loot type reward",
-        OffenderQuery::Sql(
-            "SELECT COALESCE(q.name, p.name, ''), d.id, 'chest ' || d.chest \
-             FROM sources d LEFT JOIN quests q ON q.id = d.quest_id LEFT JOIN adventure_packs p ON p.id = d.pack_id \
-             WHERE lower(d.chest) LIKE '%reward%'",
         ),
     ),
     IntegrityCheck::hard(
@@ -258,29 +191,6 @@ pub const INTEGRITY_CHECKS: &[IntegrityCheck] = &[
         OffenderQuery::Sql(
             "SELECT e.name, e.id, 'named like the stat ' || s.name FROM effects e \
              JOIN stats s ON lower(replace(e.name, ' ', '')) = lower(replace(s.name, ' ', '')) ORDER BY e.name",
-        ),
-    )
-    .showing_every_offender(),
-    IntegrityCheck::hard(
-        "untyped_bonuses",
-        "every bonus carries a bonus type: an untyped one would stack with everything. The ETL refuses to write one \
-         and the schema declares bonuses.bonus_type_id NOT NULL, so this fails only on a database built some other \
-         way; a new untyped buff upstream is typed by a correction or a mapping",
-        OffenderQuery::Sql(
-            "SELECT 'bonuses.bonus_type_id', 0, 'the schema accepts a bonus with no type' \
-             FROM pragma_table_info('bonuses') WHERE name = 'bonus_type_id' AND \"notnull\" = 0 \
-             UNION ALL SELECT i.name, i.id, 'item bonus on ' || s.name FROM item_bonuses r \
-             JOIN bonuses b ON b.id = r.bonus_id JOIN items i ON i.id = r.item_id JOIN stats s ON s.id = b.stat_id \
-             WHERE b.bonus_type_id IS NULL \
-             UNION ALL SELECT a.name, a.id, 'augment bonus on ' || s.name FROM augment_bonuses r \
-             JOIN bonuses b ON b.id = r.bonus_id JOIN augments a ON a.id = r.augment_id JOIN stats s ON s.id = b.stat_id \
-             WHERE b.bonus_type_id IS NULL \
-             UNION ALL SELECT f.name, f.id, 'feat bonus on ' || s.name FROM feat_bonuses r \
-             JOIN bonuses b ON b.id = r.bonus_id JOIN feats f ON f.id = r.feat_id JOIN stats s ON s.id = b.stat_id \
-             WHERE b.bonus_type_id IS NULL \
-             UNION ALL SELECT sb.name, t.id, 'set bonus tier bonus on ' || s.name FROM set_bonus_tier_bonuses r \
-             JOIN bonuses b ON b.id = r.bonus_id JOIN set_bonus_tiers t ON t.id = r.tier_id \
-             JOIN set_bonuses sb ON sb.id = t.set_id JOIN stats s ON s.id = b.stat_id WHERE b.bonus_type_id IS NULL",
         ),
     )
     .showing_every_offender(),
@@ -425,23 +335,6 @@ fn offenders_from_sql(db: &Connection, sql: &str) -> Result<Vec<Offender>> {
         })?
         .collect::<rusqlite::Result<Vec<_>>>()?;
     Ok(offenders)
-}
-
-fn wiki_rows_without_pages(db: &Connection, _options: &IntegrityOptions) -> Result<Findings> {
-    let mut queries = Vec::new();
-    let mut notes = Vec::new();
-    for table in WIKI_SOURCED_TABLES {
-        if has_column(db, table, "wiki_url")? {
-            queries.push(format!(
-                "SELECT name, id, '{table} row from the wiki has no wiki_url' FROM {table} \
-                 WHERE provenance = 'wiki' AND (wiki_url IS NULL OR TRIM(wiki_url) = '')"
-            ));
-        } else {
-            notes.push(format!("{table} has no wiki_url column; the wiki file parser requires each entry's page"));
-        }
-    }
-    let offenders = offenders_from_sql(db, &queries.join(" UNION ALL "))?;
-    Ok(Findings { offenders: Some(offenders), notes })
 }
 
 fn legacy_items_without_a_reason(db: &Connection, _options: &IntegrityOptions) -> Result<Findings> {

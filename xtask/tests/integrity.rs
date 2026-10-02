@@ -82,24 +82,21 @@ fn clean_fixture_database_exits_zero_and_prints_every_check() {
     for check in INTEGRITY_CHECKS {
         assert!(stdout.lines().any(|line| line.starts_with(&format!("check {}: ", check.name))), "{stdout}");
     }
-    assert!(stdout.lines().any(|line| line == "check quests_have_packs: ok"), "{stdout}");
+    assert!(stdout.lines().any(|line| line == "check raid_loot_only_on_raids: ok"), "{stdout}");
 }
 
 #[test]
-fn quest_without_a_pack_fails_quests_have_packs_and_exits_non_zero() {
+fn raid_loot_from_a_quest_that_is_no_raid_fails_and_exits_non_zero() {
     let work_dir = tempfile::tempdir().unwrap();
-    let db_path = fixture_db_copy_with(
-        work_dir.path(),
-        "INSERT INTO quests (name, is_challenge) VALUES ('Integrity Probe Quest', 0);",
-    );
+    let db_path = fixture_db_copy_with(work_dir.path(), &probe_quest_source_insert("raid", "NULL"));
 
     let output = check_db_output(&db_path);
     let stdout = stdout_of(&output);
 
     assert!(!output.status.success(), "{stdout}");
-    assert!(stdout.lines().any(|line| line == "check quests_have_packs: FAIL (1 offender)"), "{stdout}");
+    assert!(stdout.lines().any(|line| line == "check raid_loot_only_on_raids: FAIL (1 offender)"), "{stdout}");
     assert!(stdout.contains("Integrity Probe Quest"), "{stdout}");
-    assert!(stdout.lines().any(|line| line == "check items_have_names_and_slots: ok"), "{stdout}");
+    assert!(stdout.lines().any(|line| line == "check trees_have_enhancements: ok"), "{stdout}");
 }
 
 #[test]
@@ -153,34 +150,6 @@ fn probe_quest_source_insert(loot_type: &str, chest: &str) -> String {
 fn injected_violations() -> Vec<InjectedViolation> {
     vec![
         violation(
-            "sources_reference_existing_rows",
-            "INSERT INTO sources (kind, quest_id, item_id, loot_type)
-             VALUES ('quest', (SELECT MIN(id) FROM quests), 999999, 'chest');",
-            "sources",
-        ),
-        violation(
-            "items_have_names_and_slots",
-            "UPDATE items SET name = '  ' WHERE id = (SELECT MIN(id) FROM items);",
-            "  ",
-        ),
-        violation(
-            "items_have_names_and_slots",
-            "UPDATE items SET slot_id = 999 WHERE name = (SELECT MAX(name) FROM items);",
-            "",
-        ),
-        violation(
-            "quests_have_packs",
-            "INSERT INTO quests (name, is_challenge) VALUES ('Integrity Probe Quest', 0);",
-            "Integrity Probe Quest",
-        ),
-        violation(
-            "wiki_rows_have_pages",
-            "INSERT INTO items (name, slot_id, item_category, provenance, minimum_level)
-             VALUES ('Integrity Probe Wiki Ring', (SELECT id FROM equipment_slots WHERE name = 'Ring'),
-                     'Jewelry', 'wiki', 1);",
-            "Integrity Probe Wiki Ring",
-        ),
-        violation(
             "items_without_a_source",
             &format!(
                 "{} UPDATE items SET drop_location = 'Nowhere Keep, chest' WHERE name = 'Integrity Probe Ring';",
@@ -189,30 +158,7 @@ fn injected_violations() -> Vec<InjectedViolation> {
             "Integrity Probe Ring",
         ),
         violation("effects_named_after_stats", "INSERT INTO effects (name) VALUES ('hitpoints');", "hitpoints"),
-        violation(
-            "untyped_bonuses",
-            "PRAGMA writable_schema = ON;
-             UPDATE sqlite_master SET sql = replace(sql, 'bonus_type_id INTEGER NOT NULL', 'bonus_type_id INTEGER')
-              WHERE name = 'bonuses';
-             PRAGMA writable_schema = RESET;
-             INSERT INTO bonuses (name, stat_id, bonus_type_id, value)
-             VALUES ('Integrity Probe +77', (SELECT MIN(id) FROM stats), NULL, 77);
-             INSERT INTO augment_bonuses (augment_id, bonus_id, sort_order)
-             VALUES ((SELECT MIN(id) FROM augments), last_insert_rowid(), 900);",
-            "bonuses.bonus_type_id",
-        ),
         violation("tables_not_empty", "DELETE FROM guild_buffs;", "guild_buffs"),
-        violation(
-            "items_have_wiki_urls",
-            "UPDATE items SET wiki_url = 'https://example.com/page/Probe' WHERE id = (SELECT MIN(id) FROM items);",
-            "",
-        ),
-        violation(
-            "items_have_wiki_urls",
-            &probe_ring_insert("Integrity Probe Ring")
-                .replace("'https://ddowiki.com/page/Item:Integrity_Probe'", "NULL"),
-            "Integrity Probe Ring",
-        ),
         violation(
             "weapon_and_armor_stats_match_category",
             "DELETE FROM item_weapon_stats WHERE item_id = (SELECT MIN(id) FROM items WHERE item_category = 'Weapon');",
@@ -225,16 +171,6 @@ fn injected_violations() -> Vec<InjectedViolation> {
             "",
         ),
         violation("raid_loot_only_on_raids", &probe_quest_source_insert("raid", "NULL"), "Integrity Probe Quest"),
-        violation(
-            "reward_rows_have_no_chest",
-            &probe_quest_source_insert("reward", "'probe chest'"),
-            "Integrity Probe Quest",
-        ),
-        violation(
-            "chest_never_says_reward",
-            &probe_quest_source_insert("chest", "'end reward chest'"),
-            "Integrity Probe Quest",
-        ),
         violation(
             "item_sockets_use_known_labels",
             "INSERT INTO augment_slot_types (label, family, variant) VALUES ('mystery: probe', 'mystery', 'probe');
@@ -413,9 +349,11 @@ fn items_without_a_source_ranks_the_heads_of_their_drop_locations() {
     let work_dir = tempfile::tempdir().unwrap();
     let db_path = fixture_db_copy_with(
         work_dir.path(),
-        "INSERT INTO items (name, slot_id, item_category, drop_location) VALUES
-         ('Integrity Probe Ring', (SELECT id FROM equipment_slots WHERE name = 'Ring'), 'Jewelry', 'Nowhere Keep, chest'),
-         ('Integrity Probe Belt', (SELECT id FROM equipment_slots WHERE name = 'Waist'), 'Clothing', 'Nowhere Keep');",
+        "INSERT INTO items (name, slot_id, item_category, wiki_url, drop_location) VALUES
+         ('Integrity Probe Ring', (SELECT id FROM equipment_slots WHERE name = 'Ring'), 'Jewelry',
+          'https://ddowiki.com/page/Item:Integrity_Probe_Ring', 'Nowhere Keep, chest'),
+         ('Integrity Probe Belt', (SELECT id FROM equipment_slots WHERE name = 'Waist'), 'Clothing',
+          'https://ddowiki.com/page/Item:Integrity_Probe_Belt', 'Nowhere Keep');",
     );
     let db = Connection::open(&db_path).unwrap();
     let report = integrity_report(&db, &fixture_options()).unwrap();
@@ -423,20 +361,6 @@ fn items_without_a_source_ranks_the_heads_of_their_drop_locations() {
 
     assert!(outcome.top_details.contains(&("Nowhere Keep".to_string(), 2)), "{report}");
     assert!(outcome.top_details.len() <= 15, "{report}");
-}
-
-#[test]
-fn wiki_rows_have_pages_notes_each_table_without_a_wiki_url_column() {
-    let db = Connection::open(fixture_db_built_once()).unwrap();
-    let report = integrity_report(&db, &fixture_options()).unwrap();
-    let outcome = report.outcome("wiki_rows_have_pages").unwrap();
-
-    for table in ["quests", "augments"] {
-        assert!(
-            outcome.notes.iter().any(|note| note.starts_with(&format!("{table} has no wiki_url column"))),
-            "{report}"
-        );
-    }
 }
 
 #[test]

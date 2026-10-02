@@ -887,3 +887,11 @@ fn writes_challenges_into_quests() {
         .unwrap();
     assert_eq!((is_challenge, max_level), (false, None), "regular quests are not challenges");
 }
+
+#[test]
+fn builds_with_foreign_keys_enforced_on_every_insert() {
+    let (db, _) = built_fixture_db();
+    let is_enforced: bool = db.query_row("PRAGMA foreign_keys", [], |r| r.get(0)).unwrap();
+    assert!(is_enforced, "the build connection enforces foreign keys, so a row naming a missing one fails the build");
+    assert_eq!(count(&db, "SELECT COUNT(*) FROM pragma_foreign_key_check()"), 0);
+}

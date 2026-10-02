@@ -148,7 +148,8 @@ CREATE TABLE IF NOT EXISTS quests (
     zone       TEXT,                                  -- data/wiki quests `zone`: the page's "Takes place in"
     bestowed_by TEXT,                                 -- data/wiki quests `bestowed_by`
     flagging   TEXT,                                  -- data/wiki quests `flagging`, free text
-    provenance TEXT    NOT NULL DEFAULT 'maetrim' CHECK (provenance {provenance})  -- 'wiki' for a data/wiki quests entry that creates the quest
+    provenance TEXT    NOT NULL DEFAULT 'maetrim' CHECK (provenance {provenance}),  -- 'wiki' for a data/wiki quests entry that creates the quest
+    CHECK (is_challenge = 1 OR pack_id IS NOT NULL)
 );
 
 -- Items --------------------------------------------------------------------------
@@ -162,7 +163,7 @@ CREATE TABLE IF NOT EXISTS excluded_items (
 
 CREATE TABLE IF NOT EXISTS items (
     id                INTEGER PRIMARY KEY,
-    name              TEXT    NOT NULL UNIQUE,        -- <Name>
+    name              TEXT    NOT NULL UNIQUE CHECK (TRIM(name) <> ''),  -- <Name>
     slot_id           INTEGER NOT NULL REFERENCES equipment_slots(id),  -- computed from <EquipmentSlot>
     item_category     TEXT    NOT NULL CHECK (item_category {item_category}),  -- computed
     item_type         TEXT,                           -- <Weapon> or <Armor> subtype ('Longsword', 'Docent')
@@ -177,7 +178,7 @@ CREATE TABLE IF NOT EXISTS items (
     accepts_sentience INTEGER NOT NULL DEFAULT 0 CHECK (accepts_sentience IN (0, 1)),  -- <IsAcceptsSentience/>
     is_minor_artifact INTEGER NOT NULL DEFAULT 0 CHECK (is_minor_artifact IN (0, 1)),  -- <MinorArtifact/>
     is_legacy         INTEGER NOT NULL DEFAULT 0 CHECK (is_legacy IN (0, 1)),  -- a '(legacy)' or '(historic)' name, every <DropLocation> segment a data/legacy_drop_sources.toml text, or an is_legacy correction
-    wiki_url          TEXT,                           -- computed from name, or data/wiki items `page`
+    wiki_url          TEXT    NOT NULL CHECK (wiki_url GLOB 'https://ddowiki.com/page/?*'),  -- computed from name, or data/wiki items `page`
     provenance        TEXT    NOT NULL DEFAULT 'maetrim' CHECK (provenance {provenance})  -- 'wiki' for a data/wiki items entry
 );
 CREATE INDEX IF NOT EXISTS idx_items_slot ON items(slot_id);
@@ -360,6 +361,7 @@ CREATE TABLE IF NOT EXISTS sources (
     CHECK ((item_id IS NOT NULL) + (augment_id IS NOT NULL) = 1),
     CHECK ((loot_type IS NOT NULL) = (kind {kinds_with_loot_type})),
     CHECK (chest IS NULL OR COALESCE(loot_type, 'reward') <> 'reward'),
+    CHECK (chest IS NULL OR chest NOT LIKE '%reward%'),
     CHECK (tier IS NULL OR kind = 'saga'),
     CHECK (cost IS NULL OR kind = 'vendor')
 );
