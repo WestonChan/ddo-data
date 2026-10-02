@@ -3987,232 +3987,311 @@ bestowed_by = "Karnat Thaar"
 
 [[quest]]
 name = "The Temple Outpost: Captives of the Cult"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/The_Temple_Outpost:_Captives_of_the_Cult"
+read = "2026-10-01"
 free_to_play = false
+zone = "The Temple Outpost"
+bestowed_by = "Bruku"
 
 [[quest]]
 name = "The Temple Outpost: The Libram of the Six"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/The_Temple_Outpost:_The_Libram_of_the_Six"
+read = "2026-10-01"
 free_to_play = false
+zone = "The Temple Outpost"
+bestowed_by = "Lord Hragg of Grey Moon"
 
 [[quest]]
 name = "The Thornwright"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/The_Thornwright"
+read = "2026-10-01"
 free_to_play = false
 legendary_level = 32
+zone = "The Thornwright's Workshop"
+bestowed_by = "Mulberry"
 
 [[quest]]
 name = "The Threnal Arena"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/The_Threnal_Arena"
+read = "2026-10-01"
 free_to_play = false
+zone = "Ruins of Threnal"
+bestowed_by = "Threnal Ceremonial Blade"
 
 [[quest]]
 name = "The Thrill of the Hunt"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/The_Thrill_of_the_Hunt"
+read = "2026-10-01"
 free_to_play = false
+zone = "Merchant's Townhouse"
+bestowed_by = "Hargrove Jalt"
 
 [[quest]]
 name = "The Tide Turns"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/The_Tide_Turns"
+read = "2026-10-01"
 free_to_play = false
+zone = "Sentinels Tower"
+bestowed_by = "Greigur d'Deneith"
 
 [[quest]]
 name = "The Titan Awakes"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/The_Titan_Awakes"
+read = "2026-10-01"
 free_to_play = false
+zone = "Twilight Forge Core"
+bestowed_by = "Auto-bestowed"
 
 [[quest]]
 name = "The Tracker's Trap"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/The_Tracker%27s_Trap"
+read = "2026-10-01"
 free_to_play = false
+zone = "The Yarrow Glade"
+bestowed_by = "Nevyle Dunwaite"
 
 [[quest]]
 name = "The Troglodytes' Get"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/The_Troglodytes%27_Get"
+read = "2026-10-01"
 free_to_play = false
+zone = "Garl's Tomb"
+bestowed_by = "Red Tom"
 
 [[quest]]
 name = "The Trouble with Tar Pits"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/The_Trouble_with_Tar_Pits"
+read = "2026-10-01"
 free_to_play = false
 legendary_level = 33
+zone = "Tar Ogre Tribe Cavern"
+bestowed_by = "Tihasi of Dawa"
 
 [[quest]]
 name = "The Twilight Forge"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/The_Twilight_Forge"
+read = "2026-10-01"
 free_to_play = false
+zone = "Twilight Forge"
+bestowed_by = "Ostler Caulstone"
 
 [[quest]]
 name = "The Underlane Assignment"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/The_Underlane_Assignment"
+read = "2026-10-01"
 free_to_play = false
 legendary_level = 32
+zone = "Underlane Neighborhood, Investigation Area"
+bestowed_by = "Inil Norwyth"
 
 [[quest]]
 name = "The Unquiet Graves"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/The_Unquiet_Graves"
+read = "2026-10-01"
 free_to_play = false
+zone = "Deep Glen Graveyard"
+bestowed_by = "Barana Talmere"
 
 [[quest]]
 name = "The Vault of Night"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/The_Vault_of_Night"
+read = "2026-10-01"
 free_to_play = false
+zone = "Vault of Night"
+bestowed_by = "Barrow d'Kundarak"
+flagging = "To use the new flagging system, complete the 4 quests and pick up their end rewards, then talk to Barrow d'Kundarak to be permanently flagged."
 
 [[quest]]
 name = "The Weapons Shipment"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/The_Weapons_Shipment"
+read = "2026-10-01"
 free_to_play = false
+zone = "Perdition Pass"
+bestowed_by = "Mystichaze Shastien"
 
 [[quest]]
 name = "The Wish"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/The_Wish"
+read = "2026-10-01"
 free_to_play = false
 legendary_level = 36
+zone = "Temple Pass"
+bestowed_by = "Wilhelm Finster"
 
 [[quest]]
 name = "The Wizard's Labyrinth"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/The_Wizard%27s_Labyrinth"
+read = "2026-10-01"
 free_to_play = false
 legendary_level = 34
+zone = "Darstil's Tower"
+bestowed_by = "Wyshbryn Saldar"
 
 [[quest]]
 name = "The Wraithcallers"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/The_Wraithcallers"
+read = "2026-10-01"
 free_to_play = false
 legendary_level = 32
+zone = "Wraithcaller's Temple"
+bestowed_by = "Walk-up"
 
 [[quest]]
 name = "The Xorian Cipher"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/The_Xorian_Cipher"
+read = "2026-10-01"
 free_to_play = true
+zone = "Temple of Madness"
+bestowed_by = "Gatekeeper Chulkash"
 
 [[quest]]
 name = "The Zulkir's Plan"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/The_Zulkir%27s_Plan"
+read = "2026-10-01"
 free_to_play = false
 legendary_level = 35
+zone = "Castle Cormanthor"
+bestowed_by = "Verzan Nuovis"
 
 [[quest]]
 name = "Third Time's a Charm"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Third_Time%27s_a_Charm"
+read = "2026-10-01"
 free_to_play = false
 legendary_level = 31
+zone = "Drow Camp"
+bestowed_by = "Eluf the Steadfast"
 
 [[quest]]
 name = "This Old Haunt"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/This_Old_Haunt"
+read = "2026-10-01"
 free_to_play = false
 legendary_level = 34
+zone = "Upper Nymph's Court"
+bestowed_by = "Gwen Toriun"
 
 [[quest]]
 name = "Thorn and Paw"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Thorn_and_Paw"
+read = "2026-10-01"
 free_to_play = false
+zone = "Thorn Hollow"
+bestowed_by = "Kirinel Zay"
 
 [[quest]]
 name = "Thrall of Duty"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Thrall_of_Duty"
+read = "2026-10-01"
 free_to_play = false
 legendary_level = 36
+zone = "Savaran's Fortress"
+bestowed_by = "Iornax the Tireless"
 
 [[quest]]
 name = "Thrall of the Necromancer"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Thrall_of_the_Necromancer"
+read = "2026-10-01"
 free_to_play = false
+zone = "Necromancer's Lair"
+bestowed_by = "Delera"
 
 [[quest]]
 name = "Thralls of the Fungus Lord"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Thralls_of_the_Fungus_Lord"
+read = "2026-10-01"
 free_to_play = false
 legendary_level = 32
+zone = "Cogs Fighting Arena"
+bestowed_by = "Walk-up"
 
 [[quest]]
 name = "Threats Old and New"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Threats_Old_and_New"
+read = "2026-10-01"
 free_to_play = false
 legendary_level = 35
+zone = "Former Cult of the Dragon Base"
+bestowed_by = "Phathroi"
 
 [[quest]]
 name = "Three Paths to Battle"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Three_Paths_to_Battle"
+read = "2026-10-01"
 free_to_play = false
 legendary_level = 33
+zone = "Repository of the Eye of Shavarath"
+bestowed_by = "O'loria"
 
 [[quest]]
 name = "Through a Mirror Darkly"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Through_a_Mirror_Darkly"
+read = "2026-10-01"
 free_to_play = false
+zone = "Oldstone Hall"
+bestowed_by = "Jacinta Last"
 
 [[quest]]
 name = "Through the Tulgey Wood"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Through_the_Tulgey_Wood"
+read = "2026-10-01"
 free_to_play = false
 legendary_level = 32
+zone = "Tulgey Wood"
+bestowed_by = "Kas Sarfiel"
 
 [[quest]]
 name = "Times Long Past"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Times_Long_Past"
+read = "2026-10-01"
 free_to_play = false
 legendary_level = 35
+zone = "The Temple to Labelas Enoreth"
+bestowed_by = "Neremyn Proris"
 
 [[quest]]
 name = "To Curse the Sky"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/To_Curse_the_Sky"
+read = "2026-10-01"
 free_to_play = false
 legendary_level = 31
+zone = "House Deneith Stronghold"
+bestowed_by = "Liria d'Deneith"
+
+[[quest]]
+name = "To Find a Witness: Archbishop Dryden"
+page = "https://ddowiki.com/page/Seek_Dryden%27s_Counsel"
+read = "2026-10-01"
+free_to_play = false
+zone = "Dryden's Chamber"
+bestowed_by = "Friar Renau"
 
 [[quest]]
 name = "ToEE: Air Node"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/ToEE:_Air_Node"
+read = "2026-10-01"
 free_to_play = false
 legendary_level = 34
+zone = "Lower Temple of Elemental Evil, Node of Air"
+bestowed_by = "Burne the Magic-user"
 
 [[quest]]
 name = "ToEE: Depths of the Temple"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/ToEE:_Depths_of_the_Temple"
+read = "2026-10-01"
 free_to_play = false
 legendary_level = 34
+zone = "Temple Depths"
+bestowed_by = "The Temple of Elemental Evil"
 
 [[quest]]
 name = "ToEE: Earth Node"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/ToEE:_Earth_Node"
+read = "2026-10-01"
 free_to_play = false
 legendary_level = 34
+zone = "Lower Temple of Elemental Evil, Node of Earth"
+bestowed_by = "Rufus the Fighter"
 
 [[quest]]
 name = "ToEE: Fire Node"
@@ -4225,17 +4304,21 @@ bestowed_by = "Jaroo Ashstaff"
 
 [[quest]]
 name = "ToEE: First Level and Earth Temple"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/ToEE:_First_Level_and_Earth_Temple"
+read = "2026-10-01"
 free_to_play = false
 legendary_level = 34
+zone = "Temple of Elemental Evil's Upper Level"
+bestowed_by = "Ostler Gundigoot"
 
 [[quest]]
 name = "ToEE: Lower Temple Complex"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/ToEE:_Lower_Temple_Complex"
+read = "2026-10-01"
 free_to_play = false
 legendary_level = 34
+zone = "Lower Temple of Elemental Evil"
+bestowed_by = "Sig the Weaver"
 
 [[quest]]
 name = "ToEE: Water Node"
@@ -4248,339 +4331,448 @@ bestowed_by = "Calmert the Cleric"
 
 [[quest]]
 name = "Toil and Trouble"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Toil_and_Trouble"
+read = "2026-10-01"
 free_to_play = false
+zone = "Mielikki's Grove"
+bestowed_by = "Jarra Morand"
 
 [[quest]]
 name = "Tomb of the Blighted"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Tomb_of_the_Blighted"
+read = "2026-10-01"
 free_to_play = false
+zone = "Tomb of the Blighted"
+bestowed_by = "Hallestrom"
 
 [[quest]]
 name = "Tomb of the Burning Heart"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Tomb_of_the_Burning_Heart"
+read = "2026-10-01"
 free_to_play = false
+zone = "Tomb of the Burning Heart"
+bestowed_by = "Skorn"
 
 [[quest]]
 name = "Tomb of the Crimson Heart"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Tomb_of_the_Crimson_Heart"
+read = "2026-10-01"
 free_to_play = false
+zone = "Tomb of the Crimson Heart"
+bestowed_by = "Fram Redbones"
 
 [[quest]]
 name = "Tomb of the Forbidden"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Tomb_of_the_Forbidden"
+read = "2026-10-01"
 free_to_play = false
+zone = "Tomb of the Forbidden"
+bestowed_by = "Dessenau"
 
 [[quest]]
 name = "Tomb of the Immortal Heart"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Tomb_of_the_Immortal_Heart"
+read = "2026-10-01"
 free_to_play = false
+zone = "Tomb of the Immortal Heart"
+bestowed_by = "Vikram Nanpoor"
 
 [[quest]]
 name = "Tomb of the Sanguine Heart"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Tomb_of_the_Sanguine_Heart"
+read = "2026-10-01"
 free_to_play = false
+zone = "Tomb of the Sanguine Heart"
+bestowed_by = "Raddha Cross"
 
 [[quest]]
 name = "Tomb of the Shadow Guard"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Tomb_of_the_Shadow_Guard"
+read = "2026-10-01"
 free_to_play = false
+zone = "Tomb of the Shadow Guard"
+bestowed_by = "Bragdii Wyvernborne"
 
 [[quest]]
 name = "Tomb of the Shadow King"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Tomb_of_the_Shadow_King"
+read = "2026-10-01"
 free_to_play = false
+zone = "Tomb of the Shadow King"
+bestowed_by = "Samir Sirka"
 
 [[quest]]
 name = "Tomb of the Shadow Knight"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Tomb_of_the_Shadow_Knight"
+read = "2026-10-01"
 free_to_play = false
+zone = "Tomb of the Shadow Knight"
+bestowed_by = "Gunther Gloomtender"
 
 [[quest]]
 name = "Tomb of the Shadow Lord"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Tomb_of_the_Shadow_Lord"
+read = "2026-10-01"
 free_to_play = false
+zone = "Tomb of the Shadow Lord"
+bestowed_by = "Xaeon Penthrax"
 
 [[quest]]
 name = "Tomb of the Tormented"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Tomb_of_the_Tormented"
+read = "2026-10-01"
 free_to_play = false
+zone = "Tomb of the Tormented"
+bestowed_by = "Kyriel Kallistae"
 
 [[quest]]
 name = "Tomb of the Unhallowed"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Tomb_of_the_Unhallowed"
+read = "2026-10-01"
 free_to_play = false
+zone = "Tomb of the Unhallowed"
+bestowed_by = "Lady Vienne"
 
 [[quest]]
 name = "Too Hot to Handle"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Too_Hot_to_Handle"
+read = "2026-10-01"
 free_to_play = false
 legendary_level = 32
+zone = "Alcorin's Forge - Arcsteel Foundry"
+bestowed_by = "Grem Alcorin"
 
 [[quest]]
 name = "Too Many Cooks"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Too_Many_Cooks"
+read = "2026-10-01"
 free_to_play = false
 legendary_level = 34
+zone = "The Feast of Four Fighters"
+bestowed_by = "Varia Wordbringer"
 
 [[quest]]
 name = "Total Chaos"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Total_Chaos"
+read = "2026-10-01"
 free_to_play = false
+zone = "Temple of Evil Chaos"
+bestowed_by = "Howarth the Faithkeeper"
 
 [[quest]]
 name = "Tower of Despair"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Tower_of_Despair"
+read = "2026-10-01"
 free_to_play = false
+zone = "The Tower of Despair"
+bestowed_by = "Uloth"
 
 [[quest]]
 name = "Tower of Frost"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Tower_of_Frost"
+read = "2026-10-01"
 free_to_play = true
+zone = "Theobald's Tower"
+bestowed_by = "Crawben Bix"
 
 [[quest]]
 name = "Tower of Vengeance"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Tower_of_Vengeance"
+read = "2026-10-01"
 free_to_play = false
 legendary_level = 37
+zone = "The Road to Vizeran's Tower"
+bestowed_by = "Grin Ousttyl"
 
 [[quest]]
 name = "Toxic Treatment"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Toxic_Treatment"
+read = "2026-10-01"
 free_to_play = false
 legendary_level = 31
+zone = "Vulkoori Drow Village"
+bestowed_by = "D'naria L'roshal"
 
 [[quest]]
 name = "Treasure Hunt"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Treasure_Hunt"
+read = "2026-10-01"
 free_to_play = false
+zone = "The Treasury"
+bestowed_by = "Trom Hillcrest"
 
 [[quest]]
 name = "Trial by Fire"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Trial_by_Fire"
+read = "2026-10-01"
 free_to_play = false
+zone = "Troll Lair"
+bestowed_by = "Walk-up"
 
 [[quest]]
 name = "Trial by Fury"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Trial_by_Fury"
+read = "2026-10-01"
 free_to_play = false
+zone = "The Domain of Lord Grulemith"
+bestowed_by = "Walak"
+flagging = "All characters must complete the quest The Portal Opens to access the Demonweb."
 
 [[quest]]
 name = "Trials of the Triceratops"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Trials_of_the_Triceratops"
+read = "2026-10-01"
 free_to_play = false
 legendary_level = 33
+zone = "Maurauder Cavern"
+bestowed_by = "Kaya of Mantru"
 
 [[quest]]
 name = "Turn the Page"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Turn_the_Page_(quest)"
+read = "2026-10-01"
 free_to_play = false
 legendary_level = 34
+zone = "Rare Books Room and Environs"
+bestowed_by = "Creighton Ebinor"
 
 [[quest]]
 name = "Under the Big Top"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Under_the_Big_Top"
+read = "2026-10-01"
 free_to_play = false
+zone = "The Traveling Troubadors"
+bestowed_by = "Cerise"
+flagging = "A Small Problem, Partycrashers, and The Snitch must all be completed and flagged before acquiring this quest."
 
 [[quest]]
 name = "Under the Cover of Darkness"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Under_the_Cover_of_Darkness"
+read = "2026-10-01"
 free_to_play = false
 legendary_level = 32
+zone = "On the Trail of the Smugglers"
+bestowed_by = "Anders Solmor"
 
 [[quest]]
 name = "Undermine"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Undermine"
+read = "2026-10-01"
 free_to_play = false
 legendary_level = 34
+zone = "Sapper Tunnel"
+bestowed_by = "Varen Lassite"
 
 [[quest]]
 name = "Valak's Mausoleum"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Valak%27s_Mausoleum"
+read = "2026-10-01"
 free_to_play = false
+zone = "Valak's Mausoleum"
+bestowed_by = "Dead Girl"
 
 [[quest]]
 name = "Vecna Denied"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Vecna_Denied"
+read = "2026-10-01"
 free_to_play = false
 legendary_level = 34
+zone = "The Traveler's Astral Fortress"
+bestowed_by = "Vigilance"
 
 [[quest]]
 name = "Vecna Unleashed"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Vecna_Unleashed_(quest)"
+read = "2026-10-01"
 free_to_play = false
 legendary_level = 34
+zone = "Morgrave University Library"
+bestowed_by = "Zarnoth the Vigilant"
 
 [[quest]]
 name = "Venn's Trail: Clan Tunnelworm"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Venn%27s_Trail:_Clan_Tunnelworm"
+read = "2026-10-01"
 free_to_play = true
+zone = "Clan Tunnelworm Den"
+bestowed_by = "Guard Tember"
 
 [[quest]]
 name = "Venn's Trail: Venn's Fate"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Venn%27s_Trail:_Venn%27s_Fate"
+read = "2026-10-01"
 free_to_play = true
+zone = "Clan Tunnelworm Prison"
+bestowed_by = "Auto-bestowed"
 
 [[quest]]
 name = "Violent Delights"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Violent_Delights"
+read = "2026-10-01"
 free_to_play = false
+zone = "Gnoll Caves"
+bestowed_by = "Dolnour the Devout"
 
 [[quest]]
 name = "Voices of the Dead"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Voices_of_the_Dead"
+read = "2026-10-01"
 free_to_play = false
 legendary_level = 35
+zone = "The Burial Glen"
+bestowed_by = "Elred Maglan"
 
 [[quest]]
 name = "Wake Me Up Inside"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Wake_Me_Up_Inside"
+read = "2026-10-01"
 free_to_play = false
 legendary_level = 32
+zone = "Wynwood Hall"
+bestowed_by = "Sorghum"
 
 [[quest]]
 name = "Walk the Butcher's Path"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Walk_the_Butcher%27s_Path"
+read = "2026-10-01"
 free_to_play = true
+zone = "The Butcher's Path"
+bestowed_by = "Mistress Ahura"
 
 [[quest]]
 name = "Watch Your Step"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Watch_Your_Step"
+read = "2026-10-01"
 free_to_play = false
+zone = "Kobold Caves"
+bestowed_by = "Wrolph Acton"
 
 [[quest]]
 name = "What Dreams May Come"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/What_Dreams_May_Come"
+read = "2026-10-01"
 free_to_play = false
 legendary_level = 34
+zone = "Morgrave University Dormitories"
+bestowed_by = "Erryn Riston"
 
 [[quest]]
 name = "What Goes Up"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/What_Goes_Up"
+read = "2026-10-01"
 free_to_play = false
+zone = "Mountain Glacier"
+bestowed_by = "Sherrod Starym"
 
 [[quest]]
 name = "What Sleeps Below"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/What_Sleeps_Below"
+read = "2026-10-01"
 free_to_play = false
 legendary_level = 32
+zone = "Crabbers' Cove"
+bestowed_by = "Bostwick Guern"
 
 [[quest]]
 name = "Where There's Smoke..."
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Where_There%27s_Smoke..."
+read = "2026-10-01"
 free_to_play = true
+zone = "Nash Braza's Farmstead"
+bestowed_by = "Nash Braza"
 
 [[quest]]
 name = "Whisperdoom's Spawn"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Whisperdoom%27s_Spawn"
+read = "2026-10-01"
 free_to_play = false
+zone = "Outer Splinterskull Fortress"
+bestowed_by = "Chief Ungurz"
 
 [[quest]]
 name = "Whispers of Return"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Whispers_of_Return"
+read = "2026-10-01"
 free_to_play = false
 legendary_level = 33
+zone = "Crumbling Kopru Base"
+bestowed_by = "Anahu of the Turtle"
 
 [[quest]]
 name = "White Plume Mountain"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/White_Plume_Mountain"
+read = "2026-10-01"
 free_to_play = false
 legendary_level = 32
+zone = "Beneath White Plume Mountain"
+bestowed_by = "Raheen the Gatekeeper"
 
 [[quest]]
 name = "Wild Thing"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Wild_Thing"
+read = "2026-10-01"
 free_to_play = false
 legendary_level = 33
+zone = "Rampage Site"
+bestowed_by = "Anaka of Tanaroa"
 
 [[quest]]
 name = "Wish Upon a Card"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Wish_Upon_a_Card"
+read = "2026-10-01"
 free_to_play = false
 legendary_level = 36
+zone = "Jungle Ruins"
+bestowed_by = "Irsed the Bright"
 
 [[quest]]
 name = "Witch Hunt"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Witch_Hunt"
+read = "2026-10-01"
 free_to_play = false
 legendary_level = 32
+zone = "Fallmire Woods"
+bestowed_by = "Huntress Joranda"
 
 [[quest]]
 name = "Wrath of the Earth"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Wrath_of_the_Earth"
+read = "2026-10-01"
 free_to_play = false
 legendary_level = 32
+zone = "Yester Hill"
+bestowed_by = "Grilsha Targolova"
 
 [[quest]]
 name = "Wrath of the Flame"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Wrath_of_the_Flame"
+read = "2026-10-01"
 free_to_play = false
+zone = "Adventurer's Camp"
+bestowed_by = "Gustor Miles"
 
 [[quest]]
 name = "Yarkuch's War Plans"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Yarkuch%27s_War_Plans"
+read = "2026-10-01"
 free_to_play = false
+zone = "Outer Splinterskull Fortress"
+bestowed_by = "Chief Ungurz"
 
 [[quest]]
 name = "Zawabi's Revenge"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Zawabi%27s_Revenge"
+read = "2026-10-01"
 free_to_play = false
+zone = "The Circle of Eternity"
+bestowed_by = "Zawabi the Elder Djinni"
+flagging = "You need to finish the quest Against the Demon Queen, which has its own flagging mechanism."
 
 [[quest]]
 name = "Zoo Creeper"
-page = "https://ddowiki.com/page/Quests_by_level_and_XP"
-read = "2026-09-27"
+page = "https://ddowiki.com/page/Zoo_Creeper"
+read = "2026-10-01"
 free_to_play = false
 legendary_level = 36
+zone = "Ludendorf Zoological Gardens"
+bestowed_by = "Frida Kauss"
