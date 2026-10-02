@@ -20,7 +20,7 @@ pub(super) fn router() -> OpenApiRouter<AppState> {
 const QUEST_SELECT: &str =
     "SELECT q.id, q.name, p.name AS pack, pt.name AS patron, q.level, q.epic_level, q.favor, q.is_raid,
         q.epic_name, q.difficulties, q.is_challenge, q.max_level, q.is_free_to_play,
-        q.legendary_level, q.zone, q.bestowed_by, q.flagging, q.provenance
+        q.legendary_level, q.zone, q.bestowed_by, q.flagging
    FROM quests q LEFT JOIN adventure_packs p ON p.id = q.pack_id LEFT JOIN patrons pt ON pt.id = q.patron_id";
 const QUEST_FLAG_COLUMNS: &[&str] = &["is_raid", "is_challenge", "is_free_to_play"];
 
@@ -108,9 +108,9 @@ async fn patrons(State(state): State<AppState>) -> Result<Json<Vec<Value>>, ApiE
                    `max_level` null. Read from ddowiki, since Maetrim's files carry none of them: \
                    `is_free_to_play` (the quest itself, not its pack), `legendary_level`, `zone` (where it takes \
                    place), `bestowed_by` (the quest giver) and `flagging` (free text on what must be run first), \
-                   each null or false when the wiki has not been read for that quest. `provenance` is `maetrim` for a quest \
-                   from his files and `wiki` for one read from ddowiki because his files lack it, replaced by his \
-                   as soon as his files carry a quest of that name. Item and augment detail responses reference these in `quests`; \
+                   each null or false when the wiki has not been read for that quest. The quests his files lack \
+                   are read whole from ddowiki and listed like his, replaced by his as soon as his files carry a \
+                   quest of that name. Item and augment detail responses reference these in `quests`; \
                    /v1/quests/{id} adds the items and augments each one drops.",
     responses((status = 200, description = "The whole table with each quest's wiki facts", body = Vec<Value>))
 )]
@@ -190,7 +190,7 @@ pub(super) fn quests_dropping_via(
     let mut quests = json_rows(
         db,
         &format!(
-            "SELECT q.id, q.name, q.level, q.epic_level, q.is_raid, q.difficulties, q.is_free_to_play, q.provenance, ap.name AS pack,
+            "SELECT q.id, q.name, q.level, q.epic_level, q.is_raid, q.difficulties, q.is_free_to_play, ap.name AS pack,
                     pt.name AS patron, loot.loot_type, loot.is_rare, loot.chest
                FROM sources loot JOIN quests q ON q.id = loot.quest_id
                LEFT JOIN adventure_packs ap ON ap.id = q.pack_id LEFT JOIN patrons pt ON pt.id = q.patron_id

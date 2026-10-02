@@ -5,7 +5,7 @@
     {
       "bonus_type": "Artifact",
       "description": null,
-      "id": 4513,
+      "id": 4505,
       "name": "Physical Resistance Rating +10",
       "stat": "Physical Resistance Rating",
       "stat_category": "defensive",
@@ -58,7 +58,6 @@
     }
   ],
   "name": "Solar Gem of Physical Resistance Rating (Heroic)",
-  "provenance": "maetrim",
   "quests": [
     {
       "chest": "end chest",
@@ -76,8 +75,7 @@
       "loot_type": "chest",
       "name": "Secrets of the Red Wizards",
       "pack": "Magic of Myth Drannor",
-      "patron": "Cormanthor Elves",
-      "provenance": "maetrim"
+      "patron": "Cormanthor Elves"
     },
     {
       "chest": "optional chest",
@@ -95,8 +93,7 @@
       "loot_type": "chest",
       "name": "The Covered Culvert",
       "pack": "Tavern Tales",
-      "patron": "The Free Agents",
-      "provenance": "maetrim"
+      "patron": "The Free Agents"
     },
     {
       "chest": "end chest",
@@ -114,8 +111,7 @@
       "loot_type": "chest",
       "name": "The Darkness and the Light",
       "pack": "Fall of the Night Brigade",
-      "patron": "The Harpers",
-      "provenance": "maetrim"
+      "patron": "The Harpers"
     }
   ],
   "set_bonus": null,

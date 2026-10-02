@@ -351,40 +351,40 @@ async fn item_search_text_also_matches_a_slot_category_or_pack_name_and_ranks_ex
 }
 
 #[tokio::test]
-async fn items_say_whether_maetrim_or_the_wiki_supplied_them() {
+async fn items_hide_whether_maetrim_or_the_wiki_supplied_them() {
     let (_, _, axe_matches) = get("/v1/items?q=oozing").await;
     let axe_row = &axe_matches["items"][0];
     assert_eq!(axe_row["name"], "Battle Axe of the Oozing Hunger");
-    assert_eq!(axe_row["provenance"], "wiki");
+    assert_no_provenance(axe_row);
     let (_, _, sireth_matches) = get("/v1/items?q=sireth").await;
-    assert_eq!(sireth_matches["items"][0]["provenance"], "maetrim");
+    assert_no_provenance(&sireth_matches["items"][0]);
 
     let (_, _, axe) = get(&format!("/v1/items/{}", axe_row["id"])).await;
-    assert_eq!(axe["provenance"], "wiki");
+    assert_no_provenance(&axe);
     assert_eq!(axe["weapon"]["weapon_type"], "Battle Axe");
     let (_, _, sireth) = get(&format!("/v1/items/{}", sireth_matches["items"][0]["id"])).await;
-    assert_eq!(sireth["provenance"], "maetrim");
+    assert_no_provenance(&sireth);
 
     let (_, _, version) = get("/v1/version").await;
     assert_eq!(version["counts"]["wiki_items"], 1);
 }
 
 #[tokio::test]
-async fn augments_say_whether_maetrim_or_the_wiki_supplied_them() {
+async fn augments_hide_whether_maetrim_or_the_wiki_supplied_them() {
     let (_, _, gem_matches) = get("/v1/augments?q=oozing").await;
     let gem_row = &gem_matches["augments"][0];
     assert_eq!(gem_row["name"], "Test Gem of Oozing Resistance");
-    assert_eq!(gem_row["provenance"], "wiki");
+    assert_no_provenance(gem_row);
     assert_eq!(gem_row["slots"], serde_json::json!(["colorless", "green"]));
     let (_, _, bulwark_matches) = get("/v1/augments?q=bulwark").await;
     assert_eq!(bulwark_matches["total"], 1, "the superseded wiki entry writes no second row");
-    assert_eq!(bulwark_matches["augments"][0]["provenance"], "maetrim");
+    assert_no_provenance(&bulwark_matches["augments"][0]);
 
     let (_, _, gem) = get(&format!("/v1/augments/{}", gem_row["id"])).await;
-    assert_eq!(gem["provenance"], "wiki");
+    assert_no_provenance(&gem);
     assert_eq!(gem["set_bonus"], "Eminence of Winter");
     let (_, _, bulwark) = get(&format!("/v1/augments/{}", bulwark_matches["augments"][0]["id"])).await;
-    assert_eq!(bulwark["provenance"], "maetrim");
+    assert_no_provenance(&bulwark);
 
     let (_, _, version) = get("/v1/version").await;
     assert_eq!(version["counts"]["wiki_augments"], 1);
@@ -443,7 +443,7 @@ async fn augment_detail_lists_the_quests_it_drops_in_as_item_detail_does() {
     assert_eq!(quests[0]["loot_type"], "chest");
     assert_eq!(quests[0]["is_rare"], true);
     assert_eq!(quests[0]["chest"], "vornir frosthelm's chest");
-    assert_eq!(quests[0]["provenance"], "maetrim");
+    assert_no_provenance(&quests[0]);
     assert_eq!(quests[0]["pack"], "Chill of Ravenloft");
 
     let (_, _, list) = get("/v1/items?q=buckler+of+the+golden").await;
@@ -578,27 +578,29 @@ async fn quests_carry_the_wiki_facts() {
 }
 
 #[tokio::test]
-async fn quests_say_whether_maetrim_or_the_wiki_supplied_them() {
+async fn quests_hide_whether_maetrim_or_the_wiki_supplied_them() {
     let (_, _, quests) = get("/v1/quests").await;
     let quests = quests.as_array().unwrap();
     let quest_named = |name: &str| quests.iter().find(|q| q["name"] == name).unwrap_or_else(|| panic!("{name}"));
     let ghosts_of_perdition = quest_named("Ghosts of Perdition");
-    assert_eq!(ghosts_of_perdition["provenance"], "wiki");
+    assert_no_provenance(ghosts_of_perdition);
     assert_eq!(
         (&ghosts_of_perdition["pack"], &ghosts_of_perdition["level"]),
         (&serde_json::json!("Chill of Ravenloft"), &serde_json::json!(32))
     );
-    assert_eq!(quest_named("The Grotto")["provenance"], "maetrim");
+    assert_no_provenance(quest_named("The Grotto"));
+    let (_, _, ghosts_of_perdition_detail) = get(&format!("/v1/quests/{}", ghosts_of_perdition["id"])).await;
+    assert_eq!(ghosts_of_perdition_detail["name"], "Ghosts of Perdition");
+    assert_no_provenance(&ghosts_of_perdition_detail);
 
     let (_, _, axe_matches) = get("/v1/items?q=oozing").await;
     let (_, _, axe) = get(&format!("/v1/items/{}", axe_matches["items"][0]["id"])).await;
-    let axe_quest_provenances: Vec<(&str, &str)> = axe["quests"]
-        .as_array()
-        .unwrap()
-        .iter()
-        .map(|quest| (quest["name"].as_str().unwrap(), quest["provenance"].as_str().unwrap()))
-        .collect();
-    assert_eq!(axe_quest_provenances, [("Ghosts of Perdition", "wiki"), ("The Grotto", "maetrim")]);
+    let axe_quests = axe["quests"].as_array().unwrap();
+    assert_eq!(
+        axe_quests.iter().map(|quest| quest["name"].as_str().unwrap()).collect::<Vec<_>>(),
+        ["Ghosts of Perdition", "The Grotto"]
+    );
+    axe_quests.iter().for_each(assert_no_provenance);
 
     let (_, _, version) = get("/v1/version").await;
     assert_eq!(version["counts"]["wiki_quests"], 1);
@@ -1256,6 +1258,10 @@ async fn items_augments_and_quests_carry_corrected_values_without_exposing_the_c
     assert!(version["counts"].get("corrections").is_none(), "version counts expose corrections: {}", version["counts"]);
 }
 
+fn assert_no_provenance(response_object: &Value) {
+    assert!(response_object.get("provenance").is_none(), "provenance is internal: {response_object}");
+}
+
 fn keys_of(value: &Value) -> Vec<&str> {
     let mut keys: Vec<&str> = value.as_object().unwrap().keys().map(String::as_str).collect();
     keys.sort_unstable();
@@ -1263,17 +1269,16 @@ fn keys_of(value: &Value) -> Vec<&str> {
 }
 
 #[tokio::test]
-async fn quest_chains_list_their_pack_provenance_page_and_counts() {
+async fn quest_chains_list_their_pack_page_and_counts() {
     let (status, _, chains) = get("/v1/quest-chains").await;
     assert_eq!(status, StatusCode::OK);
     let lost_seekers = &chains[0];
-    assert_eq!(keys_of(lost_seekers), ["id", "name", "pack", "provenance", "quest_count", "reward_count", "wiki_url"]);
+    assert_eq!(keys_of(lost_seekers), ["id", "name", "pack", "quest_count", "reward_count", "wiki_url"]);
     assert_eq!(
-        (&lost_seekers["name"], &lost_seekers["pack"], &lost_seekers["provenance"], &lost_seekers["wiki_url"]),
+        (&lost_seekers["name"], &lost_seekers["pack"], &lost_seekers["wiki_url"]),
         (
             &serde_json::json!("The Lost Seekers"),
             &serde_json::json!("Free to Play"),
-            &serde_json::json!("wiki"),
             &serde_json::json!("https://ddowiki.com/page/The_Lost_Seekers")
         )
     );
@@ -1288,6 +1293,7 @@ async fn quest_chain_detail_lists_its_quests_in_order_and_its_rewards() {
     let (_, _, chains) = get("/v1/quest-chains").await;
     let (status, _, chain) = get(&format!("/v1/quest-chains/{}", chains[0]["id"])).await;
     assert_eq!(status, StatusCode::OK);
+    assert_no_provenance(&chain);
     for (field_name, value) in chains[0].as_object().unwrap() {
         assert_eq!(&chain[field_name], value, "{field_name} as the list returns it");
     }
@@ -1310,9 +1316,10 @@ async fn saga_detail_lists_its_rewards_by_tier() {
     let (status, _, sagas) = get("/v1/sagas").await;
     assert_eq!(status, StatusCode::OK);
     let sharn = sagas.as_array().unwrap().iter().find(|saga| saga["name"] == "Masterminds of Sharn").unwrap();
-    assert_eq!(keys_of(sharn), ["id", "name", "pack", "provenance", "quest_count", "reward_count", "wiki_url"]);
+    assert_eq!(keys_of(sharn), ["id", "name", "pack", "quest_count", "reward_count", "wiki_url"]);
     assert_eq!((&sharn["quest_count"], &sharn["reward_count"]), (&serde_json::json!(2), &serde_json::json!(4)));
     let (_, _, saga) = get(&format!("/v1/sagas/{}", sharn["id"])).await;
+    assert_no_provenance(&saga);
     let rewards = saga["rewards"].as_array().unwrap();
     assert_eq!(keys_of(&rewards[0]), ["id", "is_rare", "minimum_level", "name", "slot", "tier"]);
     assert_eq!(
@@ -1574,19 +1581,19 @@ async fn vendors_list_their_location_pack_page_and_item_count_and_detail_their_i
     let (status, _, vendors) = get("/v1/vendors").await;
     assert_eq!(status, StatusCode::OK);
     let vendor = &vendors[0];
-    assert_eq!(keys_of(vendor), ["id", "item_count", "location", "name", "pack", "provenance", "wiki_url"]);
+    assert_eq!(keys_of(vendor), ["id", "item_count", "location", "name", "pack", "wiki_url"]);
     assert_eq!(
-        (&vendor["name"], &vendor["location"], &vendor["pack"], &vendor["provenance"], &vendor["item_count"]),
+        (&vendor["name"], &vendor["location"], &vendor["pack"], &vendor["item_count"]),
         (
             &serde_json::json!("Morten Edgewright"),
             &serde_json::json!("House Jorasco"),
             &serde_json::json!("Free to Play"),
-            &serde_json::json!("wiki"),
             &serde_json::json!(2)
         )
     );
     let (status, _, detail) = get(&format!("/v1/vendors/{}", vendor["id"])).await;
     assert_eq!(status, StatusCode::OK);
+    assert_no_provenance(&detail);
     let items = detail["items"].as_array().unwrap();
     assert_eq!(keys_of(&items[0]), ["cost", "id", "is_rare", "minimum_level", "name", "slot"]);
     assert_eq!(
@@ -1622,13 +1629,14 @@ async fn events_list_their_page_and_item_count_and_detail_their_items() {
     let (status, _, events) = get("/v1/events").await;
     assert_eq!(status, StatusCode::OK);
     let event = &events[0];
-    assert_eq!(keys_of(event), ["id", "item_count", "name", "provenance", "wiki_url"]);
+    assert_eq!(keys_of(event), ["id", "item_count", "name", "wiki_url"]);
     assert_eq!(
         (&event["name"], &event["item_count"]),
         (&serde_json::json!("Treasure of Crystal Cove"), &serde_json::json!(3))
     );
     let (status, _, detail) = get(&format!("/v1/events/{}", event["id"])).await;
     assert_eq!(status, StatusCode::OK);
+    assert_no_provenance(&detail);
     let item_names: Vec<&str> =
         detail["items"].as_array().unwrap().iter().map(|item| item["name"].as_str().unwrap()).collect();
     assert_eq!(item_names, ["Acrobat's Ring", "Bold Trinket", "Ratkiller (legacy) (level 4)"]);

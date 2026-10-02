@@ -26,13 +26,13 @@ impl QuestSeriesTable {
     fn columns_and_joins(self) -> &'static str {
         match self {
             Self::QuestChains => {
-                "s.id, s.name, p.name AS pack, s.provenance, s.wiki_url,
+                "s.id, s.name, p.name AS pack, s.wiki_url,
                     (SELECT COUNT(*) FROM quest_chain_quests sq WHERE sq.chain_id = s.id) AS quest_count,
                     (SELECT COUNT(*) FROM sources sr WHERE sr.chain_id = s.id) AS reward_count
                FROM quest_chains s LEFT JOIN adventure_packs p ON p.id = s.pack_id"
             }
             Self::Sagas => {
-                "s.id, s.name, p.name AS pack, s.provenance, s.wiki_url,
+                "s.id, s.name, p.name AS pack, s.wiki_url,
                     (SELECT COUNT(*) FROM saga_quests sq WHERE sq.saga_id = s.id) AS quest_count,
                     (SELECT COUNT(*) FROM sources sr WHERE sr.saga_id = s.id) AS reward_count
                FROM sagas s LEFT JOIN adventure_packs p ON p.id = s.pack_id"
@@ -140,7 +140,7 @@ pub(super) fn sagas_including(db: &Connection, quest_id: i64) -> Result<Vec<Valu
     summary = "List quest chains",
     description = "Every quest chain (what ddowiki calls a story arc: a run of quests whose end reward an NPC gives \
                    after the last of them, not any one quest), ordered by name, with its adventure `pack` (null \
-                   when the wiki names none), `provenance` (always `wiki`, since Maetrim's files have no chains), the \
+                   when the wiki names none; every chain is read from ddowiki, since Maetrim's files have none), the \
                    `wiki_url` it was read from, and how many quests and end rewards it has (`quest_count`, \
                    `reward_count`). The rewards are those the wiki page lists plus the items whose drop text \
                    credits the chain with its end reward. Empty until a chain has been read from ddowiki; \
@@ -180,7 +180,7 @@ async fn quest_chain_detail(State(state): State<AppState>, Path(id): Path<i64>) 
     summary = "List sagas",
     description = "Every saga (a set of quests whose saga NPC gives an end reward once they are all done, in \
                    heroic, epic and legendary reward lists), ordered by name, with its adventure `pack` (null \
-                   when the wiki names none), `provenance` (always `wiki`, since Maetrim's files have no sagas), the \
+                   when the wiki names none; every saga is read from ddowiki, since Maetrim's files have none), the \
                    `wiki_url` it was read from, and how many quests and end rewards it has (`quest_count`, \
                    `reward_count`, one per item and tier). The rewards are those the wiki page lists plus the \
                    items whose drop text credits the saga. Empty until a saga has been read from ddowiki; \

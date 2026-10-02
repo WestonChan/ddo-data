@@ -20,7 +20,6 @@
     "name": "A Blood Pact",
     "pack": "Terror of Demogorgon",
     "patron": "Battlehammer Expedition",
-    "provenance": "maetrim",
     "zone": "The Sanguine Labyrinth"
   },
   {
@@ -44,7 +43,6 @@
     "name": "A Break in the Ice",
     "pack": "Shadowfell Conspiracy",
     "patron": "The Harpers",
-    "provenance": "maetrim",
     "zone": "Mountain Glacier"
   },
   {
@@ -68,7 +66,6 @@
     "name": "A Cabal for One",
     "pack": "Ruins of Gianthold",
     "patron": "Agents of Argonnessen",
-    "provenance": "maetrim",
     "zone": "Hobgoblin Lair"
   }
 ]

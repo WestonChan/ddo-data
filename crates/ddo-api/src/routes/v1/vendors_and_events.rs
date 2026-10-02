@@ -16,11 +16,11 @@ pub(super) fn router() -> OpenApiRouter<AppState> {
         .routes(routes!(event_detail))
 }
 
-const VENDOR_SELECT: &str = "SELECT v.id, v.name, v.location, p.name AS pack, v.provenance, v.wiki_url,
+const VENDOR_SELECT: &str = "SELECT v.id, v.name, v.location, p.name AS pack, v.wiki_url,
         (SELECT COUNT(*) FROM sources vi WHERE vi.kind = 'vendor' AND vi.vendor_id = v.id) AS item_count
    FROM vendors v LEFT JOIN adventure_packs p ON p.id = v.pack_id";
 
-const EVENT_SELECT: &str = "SELECT e.id, e.name, e.provenance, e.wiki_url,
+const EVENT_SELECT: &str = "SELECT e.id, e.name, e.wiki_url,
         (SELECT COUNT(*) FROM sources ei WHERE ei.kind = 'event' AND ei.event_id = e.id) AS item_count
    FROM events e";
 
@@ -31,7 +31,7 @@ const EVENT_SELECT: &str = "SELECT e.id, e.name, e.provenance, e.wiki_url,
     summary = "List vendors",
     description = "Every vendor (an NPC or place that sells items or trades them for tokens, read from ddowiki, since \
                    Maetrim's files have none), ordered by name, with the `location` the wiki gives (free text, null \
-                   when it gives none), its adventure `pack` (null when it names none), `provenance` (always `wiki`), \
+                   when it gives none), its adventure `pack` (null when it names none), \
                    the `wiki_url` it was read from, and `item_count`, the items it offers: those the wiki page lists \
                    plus the items whose drop text names the vendor. Empty until a vendor has been read from ddowiki.",
     responses((status = 200, description = "Every vendor with its location, pack and item count", body = Vec<Value>))
@@ -79,7 +79,7 @@ async fn vendor_detail(State(state): State<AppState>, Path(id): Path<i64>) -> Re
     summary = "List events",
     description = "Every event (a festival or limited-time event whose rewards are items, such as Treasure of Crystal \
                    Cove or The Night Revels, read from ddowiki, since Maetrim's files have none), ordered by name, \
-                   with `provenance` (always `wiki`), the `wiki_url` it was read from, and `item_count`, the items it \
+                   with the `wiki_url` it was read from, and `item_count`, the items it \
                    rewards: those the wiki page lists plus the items whose drop text names the event. Empty until an \
                    event has been read from ddowiki.",
     responses((status = 200, description = "Every event with its item count", body = Vec<Value>))

@@ -6,7 +6,7 @@
         {
           "bonus_type": "Artifact",
           "description": null,
-          "id": 4597,
+          "id": 4589,
           "name": "Abjuration Spell Focus +2",
           "stat": "Abjuration Spell Focus",
           "stat_category": "magical",
@@ -29,7 +29,6 @@
       "levels": null,
       "min_level": 1,
       "name": "Solar Gem of Abjuration (Heroic)",
-      "provenance": "maetrim",
       "set_bonus": null,
       "slots": [
         "sun"
@@ -43,7 +42,7 @@
         {
           "bonus_type": "Artifact",
           "description": null,
-          "id": 4782,
+          "id": 4774,
           "name": "Abjuration Spell Focus +4",
           "stat": "Abjuration Spell Focus",
           "stat_category": "magical",
@@ -66,7 +65,6 @@
       "levels": null,
       "min_level": 30,
       "name": "Solar Gem of Abjuration (Legendary)",
-      "provenance": "maetrim",
       "set_bonus": null,
       "slots": [
         "sun"
