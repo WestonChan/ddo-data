@@ -80,7 +80,7 @@ name = "Keep on the Borderlands"
 page = "https://ddowiki.com/page/Keep_on_the_Borderlands"
 read = "2026-10-02"
 pack = "Keep on the Borderlands"
-quests = ["The Bugbear Bandits", "Watch Your Step", "Treasure Hunt", "Caged Beast", "Obstructing the Orcs", "The Hobgoblin Horde", "Violent Delights"]
+quests = ["The Bugbear Bandits", "Watch Your Step", "Treasure Hunt", "Caged Beast", "Obstructing the Orcs", "The Hobgoblin Horde", "Violent Delights", "Total Chaos"]
 
 [[chain]]
 name = "Litany of the Dead Part 1"
@@ -130,7 +130,7 @@ name = "Reign of Madness"
 page = "https://ddowiki.com/page/Reign_of_Madness"
 read = "2026-10-02"
 pack = "Reign of Madness"
-quests = ["The Lord of Stone", "Acute Delirium", "The Lord of Eyes", "The Sane Asylum"]
+quests = ["Acute Delirium", "The Sane Asylum", "The Lord of Stone", "The Lord of Eyes"]
 rewards = ["Fang of Siberys", "Nature's Vengeance", "Unstable Handwraps", "Fleshshaper's Docent", "Infused Chaos Docent", "Fleshshaper's Brigandine", "Glorious Obscenity"]
 
 [[chain]]
@@ -145,7 +145,7 @@ name = "Sentinels of Stormreach"
 page = "https://ddowiki.com/page/Sentinels_of_Stormreach"
 read = "2026-10-02"
 pack = "Sentinels of Stormreach"
-quests = ["Spies in the House", "Storm the Beaches", "Bargain of Blood", "The Tide Turns", "The Black Loch"]
+quests = ["Bargain of Blood", "The Black Loch", "Storm the Beaches", "The Tide Turns", "Spies in the House"]
 rewards = ["Tarnished Blademark's Docent", "Torn Chitin Bracers"]
 
 [[chain]]
@@ -180,7 +180,7 @@ name = "The Ruins of Gianthold"
 page = "https://ddowiki.com/page/The_Ruins_of_Gianthold"
 read = "2026-10-02"
 pack = "Ruins of Gianthold"
-quests = ["The Prison of the Planes", "Madstone Crater", "A Cabal for One", "A Cry for Help", "Foundation of Discord", "The Maze of Madness", "Trial by Fire", "The Crucible", "Feast or Famine"]
+quests = ["The Prison of the Planes", "Madstone Crater", "A Cabal for One", "Gianthold Tor", "The Reaver's Fate", "A Cry for Help", "Foundation of Discord", "The Maze of Madness", "Trial by Fire", "The Crucible", "Feast or Famine"]
 
 [[chain]]
 name = "Return to Gianthold"
@@ -192,7 +192,7 @@ pack = "Ruins of Gianthold"
 name = "Web of Chaos"
 page = "https://ddowiki.com/page/Web_of_Chaos"
 read = "2026-10-02"
-quests = ["The Lords of Dust", "The Spinner of Shadows", "Servants of the Overlord", "Beyond the Rift"]
+quests = ["The Lords of Dust", "Servants of the Overlord", "The Spinner of Shadows", "Beyond the Rift"]
 
 [[chain]]
 name = "The Dragons' Hand"
@@ -219,7 +219,7 @@ name = "The Fire Caves"
 page = "https://ddowiki.com/page/The_Fire_Caves"
 read = "2026-10-02"
 pack = "Three-Barrel Cove"
-quests = ["Brood of Flame", "The Stones Run Red"]
+quests = ["The Stones Run Red", "Brood of Flame"]
 
 [[chain]]
 name = "The Lost Gatekeepers"
@@ -248,7 +248,7 @@ name = "The Path of Inspiration"
 page = "https://ddowiki.com/page/The_Path_of_Inspiration"
 read = "2026-10-02"
 pack = "The Path of Inspiration"
-quests = ["Dream Conspiracy", "Finding the Path", "I Dream of Jeets", "The Mindsunder", "The Shipwrecked Spy"]
+quests = ["Finding the Path", "I Dream of Jeets", "The Mindsunder", "Dream Conspiracy", "The Shipwrecked Spy"]
 
 [[chain]]
 name = "The Salvation of Korthos"
