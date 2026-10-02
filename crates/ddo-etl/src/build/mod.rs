@@ -236,10 +236,11 @@ pub fn build_database(
     corrections::apply_non_quest_corrections(&transaction, corrections, &mut report)?;
     wiki::apply_wiki_overrides(&transaction, wiki_overrides, &drop_text_linker, &mut report)?;
     quest_series::write_wiki_quest_series_rewards(&transaction, wiki_overrides, &mut report)?;
+    delete_bonuses_nothing_carries(&transaction)?;
 
     report.legacy_item_count =
         transaction.query_row("SELECT COUNT(*) FROM items WHERE is_legacy", [], |r| r.get::<_, i64>(0))? as usize;
-    report.bonus_count = writer.written.bonus_ids_by_key.len();
+    report.bonus_count = transaction.query_row("SELECT COUNT(*) FROM bonuses", [], |r| r.get::<_, i64>(0))? as usize;
     report.effect_count = writer.written.effect_ids_by_name.len();
     report.augment_slot_type_count =
         transaction.query_row("SELECT COUNT(*) FROM augment_slot_types", [], |r| r.get::<_, i64>(0))? as usize;
@@ -248,6 +249,17 @@ pub fn build_database(
     report.unmapped_effect_type_counts = effect_map.unmapped_type_counts();
     transaction.commit()?;
     Ok(report)
+}
+
+fn delete_bonuses_nothing_carries(transaction: &Transaction) -> Result<()> {
+    transaction.execute(
+        "DELETE FROM bonuses WHERE NOT EXISTS (SELECT 1 FROM item_bonuses r WHERE r.bonus_id = bonuses.id)
+            AND NOT EXISTS (SELECT 1 FROM augment_bonuses r WHERE r.bonus_id = bonuses.id)
+            AND NOT EXISTS (SELECT 1 FROM feat_bonuses r WHERE r.bonus_id = bonuses.id)
+            AND NOT EXISTS (SELECT 1 FROM set_bonus_tier_bonuses r WHERE r.bonus_id = bonuses.id)",
+        [],
+    )?;
+    Ok(())
 }
 
 #[derive(Debug, Clone, PartialEq, Eq)]

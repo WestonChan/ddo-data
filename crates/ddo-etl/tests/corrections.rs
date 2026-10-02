@@ -806,9 +806,21 @@ fn corrects_an_augment_bonus_value_and_type_without_touching_the_shared_bonus() 
     );
     assert_eq!(
         row_count(&db, "SELECT COUNT(*) FROM bonuses WHERE name = 'Healing Amplification +56'"),
-        1,
-        "the old bonus row stays for anything else that carries it"
+        0,
+        "the old bonus row is left unchanged for anything else that carries it, then deleted as nothing does"
     );
+    assert_eq!(
+        row_count(
+            &db,
+            "SELECT COUNT(*) FROM bonuses b WHERE NOT EXISTS (SELECT 1 FROM item_bonuses r WHERE r.bonus_id = b.id)
+               AND NOT EXISTS (SELECT 1 FROM augment_bonuses r WHERE r.bonus_id = b.id)
+               AND NOT EXISTS (SELECT 1 FROM feat_bonuses r WHERE r.bonus_id = b.id)
+               AND NOT EXISTS (SELECT 1 FROM set_bonus_tier_bonuses r WHERE r.bonus_id = b.id)"
+        ),
+        0,
+        "a bonus the corrections leave nothing carrying is deleted"
+    );
+    assert_eq!(report.bonus_count as i64, row_count(&db, "SELECT COUNT(*) FROM bonuses"));
     let qualifiers: Vec<String> = db
         .prepare("SELECT qualifier FROM corrections ORDER BY qualifier")
         .unwrap()
