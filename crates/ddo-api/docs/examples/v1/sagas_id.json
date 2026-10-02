@@ -1,36 +1,52 @@
 {
   "id": 1,
-  "name": "Masterminds of Sharn",
-  "pack": null,
-  "quest_count": 0,
-  "quests": [],
-  "reward_count": 10,
+  "name": "The Haunting of Saltmarsh",
+  "pack": "Sinister Secret of Saltmarsh",
+  "quest_count": 10,
+  "quests": [
+    {
+      "id": 60,
+      "level": 3,
+      "name": "Back to Basics"
+    },
+    {
+      "id": 54,
+      "level": 3,
+      "name": "Danger at Dunwater"
+    },
+    {
+      "id": 53,
+      "level": 3,
+      "name": "Down You Go"
+    }
+  ],
+  "reward_count": 6,
   "rewards": [
     {
-      "id": 733,
+      "id": 891,
       "is_rare": false,
       "minimum_level": 29,
-      "name": "Band of Diani ir'Wynarn",
-      "slot": "Wrists",
+      "name": "Black Pearl Ring",
+      "slot": "Ring",
       "tier": "epic"
     },
     {
-      "id": 1055,
+      "id": 2939,
       "is_rare": false,
       "minimum_level": 29,
-      "name": "Brand of Kalok Shash",
-      "slot": "Wrists",
+      "name": "Explorer of the Depths",
+      "slot": "Head",
       "tier": "epic"
     },
     {
-      "id": 3246,
+      "id": 6875,
       "is_rare": false,
       "minimum_level": 29,
-      "name": "Gauntlet of the Iron Council",
-      "slot": "Hands",
+      "name": "Ring of the Kraken",
+      "slot": "Ring",
       "tier": "epic"
     }
   ],
   "source": "wiki",
-  "wiki_url": "https://ddowiki.com/page/Masterminds_of_Sharn_(saga)"
+  "wiki_url": "https://ddowiki.com/page/Sinister_Secret_of_Saltmarsh_(Legendary)"
 }

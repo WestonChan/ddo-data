@@ -1,0 +1,294 @@
+[[chain]]
+name = "The Lost Seekers"
+page = "https://ddowiki.com/page/The_Lost_Seekers"
+read = "2026-10-02"
+quests = ["The Kobold's Den: Clan Gnashtooth", "The Kobold's Den: Rescuing Arlos", "Venn's Trail: Clan Tunnelworm", "Venn's Trail: Venn's Fate"]
+rewards = ["Acrobat's Ring", "Armor of the Unknown Hero", "Black Widow Bracers", "Bloodletter's Knife", "Flame Warden", "Gloves of Deceit", "Gnashtooth Piecemail Chain", "Gnashtooth Sickle", "Goggles of Grabbing", "Graskitch's Skullcap", "Guardkiller Bow", "Interogator's Shield", "Lost Docent of the Mastermind", "Melt Wood Staff", "Misery's Web", "Moss Weave Cloak", "Pastemaker", "Scales of the Ancestors", "Sewer Smock", "Sludge Fin Boots", "Tunnelworm Champion's Belt", "Venn's Necklace"]
+
+[[chain]]
+name = "A Man Named Baudry Cartamon"
+page = "https://ddowiki.com/page/A_Man_Named_Baudry_Cartamon"
+read = "2026-10-02"
+quests = ["Protect Baudry's Interests", "Stop Hazadill's Shipment", "Retrieve the Stolen Goods"]
+
+[[chain]]
+name = "Against the Demon Queen"
+page = "https://ddowiki.com/page/Against_the_Demon_Queen_(story_arc)"
+read = "2026-10-02"
+quests = ["An Offering of Blood", "Chains of Flame", "The Chamber of Raiyum", "Against the Demon Queen", "Zawabi's Revenge"]
+
+[[chain]]
+name = "Assault on Splinterskull"
+page = "https://ddowiki.com/page/Assault_on_Splinterskull"
+read = "2026-10-02"
+quests = ["First Strike", "The Hobgoblins' Captives", "Whisperdoom's Spawn", "The Deadly Package: The Stronghold Key", "The Last Move: The Way to Yarkuch", "The Last Move: Yarkuch's Last Stand"]
+rewards = ["Black Wolfskin Belt", "Blademaster Gauntlets", "Krugg's Spiked Boots", "Yarkuch's Helm", "Black Wolfskin Cloak", "Blademaster Bracers", "Crimson Gemstone", "Splinterskull Acolyte Ring", "Visor of the Flesh Render Guards", "Zulkash's Bone Necklace", "Totemic Staff of Splinterskull", "Fist of Daarguul", "Yarkuch's Greatsword", "Whisperdoom's Fang", "Fanged Wraps", "Splinterskull Docent", "Spider Silk Robe", "Lhor-Tragu's Shadowed Armor", "Warmaster Halfplate", "Splinterskull Chainmail", "Khyber's Fury"]
+
+[[chain]]
+name = "Attack on Stormreach"
+page = "https://ddowiki.com/page/Attack_on_Stormreach"
+read = "2026-10-02"
+quests = ["Assault on Summerfield", "Blockade Buster", "Undermine", "Siegebreaker"]
+rewards = ["Hooked Blade", "Staff of the Shadow", "Ogrish War Axe", "Gnollish War Bow", "Frostflame Robe", "Frostflame Docent", "Trial by Fire", "Legendary Trial by Fire", "Legendary Gnollish War Bow", "Legendary Hooked Blade", "Legendary Staff of the Shadow", "Legendary Frostflame Robe", "Legendary Ogrish War Axe", "Legendary Frostflame Docent"]
+
+[[chain]]
+name = "Cult of the Six"
+page = "https://ddowiki.com/page/Cult_of_the_Six"
+read = "2026-10-02"
+quests = ["The Temple Outpost: Captives of the Cult", "The Temple Outpost: The Libram of the Six", "The Fane of the Six: Cleansing the Temple", "The Fane of the Six: Fall of the Prelate", "The Sanctum: Quench the Flames", "The Sanctum: Church of the Fury"]
+rewards = ["Bubble Belt", "Cesti", "Hobnail Boots", "Phantasmic Masque", "Quilted Cape", "Wharfrat's Plank", "Mummified Bat", "Cliffdiver Luck Charms", "Jeweler's Loupe", "Shrunken Head", "Poison Ring", "Blood Machete", "Piledriver", "Sheridan's Ruin", "Sheridan's Wrack", "Skin of the Mockery", "Shamanic Staff", "Snowstar", { name = "Scavenged Warplate", rare = true }, "Filtration Module", "Quicksilver Cassock", "Swampscale Armor", "Oilskin Tunic", "The Devourer's Hunger"]
+
+[[chain]]
+name = "Delera's Tomb"
+page = "https://ddowiki.com/page/Delera%27s_Tomb"
+read = "2026-10-02"
+pack = "Delera's Tomb"
+quests = ["The Mystery of Delera's Tomb", "The Missing Party", "Free Delera", "Return to Delera's Tomb", "Thrall of the Necromancer", "Valak's Mausoleum", "The Keeper's Sanctuary", "And the Dead Shall Rise...", "From Beyond the Grave"]
+rewards = ["Voice of the Master", "Epic Voice of the Master"]
+
+[[chain]]
+name = "Disciples of Shadow"
+page = "https://ddowiki.com/page/Disciples_of_Shadow"
+read = "2026-10-02"
+pack = "Shadowfell Conspiracy"
+quests = ["Disciples of Shar", "Escape Plan", "Shadow of a Doubt"]
+
+[[chain]]
+name = "Fall of the Night Brigade"
+page = "https://ddowiki.com/page/Fall_of_the_Night_Brigade"
+read = "2026-10-02"
+pack = "Fall of the Night Brigade"
+quests = ["Rats in a Cage", "The Wizard's Labyrinth", "The Knife's Edge", "The Darkness and the Light"]
+
+[[chain]]
+name = "Grip of the Hidden Hand"
+page = "https://ddowiki.com/page/Grip_of_the_Hidden_Hand"
+read = "2026-10-02"
+pack = "Grip of the Hidden Hand"
+quests = ["Army of Eternal Night", "Order in the Court!", "Three Paths to Battle", "Growing Pains", "The Hand and the Eyes"]
+
+[[chain]]
+name = "Harbinger of Madness"
+page = "https://ddowiki.com/page/Harbinger_of_Madness"
+read = "2026-10-02"
+pack = "Harbinger of Madness"
+quests = ["Missing", "Fear Factory", "Sinister Storage", "In The Flesh"]
+rewards = ["Thaarak Bracelet", "Quivering Quiver", "Axe of Famine", "Bow of Sinew", "Scepter of Mad Trickery", "Polycurse Dagger"]
+
+[[chain]]
+name = "Keep on the Borderlands"
+page = "https://ddowiki.com/page/Keep_on_the_Borderlands"
+read = "2026-10-02"
+pack = "Keep on the Borderlands"
+quests = ["The Bugbear Bandits", "Watch Your Step", "Treasure Hunt", "Caged Beast", "Obstructing the Orcs", "The Hobgoblin Horde", "Violent Delights"]
+
+[[chain]]
+name = "Litany of the Dead Part 1"
+page = "https://ddowiki.com/page/Litany_of_the_Dead_Part_1"
+read = "2026-10-02"
+pack = "The Necropolis, Part 1"
+quests = ["Tomb of the Sanguine Heart", "Tomb of the Crimson Heart", "Tomb of the Burning Heart", "Tomb of the Immortal Heart", "The Bloody Crypt"]
+
+[[chain]]
+name = "Litany of the Dead Part 2"
+page = "https://ddowiki.com/page/Litany_of_the_Dead_Part_2"
+read = "2026-10-02"
+pack = "The Necropolis, Part 2"
+quests = ["Tomb of the Shadow Guard", "Tomb of the Shadow King", "Tomb of the Shadow Knight", "Tomb of the Shadow Lord", "The Shadow Crypt"]
+
+[[chain]]
+name = "Litany of the Dead Part 3"
+page = "https://ddowiki.com/page/Litany_of_the_Dead_Part_3"
+read = "2026-10-02"
+pack = "The Necropolis, Part 3"
+quests = ["Tomb of the Blighted", "Tomb of the Forbidden", "Tomb of the Tormented", "Tomb of the Unhallowed", "The Cursed Crypt"]
+
+[[chain]]
+name = "Litany of the Dead Part 4"
+page = "https://ddowiki.com/page/Litany_of_the_Dead_Part_4"
+read = "2026-10-02"
+pack = "The Necropolis, Part 4"
+quests = ["Desecrated Temple of Vol", "Flesh Maker's Laboratory", "Ghosts of Perdition", "Inferno of the Damned", "Litany of the Dead", "Ascension Chamber", "The Mark of Death"]
+
+[[chain]]
+name = "Netherese Legacy"
+page = "https://ddowiki.com/page/Netherese_Legacy"
+read = "2026-10-02"
+pack = "The High Road of Shadows"
+quests = ["Detour", "Rest Stop", "Lost in the Swamp", "A Stay at the Inn", "The End of the Road"]
+rewards = ["Bastion (Level 23)", "Bracers of Twisting Shade (Level 23)", "Shadowmail (Level 23)", "Forgotten Light (Level 23)", "Ironwood Khopesh (Level 23)", "Nether Grasps (Level 23)", "Roadwatch Bow (Level 23)", "Treads of Falling Shadow (Level 23)", "Whisperchain (Level 23)", "Wizard's Ward (Level 23)"]
+
+[[chain]]
+name = "Peril of the Planar Eyes"
+page = "https://ddowiki.com/page/Peril_of_the_Planar_Eyes"
+read = "2026-10-02"
+pack = "Peril of the Planar Eyes"
+quests = ["An Element of Chaos", "Eye Know Whodunnit", "Seizing the Dawn", "Beautiful Nightmares"]
+
+[[chain]]
+name = "Reign of Madness"
+page = "https://ddowiki.com/page/Reign_of_Madness"
+read = "2026-10-02"
+pack = "Reign of Madness"
+quests = ["The Lord of Stone", "Acute Delirium", "The Lord of Eyes", "The Sane Asylum"]
+rewards = ["Fang of Siberys", "Nature's Vengeance", "Unstable Handwraps", "Fleshshaper's Docent", "Infused Chaos Docent", "Fleshshaper's Brigandine", "Glorious Obscenity"]
+
+[[chain]]
+name = "Secrets of the Artificers"
+page = "https://ddowiki.com/page/Secrets_of_the_Artificers"
+read = "2026-10-02"
+pack = "Secrets of the Artificers"
+quests = ["Power Play", "Schemes of the Enemy", "Blown to Bits", "The Lord of Blades", "The Master Artificer"]
+
+[[chain]]
+name = "Sentinels of Stormreach"
+page = "https://ddowiki.com/page/Sentinels_of_Stormreach"
+read = "2026-10-02"
+pack = "Sentinels of Stormreach"
+quests = ["Spies in the House", "Storm the Beaches", "Bargain of Blood", "The Tide Turns", "The Black Loch"]
+rewards = ["Tarnished Blademark's Docent", "Torn Chitin Bracers"]
+
+[[chain]]
+name = "Shadow Over Wheloon"
+page = "https://ddowiki.com/page/Shadow_Over_Wheloon"
+read = "2026-10-02"
+pack = "Shadowfell Conspiracy"
+quests = ["A Lesson in Deception", "Army of Shadow", "Friends in Low Places", "The Thrill of the Hunt", "Through a Mirror Darkly"]
+
+[[chain]]
+name = "The Catacombs"
+page = "https://ddowiki.com/page/The_Catacombs"
+read = "2026-10-02"
+pack = "The Catacombs"
+quests = ["The Friar's Niece", "Seek Dryden's Counsel", "Return to the Sanctuary", "The Old Archives", "The Crypt of Gerard Dryden", "Setting the Wards: The Lower Cathedral", "Setting the Wards: The Patriarchs' Crypt", "Endgame: Marguerite", "Endgame: The Archbishop's Fate"]
+
+[[chain]]
+name = "Deception in Stormreach"
+page = "https://ddowiki.com/page/Deception_in_Stormreach"
+read = "2026-10-02"
+quests = ["Diplomatic Impunity", "Frame Work", "Eyes of Stone"]
+
+[[chain]]
+name = "Sinister Secret of Saltmarsh"
+page = "https://ddowiki.com/page/Sinister_Secret_of_Saltmarsh_(story_arc)"
+read = "2026-10-02"
+pack = "Sinister Secret of Saltmarsh"
+quests = ["The Haunting of Saltmarsh", "Under the Cover of Darkness", "Danger at Dunwater", "Swim at Your Own Risk", "The Final Enemy"]
+
+[[chain]]
+name = "The Ruins of Gianthold"
+page = "https://ddowiki.com/page/The_Ruins_of_Gianthold"
+read = "2026-10-02"
+pack = "Ruins of Gianthold"
+quests = ["The Prison of the Planes", "Madstone Crater", "A Cabal for One", "A Cry for Help", "Foundation of Discord", "The Maze of Madness", "Trial by Fire", "The Crucible", "Feast or Famine"]
+
+[[chain]]
+name = "Return to Gianthold"
+page = "https://ddowiki.com/page/Return_to_Gianthold"
+read = "2026-10-02"
+pack = "Ruins of Gianthold"
+
+[[chain]]
+name = "Web of Chaos"
+page = "https://ddowiki.com/page/Web_of_Chaos"
+read = "2026-10-02"
+quests = ["The Lords of Dust", "The Spinner of Shadows", "Servants of the Overlord", "Beyond the Rift"]
+
+[[chain]]
+name = "The Dragons' Hand"
+page = "https://ddowiki.com/page/The_Dragons%27_Hand"
+read = "2026-10-02"
+quests = ["Going Rogue", "Wish Upon a Card", "Burning Down the House", "Thrall of Duty", "The Final Draw"]
+
+[[chain]]
+name = "The Dreaming Dark"
+page = "https://ddowiki.com/page/The_Dreaming_Dark"
+read = "2026-10-02"
+pack = "The Dreaming Dark"
+quests = ["Eye of the Titan", "Reclaiming Memories", "Raiding the Giants' Vault", "Mining for Ancient Secrets", "The Dreaming Dark"]
+
+[[chain]]
+name = "The Druid's Deep"
+page = "https://ddowiki.com/page/The_Druid%27s_Deep"
+read = "2026-10-02"
+pack = "The Druid's Deep"
+quests = ["Outbreak", "Thorn and Paw", "Overgrowth", "The Druid's Curse"]
+
+[[chain]]
+name = "The Fire Caves"
+page = "https://ddowiki.com/page/The_Fire_Caves"
+read = "2026-10-02"
+pack = "Three-Barrel Cove"
+quests = ["Brood of Flame", "The Stones Run Red"]
+
+[[chain]]
+name = "The Lost Gatekeepers"
+page = "https://ddowiki.com/page/The_Lost_Gatekeepers"
+read = "2026-10-02"
+pack = "The Lost Gatekeepers"
+quests = ["The Home of Memory", "Heart of the Problem", "Rosemary's Ballad", "The Sacred Bounty", "Housekeeping"]
+
+[[chain]]
+name = "The Maleficent Cabal"
+page = "https://ddowiki.com/page/Phiarlan_Carnival"
+read = "2026-10-02"
+pack = "Phiarlan Carnival"
+quests = ["A Small Problem", "Partycrashers", "The Snitch", "Under the Big Top"]
+rewards = ["Illusionist's Garb", "Utility Vest", "Full Plate of the Ringleader", { name = "Antique Greataxe", rare = true }, "Ring of Elemental Essence", "Chulchannad's Claw"]
+
+[[chain]]
+name = "The Mines of Tethyamar"
+page = "https://ddowiki.com/page/The_Mines_of_Tethyamar"
+read = "2026-10-02"
+pack = "The Mines of Tethyamar"
+quests = ["Graveyard Shift", "Records of the Past", "Third Time's a Charm", "Strike Back", "Desire in the Dark"]
+
+[[chain]]
+name = "The Path of Inspiration"
+page = "https://ddowiki.com/page/The_Path_of_Inspiration"
+read = "2026-10-02"
+pack = "The Path of Inspiration"
+quests = ["Dream Conspiracy", "Finding the Path", "I Dream of Jeets", "The Mindsunder", "The Shipwrecked Spy"]
+
+[[chain]]
+name = "The Salvation of Korthos"
+page = "https://ddowiki.com/page/The_Salvation_of_Korthos"
+read = "2026-10-02"
+rewards = ["Anger's Gift", "Arcane Necklace", "Archivist's Necklace", "Devoted Necklace", "Nimble Brooch", "Pathfinder's Necklace", "Protector's Brooch", "Troubleshooter's Necklace"]
+
+[[chain]]
+name = "The Seal of Shan-To-Kor"
+page = "https://ddowiki.com/page/The_Seal_of_Shan-To-Kor"
+read = "2026-10-02"
+pack = "The Seal of Shan-To-Kor"
+quests = ["The Sacred Helm", "The Cloven-jaw Scourge: The Caverns of Shaagh"]
+rewards = ["Berserker Bracers", "Cloven Jaw War Beads", "Flicker", "Gatewarden's Girdle", "Gloves of the Poet", "Guardian's Dagger", "Necromantic Robe", "Puzzle Cap", "Ring of Dragon's Breath", "Scorpion Staff", "Shadow Star", "Spellshield Docent", "Spider Spike", "Spiked Mace of the Elements", "Stonedust Chain", "Stonedust Leather", "Surefoot Boots", "Trapblast Goggles", "Unfinished Elemental Platemail", "Vial of Slumberdust", "Witchdoctor's Mantle"]
+
+[[chain]]
+name = "The Secret of the Storm Horns"
+page = "https://ddowiki.com/page/The_Secret_of_the_Storm_Horns"
+read = "2026-10-02"
+pack = "Shadowfell Conspiracy"
+quests = ["The Tracker's Trap", "Lines of Supply", "Breaking the Ranks", "A Break in the Ice", "What Goes Up"]
+
+[[chain]]
+name = "The Sharn Syndicate"
+page = "https://ddowiki.com/page/The_Sharn_Syndicate"
+read = "2026-10-02"
+pack = "The Sharn Syndicate"
+quests = ["Stand Your Ground", "Dirty Laundry", "The Stormreaver Fresco", "The Bookbinder Rescue", "Repossession", "Come Out and Slay"]
+rewards = ["Nicked Greatsword", "Nicked Heavy Mace", "Nicked Kama", "Nicked Light Hammer", "Nicked Longbow", "Nicked Longsword", "Nicked Orb", "Nicked Quarterstaff", "Nicked Repeating Light Crossbow", "Nicked Scimitar", "Nicked Shortsword"]
+
+[[chain]]
+name = "The Soul Splitter"
+page = "https://ddowiki.com/page/The_Soul_Splitter"
+read = "2026-10-02"
+pack = "The Soul Splitter"
+quests = ["Soul Survivor", "The Offshore Account", "Members Only", "The Underlane Assignment", "Safety in Numbers", "Finding Dorris"]
+
+[[chain]]
+name = "Vault of Night"
+page = "https://ddowiki.com/page/Vault_of_Night"
+read = "2026-10-02"
+pack = "Vault of Night"
+quests = ["Haywire Foundry", "Gateway to Khyber", "The Prisoner", "Tharashk Arena", "The Vault of Night", "Plane of Night"]

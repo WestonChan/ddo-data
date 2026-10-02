@@ -1,29 +1,29 @@
 [
   {
-    "id": 2,
-    "name": "Dread",
-    "pack": null,
-    "quest_count": 0,
-    "reward_count": 6,
+    "id": 10,
+    "name": "Cogs Explorer Dungeons",
+    "pack": "Masterminds of Sharn",
+    "quest_count": 8,
+    "reward_count": 0,
     "source": "wiki",
-    "wiki_url": "https://ddowiki.com/page/Isle_of_Dread_(saga)"
+    "wiki_url": "https://ddowiki.com/page/Cogs_Explorer_Dungeons_(Epic)"
   },
   {
-    "id": 1,
-    "name": "Masterminds of Sharn",
-    "pack": null,
-    "quest_count": 0,
-    "reward_count": 10,
+    "id": 4,
+    "name": "Dread",
+    "pack": "The Isle of Dread",
+    "quest_count": 12,
+    "reward_count": 6,
     "source": "wiki",
-    "wiki_url": "https://ddowiki.com/page/Masterminds_of_Sharn_(saga)"
+    "wiki_url": "https://ddowiki.com/page/Isle_of_Dread_(Legendary)"
   },
   {
     "id": 3,
-    "name": "The Haunting of Saltmarsh",
-    "pack": null,
-    "quest_count": 0,
-    "reward_count": 6,
+    "name": "Fables of the Feywild",
+    "pack": "Fables of the Feywild",
+    "quest_count": 13,
+    "reward_count": 0,
     "source": "wiki",
-    "wiki_url": "https://ddowiki.com/page/The_Haunting_of_Saltmarsh"
+    "wiki_url": "https://ddowiki.com/page/Fables_of_the_Feywild_(Legendary)"
   }
 ]

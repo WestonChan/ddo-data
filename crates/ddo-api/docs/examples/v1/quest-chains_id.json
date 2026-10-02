@@ -2,8 +2,24 @@
   "id": 1,
   "name": "The Lost Seekers",
   "pack": null,
-  "quest_count": 0,
-  "quests": [],
+  "quest_count": 4,
+  "quests": [
+    {
+      "id": 47,
+      "level": 3,
+      "name": "The Kobold's Den: Clan Gnashtooth"
+    },
+    {
+      "id": 46,
+      "level": 3,
+      "name": "The Kobold's Den: Rescuing Arlos"
+    },
+    {
+      "id": 82,
+      "level": 4,
+      "name": "Venn's Trail: Clan Tunnelworm"
+    }
+  ],
   "reward_count": 22,
   "rewards": [
     {

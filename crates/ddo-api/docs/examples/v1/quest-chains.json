@@ -1,29 +1,29 @@
 [
   {
     "id": 2,
-    "name": "Cult of the Six",
+    "name": "A Man Named Baudry Cartamon",
     "pack": null,
-    "quest_count": 0,
-    "reward_count": 26,
+    "quest_count": 3,
+    "reward_count": 0,
     "source": "wiki",
-    "wiki_url": "https://ddowiki.com/page/Cult_of_the_Six"
+    "wiki_url": "https://ddowiki.com/page/A_Man_Named_Baudry_Cartamon"
   },
   {
     "id": 3,
-    "name": "Delera's Tomb",
+    "name": "Against the Demon Queen",
     "pack": null,
-    "quest_count": 0,
-    "reward_count": 6,
+    "quest_count": 5,
+    "reward_count": 0,
     "source": "wiki",
-    "wiki_url": "https://ddowiki.com/page/Delera%27s_Tomb"
+    "wiki_url": "https://ddowiki.com/page/Against_the_Demon_Queen_(story_arc)"
   },
   {
-    "id": 1,
-    "name": "The Lost Seekers",
+    "id": 4,
+    "name": "Assault on Splinterskull",
     "pack": null,
-    "quest_count": 0,
-    "reward_count": 22,
+    "quest_count": 6,
+    "reward_count": 21,
     "source": "wiki",
-    "wiki_url": "https://ddowiki.com/page/The_Lost_Seekers"
+    "wiki_url": "https://ddowiki.com/page/Assault_on_Splinterskull"
   }
 ]
