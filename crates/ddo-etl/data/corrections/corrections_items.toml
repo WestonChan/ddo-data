@@ -347,3 +347,73 @@ to = 1
 reason = "The wiki says it no longer drops; replaced by Robe of Arcane Puissance."
 source = "https://ddowiki.com/page/Item:Robe_of_Arcane_Power"
 read = "2026-10-01"
+
+[[correction]]
+kind = "item"
+name = "Spectral Great Axe (level 4)"
+field = "name"
+from = "Spectral Great Axe (level 4)"
+to = "Spectral Greataxe (level 4)"
+reason = "The Night Revels page lists the Spectral Greataxe, one word as the weapon type is spelled, among the event's rewards."
+source = "https://ddowiki.com/page/The_Night_Revels"
+read = "2026-10-02"
+
+[[correction]]
+kind = "item"
+name = "Spectral Great Axe (level 8)"
+field = "name"
+from = "Spectral Great Axe (level 8)"
+to = "Spectral Greataxe (level 8)"
+reason = "The Night Revels page lists the Spectral Greataxe, one word as the weapon type is spelled, among the event's rewards."
+source = "https://ddowiki.com/page/The_Night_Revels"
+read = "2026-10-02"
+
+[[correction]]
+kind = "item"
+name = "Spectral Great Axe (level 12)"
+field = "name"
+from = "Spectral Great Axe (level 12)"
+to = "Spectral Greataxe (level 12)"
+reason = "The Night Revels page lists the Spectral Greataxe, one word as the weapon type is spelled, among the event's rewards."
+source = "https://ddowiki.com/page/The_Night_Revels"
+read = "2026-10-02"
+
+[[correction]]
+kind = "item"
+name = "Spectral Great Axe (level 16)"
+field = "name"
+from = "Spectral Great Axe (level 16)"
+to = "Spectral Greataxe (level 16)"
+reason = "The Night Revels page lists the Spectral Greataxe, one word as the weapon type is spelled, among the event's rewards."
+source = "https://ddowiki.com/page/The_Night_Revels"
+read = "2026-10-02"
+
+[[correction]]
+kind = "item"
+name = "Spectral Great Axe (level 20)"
+field = "name"
+from = "Spectral Great Axe (level 20)"
+to = "Spectral Greataxe (level 20)"
+reason = "The Night Revels page lists the Spectral Greataxe, one word as the weapon type is spelled, among the event's rewards."
+source = "https://ddowiki.com/page/The_Night_Revels"
+read = "2026-10-02"
+
+[[correction]]
+kind = "item"
+name = "Spectral Great Axe (level 24)"
+field = "name"
+from = "Spectral Great Axe (level 24)"
+to = "Spectral Greataxe (level 24)"
+reason = "The Night Revels page lists the Spectral Greataxe, one word as the weapon type is spelled, among the event's rewards."
+source = "https://ddowiki.com/page/The_Night_Revels"
+read = "2026-10-02"
+
+[[correction]]
+kind = "item"
+name = "Spectral Great Axe (level 28)"
+field = "name"
+from = "Spectral Great Axe (level 28)"
+to = "Spectral Greataxe (level 28)"
+reason = "The Night Revels page lists the Spectral Greataxe, one word as the weapon type is spelled, among the event's rewards."
+source = "https://ddowiki.com/page/The_Night_Revels"
+read = "2026-10-02"
