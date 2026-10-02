@@ -44,7 +44,7 @@ jobs:
       - name: Compare with the live API
         id: compare
         run: |
-          live=$(curl -sf "$LIVE_API/v1/version" || echo '{}')
+          live=$(curl -sf -H 'Cache-Control: no-cache' "$LIVE_API/v1/version" || echo '{}')
           live_data=$(echo "$live" | python3 -c 'import sys,json;print(json.load(sys.stdin).get("dataset",{}).get("upstream_sha","none"))')
           live_code=$(echo "$live" | python3 -c 'import sys,json;print(json.load(sys.stdin).get("api_commit") or "none")')
           echo "live data=$live_data upstream=$UPSTREAM_SHA; live code=$live_code this=$GITHUB_SHA"
@@ -137,7 +137,7 @@ jobs:
         if: steps.compare.outputs.changed == 'true'
         run: |
           for i in $(seq 1 12); do
-            live=$(curl -sf "$LIVE_API/v1/version" || echo '{}')
+            live=$(curl -sf -H 'Cache-Control: no-cache' "$LIVE_API/v1/version" || echo '{}')
             live_data=$(echo "$live" | python3 -c 'import sys,json;print(json.load(sys.stdin).get("dataset",{}).get("upstream_sha","none"))')
             live_code=$(echo "$live" | python3 -c 'import sys,json;print(json.load(sys.stdin).get("api_commit") or "none")')
             [ "$live_data" = "$UPSTREAM_SHA" ] && [ "$live_code" = "$GITHUB_SHA" ] && echo "live API serves data $live_data at code $live_code" && exit 0
