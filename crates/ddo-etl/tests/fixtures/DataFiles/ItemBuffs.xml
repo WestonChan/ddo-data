@@ -171,6 +171,21 @@
     </Effect>
   </Buff>
   <Buff>
+    <Type>Exceptional Nimble Skills</Type>
+    <DisplayText>Exceptional Nimble Skills Bonus %v1: %v1 Exceptional bonus to Balance, Hide, Move Silently, Open Lock and Tumble.</DisplayText>
+    <Effect>
+      <Type>SkillBonus</Type>
+      <Bonus>Exceptional</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+      <Item>Balance</Item>
+      <Item>Hide</Item>
+      <Item>Move Silently</Item>
+      <Item>Open Lock</Item>
+      <Item>Tumble</Item>
+    </Effect>
+  </Buff>
+  <Buff>
     <Type>Ethereal</Type>
     <DisplayText>Ethereal: Equipping this item causes your hands and weapons to become partially incorporeal. Your melee attacks do not roll a miss chance for Incorporeal targets.</DisplayText>
     <Effect>

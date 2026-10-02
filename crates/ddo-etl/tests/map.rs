@@ -169,6 +169,13 @@ fn buffs_resolve_to_enhancement_bonus_stat_or_effect() {
         (buff("SpellLore", None, Some(3), Some("Equipment")), "Spell Lore"),
         (buff("SpellLore", Some("VI"), Some(6), Some("Equipment")), "Spell Lore"),
         (buff("SpellLore", Some("Repair"), Some(16), Some("Equipment")), "Repair Spell Lore"),
+        (buff("Astute Skills Bonus", None, Some(9), Some("Exceptional")), "Astute"),
+        (buff("Exceptional Nimble Skills", None, Some(10), Some("Exceptional")), "Nimble"),
+        (buff("Insightful Nimble Skills", None, Some(3), Some("Insightful")), "Nimble"),
+        (buff("Quality Nimble Skills", None, Some(2), Some("Quality")), "Nimble"),
+        (buff("Exceptional Prudent Skills", None, Some(9), Some("Exceptional")), "Prudent"),
+        (buff("CurseResistance", None, Some(5), Some("Resistance")), "Curse Save"),
+        (buff("Breath Weapon Focus", None, Some(3), Some("Equipment")), "Breath Weapon Spell Focus"),
     ];
     for (b, expected) in cases {
         match map.resolved(&b).unwrap() {

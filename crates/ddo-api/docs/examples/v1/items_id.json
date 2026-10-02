@@ -12,7 +12,7 @@
             {
               "bonus_type": "Competence",
               "description": null,
-              "id": 3827,
+              "id": 3852,
               "name": "Attack Bonus +9",
               "stat": "Attack Bonus",
               "stat_category": "martial",
@@ -63,7 +63,7 @@
             {
               "bonus_type": "Resistance",
               "description": null,
-              "id": 3828,
+              "id": 3853,
               "name": "Armor Class +9",
               "stat": "Armor Class",
               "stat_category": "defensive",
@@ -114,7 +114,7 @@
             {
               "bonus_type": "Resistance",
               "description": null,
-              "id": 2248,
+              "id": 2260,
               "name": "Saving Throws +9",
               "stat": "Saving Throws",
               "stat_category": "defensive",
@@ -180,7 +180,7 @@
     {
       "bonus_type": "Enhancement",
       "description": null,
-      "id": 1344,
+      "id": 1347,
       "name": "Charisma +8",
       "stat": "Charisma",
       "stat_category": "ability",

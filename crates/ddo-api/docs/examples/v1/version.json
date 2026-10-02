@@ -2,7 +2,7 @@
   "api_commit": "9dd551f2c0b1e8c4a7d6f5e4b3a2c1d0e9f8a7b6",
   "counts": {
     "augments": 2250,
-    "bonuses": 5355,
+    "bonuses": 5391,
     "challenge_rewards": 160,
     "classes": 28,
     "clickies": 219,
@@ -44,7 +44,7 @@
     "wiki_quests": 5
   },
   "dataset": {
-    "built_at": "2026-10-02T21:44:39Z",
+    "built_at": "2026-10-02T22:17:05Z",
     "upstream_sha": "31ef0201ea8e28604de2b6242988aee6d63733b0"
   },
   "schema_version": 18
