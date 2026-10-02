@@ -3,7 +3,7 @@
   "item_count": 181,
   "items": [
     {
-      "cost": null,
+      "cost": "1 Epic Ethereal Ingot",
       "id": 2434,
       "is_rare": false,
       "minimum_level": 20,
@@ -11,7 +11,7 @@
       "slot": "Main Hand"
     },
     {
-      "cost": null,
+      "cost": "1 Epic Ethereal Ingot",
       "id": 2435,
       "is_rare": false,
       "minimum_level": 20,
@@ -19,7 +19,7 @@
       "slot": "Main Hand"
     },
     {
-      "cost": null,
+      "cost": "1 Epic Ethereal Ingot",
       "id": 2437,
       "is_rare": false,
       "minimum_level": 20,
@@ -27,7 +27,7 @@
       "slot": "Main Hand"
     }
   ],
-  "location": null,
+  "location": "The Keep on the Borderlands",
   "name": "Morten Edgewright",
   "pack": null,
   "provenance": "wiki",
