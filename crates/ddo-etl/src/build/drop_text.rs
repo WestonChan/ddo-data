@@ -1,8 +1,9 @@
 use super::quest_series::QuestSeriesTable;
 use super::TableWriter;
 use crate::map::drop_location::{
-    chest_following, marks_rare_loot, names_chest_drop, names_quest_end_reward, names_saga, quest_name_spans,
-    reward_giver_name, saga_tier_credited_to, segment_ranges, segment_spanning,
+    chest_following, marks_rare_loot, names_chest_drop, names_quest_end_reward, names_saga, names_store_purchase,
+    quest_name_spans, reward_giver_name, saga_tier_credited_to, segment_ranges, segment_spanning,
+    starts_with_saga_tier_aside,
 };
 use anyhow::Result;
 use ddo_model::enums::{DropSourceKind, LootType, RowSource, SagaTier};
@@ -19,15 +20,16 @@ struct DropTextQuest {
     is_wiki: bool,
 }
 
-struct DropTextRewardGiver {
+struct NamedDropSource {
     name: String,
     id: i64,
 }
 
 pub(crate) struct DropTextLinker {
     quests_longest_name_first: Vec<DropTextQuest>,
-    quest_chains_longest_name_first: Vec<DropTextRewardGiver>,
-    sagas_longest_name_first: Vec<DropTextRewardGiver>,
+    quest_chains_longest_name_first: Vec<NamedDropSource>,
+    sagas_longest_name_first: Vec<NamedDropSource>,
+    packs_longest_name_first: Vec<NamedDropSource>,
 }
 
 pub(super) struct RewardGiverLink {
@@ -35,6 +37,13 @@ pub(super) struct RewardGiverLink {
     pub(super) reward_giver_id: i64,
     pub(super) tier: Option<SagaTier>,
     pub(super) is_rare: bool,
+}
+
+struct DropTextPackLink {
+    pack_id: i64,
+    loot_type: LootType,
+    is_rare: bool,
+    chest: Option<String>,
 }
 
 struct DropTextQuestLink {
@@ -59,8 +68,9 @@ impl DropTextLinker {
         longest_name_first.sort_by(|a, b| b.name.len().cmp(&a.name.len()).then_with(|| a.name.cmp(&b.name)));
         Ok(Self {
             quests_longest_name_first: longest_name_first,
-            quest_chains_longest_name_first: reward_givers_longest_name_first(db, "SELECT name, id FROM quest_chains")?,
-            sagas_longest_name_first: reward_givers_longest_name_first(db, "SELECT name, id FROM sagas")?,
+            quest_chains_longest_name_first: named_sources_longest_name_first(db, "SELECT name, id FROM quest_chains")?,
+            sagas_longest_name_first: named_sources_longest_name_first(db, "SELECT name, id FROM sagas")?,
+            packs_longest_name_first: named_sources_longest_name_first(db, "SELECT name, id FROM adventure_packs")?,
         })
     }
 
@@ -82,9 +92,7 @@ impl DropTextLinker {
                 if name_spans.is_empty() {
                     continue;
                 }
-                for span in &name_spans {
-                    unmatched_segment.replace_range(span.clone(), &MATCHED_TEXT_MASK.repeat(span.len()));
-                }
+                mask_matched_spans(&mut unmatched_segment, &name_spans);
                 reward_giver_links.push(RewardGiverLink {
                     table,
                     reward_giver_id: reward_giver.id,
@@ -120,7 +128,12 @@ impl DropTextLinker {
         let mut unmatched_text = drop_text.to_string();
         let lowercase_drop_text = drop_text.to_lowercase();
         let mut quest_name_spans_by_quest = Vec::new();
+        let mut packs_to_mask = self.packs_longest_name_first.iter().peekable();
         for quest in &self.quests_longest_name_first {
+            while let Some(longer_pack) = packs_to_mask.next_if(|pack| pack.name.len() > quest.name.len()) {
+                let pack_name_spans = quest_name_spans(&unmatched_text, &longer_pack.name);
+                mask_matched_spans(&mut unmatched_text, &pack_name_spans);
+            }
             if !lowercase_drop_text.contains(&quest.lowercase_first_word) {
                 continue;
             }
@@ -128,9 +141,7 @@ impl DropTextLinker {
             if quest_name_spans.is_empty() {
                 continue;
             }
-            for span in &quest_name_spans {
-                unmatched_text.replace_range(span.clone(), &MATCHED_TEXT_MASK.repeat(span.len()));
-            }
+            mask_matched_spans(&mut unmatched_text, &quest_name_spans);
             quest_name_spans_by_quest.push((quest, quest_name_spans));
         }
         quest_name_spans_by_quest
@@ -147,6 +158,91 @@ impl DropTextLinker {
                 !(names_quest && names_quest_end_reward(&drop_text[segment.clone()]))
             })
             .map(|segment| &drop_text[segment])
+            .collect()
+    }
+
+    fn names_saga_reward_list_around(&self, segment: &str, pack_name_span: &Range<usize>) -> bool {
+        self.sagas_longest_name_first.iter().any(|saga| {
+            quest_name_spans(segment, &saga.name).iter().any(|saga_name_span| {
+                saga_name_span.start <= pack_name_span.start
+                    && saga_name_span.end >= pack_name_span.end
+                    && starts_with_saga_tier_aside(&segment[saga_name_span.end..])
+            })
+        })
+    }
+
+    fn segments_naming_no_quest<'text>(&self, drop_text: &'text str) -> Vec<&'text str> {
+        let every_quest_name_span: Vec<Range<usize>> =
+            self.quest_name_spans_in(drop_text).into_iter().flat_map(|(_, spans)| spans).collect();
+        segment_ranges(drop_text)
+            .into_iter()
+            .filter(|segment_range| {
+                !every_quest_name_span
+                    .iter()
+                    .any(|span| span.start >= segment_range.start && span.end <= segment_range.end)
+            })
+            .map(|segment_range| &drop_text[segment_range])
+            .collect()
+    }
+
+    fn pack_name_spans_in(&self, segment: &str) -> Vec<(i64, Vec<Range<usize>>)> {
+        if names_saga(segment) || names_store_purchase(segment) || !self.reward_givers_in_segment(segment).is_empty() {
+            return Vec::new();
+        }
+        let mut unmatched_segment = segment.to_string();
+        let mut pack_name_spans_by_pack = Vec::new();
+        for pack in &self.packs_longest_name_first {
+            let pack_name_spans = quest_name_spans(&unmatched_segment, &pack.name);
+            let names_saga_reward_list =
+                pack_name_spans.iter().any(|span| self.names_saga_reward_list_around(segment, span));
+            mask_matched_spans(&mut unmatched_segment, &pack_name_spans);
+            if !pack_name_spans.is_empty() && !names_saga_reward_list {
+                pack_name_spans_by_pack.push((pack.id, pack_name_spans));
+            }
+        }
+        pack_name_spans_by_pack
+    }
+
+    fn pack_links_in(&self, drop_text: &str) -> Vec<DropTextPackLink> {
+        let mut pack_links: Vec<DropTextPackLink> = Vec::new();
+        for segment in self.segments_naming_no_quest(drop_text) {
+            let pack_name_spans_by_pack = self.pack_name_spans_in(segment);
+            let every_pack_name_span: Vec<Range<usize>> =
+                pack_name_spans_by_pack.iter().flat_map(|(_, spans)| spans).cloned().collect();
+            let loot_types = [
+                names_chest_drop(segment).then_some(LootType::Chest),
+                names_quest_end_reward(segment).then_some(LootType::Reward),
+            ];
+            let is_rare = marks_rare_loot(segment);
+            for (pack_id, pack_name_spans) in &pack_name_spans_by_pack {
+                for loot_type in loot_types.into_iter().flatten() {
+                    let chest = match loot_type {
+                        LootType::Reward => None,
+                        _ => pack_name_spans
+                            .iter()
+                            .find_map(|span| chest_following(segment, span.end, &every_pack_name_span)),
+                    };
+                    match pack_links.iter_mut().find(|link| link.pack_id == *pack_id && link.loot_type == loot_type) {
+                        Some(known_link) => {
+                            known_link.is_rare |= is_rare;
+                            known_link.chest = known_link.chest.take().or(chest);
+                        }
+                        None => pack_links.push(DropTextPackLink { pack_id: *pack_id, loot_type, is_rare, chest }),
+                    }
+                }
+            }
+        }
+        pack_links
+    }
+
+    pub(super) fn unlinked_segments<'text>(&self, drop_text: &'text str) -> Vec<&'text str> {
+        self.segments_naming_no_quest(drop_text)
+            .into_iter()
+            .filter(|segment| {
+                !segment.trim().is_empty()
+                    && self.reward_givers_in_segment(segment).is_empty()
+                    && self.pack_name_spans_in(segment).is_empty()
+            })
             .collect()
     }
 
@@ -197,10 +293,16 @@ impl DropTextLinker {
     }
 }
 
-fn reward_givers_longest_name_first(db: &Connection, sql: &str) -> Result<Vec<DropTextRewardGiver>> {
+fn mask_matched_spans(text: &mut String, matched_spans: &[Range<usize>]) {
+    for span in matched_spans {
+        text.replace_range(span.clone(), &MATCHED_TEXT_MASK.repeat(span.len()));
+    }
+}
+
+fn named_sources_longest_name_first(db: &Connection, sql: &str) -> Result<Vec<NamedDropSource>> {
     let mut statement = db.prepare(sql)?;
     let mut reward_givers = statement
-        .query_map([], |r| Ok(DropTextRewardGiver { name: r.get(0)?, id: r.get(1)? }))?
+        .query_map([], |r| Ok(NamedDropSource { name: r.get(0)?, id: r.get(1)? }))?
         .collect::<rusqlite::Result<Vec<_>>>()?;
     reward_givers.sort_by(|a, b| b.name.len().cmp(&a.name.len()).then_with(|| a.name.cmp(&b.name)));
     Ok(reward_givers)
@@ -211,6 +313,7 @@ pub(super) enum DropSource {
     Quest(i64),
     QuestChain(i64),
     Saga(i64),
+    AdventurePack(i64),
 }
 
 impl DropSource {
@@ -219,11 +322,12 @@ impl DropSource {
             Self::Quest(_) => DropSourceKind::Quest,
             Self::QuestChain(_) => DropSourceKind::QuestChain,
             Self::Saga(_) => DropSourceKind::Saga,
+            Self::AdventurePack(_) => DropSourceKind::AdventurePack,
         }
     }
 
     fn id_if(self, kind: DropSourceKind) -> Option<i64> {
-        let (Self::Quest(id) | Self::QuestChain(id) | Self::Saga(id)) = self;
+        let (Self::Quest(id) | Self::QuestChain(id) | Self::Saga(id) | Self::AdventurePack(id)) = self;
         (self.kind() == kind).then_some(id)
     }
 }
@@ -374,7 +478,36 @@ impl DropTextLinker {
     }
 }
 
+impl DropTextLinker {
+    pub(super) fn link_loot_to_packs_named_in(
+        &self,
+        transaction: &Transaction,
+        loot: DroppedLoot,
+        drop_text: &str,
+    ) -> Result<usize> {
+        let pack_links = self.pack_links_in(drop_text);
+        for pack_link in &pack_links {
+            insert_drop(
+                transaction,
+                &LootDrop {
+                    source: DropSource::AdventurePack(pack_link.pack_id),
+                    loot,
+                    loot_type: Some(pack_link.loot_type),
+                    is_rare: pack_link.is_rare,
+                    chest: pack_link.chest.as_deref(),
+                    tier: None,
+                },
+            )?;
+        }
+        Ok(pack_links.len())
+    }
+}
+
 impl TableWriter<'_> {
+    pub(super) fn link_to_drop_text_packs(&self, loot: DroppedLoot, drop_text: &str) -> Result<usize> {
+        self.drop_text_linker.link_loot_to_packs_named_in(self.transaction, loot, drop_text)
+    }
+
     pub(super) fn link_item_to_drop_text_reward_givers(
         &self,
         item_id: i64,

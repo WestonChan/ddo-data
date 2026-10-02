@@ -57,7 +57,7 @@ fn build_and_icons_read_ddo_upstream_when_source_is_absent() {
         .unwrap()
         .query_row("SELECT COUNT(*) FROM items WHERE source = 'maetrim'", [], |row| row.get(0))
         .unwrap();
-    assert_eq!(item_count, 21);
+    assert_eq!(item_count, 22);
 
     let icons_output = Command::new(env!("CARGO_BIN_EXE_ddo-etl"))
         .args(["icons", "--out"])

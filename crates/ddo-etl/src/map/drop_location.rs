@@ -19,8 +19,23 @@ pub fn names_chest_drop(segment: &str) -> bool {
     !names_quest_end_reward(segment) || segment.to_lowercase().contains(CHEST_MARKER)
 }
 
+pub fn names_store_purchase(segment: &str) -> bool {
+    let lowercase_segment = segment.to_lowercase();
+    STORE_PURCHASE_MARKERS.iter().any(|marker| lowercase_segment.contains(marker))
+}
+
+pub fn starts_with_saga_tier_aside(text_after_name: &str) -> bool {
+    text_after_name
+        .trim_start()
+        .strip_prefix('(')
+        .and_then(|aside| aside.split_once(')'))
+        .is_some_and(|(aside, _)| SagaTier::ALL.iter().any(|tier| aside.trim().eq_ignore_ascii_case(tier.as_str())))
+}
+
 pub fn names_saga(segment: &str) -> bool {
-    segment.to_lowercase().split(|character: char| !character.is_alphanumeric()).any(|word| word == SAGA_WORD)
+    let lowercase_segment = segment.to_lowercase();
+    lowercase_segment.contains(SAGA_REWARD_LIST_MARKER)
+        || lowercase_segment.split(|character: char| !character.is_alphanumeric()).any(|word| word == SAGA_WORD)
 }
 
 pub fn reward_giver_name(segment: &str) -> Option<String> {
@@ -66,6 +81,8 @@ pub fn segment_ranges(drop_text: &str) -> Vec<Range<usize>> {
 }
 
 const SAGA_WORD: &str = "saga";
+const SAGA_REWARD_LIST_MARKER: &str = "true elite";
+const STORE_PURCHASE_MARKERS: [&str; 4] = ["ddo store", "collector's edition", "fan bundle", "bonus items pack"];
 const REWARD_GIVER_NAME_ENDS: [&str; 6] = [",", "(", " saga", " quest chain", " chain end", " end reward"];
 const REWARD_GIVER_LEADING_CONNECTORS: [&str; 3] = ["or ", "and ", "also "];
 const REWARD_MARKER: &str = "reward";

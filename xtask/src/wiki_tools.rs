@@ -1,6 +1,9 @@
 use crate::dataset::{build_in_memory_database, corrections_from, wiki_overrides_from};
 use anyhow::{Context, Result};
-use ddo_etl::build::{unlinked_reward_givers, BuildReport, StaleCorrection, StaleCorrectionCause, UnlinkedRewardGiver};
+use ddo_etl::build::{
+    unlinked_drop_segment_heads, unlinked_reward_givers, BuildReport, StaleCorrection, StaleCorrectionCause,
+    UnlinkedRewardGiver,
+};
 use ddo_etl::wiki::DescriptionKind;
 use ddo_model::enums::RowSource;
 use rusqlite::Connection;
@@ -91,6 +94,8 @@ fn wiki_report_lines(report: &BuildReport) -> Vec<String> {
         ("wiki_loot_augment_drop_count", report.wiki_loot_augment_drop_count),
         ("quest_augment_loot_link_count", report.quest_augment_loot_link_count),
         ("drop_text_rare_augment_link_count", report.drop_text_rare_augment_link_count),
+        ("pack_loot_link_count", report.pack_loot_link_count),
+        ("pack_augment_loot_link_count", report.pack_augment_loot_link_count),
         ("wiki_quest_entry_count", report.wiki_quest_entry_count),
         ("wiki_quest_created_count", report.wiki_quest_created_count),
         ("drop_text_wiki_quest_link_count", report.drop_text_wiki_quest_link_count),
@@ -296,6 +301,7 @@ pub fn write_wiki_batch(
         ("blank_descriptions.txt", as_lines(blank_description_lines(&db)?)),
         ("quest_chain_names.txt", as_lines(unlinked_reward_giver_lines(&unlinked_reward_givers, false))),
         ("saga_names.txt", as_lines(unlinked_reward_giver_lines(&unlinked_reward_givers, true))),
+        ("unlinked_drop_segments.txt", as_lines(unlinked_drop_segment_lines(&db)?)),
     ];
     batch_files
         .into_iter()
@@ -324,6 +330,13 @@ pub fn blank_description_page_url(kind: DescriptionKind, name: &str) -> String {
 
 fn wiki_page_url(page_name: &str) -> String {
     format!("{WIKI_PAGE_URL_PREFIX}{}", page_name.replace(' ', "_").replace('\'', "%27"))
+}
+
+fn unlinked_drop_segment_lines(db: &Connection) -> Result<Vec<String>> {
+    Ok(unlinked_drop_segment_heads(db)?
+        .into_iter()
+        .map(|unlinked_head| format!("{}\t{}", unlinked_head.head, unlinked_head.item_count))
+        .collect())
 }
 
 fn unlinked_reward_giver_lines(unlinked_reward_givers: &[UnlinkedRewardGiver], is_saga: bool) -> Vec<String> {

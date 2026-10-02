@@ -71,6 +71,8 @@ impl TableWriter<'_> {
         let Some(drop_text) = drop_text_in_description(description) else {
             return Ok(());
         };
+        report.pack_augment_loot_link_count +=
+            self.link_to_drop_text_packs(DroppedLoot::Augment(augment_id), drop_text)?;
         for linked_quest in self.link_to_drop_text_quests(DroppedLoot::Augment(augment_id), drop_text)? {
             report.quest_augment_loot_link_count += 1;
             if linked_quest.is_newly_rare {

@@ -42,6 +42,8 @@ pub struct BuildReport {
     pub drop_text_wiki_quest_link_count: usize,
     pub quest_augment_loot_link_count: usize,
     pub drop_text_rare_augment_link_count: usize,
+    pub pack_loot_link_count: usize,
+    pub pack_augment_loot_link_count: usize,
     pub augment_slot_type_count: usize,
     pub augment_count: usize,
     pub set_bonus_count: usize,
@@ -250,11 +252,7 @@ pub struct UnlinkedRewardGiver {
 
 pub fn unlinked_reward_givers(db: &Connection) -> Result<Vec<UnlinkedRewardGiver>> {
     let drop_text_linker = DropTextLinker::from_written_tables(db)?;
-    let mut statement =
-        db.prepare("SELECT drop_location FROM items WHERE source = ?1 AND drop_location IS NOT NULL ORDER BY id")?;
-    let drop_texts: Vec<String> = statement
-        .query_map(params![ddo_model::enums::RowSource::Maetrim.as_str()], |r| r.get(0))?
-        .collect::<rusqlite::Result<_>>()?;
+    let drop_texts = maetrim_item_drop_texts(db)?;
     let mut item_counts_by_reward_giver: BTreeMap<(bool, String), usize> = BTreeMap::new();
     for drop_text in &drop_texts {
         let mut reward_givers_in_item: Vec<(bool, String)> = drop_text_linker
@@ -272,6 +270,45 @@ pub fn unlinked_reward_givers(db: &Connection) -> Result<Vec<UnlinkedRewardGiver
         .into_iter()
         .map(|((is_saga, name), item_count)| UnlinkedRewardGiver { name, is_saga, item_count })
         .collect())
+}
+
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub struct UnlinkedDropSegmentHead {
+    pub head: String,
+    pub item_count: usize,
+}
+
+pub fn unlinked_drop_segment_heads(db: &Connection) -> Result<Vec<UnlinkedDropSegmentHead>> {
+    let drop_text_linker = DropTextLinker::from_written_tables(db)?;
+    let mut item_counts_by_head: BTreeMap<String, usize> = BTreeMap::new();
+    for drop_text in &maetrim_item_drop_texts(db)? {
+        let mut heads_in_item: Vec<String> = drop_text_linker
+            .unlinked_segments(drop_text)
+            .into_iter()
+            .map(|segment| segment.split([',', '(']).next().unwrap_or(segment).trim().to_string())
+            .filter(|head| !head.is_empty())
+            .collect();
+        heads_in_item.sort();
+        heads_in_item.dedup();
+        for head in heads_in_item {
+            *item_counts_by_head.entry(head).or_default() += 1;
+        }
+    }
+    let mut unlinked_heads: Vec<UnlinkedDropSegmentHead> = item_counts_by_head
+        .into_iter()
+        .map(|(head, item_count)| UnlinkedDropSegmentHead { head, item_count })
+        .collect();
+    unlinked_heads.sort_by(|a, b| b.item_count.cmp(&a.item_count).then_with(|| a.head.cmp(&b.head)));
+    Ok(unlinked_heads)
+}
+
+fn maetrim_item_drop_texts(db: &Connection) -> Result<Vec<String>> {
+    let mut statement =
+        db.prepare("SELECT drop_location FROM items WHERE source = ?1 AND drop_location IS NOT NULL ORDER BY id")?;
+    let drop_texts = statement
+        .query_map(params![ddo_model::enums::RowSource::Maetrim.as_str()], |r| r.get(0))?
+        .collect::<rusqlite::Result<_>>()?;
+    Ok(drop_texts)
 }
 
 fn files_with_extension(dir: &Path, extension: &str) -> Result<Vec<PathBuf>> {

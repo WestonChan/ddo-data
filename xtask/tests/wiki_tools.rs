@@ -80,6 +80,8 @@ fn wiki_check_reports_the_wiki_counts_for_a_valid_wiki_dir() {
     for expected_line in [
         "wiki_quest_loot_entry_count: 1",
         "quest_augment_loot_link_count: 6",
+        "pack_loot_link_count: 1",
+        "pack_augment_loot_link_count: 0",
         "drop_text_rare_augment_link_count: 1",
         "wiki_rare_augment_drop_count: 1",
         "wiki_added_quest_augment_loot_link_count: 0",
@@ -405,7 +407,7 @@ fn wiki_batch_writes_the_reading_agent_inputs() {
     )
     .unwrap();
 
-    assert_eq!(line_count(&out_dir.path().join("item_names.txt")), 21);
+    assert_eq!(line_count(&out_dir.path().join("item_names.txt")), 22);
     assert_eq!(
         std::fs::read_to_string(out_dir.path().join("wiki_source_items.txt")).unwrap(),
         "Battle Axe of the Oozing Hunger\n"
@@ -424,6 +426,12 @@ fn wiki_batch_writes_the_reading_agent_inputs() {
         "the fixture wiki records The Lost Seekers, so his drop text's only chain is linked"
     );
     assert_eq!(std::fs::read_to_string(out_dir.path().join("saga_names.txt")).unwrap(), "");
+    let unlinked_segment_lines = std::fs::read_to_string(out_dir.path().join("unlinked_drop_segments.txt")).unwrap();
+    assert!(unlinked_segment_lines.lines().any(|line| line == "DDO Store\t1"), "{unlinked_segment_lines}");
+    assert!(
+        !unlinked_segment_lines.contains("Myth Drannor") && !unlinked_segment_lines.contains("Lost Seekers"),
+        "pack and chain segments are linked: {unlinked_segment_lines}"
+    );
     let augment_lines = std::fs::read_to_string(out_dir.path().join("augment_names.txt")).unwrap();
     assert_eq!(augment_lines.lines().count(), 16);
     assert!(augment_lines.lines().any(|line| line == "Alchemical\tFire I: Combustion\t29"), "{augment_lines}");
