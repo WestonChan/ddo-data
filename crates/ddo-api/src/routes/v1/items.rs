@@ -99,15 +99,15 @@ async fn items(
                 where_clause.add_bound_condition("i.minimum_level <= ?", max_level);
             }
             if let Some(pack) = &query.pack {
-                where_clause.add_bound_condition("EXISTS (SELECT 1 FROM quest_loot ql JOIN quests q ON q.id = ql.quest_id JOIN adventure_packs ap ON ap.id = q.pack_id WHERE ql.item_id = i.id AND ap.name = ?)",
+                where_clause.add_bound_condition("EXISTS (SELECT 1 FROM drops ql JOIN quests q ON q.id = ql.quest_id JOIN adventure_packs ap ON ap.id = q.pack_id WHERE ql.item_id = i.id AND ap.name = ?)",
                     pack.clone(),
                 );
             }
             if query.raid == Some(true) {
-                where_clause.add_condition("EXISTS (SELECT 1 FROM quest_loot ql WHERE ql.item_id = i.id AND ql.loot_type = 'raid')");
+                where_clause.add_condition("EXISTS (SELECT 1 FROM drops ql WHERE ql.item_id = i.id AND ql.source_kind = 'quest' AND ql.loot_type = 'raid')");
             }
             if query.rare == Some(true) {
-                where_clause.add_condition("EXISTS (SELECT 1 FROM quest_loot ql WHERE ql.item_id = i.id AND ql.is_rare)");
+                where_clause.add_condition("EXISTS (SELECT 1 FROM drops ql WHERE ql.item_id = i.id AND ql.source_kind = 'quest' AND ql.is_rare)");
             }
             if let Some(stat) = &query.stat {
                 where_clause.add_bound_condition("EXISTS (SELECT 1 FROM item_bonuses ib JOIN bonuses b ON b.id = ib.bonus_id JOIN stats s ON s.id = b.stat_id WHERE ib.item_id = i.id AND s.name = ?)",
@@ -119,9 +119,9 @@ async fn items(
             let total = row_count(db, &format!("SELECT COUNT(*) {from_sql}"), where_clause.params())?;
             let page_sql = format!(
                 "SELECT i.id, i.name, es.name AS slot, i.item_category AS category, i.item_type, i.minimum_level, i.enhancement_bonus, i.icon, i.source,
-                        (SELECT MIN(ap.name) FROM quest_loot ql JOIN quests q ON q.id = ql.quest_id LEFT JOIN adventure_packs ap ON ap.id = q.pack_id WHERE ql.item_id = i.id) AS pack,
-                        EXISTS (SELECT 1 FROM quest_loot ql WHERE ql.item_id = i.id AND ql.loot_type = 'raid') AS is_raid,
-                        EXISTS (SELECT 1 FROM quest_loot ql WHERE ql.item_id = i.id AND ql.is_rare) AS is_rare
+                        (SELECT MIN(ap.name) FROM drops ql JOIN quests q ON q.id = ql.quest_id LEFT JOIN adventure_packs ap ON ap.id = q.pack_id WHERE ql.item_id = i.id) AS pack,
+                        EXISTS (SELECT 1 FROM drops ql WHERE ql.item_id = i.id AND ql.source_kind = 'quest' AND ql.loot_type = 'raid') AS is_raid,
+                        EXISTS (SELECT 1 FROM drops ql WHERE ql.item_id = i.id AND ql.source_kind = 'quest' AND ql.is_rare) AS is_rare
                  {from_sql} ORDER BY i.name LIMIT {limit} OFFSET {offset}"
             );
             let mut items = json_rows(db, &page_sql, where_clause.params())?;
@@ -232,7 +232,7 @@ async fn item_detail(State(state): State<AppState>, Path(id): Path<i64>) -> Resu
             )?
             .pop()
             .unwrap_or(Value::Null);
-            item["quests"] = Value::Array(quests_dropping_via(db, "quest_loot", "item_id", id)?);
+            item["quests"] = Value::Array(quests_dropping_via(db, "item_id", id)?);
             item["quest_chains"] = Value::Array(quest_chains_rewarding(db, id)?);
             item["sagas"] = Value::Array(sagas_rewarding(db, id)?);
             item["modifiers"] = Value::Array(modifiers_for(db, "item", id)?);

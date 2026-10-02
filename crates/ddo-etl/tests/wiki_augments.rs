@@ -225,7 +225,7 @@ fn links_a_wiki_augment_to_the_quests_its_drop_text_names() {
     assert_eq!(
         string_column(
             &db,
-            "SELECT q.name || '|' || qal.loot_type || '|' || qal.chest FROM quest_augment_loot qal
+            "SELECT q.name || '|' || qal.loot_type || '|' || qal.chest FROM drops qal
                JOIN quests q ON q.id = qal.quest_id JOIN augments a ON a.id = qal.augment_id
               WHERE a.name = 'Test Gem of Oozing Resistance'"
         ),
@@ -262,7 +262,7 @@ fn a_rare_augment_drop_may_name_a_wiki_augment() {
     assert_eq!(
         string_column(
             &db,
-            "SELECT q.name || '|' || qal.is_rare FROM quest_augment_loot qal
+            "SELECT q.name || '|' || qal.is_rare FROM drops qal
                JOIN quests q ON q.id = qal.quest_id JOIN augments a ON a.id = qal.augment_id
               WHERE a.name = 'Test Gem of Oozing Resistance'"
         ),

@@ -93,8 +93,8 @@ jobs:
           check "quests WHERE is_challenge" 30
           check "quests WHERE legendary_level IS NOT NULL" 200
           test "$(find icons -name '*.png' | wc -l)" -ge 8000
-          check "quest_loot WHERE is_rare" 130
-          check quest_augment_loot 500
+          check "drops WHERE source_kind = 'quest' AND item_id IS NOT NULL AND is_rare" 130
+          check "drops WHERE source_kind = 'quest' AND augment_id IS NOT NULL" 500
           check crafting_systems 35
           check crafting_recipes 2500
           check crafting_ingredients 600

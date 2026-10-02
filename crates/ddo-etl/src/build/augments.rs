@@ -1,4 +1,4 @@
-use super::drop_text::QuestLootTable;
+use super::drop_text::DroppedLoot;
 use super::{joined_non_empty, json_number_array, trimmed_non_empty, BuildReport, TableWriter};
 use crate::map::drop_location::drop_text_in_description;
 use crate::xml::augments::parse_augments_file;
@@ -71,7 +71,7 @@ impl TableWriter<'_> {
         let Some(drop_text) = drop_text_in_description(description) else {
             return Ok(());
         };
-        for linked_quest in self.link_to_drop_text_quests(QuestLootTable::Augments, augment_id, drop_text)? {
+        for linked_quest in self.link_to_drop_text_quests(DroppedLoot::Augment(augment_id), drop_text)? {
             report.quest_augment_loot_link_count += 1;
             if linked_quest.is_newly_rare {
                 report.drop_text_rare_augment_link_count += 1;

@@ -75,7 +75,7 @@ fn reads_a_rare_drop_as_a_name_or_a_name_with_its_chest() {
 
 fn quest_augment_loot_row(db: &Connection, quest: &str, augment: &str) -> Option<(String, bool, Option<String>)> {
     db.query_row(
-        "SELECT qal.loot_type, qal.is_rare, qal.chest FROM quest_augment_loot qal
+        "SELECT qal.loot_type, qal.is_rare, qal.chest FROM drops qal
            JOIN quests q ON q.id = qal.quest_id JOIN augments a ON a.id = qal.augment_id
           WHERE q.name = ?1 AND a.name = ?2",
         [quest, augment],
@@ -107,7 +107,7 @@ fn adds_a_chest_link_for_a_rare_augment_and_fills_only_a_chest_his_text_left_bla
     );
     let buckler_chest: Option<String> = db
         .query_row(
-            "SELECT ql.chest FROM quest_loot ql JOIN quests q ON q.id = ql.quest_id JOIN items i ON i.id = ql.item_id
+            "SELECT ql.chest FROM drops ql JOIN quests q ON q.id = ql.quest_id JOIN items i ON i.id = ql.item_id
               WHERE q.name = 'Book Burning' AND i.name = 'Buckler of the Golden Age'",
             [],
             |r| r.get(0),
@@ -204,7 +204,7 @@ fn built_db_with(wiki: &WikiOverrides) -> (Connection, ddo_etl::build::BuildRepo
 
 fn quest_loot_row(db: &Connection, quest: &str, item: &str) -> Option<(String, bool)> {
     db.query_row(
-        "SELECT ql.loot_type, ql.is_rare FROM quest_loot ql JOIN quests q ON q.id = ql.quest_id JOIN items i ON i.id = ql.item_id
+        "SELECT ql.loot_type, ql.is_rare FROM drops ql JOIN quests q ON q.id = ql.quest_id JOIN items i ON i.id = ql.item_id
           WHERE q.name = ?1 AND i.name = ?2",
         [quest, item],
         |r| Ok((r.get(0)?, r.get(1)?)),
@@ -417,7 +417,7 @@ fn links_maetrims_items_to_a_wiki_quest_their_drop_text_names() {
     let (db, report) = built_db_with_fixture_wiki();
     let drop_text_links: Vec<(String, String, bool)> = db
         .prepare(
-            "SELECT i.name, ql.loot_type, ql.is_rare FROM quest_loot ql
+            "SELECT i.name, ql.loot_type, ql.is_rare FROM drops ql
                JOIN quests q ON q.id = ql.quest_id JOIN items i ON i.id = ql.item_id
               WHERE q.name = ?1 AND i.source = 'maetrim' ORDER BY i.name",
         )
@@ -1481,7 +1481,7 @@ fn reuses_maetrims_effect_whose_name_differs_only_by_colons_commas_periods_and_a
 fn quest_loot_link_rows(db: &Connection, quest: &str, item: &str) -> Vec<(String, bool, Option<String>)> {
     let mut statement = db
         .prepare(
-            "SELECT ql.loot_type, ql.is_rare, ql.chest FROM quest_loot ql JOIN quests q ON q.id = ql.quest_id
+            "SELECT ql.loot_type, ql.is_rare, ql.chest FROM drops ql JOIN quests q ON q.id = ql.quest_id
                JOIN items i ON i.id = ql.item_id WHERE q.name = ?1 AND i.name = ?2 ORDER BY ql.loot_type",
         )
         .unwrap();
@@ -1513,24 +1513,25 @@ fn reads_a_listed_drop_as_a_name_or_a_name_with_its_loot_type_and_chest() {
         parsed_wiki(&[("quest_loot_a.toml", &unknown_field_text)]).is_err(),
         "a listed drop object takes name, loot_type and chest"
     );
+    let reward_in_chest_text =
+        toml_text.replace("loot_type = \"reward\"", "loot_type = \"reward\", chest = \"end chest\"");
+    let error = parsed_wiki(&[("quest_loot_a.toml", &reward_in_chest_text)]).unwrap_err();
+    assert!(error.contains("Sireth, Spear of the Sky") && error.contains("chest"), "{error}");
 }
 
 #[test]
 fn adds_a_listed_item_link_of_its_loot_type_beside_the_one_his_text_made() {
     let toml_text = format!(
         "{BOOK_BURNING_CITATION}rare = [\"Sireth, Spear of the Sky\"]\n\
-         items = [{{ name = \"Docent of Defiance\", loot_type = \"reward\", chest = \"end chest\" }}, \
-         {{ name = \"Buckler of the Golden Age\", loot_type = \"reward\", chest = \"optional chest\" }}, \
+         items = [{{ name = \"Docent of Defiance\", loot_type = \"reward\" }}, \
+         {{ name = \"Buckler of the Golden Age\", loot_type = \"reward\" }}, \
          {{ name = \"Sireth, Spear of the Sky\", loot_type = \"reward\" }}]\n"
     );
     let (db, report) = built_db_with(&parsed_wiki(&[("quest_loot_a.toml", &toml_text)]).unwrap());
-    assert_eq!(
-        quest_loot_link_rows(&db, "Book Burning", "Docent of Defiance"),
-        [("reward".into(), false, Some("end chest".into()))]
-    );
+    assert_eq!(quest_loot_link_rows(&db, "Book Burning", "Docent of Defiance"), [("reward".into(), false, None)]);
     assert_eq!(
         quest_loot_link_rows(&db, "Book Burning", "Buckler of the Golden Age"),
-        [("chest".into(), true, Some("end chest".into())), ("reward".into(), false, Some("optional chest".into()))],
+        [("chest".into(), true, Some("end chest".into())), ("reward".into(), false, None)],
         "his chest link keeps its chest and rarity, and the listed reward is a second link"
     );
     assert_eq!(
@@ -1573,7 +1574,7 @@ fn adds_a_listed_augment_link_that_is_not_rare() {
     let magical_protection_links: Vec<(String, Option<String>)> = {
         let mut statement = db
             .prepare(
-                "SELECT qal.loot_type, qal.chest FROM quest_augment_loot qal JOIN quests q ON q.id = qal.quest_id
+                "SELECT qal.loot_type, qal.chest FROM drops qal JOIN quests q ON q.id = qal.quest_id
                    JOIN augments a ON a.id = qal.augment_id
                   WHERE q.name = 'Book Burning' AND a.name = 'Lunar Gem of Magical Protection (Heroic)'
                   ORDER BY qal.loot_type",

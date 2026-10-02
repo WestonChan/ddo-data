@@ -1,4 +1,7 @@
-use super::drop_text::{insert_quest_loot_link, DropTextLinker, QuestLootLink, QuestLootTable};
+use super::drop_text::{
+    insert_drop, insert_drop_unless_dropped_as, insert_drop_unless_loot_drops_there, mark_quest_drop_rare,
+    DropTextLinker, DroppedLoot, LootDrop,
+};
 use super::items::{ArmorStatsRow, ItemRow, WeaponStatsRow};
 use super::{BuildReport, ProbableDuplicateWikiEntry, SupersededWikiEntry, TableWriter};
 use crate::map::drop_location::drop_text_in_description;
@@ -40,7 +43,7 @@ pub(super) fn apply_wiki_overrides(
                 format!("{citation}: listed item {item_name:?} is not in Maetrim's items or a wiki item; names must match exactly")
             })?;
             report.wiki_added_quest_loot_link_count +=
-                insert_listed_loot_link(transaction, QuestLootTable::Items, quest_id, item_id, listed_item)?;
+                insert_listed_loot_link(transaction, quest_id, DroppedLoot::Item(item_id), listed_item)?;
             report.wiki_loot_drop_count += 1;
         }
         for listed_augment in &quest_loot.augments {
@@ -50,13 +53,8 @@ pub(super) fn apply_wiki_overrides(
                 bail!("{citation}: listed augment {augment_name:?} is not in Maetrim's augments or a wiki augment; names must match exactly");
             }
             for augment_id in augment_ids {
-                report.wiki_added_quest_augment_loot_link_count += insert_listed_loot_link(
-                    transaction,
-                    QuestLootTable::Augments,
-                    quest_id,
-                    augment_id,
-                    listed_augment,
-                )?;
+                report.wiki_added_quest_augment_loot_link_count +=
+                    insert_listed_loot_link(transaction, quest_id, DroppedLoot::Augment(augment_id), listed_augment)?;
             }
             report.wiki_loot_augment_drop_count += 1;
         }
@@ -66,7 +64,7 @@ pub(super) fn apply_wiki_overrides(
                 format!("{citation}: rare item {item_name:?} is not in Maetrim's items; report it upstream rather than adding it here")
             })?;
             report.wiki_added_quest_loot_link_count +=
-                mark_rare_loot(transaction, QuestLootTable::Items, quest_id, item_id, rare_item.chest())?;
+                mark_rare_loot(transaction, quest_id, DroppedLoot::Item(item_id), rare_item.chest())?;
             report.wiki_rare_drop_count += 1;
         }
         for rare_augment in &quest_loot.rare_augments {
@@ -77,7 +75,7 @@ pub(super) fn apply_wiki_overrides(
             }
             for augment_id in augment_ids {
                 report.wiki_added_quest_augment_loot_link_count +=
-                    mark_rare_loot(transaction, QuestLootTable::Augments, quest_id, augment_id, rare_augment.chest())?;
+                    mark_rare_loot(transaction, quest_id, DroppedLoot::Augment(augment_id), rare_augment.chest())?;
             }
             report.wiki_rare_augment_drop_count += 1;
         }
@@ -223,9 +221,7 @@ fn link_augment_to_quests_named_in(
     let Some(drop_text) = drop_text_in_description(description) else {
         return Ok(0);
     };
-    Ok(drop_text_linker
-        .link_loot_to_quests_named_in(transaction, QuestLootTable::Augments, augment_id, drop_text)?
-        .len())
+    Ok(drop_text_linker.link_loot_to_quests_named_in(transaction, DroppedLoot::Augment(augment_id), drop_text)?.len())
 }
 
 fn insert_crafting_system(
@@ -367,35 +363,26 @@ fn augment_ids_named_in(transaction: &Transaction, augment_name: &str, families:
     Ok(augment_ids)
 }
 
-fn mark_rare_loot(
-    transaction: &Transaction,
-    table: QuestLootTable,
-    quest_id: i64,
-    loot_id: i64,
-    chest: Option<&str>,
-) -> Result<usize> {
-    let added_link_count = transaction.execute(
-        table.insert_link_unless_linked_sql(),
-        params![quest_id, loot_id, LootType::Chest.as_str(), Option::<&str>::None],
-    )?;
-    transaction.execute(table.mark_rare_sql(), params![quest_id, loot_id, chest])?;
+fn mark_rare_loot(transaction: &Transaction, quest_id: i64, loot: DroppedLoot, chest: Option<&str>) -> Result<usize> {
+    let added_link_count =
+        insert_drop_unless_loot_drops_there(transaction, &LootDrop::from_quest(quest_id, loot, LootType::Chest))?;
+    mark_quest_drop_rare(transaction, quest_id, loot, chest)?;
     Ok(added_link_count)
 }
 
 fn insert_listed_loot_link(
     transaction: &Transaction,
-    table: QuestLootTable,
     quest_id: i64,
-    loot_id: i64,
+    loot: DroppedLoot,
     listed_drop: &ListedDrop,
 ) -> Result<usize> {
-    let insert_sql = if listed_drop.names_loot_type() {
-        table.insert_link_unless_linked_as_sql()
+    let listed_loot_drop =
+        LootDrop { chest: listed_drop.chest(), ..LootDrop::from_quest(quest_id, loot, listed_drop.loot_type()) };
+    if listed_drop.names_loot_type() {
+        insert_drop_unless_dropped_as(transaction, &listed_loot_drop)
     } else {
-        table.insert_link_unless_linked_sql()
-    };
-    Ok(transaction
-        .execute(insert_sql, params![quest_id, loot_id, listed_drop.loot_type().as_str(), listed_drop.chest()])?)
+        insert_drop_unless_loot_drops_there(transaction, &listed_loot_drop)
+    }
 }
 
 fn ids_by_name(transaction: &Transaction, table: &str, name: &str) -> Result<Vec<i64>> {
@@ -554,17 +541,7 @@ impl TableWriter<'_> {
             self.insert_item_augment_slot(item_id, sort_order, slot_type_id)?;
         }
         for (quest_id, loot_type) in quest_links {
-            insert_quest_loot_link(
-                self.transaction,
-                &QuestLootLink {
-                    table: QuestLootTable::Items,
-                    quest_id,
-                    loot_id: item_id,
-                    loot_type,
-                    is_rare: false,
-                    chest: None,
-                },
-            )?;
+            insert_drop(self.transaction, &LootDrop::from_quest(quest_id, DroppedLoot::Item(item_id), loot_type))?;
         }
         if let Some(set_name) = &wiki_item.set {
             self.pending_set_item_links.push((item_id, set_name.clone()));

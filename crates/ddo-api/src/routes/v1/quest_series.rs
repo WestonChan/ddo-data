@@ -28,13 +28,13 @@ impl QuestSeriesTable {
             Self::QuestChains => {
                 "s.id, s.name, p.name AS pack, s.source, s.wiki_url,
                     (SELECT COUNT(*) FROM quest_chain_quests sq WHERE sq.chain_id = s.id) AS quest_count,
-                    (SELECT COUNT(*) FROM quest_chain_rewards sr WHERE sr.chain_id = s.id) AS reward_count
+                    (SELECT COUNT(*) FROM drops sr WHERE sr.chain_id = s.id) AS reward_count
                FROM quest_chains s LEFT JOIN adventure_packs p ON p.id = s.pack_id"
             }
             Self::Sagas => {
                 "s.id, s.name, p.name AS pack, s.source, s.wiki_url,
                     (SELECT COUNT(*) FROM saga_quests sq WHERE sq.saga_id = s.id) AS quest_count,
-                    (SELECT COUNT(*) FROM saga_rewards sr WHERE sr.saga_id = s.id) AS reward_count
+                    (SELECT COUNT(*) FROM drops sr WHERE sr.saga_id = s.id) AS reward_count
                FROM sagas s LEFT JOIN adventure_packs p ON p.id = s.pack_id"
             }
         }
@@ -57,13 +57,13 @@ impl QuestSeriesTable {
         match self {
             Self::QuestChains => {
                 "SELECT i.id, i.name, sr.is_rare, i.minimum_level, es.name AS slot
-                   FROM quest_chain_rewards sr JOIN items i ON i.id = sr.item_id
+                   FROM drops sr JOIN items i ON i.id = sr.item_id
                    LEFT JOIN equipment_slots es ON es.id = i.slot_id
                   WHERE sr.chain_id = ?1 ORDER BY i.name, i.id"
             }
             Self::Sagas => {
                 "SELECT i.id, i.name, sr.tier, sr.is_rare, i.minimum_level, es.name AS slot
-                   FROM saga_rewards sr JOIN items i ON i.id = sr.item_id
+                   FROM drops sr JOIN items i ON i.id = sr.item_id
                    LEFT JOIN equipment_slots es ON es.id = i.slot_id
                   WHERE sr.saga_id = ?1
                   ORDER BY CASE sr.tier WHEN 'heroic' THEN 1 WHEN 'epic' THEN 2 WHEN 'legendary' THEN 3 ELSE 4 END,
@@ -91,7 +91,7 @@ fn quest_series_detail(db: &Connection, table: QuestSeriesTable, id: i64) -> Res
 pub(super) fn quest_chains_rewarding(db: &Connection, item_id: i64) -> Result<Vec<Value>, ApiError> {
     let mut quest_chains = json_rows(
         db,
-        "SELECT c.id, c.name, cr.is_rare, c.wiki_url FROM quest_chain_rewards cr JOIN quest_chains c ON c.id = cr.chain_id
+        "SELECT c.id, c.name, cr.is_rare, c.wiki_url FROM drops cr JOIN quest_chains c ON c.id = cr.chain_id
           WHERE cr.item_id = ?1 ORDER BY c.name",
         [item_id],
     )?;
@@ -104,7 +104,7 @@ pub(super) fn quest_chains_rewarding(db: &Connection, item_id: i64) -> Result<Ve
 pub(super) fn sagas_rewarding(db: &Connection, item_id: i64) -> Result<Vec<Value>, ApiError> {
     let mut sagas = json_rows(
         db,
-        "SELECT s.id, s.name, sr.tier, sr.is_rare, s.wiki_url FROM saga_rewards sr JOIN sagas s ON s.id = sr.saga_id
+        "SELECT s.id, s.name, sr.tier, sr.is_rare, s.wiki_url FROM drops sr JOIN sagas s ON s.id = sr.saga_id
           WHERE sr.item_id = ?1
           ORDER BY s.name, CASE sr.tier WHEN 'heroic' THEN 1 WHEN 'epic' THEN 2 WHEN 'legendary' THEN 3 ELSE 4 END",
         [item_id],

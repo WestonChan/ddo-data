@@ -45,14 +45,11 @@ fn ddl_creates_every_v2_table() {
         "item_effects",
         "item_augment_slots",
         "item_augment_slot_options",
-        "quest_loot",
-        "quest_augment_loot",
+        "drops",
         "quest_chains",
         "quest_chain_quests",
-        "quest_chain_rewards",
         "sagas",
         "saga_quests",
-        "saga_rewards",
         "modifiers",
         "requirements",
         "augments",
@@ -179,7 +176,7 @@ fn augments_come_from_maetrim_unless_the_wiki_supplied_them() {
     assert!(db
         .execute("INSERT INTO augments (name, family, source) VALUES ('Odd Gem', 'Named', 'ddowiki')", [])
         .is_err());
-    assert_eq!(SCHEMA_VERSION, 11);
+    assert_eq!(SCHEMA_VERSION, 12);
 }
 
 #[test]
@@ -236,63 +233,73 @@ fn corrections_record_each_kind_field_and_value_change_once() {
     assert!(insert_correction("gem", "").is_err(), "kind is one of the correctable tables");
 }
 
-#[test]
-fn quest_augment_loot_links_quests_to_augments_as_quest_loot_links_them_to_items() {
+fn insert_drop(db: &Connection, columns_and_values: &str) -> rusqlite::Result<usize> {
+    let (columns, values) = columns_and_values.split_once(" = ").unwrap();
+    db.execute(&format!("INSERT INTO drops ({columns}) VALUES ({values})"), [])
+}
+
+fn db_with_one_source_of_each_kind() -> Connection {
     let db = fresh_db();
-    let mut statement = db.prepare("SELECT name FROM pragma_table_info('quest_augment_loot') ORDER BY cid").unwrap();
-    let columns: Vec<String> = statement.query_map([], |r| r.get(0)).unwrap().map(Result::unwrap).collect();
-    assert_eq!(columns, ["quest_id", "augment_id", "loot_type", "is_rare", "chest"]);
     db.execute_batch(
-        "INSERT INTO quests (id, name) VALUES (1, 'Book Burning');
-         INSERT INTO augments (id, name, family) VALUES (1, 'Lunar Gem of Magical Protection (Heroic)', 'SunAndMoon');
-         INSERT INTO quest_augment_loot (quest_id, augment_id, loot_type) VALUES (1, 1, 'chest');",
+        "PRAGMA foreign_keys = OFF;
+         INSERT INTO items (id, name, slot_id, item_category) VALUES (1, 'Rusted Crown', 1, 'Jewelry');
+         INSERT INTO adventure_packs (id, name) VALUES (1, 'Magic of Myth Drannor');
+         INSERT INTO quests (id, name) VALUES (1, 'Book Burning');
+         INSERT INTO quest_chains (id, name, source, wiki_url) VALUES (1, 'The Necropolis', 'wiki', 'https://ddowiki.com/page/Necropolis');
+         INSERT INTO sagas (id, name, source, wiki_url) VALUES (1, 'Dread', 'wiki', 'https://ddowiki.com/page/Dread');
+         INSERT INTO augments (id, name, family) VALUES (1, 'Lunar Gem of Magical Protection (Heroic)', 'SunAndMoon');",
     )
     .unwrap();
-    db.execute("INSERT INTO quest_augment_loot (quest_id, augment_id, loot_type) VALUES (1, 1, 'reward')", [])
-        .expect("an augment may be both a chest drop and an end reward of one quest");
-    assert!(
-        db.execute("INSERT INTO quest_augment_loot (quest_id, augment_id, loot_type) VALUES (1, 1, 'chest')", [])
-            .is_err(),
-        "one link per quest, augment and loot type"
-    );
-    assert!(
-        db.execute("INSERT INTO quest_augment_loot (quest_id, augment_id) VALUES (1, 1)", []).is_err(),
-        "every link has a loot type"
-    );
-    db.execute("DELETE FROM quest_augment_loot", []).unwrap();
-    assert!(
-        db.execute("INSERT INTO quest_augment_loot (quest_id, augment_id, loot_type) VALUES (1, 1, 'bag')", [])
-            .is_err(),
-        "loot_type is one of quest_loot's"
-    );
+    db
 }
 
 #[test]
-fn both_quest_loot_tables_carry_identical_loot_columns() {
-    let db = fresh_db();
-    let loot_columns = |table: &str| -> Vec<(String, String, bool, Option<String>)> {
-        let mut statement = db
-            .prepare(&format!(
-                "SELECT name, type, \"notnull\", dflt_value FROM pragma_table_info('{table}') WHERE pk = 0 ORDER BY cid"
-            ))
-            .unwrap();
-        statement
-            .query_map([], |r| Ok((r.get(0)?, r.get(1)?, r.get(2)?, r.get(3)?)))
-            .unwrap()
-            .map(Result::unwrap)
-            .collect()
-    };
-    assert_eq!(loot_columns("quest_augment_loot"), loot_columns("quest_loot"));
-    let table_sql = |table: &str| -> String {
-        db.query_row("SELECT sql FROM sqlite_master WHERE type = 'table' AND name = ?1", [table], |r| r.get(0)).unwrap()
-    };
-    let loot_column_sql = |table: &str| -> String {
-        let sql = table_sql(table);
-        let start = sql.find("loot_type").unwrap();
-        let end = sql.find("PRIMARY KEY").unwrap();
-        sql[start..end].to_string()
-    };
-    assert_eq!(loot_column_sql("quest_augment_loot"), loot_column_sql("quest_loot"), "same CHECK constraints");
+fn drops_links_each_loot_to_exactly_one_source_of_its_kind() {
+    let db = db_with_one_source_of_each_kind();
+    for valid_drop in [
+        "source_kind, quest_id, item_id, loot_type, chest = 'quest', 1, 1, 'chest', 'end chest'",
+        "source_kind, quest_id, item_id, loot_type = 'quest', 1, 1, 'reward'",
+        "source_kind, quest_id, augment_id, loot_type = 'quest', 1, 1, 'raid'",
+        "source_kind, chain_id, item_id = 'quest_chain', 1, 1",
+        "source_kind, saga_id, item_id, tier = 'saga', 1, 1, 'legendary'",
+        "source_kind, saga_id, item_id = 'saga', 1, 1",
+        "source_kind, pack_id, item_id, loot_type, is_rare = 'adventure_pack', 1, 1, 'chest', 1",
+        "source_kind, pack_id, augment_id, loot_type = 'adventure_pack', 1, 1, 'chest'",
+    ] {
+        insert_drop(&db, valid_drop).unwrap_or_else(|error| panic!("{valid_drop}: {error}"));
+    }
+    for (invalid_drop, broken_rule) in [
+        ("source_kind, quest_id, pack_id, item_id, loot_type = 'quest', 1, 1, 1, 'chest'", "two sources"),
+        ("source_kind, item_id, loot_type = 'quest', 1, 'chest'", "no source"),
+        ("source_kind, pack_id, item_id, loot_type = 'quest', 1, 1, 'chest'", "a kind its source does not match"),
+        ("source_kind, quest_id, item_id, loot_type = 'bag', 1, 1, 'chest'", "an unknown kind"),
+        ("source_kind, quest_id, item_id, augment_id, loot_type = 'quest', 1, 1, 1, 'chest'", "two loots"),
+        ("source_kind, quest_id, loot_type = 'quest', 1, 'chest'", "no loot"),
+        ("source_kind, quest_id, item_id, loot_type, tier = 'quest', 1, 1, 'chest', 'epic'", "a tier on a quest drop"),
+        (
+            "source_kind, quest_id, item_id, loot_type, chest = 'quest', 1, 1, 'reward', 'end chest'",
+            "a chest on a reward",
+        ),
+        ("source_kind, chain_id, item_id, chest = 'quest_chain', 1, 1, 'end chest'", "a chest on a chain reward"),
+        ("source_kind, quest_id, item_id = 'quest', 1, 1", "a quest drop without a loot type"),
+        ("source_kind, saga_id, item_id, loot_type = 'saga', 1, 1, 'reward'", "a loot type on a saga reward"),
+        ("source_kind, quest_id, item_id, loot_type = 'quest', 1, 1, 'bag'", "an unknown loot type"),
+        ("source_kind, saga_id, item_id, tier = 'saga', 1, 1, 'mythic'", "an unknown tier"),
+        ("source_kind, quest_id, item_id, loot_type = 'quest', 1, 1, 'chest'", "a second identical quest drop"),
+        ("source_kind, chain_id, item_id = 'quest_chain', 1, 1", "a second identical chain reward"),
+        ("source_kind, saga_id, item_id = 'saga', 1, 1", "a second untiered saga reward"),
+        (
+            "source_kind, pack_id, augment_id, loot_type = 'adventure_pack', 1, 1, 'chest'",
+            "a second identical pack drop",
+        ),
+    ] {
+        assert!(insert_drop(&db, invalid_drop).is_err(), "{broken_rule} must fail: {invalid_drop}");
+    }
+    assert_eq!(
+        db.query_row("SELECT COUNT(*) FROM drops", [], |r| r.get::<_, i64>(0)).unwrap(),
+        8,
+        "an item and an augment with one id are different loot"
+    );
 }
 
 fn column_shapes(
@@ -323,32 +330,18 @@ fn quest_chains_and_sagas_share_their_columns_quest_links_and_reward_shape() {
         column_shapes(&db, "quest_chain_quests", &["chain_id"]),
         column_shapes(&db, "saga_quests", &["saga_id"])
     );
-    assert_eq!(
-        column_shapes(&db, "quest_chain_rewards", &["chain_id"]),
-        column_shapes(&db, "saga_rewards", &["saga_id", "tier"])
-    );
-    assert_eq!(
-        column_shapes(&db, "saga_rewards", &[]).iter().map(|(name, ..)| name.as_str()).collect::<Vec<_>>(),
-        ["saga_id", "item_id", "is_rare", "tier"]
-    );
 }
 
 #[test]
 fn a_saga_reward_has_one_row_per_item_and_tier() {
-    let db = fresh_db();
-    db.execute_batch(
-        "PRAGMA foreign_keys = OFF;
-         INSERT INTO items (id, name, slot_id, item_category) VALUES (1, 'Band of Diani ir''Wynarn', 1, 'Jewelry');
-         INSERT INTO sagas (id, name, source, wiki_url)
-              VALUES (1, 'Masterminds of Sharn', 'wiki', 'https://ddowiki.com/page/Masterminds_of_Sharn');
-         INSERT INTO saga_rewards (saga_id, item_id, tier) VALUES (1, 1, 'epic');
-         INSERT INTO saga_rewards (saga_id, item_id, tier) VALUES (1, 1, 'legendary');
-         INSERT INTO saga_rewards (saga_id, item_id) VALUES (1, 1);",
-    )
-    .unwrap();
-    assert!(db.execute("INSERT INTO saga_rewards (saga_id, item_id, tier) VALUES (1, 1, 'epic')", []).is_err());
-    assert!(db.execute("INSERT INTO saga_rewards (saga_id, item_id) VALUES (1, 1)", []).is_err(), "one untiered row");
-    assert!(db.execute("INSERT INTO saga_rewards (saga_id, item_id, tier) VALUES (1, 1, 'any')", []).is_err());
+    let db = db_with_one_source_of_each_kind();
+    for tier in ["'epic'", "'legendary'", "NULL"] {
+        insert_drop(&db, &format!("source_kind, saga_id, item_id, tier = 'saga', 1, 1, {tier}")).unwrap();
+        assert!(
+            insert_drop(&db, &format!("source_kind, saga_id, item_id, tier = 'saga', 1, 1, {tier}")).is_err(),
+            "one row per item and tier {tier}"
+        );
+    }
     assert!(
         db.execute(
             "INSERT INTO sagas (name, source, wiki_url) VALUES ('Odd Saga', 'ddowiki', 'https://ddowiki.com/page/Odd')",
@@ -360,11 +353,30 @@ fn a_saga_reward_has_one_row_per_item_and_tier() {
 }
 
 #[test]
-fn quest_loot_records_the_chest_as_free_text() {
+fn drops_records_the_chest_as_free_text() {
     let db = fresh_db();
-    let mut statement = db.prepare("SELECT name FROM pragma_table_info('quest_loot') ORDER BY cid").unwrap();
-    let columns: Vec<String> = statement.query_map([], |r| r.get(0)).unwrap().map(Result::unwrap).collect();
-    assert_eq!(columns, ["quest_id", "item_id", "loot_type", "is_rare", "chest"]);
+    let mut statement = db.prepare("SELECT name, type FROM pragma_table_info('drops') ORDER BY cid").unwrap();
+    let columns: Vec<(String, String)> =
+        statement.query_map([], |r| Ok((r.get(0)?, r.get(1)?))).unwrap().map(Result::unwrap).collect();
+    let column_names: Vec<&str> = columns.iter().map(|(name, _)| name.as_str()).collect();
+    assert_eq!(
+        column_names,
+        [
+            "id",
+            "source_kind",
+            "quest_id",
+            "chain_id",
+            "saga_id",
+            "pack_id",
+            "item_id",
+            "augment_id",
+            "loot_type",
+            "chest",
+            "is_rare",
+            "tier"
+        ]
+    );
+    assert!(columns.contains(&("chest".to_string(), "TEXT".to_string())));
 }
 
 #[test]

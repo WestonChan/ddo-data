@@ -131,7 +131,7 @@ async fn augment_detail(State(state): State<AppState>, Path(id): Path<i64>) -> R
             let mut augment = json_row(db, &format!("SELECT {AUGMENT_COLUMNS} FROM augments a WHERE a.id = ?1"), [id])?;
             convert_to_booleans(&mut augment, AUGMENT_FLAG_COLUMNS);
             attach_child_collections(db, &mut augment)?;
-            augment["quests"] = Value::Array(quests_dropping_via(db, "quest_augment_loot", "augment_id", id)?);
+            augment["quests"] = Value::Array(quests_dropping_via(db, "augment_id", id)?);
             augment["modifiers"] = Value::Array(modifiers_for(db, "augment", id)?);
             Ok(Json(augment))
         })

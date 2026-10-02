@@ -534,8 +534,8 @@ fn a_renamed_quest_links_the_loot_his_drop_text_names_by_the_new_name() {
     assert_eq!(report.correction_applied_count, 1, "{:?}", report.stale_corrections);
     let linked_items: Vec<String> = db
         .prepare(
-            "SELECT items.name FROM quest_loot JOIN quests ON quests.id = quest_loot.quest_id
-               JOIN items ON items.id = quest_loot.item_id
+            "SELECT items.name FROM drops JOIN quests ON quests.id = drops.quest_id
+               JOIN items ON items.id = drops.item_id
               WHERE quests.name = 'Temple of Elemental Evil Part One'",
         )
         .unwrap()
@@ -678,7 +678,7 @@ fn removes_an_item_with_its_child_rows() {
     assert!(!item_names(&db).iter().any(|name| name == "Legendary Cloak of Winter" || name == "Acid Rune Arm"));
     let id_list = format!("({}, {})", item_ids[0], item_ids[1]);
     for child_table in
-        ["item_bonuses", "item_effects", "item_augment_slots", "quest_loot", "set_bonus_items", "item_clickies"]
+        ["item_bonuses", "item_effects", "item_augment_slots", "drops", "set_bonus_items", "item_clickies"]
     {
         assert_eq!(
             row_count(&db, &format!("SELECT COUNT(*) FROM {child_table} WHERE item_id IN {id_list}")),

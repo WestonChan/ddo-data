@@ -1,7 +1,8 @@
+use super::drop_text::{insert_drop, DropSource, DroppedLoot, LootDrop};
 use super::BuildReport;
 use crate::wiki::{QuestSeriesReward, WikiOverrides, WikiQuestSeries};
 use anyhow::{Context, Result};
-use ddo_model::enums::{RowSource, SagaTier};
+use ddo_model::enums::RowSource;
 use rusqlite::{params, OptionalExtension, Transaction};
 
 #[derive(Clone, Copy)]
@@ -39,39 +40,11 @@ impl QuestSeriesTable {
         }
     }
 
-    fn insert_reward_sql(self) -> &'static str {
+    pub(super) fn drop_source(self, series_id: i64) -> DropSource {
         match self {
-            Self::QuestChains => {
-                "INSERT INTO quest_chain_rewards (chain_id, item_id, is_rare) VALUES (?1, ?2, ?3)
-                 ON CONFLICT (chain_id, item_id) DO UPDATE SET is_rare = 1 WHERE excluded.is_rare > quest_chain_rewards.is_rare"
-            }
-            Self::Sagas => {
-                "INSERT INTO saga_rewards (saga_id, item_id, is_rare, tier) VALUES (?1, ?2, ?3, ?4)
-                 ON CONFLICT (saga_id, item_id, COALESCE(tier, '')) DO UPDATE SET is_rare = 1
-                 WHERE excluded.is_rare > saga_rewards.is_rare"
-            }
+            Self::QuestChains => DropSource::QuestChain(series_id),
+            Self::Sagas => DropSource::Saga(series_id),
         }
-    }
-}
-
-impl QuestSeriesTable {
-    pub(super) fn insert_reward(
-        self,
-        transaction: &Transaction,
-        reward_giver_id: i64,
-        item_id: i64,
-        is_rare: bool,
-        tier: Option<SagaTier>,
-    ) -> Result<usize> {
-        Ok(match self {
-            Self::QuestChains => {
-                transaction.execute(self.insert_reward_sql(), params![reward_giver_id, item_id, is_rare])?
-            }
-            Self::Sagas => transaction.execute(
-                self.insert_reward_sql(),
-                params![reward_giver_id, item_id, is_rare, tier.map(SagaTier::as_str)],
-            )?,
-        })
     }
 }
 
@@ -150,7 +123,17 @@ fn insert_quest_series_rewards<Reward: QuestSeriesReward>(
                 "{citation}: reward {item_name:?} is not in Maetrim's items or a wiki item; names must match exactly"
             )
         })?;
-        table.insert_reward(transaction, series_id, item_id, reward.is_rare(), reward.tier())?;
+        insert_drop(
+            transaction,
+            &LootDrop {
+                source: table.drop_source(series_id),
+                loot: DroppedLoot::Item(item_id),
+                loot_type: None,
+                is_rare: reward.is_rare(),
+                chest: None,
+                tier: reward.tier(),
+            },
+        )?;
     }
     Ok(series.rewards.len())
 }

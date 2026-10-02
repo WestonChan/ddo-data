@@ -1,10 +1,11 @@
 use crate::enums::{
-    AbilityOwner, ArmorType, CorrectionKind, CraftingTier, EnhancementTreeKind, FeatSource, Handedness, ItemCategory,
-    LootType, ModifierSource, RequirementGroupKind, RequirementOwner, RowSource, SagaTier, SaveProgression,
+    AbilityOwner, ArmorType, CorrectionKind, CraftingTier, DropSourceKind, EnhancementTreeKind, FeatSource, Handedness,
+    ItemCategory, LootType, ModifierSource, RequirementGroupKind, RequirementOwner, RowSource, SagaTier,
+    SaveProgression,
 };
 use std::sync::LazyLock;
 
-pub const SCHEMA_VERSION: i64 = 11;
+pub const SCHEMA_VERSION: i64 = 12;
 
 fn sql_in_clause<'a>(allowed_values: impl Iterator<Item = &'a str>) -> String {
     let quoted_values: Vec<String> = allowed_values.map(|value| format!("'{value}'")).collect();
@@ -26,11 +27,18 @@ static DDL: LazyLock<String> = LazyLock::new(|| {
     let requirement_group = sql_in_clause(RequirementGroupKind::ALL.iter().map(|g| g.as_str()));
     let crafting_tier = sql_in_clause(CraftingTier::ALL.iter().map(|t| t.as_str()));
     let correction_kind = sql_in_clause(CorrectionKind::ALL.iter().map(|k| k.as_str()));
-    let quest_loot_columns = format!(
-        "loot_type TEXT NOT NULL CHECK (loot_type {loot_type}),
-    is_rare   INTEGER NOT NULL DEFAULT 0 CHECK (is_rare IN (0, 1)),
-    chest     TEXT,"
-    );
+    let drop_source_kind = sql_in_clause(DropSourceKind::ALL.iter().map(|k| k.as_str()));
+    let source_id_for_kind: Vec<String> = DropSourceKind::ALL
+        .iter()
+        .map(|kind| format!("WHEN '{}' THEN {} IS NOT NULL", kind.as_str(), kind.source_id_column()))
+        .collect();
+    let source_id_for_kind = source_id_for_kind.join(" ");
+    let source_id_count: Vec<String> =
+        DropSourceKind::ALL.iter().map(|kind| format!("({} IS NOT NULL)", kind.source_id_column())).collect();
+    let source_id_count = source_id_count.join(" + ");
+    let kinds_with_loot_type =
+        sql_in_clause(DropSourceKind::ALL.iter().filter(|kind| kind.has_loot_type()).map(|kind| kind.as_str()));
+    let source_ids = DropSourceKind::ALL.iter().map(|kind| kind.source_id_column()).collect::<Vec<_>>().join(", ");
     let saga_tier = sql_in_clause(SagaTier::ALL.iter().map(|t| t.as_str()));
     let quest_series_columns = format!(
         "name     TEXT    NOT NULL UNIQUE,
@@ -40,8 +48,6 @@ static DDL: LazyLock<String> = LazyLock::new(|| {
     );
     let quest_series_quest_columns = "quest_id   INTEGER NOT NULL REFERENCES quests(id) ON DELETE CASCADE,
     sort_order INTEGER NOT NULL,";
-    let quest_series_reward_columns = "item_id INTEGER NOT NULL REFERENCES items(id) ON DELETE CASCADE,
-    is_rare INTEGER NOT NULL DEFAULT 0 CHECK (is_rare IN (0, 1))";
     format!(
         r#"
 PRAGMA foreign_keys = ON;
@@ -271,18 +277,6 @@ CREATE TABLE IF NOT EXISTS item_augment_slot_options (
     FOREIGN KEY (item_id, slot_order) REFERENCES item_augment_slots(item_id, sort_order) ON DELETE CASCADE
 );
 
--- A quest's item drops, one row per loot type: an item may be both a chest (or raid) drop and an end reward of one
--- quest. loot_type comes from the <DropLocation> segments naming the quest and the quest's is_raid; is_rare from (rare)
--- or rare drop in them, or data/wiki quest_loot `rare`; chest is the lower-cased phrase after the quest name in its
--- segment, or the `chest` of a wiki rare drop where his text names none.
-CREATE TABLE IF NOT EXISTS quest_loot (
-    quest_id  INTEGER NOT NULL REFERENCES quests(id) ON DELETE CASCADE,
-    item_id   INTEGER NOT NULL REFERENCES items(id) ON DELETE CASCADE,
-    {quest_loot_columns}
-    PRIMARY KEY (quest_id, item_id, loot_type)
-);
-CREATE INDEX IF NOT EXISTS idx_quest_loot_item ON quest_loot(item_id);
-
 -- Quest chains and sagas (data/wiki quest_chains and sagas) ---------------------------
 --
 -- Both give an end reward from an NPC after several quests, not from any one quest: a quest chain is ddowiki's
@@ -300,13 +294,6 @@ CREATE TABLE IF NOT EXISTS quest_chain_quests (
 );
 CREATE INDEX IF NOT EXISTS idx_quest_chain_quests_quest ON quest_chain_quests(quest_id);
 
-CREATE TABLE IF NOT EXISTS quest_chain_rewards (
-    chain_id INTEGER NOT NULL REFERENCES quest_chains(id) ON DELETE CASCADE,
-    {quest_series_reward_columns},
-    PRIMARY KEY (chain_id, item_id)
-);
-CREATE INDEX IF NOT EXISTS idx_quest_chain_rewards_item ON quest_chain_rewards(item_id);
-
 CREATE TABLE IF NOT EXISTS sagas (
     id       INTEGER PRIMARY KEY,
     {quest_series_columns}
@@ -319,15 +306,42 @@ CREATE TABLE IF NOT EXISTS saga_quests (
 );
 CREATE INDEX IF NOT EXISTS idx_saga_quests_quest ON saga_quests(quest_id);
 
--- tier is the saga's heroic, epic or legendary reward list, null when the source names none; the unique index
--- keeps one row per item and tier, the untiered one included, which a primary key over a nullable column would not.
-CREATE TABLE IF NOT EXISTS saga_rewards (
-    saga_id INTEGER NOT NULL REFERENCES sagas(id) ON DELETE CASCADE,
-    {quest_series_reward_columns},
-    tier    TEXT CHECK (tier {saga_tier})
+-- Every place an item or augment drops or is given, one row per source, loot and loot type (and saga tier):
+-- a quest's chest, raid or end-reward loot, read from Maetrim's <DropLocation> and "Drops in" description text and
+-- data/wiki quest_loot; a quest chain's or saga's end reward, from data/wiki quest_chains and sagas and the drop
+-- text crediting one; and loot any quest of an adventure pack drops, from drop text naming the pack and no quest.
+-- loot_type is null exactly on chain and saga rewards; chest is the lower-cased phrase after the quest or pack
+-- name, never on a reward; tier is the saga reward list, null when the source names none and on every other kind.
+-- The unique index keeps one row per source, loot, loot type and tier, which a primary key over nullable columns
+-- would not.
+CREATE TABLE IF NOT EXISTS drops (
+    id          INTEGER PRIMARY KEY,
+    source_kind TEXT    NOT NULL CHECK (source_kind {drop_source_kind}),
+    quest_id    INTEGER REFERENCES quests(id) ON DELETE CASCADE,
+    chain_id    INTEGER REFERENCES quest_chains(id) ON DELETE CASCADE,
+    saga_id     INTEGER REFERENCES sagas(id) ON DELETE CASCADE,
+    pack_id     INTEGER REFERENCES adventure_packs(id) ON DELETE CASCADE,
+    item_id     INTEGER REFERENCES items(id) ON DELETE CASCADE,
+    augment_id  INTEGER REFERENCES augments(id) ON DELETE CASCADE,
+    loot_type   TEXT    CHECK (loot_type {loot_type}),
+    chest       TEXT,
+    is_rare     INTEGER NOT NULL DEFAULT 0 CHECK (is_rare IN (0, 1)),
+    tier        TEXT    CHECK (tier {saga_tier}),
+    CHECK ({source_id_count} = 1),
+    CHECK (CASE source_kind {source_id_for_kind} ELSE 0 END),
+    CHECK ((item_id IS NOT NULL) + (augment_id IS NOT NULL) = 1),
+    CHECK ((loot_type IS NOT NULL) = (source_kind {kinds_with_loot_type})),
+    CHECK (chest IS NULL OR COALESCE(loot_type, 'reward') <> 'reward'),
+    CHECK (tier IS NULL OR source_kind = 'saga')
 );
-CREATE UNIQUE INDEX IF NOT EXISTS idx_saga_rewards_saga_item_tier ON saga_rewards(saga_id, item_id, COALESCE(tier, ''));
-CREATE INDEX IF NOT EXISTS idx_saga_rewards_item ON saga_rewards(item_id);
+CREATE UNIQUE INDEX IF NOT EXISTS idx_drops_source_loot ON drops(
+    source_kind, COALESCE({source_ids}), COALESCE(item_id, 0), COALESCE(augment_id, 0),
+    COALESCE(loot_type, ''), COALESCE(tier, '')
+);
+CREATE INDEX IF NOT EXISTS idx_drops_item ON drops(item_id) WHERE item_id IS NOT NULL;
+CREATE INDEX IF NOT EXISTS idx_drops_augment ON drops(augment_id) WHERE augment_id IS NOT NULL;
+CREATE INDEX IF NOT EXISTS idx_drops_quest ON drops(quest_id) WHERE quest_id IS NOT NULL;
+CREATE INDEX IF NOT EXISTS idx_drops_pack ON drops(pack_id) WHERE pack_id IS NOT NULL;
 
 -- Modifiers and requirements: the two grammars every family shares ---------------
 --
@@ -722,16 +736,6 @@ CREATE TABLE IF NOT EXISTS augment_bonuses (
     sort_order INTEGER NOT NULL,
     PRIMARY KEY (augment_id, sort_order)
 );
-
--- The quests an augment drops in, read from the "Drops in" text of his <Description> as quest_loot reads <DropLocation>;
--- rare_augments in data/wiki quest_loot marks them rare. The loot columns are quest_loot's.
-CREATE TABLE IF NOT EXISTS quest_augment_loot (
-    quest_id   INTEGER NOT NULL REFERENCES quests(id) ON DELETE CASCADE,
-    augment_id INTEGER NOT NULL REFERENCES augments(id) ON DELETE CASCADE,
-    {quest_loot_columns}
-    PRIMARY KEY (quest_id, augment_id, loot_type)
-);
-CREATE INDEX IF NOT EXISTS idx_quest_augment_loot_augment ON quest_augment_loot(augment_id);
 
 -- Crafting (data/wiki crafting) --------------------------------------------------
 

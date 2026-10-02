@@ -606,6 +606,40 @@ impl LootType {
     }
 }
 
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+pub enum DropSourceKind {
+    Quest,
+    QuestChain,
+    Saga,
+    AdventurePack,
+}
+
+impl DropSourceKind {
+    pub const ALL: &'static [DropSourceKind] = &[Self::Quest, Self::QuestChain, Self::Saga, Self::AdventurePack];
+
+    pub const fn as_str(self) -> &'static str {
+        match self {
+            Self::Quest => "quest",
+            Self::QuestChain => "quest_chain",
+            Self::Saga => "saga",
+            Self::AdventurePack => "adventure_pack",
+        }
+    }
+
+    pub const fn source_id_column(self) -> &'static str {
+        match self {
+            Self::Quest => "quest_id",
+            Self::QuestChain => "chain_id",
+            Self::Saga => "saga_id",
+            Self::AdventurePack => "pack_id",
+        }
+    }
+
+    pub const fn has_loot_type(self) -> bool {
+        matches!(self, Self::Quest | Self::AdventurePack)
+    }
+}
+
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
 #[serde(rename_all = "lowercase")]
 pub enum SagaTier {

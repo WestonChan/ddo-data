@@ -1,4 +1,4 @@
-use super::drop_text::QuestLootTable;
+use super::drop_text::DroppedLoot;
 use super::quest_series::QuestSeriesTable;
 use super::{joined_non_empty, trimmed_non_empty, BuildReport, TableWriter};
 use crate::map::buff::ResolvedBuff;
@@ -341,7 +341,7 @@ impl TableWriter<'_> {
     }
 
     fn link_item_to_quests(&self, item_id: i64, drop_location: &str, report: &mut BuildReport) -> Result<()> {
-        for linked_quest in self.link_to_drop_text_quests(QuestLootTable::Items, item_id, drop_location)? {
+        for linked_quest in self.link_to_drop_text_quests(DroppedLoot::Item(item_id), drop_location)? {
             report.quest_loot_link_count += 1;
             if linked_quest.is_wiki_quest {
                 report.drop_text_wiki_quest_link_count += 1;

@@ -5,7 +5,7 @@ use crate::map::drop_location::{
     reward_giver_name, saga_tier_credited_to, segment_ranges, segment_spanning,
 };
 use anyhow::Result;
-use ddo_model::enums::{LootType, RowSource, SagaTier};
+use ddo_model::enums::{DropSourceKind, LootType, RowSource, SagaTier};
 use rusqlite::{params, Connection, Transaction};
 use std::ops::Range;
 
@@ -88,7 +88,10 @@ impl DropTextLinker {
                 reward_giver_links.push(RewardGiverLink {
                     table,
                     reward_giver_id: reward_giver.id,
-                    tier: saga_tier_credited_to(segment, &reward_giver.name),
+                    tier: match table {
+                        QuestSeriesTable::Sagas => saga_tier_credited_to(segment, &reward_giver.name),
+                        QuestSeriesTable::QuestChains => None,
+                    },
                     is_rare: marks_rare_loot(segment),
                 });
             }
@@ -204,63 +207,140 @@ fn reward_givers_longest_name_first(db: &Connection, sql: &str) -> Result<Vec<Dr
 }
 
 #[derive(Clone, Copy)]
-pub(super) enum QuestLootTable {
-    Items,
-    Augments,
+pub(super) enum DropSource {
+    Quest(i64),
+    QuestChain(i64),
+    Saga(i64),
 }
 
-impl QuestLootTable {
-    pub(super) fn insert_link_unless_linked_sql(self) -> &'static str {
+impl DropSource {
+    fn kind(self) -> DropSourceKind {
         match self {
-            Self::Items => {
-                "INSERT INTO quest_loot (quest_id, item_id, loot_type, chest) SELECT ?1, ?2, ?3, ?4
-                  WHERE NOT EXISTS (SELECT 1 FROM quest_loot WHERE quest_id = ?1 AND item_id = ?2)"
-            }
-            Self::Augments => {
-                "INSERT INTO quest_augment_loot (quest_id, augment_id, loot_type, chest) SELECT ?1, ?2, ?3, ?4
-                  WHERE NOT EXISTS (SELECT 1 FROM quest_augment_loot WHERE quest_id = ?1 AND augment_id = ?2)"
-            }
+            Self::Quest(_) => DropSourceKind::Quest,
+            Self::QuestChain(_) => DropSourceKind::QuestChain,
+            Self::Saga(_) => DropSourceKind::Saga,
         }
     }
 
-    pub(super) fn insert_link_unless_linked_as_sql(self) -> &'static str {
+    fn id_if(self, kind: DropSourceKind) -> Option<i64> {
+        let (Self::Quest(id) | Self::QuestChain(id) | Self::Saga(id)) = self;
+        (self.kind() == kind).then_some(id)
+    }
+}
+
+#[derive(Clone, Copy)]
+pub(super) enum DroppedLoot {
+    Item(i64),
+    Augment(i64),
+}
+
+impl DroppedLoot {
+    fn item_id(self) -> Option<i64> {
         match self {
-            Self::Items => {
-                "INSERT OR IGNORE INTO quest_loot (quest_id, item_id, loot_type, chest) VALUES (?1, ?2, ?3, ?4)"
-            }
-            Self::Augments => {
-                "INSERT OR IGNORE INTO quest_augment_loot (quest_id, augment_id, loot_type, chest) VALUES (?1, ?2, ?3, ?4)"
-            }
+            Self::Item(id) => Some(id),
+            Self::Augment(_) => None,
         }
     }
 
-    pub(super) fn mark_rare_sql(self) -> &'static str {
+    fn augment_id(self) -> Option<i64> {
         match self {
-            Self::Items => {
-                "UPDATE quest_loot SET is_rare = 1, chest = CASE loot_type WHEN 'reward' THEN NULL ELSE COALESCE(chest, ?3) END WHERE quest_id = ?1 AND item_id = ?2
-                    AND (loot_type <> 'reward' OR NOT EXISTS (SELECT 1 FROM quest_loot dropped
-                          WHERE dropped.quest_id = ?1 AND dropped.item_id = ?2 AND dropped.loot_type <> 'reward'))"
-            }
-            Self::Augments => {
-                "UPDATE quest_augment_loot SET is_rare = 1, chest = CASE loot_type WHEN 'reward' THEN NULL ELSE COALESCE(chest, ?3) END WHERE quest_id = ?1 AND augment_id = ?2
-                    AND (loot_type <> 'reward' OR NOT EXISTS (SELECT 1 FROM quest_augment_loot dropped
-                          WHERE dropped.quest_id = ?1 AND dropped.augment_id = ?2 AND dropped.loot_type <> 'reward'))"
-            }
+            Self::Item(_) => None,
+            Self::Augment(id) => Some(id),
+        }
+    }
+}
+
+pub(super) struct LootDrop<'a> {
+    pub(super) source: DropSource,
+    pub(super) loot: DroppedLoot,
+    pub(super) loot_type: Option<LootType>,
+    pub(super) is_rare: bool,
+    pub(super) chest: Option<&'a str>,
+    pub(super) tier: Option<SagaTier>,
+}
+
+impl LootDrop<'_> {
+    pub(super) fn from_quest(quest_id: i64, loot: DroppedLoot, loot_type: LootType) -> Self {
+        Self {
+            source: DropSource::Quest(quest_id),
+            loot,
+            loot_type: Some(loot_type),
+            is_rare: false,
+            chest: None,
+            tier: None,
         }
     }
 
-    fn insert_link_sql(self) -> &'static str {
-        match self {
-            Self::Items => {
-                "INSERT INTO quest_loot (quest_id, item_id, loot_type, is_rare, chest) VALUES (?1, ?2, ?3, ?4, ?5)
-                 ON CONFLICT (quest_id, item_id, loot_type) DO UPDATE SET is_rare = 1 WHERE excluded.is_rare > quest_loot.is_rare"
-            }
-            Self::Augments => {
-                "INSERT INTO quest_augment_loot (quest_id, augment_id, loot_type, is_rare, chest) VALUES (?1, ?2, ?3, ?4, ?5)
-                 ON CONFLICT (quest_id, augment_id, loot_type) DO UPDATE SET is_rare = 1 WHERE excluded.is_rare > quest_augment_loot.is_rare"
-            }
-        }
+    fn execute(&self, transaction: &Transaction, sql: &str) -> Result<usize> {
+        Ok(transaction.execute(
+            sql,
+            params![
+                self.source.kind().as_str(),
+                self.source.id_if(DropSourceKind::Quest),
+                self.source.id_if(DropSourceKind::QuestChain),
+                self.source.id_if(DropSourceKind::Saga),
+                self.source.id_if(DropSourceKind::AdventurePack),
+                self.loot.item_id(),
+                self.loot.augment_id(),
+                self.loot_type.map(LootType::as_str),
+                self.is_rare,
+                self.chest,
+                self.tier.map(SagaTier::as_str),
+            ],
+        )?)
     }
+}
+
+const DROP_COLUMNS: &str =
+    "drops (source_kind, quest_id, chain_id, saga_id, pack_id, item_id, augment_id, loot_type, is_rare, chest, tier)";
+const DROP_VALUES: &str = "?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11";
+const SAME_SOURCE_AND_LOOT: &str = "source_kind = ?1 AND quest_id IS ?2 AND chain_id IS ?3 AND saga_id IS ?4
+    AND pack_id IS ?5 AND item_id IS ?6 AND augment_id IS ?7";
+const DROP_UNIQUE_KEY: &str = "source_kind, COALESCE(quest_id, chain_id, saga_id, pack_id), COALESCE(item_id, 0),
+    COALESCE(augment_id, 0), COALESCE(loot_type, ''), COALESCE(tier, '')";
+
+pub(super) fn insert_drop(transaction: &Transaction, loot_drop: &LootDrop) -> Result<usize> {
+    loot_drop.execute(
+        transaction,
+        &format!(
+            "INSERT INTO {DROP_COLUMNS} VALUES ({DROP_VALUES})
+             ON CONFLICT ({DROP_UNIQUE_KEY}) DO UPDATE SET is_rare = 1 WHERE excluded.is_rare > drops.is_rare"
+        ),
+    )
+}
+
+pub(super) fn insert_drop_unless_loot_drops_there(transaction: &Transaction, loot_drop: &LootDrop) -> Result<usize> {
+    loot_drop.execute(
+        transaction,
+        &format!(
+            "INSERT INTO {DROP_COLUMNS} SELECT {DROP_VALUES}
+              WHERE NOT EXISTS (SELECT 1 FROM drops WHERE {SAME_SOURCE_AND_LOOT})"
+        ),
+    )
+}
+
+pub(super) fn insert_drop_unless_dropped_as(transaction: &Transaction, loot_drop: &LootDrop) -> Result<usize> {
+    loot_drop.execute(
+        transaction,
+        &format!("INSERT INTO {DROP_COLUMNS} VALUES ({DROP_VALUES}) ON CONFLICT ({DROP_UNIQUE_KEY}) DO NOTHING"),
+    )
+}
+
+pub(super) fn mark_quest_drop_rare(
+    transaction: &Transaction,
+    quest_id: i64,
+    loot: DroppedLoot,
+    chest: Option<&str>,
+) -> Result<usize> {
+    let same_quest_and_loot = "source_kind = 'quest' AND quest_id = ?1 AND item_id IS ?2 AND augment_id IS ?3";
+    Ok(transaction.execute(
+        &format!(
+            "UPDATE drops SET is_rare = 1, chest = CASE loot_type WHEN 'reward' THEN NULL ELSE COALESCE(chest, ?4) END
+              WHERE {same_quest_and_loot}
+                AND (loot_type <> 'reward' OR NOT EXISTS (SELECT 1 FROM drops WHERE {same_quest_and_loot} AND loot_type <> 'reward'))"
+        ),
+        params![quest_id, loot.item_id(), loot.augment_id(), chest],
+    )?)
 }
 
 pub(super) struct LinkedDropTextQuest {
@@ -268,41 +348,21 @@ pub(super) struct LinkedDropTextQuest {
     pub(super) is_newly_rare: bool,
 }
 
-pub(super) struct QuestLootLink<'a> {
-    pub(super) table: QuestLootTable,
-    pub(super) quest_id: i64,
-    pub(super) loot_id: i64,
-    pub(super) loot_type: LootType,
-    pub(super) is_rare: bool,
-    pub(super) chest: Option<&'a str>,
-}
-
-pub(super) fn insert_quest_loot_link(transaction: &Transaction, link: &QuestLootLink) -> Result<usize> {
-    Ok(transaction.execute(
-        link.table.insert_link_sql(),
-        params![link.quest_id, link.loot_id, link.loot_type.as_str(), link.is_rare, link.chest],
-    )?)
-}
-
 impl DropTextLinker {
     pub(super) fn link_loot_to_quests_named_in(
         &self,
         transaction: &Transaction,
-        table: QuestLootTable,
-        loot_id: i64,
+        loot: DroppedLoot,
         drop_text: &str,
     ) -> Result<Vec<LinkedDropTextQuest>> {
         let mut linked_quests = Vec::new();
         for quest_link in self.quest_links_in(drop_text) {
-            let changed_row_count = insert_quest_loot_link(
+            let changed_row_count = insert_drop(
                 transaction,
-                &QuestLootLink {
-                    table,
-                    quest_id: quest_link.quest_id,
-                    loot_id,
-                    loot_type: quest_link.loot_type,
+                &LootDrop {
                     is_rare: quest_link.is_rare,
                     chest: quest_link.chest.as_deref(),
+                    ..LootDrop::from_quest(quest_link.quest_id, loot, quest_link.loot_type)
                 },
             )?;
             linked_quests.push(LinkedDropTextQuest {
@@ -322,12 +382,16 @@ impl TableWriter<'_> {
     ) -> Result<Vec<QuestSeriesTable>> {
         let mut linked_tables = Vec::new();
         for reward_giver_link in self.drop_text_linker.reward_giver_links_in(drop_text) {
-            let changed_row_count = reward_giver_link.table.insert_reward(
+            let changed_row_count = insert_drop(
                 self.transaction,
-                reward_giver_link.reward_giver_id,
-                item_id,
-                reward_giver_link.is_rare,
-                reward_giver_link.tier,
+                &LootDrop {
+                    source: reward_giver_link.table.drop_source(reward_giver_link.reward_giver_id),
+                    loot: DroppedLoot::Item(item_id),
+                    loot_type: None,
+                    is_rare: reward_giver_link.is_rare,
+                    chest: None,
+                    tier: reward_giver_link.tier,
+                },
             )?;
             if changed_row_count > 0 {
                 linked_tables.push(reward_giver_link.table);
@@ -338,10 +402,9 @@ impl TableWriter<'_> {
 
     pub(super) fn link_to_drop_text_quests(
         &self,
-        table: QuestLootTable,
-        loot_id: i64,
+        loot: DroppedLoot,
         drop_text: &str,
     ) -> Result<Vec<LinkedDropTextQuest>> {
-        self.drop_text_linker.link_loot_to_quests_named_in(self.transaction, table, loot_id, drop_text)
+        self.drop_text_linker.link_loot_to_quests_named_in(self.transaction, loot, drop_text)
     }
 }

@@ -109,6 +109,12 @@ impl QuestLoot {
                     );
                 }
             }
+            if listed_drop.loot_type() == LootType::Reward && listed_drop.chest().is_some() {
+                bail!(
+                    "listed drop {:?}: a reward comes from the quest's end, not from a chest; remove its chest",
+                    listed_drop.name()
+                );
+            }
         }
         Ok(())
     }

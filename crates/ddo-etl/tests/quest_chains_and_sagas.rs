@@ -67,8 +67,8 @@ fn writes_a_wiki_quest_chain_with_its_pack_quests_in_order_and_rewards() {
     assert_eq!(
         strings(
             &db,
-            "SELECT i.name || ' ' || cr.is_rare FROM quest_chain_rewards cr JOIN items i ON i.id = cr.item_id
-              WHERE i.name <> 'Acrobat''s Ring' ORDER BY i.name"
+            "SELECT i.name || ' ' || cr.is_rare FROM drops cr JOIN items i ON i.id = cr.item_id
+              WHERE cr.source_kind = 'quest_chain' AND i.name <> 'Acrobat''s Ring' ORDER BY i.name"
         ),
         ["Docent of Defiance 0", "Kundarak Delving Boots 1"]
     );
@@ -93,7 +93,7 @@ fn writes_a_wiki_saga_whose_rewards_carry_their_tier() {
     assert_eq!(
         strings(
             &db,
-            "SELECT i.name || ' ' || COALESCE(sr.tier, '-') || ' ' || sr.is_rare FROM saga_rewards sr
+            "SELECT i.name || ' ' || COALESCE(sr.tier, '-') || ' ' || sr.is_rare FROM drops sr
                JOIN items i ON i.id = sr.item_id JOIN sagas s ON s.id = sr.saga_id
               WHERE s.name = 'Masterminds of Sharn' AND i.source = 'maetrim' AND i.name <> 'Band of Diani ir''Wynarn'
               ORDER BY i.name, sr.tier"
@@ -178,7 +178,7 @@ fn links_his_items_to_the_quest_chain_their_drop_text_credits_with_its_end_rewar
     assert_eq!(
         reward_rows(
             &db,
-            "SELECT c.name || ' / ' || i.name || ' ' || cr.is_rare FROM quest_chain_rewards cr
+            "SELECT c.name || ' / ' || i.name || ' ' || cr.is_rare FROM drops cr
                JOIN quest_chains c ON c.id = cr.chain_id JOIN items i ON i.id = cr.item_id
               WHERE i.name = 'Acrobat''s Ring'"
         ),
@@ -194,7 +194,7 @@ fn links_his_items_to_the_saga_and_tier_their_drop_text_credits() {
     assert_eq!(
         reward_rows(
             &db,
-            "SELECT s.name || ' / ' || i.name || ' ' || COALESCE(sr.tier, '-') FROM saga_rewards sr
+            "SELECT s.name || ' / ' || i.name || ' ' || COALESCE(sr.tier, '-') FROM drops sr
                JOIN sagas s ON s.id = sr.saga_id JOIN items i ON i.id = sr.item_id
               WHERE i.name IN ('Band of Diani ir''Wynarn', 'Ring of the Kraken') ORDER BY i.name"
         ),
@@ -205,7 +205,7 @@ fn links_his_items_to_the_saga_and_tier_their_drop_text_credits() {
     assert_eq!(
         reward_rows(
             &db,
-            "SELECT q.name || ' ' || ql.loot_type FROM quest_loot ql JOIN quests q ON q.id = ql.quest_id
+            "SELECT q.name || ' ' || ql.loot_type FROM drops ql JOIN quests q ON q.id = ql.quest_id
                JOIN items i ON i.id = ql.item_id WHERE i.name = 'Ring of the Kraken'"
         ),
         ["Saltmarsh chest"],
@@ -216,7 +216,25 @@ fn links_his_items_to_the_saga_and_tier_their_drop_text_credits() {
 #[test]
 fn leaves_reward_text_naming_no_recorded_chain_or_saga_unlinked() {
     let (db, report) = built_with(&WikiOverrides::default()).unwrap();
-    assert_eq!(strings(&db, "SELECT COUNT(*) || '' FROM quest_chain_rewards"), ["0"]);
-    assert_eq!(strings(&db, "SELECT COUNT(*) || '' FROM saga_rewards"), ["0"]);
+    assert_eq!(strings(&db, "SELECT COUNT(*) || '' FROM drops WHERE source_kind = 'quest_chain'"), ["0"]);
+    assert_eq!(strings(&db, "SELECT COUNT(*) || '' FROM drops WHERE source_kind = 'saga'"), ["0"]);
     assert_eq!((report.drop_text_quest_chain_reward_count, report.drop_text_saga_reward_count), (0, 0));
+}
+
+#[test]
+fn gives_a_quest_chain_reward_no_tier_when_its_segment_names_one() {
+    let chain_text =
+        "[[chain]]\nname = \"Masterminds of Sharn\"\npage = \"https://ddowiki.com/page/Masterminds_of_Sharn\"\n\
+         read = \"2026-10-02\"\nquests = [\"The Grotto\"]\n";
+    let (db, report) = built_with_files(&[("quest_chains.toml", chain_text)]).unwrap();
+    assert_eq!(
+        strings(
+            &db,
+            "SELECT i.name || ' ' || COALESCE(cr.tier, '-') FROM drops cr JOIN items i ON i.id = cr.item_id
+              WHERE cr.source_kind = 'quest_chain'"
+        ),
+        ["Band of Diani ir'Wynarn -"],
+        "'Masterminds of Sharn saga: Epic end reward' names a tier only a saga reward carries"
+    );
+    assert_eq!(report.drop_text_quest_chain_reward_count, 1);
 }

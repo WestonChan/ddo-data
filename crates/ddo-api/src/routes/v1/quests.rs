@@ -109,7 +109,7 @@ async fn quest_detail(State(state): State<AppState>, Path(id): Path<i64>) -> Res
             quest["items"] = Value::Array(loot_rows(
                 db,
                 "SELECT i.id, i.name, loot.loot_type, loot.is_rare, loot.chest, i.minimum_level, es.name AS slot
-                   FROM quest_loot loot JOIN items i ON i.id = loot.item_id
+                   FROM drops loot JOIN items i ON i.id = loot.item_id
                    LEFT JOIN equipment_slots es ON es.id = i.slot_id
                   WHERE loot.quest_id = ?1 ORDER BY i.name, i.id, loot.loot_type",
                 id,
@@ -119,7 +119,7 @@ async fn quest_detail(State(state): State<AppState>, Path(id): Path<i64>) -> Res
             quest["augments"] = Value::Array(loot_rows(
                 db,
                 "SELECT a.id, a.name, loot.loot_type, loot.is_rare, loot.chest, a.family, a.min_level
-                   FROM quest_augment_loot loot JOIN augments a ON a.id = loot.augment_id
+                   FROM drops loot JOIN augments a ON a.id = loot.augment_id
                   WHERE loot.quest_id = ?1 ORDER BY a.name, a.id, loot.loot_type",
                 id,
             )?);
@@ -138,7 +138,6 @@ fn loot_rows(db: &rusqlite::Connection, sql: &str, quest_id: i64) -> Result<Vec<
 
 pub(super) fn quests_dropping_via(
     db: &rusqlite::Connection,
-    loot_table: &str,
     loot_id_column: &str,
     loot_id: i64,
 ) -> Result<Vec<Value>, ApiError> {
@@ -147,7 +146,7 @@ pub(super) fn quests_dropping_via(
         &format!(
             "SELECT q.id, q.name, q.level, q.epic_level, q.is_raid, q.difficulties, q.is_free_to_play, q.source, ap.name AS pack,
                     pt.name AS patron, loot.loot_type, loot.is_rare, loot.chest
-               FROM {loot_table} loot JOIN quests q ON q.id = loot.quest_id
+               FROM drops loot JOIN quests q ON q.id = loot.quest_id
                LEFT JOIN adventure_packs ap ON ap.id = q.pack_id LEFT JOIN patrons pt ON pt.id = q.patron_id
               WHERE loot.{loot_id_column} = ?1 ORDER BY q.name, loot.loot_type"
         ),
