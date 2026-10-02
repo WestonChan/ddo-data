@@ -3,7 +3,7 @@ use ddo_etl::map::bonus_type::parse_buff_bonus_type;
 use ddo_etl::map::buff::{BuffMap, ResolvedBuff};
 use ddo_etl::map::effect::EffectMap;
 use ddo_etl::map::item_version::names_legacy_version;
-use ddo_etl::map::placement::{placement_of, Placement};
+use ddo_etl::map::placement::{placement_of, CosmeticExclusion, Placement};
 use ddo_etl::xml::effect::Effect;
 use ddo_etl::xml::item_buffs::{self, ItemBuffDefinition};
 use ddo_etl::xml::items::{Buff, EquipmentSlotTag, EquipmentSlots};
@@ -61,7 +61,7 @@ fn placement_from_slot_tags_and_weapon_type() {
     .unwrap();
     assert_eq!(
         one_handed,
-        Some(Placement {
+        Ok(Placement {
             equipment_slot: EquipmentSlot::MainHand,
             category: ItemCategory::Weapon,
             handedness: Some(Handedness::OneHanded),
@@ -99,10 +99,15 @@ fn placement_from_slot_tags_and_weapon_type() {
 
     assert_eq!(
         placement_of(&equipment_slots(&[EquipmentSlotTag::CosmeticHelm]), None, None).unwrap(),
-        None,
+        Err(CosmeticExclusion::CosmeticOnlySlots),
         "cosmetic-only items are excluded"
     );
-    assert_eq!(placement_of(&equipment_slots(&[]), None, None).unwrap(), None);
+    assert_eq!(placement_of(&equipment_slots(&[]), None, None).unwrap(), Err(CosmeticExclusion::CosmeticOnlySlots));
+    assert_eq!(
+        placement_of(&equipment_slots(&[EquipmentSlotTag::Weapon2]), Some("Cosmetic Shield"), None).unwrap(),
+        Err(CosmeticExclusion::CosmeticShield),
+        "a cosmetic shield in the off-hand slot is excluded"
+    );
     assert!(
         placement_of(&equipment_slots(&[EquipmentSlotTag::Weapon1]), Some("Lightsaber"), None).is_err(),
         "unknown weapon type is an error"

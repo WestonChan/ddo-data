@@ -241,6 +241,13 @@ fn rejects_a_vendor_or_event_naming_an_item_or_pack_his_files_lack_or_listing_an
         unknown_event_item.contains("events.toml") && unknown_event_item.contains("No Such Item"),
         "{unknown_event_item}"
     );
+    let excluded_item =
+        built_with_fixture_wiki_and("events.toml", &event.replace("No Such Item", "Cosmetic Jackorb")).unwrap_err();
+    assert!(
+        excluded_item.contains("Cosmetic Jackorb")
+            && excluded_item.contains("left out of the items on purpose (cosmetic shield)"),
+        "{excluded_item}"
+    );
     let unknown_field = built_with_fixture_wiki_and("events.toml", &event.replace("items", "rewards")).unwrap_err();
     assert!(unknown_field.contains("rewards"), "{unknown_field}");
 }

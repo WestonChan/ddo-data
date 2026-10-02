@@ -38,10 +38,20 @@ fn item_id(db: &Connection, name: &str) -> i64 {
 }
 
 #[test]
+fn excludes_cosmetic_shields_from_items() {
+    let (db, _) = built_fixture_db();
+    assert_eq!(count(&db, "SELECT COUNT(*) FROM items WHERE name = 'Cosmetic Jackorb'"), 0);
+    let reason: String = db
+        .query_row("SELECT reason FROM excluded_items WHERE name = 'Cosmetic Jackorb'", [], |r| r.get(0))
+        .expect("Cosmetic Jackorb is recorded in excluded_items");
+    assert_eq!(reason, "cosmetic shield");
+}
+
+#[test]
 fn builds_items_and_skips_cosmetics() {
     let (db, report) = built_fixture_db();
     assert_eq!(report.written_item_count, 50);
-    assert_eq!(report.skipped_cosmetic_item_count, 1);
+    assert_eq!(report.skipped_cosmetic_item_count, 2, "the cosmetic helm and the cosmetic shield");
     assert_eq!(count(&db, "SELECT COUNT(*) FROM items WHERE provenance = 'maetrim'"), 50);
     assert_eq!(count(&db, "SELECT COUNT(*) FROM items WHERE name = '17th Anniversary Dark Helm'"), 0);
     let reason: String = db

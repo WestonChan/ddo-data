@@ -12,6 +12,21 @@ pub struct Placement {
     pub item_type: Option<String>,
 }
 
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub enum CosmeticExclusion {
+    CosmeticOnlySlots,
+    CosmeticShield,
+}
+
+impl CosmeticExclusion {
+    pub const fn reason(self) -> &'static str {
+        match self {
+            Self::CosmeticOnlySlots => "cosmetic-only slots",
+            Self::CosmeticShield => "cosmetic shield",
+        }
+    }
+}
+
 impl Placement {
     pub fn weapon_type(&self) -> Option<&'static WeaponType> {
         self.handedness.and(self.item_type.as_deref()).and_then(WeaponType::by_name)
@@ -22,11 +37,11 @@ pub fn placement_of(
     equipment_slots: &EquipmentSlots,
     weapon_name: Option<&str>,
     armor_name: Option<&str>,
-) -> Result<Option<Placement>> {
+) -> Result<Result<Placement, CosmeticExclusion>> {
     let wearable_tags: Vec<EquipmentSlotTag> =
         equipment_slots.tags.iter().copied().filter(|t| !t.is_cosmetic()).collect();
     let Some(&first_tag) = wearable_tags.first() else {
-        return Ok(None);
+        return Ok(Err(CosmeticExclusion::CosmeticOnlySlots));
     };
     let has_tag = |tag: EquipmentSlotTag| wearable_tags.contains(&tag);
 
@@ -44,6 +59,9 @@ pub fn placement_of(
                 "unknown weapon type {upstream_weapon_name:?}; add it to ddo-model's WEAPON_TYPES or to [weapon_aliases]"
             );
         };
+        if weapon_type.is_cosmetic() {
+            return Ok(Err(CosmeticExclusion::CosmeticShield));
+        }
         let (equipment_slot, category, handedness) = if weapon_type.is_shield {
             (EquipmentSlot::OffHand, ItemCategory::Shield, Handedness::OffHand)
         } else if weapon_type.name == "Rune Arm" {
@@ -57,7 +75,7 @@ pub fn placement_of(
         } else {
             (EquipmentSlot::MainHand, ItemCategory::Weapon, Handedness::TwoHanded)
         };
-        return Ok(Some(Placement {
+        return Ok(Ok(Placement {
             equipment_slot,
             category,
             handedness: Some(handedness),
@@ -82,5 +100,5 @@ pub fn placement_of(
         cosmetic_tag => unreachable!("cosmetic tags were filtered: {cosmetic_tag:?}"),
     };
     let item_type = if first_tag == EquipmentSlotTag::Armor { armor_name.map(str::to_string) } else { None };
-    Ok(Some(Placement { equipment_slot, category, handedness: None, item_type }))
+    Ok(Ok(Placement { equipment_slot, category, handedness: None, item_type }))
 }

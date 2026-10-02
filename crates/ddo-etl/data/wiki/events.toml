@@ -163,9 +163,6 @@ name = "The Night Revels"
 page = "https://ddowiki.com/page/The_Night_Revels"
 read = "2026-10-02"
 items = [
-  "Cosmetic Jackorb",
-  "Cosmetic Reaper's Shield",
-  "Cosmetic Jawbreaker",
   "The Astral Projector",
   "The Epic Astral Projector",
   "Death's Smile",

@@ -84,6 +84,10 @@ impl WeaponType {
         matches!(self.id, 7 | 39 | 42 | 43 | 44)
     }
 
+    pub const fn is_cosmetic(&self) -> bool {
+        self.id == 48
+    }
+
     pub const fn is_ranged(&self) -> bool {
         matches!(self.id, 10 | 16 | 23 | 27 | 34 | 35 | 37)
     }

@@ -1,7 +1,7 @@
 use super::drop_text::{insert_source_link, DroppedLoot, LootSource, SourceLink};
 use super::BuildReport;
 use crate::wiki::WikiOverrides;
-use anyhow::{Context, Result};
+use anyhow::{bail, Context, Result};
 use ddo_model::enums::Provenance;
 use rusqlite::{params, OptionalExtension, Transaction};
 
@@ -69,9 +69,20 @@ pub(super) fn write_wiki_vendor_and_event_items(
 }
 
 fn listed_item_id(transaction: &Transaction, citation: &str, item_name: &str) -> Result<i64> {
-    id_named(transaction, "SELECT id FROM items WHERE name = ?1", item_name)?.with_context(|| {
-        format!("{citation}: item {item_name:?} is not in Maetrim's items or a wiki item; names must match exactly")
-    })
+    if let Some(item_id) = id_named(transaction, "SELECT id FROM items WHERE name = ?1", item_name)? {
+        return Ok(item_id);
+    }
+    let exclusion_reason: Option<String> = transaction
+        .query_row("SELECT reason FROM excluded_items WHERE name = ?1", params![item_name], |row| row.get(0))
+        .optional()?;
+    match exclusion_reason {
+        Some(reason) => bail!(
+            "{citation}: item {item_name:?} is left out of the items on purpose ({reason}); drop it from the list"
+        ),
+        None => {
+            bail!("{citation}: item {item_name:?} is not in Maetrim's items or a wiki item; names must match exactly")
+        }
+    }
 }
 
 fn insert_listed_item(transaction: &Transaction, source: LootSource, item_id: i64) -> Result<usize> {

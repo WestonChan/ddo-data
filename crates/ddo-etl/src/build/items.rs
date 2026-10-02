@@ -75,14 +75,16 @@ impl ArmorStatsRow {
 
 impl TableWriter<'_> {
     pub(super) fn write_item(&mut self, item: &Item, report: &mut BuildReport) -> Result<()> {
-        let Some(placement) = placement_of(&item.equipment_slots, item.weapon.as_deref(), item.armor.as_deref())?
-        else {
-            self.transaction.execute(
-                "INSERT OR REPLACE INTO excluded_items (name, reason) VALUES (?1, ?2)",
-                params![item.name.trim(), "cosmetic-only slots"],
-            )?;
-            report.skipped_cosmetic_item_count += 1;
-            return Ok(());
+        let placement = match placement_of(&item.equipment_slots, item.weapon.as_deref(), item.armor.as_deref())? {
+            Ok(placement) => placement,
+            Err(cosmetic_exclusion) => {
+                self.transaction.execute(
+                    "INSERT OR REPLACE INTO excluded_items (name, reason) VALUES (?1, ?2)",
+                    params![item.name.trim(), cosmetic_exclusion.reason()],
+                )?;
+                report.skipped_cosmetic_item_count += 1;
+                return Ok(());
+            }
         };
         let placement = &placement;
         let mut enhancement_bonus: Option<i64> = None;

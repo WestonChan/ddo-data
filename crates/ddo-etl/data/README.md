@@ -11,7 +11,7 @@ The vocabularies the ETL maps Maetrim's DDOBuilderV2 files through. Each is embe
 
 ## Items the build leaves out or flags
 
-His `Items/` files carry some items that a player cannot get. The build writes none of an item whose slots are all cosmetic, and records it in `excluded_items` with its reason (`cosmetic-only slots`), so a consumer can tell an item left out on purpose from one that is missing.
+His `Items/` files carry some items that a player cannot get or that carry nothing a build uses. The build writes none of an item whose slots are all cosmetic, nor of a cosmetic shield (his `Cosmetic Shield` weapon type in the off-hand, which has no shield bonus, armour or enchantment), and records each in `excluded_items` with its reason (`cosmetic-only slots` or `cosmetic shield`), so a consumer can tell an item left out on purpose from one that is missing. A wiki vendor or event that lists an excluded item fails the build, naming the reason, so the listing drops it.
 
 An item that once dropped but no longer does is written in full and flagged instead: `items.is_legacy = 1`. The build flags an item when its `DropLocation` has at least one segment (the text between `;` or line breaks) and every segment names a text in `legacy_drop_sources.toml` and no quest, quest chain, saga or adventure pack of his or of a wiki file. An item with any other segment is current, and its legacy segments simply link nothing. A legacy text that later becomes a quest's name again (a quest correction renaming one, say) is a current quest in every segment that names it.
 
