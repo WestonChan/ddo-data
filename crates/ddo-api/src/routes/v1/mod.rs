@@ -27,7 +27,7 @@ use utoipa_axum::router::OpenApiRouter;
         description = "Dungeons & Dragons Online game data, parsed from Maetrim's DDOBuilderV2 data files and served \
                        read-only. Items, augments, set bonuses, filigrees, sentient gems, feats, stances, guild \
                        and optional buffs, races, classes, enhancement trees, spells and clickies, plus the \
-                       reference vocabularies they share, and the quest facts and crafting recipes read from ddowiki.\n\n\
+                       reference vocabularies they share, and the quest facts, quest chains, sagas and crafting recipes read from ddowiki.\n\n\
                        **Caching.** The dataset is rebuilt only when DDOBuilderV2 changes, so every response is \
                        immutable for a dataset version. Each carries a strong `ETag`, a day-long `Cache-Control` and \
                        an `X-Dataset-Version` header naming the DDOBuilderV2 commit; send `If-None-Match` and expect \
@@ -58,7 +58,7 @@ use utoipa_axum::router::OpenApiRouter;
         (name = "enhancements", description = "Enhancement, epic destiny and reaper trees with every enhancement and selection"),
         (name = "spells", description = "Spells with damage, saves and class lists, and the clickies items grant"),
         (name = "bonuses", description = "The stats a bonus can apply to and the bonus types that decide whether two bonuses stack"),
-        (name = "quests", description = "Quests, challenges, adventure packs and favor patrons: the sources items drop from, with each quest's free-to-play status, legendary level, zone, quest giver and flagging from ddowiki, the quests DDOBuilderV2 lacks read whole from ddowiki (`source` = `wiki`), and the quest chains and sagas from ddowiki whose NPCs give end rewards after several quests"),
+        (name = "quests", description = "Quests, challenges, adventure packs and favor patrons: the sources items drop from, with each quest's free-to-play status, legendary level, zone, quest giver and flagging from ddowiki, and the quests DDOBuilderV2 lacks read whole from ddowiki (`source` = `wiki`). Quest chains and sagas from ddowiki are listed here too, each with its quests and the end rewards its NPC gives once they are done"),
         (name = "bulk", description = "The whole dataset as one SQLite download")
     )
 )]

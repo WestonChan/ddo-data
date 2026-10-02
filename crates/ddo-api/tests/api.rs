@@ -628,6 +628,16 @@ async fn openapi_carries_a_real_example_for_every_json_response() {
 }
 
 #[tokio::test]
+async fn item_and_quest_examples_show_the_quest_chains_they_belong_to() {
+    let (_, _, spec) = get("/v1/openapi.json").await;
+    for path in ["/v1/items/{id}", "/v1/quests/{id}"] {
+        let example = &spec["paths"][path]["get"]["responses"]["200"]["content"]["application/json"]["example"];
+        let chain_count = example["quest_chains"].as_array().map_or(0, Vec::len);
+        assert!(chain_count > 0, "GET {path}: example belongs to no quest chain");
+    }
+}
+
+#[tokio::test]
 async fn each_api_version_has_its_own_docs_and_the_bare_paths_point_at_the_latest() {
     let (status, _, spec) = get("/v1/openapi.json").await;
     assert_eq!(status, StatusCode::OK);

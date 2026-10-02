@@ -1,97 +1,68 @@
 {
   "accepts_sentience": false,
   "armor": null,
-  "augment_slots": [
-    {
-      "family": "lamordia",
-      "label": "lamordia: melancholic (accessory)",
-      "options": [],
-      "qualifier": "accessory",
-      "slot_type_id": 21,
-      "sort_order": 0,
-      "variant": "melancholic"
-    },
-    {
-      "family": "lamordia",
-      "label": "lamordia: dolorous (accessory)",
-      "options": [],
-      "qualifier": "accessory",
-      "slot_type_id": 22,
-      "sort_order": 1,
-      "variant": "dolorous"
-    },
-    {
-      "family": "standard",
-      "label": "yellow",
-      "options": [],
-      "qualifier": null,
-      "slot_type_id": 6,
-      "sort_order": 2,
-      "variant": "yellow"
-    }
-  ],
+  "augment_slots": [],
   "bonuses": [
     {
-      "bonus_type": "Competence",
-      "description": "Competence Listen 10: Passive: 10 Competence bonus to the Listen skill.",
-      "id": 632,
-      "name": "Listen +10",
-      "stat": "Listen",
-      "stat_category": "skill",
+      "bonus_type": "Enhancement",
+      "description": null,
+      "id": 289,
+      "name": "Movement Speed +10",
+      "stat": "Movement Speed",
+      "stat_category": "other",
       "value": 10,
+      "value2": null
+    },
+    {
+      "bonus_type": "Competence",
+      "description": "Competence Jump 7: Passive: 7 Competence bonus to the Jump skill.",
+      "id": 584,
+      "name": "Jump +7",
+      "stat": "Jump",
+      "stat_category": "skill",
+      "value": 7,
+      "value2": null
+    },
+    {
+      "bonus_type": "Competence",
+      "description": "Competence Tumble 7: Passive: 7 Competence bonus to the Tumble skill.",
+      "id": 585,
+      "name": "Tumble +7",
+      "stat": "Tumble",
+      "stat_category": "skill",
+      "value": 7,
       "value2": null
     }
   ],
   "category": "Jewelry",
   "clickies": [],
-  "description": "On bringing these goggles over your eyes, you see a flash of a memory: Wasting\naway in the cold, then coming to in a Form distinctly unlike your own.",
-  "drop_location": "Cold Snap, end chest",
-  "effects": [
-    {
-      "description": "Soundproof: Protects against stunning, dazing and disorientation from sound-based spells such as Soundburst and Greater Shout.",
-      "id": 59,
-      "name": "Soundproof",
-      "target": null,
-      "value": null
-    }
-  ],
+  "description": "A slightly tarnished ring with a faded engraving that must have been lost down\na sewer drain. When worn, the bearer is imbued with phenomenal agility.",
+  "drop_location": "The Lost Seekers, End reward",
+  "effects": [],
   "enhancement_bonus": null,
-  "icon": "Goggles_19",
-  "id": 497,
+  "icon": "Ring_7",
+  "id": 468,
   "is_minor_artifact": false,
   "item_type": null,
-  "material": "Steel",
-  "minimum_level": 8,
+  "material": "Gold",
+  "minimum_level": 3,
   "modifiers": [],
-  "name": "Agony's Eyes",
-  "quest_chains": [],
-  "quests": [
+  "name": "Acrobat's Ring",
+  "quest_chains": [
     {
-      "chest": "end chest",
-      "difficulties": [
-        "casual",
-        "normal",
-        "hard"
-      ],
-      "epic_level": 36,
-      "id": 239,
-      "is_free_to_play": false,
-      "is_raid": false,
+      "id": 1,
       "is_rare": false,
-      "level": 8,
-      "loot_type": "chest",
-      "name": "Cold Snap",
-      "pack": "The Chill of Ravenloft",
-      "patron": "Keepers of Lamordia",
-      "source": "maetrim"
+      "name": "The Lost Seekers",
+      "wiki_url": "https://ddowiki.com/page/The_Lost_Seekers"
     }
   ],
+  "quests": [],
   "race_required": null,
   "sagas": [],
   "set": null,
   "set_name": null,
-  "slot": "Goggles",
+  "slot": "Ring",
   "source": "maetrim",
   "weapon": null,
-  "wiki_url": "https://ddowiki.com/page/Item:Agony's_Eyes"
+  "wiki_url": "https://ddowiki.com/page/Item:Acrobat's_Ring"
 }

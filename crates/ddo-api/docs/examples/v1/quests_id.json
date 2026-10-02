@@ -1,90 +1,34 @@
 {
-  "augments": [
-    {
-      "chest": "end chest",
-      "family": "SunAndMoon",
-      "id": 1894,
-      "is_rare": false,
-      "loot_type": "chest",
-      "min_level": 1,
-      "name": "Lunar Gem of Magical Protection (Heroic)"
-    },
-    {
-      "chest": "end chest",
-      "family": "SunAndMoon",
-      "id": 2056,
-      "is_rare": false,
-      "loot_type": "chest",
-      "min_level": 30,
-      "name": "Lunar Gem of Magical Protection (Legendary)"
-    },
-    {
-      "chest": "end chest",
-      "family": "SunAndMoon",
-      "id": 1899,
-      "is_rare": false,
-      "loot_type": "chest",
-      "min_level": 1,
-      "name": "Lunar Gem of Swift Charging (Heroic)"
-    }
-  ],
-  "bestowed_by": "Jurin'ildren",
+  "augments": [],
+  "bestowed_by": "Auto-bestowed",
   "difficulties": [
+    "casual",
     "normal",
-    "hard",
-    "elite"
+    "hard"
   ],
-  "epic_level": 35,
+  "epic_level": null,
   "epic_name": null,
-  "favor": 4,
+  "favor": 3,
   "flagging": null,
-  "id": 364,
+  "id": 86,
   "is_challenge": false,
-  "is_free_to_play": false,
+  "is_free_to_play": true,
   "is_raid": false,
-  "items": [
-    {
-      "chest": "end chest",
-      "id": 975,
-      "is_rare": false,
-      "loot_type": "chest",
-      "minimum_level": 13,
-      "name": "Boots of Fleet and Fortune",
-      "slot": "Feet"
-    },
-    {
-      "chest": "end chest",
-      "id": 1131,
-      "is_rare": false,
-      "loot_type": "chest",
-      "minimum_level": 13,
-      "name": "Buckler of the Fallen Age",
-      "slot": "Off Hand"
-    },
-    {
-      "chest": "end chest",
-      "id": 1132,
-      "is_rare": true,
-      "loot_type": "chest",
-      "minimum_level": 13,
-      "name": "Buckler of the Golden Age",
-      "slot": "Off Hand"
-    }
-  ],
-  "legendary_level": 35,
-  "level": 13,
+  "items": [],
+  "legendary_level": null,
+  "level": 4,
   "max_level": null,
-  "name": "Book Burning",
-  "pack": "Magic of Myth Drannor",
-  "patron": "Cormanthor Elves",
-  "quest_chains": [],
-  "sagas": [
+  "name": "Venn's Trail: Venn's Fate",
+  "pack": "Free to Play",
+  "patron": "The Coin Lords",
+  "quest_chains": [
     {
-      "id": 8,
-      "name": "Magic of Myth Drannor",
-      "wiki_url": "https://ddowiki.com/page/Magic_of_Myth_Drannor_(Legendary)"
+      "id": 1,
+      "name": "The Lost Seekers",
+      "wiki_url": "https://ddowiki.com/page/The_Lost_Seekers"
     }
   ],
+  "sagas": [],
   "source": "maetrim",
-  "zone": "Burning Library"
+  "zone": "Clan Tunnelworm Prison"
 }
