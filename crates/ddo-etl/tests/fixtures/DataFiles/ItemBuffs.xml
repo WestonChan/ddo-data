@@ -85,6 +85,20 @@
     </Effect>
   </Buff>
   <Buff>
+    <Type>DarkRestorationLore</Type>
+    <DisplayText>%b1 Dark Restoration Lore %v1%: Passive: Your Negative, Poison and Positive spells gain a %v1% %b1 bonus to their chance to critical hit.</DisplayText>
+    <Ignore>Equipment</Ignore>
+    <Effect>
+      <Type>SpellLore</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+      <Item>Negative</Item>
+      <Item>Poison</Item>
+      <Item>Positive</Item>
+    </Effect>
+  </Buff>
+  <Buff>
     <Type>Deception</Type>
     <DisplayText>%b1 Deception %v1: %v1 %b1 bonus to hit and %v2 Damage for Sneak Attacks.</DisplayText>
     <Ignore>Enhancement</Ignore>
@@ -114,6 +128,18 @@
       <Item>Cold</Item>
       <Item>Electric</Item>
       <Item>Fire</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>EnchantmentSave</Type>
+    <DisplayText>%b1 Enchantment Save %v1: %v1 %b1 bonus to your saves versus enchantments</DisplayText>
+    <Ignore>Resistance</Ignore>
+    <Effect>
+      <Type>SaveBonus</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+      <Item>Enchantment</Item>
     </Effect>
   </Buff>
   <Buff>
@@ -186,6 +212,18 @@
     </Effect>
   </Buff>
   <Buff>
+    <Type>IllusionSave</Type>
+    <DisplayText>%b1 Illusion Save %v1: %v1 %b1 bonus to your saves versus illusions</DisplayText>
+    <Ignore>Resistance</Ignore>
+    <Effect>
+      <Type>SaveBonus</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+      <Item>Illusion</Item>
+    </Effect>
+  </Buff>
+  <Buff>
     <Type>Legendary Ice Barrier</Type>
     <DisplayText>Legendary Ice Barrier: When struck in combat, there is a small chance you will be shielded by conjured ice, preventing the next 150 Damage unless that damage is Fire. This lasts for 1 minute or until depleted.</DisplayText>
   </Buff>
@@ -220,6 +258,32 @@
     <DisplayText>Manslayer: While wearing this item, your weapon attacks gain the devastating ability to defeat a humanoid opponent with a single decisive blow. On an attack roll of 20 which is confirmed as a critical hit a humanoid target will be killed. Powerful humanoids may resist the vorpal strike and instead take 100 points of damage until they have been sufficiently weakened.</DisplayText>
   </Buff>
   <Buff>
+    <Type>MeleePower</Type>
+    <DisplayText>%b1 Melee Power %v1: This item provides a %v1 %b1 bonus to Melee Power.</DisplayText>
+    <Ignore>Enhancement</Ignore>
+    <Effect>
+      <Type>MeleePower</Type>
+      <Bonus>Enhancement</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">1</Amount>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>NegativeEnergyAbsorption</Type>
+    <DisplayText>Negative Energy Absorption: This effect absorbs negative energy and energy drain effects.</DisplayText>
+  </Buff>
+  <Buff>
+    <Type>RangedPower</Type>
+    <DisplayText>%b1 Ranged Power %v1: This item provides a %v1 %b1 bonus to Ranged Power.</DisplayText>
+    <Ignore>Enhancement</Ignore>
+    <Effect>
+      <Type>RangedPower</Type>
+      <Bonus>Enhancement</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">1</Amount>
+    </Effect>
+  </Buff>
+  <Buff>
     <Type>Rune Arm Charge Rate</Type>
     <DisplayText>Rune Arm Charge Rate %v1%: This Rune Arm has a %v1% %b1 bonus to its Charge Rate.</DisplayText>
     <Effect>
@@ -227,6 +291,23 @@
       <Bonus>Not Set</Bonus>
       <AType>Simple</AType>
       <Amount size="1">0</Amount>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>SacredGroundLore</Type>
+    <DisplayText>%b1 Sacred Ground Lore %v1: Passive: Your Acid, Light, and Alignment spells gain a %v1 %b1 bonus to their chance to critical hit.</DisplayText>
+    <Ignore>Equipment</Ignore>
+    <Effect>
+      <Type>SpellLore</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+      <Item>Acid</Item>
+      <Item>Light/Alignment</Item>
+      <Item>Chaos</Item>
+      <Item>Evil</Item>
+      <Item>Good</Item>
+      <Item>Lawful</Item>
     </Effect>
   </Buff>
   <Buff>
@@ -306,6 +387,18 @@
       <Bonus>Implement</Bonus>
       <AType>Simple</AType>
       <Amount size="1">0</Amount>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>SpellLore</Type>
+    <DisplayText>%b1 Spell Lore %v1%: Passive: All of your spells gain a %v1% %b1 bonus to their chance to critical hit.</DisplayText>
+    <Ignore>Equipment</Ignore>
+    <Effect>
+      <Type>SpellLore</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+      <Item>All</Item>
     </Effect>
   </Buff>
   <Buff>

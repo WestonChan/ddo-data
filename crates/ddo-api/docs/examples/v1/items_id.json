@@ -17,7 +17,7 @@
     {
       "bonus_type": "Competence",
       "description": "Competence Jump 7: Passive: 7 Competence bonus to the Jump skill.",
-      "id": 584,
+      "id": 586,
       "name": "Jump +7",
       "stat": "Jump",
       "stat_category": "skill",
@@ -27,7 +27,7 @@
     {
       "bonus_type": "Competence",
       "description": "Competence Tumble 7: Passive: 7 Competence bonus to the Tumble skill.",
-      "id": 585,
+      "id": 587,
       "name": "Tumble +7",
       "stat": "Tumble",
       "stat_category": "skill",

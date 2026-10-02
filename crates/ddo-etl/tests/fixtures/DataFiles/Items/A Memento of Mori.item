@@ -1,0 +1,42 @@
+<Items>
+  <Item>
+    <NoAutoUpdate/>
+    <Name>A Memento of Mori</Name>
+    <Icon>Ring_16b</Icon>
+    <Description>A token to remember you by...</Description>
+    <DropLocation>Hunt or Be Hunted, end chest</DropLocation>
+    <MinLevel>29</MinLevel>
+    <EquipmentSlot>
+      <Ring/>
+    </EquipmentSlot>
+    <Material>Platinum</Material>
+    <Buff>
+      <Type>SpellFocusMastery</Type>
+      <Value1>2</Value1>
+      <BonusType>Sacred</BonusType>
+    </Buff>
+    <Buff>
+      <Type>SacredGroundLore</Type>
+      <Value1>22</Value1>
+      <BonusType>Equipment</BonusType>
+    </Buff>
+    <Buff>
+      <Type>PowerOfTheSacredGround</Type>
+      <Value1>148</Value1>
+      <BonusType>Equipment</BonusType>
+    </Buff>
+    <Buff>
+      <Type>Absorption</Type>
+      <Value1>22</Value1>
+      <BonusType>Enhancement</BonusType>
+      <Description1>Light</Description1>
+      <Item>Light</Item>
+    </Buff>
+    <ItemAugment>
+      <Type>Green</Type>
+    </ItemAugment>
+    <ItemAugment>
+      <Type>Yellow</Type>
+    </ItemAugment>
+  </Item>
+</Items>

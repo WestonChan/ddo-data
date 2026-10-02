@@ -40,9 +40,9 @@ fn item_id(db: &Connection, name: &str) -> i64 {
 #[test]
 fn builds_items_and_skips_cosmetics() {
     let (db, report) = built_fixture_db();
-    assert_eq!(report.written_item_count, 31);
+    assert_eq!(report.written_item_count, 38);
     assert_eq!(report.skipped_cosmetic_item_count, 1);
-    assert_eq!(count(&db, "SELECT COUNT(*) FROM items WHERE source = 'maetrim'"), 31);
+    assert_eq!(count(&db, "SELECT COUNT(*) FROM items WHERE source = 'maetrim'"), 38);
     assert_eq!(count(&db, "SELECT COUNT(*) FROM items WHERE name = '17th Anniversary Dark Helm'"), 0);
     let reason: String = db
         .query_row("SELECT reason FROM excluded_items WHERE name = '17th Anniversary Dark Helm'", [], |r| r.get(0))
@@ -281,11 +281,44 @@ fn writes_buffs_named_after_a_stat_as_bonuses() {
         stat_bonuses_by_item("Celestial Emerald Ring", "Linguistics"),
         vec![(Some("Equipment".to_string()), Some(10), None)]
     );
-    assert_eq!(stat_bonuses_by_item("Echoes of Night", "Rune Arm Charge Rate"), vec![(enhancement, Some(5), None)]);
+    assert_eq!(
+        stat_bonuses_by_item("Echoes of Night", "Rune Arm Charge Rate"),
+        vec![(enhancement.clone(), Some(5), None)]
+    );
+    let equipment = Some("Equipment".to_string());
+    let resistance = Some("Resistance".to_string());
+    assert_eq!(
+        stat_bonuses_by_item("Alaric's Grim Gauntlets", "Dark Restoration Lore"),
+        vec![(equipment.clone(), Some(23), None)]
+    );
+    assert_eq!(
+        stat_bonuses_by_item("Epic Glimpse of the Soul", "Enchantment Save"),
+        vec![(resistance.clone(), Some(6), None)]
+    );
+    assert_eq!(stat_bonuses_by_item("Epic Glimpse of the Soul", "Illusion Save"), vec![(resistance, Some(6), None)]);
+    assert_eq!(stat_bonuses_by_item("Sightless", "Melee Power"), vec![(enhancement.clone(), Some(6), None)]);
+    assert_eq!(stat_bonuses_by_item("Sightless", "Ranged Power"), vec![(enhancement, Some(6), None)]);
+    assert_eq!(
+        stat_bonuses_by_item("A Memento of Mori", "Sacred Ground Lore"),
+        vec![(equipment.clone(), Some(22), None)]
+    );
+    assert_eq!(stat_bonuses_by_item("Darstil's Gloves", "Spell Lore"), vec![(equipment.clone(), Some(3), None)]);
+    assert_eq!(
+        stat_bonuses_by_item("Alarphon's Staff", "Spell Lore"),
+        vec![(equipment.clone(), Some(6), None)],
+        "a numeral <Item> names no school, so the lore is to every spell"
+    );
+    assert_eq!(
+        stat_bonuses_by_item("Epic Ring of Master Artifice", "Repair Spell Lore"),
+        vec![(equipment, Some(16), None)],
+        "an <Item> naming a school narrows Spell Lore to that school's lore"
+    );
+    assert_eq!(stat_bonuses_by_item("Epic Ring of Master Artifice", "Spell Lore"), vec![]);
     let effects_named_after_a_stat: Vec<String> = db
         .prepare(
             "SELECT DISTINCT e.name FROM item_effects ie JOIN effects e ON e.id = ie.effect_id
-              WHERE e.name IN (SELECT name FROM stats) ORDER BY e.name",
+              WHERE lower(replace(e.name, ' ', '')) IN (SELECT lower(replace(name, ' ', '')) FROM stats)
+              ORDER BY e.name",
         )
         .unwrap()
         .query_map([], |r| r.get(0))
@@ -559,7 +592,7 @@ fn diff_reports_coverage_against_a_legacy_database() {
         vec!["17th Anniversary Dark Helm".to_string()],
         "cosmetics are not gaps"
     );
-    assert_eq!(coverage.names_only_in_built.len(), 29, "the wiki fixture item is only in the build");
+    assert_eq!(coverage.names_only_in_built.len(), 36, "the wiki fixture item is only in the build");
     assert!((coverage.coverage_ratio() - 0.75).abs() < 1e-9);
 }
 

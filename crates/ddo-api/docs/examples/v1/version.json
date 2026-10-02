@@ -2,7 +2,7 @@
   "api_commit": "9dd551f2c0b1e8c4a7d6f5e4b3a2c1d0e9f8a7b6",
   "counts": {
     "augments": 2246,
-    "bonuses": 5138,
+    "bonuses": 5196,
     "classes": 28,
     "clickies": 219,
     "crafting_ingredients": 702,
@@ -36,7 +36,7 @@
     "wiki_quests": 1
   },
   "dataset": {
-    "built_at": "2026-10-02T16:07:15Z",
+    "built_at": "2026-10-02T16:23:57Z",
     "upstream_sha": "31ef0201ea8e28604de2b6242988aee6d63733b0"
   },
   "schema_version": 14

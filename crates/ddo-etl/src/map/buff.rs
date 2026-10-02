@@ -42,14 +42,19 @@ impl BuffMap {
                 None => bail!("{buff_kind} without Value1"),
             };
         }
+        let target = buff.target.as_deref().map(str::trim).filter(|s| !s.is_empty());
+        let stat_template = self.vocabulary.by_item.get(buff_kind);
         let stat_name = if let Some(fixed_stat_name) = self.vocabulary.fixed.get(buff_kind) {
-            Some(fixed_stat_name.clone())
-        } else if let Some(stat_template) = self.vocabulary.by_item.get(buff_kind) {
-            let Some(target) = buff.target.as_deref().map(str::trim).filter(|s| !s.is_empty()) else {
+            let stat_name_from_target = stat_template
+                .zip(target)
+                .map(|(stat_template, target)| self.stat_name_from_template(stat_template, target))
+                .filter(|stat_name| Stat::by_name(stat_name).is_some());
+            Some(stat_name_from_target.unwrap_or_else(|| fixed_stat_name.clone()))
+        } else if let Some(stat_template) = stat_template {
+            let Some(target) = target else {
                 bail!("{buff_kind} needs an <Item> sub-target to name its stat");
             };
-            let target = self.vocabulary.item_aliases.get(target).map(String::as_str).unwrap_or(target);
-            Some(stat_template.replace("{item}", target))
+            Some(self.stat_name_from_template(stat_template, target))
         } else {
             None
         };
@@ -57,7 +62,7 @@ impl BuffMap {
             return Ok(ResolvedBuff::Effect {
                 name: buff_kind.to_string(),
                 value: buff.value,
-                target: buff.target.as_deref().map(str::trim).filter(|s| !s.is_empty()).map(str::to_string),
+                target: target.map(str::to_string),
             });
         };
         let Some(stat) = Stat::by_name(&stat_name) else {
@@ -68,6 +73,11 @@ impl BuffMap {
             None => self.definition_bonus_type(buff_kind)?,
         };
         Ok(ResolvedBuff::Bonus { stat, bonus_type, value: buff.value, second_value: buff.second_value })
+    }
+
+    fn stat_name_from_template(&self, stat_template: &str, target: &str) -> String {
+        let target = self.vocabulary.item_aliases.get(target).map(String::as_str).unwrap_or(target);
+        stat_template.replace("{item}", target)
     }
 
     fn definition_bonus_type(&self, buff_kind: &str) -> Result<Option<BonusType>> {

@@ -2,7 +2,10 @@
 #
 # A buff resolves in this order:
 #   1. its Type is in `enhancement`        -> items.enhancement_bonus = Value1
-#   2. its Type is a key in `fixed`         -> a bonuses row on that stat
+#   2. its Type is a key in `fixed`         -> a bonuses row on that stat, unless the Type is also
+#                                              in `by_item` and its <Item> fills that template with
+#                                              a stat name, which then wins (SpellLore with Item
+#                                              Repair is Repair Spell Lore, with Item VI Spell Lore)
 #   3. its Type is a key in `by_item`       -> a bonuses row on the stat named by the template,
 #                                              with {item} replaced by the buff's <Item>; a template
 #                                              that names no stat is an error
@@ -18,6 +21,7 @@ SkillBonus = "{item}"
 SchoolFocusNumber = "{item} Spell Focus"
 Absorption = "{item} Absorption"
 EnergyResistance = "{item} Resistance"
+SpellLore = "{item} Spell Lore"
 
 # <Item> sub-target spellings that differ from the word our stat names use.
 [item_aliases]
@@ -51,6 +55,9 @@ RadianceLore = "Light Spell Lore"
 KineticLore = "Force Spell Lore"
 UniversalSpellLore = "Universal Spell Lore"
 SpellLoreNumeral = "Spell Lore"
+SpellLore = "Spell Lore"
+DarkRestorationLore = "Dark Restoration Lore"
+SacredGroundLore = "Sacred Ground Lore"
 # Other casting
 SpellFocusMastery = "Spell Focus Mastery"
 SpellPenetration = "Spell Penetration"
@@ -82,6 +89,8 @@ RoughHide = "Armor Class"
 "Elemental Absorption" = "Elemental Absorption"
 "Alignment Absorption" = "Alignment Absorption"
 "Illusion Save" = "Illusion Save"
+IllusionSave = "Illusion Save"
+EnchantmentSave = "Enchantment Save"
 # Hit points and healing
 FalseLife = "Hit Points"
 Vitality = "Hit Points"
@@ -89,6 +98,8 @@ ProfaneLifeforce = "Hit Points"
 HealingAmplification = "Healing Amplification"
 RepairAmplification = "Repair Amplification"
 # Offence
+MeleePower = "Melee Power"
+RangedPower = "Ranged Power"
 Deadly = "Deadly"
 Seeker = "Seeker"
 Accuracy = "Accuracy"

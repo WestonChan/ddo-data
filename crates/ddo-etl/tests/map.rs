@@ -154,6 +154,15 @@ fn buffs_resolve_to_enhancement_bonus_stat_or_effect() {
         (buff("Illusion Save", None, Some(5), None), "Illusion Save"),
         (buff("Linguistics", None, Some(10), Some("Equipment")), "Linguistics"),
         (buff("Rune Arm Charge Rate", None, Some(5), Some("Enhancement")), "Rune Arm Charge Rate"),
+        (buff("DarkRestorationLore", None, Some(23), Some("Equipment")), "Dark Restoration Lore"),
+        (buff("EnchantmentSave", None, Some(6), Some("Resistance")), "Enchantment Save"),
+        (buff("IllusionSave", None, Some(6), Some("resistance")), "Illusion Save"),
+        (buff("MeleePower", None, Some(6), Some("Enhancement")), "Melee Power"),
+        (buff("RangedPower", None, Some(6), Some("Enhancement")), "Ranged Power"),
+        (buff("SacredGroundLore", None, Some(22), Some("Equipment")), "Sacred Ground Lore"),
+        (buff("SpellLore", None, Some(3), Some("Equipment")), "Spell Lore"),
+        (buff("SpellLore", Some("VI"), Some(6), Some("Equipment")), "Spell Lore"),
+        (buff("SpellLore", Some("Repair"), Some(16), Some("Equipment")), "Repair Spell Lore"),
     ];
     for (b, expected) in cases {
         match map.resolved(&b).unwrap() {
@@ -174,7 +183,11 @@ fn buffs_resolve_to_enhancement_bonus_stat_or_effect() {
         ResolvedBuff::Effect { value, .. } => assert_eq!(value, Some(34)),
         other => panic!("{other:?}"),
     }
-    for prose_only_buff in [buff("Tendon Slice", None, Some(6), None), buff("Persuasion", None, None, Some(""))] {
+    for prose_only_buff in [
+        buff("Tendon Slice", None, Some(6), None),
+        buff("Persuasion", None, None, Some("")),
+        buff("NegativeEnergyAbsorption", None, None, None),
+    ] {
         match map.resolved(&prose_only_buff).unwrap() {
             ResolvedBuff::Effect { name, .. } => assert_eq!(name, prose_only_buff.kind),
             other => panic!("{}: {other:?}", prose_only_buff.kind),
