@@ -78,6 +78,7 @@ jobs:
           set -e
           check() { n=$(sqlite3 ddo.db "SELECT COUNT(*) FROM $1"); echo "$1: $n (floor $2)"; [ "$n" -ge "$2" ]; }
           check items 8000
+          check "items WHERE NOT is_legacy" 7800
           check feats 900
           check enhancement_trees 100
           check enhancements 3000
