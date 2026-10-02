@@ -327,3 +327,73 @@ to = "Seek Dryden's Counsel"
 reason = "The wiki titles the quest Seek Dryden's Counsel."
 source = "https://ddowiki.com/page/Seek_Dryden%27s_Counsel"
 read = "2026-10-01"
+
+[[correction]]
+kind = "quest"
+name = "Yarkuch's War Plans"
+field = "name"
+from = "Yarkuch's War Plans"
+to = "Yarkuch's War-plans"
+reason = "The wiki titles the quest Yarkuch's War-plans."
+source = "https://ddowiki.com/page/Yarkuch%27s_War-plans"
+read = "2026-10-02"
+
+[[correction]]
+kind = "quest"
+name = "The Deadly Package: Agent of Darguul"
+field = "name"
+from = "The Deadly Package: Agent of Darguul"
+to = "The Deadly Package: Agent of the Darguul"
+reason = "The wiki titles the quest The Deadly Package: Agent of the Darguul."
+source = "https://ddowiki.com/page/The_Deadly_Package:_Agent_of_the_Darguul"
+read = "2026-10-02"
+
+[[correction]]
+kind = "quest"
+name = "Doom of the Witchdoctor: The Way to Zulkash"
+field = "name"
+from = "Doom of the Witchdoctor: The Way to Zulkash"
+to = "Doom of the Witch-doctor: The Way to Zulkash"
+reason = "The wiki titles the quest Doom of the Witch-doctor: The Way to Zulkash."
+source = "https://ddowiki.com/page/Doom_of_the_Witch-doctor:_The_Way_to_Zulkash"
+read = "2026-10-02"
+
+[[correction]]
+kind = "quest"
+name = "Doom Of The Witch Doctor: Zulkash, Herald Of Woe"
+field = "name"
+from = "Doom Of The Witch Doctor: Zulkash, Herald Of Woe"
+to = "Doom of the Witch-doctor: Zulkash, Herald of Woe"
+reason = "The wiki titles the quest Doom of the Witch-doctor: Zulkash, Herald of Woe."
+source = "https://ddowiki.com/page/Doom_of_the_Witch-doctor:_Zulkash,_Herald_of_Woe"
+read = "2026-10-02"
+
+[[correction]]
+kind = "quest"
+name = "The Cloven-jaw Scourge:Blockade"
+field = "name"
+from = "The Cloven-jaw Scourge:Blockade"
+to = "The Cloven-jaw Scourge: Blockade"
+reason = "The wiki titles the quest The Cloven-jaw Scourge: Blockade."
+source = "https://ddowiki.com/page/The_Cloven-jaw_Scourge:_Blockade"
+read = "2026-10-02"
+
+[[correction]]
+kind = "quest"
+name = "The Halls of Shan-To-Kor"
+field = "name"
+from = "The Halls of Shan-To-Kor"
+to = "Halls of Shan-To-Kor"
+reason = "The wiki titles the quest Halls of Shan-To-Kor."
+source = "https://ddowiki.com/page/Halls_of_Shan-To-Kor"
+read = "2026-10-02"
+
+[[correction]]
+kind = "quest"
+name = "Jungle of Khyber"
+field = "name"
+from = "Jungle of Khyber"
+to = "The Jungle of Khyber"
+reason = "The wiki titles the quest The Jungle of Khyber."
+source = "https://ddowiki.com/page/The_Jungle_of_Khyber"
+read = "2026-10-02"

@@ -756,20 +756,20 @@ bestowed_by = "Unmar Halberg"
 flagging = "Completing the Battle for Eveningstar is a prerequisite for this quest to become active."
 
 [[quest]]
-name = "Doom Of The Witch Doctor: Zulkash, Herald Of Woe"
-page = "https://ddowiki.com/page/Doom_of_the_Witch-doctor:_Zulkash,_Herald_of_Woe"
-read = "2026-10-01"
-free_to_play = false
-zone = "Inner Splinterskull Fortress"
-bestowed_by = "Auto-bestowed"
-
-[[quest]]
-name = "Doom of the Witchdoctor: The Way to Zulkash"
+name = "Doom of the Witch-doctor: The Way to Zulkash"
 page = "https://ddowiki.com/page/Doom_of_the_Witch-doctor:_The_Way_to_Zulkash"
 read = "2026-10-01"
 free_to_play = false
 zone = "Outer Splinterskull Fortress"
 bestowed_by = "Chief Ungurz"
+
+[[quest]]
+name = "Doom of the Witch-doctor: Zulkash, Herald of Woe"
+page = "https://ddowiki.com/page/Doom_of_the_Witch-doctor:_Zulkash,_Herald_of_Woe"
+read = "2026-10-01"
+free_to_play = false
+zone = "Inner Splinterskull Fortress"
+bestowed_by = "Auto-bestowed"
 
 [[quest]]
 name = "Down You Go"
@@ -1227,6 +1227,14 @@ zone = "Hall of the Mark"
 bestowed_by = "Lockania"
 
 [[quest]]
+name = "Halls of Shan-To-Kor"
+page = "https://ddowiki.com/page/Halls_of_Shan-To-Kor"
+read = "2026-10-01"
+free_to_play = false
+zone = "Halls of Shan-To-Kor"
+bestowed_by = "Auto-bestowed"
+
+[[quest]]
 name = "Haunted Library"
 page = "https://ddowiki.com/page/Haunted_Library"
 read = "2026-10-01"
@@ -1464,14 +1472,6 @@ name = "Isle of Dread"
 page = "https://ddowiki.com/page/Isle_of_Dread_(wilderness)"
 read = "2026-10-01"
 free_to_play = false
-
-[[quest]]
-name = "Jungle of Khyber"
-page = "https://ddowiki.com/page/Jungle_of_Khyber"
-read = "2026-10-01"
-free_to_play = false
-zone = "The Jungle of Khyber"
-bestowed_by = "Clipse"
 
 [[quest]]
 name = "Just Business"
@@ -2922,20 +2922,20 @@ zone = "Claw Canyon"
 bestowed_by = "Croaker"
 
 [[quest]]
+name = "The Cloven-jaw Scourge: Blockade"
+page = "https://ddowiki.com/page/The_Cloven-jaw_Scourge:_Blockade"
+read = "2026-10-01"
+free_to_play = false
+zone = "The Kobold's Blockade"
+bestowed_by = "Wayfinder Dael"
+
+[[quest]]
 name = "The Cloven-jaw Scourge: The Caverns of Shaagh"
 page = "https://ddowiki.com/page/The_Cloven-jaw_Scourge:_The_Caverns_of_Shaagh"
 read = "2026-10-01"
 free_to_play = false
 zone = "Caverns Of Shaagh"
 bestowed_by = "Auto-bestowed"
-
-[[quest]]
-name = "The Cloven-jaw Scourge:Blockade"
-page = "https://ddowiki.com/page/The_Cloven-jaw_Scourge:_Blockade"
-read = "2026-10-01"
-free_to_play = false
-zone = "The Kobold's Blockade"
-bestowed_by = "Wayfinder Dael"
 
 [[quest]]
 name = "The Coalescence Chamber"
@@ -3023,7 +3023,7 @@ zone = "Temple of Shar"
 bestowed_by = "Garmor the Grim"
 
 [[quest]]
-name = "The Deadly Package: Agent of Darguul"
+name = "The Deadly Package: Agent of the Darguul"
 page = "https://ddowiki.com/page/The_Deadly_Package:_Agent_of_the_Darguul"
 read = "2026-10-01"
 free_to_play = false
@@ -3309,14 +3309,6 @@ zone = "The Grotto"
 bestowed_by = "Jeets Shimis"
 
 [[quest]]
-name = "The Halls of Shan-To-Kor"
-page = "https://ddowiki.com/page/Halls_of_Shan-To-Kor"
-read = "2026-10-01"
-free_to_play = false
-zone = "Halls of Shan-To-Kor"
-bestowed_by = "Auto-bestowed"
-
-[[quest]]
 name = "The Hand and the Eyes"
 page = "https://ddowiki.com/page/The_Hand_and_the_Eyes"
 read = "2026-10-01"
@@ -3433,6 +3425,14 @@ read = "2026-10-01"
 free_to_play = false
 zone = "The Iron Mines"
 bestowed_by = "Bruku"
+
+[[quest]]
+name = "The Jungle of Khyber"
+page = "https://ddowiki.com/page/The_Jungle_of_Khyber"
+read = "2026-10-01"
+free_to_play = false
+zone = "The Jungle of Khyber"
+bestowed_by = "Clipse"
 
 [[quest]]
 name = "The Keeper's Sanctuary"
@@ -4752,8 +4752,8 @@ zone = "Adventurer's Camp"
 bestowed_by = "Gustor Miles"
 
 [[quest]]
-name = "Yarkuch's War Plans"
-page = "https://ddowiki.com/page/Yarkuch%27s_War_Plans"
+name = "Yarkuch's War-plans"
+page = "https://ddowiki.com/page/Yarkuch%27s_War-plans"
 read = "2026-10-01"
 free_to_play = false
 zone = "Outer Splinterskull Fortress"
