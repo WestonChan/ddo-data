@@ -114,13 +114,20 @@ pub(super) fn write_wiki_quests(
     wiki_quests: &[WikiQuest],
     report: &mut BuildReport,
 ) -> Result<()> {
-    let maetrim_quest_names: Vec<String> = {
-        let mut statement = transaction.prepare("SELECT name FROM quests ORDER BY name")?;
-        let names = statement.query_map([], |r| r.get(0))?.collect::<rusqlite::Result<_>>()?;
+    let maetrim_quest_names_and_epic_names: Vec<(String, Option<String>)> = {
+        let mut statement = transaction.prepare("SELECT name, epic_name FROM quests ORDER BY name")?;
+        let names = statement.query_map([], |r| Ok((r.get(0)?, r.get(1)?)))?.collect::<rusqlite::Result<_>>()?;
         names
     };
+    let maetrim_quest_names: Vec<String> =
+        maetrim_quest_names_and_epic_names.iter().map(|(name, _)| name.clone()).collect();
     let maetrim_quest_name_set: HashSet<&str> = maetrim_quest_names.iter().map(String::as_str).collect();
-    let maetrim_quest_names_by_normalised_name = names_by_normalised_name(&maetrim_quest_names);
+    let mut maetrim_quest_names_by_normalised_name = names_by_normalised_name(&maetrim_quest_names);
+    for (name, epic_name) in &maetrim_quest_names_and_epic_names {
+        if let Some(epic_name) = epic_name {
+            maetrim_quest_names_by_normalised_name.entry(normalised_name(epic_name)).or_insert(name.as_str());
+        }
+    }
     for wiki_quest in wiki_quests.iter().filter(|wiki_quest| wiki_quest.carries_quest_fields()) {
         if maetrim_quest_name_set.contains(wiki_quest.name.as_str()) {
             report

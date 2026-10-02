@@ -15,21 +15,6 @@ bestowed_by = "Vision of Future Graz'zt"
 flagging = "No flagging required."
 
 [[quest]]
-name = "Return to Prison of the Planes"
-page = "https://ddowiki.com/page/Return_to_Prison_of_the_Planes"
-read = "2026-10-02"
-free_to_play = false
-pack = "Ruins of Gianthold"
-patron = "Agents of Argonnessen"
-level = 24
-epic_level = 24
-favor = 6
-is_raid = false
-difficulties = ["normal", "hard", "elite"]
-zone = "The Prison of the Planes"
-bestowed_by = "Maragogg ar'Mawn"
-
-[[quest]]
 name = "The Darklake"
 page = "https://ddowiki.com/page/The_Darklake"
 read = "2026-10-02"

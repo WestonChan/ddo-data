@@ -1628,3 +1628,17 @@ fn links_drop_text_to_his_quest_whose_epic_name_a_wiki_quest_also_has() {
         .collect();
     assert_eq!(linked_quests, ["The Prison of the Planes"], "his quest's epic name wins over the wiki quest's name");
 }
+
+#[test]
+fn reports_a_wiki_quest_named_as_his_quest_s_epic_version_as_a_probable_duplicate() {
+    let wiki = parsed_wiki(&[("quests.toml", &wiki_quest_fields_toml("Return to Prison of the Planes", ""))]).unwrap();
+    let (_, report) = built_db_with(&wiki);
+    assert_eq!(
+        report.probable_duplicate_wiki_quests,
+        [ProbableDuplicateWikiEntry {
+            name: "Return to Prison of the Planes".into(),
+            maetrim_name: "The Prison of the Planes".into()
+        }],
+        "his The Prison of the Planes goes by that name in epic"
+    );
+}
