@@ -1,7 +1,7 @@
 use super::BuildReport;
 use crate::wiki::{QuestSeriesReward, WikiOverrides, WikiQuestSeries};
 use anyhow::{Context, Result};
-use ddo_model::enums::RowSource;
+use ddo_model::enums::{RowSource, SagaTier};
 use rusqlite::{params, OptionalExtension, Transaction};
 
 #[derive(Clone, Copy)]
@@ -39,7 +39,7 @@ impl QuestSeriesTable {
         }
     }
 
-    pub(super) fn insert_reward_sql(self) -> &'static str {
+    fn insert_reward_sql(self) -> &'static str {
         match self {
             Self::QuestChains => {
                 "INSERT INTO quest_chain_rewards (chain_id, item_id, is_rare) VALUES (?1, ?2, ?3)
@@ -51,6 +51,27 @@ impl QuestSeriesTable {
                  WHERE excluded.is_rare > saga_rewards.is_rare"
             }
         }
+    }
+}
+
+impl QuestSeriesTable {
+    pub(super) fn insert_reward(
+        self,
+        transaction: &Transaction,
+        reward_giver_id: i64,
+        item_id: i64,
+        is_rare: bool,
+        tier: Option<SagaTier>,
+    ) -> Result<usize> {
+        Ok(match self {
+            Self::QuestChains => {
+                transaction.execute(self.insert_reward_sql(), params![reward_giver_id, item_id, is_rare])?
+            }
+            Self::Sagas => transaction.execute(
+                self.insert_reward_sql(),
+                params![reward_giver_id, item_id, is_rare, tier.map(SagaTier::as_str)],
+            )?,
+        })
     }
 }
 
@@ -129,14 +150,7 @@ fn insert_quest_series_rewards<Reward: QuestSeriesReward>(
                 "{citation}: reward {item_name:?} is not in Maetrim's items or a wiki item; names must match exactly"
             )
         })?;
-        let tier_name = reward.tier().map(|tier| tier.as_str());
-        match table {
-            QuestSeriesTable::QuestChains => {
-                transaction.execute(table.insert_reward_sql(), params![series_id, item_id, reward.is_rare()])?
-            }
-            QuestSeriesTable::Sagas => transaction
-                .execute(table.insert_reward_sql(), params![series_id, item_id, reward.is_rare(), tier_name])?,
-        };
+        table.insert_reward(transaction, series_id, item_id, reward.is_rare(), reward.tier())?;
     }
     Ok(series.rewards.len())
 }

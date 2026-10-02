@@ -2,9 +2,10 @@ use ddo_etl::build::{build_database, BuildReport};
 use ddo_etl::corrections::Corrections;
 use ddo_etl::map::drop_location::{
     chest_following, chest_label, drop_text_in_description, marks_rare_loot, names_saga, quest_name_spans,
-    reward_giver_name,
+    reward_giver_name, saga_tier_credited_to,
 };
 use ddo_etl::wiki::WikiOverrides;
+use ddo_model::enums::SagaTier;
 use ddo_model::DatasetVersion;
 use rusqlite::Connection;
 use std::path::PathBuf;
@@ -203,5 +204,21 @@ fn names_the_quest_chain_or_saga_a_reward_segment_credits() {
     ] {
         assert_eq!(reward_giver_name(segment).as_deref(), expected_name, "{segment:?}");
         assert_eq!(names_saga(segment), is_saga, "{segment:?}");
+    }
+}
+
+#[test]
+fn takes_a_saga_rewards_tier_from_the_words_after_the_sagas_last_mention() {
+    for (segment, saga_name, expected_tier) in [
+        (" Masterminds of Sharn saga: Epic end reward", "Masterminds of Sharn", Some(SagaTier::Epic)),
+        (" or Dread saga legendary end reward", "Dread", Some(SagaTier::Legendary)),
+        (
+            "Vecna Unleashed, any legendary end chest or Vecna Unleashed (epic) saga end reward (Epic Hard or above)",
+            "Vecna Unleashed",
+            Some(SagaTier::Epic),
+        ),
+        ("Legendary loot; Some Saga saga end reward", "Some Saga", None),
+    ] {
+        assert_eq!(saga_tier_credited_to(segment, saga_name), expected_tier, "{segment:?}");
     }
 }

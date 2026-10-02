@@ -1,4 +1,5 @@
 use super::drop_text::QuestLootTable;
+use super::quest_series::QuestSeriesTable;
 use super::{joined_non_empty, trimmed_non_empty, BuildReport, TableWriter};
 use crate::map::buff::ResolvedBuff;
 use crate::map::material;
@@ -347,6 +348,12 @@ impl TableWriter<'_> {
             }
             if linked_quest.is_newly_rare {
                 report.drop_text_rare_link_count += 1;
+            }
+        }
+        for linked_table in self.link_item_to_drop_text_reward_givers(item_id, drop_location)? {
+            match linked_table {
+                QuestSeriesTable::QuestChains => report.drop_text_quest_chain_reward_count += 1,
+                QuestSeriesTable::Sagas => report.drop_text_saga_reward_count += 1,
             }
         }
         Ok(())

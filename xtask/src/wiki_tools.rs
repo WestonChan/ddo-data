@@ -115,6 +115,8 @@ fn wiki_report_lines(report: &BuildReport) -> Vec<String> {
         ("wiki_saga_count", report.wiki_saga_count),
         ("saga_quest_link_count", report.saga_quest_link_count),
         ("saga_reward_count", report.saga_reward_count),
+        ("drop_text_quest_chain_reward_count", report.drop_text_quest_chain_reward_count),
+        ("drop_text_saga_reward_count", report.drop_text_saga_reward_count),
         ("correction_applied_count", report.correction_applied_count),
         ("correction_stale_count", report.correction_stale_count),
     ]

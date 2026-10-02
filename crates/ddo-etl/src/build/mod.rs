@@ -24,7 +24,7 @@ use anyhow::{Context, Result};
 use ddo_model::enums::{BonusType, FeatSource, ModifierSource};
 use ddo_model::stats::Stat;
 use ddo_model::{seeds, DatasetVersion, SCHEMA_VERSION};
-use drop_text::DropTextQuests;
+use drop_text::DropTextLinker;
 use rusqlite::{params, Connection, OptionalExtension, Transaction};
 use std::collections::{BTreeMap, HashMap};
 use std::path::{Path, PathBuf};
@@ -96,6 +96,8 @@ pub struct BuildReport {
     pub wiki_saga_count: usize,
     pub saga_quest_link_count: usize,
     pub saga_reward_count: usize,
+    pub drop_text_quest_chain_reward_count: usize,
+    pub drop_text_saga_reward_count: usize,
     pub correction_applied_count: usize,
     pub correction_stale_count: usize,
     pub stale_corrections: Vec<StaleCorrection>,
@@ -167,14 +169,14 @@ pub fn build_database(
     corrections::apply_quest_corrections(&transaction, corrections, &mut report)?;
     wiki::write_wiki_quests(&transaction, &wiki_overrides.quests, &mut report)?;
     quest_series::write_wiki_quest_series(&transaction, wiki_overrides, &mut report)?;
-    let drop_text_quests = DropTextQuests::from_quests_table(&transaction)?;
+    let drop_text_linker = DropTextLinker::from_written_tables(&transaction)?;
 
     let mut writer = TableWriter {
         transaction: &transaction,
         buff_map: &buff_map,
         effect_map: &effect_map,
         buff_description_templates: &buff_description_templates,
-        drop_text_quests: &drop_text_quests,
+        drop_text_linker: &drop_text_linker,
         written: WrittenRows::default(),
         pending_set_item_links: Vec::new(),
         pending_set_augment_links: Vec::new(),
@@ -225,7 +227,7 @@ pub fn build_database(
     writer.write_guild_buffs(&data_files_dir.join("GuildBuffs.xml"), &mut report)?;
     writer.write_optional_buffs(&data_files_dir.join("SelfAndPartyBuffs.xml"), &mut report)?;
     corrections::apply_non_quest_corrections(&transaction, corrections, &mut report)?;
-    wiki::apply_wiki_overrides(&transaction, wiki_overrides, &drop_text_quests, &mut report)?;
+    wiki::apply_wiki_overrides(&transaction, wiki_overrides, &drop_text_linker, &mut report)?;
     quest_series::write_wiki_quest_series_rewards(&transaction, wiki_overrides, &mut report)?;
 
     report.bonus_count = writer.written.bonus_ids_by_key.len();
@@ -247,7 +249,7 @@ pub struct UnlinkedRewardGiver {
 }
 
 pub fn unlinked_reward_givers(db: &Connection) -> Result<Vec<UnlinkedRewardGiver>> {
-    let drop_text_quests = DropTextQuests::from_quests_table(db)?;
+    let drop_text_linker = DropTextLinker::from_written_tables(db)?;
     let mut statement =
         db.prepare("SELECT drop_location FROM items WHERE source = ?1 AND drop_location IS NOT NULL ORDER BY id")?;
     let drop_texts: Vec<String> = statement
@@ -255,8 +257,8 @@ pub fn unlinked_reward_givers(db: &Connection) -> Result<Vec<UnlinkedRewardGiver
         .collect::<rusqlite::Result<_>>()?;
     let mut item_counts_by_reward_giver: BTreeMap<(bool, String), usize> = BTreeMap::new();
     for drop_text in &drop_texts {
-        let mut reward_givers_in_item: Vec<(bool, String)> = drop_text_quests
-            .segments_giving_no_quest_reward(drop_text)
+        let mut reward_givers_in_item: Vec<(bool, String)> = drop_text_linker
+            .unlinked_reward_segments(drop_text)
             .into_iter()
             .filter_map(|segment| reward_giver_name(segment).map(|name| (names_saga(segment), name)))
             .collect();
@@ -364,7 +366,7 @@ pub(crate) struct TableWriter<'a> {
     buff_map: &'a BuffMap,
     effect_map: &'a EffectMap,
     buff_description_templates: &'a HashMap<String, String>,
-    drop_text_quests: &'a DropTextQuests,
+    drop_text_linker: &'a DropTextLinker,
     written: WrittenRows,
     pending_set_item_links: Vec<(i64, String)>,
     pending_set_augment_links: Vec<(i64, String)>,

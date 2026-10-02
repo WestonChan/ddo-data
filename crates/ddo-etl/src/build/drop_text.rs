@@ -1,10 +1,11 @@
+use super::quest_series::QuestSeriesTable;
 use super::TableWriter;
 use crate::map::drop_location::{
-    chest_following, marks_rare_loot, names_chest_drop, names_quest_end_reward, quest_name_spans, segment_ranges,
-    segment_spanning,
+    chest_following, marks_rare_loot, names_chest_drop, names_quest_end_reward, names_saga, quest_name_spans,
+    reward_giver_name, saga_tier_credited_to, segment_ranges, segment_spanning,
 };
 use anyhow::Result;
-use ddo_model::enums::{LootType, RowSource};
+use ddo_model::enums::{LootType, RowSource, SagaTier};
 use rusqlite::{params, Connection, Transaction};
 use std::ops::Range;
 
@@ -18,8 +19,22 @@ struct DropTextQuest {
     is_wiki: bool,
 }
 
-pub(crate) struct DropTextQuests {
-    longest_name_first: Vec<DropTextQuest>,
+struct DropTextRewardGiver {
+    name: String,
+    id: i64,
+}
+
+pub(crate) struct DropTextLinker {
+    quests_longest_name_first: Vec<DropTextQuest>,
+    quest_chains_longest_name_first: Vec<DropTextRewardGiver>,
+    sagas_longest_name_first: Vec<DropTextRewardGiver>,
+}
+
+pub(super) struct RewardGiverLink {
+    pub(super) table: QuestSeriesTable,
+    pub(super) reward_giver_id: i64,
+    pub(super) tier: Option<SagaTier>,
+    pub(super) is_rare: bool,
 }
 
 struct DropTextQuestLink {
@@ -30,8 +45,8 @@ struct DropTextQuestLink {
     is_wiki_quest: bool,
 }
 
-impl DropTextQuests {
-    pub(super) fn from_quests_table(db: &Connection) -> Result<Self> {
+impl DropTextLinker {
+    pub(super) fn from_written_tables(db: &Connection) -> Result<Self> {
         let mut statement = db.prepare("SELECT name, id, is_raid, source = ?1 FROM quests WHERE is_challenge = 0")?;
         let mut longest_name_first = statement
             .query_map(params![RowSource::Wiki.as_str()], |r| {
@@ -42,14 +57,67 @@ impl DropTextQuests {
             .collect::<rusqlite::Result<Vec<_>>>()?;
         longest_name_first.retain(|quest| !quest.lowercase_first_word.is_empty());
         longest_name_first.sort_by(|a, b| b.name.len().cmp(&a.name.len()).then_with(|| a.name.cmp(&b.name)));
-        Ok(Self { longest_name_first })
+        Ok(Self {
+            quests_longest_name_first: longest_name_first,
+            quest_chains_longest_name_first: reward_givers_longest_name_first(db, "SELECT name, id FROM quest_chains")?,
+            sagas_longest_name_first: reward_givers_longest_name_first(db, "SELECT name, id FROM sagas")?,
+        })
+    }
+
+    fn reward_givers_in_segment(&self, segment: &str) -> Vec<RewardGiverLink> {
+        if reward_giver_name(segment).is_none() {
+            return Vec::new();
+        }
+        let chains_first = [
+            (QuestSeriesTable::QuestChains, &self.quest_chains_longest_name_first),
+            (QuestSeriesTable::Sagas, &self.sagas_longest_name_first),
+        ];
+        let sagas_first = [chains_first[1], chains_first[0]];
+        let preferred_tables = if names_saga(segment) { sagas_first } else { chains_first };
+        for (table, reward_givers) in preferred_tables {
+            let mut unmatched_segment = segment.to_string();
+            let mut reward_giver_links = Vec::new();
+            for reward_giver in reward_givers {
+                let name_spans = quest_name_spans(&unmatched_segment, &reward_giver.name);
+                if name_spans.is_empty() {
+                    continue;
+                }
+                for span in &name_spans {
+                    unmatched_segment.replace_range(span.clone(), &MATCHED_TEXT_MASK.repeat(span.len()));
+                }
+                reward_giver_links.push(RewardGiverLink {
+                    table,
+                    reward_giver_id: reward_giver.id,
+                    tier: saga_tier_credited_to(segment, &reward_giver.name),
+                    is_rare: marks_rare_loot(segment),
+                });
+            }
+            if !reward_giver_links.is_empty() {
+                return reward_giver_links;
+            }
+        }
+        Vec::new()
+    }
+
+    pub(super) fn reward_giver_links_in(&self, drop_text: &str) -> Vec<RewardGiverLink> {
+        self.segments_giving_no_quest_reward(drop_text)
+            .into_iter()
+            .flat_map(|segment| self.reward_givers_in_segment(segment))
+            .collect()
+    }
+
+    pub(super) fn unlinked_reward_segments<'text>(&self, drop_text: &'text str) -> Vec<&'text str> {
+        self.segments_giving_no_quest_reward(drop_text)
+            .into_iter()
+            .filter(|segment| reward_giver_name(segment).is_some() && self.reward_givers_in_segment(segment).is_empty())
+            .collect()
     }
 
     fn quest_name_spans_in(&self, drop_text: &str) -> Vec<(&DropTextQuest, Vec<Range<usize>>)> {
         let mut unmatched_text = drop_text.to_string();
         let lowercase_drop_text = drop_text.to_lowercase();
         let mut quest_name_spans_by_quest = Vec::new();
-        for quest in &self.longest_name_first {
+        for quest in &self.quests_longest_name_first {
             if !lowercase_drop_text.contains(&quest.lowercase_first_word) {
                 continue;
             }
@@ -65,7 +133,7 @@ impl DropTextQuests {
         quest_name_spans_by_quest
     }
 
-    pub(super) fn segments_giving_no_quest_reward<'text>(&self, drop_text: &'text str) -> Vec<&'text str> {
+    fn segments_giving_no_quest_reward<'text>(&self, drop_text: &'text str) -> Vec<&'text str> {
         let quest_name_spans: Vec<Range<usize>> =
             self.quest_name_spans_in(drop_text).into_iter().flat_map(|(_, spans)| spans).collect();
         segment_ranges(drop_text)
@@ -121,6 +189,15 @@ impl DropTextQuests {
         }
         quest_links
     }
+}
+
+fn reward_givers_longest_name_first(db: &Connection, sql: &str) -> Result<Vec<DropTextRewardGiver>> {
+    let mut statement = db.prepare(sql)?;
+    let mut reward_givers = statement
+        .query_map([], |r| Ok(DropTextRewardGiver { name: r.get(0)?, id: r.get(1)? }))?
+        .collect::<rusqlite::Result<Vec<_>>>()?;
+    reward_givers.sort_by(|a, b| b.name.len().cmp(&a.name.len()).then_with(|| a.name.cmp(&b.name)));
+    Ok(reward_givers)
 }
 
 #[derive(Clone, Copy)]
@@ -204,7 +281,7 @@ pub(super) fn insert_quest_loot_link(transaction: &Transaction, link: &QuestLoot
     )?)
 }
 
-impl DropTextQuests {
+impl DropTextLinker {
     pub(super) fn link_loot_to_quests_named_in(
         &self,
         transaction: &Transaction,
@@ -235,12 +312,33 @@ impl DropTextQuests {
 }
 
 impl TableWriter<'_> {
+    pub(super) fn link_item_to_drop_text_reward_givers(
+        &self,
+        item_id: i64,
+        drop_text: &str,
+    ) -> Result<Vec<QuestSeriesTable>> {
+        let mut linked_tables = Vec::new();
+        for reward_giver_link in self.drop_text_linker.reward_giver_links_in(drop_text) {
+            let changed_row_count = reward_giver_link.table.insert_reward(
+                self.transaction,
+                reward_giver_link.reward_giver_id,
+                item_id,
+                reward_giver_link.is_rare,
+                reward_giver_link.tier,
+            )?;
+            if changed_row_count > 0 {
+                linked_tables.push(reward_giver_link.table);
+            }
+        }
+        Ok(linked_tables)
+    }
+
     pub(super) fn link_to_drop_text_quests(
         &self,
         table: QuestLootTable,
         loot_id: i64,
         drop_text: &str,
     ) -> Result<Vec<LinkedDropTextQuest>> {
-        self.drop_text_quests.link_loot_to_quests_named_in(self.transaction, table, loot_id, drop_text)
+        self.drop_text_linker.link_loot_to_quests_named_in(self.transaction, table, loot_id, drop_text)
     }
 }

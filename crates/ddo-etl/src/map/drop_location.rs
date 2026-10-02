@@ -1,3 +1,4 @@
+use ddo_model::enums::SagaTier;
 use std::ops::Range;
 
 const SEGMENT_SEPARATORS: [char; 2] = [';', '\n'];
@@ -43,6 +44,14 @@ pub fn reward_giver_name(segment: &str) -> Option<String> {
         .unwrap_or(name)
         .trim();
     (!name.is_empty()).then(|| name.to_string())
+}
+
+pub fn saga_tier_credited_to(segment: &str, saga_name: &str) -> Option<SagaTier> {
+    let last_mention_start = quest_name_spans(segment, saga_name).last().map_or(0, |span| span.start);
+    segment[last_mention_start..]
+        .to_lowercase()
+        .split(|character: char| !character.is_alphanumeric())
+        .find_map(|word| SagaTier::ALL.iter().copied().find(|tier| tier.as_str() == word))
 }
 
 pub fn segment_ranges(drop_text: &str) -> Vec<Range<usize>> {

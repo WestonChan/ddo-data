@@ -106,9 +106,11 @@ fn wiki_check_reports_the_wiki_counts_for_a_valid_wiki_dir() {
         "wiki_quest_chain_count: 1",
         "quest_chain_quest_link_count: 2",
         "quest_chain_reward_count: 2",
-        "wiki_saga_count: 1",
-        "saga_quest_link_count: 2",
+        "wiki_saga_count: 2",
+        "saga_quest_link_count: 3",
         "saga_reward_count: 3",
+        "drop_text_quest_chain_reward_count: 1",
+        "drop_text_saga_reward_count: 2",
     ] {
         assert!(report.lines().any(|line| line == expected_line), "missing {expected_line:?} in\n{report}");
     }
@@ -418,14 +420,10 @@ fn wiki_batch_writes_the_reading_agent_inputs() {
     );
     assert_eq!(
         std::fs::read_to_string(out_dir.path().join("quest_chain_names.txt")).unwrap(),
-        "The Lost Seekers\t1\n",
-        "his reward segments that are no quest's own end reward and say no saga, with how many of his items name each"
+        "",
+        "the fixture wiki records The Lost Seekers, so his drop text's only chain is linked"
     );
-    assert_eq!(
-        std::fs::read_to_string(out_dir.path().join("saga_names.txt")).unwrap(),
-        "Masterminds of Sharn\t1\nThe Haunting of Saltmarsh\t1\n",
-        "a saga's reward is listed though the saga's name holds a quest's"
-    );
+    assert_eq!(std::fs::read_to_string(out_dir.path().join("saga_names.txt")).unwrap(), "");
     let augment_lines = std::fs::read_to_string(out_dir.path().join("augment_names.txt")).unwrap();
     assert_eq!(augment_lines.lines().count(), 16);
     assert!(augment_lines.lines().any(|line| line == "Alchemical\tFire I: Combustion\t29"), "{augment_lines}");
@@ -509,4 +507,27 @@ fn likely_wiki_page_url_underscores_spaces_escapes_apostrophes_and_drops_the_dif
         );
     }
     assert_eq!(likely_wiki_page_url("The Pit (Reaper)"), "https://ddowiki.com/page/The_Pit_(Reaper)");
+}
+
+#[test]
+fn wiki_batch_lists_the_chains_and_sagas_his_drop_text_credits_that_no_wiki_file_records() {
+    let empty_wiki_dir = tempfile::tempdir().unwrap();
+    let out_dir = tempfile::tempdir().unwrap();
+    write_wiki_batch(
+        &fixtures_dir().join("DataFiles"),
+        Some(empty_wiki_dir.path()),
+        Some(&fixture_corrections_dir()),
+        out_dir.path(),
+    )
+    .unwrap();
+    assert_eq!(
+        std::fs::read_to_string(out_dir.path().join("quest_chain_names.txt")).unwrap(),
+        "The Lost Seekers\t1\n",
+        "his reward segments that are no quest's own end reward and say no saga, with how many of his items name each"
+    );
+    assert_eq!(
+        std::fs::read_to_string(out_dir.path().join("saga_names.txt")).unwrap(),
+        "Masterminds of Sharn\t1\nThe Haunting of Saltmarsh\t1\n",
+        "a saga's reward is listed though the saga's name holds a quest's"
+    );
 }

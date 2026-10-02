@@ -1,4 +1,4 @@
-use super::drop_text::{insert_quest_loot_link, DropTextQuests, QuestLootLink, QuestLootTable};
+use super::drop_text::{insert_quest_loot_link, DropTextLinker, QuestLootLink, QuestLootTable};
 use super::items::{ArmorStatsRow, ItemRow, WeaponStatsRow};
 use super::{BuildReport, ProbableDuplicateWikiEntry, SupersededWikiEntry, TableWriter};
 use crate::map::drop_location::drop_text_in_description;
@@ -14,11 +14,11 @@ use std::collections::{HashMap, HashSet};
 pub(super) fn apply_wiki_overrides(
     transaction: &Transaction,
     wiki_overrides: &WikiOverrides,
-    drop_text_quests: &DropTextQuests,
+    drop_text_linker: &DropTextLinker,
     report: &mut BuildReport,
 ) -> Result<()> {
     for wiki_description in &wiki_overrides.descriptions {
-        fill_blank_descriptions(transaction, wiki_description, drop_text_quests, report).with_context(|| {
+        fill_blank_descriptions(transaction, wiki_description, drop_text_linker, report).with_context(|| {
             format!(
                 "wiki descriptions {} {:?} ({})",
                 wiki_description.kind.as_str(),
@@ -180,7 +180,7 @@ fn insert_wiki_quest(transaction: &Transaction, wiki_quest: &WikiQuest) -> Resul
 fn fill_blank_descriptions(
     transaction: &Transaction,
     wiki_description: &WikiDescription,
-    drop_text_quests: &DropTextQuests,
+    drop_text_linker: &DropTextLinker,
     report: &mut BuildReport,
 ) -> Result<()> {
     let table_name = wiki_description.kind.table_name();
@@ -204,7 +204,7 @@ fn fill_blank_descriptions(
                 report.wiki_description_filled_count += 1;
                 if wiki_description.kind == DescriptionKind::Augment {
                     report.wiki_description_augment_link_count +=
-                        link_augment_to_quests_named_in(transaction, drop_text_quests, row_id, &filled_description)?;
+                        link_augment_to_quests_named_in(transaction, drop_text_linker, row_id, &filled_description)?;
                 }
             }
             None => report.wiki_description_skipped_count += 1,
@@ -216,14 +216,14 @@ fn fill_blank_descriptions(
 
 fn link_augment_to_quests_named_in(
     transaction: &Transaction,
-    drop_text_quests: &DropTextQuests,
+    drop_text_linker: &DropTextLinker,
     augment_id: i64,
     description: &str,
 ) -> Result<usize> {
     let Some(drop_text) = drop_text_in_description(description) else {
         return Ok(0);
     };
-    Ok(drop_text_quests
+    Ok(drop_text_linker
         .link_loot_to_quests_named_in(transaction, QuestLootTable::Augments, augment_id, drop_text)?
         .len())
 }
