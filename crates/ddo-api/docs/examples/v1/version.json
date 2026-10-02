@@ -7,6 +7,7 @@
     "clickies": 219,
     "crafting_ingredients": 702,
     "crafting_recipes": 2846,
+    "crafting_system_sources": 841,
     "crafting_systems": 37,
     "enhancement_trees": 114,
     "enhancements": 3228,
@@ -30,15 +31,15 @@
     "sagas": 17,
     "sentient_gems": 14,
     "set_bonuses": 327,
-    "sources": 6173,
+    "sources": 7014,
     "spells": 706,
     "wiki_augments": 0,
     "wiki_items": 262,
     "wiki_quests": 1
   },
   "dataset": {
-    "built_at": "2026-10-02T16:54:05Z",
+    "built_at": "2026-10-02T17:19:23Z",
     "upstream_sha": "31ef0201ea8e28604de2b6242988aee6d63733b0"
   },
-  "schema_version": 15
+  "schema_version": 16
 }

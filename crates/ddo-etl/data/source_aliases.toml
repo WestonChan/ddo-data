@@ -1,0 +1,19 @@
+[[crafting_system]]
+text = "Magma Forge"
+system = "Thunder-Forged"
+reason = "The Magma Forge in the Ruins of Thunderholme is where Thunder-Forged items are crafted."
+
+[[crafting_system]]
+text = "Dreamforge"
+system = "Suppressed Power"
+reason = "The Dreamforge in The Dreaming Dark is the Suppressed Power crafting station."
+
+[[crafting_system]]
+text = "Altar of Vulkoor"
+system = "Dampened"
+reason = "The Altar of Vulkoor in the Raveneye Refugee Camp cleanses and upgrades Dampened items."
+
+[[crafting_system]]
+text = "Lahar"
+system = "Nebula Fragment Crafting"
+reason = "Lahar in The Twelve takes the Nebula Fragment that starts Nebula Fragment Crafting."

@@ -1,3 +1,4 @@
+use super::crafting::crafting_systems_making;
 use super::quest_series::{quest_chains_rewarding, sagas_rewarding};
 use super::quests::{adventure_packs_dropping_via, quests_dropping_via, sources_via};
 use crate::db::{
@@ -241,11 +242,16 @@ fn first_unknown_enchantment_name(
                    for a quest read from ddowiki because his files lack it; see /v1/quests for the rest of the quest), `quest_chains` and `sagas` whose end reward offers the item (each with `id`, `name`, `is_rare` and the ddowiki page it was read from as `wiki_url`, a saga also with its reward `tier`; see /v1/quest-chains and /v1/sagas), \
                    `adventure_packs` any of whose quests drops it, as his drop text credits a whole pack (`Magic of \
                    Myth Drannor, any end chest`; each with `id`, `name`, `loot_type`, `chest` and `is_rare`, once per \
-                   loot type; see /v1/adventure-packs/{id}), `sources`, every one of those sources in one array, each \
-                   with `kind` (`quest`, `quest_chain`, `saga` or `adventure_pack`), the source's `id` and `name`, \
+                   loot type; see /v1/adventure-packs/{id}), `crafting_systems` whose station crafts or upgrades it, as \
+                   his drop text names the system or its station (`Magma Forge, Crafted from various ingredients`; \
+                   each with `id`, `name`, `is_rare` and the ddowiki page as `wiki_url`; see \
+                   /v1/crafting-systems/{id}), `sources`, every one of those sources in one array, each \
+                   with `kind` (`quest`, `quest_chain`, `saga`, `adventure_pack` or `crafting_system`), the source's \
+                   `id` and `name`, \
                    `loot_type` (null on a chain or saga reward), `chest`, `is_rare`, `tier` (a saga reward's list, \
-                   null otherwise) and the source's ddowiki page as `wiki_url` (the page read for a chain or saga, the \
-                   page named after a quest or pack otherwise), sorted by kind in that order and then by name, and \
+                   null otherwise) and the source's ddowiki page as `wiki_url` (the page read for a chain, saga or \
+                   crafting system, the page named after a quest or pack otherwise), sorted by kind in that order and \
+                   then by name, and \
                    the raw `modifiers` the ETL derived the bonuses from.",
     params(("id" = i64, Path, description = "The item's numeric id from the list endpoint")), responses((status = 200, description = "The item with its child collections", body = Value), (status = 404, description = "No item has this id", body = crate::error::ErrorBody))
 )]
@@ -333,6 +339,7 @@ async fn item_detail(State(state): State<AppState>, Path(id): Path<i64>) -> Resu
             item["quest_chains"] = Value::Array(quest_chains_rewarding(db, id)?);
             item["sagas"] = Value::Array(sagas_rewarding(db, id)?);
             item["adventure_packs"] = Value::Array(adventure_packs_dropping_via(db, "item_id", id)?);
+            item["crafting_systems"] = Value::Array(crafting_systems_making(db, id)?);
             item["sources"] = Value::Array(sources_via(db, "item_id", id)?);
             item["modifiers"] = Value::Array(modifiers_for(db, "item", id)?);
             Ok(Json(item))

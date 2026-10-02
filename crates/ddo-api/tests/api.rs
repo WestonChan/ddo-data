@@ -61,7 +61,7 @@ async fn version_reports_dataset_and_schema() {
     assert_eq!(json["dataset"]["upstream_sha"], "fixture-sha");
     assert_eq!(json["schema_version"], ddo_model::SCHEMA_VERSION);
     assert!(json.get("api_commit").is_some(), "version must report the API build commit, null when unknown");
-    assert_eq!(json["counts"]["items"], 41, "40 of Maetrim's and the wiki fixture's axe");
+    assert_eq!(json["counts"]["items"], 42, "41 of Maetrim's and the wiki fixture's axe");
     assert_eq!(
         json["counts"]["legacy_items"], 3,
         "a legacy and a historic version, and an axe that drops only in a retired Temple of Elemental Evil part"
@@ -73,7 +73,7 @@ async fn version_reports_dataset_and_schema() {
             &json["counts"]["crafting_recipes"],
             &json["counts"]["crafting_ingredients"]
         ),
-        (&serde_json::json!(2), &serde_json::json!(5), &serde_json::json!(5))
+        (&serde_json::json!(4), &serde_json::json!(5), &serde_json::json!(5))
     );
     assert_eq!(headers.get("x-dataset-version").unwrap(), "fixture-sha");
     assert!(headers.get(header::ETAG).is_some());
@@ -95,7 +95,7 @@ async fn items_list_filters_and_pages() {
 
     let (_, _, first_page) = get("/v1/items?limit=5&offset=0").await;
     assert_eq!(first_page["items"].as_array().unwrap().len(), 5);
-    assert_eq!(first_page["total"], 38, "the three legacy items are left out by default");
+    assert_eq!(first_page["total"], 39, "the three legacy items are left out by default");
     let (_, _, armor) = get("/v1/items?category=Armor").await;
     assert!(armor["items"].as_array().unwrap().iter().all(|i| i["category"] == "Armor"));
     let (_, _, level_range) = get("/v1/items?min_level=20&max_level=25").await;
@@ -115,7 +115,7 @@ async fn items_list_filters_and_pages() {
     );
     assert!(rare.iter().all(|item| item["is_rare"] == true));
     let (_, _, unfiltered) = get("/v1/items?rare=false").await;
-    assert_eq!(unfiltered["total"], 38);
+    assert_eq!(unfiltered["total"], 39);
     let (status, _, _) = get("/v1/items?category=Hat").await;
     assert_eq!(status, StatusCode::BAD_REQUEST, "unknown category is a client error");
 }
@@ -126,13 +126,13 @@ async fn items_list_leaves_out_legacy_items_unless_asked_to_include_them() {
     for path in ["/v1/items?limit=10000", "/v1/items?limit=10000&include_legacy=false"] {
         let (status, _, current) = get(path).await;
         assert_eq!(status, StatusCode::OK);
-        assert_eq!(current["total"], 38, "{path}");
+        assert_eq!(current["total"], 39, "{path}");
         let rows = current["items"].as_array().unwrap();
         assert!(rows.iter().all(|row| row["is_legacy"] == false), "{path}");
         assert!(legacy_names.iter().all(|name| rows.iter().all(|row| row["name"] != *name)), "{path}");
     }
     let (_, _, with_legacy) = get("/v1/items?limit=10000&include_legacy=true").await;
-    assert_eq!(with_legacy["total"], 41);
+    assert_eq!(with_legacy["total"], 42);
     let legacy_rows: Vec<&Value> =
         with_legacy["items"].as_array().unwrap().iter().filter(|row| row["is_legacy"] == true).collect();
     assert_eq!(legacy_rows.iter().map(|row| row["name"].as_str().unwrap()).collect::<Vec<_>>(), legacy_names);
@@ -1083,8 +1083,9 @@ async fn crafting_systems_list_their_families_and_counts() {
     let (status, _, json) = get("/v1/crafting-systems").await;
     assert_eq!(status, StatusCode::OK);
     let crafting_systems = json.as_array().unwrap();
-    assert_eq!(crafting_systems.len(), 2);
-    let crafting_system = &crafting_systems[0];
+    let names: Vec<&str> = crafting_systems.iter().map(|system| system["name"].as_str().unwrap()).collect();
+    assert_eq!(names, ["Catalyst Crafting", "Heroic Green Steel", "Test Upgrade Altar", "Thunder-Forged"]);
+    let crafting_system = &crafting_systems[1];
     assert!(crafting_system["id"].is_number());
     assert_eq!(crafting_system["name"], "Heroic Green Steel");
     assert_eq!(crafting_system["page"], "https://ddowiki.com/page/Green_Steel_items");
@@ -1095,7 +1096,7 @@ async fn crafting_systems_list_their_families_and_counts() {
         (&crafting_system["ingredient_count"], &crafting_system["recipe_count"]),
         (&serde_json::json!(4), &serde_json::json!(3))
     );
-    let upgrade_system = &crafting_systems[1];
+    let upgrade_system = &crafting_systems[2];
     assert_eq!(upgrade_system["name"], "Test Upgrade Altar");
     assert_eq!(upgrade_system["families"], serde_json::json!([]));
 }
@@ -1103,7 +1104,7 @@ async fn crafting_systems_list_their_families_and_counts() {
 #[tokio::test]
 async fn crafting_system_detail_carries_ingredients_and_recipes_with_augments_and_cost() {
     let (_, _, list) = get("/v1/crafting-systems").await;
-    let id = list[0]["id"].as_i64().unwrap();
+    let id = list[1]["id"].as_i64().unwrap();
     let (status, _, crafting_system) = get(&format!("/v1/crafting-systems/{id}")).await;
     assert_eq!(status, StatusCode::OK);
     assert_eq!(crafting_system["name"], "Heroic Green Steel");
@@ -1138,7 +1139,7 @@ async fn crafting_system_detail_carries_ingredients_and_recipes_with_augments_an
     assert_eq!(cleanse["note"], "Returns a crafted item to its blank state; no augment counterpart.");
     assert_eq!(cleanse["cost"][0]["tier"], "any");
 
-    let upgrade_id = list[1]["id"].as_i64().unwrap();
+    let upgrade_id = list[2]["id"].as_i64().unwrap();
     let (_, _, upgrade_system) = get(&format!("/v1/crafting-systems/{upgrade_id}")).await;
     let upgrade_recipes = upgrade_system["recipes"].as_array().unwrap();
     let granted_slots: Vec<&Value> = upgrade_recipes.iter().map(|r| &r["grants_slot"]).collect();
@@ -1484,15 +1485,52 @@ async fn item_and_augment_detail_list_every_source_in_one_array() {
 }
 
 #[tokio::test]
+async fn item_detail_lists_the_crafting_systems_that_make_it() {
+    let (_, _, orb) = get(&format!("/v1/items/{}", id_of_item_named("Thunder-Forged Orb").await)).await;
+    let (_, _, crafting_systems) = get("/v1/crafting-systems").await;
+    let thunder_forged = crafting_systems.as_array().unwrap().iter().find(|system| system["name"] == "Thunder-Forged");
+    let thunder_forged_id = &thunder_forged.expect("the fixture wiki records Thunder-Forged")["id"];
+    assert_eq!(
+        orb["crafting_systems"],
+        serde_json::json!([{
+            "id": thunder_forged_id,
+            "name": "Thunder-Forged",
+            "is_rare": false,
+            "wiki_url": "https://ddowiki.com/page/Thunder-Forged"
+        }])
+    );
+    let sources = orb["sources"].as_array().unwrap();
+    assert_eq!(sources.len(), 1, "{sources:?}");
+    assert_eq!(
+        (&sources[0]["kind"], &sources[0]["id"], &sources[0]["name"], &sources[0]["wiki_url"]),
+        (
+            &serde_json::json!("crafting_system"),
+            thunder_forged_id,
+            &serde_json::json!("Thunder-Forged"),
+            &serde_json::json!("https://ddowiki.com/page/Thunder-Forged")
+        )
+    );
+    let (_, _, version) = get("/v1/version").await;
+    assert_eq!(version["counts"]["crafting_system_sources"], 2, "the Orb and Visor of Fraz-Urb'luu");
+}
+
+#[tokio::test]
 async fn version_counts_every_source_by_kind() {
     let (_, _, version) = get("/v1/version").await;
     let counts = &version["counts"];
     assert_eq!((&counts["pack_loot"], &counts["pack_augment_loot"]), (&serde_json::json!(1), &serde_json::json!(0)));
-    let source_count_by_kind: i64 =
-        ["quest_loot", "quest_augment_loot", "quest_chain_rewards", "saga_rewards", "pack_loot", "pack_augment_loot"]
-            .iter()
-            .map(|count_name| counts[count_name].as_i64().unwrap())
-            .sum();
+    let source_count_by_kind: i64 = [
+        "quest_loot",
+        "quest_augment_loot",
+        "quest_chain_rewards",
+        "saga_rewards",
+        "pack_loot",
+        "pack_augment_loot",
+        "crafting_system_sources",
+    ]
+    .iter()
+    .map(|count_name| counts[count_name].as_i64().unwrap())
+    .sum();
     assert_eq!(counts["sources"].as_i64().unwrap(), source_count_by_kind);
 }
 

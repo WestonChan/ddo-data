@@ -16,6 +16,7 @@ use crate::map::buff::BuffMap;
 use crate::map::drop_location::{names_saga, reward_giver_name};
 use crate::map::effect::EffectMap;
 use crate::map::legacy_drop_source::LegacyDropSources;
+use crate::map::source_alias::SourceAliases;
 use crate::wiki::WikiOverrides;
 use crate::xml::challenges::{self, Challenge};
 use crate::xml::items::parse_item_file;
@@ -103,6 +104,7 @@ pub struct BuildReport {
     pub saga_reward_count: usize,
     pub drop_text_quest_chain_reward_count: usize,
     pub drop_text_saga_reward_count: usize,
+    pub drop_text_crafting_system_source_count: usize,
     pub correction_applied_count: usize,
     pub correction_stale_count: usize,
     pub stale_corrections: Vec<StaleCorrection>,
@@ -176,7 +178,12 @@ pub fn build_database(
     corrections::apply_quest_corrections(&transaction, corrections, &mut report)?;
     wiki::write_wiki_quests(&transaction, &wiki_overrides.quests, &mut report)?;
     quest_series::write_wiki_quest_series(&transaction, wiki_overrides, &mut report)?;
-    let drop_text_linker = DropTextLinker::from_written_tables(&transaction, &LegacyDropSources::embedded()?)?;
+    wiki::write_wiki_crafting_systems(&transaction, wiki_overrides)?;
+    let drop_text_linker = DropTextLinker::from_written_tables(
+        &transaction,
+        &LegacyDropSources::embedded()?,
+        &SourceAliases::embedded()?,
+    )?;
 
     let mut writer = TableWriter {
         transaction: &transaction,
@@ -270,7 +277,8 @@ pub struct UnlinkedRewardGiver {
 }
 
 pub fn unlinked_reward_givers(db: &Connection) -> Result<Vec<UnlinkedRewardGiver>> {
-    let drop_text_linker = DropTextLinker::from_written_tables(db, &LegacyDropSources::embedded()?)?;
+    let drop_text_linker =
+        DropTextLinker::from_written_tables(db, &LegacyDropSources::embedded()?, &SourceAliases::embedded()?)?;
     let drop_texts = maetrim_item_drop_texts(db)?;
     let mut item_counts_by_reward_giver: BTreeMap<(bool, String), usize> = BTreeMap::new();
     for drop_text in &drop_texts {
@@ -298,7 +306,8 @@ pub struct UnlinkedDropSegmentHead {
 }
 
 pub fn unlinked_drop_segment_heads(db: &Connection) -> Result<Vec<UnlinkedDropSegmentHead>> {
-    let drop_text_linker = DropTextLinker::from_written_tables(db, &LegacyDropSources::embedded()?)?;
+    let drop_text_linker =
+        DropTextLinker::from_written_tables(db, &LegacyDropSources::embedded()?, &SourceAliases::embedded()?)?;
     let mut item_counts_by_head: BTreeMap<String, usize> = BTreeMap::new();
     for drop_text in &maetrim_item_drop_texts(db)? {
         let mut heads_in_item: Vec<String> = drop_text_linker

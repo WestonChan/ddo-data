@@ -93,7 +93,7 @@ fn wiki_check_reports_the_wiki_counts_for_a_valid_wiki_dir() {
         "drop_text_wiki_quest_link_count: 1",
         "wiki_quest_superseded_count: 1",
         "wiki_quest_probable_duplicate_count: 0",
-        "wiki_crafting_system_count: 2",
+        "wiki_crafting_system_count: 4",
         "wiki_crafting_recipe_count: 5",
         "wiki_crafting_ingredient_count: 5",
         "wiki_description_entry_count: 4",
@@ -114,6 +114,7 @@ fn wiki_check_reports_the_wiki_counts_for_a_valid_wiki_dir() {
         "saga_reward_count: 3",
         "drop_text_quest_chain_reward_count: 1",
         "drop_text_saga_reward_count: 2",
+        "drop_text_crafting_system_source_count: 2",
     ] {
         assert!(report.lines().any(|line| line == expected_line), "missing {expected_line:?} in\n{report}");
     }
@@ -408,7 +409,7 @@ fn wiki_batch_writes_the_reading_agent_inputs() {
     )
     .unwrap();
 
-    assert_eq!(line_count(&out_dir.path().join("item_names.txt")), 40);
+    assert_eq!(line_count(&out_dir.path().join("item_names.txt")), 41);
     assert_eq!(
         std::fs::read_to_string(out_dir.path().join("wiki_source_items.txt")).unwrap(),
         "Battle Axe of the Oozing Hunger\n"

@@ -69,6 +69,10 @@ pub fn saga_tier_credited_to(segment: &str, saga_name: &str) -> Option<SagaTier>
         .find_map(|word| SagaTier::ALL.iter().copied().find(|tier| tier.as_str() == word))
 }
 
+pub fn segment_head(segment: &str) -> &str {
+    segment.split([',', '(', ':']).next().unwrap_or(segment).trim()
+}
+
 pub fn segment_ranges(drop_text: &str) -> Vec<Range<usize>> {
     let mut ranges = Vec::new();
     let mut start = 0;

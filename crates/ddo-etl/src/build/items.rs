@@ -368,6 +368,7 @@ impl TableWriter<'_> {
             }
         }
         report.pack_loot_link_count += self.link_to_drop_text_packs(DroppedLoot::Item(item_id), drop_location)?;
+        self.link_to_sources_named_in_drop_text(DroppedLoot::Item(item_id), drop_location, report)?;
         for linked_table in self.link_item_to_drop_text_reward_givers(item_id, drop_location)? {
             match linked_table {
                 QuestSeriesTable::QuestChains => report.drop_text_quest_chain_reward_count += 1,

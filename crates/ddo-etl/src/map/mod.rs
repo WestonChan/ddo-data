@@ -7,6 +7,7 @@ pub mod item_version;
 pub mod legacy_drop_source;
 pub mod material;
 pub mod placement;
+pub mod source_alias;
 
 use serde::Deserialize;
 use std::collections::BTreeMap;

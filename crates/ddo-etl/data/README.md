@@ -5,6 +5,7 @@ The vocabularies the ETL maps Maetrim's DDOBuilderV2 files through. Each is embe
 - `buff_map.toml`: his item buff types, as stats, bonus types and effects.
 - `effect_map.toml`: his effect types, as stats and bonus types.
 - `legacy_drop_sources.toml`: the names in his drop text of quests that no longer exist, so the items only they dropped are flagged legacy (below).
+- `source_aliases.toml`: the station or place names his drop text uses for a source recorded under another name, such as a crafting system's station (below).
 - `corrections/`: his values a ddowiki page contradicts; see [`corrections/README.md`](corrections/README.md).
 - `wiki/`: facts read from ddowiki that his files have no field for; see [`wiki/README.md`](wiki/README.md).
 
@@ -36,3 +37,23 @@ read = "2026-10-02"
 A name his text uses for a source that still exists under another name is not a legacy source. Animus says `Devil Assault (quest), End Chest`, while his quests are `Devil Assault (Normal)`, `(Hard)` and `(Elite)`: the segment links to the pack Devil Assault, and the wiki loot file links the item to the three quests.
 
 The build fails, naming the entry, when the file has a field other than these, `text` or `reason` is empty, `source` is not an `https://` URL, `read` is not a real date, or the same `text` appears twice ignoring case. `cargo xtask wiki-check` prints `legacy_source_flagged_count`, the items flagged, and `wiki-batch`'s `unlinked_drop_segments.txt` leaves out every segment that names a legacy text.
+
+## `source_aliases.toml`
+
+His drop text often names the place an item is made rather than the crafting system that makes it: `Magma Forge, Crafted from various ingredients` is Thunder-Forged crafting, and `Lahar, Turn in Nebula Fragment` is Nebula Fragment Crafting. A segment that names a wiki crafting system (`crafting_systems.name`, as whole words, ignoring the case of every letter after the first, longest first) links the item or augment to it as a `crafting_system` source (`Catalyst Crafting, Turn in ...`, `Viktranium Experiment crafting, Turn in ...`); this file maps the other names to a system, matched against the segment's head, the text before its first comma, parenthesis or colon, ignoring case.
+
+```toml
+[[crafting_system]]
+text = "Magma Forge"
+system = "Thunder-Forged"
+reason = "The Magma Forge in the Ruins of Thunderholme is where Thunder-Forged items are crafted."
+```
+
+- `text`: the head as his segments spell it.
+- `system`: a crafting system's name in `wiki/crafting*.toml`; an alias whose system the wiki files lack links nothing.
+- `reason`: why the name stands for that system, in one sentence.
+
+The build fails, naming the entry, when the file has a field or table other than these, a field is blank, or the same `text` appears twice ignoring case. A test checks that every `system` names a crafting system in the embedded wiki files. The build report counts the rows written as `drop_text_crafting_system_source_count`, and `wiki-batch`'s `unlinked_drop_segments.txt` leaves out every segment that links one.
+
+`Altar of Fecundity, Manufactured Ingredient Recipes` (93 items) is not aliased: the Altar of Fecundity makes the blanks of both Green Steel items (the 45 heroic ones) and Legendary Green Steel items (the 48 named Legendary), and a head alias cannot tell them apart.
+

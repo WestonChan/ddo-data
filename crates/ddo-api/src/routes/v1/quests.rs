@@ -232,14 +232,16 @@ pub(super) fn sources_via(
     let mut sources = json_rows(
         db,
         &format!(
-            "SELECT loot.kind, COALESCE(q.id, c.id, s.id, p.id) AS id,
-                    COALESCE(q.name, c.name, s.name, p.name) AS name, loot.loot_type, loot.chest, loot.is_rare,
-                    loot.tier, COALESCE(c.wiki_url, s.wiki_url) AS wiki_url
+            "SELECT loot.kind, COALESCE(q.id, c.id, s.id, p.id, cs.id) AS id,
+                    COALESCE(q.name, c.name, s.name, p.name, cs.name) AS name, loot.loot_type, loot.chest,
+                    loot.is_rare, loot.tier, COALESCE(c.wiki_url, s.wiki_url, cs.page) AS wiki_url
                FROM sources loot LEFT JOIN quests q ON q.id = loot.quest_id
                LEFT JOIN quest_chains c ON c.id = loot.chain_id LEFT JOIN sagas s ON s.id = loot.saga_id
                LEFT JOIN adventure_packs p ON p.id = loot.pack_id
+               LEFT JOIN crafting_systems cs ON cs.id = loot.crafting_system_id
               WHERE loot.{loot_id_column} = ?1
-              ORDER BY CASE loot.kind WHEN 'quest' THEN 1 WHEN 'quest_chain' THEN 2 WHEN 'saga' THEN 3 ELSE 4 END,
+              ORDER BY CASE loot.kind WHEN 'quest' THEN 1 WHEN 'quest_chain' THEN 2 WHEN 'saga' THEN 3
+                                      WHEN 'adventure_pack' THEN 4 WHEN 'crafting_system' THEN 5 ELSE 6 END,
                        name, loot.loot_type,
                        CASE loot.tier WHEN 'heroic' THEN 1 WHEN 'epic' THEN 2 WHEN 'legendary' THEN 3 ELSE 4 END"
         ),

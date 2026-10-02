@@ -103,7 +103,7 @@ pub(super) fn apply_wiki_overrides(
         report.wiki_quest_entry_count += 1;
     }
     for crafting_system in &wiki_overrides.crafting_systems {
-        insert_crafting_system(transaction, crafting_system, report)
+        insert_crafting_system_contents(transaction, crafting_system, report)
             .with_context(|| format!("wiki crafting {:?} ({})", crafting_system.name, crafting_system.page))?;
     }
     Ok(())
@@ -224,7 +224,17 @@ fn link_augment_to_quests_named_in(
     Ok(drop_text_linker.link_loot_to_quests_named_in(transaction, DroppedLoot::Augment(augment_id), drop_text)?.len())
 }
 
-fn insert_crafting_system(
+pub(super) fn write_wiki_crafting_systems(transaction: &Transaction, wiki_overrides: &WikiOverrides) -> Result<()> {
+    for crafting_system in &wiki_overrides.crafting_systems {
+        transaction.execute(
+            "INSERT INTO crafting_systems (name, page, npc) VALUES (?1, ?2, ?3)",
+            params![crafting_system.name, crafting_system.page, crafting_system.npc],
+        )?;
+    }
+    Ok(())
+}
+
+fn insert_crafting_system_contents(
     transaction: &Transaction,
     crafting_system: &CraftingSystem,
     report: &mut BuildReport,
@@ -247,11 +257,9 @@ fn insert_crafting_system(
             bail!("family {family:?} has no augments in Maetrim's Augments/; a family is an augment file's name before .Augments.xml");
         }
     }
-    transaction.execute(
-        "INSERT INTO crafting_systems (name, page, pack_id, npc) VALUES (?1, ?2, ?3, ?4)",
-        params![crafting_system.name, crafting_system.page, pack_id, crafting_system.npc],
-    )?;
-    let system_id = transaction.last_insert_rowid();
+    let system_id = id_by_name(transaction, "crafting_systems", &crafting_system.name)?
+        .context("the crafting system row is written before his items")?;
+    transaction.execute("UPDATE crafting_systems SET pack_id = ?2 WHERE id = ?1", params![system_id, pack_id])?;
     for family in &crafting_system.families {
         transaction.execute(
             "INSERT OR IGNORE INTO crafting_system_families (system_id, family) VALUES (?1, ?2)",
@@ -422,9 +430,10 @@ impl TableWriter<'_> {
                 report.wiki_item_superseded_count += 1;
                 continue;
             }
-            self.write_wiki_item(wiki_item, &mut effect_ids_by_folded_name).with_context(|| {
+            let item_id = self.write_wiki_item(wiki_item, &mut effect_ids_by_folded_name).with_context(|| {
                 format!("wiki {} item {:?} ({})", wiki_item.file_name, wiki_item.name, wiki_item.page)
             })?;
+            self.link_to_sources_named_in_drop_text(DroppedLoot::Item(item_id), &wiki_item.drop_location, report)?;
             report.wiki_item_written_count += 1;
             if let Some(maetrim_name) = maetrim_item_names_by_normalised_name.get(&normalised_name(&wiki_item.name)) {
                 report.probable_duplicate_wiki_items.push(ProbableDuplicateWikiEntry {
@@ -441,7 +450,7 @@ impl TableWriter<'_> {
         &mut self,
         wiki_item: &WikiItem,
         effect_ids_by_folded_name: &mut HashMap<String, i64>,
-    ) -> Result<()> {
+    ) -> Result<i64> {
         let material_id = match &wiki_item.material {
             Some(material_name) => Some(*self.written.material_ids_by_name.get(material_name).with_context(|| {
                 format!(
@@ -551,7 +560,7 @@ impl TableWriter<'_> {
         if let Some(set_name) = &wiki_item.set {
             self.pending_set_item_links.push((item_id, set_name.clone()));
         }
-        Ok(())
+        Ok(item_id)
     }
 
     fn ensure_wiki_bonus(&mut self, bonus: &WikiBonus) -> Result<i64> {

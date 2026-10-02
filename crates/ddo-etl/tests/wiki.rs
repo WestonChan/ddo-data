@@ -608,7 +608,7 @@ fn parsed_edited_crafting(edit: impl Fn(String) -> String) -> Result<WikiOverrid
 #[test]
 fn reads_crafting_systems_from_crafting_files() {
     let wiki = WikiOverrides::from_dir(&fixtures_dir().join("wiki")).unwrap();
-    assert_eq!(wiki.crafting_systems.len(), 2);
+    assert_eq!(wiki.crafting_systems.len(), 4);
     let system = &wiki.crafting_systems[0];
     assert_eq!(system.name, "Heroic Green Steel");
     assert_eq!(system.page, "https://ddowiki.com/page/Green_Steel_items");
@@ -791,7 +791,7 @@ fn merges_crafting_systems_ingredients_and_recipes() {
     let (db, report) = built_db_with(&WikiOverrides::from_dir(&fixtures_dir().join("wiki")).unwrap());
     assert_eq!(
         (report.wiki_crafting_system_count, report.wiki_crafting_recipe_count, report.wiki_crafting_ingredient_count),
-        (2, 5, 5)
+        (4, 5, 5)
     );
     let (name, page, pack, npc): (String, String, Option<i64>, Option<String>) = db
         .query_row("SELECT name, page, pack_id, npc FROM crafting_systems ORDER BY id LIMIT 1", [], |r| {

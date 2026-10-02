@@ -1,0 +1,14 @@
+# Test values shaped like ddowiki crafting pages: the system names are real, and the fixture DataFiles' drop text
+# names them (Catalyst Crafting) or the station data/source_aliases.toml maps to one (Magma Forge to
+# Thunder-Forged); the pages, dates and NPCs are test values.
+[[system]]
+name = "Catalyst Crafting"
+page = "https://ddowiki.com/page/Catalyst_Crafting"
+read = "2026-10-02"
+npc = "Strange Catalyst Forge"
+
+[[system]]
+name = "Thunder-Forged"
+page = "https://ddowiki.com/page/Thunder-Forged"
+read = "2026-10-02"
+npc = "Magma Forge"
