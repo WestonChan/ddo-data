@@ -39,14 +39,14 @@ pub(super) struct ItemListQuery {
     pub quest: Option<i64>,
     pub quest_chain: Option<i64>,
     pub saga: Option<i64>,
-    pub stat: Option<String>,
+    pub enchantment: Option<String>,
     pub include_set_bonuses: Option<bool>,
     pub limit: Option<i64>,
     pub offset: Option<i64>,
 }
 
 impl QueryParameters for ItemListQuery {
-    const REPEATABLE_KEYS: &'static [&'static str] = &["stat"];
+    const REPEATABLE_KEYS: &'static [&'static str] = &["enchantment"];
 }
 
 #[utoipa::path(
@@ -57,8 +57,9 @@ impl QueryParameters for ItemListQuery {
     description = "One page of equipment matching every filter given, so a client needs no matching of its own. \
                    Filters: `q` (search text against the name, or exactly a slot, category or pack name), `slot`, \
                    `category`, `min_level` and `max_level`, `pack`, `raid`, `rare`, `quest`, `quest_chain` and `saga` \
-                   (ids of what drops or rewards the item), `stat` (one or more stats, any of which an item's \
-                   bonuses must carry) and `include_set_bonuses` (let `stat` also match the item's set tiers); \
+                   (ids of what drops or rewards the item), `enchantment` (one or more stat or effect \
+                   names, any of which the item must carry, as a stat bonus or as a named effect) and \
+                   `include_set_bonuses` (let the stat names in `enchantment` also match the item's set tiers); \
                    `limit` and `offset` page the matches. \
                    Ordered by name; with `q`, an exact name match comes first, then names starting with the text, \
                    then the rest, each group by name. Each row carries what a picker needs: id, name, slot, \
@@ -80,14 +81,14 @@ impl QueryParameters for ItemListQuery {
         ("quest" = Option<i64>, Query, description = "Quest id as /v1/quests lists it; keeps the items its /v1/quests/{id} `items` lists, dropped from any chest, as raid loot or as an end reward (loot his drop text credits to the whole pack is matched by `pack` instead); an id no quest has matches nothing rather than a 400, as an unknown `pack` does"),
         ("quest_chain" = Option<i64>, Query, description = "Quest chain id as /v1/quest-chains lists it; keeps items its end reward offers; an id no chain has matches nothing"),
         ("saga" = Option<i64>, Query, description = "Saga id as /v1/sagas lists it; keeps items its end reward offers in any tier; an id no saga has matches nothing"),
-        ("stat" = Option<String>, Query, description = "One or more stat names as /v1/stats lists them, comma-separated (`stat=Strength,Dexterity`) or as repeated keys (`stat=Strength&stat=Dexterity`); keeps items with at least one bonus of their own to any of them, and with `include_set_bonuses=true` also items whose set has a tier with a bonus to any of them; an unknown name is a 400 naming it"),
-        ("include_set_bonuses" = Option<bool>, Query, description = "`true` widens `stat` to also match an item when any tier of its set (see /v1/sets/{id}) carries a bonus to a listed stat; the item's own bonuses match either way; `false` and unset match its own bonuses only; no effect without `stat`"),
+        ("enchantment" = Option<String>, Query, description = "One or more enchantment names, each a stat name as /v1/stats lists it or an effect name as an item's `effects` give it, comma-separated (`enchantment=Strength,Vorpal`) or as repeated keys (`enchantment=Strength&enchantment=Vorpal`); keeps items carrying any of them. A stat name matches an item with at least one bonus of its own to that stat, and with `include_set_bonuses=true` also an item whose set has a tier with a bonus to it; an effect name matches an item whose `effects` (its `item_effects` rows) name it; a name that is both matches either way. Matching is case-sensitive; a name that is neither a stat nor an effect is a 400 naming it"),
+        ("include_set_bonuses" = Option<bool>, Query, description = "`true` widens the stat names in `enchantment` to also match an item when any tier of its set (see /v1/sets/{id}) carries a bonus to one of them; the item's own bonuses and effects match either way; `false` and unset match the item's own bonuses only; no effect without `enchantment`"),
         ("limit" = Option<i64>, Query, description = "Page size, 1 to 10000; defaults to 100; out-of-range values are clamped rather than rejected"),
         ("offset" = Option<i64>, Query, description = "Rows to skip before the first returned row; defaults to 0; negative values are clamped to 0 rather than rejected")
     ),
     responses(
         (status = 200, description = "`total`, `limit`, `offset` and the `items` page", body = Value),
-        (status = 400, description = "Unknown category or stat, or an unknown or malformed query parameter", body = crate::error::ErrorBody)
+        (status = 400, description = "Unknown category or enchantment, or an unknown or malformed query parameter", body = crate::error::ErrorBody)
     )
 )]
 async fn items(
@@ -144,17 +145,22 @@ async fn items(
             if let Some(saga_id) = query.saga {
                 where_clause.add_bound_condition("i.id IN (SELECT d.item_id FROM drops d WHERE d.source_kind = 'saga' AND d.saga_id = ?)", saga_id);
             }
-            let stat_names = query.stat.as_deref().map(comma_separated_values).unwrap_or_default();
-            if let Some(unknown_stat_name) = first_unknown_stat_name(db, &stat_names)? {
-                return Err(ApiError::BadRequest(format!("unknown stat {unknown_stat_name:?}")));
+            let enchantment_names = query.enchantment.as_deref().map(comma_separated_values).unwrap_or_default();
+            if let Some(unknown_enchantment_name) = first_unknown_enchantment_name(db, &enchantment_names)? {
+                return Err(ApiError::BadRequest(format!("unknown enchantment {unknown_enchantment_name:?}")));
             }
-            if !stat_names.is_empty() {
-                let stat_match_sql = if query.include_set_bonuses == Some(true) {
-                    format!("({ITEMS_WITH_OWN_BONUS_TO_STATS_SQL} OR {ITEMS_WITH_SET_TIER_BONUS_TO_STATS_SQL})")
+            if !enchantment_names.is_empty() {
+                let set_tier_match_sql = if query.include_set_bonuses == Some(true) {
+                    format!(" OR {ITEMS_WITH_SET_TIER_BONUS_TO_STATS_SQL}")
                 } else {
-                    ITEMS_WITH_OWN_BONUS_TO_STATS_SQL.to_string()
+                    String::new()
                 };
-                where_clause.add_bound_list_condition(&stat_match_sql, stat_names);
+                where_clause.add_bound_list_condition(
+                    &format!(
+                        "({ITEMS_WITH_OWN_BONUS_TO_STATS_SQL}{set_tier_match_sql} OR {ITEMS_WITH_EFFECTS_SQL})"
+                    ),
+                    enchantment_names,
+                );
             }
             let where_sql = where_clause.to_sql();
             let from_sql = format!("FROM items i JOIN equipment_slots es ON es.id = i.slot_id {where_sql}");
@@ -189,11 +195,19 @@ const ITEMS_WITH_SET_TIER_BONUS_TO_STATS_SQL: &str =
      JOIN set_bonus_tier_bonuses tb ON tb.bonus_id = b.id JOIN set_bonus_tiers t ON t.id = tb.tier_id \
      JOIN set_bonus_items sbi ON sbi.set_id = t.set_id WHERE s.name IN (?))";
 
-fn first_unknown_stat_name(db: &rusqlite::Connection, stat_names: &[String]) -> Result<Option<String>, ApiError> {
-    let mut statement = db.prepare_cached("SELECT EXISTS (SELECT 1 FROM stats WHERE name = ?1)")?;
-    for stat_name in stat_names {
-        if !statement.query_row([stat_name], |row| row.get::<_, bool>(0))? {
-            return Ok(Some(stat_name.clone()));
+const ITEMS_WITH_EFFECTS_SQL: &str =
+    "i.id IN (SELECT ie.item_id FROM effects e JOIN item_effects ie ON ie.effect_id = e.id WHERE e.name IN (?))";
+
+fn first_unknown_enchantment_name(
+    db: &rusqlite::Connection,
+    enchantment_names: &[String],
+) -> Result<Option<String>, ApiError> {
+    let mut statement = db.prepare_cached(
+        "SELECT EXISTS (SELECT 1 FROM stats WHERE name = ?1) OR EXISTS (SELECT 1 FROM effects WHERE name = ?1)",
+    )?;
+    for enchantment_name in enchantment_names {
+        if !statement.query_row([enchantment_name], |row| row.get::<_, bool>(0))? {
+            return Ok(Some(enchantment_name.clone()));
         }
     }
     Ok(None)

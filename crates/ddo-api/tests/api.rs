@@ -121,36 +121,65 @@ fn item_names(list_response: &Value) -> Vec<&str> {
 }
 
 #[tokio::test]
-async fn items_filter_by_any_of_several_stats_given_as_repeated_keys_or_a_comma_list() {
+async fn items_filter_by_any_of_several_stat_enchantments_given_as_repeated_keys_or_a_comma_list() {
     let strength_or_charisma =
         ["Battle Axe of the Oozing Hunger", "Legendary Ring of Unbridled Might", "Ring of the Kraken"];
-    let (status, _, repeated) = get("/v1/items?stat=Strength&stat=Charisma").await;
-    assert_eq!(status, StatusCode::OK, "repeated stat keys are rejected: {repeated}");
+    let (status, _, repeated) = get("/v1/items?enchantment=Strength&enchantment=Charisma").await;
+    assert_eq!(status, StatusCode::OK, "repeated enchantment keys are rejected: {repeated}");
     assert_eq!(item_names(&repeated), strength_or_charisma);
     assert_eq!(repeated["total"], 3);
-    let (_, _, comma_list) = get("/v1/items?stat=Strength,%20Charisma").await;
+    let (_, _, comma_list) = get("/v1/items?enchantment=Strength,%20Charisma").await;
     assert_eq!(item_names(&comma_list), strength_or_charisma);
 
-    let (status, _, unknown) = get("/v1/items?stat=Strength,Strenght").await;
-    assert_eq!(status, StatusCode::BAD_REQUEST, "an unknown stat is a client error, not an empty page");
-    assert_eq!(unknown["error"], r#"unknown stat "Strenght""#);
+    let (status, _, unknown) = get("/v1/items?enchantment=Strength,Strenght").await;
+    assert_eq!(status, StatusCode::BAD_REQUEST, "an unknown enchantment is a client error, not an empty page");
+    assert_eq!(unknown["error"], r#"unknown enchantment "Strenght""#);
+    let (status, _, retired) = get("/v1/items?stat=Strength").await;
+    assert_eq!(status, StatusCode::BAD_REQUEST, "`stat` gave way to `enchantment`: {retired}");
 }
 
 #[tokio::test]
-async fn items_match_a_stat_on_their_sets_tiers_only_when_set_bonuses_are_included() {
-    let (_, _, own_bonuses_only) = get("/v1/items?stat=Sneak%20Attack%20Dice").await;
+async fn items_filter_by_effect_enchantments_alone_or_beside_stats() {
+    let (status, _, vorpal) = get("/v1/items?enchantment=Vorpal").await;
+    assert_eq!(status, StatusCode::OK, "{vorpal}");
+    assert_eq!(item_names(&vorpal), ["Light Crossbow of the Golden Age"]);
+
+    let (_, _, effect_or_stat) = get("/v1/items?enchantment=Freedom%20of%20Movement&enchantment=Charisma").await;
+    assert_eq!(
+        item_names(&effect_or_stat),
+        ["Epic Kundarak Delving Boots", "Kundarak Delving Boots", "Ring of the Kraken", "Sireth, Spear of the Sky"],
+        "three items carry the Freedom of Movement effect and the ring a Charisma bonus"
+    );
+
+    let (_, _, effect_and_search_text) = get("/v1/items?enchantment=Freedom%20of%20Movement&q=sireth").await;
+    assert_eq!(
+        item_names(&effect_and_search_text),
+        ["Sireth, Spear of the Sky"],
+        "other filters still narrow the match"
+    );
+
+    let (status, _, lower_case) = get("/v1/items?enchantment=vorpal").await;
+    assert_eq!(status, StatusCode::BAD_REQUEST, "names match case-sensitively, as `stat` did: {lower_case}");
+}
+
+#[tokio::test]
+async fn items_match_a_stat_enchantment_on_their_sets_tiers_only_when_set_bonuses_are_included() {
+    let (_, _, own_bonuses_only) = get("/v1/items?enchantment=Sneak%20Attack%20Dice").await;
     assert_eq!(own_bonuses_only["total"], 0, "no fixture item has its own Sneak Attack Dice bonus");
-    let (status, _, with_set_bonuses) = get("/v1/items?stat=Sneak%20Attack%20Dice&include_set_bonuses=true").await;
+    let (status, _, with_set_bonuses) =
+        get("/v1/items?enchantment=Sneak%20Attack%20Dice&include_set_bonuses=true").await;
     assert_eq!(status, StatusCode::OK, "{with_set_bonuses}");
     assert_eq!(item_names(&with_set_bonuses), ["Kundarak Delving Boots"], "its set's three-piece tier gives the dice");
 
-    let (_, _, own_or_set) = get("/v1/items?stat=Hide,Physical%20Resistance%20Rating&include_set_bonuses=true").await;
+    let (_, _, own_or_set) =
+        get("/v1/items?enchantment=Hide,Physical%20Resistance%20Rating&include_set_bonuses=true").await;
     assert_eq!(
         item_names(&own_or_set),
         ["Kundarak Delving Boots", "Legendary Cloak of Winter"],
         "the boots' own Hide bonus still matches beside the cloak's Eminence of Winter PRR tier"
     );
-    let (_, _, explicitly_excluded) = get("/v1/items?stat=Sneak%20Attack%20Dice&include_set_bonuses=false").await;
+    let (_, _, explicitly_excluded) =
+        get("/v1/items?enchantment=Sneak%20Attack%20Dice&include_set_bonuses=false").await;
     assert_eq!(explicitly_excluded["total"], 0);
 }
 
@@ -791,7 +820,7 @@ fn accepted_sample_value(param_name: &str, schema_type: &str) -> &'static str {
     match (param_name, schema_type) {
         ("category", _) => "Armor",
         ("source", _) => "standard",
-        ("stat", _) => "Strength",
+        ("enchantment", _) => "Strength",
         (_, "boolean") => "true",
         (_, "integer" | "number") => "1",
         _ => "x",
@@ -853,7 +882,7 @@ async fn openapi_lists_every_item_filter_in_the_route_description_and_parameters
         "quest",
         "quest_chain",
         "saga",
-        "stat",
+        "enchantment",
         "include_set_bonuses",
         "limit",
         "offset",
@@ -863,13 +892,20 @@ async fn openapi_lists_every_item_filter_in_the_route_description_and_parameters
         assert!(documented_names.contains(&filter_name), "/v1/items does not document {filter_name}");
         assert!(route_description.contains(&format!("`{filter_name}`")), "/v1/items description omits `{filter_name}`");
     }
-    let stat_description = operation["parameters"].as_array().unwrap().iter().find(|p| p["name"] == "stat").unwrap()
-        ["description"]
-        .as_str()
-        .unwrap();
+    assert!(!documented_names.contains(&"stat"), "/v1/items still documents the retired `stat`");
+    let enchantment_description =
+        operation["parameters"].as_array().unwrap().iter().find(|p| p["name"] == "enchantment").unwrap()["description"]
+            .as_str()
+            .unwrap();
+    for expected_phrase in ["comma-separated", "repeated", "/v1/stats", "effect", "item_effects"] {
+        assert!(
+            enchantment_description.contains(expected_phrase),
+            "missing {expected_phrase:?}: {enchantment_description}"
+        );
+    }
     assert!(
-        stat_description.contains("comma-separated") && stat_description.contains("repeated"),
-        "{stat_description}"
+        route_description.contains("stat bonus") && route_description.contains("named effect"),
+        "the route description must say `enchantment` matches stat bonuses and named effects: {route_description}"
     );
 }
 

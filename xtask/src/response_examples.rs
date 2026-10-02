@@ -39,7 +39,7 @@ pub const EXAMPLE_REQUESTS: &[ExampleRequest<'static>] = &[
     sample("quest-chains_id", "/v1/quest-chains/1"),
     sample("sagas", "/v1/sagas"),
     sample("sagas_id", "/v1/sagas/1"),
-    sample("items", "/v1/items?q=ring&stat=Strength,Charisma&limit=3"),
+    sample("items", "/v1/items?q=ring&enchantment=Strength,Charisma,Manslayer&limit=3"),
     sample("items_id", "/v1/items/468"),
     sample("augments", "/v1/augments?slot=sun&limit=2"),
     sample("augments_id", "/v1/augments/1902"),

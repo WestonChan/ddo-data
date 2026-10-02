@@ -17,7 +17,7 @@ pub(super) fn router() -> OpenApiRouter<AppState> {
     tag = "bonuses",
     summary = "List stats",
     description = "Every stat a bonus can apply to, with its category (ability, skill, save, spell power and so on). \
-                   Bonus rows everywhere else name stats by these names, and /v1/items accepts them in `stat`.",
+                   Bonus rows everywhere else name stats by these names, and /v1/items accepts them in `enchantment`.",
     responses((status = 200, description = "The whole table", body = Vec<Value>))
 )]
 async fn stats(State(state): State<AppState>) -> Result<Json<Vec<Value>>, ApiError> {
