@@ -21,7 +21,7 @@ quests = ["An Offering of Blood", "Chains of Flame", "The Chamber of Raiyum", "A
 name = "Assault on Splinterskull"
 page = "https://ddowiki.com/page/Assault_on_Splinterskull"
 read = "2026-10-02"
-quests = ["First Strike", "The Hobgoblins' Captives", "Whisperdoom's Spawn", "The Deadly Package: The Stronghold Key", "The Last Move: The Way to Yarkuch", "The Last Move: Yarkuch's Last Stand"]
+quests = ["First Strike", "The Hobgoblins' Captives", "Yarkuch's War-plans", "Whisperdoom's Spawn", "The Deadly Package: The Stronghold Key", "The Deadly Package: Agent of the Darguul", "Doom of the Witch-doctor: The Way to Zulkash", "Doom of the Witch-doctor: Zulkash, Herald of Woe", "The Last Move: The Way to Yarkuch", "The Last Move: Yarkuch's Last Stand"]
 rewards = ["Black Wolfskin Belt", "Blademaster Gauntlets", "Krugg's Spiked Boots", "Yarkuch's Helm", "Black Wolfskin Cloak", "Blademaster Bracers", "Crimson Gemstone", "Splinterskull Acolyte Ring", "Visor of the Flesh Render Guards", "Zulkash's Bone Necklace", "Totemic Staff of Splinterskull", "Fist of Daarguul", "Yarkuch's Greatsword", "Whisperdoom's Fang", "Fanged Wraps", "Splinterskull Docent", "Spider Silk Robe", "Lhor-Tragu's Shadowed Armor", "Warmaster Halfplate", "Splinterskull Chainmail", "Khyber's Fury"]
 
 [[chain]]
@@ -261,7 +261,7 @@ name = "The Seal of Shan-To-Kor"
 page = "https://ddowiki.com/page/The_Seal_of_Shan-To-Kor"
 read = "2026-10-02"
 pack = "The Seal of Shan-To-Kor"
-quests = ["The Sacred Helm", "The Cloven-jaw Scourge: The Caverns of Shaagh"]
+quests = ["The Sacred Helm", "The Cloven-jaw Scourge: Blockade", "The Cloven-jaw Scourge: The Caverns of Shaagh", "Halls of Shan-To-Kor"]
 rewards = ["Berserker Bracers", "Cloven Jaw War Beads", "Flicker", "Gatewarden's Girdle", "Gloves of the Poet", "Guardian's Dagger", "Necromantic Robe", "Puzzle Cap", "Ring of Dragon's Breath", "Scorpion Staff", "Shadow Star", "Spellshield Docent", "Spider Spike", "Spiked Mace of the Elements", "Stonedust Chain", "Stonedust Leather", "Surefoot Boots", "Trapblast Goggles", "Unfinished Elemental Platemail", "Vial of Slumberdust", "Witchdoctor's Mantle"]
 
 [[chain]]
@@ -291,4 +291,4 @@ name = "Vault of Night"
 page = "https://ddowiki.com/page/Vault_of_Night"
 read = "2026-10-02"
 pack = "Vault of Night"
-quests = ["Haywire Foundry", "Gateway to Khyber", "The Prisoner", "Tharashk Arena", "The Vault of Night", "Plane of Night"]
+quests = ["Haywire Foundry", "Gateway to Khyber", "The Jungle of Khyber", "The Prisoner", "Tharashk Arena", "The Vault of Night", "Plane of Night"]
