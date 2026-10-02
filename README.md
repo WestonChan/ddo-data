@@ -22,6 +22,10 @@ This is a Cargo workspace with three crates.
 | `ddo-etl` | Parses DDOBuilderV2's XML data files into that schema and writes SQLite. Runs offline as a build step. |
 | `ddo-api` | Axum server exposing the SQLite read-only as a versioned public API with an OpenAPI spec. |
 
+Every bonus carries a bonus type, from the buff or effect, its ItemBuffs.xml definition, or a
+correction: the ETL refuses to write an untyped one and the schema declares `bonuses.bonus_type_id`
+NOT NULL, so a new untyped buff upstream stops the deploy until a correction or a mapping types it.
+
 The ETL and the API share the schema and ship together in one Docker image, which is why they live
 in one repository. The plan, phase status and design decisions live in the DDO Tools roadmap under
 its "V-series" section.

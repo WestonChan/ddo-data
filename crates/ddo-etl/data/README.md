@@ -55,12 +55,7 @@ reason = "The Magma Forge in the Ruins of Thunderholme is where Thunder-Forged i
 
 The build fails, naming the entry, when the file has a field or table other than these, a field is blank, or the same `text` appears twice ignoring case (with the same `contains`, for a vendor alias). A test checks that every `system` names a crafting system in the embedded wiki files. The build report counts the rows written as `drop_text_crafting_system_source_count`, and `wiki-batch`'s `unlinked_drop_segments.txt` leaves out every segment that links one.
 
-Systems not yet read: his drop text names these crafting series, but none is among the 37 systems in `wiki/crafting*.toml`, so their segments link nothing until a reader adds the system's page to a `crafting*.toml` file (a segment that names a system needs no alias, and none should be written for a system the wiki files lack):
-
-- Syranian Forged Weaponry (80 items): `Syranian Forged Weaponry, Turn in 1 Dampening Alloy, 1 Energizing Alloy, 1 Caustic Compound, 1 Stabilizing Compound`.
-- Dragoncraft Armor, Elfcraft Armor and Giantcraft Armor (15 items each): `Dragoncraft Armor, Turn in 10 Ancient Dragon Relics` (10) and `... 10 Restored Dragon Relics` (5), and the same with Elven and Giant relics.
-- Tome of Untold Legends (8 items): `Tome of Untold Legends, Turn in completed Tome: Binding`.
-- Shield of Legend (7 items): `Shield of Legend, Turn in completed Shield: Frame`.
+Every crafting series his drop text names is a system in `wiki/crafting*.toml`, so each such segment links its loot; the "Restored" Dragoncraft, Elfcraft and Giantcraft armours (`... Turn in 10 Restored Dragon Relics` and the Elven and Giant equivalents) link to their system by that head, though the wiki has no recipe page for them.
 
 A `[[challenge]]` entry (`text`, `pack`, `reason`) does the same for a challenge pack, an adventure pack of Maetrim's `Challenges.xml`: a segment whose head is its `text` links the item or augment as a `challenge` source of that pack, the reward its challenges' ingredients or commendations buy. His text names no challenge, only the place: `Vaults of the Artificers, Turn in various challenge ingredients` (the House Cannith challenges, whose pack in his files is Secrets of the Artificers; nine of them are in Free to Play, which the link does not name) and `Eveningstar, Turn in 5 Commendations: ...` (Eveningstar Challenge Pack). The build report counts `drop_text_challenge_source_count`, and lists in `unresolved_source_aliases` the texts of every alias whose system or pack the build lacks.
 

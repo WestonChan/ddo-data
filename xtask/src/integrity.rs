@@ -178,9 +178,8 @@ pub const INTEGRITY_CHECKS: &[IntegrityCheck] = &[
         "items_without_a_source",
         "items (other than legacy ones) with no sources row. Every kind of source now has a table, but some remain \
          unmodelled: vendors and events no wiki file records yet (wiki-batch's vendor_names.txt and \
-         event_names.txt), DDO Store purchases, wilderness and explorer areas that are no quest, crafting \
-         systems no wiki file records yet (the systems not yet read in data/README.md), and items with no drop \
-         text. Becomes HARD once those are read or modelled; the drop_location heads below are the work list",
+         event_names.txt), DDO Store purchases, wilderness and explorer areas that are no quest, and items with \
+         no drop text. Becomes HARD once those are read or modelled; the drop_location heads below are the work list",
         OffenderQuery::Built(items_without_a_source),
     )
     .ranking_top_details(15),
