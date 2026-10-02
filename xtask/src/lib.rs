@@ -1,4 +1,5 @@
 pub mod dataset;
+pub mod integrity;
 pub mod response_examples;
 pub mod wiki_tools;
 

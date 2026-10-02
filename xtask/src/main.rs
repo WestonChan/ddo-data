@@ -7,6 +7,7 @@ use std::path::{Path, PathBuf};
 use std::process::Command;
 use walkdir::WalkDir;
 use xtask::dataset::{build_database_file, corrections_from, wiki_overrides_from};
+use xtask::integrity::{integrity_report, IntegrityOptions};
 use xtask::response_examples::{write_response_examples, EXAMPLE_REQUESTS};
 use xtask::wiki_tools::{wiki_check_report, write_wiki_batch};
 use xtask::workspace_root;
@@ -40,6 +41,13 @@ enum Task {
         #[arg(long)]
         source: Option<PathBuf>,
     },
+    CheckDb {
+        db: PathBuf,
+        #[arg(long)]
+        corrections: Option<PathBuf>,
+        #[arg(long = "allow-empty-table")]
+        allowed_empty_tables: Vec<String>,
+    },
     WikiBatch {
         #[arg(long)]
         out: Option<PathBuf>,
@@ -67,6 +75,9 @@ fn main() -> Result<()> {
             let data_files_dir = data_files_dir.unwrap_or_else(default_data_files_dir);
             println!("{}", wiki_check_report(&data_files_dir, wiki_dir.as_deref(), corrections_dir.as_deref())?);
             Ok(())
+        }
+        Task::CheckDb { db: db_path, corrections: corrections_dir, allowed_empty_tables } => {
+            check_database_integrity(&db_path, corrections_dir.as_deref(), allowed_empty_tables)
         }
         Task::WikiBatch { out: batch_dir, wiki: wiki_dir, corrections: corrections_dir, source: data_files_dir } => {
             let data_files_dir = data_files_dir.unwrap_or_else(default_data_files_dir);
@@ -105,6 +116,23 @@ fn refresh_response_examples(
     };
     for written_example in write_response_examples(db_path, EXAMPLE_REQUESTS, &examples_dir)? {
         println!("{:<28} {:>6} bytes", written_example.file_name, written_example.size_bytes);
+    }
+    Ok(())
+}
+
+fn check_database_integrity(
+    db_path: &Path,
+    corrections_dir: Option<&Path>,
+    allowed_empty_tables: Vec<String>,
+) -> Result<()> {
+    let db = rusqlite::Connection::open_with_flags(db_path, rusqlite::OpenFlags::SQLITE_OPEN_READ_ONLY)
+        .with_context(|| format!("opening {}", db_path.display()))?;
+    let options = IntegrityOptions { corrections: corrections_from(corrections_dir)?, allowed_empty_tables };
+    let report = integrity_report(&db, &options)?;
+    println!("{report}");
+    let failed_check_names = report.failed_hard_check_names();
+    if !failed_check_names.is_empty() {
+        bail!("{} HARD integrity check(s) failed: {}", failed_check_names.len(), failed_check_names.join(", "));
     }
     Ok(())
 }
