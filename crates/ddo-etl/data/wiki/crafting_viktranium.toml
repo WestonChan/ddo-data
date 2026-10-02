@@ -900,160 +900,140 @@ cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 25 }, { ingredie
 tier = "heroic"
 slot = "lamordia: melancholic (accessory)"
 option = "Melancholic Acid Spell Crit Damage"
-augments = ["Melancholic Acid Spell Critical Damage (Heroic)"]
-note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+augments = ["Melancholic Acid Spell Crit Damage (Heroic)"]
 cost = [{ ingredient = "Bleak Alternator", quantity = 5 }, { ingredient = "Bleak Conductor", quantity = 5 }, { ingredient = "Bleak Insulator", quantity = 5 }, { ingredient = "Bleak Resistor", quantity = 5 }]
 
 [[system.recipe]]
 tier = "legendary"
 slot = "lamordia: melancholic (accessory)"
 option = "Melancholic Acid Spell Crit Damage"
-augments = ["Melancholic Acid Spell Critical Damage (Legendary)"]
-note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+augments = ["Melancholic Acid Spell Crit Damage (Legendary)"]
 cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 25 }, { ingredient = "Legendary Bleak Conductor", quantity = 25 }, { ingredient = "Legendary Bleak Insulator", quantity = 25 }, { ingredient = "Legendary Bleak Resistor", quantity = 25 }]
 
 [[system.recipe]]
 tier = "heroic"
 slot = "lamordia: melancholic (accessory)"
 option = "Melancholic Cold Spell Crit Damage"
-augments = ["Melancholic Cold Spell Critical Damage (Heroic)"]
-note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+augments = ["Melancholic Cold Spell Crit Damage (Heroic)"]
 cost = [{ ingredient = "Bleak Alternator", quantity = 5 }, { ingredient = "Bleak Conductor", quantity = 5 }, { ingredient = "Bleak Insulator", quantity = 5 }, { ingredient = "Bleak Resistor", quantity = 5 }]
 
 [[system.recipe]]
 tier = "legendary"
 slot = "lamordia: melancholic (accessory)"
 option = "Melancholic Cold Spell Crit Damage"
-augments = ["Melancholic Cold Spell Critical Damage (Legendary)"]
-note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+augments = ["Melancholic Cold Spell Crit Damage (Legendary)"]
 cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 25 }, { ingredient = "Legendary Bleak Conductor", quantity = 25 }, { ingredient = "Legendary Bleak Insulator", quantity = 25 }, { ingredient = "Legendary Bleak Resistor", quantity = 25 }]
 
 [[system.recipe]]
 tier = "heroic"
 slot = "lamordia: melancholic (accessory)"
 option = "Melancholic Electric Spell Crit Damage"
-augments = ["Melancholic Electric Spell Critical Damage (Heroic)"]
-note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+augments = ["Melancholic Electric Spell Crit Damage (Heroic)"]
 cost = [{ ingredient = "Bleak Alternator", quantity = 5 }, { ingredient = "Bleak Conductor", quantity = 5 }, { ingredient = "Bleak Insulator", quantity = 5 }, { ingredient = "Bleak Resistor", quantity = 5 }]
 
 [[system.recipe]]
 tier = "legendary"
 slot = "lamordia: melancholic (accessory)"
 option = "Melancholic Electric Spell Crit Damage"
-augments = ["Melancholic Electric Spell Critical Damage (Legendary)"]
-note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+augments = ["Melancholic Electric Spell Crit Damage (Legendary)"]
 cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 25 }, { ingredient = "Legendary Bleak Conductor", quantity = 25 }, { ingredient = "Legendary Bleak Insulator", quantity = 25 }, { ingredient = "Legendary Bleak Resistor", quantity = 25 }]
 
 [[system.recipe]]
 tier = "heroic"
 slot = "lamordia: melancholic (accessory)"
 option = "Melancholic Fire Spell Crit Damage"
-augments = ["Melancholic Fire Spell Critical Damage (Heroic)"]
-note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+augments = ["Melancholic Fire Spell Crit Damage (Heroic)"]
 cost = [{ ingredient = "Bleak Alternator", quantity = 5 }, { ingredient = "Bleak Conductor", quantity = 5 }, { ingredient = "Bleak Insulator", quantity = 5 }, { ingredient = "Bleak Resistor", quantity = 5 }]
 
 [[system.recipe]]
 tier = "legendary"
 slot = "lamordia: melancholic (accessory)"
 option = "Melancholic Fire Spell Crit Damage"
-augments = ["Melancholic Fire Spell Critical Damage (Legendary)"]
-note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+augments = ["Melancholic Fire Spell Crit Damage (Legendary)"]
 cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 25 }, { ingredient = "Legendary Bleak Conductor", quantity = 25 }, { ingredient = "Legendary Bleak Insulator", quantity = 25 }, { ingredient = "Legendary Bleak Resistor", quantity = 25 }]
 
 [[system.recipe]]
 tier = "heroic"
 slot = "lamordia: melancholic (accessory)"
 option = "Melancholic Force Spell Crit Damage"
-augments = ["Melancholic Force Spell Critical Damage (Heroic)"]
-note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+augments = ["Melancholic Force Spell Crit Damage (Heroic)"]
 cost = [{ ingredient = "Bleak Alternator", quantity = 5 }, { ingredient = "Bleak Conductor", quantity = 5 }, { ingredient = "Bleak Insulator", quantity = 5 }, { ingredient = "Bleak Resistor", quantity = 5 }]
 
 [[system.recipe]]
 tier = "legendary"
 slot = "lamordia: melancholic (accessory)"
 option = "Melancholic Force Spell Crit Damage"
-augments = ["Melancholic Force Spell Critical Damage (Legendary)"]
-note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+augments = ["Melancholic Force Spell Crit Damage (Legendary)"]
 cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 25 }, { ingredient = "Legendary Bleak Conductor", quantity = 25 }, { ingredient = "Legendary Bleak Insulator", quantity = 25 }, { ingredient = "Legendary Bleak Resistor", quantity = 25 }]
 
 [[system.recipe]]
 tier = "heroic"
 slot = "lamordia: melancholic (accessory)"
 option = "Melancholic Light Spell Crit Damage"
-augments = ["Melancholic Light Spell Critical Damage (Heroic)"]
-note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+augments = ["Melancholic Light Spell Crit Damage (Heroic)"]
 cost = [{ ingredient = "Bleak Alternator", quantity = 5 }, { ingredient = "Bleak Conductor", quantity = 5 }, { ingredient = "Bleak Insulator", quantity = 5 }, { ingredient = "Bleak Resistor", quantity = 5 }]
 
 [[system.recipe]]
 tier = "legendary"
 slot = "lamordia: melancholic (accessory)"
 option = "Melancholic Light Spell Crit Damage"
-augments = ["Melancholic Light Spell Critical Damage (Legendary)"]
-note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+augments = ["Melancholic Light Spell Crit Damage (Legendary)"]
 cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 25 }, { ingredient = "Legendary Bleak Conductor", quantity = 25 }, { ingredient = "Legendary Bleak Insulator", quantity = 25 }, { ingredient = "Legendary Bleak Resistor", quantity = 25 }]
 
 [[system.recipe]]
 tier = "heroic"
 slot = "lamordia: melancholic (accessory)"
 option = "Melancholic Negative Spell Crit Damage"
-augments = ["Melancholic Negative Spell Critical Damage (Heroic)"]
-note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+augments = ["Melancholic Negative Spell Crit Damage (Heroic)"]
 cost = [{ ingredient = "Bleak Alternator", quantity = 5 }, { ingredient = "Bleak Conductor", quantity = 5 }, { ingredient = "Bleak Insulator", quantity = 5 }, { ingredient = "Bleak Resistor", quantity = 5 }]
 
 [[system.recipe]]
 tier = "legendary"
 slot = "lamordia: melancholic (accessory)"
 option = "Melancholic Negative Spell Crit Damage"
-augments = ["Melancholic Negative Spell Critical Damage (Legendary)"]
-note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+augments = ["Melancholic Negative Spell Crit Damage (Legendary)"]
 cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 25 }, { ingredient = "Legendary Bleak Conductor", quantity = 25 }, { ingredient = "Legendary Bleak Insulator", quantity = 25 }, { ingredient = "Legendary Bleak Resistor", quantity = 25 }]
 
 [[system.recipe]]
 tier = "heroic"
 slot = "lamordia: melancholic (accessory)"
 option = "Melancholic Positive Spell Crit Damage"
-augments = ["Melancholic Positive Spell Critical Damage (Heroic)"]
-note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+augments = ["Melancholic Positive Spell Crit Damage (Heroic)"]
 cost = [{ ingredient = "Bleak Alternator", quantity = 5 }, { ingredient = "Bleak Conductor", quantity = 5 }, { ingredient = "Bleak Insulator", quantity = 5 }, { ingredient = "Bleak Resistor", quantity = 5 }]
 
 [[system.recipe]]
 tier = "legendary"
 slot = "lamordia: melancholic (accessory)"
 option = "Melancholic Positive Spell Crit Damage"
-augments = ["Melancholic Positive Spell Critical Damage (Legendary)"]
-note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+augments = ["Melancholic Positive Spell Crit Damage (Legendary)"]
 cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 25 }, { ingredient = "Legendary Bleak Conductor", quantity = 25 }, { ingredient = "Legendary Bleak Insulator", quantity = 25 }, { ingredient = "Legendary Bleak Resistor", quantity = 25 }]
 
 [[system.recipe]]
 tier = "heroic"
 slot = "lamordia: melancholic (accessory)"
 option = "Melancholic Repair Spell Crit Damage"
-augments = ["Melancholic Repair Spell Critical Damage (Heroic)"]
-note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+augments = ["Melancholic Repair Spell Crit Damage (Heroic)"]
 cost = [{ ingredient = "Bleak Alternator", quantity = 5 }, { ingredient = "Bleak Conductor", quantity = 5 }, { ingredient = "Bleak Insulator", quantity = 5 }, { ingredient = "Bleak Resistor", quantity = 5 }]
 
 [[system.recipe]]
 tier = "legendary"
 slot = "lamordia: melancholic (accessory)"
 option = "Melancholic Repair Spell Crit Damage"
-augments = ["Melancholic Repair Spell Critical Damage (Legendary)"]
-note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+augments = ["Melancholic Repair Spell Crit Damage (Legendary)"]
 cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 25 }, { ingredient = "Legendary Bleak Conductor", quantity = 25 }, { ingredient = "Legendary Bleak Insulator", quantity = 25 }, { ingredient = "Legendary Bleak Resistor", quantity = 25 }]
 
 [[system.recipe]]
 tier = "heroic"
 slot = "lamordia: melancholic (accessory)"
 option = "Melancholic Sonic Spell Crit Damage"
-augments = ["Melancholic Sonic Spell Critical Damage (Heroic)"]
-note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+augments = ["Melancholic Sonic Spell Crit Damage (Heroic)"]
 cost = [{ ingredient = "Bleak Alternator", quantity = 5 }, { ingredient = "Bleak Conductor", quantity = 5 }, { ingredient = "Bleak Insulator", quantity = 5 }, { ingredient = "Bleak Resistor", quantity = 5 }]
 
 [[system.recipe]]
 tier = "legendary"
 slot = "lamordia: melancholic (accessory)"
 option = "Melancholic Sonic Spell Crit Damage"
-augments = ["Melancholic Sonic Spell Critical Damage (Legendary)"]
-note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+augments = ["Melancholic Sonic Spell Crit Damage (Legendary)"]
 cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 25 }, { ingredient = "Legendary Bleak Conductor", quantity = 25 }, { ingredient = "Legendary Bleak Insulator", quantity = 25 }, { ingredient = "Legendary Bleak Resistor", quantity = 25 }]
 
 [[system.recipe]]
@@ -1186,160 +1166,140 @@ cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 50 }, { ingredie
 tier = "heroic"
 slot = "lamordia: dolorous (accessory)"
 option = "Dolorous Acid Spell Crit Damage"
-augments = ["Dolorous Acid Spell Critical Damage (Heroic)"]
-note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+augments = ["Dolorous Acid Spell Crit Damage (Heroic)"]
 cost = [{ ingredient = "Bleak Alternator", quantity = 10 }, { ingredient = "Bleak Conductor", quantity = 10 }, { ingredient = "Bleak Insulator", quantity = 10 }, { ingredient = "Bleak Resistor", quantity = 10 }]
 
 [[system.recipe]]
 tier = "legendary"
 slot = "lamordia: dolorous (accessory)"
 option = "Dolorous Acid Spell Crit Damage"
-augments = ["Dolorous Acid Spell Critical Damage (Legendary)"]
-note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+augments = ["Dolorous Acid Spell Crit Damage (Legendary)"]
 cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 50 }, { ingredient = "Legendary Bleak Conductor", quantity = 50 }, { ingredient = "Legendary Bleak Insulator", quantity = 50 }, { ingredient = "Legendary Bleak Resistor", quantity = 50 }]
 
 [[system.recipe]]
 tier = "heroic"
 slot = "lamordia: dolorous (accessory)"
 option = "Dolorous Cold Spell Crit Damage"
-augments = ["Dolorous Cold Spell Critical Damage (Heroic)"]
-note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+augments = ["Dolorous Cold Spell Crit Damage (Heroic)"]
 cost = [{ ingredient = "Bleak Alternator", quantity = 10 }, { ingredient = "Bleak Conductor", quantity = 10 }, { ingredient = "Bleak Insulator", quantity = 10 }, { ingredient = "Bleak Resistor", quantity = 10 }]
 
 [[system.recipe]]
 tier = "legendary"
 slot = "lamordia: dolorous (accessory)"
 option = "Dolorous Cold Spell Crit Damage"
-augments = ["Dolorous Cold Spell Critical Damage (Legendary)"]
-note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+augments = ["Dolorous Cold Spell Crit Damage (Legendary)"]
 cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 50 }, { ingredient = "Legendary Bleak Conductor", quantity = 50 }, { ingredient = "Legendary Bleak Insulator", quantity = 50 }, { ingredient = "Legendary Bleak Resistor", quantity = 50 }]
 
 [[system.recipe]]
 tier = "heroic"
 slot = "lamordia: dolorous (accessory)"
 option = "Dolorous Electric Spell Crit Damage"
-augments = ["Dolorous Electric Spell Critical Damage (Heroic)"]
-note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+augments = ["Dolorous Electric Spell Crit Damage (Heroic)"]
 cost = [{ ingredient = "Bleak Alternator", quantity = 10 }, { ingredient = "Bleak Conductor", quantity = 10 }, { ingredient = "Bleak Insulator", quantity = 10 }, { ingredient = "Bleak Resistor", quantity = 10 }]
 
 [[system.recipe]]
 tier = "legendary"
 slot = "lamordia: dolorous (accessory)"
 option = "Dolorous Electric Spell Crit Damage"
-augments = ["Dolorous Electric Spell Critical Damage (Legendary)"]
-note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+augments = ["Dolorous Electric Spell Crit Damage (Legendary)"]
 cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 50 }, { ingredient = "Legendary Bleak Conductor", quantity = 50 }, { ingredient = "Legendary Bleak Insulator", quantity = 50 }, { ingredient = "Legendary Bleak Resistor", quantity = 50 }]
 
 [[system.recipe]]
 tier = "heroic"
 slot = "lamordia: dolorous (accessory)"
 option = "Dolorous Fire Spell Crit Damage"
-augments = ["Dolorous Fire Spell Critical Damage (Heroic)"]
-note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+augments = ["Dolorous Fire Spell Crit Damage (Heroic)"]
 cost = [{ ingredient = "Bleak Alternator", quantity = 10 }, { ingredient = "Bleak Conductor", quantity = 10 }, { ingredient = "Bleak Insulator", quantity = 10 }, { ingredient = "Bleak Resistor", quantity = 10 }]
 
 [[system.recipe]]
 tier = "legendary"
 slot = "lamordia: dolorous (accessory)"
 option = "Dolorous Fire Spell Crit Damage"
-augments = ["Dolorous Fire Spell Critical Damage (Legendary)"]
-note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+augments = ["Dolorous Fire Spell Crit Damage (Legendary)"]
 cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 50 }, { ingredient = "Legendary Bleak Conductor", quantity = 50 }, { ingredient = "Legendary Bleak Insulator", quantity = 50 }, { ingredient = "Legendary Bleak Resistor", quantity = 50 }]
 
 [[system.recipe]]
 tier = "heroic"
 slot = "lamordia: dolorous (accessory)"
 option = "Dolorous Force Spell Crit Damage"
-augments = ["Dolorous Force Spell Critical Damage (Heroic)"]
-note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+augments = ["Dolorous Force Spell Crit Damage (Heroic)"]
 cost = [{ ingredient = "Bleak Alternator", quantity = 10 }, { ingredient = "Bleak Conductor", quantity = 10 }, { ingredient = "Bleak Insulator", quantity = 10 }, { ingredient = "Bleak Resistor", quantity = 10 }]
 
 [[system.recipe]]
 tier = "legendary"
 slot = "lamordia: dolorous (accessory)"
 option = "Dolorous Force Spell Crit Damage"
-augments = ["Dolorous Force Spell Critical Damage (Legendary)"]
-note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+augments = ["Dolorous Force Spell Crit Damage (Legendary)"]
 cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 50 }, { ingredient = "Legendary Bleak Conductor", quantity = 50 }, { ingredient = "Legendary Bleak Insulator", quantity = 50 }, { ingredient = "Legendary Bleak Resistor", quantity = 50 }]
 
 [[system.recipe]]
 tier = "heroic"
 slot = "lamordia: dolorous (accessory)"
 option = "Dolorous Light Spell Crit Damage"
-augments = ["Dolorous Light Spell Critical Damage (Heroic)"]
-note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+augments = ["Dolorous Light Spell Crit Damage (Heroic)"]
 cost = [{ ingredient = "Bleak Alternator", quantity = 10 }, { ingredient = "Bleak Conductor", quantity = 10 }, { ingredient = "Bleak Insulator", quantity = 10 }, { ingredient = "Bleak Resistor", quantity = 10 }]
 
 [[system.recipe]]
 tier = "legendary"
 slot = "lamordia: dolorous (accessory)"
 option = "Dolorous Light Spell Crit Damage"
-augments = ["Dolorous Light Spell Critical Damage (Legendary)"]
-note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+augments = ["Dolorous Light Spell Crit Damage (Legendary)"]
 cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 50 }, { ingredient = "Legendary Bleak Conductor", quantity = 50 }, { ingredient = "Legendary Bleak Insulator", quantity = 50 }, { ingredient = "Legendary Bleak Resistor", quantity = 50 }]
 
 [[system.recipe]]
 tier = "heroic"
 slot = "lamordia: dolorous (accessory)"
 option = "Dolorous Negative Spell Crit Damage"
-augments = ["Dolorous Negative Spell Critical Damage (Heroic)"]
-note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+augments = ["Dolorous Negative Spell Crit Damage (Heroic)"]
 cost = [{ ingredient = "Bleak Alternator", quantity = 10 }, { ingredient = "Bleak Conductor", quantity = 10 }, { ingredient = "Bleak Insulator", quantity = 10 }, { ingredient = "Bleak Resistor", quantity = 10 }]
 
 [[system.recipe]]
 tier = "legendary"
 slot = "lamordia: dolorous (accessory)"
 option = "Dolorous Negative Spell Crit Damage"
-augments = ["Dolorous Negative Spell Critical Damage (Legendary)"]
-note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+augments = ["Dolorous Negative Spell Crit Damage (Legendary)"]
 cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 50 }, { ingredient = "Legendary Bleak Conductor", quantity = 50 }, { ingredient = "Legendary Bleak Insulator", quantity = 50 }, { ingredient = "Legendary Bleak Resistor", quantity = 50 }]
 
 [[system.recipe]]
 tier = "heroic"
 slot = "lamordia: dolorous (accessory)"
 option = "Dolorous Positive Spell Crit Damage"
-augments = ["Dolorous Positive Spell Critical Damage (Heroic)"]
-note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+augments = ["Dolorous Positive Spell Crit Damage (Heroic)"]
 cost = [{ ingredient = "Bleak Alternator", quantity = 10 }, { ingredient = "Bleak Conductor", quantity = 10 }, { ingredient = "Bleak Insulator", quantity = 10 }, { ingredient = "Bleak Resistor", quantity = 10 }]
 
 [[system.recipe]]
 tier = "legendary"
 slot = "lamordia: dolorous (accessory)"
 option = "Dolorous Positive Spell Crit Damage"
-augments = ["Dolorous Positive Spell Critical Damage (Legendary)"]
-note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+augments = ["Dolorous Positive Spell Crit Damage (Legendary)"]
 cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 50 }, { ingredient = "Legendary Bleak Conductor", quantity = 50 }, { ingredient = "Legendary Bleak Insulator", quantity = 50 }, { ingredient = "Legendary Bleak Resistor", quantity = 50 }]
 
 [[system.recipe]]
 tier = "heroic"
 slot = "lamordia: dolorous (accessory)"
 option = "Dolorous Repair Spell Crit Damage"
-augments = ["Dolorous Repair Spell Critical Damage (Heroic)"]
-note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+augments = ["Dolorous Repair Spell Crit Damage (Heroic)"]
 cost = [{ ingredient = "Bleak Alternator", quantity = 10 }, { ingredient = "Bleak Conductor", quantity = 10 }, { ingredient = "Bleak Insulator", quantity = 10 }, { ingredient = "Bleak Resistor", quantity = 10 }]
 
 [[system.recipe]]
 tier = "legendary"
 slot = "lamordia: dolorous (accessory)"
 option = "Dolorous Repair Spell Crit Damage"
-augments = ["Dolorous Repair Spell Critical Damage (Legendary)"]
-note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+augments = ["Dolorous Repair Spell Crit Damage (Legendary)"]
 cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 50 }, { ingredient = "Legendary Bleak Conductor", quantity = 50 }, { ingredient = "Legendary Bleak Insulator", quantity = 50 }, { ingredient = "Legendary Bleak Resistor", quantity = 50 }]
 
 [[system.recipe]]
 tier = "heroic"
 slot = "lamordia: dolorous (accessory)"
 option = "Dolorous Sonic Spell Crit Damage"
-augments = ["Dolorous Sonic Spell Critical Damage (Heroic)"]
-note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+augments = ["Dolorous Sonic Spell Crit Damage (Heroic)"]
 cost = [{ ingredient = "Bleak Alternator", quantity = 10 }, { ingredient = "Bleak Conductor", quantity = 10 }, { ingredient = "Bleak Insulator", quantity = 10 }, { ingredient = "Bleak Resistor", quantity = 10 }]
 
 [[system.recipe]]
 tier = "legendary"
 slot = "lamordia: dolorous (accessory)"
 option = "Dolorous Sonic Spell Crit Damage"
-augments = ["Dolorous Sonic Spell Critical Damage (Legendary)"]
-note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+augments = ["Dolorous Sonic Spell Crit Damage (Legendary)"]
 cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 50 }, { ingredient = "Legendary Bleak Conductor", quantity = 50 }, { ingredient = "Legendary Bleak Insulator", quantity = 50 }, { ingredient = "Legendary Bleak Resistor", quantity = 50 }]
 
 [[system.recipe]]
@@ -1570,160 +1530,140 @@ cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 25 }, { ingredie
 tier = "heroic"
 slot = "lamordia: miserable (accessory)"
 option = "Miserable Acid Spell Crit Damage"
-augments = ["Miserable Acid Spell Critical Damage (Heroic)"]
-note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+augments = ["Miserable Acid Spell Crit Damage (Heroic)"]
 cost = [{ ingredient = "Bleak Alternator", quantity = 5 }, { ingredient = "Bleak Conductor", quantity = 5 }, { ingredient = "Bleak Insulator", quantity = 5 }, { ingredient = "Bleak Resistor", quantity = 5 }, { ingredient = "Bleak Wire", quantity = 20 }]
 
 [[system.recipe]]
 tier = "legendary"
 slot = "lamordia: miserable (accessory)"
 option = "Miserable Acid Spell Crit Damage"
-augments = ["Miserable Acid Spell Critical Damage (Legendary)"]
-note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+augments = ["Miserable Acid Spell Crit Damage (Legendary)"]
 cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 25 }, { ingredient = "Legendary Bleak Conductor", quantity = 25 }, { ingredient = "Legendary Bleak Insulator", quantity = 25 }, { ingredient = "Legendary Bleak Resistor", quantity = 25 }, { ingredient = "Legendary Bleak Wire", quantity = 100 }]
 
 [[system.recipe]]
 tier = "heroic"
 slot = "lamordia: miserable (accessory)"
 option = "Miserable Cold Spell Crit Damage"
-augments = ["Miserable Cold Spell Critical Damage (Heroic)"]
-note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+augments = ["Miserable Cold Spell Crit Damage (Heroic)"]
 cost = [{ ingredient = "Bleak Alternator", quantity = 5 }, { ingredient = "Bleak Conductor", quantity = 5 }, { ingredient = "Bleak Insulator", quantity = 5 }, { ingredient = "Bleak Resistor", quantity = 5 }, { ingredient = "Bleak Wire", quantity = 20 }]
 
 [[system.recipe]]
 tier = "legendary"
 slot = "lamordia: miserable (accessory)"
 option = "Miserable Cold Spell Crit Damage"
-augments = ["Miserable Cold Spell Critical Damage (Legendary)"]
-note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+augments = ["Miserable Cold Spell Crit Damage (Legendary)"]
 cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 25 }, { ingredient = "Legendary Bleak Conductor", quantity = 25 }, { ingredient = "Legendary Bleak Insulator", quantity = 25 }, { ingredient = "Legendary Bleak Resistor", quantity = 25 }, { ingredient = "Legendary Bleak Wire", quantity = 100 }]
 
 [[system.recipe]]
 tier = "heroic"
 slot = "lamordia: miserable (accessory)"
 option = "Miserable Electric Spell Crit Damage"
-augments = ["Miserable Electric Spell Critical Damage (Heroic)"]
-note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+augments = ["Miserable Electric Spell Crit Damage (Heroic)"]
 cost = [{ ingredient = "Bleak Alternator", quantity = 5 }, { ingredient = "Bleak Conductor", quantity = 5 }, { ingredient = "Bleak Insulator", quantity = 5 }, { ingredient = "Bleak Resistor", quantity = 5 }, { ingredient = "Bleak Wire", quantity = 20 }]
 
 [[system.recipe]]
 tier = "legendary"
 slot = "lamordia: miserable (accessory)"
 option = "Miserable Electric Spell Crit Damage"
-augments = ["Miserable Electric Spell Critical Damage (Legendary)"]
-note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+augments = ["Miserable Electric Spell Crit Damage (Legendary)"]
 cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 25 }, { ingredient = "Legendary Bleak Conductor", quantity = 25 }, { ingredient = "Legendary Bleak Insulator", quantity = 25 }, { ingredient = "Legendary Bleak Resistor", quantity = 25 }, { ingredient = "Legendary Bleak Wire", quantity = 100 }]
 
 [[system.recipe]]
 tier = "heroic"
 slot = "lamordia: miserable (accessory)"
 option = "Miserable Fire Spell Crit Damage"
-augments = ["Miserable Fire Spell Critical Damage (Heroic)"]
-note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+augments = ["Miserable Fire Spell Crit Damage (Heroic)"]
 cost = [{ ingredient = "Bleak Alternator", quantity = 5 }, { ingredient = "Bleak Conductor", quantity = 5 }, { ingredient = "Bleak Insulator", quantity = 5 }, { ingredient = "Bleak Resistor", quantity = 5 }, { ingredient = "Bleak Wire", quantity = 20 }]
 
 [[system.recipe]]
 tier = "legendary"
 slot = "lamordia: miserable (accessory)"
 option = "Miserable Fire Spell Crit Damage"
-augments = ["Miserable Fire Spell Critical Damage (Legendary)"]
-note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+augments = ["Miserable Fire Spell Crit Damage (Legendary)"]
 cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 25 }, { ingredient = "Legendary Bleak Conductor", quantity = 25 }, { ingredient = "Legendary Bleak Insulator", quantity = 25 }, { ingredient = "Legendary Bleak Resistor", quantity = 25 }, { ingredient = "Legendary Bleak Wire", quantity = 100 }]
 
 [[system.recipe]]
 tier = "heroic"
 slot = "lamordia: miserable (accessory)"
 option = "Miserable Force Spell Crit Damage"
-augments = ["Miserable Force Spell Critical Damage (Heroic)"]
-note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+augments = ["Miserable Force Spell Crit Damage (Heroic)"]
 cost = [{ ingredient = "Bleak Alternator", quantity = 5 }, { ingredient = "Bleak Conductor", quantity = 5 }, { ingredient = "Bleak Insulator", quantity = 5 }, { ingredient = "Bleak Resistor", quantity = 5 }, { ingredient = "Bleak Wire", quantity = 20 }]
 
 [[system.recipe]]
 tier = "legendary"
 slot = "lamordia: miserable (accessory)"
 option = "Miserable Force Spell Crit Damage"
-augments = ["Miserable Force Spell Critical Damage (Legendary)"]
-note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+augments = ["Miserable Force Spell Crit Damage (Legendary)"]
 cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 25 }, { ingredient = "Legendary Bleak Conductor", quantity = 25 }, { ingredient = "Legendary Bleak Insulator", quantity = 25 }, { ingredient = "Legendary Bleak Resistor", quantity = 25 }, { ingredient = "Legendary Bleak Wire", quantity = 100 }]
 
 [[system.recipe]]
 tier = "heroic"
 slot = "lamordia: miserable (accessory)"
 option = "Miserable Light Spell Crit Damage"
-augments = ["Miserable Light Spell Critical Damage (Heroic)"]
-note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+augments = ["Miserable Light Spell Crit Damage (Heroic)"]
 cost = [{ ingredient = "Bleak Alternator", quantity = 5 }, { ingredient = "Bleak Conductor", quantity = 5 }, { ingredient = "Bleak Insulator", quantity = 5 }, { ingredient = "Bleak Resistor", quantity = 5 }, { ingredient = "Bleak Wire", quantity = 20 }]
 
 [[system.recipe]]
 tier = "legendary"
 slot = "lamordia: miserable (accessory)"
 option = "Miserable Light Spell Crit Damage"
-augments = ["Miserable Light Spell Critical Damage (Legendary)"]
-note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+augments = ["Miserable Light Spell Crit Damage (Legendary)"]
 cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 25 }, { ingredient = "Legendary Bleak Conductor", quantity = 25 }, { ingredient = "Legendary Bleak Insulator", quantity = 25 }, { ingredient = "Legendary Bleak Resistor", quantity = 25 }, { ingredient = "Legendary Bleak Wire", quantity = 100 }]
 
 [[system.recipe]]
 tier = "heroic"
 slot = "lamordia: miserable (accessory)"
 option = "Miserable Negative Spell Crit Damage"
-augments = ["Miserable Negative Spell Critical Damage (Heroic)"]
-note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+augments = ["Miserable Negative Spell Crit Damage (Heroic)"]
 cost = [{ ingredient = "Bleak Alternator", quantity = 5 }, { ingredient = "Bleak Conductor", quantity = 5 }, { ingredient = "Bleak Insulator", quantity = 5 }, { ingredient = "Bleak Resistor", quantity = 5 }, { ingredient = "Bleak Wire", quantity = 20 }]
 
 [[system.recipe]]
 tier = "legendary"
 slot = "lamordia: miserable (accessory)"
 option = "Miserable Negative Spell Crit Damage"
-augments = ["Miserable Negative Spell Critical Damage (Legendary)"]
-note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+augments = ["Miserable Negative Spell Crit Damage (Legendary)"]
 cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 25 }, { ingredient = "Legendary Bleak Conductor", quantity = 25 }, { ingredient = "Legendary Bleak Insulator", quantity = 25 }, { ingredient = "Legendary Bleak Resistor", quantity = 25 }, { ingredient = "Legendary Bleak Wire", quantity = 100 }]
 
 [[system.recipe]]
 tier = "heroic"
 slot = "lamordia: miserable (accessory)"
 option = "Miserable Positive Spell Crit Damage"
-augments = ["Miserable Positive Spell Critical Damage (Heroic)"]
-note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+augments = ["Miserable Positive Spell Crit Damage (Heroic)"]
 cost = [{ ingredient = "Bleak Alternator", quantity = 5 }, { ingredient = "Bleak Conductor", quantity = 5 }, { ingredient = "Bleak Insulator", quantity = 5 }, { ingredient = "Bleak Resistor", quantity = 5 }, { ingredient = "Bleak Wire", quantity = 20 }]
 
 [[system.recipe]]
 tier = "legendary"
 slot = "lamordia: miserable (accessory)"
 option = "Miserable Positive Spell Crit Damage"
-augments = ["Miserable Positive Spell Critical Damage (Legendary)"]
-note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+augments = ["Miserable Positive Spell Crit Damage (Legendary)"]
 cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 25 }, { ingredient = "Legendary Bleak Conductor", quantity = 25 }, { ingredient = "Legendary Bleak Insulator", quantity = 25 }, { ingredient = "Legendary Bleak Resistor", quantity = 25 }, { ingredient = "Legendary Bleak Wire", quantity = 100 }]
 
 [[system.recipe]]
 tier = "heroic"
 slot = "lamordia: miserable (accessory)"
 option = "Miserable Repair Spell Crit Damage"
-augments = ["Miserable Repair Spell Critical Damage (Heroic)"]
-note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+augments = ["Miserable Repair Spell Crit Damage (Heroic)"]
 cost = [{ ingredient = "Bleak Alternator", quantity = 5 }, { ingredient = "Bleak Conductor", quantity = 5 }, { ingredient = "Bleak Insulator", quantity = 5 }, { ingredient = "Bleak Resistor", quantity = 5 }, { ingredient = "Bleak Wire", quantity = 20 }]
 
 [[system.recipe]]
 tier = "legendary"
 slot = "lamordia: miserable (accessory)"
 option = "Miserable Repair Spell Crit Damage"
-augments = ["Miserable Repair Spell Critical Damage (Legendary)"]
-note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+augments = ["Miserable Repair Spell Crit Damage (Legendary)"]
 cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 25 }, { ingredient = "Legendary Bleak Conductor", quantity = 25 }, { ingredient = "Legendary Bleak Insulator", quantity = 25 }, { ingredient = "Legendary Bleak Resistor", quantity = 25 }, { ingredient = "Legendary Bleak Wire", quantity = 100 }]
 
 [[system.recipe]]
 tier = "heroic"
 slot = "lamordia: miserable (accessory)"
 option = "Miserable Sonic Spell Crit Damage"
-augments = ["Miserable Sonic Spell Critical Damage (Heroic)"]
-note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+augments = ["Miserable Sonic Spell Crit Damage (Heroic)"]
 cost = [{ ingredient = "Bleak Alternator", quantity = 5 }, { ingredient = "Bleak Conductor", quantity = 5 }, { ingredient = "Bleak Insulator", quantity = 5 }, { ingredient = "Bleak Resistor", quantity = 5 }, { ingredient = "Bleak Wire", quantity = 20 }]
 
 [[system.recipe]]
 tier = "legendary"
 slot = "lamordia: miserable (accessory)"
 option = "Miserable Sonic Spell Crit Damage"
-augments = ["Miserable Sonic Spell Critical Damage (Legendary)"]
-note = "The page names it Spell Crit Damage; Maetrim names it Spell Critical Damage."
+augments = ["Miserable Sonic Spell Crit Damage (Legendary)"]
 cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 25 }, { ingredient = "Legendary Bleak Conductor", quantity = 25 }, { ingredient = "Legendary Bleak Insulator", quantity = 25 }, { ingredient = "Legendary Bleak Resistor", quantity = 25 }, { ingredient = "Legendary Bleak Wire", quantity = 100 }]
 
 [[system.recipe]]
@@ -1772,16 +1712,14 @@ cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 50 }, { ingredie
 tier = "heroic"
 slot = "lamordia: woeful (accessory)"
 option = "Woeful Armor Piercing"
-augments = ["Woeful Armor-Piercing (Heroic)"]
-note = "The page spells it Armor Piercing; Maetrim spells it Armor-Piercing."
+augments = ["Woeful Armor Piercing (Heroic)"]
 cost = [{ ingredient = "Bleak Alternator", quantity = 10 }, { ingredient = "Bleak Conductor", quantity = 10 }, { ingredient = "Bleak Insulator", quantity = 10 }, { ingredient = "Bleak Resistor", quantity = 10 }, { ingredient = "Bleak Transformer", quantity = 10 }]
 
 [[system.recipe]]
 tier = "legendary"
 slot = "lamordia: woeful (accessory)"
 option = "Woeful Armor Piercing"
-augments = ["Woeful Armor-Piercing (Legendary)"]
-note = "The page spells it Armor Piercing; Maetrim spells it Armor-Piercing."
+augments = ["Woeful Armor Piercing (Legendary)"]
 cost = [{ ingredient = "Legendary Bleak Alternator", quantity = 50 }, { ingredient = "Legendary Bleak Conductor", quantity = 50 }, { ingredient = "Legendary Bleak Insulator", quantity = 50 }, { ingredient = "Legendary Bleak Resistor", quantity = 50 }, { ingredient = "Legendary Bleak Transformer", quantity = 50 }]
 
 [[system.recipe]]
