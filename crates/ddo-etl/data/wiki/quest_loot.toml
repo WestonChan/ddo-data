@@ -77,19 +77,29 @@ rare_augments = [
 [[quest]]
 name = "Going Rogue"
 page = "https://ddowiki.com/page/Going_Rogue"
-read = "2026-09-30"
+read = "2026-10-01"
 rare = [
   "Legendary Toxic Sash of Drysvayla",
   "Toxic Sash of Drysvayla",
+]
+rare_augments = [
+  "Lunar Gem of Necromancy (Heroic)",
+  "Lunar Gem of Necromancy (Legendary)",
 ]
 
 [[quest]]
 name = "The Final Draw"
 page = "https://ddowiki.com/page/The_Final_Draw"
-read = "2026-09-30"
+read = "2026-10-01"
 rare = [
   "Chilling Sash of Tailara",
   "Legendary Chilling Sash of Tailara",
+]
+rare_augments = [
+  "Lunar Gem of Hide and Move Silently (Heroic)",
+  "Lunar Gem of Hide and Move Silently (Legendary)",
+  "Lunar Gem of Illusion (Heroic)",
+  "Lunar Gem of Illusion (Legendary)",
 ]
 
 [[quest]]
@@ -205,12 +215,16 @@ rare_augments = [
 [[quest]]
 name = "Ends and Means"
 page = "https://ddowiki.com/page/Ends_and_Means"
-read = "2026-09-30"
+read = "2026-10-01"
 rare = [
   "Downcast Docent",
   "Legendary Downcast Docent",
 ]
 rare_augments = [
+  "Lunar Gem of Hide and Move Silently (Heroic)",
+  "Lunar Gem of Hide and Move Silently (Legendary)",
+  "Lunar Gem of Transmutation (Heroic)",
+  "Lunar Gem of Transmutation (Legendary)",
   "Solar Gem of Rune Arm DCs (Heroic)",
   "Solar Gem of Rune Arm DCs (Legendary)",
   "Solar Gem of Swift Charging (Heroic)",
@@ -606,6 +620,9 @@ items = [
 name = "A Blood Pact"
 page = "https://ddowiki.com/page/A_Blood_Pact"
 read = "2026-10-01"
+rare_augments = [
+  "Solar Gem of Evocation (Heroic)",
+]
 items = [
   "Dark Star of the Deep",
   "Shards of the Deep",
@@ -615,6 +632,14 @@ items = [
 name = "Burning Down the House"
 page = "https://ddowiki.com/page/Burning_Down_the_House"
 read = "2026-10-01"
+rare = [
+  "Sanguine Sash of Estelar",
+]
+rare_augments = [
+  "Lunar Gem of Evocation (Heroic)",
+  "Lunar Gem of Evocation (Legendary)",
+  "Solar Gem of Elemental Absorption (Heroic)",
+]
 items = [
   "Argonnessen Eye Band",
 ]
@@ -647,6 +672,12 @@ items = [
 name = "Flocked Together"
 page = "https://ddowiki.com/page/Flocked_Together"
 read = "2026-10-01"
+rare_augments = [
+  "Lunar Gem of Blast Dice (Heroic)",
+  "Lunar Gem of Blast Dice (Legendary)",
+  "Solar Gem of Magical Resistance Rating Cap (Heroic)",
+  "Solar Gem of Magical Resistance Rating Cap (Legendary)",
+]
 items = [
   "Duergarcraft Shroud",
   "Legendary Duergarcraft Shroud",
@@ -658,6 +689,12 @@ items = [
 name = "For Want of a Heart"
 page = "https://ddowiki.com/page/For_Want_of_a_Heart"
 read = "2026-10-01"
+rare_augments = [
+  "Lunar Gem of Blast Dice (Heroic)",
+  "Lunar Gem of Blast Dice (Legendary)",
+  "Lunar Gem of Necromancy (Heroic)",
+  "Lunar Gem of Necromancy (Legendary)",
+]
 items = [
   "Great Forge Shroud",
   "Legendary Great Forge Shroud",
@@ -667,6 +704,9 @@ items = [
 name = "In The Flesh"
 page = "https://ddowiki.com/page/In_The_Flesh"
 read = "2026-10-01"
+rare = [
+  "Mindfury Symbiont",
+]
 items = [
   "Axe of Famine",
   "Beholder Plate Armor",
@@ -682,6 +722,9 @@ items = [
 name = "Invaders!"
 page = "https://ddowiki.com/page/Invaders!"
 read = "2026-10-01"
+rare = [
+  "Demonic Breastplate",
+]
 items = [
   "Demonic Breastplate",
   "Docent of Defense",
@@ -708,9 +751,143 @@ items = [
 name = "Stealing from Sorcere"
 page = "https://ddowiki.com/page/Stealing_from_Sorcere"
 read = "2026-10-01"
+rare_augments = [
+  "Solar Gem of Swift Charging (Heroic)",
+  "Solar Gem of Swift Charging (Legendary)",
+]
 items = [
   "Drow Wizard's Greaves",
   "Legendary Drow Wizard's Greaves",
   "Legendary Stitched Great Forge Shroud",
   "Stitched Great Forge Shroud",
+]
+
+[[quest]]
+name = "Eyes of Stone"
+page = "https://ddowiki.com/page/Eyes_of_Stone"
+read = "2026-10-01"
+rare = [
+  "Legendary Rocksplitter",
+  "Rocksplitter",
+]
+
+[[quest]]
+name = "Feast or Famine"
+page = "https://ddowiki.com/page/Feast_or_Famine"
+read = "2026-10-01"
+rare = [
+  "Adamantine Knuckles (level 12)",
+  "Adamantine Knuckles (level 13)",
+  "Adamantine Knuckles (level 14)",
+  "Adamantine Knuckles (level 23)",
+  "Adamantine Knuckles (level 24)",
+  "Adamantine Knuckles (level 25)",
+]
+
+[[quest]]
+name = "Haywire Foundry"
+page = "https://ddowiki.com/page/Haywire_Foundry"
+read = "2026-10-01"
+rare = [
+  "Bloodrage Symbiont",
+]
+
+[[quest]]
+name = "Killing Time"
+page = "https://ddowiki.com/page/Killing_Time"
+read = "2026-10-01"
+rare = [
+  "Brilliant Crescent",
+  "The Staff of Shadow",
+]
+
+[[quest]]
+name = "Legendary Vision of Destruction"
+page = "https://ddowiki.com/page/Legendary_Vision_of_Destruction"
+read = "2026-10-01"
+rare = [
+  "Blightstaff",
+]
+
+[[quest]]
+name = "Litany of the Dead"
+page = "https://ddowiki.com/page/Litany_of_the_Dead"
+read = "2026-10-01"
+rare = [
+  "Shining Devastation",
+]
+
+[[quest]]
+name = "Too Hot to Handle"
+page = "https://ddowiki.com/page/Too_Hot_to_Handle"
+read = "2026-10-01"
+rare = [
+  "Brand of Kalok Shash",
+  "Ir'Kesslan's Most Prescient Lens",
+  "Sigil of Regalport",
+  "Sigil of the Triumvirate",
+  "Stolen Signet of ir'Wynarn",
+]
+
+[[quest]]
+name = "Tower of Frost"
+page = "https://ddowiki.com/page/Tower_of_Frost"
+read = "2026-10-01"
+rare = [
+  "Whirling Words",
+]
+
+[[quest]]
+name = "A Long Way to Mushrooms"
+page = "https://ddowiki.com/page/A_Long_Way_to_Mushrooms"
+read = "2026-10-01"
+rare_augments = [
+  "Solar Gem of Elemental Absorption (Heroic)",
+]
+
+[[quest]]
+name = "Body and Mind"
+page = "https://ddowiki.com/page/Body_and_Mind"
+read = "2026-10-01"
+rare_augments = [
+  "Solar Gem of Blast Dice (Heroic)",
+  "Solar Gem of Critical Confirmation (Heroic)",
+  "Solar Gem of Pact Dice (Heroic)",
+]
+
+[[quest]]
+name = "Demon in the Rough"
+page = "https://ddowiki.com/page/Demon_in_the_Rough"
+read = "2026-10-01"
+rare_augments = [
+  "Solar Gem of Enchantment (Heroic)",
+]
+
+[[quest]]
+name = "Hideous to Behold"
+page = "https://ddowiki.com/page/Hideous_to_Behold"
+read = "2026-10-01"
+rare_augments = [
+  "Solar Gem of Imbuement (Heroic)",
+  "Solar Gem of Imbuement (Legendary)",
+]
+
+[[quest]]
+name = "If It Wasn't For Bad Luck"
+page = "https://ddowiki.com/page/If_It_Wasn%27t_For_Bad_Luck"
+read = "2026-10-01"
+rare_augments = [
+  "Lunar Gem of Illusion (Heroic)",
+  "Lunar Gem of Illusion (Legendary)",
+  "Solar Gem of Conjuration (Heroic)",
+  "Solar Gem of Conjuration (Legendary)",
+]
+
+[[quest]]
+name = "The Fetid Wedding"
+page = "https://ddowiki.com/page/The_Fetid_Wedding"
+read = "2026-10-01"
+rare_augments = [
+  "Solar Gem of Force Absorption (Heroic)",
+  "Solar Gem of Force Absorption (Legendary)",
 ]
