@@ -91,7 +91,7 @@ fn quest_series_detail(db: &Connection, table: QuestSeriesTable, id: i64) -> Res
 pub(super) fn quest_chains_rewarding(db: &Connection, item_id: i64) -> Result<Vec<Value>, ApiError> {
     let mut quest_chains = json_rows(
         db,
-        "SELECT c.id, c.name, cr.is_rare FROM quest_chain_rewards cr JOIN quest_chains c ON c.id = cr.chain_id
+        "SELECT c.id, c.name, cr.is_rare, c.wiki_url FROM quest_chain_rewards cr JOIN quest_chains c ON c.id = cr.chain_id
           WHERE cr.item_id = ?1 ORDER BY c.name",
         [item_id],
     )?;
@@ -104,7 +104,7 @@ pub(super) fn quest_chains_rewarding(db: &Connection, item_id: i64) -> Result<Ve
 pub(super) fn sagas_rewarding(db: &Connection, item_id: i64) -> Result<Vec<Value>, ApiError> {
     let mut sagas = json_rows(
         db,
-        "SELECT s.id, s.name, sr.tier, sr.is_rare FROM saga_rewards sr JOIN sagas s ON s.id = sr.saga_id
+        "SELECT s.id, s.name, sr.tier, sr.is_rare, s.wiki_url FROM saga_rewards sr JOIN sagas s ON s.id = sr.saga_id
           WHERE sr.item_id = ?1
           ORDER BY s.name, CASE sr.tier WHEN 'heroic' THEN 1 WHEN 'epic' THEN 2 WHEN 'legendary' THEN 3 ELSE 4 END",
         [item_id],
@@ -118,7 +118,7 @@ pub(super) fn sagas_rewarding(db: &Connection, item_id: i64) -> Result<Vec<Value
 pub(super) fn quest_chains_including(db: &Connection, quest_id: i64) -> Result<Vec<Value>, ApiError> {
     json_rows(
         db,
-        "SELECT c.id, c.name FROM quest_chain_quests cq JOIN quest_chains c ON c.id = cq.chain_id
+        "SELECT c.id, c.name, c.wiki_url FROM quest_chain_quests cq JOIN quest_chains c ON c.id = cq.chain_id
           WHERE cq.quest_id = ?1 ORDER BY c.name",
         [quest_id],
     )
@@ -127,7 +127,7 @@ pub(super) fn quest_chains_including(db: &Connection, quest_id: i64) -> Result<V
 pub(super) fn sagas_including(db: &Connection, quest_id: i64) -> Result<Vec<Value>, ApiError> {
     json_rows(
         db,
-        "SELECT s.id, s.name FROM saga_quests sq JOIN sagas s ON s.id = sq.saga_id
+        "SELECT s.id, s.name, s.wiki_url FROM saga_quests sq JOIN sagas s ON s.id = sq.saga_id
           WHERE sq.quest_id = ?1 ORDER BY s.name",
         [quest_id],
     )

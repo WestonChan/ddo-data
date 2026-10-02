@@ -1037,11 +1037,13 @@ async fn saga_detail_lists_its_rewards_by_tier() {
 #[tokio::test]
 async fn item_and_quest_detail_name_the_quest_chains_and_sagas_they_belong_to() {
     let (_, _, ring) = get(&format!("/v1/items/{}", id_of_item_named("Acrobat's Ring").await)).await;
-    assert_eq!(keys_of(&ring["quest_chains"][0]), ["id", "is_rare", "name"]);
+    assert_eq!(keys_of(&ring["quest_chains"][0]), ["id", "is_rare", "name", "wiki_url"]);
     assert_eq!(ring["quest_chains"][0]["name"], "The Lost Seekers");
+    assert_eq!(ring["quest_chains"][0]["wiki_url"], "https://ddowiki.com/page/The_Lost_Seekers");
     assert_eq!(ring["sagas"], serde_json::json!([]));
     let (_, _, band) = get(&format!("/v1/items/{}", id_of_item_named("Band of Diani ir'Wynarn").await)).await;
-    assert_eq!(keys_of(&band["sagas"][0]), ["id", "is_rare", "name", "tier"]);
+    assert_eq!(keys_of(&band["sagas"][0]), ["id", "is_rare", "name", "tier", "wiki_url"]);
+    assert_eq!(band["sagas"][0]["wiki_url"], "https://ddowiki.com/page/Masterminds_of_Sharn_(saga)");
     assert_eq!(
         (&band["sagas"][0]["name"], &band["sagas"][0]["tier"]),
         (&serde_json::json!("Masterminds of Sharn"), &serde_json::json!("epic"))
@@ -1049,7 +1051,8 @@ async fn item_and_quest_detail_name_the_quest_chains_and_sagas_they_belong_to() 
 
     let quest_id = band["quests"][0]["id"].as_i64().unwrap();
     let (_, _, project_nemesis) = get(&format!("/v1/quests/{quest_id}")).await;
-    assert_eq!(keys_of(&project_nemesis["sagas"][0]), ["id", "name"]);
+    assert_eq!(keys_of(&project_nemesis["sagas"][0]), ["id", "name", "wiki_url"]);
+    assert_eq!(project_nemesis["sagas"][0]["wiki_url"], "https://ddowiki.com/page/Masterminds_of_Sharn_(saga)");
     assert_eq!(project_nemesis["sagas"][0]["name"], "Masterminds of Sharn");
     assert_eq!(project_nemesis["quest_chains"], serde_json::json!([]));
 }

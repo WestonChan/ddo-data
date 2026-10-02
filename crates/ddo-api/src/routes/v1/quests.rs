@@ -93,7 +93,7 @@ async fn quests(State(state): State<AppState>) -> Result<Json<Vec<Value>>, ApiEr
                    link item and augment detail `quests` report from the other side. An item or augment that is both \
                    a chest (or raid) drop and an end reward of the quest appears once per loot type. Both arrays are \
                    sorted by name, then loot type, and empty when nothing is known to drop there. `quest_chains` and `sagas` \
-                   name (`id`, `name`) the quest chains and sagas the quest belongs to, whose end rewards come from \
+                   name (`id`, `name`, and the ddowiki page each was read from as `wiki_url`) the quest chains and sagas the quest belongs to, whose end rewards come from \
                    their NPCs rather than from the quest; see /v1/quest-chains/{id} and /v1/sagas/{id}.",
     params(("id" = i64, Path, description = "The quest's numeric id from /v1/quests")),
     responses(
