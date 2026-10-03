@@ -3,6 +3,7 @@ name = "Morten Edgewright"
 page = "https://ddowiki.com/page/Morten_Edgewright"
 read = "2026-10-02"
 location = "The Keep on the Borderlands"
+pack = "Keep on the Borderlands"
 items = [
   { name = "The Dragon Keeper", cost = "1 Ethereal, 1 Arcane, and 1 Silver Ingot" },
   { name = "Ethereal Bastard Sword", cost = "1 Ethereal Ingot" },
@@ -192,6 +193,7 @@ name = "Captain Xendros"
 page = "https://ddowiki.com/page/Captain_Xendros"
 read = "2026-10-02"
 location = "Saltmarsh, alongside the building and around the corner when you zone in to the wilderness"
+pack = "Sinister Secret of Saltmarsh"
 items = [
   { name = "Flamesalt Bastard Sword", cost = "5 Quartermaster's Chits" },
   { name = "Flamesalt Battle Axe", cost = "5 Quartermaster's Chits" },
@@ -280,6 +282,7 @@ name = "Masei Mkembe"
 page = "https://ddowiki.com/page/Masei_Mkembe"
 read = "2026-10-02"
 location = "Zawabi's Refuge, inside Masei Imports"
+pack = "Demon Sands"
 
 [[vendor]]
 name = "Barston Gelminedes"
@@ -298,6 +301,7 @@ name = "Steps Obliss"
 page = "https://ddowiki.com/page/Steps_Obliss"
 read = "2026-10-02"
 location = "Morgrave University - Upper Commons, shopping alley"
+pack = "Vecna Unleashed"
 items = [
   { name = "Steps' Lenses of Seein' Hidden Hand Secrets" },
 ]
@@ -307,6 +311,7 @@ name = "Vagan Taneer"
 page = "https://ddowiki.com/page/Vagan_Taneer"
 read = "2026-10-02"
 location = "Marketplace, central area near the scroll vendors."
+pack = "The Vale of Twilight"
 items = [
   { name = "Alabaster of the Twelve", cost = "10 Planar Shards" },
   { name = "Emerald of the Twelve", cost = "10 Planar Shards" },
@@ -329,12 +334,14 @@ name = "Raam Lukresh"
 page = "https://ddowiki.com/page/Raam_Lukresh"
 read = "2026-10-02"
 location = "Blue Water Inn"
+pack = "Mists of Ravenloft"
 
 [[vendor]]
 name = "Osah Lukresh"
 page = "https://ddowiki.com/page/Osah_Lukresh"
 read = "2026-10-02"
 location = "Blue Water Inn"
+pack = "Mists of Ravenloft"
 
 [[vendor]]
 name = "Squire Rale"
@@ -359,6 +366,7 @@ name = "Balkar Aislin"
 page = "https://ddowiki.com/page/Balkar_Aislin"
 read = "2026-10-02"
 location = "Necropolis, Upper"
+pack = "The Necropolis, Part 4"
 items = [
   { name = "Muffled Veneer", cost = "20 Shred of Tapestry" },
   { name = "Seraphim", cost = "20 Shred of Tapestry" },
