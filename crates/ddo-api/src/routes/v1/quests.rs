@@ -1,6 +1,8 @@
 use super::quest_series::{quest_chains_including, sagas_including};
-use crate::db::{convert_to_booleans, json_row, json_rows, whole_table_json};
+use crate::db::paged_rows;
+use crate::db::{convert_to_booleans, json_row, json_rows, paged_table_json, TableListSource};
 use crate::error::ApiError;
+use crate::query::{declare_list_parameters, ApiQuery};
 use crate::state::AppState;
 use axum::extract::{Path, State};
 use axum::Json;
@@ -24,6 +26,10 @@ const QUEST_SELECT: &str =
    FROM quests q LEFT JOIN adventure_packs p ON p.id = q.pack_id LEFT JOIN patrons pt ON pt.id = q.patron_id";
 const QUEST_FLAG_COLUMNS: &[&str] = &["is_raid", "is_challenge", "is_free_to_play"];
 
+const ADVENTURE_PACKS_SORT_FIELDS: &[(&str, &str)] = &[("name", "listed.name"), ("id", "listed.id")];
+
+declare_list_parameters!(AdventurePacksParameters, ADVENTURE_PACKS_SORT_FIELDS, "");
+
 #[utoipa::path(
     get,
     path = "/v1/adventure-packs",
@@ -31,11 +37,26 @@ const QUEST_FLAG_COLUMNS: &[&str] = &["is_raid", "is_challenge", "is_free_to_pla
     summary = "List adventure packs",
     description = "Every adventure pack and expansion by name with whether it is free to play. /v1/items accepts \
                    these names in `pack`; /v1/adventure-packs/{id} adds the loot credited to the whole pack.",
-    responses((status = 200, description = "The whole table", body = Vec<Value>))
+    params(
+        AdventurePacksParameters,
+    ),
+    responses((status = 200, description = "`total`, `limit`, `offset` and the `adventure_packs` page", body = Value),
+        (status = 400, description = "Invalid sort field or malformed query parameter", body = crate::error::ErrorBody))
 )]
-async fn adventure_packs(State(state): State<AppState>) -> Result<Json<Vec<Value>>, ApiError> {
-    whole_table_json(state, "SELECT id, name, is_free_to_play FROM adventure_packs ORDER BY name", &["is_free_to_play"])
-        .await
+async fn adventure_packs(State(state): State<AppState>, ApiQuery(query, _): ApiQuery) -> Result<Json<Value>, ApiError> {
+    paged_table_json(
+        state,
+        query,
+        TableListSource {
+            select_sql: "SELECT id, name, is_free_to_play FROM adventure_packs",
+            rows_key: "adventure_packs",
+            name_column: "listed.name",
+            default_order: "listed.name",
+            sortable_fields: ADVENTURE_PACKS_SORT_FIELDS,
+            flag_columns: &["is_free_to_play"],
+        },
+    )
+    .await
 }
 
 #[utoipa::path(
@@ -83,17 +104,50 @@ async fn adventure_pack_detail(State(state): State<AppState>, Path(id): Path<i64
         .await
 }
 
+const PATRONS_SORT_FIELDS: &[(&str, &str)] = &[("name", "listed.name"), ("id", "listed.id")];
+
+declare_list_parameters!(PatronsParameters, PATRONS_SORT_FIELDS, "");
+
 #[utoipa::path(
     get,
     path = "/v1/patrons",
     tag = "quests",
     summary = "List patrons",
     description = "The favor patrons (The Coin Lords, House Kundarak, ...) that quests belong to.",
-    responses((status = 200, description = "The whole table", body = Vec<Value>))
+    params(
+        PatronsParameters,
+    ),
+    responses((status = 200, description = "`total`, `limit`, `offset` and the `patrons` page", body = Value),
+        (status = 400, description = "Invalid sort field or malformed query parameter", body = crate::error::ErrorBody))
 )]
-async fn patrons(State(state): State<AppState>) -> Result<Json<Vec<Value>>, ApiError> {
-    whole_table_json(state, "SELECT id, name FROM patrons ORDER BY name", &[]).await
+async fn patrons(State(state): State<AppState>, ApiQuery(query, _): ApiQuery) -> Result<Json<Value>, ApiError> {
+    paged_table_json(
+        state,
+        query,
+        TableListSource {
+            select_sql: "SELECT id, name FROM patrons",
+            rows_key: "patrons",
+            name_column: "listed.name",
+            default_order: "listed.name",
+            sortable_fields: PATRONS_SORT_FIELDS,
+            flag_columns: &[],
+        },
+    )
+    .await
 }
+
+const QUESTS_SORT_FIELDS: &[(&str, &str)] = &[
+    ("name", "listed.name"),
+    ("id", "listed.id"),
+    ("level", "listed.level"),
+    ("epic_level", "listed.epic_level"),
+    ("legendary_level", "listed.legendary_level"),
+    ("favor", "listed.favor"),
+    ("pack", "listed.pack"),
+    ("patron", "listed.patron"),
+];
+
+declare_list_parameters!(QuestsParameters, QUESTS_SORT_FIELDS, "");
 
 #[utoipa::path(
     get,
@@ -112,19 +166,23 @@ async fn patrons(State(state): State<AppState>) -> Result<Json<Vec<Value>>, ApiE
                    are read whole from ddowiki and listed like his, replaced by his as soon as his files carry a \
                    quest of that name. Item and augment detail responses reference these in `quests`; \
                    /v1/quests/{id} adds the items and augments each one drops.",
-    responses((status = 200, description = "The whole table with each quest's wiki facts", body = Vec<Value>))
+    params(
+        QuestsParameters,
+    ),
+    responses((status = 200, description = "`total`, `limit`, `offset` and the `quests` page", body = Value),
+        (status = 400, description = "Invalid sort field or malformed query parameter", body = crate::error::ErrorBody))
 )]
-async fn quests(State(state): State<AppState>) -> Result<Json<Vec<Value>>, ApiError> {
-    let quests = state
-        .read_db(|db| {
-            let mut quests = json_rows(db, &format!("{QUEST_SELECT} ORDER BY q.name"), [])?;
-            for quest in &mut quests {
-                convert_to_booleans(quest, QUEST_FLAG_COLUMNS);
+async fn quests(State(state): State<AppState>, ApiQuery(query, _): ApiQuery) -> Result<Json<Value>, ApiError> {
+    state
+        .read_db(move |db| {
+            let select_sql = QUEST_SELECT;
+            let mut page = paged_rows(db, select_sql, &query, "listed.name", "listed.name", QUESTS_SORT_FIELDS)?;
+            for row in &mut page.rows {
+                convert_to_booleans(row, QUEST_FLAG_COLUMNS);
             }
-            Ok(quests)
+            Ok(Json(page.into_json("quests")))
         })
-        .await?;
-    Ok(Json(quests))
+        .await
 }
 
 #[utoipa::path(

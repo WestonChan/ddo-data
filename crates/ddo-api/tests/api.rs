@@ -54,6 +54,13 @@ async fn get(path: &str) -> (StatusCode, axum::http::HeaderMap, Value) {
     (status, headers, body_json)
 }
 
+async fn get_list_rows(path: &str) -> (StatusCode, axum::http::HeaderMap, Value) {
+    let separator = if path.contains('?') { "&" } else { "?" };
+    let (status, headers, page) = get(&format!("{path}{separator}limit=10000")).await;
+    let rows_key = path.split('?').next().unwrap().trim_start_matches("/v1/").replace('-', "_");
+    (status, headers, page[&rows_key].clone())
+}
+
 #[tokio::test]
 async fn version_reports_dataset_and_schema() {
     let (status, headers, json) = get("/v1/version").await;
@@ -241,7 +248,7 @@ fn enchantment_named<'a>(enchantments: &'a Value, name: &str, kind: &str) -> Opt
 
 #[tokio::test]
 async fn enchantments_list_every_stat_and_effect_an_item_carries_with_its_item_count() {
-    let (status, _, enchantments) = get("/v1/enchantments").await;
+    let (status, _, enchantments) = get_list_rows("/v1/enchantments").await;
     assert_eq!(status, StatusCode::OK, "{enchantments}");
     assert_eq!(
         enchantment_named(&enchantments, "Strength", "stat"),
@@ -270,7 +277,7 @@ async fn enchantments_list_every_stat_and_effect_an_item_carries_with_its_item_c
 
 #[tokio::test]
 async fn enchantments_narrow_by_search_text_and_kind() {
-    let (_, _, resistances) = get("/v1/enchantments?q=RESISTANCE").await;
+    let (_, _, resistances) = get_list_rows("/v1/enchantments?q=RESISTANCE").await;
     let resistance_names: Vec<&str> =
         resistances.as_array().unwrap().iter().map(|row| row["name"].as_str().unwrap()).collect();
     assert_eq!(
@@ -278,11 +285,11 @@ async fn enchantments_narrow_by_search_text_and_kind() {
         ["Cold Resistance", "Electric Resistance", "Fire Resistance", "Physical and Magical Resistance Rating"]
     );
 
-    let (_, _, effects) = get("/v1/enchantments?kind=effect").await;
+    let (_, _, effects) = get_list_rows("/v1/enchantments?kind=effect").await;
     let effects = effects.as_array().unwrap();
     assert_eq!(effects.len(), 45);
     assert!(effects.iter().all(|row| row["kind"] == "effect"), "kind=effect lists a stat");
-    let (_, _, strength_stats) = get("/v1/enchantments?kind=stat&q=strength").await;
+    let (_, _, strength_stats) = get_list_rows("/v1/enchantments?kind=stat&q=strength").await;
     assert_eq!(strength_stats, serde_json::json!([{ "name": "Strength", "kind": "stat", "item_count": 3 }]));
 
     let (status, _, unknown_kind) = get("/v1/enchantments?kind=bonus").await;
@@ -291,7 +298,7 @@ async fn enchantments_narrow_by_search_text_and_kind() {
 }
 
 async fn id_in_list_named(list_path: &str, name: &str) -> i64 {
-    let (_, _, rows) = get(list_path).await;
+    let (_, _, rows) = get_list_rows(list_path).await;
     let rows = rows.as_array().unwrap_or_else(|| panic!("{list_path} is not a list"));
     rows.iter().find(|row| row["name"] == name).unwrap_or_else(|| panic!("{list_path} has no {name}"))["id"]
         .as_i64()
@@ -520,7 +527,7 @@ async fn augment_detail_lists_the_quests_it_drops_in_as_item_detail_does() {
 
 #[tokio::test]
 async fn quest_detail_is_the_list_row_plus_the_items_and_augments_it_drops() {
-    let (_, _, quest_list) = get("/v1/quests").await;
+    let (_, _, quest_list) = get_list_rows("/v1/quests").await;
     let book_burning_row =
         quest_list.as_array().unwrap().iter().find(|quest| quest["name"] == "Book Burning").unwrap().clone();
     let id = book_burning_row["id"].as_i64().unwrap();
@@ -575,9 +582,9 @@ async fn etag_roundtrip_returns_not_modified() {
 
 #[tokio::test]
 async fn lookups_and_augments() {
-    let (_, _, stats) = get("/v1/stats").await;
+    let (_, _, stats) = get_list_rows("/v1/stats").await;
     assert_eq!(stats.as_array().unwrap().len(), ddo_model::stats::STATS.len());
-    let (_, _, augment_slot_types) = get("/v1/augment-slot-types").await;
+    let (_, _, augment_slot_types) = get_list_rows("/v1/augment-slot-types").await;
     assert!(augment_slot_types.as_array().unwrap().iter().any(|s| s["label"] == "red"));
     let (_, _, red_augments) = get("/v1/augments?slot=red").await;
     let names: Vec<&str> =
@@ -596,7 +603,7 @@ async fn lookups_and_augments() {
 
 #[tokio::test]
 async fn quests_carry_difficulties_and_epic_name() {
-    let (_, _, quests) = get("/v1/quests").await;
+    let (_, _, quests) = get_list_rows("/v1/quests").await;
     let quests = quests.as_array().unwrap();
     let quest_named = |name: &str| quests.iter().find(|q| q["name"] == name).unwrap_or_else(|| panic!("{name}"));
     let madstone = quest_named("Madstone Crater");
@@ -616,7 +623,7 @@ async fn quests_carry_difficulties_and_epic_name() {
 
 #[tokio::test]
 async fn quests_carry_the_wiki_facts() {
-    let (_, _, quests) = get("/v1/quests").await;
+    let (_, _, quests) = get_list_rows("/v1/quests").await;
     let quests = quests.as_array().unwrap();
     let quest_named = |name: &str| quests.iter().find(|q| q["name"] == name).unwrap_or_else(|| panic!("{name}"));
     let chronoscope = quest_named("The Chronoscope");
@@ -636,7 +643,7 @@ async fn quests_carry_the_wiki_facts() {
 
 #[tokio::test]
 async fn quests_hide_whether_maetrim_or_the_wiki_supplied_them() {
-    let (_, _, quests) = get("/v1/quests").await;
+    let (_, _, quests) = get_list_rows("/v1/quests").await;
     let quests = quests.as_array().unwrap();
     let quest_named = |name: &str| quests.iter().find(|q| q["name"] == name).unwrap_or_else(|| panic!("{name}"));
     let ghosts_of_perdition = quest_named("Ghosts of Perdition");
@@ -676,7 +683,7 @@ async fn item_quests_carry_free_to_play() {
 
 #[tokio::test]
 async fn sets_feats_races_classes_trees_spells() {
-    let (_, _, sets) = get("/v1/sets").await;
+    let (_, _, sets) = get_list_rows("/v1/sets").await;
     let winter = sets.as_array().unwrap().iter().find(|s| s["name"] == "Eminence of Winter").unwrap();
     let (_, _, set) = get(&format!("/v1/sets/{}", winter["id"])).await;
     assert!(set["tiers"].as_array().unwrap().iter().all(|t| t["equipped_count"].as_i64().unwrap() >= 2));
@@ -709,13 +716,13 @@ async fn sets_feats_races_classes_trees_spells() {
     assert_eq!(feat["modifiers"].as_array().unwrap().len(), 3);
     assert!(feat["modifiers"][0]["requirements"].as_array().unwrap().iter().any(|r| r["req_type"] == "Stance"));
 
-    let (_, _, races) = get("/v1/races").await;
+    let (_, _, races) = get_list_rows("/v1/races").await;
     let dwarf = races.as_array().unwrap().iter().find(|r| r["name"] == "Dwarf").unwrap();
     let (_, _, race) = get(&format!("/v1/races/{}", dwarf["id"])).await;
     assert_eq!(race["ability_modifiers"][0]["stat"], "Constitution");
     assert_eq!(race["granted_feats"].as_array().unwrap().len(), 5);
 
-    let (_, _, classes) = get("/v1/classes").await;
+    let (_, _, classes) = get_list_rows("/v1/classes").await;
     let paladin = classes.as_array().unwrap().iter().find(|c| c["name"] == "Paladin").unwrap();
     let (_, _, class) = get(&format!("/v1/classes/{}", paladin["id"])).await;
     assert_eq!(class["fortitude"], "good");
@@ -726,7 +733,7 @@ async fn sets_feats_races_classes_trees_spells() {
         .iter()
         .any(|s| s["name"] == "Cure Light Wounds" && s["spell_id"].is_number()));
 
-    let (_, _, enhancement_trees) = get("/v1/enhancement-trees").await;
+    let (_, _, enhancement_trees) = get_list_rows("/v1/enhancement-trees").await;
     let aasimar = enhancement_trees.as_array().unwrap().iter().find(|t| t["name"] == "Aasimar").unwrap();
     assert_eq!(aasimar["kind"], "racial");
     let (_, _, enhancement_tree) = get(&format!("/v1/enhancement-trees/{}", aasimar["id"])).await;
@@ -898,7 +905,7 @@ fn assert_same_shape(location: &str, example: &Value, real: &Value) {
 
 async fn sample_response_for(path: &str) -> Value {
     if let Some(list_path) = path.strip_suffix("/{id}") {
-        let (_, _, list_response) = get(list_path).await;
+        let (_, _, list_response) = get_list_rows(list_path).await;
         let list_rows = list_response
             .as_array()
             .cloned()
@@ -961,7 +968,201 @@ async fn docs_page_carries_the_api_title_and_the_site_mark_as_its_icon() {
     assert!(page.contains(r#""paths":"#), "docs page no longer embeds the spec");
 }
 
-const FILTERED_LIST_PATHS: [&str; 4] = ["/v1/items", "/v1/augments", "/v1/feats", "/v1/spells"];
+const ALL_LIST_PATHS: &[(&str, &str)] = &[
+    ("/v1/items", "items"),
+    ("/v1/augments", "augments"),
+    ("/v1/feats", "feats"),
+    ("/v1/spells", "spells"),
+    ("/v1/quests", "quests"),
+    ("/v1/quest-chains", "quest_chains"),
+    ("/v1/sagas", "sagas"),
+    ("/v1/vendors", "vendors"),
+    ("/v1/events", "events"),
+    ("/v1/sets", "sets"),
+    ("/v1/enhancement-trees", "enhancement_trees"),
+    ("/v1/classes", "classes"),
+    ("/v1/races", "races"),
+    ("/v1/stances", "stances"),
+    ("/v1/guild-buffs", "guild_buffs"),
+    ("/v1/optional-buffs", "optional_buffs"),
+    ("/v1/crafting-systems", "crafting_systems"),
+    ("/v1/enchantments", "enchantments"),
+    ("/v1/adventure-packs", "adventure_packs"),
+    ("/v1/patrons", "patrons"),
+    ("/v1/stats", "stats"),
+    ("/v1/bonus-types", "bonus_types"),
+    ("/v1/equipment-slots", "equipment_slots"),
+    ("/v1/augment-slot-types", "augment_slot_types"),
+    ("/v1/damage-types", "damage_types"),
+    ("/v1/weapon-types", "weapon_types"),
+    ("/v1/filigrees", "filigrees"),
+    ("/v1/sentient-gems", "sentient_gems"),
+    ("/v1/clickies", "clickies"),
+];
+
+#[tokio::test]
+async fn list_parameter_docs_share_descriptions_and_match_runtime_sort_fields() {
+    let (_, _, spec) = get("/v1/openapi.json").await;
+    let reference_params = spec["paths"]["/v1/patrons"]["get"]["parameters"].as_array().unwrap();
+    for &(path, _) in ALL_LIST_PATHS {
+        let params = spec["paths"][path]["get"]["parameters"].as_array().unwrap();
+        for name in ["q", "limit", "offset"] {
+            let reference = reference_params.iter().find(|param| param["name"] == name).unwrap();
+            let parameter = params.iter().find(|param| param["name"] == name).unwrap();
+            if name != "q" || !matches!(path, "/v1/items" | "/v1/augment-slot-types") {
+                assert_eq!(parameter, reference, "{path}: {name} must use the common parameter contract");
+            }
+        }
+        let search_description =
+            params.iter().find(|param| param["name"] == "q").unwrap()["description"].as_str().unwrap();
+        let expected_search_description = match path {
+            "/v1/items" => {
+                "Search text, trimmed and matched ignoring case: keeps items whose name contains it, \
+                or whose slot, category or any adventure pack it drops in is named exactly it. Without \
+                `sort`, ranks an exact name first, then names starting with it, then the rest, each group by name. \
+                Blank applies no search."
+            }
+            "/v1/augment-slot-types" => {
+                "Case-insensitive substring of the socket's display `label`; \
+                surrounding whitespace is trimmed and blank applies no search."
+            }
+            _ => {
+                "Case-insensitive substring of the row's name; surrounding whitespace is trimmed \
+                and blank applies no search."
+            }
+        };
+        assert_eq!(search_description, expected_search_description, "{path}");
+        let sort = params.iter().find(|param| param["name"] == "sort").unwrap();
+        assert_eq!(sort["style"], "form", "{path}");
+        assert_eq!(sort["explode"], true, "{path}");
+        let documented_fields =
+            sort["description"].as_str().unwrap().split("Allowed fields: ").nth(1).unwrap().split('.').next().unwrap();
+        let (status, _, response) = get(&format!("{path}?sort=unknown_sort_field")).await;
+        assert_eq!(status, StatusCode::BAD_REQUEST);
+        let runtime_fields = response["error"].as_str().unwrap().split("allowed fields: ").nth(1).unwrap();
+        assert_eq!(documented_fields, runtime_fields, "{path}");
+    }
+}
+
+#[tokio::test]
+async fn every_list_route_has_paging_sorting_and_an_envelope() {
+    let (_, _, spec) = get("/v1/openapi.json").await;
+    for &(path, rows_key) in ALL_LIST_PATHS {
+        let operation = &spec["paths"][path]["get"];
+        let parameters = operation["parameters"].as_array().unwrap_or_else(|| panic!("{path} has no parameters"));
+        for name in ["q", "limit", "offset", "sort"] {
+            let parameter = parameters
+                .iter()
+                .find(|parameter| parameter["name"] == name && parameter["in"] == "query")
+                .unwrap_or_else(|| panic!("{path} has no {name} query parameter"));
+            assert!(parameter["description"].as_str().is_some_and(|description| !description.is_empty()));
+        }
+        let sort_description =
+            parameters.iter().find(|parameter| parameter["name"] == "sort").unwrap()["description"].as_str().unwrap();
+        assert!(sort_description.contains("name"), "{path}: {sort_description}");
+        if path != "/v1/enchantments" {
+            assert!(sort_description.contains("id"), "{path}: {sort_description}");
+        }
+        let (status, _, page) = get(&format!("{path}?limit=1&offset=0&sort=-name")).await;
+        assert_eq!(status, StatusCode::OK, "{path}: {page}");
+        assert_eq!(page["limit"], 1, "{path}");
+        assert_eq!(page["offset"], 0, "{path}");
+        assert!(page["total"].is_number(), "{path}");
+        assert!(page[rows_key].is_array(), "{path}: {page}");
+        assert!(page[rows_key].as_array().unwrap().len() <= 1, "{path}");
+    }
+}
+
+#[tokio::test]
+async fn repeated_sort_keys_and_invalid_keys_follow_route_allow_lists() {
+    let (_, _, sorted) = get("/v1/items?sort=-name&sort=minimum_level&limit=10000").await;
+    let rows = sorted["items"].as_array().unwrap();
+    assert!(rows.windows(2).all(|pair| {
+        let first_name = pair[0]["name"].as_str().unwrap();
+        let second_name = pair[1]["name"].as_str().unwrap();
+        first_name > second_name
+            || first_name == second_name && pair[0]["minimum_level"].as_i64() <= pair[1]["minimum_level"].as_i64()
+    }));
+    let (_, _, grouped) = get("/v1/items?sort=category&sort=-name&limit=10000").await;
+    let grouped_rows = grouped["items"].as_array().unwrap();
+    assert!(grouped_rows.windows(2).all(|pair| {
+        let first_category = pair[0]["category"].as_str().unwrap();
+        let second_category = pair[1]["category"].as_str().unwrap();
+        first_category < second_category
+            || first_category == second_category && pair[0]["name"].as_str() >= pair[1]["name"].as_str()
+    }));
+    for bad_sort in ["missing", "-", "", "name,minimum_level"] {
+        let (status, _, response) = get(&format!("/v1/items?sort={bad_sort}")).await;
+        assert_eq!(status, StatusCode::BAD_REQUEST);
+        let message = response["error"].as_str().unwrap();
+        assert!(message.contains(bad_sort) && message.contains("minimum_level"), "{message}");
+    }
+}
+
+#[tokio::test]
+async fn every_documented_sort_key_runs_and_paging_is_clamped() {
+    let (_, _, spec) = get("/v1/openapi.json").await;
+    for &(path, rows_key) in ALL_LIST_PATHS {
+        let params = spec["paths"][path]["get"]["parameters"].as_array().unwrap();
+        let sort_description =
+            params.iter().find(|param| param["name"] == "sort").unwrap()["description"].as_str().unwrap();
+        let fields = sort_description.split("Allowed fields: ").nth(1).unwrap().split('.').next().unwrap();
+        for field in fields.split(", ") {
+            for prefix in ["", "-"] {
+                let (status, _, response) = get(&format!("{path}?sort={prefix}{field}&limit=1")).await;
+                assert_eq!(status, StatusCode::OK, "{path} sort={prefix}{field}: {response}");
+            }
+        }
+        let (status, _, page) = get(&format!("{path}?limit=-4&offset=-5")).await;
+        assert_eq!(status, StatusCode::OK, "{path}: {page}");
+        assert_eq!(page["limit"], 1);
+        assert_eq!(page["offset"], 0);
+        assert!(page[rows_key].as_array().unwrap().len() <= 1);
+        let (status, _, capped_page) = get(&format!("{path}?limit=20000&offset=100000")).await;
+        assert_eq!(status, StatusCode::OK, "{path}: {capped_page}");
+        assert_eq!(capped_page["limit"], 10000);
+        assert_eq!(capped_page["offset"], 100000);
+        assert!(capped_page[rows_key].as_array().unwrap().is_empty());
+        let (status, _, invalid) = get(&format!("{path}?sort=not_a_field")).await;
+        assert_eq!(status, StatusCode::BAD_REQUEST, "{path}: {invalid}");
+        assert!(invalid["error"].as_str().unwrap().contains("not_a_field"));
+    }
+}
+
+#[tokio::test]
+async fn every_list_query_searches_its_display_name() {
+    for &(path, rows_key) in ALL_LIST_PATHS {
+        let (_, _, first_page) = get(&format!("{path}?limit=1")).await;
+        let Some(first_row) = first_page[rows_key].as_array().unwrap().first() else { continue };
+        let display_name = if path == "/v1/augment-slot-types" { &first_row["label"] } else { &first_row["name"] };
+        let search_letter = display_name.as_str().unwrap().chars().find(char::is_ascii_alphabetic).unwrap();
+        let (status, _, matched_page) = get(&format!("{path}?q={}&limit=1", search_letter.to_ascii_uppercase())).await;
+        assert_eq!(status, StatusCode::OK, "{path}: {matched_page}");
+        assert!(matched_page["total"].as_i64().unwrap() > 0, "{path}: {matched_page}");
+        let matched_name = if path == "/v1/augment-slot-types" {
+            &matched_page[rows_key][0]["label"]
+        } else {
+            &matched_page[rows_key][0]["name"]
+        };
+        assert!(
+            matched_name.as_str().unwrap().to_ascii_lowercase().contains(search_letter.to_ascii_lowercase()),
+            "{path}: {matched_page}"
+        );
+    }
+}
+
+#[tokio::test]
+async fn nullable_quest_sort_fields_put_null_last_in_both_directions() {
+    for direction in ["legendary_level", "-legendary_level"] {
+        let (status, _, page) = get(&format!("/v1/quests?sort={direction}&limit=10000")).await;
+        assert_eq!(status, StatusCode::OK);
+        let rows = page["quests"].as_array().unwrap();
+        assert!(rows.iter().any(|row| row["legendary_level"].is_null()));
+        assert!(rows.iter().any(|row| row["legendary_level"].is_number()));
+        let first_null = rows.iter().position(|row| row["legendary_level"].is_null()).unwrap();
+        assert!(rows[first_null..].iter().all(|row| row["legendary_level"].is_null()), "{direction}");
+    }
+}
 
 fn param_schema_type(param: &Value) -> &str {
     let schema_type = &param["schema"]["type"];
@@ -973,9 +1174,11 @@ fn param_schema_type(param: &Value) -> &str {
 
 fn accepted_sample_value(param_name: &str, schema_type: &str) -> &'static str {
     match (param_name, schema_type) {
+        ("sort", _) => "name",
         ("category", _) => "Armor",
         ("source", _) => "standard",
         ("enchantment", _) => "Strength",
+        ("kind", _) => "stat",
         (_, "boolean") => "true",
         (_, "integer" | "number") => "1",
         _ => "x",
@@ -984,7 +1187,8 @@ fn accepted_sample_value(param_name: &str, schema_type: &str) -> &'static str {
 
 #[tokio::test]
 async fn list_endpoints_reject_unknown_query_parameters_as_json() {
-    for path in FILTERED_LIST_PATHS {
+    let (_, _, spec) = get("/v1/openapi.json").await;
+    for &(path, _) in ALL_LIST_PATHS {
         let (status, headers, json) = get(&format!("{path}?bogus=1")).await;
         assert_eq!(status, StatusCode::BAD_REQUEST, "{path}?bogus=1 must be rejected");
         assert!(
@@ -993,6 +1197,19 @@ async fn list_endpoints_reject_unknown_query_parameters_as_json() {
         );
         let error = json["error"].as_str().unwrap_or_else(|| panic!("{path}?bogus=1 body {json} has no error string"));
         assert!(error.contains("bogus"), "{path}?bogus=1 error {error:?} must name the parameter");
+        let accepted_parameters = error
+            .split("; allowed parameters: ")
+            .nth(1)
+            .unwrap_or_else(|| panic!("{path}: {error} must list all accepted parameters"));
+        let accepted_parameters: std::collections::BTreeSet<_> = accepted_parameters.split(", ").collect();
+        let documented_parameters: std::collections::BTreeSet<_> = spec["paths"][path]["get"]["parameters"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .filter(|parameter| parameter["in"] == "query")
+            .map(|parameter| parameter["name"].as_str().unwrap())
+            .collect();
+        assert_eq!(accepted_parameters, documented_parameters, "{path}: {error}");
     }
 
     let (status, _, json) = get("/v1/items?raid=maybe").await;
@@ -1001,15 +1218,32 @@ async fn list_endpoints_reject_unknown_query_parameters_as_json() {
 }
 
 #[tokio::test]
+async fn list_endpoints_reject_duplicate_or_malformed_common_parameters() {
+    for &(path, _) in ALL_LIST_PATHS {
+        for (query_string, bad_parameter) in [
+            ("q=one&q=two", "q"),
+            ("limit=1&limit=2", "limit"),
+            ("offset=0&offset=1", "offset"),
+            ("limit=all", "limit"),
+            ("offset=first", "offset"),
+        ] {
+            let (status, _, response) = get(&format!("{path}?{query_string}")).await;
+            assert_eq!(status, StatusCode::BAD_REQUEST, "{path}?{query_string}: {response}");
+            assert!(response["error"].as_str().unwrap().contains(bad_parameter), "{response}");
+        }
+    }
+}
+
+#[tokio::test]
 async fn list_endpoints_accept_every_documented_query_parameter() {
     let (_, _, spec) = get("/v1/openapi.json").await;
-    for path in FILTERED_LIST_PATHS {
+    for &(path, _) in ALL_LIST_PATHS {
         let operation = &spec["paths"][path]["get"];
         assert!(operation["responses"]["400"]["description"].is_string(), "{path} must document its 400 response");
         let documented_params =
             operation["parameters"].as_array().unwrap_or_else(|| panic!("{path} documents no parameters"));
         let query_params: Vec<&Value> = documented_params.iter().filter(|p| p["in"] == "query").collect();
-        assert!(query_params.len() >= 5, "{path} documents only {} query parameters", query_params.len());
+        assert!(query_params.len() >= 4, "{path} documents only {} query parameters", query_params.len());
         for param in query_params {
             let name = param["name"].as_str().unwrap();
             let sample_value = accepted_sample_value(name, param_schema_type(param));
@@ -1042,6 +1276,7 @@ async fn openapi_lists_every_item_filter_in_the_route_description_and_parameters
         "include_legacy",
         "limit",
         "offset",
+        "sort",
     ];
     let route_description = operation["description"].as_str().unwrap();
     for filter_name in item_filters {
@@ -1077,7 +1312,7 @@ async fn openapi_lists_every_item_filter_in_the_route_description_and_parameters
 
 #[tokio::test]
 async fn stances_lists_the_standalone_stances_in_file_order() {
-    let (status, _, json) = get("/v1/stances").await;
+    let (status, _, json) = get_list_rows("/v1/stances").await;
     assert_eq!(status, StatusCode::OK);
     let stances = json.as_array().unwrap();
     let names: Vec<&str> = stances.iter().map(|s| s["name"].as_str().unwrap()).collect();
@@ -1087,11 +1322,15 @@ async fn stances_lists_the_standalone_stances_in_file_order() {
     assert_eq!(stances[0]["requirements"].as_array().unwrap().len(), 10);
     assert_eq!(stances[2]["requirements"][0]["value"], "1");
     assert_eq!(stances[0]["modifiers"], serde_json::json!([]));
+    assert!(stances.iter().all(|stance| stance.get("sort_order").is_none()));
+    let (_, _, page) = get("/v1/stances?sort=name&limit=1&offset=1").await;
+    assert_eq!(page["total"], 3);
+    assert_eq!(page["stances"], serde_json::json!([stances[1]]));
 }
 
 #[tokio::test]
 async fn guild_buffs_carry_their_unlock_level_and_per_level_modifiers() {
-    let (status, _, json) = get("/v1/guild-buffs").await;
+    let (status, _, json) = get_list_rows("/v1/guild-buffs").await;
     assert_eq!(status, StatusCode::OK);
     let guild_buffs = json.as_array().unwrap();
     let guild_levels: Vec<i64> = guild_buffs.iter().map(|b| b["guild_level"].as_i64().unwrap()).collect();
@@ -1105,7 +1344,7 @@ async fn guild_buffs_carry_their_unlock_level_and_per_level_modifiers() {
 
 #[tokio::test]
 async fn optional_buffs_list_by_name_with_modifiers() {
-    let (status, _, json) = get("/v1/optional-buffs").await;
+    let (status, _, json) = get_list_rows("/v1/optional-buffs").await;
     assert_eq!(status, StatusCode::OK);
     let optional_buffs = json.as_array().unwrap();
     let names: Vec<&str> = optional_buffs.iter().map(|b| b["name"].as_str().unwrap()).collect();
@@ -1117,7 +1356,7 @@ async fn optional_buffs_list_by_name_with_modifiers() {
 
 #[tokio::test]
 async fn sentient_gems_list_by_name() {
-    let (status, _, json) = get("/v1/sentient-gems").await;
+    let (status, _, json) = get_list_rows("/v1/sentient-gems").await;
     assert_eq!(status, StatusCode::OK);
     let sentient_gems = json.as_array().unwrap();
     let names: Vec<&str> = sentient_gems.iter().map(|g| g["name"].as_str().unwrap()).collect();
@@ -1140,7 +1379,7 @@ async fn feat_attacks_carry_cooldown_and_their_bonuses() {
     assert_eq!(feat["this_attack_modifiers"][0]["effect_type"], "BonusDamagePercent");
     assert_eq!(feat["this_attack_modifiers"][0]["amounts"], serde_json::json!([20]));
 
-    let (_, _, enhancement_trees) = get("/v1/enhancement-trees").await;
+    let (_, _, enhancement_trees) = get_list_rows("/v1/enhancement-trees").await;
     let kensei = enhancement_trees.as_array().unwrap().iter().find(|t| t["name"] == "Kensei").unwrap();
     let (_, _, enhancement_tree) = get(&format!("/v1/enhancement-trees/{}", kensei["id"])).await;
     let enhancements = enhancement_tree["enhancements"].as_array().unwrap();
@@ -1153,7 +1392,7 @@ async fn feat_attacks_carry_cooldown_and_their_bonuses() {
 
 #[tokio::test]
 async fn crafting_systems_list_their_families_and_counts() {
-    let (status, _, json) = get("/v1/crafting-systems").await;
+    let (status, _, json) = get_list_rows("/v1/crafting-systems").await;
     assert_eq!(status, StatusCode::OK);
     let crafting_systems = json.as_array().unwrap();
     let names: Vec<&str> = crafting_systems.iter().map(|system| system["name"].as_str().unwrap()).collect();
@@ -1176,7 +1415,7 @@ async fn crafting_systems_list_their_families_and_counts() {
 
 #[tokio::test]
 async fn crafting_system_detail_carries_ingredients_and_recipes_with_augments_and_cost() {
-    let (_, _, list) = get("/v1/crafting-systems").await;
+    let (_, _, list) = get_list_rows("/v1/crafting-systems").await;
     let id = list[1]["id"].as_i64().unwrap();
     let (status, _, crafting_system) = get(&format!("/v1/crafting-systems/{id}")).await;
     assert_eq!(status, StatusCode::OK);
@@ -1312,7 +1551,7 @@ async fn items_augments_and_quests_carry_corrected_values_without_exposing_the_c
     assert_eq!(voidscale["min_level"], 30);
     assert!(voidscale.get("corrections").is_none(), "augment detail exposes corrections: {voidscale}");
 
-    let (_, _, quests) = get("/v1/quests").await;
+    let (_, _, quests) = get_list_rows("/v1/quests").await;
     let quests = quests.as_array().unwrap();
     let plane_of_night = quests.iter().find(|quest| quest["name"] == "Plane of Night").unwrap();
     assert_eq!(plane_of_night["favor"], 6);
@@ -1337,7 +1576,7 @@ fn keys_of(value: &Value) -> Vec<&str> {
 
 #[tokio::test]
 async fn quest_chains_list_their_pack_page_and_counts() {
-    let (status, _, chains) = get("/v1/quest-chains").await;
+    let (status, _, chains) = get_list_rows("/v1/quest-chains").await;
     assert_eq!(status, StatusCode::OK);
     let lost_seekers = &chains[0];
     assert_eq!(keys_of(lost_seekers), ["id", "name", "pack", "quest_count", "reward_count", "wiki_url"]);
@@ -1357,7 +1596,7 @@ async fn quest_chains_list_their_pack_page_and_counts() {
 
 #[tokio::test]
 async fn quest_chain_detail_lists_its_quests_in_order_and_its_rewards() {
-    let (_, _, chains) = get("/v1/quest-chains").await;
+    let (_, _, chains) = get_list_rows("/v1/quest-chains").await;
     let (status, _, chain) = get(&format!("/v1/quest-chains/{}", chains[0]["id"])).await;
     assert_eq!(status, StatusCode::OK);
     assert_no_provenance(&chain);
@@ -1380,7 +1619,7 @@ async fn quest_chain_detail_lists_its_quests_in_order_and_its_rewards() {
 
 #[tokio::test]
 async fn saga_detail_lists_its_rewards_by_tier() {
-    let (status, _, sagas) = get("/v1/sagas").await;
+    let (status, _, sagas) = get_list_rows("/v1/sagas").await;
     assert_eq!(status, StatusCode::OK);
     let sharn = sagas.as_array().unwrap().iter().find(|saga| saga["name"] == "Masterminds of Sharn").unwrap();
     assert_eq!(keys_of(sharn), ["id", "name", "pack", "quest_count", "reward_count", "wiki_url"]);
@@ -1502,7 +1741,7 @@ async fn item_detail_lists_the_adventure_packs_whose_quests_all_drop_it() {
 
 #[tokio::test]
 async fn adventure_pack_detail_lists_the_loot_any_of_its_quests_drops() {
-    let (_, _, packs) = get("/v1/adventure-packs").await;
+    let (_, _, packs) = get_list_rows("/v1/adventure-packs").await;
     let pack_id = packs.as_array().unwrap().iter().find(|pack| pack["name"] == "Magic of Myth Drannor").unwrap()["id"]
         .as_i64()
         .unwrap();
@@ -1569,7 +1808,7 @@ async fn item_and_augment_detail_list_every_source_in_one_array() {
 #[tokio::test]
 async fn item_detail_lists_the_crafting_systems_that_make_it() {
     let (_, _, orb) = get(&format!("/v1/items/{}", id_of_item_named("Thunder-Forged Orb").await)).await;
-    let (_, _, crafting_systems) = get("/v1/crafting-systems").await;
+    let (_, _, crafting_systems) = get_list_rows("/v1/crafting-systems").await;
     let thunder_forged = crafting_systems.as_array().unwrap().iter().find(|system| system["name"] == "Thunder-Forged");
     let thunder_forged_id = &thunder_forged.expect("the fixture wiki records Thunder-Forged")["id"];
     assert_eq!(
@@ -1645,7 +1884,7 @@ async fn item_detail_lists_the_starter_level_that_earns_an_iconic_item() {
 
 #[tokio::test]
 async fn vendors_list_their_location_pack_page_and_item_count_and_detail_their_items() {
-    let (status, _, vendors) = get("/v1/vendors").await;
+    let (status, _, vendors) = get_list_rows("/v1/vendors").await;
     assert_eq!(status, StatusCode::OK);
     let vendor = &vendors[0];
     assert_eq!(keys_of(vendor), ["id", "item_count", "location", "name", "pack", "wiki_url"]);
@@ -1693,7 +1932,7 @@ async fn vendors_list_their_location_pack_page_and_item_count_and_detail_their_i
 
 #[tokio::test]
 async fn events_list_their_page_and_item_count_and_detail_their_items() {
-    let (status, _, events) = get("/v1/events").await;
+    let (status, _, events) = get_list_rows("/v1/events").await;
     assert_eq!(status, StatusCode::OK);
     let event = &events[0];
     assert_eq!(keys_of(event), ["id", "item_count", "name", "wiki_url"]);

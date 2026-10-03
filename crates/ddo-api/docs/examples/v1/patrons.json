@@ -1,14 +1,19 @@
-[
-  {
-    "id": 1,
-    "name": "Agents of Argonnessen"
-  },
-  {
-    "id": 21,
-    "name": "Battlehammer Expedition"
-  },
-  {
-    "id": 19,
-    "name": "Cormanthor Elves"
-  }
-]
+{
+  "limit": 100,
+  "offset": 0,
+  "patrons": [
+    {
+      "id": 1,
+      "name": "Agents of Argonnessen"
+    },
+    {
+      "id": 21,
+      "name": "Battlehammer Expedition"
+    },
+    {
+      "id": 19,
+      "name": "Cormanthor Elves"
+    }
+  ],
+  "total": 22
+}

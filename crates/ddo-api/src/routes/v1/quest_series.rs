@@ -1,5 +1,6 @@
-use crate::db::{convert_to_booleans, json_row, json_rows};
+use crate::db::{convert_to_booleans, json_row, json_rows, paged_rows, ListPage};
 use crate::error::ApiError;
+use crate::query::{declare_list_parameters, ApiQuery, ListQuery};
 use crate::state::AppState;
 use axum::extract::{Path, State};
 use axum::Json;
@@ -73,10 +74,6 @@ impl QuestSeriesTable {
     }
 }
 
-fn quest_series_list(db: &Connection, table: QuestSeriesTable) -> Result<Vec<Value>, ApiError> {
-    json_rows(db, &format!("SELECT {} ORDER BY s.name", table.columns_and_joins()), [])
-}
-
 fn quest_series_detail(db: &Connection, table: QuestSeriesTable, id: i64) -> Result<Value, ApiError> {
     let mut quest_series = json_row(db, &format!("SELECT {} WHERE s.id = ?1", table.columns_and_joins()), [id])?;
     quest_series["quests"] = Value::Array(json_rows(db, table.quests_sql(), [id])?);
@@ -86,6 +83,19 @@ fn quest_series_detail(db: &Connection, table: QuestSeriesTable, id: i64) -> Res
     }
     quest_series["rewards"] = Value::Array(rewards);
     Ok(quest_series)
+}
+
+const QUEST_SERIES_SORT_FIELDS: &[(&str, &str)] = &[
+    ("name", "listed.name"),
+    ("id", "listed.id"),
+    ("pack", "listed.pack"),
+    ("quest_count", "listed.quest_count"),
+    ("reward_count", "listed.reward_count"),
+];
+
+fn quest_series_page(db: &Connection, table: QuestSeriesTable, query: &ListQuery) -> Result<ListPage, ApiError> {
+    let select_sql = format!("SELECT {}", table.columns_and_joins());
+    paged_rows(db, &select_sql, query, "listed.name", "listed.name", QUEST_SERIES_SORT_FIELDS)
 }
 
 pub(super) fn quest_chains_rewarding(db: &Connection, item_id: i64) -> Result<Vec<Value>, ApiError> {
@@ -133,6 +143,8 @@ pub(super) fn sagas_including(db: &Connection, quest_id: i64) -> Result<Vec<Valu
     )
 }
 
+declare_list_parameters!(QuestChainsParameters, QUEST_SERIES_SORT_FIELDS, "");
+
 #[utoipa::path(
     get,
     path = "/v1/quest-chains",
@@ -145,11 +157,18 @@ pub(super) fn sagas_including(db: &Connection, quest_id: i64) -> Result<Vec<Valu
                    `reward_count`). The rewards are those the wiki page lists plus the items whose drop text \
                    credits the chain with its end reward. Empty until a chain has been read from ddowiki; \
                    /v1/sagas lists the saga system's rewards.",
-    responses((status = 200, description = "Every quest chain with its pack and counts", body = Vec<Value>))
+    params(
+        QuestChainsParameters,
+    ),
+    responses((status = 200, description = "`total`, `limit`, `offset` and the `quest_chains` page", body = Value),
+        (status = 400, description = "Invalid sort field or malformed query parameter", body = crate::error::ErrorBody))
 )]
-async fn quest_chains(State(state): State<AppState>) -> Result<Json<Vec<Value>>, ApiError> {
-    let quest_chains = state.read_db(|db| quest_series_list(db, QuestSeriesTable::QuestChains)).await?;
-    Ok(Json(quest_chains))
+async fn quest_chains(State(state): State<AppState>, ApiQuery(query, _): ApiQuery) -> Result<Json<Value>, ApiError> {
+    state
+        .read_db(move |db| {
+            Ok(Json(quest_series_page(db, QuestSeriesTable::QuestChains, &query)?.into_json("quest_chains")))
+        })
+        .await
 }
 
 #[utoipa::path(
@@ -173,6 +192,8 @@ async fn quest_chain_detail(State(state): State<AppState>, Path(id): Path<i64>) 
     Ok(Json(quest_chain))
 }
 
+declare_list_parameters!(SagasParameters, QUEST_SERIES_SORT_FIELDS, "");
+
 #[utoipa::path(
     get,
     path = "/v1/sagas",
@@ -185,11 +206,14 @@ async fn quest_chain_detail(State(state): State<AppState>, Path(id): Path<i64>) 
                    `reward_count`, one per item and tier). The rewards are those the wiki page lists plus the \
                    items whose drop text credits the saga. Empty until a saga has been read from ddowiki; \
                    /v1/quest-chains lists quest chains.",
-    responses((status = 200, description = "Every saga with its pack and counts", body = Vec<Value>))
+    params(
+        SagasParameters,
+    ),
+    responses((status = 200, description = "`total`, `limit`, `offset` and the `sagas` page", body = Value),
+        (status = 400, description = "Invalid sort field or malformed query parameter", body = crate::error::ErrorBody))
 )]
-async fn sagas(State(state): State<AppState>) -> Result<Json<Vec<Value>>, ApiError> {
-    let sagas = state.read_db(|db| quest_series_list(db, QuestSeriesTable::Sagas)).await?;
-    Ok(Json(sagas))
+async fn sagas(State(state): State<AppState>, ApiQuery(query, _): ApiQuery) -> Result<Json<Value>, ApiError> {
+    state.read_db(move |db| Ok(Json(quest_series_page(db, QuestSeriesTable::Sagas, &query)?.into_json("sagas")))).await
 }
 
 #[utoipa::path(

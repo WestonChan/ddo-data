@@ -1,5 +1,7 @@
+use crate::db::paged_rows;
 use crate::db::{convert_to_booleans, json_row, json_rows};
 use crate::error::ApiError;
+use crate::query::{declare_list_parameters, ApiQuery};
 use crate::state::AppState;
 use axum::extract::{Path, State};
 use axum::Json;
@@ -14,6 +16,16 @@ pub(super) fn router() -> OpenApiRouter<AppState> {
 const CLASS_COLUMNS: &str = "id, name, base_class, base_class_id, not_heroic, description, small_icon, large_icon, skill_points, hit_points,
                              alignments, fortitude, reflex, will, bab, spell_points_per_level, casting_stats, class_specific_feat_types";
 
+const CLASSES_SORT_FIELDS: &[(&str, &str)] = &[
+    ("name", "listed.name"),
+    ("id", "listed.id"),
+    ("base_class", "listed.base_class"),
+    ("skill_points", "listed.skill_points"),
+    ("hit_points", "listed.hit_points"),
+];
+
+declare_list_parameters!(ClassesParameters, CLASSES_SORT_FIELDS, "");
+
 #[utoipa::path(
     get,
     path = "/v1/classes",
@@ -22,16 +34,21 @@ const CLASS_COLUMNS: &str = "id, name, base_class, base_class_id, not_heroic, de
     description = "Every class and archetype ordered by name with its base class, allowed alignments, hit and \
                    skill points per level, save and base-attack progressions, spell points, casting stats and \
                    class-specific feat types. Archetypes carry `base_class`; epic-only classes are `not_heroic`.",
-    responses((status = 200, description = "All classes", body = Vec<Value>))
+    params(
+        ClassesParameters,
+    ),
+    responses((status = 200, description = "`total`, `limit`, `offset` and the `classes` page", body = Value),
+        (status = 400, description = "Invalid sort field or malformed query parameter", body = crate::error::ErrorBody))
 )]
-async fn classes(State(state): State<AppState>) -> Result<Json<Vec<Value>>, ApiError> {
+async fn classes(State(state): State<AppState>, ApiQuery(query, _): ApiQuery) -> Result<Json<Value>, ApiError> {
     state
-        .read_db(|db| {
-            let mut classes = json_rows(db, &format!("SELECT {CLASS_COLUMNS} FROM classes ORDER BY name"), [])?;
-            for class in &mut classes {
-                convert_to_booleans(class, &["not_heroic"]);
+        .read_db(move |db| {
+            let select_sql = format!("SELECT {CLASS_COLUMNS} FROM classes");
+            let mut page = paged_rows(db, &select_sql, &query, "listed.name", "listed.name", CLASSES_SORT_FIELDS)?;
+            for row in &mut page.rows {
+                convert_to_booleans(row, &["not_heroic"]);
             }
-            Ok(Json(classes))
+            Ok(Json(page.into_json("classes")))
         })
         .await
 }

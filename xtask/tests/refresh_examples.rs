@@ -62,7 +62,7 @@ fn refresh_writes_a_trimmed_example_for_every_documented_route() {
         assert!(example_text.ends_with("}\n") || example_text.ends_with("]\n"), "{}", documented_example.file_name);
     }
     let stats_text = std::fs::read_to_string(examples_dir.join("stats.json")).unwrap();
-    assert!(stats_text.starts_with("[\n  {\n    \""), "two-space indentation: {stats_text}");
+    assert!(stats_text.starts_with("{\n  \"limit\": 100,"), "two-space indentation: {stats_text}");
 }
 
 #[test]
@@ -133,9 +133,12 @@ fn refresh_keeps_the_committed_quest_chain_and_saga_examples_while_no_wiki_file_
     };
     build_database_file(&fixtures_dir().join("DataFiles"), &wiki_overrides, &Corrections::default(), &db_path).unwrap();
     let committed_examples = [
-        ("quest-chains.json", "[\n  {\n    \"id\": 1\n  }\n]\n"),
+        (
+            "quest-chains.json",
+            "{\n  \"limit\": 100,\n  \"offset\": 0,\n  \"quest_chains\": [{\"id\": 1}],\n  \"total\": 1\n}\n",
+        ),
         ("quest-chains_id.json", "{\n  \"id\": 1\n}\n"),
-        ("sagas.json", "[\n  {\n    \"id\": 2\n  }\n]\n"),
+        ("sagas.json", "{\n  \"limit\": 100,\n  \"offset\": 0,\n  \"sagas\": [{\"id\": 2}],\n  \"total\": 1\n}\n"),
         ("sagas_id.json", "{\n  \"id\": 2\n}\n"),
     ];
     for (file_name, committed_text) in committed_examples {

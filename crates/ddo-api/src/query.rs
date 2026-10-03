@@ -4,10 +4,49 @@ use axum::http::request::Parts;
 use axum::http::Uri;
 use serde::de::DeserializeOwned;
 use serde::{Deserialize, Deserializer};
+use utoipa::openapi::path::{Parameter, ParameterBuilder, ParameterIn, ParameterStyle};
+use utoipa::openapi::Required;
+use utoipa::{IntoParams, PartialSchema};
 
-pub(crate) struct ApiQuery<T>(pub T);
+macro_rules! declare_query_parameters {
+    (
+        $visibility:vis struct $name:ident {
+            $($(#[$attribute:meta])* $field_visibility:vis $field:ident: $field_type:ty),* $(,)?
+        }
+        $(repeatable: [$($repeatable_key:literal),* $(,)?])?
+    ) => {
+        #[derive(Default, serde::Deserialize)]
+        $visibility struct $name {
+            $($(#[$attribute])* $field_visibility $field: $field_type),*
+        }
+
+        impl crate::query::QueryParameters for $name {
+            const KEYS: &'static [&'static str] = &[$(stringify!($field)),*];
+            const REPEATABLE_KEYS: &'static [&'static str] = &[$($($repeatable_key),*)?];
+        }
+    };
+}
+pub(crate) use declare_query_parameters;
+
+declare_query_parameters! {
+    pub(crate) struct ListQuery {
+        pub q: Option<String>,
+        pub limit: Option<i64>,
+        pub offset: Option<i64>,
+        #[serde(default, deserialize_with = "repeated_sort_values")]
+        pub sort: Vec<String>,
+    }
+    repeatable: ["sort"]
+}
+
+declare_query_parameters! {
+    pub(crate) struct NoFilters {}
+}
+
+pub(crate) struct ApiQuery<T = NoFilters>(pub ListQuery, pub T);
 
 pub(crate) trait QueryParameters: DeserializeOwned {
+    const KEYS: &'static [&'static str];
     const REPEATABLE_KEYS: &'static [&'static str] = &[];
 }
 
@@ -20,16 +59,105 @@ impl<T: QueryParameters, S: Send + Sync> FromRequestParts<S> for ApiQuery<T> {
         let query_string = parts.uri.query().unwrap_or_default();
         let pairs: Vec<(String, String)> = serde_urlencoded::from_str(query_string)
             .map_err(|e| ApiError::BadRequest(format!("Failed to deserialize query string: {e}")))?;
-        let joined_query_string =
-            serde_urlencoded::to_string(pairs_with_repeated_keys_joined(pairs, T::REPEATABLE_KEYS))
-                .map_err(|e| ApiError::Internal(e.into()))?;
-        let joined_uri: Uri = format!("/?{joined_query_string}")
-            .parse()
-            .map_err(|e: axum::http::uri::InvalidUri| ApiError::Internal(e.into()))?;
-        let Query(query) = Query::<T>::try_from_uri(&joined_uri).map_err(|e| ApiError::BadRequest(e.body_text()))?;
-        Ok(ApiQuery(query))
+        let mut list_pairs = Vec::new();
+        let mut filter_pairs = Vec::new();
+        for (key, value) in pairs {
+            if ListQuery::KEYS.contains(&key.as_str()) {
+                list_pairs.push((key, value));
+            } else if T::KEYS.contains(&key.as_str()) {
+                filter_pairs.push((key, value));
+            } else {
+                let allowed_parameters = ListQuery::KEYS.iter().chain(T::KEYS).copied().collect::<Vec<_>>().join(", ");
+                return Err(ApiError::BadRequest(format!(
+                    "unknown query parameter {key:?}; allowed parameters: {allowed_parameters}"
+                )));
+            }
+        }
+        Ok(ApiQuery(query_from_pairs(list_pairs)?, query_from_pairs(filter_pairs)?))
     }
 }
+
+fn query_from_pairs<T: QueryParameters>(pairs: Vec<(String, String)>) -> Result<T, ApiError> {
+    let joined_query_string = serde_urlencoded::to_string(pairs_with_repeated_keys_joined(pairs, T::REPEATABLE_KEYS))
+        .map_err(|e| ApiError::Internal(e.into()))?;
+    let joined_uri: Uri = format!("/?{joined_query_string}")
+        .parse()
+        .map_err(|e: axum::http::uri::InvalidUri| ApiError::Internal(e.into()))?;
+    let Query(query) = Query::<T>::try_from_uri(&joined_uri).map_err(|e| ApiError::BadRequest(e.body_text()))?;
+    Ok(query)
+}
+
+impl IntoParams for ListQuery {
+    fn into_params(_parameter_in_provider: impl Fn() -> Option<ParameterIn>) -> Vec<Parameter> {
+        vec![
+            query_parameter::<String>(
+                "q",
+                "Case-insensitive substring of the row's name; surrounding whitespace is trimmed \
+                and blank applies no search.",
+            ),
+            query_parameter::<i64>("limit", "Page size, 1 to 10000; defaults to 100; out-of-range values are clamped"),
+            query_parameter::<i64>("offset", "Rows to skip; defaults to 0; negative values are clamped to 0"),
+            ParameterBuilder::from(query_parameter::<Vec<String>>("sort", SORT_DESCRIPTION))
+                .style(Some(ParameterStyle::Form))
+                .explode(Some(true))
+                .build(),
+        ]
+    }
+}
+
+fn query_parameter<T: PartialSchema>(name: &str, description: &str) -> Parameter {
+    ParameterBuilder::new()
+        .name(name)
+        .parameter_in(ParameterIn::Query)
+        .required(Required::False)
+        .description(Some(description))
+        .schema(Some(T::schema()))
+        .build()
+}
+
+const SORT_DESCRIPTION: &str = "Repeat `sort` for each key in priority order; prefix `-` for descending. \
+    Values are never comma-split. Nulls sort last in either direction. Omitting sort keeps the route's default order. \
+    An unknown field or bare `-` returns 400.";
+
+pub(crate) fn list_parameters(
+    sortable_fields: &[(&str, &str)],
+    sort_note: &str,
+    search_description: Option<&str>,
+) -> Vec<Parameter> {
+    let mut parameters = ListQuery::into_params(|| Some(ParameterIn::Query));
+    for parameter in &mut parameters {
+        if parameter.name == "q" {
+            if let Some(description) = search_description {
+                parameter.description = Some(description.to_string());
+            }
+        } else if parameter.name == "sort" {
+            parameter.description = Some(
+                format!("{SORT_DESCRIPTION} Allowed fields: {}. {sort_note}", allowed_sort_fields(sortable_fields))
+                    .trim_end()
+                    .to_string(),
+            );
+        }
+    }
+    parameters
+}
+
+macro_rules! declare_list_parameters {
+    ($name:ident, $fields:expr, $note:literal) => {
+        crate::query::declare_list_parameters!($name, $fields, $note, None);
+    };
+    ($name:ident, $fields:expr, $note:literal, $search_description:expr) => {
+        struct $name;
+
+        impl utoipa::IntoParams for $name {
+            fn into_params(
+                _parameter_in_provider: impl Fn() -> Option<utoipa::openapi::path::ParameterIn>,
+            ) -> Vec<utoipa::openapi::path::Parameter> {
+                crate::query::list_parameters($fields, $note, $search_description)
+            }
+        }
+    };
+}
+pub(crate) use declare_list_parameters;
 
 fn pairs_with_repeated_keys_joined(pairs: Vec<(String, String)>, repeatable_keys: &[&str]) -> Vec<(String, String)> {
     let mut joined_pairs: Vec<(String, String)> = Vec::with_capacity(pairs.len());
@@ -57,4 +185,37 @@ pub(crate) fn repeated_key_values<'de, D: Deserializer<'de>>(deserializer: D) ->
         .filter(|value| !value.is_empty())
         .map(str::to_string)
         .collect())
+}
+
+fn repeated_sort_values<'de, D: Deserializer<'de>>(deserializer: D) -> Result<Vec<String>, D::Error> {
+    let joined_values = String::deserialize(deserializer)?;
+    Ok(joined_values.split(REPEATED_VALUE_SEPARATOR).map(str::to_string).collect())
+}
+
+pub(crate) fn sort_order(
+    sort_keys: &[String],
+    sortable_fields: &[(&str, &str)],
+    default_order: &str,
+) -> Result<String, ApiError> {
+    if sort_keys.is_empty() {
+        return Ok(default_order.to_string());
+    }
+    let mut order_parts = Vec::with_capacity(sort_keys.len() * 2);
+    for sort_key in sort_keys {
+        let (field_name, direction) = match sort_key.strip_prefix('-') {
+            Some(field_name) => (field_name, "DESC"),
+            None => (sort_key.as_str(), "ASC"),
+        };
+        let Some((_, expression)) = sortable_fields.iter().find(|(allowed_name, _)| *allowed_name == field_name) else {
+            let allowed = allowed_sort_fields(sortable_fields);
+            return Err(ApiError::BadRequest(format!("invalid sort {sort_key:?}; allowed fields: {allowed}")));
+        };
+        order_parts.push(format!("({expression}) IS NULL"));
+        order_parts.push(format!("{expression} {direction}"));
+    }
+    Ok(order_parts.join(", "))
+}
+
+fn allowed_sort_fields(sortable_fields: &[(&str, &str)]) -> String {
+    sortable_fields.iter().map(|(name, _)| *name).collect::<Vec<_>>().join(", ")
 }

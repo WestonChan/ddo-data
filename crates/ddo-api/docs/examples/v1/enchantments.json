@@ -1,17 +1,22 @@
-[
-  {
-    "item_count": 47,
-    "kind": "stat",
-    "name": "Acid Absorption"
-  },
-  {
-    "item_count": 6,
-    "kind": "stat",
-    "name": "Alignment Absorption"
-  },
-  {
-    "item_count": 23,
-    "kind": "stat",
-    "name": "Chaos Absorption"
-  }
-]
+{
+  "enchantments": [
+    {
+      "item_count": 47,
+      "kind": "stat",
+      "name": "Acid Absorption"
+    },
+    {
+      "item_count": 6,
+      "kind": "stat",
+      "name": "Alignment Absorption"
+    },
+    {
+      "item_count": 23,
+      "kind": "stat",
+      "name": "Chaos Absorption"
+    }
+  ],
+  "limit": 100,
+  "offset": 0,
+  "total": 18
+}

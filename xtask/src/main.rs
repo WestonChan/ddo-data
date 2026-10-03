@@ -65,6 +65,7 @@ fn main() -> Result<()> {
         Task::Lint => {
             deny_clippy_warnings()?;
             corrections_from(None)?;
+            deny_list_parameter_drift()?;
             deny_comments()
         }
         Task::NoComments { fix: false } => deny_comments(),
@@ -149,6 +150,26 @@ fn deny_clippy_warnings() -> Result<()> {
         .context("running cargo clippy")?;
     if !clippy_status.success() {
         bail!("clippy failed");
+    }
+    Ok(())
+}
+
+fn deny_list_parameter_drift() -> Result<()> {
+    let test_status = Command::new("cargo")
+        .args([
+            "test",
+            "-p",
+            "ddo-api",
+            "--test",
+            "api",
+            "list_parameter_docs_share_descriptions_and_match_runtime_sort_fields",
+            "--",
+            "--exact",
+        ])
+        .status()
+        .context("checking shared list parameters and documented sort fields")?;
+    if !test_status.success() {
+        bail!("list parameter descriptions or documented sort fields have drifted");
     }
     Ok(())
 }

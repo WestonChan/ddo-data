@@ -1,17 +1,22 @@
-[
-  {
-    "category": "physical",
-    "id": 1,
-    "name": "Slashing"
-  },
-  {
-    "category": "physical",
-    "id": 2,
-    "name": "Piercing"
-  },
-  {
-    "category": "physical",
-    "id": 3,
-    "name": "Bludgeoning"
-  }
-]
+{
+  "damage_types": [
+    {
+      "category": "physical",
+      "id": 1,
+      "name": "Slashing"
+    },
+    {
+      "category": "physical",
+      "id": 2,
+      "name": "Piercing"
+    },
+    {
+      "category": "physical",
+      "id": 3,
+      "name": "Bludgeoning"
+    }
+  ],
+  "limit": 100,
+  "offset": 0,
+  "total": 18
+}

@@ -1,26 +1,31 @@
-[
-  {
-    "id": 10,
-    "name": "Cogs Explorer Dungeons",
-    "pack": "Masterminds of Sharn",
-    "quest_count": 8,
-    "reward_count": 0,
-    "wiki_url": "https://ddowiki.com/page/Cogs_Explorer_Dungeons_(Epic)"
-  },
-  {
-    "id": 4,
-    "name": "Dread",
-    "pack": "The Isle of Dread",
-    "quest_count": 12,
-    "reward_count": 6,
-    "wiki_url": "https://ddowiki.com/page/Isle_of_Dread_(Legendary)"
-  },
-  {
-    "id": 3,
-    "name": "Fables of the Feywild",
-    "pack": "Fables of the Feywild",
-    "quest_count": 13,
-    "reward_count": 0,
-    "wiki_url": "https://ddowiki.com/page/Fables_of_the_Feywild_(Legendary)"
-  }
-]
+{
+  "limit": 100,
+  "offset": 0,
+  "sagas": [
+    {
+      "id": 10,
+      "name": "Cogs Explorer Dungeons",
+      "pack": "Masterminds of Sharn",
+      "quest_count": 8,
+      "reward_count": 0,
+      "wiki_url": "https://ddowiki.com/page/Cogs_Explorer_Dungeons_(Epic)"
+    },
+    {
+      "id": 4,
+      "name": "Dread",
+      "pack": "The Isle of Dread",
+      "quest_count": 12,
+      "reward_count": 6,
+      "wiki_url": "https://ddowiki.com/page/Isle_of_Dread_(Legendary)"
+    },
+    {
+      "id": 3,
+      "name": "Fables of the Feywild",
+      "pack": "Fables of the Feywild",
+      "quest_count": 13,
+      "reward_count": 0,
+      "wiki_url": "https://ddowiki.com/page/Fables_of_the_Feywild_(Legendary)"
+    }
+  ],
+  "total": 17
+}

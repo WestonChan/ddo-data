@@ -5,18 +5,17 @@ use super::quests::{
 };
 use super::vendors_and_events::{events_rewarding, vendors_offering};
 use crate::db::{
-    bonuses_via, clamped_page, convert_to_booleans, json_row, json_rows, like_escaped_text, modifiers_for, row_count,
-    whole_table_json, WhereClause,
+    bonuses_via, convert_to_booleans, json_row, json_rows, like_escaped_text, modifiers_for, paged_query,
+    paged_table_json, TableListSource, WhereClause,
 };
 use crate::error::ApiError;
-use crate::query::{repeated_key_values, ApiQuery, QueryParameters};
+use crate::query::{declare_list_parameters, declare_query_parameters, repeated_key_values, ApiQuery};
 use crate::state::AppState;
 use axum::extract::{Path, State};
 use axum::Json;
 use ddo_model::enums::ItemCategory;
 use rusqlite::Connection;
-use serde::Deserialize;
-use serde_json::{json, Value};
+use serde_json::Value;
 use utoipa_axum::router::OpenApiRouter;
 use utoipa_axum::routes;
 
@@ -30,31 +29,57 @@ pub(super) fn router() -> OpenApiRouter<AppState> {
         .routes(routes!(augment_slot_types))
 }
 
-#[derive(Deserialize)]
-#[serde(deny_unknown_fields)]
-pub(super) struct ItemListQuery {
-    pub q: Option<String>,
-    pub slot: Option<String>,
-    pub category: Option<String>,
-    pub min_level: Option<i64>,
-    pub max_level: Option<i64>,
-    pub pack: Option<String>,
-    pub raid: Option<bool>,
-    pub rare: Option<bool>,
-    pub quest: Option<i64>,
-    pub quest_chain: Option<i64>,
-    pub saga: Option<i64>,
-    #[serde(default, deserialize_with = "repeated_key_values")]
-    pub enchantment: Vec<String>,
-    pub include_set_bonuses: Option<bool>,
-    pub include_legacy: Option<bool>,
-    pub limit: Option<i64>,
-    pub offset: Option<i64>,
+declare_query_parameters! {
+    pub(super) struct ItemFilters {
+        pub slot: Option<String>,
+        pub category: Option<String>,
+        pub min_level: Option<i64>,
+        pub max_level: Option<i64>,
+        pub pack: Option<String>,
+        pub raid: Option<bool>,
+        pub rare: Option<bool>,
+        pub quest: Option<i64>,
+        pub quest_chain: Option<i64>,
+        pub saga: Option<i64>,
+        #[serde(default, deserialize_with = "repeated_key_values")]
+        pub enchantment: Vec<String>,
+        pub include_set_bonuses: Option<bool>,
+        pub include_legacy: Option<bool>,
+    }
+    repeatable: ["enchantment"]
 }
 
-impl QueryParameters for ItemListQuery {
-    const REPEATABLE_KEYS: &'static [&'static str] = &["enchantment"];
-}
+const ITEM_LIST_COLUMNS: &str =
+    "i.id, i.name, es.name AS slot, i.item_category AS category, i.item_type, i.minimum_level,
+     i.enhancement_bonus, i.icon, i.is_legacy,
+     (SELECT MIN(ap.name) FROM sources ql LEFT JOIN quests q ON q.id = ql.quest_id
+      JOIN adventure_packs ap ON ap.id = COALESCE(ql.pack_id, q.pack_id) WHERE ql.item_id = i.id) AS pack,
+     EXISTS (SELECT 1 FROM sources ql
+             WHERE ql.item_id = i.id AND ql.kind = 'quest' AND ql.loot_type = 'raid') AS is_raid,
+     EXISTS (SELECT 1 FROM sources ql
+             WHERE ql.item_id = i.id AND ql.kind IN ('quest', 'adventure_pack') AND ql.is_rare) AS is_rare";
+
+const ITEMS_SORT_FIELDS: &[(&str, &str)] = &[
+    ("name", "i.name"),
+    ("id", "i.id"),
+    ("minimum_level", "i.minimum_level"),
+    ("slot", "es.name"),
+    ("category", "i.item_category"),
+    ("pack", "pack"),
+    ("enhancement_bonus", "i.enhancement_bonus"),
+];
+
+declare_list_parameters!(
+    ItemsParameters,
+    ITEMS_SORT_FIELDS,
+    "",
+    Some(
+        "Search text, trimmed and matched ignoring case: keeps items whose name contains it, \
+         or whose slot, category or any adventure pack it drops in is named exactly it. Without \
+         `sort`, ranks an exact name first, then names starting with it, then the rest, each group by name. \
+         Blank applies no search."
+    )
+);
 
 #[utoipa::path(
     get,
@@ -69,10 +94,10 @@ impl QueryParameters for ItemListQuery {
                    a named effect) and \
                    `include_set_bonuses` (let the stat names in `enchantment` also match the item's set tiers) and \
                    `include_legacy` (also list legacy items, which are left out by default); \
-                   `limit` and `offset` page the matches. \
-                   Ordered by name; with `q`, an exact name match comes first, then names starting with the text, \
-                   then the rest, each group by name. Each row carries what a picker needs: id, name, slot, \
-                   category, item type, minimum level, enhancement bonus, icon name, the alphabetically first \
+                   `limit` and `offset` page the matches; `sort` chooses the ordering. \
+                   Without `sort`, ordered by name; with `q`, an exact name match comes first, then names starting \
+                   with the text, then the rest, each group by name. Each row carries what a picker needs: id, name, \
+                   slot, category, item type, minimum level, enhancement bonus, icon name, the alphabetically first \
                    adventure pack it drops in, whether any of its sources is a raid, whether it is rare loot from \
                    at least one quest (marked rare in Maetrim's drop text or on ddowiki), `is_legacy` (an old version \
                    kept beside the current one, such as a name ending `(legacy)` or `(historic)`, or an item the \
@@ -81,7 +106,7 @@ impl QueryParameters for ItemListQuery {
                    that name. Use the detail endpoint for \
                    bonuses, sockets and quests. `total` counts every match, not just this page.",
     params(
-        ("q" = Option<String>, Query, description = "Search text, trimmed and matched ignoring case: keeps items whose name contains it, or whose slot, category or any adventure pack it drops in is named exactly it (`q=feet`, `q=jewelry`, `q=vault of night`); ranks an exact name first, then names starting with it, then the rest, each group by name"),
+        ItemsParameters,
         ("slot" = Option<String>, Query, description = "Equipment slot name exactly as /v1/equipment-slots lists it, e.g. `Main Hand`"),
         ("category" = Option<String>, Query, description = "One of `Armor`, `Shield`, `Weapon`, `Jewelry`, `Clothing`; anything else is a 400"),
         ("min_level" = Option<i64>, Query, description = "Only items whose minimum level is at least this"),
@@ -95,8 +120,6 @@ impl QueryParameters for ItemListQuery {
         ("enchantment" = Option<String>, Query, description = "An enchantment name exactly as /v1/enchantments lists it (a stat name from /v1/stats or an effect name as an item's `effects` give it); several are given as repeated keys (`enchantment=Strength&enchantment=Vorpal`) and keep items carrying any of them. A name may contain commas and is matched whole (`enchantment=Constitution%20Poison%2C%20Lesser`), so a comma never separates names. A stat name matches an item with at least one bonus of its own to that stat, and with `include_set_bonuses=true` also an item whose set has a tier with a bonus to it; an effect name matches an item whose `effects` (its `item_effects` rows) name it; a name that is both matches either way. Matching is case-sensitive; a name that is neither a stat nor an effect is a 400 naming it"),
         ("include_set_bonuses" = Option<bool>, Query, description = "`true` widens the stat names in `enchantment` to also match an item when any tier of its set (see /v1/sets/{id}) carries a bonus to one of them; the item's own bonuses and effects match either way; `false` and unset match the item's own bonuses only; no effect without `enchantment`"),
         ("include_legacy" = Option<bool>, Query, description = "`true` also lists legacy items (`is_legacy`: old versions such as names ending `(legacy)` or `(historic)`, and items the wiki says no longer drop) and counts them in `total`; `false` and unset leave them out. /v1/items/{id} serves a legacy item either way"),
-        ("limit" = Option<i64>, Query, description = "Page size, 1 to 10000; defaults to 100; out-of-range values are clamped rather than rejected"),
-        ("offset" = Option<i64>, Query, description = "Rows to skip before the first returned row; defaults to 0; negative values are clamped to 0 rather than rejected")
     ),
     responses(
         (status = 200, description = "`total`, `limit`, `offset` and the `items` page", body = Value),
@@ -105,67 +128,66 @@ impl QueryParameters for ItemListQuery {
 )]
 async fn items(
     State(state): State<AppState>,
-    ApiQuery(query): ApiQuery<ItemListQuery>,
+    ApiQuery(query, filters): ApiQuery<ItemFilters>,
 ) -> Result<Json<Value>, ApiError> {
-    if let Some(category) = &query.category {
+    if let Some(category) = &filters.category {
         if !ItemCategory::ALL.iter().any(|known| known.as_str() == category) {
             return Err(ApiError::BadRequest(format!("unknown category {category:?}")));
         }
     }
-    let (limit, offset) = clamped_page(query.limit, query.offset);
     state
         .read_db(move |db| {
             let mut where_clause = WhereClause::default();
-            if query.include_legacy != Some(true) {
+            if filters.include_legacy != Some(true) {
                 where_clause.add_condition("NOT i.is_legacy");
             }
-            let mut order_sql = "i.name".to_string();
+            let mut default_order = "i.name".to_string();
             if let Some(search_text) = query.q.as_deref().map(str::trim).filter(|q| !q.is_empty()) {
                 let search_placeholder =
                     where_clause.add_bound_condition(ITEMS_MATCHING_SEARCH_TEXT_SQL, like_escaped_text(search_text));
-                order_sql = format!(
+                default_order = format!(
                     "CASE WHEN i.name LIKE {search_placeholder} ESCAPE '\\' THEN 0 \
                           WHEN i.name LIKE {search_placeholder} || '%' ESCAPE '\\' THEN 1 ELSE 2 END, i.name"
                 );
             }
-            if let Some(slot) = &query.slot {
+            if let Some(slot) = &filters.slot {
                 where_clause.add_bound_condition("es.name = ?", slot.clone());
             }
-            if let Some(category) = &query.category {
+            if let Some(category) = &filters.category {
                 where_clause.add_bound_condition("i.item_category = ?", category.clone());
             }
-            if let Some(min_level) = query.min_level {
+            if let Some(min_level) = filters.min_level {
                 where_clause.add_bound_condition("i.minimum_level >= ?", min_level);
             }
-            if let Some(max_level) = query.max_level {
+            if let Some(max_level) = filters.max_level {
                 where_clause.add_bound_condition("i.minimum_level <= ?", max_level);
             }
-            if let Some(pack) = &query.pack {
+            if let Some(pack) = &filters.pack {
                 where_clause.add_bound_condition("EXISTS (SELECT 1 FROM sources ql LEFT JOIN quests q ON q.id = ql.quest_id JOIN adventure_packs ap ON ap.id = COALESCE(ql.pack_id, q.pack_id) WHERE ql.item_id = i.id AND ap.name = ?)",
                     pack.clone(),
                 );
             }
-            if query.raid == Some(true) {
+            if filters.raid == Some(true) {
                 where_clause.add_condition("EXISTS (SELECT 1 FROM sources ql WHERE ql.item_id = i.id AND ql.kind = 'quest' AND ql.loot_type = 'raid')");
             }
-            if query.rare == Some(true) {
+            if filters.rare == Some(true) {
                 where_clause.add_condition("EXISTS (SELECT 1 FROM sources ql WHERE ql.item_id = i.id AND ql.kind IN ('quest', 'adventure_pack') AND ql.is_rare)");
             }
-            if let Some(quest_id) = query.quest {
+            if let Some(quest_id) = filters.quest {
                 where_clause.add_bound_condition("i.id IN (SELECT d.item_id FROM sources d WHERE d.kind = 'quest' AND d.quest_id = ?)", quest_id);
             }
-            if let Some(chain_id) = query.quest_chain {
+            if let Some(chain_id) = filters.quest_chain {
                 where_clause.add_bound_condition("i.id IN (SELECT d.item_id FROM sources d WHERE d.kind = 'quest_chain' AND d.chain_id = ?)", chain_id);
             }
-            if let Some(saga_id) = query.saga {
+            if let Some(saga_id) = filters.saga {
                 where_clause.add_bound_condition("i.id IN (SELECT d.item_id FROM sources d WHERE d.kind = 'saga' AND d.saga_id = ?)", saga_id);
             }
-            let enchantment_names = query.enchantment;
+            let enchantment_names = filters.enchantment;
             if let Some(unknown_enchantment_name) = first_unknown_enchantment_name(db, &enchantment_names)? {
                 return Err(ApiError::BadRequest(format!("unknown enchantment {unknown_enchantment_name:?}")));
             }
             if !enchantment_names.is_empty() {
-                let set_tier_match_sql = if query.include_set_bonuses == Some(true) {
+                let set_tier_match_sql = if filters.include_set_bonuses == Some(true) {
                     format!(" OR {ITEMS_WITH_SET_TIER_BONUS_TO_STATS_SQL}")
                 } else {
                     String::new()
@@ -177,21 +199,19 @@ async fn items(
                     enchantment_names,
                 );
             }
-            let where_sql = where_clause.to_sql();
-            let from_sql = format!("FROM items i JOIN equipment_slots es ON es.id = i.slot_id {where_sql}");
-            let total = row_count(db, &format!("SELECT COUNT(*) {from_sql}"), where_clause.params())?;
-            let page_sql = format!(
-                "SELECT i.id, i.name, es.name AS slot, i.item_category AS category, i.item_type, i.minimum_level, i.enhancement_bonus, i.icon, i.is_legacy,
-                        (SELECT MIN(ap.name) FROM sources ql LEFT JOIN quests q ON q.id = ql.quest_id JOIN adventure_packs ap ON ap.id = COALESCE(ql.pack_id, q.pack_id) WHERE ql.item_id = i.id) AS pack,
-                        EXISTS (SELECT 1 FROM sources ql WHERE ql.item_id = i.id AND ql.kind = 'quest' AND ql.loot_type = 'raid') AS is_raid,
-                        EXISTS (SELECT 1 FROM sources ql WHERE ql.item_id = i.id AND ql.kind IN ('quest', 'adventure_pack') AND ql.is_rare) AS is_rare
-                 {from_sql} ORDER BY {order_sql} LIMIT {limit} OFFSET {offset}"
-            );
-            let mut items = json_rows(db, &page_sql, where_clause.params())?;
-            for item in &mut items {
+            let mut page = paged_query(
+                db,
+                ITEM_LIST_COLUMNS,
+                "items i JOIN equipment_slots es ON es.id = i.slot_id",
+                &query,
+                &default_order,
+                ITEMS_SORT_FIELDS,
+                &where_clause,
+            )?;
+            for item in &mut page.rows {
                 convert_to_booleans(item, &["is_raid", "is_rare", "is_legacy"]);
             }
-            Ok(Json(json!({ "total": total, "limit": limit, "offset": offset, "items": items })))
+            Ok(Json(page.into_json("items")))
         })
         .await
 }
@@ -395,6 +415,15 @@ fn augment_slot_options(db: &Connection, item_id: i64, slot_order: i64) -> Resul
     Ok(options)
 }
 
+const EQUIPMENT_SLOTS_SORT_FIELDS: &[(&str, &str)] = &[
+    ("name", "listed.name"),
+    ("id", "listed.id"),
+    ("sort_order", "listed.sort_order"),
+    ("category", "listed.category"),
+];
+
+declare_list_parameters!(EquipmentSlotsParameters, EQUIPMENT_SLOTS_SORT_FIELDS, "");
+
 #[utoipa::path(
     get,
     path = "/v1/equipment-slots",
@@ -402,11 +431,32 @@ fn augment_slot_options(db: &Connection, item_id: i64, slot_order: i64) -> Resul
     summary = "List equipment slots",
     description = "The equipment slots an item can occupy, in display order, with a category (weapon, armor, \
                    accessory). /v1/items accepts these names in `slot`.",
-    responses((status = 200, description = "The whole table", body = Vec<Value>))
+    params(
+        EquipmentSlotsParameters,
+    ),
+    responses((status = 200, description = "`total`, `limit`, `offset` and the `equipment_slots` page", body = Value),
+        (status = 400, description = "Invalid sort field or malformed query parameter", body = crate::error::ErrorBody))
 )]
-async fn equipment_slots(State(state): State<AppState>) -> Result<Json<Vec<Value>>, ApiError> {
-    whole_table_json(state, "SELECT id, name, sort_order, category FROM equipment_slots ORDER BY sort_order", &[]).await
+async fn equipment_slots(State(state): State<AppState>, ApiQuery(query, _): ApiQuery) -> Result<Json<Value>, ApiError> {
+    paged_table_json(
+        state,
+        query,
+        TableListSource {
+            select_sql: "SELECT id, name, sort_order, category FROM equipment_slots",
+            rows_key: "equipment_slots",
+            name_column: "listed.name",
+            default_order: "listed.sort_order",
+            sortable_fields: EQUIPMENT_SLOTS_SORT_FIELDS,
+            flag_columns: &[],
+        },
+    )
+    .await
 }
+
+const WEAPON_TYPES_SORT_FIELDS: &[(&str, &str)] =
+    &[("name", "listed.name"), ("id", "listed.id"), ("proficiency", "listed.proficiency")];
+
+declare_list_parameters!(WeaponTypesParameters, WEAPON_TYPES_SORT_FIELDS, "");
 
 #[utoipa::path(
     get,
@@ -415,17 +465,33 @@ async fn equipment_slots(State(state): State<AppState>) -> Result<Json<Vec<Value
     summary = "List weapon types",
     description = "Every weapon and shield type with the proficiency it needs and whether it is a shield. Item \
                    `weapon` blocks name their type from this list.",
-    responses((status = 200, description = "The whole table", body = Vec<Value>))
+    params(
+        WeaponTypesParameters,
+    ),
+    responses((status = 200, description = "`total`, `limit`, `offset` and the `weapon_types` page", body = Value),
+        (status = 400, description = "Invalid sort field or malformed query parameter", body = crate::error::ErrorBody))
 )]
-async fn weapon_types(State(state): State<AppState>) -> Result<Json<Vec<Value>>, ApiError> {
-    whole_table_json(
+async fn weapon_types(State(state): State<AppState>, ApiQuery(query, _): ApiQuery) -> Result<Json<Value>, ApiError> {
+    paged_table_json(
         state,
-        "SELECT wt.id, wt.name, p.name AS proficiency, wt.is_shield FROM weapon_types wt
-           LEFT JOIN weapon_proficiencies p ON p.id = wt.proficiency_id ORDER BY wt.id",
-        &["is_shield"],
+        query,
+        TableListSource {
+            select_sql: "SELECT wt.id, wt.name, p.name AS proficiency, wt.is_shield FROM weapon_types wt
+                         LEFT JOIN weapon_proficiencies p ON p.id = wt.proficiency_id",
+            rows_key: "weapon_types",
+            name_column: "listed.name",
+            default_order: "listed.id",
+            sortable_fields: WEAPON_TYPES_SORT_FIELDS,
+            flag_columns: &["is_shield"],
+        },
     )
     .await
 }
+
+const DAMAGE_TYPES_SORT_FIELDS: &[(&str, &str)] =
+    &[("name", "listed.name"), ("id", "listed.id"), ("category", "listed.category")];
+
+declare_list_parameters!(DamageTypesParameters, DAMAGE_TYPES_SORT_FIELDS, "");
 
 #[utoipa::path(
     get,
@@ -434,11 +500,45 @@ async fn weapon_types(State(state): State<AppState>) -> Result<Json<Vec<Value>>,
     summary = "List damage types",
     description = "Every damage type (physical, elemental, alignment, special) with its category. Spell damage \
                    lines and DR bypass entries use these names.",
-    responses((status = 200, description = "The whole table", body = Vec<Value>))
+    params(
+        DamageTypesParameters,
+    ),
+    responses((status = 200, description = "`total`, `limit`, `offset` and the `damage_types` page", body = Value),
+        (status = 400, description = "Invalid sort field or malformed query parameter", body = crate::error::ErrorBody))
 )]
-async fn damage_types(State(state): State<AppState>) -> Result<Json<Vec<Value>>, ApiError> {
-    whole_table_json(state, "SELECT id, name, category FROM damage_types ORDER BY id", &[]).await
+async fn damage_types(State(state): State<AppState>, ApiQuery(query, _): ApiQuery) -> Result<Json<Value>, ApiError> {
+    paged_table_json(
+        state,
+        query,
+        TableListSource {
+            select_sql: "SELECT id, name, category FROM damage_types",
+            rows_key: "damage_types",
+            name_column: "listed.name",
+            default_order: "listed.id",
+            sortable_fields: DAMAGE_TYPES_SORT_FIELDS,
+            flag_columns: &[],
+        },
+    )
+    .await
 }
+
+const AUGMENT_SLOT_TYPES_SORT_FIELDS: &[(&str, &str)] = &[
+    ("name", "listed.label"),
+    ("id", "listed.id"),
+    ("family", "listed.family"),
+    ("variant", "listed.variant"),
+    ("qualifier", "listed.qualifier"),
+];
+
+declare_list_parameters!(
+    AugmentSlotTypesParameters,
+    AUGMENT_SLOT_TYPES_SORT_FIELDS,
+    "`name` sorts by the display `label`.",
+    Some(
+        "Case-insensitive substring of the socket's display `label`; \
+         surrounding whitespace is trimmed and blank applies no search."
+    )
+);
 
 #[utoipa::path(
     get,
@@ -448,13 +548,28 @@ async fn damage_types(State(state): State<AppState>) -> Result<Json<Vec<Value>>,
     description = "Every socket an item can carry: gem colours (`red`, `colorless`, `sun`, ...) and crafting-family \
                    sockets (`lamordia: melancholic (accessory)`, `isle of dread: set bonus`, ...). `family` says which \
                    kind it is; `label` is what /v1/augments accepts in `slot`.",
-    responses((status = 200, description = "The whole table", body = Vec<Value>))
+    params(
+        AugmentSlotTypesParameters,
+    ),
+    responses(
+        (status = 200, description = "`total`, `limit`, `offset` and the `augment_slot_types` page", body = Value),
+        (status = 400, description = "Invalid sort field or malformed query parameter", body = crate::error::ErrorBody))
 )]
-async fn augment_slot_types(State(state): State<AppState>) -> Result<Json<Vec<Value>>, ApiError> {
-    whole_table_json(
+async fn augment_slot_types(
+    State(state): State<AppState>,
+    ApiQuery(query, _): ApiQuery,
+) -> Result<Json<Value>, ApiError> {
+    paged_table_json(
         state,
-        "SELECT id, label, family, variant, qualifier FROM augment_slot_types ORDER BY family, label",
-        &[],
+        query,
+        TableListSource {
+            select_sql: "SELECT id, label, family, variant, qualifier FROM augment_slot_types",
+            rows_key: "augment_slot_types",
+            name_column: "listed.label",
+            default_order: "listed.family, label",
+            sortable_fields: AUGMENT_SLOT_TYPES_SORT_FIELDS,
+            flag_columns: &[],
+        },
     )
     .await
 }

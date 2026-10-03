@@ -1,50 +1,55 @@
-[
-  {
-    "build_points": [
-      28,
-      32,
-      34
-    ],
-    "description": "Carrying the blood of a celestial, an Aasimar is usually good-aligned and fights\nagainst evil in the world.",
-    "iconic_class": null,
-    "id": 1,
-    "is_construct": false,
-    "name": "Aasimar",
-    "no_past_life": false,
-    "short_name": "Aasimar",
-    "skill_points": null,
-    "starting_world": "Eberron"
-  },
-  {
-    "build_points": [
-      28,
-      32,
-      34
-    ],
-    "description": "Aasimar Scourge are imbued with a divine energy that blazes intensely within them.\nIt feeds a powerful desire to destroy evil-a desire that is, at its best,\nunflinching and, at its worst, all-consuming.\n\nStarts with 1 level of: Ranger",
-    "iconic_class": "Ranger",
-    "id": 2,
-    "is_construct": false,
-    "name": "Aasimar Scourge",
-    "no_past_life": false,
-    "short_name": "Scourge",
-    "skill_points": null,
-    "starting_world": "Forgotten Realms"
-  },
-  {
-    "build_points": [
-      28,
-      32,
-      34
-    ],
-    "description": "You were built for war. With a greatsword in hand, you mercilessly smite your\nfoes and leave behind only a wake of destruction.",
-    "iconic_class": "Paladin",
-    "id": 3,
-    "is_construct": true,
-    "name": "Bladeforged",
-    "no_past_life": false,
-    "short_name": "Bladeforged",
-    "skill_points": null,
-    "starting_world": "Eberron"
-  }
-]
+{
+  "limit": 100,
+  "offset": 0,
+  "races": [
+    {
+      "build_points": [
+        28,
+        32,
+        34
+      ],
+      "description": "Carrying the blood of a celestial, an Aasimar is usually good-aligned and fights\nagainst evil in the world.",
+      "iconic_class": null,
+      "id": 1,
+      "is_construct": false,
+      "name": "Aasimar",
+      "no_past_life": false,
+      "short_name": "Aasimar",
+      "skill_points": null,
+      "starting_world": "Eberron"
+    },
+    {
+      "build_points": [
+        28,
+        32,
+        34
+      ],
+      "description": "Aasimar Scourge are imbued with a divine energy that blazes intensely within them.\nIt feeds a powerful desire to destroy evil-a desire that is, at its best,\nunflinching and, at its worst, all-consuming.\n\nStarts with 1 level of: Ranger",
+      "iconic_class": "Ranger",
+      "id": 2,
+      "is_construct": false,
+      "name": "Aasimar Scourge",
+      "no_past_life": false,
+      "short_name": "Scourge",
+      "skill_points": null,
+      "starting_world": "Forgotten Realms"
+    },
+    {
+      "build_points": [
+        28,
+        32,
+        34
+      ],
+      "description": "You were built for war. With a greatsword in hand, you mercilessly smite your\nfoes and leave behind only a wake of destruction.",
+      "iconic_class": "Paladin",
+      "id": 3,
+      "is_construct": true,
+      "name": "Bladeforged",
+      "no_past_life": false,
+      "short_name": "Bladeforged",
+      "skill_points": null,
+      "starting_world": "Eberron"
+    }
+  ],
+  "total": 30
+}

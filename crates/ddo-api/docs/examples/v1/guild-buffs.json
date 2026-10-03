@@ -1,223 +1,228 @@
-[
-  {
-    "description": "+[5/10/15] Guild bonus to Acid/Cold Resistances and Spell Power at levels [1/7/11]",
-    "guild_level": 10,
-    "id": 2,
-    "modifiers": [
-      {
-        "amount_type": "TotalLevel",
-        "amounts": [
-          5,
-          5,
-          5
-        ],
-        "apply_as_item_effect": false,
-        "bonus": "Guild",
-        "bonus_type": "Guild",
-        "cap": null,
-        "damage": null,
-        "dice_bonus": null,
-        "dice_damage": null,
-        "dice_number": null,
-        "dice_sides": null,
-        "display_name": null,
-        "effect_type": "EnergyResistance",
-        "extra_types": null,
-        "id": 17360,
-        "is_item_specific": false,
-        "is_rare": false,
-        "percent": false,
-        "rank": null,
-        "requirements": [],
-        "sort_order": 0,
-        "stack_source": null,
-        "targets": [
-          "Acid",
-          "Cold"
-        ],
-        "value": null
-      },
-      {
-        "amount_type": "TotalLevel",
-        "amounts": [
-          5,
-          5,
-          5
-        ],
-        "apply_as_item_effect": false,
-        "bonus": "Guild",
-        "bonus_type": "Guild",
-        "cap": null,
-        "damage": null,
-        "dice_bonus": null,
-        "dice_damage": null,
-        "dice_number": null,
-        "dice_sides": null,
-        "display_name": null,
-        "effect_type": "SpellPower",
-        "extra_types": null,
-        "id": 17361,
-        "is_item_specific": false,
-        "is_rare": false,
-        "percent": false,
-        "rank": null,
-        "requirements": [],
-        "sort_order": 1,
-        "stack_source": null,
-        "targets": [
-          "Acid",
-          "Cold"
-        ],
-        "value": null
-      }
-    ],
-    "name": "Shrine of the Devourer I"
-  },
-  {
-    "description": "+[5/10/15] Guild bonus to Fire Resistance, and Fire/Light Spell Power at levels [1/7/11]",
-    "guild_level": 10,
-    "id": 1,
-    "modifiers": [
-      {
-        "amount_type": "TotalLevel",
-        "amounts": [
-          5,
-          5,
-          5
-        ],
-        "apply_as_item_effect": false,
-        "bonus": "Guild",
-        "bonus_type": "Guild",
-        "cap": null,
-        "damage": null,
-        "dice_bonus": null,
-        "dice_damage": null,
-        "dice_number": null,
-        "dice_sides": null,
-        "display_name": null,
-        "effect_type": "EnergyResistance",
-        "extra_types": null,
-        "id": 17358,
-        "is_item_specific": false,
-        "is_rare": false,
-        "percent": false,
-        "rank": null,
-        "requirements": [],
-        "sort_order": 0,
-        "stack_source": null,
-        "targets": [
-          "Fire"
-        ],
-        "value": null
-      },
-      {
-        "amount_type": "TotalLevel",
-        "amounts": [
-          5,
-          5,
-          5
-        ],
-        "apply_as_item_effect": false,
-        "bonus": "Guild",
-        "bonus_type": "Guild",
-        "cap": null,
-        "damage": null,
-        "dice_bonus": null,
-        "dice_damage": null,
-        "dice_number": null,
-        "dice_sides": null,
-        "display_name": null,
-        "effect_type": "SpellPower",
-        "extra_types": null,
-        "id": 17359,
-        "is_item_specific": false,
-        "is_rare": false,
-        "percent": false,
-        "rank": null,
-        "requirements": [],
-        "sort_order": 1,
-        "stack_source": null,
-        "targets": [
-          "Fire",
-          "Light/Alignment"
-        ],
-        "value": null
-      }
-    ],
-    "name": "Sign of the Silver Flame I"
-  },
-  {
-    "description": "+[5/10/15] Guild bonus to Sonic/Electricity Resistances and Spell Power at levels [1/7/11]",
-    "guild_level": 10,
-    "id": 3,
-    "modifiers": [
-      {
-        "amount_type": "TotalLevel",
-        "amounts": [
-          5,
-          5,
-          5
-        ],
-        "apply_as_item_effect": false,
-        "bonus": "Guild",
-        "bonus_type": "Guild",
-        "cap": null,
-        "damage": null,
-        "dice_bonus": null,
-        "dice_damage": null,
-        "dice_number": null,
-        "dice_sides": null,
-        "display_name": null,
-        "effect_type": "EnergyResistance",
-        "extra_types": null,
-        "id": 17362,
-        "is_item_specific": false,
-        "is_rare": false,
-        "percent": false,
-        "rank": null,
-        "requirements": [],
-        "sort_order": 0,
-        "stack_source": null,
-        "targets": [
-          "Electric",
-          "Sonic"
-        ],
-        "value": null
-      },
-      {
-        "amount_type": "TotalLevel",
-        "amounts": [
-          5,
-          5,
-          5
-        ],
-        "apply_as_item_effect": false,
-        "bonus": "Guild",
-        "bonus_type": "Guild",
-        "cap": null,
-        "damage": null,
-        "dice_bonus": null,
-        "dice_damage": null,
-        "dice_number": null,
-        "dice_sides": null,
-        "display_name": null,
-        "effect_type": "SpellPower",
-        "extra_types": null,
-        "id": 17363,
-        "is_item_specific": false,
-        "is_rare": false,
-        "percent": false,
-        "rank": null,
-        "requirements": [],
-        "sort_order": 1,
-        "stack_source": null,
-        "targets": [
-          "Electric",
-          "Sonic"
-        ],
-        "value": null
-      }
-    ],
-    "name": "Stormreaver Memorial I"
-  }
-]
+{
+  "guild_buffs": [
+    {
+      "description": "+[5/10/15] Guild bonus to Acid/Cold Resistances and Spell Power at levels [1/7/11]",
+      "guild_level": 10,
+      "id": 2,
+      "modifiers": [
+        {
+          "amount_type": "TotalLevel",
+          "amounts": [
+            5,
+            5,
+            5
+          ],
+          "apply_as_item_effect": false,
+          "bonus": "Guild",
+          "bonus_type": "Guild",
+          "cap": null,
+          "damage": null,
+          "dice_bonus": null,
+          "dice_damage": null,
+          "dice_number": null,
+          "dice_sides": null,
+          "display_name": null,
+          "effect_type": "EnergyResistance",
+          "extra_types": null,
+          "id": 17360,
+          "is_item_specific": false,
+          "is_rare": false,
+          "percent": false,
+          "rank": null,
+          "requirements": [],
+          "sort_order": 0,
+          "stack_source": null,
+          "targets": [
+            "Acid",
+            "Cold"
+          ],
+          "value": null
+        },
+        {
+          "amount_type": "TotalLevel",
+          "amounts": [
+            5,
+            5,
+            5
+          ],
+          "apply_as_item_effect": false,
+          "bonus": "Guild",
+          "bonus_type": "Guild",
+          "cap": null,
+          "damage": null,
+          "dice_bonus": null,
+          "dice_damage": null,
+          "dice_number": null,
+          "dice_sides": null,
+          "display_name": null,
+          "effect_type": "SpellPower",
+          "extra_types": null,
+          "id": 17361,
+          "is_item_specific": false,
+          "is_rare": false,
+          "percent": false,
+          "rank": null,
+          "requirements": [],
+          "sort_order": 1,
+          "stack_source": null,
+          "targets": [
+            "Acid",
+            "Cold"
+          ],
+          "value": null
+        }
+      ],
+      "name": "Shrine of the Devourer I"
+    },
+    {
+      "description": "+[5/10/15] Guild bonus to Fire Resistance, and Fire/Light Spell Power at levels [1/7/11]",
+      "guild_level": 10,
+      "id": 1,
+      "modifiers": [
+        {
+          "amount_type": "TotalLevel",
+          "amounts": [
+            5,
+            5,
+            5
+          ],
+          "apply_as_item_effect": false,
+          "bonus": "Guild",
+          "bonus_type": "Guild",
+          "cap": null,
+          "damage": null,
+          "dice_bonus": null,
+          "dice_damage": null,
+          "dice_number": null,
+          "dice_sides": null,
+          "display_name": null,
+          "effect_type": "EnergyResistance",
+          "extra_types": null,
+          "id": 17358,
+          "is_item_specific": false,
+          "is_rare": false,
+          "percent": false,
+          "rank": null,
+          "requirements": [],
+          "sort_order": 0,
+          "stack_source": null,
+          "targets": [
+            "Fire"
+          ],
+          "value": null
+        },
+        {
+          "amount_type": "TotalLevel",
+          "amounts": [
+            5,
+            5,
+            5
+          ],
+          "apply_as_item_effect": false,
+          "bonus": "Guild",
+          "bonus_type": "Guild",
+          "cap": null,
+          "damage": null,
+          "dice_bonus": null,
+          "dice_damage": null,
+          "dice_number": null,
+          "dice_sides": null,
+          "display_name": null,
+          "effect_type": "SpellPower",
+          "extra_types": null,
+          "id": 17359,
+          "is_item_specific": false,
+          "is_rare": false,
+          "percent": false,
+          "rank": null,
+          "requirements": [],
+          "sort_order": 1,
+          "stack_source": null,
+          "targets": [
+            "Fire",
+            "Light/Alignment"
+          ],
+          "value": null
+        }
+      ],
+      "name": "Sign of the Silver Flame I"
+    },
+    {
+      "description": "+[5/10/15] Guild bonus to Sonic/Electricity Resistances and Spell Power at levels [1/7/11]",
+      "guild_level": 10,
+      "id": 3,
+      "modifiers": [
+        {
+          "amount_type": "TotalLevel",
+          "amounts": [
+            5,
+            5,
+            5
+          ],
+          "apply_as_item_effect": false,
+          "bonus": "Guild",
+          "bonus_type": "Guild",
+          "cap": null,
+          "damage": null,
+          "dice_bonus": null,
+          "dice_damage": null,
+          "dice_number": null,
+          "dice_sides": null,
+          "display_name": null,
+          "effect_type": "EnergyResistance",
+          "extra_types": null,
+          "id": 17362,
+          "is_item_specific": false,
+          "is_rare": false,
+          "percent": false,
+          "rank": null,
+          "requirements": [],
+          "sort_order": 0,
+          "stack_source": null,
+          "targets": [
+            "Electric",
+            "Sonic"
+          ],
+          "value": null
+        },
+        {
+          "amount_type": "TotalLevel",
+          "amounts": [
+            5,
+            5,
+            5
+          ],
+          "apply_as_item_effect": false,
+          "bonus": "Guild",
+          "bonus_type": "Guild",
+          "cap": null,
+          "damage": null,
+          "dice_bonus": null,
+          "dice_damage": null,
+          "dice_number": null,
+          "dice_sides": null,
+          "display_name": null,
+          "effect_type": "SpellPower",
+          "extra_types": null,
+          "id": 17363,
+          "is_item_specific": false,
+          "is_rare": false,
+          "percent": false,
+          "rank": null,
+          "requirements": [],
+          "sort_order": 1,
+          "stack_source": null,
+          "targets": [
+            "Electric",
+            "Sonic"
+          ],
+          "value": null
+        }
+      ],
+      "name": "Stormreaver Memorial I"
+    }
+  ],
+  "limit": 100,
+  "offset": 0,
+  "total": 37
+}

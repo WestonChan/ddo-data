@@ -1,5 +1,7 @@
+use crate::db::paged_rows;
 use crate::db::{convert_to_booleans, json_row, json_rows};
 use crate::error::ApiError;
+use crate::query::{declare_list_parameters, ApiQuery};
 use crate::state::AppState;
 use axum::extract::{Path, State};
 use axum::Json;
@@ -50,6 +52,16 @@ pub(super) fn crafting_recipes_yielding(db: &Connection, augment_id: i64) -> Res
     Ok(recipes)
 }
 
+const CRAFTING_SYSTEMS_SORT_FIELDS: &[(&str, &str)] = &[
+    ("name", "listed.name"),
+    ("id", "listed.id"),
+    ("pack", "listed.pack"),
+    ("ingredient_count", "listed.ingredient_count"),
+    ("recipe_count", "listed.recipe_count"),
+];
+
+declare_list_parameters!(CraftingSystemsParameters, CRAFTING_SYSTEMS_SORT_FIELDS, "");
+
 #[utoipa::path(
     get,
     path = "/v1/crafting-systems",
@@ -61,20 +73,27 @@ pub(super) fn crafting_recipes_yielding(db: &Connection, augment_id: i64) -> Res
                    /v1/augments accepts in `family`; empty for an upgrade or ingredient-only system whose recipes \
                    grant sockets or carry notes rather than yield augments), and how many ingredients and recipes the wiki lists \
                    (`ingredient_count`, `recipe_count`). Empty until a system has been read.",
-    responses((status = 200, description = "The whole table with each system's families and counts", body = Vec<Value>))
+    params(
+        CraftingSystemsParameters,
+    ),
+    responses((status = 200, description = "`total`, `limit`, `offset` and the `crafting_systems` page", body = Value),
+        (status = 400, description = "Invalid sort field or malformed query parameter", body = crate::error::ErrorBody))
 )]
-async fn crafting_systems(State(state): State<AppState>) -> Result<Json<Vec<Value>>, ApiError> {
-    let crafting_systems = state
-        .read_db(|db| {
-            let mut crafting_systems =
-                json_rows(db, &format!("SELECT {CRAFTING_SYSTEM_COLUMNS_AND_JOINS} ORDER BY s.name"), [])?;
-            for crafting_system in &mut crafting_systems {
-                attach_augment_families(db, crafting_system)?;
+async fn crafting_systems(
+    State(state): State<AppState>,
+    ApiQuery(query, _): ApiQuery,
+) -> Result<Json<Value>, ApiError> {
+    state
+        .read_db(move |db| {
+            let select_sql = format!("SELECT {CRAFTING_SYSTEM_COLUMNS_AND_JOINS}");
+            let mut page =
+                paged_rows(db, &select_sql, &query, "listed.name", "listed.name", CRAFTING_SYSTEMS_SORT_FIELDS)?;
+            for row in &mut page.rows {
+                attach_augment_families(db, row)?;
             }
-            Ok(crafting_systems)
+            Ok(Json(page.into_json("crafting_systems")))
         })
-        .await?;
-    Ok(Json(crafting_systems))
+        .await
 }
 
 #[utoipa::path(

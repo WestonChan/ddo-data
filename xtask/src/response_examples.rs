@@ -152,7 +152,14 @@ impl SampledResponse {
     fn is_empty_or_missing(&self) -> bool {
         self.status == StatusCode::NOT_FOUND
             || (self.status == StatusCode::OK
-                && serde_json::from_slice::<Value>(&self.body_bytes).is_ok_and(|body| body == Value::Array(Vec::new())))
+                && serde_json::from_slice::<Value>(&self.body_bytes).is_ok_and(|body| match body {
+                    Value::Array(rows) => rows.is_empty(),
+                    Value::Object(fields) => {
+                        fields.get("total").and_then(Value::as_i64) == Some(0)
+                            && fields.values().any(|field| field.as_array().is_some_and(Vec::is_empty))
+                    }
+                    _ => false,
+                }))
     }
 }
 

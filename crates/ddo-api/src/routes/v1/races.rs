@@ -1,5 +1,7 @@
+use crate::db::paged_rows;
 use crate::db::{convert_to_booleans, json_row, json_rows};
 use crate::error::ApiError;
+use crate::query::{declare_list_parameters, ApiQuery};
 use crate::state::AppState;
 use axum::extract::{Path, State};
 use axum::Json;
@@ -14,6 +16,16 @@ pub(super) fn router() -> OpenApiRouter<AppState> {
 const RACE_COLUMNS: &str = "id, name, short_name, description, starting_world, build_points, iconic_class, is_construct, no_past_life, skill_points";
 const RACE_FLAG_COLUMNS: &[&str] = &["is_construct", "no_past_life"];
 
+const RACES_SORT_FIELDS: &[(&str, &str)] = &[
+    ("name", "listed.name"),
+    ("id", "listed.id"),
+    ("starting_world", "listed.starting_world"),
+    ("build_points", "listed.build_points"),
+    ("skill_points", "listed.skill_points"),
+];
+
+declare_list_parameters!(RacesParameters, RACES_SORT_FIELDS, "");
+
 #[utoipa::path(
     get,
     path = "/v1/races",
@@ -21,16 +33,21 @@ const RACE_FLAG_COLUMNS: &[&str] = &["is_construct", "no_past_life"];
     summary = "List races",
     description = "Every playable race ordered by name with its short name, description, starting world, build \
                    points, the iconic class if it is an iconic race, and the construct and past-life flags.",
-    responses((status = 200, description = "All playable races", body = Vec<Value>))
+    params(
+        RacesParameters,
+    ),
+    responses((status = 200, description = "`total`, `limit`, `offset` and the `races` page", body = Value),
+        (status = 400, description = "Invalid sort field or malformed query parameter", body = crate::error::ErrorBody))
 )]
-async fn races(State(state): State<AppState>) -> Result<Json<Vec<Value>>, ApiError> {
+async fn races(State(state): State<AppState>, ApiQuery(query, _): ApiQuery) -> Result<Json<Value>, ApiError> {
     state
-        .read_db(|db| {
-            let mut races = json_rows(db, &format!("SELECT {RACE_COLUMNS} FROM races ORDER BY name"), [])?;
-            for race in &mut races {
-                convert_to_booleans(race, RACE_FLAG_COLUMNS);
+        .read_db(move |db| {
+            let select_sql = format!("SELECT {RACE_COLUMNS} FROM races");
+            let mut page = paged_rows(db, &select_sql, &query, "listed.name", "listed.name", RACES_SORT_FIELDS)?;
+            for row in &mut page.rows {
+                convert_to_booleans(row, RACE_FLAG_COLUMNS);
             }
-            Ok(Json(races))
+            Ok(Json(page.into_json("races")))
         })
         .await
 }

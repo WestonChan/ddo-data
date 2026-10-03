@@ -1,20 +1,25 @@
-[
-  {
-    "id": 6,
-    "item_count": 6,
-    "name": "Anniversary Card Collection",
-    "wiki_url": "https://ddowiki.com/page/Anniversary_Card_Collection"
-  },
-  {
-    "id": 3,
-    "item_count": 115,
-    "name": "Anniversary Party",
-    "wiki_url": "https://ddowiki.com/page/Party_Favor_Turn_In"
-  },
-  {
-    "id": 7,
-    "item_count": 4,
-    "name": "Invasion Tokens",
-    "wiki_url": "https://ddowiki.com/page/Invasion_Tokens"
-  }
-]
+{
+  "events": [
+    {
+      "id": 6,
+      "item_count": 6,
+      "name": "Anniversary Card Collection",
+      "wiki_url": "https://ddowiki.com/page/Anniversary_Card_Collection"
+    },
+    {
+      "id": 3,
+      "item_count": 115,
+      "name": "Anniversary Party",
+      "wiki_url": "https://ddowiki.com/page/Party_Favor_Turn_In"
+    },
+    {
+      "id": 7,
+      "item_count": 4,
+      "name": "Invasion Tokens",
+      "wiki_url": "https://ddowiki.com/page/Invasion_Tokens"
+    }
+  ],
+  "limit": 100,
+  "offset": 0,
+  "total": 9
+}

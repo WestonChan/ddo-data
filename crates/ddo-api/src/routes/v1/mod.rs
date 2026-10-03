@@ -39,11 +39,20 @@ use utoipa_axum::router::OpenApiRouter;
                        `/v1/version` reports the current commit and carries `Cache-Control: no-cache`, so every use \
                        revalidates it. Error responses (every 4xx and 5xx, 429 included) carry \
                        `Cache-Control: no-store` and no `ETag`.\n\n\
-                       **Shapes.** Every entity has a numeric `id`. List endpoints that take filters return \
-                       `{ total, limit, offset, <name>: [...] }` and page with `limit` (max 10000) and `offset`; \
-                       lookup lists return a bare array. `<name>/{id}` returns the full entity with its child \
+                       **Shapes.** Every entity has a numeric `id` except derived enchantments. Every list returns \
+                       `{ total, limit, offset, <name>: [...] }`, where `<name>` is the resource name. \
+                       `<name>/{id}` returns the full entity with its child \
                        collections. Booleans are JSON booleans; absent values are `null`. Unknown ids are 404 with \
                        `{ \"error\": ... }`.\n\n\
+                       **Query parameters.** Different filters are AND-ed. List-valued parameters use repeated keys, \
+                       not comma-separated values because names may contain commas. `q` matches a case-insensitive \
+                       substring of the row name, or its display label when it has no `name`; routes with richer \
+                       `q` behavior describe it locally. `limit` defaults to 100 and is clamped to 1–10000; \
+                       `offset` defaults to 0 and is clamped to zero or greater. `total` counts matches before \
+                       paging. Repeat `sort` keys in priority order, for example `sort=-name&sort=minimum_level`; \
+                       a leading `-` means descending. Sort keys override each route's default order; nulls \
+                       sort last in both directions. Each route's `sort` parameter names its allowed fields. \
+                       An unknown field or a bare `-` returns 400 naming the bad value and allowed fields.\n\n\
                        **Bulk.** Download `/v1/dump.sqlite` once instead of paging. Icons are at \
                        `/icons/{family}/{icon}.png`, where `family` is `items`, `augments`, `feats`, `enhancements`, \
                        `spells`, `classes`, `filigrees`, `sets`, `sentient-gems` or `ui` and `icon` is the row's \

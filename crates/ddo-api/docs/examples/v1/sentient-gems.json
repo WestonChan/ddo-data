@@ -1,20 +1,25 @@
-[
-  {
-    "description": "Voiced by: Scott McNeil",
-    "icon": "SentientJewel_Green",
-    "id": 8,
-    "name": "Sentient Jewel of Blackrazor"
-  },
-  {
-    "description": "Voiced by: Cindy Robinson",
-    "icon": "SentientJewel_Green",
-    "id": 9,
-    "name": "Sentient Jewel of Wave"
-  },
-  {
-    "description": "Voiced by: Scott McNeil",
-    "icon": "SentientJewel_Green",
-    "id": 10,
-    "name": "Sentient Jewel of Whelm"
-  }
-]
+{
+  "limit": 100,
+  "offset": 0,
+  "sentient_gems": [
+    {
+      "description": "Voiced by: Scott McNeil",
+      "icon": "SentientJewel_Green",
+      "id": 8,
+      "name": "Sentient Jewel of Blackrazor"
+    },
+    {
+      "description": "Voiced by: Cindy Robinson",
+      "icon": "SentientJewel_Green",
+      "id": 9,
+      "name": "Sentient Jewel of Wave"
+    },
+    {
+      "description": "Voiced by: Scott McNeil",
+      "icon": "SentientJewel_Green",
+      "id": 10,
+      "name": "Sentient Jewel of Whelm"
+    }
+  ],
+  "total": 14
+}

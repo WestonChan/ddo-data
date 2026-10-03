@@ -1,108 +1,113 @@
-[
-  {
-    "alignments": [
-      "True Neutral",
-      "Chaotic Neutral",
-      "Lawful Neutral"
-    ],
-    "bab": [
-      0,
-      0.75,
-      1.5
-    ],
-    "base_class": "Warlock",
-    "base_class_id": 26,
-    "casting_stats": [
-      "Charisma"
-    ],
-    "class_specific_feat_types": [
-      "True Patron",
-      "Pact Ability",
-      "Pact Save Bonus"
-    ],
-    "description": "Acolyte of the Skin is a variant Warlock archetype themed around Demonic power\nand transformation. Introduced in Update 58.",
-    "fortitude": "poor",
-    "hit_points": 6,
-    "id": 1,
-    "large_icon": "Warlock",
-    "name": "Acolyte of the Skin",
-    "not_heroic": false,
-    "reflex": "poor",
-    "skill_points": 2,
-    "small_icon": "Warlock_Small",
-    "spell_points_per_level": [
-      0,
-      50,
-      75
-    ],
-    "will": "good"
-  },
-  {
-    "alignments": [
-      "Any"
-    ],
-    "bab": [
-      0,
-      0.75,
-      1.5
-    ],
-    "base_class": null,
-    "base_class_id": null,
-    "casting_stats": [
-      "Intelligence"
-    ],
-    "class_specific_feat_types": [
-      "Alchemist Bonus Feat"
-    ],
-    "description": "Alchemists are a new class coming to DDO in 2020 (in Update 45).\nIt's a full spell-casting class based on Alchemist Savant prestige class from\nthe Magic of Eberron PnP source book with unique spell book; 90+ spells.\nThey cast spells in a different manner than other classes. When not casting,\nthey are a range-throwing hybrid, throwing darts, poison darts.\nAlchemists are elementalists + poison damage. Intelligence-based prepared casters\nare subject to arcane spell failure.",
-    "fortitude": "good",
-    "hit_points": 6,
-    "id": 2,
-    "large_icon": "Alchemist",
-    "name": "Alchemist",
-    "not_heroic": false,
-    "reflex": "good",
-    "skill_points": 4,
-    "small_icon": "Alchemist_Small",
-    "spell_points_per_level": [
-      0,
-      50,
-      75
-    ],
-    "will": "poor"
-  },
-  {
-    "alignments": [
-      "Any"
-    ],
-    "bab": [
-      0,
-      0.75,
-      1.5
-    ],
-    "base_class": "Rogue",
-    "base_class_id": 21,
-    "casting_stats": [
-      "Intelligence"
-    ],
-    "class_specific_feat_types": [
-      "Bonus Magical Feat"
-    ],
-    "description": "The Arcane Trickster is a Rogue class Archetype who dabbles in their own kind\nof magic to augment their abilities. Arcane Tricksters have modest skill in\nEnchantment and Illusion magic, but they can also “steal” spells from other\nclasses. This archetype also summons a magical Mage Hand to cause mischief,\naid in battle, and disable traps from a distance!",
-    "fortitude": "poor",
-    "hit_points": 8,
-    "id": 3,
-    "large_icon": "Rogue",
-    "name": "Arcane Trickster",
-    "not_heroic": false,
-    "reflex": "good",
-    "skill_points": 8,
-    "small_icon": "Rogue_Small",
-    "spell_points_per_level": [
-      0,
-      0,
-      0
-    ],
-    "will": "poor"
-  }
-]
+{
+  "classes": [
+    {
+      "alignments": [
+        "True Neutral",
+        "Chaotic Neutral",
+        "Lawful Neutral"
+      ],
+      "bab": [
+        0,
+        0.75,
+        1.5
+      ],
+      "base_class": "Warlock",
+      "base_class_id": 26,
+      "casting_stats": [
+        "Charisma"
+      ],
+      "class_specific_feat_types": [
+        "True Patron",
+        "Pact Ability",
+        "Pact Save Bonus"
+      ],
+      "description": "Acolyte of the Skin is a variant Warlock archetype themed around Demonic power\nand transformation. Introduced in Update 58.",
+      "fortitude": "poor",
+      "hit_points": 6,
+      "id": 1,
+      "large_icon": "Warlock",
+      "name": "Acolyte of the Skin",
+      "not_heroic": false,
+      "reflex": "poor",
+      "skill_points": 2,
+      "small_icon": "Warlock_Small",
+      "spell_points_per_level": [
+        0,
+        50,
+        75
+      ],
+      "will": "good"
+    },
+    {
+      "alignments": [
+        "Any"
+      ],
+      "bab": [
+        0,
+        0.75,
+        1.5
+      ],
+      "base_class": null,
+      "base_class_id": null,
+      "casting_stats": [
+        "Intelligence"
+      ],
+      "class_specific_feat_types": [
+        "Alchemist Bonus Feat"
+      ],
+      "description": "Alchemists are a new class coming to DDO in 2020 (in Update 45).\nIt's a full spell-casting class based on Alchemist Savant prestige class from\nthe Magic of Eberron PnP source book with unique spell book; 90+ spells.\nThey cast spells in a different manner than other classes. When not casting,\nthey are a range-throwing hybrid, throwing darts, poison darts.\nAlchemists are elementalists + poison damage. Intelligence-based prepared casters\nare subject to arcane spell failure.",
+      "fortitude": "good",
+      "hit_points": 6,
+      "id": 2,
+      "large_icon": "Alchemist",
+      "name": "Alchemist",
+      "not_heroic": false,
+      "reflex": "good",
+      "skill_points": 4,
+      "small_icon": "Alchemist_Small",
+      "spell_points_per_level": [
+        0,
+        50,
+        75
+      ],
+      "will": "poor"
+    },
+    {
+      "alignments": [
+        "Any"
+      ],
+      "bab": [
+        0,
+        0.75,
+        1.5
+      ],
+      "base_class": "Rogue",
+      "base_class_id": 21,
+      "casting_stats": [
+        "Intelligence"
+      ],
+      "class_specific_feat_types": [
+        "Bonus Magical Feat"
+      ],
+      "description": "The Arcane Trickster is a Rogue class Archetype who dabbles in their own kind\nof magic to augment their abilities. Arcane Tricksters have modest skill in\nEnchantment and Illusion magic, but they can also “steal” spells from other\nclasses. This archetype also summons a magical Mage Hand to cause mischief,\naid in battle, and disable traps from a distance!",
+      "fortitude": "poor",
+      "hit_points": 8,
+      "id": 3,
+      "large_icon": "Rogue",
+      "name": "Arcane Trickster",
+      "not_heroic": false,
+      "reflex": "good",
+      "skill_points": 8,
+      "small_icon": "Rogue_Small",
+      "spell_points_per_level": [
+        0,
+        0,
+        0
+      ],
+      "will": "poor"
+    }
+  ],
+  "limit": 100,
+  "offset": 0,
+  "total": 28
+}

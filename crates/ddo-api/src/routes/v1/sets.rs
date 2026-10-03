@@ -1,5 +1,9 @@
-use crate::db::{bonuses_via, convert_to_booleans, json_row, json_rows, modifiers_for, whole_table_json};
+use crate::db::paged_rows;
+use crate::db::{
+    bonuses_via, convert_to_booleans, json_row, json_rows, modifiers_for, paged_table_json, TableListSource,
+};
 use crate::error::ApiError;
+use crate::query::{declare_list_parameters, ApiQuery};
 use crate::state::AppState;
 use axum::extract::{Path, State};
 use axum::Json;
@@ -15,6 +19,25 @@ pub(super) fn router() -> OpenApiRouter<AppState> {
         .routes(routes!(sentient_gems))
 }
 
+const SET_LIST_SELECT: &str = "SELECT s.id, s.name, s.icon, s.is_filigree_set,
+    (SELECT COUNT(*) FROM set_bonus_items i WHERE i.set_id = s.id) AS item_count,
+    (SELECT COUNT(*) FROM set_bonus_augments a WHERE a.set_id = s.id) AS augment_count,
+    (SELECT COUNT(*) FROM set_bonus_tiers t WHERE t.set_id = s.id) AS tier_count
+    FROM set_bonuses s";
+
+const FILIGREE_SELECT: &str = "SELECT f.id, f.name, f.description, f.icon, f.menu, f.set_id, s.name AS set_name
+    FROM filigrees f LEFT JOIN set_bonuses s ON s.id = f.set_id";
+
+const SETS_SORT_FIELDS: &[(&str, &str)] = &[
+    ("name", "listed.name"),
+    ("id", "listed.id"),
+    ("item_count", "listed.item_count"),
+    ("augment_count", "listed.augment_count"),
+    ("tier_count", "listed.tier_count"),
+];
+
+declare_list_parameters!(SetsParameters, SETS_SORT_FIELDS, "");
+
 #[utoipa::path(
     get,
     path = "/v1/sets",
@@ -23,24 +46,20 @@ pub(super) fn router() -> OpenApiRouter<AppState> {
     description = "Every set bonus ordered by name with its icon, whether it is a filigree set rather than a gear \
                    set, and how many items, augments and tiers it has (`item_count`, `augment_count`, `tier_count`). \
                    Tiers, items, augments and filigrees are on the detail endpoint.",
-    responses((status = 200, description = "All set bonuses", body = Vec<Value>))
+    params(
+        SetsParameters,
+    ),
+    responses((status = 200, description = "`total`, `limit`, `offset` and the `sets` page", body = Value),
+        (status = 400, description = "Invalid sort field or malformed query parameter", body = crate::error::ErrorBody))
 )]
-async fn sets(State(state): State<AppState>) -> Result<Json<Vec<Value>>, ApiError> {
+async fn sets(State(state): State<AppState>, ApiQuery(query, _): ApiQuery) -> Result<Json<Value>, ApiError> {
     state
-        .read_db(|db| {
-            let mut sets = json_rows(
-                db,
-                "SELECT s.id, s.name, s.icon, s.is_filigree_set,
-                        (SELECT COUNT(*) FROM set_bonus_items i WHERE i.set_id = s.id) AS item_count,
-                        (SELECT COUNT(*) FROM set_bonus_augments a WHERE a.set_id = s.id) AS augment_count,
-                        (SELECT COUNT(*) FROM set_bonus_tiers t WHERE t.set_id = s.id) AS tier_count
-                   FROM set_bonuses s ORDER BY s.name",
-                [],
-            )?;
-            for set in &mut sets {
+        .read_db(move |db| {
+            let mut page = paged_rows(db, SET_LIST_SELECT, &query, "listed.name", "listed.name", SETS_SORT_FIELDS)?;
+            for set in &mut page.rows {
                 convert_to_booleans(set, &["is_filigree_set"]);
             }
-            Ok(Json(sets))
+            Ok(Json(page.into_json("sets")))
         })
         .await
 }
@@ -91,15 +110,19 @@ async fn set_detail(State(state): State<AppState>, Path(id): Path<i64>) -> Resul
 }
 
 fn filigrees_matching_set(db: &rusqlite::Connection, set_id: Option<i64>) -> Result<Vec<Value>, ApiError> {
-    let sql = "SELECT f.id, f.name, f.description, f.icon, f.menu, f.set_id, s.name AS set_name FROM filigrees f
-                 LEFT JOIN set_bonuses s ON s.id = f.set_id WHERE (?1 IS NULL OR f.set_id = ?1) ORDER BY f.name";
-    let mut filigrees = json_rows(db, sql, [set_id])?;
+    let sql = format!("{FILIGREE_SELECT} WHERE (?1 IS NULL OR f.set_id = ?1) ORDER BY f.name");
+    let mut filigrees = json_rows(db, &sql, [set_id])?;
     for filigree in &mut filigrees {
         let filigree_id = filigree["id"].as_i64().unwrap_or(0);
         filigree["modifiers"] = Value::Array(modifiers_for(db, "filigree", filigree_id)?);
     }
     Ok(filigrees)
 }
+
+const FILIGREES_SORT_FIELDS: &[(&str, &str)] =
+    &[("name", "listed.name"), ("id", "listed.id"), ("menu", "listed.menu"), ("set_name", "listed.set_name")];
+
+declare_list_parameters!(FiligreesParameters, FILIGREES_SORT_FIELDS, "");
 
 #[utoipa::path(
     get,
@@ -108,11 +131,29 @@ fn filigrees_matching_set(db: &rusqlite::Connection, set_id: Option<i64>) -> Res
     summary = "List filigrees",
     description = "Every sentient-weapon filigree ordered by name with its description, icon, crafting `menu`, the \
                    set it belongs to, and the raw `modifiers` it applies on its own.",
-    responses((status = 200, description = "All filigrees", body = Vec<Value>))
+    params(
+        FiligreesParameters,
+    ),
+    responses((status = 200, description = "`total`, `limit`, `offset` and the `filigrees` page", body = Value),
+        (status = 400, description = "Invalid sort field or malformed query parameter", body = crate::error::ErrorBody))
 )]
-async fn filigrees(State(state): State<AppState>) -> Result<Json<Vec<Value>>, ApiError> {
-    state.read_db(|db| Ok(Json(filigrees_matching_set(db, None)?))).await
+async fn filigrees(State(state): State<AppState>, ApiQuery(query, _): ApiQuery) -> Result<Json<Value>, ApiError> {
+    state
+        .read_db(move |db| {
+            let mut page =
+                paged_rows(db, FILIGREE_SELECT, &query, "listed.name", "listed.name", FILIGREES_SORT_FIELDS)?;
+            for filigree in &mut page.rows {
+                let filigree_id = filigree["id"].as_i64().unwrap_or(0);
+                filigree["modifiers"] = Value::Array(modifiers_for(db, "filigree", filigree_id)?);
+            }
+            Ok(Json(page.into_json("filigrees")))
+        })
+        .await
 }
+
+const SENTIENT_GEMS_SORT_FIELDS: &[(&str, &str)] = &[("name", "listed.name"), ("id", "listed.id")];
+
+declare_list_parameters!(SentientGemsParameters, SENTIENT_GEMS_SORT_FIELDS, "");
 
 #[utoipa::path(
     get,
@@ -122,8 +163,24 @@ async fn filigrees(State(state): State<AppState>) -> Result<Json<Vec<Value>>, Ap
     description = "Every sentient jewel a sentient weapon or accessory can carry, ordered by name, with its icon \
                    (served from the `sentient-gems` icon family) and description, which upstream uses for the voice \
                    actor credit. Filigrees slot into the jewel; they are listed by /v1/filigrees.",
-    responses((status = 200, description = "Every sentient gem", body = Vec<Value>))
+    params(
+        SentientGemsParameters,
+    ),
+    responses((status = 200, description = "`total`, `limit`, `offset` and the `sentient_gems` page", body = Value),
+        (status = 400, description = "Invalid sort field or malformed query parameter", body = crate::error::ErrorBody))
 )]
-async fn sentient_gems(State(state): State<AppState>) -> Result<Json<Vec<Value>>, ApiError> {
-    whole_table_json(state, "SELECT id, name, icon, description FROM sentient_gems ORDER BY name", &[]).await
+async fn sentient_gems(State(state): State<AppState>, ApiQuery(query, _): ApiQuery) -> Result<Json<Value>, ApiError> {
+    paged_table_json(
+        state,
+        query,
+        TableListSource {
+            select_sql: "SELECT id, name, icon, description FROM sentient_gems",
+            rows_key: "sentient_gems",
+            name_column: "listed.name",
+            default_order: "listed.name",
+            sortable_fields: SENTIENT_GEMS_SORT_FIELDS,
+            flag_columns: &[],
+        },
+    )
+    .await
 }

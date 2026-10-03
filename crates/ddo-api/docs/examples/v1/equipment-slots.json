@@ -1,20 +1,25 @@
-[
-  {
-    "category": "weapon",
-    "id": 1,
-    "name": "Main Hand",
-    "sort_order": 1
-  },
-  {
-    "category": "weapon",
-    "id": 2,
-    "name": "Off Hand",
-    "sort_order": 2
-  },
-  {
-    "category": "weapon",
-    "id": 3,
-    "name": "Ranged",
-    "sort_order": 3
-  }
-]
+{
+  "equipment_slots": [
+    {
+      "category": "weapon",
+      "id": 1,
+      "name": "Main Hand",
+      "sort_order": 1
+    },
+    {
+      "category": "weapon",
+      "id": 2,
+      "name": "Off Hand",
+      "sort_order": 2
+    },
+    {
+      "category": "weapon",
+      "id": 3,
+      "name": "Ranged",
+      "sort_order": 3
+    }
+  ],
+  "limit": 100,
+  "offset": 0,
+  "total": 16
+}

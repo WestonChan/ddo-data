@@ -1,26 +1,31 @@
-[
-  {
-    "id": 12,
-    "item_count": 6,
-    "location": "Necropolis, Upper",
-    "name": "Balkar Aislin",
-    "pack": null,
-    "wiki_url": "https://ddowiki.com/page/Balkar_Aislin"
-  },
-  {
-    "id": 4,
-    "item_count": 0,
-    "location": "Hall of Heroes, Eberron",
-    "name": "Barston Gelminedes",
-    "pack": null,
-    "wiki_url": "https://ddowiki.com/page/Barston_Gelminedes"
-  },
-  {
-    "id": 2,
-    "item_count": 80,
-    "location": "Saltmarsh, alongside the building and around the corner when you zone in to the wilderness",
-    "name": "Captain Xendros",
-    "pack": null,
-    "wiki_url": "https://ddowiki.com/page/Captain_Xendros"
-  }
-]
+{
+  "limit": 100,
+  "offset": 0,
+  "total": 13,
+  "vendors": [
+    {
+      "id": 12,
+      "item_count": 6,
+      "location": "Necropolis, Upper",
+      "name": "Balkar Aislin",
+      "pack": null,
+      "wiki_url": "https://ddowiki.com/page/Balkar_Aislin"
+    },
+    {
+      "id": 4,
+      "item_count": 0,
+      "location": "Hall of Heroes, Eberron",
+      "name": "Barston Gelminedes",
+      "pack": null,
+      "wiki_url": "https://ddowiki.com/page/Barston_Gelminedes"
+    },
+    {
+      "id": 2,
+      "item_count": 80,
+      "location": "Saltmarsh, alongside the building and around the corner when you zone in to the wilderness",
+      "name": "Captain Xendros",
+      "pack": null,
+      "wiki_url": "https://ddowiki.com/page/Captain_Xendros"
+    }
+  ]
+}

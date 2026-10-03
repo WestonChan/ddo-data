@@ -1,15 +1,14 @@
 use crate::db::{
-    attack_for, bonuses_via, clamped_page, convert_to_booleans, dcs_for, json_row, json_rows, modifiers_for,
-    requirements_for, row_count, stances_for, substring_like_pattern, WhereClause,
+    attack_for, bonuses_via, convert_to_booleans, dcs_for, json_row, json_rows, modifiers_for, paged_query,
+    requirements_for, stances_for, WhereClause,
 };
 use crate::error::ApiError;
-use crate::query::{ApiQuery, QueryParameters};
+use crate::query::{declare_list_parameters, declare_query_parameters, ApiQuery};
 use crate::state::AppState;
 use axum::extract::{Path, State};
 use axum::Json;
 use ddo_model::enums::FeatSource;
-use serde::Deserialize;
-use serde_json::{json, Value};
+use serde_json::Value;
 use utoipa_axum::router::OpenApiRouter;
 use utoipa_axum::routes;
 
@@ -17,23 +16,28 @@ pub(super) fn router() -> OpenApiRouter<AppState> {
     OpenApiRouter::new().routes(routes!(feats)).routes(routes!(feat_detail))
 }
 
-#[derive(Deserialize)]
-#[serde(deny_unknown_fields)]
-pub(super) struct FeatListQuery {
-    pub q: Option<String>,
-    pub source: Option<String>,
-    pub group: Option<String>,
-    pub acquire: Option<String>,
-    pub limit: Option<i64>,
-    pub offset: Option<i64>,
+declare_query_parameters! {
+    pub(super) struct FeatFilters {
+        pub source: Option<String>,
+        pub group: Option<String>,
+        pub acquire: Option<String>,
+    }
 }
-
-impl QueryParameters for FeatListQuery {}
 
 const FEAT_COLUMNS: &str = "f.id, f.name, f.source_kind, f.source_id,
                        CASE f.source_kind WHEN 'class' THEN (SELECT c.name FROM classes c WHERE c.id = f.source_id)
                                           WHEN 'race' THEN (SELECT r.name FROM races r WHERE r.id = f.source_id) END AS source_name,
                        f.description, f.icon, f.acquire, f.max_times_acquire, f.sphere, f.auto_acquire_ignores_requirements";
+
+const FEATS_SORT_FIELDS: &[(&str, &str)] = &[
+    ("name", "f.name"),
+    ("id", "f.id"),
+    ("source_kind", "f.source_kind"),
+    ("acquire", "f.acquire"),
+    ("sphere", "f.sphere"),
+];
+
+declare_list_parameters!(FeatsParameters, FEATS_SORT_FIELDS, "");
 
 #[utoipa::path(
     get,
@@ -45,12 +49,10 @@ const FEAT_COLUMNS: &str = "f.id, f.name, f.source_kind, f.source_id,
                    naming it. Each row also carries how the feat is acquired, how many times, its sphere, and the \
                    feat `groups` it belongs to. Requirements and bonuses are on the detail endpoint.",
     params(
-        ("q" = Option<String>, Query, description = "Case-insensitive substring of the feat name"),
+        FeatsParameters,
         ("source" = Option<String>, Query, description = "`standard`, `class` or `race`; anything else is a 400"),
         ("group" = Option<String>, Query, description = "Feat group name, e.g. `Metamagic`; keeps feats listed in that group"),
         ("acquire" = Option<String>, Query, description = "How the feat is taken, e.g. `Train`, `Automatic`, `Special`"),
-        ("limit" = Option<i64>, Query, description = "Page size, 1 to 10000; defaults to 100; out-of-range values are clamped rather than rejected"),
-        ("offset" = Option<i64>, Query, description = "Rows to skip before the first returned row; defaults to 0; negative values are clamped to 0 rather than rejected")
     ),
     responses(
         (status = 200, description = "`total`, `limit`, `offset` and the `feats` page", body = Value),
@@ -59,42 +61,44 @@ const FEAT_COLUMNS: &str = "f.id, f.name, f.source_kind, f.source_id,
 )]
 async fn feats(
     State(state): State<AppState>,
-    ApiQuery(query): ApiQuery<FeatListQuery>,
+    ApiQuery(query, filters): ApiQuery<FeatFilters>,
 ) -> Result<Json<Value>, ApiError> {
-    if let Some(source) = &query.source {
+    if let Some(source) = &filters.source {
         if !FeatSource::ALL.iter().any(|known| known.as_str() == source) {
             return Err(ApiError::BadRequest(format!("unknown source {source:?}")));
         }
     }
-    let (limit, offset) = clamped_page(query.limit, query.offset);
     state
         .read_db(move |db| {
             let mut where_clause = WhereClause::default();
-            if let Some(search_text) = query.q.as_deref().filter(|q| !q.trim().is_empty()) {
-                where_clause.add_bound_condition("f.name LIKE ? ESCAPE '\\'", substring_like_pattern(search_text));
-            }
-            if let Some(source) = &query.source {
+            where_clause.add_name_search(query.q.as_deref(), "f.name");
+            if let Some(source) = &filters.source {
                 where_clause.add_bound_condition("f.source_kind = ?", source.clone());
             }
-            if let Some(group) = &query.group {
+            if let Some(group) = &filters.group {
                 where_clause.add_bound_condition(
                     "EXISTS (SELECT 1 FROM feat_groups fg WHERE fg.feat_id = f.id AND fg.group_name = ?)",
                     group.clone(),
                 );
             }
-            if let Some(acquire) = &query.acquire {
+            if let Some(acquire) = &filters.acquire {
                 where_clause.add_bound_condition("f.acquire = ?", acquire.clone());
             }
-            let where_sql = where_clause.to_sql();
-            let total = row_count(db, &format!("SELECT COUNT(*) FROM feats f {where_sql}"), where_clause.params())?;
-            let page_sql = format!("SELECT {FEAT_COLUMNS} FROM feats f {where_sql} ORDER BY f.name, f.source_kind LIMIT {limit} OFFSET {offset}");
-            let mut feats = json_rows(db, &page_sql, where_clause.params())?;
-            for feat in &mut feats {
+            let mut page = paged_query(
+                db,
+                FEAT_COLUMNS,
+                "feats f",
+                &query,
+                "f.name, f.source_kind",
+                FEATS_SORT_FIELDS,
+                &where_clause,
+            )?;
+            for feat in &mut page.rows {
                 convert_to_booleans(feat, &["auto_acquire_ignores_requirements"]);
                 let feat_id = feat["id"].as_i64().unwrap_or(0);
                 feat["groups"] = Value::Array(feat_group_names(db, feat_id)?);
             }
-            Ok(Json(json!({ "total": total, "limit": limit, "offset": offset, "feats": feats })))
+            Ok(Json(page.into_json("feats")))
         })
         .await
 }

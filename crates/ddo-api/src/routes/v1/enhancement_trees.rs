@@ -1,7 +1,9 @@
+use crate::db::paged_rows;
 use crate::db::{
     attack_for, convert_to_booleans, dcs_for, json_row, json_rows, modifiers_for, requirements_for, stances_for,
 };
 use crate::error::ApiError;
+use crate::query::{declare_list_parameters, ApiQuery};
 use crate::state::AppState;
 use axum::extract::{Path, State};
 use axum::Json;
@@ -16,6 +18,16 @@ pub(super) fn router() -> OpenApiRouter<AppState> {
 const ENHANCEMENT_TREE_COLUMNS: &str = "t.id, t.name, t.version, t.kind, t.is_legacy, t.icon, t.background,
                             (SELECT COUNT(*) FROM enhancements e WHERE e.tree_id = t.id) AS enhancement_count";
 
+const ENHANCEMENT_TREES_SORT_FIELDS: &[(&str, &str)] = &[
+    ("name", "listed.name"),
+    ("id", "listed.id"),
+    ("kind", "listed.kind"),
+    ("version", "listed.version"),
+    ("enhancement_count", "listed.enhancement_count"),
+];
+
+declare_list_parameters!(EnhancementTreesParameters, ENHANCEMENT_TREES_SORT_FIELDS, "");
+
 #[utoipa::path(
     get,
     path = "/v1/enhancement-trees",
@@ -24,22 +36,27 @@ const ENHANCEMENT_TREE_COLUMNS: &str = "t.id, t.name, t.version, t.kind, t.is_le
     description = "Every enhancement, destiny and reaper tree ordered by kind then name, with its version, icon, \
                    background art name, whether it is a legacy tree, how many enhancements it holds, and the \
                    `requirements` to access it. The enhancements themselves are on the detail endpoint.",
-    responses((status = 200, description = "All enhancement trees", body = Vec<Value>))
+    params(
+        EnhancementTreesParameters,
+    ),
+    responses((status = 200, description = "`total`, `limit`, `offset` and the `enhancement_trees` page", body = Value),
+        (status = 400, description = "Invalid sort field or malformed query parameter", body = crate::error::ErrorBody))
 )]
-async fn enhancement_trees(State(state): State<AppState>) -> Result<Json<Vec<Value>>, ApiError> {
+async fn enhancement_trees(
+    State(state): State<AppState>,
+    ApiQuery(query, _): ApiQuery,
+) -> Result<Json<Value>, ApiError> {
     state
-        .read_db(|db| {
-            let mut enhancement_trees = json_rows(
-                db,
-                &format!("SELECT {ENHANCEMENT_TREE_COLUMNS} FROM enhancement_trees t ORDER BY t.kind, t.name"),
-                [],
-            )?;
-            for enhancement_tree in &mut enhancement_trees {
-                convert_to_booleans(enhancement_tree, &["is_legacy"]);
-                let tree_id = enhancement_tree["id"].as_i64().unwrap_or(0);
-                enhancement_tree["requirements"] = Value::Array(requirements_for(db, "enhancement_tree", tree_id)?);
+        .read_db(move |db| {
+            let select_sql = format!("SELECT {ENHANCEMENT_TREE_COLUMNS} FROM enhancement_trees t");
+            let mut page =
+                paged_rows(db, &select_sql, &query, "listed.name", "listed.kind, name", ENHANCEMENT_TREES_SORT_FIELDS)?;
+            for row in &mut page.rows {
+                convert_to_booleans(row, &["is_legacy"]);
+                let tree_id = row["id"].as_i64().unwrap_or(0);
+                row["requirements"] = Value::Array(requirements_for(db, "enhancement_tree", tree_id)?);
             }
-            Ok(Json(enhancement_trees))
+            Ok(Json(page.into_json("enhancement_trees")))
         })
         .await
 }

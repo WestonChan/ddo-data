@@ -1,29 +1,34 @@
-[
-  {
-    "augment_count": 0,
-    "icon": "AdherentOfTheMists",
-    "id": 93,
-    "is_filigree_set": false,
-    "item_count": 34,
-    "name": "Adherent of the Mists Set (Heroic)",
-    "tier_count": 1
-  },
-  {
-    "augment_count": 0,
-    "icon": "AdherentOfTheMists",
-    "id": 98,
-    "is_filigree_set": false,
-    "item_count": 41,
-    "name": "Adherent of the Mists Set (Legendary)",
-    "tier_count": 1
-  },
-  {
-    "augment_count": 0,
-    "icon": "AlchemistsLore",
-    "id": 66,
-    "is_filigree_set": false,
-    "item_count": 2,
-    "name": "Alchemist's Lore",
-    "tier_count": 1
-  }
-]
+{
+  "limit": 100,
+  "offset": 0,
+  "sets": [
+    {
+      "augment_count": 0,
+      "icon": "AdherentOfTheMists",
+      "id": 93,
+      "is_filigree_set": false,
+      "item_count": 34,
+      "name": "Adherent of the Mists Set (Heroic)",
+      "tier_count": 1
+    },
+    {
+      "augment_count": 0,
+      "icon": "AdherentOfTheMists",
+      "id": 98,
+      "is_filigree_set": false,
+      "item_count": 41,
+      "name": "Adherent of the Mists Set (Legendary)",
+      "tier_count": 1
+    },
+    {
+      "augment_count": 0,
+      "icon": "AlchemistsLore",
+      "id": 66,
+      "is_filigree_set": false,
+      "item_count": 2,
+      "name": "Alchemist's Lore",
+      "tier_count": 1
+    }
+  ],
+  "total": 327
+}

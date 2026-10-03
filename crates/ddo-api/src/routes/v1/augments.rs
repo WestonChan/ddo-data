@@ -1,16 +1,12 @@
 use super::crafting::crafting_recipes_yielding;
 use super::quests::{adventure_packs_dropping_via, quests_dropping_via, sources_via};
-use crate::db::{
-    bonuses_via, clamped_page, convert_to_booleans, json_row, json_rows, modifiers_for, row_count,
-    substring_like_pattern, WhereClause,
-};
+use crate::db::{bonuses_via, convert_to_booleans, json_row, json_rows, modifiers_for, paged_query, WhereClause};
 use crate::error::ApiError;
-use crate::query::{ApiQuery, QueryParameters};
+use crate::query::{declare_list_parameters, declare_query_parameters, ApiQuery};
 use crate::state::AppState;
 use axum::extract::{Path, State};
 use axum::Json;
-use serde::Deserialize;
-use serde_json::{json, Value};
+use serde_json::Value;
 use utoipa_axum::router::OpenApiRouter;
 use utoipa_axum::routes;
 
@@ -18,18 +14,13 @@ pub(super) fn router() -> OpenApiRouter<AppState> {
     OpenApiRouter::new().routes(routes!(augments)).routes(routes!(augment_detail))
 }
 
-#[derive(Deserialize)]
-#[serde(deny_unknown_fields)]
-pub(super) struct AugmentListQuery {
-    pub q: Option<String>,
-    pub slot: Option<String>,
-    pub family: Option<String>,
-    pub max_level: Option<i64>,
-    pub limit: Option<i64>,
-    pub offset: Option<i64>,
+declare_query_parameters! {
+    pub(super) struct AugmentFilters {
+        pub slot: Option<String>,
+        pub family: Option<String>,
+        pub max_level: Option<i64>,
+    }
 }
-
-impl QueryParameters for AugmentListQuery {}
 
 const AUGMENT_FLAG_COLUMNS: &[&str] = &["choose_level", "dual_values", "enter_value", "suppress_set_bonus"];
 
@@ -54,6 +45,11 @@ const AUGMENT_COLUMNS: &str =
                        a.level_values, a.level_values2, a.dual_values, a.enter_value, a.suppress_set_bonus, a.set_bonus,
                        a.adds_augment, a.grants_augment, a.weapon_class";
 
+const AUGMENTS_SORT_FIELDS: &[(&str, &str)] =
+    &[("name", "a.name"), ("id", "a.id"), ("min_level", "a.min_level"), ("family", "a.family")];
+
+declare_list_parameters!(AugmentsParameters, AUGMENTS_SORT_FIELDS, "");
+
 #[utoipa::path(
     get,
     path = "/v1/augments",
@@ -68,12 +64,10 @@ const AUGMENT_COLUMNS: &str =
                    like his. Filter by `slot` to get the candidates for \
                    one socket on an item.",
     params(
-        ("q" = Option<String>, Query, description = "Case-insensitive substring of the augment name"),
+        AugmentsParameters,
         ("slot" = Option<String>, Query, description = "Socket label as /v1/augment-slot-types lists it, e.g. `red` or `lamordia: melancholic (accessory)`; case-insensitive"),
         ("family" = Option<String>, Query, description = "Augment family, e.g. `standard`, `lamordia`, `dino`, `crafting`"),
         ("max_level" = Option<i64>, Query, description = "Only augments usable at this character level or lower; augments with no minimum level always pass"),
-        ("limit" = Option<i64>, Query, description = "Page size, 1 to 10000; defaults to 100; out-of-range values are clamped rather than rejected"),
-        ("offset" = Option<i64>, Query, description = "Rows to skip before the first returned row; defaults to 0; negative values are clamped to 0 rather than rejected")
     ),
     responses(
         (status = 200, description = "`total`, `limit`, `offset` and the `augments` page", body = Value),
@@ -82,35 +76,37 @@ const AUGMENT_COLUMNS: &str =
 )]
 async fn augments(
     State(state): State<AppState>,
-    ApiQuery(query): ApiQuery<AugmentListQuery>,
+    ApiQuery(query, filters): ApiQuery<AugmentFilters>,
 ) -> Result<Json<Value>, ApiError> {
-    let (limit, offset) = clamped_page(query.limit, query.offset);
     state
         .read_db(move |db| {
             let mut where_clause = WhereClause::default();
-            if let Some(search_text) = query.q.as_deref().filter(|q| !q.trim().is_empty()) {
-                where_clause.add_bound_condition("a.name LIKE ? ESCAPE '\\'", substring_like_pattern(search_text));
-            }
-            if let Some(slot_label) = &query.slot {
+            where_clause.add_name_search(query.q.as_deref(), "a.name");
+            if let Some(slot_label) = &filters.slot {
                 where_clause.add_bound_condition("EXISTS (SELECT 1 FROM augment_slots s JOIN augment_slot_types t ON t.id = s.slot_id WHERE s.augment_id = a.id AND t.label = ?)",
                     slot_label.to_lowercase(),
                 );
             }
-            if let Some(family) = &query.family {
+            if let Some(family) = &filters.family {
                 where_clause.add_bound_condition("a.family = ?", family.clone());
             }
-            if let Some(max_level) = query.max_level {
+            if let Some(max_level) = filters.max_level {
                 where_clause.add_bound_condition("(a.min_level IS NULL OR a.min_level <= ?)", max_level);
             }
-            let where_sql = where_clause.to_sql();
-            let total = row_count(db, &format!("SELECT COUNT(*) FROM augments a {where_sql}"), where_clause.params())?;
-            let page_sql = format!("SELECT {AUGMENT_COLUMNS} FROM augments a {where_sql} ORDER BY a.name, a.min_level LIMIT {limit} OFFSET {offset}");
-            let mut augments = json_rows(db, &page_sql, where_clause.params())?;
-            for augment in &mut augments {
+            let mut page = paged_query(
+                db,
+                AUGMENT_COLUMNS,
+                "augments a",
+                &query,
+                "a.name, a.min_level",
+                AUGMENTS_SORT_FIELDS,
+                &where_clause,
+            )?;
+            for augment in &mut page.rows {
                 convert_to_booleans(augment, AUGMENT_FLAG_COLUMNS);
                 attach_child_collections(db, augment)?;
             }
-            Ok(Json(json!({ "total": total, "limit": limit, "offset": offset, "augments": augments })))
+            Ok(Json(page.into_json("augments")))
         })
         .await
 }

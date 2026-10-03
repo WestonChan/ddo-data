@@ -1,17 +1,22 @@
-[
-  {
-    "id": 26,
-    "is_free_to_play": false,
-    "name": "Against the Slave Lords"
-  },
-  {
-    "id": 40,
-    "is_free_to_play": false,
-    "name": "Attack on Stormreach"
-  },
-  {
-    "id": 16,
-    "is_free_to_play": false,
-    "name": "Delera's Tomb"
-  }
-]
+{
+  "adventure_packs": [
+    {
+      "id": 26,
+      "is_free_to_play": false,
+      "name": "Against the Slave Lords"
+    },
+    {
+      "id": 40,
+      "is_free_to_play": false,
+      "name": "Attack on Stormreach"
+    },
+    {
+      "id": 16,
+      "is_free_to_play": false,
+      "name": "Delera's Tomb"
+    }
+  ],
+  "limit": 100,
+  "offset": 0,
+  "total": 67
+}

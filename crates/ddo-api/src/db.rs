@@ -1,4 +1,5 @@
 use crate::error::ApiError;
+use crate::query::{sort_order, ListQuery};
 use rusqlite::types::ValueRef;
 use rusqlite::{Connection, Params, Row};
 use serde_json::{Map, Value};
@@ -71,6 +72,69 @@ pub(crate) fn clamped_page(limit: Option<i64>, offset: Option<i64>) -> (i64, i64
     (limit.unwrap_or(100).clamp(1, 10_000), offset.unwrap_or(0).max(0))
 }
 
+pub(crate) struct ListPage {
+    pub total: i64,
+    pub limit: i64,
+    pub offset: i64,
+    pub rows: Vec<Value>,
+}
+
+impl ListPage {
+    pub(crate) fn into_json(self, rows_key: &str) -> Value {
+        let mut envelope = Map::new();
+        envelope.insert("total".into(), self.total.into());
+        envelope.insert("limit".into(), self.limit.into());
+        envelope.insert("offset".into(), self.offset.into());
+        envelope.insert(rows_key.into(), Value::Array(self.rows));
+        Value::Object(envelope)
+    }
+}
+
+pub(crate) fn paged_rows(
+    db: &Connection,
+    select_sql: &str,
+    query: &ListQuery,
+    name_column: &str,
+    default_order: &str,
+    sortable_fields: &[(&str, &str)],
+) -> Result<ListPage, ApiError> {
+    paged_rows_with_filter(db, select_sql, query, name_column, default_order, sortable_fields, WhereClause::default())
+}
+
+pub(crate) fn paged_rows_with_filter(
+    db: &Connection,
+    select_sql: &str,
+    query: &ListQuery,
+    name_column: &str,
+    default_order: &str,
+    sortable_fields: &[(&str, &str)],
+    mut where_clause: WhereClause,
+) -> Result<ListPage, ApiError> {
+    where_clause.add_name_search(query.q.as_deref(), name_column);
+    paged_query(db, "*", &format!("({select_sql}) listed"), query, default_order, sortable_fields, &where_clause)
+}
+
+pub(crate) fn paged_query(
+    db: &Connection,
+    columns: &str,
+    tables: &str,
+    query: &ListQuery,
+    default_order: &str,
+    sortable_fields: &[(&str, &str)],
+    where_clause: &WhereClause,
+) -> Result<ListPage, ApiError> {
+    let order_sql = sort_order(&query.sort, sortable_fields, default_order)?;
+    let (limit, offset) = clamped_page(query.limit, query.offset);
+    let from_sql = format!("FROM {tables} {}", where_clause.to_sql());
+    let total = row_count(db, &format!("SELECT COUNT(*) {from_sql}"), where_clause.params())?;
+    let rows = json_rows(
+        db,
+        &format!("SELECT {columns} {from_sql} ORDER BY {order_sql} LIMIT {limit} OFFSET {offset}"),
+        where_clause.params(),
+    )?;
+    Ok(ListPage { total, limit, offset, rows })
+}
+
 pub(crate) fn requirements_for(db: &Connection, owner_kind: &str, owner_id: i64) -> Result<Vec<Value>, ApiError> {
     json_rows(
         db,
@@ -98,20 +162,50 @@ pub(crate) fn modifiers_for(db: &Connection, source_kind: &str, source_id: i64) 
     Ok(modifiers)
 }
 
+const STANCE_COLUMNS: &str = "id, name, description, icon, group_name, auto_controlled, incompatible";
+
+fn stance_filter(owner_kind: &str, owner_id: i64) -> WhereClause {
+    let mut where_clause = WhereClause::default();
+    where_clause.add_bound_condition("owner_kind = ?", owner_kind.to_string());
+    where_clause.add_bound_condition("owner_id = ?", owner_id);
+    where_clause
+}
+
 pub(crate) fn stances_for(db: &Connection, owner_kind: &str, owner_id: i64) -> Result<Vec<Value>, ApiError> {
+    let where_clause = stance_filter(owner_kind, owner_id);
     let mut stances = json_rows(
         db,
-        "SELECT id, name, description, icon, group_name, auto_controlled, incompatible FROM stances
-          WHERE owner_kind = ?1 AND owner_id = ?2 ORDER BY sort_order",
-        (owner_kind, owner_id),
+        &format!("SELECT {STANCE_COLUMNS} FROM stances {} ORDER BY sort_order", where_clause.to_sql()),
+        where_clause.params(),
     )?;
     for stance in &mut stances {
-        convert_to_booleans(stance, &["auto_controlled"]);
-        let stance_id = stance["id"].as_i64().unwrap_or(0);
-        stance["requirements"] = Value::Array(requirements_for(db, "stance", stance_id)?);
-        stance["modifiers"] = Value::Array(modifiers_for(db, "stance", stance_id)?);
+        attach_stance_children(db, stance)?;
     }
     Ok(stances)
+}
+
+pub(crate) fn paged_stances_for(
+    db: &Connection,
+    owner_kind: &str,
+    owner_id: i64,
+    query: &ListQuery,
+    sortable_fields: &[(&str, &str)],
+) -> Result<ListPage, ApiError> {
+    let mut where_clause = stance_filter(owner_kind, owner_id);
+    where_clause.add_name_search(query.q.as_deref(), "name");
+    let mut page = paged_query(db, STANCE_COLUMNS, "stances", query, "sort_order", sortable_fields, &where_clause)?;
+    for stance in &mut page.rows {
+        attach_stance_children(db, stance)?;
+    }
+    Ok(page)
+}
+
+fn attach_stance_children(db: &Connection, stance: &mut Value) -> Result<(), ApiError> {
+    convert_to_booleans(stance, &["auto_controlled"]);
+    let stance_id = stance["id"].as_i64().unwrap_or(0);
+    stance["requirements"] = Value::Array(requirements_for(db, "stance", stance_id)?);
+    stance["modifiers"] = Value::Array(modifiers_for(db, "stance", stance_id)?);
+    Ok(())
 }
 
 pub(crate) fn attack_for(db: &Connection, owner_kind: &str, owner_id: i64) -> Result<Value, ApiError> {
@@ -156,6 +250,12 @@ pub(crate) struct WhereClause {
 }
 
 impl WhereClause {
+    pub(crate) fn add_name_search(&mut self, search_text: Option<&str>, name_column: &str) {
+        if let Some(search_text) = search_text.filter(|search_text| !search_text.trim().is_empty()) {
+            self.add_bound_condition(&format!("{name_column} LIKE ? ESCAPE '\\'"), substring_like_pattern(search_text));
+        }
+    }
+
     pub(crate) fn add_bound_condition(
         &mut self,
         condition: &str,
@@ -196,19 +296,29 @@ impl WhereClause {
     }
 }
 
-pub(crate) async fn whole_table_json(
+pub(crate) struct TableListSource {
+    pub select_sql: &'static str,
+    pub rows_key: &'static str,
+    pub name_column: &'static str,
+    pub default_order: &'static str,
+    pub sortable_fields: &'static [(&'static str, &'static str)],
+    pub flag_columns: &'static [&'static str],
+}
+
+pub(crate) async fn paged_table_json(
     state: crate::state::AppState,
-    sql: &'static str,
-    flag_columns: &'static [&'static str],
-) -> Result<axum::Json<Vec<Value>>, ApiError> {
-    let rows = state
+    query: ListQuery,
+    list: TableListSource,
+) -> Result<axum::Json<Value>, ApiError> {
+    let envelope = state
         .read_db(move |db| {
-            let mut rows = json_rows(db, sql, [])?;
-            for row in &mut rows {
-                convert_to_booleans(row, flag_columns);
+            let mut page =
+                paged_rows(db, list.select_sql, &query, list.name_column, list.default_order, list.sortable_fields)?;
+            for row in &mut page.rows {
+                convert_to_booleans(row, list.flag_columns);
             }
-            Ok(rows)
+            Ok(page.into_json(list.rows_key))
         })
         .await?;
-    Ok(axum::Json(rows))
+    Ok(axum::Json(envelope))
 }

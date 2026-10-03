@@ -1,5 +1,7 @@
+use crate::db::paged_rows;
 use crate::db::{convert_to_booleans, json_row, json_rows};
 use crate::error::ApiError;
+use crate::query::{declare_list_parameters, ApiQuery};
 use crate::state::AppState;
 use axum::extract::{Path, State};
 use axum::Json;
@@ -24,6 +26,16 @@ const EVENT_SELECT: &str = "SELECT e.id, e.name, e.wiki_url,
         (SELECT COUNT(*) FROM sources ei WHERE ei.kind = 'event' AND ei.event_id = e.id) AS item_count
    FROM events e";
 
+const VENDORS_SORT_FIELDS: &[(&str, &str)] = &[
+    ("name", "listed.name"),
+    ("id", "listed.id"),
+    ("pack", "listed.pack"),
+    ("location", "listed.location"),
+    ("item_count", "listed.item_count"),
+];
+
+declare_list_parameters!(VendorsParameters, VENDORS_SORT_FIELDS, "");
+
 #[utoipa::path(
     get,
     path = "/v1/vendors",
@@ -34,11 +46,21 @@ const EVENT_SELECT: &str = "SELECT e.id, e.name, e.wiki_url,
                    when it gives none), its adventure `pack` (null when it names none), \
                    the `wiki_url` it was read from, and `item_count`, the items it offers: those the wiki page lists \
                    plus the items whose drop text names the vendor. Empty until a vendor has been read from ddowiki.",
-    responses((status = 200, description = "Every vendor with its location, pack and item count", body = Vec<Value>))
+    params(
+        VendorsParameters,
+    ),
+    responses((status = 200, description = "`total`, `limit`, `offset` and the `vendors` page", body = Value),
+        (status = 400, description = "Invalid sort field or malformed query parameter", body = crate::error::ErrorBody))
 )]
-async fn vendors(State(state): State<AppState>) -> Result<Json<Vec<Value>>, ApiError> {
-    let vendors = state.read_db(|db| json_rows(db, &format!("{VENDOR_SELECT} ORDER BY v.name"), [])).await?;
-    Ok(Json(vendors))
+async fn vendors(State(state): State<AppState>, ApiQuery(query, _): ApiQuery) -> Result<Json<Value>, ApiError> {
+    state
+        .read_db(move |db| {
+            let select_sql = VENDOR_SELECT;
+            let page = paged_rows(db, select_sql, &query, "listed.name", "listed.name", VENDORS_SORT_FIELDS)?;
+
+            Ok(Json(page.into_json("vendors")))
+        })
+        .await
 }
 
 #[utoipa::path(
@@ -72,6 +94,11 @@ async fn vendor_detail(State(state): State<AppState>, Path(id): Path<i64>) -> Re
         .await
 }
 
+const EVENTS_SORT_FIELDS: &[(&str, &str)] =
+    &[("name", "listed.name"), ("id", "listed.id"), ("item_count", "listed.item_count")];
+
+declare_list_parameters!(EventsParameters, EVENTS_SORT_FIELDS, "");
+
 #[utoipa::path(
     get,
     path = "/v1/events",
@@ -82,11 +109,21 @@ async fn vendor_detail(State(state): State<AppState>, Path(id): Path<i64>) -> Re
                    with the `wiki_url` it was read from, and `item_count`, the items it \
                    rewards: those the wiki page lists plus the items whose drop text names the event. Empty until an \
                    event has been read from ddowiki.",
-    responses((status = 200, description = "Every event with its item count", body = Vec<Value>))
+    params(
+        EventsParameters,
+    ),
+    responses((status = 200, description = "`total`, `limit`, `offset` and the `events` page", body = Value),
+        (status = 400, description = "Invalid sort field or malformed query parameter", body = crate::error::ErrorBody))
 )]
-async fn events(State(state): State<AppState>) -> Result<Json<Vec<Value>>, ApiError> {
-    let events = state.read_db(|db| json_rows(db, &format!("{EVENT_SELECT} ORDER BY e.name"), [])).await?;
-    Ok(Json(events))
+async fn events(State(state): State<AppState>, ApiQuery(query, _): ApiQuery) -> Result<Json<Value>, ApiError> {
+    state
+        .read_db(move |db| {
+            let select_sql = EVENT_SELECT;
+            let page = paged_rows(db, select_sql, &query, "listed.name", "listed.name", EVENTS_SORT_FIELDS)?;
+
+            Ok(Json(page.into_json("events")))
+        })
+        .await
 }
 
 #[utoipa::path(

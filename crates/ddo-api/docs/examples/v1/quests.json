@@ -1,71 +1,76 @@
-[
-  {
-    "bestowed_by": "Graz'zt the Dark Prince",
-    "difficulties": [
-      "casual",
-      "normal",
-      "hard"
-    ],
-    "epic_level": 37,
-    "epic_name": null,
-    "favor": 6,
-    "flagging": null,
-    "id": 310,
-    "is_challenge": false,
-    "is_free_to_play": false,
-    "is_raid": false,
-    "legendary_level": 37,
-    "level": 11,
-    "max_level": null,
-    "name": "A Blood Pact",
-    "pack": "Terror of Demogorgon",
-    "patron": "Battlehammer Expedition",
-    "zone": "The Sanguine Labyrinth"
-  },
-  {
-    "bestowed_by": "Renton Finne",
-    "difficulties": [
-      "normal",
-      "hard",
-      "elite"
-    ],
-    "epic_level": 27,
-    "epic_name": null,
-    "favor": 7,
-    "flagging": null,
-    "id": 510,
-    "is_challenge": false,
-    "is_free_to_play": false,
-    "is_raid": false,
-    "legendary_level": null,
-    "level": 19,
-    "max_level": null,
-    "name": "A Break in the Ice",
-    "pack": "Shadowfell Conspiracy",
-    "patron": "The Harpers",
-    "zone": "Mountain Glacier"
-  },
-  {
-    "bestowed_by": "Jorgundal ar'Grund",
-    "difficulties": [
-      "normal",
-      "hard",
-      "elite"
-    ],
-    "epic_level": 24,
-    "epic_name": "Return to Cabal for One",
-    "favor": 6,
-    "flagging": null,
-    "id": 380,
-    "is_challenge": false,
-    "is_free_to_play": false,
-    "is_raid": false,
-    "legendary_level": null,
-    "level": 14,
-    "max_level": null,
-    "name": "A Cabal for One",
-    "pack": "Ruins of Gianthold",
-    "patron": "Agents of Argonnessen",
-    "zone": "Hobgoblin Lair"
-  }
-]
+{
+  "limit": 100,
+  "offset": 0,
+  "quests": [
+    {
+      "bestowed_by": "Graz'zt the Dark Prince",
+      "difficulties": [
+        "casual",
+        "normal",
+        "hard"
+      ],
+      "epic_level": 37,
+      "epic_name": null,
+      "favor": 6,
+      "flagging": null,
+      "id": 310,
+      "is_challenge": false,
+      "is_free_to_play": false,
+      "is_raid": false,
+      "legendary_level": 37,
+      "level": 11,
+      "max_level": null,
+      "name": "A Blood Pact",
+      "pack": "Terror of Demogorgon",
+      "patron": "Battlehammer Expedition",
+      "zone": "The Sanguine Labyrinth"
+    },
+    {
+      "bestowed_by": "Renton Finne",
+      "difficulties": [
+        "normal",
+        "hard",
+        "elite"
+      ],
+      "epic_level": 27,
+      "epic_name": null,
+      "favor": 7,
+      "flagging": null,
+      "id": 510,
+      "is_challenge": false,
+      "is_free_to_play": false,
+      "is_raid": false,
+      "legendary_level": null,
+      "level": 19,
+      "max_level": null,
+      "name": "A Break in the Ice",
+      "pack": "Shadowfell Conspiracy",
+      "patron": "The Harpers",
+      "zone": "Mountain Glacier"
+    },
+    {
+      "bestowed_by": "Jorgundal ar'Grund",
+      "difficulties": [
+        "normal",
+        "hard",
+        "elite"
+      ],
+      "epic_level": 24,
+      "epic_name": "Return to Cabal for One",
+      "favor": 6,
+      "flagging": null,
+      "id": 380,
+      "is_challenge": false,
+      "is_free_to_play": false,
+      "is_raid": false,
+      "legendary_level": null,
+      "level": 14,
+      "max_level": null,
+      "name": "A Cabal for One",
+      "pack": "Ruins of Gianthold",
+      "patron": "Agents of Argonnessen",
+      "zone": "Hobgoblin Lair"
+    }
+  ],
+  "total": 608
+}

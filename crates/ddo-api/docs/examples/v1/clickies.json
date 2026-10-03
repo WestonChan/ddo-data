@@ -1,26 +1,31 @@
-[
-  {
-    "description": "This effect absorbs most spells cast by beholder eye stalks. Only a few such\nspells can be absorbed before the item ceases to function and must have time to\ndissipate the absorbed energy.",
-    "icon": "Beholder",
-    "id": 2,
-    "modifiers": [],
-    "name": "Absorb Beholder Spells",
-    "school": "Evocation"
-  },
-  {
-    "description": "This effect absorbs the standard spells, spells from beholder and doomsphere eye beams.\nA charge is expended for each eye beam absorbed.",
-    "icon": "AntiBeholderCrystal",
-    "id": 1,
-    "modifiers": [],
-    "name": "Absorb Beholder and Doomsphere Spells",
-    "school": null
-  },
-  {
-    "description": "This effect absorbs most spells cast by doomsphere eye stalks. Only a few such\nspells can be absorbed before the item ceases to function and must have time to\ndissipate the absorbed energy.",
-    "icon": "Beholder",
-    "id": 3,
-    "modifiers": [],
-    "name": "Absorb Doomsphere Spells",
-    "school": "Evocation"
-  }
-]
+{
+  "clickies": [
+    {
+      "description": "This effect absorbs most spells cast by beholder eye stalks. Only a few such\nspells can be absorbed before the item ceases to function and must have time to\ndissipate the absorbed energy.",
+      "icon": "Beholder",
+      "id": 2,
+      "modifiers": [],
+      "name": "Absorb Beholder Spells",
+      "school": "Evocation"
+    },
+    {
+      "description": "This effect absorbs the standard spells, spells from beholder and doomsphere eye beams.\nA charge is expended for each eye beam absorbed.",
+      "icon": "AntiBeholderCrystal",
+      "id": 1,
+      "modifiers": [],
+      "name": "Absorb Beholder and Doomsphere Spells",
+      "school": null
+    },
+    {
+      "description": "This effect absorbs most spells cast by doomsphere eye stalks. Only a few such\nspells can be absorbed before the item ceases to function and must have time to\ndissipate the absorbed energy.",
+      "icon": "Beholder",
+      "id": 3,
+      "modifiers": [],
+      "name": "Absorb Doomsphere Spells",
+      "school": "Evocation"
+    }
+  ],
+  "limit": 100,
+  "offset": 0,
+  "total": 219
+}

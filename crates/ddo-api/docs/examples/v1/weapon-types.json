@@ -1,20 +1,25 @@
-[
-  {
-    "id": 1,
-    "is_shield": false,
-    "name": "Bastard Sword",
-    "proficiency": "Exotic"
-  },
-  {
-    "id": 2,
-    "is_shield": false,
-    "name": "Battle Axe",
-    "proficiency": "Martial"
-  },
-  {
-    "id": 3,
-    "is_shield": true,
-    "name": "Buckler",
-    "proficiency": null
-  }
-]
+{
+  "limit": 100,
+  "offset": 0,
+  "total": 48,
+  "weapon_types": [
+    {
+      "id": 1,
+      "is_shield": false,
+      "name": "Bastard Sword",
+      "proficiency": "Exotic"
+    },
+    {
+      "id": 2,
+      "is_shield": false,
+      "name": "Battle Axe",
+      "proficiency": "Martial"
+    },
+    {
+      "id": 3,
+      "is_shield": true,
+      "name": "Buckler",
+      "proficiency": null
+    }
+  ]
+}
