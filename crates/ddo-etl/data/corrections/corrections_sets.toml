@@ -1,0 +1,5644 @@
+[[correction]]
+kind = "set_tier_bonus"
+name = "Adherent of the Mists Set (Heroic)"
+equipped_count = 5
+field = "add"
+from = "null"
+to = { stat = "Healing Amplification", bonus_type = "Profane", value = 10 }
+reason = "The wiki gives Healing Amplification +10 Profane at 5 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Adherent of the Mists Set (Heroic)"
+equipped_count = 5
+field = "add"
+from = "null"
+to = { stat = "Negative Healing Amplification", bonus_type = "Profane", value = 10 }
+reason = "The wiki gives Negative Healing Amplification +10 Profane at 5 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Adherent of the Mists Set (Heroic)"
+equipped_count = 5
+field = "add"
+from = "null"
+to = { stat = "Repair Amplification", bonus_type = "Profane", value = 10 }
+reason = "The wiki gives Repair Amplification +10 Profane at 5 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Adherent of the Mists Set (Heroic)"
+equipped_count = 5
+field = "add"
+from = "null"
+to = { stat = "Melee Power", bonus_type = "Profane", value = 5 }
+reason = "The wiki gives Melee Power +5 Profane at 5 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Adherent of the Mists Set (Heroic)"
+equipped_count = 5
+field = "add"
+from = "null"
+to = { stat = "Ranged Power", bonus_type = "Profane", value = 5 }
+reason = "The wiki gives Ranged Power +5 Profane at 5 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Adherent of the Mists Set (Legendary)"
+equipped_count = 5
+field = "add"
+from = "null"
+to = { stat = "Healing Amplification", bonus_type = "Profane", value = 30 }
+reason = "The wiki gives Healing Amplification +30 Profane at 5 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Adherent of the Mists Set (Legendary)"
+equipped_count = 5
+field = "add"
+from = "null"
+to = { stat = "Negative Healing Amplification", bonus_type = "Profane", value = 30 }
+reason = "The wiki gives Negative Healing Amplification +30 Profane at 5 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Adherent of the Mists Set (Legendary)"
+equipped_count = 5
+field = "add"
+from = "null"
+to = { stat = "Repair Amplification", bonus_type = "Profane", value = 30 }
+reason = "The wiki gives Repair Amplification +30 Profane at 5 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Adherent of the Mists Set (Legendary)"
+equipped_count = 5
+field = "add"
+from = "null"
+to = { stat = "Melee Power", bonus_type = "Profane", value = 15 }
+reason = "The wiki gives Melee Power +15 Profane at 5 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Adherent of the Mists Set (Legendary)"
+equipped_count = 5
+field = "add"
+from = "null"
+to = { stat = "Ranged Power", bonus_type = "Profane", value = 15 }
+reason = "The wiki gives Ranged Power +15 Profane at 5 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Beacon of Magic Set (Heroic)"
+equipped_count = 3
+stat = "Magical Resistance Rating"
+bonus_type = "Artifact"
+field = "value"
+from = 5
+to = 20
+reason = "The wiki gives Magical Resistance Rating +20 Artifact at 3 pieces."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Beacon of Magic Set (Legendary)"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Magical Resistance Rating Cap", bonus_type = "Artifact", value = 30 }
+reason = "The wiki gives Magical Resistance Rating Cap +30 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Conduit of the Titans"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Electric Spell Power", bonus_type = "Artifact", value = 30 }
+reason = "The wiki gives Electric Spell Power +30 Artifact at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Conduit of the Titans"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Repair Spell Power", bonus_type = "Artifact", value = 30 }
+reason = "The wiki gives Repair Spell Power +30 Artifact at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Conduit of the Titans"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Force Spell Power", bonus_type = "Artifact", value = 30 }
+reason = "The wiki gives Force Spell Power +30 Artifact at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Cooking By the Book"
+equipped_count = 4
+field = "add"
+from = "null"
+to = { stat = "Melee Power", bonus_type = "Artifact", value = 5 }
+reason = "The wiki gives Melee Power +5 Artifact at 4 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Cooking By the Book"
+equipped_count = 4
+field = "add"
+from = "null"
+to = { stat = "Ranged Power", bonus_type = "Artifact", value = 5 }
+reason = "The wiki gives Ranged Power +5 Artifact at 4 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Crypt Raider Set (Heroic)"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Melee Power", bonus_type = "Artifact", value = 5 }
+reason = "The wiki gives Melee Power +5 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Crypt Raider Set (Heroic)"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Ranged Power", bonus_type = "Artifact", value = 5 }
+reason = "The wiki gives Ranged Power +5 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Crypt Raider Set (Heroic)"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Melee Threat Generation", bonus_type = "Artifact", value = -20 }
+reason = "The wiki gives Melee Threat Generation -20 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Crypt Raider Set (Heroic)"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Ranged Threat Generation", bonus_type = "Artifact", value = -20 }
+reason = "The wiki gives Ranged Threat Generation -20 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Crypt Raider Set (Legendary)"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Melee Power", bonus_type = "Artifact", value = 15 }
+reason = "The wiki gives Melee Power +15 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Crypt Raider Set (Legendary)"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Ranged Power", bonus_type = "Artifact", value = 15 }
+reason = "The wiki gives Ranged Power +15 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Crypt Raider Set (Legendary)"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Melee Threat Generation", bonus_type = "Artifact", value = -20 }
+reason = "The wiki gives Melee Threat Generation -20 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Crypt Raider Set (Legendary)"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Ranged Threat Generation", bonus_type = "Artifact", value = -20 }
+reason = "The wiki gives Ranged Threat Generation -20 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Defender of Tanaroa"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Healing Amplification", bonus_type = "Artifact", value = 30 }
+reason = "The wiki gives Healing Amplification +30 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Defender of Tanaroa"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Negative Healing Amplification", bonus_type = "Artifact", value = 30 }
+reason = "The wiki gives Negative Healing Amplification +30 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Defender of Tanaroa"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Repair Amplification", bonus_type = "Artifact", value = 30 }
+reason = "The wiki gives Repair Amplification +30 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Delight of the Devourer"
+equipped_count = 3
+stat = "Universal Spell Critical Damage"
+bonus_type = "Artifact"
+field = "bonus_type"
+from = "Artifact"
+to = "Legendary"
+reason = "The wiki types Universal Spell Critical Damage as Legendary at 3 pieces."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Devil's Infernal Dance"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Strength", bonus_type = "Artifact", value = 1 }
+reason = "The wiki gives Strength +1 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Devil's Infernal Dance"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Dexterity", bonus_type = "Artifact", value = 1 }
+reason = "The wiki gives Dexterity +1 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Devil's Infernal Dance"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Constitution", bonus_type = "Artifact", value = 1 }
+reason = "The wiki gives Constitution +1 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Devil's Infernal Dance"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Intelligence", bonus_type = "Artifact", value = 1 }
+reason = "The wiki gives Intelligence +1 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Devil's Infernal Dance"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Wisdom", bonus_type = "Artifact", value = 1 }
+reason = "The wiki gives Wisdom +1 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Devil's Infernal Dance"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Charisma", bonus_type = "Artifact", value = 1 }
+reason = "The wiki gives Charisma +1 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Devil's Infernal Dance"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Doublestrike", bonus_type = "Artifact", value = 5 }
+reason = "The wiki gives Doublestrike +5 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Devil's Infernal Dance"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Doubleshot", bonus_type = "Artifact", value = 5 }
+reason = "The wiki gives Doubleshot +5 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Devil's Infernal Dance"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Melee Power", bonus_type = "Artifact", value = 5 }
+reason = "The wiki gives Melee Power +5 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Devil's Infernal Dance"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Ranged Power", bonus_type = "Artifact", value = 5 }
+reason = "The wiki gives Ranged Power +5 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Devil's Infernal Dance"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Fortification Bypass", bonus_type = "Artifact", value = 10 }
+reason = "The wiki gives Fortification Bypass +10 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Devoted Heart"
+equipped_count = 2
+stat = "Positive Spell Power"
+bonus_type = "Equipment"
+field = "value"
+from = 24
+to = 36
+reason = "The wiki gives Positive Spell Power +36 Equipment at 2 pieces."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Devotion of the Firemouth"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Healing Amplification", bonus_type = "Artifact", value = 30 }
+reason = "The wiki gives Healing Amplification +30 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Devotion of the Firemouth"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Negative Healing Amplification", bonus_type = "Artifact", value = 30 }
+reason = "The wiki gives Negative Healing Amplification +30 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Devotion of the Firemouth"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Repair Amplification", bonus_type = "Artifact", value = 30 }
+reason = "The wiki gives Repair Amplification +30 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Devotion of the Firemouth"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Melee Threat Generation", bonus_type = "Artifact", value = 100 }
+reason = "The wiki gives Melee Threat Generation +100 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Devotion of the Firemouth"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Ranged Threat Generation", bonus_type = "Artifact", value = 100 }
+reason = "The wiki gives Ranged Threat Generation +100 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Devotion of the Firemouth"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Spell Threat Generation", bonus_type = "Artifact", value = 100 }
+reason = "The wiki gives Spell Threat Generation +100 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Double Helix Set"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Physical and Magical Resistance Rating", bonus_type = "Insight", value = 2 }
+reason = "The wiki gives Physical and Magical Resistance Rating +2 Insight at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Dread Stalker"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Melee Power", bonus_type = "Artifact", value = 15 }
+reason = "The wiki gives Melee Power +15 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Dread Stalker"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Ranged Power", bonus_type = "Artifact", value = 15 }
+reason = "The wiki gives Ranged Power +15 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Dread Stalker"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Doublestrike", bonus_type = "Artifact", value = 15 }
+reason = "The wiki gives Doublestrike +15 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Dread Stalker"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Doubleshot", bonus_type = "Artifact", value = 15 }
+reason = "The wiki gives Doubleshot +15 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Dusk Raider"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Melee Power", bonus_type = "Artifact", value = 15 }
+reason = "The wiki gives Melee Power +15 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Dusk Raider"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Ranged Power", bonus_type = "Artifact", value = 15 }
+reason = "The wiki gives Ranged Power +15 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Echoes of the Walking Ancestors"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Strength", bonus_type = "Artifact", value = 3 }
+reason = "The wiki gives Strength +3 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Echoes of the Walking Ancestors"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Dexterity", bonus_type = "Artifact", value = 3 }
+reason = "The wiki gives Dexterity +3 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Echoes of the Walking Ancestors"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Constitution", bonus_type = "Artifact", value = 3 }
+reason = "The wiki gives Constitution +3 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Echoes of the Walking Ancestors"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Intelligence", bonus_type = "Artifact", value = 3 }
+reason = "The wiki gives Intelligence +3 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Echoes of the Walking Ancestors"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Wisdom", bonus_type = "Artifact", value = 3 }
+reason = "The wiki gives Wisdom +3 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Echoes of the Walking Ancestors"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Charisma", bonus_type = "Artifact", value = 3 }
+reason = "The wiki gives Charisma +3 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Elder's Knowledge"
+equipped_count = 2
+stat = "Universal Spell Critical Damage"
+bonus_type = "Artifact"
+field = "bonus_type"
+from = "Artifact"
+to = "Legendary"
+reason = "The wiki types Universal Spell Critical Damage as Legendary at 2 pieces."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Elder's Knowledge"
+equipped_count = 2
+stat = "Universal Spell Critical Damage"
+bonus_type = "Legendary"
+field = "value"
+from = 4
+to = 5
+reason = "The wiki gives Universal Spell Critical Damage +5 Legendary at 2 pieces."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Eminence of Spring"
+equipped_count = 6
+field = "add"
+from = "null"
+to = { stat = "Doublestrike", bonus_type = "Artifact", value = 15 }
+reason = "The wiki gives Doublestrike +15 Artifact at 6 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Eminence of Spring"
+equipped_count = 6
+field = "add"
+from = "null"
+to = { stat = "Doubleshot", bonus_type = "Artifact", value = 15 }
+reason = "The wiki gives Doubleshot +15 Artifact at 6 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Eminence of Spring"
+equipped_count = 7
+field = "add"
+from = "null"
+to = { stat = "Melee Power", bonus_type = "Artifact", value = 15 }
+reason = "The wiki gives Melee Power +15 Artifact at 7 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Eminence of Spring"
+equipped_count = 7
+field = "add"
+from = "null"
+to = { stat = "Ranged Power", bonus_type = "Artifact", value = 15 }
+reason = "The wiki gives Ranged Power +15 Artifact at 7 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Eminence of Winter"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Healing Amplification", bonus_type = "Artifact", value = 30 }
+reason = "The wiki gives Healing Amplification +30 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Eminence of Winter"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Negative Healing Amplification", bonus_type = "Artifact", value = 30 }
+reason = "The wiki gives Negative Healing Amplification +30 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Eminence of Winter"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Repair Amplification", bonus_type = "Artifact", value = 30 }
+reason = "The wiki gives Repair Amplification +30 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Eminence of Winter"
+equipped_count = 5
+field = "add"
+from = "null"
+to = { stat = "Melee Threat Generation", bonus_type = "Artifact", value = 100 }
+reason = "The wiki gives Melee Threat Generation +100 Artifact at 5 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Eminence of Winter"
+equipped_count = 5
+field = "add"
+from = "null"
+to = { stat = "Ranged Threat Generation", bonus_type = "Artifact", value = 100 }
+reason = "The wiki gives Ranged Threat Generation +100 Artifact at 5 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Eminence of Winter"
+equipped_count = 5
+field = "add"
+from = "null"
+to = { stat = "Spell Threat Generation", bonus_type = "Artifact", value = 100 }
+reason = "The wiki gives Spell Threat Generation +100 Artifact at 5 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Epic Double Helix Set"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Physical and Magical Resistance Rating", bonus_type = "Insight", value = 5 }
+reason = "The wiki gives Physical and Magical Resistance Rating +5 Insight at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Epic Kundarak Delving Equipment"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Doublestrike", bonus_type = "Artifact", value = 10 }
+reason = "The wiki gives Doublestrike +10 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Epic Kundarak Delving Equipment"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Doubleshot", bonus_type = "Artifact", value = 10 }
+reason = "The wiki gives Doubleshot +10 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Epic Menechtarun Scavenger"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Physical Resistance Rating", bonus_type = "Artifact", value = 10 }
+reason = "The wiki gives Physical Resistance Rating +10 Artifact at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Epic Menechtarun Scavenger"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Magical Resistance Rating", bonus_type = "Artifact", value = 10 }
+reason = "The wiki gives Magical Resistance Rating +10 Artifact at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Epic Menechtarun Scavenger"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Healing Amplification", bonus_type = "Artifact", value = 20 }
+reason = "The wiki gives Healing Amplification +20 Artifact at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Epic Menechtarun Scavenger"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Negative Healing Amplification", bonus_type = "Artifact", value = 20 }
+reason = "The wiki gives Negative Healing Amplification +20 Artifact at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Epic Menechtarun Scavenger"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Repair Amplification", bonus_type = "Artifact", value = 20 }
+reason = "The wiki gives Repair Amplification +20 Artifact at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Epic Might of the Abishai"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Physical and Magical Resistance Rating", bonus_type = "Profane", value = 10 }
+reason = "The wiki gives Physical and Magical Resistance Rating +10 Profane at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Epic Might of the Abishai"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Strength", bonus_type = "Profane", value = 2 }
+reason = "The wiki gives Strength +2 Profane at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Epic Might of the Abishai"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Dexterity", bonus_type = "Profane", value = 2 }
+reason = "The wiki gives Dexterity +2 Profane at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Epic Might of the Abishai"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Constitution", bonus_type = "Profane", value = 2 }
+reason = "The wiki gives Constitution +2 Profane at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Epic Might of the Abishai"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Intelligence", bonus_type = "Profane", value = 2 }
+reason = "The wiki gives Intelligence +2 Profane at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Epic Might of the Abishai"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Wisdom", bonus_type = "Profane", value = 2 }
+reason = "The wiki gives Wisdom +2 Profane at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Epic Might of the Abishai"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Charisma", bonus_type = "Profane", value = 2 }
+reason = "The wiki gives Charisma +2 Profane at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Epic Might of the Abishai"
+equipped_count = 5
+field = "add"
+from = "null"
+to = { stat = "Physical and Magical Resistance Rating", bonus_type = "Profane", value = 15 }
+reason = "The wiki gives Physical and Magical Resistance Rating +15 Profane at 5 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Epic Might of the Abishai"
+equipped_count = 5
+field = "add"
+from = "null"
+to = { stat = "Strength", bonus_type = "Profane", value = 2 }
+reason = "The wiki gives Strength +2 Profane at 5 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Epic Might of the Abishai"
+equipped_count = 5
+field = "add"
+from = "null"
+to = { stat = "Dexterity", bonus_type = "Profane", value = 2 }
+reason = "The wiki gives Dexterity +2 Profane at 5 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Epic Might of the Abishai"
+equipped_count = 5
+field = "add"
+from = "null"
+to = { stat = "Constitution", bonus_type = "Profane", value = 2 }
+reason = "The wiki gives Constitution +2 Profane at 5 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Epic Might of the Abishai"
+equipped_count = 5
+field = "add"
+from = "null"
+to = { stat = "Intelligence", bonus_type = "Profane", value = 2 }
+reason = "The wiki gives Intelligence +2 Profane at 5 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Epic Might of the Abishai"
+equipped_count = 5
+field = "add"
+from = "null"
+to = { stat = "Wisdom", bonus_type = "Profane", value = 2 }
+reason = "The wiki gives Wisdom +2 Profane at 5 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Epic Might of the Abishai"
+equipped_count = 5
+field = "add"
+from = "null"
+to = { stat = "Charisma", bonus_type = "Profane", value = 2 }
+reason = "The wiki gives Charisma +2 Profane at 5 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Epic Mroranon's Might"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Melee Power", bonus_type = "Artifact", value = 10 }
+reason = "The wiki gives Melee Power +10 Artifact at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Epic Mroranon's Might"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Ranged Power", bonus_type = "Artifact", value = 10 }
+reason = "The wiki gives Ranged Power +10 Artifact at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Epic Raven's Eye"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Attack Bonus", bonus_type = "Artifact", value = 3 }
+reason = "The wiki gives Attack Bonus +3 Artifact at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Epic Raven's Eye"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Damage Bonus", bonus_type = "Artifact", value = 3 }
+reason = "The wiki gives Damage Bonus +3 Artifact at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Epic Saltmarsh Explorer"
+equipped_count = 5
+field = "add"
+from = "null"
+to = { stat = "Physical Resistance Rating", bonus_type = "Artifact", value = 20 }
+reason = "The wiki gives Physical Resistance Rating +20 Artifact at 5 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Epic Saltmarsh Explorer"
+equipped_count = 5
+field = "add"
+from = "null"
+to = { stat = "Magical Resistance Rating", bonus_type = "Artifact", value = 20 }
+reason = "The wiki gives Magical Resistance Rating +20 Artifact at 5 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Epic Saltmarsh Explorer"
+equipped_count = 5
+field = "add"
+from = "null"
+to = { stat = "Healing Amplification", bonus_type = "Artifact", value = 20 }
+reason = "The wiki gives Healing Amplification +20 Artifact at 5 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Epic Saltmarsh Explorer"
+equipped_count = 5
+field = "add"
+from = "null"
+to = { stat = "Negative Healing Amplification", bonus_type = "Artifact", value = 20 }
+reason = "The wiki gives Negative Healing Amplification +20 Artifact at 5 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Epic Saltmarsh Explorer"
+equipped_count = 5
+field = "add"
+from = "null"
+to = { stat = "Repair Amplification", bonus_type = "Artifact", value = 20 }
+reason = "The wiki gives Repair Amplification +20 Artifact at 5 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Epic Saltmarsh Explorer"
+equipped_count = 5
+field = "add"
+from = "null"
+to = { stat = "Melee Power", bonus_type = "Artifact", value = 10 }
+reason = "The wiki gives Melee Power +10 Artifact at 5 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Epic Saltmarsh Explorer"
+equipped_count = 5
+field = "add"
+from = "null"
+to = { stat = "Ranged Power", bonus_type = "Artifact", value = 10 }
+reason = "The wiki gives Ranged Power +10 Artifact at 5 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Epic Saltmarsh Explorer"
+equipped_count = 5
+field = "add"
+from = "null"
+to = { stat = "Universal Spell Power", bonus_type = "Artifact", value = 10 }
+reason = "The wiki gives Universal Spell Power +10 Artifact at 5 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Epic Saltmarsh Explorer"
+equipped_count = 5
+field = "add"
+from = "null"
+to = { stat = "Strength", bonus_type = "Artifact", value = 2 }
+reason = "The wiki gives Strength +2 Artifact at 5 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Epic Saltmarsh Explorer"
+equipped_count = 5
+field = "add"
+from = "null"
+to = { stat = "Dexterity", bonus_type = "Artifact", value = 2 }
+reason = "The wiki gives Dexterity +2 Artifact at 5 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Epic Saltmarsh Explorer"
+equipped_count = 5
+field = "add"
+from = "null"
+to = { stat = "Constitution", bonus_type = "Artifact", value = 2 }
+reason = "The wiki gives Constitution +2 Artifact at 5 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Epic Saltmarsh Explorer"
+equipped_count = 5
+field = "add"
+from = "null"
+to = { stat = "Intelligence", bonus_type = "Artifact", value = 2 }
+reason = "The wiki gives Intelligence +2 Artifact at 5 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Epic Saltmarsh Explorer"
+equipped_count = 5
+field = "add"
+from = "null"
+to = { stat = "Wisdom", bonus_type = "Artifact", value = 2 }
+reason = "The wiki gives Wisdom +2 Artifact at 5 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Epic Saltmarsh Explorer"
+equipped_count = 5
+field = "add"
+from = "null"
+to = { stat = "Charisma", bonus_type = "Artifact", value = 2 }
+reason = "The wiki gives Charisma +2 Artifact at 5 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Epic Silver Concord's Subtlety"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Melee Power", bonus_type = "Artifact", value = 10 }
+reason = "The wiki gives Melee Power +10 Artifact at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Epic Silver Concord's Subtlety"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Ranged Power", bonus_type = "Artifact", value = 10 }
+reason = "The wiki gives Ranged Power +10 Artifact at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Epic Siren's Ward"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Shield Armor Class", bonus_type = "Artifact", value = 3 }
+reason = "The wiki gives Shield Armor Class +3 Artifact at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Epic Slice 'n Dice"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Seeker", bonus_type = "Quality", value = 2 }
+reason = "The wiki gives Seeker +2 Quality at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Epic Soul of the Red Dragon"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Melee Power", bonus_type = "Artifact", value = 10 }
+reason = "The wiki gives Melee Power +10 Artifact at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Epic Soul of the Red Dragon"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Ranged Power", bonus_type = "Artifact", value = 10 }
+reason = "The wiki gives Ranged Power +10 Artifact at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Epic The Devil's Handiwork"
+equipped_count = 5
+field = "add"
+from = "null"
+to = { stat = "Strength", bonus_type = "Quality", value = 3 }
+reason = "The wiki gives Strength +3 Quality at 5 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Epic The Devil's Handiwork"
+equipped_count = 5
+field = "add"
+from = "null"
+to = { stat = "Dexterity", bonus_type = "Quality", value = 3 }
+reason = "The wiki gives Dexterity +3 Quality at 5 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Epic The Devil's Handiwork"
+equipped_count = 5
+field = "add"
+from = "null"
+to = { stat = "Constitution", bonus_type = "Quality", value = 3 }
+reason = "The wiki gives Constitution +3 Quality at 5 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Epic The Devil's Handiwork"
+equipped_count = 5
+field = "add"
+from = "null"
+to = { stat = "Intelligence", bonus_type = "Quality", value = 3 }
+reason = "The wiki gives Intelligence +3 Quality at 5 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Epic The Devil's Handiwork"
+equipped_count = 5
+field = "add"
+from = "null"
+to = { stat = "Wisdom", bonus_type = "Quality", value = 3 }
+reason = "The wiki gives Wisdom +3 Quality at 5 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Epic The Devil's Handiwork"
+equipped_count = 5
+field = "add"
+from = "null"
+to = { stat = "Charisma", bonus_type = "Quality", value = 3 }
+reason = "The wiki gives Charisma +3 Quality at 5 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Epic Vulkoor's Cunning"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Melee Power", bonus_type = "Artifact", value = 10 }
+reason = "The wiki gives Melee Power +10 Artifact at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Epic Vulkoor's Cunning"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Ranged Power", bonus_type = "Artifact", value = 10 }
+reason = "The wiki gives Ranged Power +10 Artifact at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Epic Vulkoor's Might"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Melee Threat Generation", bonus_type = "Artifact", value = 20 }
+reason = "The wiki gives Melee Threat Generation +20 Artifact at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Epic Vulkoor's Might"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Attack Bonus", bonus_type = "Artifact", value = 3 }
+reason = "The wiki gives Attack Bonus +3 Artifact at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Epic Vulkoor's Might"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Damage Bonus", bonus_type = "Artifact", value = 3 }
+reason = "The wiki gives Damage Bonus +3 Artifact at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Epic Windlasher's Ferocity"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Doublestrike", bonus_type = "Artifact", value = 10 }
+reason = "The wiki gives Doublestrike +10 Artifact at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Epic Windlasher's Ferocity"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Doubleshot", bonus_type = "Artifact", value = 10 }
+reason = "The wiki gives Doubleshot +10 Artifact at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Epic Windlasher's Ferocity"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Melee Power", bonus_type = "Artifact", value = 10 }
+reason = "The wiki gives Melee Power +10 Artifact at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Epic Windlasher's Ferocity"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Ranged Power", bonus_type = "Artifact", value = 10 }
+reason = "The wiki gives Ranged Power +10 Artifact at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Fabricator's Ingenuity"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Attack Bonus", bonus_type = "Artifact", value = 2 }
+reason = "The wiki gives Attack Bonus +2 Artifact at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Fabricator's Ingenuity"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Damage Bonus", bonus_type = "Artifact", value = 2 }
+reason = "The wiki gives Damage Bonus +2 Artifact at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Forbidden Knowledge"
+equipped_count = 4
+field = "add"
+from = "null"
+to = { stat = "Strength", bonus_type = "Profane", value = 1 }
+reason = "The wiki gives Strength +1 Profane at 4 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Forbidden Knowledge"
+equipped_count = 4
+field = "add"
+from = "null"
+to = { stat = "Dexterity", bonus_type = "Profane", value = 1 }
+reason = "The wiki gives Dexterity +1 Profane at 4 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Forbidden Knowledge"
+equipped_count = 4
+field = "add"
+from = "null"
+to = { stat = "Constitution", bonus_type = "Profane", value = 1 }
+reason = "The wiki gives Constitution +1 Profane at 4 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Forbidden Knowledge"
+equipped_count = 4
+field = "add"
+from = "null"
+to = { stat = "Intelligence", bonus_type = "Profane", value = 1 }
+reason = "The wiki gives Intelligence +1 Profane at 4 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Forbidden Knowledge"
+equipped_count = 4
+field = "add"
+from = "null"
+to = { stat = "Wisdom", bonus_type = "Profane", value = 1 }
+reason = "The wiki gives Wisdom +1 Profane at 4 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Forbidden Knowledge"
+equipped_count = 4
+field = "add"
+from = "null"
+to = { stat = "Charisma", bonus_type = "Profane", value = 1 }
+reason = "The wiki gives Charisma +1 Profane at 4 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Forbidden Knowledge"
+equipped_count = 4
+field = "add"
+from = "null"
+to = { stat = "Attack Bonus", bonus_type = "Profane", value = 1 }
+reason = "The wiki gives Attack Bonus +1 Profane at 4 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Forbidden Knowledge"
+equipped_count = 4
+field = "add"
+from = "null"
+to = { stat = "Damage Bonus", bonus_type = "Profane", value = 1 }
+reason = "The wiki gives Damage Bonus +1 Profane at 4 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Forbidden Knowledge"
+equipped_count = 5
+field = "add"
+from = "null"
+to = { stat = "Melee Power", bonus_type = "Profane", value = 5 }
+reason = "The wiki gives Melee Power +5 Profane at 5 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Forbidden Knowledge"
+equipped_count = 5
+field = "add"
+from = "null"
+to = { stat = "Ranged Power", bonus_type = "Profane", value = 5 }
+reason = "The wiki gives Ranged Power +5 Profane at 5 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Fried & Frozen Frenzy"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Strength", bonus_type = "Artifact", value = 1 }
+reason = "The wiki gives Strength +1 Artifact at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Fried & Frozen Frenzy"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Dexterity", bonus_type = "Artifact", value = 1 }
+reason = "The wiki gives Dexterity +1 Artifact at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Fried & Frozen Frenzy"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Constitution", bonus_type = "Artifact", value = 1 }
+reason = "The wiki gives Constitution +1 Artifact at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Fried & Frozen Frenzy"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Intelligence", bonus_type = "Artifact", value = 1 }
+reason = "The wiki gives Intelligence +1 Artifact at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Fried & Frozen Frenzy"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Wisdom", bonus_type = "Artifact", value = 1 }
+reason = "The wiki gives Wisdom +1 Artifact at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Fried & Frozen Frenzy"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Charisma", bonus_type = "Artifact", value = 1 }
+reason = "The wiki gives Charisma +1 Artifact at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Fried & Frozen Frenzy"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Critical Multiplier (19-20)", bonus_type = "Artifact", value = 1 }
+reason = "The wiki gives Critical Multiplier (19-20) +1 Artifact at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Guardian of the Gates"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Melee Threat Generation", bonus_type = "Artifact", value = 75 }
+reason = "The wiki gives Melee Threat Generation +75 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Heart of Blades"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Healing Amplification", bonus_type = "Artifact", value = 10 }
+reason = "The wiki gives Healing Amplification +10 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Heart of Blades"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Repair Amplification", bonus_type = "Artifact", value = 10 }
+reason = "The wiki gives Repair Amplification +10 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Heart of Blades"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Melee Power", bonus_type = "Artifact", value = 10 }
+reason = "The wiki gives Melee Power +10 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Heart of Blades"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Ranged Power", bonus_type = "Artifact", value = 10 }
+reason = "The wiki gives Ranged Power +10 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Heavy Warfare (Legendary)"
+equipped_count = 2
+stat = "Doublestrike"
+bonus_type = "Artifact"
+field = "value"
+from = 10
+to = 15
+reason = "The wiki gives Doublestrike +15 Artifact at 2 pieces."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Knight of the Shadows Set (Heroic)"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Physical Resistance Rating", bonus_type = "Artifact", value = 5 }
+reason = "The wiki gives Physical Resistance Rating +5 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Knight of the Shadows Set (Heroic)"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Magical Resistance Rating", bonus_type = "Artifact", value = 5 }
+reason = "The wiki gives Magical Resistance Rating +5 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Knight of the Shadows Set (Heroic)"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Melee Threat Generation", bonus_type = "Artifact", value = 50 }
+reason = "The wiki gives Melee Threat Generation +50 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Knight of the Shadows Set (Legendary)"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Physical Resistance Rating", bonus_type = "Artifact", value = 30 }
+reason = "The wiki gives Physical Resistance Rating +30 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Knight of the Shadows Set (Legendary)"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Magical Resistance Rating", bonus_type = "Artifact", value = 30 }
+reason = "The wiki gives Magical Resistance Rating +30 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Knight of the Shadows Set (Legendary)"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Melee Threat Generation", bonus_type = "Artifact", value = 50 }
+reason = "The wiki gives Melee Threat Generation +50 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Knight's Loyalty"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Attack Bonus", bonus_type = "Artifact", value = 3 }
+reason = "The wiki gives Attack Bonus +3 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Knight's Loyalty"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Damage Bonus", bonus_type = "Artifact", value = 3 }
+reason = "The wiki gives Damage Bonus +3 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Kundarak Delving Equipment"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Doublestrike", bonus_type = "Artifact", value = 5 }
+reason = "The wiki gives Doublestrike +5 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Kundarak Delving Equipment"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Doubleshot", bonus_type = "Artifact", value = 5 }
+reason = "The wiki gives Doubleshot +5 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legacy of Tharne"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Doublestrike", bonus_type = "Artifact", value = 15 }
+reason = "The wiki gives Doublestrike +15 Artifact at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legacy of Tharne"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Doubleshot", bonus_type = "Artifact", value = 15 }
+reason = "The wiki gives Doubleshot +15 Artifact at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Cooking By the Book"
+equipped_count = 4
+field = "add"
+from = "null"
+to = { stat = "Melee Power", bonus_type = "Artifact", value = 15 }
+reason = "The wiki gives Melee Power +15 Artifact at 4 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Cooking By the Book"
+equipped_count = 4
+field = "add"
+from = "null"
+to = { stat = "Ranged Power", bonus_type = "Artifact", value = 15 }
+reason = "The wiki gives Ranged Power +15 Artifact at 4 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Delight of the Devourer"
+equipped_count = 3
+stat = "Universal Spell Critical Damage"
+bonus_type = "Artifact"
+field = "bonus_type"
+from = "Artifact"
+to = "Legendary"
+reason = "The wiki types Universal Spell Critical Damage as Legendary at 3 pieces."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Devil's Infernal Dance"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Strength", bonus_type = "Artifact", value = 3 }
+reason = "The wiki gives Strength +3 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Devil's Infernal Dance"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Dexterity", bonus_type = "Artifact", value = 3 }
+reason = "The wiki gives Dexterity +3 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Devil's Infernal Dance"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Constitution", bonus_type = "Artifact", value = 3 }
+reason = "The wiki gives Constitution +3 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Devil's Infernal Dance"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Intelligence", bonus_type = "Artifact", value = 3 }
+reason = "The wiki gives Intelligence +3 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Devil's Infernal Dance"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Wisdom", bonus_type = "Artifact", value = 3 }
+reason = "The wiki gives Wisdom +3 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Devil's Infernal Dance"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Charisma", bonus_type = "Artifact", value = 3 }
+reason = "The wiki gives Charisma +3 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Devil's Infernal Dance"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Doublestrike", bonus_type = "Artifact", value = 15 }
+reason = "The wiki gives Doublestrike +15 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Devil's Infernal Dance"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Doubleshot", bonus_type = "Artifact", value = 15 }
+reason = "The wiki gives Doubleshot +15 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Devil's Infernal Dance"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Melee Power", bonus_type = "Artifact", value = 15 }
+reason = "The wiki gives Melee Power +15 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Devil's Infernal Dance"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Ranged Power", bonus_type = "Artifact", value = 15 }
+reason = "The wiki gives Ranged Power +15 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Forbidden Knowledge"
+equipped_count = 4
+field = "add"
+from = "null"
+to = { stat = "Strength", bonus_type = "Profane", value = 3 }
+reason = "The wiki gives Strength +3 Profane at 4 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Forbidden Knowledge"
+equipped_count = 4
+field = "add"
+from = "null"
+to = { stat = "Dexterity", bonus_type = "Profane", value = 3 }
+reason = "The wiki gives Dexterity +3 Profane at 4 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Forbidden Knowledge"
+equipped_count = 4
+field = "add"
+from = "null"
+to = { stat = "Constitution", bonus_type = "Profane", value = 3 }
+reason = "The wiki gives Constitution +3 Profane at 4 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Forbidden Knowledge"
+equipped_count = 4
+field = "add"
+from = "null"
+to = { stat = "Intelligence", bonus_type = "Profane", value = 3 }
+reason = "The wiki gives Intelligence +3 Profane at 4 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Forbidden Knowledge"
+equipped_count = 4
+field = "add"
+from = "null"
+to = { stat = "Wisdom", bonus_type = "Profane", value = 3 }
+reason = "The wiki gives Wisdom +3 Profane at 4 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Forbidden Knowledge"
+equipped_count = 4
+field = "add"
+from = "null"
+to = { stat = "Charisma", bonus_type = "Profane", value = 3 }
+reason = "The wiki gives Charisma +3 Profane at 4 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Forbidden Knowledge"
+equipped_count = 4
+field = "add"
+from = "null"
+to = { stat = "Attack Bonus", bonus_type = "Profane", value = 4 }
+reason = "The wiki gives Attack Bonus +4 Profane at 4 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Forbidden Knowledge"
+equipped_count = 4
+field = "add"
+from = "null"
+to = { stat = "Damage Bonus", bonus_type = "Profane", value = 4 }
+reason = "The wiki gives Damage Bonus +4 Profane at 4 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Forbidden Knowledge"
+equipped_count = 5
+field = "add"
+from = "null"
+to = { stat = "Melee Power", bonus_type = "Profane", value = 15 }
+reason = "The wiki gives Melee Power +15 Profane at 5 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Forbidden Knowledge"
+equipped_count = 5
+field = "add"
+from = "null"
+to = { stat = "Ranged Power", bonus_type = "Profane", value = 15 }
+reason = "The wiki gives Ranged Power +15 Profane at 5 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Fried & Frozen Frenzy"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Strength", bonus_type = "Artifact", value = 3 }
+reason = "The wiki gives Strength +3 Artifact at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Fried & Frozen Frenzy"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Dexterity", bonus_type = "Artifact", value = 3 }
+reason = "The wiki gives Dexterity +3 Artifact at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Fried & Frozen Frenzy"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Constitution", bonus_type = "Artifact", value = 3 }
+reason = "The wiki gives Constitution +3 Artifact at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Fried & Frozen Frenzy"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Intelligence", bonus_type = "Artifact", value = 3 }
+reason = "The wiki gives Intelligence +3 Artifact at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Fried & Frozen Frenzy"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Wisdom", bonus_type = "Artifact", value = 3 }
+reason = "The wiki gives Wisdom +3 Artifact at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Fried & Frozen Frenzy"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Charisma", bonus_type = "Artifact", value = 3 }
+reason = "The wiki gives Charisma +3 Artifact at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Guardian of the Gates"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Melee Threat Generation", bonus_type = "Artifact", value = 75 }
+reason = "The wiki gives Melee Threat Generation +75 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Heart of Blades"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Healing Amplification", bonus_type = "Artifact", value = 30 }
+reason = "The wiki gives Healing Amplification +30 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Heart of Blades"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Repair Amplification", bonus_type = "Artifact", value = 30 }
+reason = "The wiki gives Repair Amplification +30 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Heart of Blades"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Melee Power", bonus_type = "Artifact", value = 15 }
+reason = "The wiki gives Melee Power +15 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Heart of Blades"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Ranged Power", bonus_type = "Artifact", value = 15 }
+reason = "The wiki gives Ranged Power +15 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Kundarak Delving Equipment"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Doublestrike", bonus_type = "Artifact", value = 15 }
+reason = "The wiki gives Doublestrike +15 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Kundarak Delving Equipment"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Doubleshot", bonus_type = "Artifact", value = 15 }
+reason = "The wiki gives Doubleshot +15 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Menechtarun Scavenger"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Physical Resistance Rating", bonus_type = "Artifact", value = 15 }
+reason = "The wiki gives Physical Resistance Rating +15 Artifact at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Menechtarun Scavenger"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Magical Resistance Rating", bonus_type = "Artifact", value = 15 }
+reason = "The wiki gives Magical Resistance Rating +15 Artifact at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Menechtarun Scavenger"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Healing Amplification", bonus_type = "Artifact", value = 30 }
+reason = "The wiki gives Healing Amplification +30 Artifact at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Menechtarun Scavenger"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Negative Healing Amplification", bonus_type = "Artifact", value = 30 }
+reason = "The wiki gives Negative Healing Amplification +30 Artifact at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Menechtarun Scavenger"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Repair Amplification", bonus_type = "Artifact", value = 30 }
+reason = "The wiki gives Repair Amplification +30 Artifact at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Might of the Abishai"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Physical and Magical Resistance Rating", bonus_type = "Profane", value = 20 }
+reason = "The wiki gives Physical and Magical Resistance Rating +20 Profane at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Might of the Abishai"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Strength", bonus_type = "Profane", value = 2 }
+reason = "The wiki gives Strength +2 Profane at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Might of the Abishai"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Dexterity", bonus_type = "Profane", value = 2 }
+reason = "The wiki gives Dexterity +2 Profane at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Might of the Abishai"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Constitution", bonus_type = "Profane", value = 2 }
+reason = "The wiki gives Constitution +2 Profane at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Might of the Abishai"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Intelligence", bonus_type = "Profane", value = 2 }
+reason = "The wiki gives Intelligence +2 Profane at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Might of the Abishai"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Wisdom", bonus_type = "Profane", value = 2 }
+reason = "The wiki gives Wisdom +2 Profane at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Might of the Abishai"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Charisma", bonus_type = "Profane", value = 2 }
+reason = "The wiki gives Charisma +2 Profane at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Might of the Abishai"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Healing Amplification", bonus_type = "Profane", value = 10 }
+reason = "The wiki gives Healing Amplification +10 Profane at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Might of the Abishai"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Negative Healing Amplification", bonus_type = "Profane", value = 10 }
+reason = "The wiki gives Negative Healing Amplification +10 Profane at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Might of the Abishai"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Repair Amplification", bonus_type = "Profane", value = 10 }
+reason = "The wiki gives Repair Amplification +10 Profane at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Might of the Abishai"
+equipped_count = 5
+field = "add"
+from = "null"
+to = { stat = "Physical and Magical Resistance Rating", bonus_type = "Profane", value = 30 }
+reason = "The wiki gives Physical and Magical Resistance Rating +30 Profane at 5 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Might of the Abishai"
+equipped_count = 5
+field = "add"
+from = "null"
+to = { stat = "Healing Amplification", bonus_type = "Profane", value = 30 }
+reason = "The wiki gives Healing Amplification +30 Profane at 5 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Might of the Abishai"
+equipped_count = 5
+field = "add"
+from = "null"
+to = { stat = "Negative Healing Amplification", bonus_type = "Profane", value = 30 }
+reason = "The wiki gives Negative Healing Amplification +30 Profane at 5 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Might of the Abishai"
+equipped_count = 5
+field = "add"
+from = "null"
+to = { stat = "Repair Amplification", bonus_type = "Profane", value = 30 }
+reason = "The wiki gives Repair Amplification +30 Profane at 5 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Might of the Abishai"
+equipped_count = 5
+field = "add"
+from = "null"
+to = { stat = "Strength", bonus_type = "Profane", value = 3 }
+reason = "The wiki gives Strength +3 Profane at 5 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Might of the Abishai"
+equipped_count = 5
+field = "add"
+from = "null"
+to = { stat = "Dexterity", bonus_type = "Profane", value = 3 }
+reason = "The wiki gives Dexterity +3 Profane at 5 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Might of the Abishai"
+equipped_count = 5
+field = "add"
+from = "null"
+to = { stat = "Constitution", bonus_type = "Profane", value = 3 }
+reason = "The wiki gives Constitution +3 Profane at 5 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Might of the Abishai"
+equipped_count = 5
+field = "add"
+from = "null"
+to = { stat = "Intelligence", bonus_type = "Profane", value = 3 }
+reason = "The wiki gives Intelligence +3 Profane at 5 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Might of the Abishai"
+equipped_count = 5
+field = "add"
+from = "null"
+to = { stat = "Wisdom", bonus_type = "Profane", value = 3 }
+reason = "The wiki gives Wisdom +3 Profane at 5 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Might of the Abishai"
+equipped_count = 5
+field = "add"
+from = "null"
+to = { stat = "Charisma", bonus_type = "Profane", value = 3 }
+reason = "The wiki gives Charisma +3 Profane at 5 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Minion of the Mockery"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Melee Power", bonus_type = "Artifact", value = 15 }
+reason = "The wiki gives Melee Power +15 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Minion of the Mockery"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Ranged Power", bonus_type = "Artifact", value = 15 }
+reason = "The wiki gives Ranged Power +15 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Mroranon's Might"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Melee Power", bonus_type = "Artifact", value = 15 }
+reason = "The wiki gives Melee Power +15 Artifact at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Mroranon's Might"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Ranged Power", bonus_type = "Artifact", value = 15 }
+reason = "The wiki gives Ranged Power +15 Artifact at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Oasis of Morality"
+equipped_count = 2
+stat = "Fortification Bypass"
+bonus_type = "Artifact"
+field = "value"
+from = 10
+to = 15
+reason = "The wiki gives Fortification Bypass +15 Artifact at 2 pieces."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Perfected Wrath"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Strength", bonus_type = "Artifact", value = 3 }
+reason = "The wiki gives Strength +3 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Perfected Wrath"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Dexterity", bonus_type = "Artifact", value = 3 }
+reason = "The wiki gives Dexterity +3 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Perfected Wrath"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Constitution", bonus_type = "Artifact", value = 3 }
+reason = "The wiki gives Constitution +3 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Perfected Wrath"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Intelligence", bonus_type = "Artifact", value = 3 }
+reason = "The wiki gives Intelligence +3 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Perfected Wrath"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Wisdom", bonus_type = "Artifact", value = 3 }
+reason = "The wiki gives Wisdom +3 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Perfected Wrath"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Charisma", bonus_type = "Artifact", value = 3 }
+reason = "The wiki gives Charisma +3 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Profane Experiment"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Doublestrike", bonus_type = "Artifact", value = 15 }
+reason = "The wiki gives Doublestrike +15 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Profane Experiment"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Doubleshot", bonus_type = "Artifact", value = 15 }
+reason = "The wiki gives Doubleshot +15 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Raven's Eye"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Attack Bonus", bonus_type = "Artifact", value = 3 }
+reason = "The wiki gives Attack Bonus +3 Artifact at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Raven's Eye"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Damage Bonus", bonus_type = "Artifact", value = 3 }
+reason = "The wiki gives Damage Bonus +3 Artifact at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Raven's Eye"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Sneak Attack", bonus_type = "Artifact", value = 3 }
+reason = "The wiki gives Sneak Attack +3 Artifact at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Remodeling Renegade"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Doublestrike", bonus_type = "Artifact", value = 15 }
+reason = "The wiki gives Doublestrike +15 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Remodeling Renegade"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Doubleshot", bonus_type = "Artifact", value = 15 }
+reason = "The wiki gives Doubleshot +15 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Remodeling Renegade"
+equipped_count = 4
+field = "add"
+from = "null"
+to = { stat = "Melee Power", bonus_type = "Artifact", value = 15 }
+reason = "The wiki gives Melee Power +15 Artifact at 4 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Remodeling Renegade"
+equipped_count = 4
+field = "add"
+from = "null"
+to = { stat = "Ranged Power", bonus_type = "Artifact", value = 15 }
+reason = "The wiki gives Ranged Power +15 Artifact at 4 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Saltmarsh Explorer"
+equipped_count = 5
+field = "add"
+from = "null"
+to = { stat = "Physical Resistance Rating", bonus_type = "Artifact", value = 30 }
+reason = "The wiki gives Physical Resistance Rating +30 Artifact at 5 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Saltmarsh Explorer"
+equipped_count = 5
+field = "add"
+from = "null"
+to = { stat = "Magical Resistance Rating", bonus_type = "Artifact", value = 30 }
+reason = "The wiki gives Magical Resistance Rating +30 Artifact at 5 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Saltmarsh Explorer"
+equipped_count = 5
+field = "add"
+from = "null"
+to = { stat = "Healing Amplification", bonus_type = "Artifact", value = 30 }
+reason = "The wiki gives Healing Amplification +30 Artifact at 5 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Saltmarsh Explorer"
+equipped_count = 5
+field = "add"
+from = "null"
+to = { stat = "Negative Healing Amplification", bonus_type = "Artifact", value = 30 }
+reason = "The wiki gives Negative Healing Amplification +30 Artifact at 5 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Saltmarsh Explorer"
+equipped_count = 5
+field = "add"
+from = "null"
+to = { stat = "Repair Amplification", bonus_type = "Artifact", value = 30 }
+reason = "The wiki gives Repair Amplification +30 Artifact at 5 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Saltmarsh Explorer"
+equipped_count = 5
+field = "add"
+from = "null"
+to = { stat = "Melee Power", bonus_type = "Artifact", value = 15 }
+reason = "The wiki gives Melee Power +15 Artifact at 5 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Saltmarsh Explorer"
+equipped_count = 5
+field = "add"
+from = "null"
+to = { stat = "Ranged Power", bonus_type = "Artifact", value = 15 }
+reason = "The wiki gives Ranged Power +15 Artifact at 5 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Saltmarsh Explorer"
+equipped_count = 5
+field = "add"
+from = "null"
+to = { stat = "Universal Spell Power", bonus_type = "Artifact", value = 15 }
+reason = "The wiki gives Universal Spell Power +15 Artifact at 5 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Saltmarsh Explorer"
+equipped_count = 5
+field = "add"
+from = "null"
+to = { stat = "Strength", bonus_type = "Artifact", value = 3 }
+reason = "The wiki gives Strength +3 Artifact at 5 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Saltmarsh Explorer"
+equipped_count = 5
+field = "add"
+from = "null"
+to = { stat = "Dexterity", bonus_type = "Artifact", value = 3 }
+reason = "The wiki gives Dexterity +3 Artifact at 5 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Saltmarsh Explorer"
+equipped_count = 5
+field = "add"
+from = "null"
+to = { stat = "Constitution", bonus_type = "Artifact", value = 3 }
+reason = "The wiki gives Constitution +3 Artifact at 5 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Saltmarsh Explorer"
+equipped_count = 5
+field = "add"
+from = "null"
+to = { stat = "Intelligence", bonus_type = "Artifact", value = 3 }
+reason = "The wiki gives Intelligence +3 Artifact at 5 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Saltmarsh Explorer"
+equipped_count = 5
+field = "add"
+from = "null"
+to = { stat = "Wisdom", bonus_type = "Artifact", value = 3 }
+reason = "The wiki gives Wisdom +3 Artifact at 5 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Saltmarsh Explorer"
+equipped_count = 5
+field = "add"
+from = "null"
+to = { stat = "Charisma", bonus_type = "Artifact", value = 3 }
+reason = "The wiki gives Charisma +3 Artifact at 5 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Silver Concord's Subtlety"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Melee Power", bonus_type = "Artifact", value = 15 }
+reason = "The wiki gives Melee Power +15 Artifact at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Silver Concord's Subtlety"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Ranged Power", bonus_type = "Artifact", value = 15 }
+reason = "The wiki gives Ranged Power +15 Artifact at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Siren's Ward"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Shield Armor Class", bonus_type = "Artifact", value = 3 }
+reason = "The wiki gives Shield Armor Class +3 Artifact at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Slavelords Endurance"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Physical Resistance Rating", bonus_type = "Artifact", value = 2 }
+reason = "The wiki gives Physical Resistance Rating +2 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Slavelords Endurance"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Magical Resistance Rating", bonus_type = "Artifact", value = 2 }
+reason = "The wiki gives Magical Resistance Rating +2 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Slavelords Endurance"
+equipped_count = 5
+field = "add"
+from = "null"
+to = { stat = "Physical Resistance Rating", bonus_type = "Artifact", value = 4 }
+reason = "The wiki gives Physical Resistance Rating +4 Artifact at 5 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Slavelords Endurance"
+equipped_count = 5
+field = "add"
+from = "null"
+to = { stat = "Magical Resistance Rating", bonus_type = "Artifact", value = 4 }
+reason = "The wiki gives Magical Resistance Rating +4 Artifact at 5 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Slavelords Might"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Melee Power", bonus_type = "Artifact", value = 2 }
+reason = "The wiki gives Melee Power +2 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Slavelords Might"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Ranged Power", bonus_type = "Artifact", value = 2 }
+reason = "The wiki gives Ranged Power +2 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Slavelords Might"
+equipped_count = 5
+field = "add"
+from = "null"
+to = { stat = "Melee Power", bonus_type = "Artifact", value = 4 }
+reason = "The wiki gives Melee Power +4 Artifact at 5 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Slavelords Might"
+equipped_count = 5
+field = "add"
+from = "null"
+to = { stat = "Ranged Power", bonus_type = "Artifact", value = 4 }
+reason = "The wiki gives Ranged Power +4 Artifact at 5 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Slavelords Sorcery"
+equipped_count = 3
+stat = "Universal Spell Power"
+bonus_type = "Artifact"
+field = "value"
+from = 5
+to = 4
+reason = "The wiki gives Universal Spell Power +4 Artifact at 3 pieces."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Soul of the Red Dragon"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Melee Power", bonus_type = "Artifact", value = 15 }
+reason = "The wiki gives Melee Power +15 Artifact at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Soul of the Red Dragon"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Ranged Power", bonus_type = "Artifact", value = 15 }
+reason = "The wiki gives Ranged Power +15 Artifact at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Temple's Inferno"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Melee Power", bonus_type = "Artifact", value = 15 }
+reason = "The wiki gives Melee Power +15 Artifact at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Temple's Inferno"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Ranged Power", bonus_type = "Artifact", value = 15 }
+reason = "The wiki gives Ranged Power +15 Artifact at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Temple's Monolith"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Melee Power", bonus_type = "Artifact", value = 15 }
+reason = "The wiki gives Melee Power +15 Artifact at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Temple's Monolith"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Ranged Power", bonus_type = "Artifact", value = 15 }
+reason = "The wiki gives Ranged Power +15 Artifact at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Temple's Tempest"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Melee Power", bonus_type = "Artifact", value = 15 }
+reason = "The wiki gives Melee Power +15 Artifact at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Temple's Tempest"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Ranged Power", bonus_type = "Artifact", value = 15 }
+reason = "The wiki gives Ranged Power +15 Artifact at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Temple's Tide"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Melee Power", bonus_type = "Artifact", value = 15 }
+reason = "The wiki gives Melee Power +15 Artifact at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Temple's Tide"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Ranged Power", bonus_type = "Artifact", value = 15 }
+reason = "The wiki gives Ranged Power +15 Artifact at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Temple's Tide"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Threat Reduction", bonus_type = "Artifact", value = -20 }
+reason = "The wiki gives Threat Reduction -20 Artifact at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary The Fury's Rage"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Melee Power", bonus_type = "Artifact", value = 15 }
+reason = "The wiki gives Melee Power +15 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary The Fury's Rage"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Ranged Power", bonus_type = "Artifact", value = 15 }
+reason = "The wiki gives Ranged Power +15 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary The Keeper's Coffin"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Healing Amplification", bonus_type = "Artifact", value = 30 }
+reason = "The wiki gives Healing Amplification +30 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary The Keeper's Coffin"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Negative Healing Amplification", bonus_type = "Artifact", value = 30 }
+reason = "The wiki gives Negative Healing Amplification +30 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary The Keeper's Coffin"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Strength", bonus_type = "Artifact", value = 3 }
+reason = "The wiki gives Strength +3 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary The Keeper's Coffin"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Dexterity", bonus_type = "Artifact", value = 3 }
+reason = "The wiki gives Dexterity +3 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary The Keeper's Coffin"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Constitution", bonus_type = "Artifact", value = 3 }
+reason = "The wiki gives Constitution +3 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary The Keeper's Coffin"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Intelligence", bonus_type = "Artifact", value = 3 }
+reason = "The wiki gives Intelligence +3 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary The Keeper's Coffin"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Wisdom", bonus_type = "Artifact", value = 3 }
+reason = "The wiki gives Wisdom +3 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary The Keeper's Coffin"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Charisma", bonus_type = "Artifact", value = 3 }
+reason = "The wiki gives Charisma +3 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary The Shadow's Emptiness"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Doublestrike", bonus_type = "Artifact", value = 15 }
+reason = "The wiki gives Doublestrike +15 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary The Shadow's Emptiness"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Doubleshot", bonus_type = "Artifact", value = 15 }
+reason = "The wiki gives Doubleshot +15 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary The Traveler's Guidance"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Melee Power", bonus_type = "Artifact", value = 15 }
+reason = "The wiki gives Melee Power +15 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary The Traveler's Guidance"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Ranged Power", bonus_type = "Artifact", value = 15 }
+reason = "The wiki gives Ranged Power +15 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Vol's Influence"
+equipped_count = 3
+stat = "Universal Spell Critical Damage"
+bonus_type = "Artifact"
+field = "bonus_type"
+from = "Artifact"
+to = "Legendary"
+reason = "The wiki types Universal Spell Critical Damage as Legendary at 3 pieces."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Vulkoor's Cunning"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Melee Power", bonus_type = "Artifact", value = 15 }
+reason = "The wiki gives Melee Power +15 Artifact at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Vulkoor's Cunning"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Ranged Power", bonus_type = "Artifact", value = 15 }
+reason = "The wiki gives Ranged Power +15 Artifact at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Vulkoor's Might"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Melee Threat Generation", bonus_type = "Artifact", value = 20 }
+reason = "The wiki gives Melee Threat Generation +20 Artifact at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Vulkoor's Might"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Attack Bonus", bonus_type = "Artifact", value = 3 }
+reason = "The wiki gives Attack Bonus +3 Artifact at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Vulkoor's Might"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Damage Bonus", bonus_type = "Artifact", value = 3 }
+reason = "The wiki gives Damage Bonus +3 Artifact at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Windlasher's Ferocity"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Doublestrike", bonus_type = "Artifact", value = 15 }
+reason = "The wiki gives Doublestrike +15 Artifact at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Windlasher's Ferocity"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Doubleshot", bonus_type = "Artifact", value = 15 }
+reason = "The wiki gives Doubleshot +15 Artifact at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Windlasher's Ferocity"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Melee Power", bonus_type = "Artifact", value = 15 }
+reason = "The wiki gives Melee Power +15 Artifact at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Windlasher's Ferocity"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Ranged Power", bonus_type = "Artifact", value = 15 }
+reason = "The wiki gives Ranged Power +15 Artifact at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Wrath of Sora Kell"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Attack Bonus", bonus_type = "Artifact", value = 3 }
+reason = "The wiki gives Attack Bonus +3 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Legendary Wrath of Sora Kell"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Damage Bonus", bonus_type = "Artifact", value = 3 }
+reason = "The wiki gives Damage Bonus +3 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Mantle of Suulomades"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Doublestrike", bonus_type = "Artifact", value = 15 }
+reason = "The wiki gives Doublestrike +15 Artifact at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Mantle of Suulomades"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Doubleshot", bonus_type = "Artifact", value = 15 }
+reason = "The wiki gives Doubleshot +15 Artifact at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Mantle of Suulomades"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Physical Resistance Rating", bonus_type = "Artifact", value = 30 }
+reason = "The wiki gives Physical Resistance Rating +30 Artifact at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Mantle of Suulomades"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Magical Resistance Rating", bonus_type = "Artifact", value = 30 }
+reason = "The wiki gives Magical Resistance Rating +30 Artifact at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Menechtarun Scavenger"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Physical Resistance Rating", bonus_type = "Artifact", value = 5 }
+reason = "The wiki gives Physical Resistance Rating +5 Artifact at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Menechtarun Scavenger"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Magical Resistance Rating", bonus_type = "Artifact", value = 5 }
+reason = "The wiki gives Magical Resistance Rating +5 Artifact at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Menechtarun Scavenger"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Healing Amplification", bonus_type = "Artifact", value = 10 }
+reason = "The wiki gives Healing Amplification +10 Artifact at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Menechtarun Scavenger"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Negative Healing Amplification", bonus_type = "Artifact", value = 10 }
+reason = "The wiki gives Negative Healing Amplification +10 Artifact at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Menechtarun Scavenger"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Repair Amplification", bonus_type = "Artifact", value = 10 }
+reason = "The wiki gives Repair Amplification +10 Artifact at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Might of the Abishai"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Strength", bonus_type = "Profane", value = 1 }
+reason = "The wiki gives Strength +1 Profane at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Might of the Abishai"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Dexterity", bonus_type = "Profane", value = 1 }
+reason = "The wiki gives Dexterity +1 Profane at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Might of the Abishai"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Constitution", bonus_type = "Profane", value = 1 }
+reason = "The wiki gives Constitution +1 Profane at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Might of the Abishai"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Intelligence", bonus_type = "Profane", value = 1 }
+reason = "The wiki gives Intelligence +1 Profane at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Might of the Abishai"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Wisdom", bonus_type = "Profane", value = 1 }
+reason = "The wiki gives Wisdom +1 Profane at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Might of the Abishai"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Charisma", bonus_type = "Profane", value = 1 }
+reason = "The wiki gives Charisma +1 Profane at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Might of the Abishai"
+equipped_count = 5
+field = "add"
+from = "null"
+to = { stat = "Strength", bonus_type = "Profane", value = 2 }
+reason = "The wiki gives Strength +2 Profane at 5 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Might of the Abishai"
+equipped_count = 5
+field = "add"
+from = "null"
+to = { stat = "Dexterity", bonus_type = "Profane", value = 2 }
+reason = "The wiki gives Dexterity +2 Profane at 5 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Might of the Abishai"
+equipped_count = 5
+field = "add"
+from = "null"
+to = { stat = "Constitution", bonus_type = "Profane", value = 2 }
+reason = "The wiki gives Constitution +2 Profane at 5 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Might of the Abishai"
+equipped_count = 5
+field = "add"
+from = "null"
+to = { stat = "Intelligence", bonus_type = "Profane", value = 2 }
+reason = "The wiki gives Intelligence +2 Profane at 5 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Might of the Abishai"
+equipped_count = 5
+field = "add"
+from = "null"
+to = { stat = "Wisdom", bonus_type = "Profane", value = 2 }
+reason = "The wiki gives Wisdom +2 Profane at 5 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Might of the Abishai"
+equipped_count = 5
+field = "add"
+from = "null"
+to = { stat = "Charisma", bonus_type = "Profane", value = 2 }
+reason = "The wiki gives Charisma +2 Profane at 5 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Mind and Matter"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Physical Resistance Rating", bonus_type = "Artifact", value = 30 }
+reason = "The wiki gives Physical Resistance Rating +30 Artifact at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Mind and Matter"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Magical Resistance Rating", bonus_type = "Artifact", value = 30 }
+reason = "The wiki gives Magical Resistance Rating +30 Artifact at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Minion of the Mockery"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Melee Power", bonus_type = "Artifact", value = 5 }
+reason = "The wiki gives Melee Power +5 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Minion of the Mockery"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Ranged Power", bonus_type = "Artifact", value = 5 }
+reason = "The wiki gives Ranged Power +5 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Mountainskin"
+equipped_count = 2
+stat = "Acid Spell Power"
+bonus_type = "Exceptional"
+field = "bonus_type"
+from = "Exceptional"
+to = "Artifact"
+reason = "The wiki types Acid Spell Power as Artifact at 2 pieces."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Mountainskin"
+equipped_count = 2
+stat = "Acid Spell Lore"
+bonus_type = "Exceptional"
+field = "bonus_type"
+from = "Exceptional"
+to = "Artifact"
+reason = "The wiki types Acid Spell Lore as Artifact at 2 pieces."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Mountainskin"
+equipped_count = 2
+stat = "Acid Spell Lore"
+bonus_type = "Artifact"
+field = "value"
+from = 15
+to = 6
+reason = "The wiki gives Acid Spell Lore +6 Artifact at 2 pieces."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Mroranon's Might"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Melee Power", bonus_type = "Artifact", value = 5 }
+reason = "The wiki gives Melee Power +5 Artifact at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Mroranon's Might"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Ranged Power", bonus_type = "Artifact", value = 5 }
+reason = "The wiki gives Ranged Power +5 Artifact at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Part of the Family"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Doublestrike", bonus_type = "Artifact", value = 10 }
+reason = "The wiki gives Doublestrike +10 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Part of the Family"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Melee Power", bonus_type = "Artifact", value = 10 }
+reason = "The wiki gives Melee Power +10 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Part of the Family"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Helpless Damage", bonus_type = "Artifact", value = 5 }
+reason = "The wiki gives Helpless Damage +5 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Part of the Family"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Fortification Bypass", bonus_type = "Artifact", value = 5 }
+reason = "The wiki gives Fortification Bypass +5 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Planar Focus: Prowess"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Attack Bonus", bonus_type = "Artifact", value = 4 }
+reason = "The wiki gives Attack Bonus +4 Artifact at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Planar Focus: Prowess"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Damage Bonus", bonus_type = "Artifact", value = 4 }
+reason = "The wiki gives Damage Bonus +4 Artifact at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Planar Focus: Subterfuge"
+equipped_count = 2
+stat = "Sneak Attack Damage"
+bonus_type = "Exceptional"
+field = "bonus_type"
+from = "Exceptional"
+to = "Insight"
+reason = "The wiki types Sneak Attack Damage as Insight at 2 pieces."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Planar Focus: Subterfuge"
+equipped_count = 2
+stat = "Sneak Attack Damage"
+bonus_type = "Insight"
+field = "value"
+from = 5
+to = 8
+reason = "The wiki gives Sneak Attack Damage +8 Insight at 2 pieces."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Planar Focus: Subterfuge"
+equipped_count = 2
+stat = "Dodge"
+bonus_type = "Exceptional"
+field = "bonus_type"
+from = "Exceptional"
+to = "Enhancement"
+reason = "The wiki types Dodge as Enhancement at 2 pieces."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Planar Focus: Subterfuge"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Sneak Attack Hit", bonus_type = "Insight", value = 5 }
+reason = "The wiki gives Sneak Attack Hit +5 Insight at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Profane Experiment"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Doublestrike", bonus_type = "Artifact", value = 10 }
+reason = "The wiki gives Doublestrike +10 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Profane Experiment"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Doubleshot", bonus_type = "Artifact", value = 10 }
+reason = "The wiki gives Doubleshot +10 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Protector's Heart"
+equipped_count = 2
+stat = "Fortification"
+bonus_type = "Stacking"
+field = "bonus_type"
+from = "Stacking"
+to = "Enhancement"
+reason = "The wiki types Fortification as Enhancement at 2 pieces."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Quickblade"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Doublestrike", bonus_type = "Artifact", value = 15 }
+reason = "The wiki gives Doublestrike +15 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Quickblade"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Doubleshot", bonus_type = "Artifact", value = 15 }
+reason = "The wiki gives Doubleshot +15 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Raven's Eye"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Attack Bonus", bonus_type = "Artifact", value = 3 }
+reason = "The wiki gives Attack Bonus +3 Artifact at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Raven's Eye"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Damage Bonus", bonus_type = "Artifact", value = 3 }
+reason = "The wiki gives Damage Bonus +3 Artifact at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Remodeling Renegade"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Doublestrike", bonus_type = "Artifact", value = 5 }
+reason = "The wiki gives Doublestrike +5 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Remodeling Renegade"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Doubleshot", bonus_type = "Artifact", value = 5 }
+reason = "The wiki gives Doubleshot +5 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Remodeling Renegade"
+equipped_count = 4
+field = "add"
+from = "null"
+to = { stat = "Melee Power", bonus_type = "Artifact", value = 5 }
+reason = "The wiki gives Melee Power +5 Artifact at 4 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Remodeling Renegade"
+equipped_count = 4
+field = "add"
+from = "null"
+to = { stat = "Ranged Power", bonus_type = "Artifact", value = 5 }
+reason = "The wiki gives Ranged Power +5 Artifact at 4 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Renegade Champion"
+equipped_count = 3
+stat = "Rune Arm DC"
+bonus_type = "Artifact"
+field = "value"
+from = 3
+to = 2
+reason = "The wiki gives Rune Arm DC +2 Artifact at 3 pieces."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Saltmarsh Explorer"
+equipped_count = 5
+field = "add"
+from = "null"
+to = { stat = "Physical Resistance Rating", bonus_type = "Artifact", value = 5 }
+reason = "The wiki gives Physical Resistance Rating +5 Artifact at 5 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Saltmarsh Explorer"
+equipped_count = 5
+field = "add"
+from = "null"
+to = { stat = "Magical Resistance Rating", bonus_type = "Artifact", value = 5 }
+reason = "The wiki gives Magical Resistance Rating +5 Artifact at 5 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Saltmarsh Explorer"
+equipped_count = 5
+field = "add"
+from = "null"
+to = { stat = "Strength", bonus_type = "Artifact", value = 1 }
+reason = "The wiki gives Strength +1 Artifact at 5 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Saltmarsh Explorer"
+equipped_count = 5
+field = "add"
+from = "null"
+to = { stat = "Dexterity", bonus_type = "Artifact", value = 1 }
+reason = "The wiki gives Dexterity +1 Artifact at 5 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Saltmarsh Explorer"
+equipped_count = 5
+field = "add"
+from = "null"
+to = { stat = "Constitution", bonus_type = "Artifact", value = 1 }
+reason = "The wiki gives Constitution +1 Artifact at 5 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Saltmarsh Explorer"
+equipped_count = 5
+field = "add"
+from = "null"
+to = { stat = "Intelligence", bonus_type = "Artifact", value = 1 }
+reason = "The wiki gives Intelligence +1 Artifact at 5 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Saltmarsh Explorer"
+equipped_count = 5
+field = "add"
+from = "null"
+to = { stat = "Wisdom", bonus_type = "Artifact", value = 1 }
+reason = "The wiki gives Wisdom +1 Artifact at 5 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Saltmarsh Explorer"
+equipped_count = 5
+field = "add"
+from = "null"
+to = { stat = "Charisma", bonus_type = "Artifact", value = 1 }
+reason = "The wiki gives Charisma +1 Artifact at 5 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Seasons of the Feywild"
+equipped_count = 4
+field = "add"
+from = "null"
+to = { stat = "Strength", bonus_type = "Artifact", value = 1 }
+reason = "The wiki gives Strength +1 Artifact at 4 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Seasons of the Feywild"
+equipped_count = 4
+field = "add"
+from = "null"
+to = { stat = "Dexterity", bonus_type = "Artifact", value = 1 }
+reason = "The wiki gives Dexterity +1 Artifact at 4 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Seasons of the Feywild"
+equipped_count = 4
+field = "add"
+from = "null"
+to = { stat = "Constitution", bonus_type = "Artifact", value = 1 }
+reason = "The wiki gives Constitution +1 Artifact at 4 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Seasons of the Feywild"
+equipped_count = 4
+field = "add"
+from = "null"
+to = { stat = "Intelligence", bonus_type = "Artifact", value = 1 }
+reason = "The wiki gives Intelligence +1 Artifact at 4 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Seasons of the Feywild"
+equipped_count = 4
+field = "add"
+from = "null"
+to = { stat = "Wisdom", bonus_type = "Artifact", value = 1 }
+reason = "The wiki gives Wisdom +1 Artifact at 4 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Seasons of the Feywild"
+equipped_count = 4
+field = "add"
+from = "null"
+to = { stat = "Charisma", bonus_type = "Artifact", value = 1 }
+reason = "The wiki gives Charisma +1 Artifact at 4 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Seasons of the Feywild"
+equipped_count = 7
+field = "add"
+from = "null"
+to = { stat = "Physical Resistance Rating", bonus_type = "Artifact", value = 5 }
+reason = "The wiki gives Physical Resistance Rating +5 Artifact at 7 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Seasons of the Feywild"
+equipped_count = 7
+field = "add"
+from = "null"
+to = { stat = "Magical Resistance Rating", bonus_type = "Artifact", value = 5 }
+reason = "The wiki gives Magical Resistance Rating +5 Artifact at 7 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Shaman's Fury"
+equipped_count = 2
+stat = "Acid Spell Power"
+bonus_type = "Equipment"
+field = "bonus_type"
+from = "Equipment"
+to = "Artifact"
+reason = "The wiki types Acid Spell Power as Artifact at 2 pieces."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Shaman's Fury"
+equipped_count = 2
+stat = "Acid Spell Power"
+bonus_type = "Artifact"
+field = "value"
+from = 55
+to = 10
+reason = "The wiki gives Acid Spell Power +10 Artifact at 2 pieces."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Shaman's Fury"
+equipped_count = 2
+stat = "Cold Spell Power"
+bonus_type = "Equipment"
+field = "bonus_type"
+from = "Equipment"
+to = "Artifact"
+reason = "The wiki types Cold Spell Power as Artifact at 2 pieces."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Shaman's Fury"
+equipped_count = 2
+stat = "Cold Spell Power"
+bonus_type = "Artifact"
+field = "value"
+from = 55
+to = 10
+reason = "The wiki gives Cold Spell Power +10 Artifact at 2 pieces."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Shaman's Fury"
+equipped_count = 2
+stat = "Electric Spell Power"
+bonus_type = "Equipment"
+field = "bonus_type"
+from = "Equipment"
+to = "Artifact"
+reason = "The wiki types Electric Spell Power as Artifact at 2 pieces."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Shaman's Fury"
+equipped_count = 2
+stat = "Electric Spell Power"
+bonus_type = "Artifact"
+field = "value"
+from = 55
+to = 10
+reason = "The wiki gives Electric Spell Power +10 Artifact at 2 pieces."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Shaman's Fury"
+equipped_count = 2
+stat = "Fire Spell Power"
+bonus_type = "Equipment"
+field = "bonus_type"
+from = "Equipment"
+to = "Artifact"
+reason = "The wiki types Fire Spell Power as Artifact at 2 pieces."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Shaman's Fury"
+equipped_count = 2
+stat = "Fire Spell Power"
+bonus_type = "Artifact"
+field = "value"
+from = 55
+to = 10
+reason = "The wiki gives Fire Spell Power +10 Artifact at 2 pieces."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Shaman's Fury"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Acid Spell Lore", bonus_type = "Artifact", value = 2 }
+reason = "The wiki gives Acid Spell Lore +2 Artifact at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Shaman's Fury"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Cold Spell Lore", bonus_type = "Artifact", value = 2 }
+reason = "The wiki gives Cold Spell Lore +2 Artifact at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Shaman's Fury"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Electric Spell Lore", bonus_type = "Artifact", value = 2 }
+reason = "The wiki gives Electric Spell Lore +2 Artifact at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Shaman's Fury"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Fire Spell Lore", bonus_type = "Artifact", value = 2 }
+reason = "The wiki gives Fire Spell Lore +2 Artifact at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Silent Avenger Set (Heroic)"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Doublestrike", bonus_type = "Artifact", value = 5 }
+reason = "The wiki gives Doublestrike +5 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Silent Avenger Set (Heroic)"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Doubleshot", bonus_type = "Artifact", value = 5 }
+reason = "The wiki gives Doubleshot +5 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Silent Avenger Set (Legendary)"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Doublestrike", bonus_type = "Artifact", value = 15 }
+reason = "The wiki gives Doublestrike +15 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Silent Avenger Set (Legendary)"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Doubleshot", bonus_type = "Artifact", value = 15 }
+reason = "The wiki gives Doubleshot +15 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Silver Concord's Subtlety"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Melee Power", bonus_type = "Artifact", value = 5 }
+reason = "The wiki gives Melee Power +5 Artifact at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Silver Concord's Subtlety"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Ranged Power", bonus_type = "Artifact", value = 5 }
+reason = "The wiki gives Ranged Power +5 Artifact at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Slavelords Endurance"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Physical Resistance Rating", bonus_type = "Artifact", value = 1 }
+reason = "The wiki gives Physical Resistance Rating +1 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Slavelords Endurance"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Magical Resistance Rating", bonus_type = "Artifact", value = 1 }
+reason = "The wiki gives Magical Resistance Rating +1 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Slavelords Endurance"
+equipped_count = 5
+field = "add"
+from = "null"
+to = { stat = "Physical Resistance Rating", bonus_type = "Artifact", value = 2 }
+reason = "The wiki gives Physical Resistance Rating +2 Artifact at 5 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Slavelords Endurance"
+equipped_count = 5
+field = "add"
+from = "null"
+to = { stat = "Magical Resistance Rating", bonus_type = "Artifact", value = 2 }
+reason = "The wiki gives Magical Resistance Rating +2 Artifact at 5 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Slavelords Might"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Melee Power", bonus_type = "Artifact", value = 1 }
+reason = "The wiki gives Melee Power +1 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Slavelords Might"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Ranged Power", bonus_type = "Artifact", value = 1 }
+reason = "The wiki gives Ranged Power +1 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Slavelords Might"
+equipped_count = 5
+field = "add"
+from = "null"
+to = { stat = "Melee Power", bonus_type = "Artifact", value = 2 }
+reason = "The wiki gives Melee Power +2 Artifact at 5 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Slavelords Might"
+equipped_count = 5
+field = "add"
+from = "null"
+to = { stat = "Ranged Power", bonus_type = "Artifact", value = 2 }
+reason = "The wiki gives Ranged Power +2 Artifact at 5 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Slavelords Sorcery"
+equipped_count = 5
+stat = "Intelligence"
+bonus_type = "Artifact"
+field = "value"
+from = 2
+to = 1
+reason = "The wiki gives Intelligence +1 Artifact at 5 pieces."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Slavelords Sorcery"
+equipped_count = 5
+stat = "Wisdom"
+bonus_type = "Artifact"
+field = "value"
+from = 2
+to = 1
+reason = "The wiki gives Wisdom +1 Artifact at 5 pieces."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Slavelords Sorcery"
+equipped_count = 5
+stat = "Charisma"
+bonus_type = "Artifact"
+field = "value"
+from = 2
+to = 1
+reason = "The wiki gives Charisma +1 Artifact at 5 pieces."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Slice 'n Dice Set"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Seeker", bonus_type = "Quality", value = 1 }
+reason = "The wiki gives Seeker +1 Quality at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Temple's Inferno"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Melee Power", bonus_type = "Artifact", value = 5 }
+reason = "The wiki gives Melee Power +5 Artifact at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Temple's Inferno"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Ranged Power", bonus_type = "Artifact", value = 5 }
+reason = "The wiki gives Ranged Power +5 Artifact at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Temple's Monolith"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Melee Power", bonus_type = "Artifact", value = 5 }
+reason = "The wiki gives Melee Power +5 Artifact at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Temple's Monolith"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Ranged Power", bonus_type = "Artifact", value = 5 }
+reason = "The wiki gives Ranged Power +5 Artifact at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Temple's Tempest"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Melee Power", bonus_type = "Artifact", value = 5 }
+reason = "The wiki gives Melee Power +5 Artifact at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Temple's Tempest"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Ranged Power", bonus_type = "Artifact", value = 5 }
+reason = "The wiki gives Ranged Power +5 Artifact at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Temple's Tide"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Melee Power", bonus_type = "Artifact", value = 5 }
+reason = "The wiki gives Melee Power +5 Artifact at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Temple's Tide"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Ranged Power", bonus_type = "Artifact", value = 5 }
+reason = "The wiki gives Ranged Power +5 Artifact at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Temple's Tide"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Threat Reduction", bonus_type = "Artifact", value = -10 }
+reason = "The wiki gives Threat Reduction -10 Artifact at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "The Devil's Handiwork"
+equipped_count = 5
+field = "add"
+from = "null"
+to = { stat = "Strength", bonus_type = "Quality", value = 2 }
+reason = "The wiki gives Strength +2 Quality at 5 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "The Devil's Handiwork"
+equipped_count = 5
+field = "add"
+from = "null"
+to = { stat = "Dexterity", bonus_type = "Quality", value = 2 }
+reason = "The wiki gives Dexterity +2 Quality at 5 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "The Devil's Handiwork"
+equipped_count = 5
+field = "add"
+from = "null"
+to = { stat = "Constitution", bonus_type = "Quality", value = 2 }
+reason = "The wiki gives Constitution +2 Quality at 5 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "The Devil's Handiwork"
+equipped_count = 5
+field = "add"
+from = "null"
+to = { stat = "Intelligence", bonus_type = "Quality", value = 2 }
+reason = "The wiki gives Intelligence +2 Quality at 5 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "The Devil's Handiwork"
+equipped_count = 5
+field = "add"
+from = "null"
+to = { stat = "Wisdom", bonus_type = "Quality", value = 2 }
+reason = "The wiki gives Wisdom +2 Quality at 5 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "The Devil's Handiwork"
+equipped_count = 5
+field = "add"
+from = "null"
+to = { stat = "Charisma", bonus_type = "Quality", value = 2 }
+reason = "The wiki gives Charisma +2 Quality at 5 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "The Dread Isle's Curse"
+equipped_count = 5
+field = "add"
+from = "null"
+to = { stat = "Melee Power", bonus_type = "Profane", value = 5 }
+reason = "The wiki gives Melee Power +5 Profane at 5 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "The Dread Isle's Curse"
+equipped_count = 5
+field = "add"
+from = "null"
+to = { stat = "Ranged Power", bonus_type = "Profane", value = 5 }
+reason = "The wiki gives Ranged Power +5 Profane at 5 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "The Dread Isle's Curse"
+equipped_count = 5
+field = "add"
+from = "null"
+to = { stat = "Strength", bonus_type = "Profane", value = 1 }
+reason = "The wiki gives Strength +1 Profane at 5 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "The Dread Isle's Curse"
+equipped_count = 5
+field = "add"
+from = "null"
+to = { stat = "Dexterity", bonus_type = "Profane", value = 1 }
+reason = "The wiki gives Dexterity +1 Profane at 5 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "The Dread Isle's Curse"
+equipped_count = 5
+field = "add"
+from = "null"
+to = { stat = "Constitution", bonus_type = "Profane", value = 1 }
+reason = "The wiki gives Constitution +1 Profane at 5 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "The Dread Isle's Curse"
+equipped_count = 5
+field = "add"
+from = "null"
+to = { stat = "Intelligence", bonus_type = "Profane", value = 1 }
+reason = "The wiki gives Intelligence +1 Profane at 5 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "The Dread Isle's Curse"
+equipped_count = 5
+field = "add"
+from = "null"
+to = { stat = "Wisdom", bonus_type = "Profane", value = 1 }
+reason = "The wiki gives Wisdom +1 Profane at 5 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "The Dread Isle's Curse"
+equipped_count = 5
+field = "add"
+from = "null"
+to = { stat = "Charisma", bonus_type = "Profane", value = 1 }
+reason = "The wiki gives Charisma +1 Profane at 5 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "The Epic Desert's Burning Sun"
+equipped_count = 2
+stat = "Physical Resistance Rating"
+bonus_type = "Legendary"
+field = "bonus_type"
+from = "Legendary"
+to = "Artifact"
+reason = "The wiki types Physical Resistance Rating as Artifact at 2 pieces."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "The Epic Desert's Writhing Storm"
+equipped_count = 2
+stat = "Magical Resistance Rating"
+bonus_type = "Legendary"
+field = "bonus_type"
+from = "Legendary"
+to = "Artifact"
+reason = "The wiki types Magical Resistance Rating as Artifact at 2 pieces."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "The Fury's Rage"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Melee Power", bonus_type = "Artifact", value = 5 }
+reason = "The wiki gives Melee Power +5 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "The Fury's Rage"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Ranged Power", bonus_type = "Artifact", value = 5 }
+reason = "The wiki gives Ranged Power +5 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "The Keeper's Coffin"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Healing Amplification", bonus_type = "Artifact", value = 10 }
+reason = "The wiki gives Healing Amplification +10 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "The Keeper's Coffin"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Negative Healing Amplification", bonus_type = "Artifact", value = 10 }
+reason = "The wiki gives Negative Healing Amplification +10 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "The Keeper's Coffin"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Strength", bonus_type = "Artifact", value = 1 }
+reason = "The wiki gives Strength +1 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "The Keeper's Coffin"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Dexterity", bonus_type = "Artifact", value = 1 }
+reason = "The wiki gives Dexterity +1 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "The Keeper's Coffin"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Constitution", bonus_type = "Artifact", value = 1 }
+reason = "The wiki gives Constitution +1 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "The Keeper's Coffin"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Intelligence", bonus_type = "Artifact", value = 1 }
+reason = "The wiki gives Intelligence +1 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "The Keeper's Coffin"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Wisdom", bonus_type = "Artifact", value = 1 }
+reason = "The wiki gives Wisdom +1 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "The Keeper's Coffin"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Charisma", bonus_type = "Artifact", value = 1 }
+reason = "The wiki gives Charisma +1 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "The Legendary Desert's Burning Sun"
+equipped_count = 2
+stat = "Physical Resistance Rating"
+bonus_type = "Legendary"
+field = "bonus_type"
+from = "Legendary"
+to = "Artifact"
+reason = "The wiki types Physical Resistance Rating as Artifact at 2 pieces."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "The Legendary Desert's Burning Sun"
+equipped_count = 2
+stat = "Physical Resistance Rating"
+bonus_type = "Artifact"
+field = "value"
+from = 15
+to = 30
+reason = "The wiki gives Physical Resistance Rating +30 Artifact at 2 pieces."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "The Legendary Desert's Writhing Storm"
+equipped_count = 2
+stat = "Magical Resistance Rating"
+bonus_type = "Legendary"
+field = "bonus_type"
+from = "Legendary"
+to = "Artifact"
+reason = "The wiki types Magical Resistance Rating as Artifact at 2 pieces."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "The Legendary Dread Isle's Curse"
+equipped_count = 5
+field = "add"
+from = "null"
+to = { stat = "Melee Power", bonus_type = "Profane", value = 15 }
+reason = "The wiki gives Melee Power +15 Profane at 5 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "The Legendary Dread Isle's Curse"
+equipped_count = 5
+field = "add"
+from = "null"
+to = { stat = "Ranged Power", bonus_type = "Profane", value = 15 }
+reason = "The wiki gives Ranged Power +15 Profane at 5 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "The Legendary Dread Isle's Curse"
+equipped_count = 5
+field = "add"
+from = "null"
+to = { stat = "Strength", bonus_type = "Profane", value = 2 }
+reason = "The wiki gives Strength +2 Profane at 5 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "The Legendary Dread Isle's Curse"
+equipped_count = 5
+field = "add"
+from = "null"
+to = { stat = "Dexterity", bonus_type = "Profane", value = 2 }
+reason = "The wiki gives Dexterity +2 Profane at 5 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "The Legendary Dread Isle's Curse"
+equipped_count = 5
+field = "add"
+from = "null"
+to = { stat = "Constitution", bonus_type = "Profane", value = 2 }
+reason = "The wiki gives Constitution +2 Profane at 5 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "The Legendary Dread Isle's Curse"
+equipped_count = 5
+field = "add"
+from = "null"
+to = { stat = "Intelligence", bonus_type = "Profane", value = 2 }
+reason = "The wiki gives Intelligence +2 Profane at 5 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "The Legendary Dread Isle's Curse"
+equipped_count = 5
+field = "add"
+from = "null"
+to = { stat = "Wisdom", bonus_type = "Profane", value = 2 }
+reason = "The wiki gives Wisdom +2 Profane at 5 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "The Legendary Dread Isle's Curse"
+equipped_count = 5
+field = "add"
+from = "null"
+to = { stat = "Charisma", bonus_type = "Profane", value = 2 }
+reason = "The wiki gives Charisma +2 Profane at 5 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "The Legendary Dread Isle's Curse"
+equipped_count = 5
+field = "add"
+from = "null"
+to = { stat = "Attack Bonus", bonus_type = "Profane", value = 4 }
+reason = "The wiki gives Attack Bonus +4 Profane at 5 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "The Legendary Dread Isle's Curse"
+equipped_count = 5
+field = "add"
+from = "null"
+to = { stat = "Damage Bonus", bonus_type = "Profane", value = 4 }
+reason = "The wiki gives Damage Bonus +4 Profane at 5 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "The Shadow's Emptiness"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Doublestrike", bonus_type = "Artifact", value = 5 }
+reason = "The wiki gives Doublestrike +5 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "The Shadow's Emptiness"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Doubleshot", bonus_type = "Artifact", value = 5 }
+reason = "The wiki gives Doubleshot +5 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "The Traveler's Guidance"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Melee Power", bonus_type = "Artifact", value = 5 }
+reason = "The wiki gives Melee Power +5 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "The Traveler's Guidance"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Ranged Power", bonus_type = "Artifact", value = 5 }
+reason = "The wiki gives Ranged Power +5 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Tyrannical Tinkerer"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Melee Power", bonus_type = "Artifact", value = 15 }
+reason = "The wiki gives Melee Power +15 Artifact at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Tyrannical Tinkerer"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Ranged Power", bonus_type = "Artifact", value = 15 }
+reason = "The wiki gives Ranged Power +15 Artifact at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Unbreakable Adamancy"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Physical Resistance Rating", bonus_type = "Luck", value = 5 }
+reason = "The wiki gives Physical Resistance Rating +5 Luck at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Unbreakable Adamancy"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Magical Resistance Rating", bonus_type = "Luck", value = 5 }
+reason = "The wiki gives Magical Resistance Rating +5 Luck at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Vulkoor's Cunning"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Melee Power", bonus_type = "Artifact", value = 5 }
+reason = "The wiki gives Melee Power +5 Artifact at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Vulkoor's Cunning"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Ranged Power", bonus_type = "Artifact", value = 5 }
+reason = "The wiki gives Ranged Power +5 Artifact at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Vulkoor's Might"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Melee Threat Generation", bonus_type = "Artifact", value = 20 }
+reason = "The wiki gives Melee Threat Generation +20 Artifact at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Windlasher's Ferocity"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Doublestrike", bonus_type = "Artifact", value = 5 }
+reason = "The wiki gives Doublestrike +5 Artifact at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Windlasher's Ferocity"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Doubleshot", bonus_type = "Artifact", value = 5 }
+reason = "The wiki gives Doubleshot +5 Artifact at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Windlasher's Ferocity"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Melee Power", bonus_type = "Artifact", value = 5 }
+reason = "The wiki gives Melee Power +5 Artifact at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Windlasher's Ferocity"
+equipped_count = 2
+field = "add"
+from = "null"
+to = { stat = "Ranged Power", bonus_type = "Artifact", value = 5 }
+reason = "The wiki gives Ranged Power +5 Artifact at 2 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Woodsman's Guile"
+equipped_count = 3
+stat = "Sneak Attack Hit"
+bonus_type = "Artifact"
+field = "bonus_type"
+from = "Artifact"
+to = "Enhancement"
+reason = "The wiki types Sneak Attack Hit as Enhancement at 3 pieces."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Woodsman's Guile"
+equipped_count = 3
+stat = "Sneak Attack Damage"
+bonus_type = "Artifact"
+field = "bonus_type"
+from = "Artifact"
+to = "Enhancement"
+reason = "The wiki types Sneak Attack Damage as Enhancement at 3 pieces."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Wrath of Sora Kell"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Attack Bonus", bonus_type = "Artifact", value = 3 }
+reason = "The wiki gives Attack Bonus +3 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Wrath of Sora Kell"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Damage Bonus", bonus_type = "Artifact", value = 3 }
+reason = "The wiki gives Damage Bonus +3 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Wrath of Sora Kell"
+equipped_count = 3
+field = "add"
+from = "null"
+to = { stat = "Imbue Dice", bonus_type = "Artifact", value = 1 }
+reason = "The wiki gives Imbue Dice +1 Artifact at 3 pieces; his tier lacks it."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier_bonus"
+name = "Celerity"
+equipped_count = 3
+stat = "Movement Speed"
+bonus_type = "Enhancement"
+field = "remove"
+from = 32
+to = "null"
+reason = "The wiki grants attack speed only at three pieces, not movement speed."
+source = "https://ddowiki.com/page/Sentient_Weapon/Filigrees"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier"
+name = "Conduit of the Titans"
+equipped_count = 3
+field = "remove"
+from = 0
+to = 1
+reason = "The wiki places this tier’s bonuses at two pieces and lists no 3-piece tier."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier"
+name = "Fried & Frozen Frenzy"
+equipped_count = 3
+field = "remove"
+from = 0
+to = 1
+reason = "The wiki places this tier’s bonuses at two pieces and lists no 3-piece tier."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier"
+name = "Alchemist's Lore"
+equipped_count = 2
+field = "description"
+from = "Reduces the cost of Empower, Empower Heal, and Maximize by 2 SP."
+to = "Empower, Empower Heal and Maximize cost 2 fewer SP; spells cost 10%/20%/30% less below 50%/25%/10% HP."
+reason = "The wiki describes the 2-piece effect differently."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier"
+name = "Celerity"
+equipped_count = 3
+field = "description"
+from = "Permanent Haste spell"
+to = "Permanent Haste: 15% melee and ranged attack speed."
+reason = "The wiki describes the 3-piece effect differently."
+source = "https://ddowiki.com/page/Sentient_Weapon/Filigrees"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier"
+name = "Conduit of the Titans"
+equipped_count = 2
+field = "description"
+from = "+3 Artifact bonus to Rune Arm DCs"
+to = "+3 Artifact Rune Arm DC; +6% Artifact Electric, Repair and Force spell critical chance; +30 Artifact Electric, Repair and Force spell power."
+reason = "The wiki describes the 2-piece effect differently."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier"
+name = "Draconic Ferocity"
+equipped_count = 2
+field = "description"
+from = "+3% Artifact bonus to melee Doublestrike chance"
+to = "+3% Artifact Doublestrike and +2 Artifact hit and damage with ranged and thrown weapons."
+reason = "The wiki describes the 2-piece effect differently."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier"
+name = "Fried & Frozen Frenzy"
+equipped_count = 2
+field = "description"
+from = "+1 Artifact bonus to all Ability Scores"
+to = "+1 Artifact all Ability Scores and +1 Artifact Critical Multiplier on 19–20."
+reason = "The wiki describes the 2-piece effect differently."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier"
+name = "Inevitable Balance"
+equipped_count = 2
+field = "description"
+from = "+5 Melee Power, 5% Doublestrike, Your Sneak Attacks do additional Bane damage"
+to = "5% Melee Power, 5% Doublestrike, and extra Bane damage on sneak attacks."
+reason = "The wiki describes the 2-piece effect differently."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier"
+name = "Legendary Inevitable Balance"
+equipped_count = 2
+field = "description"
+from = "+10 Melee Power, 10% Doublestrike, Your Sneak Attacks do additional Bane damage"
+to = "10% Melee Power, 10% Doublestrike, and extra Bane damage on sneak attacks."
+reason = "The wiki describes the 2-piece effect differently."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier"
+name = "Magewright's Expertise"
+equipped_count = 2
+field = "description"
+from = "+1 Artifact bonus to Spell Focus Mastery"
+to = "+1 Spell Focus Mastery; physical hits may grant +12 Alchemical Universal Spell Power for 10 seconds."
+reason = "The wiki describes the 2-piece effect differently."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier"
+name = "Dominion"
+equipped_count = 2
+field = "description"
+from = "3% Spell Points bonus, +1% per additional augment"
+to = "With 2–6 augments, gain a 5%–9% Legendary bonus to Spell Points."
+reason = "The wiki describes the 2-piece effect differently."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier"
+name = "Escalation"
+equipped_count = 2
+field = "description"
+from = "1% Dodge Cap, +1% per 3 additional augment"
+to = "With 2–6 augments, gain +1% to +3% Maximum Dodge."
+reason = "The wiki describes the 2-piece effect differently."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier"
+name = "Ethereal"
+equipped_count = 2
+field = "description"
+from = "1% Incorporeal miss chance, +0.5% per additional augment"
+to = "With 2–6 augments, gain +2% to +4% Incorporeal miss chance."
+reason = "The wiki describes the 2-piece effect differently."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier"
+name = "Material"
+equipped_count = 2
+field = "description"
+from = "1% Physical Damage, +1% per additional augment"
+to = "With 2–6 augments, gain 3%–7% Melee and Ranged critical damage and 9%–17% Spell critical damage."
+reason = "The wiki describes the 2-piece effect differently."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier"
+name = "Opposition"
+equipped_count = 2
+field = "description"
+from = "3% bonus to Max Hitpoints, +1% per additional augment"
+to = "With 2–6 augments, gain +5% to +9% Legendary maximum Hit Points."
+reason = "The wiki describes the 2-piece effect differently."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier"
+name = "Pain and Suffering"
+equipped_count = 2
+field = "description"
+from = "Gain +2[W] to each of your daggers"
+to = "Gain +0.5[W] to each dagger."
+reason = "The wiki describes the 2-piece effect differently."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier"
+name = "Risk and Reward"
+equipped_count = 2
+field = "description"
+from = "Your melee attacks deal an additional +0.5[W] damage dice."
+to = "Melee attacks deal +0.5[W] and have a 5% chance to Bluff the target for 4 seconds."
+reason = "The wiki describes the 2-piece effect differently."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier"
+name = "Tharne's Wrath"
+equipped_count = 3
+field = "description"
+from = "Father Falling"
+to = "Feather Falling"
+reason = "The wiki describes the 3-piece effect differently."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "set_tier"
+name = "Tinker's Finesse"
+equipped_count = 2
+field = "description"
+from = "True Seeing"
+to = "True Seeing; +5 to hit and +8 damage on sneak-attack-qualifying attacks."
+reason = "The wiki describes the 2-piece effect differently."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "item"
+name = "Alchemist's Crown"
+field = "set_bonus"
+from = "null"
+to = "Alchemist's Lore"
+reason = "The wiki lists this item as a member of Alchemist's Lore."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "item"
+name = "Alchemist's Pendant"
+field = "set_bonus"
+from = "null"
+to = "Alchemist's Lore"
+reason = "The wiki lists this item as a member of Alchemist's Lore."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "item"
+name = "Fabricator's Bracers"
+field = "set_bonus"
+from = "null"
+to = "Fabricator's Ingenuity"
+reason = "The wiki lists this item as a member of Fabricator's Ingenuity."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "item"
+name = "Fabricator's Gauntlets"
+field = "set_bonus"
+from = "null"
+to = "Fabricator's Ingenuity"
+reason = "The wiki lists this item as a member of Fabricator's Ingenuity."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "item"
+name = "Tinker's Goggles"
+field = "set_bonus"
+from = "null"
+to = "Tinker's Finesse"
+reason = "The wiki lists this item as a member of Tinker's Finesse."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "item"
+name = "Tinker's Gloves"
+field = "set_bonus"
+from = "null"
+to = "Tinker's Finesse"
+reason = "The wiki lists this item as a member of Tinker's Finesse."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[correction]]
+kind = "item"
+name = "Crocodile Tooth"
+field = "set_bonus"
+from = "null"
+to = "Saltmarsh Explorer"
+reason = "The wiki lists this item as a member of Saltmarsh Explorer."
+source = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+

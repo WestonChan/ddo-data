@@ -1,52 +1,46 @@
 {
-  "augments": [
-    {
-      "id": 646,
-      "min_level": 16,
-      "name": "Sovereign Rune of Lorikk"
-    }
-  ],
+  "augments": [],
   "filigrees": [],
-  "icon": "LorikksChampion",
-  "id": 54,
+  "icon": "Devoted Heart",
+  "id": 6,
   "is_filigree_set": false,
   "items": [
     {
-      "id": 5847,
-      "minimum_level": 14,
-      "name": "Lorikk's Champion",
-      "slot": "Off Hand"
+      "id": 1815,
+      "minimum_level": 1,
+      "name": "Devoted Goggles",
+      "slot": "Goggles"
     },
     {
-      "id": 5850,
-      "minimum_level": 13,
-      "name": "Lorrik's Necklace",
+      "id": 1816,
+      "minimum_level": 1,
+      "name": "Devoted Necklace",
       "slot": "Neck"
     }
   ],
-  "name": "Lorikk's Champion",
+  "name": "Devoted Heart",
   "tiers": [
     {
       "bonuses": [
         {
           "bonus_type": "Equipment",
-          "description": "Equipment Devotion 72: 72 Equipment bonus to Positive (Healing) spell power.",
-          "id": 970,
-          "name": "Positive Spell Power +72",
+          "description": "Equipment Devotion 36: 36 Equipment bonus to Positive (Healing) spell power.",
+          "id": 1620,
+          "name": "Positive Spell Power +36",
           "stat": "Positive Spell Power",
           "stat_category": "magical",
-          "value": 72,
+          "value": 36,
           "value2": null
         }
       ],
-      "description": "+72 Equipment bonus to Positive (Healing) Spell Power.",
+      "description": "Devotion +36 Equipment bonus to Positive (Healing) Spell Power.",
       "equipped_count": 2,
-      "id": 60,
+      "id": 6,
       "modifiers": [
         {
           "amount_type": "Simple",
           "amounts": [
-            72
+            24
           ],
           "apply_as_item_effect": false,
           "bonus": "Equipment",
@@ -60,56 +54,7 @@
           "display_name": null,
           "effect_type": "SpellPower",
           "extra_types": null,
-          "id": 15677,
-          "is_item_specific": false,
-          "is_rare": false,
-          "percent": false,
-          "rank": null,
-          "requirements": [],
-          "sort_order": 0,
-          "stack_source": null,
-          "targets": [
-            "Positive"
-          ],
-          "value": null
-        }
-      ]
-    },
-    {
-      "bonuses": [
-        {
-          "bonus_type": "Equipment",
-          "description": "Equipment Devotion 78: 78 Equipment bonus to Positive (Healing) spell power.",
-          "id": 894,
-          "name": "Positive Spell Power +78",
-          "stat": "Positive Spell Power",
-          "stat_category": "magical",
-          "value": 78,
-          "value2": null
-        }
-      ],
-      "description": "+78 Equipment bonus to Positive (Healing) Spell Power.",
-      "equipped_count": 3,
-      "id": 61,
-      "modifiers": [
-        {
-          "amount_type": "Simple",
-          "amounts": [
-            78
-          ],
-          "apply_as_item_effect": false,
-          "bonus": "Equipment",
-          "bonus_type": "Equipment",
-          "cap": null,
-          "damage": null,
-          "dice_bonus": null,
-          "dice_damage": null,
-          "dice_number": null,
-          "dice_sides": null,
-          "display_name": null,
-          "effect_type": "SpellPower",
-          "extra_types": null,
-          "id": 15678,
+          "id": 15553,
           "is_item_specific": false,
           "is_rare": false,
           "percent": false,

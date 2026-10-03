@@ -2,7 +2,7 @@
   "api_commit": "9dd551f2c0b1e8c4a7d6f5e4b3a2c1d0e9f8a7b6",
   "counts": {
     "augments": 2250,
-    "bonuses": 5391,
+    "bonuses": 5419,
     "challenge_rewards": 160,
     "classes": 28,
     "clickies": 219,
@@ -19,7 +19,7 @@
     "guild_buffs": 37,
     "items": 8733,
     "legacy_items": 656,
-    "modifiers": 17628,
+    "modifiers": 17626,
     "optional_buffs": 138,
     "pack_augment_loot": 0,
     "pack_loot": 490,
@@ -44,8 +44,8 @@
     "wiki_quests": 5
   },
   "dataset": {
-    "built_at": "2026-10-02T22:20:26Z",
+    "built_at": "2026-10-03T01:17:33Z",
     "upstream_sha": "31ef0201ea8e28604de2b6242988aee6d63733b0"
   },
-  "schema_version": 18
+  "schema_version": 19
 }
