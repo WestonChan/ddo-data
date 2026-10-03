@@ -6,7 +6,7 @@
         {
           "bonus_type": "Artifact",
           "description": null,
-          "id": 4803,
+          "id": 6301,
           "name": "Abjuration Spell Focus +2",
           "stat": "Abjuration Spell Focus",
           "stat_category": "magical",
@@ -42,7 +42,7 @@
         {
           "bonus_type": "Artifact",
           "description": null,
-          "id": 4988,
+          "id": 6486,
           "name": "Abjuration Spell Focus +4",
           "stat": "Abjuration Spell Focus",
           "stat_category": "magical",

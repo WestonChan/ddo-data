@@ -36,13 +36,6 @@ impl BonusOwnerKind {
             Self::ItemAugmentSlotOption | Self::Augment | Self::Feat | Self::SetBonusTier => "effect",
         }
     }
-
-    const fn type_mapping_file(self) -> &'static str {
-        match self {
-            Self::Item => "data/buff_map.toml",
-            Self::ItemAugmentSlotOption | Self::Augment | Self::Feat | Self::SetBonusTier => "data/effect_map.toml",
-        }
-    }
 }
 
 #[derive(Debug, Clone, Copy)]
@@ -111,9 +104,9 @@ impl<'a> UntypedBonusCorrections<'a> {
             Some(correction_kind) => format!(
                 "type it with a {} bonus_type correction from \"null\" (data/corrections/README.md) or in {}",
                 correction_kind.as_str(),
-                owner.kind.type_mapping_file()
+                "data/enchantment_map.toml"
             ),
-            None => format!("type it in {}", owner.kind.type_mapping_file()),
+            None => "type it in data/enchantment_map.toml".to_string(),
         };
         bail!(
             "{} {:?}: {} {source_name:?} gives stat {stat_name:?} a bonus with no bonus type; every bonus carries one, so {remedy}",

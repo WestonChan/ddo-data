@@ -231,7 +231,7 @@ CREATE TABLE IF NOT EXISTS bonuses (
     value2        INTEGER                             -- <Buff><Value2>
 );
 CREATE UNIQUE INDEX IF NOT EXISTS idx_bonuses_unique
-    ON bonuses(stat_id, bonus_type_id, COALESCE(value, -1), COALESCE(value2, -1));
+    ON bonuses(stat_id, bonus_type_id, COALESCE(value, -1), COALESCE(value2, -1), COALESCE(description, ''));
 CREATE INDEX IF NOT EXISTS idx_bonuses_stat ON bonuses(stat_id);
 
 CREATE TABLE IF NOT EXISTS item_bonuses (

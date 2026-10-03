@@ -191,18 +191,20 @@ pub const INTEGRITY_CHECKS: &[IntegrityCheck] = &[
     ),
     IntegrityCheck::warn(
         "effects_named_after_stats",
-        "effects whose name equals a stat's ignoring case and spaces: buffs the buff map should turn into bonuses on \
-         that stat",
+        "effects with a numeric item value whose name equals a stat's ignoring case and spaces: buffs the enchantment \
+         map should turn into bonuses on that stat; valueless item effects are excluded",
         OffenderQuery::Sql(
             "SELECT e.name, e.id, 'named like the stat ' || s.name FROM effects e \
-             JOIN stats s ON lower(replace(e.name, ' ', '')) = lower(replace(s.name, ' ', '')) ORDER BY e.name",
+             JOIN stats s ON lower(replace(e.name, ' ', '')) = lower(replace(s.name, ' ', '')) \
+             WHERE EXISTS (SELECT 1 FROM item_effects ie WHERE ie.effect_id = e.id AND ie.value IS NOT NULL) \
+             ORDER BY e.name",
         ),
     )
     .showing_every_offender(),
     IntegrityCheck::warn(
         "effects_with_a_value_but_no_stat",
         "effect families whose item rows carry a number: a value the engine cannot use until the family maps onto \
-         a stat, so decide whether each is a stat worth tracking (then a buff map or stats seed entry) or prose",
+         a stat, so decide whether each is a stat worth tracking (then an enchantment map or stats seed entry) or prose",
         OffenderQuery::Sql(
             "SELECT e.name, e.id, count(*) || ' item rows, values ' || group_concat(DISTINCT ie.value) FROM effects e \
              JOIN item_effects ie ON ie.effect_id = e.id WHERE ie.value IS NOT NULL AND ie.value <> 0 \
@@ -313,10 +315,11 @@ pub const INTEGRITY_CHECKS: &[IntegrityCheck] = &[
         "unreferenced_stats",
         "stats that no bonus an item, augment, feat or set tier carries is on. The guard against a duplicate or \
          non-stat name in the seed is the every_seed_stat_has_a_source_or_is_kept_without_one test in \
-         crates/ddo-etl/tests/stats_seed.rs, which fails on any seed stat no buff or effect map entry, fixture \
+         crates/ddo-etl/tests/stats_seed.rs, which fails on any seed stat no enchantment map entry, fixture \
          bonus, wiki or correction bonus reaches unless its STATS_KEPT_WITHOUT_A_SOURCE list names it with a \
-         reason. A full upstream build lists nine: that list's seven, and Ki and Maximum Caster Level, which \
-         effect_map.toml targets but no effect of his carries as a plain number",
+         reason. A full upstream build lists that list plus the stats enchantment_map.toml targets but no \
+         effect of his carries as a plain number (Ki, and Maximum Caster Level while its only item family stays \
+         an effect)",
         OffenderQuery::Built(unreferenced_stats),
     )
     .showing_every_offender(),

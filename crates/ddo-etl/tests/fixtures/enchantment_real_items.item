@@ -1,0 +1,580 @@
+<Items>
+<Item>
+    <Name>Blooming Gauntlets</Name>
+    <Icon>Gloves_7k</Icon>
+    <Description />
+    <DropLocation>Toil and Trouble, end chest</DropLocation>
+    <MinLevel>5</MinLevel>
+    <EquipmentSlot>
+      <Gloves />
+    </EquipmentSlot>
+    <Material>Leather</Material>
+    <Buff>
+      <Type>SchoolFocusNumber</Type>
+      <Value1>3</Value1>
+      <BonusType>Equipment</BonusType>
+      <Description1>Conjuration</Description1>
+      <Item>Conjuration</Item>
+    </Buff>
+    <Buff>
+      <Type>SpellPenetration</Type>
+      <Value1>2</Value1>
+      <BonusType>Insightful</BonusType>
+    </Buff>
+    <Buff>
+      <Type>Undying</Type>
+      <Value1>50</Value1>
+      <BonusType>Enhancement</BonusType>
+    </Buff>
+    <Buff>
+      <Type>ProfaneLifeforce</Type>
+      <Value1>12</Value1>
+      <BonusType>Profane</BonusType>
+    </Buff>
+    <ItemAugment>
+      <Type>Yellow</Type>
+    </ItemAugment>
+    <ItemAugment>
+      <Type>Moon</Type>
+    </ItemAugment>
+  </Item>
+
+<Item>
+    <NoAutoUpdate />
+    <Name>Epic Ethereal Bracers</Name>
+    <Icon>Bracers_1</Icon>
+    <Description>These bracers seem to be slightly blurry and somewhat translucent. When the
+bracers are equipped these properties are transferred to the wearer's hands
+and weapons allowing incorporeal creatures to be easily hit as well as granting
+some defensive benefits.</Description>
+    <DropLocation>Ghosts of Perdition (epic), End chest</DropLocation>
+    <MinLevel>27</MinLevel>
+    <EquipmentSlot>
+      <Bracers />
+    </EquipmentSlot>
+    <Material>Glass</Material>
+    <Buff>
+      <Type>AbilityBonus</Type>
+      <Value1>11</Value1>
+      <BonusType>Enhancement</BonusType>
+      <Description1>Dexterity</Description1>
+      <Item>Dexterity</Item>
+    </Buff>
+    <Buff>
+      <Type>Riposte</Type>
+      <Value1>5</Value1>
+      <Value2>4</Value2>
+      <BonusType>Insightful</BonusType>
+      <Item>IX</Item>
+    </Buff>
+    <Buff>
+      <Type>Ghostly</Type>
+      <BonusType>Enhancement</BonusType>
+    </Buff>
+    <Buff>
+      <Type>Deadly</Type>
+      <Value1>10</Value1>
+      <BonusType>Competence</BonusType>
+      <Item>X</Item>
+    </Buff>
+    <Buff>
+      <Type>SpeedRomanNumeral</Type>
+      <Value1>30</Value1>
+      <Value2>14</Value2>
+      <BonusType>Enhancement</BonusType>
+      <Item>XIV</Item>
+    </Buff>
+    <Buff>
+      <Type>FeatherFalling</Type>
+      <BonusType>Enhancement</BonusType>
+    </Buff>
+    <ItemAugment>
+      <Type>Upgradeable - Primary Augment</Type>
+      <Augment>
+        <Name>Blue Augment Slot</Name>
+        <Description>Add a Blue augment slot to this item</Description>
+        <MinLevel>27</MinLevel>
+        <Icon>Heroism</Icon>
+        <GrantAugment>Blue</GrantAugment>
+      </Augment>
+      <Augment>
+        <Name>Yellow Augment Slot</Name>
+        <Description>Add a Yellow augment slot to this item</Description>
+        <MinLevel>27</MinLevel>
+        <Icon>Heroism</Icon>
+        <GrantAugment>Yellow</GrantAugment>
+      </Augment>
+    </ItemAugment>
+    <ItemAugment>
+      <Type>Upgradeable - Secondary Augment</Type>
+      <Augment>
+        <Name>Green Augment Slot</Name>
+        <Description>Add a Green augment slot to this item</Description>
+        <MinLevel>27</MinLevel>
+        <Icon>Heroism</Icon>
+        <GrantAugment>Green</GrantAugment>
+      </Augment>
+    </ItemAugment>
+  </Item>
+
+<Item>
+    <NoAutoUpdate />
+    <Name>Legendary Amethyst Loupe</Name>
+    <Icon>Goggles_2c</Icon>
+    <Description>This single, jeweled Jewelers Loupe is able to magnify up to 100 times more
+than your bare eye.</Description>
+    <DropLocation>The Haunting of Saltmarsh, end chest, or Legendary version of Epic Amethyst Loupe</DropLocation>
+    <MinLevel>30</MinLevel>
+    <EquipmentSlot>
+      <Goggles />
+    </EquipmentSlot>
+    <Material>Steel</Material>
+    <Buff>
+      <Type>Eversight</Type>
+    </Buff>
+    <Buff>
+      <Type>Improved Deception</Type>
+      <Value1>20</Value1>
+      <BonusType>Enhancement</BonusType>
+    </Buff>
+    <Buff>
+      <Type>SkillBonus</Type>
+      <Value1>20</Value1>
+      <BonusType>Competence</BonusType>
+      <Description1>Search</Description1>
+      <Item>Search</Item>
+    </Buff>
+    <Buff>
+      <Type>SkillBonus</Type>
+      <Value1>20</Value1>
+      <BonusType>Competence</BonusType>
+      <Description1>Spot</Description1>
+      <Item>Spot</Item>
+    </Buff>
+    <Buff>
+      <Type>ReflexSave</Type>
+      <Value1>12</Value1>
+      <BonusType>Resistance</BonusType>
+    </Buff>
+    <SetBonus>Legendary Saltmarsh Explorer</SetBonus>
+    <ItemAugment>
+      <Type>Green</Type>
+    </ItemAugment>
+    <ItemAugment>
+      <Type>Yellow</Type>
+    </ItemAugment>
+  </Item>
+
+<Item>
+    <NoAutoUpdate />
+    <Name>Legendary Crabshell Buckler</Name>
+    <Icon>Shield_14</Icon>
+    <Description>A very permanent reminder of the risks of uncooked shellfish.</Description>
+    <DropLocation>White Plume Mountain, End chest</DropLocation>
+    <MinLevel>29</MinLevel>
+    <EquipmentSlot>
+      <Weapon2 />
+    </EquipmentSlot>
+    <Weapon>Buckler</Weapon>
+    <AttackModifier>Dexterity</AttackModifier>
+    <DamageModifier>Dexterity</DamageModifier>
+    <DRBypass>Bludgeon</DRBypass>
+    <DRBypass>Magic</DRBypass>
+    <WeaponDamage>4.8</WeaponDamage>
+    <BaseDice>
+      <Number>1</Number>
+      <Sides>6</Sides>
+      <Bonus>2</Bonus>
+    </BaseDice>
+    <CriticalMultiplier>3</CriticalMultiplier>
+    <CriticalThreatRange>2</CriticalThreatRange>
+    <MaximumDexterityBonus>0</MaximumDexterityBonus>
+    <ArmorCheckPenalty>0</ArmorCheckPenalty>
+    <ArcaneSpellFailure>5</ArcaneSpellFailure>
+    <ShieldBonus>20</ShieldBonus>
+    <DamageReduction>19</DamageReduction>
+    <Material>Bone</Material>
+    <Buff>
+      <Type>ShieldEnchantment</Type>
+      <Value1>15</Value1>
+      <BonusType>Shield Enhancement</BonusType>
+    </Buff>
+    <Buff>
+      <Type>Chitinous Covering</Type>
+      <Value1>34</Value1>
+      <BonusType>Enhancement</BonusType>
+    </Buff>
+    <Buff>
+      <Type>NaturalArmor</Type>
+      <Value1>13</Value1>
+      <BonusType>Natural Armor</BonusType>
+    </Buff>
+    <Buff>
+      <Type>Freedom of Movement</Type>
+    </Buff>
+    <Buff>
+      <Type>Guardbreaking</Type>
+      <BonusType>Enhancement</BonusType>
+    </Buff>
+    <ItemAugment>
+      <Type>Orange</Type>
+    </ItemAugment>
+  </Item>
+
+<Item>
+    <Name>Legendary Crown of Ioun</Name>
+    <Icon>Helmet_31</Icon>
+    <Description>Scholarly wizards alims it's impossible to wield more than one Ioun Stone; whether
+this crown defies that wisdom, or simply employs illusion to make it look like
+more than one is unclear.</Description>
+    <DropLocation>Catalyst Crafting, Turn in Epic Elemental Victory, its Legendary Deep Catalyst and 5 Legendary Abyssal Gems at the Strange Catalyst Forge</DropLocation>
+    <MinLevel>35</MinLevel>
+    <EquipmentSlot>
+      <Helmet />
+    </EquipmentSlot>
+    <Material>Gem (material)</Material>
+    <Buff>
+      <Type>FireAndColdAbsorption</Type>
+      <Value1>40</Value1>
+    </Buff>
+    <Buff>
+      <Type>ElectricityAndAcidAbsorption</Type>
+      <Value1>40</Value1>
+    </Buff>
+    <Buff>
+      <Type>WizardryNumber</Type>
+      <Value1>332</Value1>
+      <BonusType>Enhancement</BonusType>
+    </Buff>
+    <ItemAugment>
+      <Type>Nearly Complete: Ability Score (Legendary) </Type>
+    </ItemAugment>
+    <ItemAugment>
+      <Type>Green</Type>
+    </ItemAugment>
+    <ItemAugment>
+      <Type>Colorless</Type>
+    </ItemAugment>
+    <ItemAugment>
+      <Type>Sun</Type>
+    </ItemAugment>
+  </Item>
+
+<Item>
+    <NoAutoUpdate />
+    <Name>Legendary Fancy Flayer's Cape</Name>
+    <Icon>Cloak_6</Icon>
+    <Description>The perfect touch for the fanciest flayer.</Description>
+    <DropLocation>Fred's First Date, end chest</DropLocation>
+    <MinLevel>32</MinLevel>
+    <EquipmentSlot>
+      <Cloak />
+    </EquipmentSlot>
+    <Material>Cloth</Material>
+    <Buff>
+      <Type>SpellFocusMastery</Type>
+      <Value1>3</Value1>
+      <BonusType>Insightful</BonusType>
+    </Buff>
+    <Buff>
+      <Type>AbilityBonus</Type>
+      <Value1>6</Value1>
+      <BonusType>Insightful</BonusType>
+      <Description1>Charisma</Description1>
+      <Item>Charisma</Item>
+    </Buff>
+    <Buff>
+      <Type>WizardryNumber</Type>
+      <Value1>294</Value1>
+      <BonusType>Enhancement</BonusType>
+    </Buff>
+    <Buff>
+      <Type>Charisma Skills - Exceptional</Type>
+      <Value1>6</Value1>
+      <BonusType>Exceptional</BonusType>
+    </Buff>
+    <SetBonus>Legendary Date With a Mind Flayer</SetBonus>
+    <ItemAugment>
+      <Type>Green</Type>
+    </ItemAugment>
+    <ItemAugment>
+      <Type>Colorless</Type>
+    </ItemAugment>
+  </Item>
+
+<Item>
+    <NoAutoUpdate />
+    <Name>Legendary Storm</Name>
+    <Icon>HeavyCrossbow_6</Icon>
+    <Description>This gnoll-built weapon is crude but carries an aura of magic. Its bolts fly
+through the air with great power and accuracy.</Description>
+    <DropLocation>Legendary version of Epic Storm</DropLocation>
+    <MinLevel>30</MinLevel>
+    <EquipmentSlot>
+      <Weapon1 />
+    </EquipmentSlot>
+    <Weapon>Heavy Crossbow</Weapon>
+    <AttackModifier>Dexterity</AttackModifier>
+    <DRBypass>Magic</DRBypass>
+    <DRBypass>Pierce</DRBypass>
+    <WeaponDamage>5</WeaponDamage>
+    <BaseDice>
+      <Number>1</Number>
+      <Sides>10</Sides>
+      <Bonus>3</Bonus>
+    </BaseDice>
+    <CriticalMultiplier>2</CriticalMultiplier>
+    <CriticalThreatRange>2</CriticalThreatRange>
+    <Material>Wood</Material>
+    <Buff>
+      <Type>SpellcastingImplement</Type>
+      <Value1>30</Value1>
+      <BonusType>Implement</BonusType>
+    </Buff>
+    <Buff>
+      <Type>WeaponEnchantment</Type>
+      <Value1>15</Value1>
+      <BonusType>Weapon Enchantment</BonusType>
+    </Buff>
+    <Buff>
+      <Type>Sovereign Lightning Strike</Type>
+    </Buff>
+    <Buff>
+      <Type>ShockingBlastVI</Type>
+      <BonusType>Enhancement</BonusType>
+    </Buff>
+    <Buff>
+      <Type>Screeching 15</Type>
+    </Buff>
+    <Buff>
+      <Type>Thunderstorm Lore</Type>
+      <Value1>22</Value1>
+      <BonusType>Equipment</BonusType>
+    </Buff>
+    <Buff>
+      <Type>Power of the Thunderstorm</Type>
+      <Value1>151</Value1>
+      <BonusType>Equipment</BonusType>
+    </Buff>
+    <SetBonus>The Legendary Desert's Writhing Storm</SetBonus>
+    <ItemAugment>
+      <Type>Colorless</Type>
+    </ItemAugment>
+    <ItemAugment>
+      <Type>Red</Type>
+    </ItemAugment>
+    <IsAcceptsSentience />
+  </Item>
+
+<Item>
+    <Name>Alaric's Grim Gauntlets</Name>
+    <Icon>Gloves_7f</Icon>
+    <Description>The fingertips of these gloves have been dipped in blood.</Description>
+    <DropLocation>Skeletons in the Closet, Free Yarrow optional chest</DropLocation>
+    <MinLevel>31</MinLevel>
+    <EquipmentSlot>
+      <Gloves />
+    </EquipmentSlot>
+    <Material>Bone</Material>
+    <Buff>
+      <Type>AbilityBonus</Type>
+      <Value1>14</Value1>
+      <BonusType>Enhancement</BonusType>
+      <Description1>Wisdom</Description1>
+      <Item>Wisdom</Item>
+    </Buff>
+    <Buff>
+      <Type>DarkRestorationLore</Type>
+      <Value1>23</Value1>
+      <BonusType>Equipment</BonusType>
+    </Buff>
+    <Buff>
+      <Type>PowerOfTheDarkRestoration</Type>
+      <Value1>155</Value1>
+      <BonusType>Equipment</BonusType>
+    </Buff>
+    <Buff>
+      <Type>Hallowed</Type>
+      <Value1>14</Value1>
+      <BonusType>Equipment</BonusType>
+    </Buff>
+    <Buff>
+      <Type>Sacred</Type>
+      <Value1>14</Value1>
+      <BonusType>Equipment</BonusType>
+    </Buff>
+    <SetBonus>The Legendary Dread Isle's Curse</SetBonus>
+    <ItemAugment>
+      <Type>Green</Type>
+    </ItemAugment>
+    <ItemAugment>
+      <Type>Blue</Type>
+    </ItemAugment>
+  </Item>
+
+<Item>
+    <NoAutoUpdate />
+    <Name>Shining Crest of St. Markus</Name>
+    <Icon>Helmet_18a</Icon>
+    <Description>A circlet of pure silver, wearable only by the virtuous souls that would risk
+their own lives to combat the forces of darkness.</Description>
+    <DropLocation>Zawabi's Revenge, Raid Warded chest</DropLocation>
+    <MinLevel>11</MinLevel>
+    <EquipmentSlot>
+      <Helmet />
+    </EquipmentSlot>
+    <Material>Leather</Material>
+    <Buff>
+      <Type>Deathblock</Type>
+      <BonusType>Enhancement</BonusType>
+    </Buff>
+    <Buff>
+      <Type>Silver Flame Lore</Type>
+      <Value1>12</Value1>
+      <BonusType>Enhancement</BonusType>
+    </Buff>
+    <Buff>
+      <Type>Power of the Silver Flame</Type>
+      <Value1>80</Value1>
+      <BonusType>Enhancement</BonusType>
+    </Buff>
+    <Buff>
+      <Type>Absorption</Type>
+      <Value1>15</Value1>
+      <BonusType>Enhancement</BonusType>
+      <Description1>Light</Description1>
+      <Item>Light</Item>
+    </Buff>
+    <SetBonus>Oasis of Morality</SetBonus>
+  </Item>
+
+<Item>
+    <Name>Creeping Dust Conduit</Name>
+    <Icon>Quarterstaff_1</Icon>
+    <Description>A twisted beacon of Acid and Cold</Description>
+    <DropLocation>A Sharn Welcome, End chest</DropLocation>
+    <MinLevel>15</MinLevel>
+    <EquipmentSlot>
+      <Weapon1 />
+    </EquipmentSlot>
+    <Weapon>Quarterstaff</Weapon>
+    <AttackModifier>Strength</AttackModifier>
+    <DamageModifier>Strength</DamageModifier>
+    <DRBypass>Bludgeon</DRBypass>
+    <DRBypass>Magic</DRBypass>
+    <WeaponDamage>2</WeaponDamage>
+    <BaseDice>
+      <Number>1</Number>
+      <Sides>6</Sides>
+    </BaseDice>
+    <CriticalMultiplier>2</CriticalMultiplier>
+    <CriticalThreatRange>1</CriticalThreatRange>
+    <Material>Steel</Material>
+    <Buff>
+      <Type>SpellcastingImplement</Type>
+      <Value1>15</Value1>
+      <BonusType>Implement</BonusType>
+    </Buff>
+    <Buff>
+      <Type>WeaponEnchantment</Type>
+      <Value1>5</Value1>
+      <BonusType>Weapon Enchantment</BonusType>
+    </Buff>
+    <Buff>
+      <Type>CreepingDustLore</Type>
+      <Value1>14</Value1>
+      <BonusType>Equipment</BonusType>
+    </Buff>
+    <Buff>
+      <Type>PowerOfTheCreepingDust</Type>
+      <Value1>94</Value1>
+      <BonusType>Equipment</BonusType>
+    </Buff>
+    <Buff>
+      <Type>SchoolFocusNumber</Type>
+      <Value1>5</Value1>
+      <BonusType>Equipment</BonusType>
+      <Description1>Conjuration</Description1>
+      <Item>Conjuration</Item>
+    </Buff>
+    <Buff>
+      <Type>SchoolFocusNumber</Type>
+      <Value1>5</Value1>
+      <BonusType>Equipment</BonusType>
+      <Description1>Evocation</Description1>
+      <Item>Evocation</Item>
+    </Buff>
+    <Buff>
+      <Type>Arcane Augmentation IX</Type>
+    </Buff>
+    <Buff>
+      <Type>SpellFocusMastery</Type>
+      <Value1>1</Value1>
+      <BonusType>Quality</BonusType>
+    </Buff>
+    <ItemAugment>
+      <Type>Red</Type>
+    </ItemAugment>
+    <ItemAugment>
+      <Type>Orange</Type>
+    </ItemAugment>
+  </Item>
+
+<Item>
+    <Name>Bow of the Jade Elf</Name>
+    <Icon>Longbow_1w</Icon>
+    <Description>This bow was taken from the body of the Jade Elf, a famous archer.</Description>
+    <DropLocation>The Shroud, Phase 1</DropLocation>
+    <MinLevel>1</MinLevel>
+    <EquipmentSlot>
+      <Weapon1 />
+    </EquipmentSlot>
+    <Weapon>Longbow</Weapon>
+    <AttackModifier>Dexterity</AttackModifier>
+    <DamageModifier>Dexterity</DamageModifier>
+    <DRBypass>Magic</DRBypass>
+    <DRBypass>Pierce</DRBypass>
+    <WeaponDamage>3</WeaponDamage>
+    <BaseDice>
+      <Number>1</Number>
+      <Sides>8</Sides>
+    </BaseDice>
+    <CriticalMultiplier>3</CriticalMultiplier>
+    <CriticalThreatRange>1</CriticalThreatRange>
+    <Material>Wood</Material>
+    <Buff>
+      <Type>WeaponEnchantment</Type>
+      <Value1>5</Value1>
+      <BonusType>Weapon Enchantment</BonusType>
+    </Buff>
+    <Buff>
+      <Type>AbilityBonus</Type>
+      <Value1>6</Value1>
+      <BonusType>Enhancement</BonusType>
+      <Description1>Dexterity</Description1>
+      <Item>Dexterity</Item>
+    </Buff>
+    <Buff>
+      <Type>Keen</Type>
+    </Buff>
+    <Buff>
+      <Type>RangedAlacrity</Type>
+      <Value1>10</Value1>
+      <BonusType>Enhancement</BonusType>
+    </Buff>
+    <Buff>
+      <Type>FeatPreciseShot</Type>
+      <BonusType>Enhancement</BonusType>
+    </Buff>
+    <Buff>
+      <Type>DeceptionFixed</Type>
+      <BonusType>Enhancement</BonusType>
+    </Buff>
+    <Buff>
+      <Type>Striding</Type>
+      <Value1>25</Value1>
+      <BonusType>Enhancement</BonusType>
+    </Buff>
+  </Item>
+
+</Items>

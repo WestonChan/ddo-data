@@ -14,9 +14,9 @@ mod wiki;
 
 use crate::corrections::Corrections;
 use crate::map::augment_slot::AugmentSlotType;
-use crate::map::buff::BuffMap;
+use crate::map::buff::BuffResolver;
 use crate::map::drop_location::{names_saga, reward_giver_name, segment_head};
-use crate::map::effect::EffectMap;
+use crate::map::effect::EffectResolver;
 use crate::map::legacy_drop_source::LegacyDropSources;
 use crate::map::source_alias::SourceAliases;
 use crate::wiki::WikiOverrides;
@@ -41,6 +41,9 @@ pub struct BuildReport {
     pub legacy_item_count: usize,
     pub bonus_count: usize,
     pub effect_count: usize,
+    pub family_buff_count: usize,
+    pub effect_fallback_buff_count: usize,
+    pub effect_buff_count: usize,
     pub quest_count: usize,
     pub challenge_count: usize,
     pub quest_loot_link_count: usize,
@@ -161,10 +164,8 @@ pub fn build_database(
     seeds::insert_all(db).context("inserting seed tables")?;
 
     let item_buff_definitions = item_buffs::parse(&data_files_dir.join("ItemBuffs.xml"))?;
-    let buff_map = BuffMap::load(&item_buff_definitions)?;
-    let effect_map = EffectMap::load()?;
-    let buff_description_templates: HashMap<String, String> =
-        item_buff_definitions.into_iter().map(|(buff_kind, definition)| (buff_kind, definition.display_text)).collect();
+    let buff_resolver = BuffResolver::from_definitions(&item_buff_definitions);
+    let effect_resolver = EffectResolver::new();
     let parsed_quests = quests::parse(&data_files_dir.join("Quests.xml"))?;
     let parsed_patrons = patrons::parse(&data_files_dir.join("Patrons.xml"))?;
     let challenges_path = data_files_dir.join("Challenges.xml");
@@ -201,9 +202,8 @@ pub fn build_database(
 
     let mut writer = TableWriter {
         transaction: &transaction,
-        buff_map: &buff_map,
-        effect_map: &effect_map,
-        buff_description_templates: &buff_description_templates,
+        buff_resolver: &buff_resolver,
+        effect_resolver: &effect_resolver,
         drop_text_linker: &drop_text_linker,
         untyped_bonus_corrections: UntypedBonusCorrections::from_corrections(corrections)?,
         written: WrittenRows::default(),
@@ -281,7 +281,7 @@ pub fn build_database(
         transaction.query_row("SELECT COUNT(*) FROM augment_slot_types", [], |r| r.get::<_, i64>(0))? as usize;
     report.set_bonus_count = writer.written.set_bonus_ids_by_name.len();
     report.modifier_count = writer.written.modifier_count;
-    report.unmapped_effect_type_counts = effect_map.unmapped_type_counts();
+    report.unmapped_effect_type_counts = effect_resolver.unmapped_type_counts();
     transaction.commit()?;
     Ok(report)
 }
@@ -460,7 +460,7 @@ fn write_challenges(transaction: &Transaction, challenges: &[Challenge]) -> Resu
     Ok(inserted_count)
 }
 
-type BonusKey = (i64, i64, Option<i64>, Option<i64>);
+type BonusKey = (i64, i64, Option<i64>, Option<i64>, Option<String>);
 
 type FeatKey = (String, FeatSource, Option<i64>);
 
@@ -478,9 +478,8 @@ pub(crate) struct WrittenRows {
 
 pub(crate) struct TableWriter<'a> {
     transaction: &'a Transaction<'a>,
-    buff_map: &'a BuffMap,
-    effect_map: &'a EffectMap,
-    buff_description_templates: &'a HashMap<String, String>,
+    buff_resolver: &'a BuffResolver,
+    effect_resolver: &'a EffectResolver,
     drop_text_linker: &'a DropTextLinker,
     untyped_bonus_corrections: UntypedBonusCorrections<'a>,
     written: WrittenRows,
@@ -505,7 +504,7 @@ impl TableWriter<'_> {
         second_value: Option<i64>,
         description: Option<&str>,
     ) -> Result<i64> {
-        let key = (stat.id, bonus_type.id(), value, second_value);
+        let key = (stat.id, bonus_type.id(), value, second_value, description.map(str::to_string));
         if let Some(id) = self.written.bonus_ids_by_key.get(&key) {
             return Ok(*id);
         }

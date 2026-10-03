@@ -86,6 +86,29 @@ fn clean_fixture_database_exits_zero_and_prints_every_check() {
 }
 
 #[test]
+fn effects_named_after_stats_requires_a_numeric_item_effect() {
+    let work_dir = tempfile::tempdir().unwrap();
+    let db_path = fixture_db_copy_with(
+        work_dir.path(),
+        "INSERT INTO effects (name) VALUES ('hitpoints');
+         INSERT INTO item_effects (item_id, effect_id, sort_order, value)
+         VALUES ((SELECT MIN(id) FROM items), last_insert_rowid(), 999, NULL);",
+    );
+    let db = Connection::open(&db_path).unwrap();
+    let without_value = integrity_report(&db, &fixture_options()).unwrap();
+    let outcome = without_value.outcome("effects_named_after_stats").unwrap();
+    assert!(!outcome.offenders.iter().any(|offender| offender.name == "hitpoints"));
+    db.execute(
+        "UPDATE item_effects SET value = 7 WHERE effect_id = (SELECT id FROM effects WHERE name = 'hitpoints')",
+        [],
+    )
+    .unwrap();
+    let with_value = integrity_report(&db, &fixture_options()).unwrap();
+    let outcome = with_value.outcome("effects_named_after_stats").unwrap();
+    assert!(outcome.offenders.iter().any(|offender| offender.name == "hitpoints"));
+}
+
+#[test]
 fn raid_loot_from_a_quest_that_is_no_raid_fails_and_exits_non_zero() {
     let work_dir = tempfile::tempdir().unwrap();
     let db_path = fixture_db_copy_with(work_dir.path(), &probe_quest_source_insert("raid", "NULL"));
@@ -107,7 +130,9 @@ fn a_warning_never_fails_the_command() {
         "INSERT INTO effects (name) VALUES ('hitpoints');
          INSERT INTO items (name, slot_id, item_category, wiki_url, drop_location, minimum_level)
          VALUES ('Integrity Probe Ring', (SELECT id FROM equipment_slots WHERE name = 'Ring'), 'Jewelry',
-                 'https://ddowiki.com/page/Item:Integrity_Probe_Ring', 'Nowhere Keep, chest', 1);",
+                 'https://ddowiki.com/page/Item:Integrity_Probe_Ring', 'Nowhere Keep, chest', 1);
+         INSERT INTO item_effects (item_id, effect_id, sort_order, value)
+         VALUES (last_insert_rowid(), (SELECT id FROM effects WHERE name = 'hitpoints'), 999, 1);",
     );
 
     let output = check_db_output(&db_path);
@@ -192,7 +217,13 @@ fn injected_violations() -> Vec<InjectedViolation> {
             ),
             "Integrity Probe Ring",
         ),
-        violation("effects_named_after_stats", "INSERT INTO effects (name) VALUES ('hitpoints');", "hitpoints"),
+        violation(
+            "effects_named_after_stats",
+            "INSERT INTO effects (name) VALUES ('hitpoints'); \
+             INSERT INTO item_effects (item_id, effect_id, sort_order, value) \
+             VALUES ((SELECT MIN(id) FROM items), last_insert_rowid(), 999, 7);",
+            "hitpoints",
+        ),
         violation(
             "effects_with_a_value_but_no_stat",
             "INSERT INTO effects (name) VALUES ('Integrity Probe Glow'); \

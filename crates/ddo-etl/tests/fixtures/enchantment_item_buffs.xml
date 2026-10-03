@@ -1,0 +1,579 @@
+<Buffs>
+  <Buff>
+    <Type>Ghostly</Type>
+    <DisplayText>Ghostly: Equipping this item causes you to become partially incorporeal. Your melee attacks do not roll a miss chance for Incorporeal targets. Enemy attacks have a 10% chance to miss you due to incorporeality. You receive a +5 enhancement bonus to your Hide and Move Silently skills.</DisplayText>
+    <Effect>
+      <Type>GhostTouch</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">1</Amount>
+      <Item>All</Item>
+    </Effect>
+    <Effect>
+      <Type>Incorporeality</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">10</Amount>
+      <Item>All</Item>
+    </Effect>
+    <Effect>
+      <Type>SkillBonus</Type>
+      <Bonus>Enhancement</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">5</Amount>
+      <Item>Hide</Item>
+      <Item>Move Silently</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Shield Bashing</Type>
+    <DisplayText>%b1 Shield Bashing %v1%: %v1% %b1 bonus to your chance of a Secondary Shield Bash. This stacks with bonuses granted by any relevant feats.</DisplayText>
+    <Ignore>Enhancement</Ignore>
+    <Effect>
+      <Type>SecondaryShieldBash</Type>
+      <Bonus>Shield</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Vorpal</Type>
+    <ApplyToWeaponOnly />
+    <DisplayText>Vorpal: Passive: +0.5[W] damage dice. On Vorpal Hit: If your target has fewer than 1000 Hit Points, they are instantly slain. If your target has above 1000 Hit Points, they take 100 damage.</DisplayText>
+    <Effect>
+      <Type>Weapon_BaseDamage</Type>
+      <Bonus>Enhancement</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0.5</Amount>
+      <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Parrying</Type>
+    <DisplayText>%b1 Parrying %i1: Passive: %v1 %b1 bonus to Armor Class, %v1 %b1 bonus to Fortitude, Reflex, and Will Saving throws.</DisplayText>
+    <Ignore>Insightful</Ignore>
+    <Effect>
+      <Type>ACBonus</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+    </Effect>
+    <Effect>
+      <Type>SaveBonus</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+      <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>ProofAgainstPoison</Type>
+    <DisplayText>%b1 Proof Against Poison %v1: This item grants its wearer immunity to natural poisons. This item also grants a %v1 %b1 bonus to saving throws against magical poisons, and the wearer does not fail saving throws against them on a roll of a natural 1 (this renders the wearer immune to magical poisons with a DC of less than 11 + their Fortitude save).</DisplayText>
+    <Ignore>Enhancement</Ignore>
+    <Effect>
+      <Type>SaveBonus</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+      <Item>Poison</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>ProofAgainstDisease</Type>
+    <DisplayText>%b1 Proof Against Disease %v1: This item grants its wearer immunity to natural diseases. This item also grants a %v1 %b1 bonus to saving throws against magical diseases, and the wearer does not fail saving throws against them on a roll of a natural 1 (this renders the wearer immune to magical diseases with a DC of less than 3 + their Fortitude save).</DisplayText>
+    <Ignore>Enhancement</Ignore>
+    <Effect>
+      <Type>SaveBonus</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+      <Item>Disease</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>NegativeAmplification</Type>
+    <DisplayText>%b1 Negative Amplification %v1: This effect amplifies all incoming negative energy healing by %v1 (%b1 bonus ). Includes spells, potions, and other effects.</DisplayText>
+    <Ignore>Competence</Ignore>
+    <Effect>
+      <Type>NegativeHealingAmplification</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>RepairLore</Type>
+    <DisplayText>%b1 Repair Lore %v1%: Passive: Your Repair and Rust spells gain a %v1% %b1 bonus to their chance to critical hit.</DisplayText>
+    <Ignore>Equipment</Ignore>
+    <Effect>
+      <Type>SpellLore</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+      <Item>Repair</Item>
+      <Item>Rust</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>MeleeAlacrity</Type>
+    <DisplayText>%b1 Melee Alacrity %v1%: Gain %v1% %b1 bonus to Melee attack speed. Does not stack with the Haste spell.</DisplayText>
+    <Ignore>Enhancement</Ignore>
+    <Effect>
+      <Type>WeaponAlacrityClass</Type>
+      <Bonus>Enhancement</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+      <Item>Melee</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Hallowed</Type>
+    <DisplayText>Hallowed %v1: An item with this quality assists only wearers who have the ability to turn undead. Hallowed items provide an %v1 Enhancement bonus to the maximum Hit Dice of undead turned.</DisplayText>
+    <Effect>
+      <Type>TurnDiceBonus</Type>
+      <Bonus>Enhancement</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Sacred</Type>
+    <DisplayText>Sacred %v1: An item with this quality assists only wearers who have the ability to turn undead. Sacred items provide an %v1 Enhancement bonus to your effective level for Turning Undead.</DisplayText>
+    <Effect>
+      <Type>TurnLevelBonus</Type>
+      <Bonus>Enhancement</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Improved Deception</Type>
+    <DisplayText>%b1 Improved Deception %v1: This item makes your weapons hard to focus upon and thus provides a %v1 %b1 bonus to Bluff checks. In addition, while using this item your weapons have a chance to envelop the target in darkness, making them vulnerable to sneak attacks for a short time.</DisplayText>
+    <Ignore>Enhancement</Ignore>
+    <Effect>
+      <Type>SkillBonus</Type>
+      <Bonus>Enhancement</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">5</Amount>
+      <Item>Bluff</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Constitution Poison, Lesser</Type>
+    <ApplyToWeaponOnly />
+    <DisplayText>Constitution Poison, Lesser: The deadly poison coating this weapon deals an extra 1 to 6 points of constitution damage when you score a critical hit on an enemy. Some creatures may be immune or resistant to ability damage.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Equipment</Bonus>
+      <Item>All</Item>
+      <AType>NotNeeded</AType>
+      <Dice>
+        <Number size="1">1</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Constitution</Damage>
+      </Dice>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Mind Drain</Type>
+    <DisplayText>Mind Drain: This item reduces your maximum spell points by 5% while equipped.</DisplayText>
+    <Effect>
+      <Type>SpellPoints</Type>
+      <Bonus>Penalty</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">-5</Amount>
+      <Percent />
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Fixture Variable Armor Class</Type>
+    <Effect>
+      <Type>ACBonus</Type>
+      <Bonus>Enhancement</Bonus>
+      <AType>TotalLevel</AType>
+      <Amount size="2">1 2</Amount>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Mark of Healing</Type>
+    <DisplayText>Chimera's Fangs - Mark of Healing (Heal Amplification): House Jorasco's Mark of Healing grants a +38 Competence Bonus to Healing Amplification.</DisplayText>
+    <Requirements>
+      <Requirement>
+        <Type>FeatAnySource</Type>
+        <Item>Least Dragonmark of Healing</Item>
+      </Requirement>
+    </Requirements>
+    <Effect>
+      <Type>HealingAmplification</Type>
+      <Bonus>Competence</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">38</Amount>
+      <Requirements>
+        <Requirement>
+          <Type>FeatAnySource</Type>
+          <Item>Least Dragonmark of Healing</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Silent Moves</Type>
+    <DisplayText>%b1 Silent Moves: This armor is well-oiled and magically constructed, so not only is it nearly silent, it also dampens surrounding sounds. It provides a %v1 %b1 bonus on its wearer's Move Silently checks.</DisplayText>
+    <Ignore>Competence</Ignore>
+    <Effect>
+      <Type>SkillBonus</Type>
+      <Bonus>Competence</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">5</Amount>
+      <Item>Move Silently</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Silent Moves</Type>
+    <DisplayText>Silent Moves: This armor is well-oiled and magically constructed, so not only is it nearly silent, it also dampens surrounding sounds. It provides a %v1 Competence bonus on its wearer's Move Silently checks.</DisplayText>
+    <Effect>
+      <Type>SkillBonus</Type>
+      <Bonus>Competence</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+      <Item>Move Silently</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Riposte</Type>
+    <DisplayText>Riposte %v1: This item enchants its user with incredible awareness and speed, granting a %v1 %b1 bonus to AC and to Saves.</DisplayText>
+    <Ignore>Insightful</Ignore>
+    <Effect>
+      <Type>ACBonus</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">2</Amount>
+    </Effect>
+    <Effect>
+      <Type>SaveBonus</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">2</Amount>
+      <Item>All</Item>
+    </Effect>
+  </Buff>
+<Buff>
+    <Type>Riposte</Type>
+    <DisplayText>Riposte %v1: This item enchants its user with incredible awareness and speed, granting a %v1 %b1 bonus to AC and to Saves.</DisplayText>
+    <Ignore>Insightful</Ignore>
+    <Effect>
+      <Type>ACBonus</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">2</Amount>
+    </Effect>
+    <Effect>
+      <Type>SaveBonus</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">2</Amount>
+      <Item>All</Item>
+    </Effect>
+  </Buff>
+  
+<Buff>
+    <Type>Undying</Type>
+    <DisplayText>%b1 Undying %v1: Bound to service beyond death, you gain a %v1 %b1 bonus to your Incapacitation range.</DisplayText>
+    <Ignore>Enhancement</Ignore>
+    <NegativeValues />
+    <Effect>
+      <Type>UnconsciousRange</Type>
+      <Bonus>Enhancement</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">1</Amount>
+    </Effect>
+  </Buff>
+  
+<Buff>
+    <Type>SpeedRomanNumeral</Type>
+    <DisplayText>Speed %i1: Passive: %v1% Enhancement bonus to movement speed, %v2% Enhancement bonus to melee and ranged attack speed.</DisplayText>
+    <Effect>
+      <Type>MovementSpeed</Type>
+      <Bonus>Enhancement</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+    </Effect>
+    <Effect>
+      <Type>Weapon_Alacrity</Type>
+      <Bonus>Enhancement</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+      <Item>All</Item>
+    </Effect>
+  </Buff>
+  
+<Buff>
+    <Type>Thunderstorm Lore</Type>
+    <DisplayText>%b1 Thunderstorm Lore %v1: Passive: Your Sonic and Lightning spells gain a %v1 %b1 bonus to their chance to critical hit.</DisplayText>
+    <Ignore>Equipment</Ignore>
+    <Effect>
+      <Type>SpellLore</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">10</Amount>
+      <Item>Electric</Item>
+      <Item>Sonic</Item>
+    </Effect>
+  </Buff>
+  
+<Buff>
+    <Type>FireAndColdAbsorption</Type>
+    <DisplayText>Fire and Cold Absorption %v1% : Passive: %v1% Enhancement Bonus to Fire and Cold Absorption. (Absorption reduces damage from an element by a percentage, after resistance have been taken into account.)</DisplayText>
+    <Effect>
+      <Type>EnergyAbsorbance</Type>
+      <Bonus>Enhancement</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">1</Amount>
+      <Item>Fire</Item>
+      <Item>Cold</Item>
+    </Effect>
+  </Buff>
+  
+<Buff>
+    <Type>Chitinous Covering</Type>
+    <DisplayText>%b1 Chitinous Covering %v1%: This shield is made of the scavenged chitinous shell of a giant crab, and is magically warded against fire. %v1% %b1 bonus to Fire absorption.</DisplayText>
+    <Ignore>Enhancement</Ignore>
+    <Effect>
+      <Type>EnergyAbsorbance</Type>
+      <Bonus>Enhancement</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">6</Amount>
+      <Item>Fire</Item>
+    </Effect>
+  </Buff>
+  
+<Buff>
+    <Type>Charisma Skills - Exceptional</Type>
+    <DisplayText>Charisma Skills - Exceptional Bonus %v1: Passive %v1 Exceptional bonus to the Charisma based skills of: Bluff, Diplomacy, Haggle, Intimidate, Perform and Use Magic Device (UMD)</DisplayText>
+    <Ignore>Competence</Ignore>
+    <Effect>
+      <Type>SkillBonus</Type>
+      <Bonus>Competence</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">3</Amount>
+      <Item>Bluff</Item>
+      <Item>Diplomacy</Item>
+      <Item>Haggle</Item>
+      <Item>Intimidate</Item>
+      <Item>Perform</Item>
+      <Item>Use Magic Device</Item>
+    </Effect>
+  </Buff>
+  
+<Buff>
+    <Type>AbilityBonus</Type>
+    <DisplayText>%b1 %i1 %v1: Passive: %v1 %b1 bonus to %i1.</DisplayText>
+    <Ignore>Enhancement</Ignore>
+    <Effect>
+      <Type>AbilityBonus</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+      <Item>Unknown</Item>
+    </Effect>
+  </Buff>
+  
+<Buff>
+    <Type>DarkRestorationLore</Type>
+    <DisplayText>%b1 Dark Restoration Lore %v1%: Passive: Your Negative, Poison and Positive spells gain a %v1% %b1 bonus to their chance to critical hit.</DisplayText>
+    <Ignore>Equipment</Ignore>
+    <Effect>
+      <Type>SpellLore</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+      <Item>Negative</Item>
+      <Item>Poison</Item>
+      <Item>Positive</Item>
+    </Effect>
+  </Buff>
+  
+<Buff>
+    <Type>PowerOfTheDarkRestoration</Type>
+    <DisplayText>Power of the Dark Restoration %v1: Passive: %v1 Equipment bonus to Negative, Poison and Positive Spell Power.</DisplayText>
+    <Ignore>Equipment</Ignore>
+    <Effect>
+      <Type>SpellPower</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+      <Item>Negative</Item>
+      <Item>Poison</Item>
+      <Item>Positive</Item>
+    </Effect>
+  </Buff>
+  
+<Buff>
+    <Type>Power of the Silver Flame</Type>
+    <DisplayText>%b1 Power of the Silver Flame %v1: Passive: %v1 %b1 bonus to Positive, Light, and Alignment Spell Power.</DisplayText>
+    <Ignore>Equipment</Ignore>
+    <Effect>
+      <Type>SpellPower</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+      <Item>Light/Alignment</Item>
+      <Item>Chaos</Item>
+      <Item>Evil</Item>
+      <Item>Good</Item>
+      <Item>Lawful</Item>
+      <Item>Positive</Item>
+    </Effect>
+  </Buff>
+  
+<Buff>
+    <Type>Arcane Augmentation I</Type>
+    <DisplayText>Arcane Augmentation I: Increases the wearer's caster level when casting first level sorcerer or wizard spells by two. (BUG APPLIES TO ALL SPELLS)</DisplayText>
+    <Effect>
+      <Type>CasterLevel</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">2</Amount>
+      <Item>Sorcerer</Item>
+    </Effect>
+    <Effect>
+      <Type>CasterLevel</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">2</Amount>
+      <Item>Wizard</Item>
+    </Effect>
+  </Buff>
+  
+<Buff>
+    <Type>Arcane Augmentation IX</Type>
+    <DisplayText>Arcane Augmentation IX: Increases the wearer's caster level when casting ninth level or lower sorcerer or wizard spells by two.</DisplayText>
+    <Effect>
+      <Type>CasterLevel</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">2</Amount>
+      <Item>Sorcerer</Item>
+    </Effect>
+    <Effect>
+      <Type>CasterLevel</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">2</Amount>
+      <Item>Wizard</Item>
+    </Effect>
+  </Buff>
+  
+<Buff>
+    <Type>Memory of Shattered Life</Type>
+    <DisplayText>Memory of Shattered Life: You remember the horror of the life you loved lying broken, and the power it brought you. Increases the wearer's max caster level when casting Arcane or Divine spells by 1.</DisplayText>
+    <Effect>
+      <Type>MaxCasterLevel</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">1</Amount>
+      <Item>Sorcerer</Item>
+    </Effect>
+    <Effect>
+      <Type>MaxCasterLevel</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">1</Amount>
+      <Item>Wizard</Item>
+    </Effect>
+    <Effect>
+      <Type>MaxCasterLevel</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">1</Amount>
+      <Item>Arcane Trickster</Item>
+    </Effect>
+    <Effect>
+      <Type>MaxCasterLevel</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">1</Amount>
+      <Item>Cleric</Item>
+    </Effect>
+    <Effect>
+      <Type>MaxCasterLevel</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">1</Amount>
+      <Item>Dark Apostate</Item>
+    </Effect>
+    <Effect>
+      <Type>MaxCasterLevel</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">1</Amount>
+      <Item>Favored Soul</Item>
+    </Effect>
+    <Effect>
+      <Type>MaxCasterLevel</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">1</Amount>
+      <Item>Paladin</Item>
+    </Effect>
+    <Effect>
+      <Type>MaxCasterLevel</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">1</Amount>
+      <Item>Sacred FIst</Item>
+    </Effect>
+    <Effect>
+      <Type>MaxCasterLevel</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">1</Amount>
+      <Item>Wild Mage</Item>
+    </Effect>
+  </Buff>
+  
+<Buff>
+    <Type>RangedAlacrity</Type>
+    <DisplayText>Ranged Alacrity %v1%: Gain %v1% %b1 bonus to Ranged attack speed. Does not stack with the Haste spell.</DisplayText>
+    <Effect>
+      <Type>Weapon_Alacrity</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+      <Item>Dart</Item>
+      <Item>Great Crossbow</Item>
+      <Item>Heavy Crossbow</Item>
+      <Item>Light Crossbow</Item>
+      <Item>Longbow</Item>
+      <Item>Repeating Heavy Crossbow</Item>
+      <Item>Repeating Light Crossbow</Item>
+      <Item>Shortbow</Item>
+    </Effect>
+  </Buff>
+  
+<Buff>
+    <Type>RangedSpeedRomanNumeralXV</Type>
+    <DisplayText>Ranged Speed XV: Passive: %v1% Enhancement bonus to movement speed, %v2% Enhancement bonus to ranged attack speed.</DisplayText>
+    <Effect>
+      <Type>MovementSpeed</Type>
+      <Bonus>Enhancement</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+    </Effect>
+    <Effect>
+      <Type>Weapon_Alacrity</Type>
+      <Bonus>Enhancement</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+      <Item>Dart</Item>
+      <Item>Great Crossbow</Item>
+      <Item>Heavy Crossbow</Item>
+      <Item>Light Crossbow</Item>
+      <Item>Longbow</Item>
+      <Item>Repeating Heavy Crossbow</Item>
+      <Item>Repeating Light Crossbow</Item>
+      <Item>Shortbow</Item>
+    </Effect>
+  </Buff>
+  
+</Buffs>

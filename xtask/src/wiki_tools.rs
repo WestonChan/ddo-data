@@ -116,6 +116,9 @@ fn correction_candidate_note_warnings(db: &Connection) -> Result<Vec<String>> {
 
 fn wiki_report_lines(report: &BuildReport) -> Vec<String> {
     [
+        ("family_buff_count", report.family_buff_count),
+        ("effect_fallback_buff_count", report.effect_fallback_buff_count),
+        ("effect_buff_count", report.effect_buff_count),
         ("wiki_quest_loot_entry_count", report.wiki_quest_loot_entry_count),
         ("wiki_rare_drop_count", report.wiki_rare_drop_count),
         ("wiki_added_quest_loot_link_count", report.wiki_added_quest_loot_link_count),

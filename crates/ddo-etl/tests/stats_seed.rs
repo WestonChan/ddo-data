@@ -1,13 +1,12 @@
 use ddo_etl::build::build_database;
 use ddo_etl::corrections::Corrections;
-use ddo_etl::map::BUFF_VOCABULARY;
+use ddo_etl::map::enchantment::ENCHANTMENT_MAP;
 use ddo_etl::wiki::WikiOverrides;
 use ddo_model::stats::STATS;
 use ddo_model::DatasetVersion;
 use quick_xml::events::Event;
 use quick_xml::Reader;
 use rusqlite::Connection;
-use serde::Deserialize;
 use std::collections::{BTreeMap, BTreeSet};
 use std::path::{Path, PathBuf};
 
@@ -20,14 +19,6 @@ const STATS_KEPT_WITHOUT_A_SOURCE: &[(&str, &str)] = &[
     ("Divination Spell Focus", "divination spell DCs, which no SpellDC or SchoolFocusNumber in his files names"),
     ("Force Resistance", "resistance to force damage, which no EnergyResistance in his files names"),
 ];
-
-#[derive(Deserialize)]
-struct EffectVocabulary {
-    fixed: BTreeMap<String, String>,
-    by_item: BTreeMap<String, String>,
-    by_item_default: BTreeMap<String, String>,
-    item_aliases: BTreeMap<String, String>,
-}
 
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord)]
 enum ItemWordOwner {
@@ -156,32 +147,30 @@ fn record_template_targets(
 
 fn record_map_targets(sources_by_stat: &mut BTreeMap<String, String>) {
     let item_words_by_kind = his_item_words_by_kind();
-    let buff_vocabulary = &*BUFF_VOCABULARY;
-    for (kind, stat_name) in &buff_vocabulary.fixed {
-        record_source(sources_by_stat, stat_name, format!("buff_map.toml [fixed] {kind}"));
+    let vocabulary = &*ENCHANTMENT_MAP;
+    for (kind, stat_name) in &vocabulary.family.fixed {
+        record_source(sources_by_stat, stat_name, format!("enchantment_map.toml [family.fixed] {kind}"));
     }
     record_template_targets(
         sources_by_stat,
-        "buff_map.toml",
-        &buff_vocabulary.by_item,
-        &buff_vocabulary.item_aliases,
+        "enchantment_map.toml [family]",
+        &vocabulary.family.by_item,
+        &vocabulary.item_aliases,
         &item_words_by_kind,
         ItemWordOwner::Buff,
     );
-    let effect_vocabulary: EffectVocabulary =
-        toml::from_str(include_str!("../data/effect_map.toml")).expect("data/effect_map.toml is valid");
     for (section, stat_names_by_kind) in
-        [("[fixed]", &effect_vocabulary.fixed), ("[by_item_default]", &effect_vocabulary.by_item_default)]
+        [("[effect.fixed]", &vocabulary.effect.fixed), ("[effect.by_item_default]", &vocabulary.effect.by_item_default)]
     {
         for (kind, stat_name) in stat_names_by_kind {
-            record_source(sources_by_stat, stat_name, format!("effect_map.toml {section} {kind}"));
+            record_source(sources_by_stat, stat_name, format!("enchantment_map.toml {section} {kind}"));
         }
     }
     record_template_targets(
         sources_by_stat,
-        "effect_map.toml",
-        &effect_vocabulary.by_item,
-        &effect_vocabulary.item_aliases,
+        "enchantment_map.toml [effect]",
+        &vocabulary.effect.by_item,
+        &vocabulary.item_aliases,
         &item_words_by_kind,
         ItemWordOwner::Effect,
     );

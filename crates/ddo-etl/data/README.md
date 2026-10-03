@@ -2,12 +2,21 @@
 
 The vocabularies the ETL maps Maetrim's DDOBuilderV2 files through. Each is embedded in the binary at compile time, so a change here needs a rebuild, and a value one of them cannot place fails the build on purpose.
 
-- `buff_map.toml`: his item buff types, as stats, bonus types and effects.
-- `effect_map.toml`: his effect types, as stats and bonus types.
+- `enchantment_map.toml`: his item buff families and effect types, as stats, bonus types and effects.
 - `legacy_drop_sources.toml`: the names in his drop text of quests that no longer exist, so the items only they dropped are flagged legacy (below).
 - `source_aliases.toml`: the station or place names his drop text uses for a source recorded under another name: a crafting system's station, the place a challenge pack's rewards are turned in, or the place a vendor takes a turn-in (below).
 - `corrections/`: his values a ddowiki page contradicts; see [`corrections/README.md`](corrections/README.md).
 - `wiki/`: facts read from ddowiki that his files have no field for; see [`wiki/README.md`](wiki/README.md).
+
+## `enchantment_map.toml`
+
+`[family]` and its `[family.fixed]` and `[family.by_item]` sections map item `<Buff>` types. `[effect.fixed]`, `[effect.by_item]` and `[effect.by_item_default]` map the `<Effect>` types used in ItemBuffs.xml, feats, enhancements, sets and augments. `[effect.engine_only]` names effect types that are mechanics rather than plain numbers on a stat. The shared `[item_aliases]`, `[bonus_type_aliases]` and `[weapon_aliases]` sections hold his alternate spellings once. Empty bonus type aliases for `Not Set` and `Not Equipment` mean no type. A bonus type already present in the model keeps its exact meaning in an effect; item buff families use the aliases first, preserving their existing normalization of `Weapon Enchantment` and `Armor Enhancement` to `Enhancement`.
+
+An item buff resolves in order: `[family].enhancement` writes the item's enhancement bonus; a family mapping writes one bonus on its stat; otherwise, every effect in its ItemBuffs.xml definition must have `AType` `Simple`, exactly one effect type and one integral amount, and a mapped stat for every target. A fixed-stat effect qualifies only when its target is absent or `All`; a specific class or weapon target keeps the family as an effect. The definition chooses an amount source for the whole family: `%v1` in the display text or an amount of zero uses the item's `Value1`; `%v2` on the second effect uses `Value2`; a nonzero amount with no value reference is constant. A nonzero definition amount supplies a missing item value. When the display text contains `%b1`, the item's `<BonusType>` wins over the effect's `<Bonus>`; otherwise the effect's fixed `<Bonus>` wins. `Not Set` supplies no type. A missing type on an otherwise mapped item needs an `item_bonus` correction or fails the build naming the item and buff. A missing required value leaves only that item's buff as one named effect. A family with an `engine_only` or unmapped effect, another amount shape, or a conditional `<Requirements>` or `<Stance>` stays an effect for every item.
+
+`tests/fixtures/enchantment_baseline.json` records the migration comparison against the old tables. It is removed when those tables retire.
+
+The map loader fails with the entry name for unknown fixed stats, templates that cannot name a stat, aliases whose target is unknown, effect types both mapped and marked `engine_only`, and a type in both `[effect.fixed]` and `[effect.by_item]`. A family may intentionally have both a fixed stat and a target template, as `SpellLore` does; the valid target stat wins. An effect may intentionally have both a target template and a default stat for missing or `All` targets.
 
 ## Items the build leaves out or flags
 
@@ -64,4 +73,3 @@ A `[[vendor]]` entry (`text`, an optional `contains`, `vendor`, `reason`) links 
 No alias is needed for an iconic hero's starter gear: a segment whose head is `Advance to level N` links the item as a `starter` source with `character_level` N (his text gives only `Advance to level 15, End reward`), counted as `drop_text_starter_source_count`. The level is the only fact his text gives, so the kind needs no table of its own.
 
 A `[[crafting_system]]` entry may also carry `min_minimum_level` and `max_minimum_level` (either or both, inclusive): it then links only loot whose minimum level falls in that range, so one station can stand for two systems. `Altar of Fecundity, Manufactured Ingredient Recipes` (93 items) is the case: the Altar makes the blanks of both Green Steel items (minimum level 11 or 12, so `max_minimum_level = 20`, 45 items) and Legendary Green Steel items (minimum level 26, so `min_minimum_level = 21`, 48 items). Two entries may share a `text` only when their level ranges do not overlap, and the build fails on a `min_minimum_level` above the `max_minimum_level`.
-

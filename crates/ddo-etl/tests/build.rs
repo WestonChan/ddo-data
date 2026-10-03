@@ -38,6 +38,71 @@ fn item_id(db: &Connection, name: &str) -> i64 {
 }
 
 #[test]
+fn writes_improved_deception_from_its_definition_as_a_typed_bluff_bonus() {
+    let (db, report) = built_fixture_db();
+    assert_eq!(report.effect_fallback_buff_count, 4);
+    assert!(report.family_buff_count > 0);
+    assert!(report.effect_buff_count > 0);
+    let gloves = item_id(&db, "Backstabber's Gloves (Level 25)");
+    let written_bonuses: Vec<(String, i64, String)> = db
+        .prepare(
+            "SELECT s.name, b.value, bt.name FROM item_bonuses ib \
+             JOIN bonuses b ON b.id = ib.bonus_id JOIN stats s ON s.id = b.stat_id \
+             JOIN bonus_types bt ON bt.id = b.bonus_type_id WHERE ib.item_id = ?1 AND b.value = 5",
+        )
+        .unwrap()
+        .query_map(params![gloves], |row| Ok((row.get(0)?, row.get(1)?, row.get(2)?)))
+        .unwrap()
+        .map(Result::unwrap)
+        .collect();
+    assert!(written_bonuses.contains(&("Bluff".into(), 5, "Enhancement".into())));
+}
+
+#[test]
+fn effect_fallback_rows_stay_adjacent_and_distinct_descriptions_survive() {
+    let (db, _) = built_fixture_db();
+    let gauntlets = item_id(&db, "Alaric's Grim Gauntlets");
+    let ordered_rows: Vec<(String, i64, i64)> = db
+        .prepare(
+            "SELECT s.name, b.value, ib.sort_order FROM item_bonuses ib \
+             JOIN bonuses b ON b.id = ib.bonus_id JOIN stats s ON s.id = b.stat_id \
+             WHERE ib.item_id = ?1 ORDER BY ib.sort_order",
+        )
+        .unwrap()
+        .query_map(params![gauntlets], |row| Ok((row.get(0)?, row.get(1)?, row.get(2)?)))
+        .unwrap()
+        .map(Result::unwrap)
+        .collect();
+    assert_eq!(
+        &ordered_rows[4..],
+        &[("Armor Class".into(), 5, 5), ("Saving Throws".into(), 5, 6), ("Bluff".into(), 3, 7)]
+    );
+
+    let bluff_rows: Vec<(String, String, String)> = db
+        .prepare(
+            "SELECT i.name, b.description, bt.name FROM item_bonuses ib \
+             JOIN items i ON i.id = ib.item_id JOIN bonuses b ON b.id = ib.bonus_id \
+             JOIN stats s ON s.id = b.stat_id JOIN bonus_types bt ON bt.id = b.bonus_type_id \
+             WHERE i.name IN ('Alaric''s Grim Gauntlets', 'Acrobat''s Ring') \
+             AND s.name = 'Bluff' AND b.value = 3 ORDER BY i.name",
+        )
+        .unwrap()
+        .query_map([], |row| Ok((row.get(0)?, row.get(1)?, row.get(2)?)))
+        .unwrap()
+        .map(Result::unwrap)
+        .collect();
+    assert_eq!(bluff_rows.len(), 2);
+    assert_eq!(bluff_rows[0].2, "Enhancement");
+    assert_eq!(bluff_rows[1].2, "Enhancement");
+    assert!(bluff_rows
+        .iter()
+        .any(|(item, description, _)| item == "Acrobat's Ring" && description.starts_with("Deception:")));
+    assert!(bluff_rows.iter().any(
+        |(item, description, _)| item == "Alaric's Grim Gauntlets" && description.contains("Improved Deception 3")
+    ));
+}
+
+#[test]
 fn excludes_cosmetic_shields_from_items() {
     let (db, _) = built_fixture_db();
     assert_eq!(count(&db, "SELECT COUNT(*) FROM items WHERE name = 'Cosmetic Jackorb'"), 0);

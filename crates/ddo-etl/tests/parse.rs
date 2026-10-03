@@ -174,3 +174,17 @@ fn parses_quests_patrons_and_item_buffs() {
     assert_eq!(fixed_amount("Illusion Save"), None, "an <Amount> of 0 stands for the item's Value1");
     assert_eq!(fixed_amount("Linguistics"), None, "no <Effect>");
 }
+
+#[test]
+fn parses_every_effect_in_an_item_buff_definition() {
+    let definitions =
+        item_buffs::parse(&data_files_fixture_dir().parent().unwrap().join("enchantment_item_buffs.xml")).unwrap();
+    let ghostly = &definitions["Ghostly"];
+    let effect_types: Vec<&str> = ghostly.effects.iter().map(|effect| effect.types[0].as_str()).collect();
+    assert_eq!(effect_types, ["GhostTouch", "Incorporeality", "SkillBonus"]);
+    assert_eq!(ghostly.effects[2].targets, ["Hide", "Move Silently"]);
+    let parrying = &definitions["Parrying"];
+    assert_eq!(parrying.effects.len(), 2);
+    assert_eq!(parrying.effects[0].simple_integer_amount(), Some(0));
+    assert_eq!(parrying.effects[1].simple_integer_amount(), Some(0));
+}

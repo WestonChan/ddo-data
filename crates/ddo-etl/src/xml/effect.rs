@@ -1,7 +1,7 @@
 use super::requirements::Requirements;
 use super::{EmptyElement, NumberList};
 use anyhow::Result;
-use serde::de::Error as _;
+use serde::de::{Error as _, IgnoredAny};
 use serde::{Deserialize, Deserializer};
 
 pub fn parse_effect(xml: &str) -> Result<Effect> {
@@ -28,6 +28,7 @@ pub struct Effect {
     pub is_rare: bool,
     pub updates_automatic_effects: bool,
     pub requirements: Option<Requirements>,
+    pub has_single_requirement: bool,
 }
 
 #[derive(Debug, Clone, PartialEq, Default)]
@@ -76,6 +77,7 @@ enum EffectChild {
     Rare(EmptyElement),
     UpdateAutomaticEffects(EmptyElement),
     Requirements(Requirements),
+    Requirement(IgnoredAny),
 }
 
 fn numbers_or_empty(number_list: Option<NumberList>) -> Result<Vec<f64>, String> {
@@ -114,6 +116,7 @@ impl<'de> Deserialize<'de> for Effect {
                 EffectChild::Rare(_) => effect.is_rare = true,
                 EffectChild::UpdateAutomaticEffects(_) => effect.updates_automatic_effects = true,
                 EffectChild::Requirements(v) => effect.requirements = Some(v),
+                EffectChild::Requirement(_) => effect.has_single_requirement = true,
             }
         }
         if effect.types.is_empty() {
@@ -130,5 +133,26 @@ impl Effect {
         }
         let amount = self.amounts[0];
         (amount.fract() == 0.0).then_some(amount as i64)
+    }
+
+    pub fn plain_integer_amount(&self) -> Option<i64> {
+        if self.value.is_some()
+            || self.dice.is_some()
+            || self.damage.is_some()
+            || self.is_percent
+            || self.rank.is_some()
+            || self.cap.is_some()
+            || self.stack_source.is_some()
+            || self.display_name.is_some()
+            || self.applies_as_item_effect
+            || self.is_item_specific
+            || self.is_rare
+            || self.updates_automatic_effects
+            || self.requirements.is_some()
+            || self.has_single_requirement
+        {
+            return None;
+        }
+        self.simple_integer_amount()
     }
 }

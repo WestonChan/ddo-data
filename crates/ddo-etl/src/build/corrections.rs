@@ -366,6 +366,13 @@ struct CorrectedBonus {
     bonus_value: Option<i64>,
 }
 
+struct BonusToRepoint {
+    sort_order: i64,
+    value: Option<i64>,
+    second_value: Option<i64>,
+    description: Option<String>,
+}
+
 impl CorrectedBonus {
     fn of(transaction: &Transaction, correction: &Correction) -> Result<Self> {
         let (stat_name, bonus_type_name) = correction.bonus_key().context("a bonus correction names its bonus")?;
@@ -455,16 +462,23 @@ fn repoint_bonuses(
 ) -> Result<()> {
     let BonusLinkTable { table_name, owner_column } = corrected_bonus.link_table;
     for owner_id in owner_ids {
-        let mut statement = transaction.prepare(
-            &corrected_bonus.matching_bonuses_sql(&format!("{table_name}.sort_order, bonuses.value, bonuses.value2")),
-        )?;
-        let matching_bonuses: Vec<(i64, Option<i64>, Option<i64>)> = statement
+        let mut statement = transaction.prepare(&corrected_bonus.matching_bonuses_sql(&format!(
+            "{table_name}.sort_order, bonuses.value, bonuses.value2, bonuses.description"
+        )))?;
+        let matching_bonuses: Vec<BonusToRepoint> = statement
             .query_map(
                 params![owner_id, corrected_bonus.stat_id, corrected_bonus.bonus_type_id, corrected_bonus.bonus_value],
-                |r| Ok((r.get(0)?, r.get(1)?, r.get(2)?)),
+                |r| {
+                    Ok(BonusToRepoint {
+                        sort_order: r.get(0)?,
+                        value: r.get(1)?,
+                        second_value: r.get(2)?,
+                        description: r.get(3)?,
+                    })
+                },
             )?
             .collect::<rusqlite::Result<_>>()?;
-        for (sort_order, value, second_value) in matching_bonuses {
+        for BonusToRepoint { sort_order, value, second_value, description } in matching_bonuses {
             let bonus_type_id = new_bonus_type_id
                 .or(corrected_bonus.bonus_type_id)
                 .context("a corrected bonus keeps or gains a bonus type")?;
@@ -474,6 +488,7 @@ fn repoint_bonuses(
                 bonus_type_id,
                 new_value.or(value),
                 second_value,
+                description.as_deref(),
             )?;
             transaction.execute(
                 &format!("UPDATE {table_name} SET bonus_id = ?3 WHERE {owner_column} = ?1 AND sort_order = ?2"),
@@ -493,7 +508,7 @@ fn add_bonus(
     let stat_id = id_named(transaction, "stats", &bonus.stat)?
         .with_context(|| format!("stat {:?} is not in the stats table; use its exact name", bonus.stat))?;
     let bonus_type_id = bonus_type_id_named(transaction, &bonus.bonus_type)?;
-    let bonus_id = ensure_bonus_row(transaction, stat_id, bonus_type_id, Some(bonus.value), None)?;
+    let bonus_id = ensure_bonus_row(transaction, stat_id, bonus_type_id, Some(bonus.value), None, None)?;
     let BonusLinkTable { table_name, owner_column } = link_table;
     for owner_id in owner_ids {
         transaction.execute(
@@ -577,12 +592,14 @@ fn ensure_bonus_row(
     bonus_type_id: i64,
     value: Option<i64>,
     second_value: Option<i64>,
+    description: Option<&str>,
 ) -> Result<i64> {
     let existing_bonus_id: Option<i64> = transaction
         .query_row(
             "SELECT id FROM bonuses WHERE stat_id = ?1 AND bonus_type_id = ?2
-                AND COALESCE(value, -1) = COALESCE(?3, -1) AND COALESCE(value2, -1) = COALESCE(?4, -1)",
-            params![stat_id, bonus_type_id, value, second_value],
+                AND COALESCE(value, -1) = COALESCE(?3, -1) AND COALESCE(value2, -1) = COALESCE(?4, -1)
+                AND description IS ?5",
+            params![stat_id, bonus_type_id, value, second_value, description],
             |r| r.get(0),
         )
         .optional()?;
@@ -592,8 +609,8 @@ fn ensure_bonus_row(
     let stat_name: String =
         transaction.query_row("SELECT name FROM stats WHERE id = ?1", params![stat_id], |r| r.get(0))?;
     transaction.execute(
-        "INSERT INTO bonuses (name, stat_id, bonus_type_id, value, value2) VALUES (?1, ?2, ?3, ?4, ?5)",
-        params![bonus_name(&stat_name, value), stat_id, bonus_type_id, value, second_value],
+        "INSERT INTO bonuses (name, description, stat_id, bonus_type_id, value, value2) VALUES (?1, ?2, ?3, ?4, ?5, ?6)",
+        params![bonus_name(&stat_name, value), description, stat_id, bonus_type_id, value, second_value],
     )?;
     Ok(transaction.last_insert_rowid())
 }

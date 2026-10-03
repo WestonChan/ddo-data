@@ -24,8 +24,8 @@
       "bonuses": [
         {
           "bonus_type": "Equipment",
-          "description": "Equipment Devotion 36: 36 Equipment bonus to Positive (Healing) spell power.",
-          "id": 1620,
+          "description": null,
+          "id": 7011,
           "name": "Positive Spell Power +36",
           "stat": "Positive Spell Power",
           "stat_category": "magical",

@@ -1,4 +1,4 @@
-use ddo_etl::map::effect::{DerivedBonus, EffectMap};
+use ddo_etl::map::effect::{DerivedBonus, EffectResolver};
 use ddo_etl::xml::effect::{parse_effect, Effect};
 use ddo_etl::xml::requirements::parse_requirements;
 use ddo_model::enums::{BonusType, RequirementGroupKind};
@@ -128,8 +128,8 @@ fn simple_effect(effect_type: &str, bonus: &str, amount: f64, targets: &[&str]) 
 }
 
 #[test]
-fn effect_map_derives_bonuses_from_simple_effects() {
-    let map = EffectMap::load().unwrap();
+fn effect_resolver_derives_bonuses_from_simple_effects() {
+    let map = EffectResolver::new();
     let derived = |effect: &Effect| map.derive_bonuses(effect).unwrap();
 
     let fire = derived(&simple_effect("SpellPower", "Equipment", 152.0, &["Fire"]));
@@ -183,7 +183,7 @@ fn effect_map_derives_bonuses_from_simple_effects() {
 
 #[test]
 fn effect_bonus_types_normalise_including_his_vocabulary() {
-    let map = EffectMap::load().unwrap();
+    let map = EffectResolver::new();
     assert_eq!(map.parse_bonus_type("Insightful").unwrap(), Some(BonusType::Insight));
     assert_eq!(map.parse_bonus_type("Feat").unwrap(), Some(BonusType::Feat));
     assert_eq!(map.parse_bonus_type("Not Set").unwrap(), None);
@@ -192,5 +192,7 @@ fn effect_bonus_types_normalise_including_his_vocabulary() {
         Some(BonusType::WeaponEnchantment),
         "his own type, not folded into Enhancement here"
     );
+    assert_eq!(map.parse_bonus_type("Armor Enhancement").unwrap(), Some(BonusType::ArmorEnhancement));
+    assert_eq!(map.parse_bonus_type("Shield Enhancement").unwrap(), Some(BonusType::ShieldEnhancement));
     assert!(map.parse_bonus_type("Bogus").is_err());
 }

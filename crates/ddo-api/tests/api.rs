@@ -286,7 +286,7 @@ async fn enchantments_list_every_stat_and_effect_an_item_carries_with_its_item_c
     assert!(enchantment_named(&enchantments, "Fire Spell Power", "stat").is_none(), "only a legacy item carries it");
     assert!(enchantment_named(&enchantments, "ElfBane", "effect").is_none(), "only a legacy item carries it");
     let rows = enchantments.as_array().unwrap();
-    assert_eq!(rows.len(), 104, "58 stats and 46 effects carried by fixture items that are not legacy");
+    assert_eq!(rows.len(), 103, "58 stats and 45 effects carried by fixture items that are not legacy");
     assert!(rows.iter().all(|row| row["item_count"].as_i64().unwrap() > 0));
     let names: Vec<&str> = rows.iter().map(|row| row["name"].as_str().unwrap()).collect();
     let mut sorted_names = names.clone();
@@ -306,7 +306,7 @@ async fn enchantments_narrow_by_search_text_and_kind() {
 
     let (_, _, effects) = get_list_rows("/v1/enchantments?kind=effect").await;
     let effects = effects.as_array().unwrap();
-    assert_eq!(effects.len(), 43);
+    assert_eq!(effects.len(), 42);
     assert!(effects.iter().all(|row| row["kind"] == "effect"), "kind=effect lists a stat");
     let (_, _, strength_stats) = get_list_rows("/v1/enchantments?kind=stat&q=strength").await;
     assert_eq!(strength_stats, serde_json::json!([{ "name": "Strength", "kind": "stat", "item_count": 3 }]));

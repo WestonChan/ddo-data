@@ -484,4 +484,47 @@
     </Effect>
     <DisplayText>Second paragraph.</DisplayText>
   </Buff>
+  <Buff>
+    <Type>Improved Deception</Type>
+    <DisplayText>%b1 Improved Deception %v1: This item makes your weapons hard to focus upon and thus provides a %v1 %b1 bonus to Bluff checks. In addition, while using this item your weapons have a chance to envelop the target in darkness, making them vulnerable to sneak attacks for a short time.</DisplayText>
+    <Ignore>Enhancement</Ignore>
+    <Effect>
+      <Type>SkillBonus</Type>
+      <Bonus>Enhancement</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">5</Amount>
+      <Item>Bluff</Item>
+    </Effect>
+  </Buff>
+<Buff>
+    <Type>DeceptionFixed</Type>
+    <DisplayText>Deception: This weapon is hard to focus upon and thus provides a +3 Enhancement bonus to Bluff checks. In addition, Deception weapons have a small chance to envelop the target in darkness, making them vulnerable to sneak attacks for a short time.</DisplayText>
+    <Effect>
+      <Type>SkillBonus</Type>
+      <Bonus>Enhancement</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">3</Amount>
+      <Item>Bluff</Item>
+    </Effect>
+  </Buff>
+
+<Buff>
+    <Type>Parrying</Type>
+    <DisplayText>%b1 Parrying %i1: Passive: %v1 %b1 bonus to Armor Class, %v1 %b1 bonus to Fortitude, Reflex, and Will Saving throws.</DisplayText>
+    <Ignore>Insightful</Ignore>
+    <Effect>
+      <Type>ACBonus</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+    </Effect>
+    <Effect>
+      <Type>SaveBonus</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+      <Item>All</Item>
+    </Effect>
+  </Buff>
+
 </Buffs>

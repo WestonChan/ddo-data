@@ -10,7 +10,7 @@ impl TableWriter<'_> {
     pub(super) fn write_modifiers(&mut self, source: ModifierSource, source_id: i64, effects: &[Effect]) -> Result<()> {
         for (sort_order, effect) in effects.iter().enumerate() {
             let bonus_type_id =
-                self.effect_map.parse_bonus_type(effect.bonus.as_deref().unwrap_or(""))?.map(|b| b.id());
+                self.effect_resolver.parse_bonus_type(effect.bonus.as_deref().unwrap_or(""))?.map(|b| b.id());
             let dice = effect.dice.as_ref();
             self.transaction.execute(
                 "INSERT INTO modifiers (source_kind, source_id, sort_order, effect_type, extra_types, bonus, bonus_type_id, amount_type,
@@ -83,7 +83,7 @@ impl TableWriter<'_> {
     pub(super) fn ensure_derived_bonuses(&mut self, owner: &BonusOwner, effects: &[Effect]) -> Result<Vec<i64>> {
         let mut bonus_ids = Vec::new();
         for effect in effects {
-            for bonus in self.effect_map.derive_bonuses(effect)? {
+            for bonus in self.effect_resolver.derive_bonuses(effect)? {
                 let bonus_origin = BonusOrigin {
                     owner,
                     source_name: &effect.types[0],

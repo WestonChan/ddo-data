@@ -421,6 +421,19 @@ read = "2026-10-02"
 [[correction]]
 kind = "item_bonus"
 name = "Embrace of the Spider Queen"
+stat = "Poison Save"
+bonus_type = "null"
+bonus_value = 6
+field = "bonus_type"
+from = "null"
+to = "Enhancement"
+reason = "On Embrace of the Spider Queen, Proof Against Poison \"grants an Enhancement bonus to saving throws against magical poisons\"; his buff has no bonus type."
+source = "https://ddowiki.com/page/Proof_Against_Poison"
+read = "2026-10-03"
+
+[[correction]]
+kind = "item_bonus"
+name = "Embrace of the Spider Queen"
 stat = "Fortification"
 bonus_type = "null"
 bonus_value = 100
@@ -443,6 +456,58 @@ to = "Insight"
 reason = "The wiki's Exceptional Fortification (+10%) on this armor is considered an Insight bonus; his buff has no bonus type."
 source = "https://ddowiki.com/page/Item:Embrace_of_the_Spider_Queen"
 read = "2026-10-02"
+
+[[correction]]
+kind = "item_bonus"
+name = "Epic Storm"
+stat = "Electric Spell Lore"
+bonus_type = "null"
+bonus_value = 16
+field = "bonus_type"
+from = "null"
+to = "Equipment"
+reason = "For Epic Storm's Electric Spell Lore, the Thunderstorm Lore page says \"Your Electric and Sonic spells gain a <x>% Equipment Bonus to their chance to critical hit\"; his buff has no bonus type."
+source = "https://ddowiki.com/page/Thunderstorm_Lore"
+read = "2026-10-03"
+
+[[correction]]
+kind = "item_bonus"
+name = "Epic Storm"
+stat = "Sonic Spell Lore"
+bonus_type = "null"
+bonus_value = 16
+field = "bonus_type"
+from = "null"
+to = "Equipment"
+reason = "For Epic Storm's Sonic Spell Lore, the Thunderstorm Lore page says \"Your Electric and Sonic spells gain a <x>% Equipment Bonus to their chance to critical hit\"; his buff has no bonus type."
+source = "https://ddowiki.com/page/Thunderstorm_Lore"
+read = "2026-10-03"
+
+[[correction]]
+kind = "item_bonus"
+name = "Epic Storm"
+stat = "Electric Spell Power"
+bonus_type = "null"
+bonus_value = 111
+field = "bonus_type"
+from = "null"
+to = "Equipment"
+reason = "For Epic Storm's Electric Spell Power, the type follows the Spell Power convention the wiki states: spell power from items is an Equipment bonus; his buff has no bonus type."
+source = "https://ddowiki.com/page/Power_of_the_Thunderstorm"
+read = "2026-10-03"
+
+[[correction]]
+kind = "item_bonus"
+name = "Epic Storm"
+stat = "Sonic Spell Power"
+bonus_type = "null"
+bonus_value = 111
+field = "bonus_type"
+from = "null"
+to = "Equipment"
+reason = "For Epic Storm's Sonic Spell Power, the type follows the Spell Power convention the wiki states: spell power from items is an Equipment bonus; his buff has no bonus type."
+source = "https://ddowiki.com/page/Power_of_the_Thunderstorm"
+read = "2026-10-03"
 
 [[correction]]
 kind = "item_bonus"

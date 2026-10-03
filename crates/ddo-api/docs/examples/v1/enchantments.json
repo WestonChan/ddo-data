@@ -1,7 +1,7 @@
 {
   "enchantments": [
     {
-      "item_count": 47,
+      "item_count": 50,
       "kind": "stat",
       "name": "Acid Absorption"
     },
@@ -18,5 +18,5 @@
   ],
   "limit": 100,
   "offset": 0,
-  "total": 18
+  "total": 16
 }

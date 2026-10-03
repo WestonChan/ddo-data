@@ -29,5 +29,9 @@ a sewer drain. When worn, the bearer is imbued with phenomenal agility.</Descrip
       <Description1>Tumble</Description1>
       <Item>Tumble</Item>
     </Buff>
+    <Buff>
+      <Type>DeceptionFixed</Type>
+      <BonusType>Enhancement</BonusType>
+    </Buff>
   </Item>
 </Items>

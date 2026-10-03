@@ -29,7 +29,7 @@
             {
               "bonus_type": "Competence",
               "description": null,
-              "id": 3851,
+              "id": 4927,
               "name": "Attack Bonus +9",
               "stat": "Attack Bonus",
               "stat_category": "martial",
@@ -80,7 +80,7 @@
             {
               "bonus_type": "Resistance",
               "description": null,
-              "id": 3852,
+              "id": 4928,
               "name": "Armor Class +9",
               "stat": "Armor Class",
               "stat_category": "defensive",
@@ -131,7 +131,7 @@
             {
               "bonus_type": "Resistance",
               "description": null,
-              "id": 2259,
+              "id": 2641,
               "name": "Saving Throws +9",
               "stat": "Saving Throws",
               "stat_category": "defensive",
@@ -196,8 +196,8 @@
   "bonuses": [
     {
       "bonus_type": "Enhancement",
-      "description": null,
-      "id": 1347,
+      "description": "Enhancement Charisma 8: Passive: 8 Enhancement bonus to Charisma.",
+      "id": 1697,
       "name": "Charisma +8",
       "stat": "Charisma",
       "stat_category": "ability",

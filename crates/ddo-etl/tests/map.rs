@@ -1,14 +1,15 @@
 use ddo_etl::map::augment_slot::AugmentSlotType;
 use ddo_etl::map::bonus_type::parse_buff_bonus_type;
-use ddo_etl::map::buff::{BuffMap, ResolvedBuff};
-use ddo_etl::map::effect::EffectMap;
+use ddo_etl::map::buff::{AmountFrom, BuffResolutionSource, BuffResolver, FamilyResolution, ResolvedBuff};
+use ddo_etl::map::effect::EffectResolver;
+use ddo_etl::map::enchantment::{EnchantmentMap, ENCHANTMENT_MAP};
 use ddo_etl::map::item_version::names_legacy_version;
 use ddo_etl::map::placement::{placement_of, CosmeticExclusion, Placement};
 use ddo_etl::xml::effect::Effect;
 use ddo_etl::xml::item_buffs::{self, ItemBuffDefinition};
-use ddo_etl::xml::items::{Buff, EquipmentSlotTag, EquipmentSlots};
+use ddo_etl::xml::items::{parse_item_file, Buff, EquipmentSlotTag, EquipmentSlots};
 use ddo_model::enums::{BonusType, EquipmentSlot, Handedness, ItemCategory, StatCategory};
-use std::collections::{BTreeMap, HashMap};
+use std::collections::HashMap;
 use std::path::Path;
 
 fn equipment_slots(tags: &[EquipmentSlotTag]) -> EquipmentSlots {
@@ -31,9 +32,13 @@ fn fixture_item_buff_definitions() -> HashMap<String, ItemBuffDefinition> {
     item_buffs::parse(&Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures/DataFiles/ItemBuffs.xml")).unwrap()
 }
 
-fn resolved_bonus_type(map: &BuffMap, buff: &Buff) -> Option<BonusType> {
+fn enchantment_item_buff_definitions() -> HashMap<String, ItemBuffDefinition> {
+    item_buffs::parse(&Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures/enchantment_item_buffs.xml")).unwrap()
+}
+
+fn resolved_bonus_type(map: &BuffResolver, buff: &Buff) -> Option<BonusType> {
     match map.resolved(buff).unwrap() {
-        ResolvedBuff::Bonus { bonus_type, .. } => bonus_type,
+        ResolvedBuff::Bonuses { stats, .. } if stats.len() == 1 => stats[0].bonus_type,
         other => panic!("{}: {other:?}", buff.kind),
     }
 }
@@ -116,7 +121,7 @@ fn placement_from_slot_tags_and_weapon_type() {
 
 #[test]
 fn buffs_resolve_to_enhancement_bonus_stat_or_effect() {
-    let map = BuffMap::load(&fixture_item_buff_definitions()).unwrap();
+    let map = BuffResolver::from_definitions(&fixture_item_buff_definitions());
 
     assert_eq!(
         map.resolved(&buff("WeaponEnchantment", None, Some(7), Some("Weapon Enchantment"))).unwrap(),
@@ -128,10 +133,12 @@ fn buffs_resolve_to_enhancement_bonus_stat_or_effect() {
     );
 
     match map.resolved(&buff("AbilityBonus", Some("Strength"), Some(8), Some("Enhancement"))).unwrap() {
-        ResolvedBuff::Bonus { stat, bonus_type, value, second_value } => {
-            assert_eq!(stat.name, "Strength");
-            assert_eq!(bonus_type, Some(BonusType::Enhancement));
-            assert_eq!((value, second_value), (Some(8), None));
+        ResolvedBuff::Bonuses { source, stats } => {
+            assert_eq!(source, BuffResolutionSource::Family);
+            assert_eq!(stats.len(), 1);
+            assert_eq!(stats[0].stat.name, "Strength");
+            assert_eq!(stats[0].bonus_type, Some(BonusType::Enhancement));
+            assert_eq!(stats[0].amount_from, AmountFrom::ItemValue1);
         }
         other => panic!("{other:?}"),
     }
@@ -179,7 +186,7 @@ fn buffs_resolve_to_enhancement_bonus_stat_or_effect() {
     ];
     for (b, expected) in cases {
         match map.resolved(&b).unwrap() {
-            ResolvedBuff::Bonus { stat, .. } => assert_eq!(stat.name, expected, "{}", b.kind),
+            ResolvedBuff::Bonuses { stats, .. } => assert_eq!(stats[0].stat.name, expected, "{}", b.kind),
             other => panic!("{}: {other:?}", b.kind),
         }
     }
@@ -214,7 +221,7 @@ fn buffs_resolve_to_enhancement_bonus_stat_or_effect() {
 
 #[test]
 fn an_untyped_buff_takes_the_bonus_type_its_definition_fixes() {
-    let map = BuffMap::load(&fixture_item_buff_definitions()).unwrap();
+    let map = BuffResolver::from_definitions(&fixture_item_buff_definitions());
     let cases = [
         ("Command", Some(BonusType::Insight)),
         ("Elemental Absorption", Some(BonusType::Enhancement)),
@@ -238,11 +245,11 @@ fn an_untyped_buff_takes_the_bonus_type_its_definition_fixes() {
     }
     assert_eq!(
         resolved_bonus_type(&map, &buff("Command", None, Some(2), Some("Competence"))),
-        Some(BonusType::Competence),
-        "the item's own bonus type wins over the definition's"
+        Some(BonusType::Insight),
+        "without %b1, the definition's bonus type wins"
     );
     assert_eq!(
-        resolved_bonus_type(&BuffMap::load(&HashMap::new()).unwrap(), &buff("Command", None, Some(2), None)),
+        resolved_bonus_type(&BuffResolver::from_definitions(&HashMap::new()), &buff("Command", None, Some(2), None)),
         None,
         "without a definition the bonus stays untyped"
     );
@@ -250,12 +257,285 @@ fn an_untyped_buff_takes_the_bonus_type_its_definition_fixes() {
 
 #[test]
 fn bonus_descriptions_fill_the_display_template() {
-    let map = BuffMap::load(&HashMap::new()).unwrap();
+    let map = BuffResolver::from_definitions(&HashMap::new());
     let text = map.description(
         "%b1 %i1 %v1: Passive: %v1 %b1 bonus to %i1.",
         &buff("AbilityBonus", Some("Strength"), Some(8), Some("Enhancement")),
     );
     assert_eq!(text, "Enhancement Strength 8: Passive: 8 Enhancement bonus to Strength.");
+}
+
+#[test]
+fn effect_fallback_uses_definition_amounts_and_item_bonus_types() {
+    let definitions = enchantment_item_buff_definitions();
+    let map = BuffResolver::from_definitions(&definitions);
+    let cases = [
+        ("Improved Deception", 13, "Insight", vec![("Bluff", 13, BonusType::Insight)]),
+        ("ProofAgainstPoison", 7, "Enhancement", vec![("Poison Save", 7, BonusType::Enhancement)]),
+        ("ProofAgainstDisease", 8, "Enhancement", vec![("Disease Save", 8, BonusType::Enhancement)]),
+        ("NegativeAmplification", 17, "Profane", vec![("Negative Healing Amplification", 17, BonusType::Profane)]),
+        (
+            "Parrying",
+            4,
+            "Insightful",
+            vec![("Armor Class", 4, BonusType::Insight), ("Saving Throws", 4, BonusType::Insight)],
+        ),
+    ];
+    for (kind, amount, item_bonus_type, expected) in cases {
+        let item_buff = buff(kind, None, Some(amount), Some(item_bonus_type));
+        let resolved = map.resolved(&item_buff).unwrap();
+        let ResolvedBuff::Bonuses { source: BuffResolutionSource::EffectFallback, stats } = resolved else {
+            panic!("{kind}: {resolved:?}");
+        };
+        let actual: Vec<_> =
+            stats.iter().map(|row| (row.stat.name, row.amount(&item_buff).unwrap(), row.bonus_type.unwrap())).collect();
+        assert_eq!(actual, expected, "{kind}");
+    }
+    let riposte_without_item_value = buff("Riposte", None, None, Some("Insightful"));
+    let ResolvedBuff::Bonuses { source: BuffResolutionSource::EffectFallback, stats } =
+        map.resolved(&riposte_without_item_value).unwrap()
+    else {
+        panic!("Riposte with a fixed definition amount must resolve through its effects");
+    };
+    assert_eq!(
+        stats.iter().map(|row| (row.stat.name, row.amount_from)).collect::<Vec<_>>(),
+        [("Armor Class", AmountFrom::ItemValue1), ("Saving Throws", AmountFrom::ItemValue1)]
+    );
+    assert!(stats.iter().all(|stat| stat.amount(&riposte_without_item_value) == Some(2)));
+}
+
+#[test]
+fn effect_amount_sources_follow_definition_text_and_item_values() {
+    let definitions = enchantment_item_buff_definitions();
+    let resolver = BuffResolver::from_definitions(&definitions);
+    let items =
+        parse_item_file(&Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures/enchantment_real_items.item"))
+            .unwrap()
+            .items;
+    let cases = [
+        ("Legendary Amethyst Loupe", "Improved Deception", vec![("Bluff", AmountFrom::ItemValue1, Some(20))]),
+        (
+            "Epic Ethereal Bracers",
+            "Riposte",
+            vec![("Armor Class", AmountFrom::ItemValue1, Some(5)), ("Saving Throws", AmountFrom::ItemValue1, Some(5))],
+        ),
+        ("Blooming Gauntlets", "Undying", vec![("Unconsciousness Range", AmountFrom::ItemValue1, Some(50))]),
+        (
+            "Epic Ethereal Bracers",
+            "SpeedRomanNumeral",
+            vec![
+                ("Movement Speed", AmountFrom::ItemValue1, Some(30)),
+                ("Attack Speed", AmountFrom::ItemValue2, Some(14)),
+            ],
+        ),
+        (
+            "Legendary Storm",
+            "Thunderstorm Lore",
+            vec![
+                ("Electric Spell Lore", AmountFrom::ItemValue1, Some(22)),
+                ("Sonic Spell Lore", AmountFrom::ItemValue1, Some(22)),
+            ],
+        ),
+        (
+            "Legendary Crown of Ioun",
+            "FireAndColdAbsorption",
+            vec![
+                ("Fire Absorption", AmountFrom::ItemValue1, Some(40)),
+                ("Cold Absorption", AmountFrom::ItemValue1, Some(40)),
+            ],
+        ),
+        (
+            "Legendary Crabshell Buckler",
+            "Chitinous Covering",
+            vec![("Fire Absorption", AmountFrom::ItemValue1, Some(34))],
+        ),
+        (
+            "Legendary Fancy Flayer's Cape",
+            "Charisma Skills - Exceptional",
+            vec![
+                ("Bluff", AmountFrom::ItemValue1, Some(6)),
+                ("Diplomacy", AmountFrom::ItemValue1, Some(6)),
+                ("Haggle", AmountFrom::ItemValue1, Some(6)),
+                ("Intimidate", AmountFrom::ItemValue1, Some(6)),
+                ("Perform", AmountFrom::ItemValue1, Some(6)),
+                ("Use Magic Device", AmountFrom::ItemValue1, Some(6)),
+            ],
+        ),
+    ];
+    for (item_name, kind, expected) in cases {
+        assert!(definitions[kind].display_text.contains("%v"), "{kind}");
+        let item = items.iter().find(|item| item.name == item_name).unwrap();
+        let item_buff = item.buffs.iter().find(|item_buff| item_buff.kind == kind).unwrap();
+        let ResolvedBuff::Bonuses { stats, .. } = resolver.resolved(item_buff).unwrap() else {
+            panic!("{kind} did not resolve to bonuses");
+        };
+        let actual: Vec<_> =
+            stats.iter().map(|stat| (stat.stat.name, stat.amount_from, stat.amount(item_buff))).collect();
+        assert_eq!(actual, expected, "{kind}");
+    }
+}
+
+#[test]
+fn definition_bonus_type_is_fixed_unless_display_text_has_an_item_type_slot() {
+    let definitions = enchantment_item_buff_definitions();
+    let resolver = BuffResolver::from_definitions(&definitions);
+    let items =
+        parse_item_file(&Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures/enchantment_real_items.item"))
+            .unwrap()
+            .items;
+    let alaric = items.iter().find(|item| item.name == "Alaric's Grim Gauntlets").unwrap();
+    for (kind, stat_name, expected_type, has_item_type_slot) in [
+        ("AbilityBonus", "Wisdom", BonusType::Enhancement, true),
+        ("DarkRestorationLore", "Dark Restoration Lore", BonusType::Equipment, true),
+        ("Hallowed", "Turn Undead Max Dice", BonusType::Enhancement, false),
+        ("Sacred", "Turn Undead Level", BonusType::Enhancement, false),
+    ] {
+        assert_eq!(definitions[kind].display_text.contains("%b1"), has_item_type_slot, "{kind}");
+        let item_buff = alaric.buffs.iter().find(|buff| buff.kind == kind).unwrap();
+        let ResolvedBuff::Bonuses { stats, .. } = resolver.resolved(item_buff).unwrap() else {
+            panic!("{kind} did not resolve to bonuses");
+        };
+        assert_eq!((stats[0].stat.name, stats[0].bonus_type), (stat_name, Some(expected_type)), "{kind}");
+    }
+    let bracers = items.iter().find(|item| item.name == "Epic Ethereal Bracers").unwrap();
+    let riposte = bracers.buffs.iter().find(|buff| buff.kind == "Riposte").unwrap();
+    assert!(definitions["Riposte"].display_text.contains("%b1"));
+    let ResolvedBuff::Bonuses { stats, .. } = resolver.resolved(riposte).unwrap() else {
+        panic!("Riposte did not resolve to bonuses");
+    };
+    assert!(stats.iter().all(|stat| stat.bonus_type == Some(BonusType::Insight)));
+    let crest = items.iter().find(|item| item.name == "Shining Crest of St. Markus").unwrap();
+    let silver_flame = crest.buffs.iter().find(|buff| buff.kind == "Power of the Silver Flame").unwrap();
+    assert!(definitions["Power of the Silver Flame"].display_text.contains("%b1"));
+    let ResolvedBuff::Bonuses { stats, .. } = resolver.resolved(silver_flame).unwrap() else {
+        panic!("Power of the Silver Flame did not resolve to bonuses");
+    };
+    assert!(stats.iter().all(|stat| stat.bonus_type == Some(BonusType::Enhancement)));
+    let cape = items.iter().find(|item| item.name == "Legendary Fancy Flayer's Cape").unwrap();
+    let charisma_skills = cape.buffs.iter().find(|buff| buff.kind == "Charisma Skills - Exceptional").unwrap();
+    assert!(!definitions["Charisma Skills - Exceptional"].display_text.contains("%b1"));
+    let ResolvedBuff::Bonuses { stats, .. } = resolver.resolved(charisma_skills).unwrap() else {
+        panic!("Charisma Skills - Exceptional did not resolve to bonuses");
+    };
+    assert!(stats.iter().all(|stat| stat.bonus_type == Some(BonusType::Competence)));
+}
+
+#[test]
+fn family_mapping_precedes_effect_fallback_and_unmappable_definitions_stay_effects() {
+    let map = BuffResolver::from_definitions(&enchantment_item_buff_definitions());
+    for kind in ["Hallowed", "Sacred"] {
+        assert!(
+            matches!(
+                map.resolved(&buff(kind, None, Some(4), Some("Enhancement"))).unwrap(),
+                ResolvedBuff::Bonuses { source: BuffResolutionSource::Family, .. }
+            ),
+            "{kind}"
+        );
+    }
+    for kind in [
+        "Ghostly",
+        "Shield Bashing",
+        "Vorpal",
+        "RepairLore",
+        "MeleeAlacrity",
+        "Constitution Poison, Lesser",
+        "Mind Drain",
+        "Fixture Variable Armor Class",
+        "Mark of Healing",
+    ] {
+        assert!(
+            matches!(
+                map.resolved(&buff(kind, None, Some(4), Some("Enhancement"))).unwrap(),
+                ResolvedBuff::Effect { .. }
+            ),
+            "{kind}"
+        );
+    }
+    let silent_moves = buff("Silent Moves", None, None, None);
+    let FamilyResolution::EffectFallback(stats) = map.family_resolution("Silent Moves").unwrap() else {
+        panic!("Silent Moves has an effect fallback plan");
+    };
+    assert_eq!(stats[0].amount_from, AmountFrom::ItemValue1);
+    assert_eq!(stats[0].amount(&silent_moves), None);
+    assert!(matches!(map.resolved(&silent_moves).unwrap(), ResolvedBuff::Effect { .. }));
+}
+
+#[test]
+fn fixed_effects_with_specific_targets_stay_family_effects() {
+    let definitions = enchantment_item_buff_definitions();
+    let resolver = BuffResolver::from_definitions(&definitions);
+    let items =
+        parse_item_file(&Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures/enchantment_real_items.item"))
+            .unwrap()
+            .items;
+    for (item_name, kind, effect_type, target) in [
+        ("Creeping Dust Conduit", "Arcane Augmentation IX", "CasterLevel", "Sorcerer"),
+        ("Bow of the Jade Elf", "RangedAlacrity", "Weapon_Alacrity", "Dart"),
+    ] {
+        let definition = &definitions[kind];
+        assert!(definition.effects.iter().any(|effect| {
+            effect.types == [effect_type] && effect.targets.iter().any(|effect_target| effect_target == target)
+        }));
+        let item = items.iter().find(|item| item.name == item_name).unwrap();
+        let item_buff = item.buffs.iter().find(|buff| buff.kind == kind).unwrap();
+        assert!(matches!(resolver.family_resolution(kind).unwrap(), FamilyResolution::Effect), "{kind}");
+        assert!(matches!(resolver.resolved(item_buff).unwrap(), ResolvedBuff::Effect { .. }), "{kind}");
+    }
+    for kind in ["Arcane Augmentation I", "Memory of Shattered Life", "RangedSpeedRomanNumeralXV"] {
+        assert!(matches!(resolver.family_resolution(kind).unwrap(), FamilyResolution::Effect), "{kind}");
+    }
+    assert!(matches!(resolver.family_resolution("SpeedRomanNumeral").unwrap(), FamilyResolution::EffectFallback(_)));
+}
+
+#[test]
+fn an_untyped_item_keeps_the_family_plan_and_needs_a_per_item_correction() {
+    let definitions = enchantment_item_buff_definitions();
+    let typed_poison = buff("ProofAgainstPoison", None, Some(7), Some("Enhancement"));
+    let untyped_poison = buff("ProofAgainstPoison", None, Some(6), None);
+    let resolver = BuffResolver::from_definitions(&definitions);
+    assert!(matches!(resolver.family_resolution("ProofAgainstPoison").unwrap(), FamilyResolution::EffectFallback(_)));
+    assert!(matches!(
+        resolver.family_resolutions().unwrap()["ProofAgainstPoison"],
+        FamilyResolution::EffectFallback(_)
+    ));
+    assert_eq!(resolved_bonus_type(&resolver, &typed_poison), Some(BonusType::Enhancement));
+    assert_eq!(resolved_bonus_type(&resolver, &untyped_poison), None);
+}
+
+#[test]
+fn a_missing_placeholder_value_affects_only_its_item() {
+    let definitions = enchantment_item_buff_definitions();
+    let valued = buff("Silent Moves", None, Some(5), Some("Competence"));
+    let missing = buff("Silent Moves", None, None, Some("Competence"));
+    let resolver = BuffResolver::from_definitions(&definitions);
+    assert!(matches!(resolver.family_resolution("Silent Moves").unwrap(), FamilyResolution::EffectFallback(_)));
+    assert!(matches!(resolver.resolved(&valued).unwrap(), ResolvedBuff::Bonuses { .. }));
+    assert!(matches!(resolver.resolved(&missing).unwrap(), ResolvedBuff::Effect { .. }));
+}
+
+#[test]
+fn merged_enchantment_map_rejects_unknown_stat_template_alias_and_conflicting_type() {
+    let source = include_str!("../data/enchantment_map.toml");
+    let invalid_cases = [
+        (source.replace("Hallowed = \"Turn Undead Max Dice\"", "Hallowed = \"Unknown Stat\""), "Hallowed"),
+        (source.replace("AbilityBonus = \"{item}\"", "AbilityBonus = \"{item} Unknown Stat\""), "AbilityBonus"),
+        (source.replace("Lawful = \"Law\"", "Lawful = \"Unknown Word\""), "Lawful"),
+        (source.replace("Insightful = \"Insight\"", "Insightful = \"Unknown Bonus\""), "Insightful"),
+        (source.replace("RuneArm = \"Rune Arm\"", "RuneArm = \"Unknown Weapon\""), "RuneArm"),
+        (source.replace("GhostTouch = \"mechanic flag\"", "PRR = \"mechanic flag\""), "PRR"),
+        (
+            source.replace("PRR = \"Physical Resistance Rating\"", "SpellPower = \"Physical Resistance Rating\""),
+            "SpellPower",
+        ),
+        (
+            source.replace("Hallowed = \"Turn Undead Max Dice\"", "WeaponEnchantment = \"Turn Undead Max Dice\""),
+            "WeaponEnchantment",
+        ),
+    ];
+    for (invalid_source, entry) in invalid_cases {
+        let error = EnchantmentMap::from_toml(&invalid_source).expect_err("invalid map rejected");
+        assert!(error.to_string().contains(entry), "{entry}: {error}");
+    }
 }
 
 #[test]
@@ -366,7 +646,7 @@ fn character_wide_effect_types_resolve_to_their_stats() {
         ("HirelingRangedPower", "Hireling Ranged Power", Other),
         ("HirelingSpellPower", "Hireling Spell Power", Other),
     ];
-    let map = EffectMap::load().unwrap();
+    let map = EffectResolver::new();
     let failures: Vec<String> = cases
         .iter()
         .filter_map(|&(kind, name, category)| {
@@ -395,26 +675,21 @@ fn character_wide_effect_types_resolve_to_their_stats() {
 }
 
 #[test]
-fn every_stat_named_in_the_effect_map_exists() {
-    #[derive(serde::Deserialize)]
-    struct Sections {
-        fixed: BTreeMap<String, String>,
-        by_item_default: BTreeMap<String, String>,
-    }
-    let sections: Sections = toml::from_str(include_str!("../data/effect_map.toml")).unwrap();
-    let missing: Vec<_> = sections
+fn every_stat_named_in_the_enchantment_map_exists() {
+    let missing: Vec<_> = ENCHANTMENT_MAP
+        .effect
         .fixed
         .iter()
-        .chain(&sections.by_item_default)
+        .chain(&ENCHANTMENT_MAP.effect.by_item_default)
         .filter(|(_, stat)| ddo_model::stats::Stat::by_name(stat).is_none())
         .collect();
     assert!(missing.is_empty(), "stats missing from STATS: {missing:?}");
-    assert!(EffectMap::load().is_ok(), "the load-time validation agrees");
+    assert!(EnchantmentMap::load().is_ok(), "the load-time validation agrees");
 }
 
 #[test]
 fn engine_only_effect_types_are_not_reported_as_unmapped() {
-    let map = EffectMap::load().unwrap();
+    let map = EffectResolver::new();
     for effect_type in ["SkillBonusAbility", "DR", "Weapon_BaseDamage", "SpellCostReduction"] {
         assert!(map.derive_bonuses(&simple_effect(effect_type)).unwrap().is_empty(), "{effect_type} derives no bonus");
     }
@@ -425,14 +700,14 @@ fn engine_only_effect_types_are_not_reported_as_unmapped() {
 
 #[test]
 fn an_effect_type_cannot_be_both_mapped_and_engine_only() {
-    let effect_map_toml = |extra_fixed: &str| {
+    let enchantment_map_toml = |extra_fixed: &str| {
         format!(
-            "[fixed]\n{extra_fixed}\n[by_item]\n[by_item_default]\n[item_aliases]\n[bonus_type_aliases]\n[engine_only]\nDR = \"typed by bypass material\"\n"
+            "[family]\nenhancement = []\n[family.fixed]\n[family.by_item]\n[effect.fixed]\n{extra_fixed}\n[effect.by_item]\n[effect.by_item_default]\n[effect.engine_only]\nDR = \"typed by bypass material\"\n[item_aliases]\n[bonus_type_aliases]\n[weapon_aliases]\n"
         )
     };
-    assert!(EffectMap::from_toml(&effect_map_toml("PRR = \"Physical Resistance Rating\"")).is_ok());
-    let error =
-        EffectMap::from_toml(&effect_map_toml("DR = \"Physical Resistance Rating\"")).err().expect("overlap rejected");
+    assert!(EnchantmentMap::from_toml(&enchantment_map_toml("PRR = \"Physical Resistance Rating\"")).is_ok());
+    let error = EnchantmentMap::from_toml(&enchantment_map_toml("DR = \"Physical Resistance Rating\""))
+        .expect_err("overlap rejected");
     assert!(error.to_string().contains("DR"), "{error}");
 }
 

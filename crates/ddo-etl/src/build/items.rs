@@ -2,7 +2,7 @@ use super::bonus_types::{BonusOrigin, BonusOwner, BonusOwnerKind};
 use super::drop_text::DroppedLoot;
 use super::quest_series::QuestSeriesTable;
 use super::{joined_non_empty, trimmed_non_empty, BuildReport, TableWriter};
-use crate::map::buff::ResolvedBuff;
+use crate::map::buff::{BuffResolutionSource, ResolvedBuff};
 use crate::map::item_version::names_legacy_version;
 use crate::map::material;
 use crate::map::placement::placement_of;
@@ -90,9 +90,24 @@ impl TableWriter<'_> {
         let mut enhancement_bonus: Option<i64> = None;
         let mut resolved_buffs = Vec::with_capacity(item.buffs.len());
         for buff in &item.buffs {
-            match self.buff_map.resolved(buff)? {
-                ResolvedBuff::EnhancementBonus(value) => enhancement_bonus = Some(value),
-                resolved_buff => resolved_buffs.push((buff, resolved_buff)),
+            match self.buff_resolver.resolved(buff)? {
+                ResolvedBuff::EnhancementBonus(value) => {
+                    enhancement_bonus = Some(value);
+                    report.family_buff_count += 1;
+                }
+                resolved_buff => {
+                    match &resolved_buff {
+                        ResolvedBuff::Bonuses { source: BuffResolutionSource::Family, .. } => {
+                            report.family_buff_count += 1;
+                        }
+                        ResolvedBuff::Bonuses { source: BuffResolutionSource::EffectFallback, .. } => {
+                            report.effect_fallback_buff_count += 1;
+                        }
+                        ResolvedBuff::Effect { .. } => report.effect_buff_count += 1,
+                        ResolvedBuff::EnhancementBonus(_) => unreachable!("matched above"),
+                    }
+                    resolved_buffs.push((buff, resolved_buff));
+                }
             }
         }
 
@@ -150,24 +165,39 @@ impl TableWriter<'_> {
             self.insert_armor_stats(item_id, &ArmorStatsRow::from_item(item, armor_type))?;
         }
 
-        for (sort_order, (buff, resolved_buff)) in resolved_buffs.into_iter().enumerate() {
-            let template = self.buff_description_templates.get(buff.kind.trim()).map(String::as_str).unwrap_or("");
+        let mut sort_order = 0;
+        for (buff, resolved_buff) in resolved_buffs {
+            let template = self.buff_resolver.description_template(buff.kind.trim());
             match resolved_buff {
-                ResolvedBuff::Bonus { stat, bonus_type, value, second_value } => {
+                ResolvedBuff::Bonuses { source, stats } => {
                     let description =
-                        if template.is_empty() { None } else { Some(self.buff_map.description(template, buff)) };
+                        if template.is_empty() { None } else { Some(self.buff_resolver.description(template, buff)) };
                     let item_owner = BonusOwner { kind: BonusOwnerKind::Item, name: item_name, family: None };
-                    let bonus_type = self.bonus_type_of(
-                        &BonusOrigin { owner: &item_owner, source_name: buff.kind.trim(), stat_name: stat.name, value },
-                        bonus_type,
-                    )?;
-                    let bonus_id = self.ensure_bonus(stat, bonus_type, value, second_value, description.as_deref())?;
-                    self.insert_item_bonus(item_id, bonus_id, sort_order)?;
+                    for resolved_stat in stats {
+                        let stat = resolved_stat.stat;
+                        let value = resolved_stat.amount(buff);
+                        let bonus_type = self.bonus_type_of(
+                            &BonusOrigin {
+                                owner: &item_owner,
+                                source_name: buff.kind.trim(),
+                                stat_name: stat.name,
+                                value,
+                            },
+                            resolved_stat.bonus_type,
+                        )?;
+                        let second_value =
+                            (source == BuffResolutionSource::Family).then_some(buff.second_value).flatten();
+                        let bonus_id =
+                            self.ensure_bonus(stat, bonus_type, value, second_value, description.as_deref())?;
+                        self.insert_item_bonus(item_id, bonus_id, sort_order)?;
+                        sort_order += 1;
+                    }
                 }
                 ResolvedBuff::Effect { name: effect_name, value, target } => {
                     let description = if template.is_empty() { None } else { Some(template) };
                     let effect_id = self.ensure_effect(&effect_name, description)?;
                     self.insert_item_effect(item_id, effect_id, sort_order, value, target.as_deref())?;
+                    sort_order += 1;
                 }
                 ResolvedBuff::EnhancementBonus(_) => unreachable!("filtered above"),
             }
