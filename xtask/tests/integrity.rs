@@ -118,6 +118,36 @@ fn a_warning_never_fails_the_command() {
     assert!(stdout.lines().any(|line| line.starts_with("check effects_named_after_stats: WARN (")), "{stdout}");
 }
 
+#[test]
+fn items_with_a_source_but_no_pack_counts_items_by_kind_and_excludes_unrelated_items() {
+    let work_dir = tempfile::tempdir().unwrap();
+    let db_path = fixture_db_copy_with(
+        work_dir.path(),
+        "UPDATE vendors SET pack_id = NULL;
+         UPDATE crafting_systems SET pack_id = NULL;
+         INSERT INTO sources (kind, vendor_id, item_id)
+         SELECT 'vendor', v.id, i.id FROM vendors v JOIN items i ON i.name = 'Thunder-Forged Orb';
+         INSERT INTO sources (kind, vendor_id, item_id)
+         SELECT 'vendor', v.id, i.id FROM vendors v JOIN items i ON i.name = 'Ratkiller (legacy) (level 4)';",
+    );
+    let db = Connection::open(&db_path).unwrap();
+    let report = integrity_report(&db, &fixture_options()).unwrap();
+    let outcome = report.outcome("items_with_a_source_but_no_pack").expect("the missing-pack warning is registered");
+    assert_eq!(outcome.severity, Severity::Warn);
+    assert_eq!(outcome.status, CheckStatus::Warned);
+    assert_eq!(
+        outcome.offenders.iter().map(|offender| offender.name.as_str()).collect::<Vec<_>>(),
+        ["Ethereal Great Crossbow", "Thunder-Forged Orb", "Visor of Fraz-Urb'luu"]
+    );
+    assert!(
+        outcome.notes.iter().any(|note| note.contains("crafting_system: 2") && note.contains("vendor: 2")),
+        "{report}"
+    );
+    let output = check_db_output(&db_path);
+    assert!(output.status.success(), "{}", stdout_of(&output));
+    assert!(stdout_of(&output).contains("check items_with_a_source_but_no_pack: WARN (3 offenders)"));
+}
+
 struct InjectedViolation {
     check_name: &'static str,
     injected_sql: String,
@@ -149,6 +179,11 @@ fn probe_quest_source_insert(loot_type: &str, chest: &str) -> String {
 
 fn injected_violations() -> Vec<InjectedViolation> {
     vec![
+        violation(
+            "items_with_a_source_but_no_pack",
+            "UPDATE vendors SET pack_id = NULL WHERE name = 'Morten Edgewright';",
+            "Ethereal Great Crossbow",
+        ),
         violation(
             "items_without_a_source",
             &format!(

@@ -69,8 +69,8 @@ async fn adventure_packs(State(state): State<AppState>, ApiQuery(query, _): ApiQ
                    (`Magic of Myth Drannor, any end chest`): `items`, each with its `minimum_level` and `slot`, and \
                    `augments`, each with its `family` and `min_level`. Every loot row carries `id`, `name`, \
                    `loot_type` (chest or reward), `is_rare` and `chest` (the chest his text names, lower-cased, null \
-                   when it names none and on every `reward` row), the same link item and augment detail \
-                   `adventure_packs` report from the other side. Both arrays are sorted by name, then loot type, \
+                   when it names none and on every `reward` row). These direct pack sources also contribute to \
+                   item and augment detail `adventure_packs`. Both arrays are sorted by name, then loot type, \
                    and empty when nothing is credited to the pack as a whole; the loot of one quest of the pack is \
                    on /v1/quests/{id}.",
     params(("id" = i64, Path, description = "The adventure pack's numeric id from /v1/adventure-packs")),
@@ -270,9 +270,11 @@ pub(super) fn adventure_packs_dropping_via(
     let mut adventure_packs = json_rows(
         db,
         &format!(
-            "SELECT p.id, p.name, loot.loot_type, loot.is_rare, loot.chest
-               FROM sources loot JOIN adventure_packs p ON p.id = loot.pack_id
-              WHERE loot.kind = 'adventure_pack' AND loot.{loot_id_column} = ?1 ORDER BY p.name, loot.loot_type"
+            "SELECT DISTINCT p.id, p.name, loot.loot_type, loot.is_rare, loot.chest
+               FROM loot_adventure_packs packs JOIN adventure_packs p ON p.id = packs.pack_id
+               JOIN sources loot ON loot.id = packs.source_id
+              WHERE packs.{loot_id_column} = ?1
+              ORDER BY p.name, loot.loot_type, loot.is_rare, loot.chest"
         ),
         [loot_id],
     )?;

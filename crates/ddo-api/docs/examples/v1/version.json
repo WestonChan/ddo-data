@@ -44,8 +44,8 @@
     "wiki_quests": 5
   },
   "dataset": {
-    "built_at": "2026-10-03T01:17:33Z",
+    "built_at": "2026-10-03T05:51:42Z",
     "upstream_sha": "31ef0201ea8e28604de2b6242988aee6d63733b0"
   },
-  "schema_version": 19
+  "schema_version": 20
 }

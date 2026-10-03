@@ -1,6 +1,23 @@
 {
   "accepts_sentience": false,
-  "adventure_packs": [],
+  "adventure_packs": [
+    {
+      "chest": null,
+      "id": 48,
+      "is_rare": false,
+      "loot_type": null,
+      "name": "Shadowfell Conspiracy",
+      "wiki_url": "https://ddowiki.com/page/Shadowfell_Conspiracy"
+    },
+    {
+      "chest": "end chest",
+      "id": 48,
+      "is_rare": false,
+      "loot_type": "chest",
+      "name": "Shadowfell Conspiracy",
+      "wiki_url": "https://ddowiki.com/page/Shadowfell_Conspiracy"
+    }
+  ],
   "armor": null,
   "augment_slots": [
     {

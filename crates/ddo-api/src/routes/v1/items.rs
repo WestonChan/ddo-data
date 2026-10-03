@@ -52,8 +52,8 @@ declare_query_parameters! {
 const ITEM_LIST_COLUMNS: &str =
     "i.id, i.name, es.name AS slot, i.item_category AS category, i.item_type, i.minimum_level,
      i.enhancement_bonus, i.icon, i.is_legacy,
-     (SELECT MIN(ap.name) FROM sources ql LEFT JOIN quests q ON q.id = ql.quest_id
-      JOIN adventure_packs ap ON ap.id = COALESCE(ql.pack_id, q.pack_id) WHERE ql.item_id = i.id) AS pack,
+     (SELECT MIN(ap.name) FROM loot_adventure_packs packs
+      JOIN adventure_packs ap ON ap.id = packs.pack_id WHERE packs.item_id = i.id) AS pack,
      EXISTS (SELECT 1 FROM sources ql
              WHERE ql.item_id = i.id AND ql.kind = 'quest' AND ql.loot_type = 'raid') AS is_raid,
      EXISTS (SELECT 1 FROM sources ql
@@ -75,7 +75,7 @@ declare_list_parameters!(
     "",
     Some(
         "Search text, trimmed and matched ignoring case: keeps items whose name contains it, \
-         or whose slot, category or any adventure pack it drops in is named exactly it. Without \
+         or whose slot, category or any adventure pack reached through its sources is named exactly it. Without \
          `sort`, ranks an exact name first, then names starting with it, then the rest, each group by name. \
          Blank applies no search."
     )
@@ -98,7 +98,7 @@ declare_list_parameters!(
                    Without `sort`, ordered by name; with `q`, an exact name match comes first, then names starting \
                    with the text, then the rest, each group by name. Each row carries what a picker needs: id, name, \
                    slot, category, item type, minimum level, enhancement bonus, icon name, the alphabetically first \
-                   adventure pack it drops in, whether any of its sources is a raid, whether it is rare loot from \
+                   adventure pack reached through any source kind, whether any of its sources is a raid, whether it is rare loot from \
                    at least one quest (marked rare in Maetrim's drop text or on ddowiki), `is_legacy` (an old version \
                    kept beside the current one, such as a name ending `(legacy)` or `(historic)`, or an item the \
                    wiki says no longer drops; always false unless `include_legacy=true`). The items his files lack \
@@ -111,7 +111,7 @@ declare_list_parameters!(
         ("category" = Option<String>, Query, description = "One of `Armor`, `Shield`, `Weapon`, `Jewelry`, `Clothing`; anything else is a 400"),
         ("min_level" = Option<i64>, Query, description = "Only items whose minimum level is at least this"),
         ("max_level" = Option<i64>, Query, description = "Only items whose minimum level is at most this"),
-        ("pack" = Option<String>, Query, description = "Adventure pack name as /v1/adventure-packs lists it; matches items dropping from a quest in it or credited to any quest of the whole pack"),
+        ("pack" = Option<String>, Query, description = "Adventure pack name as /v1/adventure-packs lists it; matches any pack reached through an item's quest, quest chain, saga, direct pack, challenge, crafting system or vendor sources; omitted keeps every pack"),
         ("raid" = Option<bool>, Query, description = "`true` keeps only items that drop from a raid; `false` and unset apply no filter"),
         ("rare" = Option<bool>, Query, description = "`true` keeps only items that are rare loot from at least one quest or from any quest of a pack, per Maetrim's drop text or ddowiki; `false` and unset apply no filter"),
         ("quest" = Option<i64>, Query, description = "Quest id as /v1/quests lists it; keeps the items its /v1/quests/{id} `items` lists, dropped from any chest, as raid loot or as an end reward (loot his drop text credits to the whole pack is matched by `pack` instead); an id no quest has matches nothing rather than a 400, as an unknown `pack` does"),
@@ -163,7 +163,7 @@ async fn items(
                 where_clause.add_bound_condition("i.minimum_level <= ?", max_level);
             }
             if let Some(pack) = &filters.pack {
-                where_clause.add_bound_condition("EXISTS (SELECT 1 FROM sources ql LEFT JOIN quests q ON q.id = ql.quest_id JOIN adventure_packs ap ON ap.id = COALESCE(ql.pack_id, q.pack_id) WHERE ql.item_id = i.id AND ap.name = ?)",
+                where_clause.add_bound_condition("EXISTS (SELECT 1 FROM loot_adventure_packs packs JOIN adventure_packs ap ON ap.id = packs.pack_id WHERE packs.item_id = i.id AND ap.name = ?)",
                     pack.clone(),
                 );
             }
@@ -218,8 +218,8 @@ async fn items(
 
 const ITEMS_MATCHING_SEARCH_TEXT_SQL: &str = "(i.name LIKE '%' || ? || '%' ESCAPE '\\' \
      OR es.name LIKE ? ESCAPE '\\' OR i.item_category LIKE ? ESCAPE '\\' \
-     OR i.id IN (SELECT d.item_id FROM sources d LEFT JOIN quests q ON q.id = d.quest_id \
-                 JOIN adventure_packs ap ON ap.id = COALESCE(d.pack_id, q.pack_id) WHERE ap.name LIKE ? ESCAPE '\\'))";
+     OR i.id IN (SELECT packs.item_id FROM loot_adventure_packs packs \
+                 JOIN adventure_packs ap ON ap.id = packs.pack_id WHERE ap.name LIKE ? ESCAPE '\\'))";
 
 const ITEMS_WITH_OWN_BONUS_TO_STATS_SQL: &str =
     "i.id IN (SELECT ib.item_id FROM stats s JOIN bonuses b ON b.stat_id = s.id \
@@ -275,9 +275,14 @@ fn first_unknown_enchantment_name(
                    `optional chest`; null when it names none, and always null on a `reward` row), the \
                    `difficulties` each offers, and ddowiki's `is_free_to_play` for each \
                    (see /v1/quests for the rest of the quest), `quest_chains` and `sagas` whose end reward offers the item (each with `id`, `name`, `is_rare` and the ddowiki page it was read from as `wiki_url`, a saga also with its reward `tier`; see /v1/quest-chains and /v1/sagas), \
-                   `adventure_packs` any of whose quests drops it, as his drop text credits a whole pack (`Magic of \
-                   Myth Drannor, any end chest`; each with `id`, `name`, `loot_type`, `chest`, `is_rare` and the ddowiki \
-                   page named after the pack as `wiki_url`, once per loot type; see /v1/adventure-packs/{id}), `challenge_packs` whose challenges' ingredients or \
+                   `adventure_packs` reached through any source kind: direct pack and challenge sources, quests, \
+                   the quests of chains and sagas, crafting systems and vendors (events and starter gear carry no \
+                   pack). Each has `id`, `name`, `loot_type`, `chest`, `is_rare` and the ddowiki page named after the \
+                   pack as `wiki_url`, once per distinct combination of pack, `loot_type`, `is_rare` and `chest`, \
+                   sorted by pack name, loot type, rarity and chest. Rarity and chest values are preserved from \
+                   each source; identical combinations reached through several sources appear once. `is_rare` \
+                   remains a boolean; `loot_type` and `chest` stay null on source kinds that have none. Individual \
+                   sources remain in `sources`. See /v1/adventure-packs/{id}. `challenge_packs` whose challenges' ingredients or \
                    commendations are turned in for it (`Vaults of the Artificers, Turn in various challenge \
                    ingredients`; each with the pack's `id` and `name`, `is_rare` and `wiki_url`), \
                    `crafting_systems` whose station crafts or upgrades it, as \

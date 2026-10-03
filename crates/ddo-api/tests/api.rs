@@ -3,13 +3,33 @@ use axum::http::{header, Request, StatusCode};
 use ddo_api::{app, AppState};
 use ddo_model::DatasetVersion;
 use http_body_util::BodyExt;
+use rusqlite::trace::{TraceEvent, TraceEventCodes};
 use serde_json::Value;
 use std::path::PathBuf;
+use std::sync::atomic::{AtomicUsize, Ordering};
 use std::sync::OnceLock;
 use tower::ServiceExt;
 
 fn fixture_data_files_dir() -> PathBuf {
     PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../ddo-etl/tests/fixtures/DataFiles")
+}
+
+fn fixture_wiki() -> ddo_etl::wiki::WikiOverrides {
+    ddo_etl::wiki::WikiOverrides::from_dir(&fixture_data_files_dir().parent().unwrap().join("wiki")).unwrap()
+}
+
+fn build_fixture_database(db: &mut rusqlite::Connection, wiki: &ddo_etl::wiki::WikiOverrides) {
+    let dataset_version =
+        DatasetVersion { upstream_sha: "fixture-sha".into(), built_at: "2026-09-21T00:00:00Z".into() };
+    ddo_etl::build::build_database(
+        &fixture_data_files_dir(),
+        wiki,
+        &ddo_etl::corrections::Corrections::from_dir(&fixture_data_files_dir().parent().unwrap().join("corrections"))
+            .unwrap(),
+        db,
+        &dataset_version,
+    )
+    .expect("fixture build");
 }
 
 fn fixture_db_path() -> &'static PathBuf {
@@ -18,21 +38,7 @@ fn fixture_db_path() -> &'static PathBuf {
         let path = std::env::temp_dir().join(format!("ddo-api-test-{}.db", std::process::id()));
         let _ = std::fs::remove_file(&path);
         let mut db = rusqlite::Connection::open(&path).unwrap();
-        let dataset_version =
-            DatasetVersion { upstream_sha: "fixture-sha".into(), built_at: "2026-09-21T00:00:00Z".into() };
-        let wiki_overrides =
-            ddo_etl::wiki::WikiOverrides::from_dir(&fixture_data_files_dir().parent().unwrap().join("wiki")).unwrap();
-        ddo_etl::build::build_database(
-            &fixture_data_files_dir(),
-            &wiki_overrides,
-            &ddo_etl::corrections::Corrections::from_dir(
-                &fixture_data_files_dir().parent().unwrap().join("corrections"),
-            )
-            .unwrap(),
-            &mut db,
-            &dataset_version,
-        )
-        .expect("fixture build");
+        build_fixture_database(&mut db, &fixture_wiki());
         path
     })
 }
@@ -41,8 +47,21 @@ fn fixture_state() -> AppState {
     AppState::open(fixture_db_path()).expect("state opens")
 }
 
+fn fixture_state_with_wiki(wiki: &ddo_etl::wiki::WikiOverrides, test_name: &str) -> AppState {
+    let mut db = rusqlite::Connection::open_in_memory().unwrap();
+    build_fixture_database(&mut db, wiki);
+    let path = std::env::temp_dir().join(format!("ddo-api-{test_name}-{}.db", std::process::id()));
+    let _ = std::fs::remove_file(&path);
+    db.execute("VACUUM INTO ?1", [path.to_str().unwrap()]).unwrap();
+    AppState::open(&path).unwrap()
+}
+
 async fn get(path: &str) -> (StatusCode, axum::http::HeaderMap, Value) {
-    let response = app(fixture_state()).oneshot(Request::get(path).body(Body::empty()).unwrap()).await.unwrap();
+    get_from(fixture_state(), path).await
+}
+
+async fn get_from(state: AppState, path: &str) -> (StatusCode, axum::http::HeaderMap, Value) {
+    let response = app(state).oneshot(Request::get(path).body(Body::empty()).unwrap()).await.unwrap();
     let status = response.status();
     let headers = response.headers().clone();
     let body_bytes = response.into_body().collect().await.unwrap().to_bytes();
@@ -368,8 +387,15 @@ async fn item_search_text_also_matches_a_slot_category_or_pack_name_and_ranks_ex
     let (_, _, free_to_play) = get("/v1/items?q=free%20to%20play").await;
     assert_eq!(
         item_names(&free_to_play),
-        ["Battle Axe of the Oozing Hunger"],
-        "any pack it drops in matches, not only the first one the row shows"
+        [
+            "Acrobat's Ring",
+            "Alabaster of the Twelve",
+            "Battle Axe of the Oozing Hunger",
+            "Docent of Defiance",
+            "Ethereal Great Crossbow",
+            "Kundarak Delving Boots"
+        ],
+        "quest, chain and vendor packs all match, including packs after the first one the row shows"
     );
     let (_, _, slot_text_in_a_name) = get("/v1/items?q=fee").await;
     assert_eq!(slot_text_in_a_name["total"], 0, "slot, category and pack names must equal the text, not contain it");
@@ -1018,7 +1044,7 @@ async fn list_parameter_docs_share_descriptions_and_match_runtime_sort_fields() 
         let expected_search_description = match path {
             "/v1/items" => {
                 "Search text, trimmed and matched ignoring case: keeps items whose name contains it, \
-                or whose slot, category or any adventure pack it drops in is named exactly it. Without \
+                or whose slot, category or any adventure pack reached through its sources is named exactly it. Without \
                 `sort`, ranks an exact name first, then names starting with it, then the rest, each group by name. \
                 Blank applies no search."
             }
@@ -1736,7 +1762,9 @@ async fn item_detail_lists_the_adventure_packs_whose_quests_all_drop_it() {
         )
     );
     let (_, _, ring) = get(&format!("/v1/items/{}", id_of_item_named("Acrobat's Ring").await)).await;
-    assert_eq!(ring["adventure_packs"], serde_json::json!([]));
+    assert_eq!(ring["adventure_packs"].as_array().unwrap().len(), 1);
+    assert_eq!(ring["adventure_packs"][0]["name"], "Free to Play");
+    assert!(ring["adventure_packs"][0]["loot_type"].is_null());
 }
 
 #[tokio::test]
@@ -1798,7 +1826,10 @@ async fn item_and_augment_detail_list_every_source_in_one_array() {
 
     let (_, _, list) = get("/v1/augments?q=elemental+absorption").await;
     let (_, _, augment) = get(&format!("/v1/augments/{}", list["augments"][0]["id"])).await;
-    assert_eq!(augment["adventure_packs"], serde_json::json!([]));
+    assert_eq!(augment["adventure_packs"].as_array().unwrap().len(), 1);
+    assert_eq!(augment["adventure_packs"][0]["name"], "Chill of Ravenloft");
+    assert_eq!(augment["adventure_packs"][0]["loot_type"], "chest");
+    assert_eq!(augment["adventure_packs"][0]["chest"], "vornir frosthelm's chest");
     assert_eq!(augment["sources"][0]["kind"], "quest");
     assert_eq!(augment["sources"][0]["name"], "Land of Lamordia");
     assert_eq!(augment["sources"][0]["chest"], "vornir frosthelm's chest");
@@ -1848,7 +1879,17 @@ async fn item_detail_lists_the_challenge_pack_whose_ingredients_buy_it() {
             "wiki_url": "https://ddowiki.com/page/Secrets_of_the_Artificers"
         }])
     );
-    assert_eq!(ring["adventure_packs"], serde_json::json!([]), "a challenge reward is no pack-wide drop");
+    assert_eq!(
+        ring["adventure_packs"],
+        serde_json::json!([{
+            "id": pack_id,
+            "name": "Secrets of the Artificers",
+            "is_rare": false,
+            "loot_type": null,
+            "chest": null,
+            "wiki_url": "https://ddowiki.com/page/Secrets_of_the_Artificers"
+        }])
+    );
     assert_eq!(
         (&ring["sources"][0]["kind"], &ring["sources"][0]["id"]),
         (&serde_json::json!("challenge"), &serde_json::json!(pack_id))
@@ -1990,6 +2031,215 @@ async fn version_counts_every_source_by_kind() {
     .map(|count_name| counts[count_name].as_i64().unwrap())
     .sum();
     assert_eq!(counts["sources"].as_i64().unwrap(), source_count_by_kind);
+}
+
+#[tokio::test]
+async fn item_pack_surfaces_follow_every_source_kind() {
+    let mut wiki = fixture_wiki();
+    wiki.events[0].items.clear();
+    wiki.crafting_systems.iter_mut().find(|system| system.name == "Thunder-Forged").unwrap().pack =
+        Some("Free to Play".into());
+    wiki.vendors.extend(
+        ddo_etl::wiki::WikiOverrides::from_toml_files(&[(
+            "vendors_test.toml",
+            "[[vendor]]\nname = \"Test Vendor Without a Pack\"\npage = \"https://ddowiki.com/page/Test_Vendor\"\n\
+         read = \"2026-10-03\"\nitems = [\"Green Steel Weave Boots\"]\n",
+        )])
+        .unwrap()
+        .vendors,
+    );
+    let state = fixture_state_with_wiki(&wiki, "pack-sources");
+    let (status, _, page) = get_from(state.clone(), "/v1/items?limit=10000").await;
+    assert_eq!(status, StatusCode::OK);
+    let items = page["items"].as_array().unwrap();
+    for (name, kind, pack_name) in [
+        ("Acrobat's Ring", "quest_chain", Some("Free to Play")),
+        ("Thunder-Forged Orb", "crafting_system", Some("Free to Play")),
+        ("Ethereal Great Crossbow", "vendor", Some("Free to Play")),
+        ("Epic Ring of the Stalker", "challenge", Some("Secrets of the Artificers")),
+        ("Light Crossbow of the Golden Age", "adventure_pack", Some("Magic of Myth Drannor")),
+        ("Bold Trinket", "event", None),
+        ("Blood-Red Lenses", "starter", None),
+        ("Visor of Fraz-Urb'luu", "crafting_system", None),
+        ("Green Steel Weave Boots", "vendor", None),
+    ] {
+        let item = items.iter().find(|item| item["name"] == name).unwrap();
+        assert_eq!(item["pack"], serde_json::json!(pack_name), "{name}");
+        let (status, _, detail) = get_from(state.clone(), &format!("/v1/items/{}", item["id"])).await;
+        assert_eq!(status, StatusCode::OK);
+        assert_eq!(detail["sources"].as_array().unwrap().len(), 1, "{name}");
+        let source = &detail["sources"][0];
+        assert_eq!(source["kind"], kind, "{name}");
+        let packs = detail["adventure_packs"].as_array().unwrap();
+        assert_eq!(packs.len(), usize::from(pack_name.is_some()), "{name}");
+        if let Some(pack_name) = pack_name {
+            assert_eq!(packs[0]["name"], pack_name, "{name}");
+            for field in ["loot_type", "is_rare", "chest"] {
+                assert_eq!(packs[0][field], source[field], "{name}: {field}");
+            }
+            assert_eq!(packs[0]["wiki_url"], format!("https://ddowiki.com/page/{}", pack_name.replace(' ', "_")));
+        }
+        for searched_pack in ["Free to Play", "Secrets of the Artificers", "Magic of Myth Drannor"] {
+            for parameter in ["pack", "q"] {
+                let encoded_pack = searched_pack.replace(' ', "%20");
+                let (status, _, matches) =
+                    get_from(state.clone(), &format!("/v1/items?{parameter}={encoded_pack}&limit=10000")).await;
+                assert_eq!(status, StatusCode::OK);
+                assert_eq!(
+                    item_names(&matches).contains(&name),
+                    pack_name == Some(searched_pack),
+                    "{name}: {parameter}={searched_pack}"
+                );
+            }
+        }
+    }
+    let unsourced_item = items.iter().find(|item| item["name"] == "Legendary Green Steel Belt").unwrap();
+    assert!(unsourced_item["pack"].is_null());
+    let (_, _, unsourced_detail) = get_from(state.clone(), &format!("/v1/items/{}", unsourced_item["id"])).await;
+    assert_eq!(unsourced_detail["sources"], serde_json::json!([]));
+    assert_eq!(unsourced_detail["adventure_packs"], serde_json::json!([]));
+    let (_, _, unknown_pack) = get_from(state, "/v1/items?pack=Unknown%20Pack").await;
+    assert_eq!(unknown_pack["total"], 0);
+}
+
+#[tokio::test]
+async fn item_pack_query_count_does_not_grow_with_rows_or_sources() {
+    static QUERY_COUNT: AtomicUsize = AtomicUsize::new(0);
+    static PACK_QUERY_COUNT: AtomicUsize = AtomicUsize::new(0);
+    let state = fixture_state();
+    state
+        .read_db(|db| {
+            db.trace_v2(
+                TraceEventCodes::SQLITE_TRACE_STMT,
+                Some(|event| {
+                    if let TraceEvent::Stmt(statement, _) = event {
+                        QUERY_COUNT.fetch_add(1, Ordering::SeqCst);
+                        if statement.sql().contains("loot_adventure_packs") {
+                            PACK_QUERY_COUNT.fetch_add(1, Ordering::SeqCst);
+                        }
+                    }
+                }),
+            );
+            Ok(())
+        })
+        .await
+        .unwrap();
+    for filter in ["", "&pack=Free%20to%20Play", "&q=free%20to%20play"] {
+        for limit in [1, 10000] {
+            QUERY_COUNT.store(0, Ordering::SeqCst);
+            let (status, _, page) = get_from(state.clone(), &format!("/v1/items?limit={limit}{filter}")).await;
+            assert_eq!(status, StatusCode::OK);
+            assert_eq!(QUERY_COUNT.load(Ordering::SeqCst), 2, "one count and one page query: {filter}, limit {limit}");
+            assert!(page["total"].as_i64().unwrap() > 1);
+            assert_eq!(
+                page["items"].as_array().unwrap().len(),
+                if limit == 1 { 1 } else { page["total"].as_u64().unwrap() as usize }
+            );
+        }
+    }
+    for (item_name, source_count) in [("Ethereal Great Crossbow", 1), ("Five Rings", 2)] {
+        let item_id = id_of_item_named(item_name).await;
+        PACK_QUERY_COUNT.store(0, Ordering::SeqCst);
+        let (status, _, detail) = get_from(state.clone(), &format!("/v1/items/{item_id}")).await;
+        assert_eq!(status, StatusCode::OK);
+        assert_eq!(detail["sources"].as_array().unwrap().len(), source_count);
+        assert_eq!(PACK_QUERY_COUNT.load(Ordering::SeqCst), 1, "one pack summary query: {item_name}");
+    }
+}
+
+#[tokio::test]
+async fn adventure_packs_preserve_saga_rarity_and_every_quest_pack() {
+    let detail = item_detail_named("Five%20Rings").await;
+    let saga_sources: Vec<_> =
+        detail["sources"].as_array().unwrap().iter().filter(|source| source["kind"] == "saga").collect();
+    assert_eq!(saga_sources.len(), 2);
+    assert_eq!(
+        saga_sources.iter().map(|source| source["is_rare"].as_bool().unwrap()).collect::<Vec<_>>(),
+        [false, true]
+    );
+    let saga_packs: Vec<_> =
+        detail["adventure_packs"].as_array().unwrap().iter().filter(|pack| pack["loot_type"].is_null()).collect();
+    assert_eq!(
+        saga_packs
+            .iter()
+            .map(|pack| (pack["name"].as_str().unwrap(), pack["is_rare"].as_bool().unwrap()))
+            .collect::<Vec<_>>(),
+        [
+            ("Chill of Ravenloft", false),
+            ("Chill of Ravenloft", true),
+            ("Masterminds of Sharn", false),
+            ("Masterminds of Sharn", true)
+        ]
+    );
+    assert!(saga_packs.iter().all(|pack| pack["chest"].is_null()));
+    let (_, _, page) = get("/v1/items?q=Five%20Rings").await;
+    assert_eq!(
+        page["items"][0]["pack"], "Chill of Ravenloft",
+        "the alphabetically first of its saga's two quest packs"
+    );
+    for pack_name in ["Chill%20of%20Ravenloft", "Masterminds%20of%20Sharn"] {
+        for parameter in ["pack", "q"] {
+            let (_, _, matches) = get(&format!("/v1/items?{parameter}={pack_name}&limit=10000")).await;
+            assert!(item_names(&matches).contains(&"Five Rings"), "{parameter}={pack_name}");
+        }
+    }
+}
+
+#[tokio::test]
+async fn adventure_packs_preserve_distinct_chests_for_items_and_augments() {
+    for (case_index, (first_chest, second_chest, expected_chests)) in [
+        (Some("end chest"), Some("end chest"), vec![Some("end chest")]),
+        (Some("end chest"), Some("optional chest"), vec![Some("end chest"), Some("optional chest")]),
+        (Some("end chest"), None, vec![None, Some("end chest")]),
+        (None, Some("end chest"), vec![None, Some("end chest")]),
+        (None, None, vec![None]),
+    ]
+    .into_iter()
+    .enumerate()
+    {
+        let mut wiki = fixture_wiki();
+        for (quest_name, chest) in [("The Grotto", first_chest), ("Redemption", second_chest)] {
+            let chest_field = chest.map_or(String::new(), |chest| format!(", chest = {chest:?}"));
+            let quest_loot = format!(
+                "[[quest]]\nname = {quest_name:?}\npage = \"https://ddowiki.com/page/Test\"\nread = \"2026-10-03\"\n\
+                 items = [{{ name = \"Bold Trinket\"{chest_field} }}, {{ name = \"Bold Trinket\", loot_type = \"reward\" }}]\n\
+                 augments = [{{ name = \"Lunar Gem of Magical Protection (Heroic)\"{chest_field} }}]\n"
+            );
+            wiki.quest_loot.extend(
+                ddo_etl::wiki::WikiOverrides::from_toml_files(&[("quest_loot_test.toml", &quest_loot)])
+                    .unwrap()
+                    .quest_loot,
+            );
+        }
+        let state = fixture_state_with_wiki(&wiki, &format!("pack-chests-{case_index}"));
+        for (resource, search_text) in
+            [("items", "Bold%20Trinket"), ("augments", "Lunar%20Gem%20of%20Magical%20Protection")]
+        {
+            let (_, _, page) = get_from(state.clone(), &format!("/v1/{resource}?q={search_text}")).await;
+            let (status, _, detail) =
+                get_from(state.clone(), &format!("/v1/{resource}/{}", page[resource][0]["id"])).await;
+            assert_eq!(status, StatusCode::OK);
+            let packs: Vec<_> = detail["adventure_packs"]
+                .as_array()
+                .unwrap()
+                .iter()
+                .filter(|pack| pack["name"] == "Free to Play")
+                .collect();
+            assert_eq!(packs.len(), expected_chests.len() + usize::from(resource == "items"), "{resource}: {detail}");
+            let chest_rows: Vec<_> = packs.iter().filter(|pack| pack["loot_type"] == "chest").collect();
+            assert_eq!(
+                chest_rows.iter().map(|pack| pack["chest"].as_str()).collect::<Vec<_>>(),
+                expected_chests,
+                "{resource}: case {case_index}"
+            );
+            assert!(packs.iter().all(|pack| pack["is_rare"] == false));
+            if resource == "items" {
+                let reward = packs.last().unwrap();
+                assert_eq!(reward["loot_type"], "reward");
+                assert!(reward["chest"].is_null());
+            }
+        }
+    }
 }
 
 #[tokio::test]

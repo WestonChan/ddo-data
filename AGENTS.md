@@ -8,7 +8,7 @@ Rust workspace that turns Maetrim's DDOBuilderV2 data files into SQLite and serv
 export PATH="/opt/homebrew/opt/rustup/bin:$PATH"   # cargo is keg-only on the maintainer's Mac
 export DDO_UPSTREAM="/Users/weston/Documents/Personal Projects/ddo-data/upstream"   # only outside the main checkout (a worktree), which has no upstream/
 cargo test --workspace
-cargo lint                          # clippy -D warnings, correction-file validation, the list-parameter docs test, then the no-comments check; what CI runs
+cargo lint                          # clippy -D warnings, correction-file validation, the API contract and scale guards (list-parameter docs, pack query count), then the no-comments check; what CI runs
 cargo fmt --all --check
 cargo xtask no-comments --fix       # strip every comment and doc comment
 cargo xtask refresh-examples        # rebuild crates/ddo-api/docs/examples/v1 from upstream/

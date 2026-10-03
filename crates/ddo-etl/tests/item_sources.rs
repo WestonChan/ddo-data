@@ -63,6 +63,74 @@ fn unlinked_heads(db: &Connection) -> Vec<String> {
 }
 
 #[test]
+fn loot_adventure_packs_has_one_row_per_loot_pack_and_source() {
+    let mut wiki = WikiOverrides::from_dir(&fixtures_dir().join("wiki")).unwrap();
+    wiki.crafting_systems.iter_mut().find(|system| system.name == "Thunder-Forged").unwrap().pack =
+        Some("Free to Play".into());
+    wiki.quest_chains[0].pack = Some("Masterminds of Sharn".into());
+    let (db, _) = built_with(&wiki);
+    let mut statement = db
+        .prepare(
+            "SELECT p.name, packs.source_kind FROM loot_adventure_packs packs
+         JOIN adventure_packs p ON p.id = packs.pack_id
+         LEFT JOIN items i ON i.id = packs.item_id LEFT JOIN augments a ON a.id = packs.augment_id
+         WHERE COALESCE(i.name, a.name) = ?1 ORDER BY p.name, packs.source_kind, packs.source_id",
+        )
+        .unwrap();
+    for (loot_name, expected_packs) in [
+        ("Acrobat's Ring", vec![("Free to Play", "quest_chain")]),
+        ("Thunder-Forged Orb", vec![("Free to Play", "crafting_system")]),
+        ("Ethereal Great Crossbow", vec![("Free to Play", "vendor")]),
+        ("Epic Ring of the Stalker", vec![("Secrets of the Artificers", "challenge")]),
+        ("Light Crossbow of the Golden Age", vec![("Magic of Myth Drannor", "adventure_pack")]),
+        ("Lunar Gem of Magical Protection (Heroic)", vec![("Magic of Myth Drannor", "quest")]),
+        ("Bold Trinket", vec![]),
+        ("Blood-Red Lenses", vec![]),
+        ("Visor of Fraz-Urb'luu", vec![]),
+    ] {
+        let packs = statement
+            .query_map([loot_name], |row| Ok((row.get::<_, String>(0)?, row.get::<_, String>(1)?)))
+            .unwrap()
+            .collect::<rusqlite::Result<Vec<_>>>()
+            .unwrap();
+        let expected_packs: Vec<_> =
+            expected_packs.into_iter().map(|(pack, kind)| (pack.to_string(), kind.to_string())).collect();
+        assert_eq!(packs, expected_packs, "{loot_name}");
+    }
+    let duplicated_rows: i64 = db
+        .query_row(
+            "SELECT COUNT(*) FROM (SELECT 1 FROM loot_adventure_packs
+         GROUP BY item_id, augment_id, pack_id, source_kind, source_id HAVING COUNT(*) > 1)",
+            [],
+            |row| row.get(0),
+        )
+        .unwrap();
+    assert_eq!(duplicated_rows, 0);
+    let mismatched_sources: i64 = db
+        .query_row(
+            "SELECT COUNT(*) FROM loot_adventure_packs packs LEFT JOIN sources s ON s.id = packs.source_id
+         WHERE s.id IS NULL OR s.kind <> packs.source_kind
+         OR s.item_id IS NOT packs.item_id OR s.augment_id IS NOT packs.augment_id",
+            [],
+            |row| row.get(0),
+        )
+        .unwrap();
+    assert_eq!(mismatched_sources, 0);
+    let saga_rows: Vec<(String, i64)> = db
+        .prepare(
+            "SELECT p.name, COUNT(*) FROM loot_adventure_packs packs JOIN adventure_packs p ON p.id = packs.pack_id
+         JOIN items i ON i.id = packs.item_id WHERE i.name = 'Five Rings' AND packs.source_kind = 'saga'
+         GROUP BY p.id ORDER BY p.name",
+        )
+        .unwrap()
+        .query_map([], |row| Ok((row.get(0)?, row.get(1)?)))
+        .unwrap()
+        .collect::<rusqlite::Result<_>>()
+        .unwrap();
+    assert_eq!(saga_rows, [("Chill of Ravenloft".into(), 2), ("Masterminds of Sharn".into(), 2)]);
+}
+
+#[test]
 fn links_an_item_to_the_crafting_system_its_drop_text_or_station_names() {
     let (db, report) = built_with_fixture_wiki();
     assert_eq!(

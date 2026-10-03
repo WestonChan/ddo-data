@@ -119,7 +119,9 @@ async fn augments(
     description = "One augment as the list returns it, including its `crafting` recipes, plus `quests`, the quests it drops in, read from the `Drops in` text of Maetrim's description and ddowiki's rare drops, once per loot type, each \
                    with the fields item detail `quests` carry (loot type, raid flag, `is_rare`, `chest`, difficulties, \
                    pack, patron; empty when neither names a quest), `adventure_packs` and `sources` as item detail \
-                   carries them (the packs whose drop text credits the augment to any of their quests, and every \
+                   carries them (packs reached through any source kind, once per distinct combination of pack, \
+                   `loot_type`, `is_rare` and `chest`, preserving each source's rarity and chest and collapsing \
+                   identical combinations, sorted by pack name, loot type, rarity and chest; and every \
                    source in one array sorted by kind and name), and the raw `modifiers` its bonuses were \
                    derived from, including the conditional and dice-valued ones that do not reduce to a bonus.",
     params(("id" = i64, Path, description = "The augment's numeric id from the list endpoint")), responses((status = 200, description = "The augment with its child collections", body = Value), (status = 404, description = "No augment has this id", body = crate::error::ErrorBody))

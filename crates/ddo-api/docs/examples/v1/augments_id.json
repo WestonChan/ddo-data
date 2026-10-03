@@ -1,6 +1,31 @@
 {
   "adds_augment": null,
-  "adventure_packs": [],
+  "adventure_packs": [
+    {
+      "chest": "end chest",
+      "id": 15,
+      "is_rare": false,
+      "loot_type": "chest",
+      "name": "Fall of the Night Brigade",
+      "wiki_url": "https://ddowiki.com/page/Fall_of_the_Night_Brigade"
+    },
+    {
+      "chest": "end chest",
+      "id": 2,
+      "is_rare": false,
+      "loot_type": "chest",
+      "name": "Magic of Myth Drannor",
+      "wiki_url": "https://ddowiki.com/page/Magic_of_Myth_Drannor"
+    },
+    {
+      "chest": "optional chest",
+      "id": 13,
+      "is_rare": false,
+      "loot_type": "chest",
+      "name": "Tavern Tales",
+      "wiki_url": "https://ddowiki.com/page/Tavern_Tales"
+    }
+  ],
   "bonuses": [
     {
       "bonus_type": "Artifact",

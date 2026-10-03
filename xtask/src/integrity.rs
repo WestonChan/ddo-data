@@ -184,6 +184,12 @@ pub const INTEGRITY_CHECKS: &[IntegrityCheck] = &[
     )
     .ranking_top_details(15),
     IntegrityCheck::warn(
+        "items_with_a_source_but_no_pack",
+        "non-legacy items with a quest, quest chain, saga, adventure pack, challenge, crafting system or vendor \
+         source but no adventure pack reached through any source; fill missing source pack links in the wiki data",
+        OffenderQuery::Built(items_with_a_source_but_no_pack),
+    ),
+    IntegrityCheck::warn(
         "effects_named_after_stats",
         "effects whose name equals a stat's ignoring case and spaces: buffs the buff map should turn into bonuses on \
          that stat",
@@ -386,6 +392,32 @@ fn items_without_a_source(db: &Connection, _options: &IntegrityOptions) -> Resul
         ),
     )?;
     let notes = if has_is_legacy { Vec::new() } else { vec!["items.is_legacy is absent; no item is excluded".into()] };
+    Ok(Findings { offenders: Some(offenders), notes })
+}
+
+fn items_with_a_source_but_no_pack(db: &Connection, _options: &IntegrityOptions) -> Result<Findings> {
+    let offenders = offenders_from_sql(
+        db,
+        "SELECT i.name, i.id, GROUP_CONCAT(DISTINCT s.kind ORDER BY s.kind)
+         FROM items i JOIN sources s ON s.item_id = i.id
+         WHERE i.is_legacy = 0
+           AND s.kind IN ('quest', 'quest_chain', 'saga', 'adventure_pack', 'challenge', 'crafting_system', 'vendor')
+           AND NOT EXISTS (SELECT 1 FROM loot_adventure_packs packs WHERE packs.item_id = i.id)
+         GROUP BY i.id ORDER BY i.name",
+    )?;
+    let mut item_counts_by_source_kind = BTreeMap::new();
+    for offender in &offenders {
+        for source_kind in offender.detail.split(',') {
+            *item_counts_by_source_kind.entry(source_kind).or_insert(0) += 1;
+        }
+    }
+    let source_kind_counts: Vec<String> =
+        item_counts_by_source_kind.into_iter().map(|(source_kind, count)| format!("{source_kind}: {count}")).collect();
+    let notes = if source_kind_counts.is_empty() {
+        Vec::new()
+    } else {
+        vec![format!("items by source kind (an item can count under several kinds): {}", source_kind_counts.join(", "))]
+    };
     Ok(Findings { offenders: Some(offenders), notes })
 }
 

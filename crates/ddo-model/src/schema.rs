@@ -5,7 +5,7 @@ use crate::enums::{
 };
 use std::sync::LazyLock;
 
-pub const SCHEMA_VERSION: i64 = 19;
+pub const SCHEMA_VERSION: i64 = 20;
 
 fn sql_in_clause<'a>(allowed_values: impl Iterator<Item = &'a str>) -> String {
     let quoted_values: Vec<String> = allowed_values.map(|value| format!("'{value}'")).collect();
@@ -967,6 +967,16 @@ CREATE TABLE IF NOT EXISTS item_clickies (
     spell_id   INTEGER REFERENCES spells(id),         -- when the name is a real spell instead
     PRIMARY KEY (item_id, sort_order)
 );
+
+CREATE VIEW IF NOT EXISTS loot_adventure_packs (item_id, augment_id, pack_id, source_kind, source_id) AS
+SELECT DISTINCT loot.item_id, loot.augment_id, pack.id, loot.kind, loot.id
+FROM sources loot
+LEFT JOIN quest_chain_quests chain_quest ON chain_quest.chain_id = loot.chain_id
+LEFT JOIN saga_quests saga_quest ON saga_quest.saga_id = loot.saga_id
+LEFT JOIN quests quest ON quest.id = COALESCE(loot.quest_id, chain_quest.quest_id, saga_quest.quest_id)
+LEFT JOIN crafting_systems crafting_system ON crafting_system.id = loot.crafting_system_id
+LEFT JOIN vendors vendor ON vendor.id = loot.vendor_id
+JOIN adventure_packs pack ON pack.id = COALESCE(loot.pack_id, quest.pack_id, crafting_system.pack_id, vendor.pack_id);
 "#
     )
 });
