@@ -200,6 +200,17 @@ pub const INTEGRITY_CHECKS: &[IntegrityCheck] = &[
     )
     .showing_every_offender(),
     IntegrityCheck::warn(
+        "effects_with_a_value_but_no_stat",
+        "effect families whose item rows carry a number: a value the engine cannot use until the family maps onto \
+         a stat, so decide whether each is a stat worth tracking (then a buff map or stats seed entry) or prose",
+        OffenderQuery::Sql(
+            "SELECT e.name, e.id, count(*) || ' item rows, values ' || group_concat(DISTINCT ie.value) FROM effects e \
+             JOIN item_effects ie ON ie.effect_id = e.id WHERE ie.value IS NOT NULL AND ie.value <> 0 \
+             GROUP BY e.id ORDER BY count(*) DESC, e.name",
+        ),
+    )
+    .showing_every_offender(),
+    IntegrityCheck::warn(
         "items_have_minimum_level",
         "every item has a minimum level of 1 or more. WARN until the follow-up: the Cannith Crafted blanks take their \
          level from the crafting step, and Quiver of Alacrity has MinLevel 0 in Maetrim's file",

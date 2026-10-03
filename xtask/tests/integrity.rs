@@ -193,6 +193,13 @@ fn injected_violations() -> Vec<InjectedViolation> {
             "Integrity Probe Ring",
         ),
         violation("effects_named_after_stats", "INSERT INTO effects (name) VALUES ('hitpoints');", "hitpoints"),
+        violation(
+            "effects_with_a_value_but_no_stat",
+            "INSERT INTO effects (name) VALUES ('Integrity Probe Glow'); \
+             INSERT INTO item_effects (item_id, effect_id, sort_order, value) \
+             VALUES ((SELECT MIN(id) FROM items), last_insert_rowid(), 99, 7);",
+            "Integrity Probe Glow",
+        ),
         violation("tables_not_empty", "DELETE FROM guild_buffs;", "guild_buffs"),
         violation(
             "weapon_and_armor_stats_match_category",
