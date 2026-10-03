@@ -306,7 +306,7 @@ async fn enchantments_narrow_by_search_text_and_kind() {
 
     let (_, _, effects) = get_list_rows("/v1/enchantments?kind=effect").await;
     let effects = effects.as_array().unwrap();
-    assert_eq!(effects.len(), 45);
+    assert_eq!(effects.len(), 43);
     assert!(effects.iter().all(|row| row["kind"] == "effect"), "kind=effect lists a stat");
     let (_, _, strength_stats) = get_list_rows("/v1/enchantments?kind=stat&q=strength").await;
     assert_eq!(strength_stats, serde_json::json!([{ "name": "Strength", "kind": "stat", "item_count": 3 }]));

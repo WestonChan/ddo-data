@@ -32,6 +32,8 @@ Lawful = "Law"
 Chaotic = "Chaos"
 
 [fixed]
+Hallowed = "Turn Undead Max Dice"
+Sacred = "Turn Undead Level"
 # Spell power
 SpellcastingImplement = "Universal Spell Power"
 Potency = "Universal Spell Power"
