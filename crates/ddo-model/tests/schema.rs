@@ -703,5 +703,5 @@ fn an_item_augment_slot_option_keeps_its_granted_socket_sets_and_bonuses_on_the_
         .query_row("SELECT sql FROM sqlite_master WHERE name = 'item_augment_slot_options'", [], |r| r.get(0))
         .unwrap();
     assert!(!options_sql.contains("already applied"), "{options_sql}");
-    assert_eq!(SCHEMA_VERSION, 18);
+    assert_eq!(SCHEMA_VERSION, 19);
 }

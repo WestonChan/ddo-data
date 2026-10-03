@@ -8,7 +8,7 @@ Rust workspace that turns Maetrim's DDOBuilderV2 data files into SQLite and serv
 export PATH="/opt/homebrew/opt/rustup/bin:$PATH"   # cargo is keg-only on the maintainer's Mac
 export DDO_UPSTREAM="/Users/weston/Documents/Personal Projects/ddo-data/upstream"   # only outside the main checkout (a worktree), which has no upstream/
 cargo test --workspace
-cargo lint                          # clippy -D warnings, then the no-comments check; what CI runs
+cargo lint                          # clippy -D warnings, the no-comments check, then the embedded corrections' validation; what CI runs
 cargo fmt --all --check
 cargo xtask no-comments --fix       # strip every comment and doc comment
 cargo xtask refresh-examples        # rebuild crates/ddo-api/docs/examples/v1 from upstream/
@@ -63,6 +63,7 @@ The worktree compiles from scratch into its own `target/` (a few minutes the fir
 - **Turn findings into lint rules.** When you fix or review a problem a machine could have caught (a convention broken in more than one place, a bug pattern, a rule in this file that nothing enforces), suggest a check that `cargo lint` runs so it can't come back: a clippy lint in `[workspace.lints]` or `clippy.toml`, or an `xtask` check. Say what it would flag today and include it in your final report. Add it yourself when it's cheap and needs no new dependency; a new crate needs the maintainer's approval first.
 - **Names carry the meaning comments would have.** Follow the naming rules below.
 - **Keep code clean and refactor freely.** Improve adjacent code you touch; don't leave a file worse than you found it.
+- **`cargo lint` also validates the embedded correction files** under `crates/ddo-etl/data/corrections/` (unknown kinds or fields, untyped bonus additions, duplicate entries), so a bad correction fails lint before a database build.
 - **`cargo lint` also enforces** `unreachable_pub` (so a crate-internal item is `pub(crate)` and dead code stays visible) and the naming lints in `[workspace.lints]` and `clippy.toml`: `disallowed_names` (`data`, `info`, `tmp`, `val` and similar), `many_single_char_names` (three or more single-letter bindings in one scope) and `similar_names`. Every crate opts in with `[lints] workspace = true`.
 - `rustfmt.toml` sets a 120-column width. Run `cargo fmt --all` before committing.
 

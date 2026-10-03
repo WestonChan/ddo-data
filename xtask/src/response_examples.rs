@@ -51,7 +51,7 @@ pub const EXAMPLE_REQUESTS: &[ExampleRequest<'static>] = &[
     sample("crafting-systems", "/v1/crafting-systems"),
     sample("crafting-systems_id", "/v1/crafting-systems/1"),
     sample("sets", "/v1/sets"),
-    sample("sets_id", "/v1/sets/54"),
+    sample("sets_id", "/v1/sets/6"),
     sample("filigrees", "/v1/filigrees"),
     sample("sentient-gems", "/v1/sentient-gems"),
     sample("feats", "/v1/feats?q=cleave&limit=2"),

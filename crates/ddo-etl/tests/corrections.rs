@@ -892,6 +892,430 @@ fn item_bonus_rows(db: &Connection, item_name: &str) -> Vec<(String, Option<Stri
     .collect()
 }
 
+fn set_tier_bonus_rows(db: &Connection, set_name: &str, equipped_count: i64) -> Vec<(String, String, i64)> {
+    db.prepare(
+        "SELECT stats.name, bonus_types.name, bonuses.value FROM set_bonuses
+         JOIN set_bonus_tiers ON set_bonus_tiers.set_id = set_bonuses.id
+         JOIN set_bonus_tier_bonuses ON set_bonus_tier_bonuses.tier_id = set_bonus_tiers.id
+         JOIN bonuses ON bonuses.id = set_bonus_tier_bonuses.bonus_id
+         JOIN stats ON stats.id = bonuses.stat_id
+         JOIN bonus_types ON bonus_types.id = bonuses.bonus_type_id
+         WHERE set_bonuses.name = ?1 AND set_bonus_tiers.equipped_count = ?2
+         ORDER BY set_bonus_tier_bonuses.sort_order",
+    )
+    .unwrap()
+    .query_map(rusqlite::params![set_name, equipped_count], |row| Ok((row.get(0)?, row.get(1)?, row.get(2)?)))
+    .unwrap()
+    .map(Result::unwrap)
+    .collect()
+}
+
+#[test]
+fn corrects_set_tier_bonuses_and_creates_a_missing_tier() {
+    let corrections = qualified_correction_toml(
+        "set_tier_bonus",
+        "Eminence of Winter",
+        "equipped_count = 2\nstat = \"Physical Resistance Rating\"\nbonus_type = \"Artifact\"",
+        "value",
+        "30",
+        "31",
+    ) + &qualified_correction_toml(
+        "set_tier_bonus",
+        "Eminence of Winter",
+        "equipped_count = 2",
+        "add",
+        "\"null\"",
+        "{ stat = \"Magical Resistance Rating\", bonus_type = \"Artifact\", value = 31 }",
+    ) + &qualified_correction_toml(
+        "set_tier",
+        "Eminence of Winter",
+        "equipped_count = 8",
+        "add",
+        "\"null\"",
+        "{ equipped_count = 8, description = \"A new tier.\" }",
+    ) + &qualified_correction_toml(
+        "set_tier_bonus",
+        "Eminence of Winter",
+        "equipped_count = 8",
+        "add",
+        "\"null\"",
+        "{ stat = \"Constitution\", bonus_type = \"Artifact\", value = 4 }",
+    );
+    let (db, report) = built_db_with(&[("corrections.toml", &corrections)]).unwrap();
+    assert_eq!((report.correction_applied_count, report.correction_stale_count), (4, 0));
+    assert_eq!(
+        set_tier_bonus_rows(&db, "Eminence of Winter", 2),
+        [
+            ("Physical Resistance Rating".into(), "Artifact".into(), 31),
+            ("Magical Resistance Rating".into(), "Artifact".into(), 31),
+        ]
+    );
+    assert_eq!(set_tier_bonus_rows(&db, "Eminence of Winter", 8), [("Constitution".into(), "Artifact".into(), 4)]);
+}
+
+#[test]
+fn set_tier_add_goes_stale_when_the_tier_exists() {
+    let correction = qualified_correction_toml(
+        "set_tier",
+        "Eminence of Winter",
+        "equipped_count = 2",
+        "add",
+        "\"null\"",
+        "{ equipped_count = 2, description = \"Already here.\" }",
+    );
+    let (_, report) = built_db_with(&[("corrections.toml", &correction)]).unwrap();
+    assert_eq!((report.correction_applied_count, report.correction_stale_count), (0, 1));
+}
+
+#[test]
+fn refuses_a_set_tier_bonus_without_a_type() {
+    let correction = qualified_correction_toml(
+        "set_tier_bonus",
+        "Eminence of Winter",
+        "equipped_count = 2",
+        "add",
+        "\"null\"",
+        "{ stat = \"Constitution\", bonus_type = \"null\", value = 1 }",
+    );
+    assert!(parsed_corrections(&[("corrections.toml", &correction)]).is_err());
+    for kind in ["item_bonus", "augment_bonus"] {
+        let correction = correction_toml(
+            kind,
+            "Owner",
+            "add",
+            "\"null\"",
+            "{ stat = \"Constitution\", bonus_type = \"null\", value = 1 }",
+        );
+        assert!(parsed_corrections(&[("corrections.toml", &correction)]).is_err(), "{kind}");
+    }
+}
+
+#[test]
+fn missing_set_tiers_name_the_set_and_equipped_count() {
+    for kind in ["set_tier", "set_tier_bonus"] {
+        let (field, from, to) = if kind == "set_tier" {
+            ("description", "\"null\"", "\"Missing tier\"")
+        } else {
+            ("add", "\"null\"", "{ stat = \"Constitution\", bonus_type = \"Artifact\", value = 1 }")
+        };
+        let correction = qualified_correction_toml(kind, "Eminence of Winter", "equipped_count = 99", field, from, to);
+        let error = built_db_with(&[("corrections.toml", &correction)]).unwrap_err();
+        assert!(error.contains("set \"Eminence of Winter\" has no tier with equipped_count 99"), "{error}");
+        assert!(!error.contains("set_bonus_tiers.name"), "{error}");
+    }
+    let correction = qualified_correction_toml(
+        "set_tier",
+        "Unknown set",
+        "equipped_count = 2",
+        "add",
+        "\"null\"",
+        "{ equipped_count = 2, description = \"A new tier\" }",
+    );
+    let error = built_db_with(&[("corrections.toml", &correction)]).unwrap_err();
+    assert!(error.contains("set_bonuses.name") && !error.contains("set_bonus_tiers.name"), "{error}");
+}
+
+#[test]
+fn removes_only_the_qualified_bonus_link_for_each_owner_kind() {
+    for (kind, name, owner_qualifier) in [
+        ("item_bonus", "Docent of Defiance", ""),
+        ("augment_bonus", "Silverscale", "family = \"DinosaurBone\""),
+        ("set_tier_bonus", "Eminence of Winter", "equipped_count = 2"),
+    ] {
+        let corrections = qualified_correction_toml(
+            kind,
+            name,
+            owner_qualifier,
+            "add",
+            "\"null\"",
+            "{ stat = \"Strength\", bonus_type = \"Quality\", value = 2 }",
+        ) + &qualified_correction_toml(
+            kind,
+            name,
+            &format!("{owner_qualifier}\nstat = \"Strength\"\nbonus_type = \"Quality\""),
+            "value",
+            "2",
+            "3",
+        ) + &qualified_correction_toml(
+            kind,
+            name,
+            owner_qualifier,
+            "add",
+            "\"null\"",
+            "{ stat = \"Strength\", bonus_type = \"Artifact\", value = 2 }",
+        ) + &qualified_correction_toml(
+            "item_bonus",
+            "Acid Rune Arm",
+            "",
+            "add",
+            "\"null\"",
+            "{ stat = \"Strength\", bonus_type = \"Quality\", value = 3 }",
+        );
+        let removal_qualifier = format!("{owner_qualifier}\nstat = \"Strength\"\nbonus_type = \"Quality\"");
+        for (bonus_qualifier, from, applied, stale) in
+            [("", "3", 5, 0), ("\nbonus_value = 3", "3", 5, 0), ("", "2", 4, 1), ("\nbonus_value = 2", "2", 4, 1)]
+        {
+            let removal = qualified_correction_toml(
+                kind,
+                name,
+                &format!("{removal_qualifier}{bonus_qualifier}"),
+                "remove",
+                from,
+                "\"null\"",
+            );
+            let (db, report) = built_db_with(&[("corrections.toml", &(corrections.clone() + &removal))]).unwrap();
+            assert_eq!((report.correction_applied_count, report.correction_stale_count), (applied, stale), "{kind}");
+            let shared_bonuses = item_bonus_rows(&db, "Acid Rune Arm");
+            assert!(shared_bonuses.contains(&("Strength".into(), Some("Quality".into()), Some(3))));
+            let owner_bonuses = match kind {
+                "item_bonus" => item_bonus_rows(&db, name),
+                "augment_bonus" => augment_bonus_rows(&db, name),
+                _ => set_tier_bonus_rows(&db, name, 2)
+                    .into_iter()
+                    .map(|(stat, bonus_type, amount)| (stat, Some(bonus_type), Some(amount)))
+                    .collect(),
+            };
+            assert_eq!(
+                owner_bonuses.contains(&("Strength".into(), Some("Quality".into()), Some(3))),
+                stale == 1,
+                "{kind} {bonus_qualifier} {from}"
+            );
+            assert!(owner_bonuses.contains(&("Strength".into(), Some("Artifact".into()), Some(2))));
+        }
+        let absent_removal = qualified_correction_toml(kind, name, &removal_qualifier, "remove", "3", "\"null\"");
+        let (_, report) = built_db_with(&[("corrections.toml", &absent_removal)]).unwrap();
+        assert_eq!((report.correction_applied_count, report.correction_stale_count), (0, 1), "{kind}");
+        let same_type_corrections = corrections
+            + &qualified_correction_toml(
+                kind,
+                name,
+                &format!("{owner_qualifier}\nstat = \"Strength\"\nbonus_type = \"Artifact\""),
+                "bonus_type",
+                "\"Artifact\"",
+                "\"Quality\"",
+            );
+        for from in ["3", "2", "99"] {
+            let ambiguous_removal =
+                qualified_correction_toml(kind, name, &removal_qualifier, "remove", from, "\"null\"");
+            let error = built_db_with(&[("corrections.toml", &(same_type_corrections.clone() + &ambiguous_removal))])
+                .unwrap_err();
+            for expected_text in [name, "Strength", "Quality", "values [3, 2]", "specify bonus_value"] {
+                assert!(error.contains(expected_text), "{expected_text} missing from {error}");
+            }
+        }
+        let equal_value_corrections = same_type_corrections.clone()
+            + &qualified_correction_toml(
+                kind,
+                name,
+                &format!("{removal_qualifier}\nbonus_value = 2"),
+                "value",
+                "2",
+                "3",
+            )
+            + &absent_removal;
+        let error = built_db_with(&[("corrections.toml", &equal_value_corrections)]).unwrap_err();
+        assert!(error.contains("values [3, 3]") && error.contains("specify bonus_value"), "{error}");
+        let narrowed_removal = qualified_correction_toml(
+            kind,
+            name,
+            &format!("{removal_qualifier}\nbonus_value = 3"),
+            "remove",
+            "3",
+            "\"null\"",
+        );
+        let (db, report) =
+            built_db_with(&[("corrections.toml", &(same_type_corrections + &narrowed_removal))]).unwrap();
+        assert_eq!((report.correction_applied_count, report.correction_stale_count), (6, 0), "{kind}");
+        let remaining_bonuses = match kind {
+            "item_bonus" => item_bonus_rows(&db, name),
+            "augment_bonus" => augment_bonus_rows(&db, name),
+            _ => set_tier_bonus_rows(&db, name, 2)
+                .into_iter()
+                .map(|(stat, bonus_type, amount)| (stat, Some(bonus_type), Some(amount)))
+                .collect(),
+        };
+        assert!(remaining_bonuses.contains(&("Strength".into(), Some("Quality".into()), Some(2))), "{kind}");
+        assert!(!remaining_bonuses.contains(&("Strength".into(), Some("Quality".into()), Some(3))), "{kind}");
+    }
+}
+
+#[test]
+fn bonus_removal_requires_qualifiers_a_current_integer_and_a_null_destination() {
+    for (kind, owner_qualifier) in [("item_bonus", ""), ("augment_bonus", ""), ("set_tier_bonus", "equipped_count = 2")]
+    {
+        for (bonus_qualifier, from, to) in [
+            ("", "3", "\"null\""),
+            ("stat = \"Strength\"", "3", "\"null\""),
+            ("stat = \"Strength\"\nbonus_type = \"Quality\"", "\"null\"", "1"),
+            ("stat = \"Strength\"\nbonus_type = \"Quality\"", "3", "1"),
+            ("stat = \"Strength\"\nbonus_type = \"Quality\"", "3.5", "\"null\""),
+            ("stat = \"Strength\"\nbonus_type = \"Quality\"", "\"3\"", "\"null\""),
+        ] {
+            let correction = qualified_correction_toml(
+                kind,
+                "Owner",
+                &format!("{owner_qualifier}\n{bonus_qualifier}"),
+                "remove",
+                from,
+                to,
+            );
+            assert!(parsed_corrections(&[("corrections.toml", &correction)]).is_err(), "{correction}");
+        }
+    }
+}
+
+#[test]
+fn corrects_a_set_tier_bonus_type_and_value() {
+    let corrections = qualified_correction_toml(
+        "set_tier_bonus",
+        "Eminence of Winter",
+        "equipped_count = 2\nstat = \"Physical Resistance Rating\"\nbonus_type = \"Artifact\"",
+        "bonus_type",
+        "\"Artifact\"",
+        "\"Profane\"",
+    ) + &qualified_correction_toml(
+        "set_tier_bonus",
+        "Eminence of Winter",
+        "equipped_count = 2\nstat = \"Physical Resistance Rating\"\nbonus_type = \"Profane\"",
+        "value",
+        "30",
+        "31",
+    ) + &qualified_correction_toml(
+        "set_tier_bonus",
+        "Eminence of Winter",
+        "equipped_count = 2",
+        "add",
+        "\"null\"",
+        "{ stat = \"Physical Resistance Rating\", bonus_type = \"Profane\", value = 99 }",
+    );
+    let (db, report) = built_db_with(&[("corrections.toml", &corrections)]).unwrap();
+    assert_eq!((report.correction_applied_count, report.correction_stale_count), (2, 1));
+    assert_eq!(
+        set_tier_bonus_rows(&db, "Eminence of Winter", 2),
+        [("Physical Resistance Rating".into(), "Profane".into(), 31),]
+    );
+}
+
+#[test]
+fn corrects_a_set_tier_description_and_removes_an_unlisted_tier() {
+    let corrections =
+        qualified_correction_toml(
+            "set_tier",
+            "Eminence of Winter",
+            "equipped_count = 2",
+            "description",
+            "\"+30 Artifact bonus to Physical Resistance Rating\"",
+            "\"+31 Artifact PRR\"",
+        ) + &qualified_correction_toml("set_tier", "Eminence of Winter", "equipped_count = 3", "remove", "0", "1");
+    let (db, report) = built_db_with(&[("corrections.toml", &corrections)]).unwrap();
+    assert_eq!((report.correction_applied_count, report.correction_stale_count), (2, 0));
+    assert_eq!(row_count(&db, "SELECT COUNT(*) FROM set_bonus_tiers t JOIN set_bonuses s ON s.id = t.set_id WHERE s.name = 'Eminence of Winter' AND t.equipped_count = 3"), 0);
+    assert_eq!(
+        row_count(
+            &db,
+            "SELECT COUNT(*) FROM set_bonus_tier_bonuses WHERE tier_id NOT IN (SELECT id FROM set_bonus_tiers)"
+        ),
+        0
+    );
+    let description: String = db.query_row("SELECT t.description FROM set_bonus_tiers t JOIN set_bonuses s ON s.id = t.set_id WHERE s.name = 'Eminence of Winter' AND t.equipped_count = 2", [], |row| row.get(0)).unwrap();
+    assert_eq!(description, "+31 Artifact PRR");
+}
+
+#[test]
+fn set_tier_qualifiers_must_be_complete_and_match_the_added_tier() {
+    for correction in [
+        correction_toml("set_tier", "Eminence of Winter", "remove", "0", "1"),
+        qualified_correction_toml("set_tier", "Eminence of Winter", "equipped_count = 0", "remove", "0", "1"),
+        qualified_correction_toml(
+            "set_tier",
+            "Eminence of Winter",
+            "equipped_count = 3",
+            "add",
+            "\"null\"",
+            "{ equipped_count = 4, description = \"Wrong tier\" }",
+        ),
+    ] {
+        assert!(parsed_corrections(&[("corrections.toml", &correction)]).is_err(), "{correction}");
+    }
+}
+
+#[test]
+fn embedded_set_corrections_structure_the_typed_description_only_tiers() {
+    let corrections = Corrections::embedded().unwrap();
+    for (name, equipped_count, bonus_type, amount, stats) in [
+        (
+            "Eminence of Winter",
+            3,
+            "Artifact",
+            30,
+            "Healing Amplification,Repair Amplification,Negative Healing Amplification",
+        ),
+        (
+            "Eminence of Winter",
+            5,
+            "Artifact",
+            100,
+            "Melee Threat Generation,Ranged Threat Generation,Spell Threat Generation",
+        ),
+        ("Eminence of Spring", 6, "Artifact", 15, "Doublestrike,Doubleshot"),
+        ("Eminence of Spring", 7, "Artifact", 15, "Melee Power,Ranged Power"),
+        ("Dusk Raider", 3, "Artifact", 15, "Melee Power,Ranged Power"),
+        ("Quickblade", 3, "Artifact", 15, "Doublestrike,Doubleshot"),
+        ("Seasons of the Feywild", 4, "Artifact", 1, "Strength,Dexterity,Constitution,Intelligence,Wisdom,Charisma"),
+        ("Seasons of the Feywild", 7, "Artifact", 5, "Physical Resistance Rating,Magical Resistance Rating"),
+        ("Unbreakable Adamancy", 2, "Luck", 5, "Physical Resistance Rating,Magical Resistance Rating"),
+        ("Double Helix Set", 2, "Insight", 2, "Physical and Magical Resistance Rating"),
+        ("Epic Double Helix Set", 2, "Insight", 5, "Physical and Magical Resistance Rating"),
+        ("The Devil's Handiwork", 5, "Quality", 2, "Strength,Dexterity,Constitution,Intelligence,Wisdom,Charisma"),
+        ("Epic The Devil's Handiwork", 5, "Quality", 3, "Strength,Dexterity,Constitution,Intelligence,Wisdom,Charisma"),
+        ("Planar Focus: Subterfuge", 2, "Insight", 5, "Sneak Attack Hit"),
+    ] {
+        for stat in stats.split(',') {
+            assert!(
+                corrections.entries.iter().any(|correction| {
+                    correction.kind.as_str() == "set_tier_bonus"
+                        && correction.name == name
+                        && correction.equipped_count == Some(equipped_count)
+                        && correction.field == "add"
+                        && correction.from == CorrectionValue::Null
+                        && matches!(&correction.to, CorrectionValue::Bonus(bonus)
+                            if bonus.stat == stat && bonus.bonus_type == bonus_type && bonus.value == amount)
+                }),
+                "{name} {equipped_count}: {stat} {bonus_type} {amount}"
+            );
+        }
+    }
+}
+
+#[test]
+fn embedded_set_corrections_fix_feather_falling_and_remove_only_celeritys_movement_bonus() {
+    let corrections = Corrections::embedded().unwrap();
+    assert!(corrections.entries.iter().any(|correction| {
+        correction.kind.as_str() == "set_tier"
+            && correction.name == "Tharne's Wrath"
+            && correction.equipped_count == Some(3)
+            && correction.field == "description"
+            && correction.from == CorrectionValue::Text("Father Falling".into())
+            && correction.to == CorrectionValue::Text("Feather Falling".into())
+    }));
+    assert!(corrections.entries.iter().any(|correction| {
+        correction.kind.as_str() == "set_tier_bonus"
+            && correction.name == "Celerity"
+            && correction.equipped_count == Some(3)
+            && correction.field == "remove"
+            && correction.stat.as_deref() == Some("Movement Speed")
+            && correction.bonus_type.as_deref() == Some("Enhancement")
+            && correction.from == CorrectionValue::Integer(32)
+            && correction.to == CorrectionValue::Null
+    }));
+    assert!(!corrections.entries.iter().any(|correction| {
+        correction.kind.as_str() == "set_tier"
+            && correction.name == "The Wreath of Flame"
+            && correction.equipped_count == Some(3)
+            && correction.field == "description"
+    }));
+}
+
 fn item_effect_names(db: &Connection, item_name: &str) -> Vec<String> {
     db.prepare(
         "SELECT e.name FROM items i JOIN item_effects ie ON ie.item_id = i.id JOIN effects e ON e.id = ie.effect_id

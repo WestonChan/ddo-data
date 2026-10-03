@@ -64,6 +64,7 @@ fn main() -> Result<()> {
     match Cli::parse().command {
         Task::Lint => {
             deny_clippy_warnings()?;
+            corrections_from(None)?;
             deny_comments()
         }
         Task::NoComments { fix: false } => deny_comments(),

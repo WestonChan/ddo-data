@@ -10,7 +10,7 @@ Corrections are internal. The ETL applies them and stores each applied one in th
 
 ## The shape
 
-One `[[correction]]` table per corrected field, in any `*.toml` file here, split by area: `corrections_quests.toml` (quests, packs, patrons), `corrections_crafting.toml` (crafting augments and their bonuses), `corrections_items.toml` (items, their bonuses, effects and sockets, socket labels), and `corrections.toml` for the rest.
+One `[[correction]]` table per corrected field, in any `*.toml` file here, split by area: `corrections_quests.toml` (quests, packs, patrons), `corrections_crafting.toml` (crafting augments and their bonuses), `corrections_items.toml` (items, their bonuses, effects and sockets, socket labels), `corrections_sets.toml` (set tiers, their bonuses and set members), and `corrections.toml` for the rest.
 
 ```toml
 [[correction]]
@@ -24,13 +24,14 @@ source = "https://ddowiki.com/page/Lost_Purpose"
 read = "2026-09-29"
 ```
 
-- `kind`: the table the row is in: `item`, `augment`, `quest`, `feat`, `enhancement`, `race`, `class`, `adventure_pack`, `patron`, `set_bonus` or `spell`; or `augment_bonus` (one bonus of an augment), `item_bonus` (one bonus of an item, or a bonus it lacks), `item_effect` (an effect an item lacks), `item_socket` (an item's sockets) or `socket_label` (an `augment_slot_types` row).
+- `kind`: the table the row is in: `item`, `augment`, `quest`, `feat`, `enhancement`, `race`, `class`, `adventure_pack`, `patron`, `set_bonus` or `spell`; or `augment_bonus` (one bonus of an augment), `item_bonus` (one bonus of an item, or a bonus it lacks), `set_tier` (a tier of a set), `set_tier_bonus` (one bonus of a tier), `item_effect` (an effect an item lacks), `item_socket` (an item's sockets) or `socket_label` (an `augment_slot_types` row).
 - `name`: the row, by his exact name (for `augment_bonus` the augment's, for `item_bonus`, `item_effect` and `item_socket` the item's, for `socket_label` the label as `/v1/augment-slot-types` lists it, such as `"crafting: zentarim attuned"`). Augment, feat and enhancement names repeat (across augment families, class files and trees), so a correction of one of those applies to every row with that name. An `item`, `item_bonus`, `item_effect` or `item_socket` correction matches only his items, never an item the wiki supplied.
 - `family` (optional, `augment` and `augment_bonus` only): narrows the correction to the rows of that name in that augment family.
-- `stat` and `bonus_type` (`augment_bonus` and `item_bonus` `value` and `bonus_type` only): the bonus to correct, by the `stats.name` and his `bonus_types.name` it has now, or `bonus_type = "null"` for a bonus his files leave untyped.
-- `bonus_value` (optional, with `stat` and `bonus_type`): narrows the correction to the bonus with that value, for an item or augment carrying two bonuses on one stat with one type (Embrace of the Spider Queen's two untyped Fortification buffs).
+- `stat` and `bonus_type` (`augment_bonus`, `item_bonus` and `set_tier_bonus` `value`, `bonus_type` and `remove` only): the bonus to correct, by the `stats.name` and his `bonus_types.name` it has now, or `bonus_type = "null"` for a bonus his files leave untyped.
+- `bonus_value` (optional, with `stat` and `bonus_type`): narrows the correction to the bonus with that value, for an item, augment or set tier carrying two bonuses on one stat with one type (Embrace of the Spider Queen's two untyped Fortification buffs).
+- `equipped_count` (`set_tier` and `set_tier_bonus` only): the tier's positive item or augment count; it also narrows a tier bonus to that one tier.
 - `field`: a field from the allow-list below.
-- `from`: his current value; `to`: the value to write. Each is an integer, a float, a string, or the literal string `"null"` for NULL. Flags are `0` or `1`; a field that refers to another row takes that row's name. A `remove` takes `from = 0` (his files still carry the row) and `to = 1`; an `add` takes `from = "null"`.
+- `from`: his current value; `to`: the value to write. Each is an integer, a float, a string, or the literal string `"null"` for NULL. Flags are `0` or `1`; a field that refers to another row takes that row's name. An item, augment or tier `remove` takes `from = 0` (his files still carry the row) and `to = 1`; a bonus `remove` takes its current integer value as `from` and `to = "null"`; an `add` takes `from = "null"`.
 - `reason`: why his value is wrong, in one sentence.
 - `source`: the `https://` URL that shows the right value.
 - `read`: the date the source was read, `YYYY-MM-DD`.
@@ -46,15 +47,19 @@ Only scalar columns can be corrected, never an id or a row's name (except where 
 | `quest` | `level`, `epic_level`, `favor`, `is_raid`, `pack` (an `adventure_packs.name`), `patron` (a `patrons.name`), `name` (a rename) |
 | `feat`, `enhancement`, `race`, `class`, `spell` | `description` |
 | `adventure_pack`, `patron`, `set_bonus` | `name`, which renames the row; a renamed set is renamed in every item's and augment's `set_bonus` too |
-| `augment_bonus` | `value` (an integer), `bonus_type` (a `bonus_types.name`), `add` (`to = { stat = "...", bonus_type = "...", value = N }`) |
-| `item_bonus` | `value` (an integer), `bonus_type` (a `bonus_types.name`), `add` (`to = { stat = "...", bonus_type = "...", value = N }`) |
+| `augment_bonus` | `value` (an integer), `bonus_type` (a `bonus_types.name`), `add` (`to = { stat = "...", bonus_type = "...", value = N }`), `remove` |
+| `item_bonus` | `value` (an integer), `bonus_type` (a `bonus_types.name`), `add` (`to = { stat = "...", bonus_type = "...", value = N }`), `remove` |
+| `set_tier` | `add` (`to = { equipped_count = N, description = "..." }`), `description`, `remove` |
+| `set_tier_bonus` | `value` (an integer), `bonus_type` (a `bonus_types.name`), `add` (`to = { stat = "...", bonus_type = "...", value = N }`), `remove` |
 | `item_effect` | `add` (`to` = the effect's name, or `{ name = "...", description = "..." }`) |
 | `item_socket` | `add` (`to` = the socket label to add) |
 | `socket_label` | `name`, which renames the label everywhere it is used; when `to` is already a label the two merge |
 
-- `remove` drops the row and its child rows (bonuses, effects, sockets, quest loot, set links, modifiers; crafting recipes that name it would then fail the wiki merge). Use it only for a row the wiki shows is a duplicate of another he carries.
+- An item, augment or tier `remove` drops the row and its child rows (bonuses, effects, sockets, quest loot, set links, modifiers; crafting recipes that name it would then fail the wiki merge). Use it only for a row the wiki shows is a duplicate or a tier the wiki unambiguously does not grant.
 - `augment_bonus` `value` and `bonus_type` rewrite the bonus on every augment of that name: the augment is pointed at the `bonuses` row with the corrected stat, type and value (found or inserted), so other items and augments that share his bonus row keep it. The augment's `modifiers` are his and are not rewritten. `add` appends a bonus row to the augment; it is stale once the augment already carries a bonus with that stat and type.
 - `item_bonus` `value` and `bonus_type` rewrite the item's bonus the same way, and `add` appends a bonus row to the item the same way an `augment_bonus` `add` does; an add is stale once the item already carries a bonus with that stat and type. A `bonus_type` correction from `"null"` also types an untyped bonus of one of the item's augment slot options (an upgrade tier's effect), matched by stat and `bonus_value` like the item's own.
+- `set_tier_bonus` uses the same bonus replacement, append and removal rules, within the set's `equipped_count` tier. Every written bonus must have a named bonus type. A tier `add` creates its description and is stale once that tier exists. A tier `remove` deletes its structured bonuses and modifiers with it.
+- `augment_bonus`, `item_bonus` and `set_tier_bonus` `remove` delete only the matching owner's bonus links, preserving the bonus for other owners and leaving modifiers unchanged, like `value` and `bonus_type`. They use the same `stat`, `bonus_type` and optional `bonus_value` qualifiers as `value`; `from` is the current integer value and `to = "null"`. When multiple links match the stat and type, `bonus_value` is required; without it, the build fails naming the owner, stat, type and matching values. Removal is stale once the bonus is absent or its value changes.
 - A `bonus_type` correction's `from` is the `bonus_type` it names: his current type, or `"null"` when his buff or effect has none. One from `"null"` is applied while the bonus is written, because the schema refuses a bonus with no type, and the ETL fails the build, naming the item or augment, the buff or effect and the stat, on an untyped bonus no correction types; it is stale once his bonus has a type, or once he carries no bonus on that stat (with that `bonus_value`).
 - `item_effect` `add` appends an `item_effects` row. It reuses his `effects` row when one has that name ignoring case, spaces and the punctuation `- : , . '` (as the wiki items writer does), and otherwise creates an effect, with the `description` when `to` is a `{ name, description }` table and with none when it is a name (a reused row keeps his description); it is stale once the item carries an effect matching that way.
 - `item_socket` `add` appends an `item_augment_slots` row with that label, which must be one his files use; it is stale once the item carries the label.
@@ -67,8 +72,8 @@ A quest's `is_free_to_play` and `legendary_level` come from the wiki's `quests.t
 The build fails, naming the file and the correction, when:
 
 - a file has a table or field other than the ones above;
-- `kind` is not one of the sixteen, or `field` is not in that kind's allow-list;
-- `family` is set on a kind other than `augment` or `augment_bonus`, or `stat` and `bonus_type` are missing from (or `stat`, `bonus_type` or `bonus_value` set outside) an `augment_bonus` or `item_bonus` `value` or `bonus_type` correction;
+- `kind` is not one of the listed kinds, or `field` is not in that kind's allow-list;
+- `family` is set on a kind other than `augment` or `augment_bonus`, `equipped_count` is missing on a set tier correction or set on another kind, or `stat` and `bonus_type` are missing from (or `stat`, `bonus_type` or `bonus_value` set outside) an `augment_bonus`, `item_bonus` or `set_tier_bonus` `value`, `bonus_type` or `remove` correction;
 - the same (`kind`, `name`, qualifier, `field`) appears twice, in one file or across files; the qualifier is the `family`, the bonus's stat and type (and `bonus_value`), or an added effect's name or socket's label, so one augment can have several of its bonuses corrected;
 - `from` or `to` does not fit the field (a string for an integer, `2` for a flag, `"null"` for a field that cannot be NULL), or `to` equals `from`;
 - `reason` is empty, `source` is not an `https://` URL, or `read` is not a real `YYYY-MM-DD` date;

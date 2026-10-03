@@ -21,6 +21,7 @@ pub enum CorrectionValue {
     Float(f64),
     Text(String),
     Bonus(BonusAddition),
+    Tier(TierAddition),
     Effect(EffectAddition),
     Null,
 }
@@ -31,6 +32,13 @@ pub struct BonusAddition {
     pub stat: String,
     pub bonus_type: String,
     pub value: i64,
+}
+
+#[derive(Debug, Clone, PartialEq, Eq, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct TierAddition {
+    pub equipped_count: i64,
+    pub description: String,
 }
 
 #[derive(Debug, Clone, PartialEq, Eq, Deserialize)]
@@ -47,6 +55,7 @@ enum TomlCorrectionValue {
     Float(f64),
     Text(String),
     Bonus(BonusAddition),
+    Tier(TierAddition),
     Effect(EffectAddition),
 }
 
@@ -58,6 +67,7 @@ impl From<TomlCorrectionValue> for CorrectionValue {
             TomlCorrectionValue::Text(text) if text == NULL_SPELLING => Self::Null,
             TomlCorrectionValue::Text(text) => Self::Text(text),
             TomlCorrectionValue::Bonus(bonus) => Self::Bonus(bonus),
+            TomlCorrectionValue::Tier(tier) => Self::Tier(tier),
             TomlCorrectionValue::Effect(effect) => Self::Effect(effect),
         }
     }
@@ -75,6 +85,11 @@ impl CorrectionValue {
                 serde_json::Value::from(bonus.stat.as_str()),
                 bonus.value
             ),
+            Self::Tier(tier) => format!(
+                "{{\"description\":{},\"equipped_count\":{}}}",
+                serde_json::Value::from(tier.description.as_str()),
+                tier.equipped_count
+            ),
             Self::Effect(effect) => format!(
                 "{{\"description\":{},\"name\":{}}}",
                 serde_json::Value::from(effect.description.as_str()),
@@ -89,7 +104,7 @@ impl CorrectionValue {
             Self::Integer(number) => SqlValue::Integer(*number),
             Self::Float(number) => SqlValue::Real(*number),
             Self::Text(text) => SqlValue::Text(text.clone()),
-            Self::Bonus(_) | Self::Effect(_) => SqlValue::Text(self.to_json()),
+            Self::Bonus(_) | Self::Tier(_) | Self::Effect(_) => SqlValue::Text(self.to_json()),
             Self::Null => SqlValue::Null,
         }
     }
@@ -163,6 +178,7 @@ pub struct Correction {
     pub stat: Option<String>,
     pub bonus_type: Option<String>,
     pub bonus_value: Option<i64>,
+    pub equipped_count: Option<i64>,
     pub reason: String,
     pub source: String,
     pub read: String,
@@ -204,6 +220,9 @@ impl Correction {
         if let Some(family) = &self.family {
             qualifier_parts.push(format!("family {family:?}"));
         }
+        if let Some(equipped_count) = self.equipped_count {
+            qualifier_parts.push(format!("equipped_count {equipped_count}"));
+        }
         if let (Some(stat), Some(bonus_type)) = (&self.stat, &self.bonus_type) {
             match self.bonus_value {
                 Some(bonus_value) => qualifier_parts.push(format!("{stat} / {bonus_type} / {bonus_value}")),
@@ -238,14 +257,23 @@ impl Correction {
             bail!("family narrows only an augment or augment_bonus correction, not a {}", self.kind.as_str());
         }
         let names_a_bonus = self.stat.is_some() || self.bonus_type.is_some() || self.bonus_value.is_some();
-        let needs_a_bonus = matches!(self.kind, CorrectionKind::AugmentBonus | CorrectionKind::ItemBonus)
-            && field.shape != FieldShape::BonusAddition;
+        let needs_a_bonus = matches!(
+            self.kind,
+            CorrectionKind::AugmentBonus | CorrectionKind::ItemBonus | CorrectionKind::SetTierBonus
+        ) && field.shape != FieldShape::BonusAddition;
+        let needs_a_tier = matches!(self.kind, CorrectionKind::SetTier | CorrectionKind::SetTierBonus);
+        if needs_a_tier != self.equipped_count.is_some() {
+            bail!("a set_tier or set_tier_bonus correction requires equipped_count, and other kinds forbid it");
+        }
+        if self.equipped_count.is_some_and(|count| count < 1) {
+            bail!("equipped_count must be positive");
+        }
         if needs_a_bonus && (self.stat.is_none() || self.bonus_type.is_none()) {
             bail!("a {} {} correction names the bonus with stat and bonus_type", self.kind.as_str(), field.name);
         }
         if names_a_bonus && !needs_a_bonus {
             bail!(
-                "stat, bonus_type and bonus_value name the bonus of an augment_bonus or item_bonus value or bonus_type correction; an add names them in to"
+                "stat, bonus_type and bonus_value name the bonus of an augment_bonus, item_bonus or set_tier_bonus value, bonus_type or remove correction; an add names them in to"
             );
         }
         if field.shape == FieldShape::BonusTypeName && self.bonus_type.as_deref() != self.from.as_bonus_type_name() {
@@ -262,10 +290,26 @@ impl Correction {
                 }
             }
             FieldShape::BonusAddition => {
-                if !matches!((&self.from, &self.to), (CorrectionValue::Null, CorrectionValue::Bonus(_))) {
+                let (CorrectionValue::Null, CorrectionValue::Bonus(bonus)) = (&self.from, &self.to) else {
                     bail!(
                         "an add takes from = \"null\" and to = {{ stat = \"...\", bonus_type = \"...\", value = N }}"
                     );
+                };
+                if bonus.bonus_type == NULL_SPELLING || bonus.bonus_type.trim().is_empty() {
+                    bail!("an added bonus must have a named bonus type; bonus_type cannot be null or empty");
+                }
+            }
+            FieldShape::BonusRemoval => {
+                if !matches!((&self.from, &self.to), (CorrectionValue::Integer(_), CorrectionValue::Null)) {
+                    bail!("a bonus remove takes from = its current integer value and to = \"null\"");
+                }
+            }
+            FieldShape::TierAddition => {
+                let (CorrectionValue::Null, CorrectionValue::Tier(tier)) = (&self.from, &self.to) else {
+                    bail!("a tier add takes from = \"null\" and to = {{ equipped_count = N, description = \"...\" }}");
+                };
+                if Some(tier.equipped_count) != self.equipped_count || tier.description.trim().is_empty() {
+                    bail!("a tier add must use its equipped_count qualifier and a nonempty description");
                 }
             }
             FieldShape::BonusTypeName => {
@@ -338,6 +382,8 @@ fn expected_value_text(field: &CorrectableField) -> String {
         FieldShape::RowName => "the row's name",
         FieldShape::Removal => "0 for from and 1 for to",
         FieldShape::BonusAddition => "a { stat, bonus_type, value } table",
+        FieldShape::BonusRemoval => "the current integer value for from and \"null\" for to",
+        FieldShape::TierAddition => "a { equipped_count, description } table",
         FieldShape::EffectAddition => "an effect name or a { name, description } table",
         FieldShape::SocketAddition => "a socket label",
     };
@@ -358,6 +404,7 @@ struct TomlCorrection {
     stat: Option<String>,
     bonus_type: Option<String>,
     bonus_value: Option<i64>,
+    equipped_count: Option<i64>,
     from: CorrectionValue,
     to: CorrectionValue,
     reason: String,
@@ -381,6 +428,7 @@ impl TomlCorrection {
             stat: self.stat,
             bonus_type: self.bonus_type,
             bonus_value: self.bonus_value,
+            equipped_count: self.equipped_count,
             reason: self.reason,
             source: self.source,
             read: self.read,

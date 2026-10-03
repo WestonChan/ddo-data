@@ -2,7 +2,7 @@ use super::items::item_wiki_url;
 use super::wiki::folded_effect_name;
 use super::{bonus_name, BuildReport, StaleCorrection, StaleCorrectionCause};
 use crate::corrections::{
-    BonusAddition, CorrectableField, Correction, CorrectionValue, Corrections, FieldShape, NULL_SPELLING,
+    BonusAddition, CorrectableField, Correction, CorrectionValue, Corrections, FieldShape, TierAddition, NULL_SPELLING,
 };
 use anyhow::{bail, Context, Result};
 use ddo_model::enums::{CorrectionKind, ModifierSource, Provenance};
@@ -63,6 +63,19 @@ fn apply_correction(transaction: &Transaction, correction: &Correction, report: 
     let field = correction.correctable_field()?;
     let row_ids = maetrim_row_ids_named(transaction, correction, &correction.name)?;
     if row_ids.is_empty() {
+        if matches!(correction.kind, CorrectionKind::SetTier | CorrectionKind::SetTierBonus) {
+            if id_named(transaction, "set_bonuses", &correction.name)?.is_none() {
+                bail!(
+                    "no set in Maetrim's files is named {:?} (matched against set_bonuses.name); use his exact name",
+                    correction.name
+                );
+            }
+            bail!(
+                "set {:?} has no tier with equipped_count {} in Maetrim's files",
+                correction.name,
+                correction.equipped_count.context("a tier correction requires equipped_count")?
+            );
+        }
         let new_name = correction.to.as_text().filter(|_| field.shape == FieldShape::RowName);
         if let Some(new_name) = new_name {
             if !maetrim_row_ids_named(transaction, correction, new_name)?.is_empty() {
@@ -174,6 +187,14 @@ fn write_correction(
             let CorrectionValue::Bonus(bonus) = &correction.to else { bail!("an add names the bonus in to") };
             add_bonus(transaction, BonusLinkTable::of(correction.kind)?, row_ids, bonus)?;
         }
+        FieldShape::BonusRemoval => {
+            let corrected_bonus = CorrectedBonus::of(transaction, correction)?;
+            remove_bonuses(transaction, &corrected_bonus, row_ids)?;
+        }
+        FieldShape::TierAddition => {
+            let CorrectionValue::Tier(tier) = &correction.to else { bail!("a tier add names the tier in to") };
+            add_set_tier(transaction, row_ids, tier)?;
+        }
         FieldShape::EffectAddition => {
             let effect_name = correction.to.added_effect_name().context("an add names the effect in to")?;
             add_item_effect(transaction, row_ids, effect_name, correction.to.added_effect_description())?;
@@ -208,6 +229,21 @@ fn write_correction(
 
 fn maetrim_row_ids_named(transaction: &Transaction, correction: &Correction, row_name: &str) -> Result<Vec<i64>> {
     let kind = correction.kind;
+    if matches!(kind, CorrectionKind::SetTier | CorrectionKind::SetTierBonus) {
+        if correction.correctable_field()?.shape == FieldShape::TierAddition {
+            return Ok(transaction
+                .prepare("SELECT id FROM set_bonuses WHERE name = ?1")?
+                .query_map(params![row_name], |row| row.get(0))?
+                .collect::<rusqlite::Result<_>>()?);
+        }
+        return Ok(transaction
+            .prepare(
+                "SELECT set_bonus_tiers.id FROM set_bonuses JOIN set_bonus_tiers ON set_bonus_tiers.set_id = set_bonuses.id
+                 WHERE set_bonuses.name = ?1 AND set_bonus_tiers.equipped_count = ?2",
+            )?
+            .query_map(params![row_name, correction.equipped_count], |row| row.get(0))?
+            .collect::<rusqlite::Result<_>>()?);
+    }
     let maetrim_rows_only = match kind {
         CorrectionKind::Item
         | CorrectionKind::ItemBonus
@@ -240,14 +276,34 @@ fn current_value(
     let table_name = correction.kind.table_name();
     let value_sql = match field.shape {
         FieldShape::Removal => return Ok(CorrectionValue::Integer(0)),
-        FieldShape::Integer if correction.kind.corrects_a_bonus() => {
-            return CorrectedBonus::of(transaction, correction)?.value_on(transaction, row_id);
+        FieldShape::Integer | FieldShape::BonusRemoval if correction.kind.corrects_a_bonus() => {
+            let matching_values = CorrectedBonus::of(transaction, correction)?.values_on(transaction, row_id)?;
+            if field.shape == FieldShape::BonusRemoval && correction.bonus_value.is_none() && matching_values.len() > 1 {
+                let value_texts: Vec<String> = matching_values.iter().map(CorrectionValue::to_json).collect();
+                bail!(
+                    "bonus removal matches multiple links with values [{}]; specify bonus_value",
+                    value_texts.join(", ")
+                );
+            }
+            return Ok(matching_values.into_iter().next().unwrap_or(CorrectionValue::Null));
         }
         FieldShape::BonusTypeName => {
             return CorrectedBonus::of(transaction, correction)?.bonus_type_on(transaction, row_id);
         }
         FieldShape::BonusAddition => {
-            return CorrectedBonus::of(transaction, correction)?.value_on(transaction, row_id);
+            return Ok(if CorrectedBonus::of(transaction, correction)?.is_present_on(transaction, row_id)? {
+                correction.to.clone()
+            } else {
+                CorrectionValue::Null
+            });
+        }
+        FieldShape::TierAddition => {
+            let existing_tier_count: i64 = transaction.query_row(
+                "SELECT COUNT(*) FROM set_bonus_tiers WHERE set_id = ?1 AND equipped_count = ?2",
+                params![row_id, correction.equipped_count],
+                |row| row.get(0),
+            )?;
+            return Ok(if existing_tier_count == 0 { CorrectionValue::Null } else { correction.to.clone() });
         }
         FieldShape::EffectAddition => {
             let effect_name = correction.to.added_effect_name().context("an add names the effect in to")?;
@@ -291,12 +347,14 @@ struct BonusLinkTable {
 impl BonusLinkTable {
     const AUGMENT: Self = Self { table_name: "augment_bonuses", owner_column: "augment_id" };
     const ITEM: Self = Self { table_name: "item_bonuses", owner_column: "item_id" };
+    const SET_TIER: Self = Self { table_name: "set_bonus_tier_bonuses", owner_column: "tier_id" };
 
     fn of(kind: CorrectionKind) -> Result<Self> {
         match kind {
             CorrectionKind::AugmentBonus => Ok(Self::AUGMENT),
             CorrectionKind::ItemBonus => Ok(Self::ITEM),
-            _ => bail!("only an augment_bonus or item_bonus correction names a bonus"),
+            CorrectionKind::SetTierBonus => Ok(Self::SET_TIER),
+            _ => bail!("only an augment_bonus, item_bonus or set_tier_bonus correction names a bonus"),
         }
     }
 }
@@ -310,8 +368,7 @@ struct CorrectedBonus {
 
 impl CorrectedBonus {
     fn of(transaction: &Transaction, correction: &Correction) -> Result<Self> {
-        let (stat_name, bonus_type_name) =
-            correction.bonus_key().context("an augment_bonus or item_bonus correction names its bonus")?;
+        let (stat_name, bonus_type_name) = correction.bonus_key().context("a bonus correction names its bonus")?;
         let stat_id = id_named(transaction, "stats", stat_name)?
             .with_context(|| format!("stat {stat_name:?} is not in the stats table; use its exact name"))?;
         let bonus_type_id = match bonus_type_name {
@@ -336,15 +393,26 @@ impl CorrectedBonus {
         )
     }
 
-    fn value_on(&self, transaction: &Transaction, owner_id: i64) -> Result<CorrectionValue> {
-        let bonus_value: Option<Option<i64>> = transaction
+    fn is_present_on(&self, transaction: &Transaction, owner_id: i64) -> Result<bool> {
+        Ok(transaction
             .query_row(
-                &format!("{} LIMIT 1", self.matching_bonuses_sql("bonuses.value")),
+                &format!("{} LIMIT 1", self.matching_bonuses_sql("1")),
                 params![owner_id, self.stat_id, self.bonus_type_id, self.bonus_value],
-                |r| r.get(0),
+                |row| row.get::<_, i64>(0),
             )
-            .optional()?;
-        Ok(bonus_value.flatten().map_or(CorrectionValue::Null, CorrectionValue::Integer))
+            .optional()?
+            .is_some())
+    }
+
+    fn values_on(&self, transaction: &Transaction, owner_id: i64) -> Result<Vec<CorrectionValue>> {
+        let mut statement = transaction.prepare(&self.matching_bonuses_sql("bonuses.value"))?;
+        let bonus_values = statement
+            .query_map(params![owner_id, self.stat_id, self.bonus_type_id, self.bonus_value], |row| {
+                let bonus_value: Option<i64> = row.get(0)?;
+                Ok(bonus_value.map_or(CorrectionValue::Null, CorrectionValue::Integer))
+            })?
+            .collect::<rusqlite::Result<_>>()?;
+        Ok(bonus_values)
     }
 
     fn bonus_type_on(&self, transaction: &Transaction, owner_id: i64) -> Result<CorrectionValue> {
@@ -439,6 +507,30 @@ fn add_bonus(
     Ok(())
 }
 
+fn remove_bonuses(transaction: &Transaction, corrected_bonus: &CorrectedBonus, owner_ids: &[i64]) -> Result<()> {
+    let BonusLinkTable { table_name, owner_column } = corrected_bonus.link_table;
+    for owner_id in owner_ids {
+        transaction.execute(
+            &format!(
+                "DELETE FROM {table_name} WHERE {owner_column} = ?1 AND sort_order IN ({})",
+                corrected_bonus.matching_bonuses_sql(&format!("{table_name}.sort_order"))
+            ),
+            params![owner_id, corrected_bonus.stat_id, corrected_bonus.bonus_type_id, corrected_bonus.bonus_value],
+        )?;
+    }
+    Ok(())
+}
+
+fn add_set_tier(transaction: &Transaction, set_ids: &[i64], tier: &TierAddition) -> Result<()> {
+    for set_id in set_ids {
+        transaction.execute(
+            "INSERT INTO set_bonus_tiers (set_id, equipped_count, description) VALUES (?1, ?2, ?3)",
+            params![set_id, tier.equipped_count, tier.description],
+        )?;
+    }
+    Ok(())
+}
+
 fn add_item_effect(
     transaction: &Transaction,
     item_ids: &[i64],
@@ -524,7 +616,8 @@ fn remove_rows(transaction: &Transaction, kind: CorrectionKind, row_ids: &[i64])
     let modifier_source = match kind {
         CorrectionKind::Item => ModifierSource::Item,
         CorrectionKind::Augment => ModifierSource::Augment,
-        _ => bail!("only an item or an augment can be removed"),
+        CorrectionKind::SetTier => ModifierSource::SetBonusTier,
+        _ => bail!("only an item, augment or set tier can be removed"),
     };
     for row_id in row_ids {
         if kind == CorrectionKind::Item {

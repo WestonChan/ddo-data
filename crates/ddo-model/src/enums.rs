@@ -975,6 +975,8 @@ pub enum CorrectionKind {
     AdventurePack,
     Patron,
     SetBonus,
+    SetTier,
+    SetTierBonus,
     Spell,
     AugmentBonus,
     ItemBonus,
@@ -995,6 +997,8 @@ impl CorrectionKind {
         Self::AdventurePack,
         Self::Patron,
         Self::SetBonus,
+        Self::SetTier,
+        Self::SetTierBonus,
         Self::Spell,
         Self::AugmentBonus,
         Self::ItemBonus,
@@ -1015,6 +1019,8 @@ impl CorrectionKind {
             Self::AdventurePack => "adventure_pack",
             Self::Patron => "patron",
             Self::SetBonus => "set_bonus",
+            Self::SetTier => "set_tier",
+            Self::SetTierBonus => "set_tier_bonus",
             Self::Spell => "spell",
             Self::AugmentBonus => "augment_bonus",
             Self::ItemBonus => "item_bonus",
@@ -1036,6 +1042,7 @@ impl CorrectionKind {
             Self::AdventurePack => "adventure_packs",
             Self::Patron => "patrons",
             Self::SetBonus => "set_bonuses",
+            Self::SetTier | Self::SetTierBonus => "set_bonus_tiers",
             Self::Spell => "spells",
             Self::AugmentBonus => "augments",
             Self::ItemBonus | Self::ItemEffect | Self::ItemSocket => "items",
@@ -1044,7 +1051,7 @@ impl CorrectionKind {
     }
 
     pub const fn corrects_a_bonus(self) -> bool {
-        matches!(self, Self::AugmentBonus | Self::ItemBonus)
+        matches!(self, Self::AugmentBonus | Self::ItemBonus | Self::SetTierBonus)
     }
 
     pub const fn name_column(self) -> &'static str {
