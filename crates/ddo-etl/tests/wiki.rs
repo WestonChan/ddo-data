@@ -1358,7 +1358,7 @@ fn a_wiki_item_effect_with_a_value_reuses_the_written_buff_family() {
     assert_eq!(identity_for(WIKI_AXE), (maetrim_family, Some(3), None));
     let command_is_stat: i64 =
         db.query_row("SELECT is_stat FROM effects WHERE id = ?1", [maetrim_family], |row| row.get(0)).unwrap();
-    assert_eq!(command_is_stat, 1);
+    assert_eq!(command_is_stat, 0);
 }
 
 #[test]

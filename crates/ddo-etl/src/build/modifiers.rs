@@ -227,6 +227,19 @@ impl TableWriter<'_> {
     }
 
     fn ensure_targeted_fixed_effect(&mut self, effect: &Effect, links: &mut Vec<DerivedEffectLink>) -> Result<()> {
+        if let Some(family_name) = self.effect_resolver.qualified_targeted_name(effect) {
+            let value = effect.simple_integer_amount();
+            let text_template = if value.is_some() {
+                let (stat_name, targets) = family_name.split_once(" (").expect("qualified name has targets");
+                format!("{stat_name} +{{1}}% ({targets}")
+            } else {
+                family_name.clone()
+            };
+            let effect_id =
+                self.effects.ensure_family(&family_name, &text_template, None, i64::from(value.is_some()))?;
+            links.push(DerivedEffectLink { effect_id, bonus_type: None, value, value2: None });
+            return Ok(());
+        }
         let Some(stat_name) = EFFECT_MAP.effect.fixed.get(&effect.types[0]) else {
             return Ok(());
         };

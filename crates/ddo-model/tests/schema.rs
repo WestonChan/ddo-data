@@ -471,6 +471,11 @@ fn stats_have_unique_ids_and_names() {
     assert_eq!(names.len(), STATS.len(), "duplicate stat name");
     assert_eq!(Stat::by_name("Fire Spell Power").map(|s| s.id), Some(25));
     assert_eq!(Stat::by_name("Nope"), None);
+    for retired in ["Command", "Speed", "Deception", "Attack Speed"] {
+        assert!(Stat::by_name(retired).is_none(), "{retired} is an effect or retired stat name");
+    }
+    assert!(Stat::by_name("Melee Attack Speed").is_some());
+    assert!(Stat::by_name("Ranged Attack Speed").is_some());
 }
 
 #[test]

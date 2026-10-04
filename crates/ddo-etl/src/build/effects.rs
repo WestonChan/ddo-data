@@ -84,6 +84,7 @@ impl<'a> EffectCache<'a> {
         if let Some(existing) = self.family_named(name) {
             if existing.is_stat && existing.text_template.is_empty() {
                 let stat_id = existing.id;
+                ensure!(count == 1, "stat effect {name:?} must read exactly one value");
                 validate_templates(name, text_template, description_template, count)?;
                 self.transaction.execute(
                     "UPDATE effects SET text_template = ?2, description_template = ?3 WHERE id = ?1",
@@ -269,6 +270,7 @@ impl<'a> EffectCache<'a> {
         let family = self.family(family_id).expect("every writer family is cached");
         if family.is_stat {
             ensure!(bonus_type.is_some(), "stat link {:?} needs a bonus type", family.name);
+            ensure!(amounts.1.is_none(), "stat link {:?} cannot carry a second value", family.name);
         } else {
             validate_link(&family.name, family.amount_count, family.uses_link_type, bonus_type, amounts)?;
         }
@@ -470,7 +472,7 @@ mod tests {
         let mut effects = EffectCache::new(&transaction);
         let effect_id = effects.ensure_family("Dual Speed", "Dual Speed {1}: {2}", None, 2).unwrap();
         for (sort_order, (stat_name, amount_from)) in
-            [("Movement Speed", 1), ("Attack Speed", 2)].into_iter().enumerate()
+            [("Movement Speed", 1), ("Melee Attack Speed", 2)].into_iter().enumerate()
         {
             effects
                 .ensure_stat(
@@ -497,5 +499,29 @@ mod tests {
             .collect();
         assert_eq!(amounts, [Some(19), None]);
         effects.insert_link(EffectOwner::Item, item_id, effect_id, None, (None, None), 1).unwrap();
+    }
+
+    #[test]
+    fn direct_stat_links_have_exactly_one_value_slot() {
+        let mut db = Connection::open_in_memory().unwrap();
+        db.execute_batch(ddo_model::ddl()).unwrap();
+        ddo_model::seeds::insert_all(&db).unwrap();
+        db.execute(
+            "INSERT INTO items (name, slot_id, item_category, wiki_url) VALUES ('Stat Slot Check',
+             (SELECT id FROM equipment_slots WHERE name = 'Feet'), 'Clothing',
+             'https://ddowiki.com/page/Stat_Slot_Check')",
+            [],
+        )
+        .unwrap();
+        let item_id = db.last_insert_rowid();
+        let transaction = db.transaction().unwrap();
+        let mut effects = EffectCache::new(&transaction);
+        let stat_id = Stat::by_name("Movement Speed").unwrap().id;
+        assert!(effects.ensure_family("Movement Speed", "Movement Speed {1} {2}", None, 2).is_err());
+        effects.ensure_family("Movement Speed", "Movement Speed {1}", None, 1).unwrap();
+        let error = effects
+            .insert_link(EffectOwner::Item, item_id, stat_id, Some(BonusType::Enhancement), (Some(10), Some(20)), 0)
+            .unwrap_err();
+        assert!(error.to_string().contains("cannot carry a second value"));
     }
 }

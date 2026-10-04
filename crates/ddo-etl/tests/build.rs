@@ -40,7 +40,7 @@ fn item_id(db: &Connection, name: &str) -> i64 {
 #[test]
 fn writes_improved_deception_from_its_definition_as_a_typed_bluff_bonus() {
     let (db, report) = built_fixture_db();
-    assert_eq!(report.effect_fallback_buff_count, 9);
+    assert_eq!(report.effect_fallback_buff_count, 13);
     assert!(report.family_buff_count > 0);
     assert!(report.effect_buff_count > 0);
     let gloves = item_id(&db, "Backstabber's Gloves (Level 25)");
@@ -432,9 +432,13 @@ fn writes_buffs_named_after_a_stat_as_bonuses() {
         vec![(enhancement.clone(), Some(5), Some(8)), (insight.clone(), Some(3), Some(5))]
     );
     assert_eq!(
-        stat_bonuses_by_item("Grudgebearer's Plate", "Command"),
+        stat_bonuses_by_item("Grudgebearer's Plate", "Bluff"),
         vec![(insight.clone(), Some(2), Some(-6))],
-        "the definition's Insightful <Effect> types an item buff that names none"
+        "Command grants an Insight bonus to Charisma skill checks"
+    );
+    assert_eq!(
+        stat_bonuses_by_item("Grudgebearer's Plate", "Hide"),
+        vec![(Some("Penalty".to_string()), Some(-6), Some(-6))]
     );
     assert_eq!(
         stat_bonuses_by_item("Bold Trinket", "Damage Bonus"),

@@ -36,11 +36,19 @@ pub struct FamilyVocabulary {
 #[serde(deny_unknown_fields)]
 pub struct EffectVocabulary {
     pub fixed: BTreeMap<String, String>,
+    pub targeted: BTreeMap<String, TargetedEffect>,
     pub by_item: BTreeMap<String, String>,
     pub by_item_default: BTreeMap<String, String>,
     pub companion_targets: CompanionTargets,
     pub energy_target_artifacts: EnergyTargetArtifacts,
     pub engine_only: BTreeMap<String, String>,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct TargetedEffect {
+    pub targets: BTreeMap<String, Vec<String>>,
+    pub qualified_name: Option<String>,
 }
 
 #[derive(Debug, Deserialize)]
@@ -111,6 +119,28 @@ impl EffectMap {
                 }
             }
         }
+        for (effect_type, targeted) in &vocabulary.effect.targeted {
+            if targeted.targets.is_empty()
+                || targeted.qualified_name.as_deref().is_some_and(|name| name.trim().is_empty())
+            {
+                bail!("effect_map.toml [effect.targeted] {effect_type} needs targets and a nonblank qualified name");
+            }
+            for (target, stat_names) in &targeted.targets {
+                if target.trim().is_empty()
+                    || stat_names.is_empty()
+                    || stat_names.iter().collect::<BTreeSet<_>>().len() != stat_names.len()
+                {
+                    bail!("effect_map.toml [effect.targeted] {effect_type} has invalid target {target:?} or duplicate stats");
+                }
+                for stat_name in stat_names {
+                    if Stat::by_name(stat_name).is_none() {
+                        bail!(
+                            "effect_map.toml [effect.targeted] {effect_type}.{target} names unknown stat {stat_name:?}"
+                        );
+                    }
+                }
+            }
+        }
         for stat_name in &vocabulary.effect.energy_target_artifacts.stats {
             if !vocabulary.effect.fixed.values().any(|mapped_stat| mapped_stat == stat_name) {
                 bail!("effect_map.toml [effect.energy_target_artifacts] names unmapped fixed stat {stat_name:?}");
@@ -125,6 +155,7 @@ impl EffectMap {
             .effect
             .fixed
             .keys()
+            .chain(vocabulary.effect.targeted.keys())
             .chain(vocabulary.effect.by_item.keys())
             .chain(vocabulary.effect.by_item_default.keys());
         let overlapping_types: BTreeSet<_> =
@@ -135,8 +166,13 @@ impl EffectMap {
             );
         }
         for kind in vocabulary.effect.fixed.keys() {
-            if vocabulary.effect.by_item.contains_key(kind) {
+            if vocabulary.effect.by_item.contains_key(kind) || vocabulary.effect.targeted.contains_key(kind) {
                 bail!("effect_map.toml [effect.fixed] {kind} is also mapped in [effect.by_item]");
+            }
+        }
+        for kind in vocabulary.effect.targeted.keys() {
+            if vocabulary.effect.by_item.contains_key(kind) || vocabulary.effect.by_item_default.contains_key(kind) {
+                bail!("effect_map.toml [effect.targeted] {kind} is also mapped in another effect section");
             }
         }
         for kind in &vocabulary.family.enhancement {
@@ -220,6 +256,23 @@ impl EffectMap {
         if self.effect.engine_only.contains_key(effect_type) {
             return None;
         }
+        if let Some(targeted) = self.effect.targeted.get(effect_type) {
+            let targets: Vec<&str> = if effect.targets.is_empty() {
+                vec!["All"]
+            } else {
+                effect.targets.iter().map(String::as_str).collect()
+            };
+            let mut stats = Vec::new();
+            for target in targets {
+                for stat_name in targeted.targets.get(target)? {
+                    let stat = Stat::by_name(stat_name).expect("validated at load");
+                    if !stats.iter().any(|existing: &&Stat| existing.id == stat.id) {
+                        stats.push(stat);
+                    }
+                }
+            }
+            return (!stats.is_empty()).then_some(stats);
+        }
         if let Some(stat_name) = self.effect.fixed.get(effect_type) {
             if self.qualified_targets(effect, qualifiers).is_some() {
                 return None;
@@ -237,6 +290,34 @@ impl EffectMap {
             }
         }
         (!stats.is_empty()).then_some(stats)
+    }
+
+    pub fn qualified_targeted_name(&self, effect: &Effect) -> Option<String> {
+        let targeted = self.effect.targeted.get(effect.types.first()?)?;
+        let base_name = targeted.qualified_name.as_deref()?;
+        if effect.targets.is_empty() || effect.targets.iter().all(|target| targeted.targets.contains_key(target)) {
+            return None;
+        }
+        let weapon_kinds: Option<Vec<&str>> = effect
+            .targets
+            .iter()
+            .map(|target| {
+                let canonical = self.weapon_aliases.get(target).map(String::as_str).unwrap_or(target);
+                let weapon = WeaponType::by_name(canonical)?;
+                Some(if weapon.is_ranged() || weapon.is_thrown() { "Ranged" } else { "Melee" })
+            })
+            .collect();
+        let weapon_stat_name = weapon_kinds
+            .as_ref()
+            .and_then(|kinds| {
+                kinds
+                    .iter()
+                    .all(|kind| *kind == kinds[0])
+                    .then(|| targeted.targets.get(kinds[0]).and_then(|stats| stats.first()).map(String::as_str))
+            })
+            .flatten();
+        let name = weapon_stat_name.unwrap_or(base_name);
+        Some(format!("{name} ({})", effect.targets.join(", ")))
     }
 
     pub fn qualified_targets(&self, effect: &Effect, qualifiers: &EffectTargetQualifiers) -> Option<String> {

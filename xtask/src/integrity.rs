@@ -388,19 +388,17 @@ pub const INTEGRITY_CHECKS: &[IntegrityCheck] = &[
         OffenderQuery::Built(stat_links_missing_value),
     ),
     IntegrityCheck::warn(
-        "stat_links_with_prose_only_second_value",
-        "direct stat links carrying a second value used by prose but not by a bonus row",
-        OffenderQuery::Built(stat_links_with_prose_only_second_value),
-    ),
-    IntegrityCheck::warn(
         "effects_with_dice_but_no_damage_rows",
-        "resolved effects with source dice but no structured damage row",
+        "dice modifiers without structured damage rows, grouped by source kind and effect type; unresolved modifiers remain on the backfill list",
         OffenderQuery::Sql(
-            "SELECT e.name, e.id, COUNT(*) || ' source modifier(s) with dice'
-             FROM effects e JOIN modifiers m ON m.effect_id = e.id
+            "SELECT m.source_kind || ' / ' || m.effect_type, 0,
+                    COUNT(*) || ' dice modifier(s): ' || SUM(m.effect_id IS NULL) || ' unresolved, '
+                    || SUM(m.effect_id IS NOT NULL) || ' resolved without damage rows'
+             FROM modifiers m
              WHERE (m.dice_number IS NOT NULL OR m.dice_sides IS NOT NULL)
-               AND NOT EXISTS (SELECT 1 FROM effect_damage d WHERE d.effect_id = e.id)
-             GROUP BY e.id ORDER BY e.name",
+               AND (m.effect_id IS NULL OR NOT EXISTS
+                    (SELECT 1 FROM effect_damage d WHERE d.effect_id = m.effect_id))
+             GROUP BY m.source_kind, m.effect_type ORDER BY m.source_kind, m.effect_type",
         ),
     ),
     IntegrityCheck::warn(
@@ -556,7 +554,8 @@ fn offenders_from_sql(db: &Connection, sql: &str) -> Result<Vec<Offender>> {
 }
 
 fn effect_link_amount_counts(db: &Connection, _options: &IntegrityOptions) -> Result<Findings> {
-    let count = "CASE WHEN e.is_stat = 1 OR INSTR(COALESCE(e.text_template, '') || COALESCE(e.description_template, ''), '{2}') > 0 THEN 2
+    let count = "CASE WHEN e.is_stat = 1 THEN 1
+                 WHEN INSTR(COALESCE(e.text_template, '') || COALESCE(e.description_template, ''), '{2}') > 0 THEN 2
                  WHEN INSTR(COALESCE(e.text_template, '') || COALESCE(e.description_template, ''), '{1}') > 0 THEN 1 ELSE 0 END";
     let queries: Vec<String> = EFFECT_OWNER_LINKS
         .iter()
@@ -642,10 +641,6 @@ fn stat_links_missing_value(db: &Connection, _options: &IntegrityOptions) -> Res
     stat_link_findings(db, "l.value IS NULL AND e.default_value IS NULL", "has no first amount")
 }
 
-fn stat_links_with_prose_only_second_value(db: &Connection, _options: &IntegrityOptions) -> Result<Findings> {
-    stat_link_findings(db, "l.value2 IS NOT NULL", "has a prose-only second amount")
-}
-
 fn effect_types_not_classified(db: &Connection, options: &IntegrityOptions) -> Result<Findings> {
     let definition_path = options.data_files_dir.join("ItemBuffs.xml");
     if !definition_path.is_file() {
@@ -655,6 +650,7 @@ fn effect_types_not_classified(db: &Connection, options: &IntegrityOptions) -> R
     let vocabulary = &EFFECT_MAP.effect;
     let is_classified = |effect_type: &str| {
         vocabulary.fixed.contains_key(effect_type)
+            || vocabulary.targeted.contains_key(effect_type)
             || vocabulary.by_item.contains_key(effect_type)
             || vocabulary.by_item_default.contains_key(effect_type)
             || vocabulary.engine_only.contains_key(effect_type)

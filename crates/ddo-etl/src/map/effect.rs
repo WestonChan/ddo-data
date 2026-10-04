@@ -43,6 +43,10 @@ impl EffectResolver {
         self.vocabulary.qualified_targets(effect, &self.qualifiers)
     }
 
+    pub fn qualified_targeted_name(&self, effect: &Effect) -> Option<String> {
+        self.vocabulary.qualified_targeted_name(effect)
+    }
+
     pub fn parse_bonus_type(&self, upstream_name: &str) -> Result<Option<BonusType>> {
         self.vocabulary.effect_bonus_type(upstream_name)
     }
@@ -62,6 +66,7 @@ impl EffectResolver {
         }
 
         if !self.vocabulary.effect.fixed.contains_key(effect_type)
+            && !self.vocabulary.effect.targeted.contains_key(effect_type)
             && !self.vocabulary.effect.by_item.contains_key(effect_type)
             && !self.vocabulary.effect.by_item_default.contains_key(effect_type)
         {

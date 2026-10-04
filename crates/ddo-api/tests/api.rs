@@ -179,7 +179,7 @@ async fn family_and_stat_detail_page_their_real_carriers() {
     assert_eq!(stat_page["items"]["items"].as_array().unwrap().len(), 1);
     assert_eq!(stat_page["items"]["offset"], 1);
 
-    let attack_speed = effect_named(&vocabulary, "Attack Speed", "stat").unwrap();
+    let attack_speed = effect_named(&vocabulary, "Melee Attack Speed", "stat").unwrap();
     let (_, _, attack_speed_detail) = get(attack_speed["detail_path"].as_str().unwrap()).await;
     let bracers = attack_speed_detail["items"]["items"]
         .as_array()
@@ -194,7 +194,7 @@ async fn family_and_stat_detail_page_their_real_carriers() {
     let (status, _, _) = get("/v1/effects/999999").await;
     assert_eq!(status, StatusCode::NOT_FOUND);
 
-    let deception = effect_named(&vocabulary, "Deception", "stat").unwrap();
+    let deception = effect_named(&vocabulary, "Deception", "effect").unwrap();
     let (_, _, step) = get(deception["detail_path"].as_str().unwrap()).await;
     assert_eq!(step["tier"]["group"], "Deception");
     assert_eq!(step["tier"]["steps"].as_array().unwrap().len(), 2);
@@ -564,8 +564,8 @@ async fn items_match_a_stat_effect_on_their_sets_tiers_only_when_set_bonuses_are
         get("/v1/items?bonus=Hide&bonus=Physical%20Resistance%20Rating&include_set_bonuses=true").await;
     assert_eq!(
         item_names(&own_or_set),
-        ["Kundarak Delving Boots", "Legendary Cloak of Winter"],
-        "the boots' own Hide bonus still matches beside the cloak's Eminence of Winter PRR tier"
+        ["Grudgebearer's Plate", "Kundarak Delving Boots", "Legendary Cloak of Winter"],
+        "Command's Hide penalty and the boots' Hide bonus match beside the cloak's Eminence of Winter PRR tier"
     );
     let (_, _, explicitly_excluded) = get("/v1/items?bonus=Sneak%20Attack%20Dice&include_set_bonuses=false").await;
     assert_eq!(explicitly_excluded["total"], 0);

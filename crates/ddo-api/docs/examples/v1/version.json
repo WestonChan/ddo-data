@@ -1,7 +1,7 @@
 {
   "api_commit": "9dd551f2c0b1e8c4a7d6f5e4b3a2c1d0e9f8a7b6",
   "counts": {
-    "augment_effects": 2078,
+    "augment_effects": 2160,
     "augments": 2250,
     "challenge_rewards": 160,
     "classes": 28,
@@ -10,17 +10,17 @@
     "crafting_recipes": 2956,
     "crafting_system_sources": 1074,
     "crafting_systems": 43,
-    "effect_bonuses": 471,
-    "effects": 2157,
+    "effect_bonuses": 507,
+    "effects": 2162,
     "enhancement_trees": 114,
     "enhancements": 3228,
     "event_items": 644,
     "events": 9,
-    "feat_effects": 1073,
+    "feat_effects": 1096,
     "feats": 1022,
     "filigrees": 437,
     "guild_buffs": 37,
-    "item_augment_slot_option_effects": 2447,
+    "item_augment_slot_option_effects": 2448,
     "item_effects": 28671,
     "items": 8731,
     "legacy_items": 656,
@@ -38,7 +38,7 @@
     "saga_rewards": 51,
     "sagas": 17,
     "sentient_gems": 14,
-    "set_bonus_tier_effects": 1430,
+    "set_bonus_tier_effects": 1431,
     "set_bonuses": 327,
     "sources": 9056,
     "spells": 706,
@@ -50,8 +50,8 @@
     "wiki_quests": 5
   },
   "dataset": {
-    "built_at": "2026-10-04T22:07:07Z",
+    "built_at": "2026-10-04T22:38:08Z",
     "upstream_sha": "31ef0201ea8e28604de2b6242988aee6d63733b0"
   },
-  "schema_version": 24
+  "schema_version": 25
 }

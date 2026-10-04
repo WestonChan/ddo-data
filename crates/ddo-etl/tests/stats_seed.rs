@@ -166,6 +166,13 @@ fn record_map_targets(sources_by_stat: &mut BTreeMap<String, String>) {
             record_source(sources_by_stat, stat_name, format!("effect_map.toml {section} {kind}"));
         }
     }
+    for (kind, definition) in &vocabulary.effect.targeted {
+        for (target, stat_names) in &definition.targets {
+            for stat_name in stat_names {
+                record_source(sources_by_stat, stat_name, format!("effect_map.toml [effect.targeted.{kind}] {target}"));
+            }
+        }
+    }
     record_template_targets(
         sources_by_stat,
         "effect_map.toml [effect]",

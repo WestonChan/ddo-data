@@ -191,7 +191,6 @@ fn buffs_resolve_to_enhancement_bonus_stat_or_effect() {
         (buff("Shatter", None, Some(7), Some("Insightful")), "Sunder DC"),
         (buff("Vertigo", None, Some(15), Some("Enhancement")), "Trip DC"),
         (buff("Sneak Attack", None, Some(5), Some("Enhancement")), "Sneak Attack"),
-        (buff("Command", None, Some(2), None), "Command"),
         (buff("Damage Bonus", None, Some(1), Some("Competence")), "Damage Bonus"),
         (buff("Alignment Absorption", None, Some(22), Some("Enhancement")), "Alignment Absorption"),
         (buff("Elemental Absorption", None, Some(19), None), "Elemental Absorption"),
@@ -262,7 +261,6 @@ fn buffs_resolve_to_enhancement_bonus_stat_or_effect() {
 fn an_untyped_buff_takes_the_bonus_type_its_definition_fixes() {
     let map = BuffResolver::from_definitions(&fixture_item_buff_definitions());
     let cases = [
-        ("Command", Some(BonusType::Insight)),
         ("Elemental Absorption", Some(BonusType::Enhancement)),
         ("Illusion Save", Some(BonusType::Resistance)),
         ("Shield", Some(BonusType::Shield)),
@@ -281,16 +279,15 @@ fn an_untyped_buff_takes_the_bonus_type_its_definition_fixes() {
             "{buff_kind} with an explicit Not Set"
         );
     }
-    assert_eq!(
-        resolved_bonus_type(&map, &buff("Command", None, Some(2), Some("Competence"))),
-        Some(BonusType::Insight),
-        "without %b1, the definition's bonus type wins"
-    );
-    assert_eq!(
-        resolved_bonus_type(&BuffResolver::from_definitions(&HashMap::new()), &buff("Command", None, Some(2), None)),
-        None,
-        "without a definition the bonus stays untyped"
-    );
+    let ResolvedBuff::Bonuses { stats, .. } =
+        map.resolved(&buff("Command", None, Some(2), Some("Competence"))).unwrap()
+    else {
+        panic!("Command grants Charisma skills and a Hide penalty");
+    };
+    assert!(stats
+        .iter()
+        .filter(|stat| stat.stat.name != "Hide")
+        .all(|stat| stat.bonus_type == Some(BonusType::Insight)));
 }
 
 #[test]
@@ -345,6 +342,79 @@ fn effect_fallback_uses_definition_amounts_and_item_bonus_types() {
         [("Armor Class", AmountFrom::ItemValue1), ("Saving Throws", AmountFrom::ItemValue1)]
     );
     assert!(stats.iter().all(|stat| stat.amount(&riposte_with_item_value) == Some(5)));
+}
+
+#[test]
+fn speed_deception_and_command_grant_the_stats_their_definitions_describe() {
+    let resolver = BuffResolver::from_definitions(&fixture_item_buff_definitions());
+    let cases = [
+        (
+            "Speed",
+            "Enhancement",
+            vec![
+                ("Movement Speed", AmountFrom::ItemValue1, BonusType::Enhancement),
+                ("Melee Attack Speed", AmountFrom::ItemValue2, BonusType::Enhancement),
+                ("Ranged Attack Speed", AmountFrom::ItemValue2, BonusType::Enhancement),
+            ],
+        ),
+        (
+            "Deception",
+            "Insightful",
+            vec![
+                ("Sneak Attack Hit", AmountFrom::ItemValue1, BonusType::Insight),
+                ("Sneak Attack Damage", AmountFrom::ItemValue2, BonusType::Insight),
+            ],
+        ),
+        (
+            "Command",
+            "Insightful",
+            vec![
+                ("Bluff", AmountFrom::ItemValue1, BonusType::Insight),
+                ("Diplomacy", AmountFrom::ItemValue1, BonusType::Insight),
+                ("Haggle", AmountFrom::ItemValue1, BonusType::Insight),
+                ("Intimidate", AmountFrom::ItemValue1, BonusType::Insight),
+                ("Perform", AmountFrom::ItemValue1, BonusType::Insight),
+                ("Use Magic Device", AmountFrom::ItemValue1, BonusType::Insight),
+                ("Hide", AmountFrom::ItemValue2, BonusType::Penalty),
+            ],
+        ),
+    ];
+    for (kind, item_type, expected) in cases {
+        let mut item_buff = buff(kind, None, Some(10), Some(item_type));
+        item_buff.second_value = Some(4);
+        let ResolvedBuff::Bonuses { source: BuffResolutionSource::EffectFallback, stats } =
+            resolver.resolved(&item_buff).unwrap()
+        else {
+            panic!("{kind} should resolve through definition effects");
+        };
+        let actual: Vec<_> =
+            stats.iter().map(|row| (row.stat.name, row.amount_from, row.bonus_type.unwrap())).collect();
+        assert_eq!(actual, expected, "{kind}");
+    }
+}
+
+#[test]
+fn attack_speed_effect_types_resolve_all_and_class_targets() {
+    let resolver = EffectResolver::new();
+    for (effect_type, target, expected) in [
+        ("Weapon_Alacrity", "All", vec!["Melee Attack Speed", "Ranged Attack Speed"]),
+        ("WeaponAlacrityClass", "Melee", vec!["Melee Attack Speed"]),
+        ("WeaponAlacrityClass", "Ranged", vec!["Ranged Attack Speed"]),
+    ] {
+        let effect = Effect { targets: vec![target.into()], ..simple_effect(effect_type) };
+        let actual: Vec<_> = resolver.derive_bonuses(&effect).unwrap().iter().map(|bonus| bonus.stat.name).collect();
+        assert_eq!(actual, expected, "{effect_type} {target}");
+    }
+    for (weapon, expected) in [("Longbow", "Ranged Attack Speed"), ("Kama", "Melee Attack Speed")] {
+        let effect = Effect { targets: vec![weapon.into()], ..simple_effect("Weapon_Alacrity") };
+        assert!(resolver.derive_bonuses(&effect).unwrap().is_empty(), "{weapon} stays qualified text");
+        assert_eq!(resolver.qualified_targeted_name(&effect), Some(format!("{expected} ({weapon})")));
+    }
+    let definitions = effect_item_buff_definitions();
+    let buff_resolver = BuffResolver::from_definitions(&definitions);
+    assert!(buff_resolver
+        .family_template(&buff("RangedAlacrity", None, Some(15), Some("Enhancement")))
+        .starts_with("Ranged Attack Speed +%v1% (Dart, Great Crossbow"));
 }
 
 #[test]
@@ -405,7 +475,8 @@ fn effect_amount_sources_follow_definition_text_and_item_values() {
             "SpeedRomanNumeral",
             vec![
                 ("Movement Speed", AmountFrom::ItemValue1, Some(30)),
-                ("Attack Speed", AmountFrom::ItemValue2, Some(14)),
+                ("Melee Attack Speed", AmountFrom::ItemValue2, Some(14)),
+                ("Ranged Attack Speed", AmountFrom::ItemValue2, Some(14)),
             ],
         ),
         (
@@ -514,7 +585,6 @@ fn family_mapping_precedes_effect_fallback_and_unmappable_definitions_stay_effec
     for kind in [
         "Shield Bashing",
         "Vorpal",
-        "MeleeAlacrity",
         "Constitution Poison, Lesser",
         "Mind Drain",
         "Fixture Variable Armor Class",
@@ -528,6 +598,10 @@ fn family_mapping_precedes_effect_fallback_and_unmappable_definitions_stay_effec
             "{kind}"
         );
     }
+    assert!(matches!(
+        map.resolved(&buff("MeleeAlacrity", None, Some(4), Some("Enhancement"))).unwrap(),
+        ResolvedBuff::Bonuses { source: BuffResolutionSource::EffectFallback, .. }
+    ));
     assert!(matches!(
         map.resolved(&buff("RepairLore", None, Some(4), Some("Equipment"))).unwrap(),
         ResolvedBuff::Bonuses { source: BuffResolutionSource::EffectFallback, .. }
@@ -789,7 +863,7 @@ fn engine_only_effect_types_are_not_reported_as_unmapped() {
 fn an_effect_type_cannot_be_both_mapped_and_engine_only() {
     let effect_map_toml = |extra_fixed: &str| {
         format!(
-            "[family]\nenhancement = []\n[family.fixed]\n[family.by_item]\n[effect.fixed]\n{extra_fixed}\n[effect.by_item]\n[effect.by_item_default]\n[effect.companion_targets]\nwords = []\n[effect.energy_target_artifacts]\nstats = []\n[effect.engine_only]\nDR = \"typed by bypass material\"\n[item_aliases]\n[bonus_type_aliases]\n[weapon_aliases]\n"
+            "[family]\nenhancement = []\n[family.fixed]\n[family.by_item]\n[effect.fixed]\n{extra_fixed}\n[effect.targeted]\n[effect.by_item]\n[effect.by_item_default]\n[effect.companion_targets]\nwords = []\n[effect.energy_target_artifacts]\nstats = []\n[effect.engine_only]\nDR = \"typed by bypass material\"\n[item_aliases]\n[bonus_type_aliases]\n[weapon_aliases]\n"
         )
     };
     assert!(EffectMap::from_toml(&effect_map_toml("PRR = \"Physical Resistance Rating\"")).is_ok());

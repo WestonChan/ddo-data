@@ -331,7 +331,7 @@ fn injected_violations() -> Vec<InjectedViolation> {
             "Strength",
         ),
         violation(
-            "stat_links_with_prose_only_second_value",
+            "effect_link_amount_counts",
             "UPDATE item_effects SET value2 = 42 WHERE effect_id =
              (SELECT id FROM effects WHERE name = 'Strength') AND value IS NOT NULL;",
             "Strength",
@@ -341,7 +341,13 @@ fn injected_violations() -> Vec<InjectedViolation> {
             "INSERT INTO modifiers (source_kind, source_id, sort_order, effect_type, effect_id, dice_number, dice_sides)
              VALUES ('item', (SELECT MIN(id) FROM items), 998, 'IntegrityDice',
              (SELECT id FROM effects WHERE name = 'Improved Deception'), '[1]', '[6]');",
-            "Improved Deception",
+            "item / IntegrityDice",
+        ),
+        violation(
+            "effects_with_dice_but_no_damage_rows",
+            "INSERT INTO modifiers (source_kind, source_id, sort_order, effect_type, dice_number, dice_sides)
+             VALUES ('item', (SELECT MIN(id) FROM items), 998, 'UnresolvedDice', '[1]', '[6]');",
+            "item / UnresolvedDice",
         ),
         violation(
             "effect_families_have_owners",

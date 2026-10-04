@@ -369,6 +369,19 @@ impl BuffResolver {
     }
 
     pub fn family_template(&self, buff: &Buff) -> String {
+        if let Some(definition) = self.definitions_by_buff_kind.get(buff.kind.trim()) {
+            if let Some((effect_index, name)) =
+                definition.effects.iter().enumerate().find_map(|(index, effect)| {
+                    self.vocabulary.qualified_targeted_name(effect).map(|name| (index, name))
+                })
+            {
+                let (stat_name, qualifier) = name.split_once(" (").expect("qualified name has targets");
+                let slot = if effect_index > 0 && definition.display_text.contains("%v2") { "%v2" } else { "%v1" };
+                let text = format!("{stat_name} +{slot}% ({qualifier}");
+                return split_display_title(&definition.display_text)
+                    .map_or(text.clone(), |(_, description)| format!("{text}: {description}"));
+            }
+        }
         self.description_template(buff.kind.trim())
             .replace("%i1", buff.target.as_deref().or(buff.description.as_deref()).unwrap_or(""))
             .replace("%i2", buff.second_target.as_deref().unwrap_or(""))

@@ -180,7 +180,6 @@ Accuracy = "Accuracy"
 AttackBonus = "Attack Bonus"
 Doublestrike = "Doublestrike"
 Doubleshot = "Doubleshot"
-Deception = "Deception"
 ArmorPiercing = "Fortification Bypass"
 CombatMastery = "Combat Mastery"
 Stunning = "Stun DC"
@@ -193,9 +192,7 @@ Incite = "Melee Threat Generation"
 MysticDiversion = "Threat Reduction"
 Diversion = "Threat Reduction"
 DistantDiversion = "Ranged Threat Reduction"
-Command = "Command"
 "Rune Arm Charge Rate" = "Rune Arm Charge Rate"
-Speed = "Speed"
 Striding = "Movement Speed"
 "Alluring Skills Bonus" = "Alluring"
 "Astute Skills Bonus" = "Astute"
@@ -254,7 +251,6 @@ MaxDexBonus = "Max Dex Bonus (Armor)"
 Weapon_CriticalRange = "Critical Threat Range"
 Weapon_CriticalMultiplier = "Critical Multiplier"
 Weapon_CriticalMultiplier19To20 = "Critical Multiplier (19-20)"
-Weapon_Alacrity = "Attack Speed"
 OffHandAttackBonus = "Offhand Strike Chance"
 SongCount = "Bard Songs"
 KiPassive = "Ki"
@@ -315,6 +311,17 @@ HirelingMeleePower = "Hireling Melee Power"
 HirelingPRR = "Hireling Physical Resistance Rating"
 HirelingRangedPower = "Hireling Ranged Power"
 HirelingSpellPower = "Hireling Spell Power"
+
+[effect.targeted.Weapon_Alacrity]
+qualified_name = "Attack Speed"
+targets = { All = ["Melee Attack Speed", "Ranged Attack Speed"], Melee = ["Melee Attack Speed"], Ranged = ["Ranged Attack Speed"] }
+
+[effect.targeted.WeaponAlacrityClass]
+qualified_name = "Attack Speed"
+targets = { Melee = ["Melee Attack Speed"], Ranged = ["Ranged Attack Speed"] }
+
+[effect.targeted.SkillBonusAbility]
+targets = { Charisma = ["Bluff", "Diplomacy", "Haggle", "Intimidate", "Perform", "Use Magic Device"] }
 
 [effect.by_item]
 AbilityBonus = "{item}"
@@ -405,12 +412,10 @@ Weapon_DamageCritical = "per weapon class, on critical hits"
 Weapon_VorpalRange = "per weapon class"
 WeaponAttackBonusClass = "per weapon class"
 WeaponDamageBonusClass = "per weapon class"
-WeaponAlacrityClass = "per weapon class"
 WeaponAttackBonusDamageType = "per weapon damage type"
 WeaponDamageBonusDamageType = "per weapon damage type"
 WeaponKeenDamageType = "per weapon damage type"
 ImplementInYourHands = "per wielded implement"
-SkillBonusAbility = "bonus to the skills keyed by an ability"
 MaxCasterLevelSpell = "per spell"
 SpellCostReduction = "flat spell point reduction, per spell"
 SaveNoFailOn1 = "flag per save"
