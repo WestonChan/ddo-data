@@ -6,11 +6,11 @@ import sqlite3
 
 
 OWNER_TABLES = {
-    "items": ("item_enchantments", "item_id"),
-    "augments": ("augment_enchantments", "augment_id"),
-    "feats": ("feat_enchantments", "feat_id"),
-    "sets": ("set_bonus_tier_enchantments", "tier_id"),
-    "options": ("item_augment_slot_option_enchantments", "option_id"),
+    "items": ("item_effects", "item_id"),
+    "augments": ("augment_effects", "augment_id"),
+    "feats": ("feat_effects", "feat_id"),
+    "sets": ("set_bonus_tier_effects", "tier_id"),
+    "options": ("item_augment_slot_option_effects", "option_id"),
 }
 
 LEGACY_OWNER_TABLES = {
@@ -22,8 +22,8 @@ LEGACY_OWNER_TABLES = {
 }
 
 
-def has_enchantments(db):
-    return db.execute("SELECT 1 FROM sqlite_master WHERE type = 'table' AND name = 'enchantments'").fetchone() is not None
+def has_effect_bonuses(db):
+    return db.execute("SELECT 1 FROM sqlite_master WHERE type = 'table' AND name = 'effect_bonuses'").fetchone() is not None
 
 
 def read_details(path):
@@ -45,8 +45,8 @@ def family_names(db, owner_kind, owner_id, legacy=False):
         return [row[0] for row in db.execute(query, (owner_id,))]
     table, owner_column = OWNER_TABLES[owner_kind]
     query = f"""SELECT e.name FROM {table} link
-        JOIN enchantments e ON e.id = link.enchantment_id
-        JOIN enchantment_stats stat ON stat.enchantment_id = e.id
+        JOIN effects e ON e.id = link.effect_id
+        JOIN effect_bonuses stat ON stat.effect_id = e.id
         WHERE link.{owner_column} = ? AND
           (CASE stat.amount_from WHEN 0 THEN stat.constant
             WHEN 1 THEN COALESCE(link.value, e.default_value)
@@ -57,7 +57,7 @@ def family_names(db, owner_kind, owner_id, legacy=False):
 
 def changed_tier_families(before_db, after_db, tier_id, before_legacy):
     current_query = """SELECT e.name, link.value, link.value2, link.bonus_type_id
-        FROM set_bonus_tier_enchantments link JOIN enchantments e ON e.id = link.enchantment_id
+        FROM set_bonus_tier_effects link JOIN effects e ON e.id = link.effect_id
         WHERE link.tier_id = ?"""
     legacy_query = """SELECT stat.name, bonus.value, bonus.value2, bonus.bonus_type_id
         FROM set_bonus_tier_bonuses link JOIN bonuses bonus ON bonus.id = link.bonus_id
@@ -83,6 +83,16 @@ def compared_row(row, effect):
         compared.pop("value", None)
         compared.pop("target", None)
     return compared
+
+
+def structured_effects(owner):
+    previous = owner.get("enchantments")
+    if isinstance(previous, list):
+        return previous
+    current = owner.get("effects")
+    if isinstance(current, list) and (not current or all("bonuses" in line for line in current)):
+        return current
+    return None
 
 
 def row_changes(before, after, before_families, after_families, owner_label, location, effect, findings):
@@ -125,28 +135,40 @@ def row_changes(before, after, before_families, after_families, owner_label, loc
 def compare_details(before, after, before_db, after_db):
     if before.keys() != after.keys():
         raise ValueError(f"owner keys differ: {len(before.keys() - after.keys())} removed, {len(after.keys() - before.keys())} added")
-    before_legacy = not has_enchantments(before_db)
+    before_legacy = not has_effect_bonuses(before_db)
     findings = []
     for owner_kind, owner_id in sorted(before):
         old, new = before[(owner_kind, owner_id)], after[(owner_kind, owner_id)]
         owner_label = f"{owner_kind}/{owner_id} {new['name']}"
-        if owner_kind in ("items", "augments", "feats"):
+        old_effects, new_effects = structured_effects(old), structured_effects(new)
+        if old_effects is not None and new_effects is not None:
+            row_changes(old_effects, new_effects, [], [], owner_label, "effects", True, findings)
+        elif owner_kind in ("items", "augments", "feats"):
             row_changes(old["bonuses"], new["bonuses"], family_names(before_db, owner_kind, owner_id, before_legacy), family_names(after_db, owner_kind, owner_id), owner_label, "bonuses", False, findings)
-        if owner_kind == "items":
+        if owner_kind == "items" and old_effects is None:
             row_changes(old["effects"], new["effects"], [], [], owner_label, "effects", True, findings)
+        if owner_kind == "items":
             for old_slot, new_slot in zip(old["augment_slots"], new["augment_slots"]):
                 for old_option, new_option in zip(old_slot["options"], new_slot["options"]):
                     option_id = new_option["id"]
-                    row_changes(old_option["bonuses"], new_option["bonuses"], family_names(before_db, "options", option_id, before_legacy), family_names(after_db, "options", option_id), owner_label, f"option/{option_id} bonuses", False, findings)
+                    old_option_effects, new_option_effects = structured_effects(old_option), structured_effects(new_option)
+                    if old_option_effects is not None and new_option_effects is not None:
+                        row_changes(old_option_effects, new_option_effects, [], [], owner_label, f"option/{option_id} effects", True, findings)
+                    else:
+                        row_changes(old_option["bonuses"], new_option["bonuses"], family_names(before_db, "options", option_id, before_legacy), family_names(after_db, "options", option_id), owner_label, f"option/{option_id} bonuses", False, findings)
         if owner_kind == "sets":
             for old_tier, new_tier in zip(old["tiers"], new["tiers"]):
                 tier_id = new_tier["id"]
-                row_changes(old_tier["bonuses"], new_tier["bonuses"], family_names(before_db, "sets", tier_id, before_legacy), family_names(after_db, "sets", tier_id), owner_label, f"tier/{new_tier['equipped_count']} bonuses", False, findings)
-                if old_tier["description"] != new_tier["description"]:
+                old_tier_effects, new_tier_effects = structured_effects(old_tier), structured_effects(new_tier)
+                if old_tier_effects is not None and new_tier_effects is not None:
+                    row_changes(old_tier_effects, new_tier_effects, [], [], owner_label, f"tier/{new_tier['equipped_count']} effects", True, findings)
+                else:
+                    row_changes(old_tier["bonuses"], new_tier["bonuses"], family_names(before_db, "sets", tier_id, before_legacy), family_names(after_db, "sets", tier_id), owner_label, f"tier/{new_tier['equipped_count']} bonuses", False, findings)
+                if old_tier.get("description") != new_tier.get("description"):
                     for family in changed_tier_families(before_db, after_db, tier_id, before_legacy):
-                        findings.append({"family": family, "owner": owner_label, "location": f"tier/{new_tier['equipped_count']} description", "fields": ["description"], "before": old_tier["description"], "after": new_tier["description"]})
+                        findings.append({"family": family, "owner": owner_label, "location": f"tier/{new_tier['equipped_count']} description", "fields": ["description"], "before": old_tier.get("description"), "after": new_tier.get("description")})
         for field in old.keys() | new.keys():
-            if field in ("bonuses", "effects", "augment_slots", "tiers"):
+            if field in ("bonuses", "effects", "enchantments", "augment_slots", "tiers"):
                 continue
             if old.get(field) != new.get(field):
                 findings.append({"family": "(other fields)", "owner": owner_label, "location": field, "fields": [field], "before": old.get(field), "after": new.get(field)})

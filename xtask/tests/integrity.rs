@@ -87,12 +87,12 @@ fn clean_fixture_database_exits_zero_and_prints_every_check() {
 }
 
 #[test]
-fn text_only_enchantment_named_after_a_stat_is_warned() {
+fn text_only_effect_named_after_a_stat_is_warned() {
     let work_dir = tempfile::tempdir().unwrap();
     let db_path = fixture_db_copy_with(
         work_dir.path(),
-        "INSERT INTO enchantments (name, text_template, amount_count) VALUES ('hitpoints', 'hitpoints', 0);
-         INSERT INTO item_enchantments (item_id, enchantment_id, sort_order)
+        "INSERT INTO effects (name, text_template, amount_count) VALUES ('hitpoints', 'hitpoints', 0);
+         INSERT INTO item_effects (item_id, effect_id, sort_order)
          VALUES ((SELECT MIN(id) FROM items), last_insert_rowid(), 999);",
     );
     let db = Connection::open(&db_path).unwrap();
@@ -128,20 +128,20 @@ fn an_unclassified_effect_type_reports_its_family_and_item_count() {
 }
 
 #[test]
-fn identifier_like_enchantment_names_are_warned() {
+fn identifier_like_effect_names_are_warned() {
     let work_dir = tempfile::tempdir().unwrap();
     let db_path = fixture_db_copy_with(
         work_dir.path(),
-        "INSERT INTO enchantments (name, text_template, amount_count) VALUES ('CamelCase', 'Camel Case', 0);
-         INSERT INTO item_enchantments (item_id, enchantment_id, sort_order)
+        "INSERT INTO effects (name, text_template, amount_count) VALUES ('CamelCase', 'Camel Case', 0);
+         INSERT INTO item_effects (item_id, effect_id, sort_order)
          VALUES ((SELECT MIN(id) FROM items), last_insert_rowid(), 999);
-         INSERT INTO enchantments (name, text_template, amount_count) VALUES ('Telekinetic117', 'Telekinetic 117', 0);
-         INSERT INTO item_enchantments (item_id, enchantment_id, sort_order)
+         INSERT INTO effects (name, text_template, amount_count) VALUES ('Telekinetic117', 'Telekinetic 117', 0);
+         INSERT INTO item_effects (item_id, effect_id, sort_order)
          VALUES ((SELECT MIN(id) FROM items), last_insert_rowid(), 998);",
     );
     let db = Connection::open(&db_path).unwrap();
     let report = integrity_report(&db, &fixture_options()).unwrap();
-    let outcome = report.outcome("enchantments_named_like_identifiers").unwrap();
+    let outcome = report.outcome("effects_named_like_identifiers").unwrap();
     assert!(outcome.offenders.iter().any(|offender| offender.name == "CamelCase"));
     assert!(outcome.offenders.iter().any(|offender| offender.name == "Telekinetic117"));
 }
@@ -165,12 +165,12 @@ fn a_warning_never_fails_the_command() {
     let work_dir = tempfile::tempdir().unwrap();
     let db_path = fixture_db_copy_with(
         work_dir.path(),
-        "INSERT INTO enchantments (name, text_template, amount_count) VALUES ('hitpoints', 'hitpoints', 0);
+        "INSERT INTO effects (name, text_template, amount_count) VALUES ('hitpoints', 'hitpoints', 0);
          INSERT INTO items (name, slot_id, item_category, wiki_url, drop_location, minimum_level)
          VALUES ('Integrity Probe Ring', (SELECT id FROM equipment_slots WHERE name = 'Ring'), 'Jewelry',
                  'https://ddowiki.com/page/Item:Integrity_Probe_Ring', 'Nowhere Keep, chest', 1);
-         INSERT INTO item_enchantments (item_id, enchantment_id, sort_order)
-         VALUES (last_insert_rowid(), (SELECT id FROM enchantments WHERE name = 'hitpoints'), 999);",
+         INSERT INTO item_effects (item_id, effect_id, sort_order)
+         VALUES (last_insert_rowid(), (SELECT id FROM effects WHERE name = 'hitpoints'), 999);",
     );
 
     let output = check_db_output(&db_path);
@@ -257,103 +257,103 @@ fn injected_violations() -> Vec<InjectedViolation> {
         ),
         violation(
             "effects_named_after_stats",
-            "INSERT INTO enchantments (name, text_template, amount_count) VALUES ('hitpoints', 'hitpoints', 0); \
-             INSERT INTO item_enchantments (item_id, enchantment_id, sort_order) \
+            "INSERT INTO effects (name, text_template, amount_count) VALUES ('hitpoints', 'hitpoints', 0); \
+             INSERT INTO item_effects (item_id, effect_id, sort_order) \
              VALUES ((SELECT MIN(id) FROM items), last_insert_rowid(), 999);",
             "hitpoints",
         ),
         violation(
-            "enchantment_templates_with_digits_without_amounts",
-            "INSERT INTO enchantments (name, text_template, amount_count) VALUES ('Integrity Probe Glow', 'Glow 7', 0); \
-             INSERT INTO item_enchantments (item_id, enchantment_id, sort_order) \
+            "effect_templates_with_digits_without_amounts",
+            "INSERT INTO effects (name, text_template, amount_count) VALUES ('Integrity Probe Glow', 'Glow 7', 0); \
+             INSERT INTO item_effects (item_id, effect_id, sort_order) \
              VALUES ((SELECT MIN(id) FROM items), last_insert_rowid(), 998);",
             "Integrity Probe Glow",
         ),
         violation(
-            "enchantments_with_amounts_named_with_digits",
-            "INSERT INTO enchantments (name, text_template, amount_count)
+            "effects_with_amounts_named_with_digits",
+            "INSERT INTO effects (name, text_template, amount_count)
              VALUES ('Integrity 12 Power', 'Power {1}', 1);
-             INSERT INTO item_enchantments (item_id, enchantment_id, value, sort_order)
+             INSERT INTO item_effects (item_id, effect_id, value, sort_order)
              VALUES ((SELECT MIN(id) FROM items), last_insert_rowid(), 12, 998);",
             "Integrity 12 Power",
         ),
         violation(
-            "enchantments_with_values_in_names",
-            "INSERT INTO enchantments (name, text_template, amount_count) VALUES ('+7 Integrity Probe', '+7 Integrity Probe', 0); \
-             INSERT INTO item_enchantments (item_id, enchantment_id, sort_order) \
+            "effects_with_values_in_names",
+            "INSERT INTO effects (name, text_template, amount_count) VALUES ('+7 Integrity Probe', '+7 Integrity Probe', 0); \
+             INSERT INTO item_effects (item_id, effect_id, sort_order) \
              VALUES ((SELECT MIN(id) FROM items), last_insert_rowid(), 998);",
             "+7 Integrity Probe",
         ),
         violation(
-            "enchantments_with_unused_default",
-            "INSERT INTO enchantments (name, text_template, amount_count, default_value)
+            "effects_with_unused_default",
+            "INSERT INTO effects (name, text_template, amount_count, default_value)
              VALUES ('Integrity Default', 'Default {1}', 1, 7);
-             INSERT INTO item_enchantments (item_id, enchantment_id, sort_order)
+             INSERT INTO item_effects (item_id, effect_id, sort_order)
              VALUES ((SELECT MIN(id) FROM items), last_insert_rowid(), 998);",
             "Integrity Default",
         ),
         violation(
-            "enchantment_link_amount_counts",
-            "INSERT INTO enchantments (name, text_template, amount_count)
+            "effect_link_amount_counts",
+            "INSERT INTO effects (name, text_template, amount_count)
              VALUES ('Integrity Excess Amount', 'No amount', 0);
-             INSERT INTO item_enchantments (item_id, enchantment_id, value, sort_order)
+             INSERT INTO item_effects (item_id, effect_id, value, sort_order)
              VALUES ((SELECT MIN(id) FROM items), last_insert_rowid(), 1, 998);",
             "Integrity Excess Amount",
         ),
         violation(
-            "enchantment_stat_amount_sources",
-            "UPDATE enchantment_stats SET amount_from = 2 WHERE enchantment_id =
-             (SELECT id FROM enchantments WHERE name = 'Improved Deception');",
+            "effect_stat_amount_sources",
+            "UPDATE effect_bonuses SET amount_from = 2 WHERE effect_id =
+             (SELECT id FROM effects WHERE name = 'Improved Deception');",
             "Improved Deception",
         ),
         violation(
-            "enchantment_template_placeholders",
-            "UPDATE enchantments SET text_template = 'No amount', description_template = NULL
+            "effect_template_placeholders",
+            "UPDATE effects SET text_template = 'No amount', description_template = NULL
              WHERE name = 'Improved Deception';",
             "Improved Deception",
         ),
         violation(
-            "enchantment_bonus_type_sources",
-            "UPDATE item_enchantments SET bonus_type_id = NULL WHERE enchantment_id =
-             (SELECT id FROM enchantments WHERE name = 'Strength');",
+            "effect_bonus_type_sources",
+            "UPDATE item_effects SET bonus_type_id = NULL WHERE effect_id =
+             (SELECT id FROM effects WHERE name = 'Strength');",
             "Strength",
         ),
         violation(
-            "enchantment_families_have_owners",
-            "INSERT INTO enchantments (name, text_template, amount_count)
-             VALUES ('Integrity Orphan Enchantment', 'Integrity Orphan Enchantment', 0);",
-            "Integrity Orphan Enchantment",
+            "effect_families_have_owners",
+            "INSERT INTO effects (name, text_template, amount_count)
+             VALUES ('Integrity Orphan Effect', 'Integrity Orphan Effect', 0);",
+            "Integrity Orphan Effect",
         ),
         violation(
-            "enchantment_ladders_have_steps",
-            "INSERT INTO enchantment_ladders (name) VALUES ('Integrity Ladder');",
+            "effect_ladders_have_steps",
+            "INSERT INTO effect_ladders (name) VALUES ('Integrity Ladder');",
             "Integrity Ladder",
         ),
         violation(
-            "enchantment_names_have_no_em_dash",
-            "INSERT INTO enchantments (name, text_template, amount_count)
+            "effect_names_have_no_em_dash",
+            "INSERT INTO effects (name, text_template, amount_count)
              VALUES ('Integrity — Prose', 'Integrity prose', 0);
-             INSERT INTO item_enchantments (item_id, enchantment_id, sort_order)
+             INSERT INTO item_effects (item_id, effect_id, sort_order)
              VALUES ((SELECT MIN(id) FROM items), last_insert_rowid(), 997);",
             "Integrity — Prose",
         ),
         violation(
             "set_tier_lines_do_not_repeat_structured_facts",
-            "INSERT INTO enchantments (name, text_template, amount_count)
+            "INSERT INTO effects (name, text_template, amount_count)
              SELECT 'Integrity Duplicate Tier Fact',
                     REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(e.text_template,
                     '+{1}', '{1}'), '+{2}', '{2}'),
                     '{1}', printf('%+d', COALESCE(te.value, e.default_value))),
                     '{2}', COALESCE(printf('%+d', COALESCE(te.value2, e.default_value2)), '')),
                     '%b1', COALESCE(bt.name, '')), 0
-             FROM set_bonus_tier_enchantments te JOIN enchantments e ON e.id = te.enchantment_id
+             FROM set_bonus_tier_effects te JOIN effects e ON e.id = te.effect_id
              LEFT JOIN bonus_types bt ON bt.id = te.bonus_type_id
-             WHERE EXISTS (SELECT 1 FROM enchantment_stats es WHERE es.enchantment_id = e.id)
+             WHERE EXISTS (SELECT 1 FROM effect_bonuses es WHERE es.effect_id = e.id)
              ORDER BY te.tier_id, te.sort_order LIMIT 1;
-             INSERT INTO set_bonus_tier_enchantments (tier_id, enchantment_id, sort_order)
-             SELECT te.tier_id, (SELECT id FROM enchantments WHERE name = 'Integrity Duplicate Tier Fact'), 999
-             FROM set_bonus_tier_enchantments te JOIN enchantments e ON e.id = te.enchantment_id
-             WHERE EXISTS (SELECT 1 FROM enchantment_stats es WHERE es.enchantment_id = e.id)
+             INSERT INTO set_bonus_tier_effects (tier_id, effect_id, sort_order)
+             SELECT te.tier_id, (SELECT id FROM effects WHERE name = 'Integrity Duplicate Tier Fact'), 999
+             FROM set_bonus_tier_effects te JOIN effects e ON e.id = te.effect_id
+             WHERE EXISTS (SELECT 1 FROM effect_bonuses es WHERE es.effect_id = e.id)
              ORDER BY te.tier_id, te.sort_order LIMIT 1;",
             "Inevitable Balance",
         ),
@@ -408,7 +408,7 @@ fn injected_violations() -> Vec<InjectedViolation> {
              VALUES ('Integrity Probe Chain', 'wiki', 'https://ddowiki.com/page/Integrity_Probe_Chain');",
             "Integrity Probe Chain",
         ),
-        violation("items_without_enchantments", &probe_ring_insert("Integrity Probe Ring"), "Integrity Probe Ring"),
+        violation("items_without_effects", &probe_ring_insert("Integrity Probe Ring"), "Integrity Probe Ring"),
         violation(
             "items_without_description",
             &probe_ring_insert("Integrity Probe Ring").replace("'A probe.'", "NULL"),
@@ -552,7 +552,7 @@ fn items_without_a_source_ranks_the_heads_of_their_drop_locations() {
 }
 
 #[test]
-fn items_without_enchantments_counts_every_property_an_item_can_carry() {
+fn items_without_effects_counts_every_property_an_item_can_carry() {
     let property_inserts = [
         ("Integrity Probe Enhanced Ring", "UPDATE items SET enhancement_bonus = 3 WHERE id = last_insert_rowid();"),
         (
@@ -584,7 +584,7 @@ fn items_without_enchantments_counts_every_property_an_item_can_carry() {
     let db = Connection::open(&db_path).unwrap();
     let report = integrity_report(&db, &fixture_options()).unwrap();
     let offender_names: Vec<&str> = report
-        .outcome("items_without_enchantments")
+        .outcome("items_without_effects")
         .unwrap()
         .offenders
         .iter()

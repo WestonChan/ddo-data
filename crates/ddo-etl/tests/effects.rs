@@ -1,5 +1,5 @@
 use ddo_etl::map::effect::{DerivedBonus, EffectResolver};
-use ddo_etl::map::enchantment::{EffectTargetQualifiers, ENCHANTMENT_MAP};
+use ddo_etl::map::effect_map::{EffectTargetQualifiers, EFFECT_MAP};
 use ddo_etl::xml::effect::{parse_effect, Effect};
 use ddo_etl::xml::requirements::parse_requirements;
 use ddo_model::enums::{BonusType, RequirementGroupKind};
@@ -81,7 +81,7 @@ fn fixed_effect_target_vocabulary_is_shared_by_both_mapping_paths() {
             "<Effect><Type>{effect_type}</Type><Bonus>Equipment</Bonus><AType>Simple</AType><Amount size=\"1\">4</Amount><Item>{target}</Item></Effect>"
         ));
         assert_eq!(resolver.derive_bonuses(&effect).unwrap().is_empty(), !maps, "{effect_type} {target}");
-        assert_eq!(ENCHANTMENT_MAP.stats_for_effect(&effect, &qualifiers).is_some(), maps, "{effect_type} {target}");
+        assert_eq!(EFFECT_MAP.stats_for_effect(&effect, &qualifiers).is_some(), maps, "{effect_type} {target}");
     }
     let paired_weapons = parsed_effect(
         "<Effect><Type>Weapon_CriticalRange</Type><Bonus>Equipment</Bonus><AType>Simple</AType><Amount size=\"1\">1</Amount><Item>Shortbow</Item><Item>Longbow</Item></Effect>",
@@ -102,7 +102,7 @@ fn by_item_effect_maps_only_when_every_target_names_a_stat() {
         let effect = parsed_effect(&format!(
             "<Effect><Type>SpellLore</Type><Bonus>Equipment</Bonus><AType>Simple</AType><Amount size=\"1\">2122</Amount>{targets}</Effect>"
         ));
-        let mapped_stats = ENCHANTMENT_MAP
+        let mapped_stats = EFFECT_MAP
             .stats_for_effect(&effect, &qualifiers)
             .map(|stats| stats.into_iter().map(|stat| stat.name).collect::<Vec<_>>())
             .unwrap_or_default();
@@ -144,7 +144,7 @@ fn real_companion_targets_preserve_their_mapped_siblings() {
             })
             .collect();
         assert_eq!(stat_names, expected_stats);
-        let mapped_stat_names: Vec<_> = ENCHANTMENT_MAP
+        let mapped_stat_names: Vec<_> = EFFECT_MAP
             .stats_for_effect(&effect, &EffectTargetQualifiers::default())
             .unwrap()
             .into_iter()

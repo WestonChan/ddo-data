@@ -5,8 +5,8 @@ use super::quests::{
 };
 use super::vendors_and_events::{events_rewarding, vendors_offering};
 use crate::db::{
-    convert_to_booleans, enchantments_for_owner, enchantments_via, json_row, json_rows, like_escaped_text,
-    modifiers_for, paged_query, paged_table_json, TableListSource, WhereClause,
+    convert_to_booleans, effects_for_owner, effects_via, json_row, json_rows, like_escaped_text, modifiers_for,
+    paged_query, paged_table_json, TableListSource, WhereClause,
 };
 use crate::error::ApiError;
 use crate::query::{
@@ -15,7 +15,7 @@ use crate::query::{
 use crate::state::AppState;
 use axum::extract::{Path, State};
 use axum::Json;
-use ddo_model::enums::ItemCategory;
+use ddo_model::enums::{EquipmentSlot, ItemCategory};
 use rusqlite::Connection;
 use serde_json::Value;
 use utoipa_axum::router::OpenApiRouter;
@@ -54,13 +54,13 @@ declare_query_parameters! {
         pub saga: Vec<i64>,
         pub saga_match: Option<String>,
         #[serde(default, deserialize_with = "repeated_key_values")]
-        pub enchantment: Vec<String>,
-        pub enchantment_match: Option<String>,
+        pub bonus: Vec<String>,
+        pub bonus_match: Option<String>,
         pub include_set_bonuses: Option<bool>,
         pub include_legacy: Option<bool>,
     }
-    repeatable: ["slot", "category", "pack", "quest", "quest_chain", "saga", "enchantment"]
-    matchable: ["pack", "quest", "quest_chain", "saga", "enchantment"]
+    repeatable: ["slot", "category", "pack", "quest", "quest_chain", "saga", "bonus"]
+    matchable: ["pack", "quest", "quest_chain", "saga", "bonus"]
     single_value_match: ["slot", "category"]
 }
 
@@ -82,7 +82,6 @@ const ITEMS_SORT_FIELDS: &[(&str, &str)] = &[
     ("category", "i.item_category"),
     ("pack", "pack"),
     ("enhancement_bonus", "i.enhancement_bonus"),
-
     ("icon", "icon"),
     ("is_legacy", "is_legacy"),
     ("is_raid", "is_raid"),
@@ -95,7 +94,10 @@ const ITEMS_SORT_FIELDS: &[(&str, &str)] = &[
     ("quest", "(SELECT MIN(quest_id) FROM sources WHERE item_id = i.id AND kind = 'quest')"),
     ("quest_chain", "(SELECT MIN(chain_id) FROM sources WHERE item_id = i.id AND kind = 'quest_chain')"),
     ("saga", "(SELECT MIN(saga_id) FROM sources WHERE item_id = i.id AND kind = 'saga')"),
-    ("enchantment", "(SELECT MIN(e.name) FROM item_enchantments ie JOIN enchantments e ON e.id = ie.enchantment_id WHERE ie.item_id = i.id)"),
+    (
+        "bonus",
+        "(SELECT MIN(e.name) FROM item_effects ie JOIN effects e ON e.id = ie.effect_id WHERE ie.item_id = i.id)",
+    ),
 ];
 
 declare_list_parameters!(
@@ -131,20 +133,25 @@ declare_list_parameters!(
         ("quest_chain_match" = Option<String>, Query, description = "Use `all` to require every quest chain, or `any` by default."),
         ("saga" = Option<Vec<i64>>, Query, style = Form, explode = true, description = "Repeat saga ids to match end rewards."),
         ("saga_match" = Option<String>, Query, description = "Use `all` to require every saga, or `any` by default."),
-        ("enchantment" = Option<Vec<String>>, Query, style = Form, explode = true, description = "Repeat family, ladder or stat names; `stat:bonus type` narrows a stat."),
-        ("enchantment_match" = Option<String>, Query, description = "Use `all` to require every enchantment, or `any` by default."),
-        ("include_set_bonuses" = Option<bool>, Query, description = "Use true to match enchantments through the item's set tiers too."),
+        ("bonus" = Option<Vec<String>>, Query, style = Form, explode = true, description = "Repeat effect, ladder or stat names; `Constitution:Insight` narrows by type, and `Constitution:Insightful` also works."),
+        ("bonus_match" = Option<String>, Query, description = "Use `all` to require every bonus, or `any` by default."),
+        ("include_set_bonuses" = Option<bool>, Query, description = "Use true to match effects through the item's set tiers too."),
         ("include_legacy" = Option<bool>, Query, description = "Use true to include legacy item versions in the list."),
     ),
     responses(
         (status = 200, description = "`total`, `limit`, `offset` and the `items` page", body = crate::routes::v1::response_schemas::ItemsPageResponse),
-        (status = 400, description = "Unknown category or enchantment, or an unknown or malformed query parameter", body = crate::error::ErrorBody)
+        (status = 400, description = "Unknown category or bonus, or an unknown or malformed query parameter", body = crate::error::ErrorBody)
     )
 )]
 async fn items(
     State(state): State<AppState>,
     ApiQuery(query, filters): ApiQuery<ItemFilters>,
 ) -> Result<Json<Value>, ApiError> {
+    for slot in &filters.slot {
+        if !EquipmentSlot::ALL.iter().any(|known| known.name() == slot) {
+            return Err(ApiError::BadRequest(format!("unknown slot {slot:?}")));
+        }
+    }
     for category in &filters.category {
         if !ItemCategory::ALL.iter().any(|known| known.as_str() == category) {
             return Err(ApiError::BadRequest(format!("unknown category {category:?}")));
@@ -199,12 +206,12 @@ async fn items(
                 "i.id IN (SELECT d.item_id FROM sources d WHERE d.kind = 'saga' AND d.saga_id = ?)",
                 &filters.saga, filters.saga_match.as_deref(),
             );
-            let enchantment_conditions = filters.enchantment.iter().map(|name| {
-                enchantment_match_sql(db, name, filters.include_set_bonuses == Some(true))
+            let bonus_conditions = filters.bonus.iter().map(|name| {
+                bonus_match_sql(db, name, filters.include_set_bonuses == Some(true))
             }).collect::<Result<Vec<_>, _>>()?;
-            if !enchantment_conditions.is_empty() {
-                let separator = if filters.enchantment_match.as_deref() == Some("all") { " AND " } else { " OR " };
-                where_clause.add_condition(&format!("({})", enchantment_conditions.join(separator)));
+            if !bonus_conditions.is_empty() {
+                let separator = if filters.bonus_match.as_deref() == Some("all") { " AND " } else { " OR " };
+                where_clause.add_condition(&format!("({})", bonus_conditions.join(separator)));
             }
             let mut page = paged_query(
                 db,
@@ -228,7 +235,7 @@ const ITEMS_MATCHING_SEARCH_TEXT_SQL: &str = "(i.name LIKE '%' || ? || '%' ESCAP
      OR i.id IN (SELECT packs.item_id FROM loot_adventure_packs packs \
                  JOIN adventure_packs ap ON ap.id = packs.pack_id WHERE ap.name LIKE ? ESCAPE '\\'))";
 
-fn enchantment_match_sql(db: &Connection, name: &str, include_set_bonuses: bool) -> Result<String, ApiError> {
+fn bonus_match_sql(db: &Connection, name: &str, include_set_bonuses: bool) -> Result<String, ApiError> {
     use rusqlite::OptionalExtension;
 
     let (stat_name, type_name) = name.split_once(':').map_or((name, None), |(stat, kind)| (stat, Some(kind)));
@@ -237,10 +244,10 @@ fn enchantment_match_sql(db: &Connection, name: &str, include_set_bonuses: bool)
     let type_id = match type_name {
         Some(type_name) => {
             if stat_id.is_none() {
-                return Err(ApiError::BadRequest(format!("unknown enchantment {name:?}")));
+                return Err(ApiError::BadRequest(format!("unknown bonus {name:?}")));
             }
             Some(
-                db.query_row("SELECT id FROM bonus_types WHERE name = ?1", [type_name], |row| row.get::<_, i64>(0))
+                db.query_row("SELECT id FROM bonus_types WHERE name = ?1 UNION SELECT bonus_type_id FROM bonus_type_aliases WHERE name = ?1", [type_name], |row| row.get::<_, i64>(0))
                     .optional()?
                     .ok_or_else(|| ApiError::BadRequest(format!("unknown bonus type {type_name:?}")))?,
             )
@@ -248,20 +255,20 @@ fn enchantment_match_sql(db: &Connection, name: &str, include_set_bonuses: bool)
         None => None,
     };
     let family_ids = if type_name.is_none() {
-        let mut statement = db.prepare_cached("SELECT e.id FROM enchantments e LEFT JOIN enchantment_ladders l ON l.id = e.ladder_id WHERE e.name = ?1 OR l.name = ?1")?;
+        let mut statement = db.prepare_cached("SELECT e.id FROM effects e LEFT JOIN effect_ladders l ON l.id = e.ladder_id WHERE e.name = ?1 OR l.name = ?1")?;
         let ids = statement.query_map([name], |row| row.get::<_, i64>(0))?.collect::<Result<Vec<_>, _>>()?;
         ids
     } else {
         Vec::new()
     };
     if stat_id.is_none() && family_ids.is_empty() {
-        return Err(ApiError::BadRequest(format!("unknown enchantment {name:?}")));
+        return Err(ApiError::BadRequest(format!("unknown bonus {name:?}")));
     }
     let matches_link = |link: &str| {
         let mut alternatives = Vec::new();
         if !family_ids.is_empty() {
             alternatives.push(format!(
-                "{link}.enchantment_id IN ({})",
+                "{link}.effect_id IN ({})",
                 family_ids.iter().map(ToString::to_string).collect::<Vec<_>>().join(",")
             ));
         }
@@ -269,13 +276,13 @@ fn enchantment_match_sql(db: &Connection, name: &str, include_set_bonuses: bool)
             let type_condition = type_id.map_or(String::new(), |type_id| {
                 format!(" AND COALESCE(es.bonus_type_id, {link}.bonus_type_id) = {type_id}")
             });
-            alternatives.push(format!("EXISTS (SELECT 1 FROM enchantment_stats es WHERE es.enchantment_id = {link}.enchantment_id AND es.stat_id = {stat_id}{type_condition})"));
+            alternatives.push(format!("EXISTS (SELECT 1 FROM effect_bonuses es WHERE es.effect_id = {link}.effect_id AND es.stat_id = {stat_id}{type_condition})"));
         }
         format!("({})", alternatives.join(" OR "))
     };
-    let own = format!("EXISTS (SELECT 1 FROM item_enchantments ie WHERE ie.item_id = i.id AND {})", matches_link("ie"));
+    let own = format!("EXISTS (SELECT 1 FROM item_effects ie WHERE ie.item_id = i.id AND {})", matches_link("ie"));
     if include_set_bonuses {
-        let set = format!("EXISTS (SELECT 1 FROM set_bonus_items sbi JOIN set_bonus_tiers t ON t.set_id = sbi.set_id JOIN set_bonus_tier_enchantments te ON te.tier_id = t.id WHERE sbi.item_id = i.id AND {})", matches_link("te"));
+        let set = format!("EXISTS (SELECT 1 FROM set_bonus_items sbi JOIN set_bonus_tiers t ON t.set_id = sbi.set_id JOIN set_bonus_tier_effects te ON te.tier_id = t.id WHERE sbi.item_id = i.id AND {})", matches_link("te"));
         Ok(format!("({own} OR {set})"))
     } else {
         Ok(own)
@@ -287,7 +294,7 @@ fn enchantment_match_sql(db: &Connection, name: &str, include_set_bonuses: bool)
     path = "/v1/items/{id}",
     tag = "items",
     summary = "Get an item",
-    description = "Returns an item with rendered enchantments, sockets, modifiers and drop sources.",
+    description = "Returns an item with rendered effects, sockets, modifiers and drop sources.",
     params(("id" = i64, Path, description = "The item's numeric id from the list endpoint")), responses((status = 200, description = "The item with its child collections", body = crate::routes::v1::response_schemas::ItemsDetailResponse), (status = 404, description = "No item has this id", body = crate::error::ErrorBody))
 )]
 async fn item_detail(State(state): State<AppState>, Path(id): Path<i64>) -> Result<Json<Value>, ApiError> {
@@ -333,7 +340,7 @@ async fn item_detail(State(state): State<AppState>, Path(id): Path<i64>) -> Resu
             .pop()
             .unwrap_or(Value::Null);
 
-            item["enchantments"] = Value::Array(enchantments_for_owner(db, "item_enchantments", "item_id", id)?);
+            item["effects"] = Value::Array(effects_for_owner(db, "item_effects", "item_id", id)?);
 
             let mut augment_slots = json_rows(
                 db,
@@ -341,16 +348,16 @@ async fn item_detail(State(state): State<AppState>, Path(id): Path<i64>) -> Resu
                    JOIN augment_slot_types t ON t.id = s.slot_id WHERE s.item_id = ?1 ORDER BY s.sort_order",
                 [id],
             )?;
-            let mut option_enchantments = enchantments_via(
+            let mut option_effects = effects_via(
                 db,
-                "item_augment_slot_option_enchantments",
+                "item_augment_slot_option_effects",
                 "option_id",
                 "j.option_id IN (SELECT id FROM item_augment_slot_options WHERE item_id = ?1)",
                 [id],
             )?;
             for augment_slot in &mut augment_slots {
                 let slot_order = augment_slot["sort_order"].as_i64().unwrap_or(0);
-                augment_slot["options"] = Value::Array(augment_slot_options(db, id, slot_order, &mut option_enchantments)?);
+                augment_slot["options"] = Value::Array(augment_slot_options(db, id, slot_order, &mut option_effects)?);
             }
             item["augment_slots"] = Value::Array(augment_slots);
 
@@ -387,7 +394,7 @@ fn augment_slot_options(
     db: &Connection,
     item_id: i64,
     slot_order: i64,
-    option_enchantments: &mut std::collections::BTreeMap<i64, Vec<Value>>,
+    option_effects: &mut std::collections::BTreeMap<i64, Vec<Value>>,
 ) -> Result<Vec<Value>, ApiError> {
     let mut options = json_rows(
         db,
@@ -405,7 +412,7 @@ fn augment_slot_options(
               WHERE os.option_id = ?1 ORDER BY s.name",
             [option_id],
         )?);
-        option["enchantments"] = Value::Array(option_enchantments.remove(&option_id).unwrap_or_default());
+        option["effects"] = Value::Array(option_effects.remove(&option_id).unwrap_or_default());
         option["modifiers"] = Value::Array(modifiers_for(db, "item_augment_slot_option", option_id)?);
     }
     Ok(options)

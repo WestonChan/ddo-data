@@ -2,22 +2,28 @@
   "augments": {
     "augments": [
       {
+        "bonus_type": "Quality",
+        "effect": "Strength",
+        "effect_id": 116,
         "id": 1460,
         "name": "+1 Quality Strength",
-        "value": 1,
-        "value2": null
+        "value": 1
       },
       {
+        "bonus_type": "Enhancement",
+        "effect": "Strength",
+        "effect_id": 116,
         "id": 1479,
         "name": "+15 Strength",
-        "value": 15,
-        "value2": null
+        "value": 15
       },
       {
+        "bonus_type": "Enhancement",
+        "effect": "Strength",
+        "effect_id": 116,
         "id": 969,
         "name": "+15 Strength (Enhancement)",
-        "value": 15,
-        "value2": null
+        "value": 15
       }
     ],
     "limit": 100,
@@ -29,27 +35,33 @@
   "items": {
     "items": [
       {
+        "bonus_type": "Penalty",
+        "effect": "Curse of Weakness",
+        "effect_id": 22,
         "id": 454,
         "name": "-1 Quarterstaff of Lesser Halfling Bane",
-        "value": null,
-        "value2": null
+        "value": -1
       },
       {
+        "bonus_type": "Enhancement",
+        "effect": "Strength",
+        "effect_id": 116,
         "id": 495,
         "name": "Agarta's Belt",
-        "value": 3,
-        "value2": null
+        "value": 3
       },
       {
+        "bonus_type": "Insight",
+        "effect": "Strength",
+        "effect_id": 116,
         "id": 495,
         "name": "Agarta's Belt",
-        "value": 1,
-        "value2": null
+        "value": 1
       }
     ],
     "limit": 100,
     "offset": 0,
-    "total": 238
+    "total": 213
   },
   "name": "Strength",
   "set_tiers": {
@@ -57,31 +69,37 @@
     "offset": 0,
     "set_tiers": [
       {
+        "bonus_type": "Artifact",
+        "effect": "Strength",
+        "effect_id": 116,
         "equipped_count": 3,
         "id": 250,
         "name": "Brutal Blows (3)",
         "set_id": 211,
         "set_name": "Brutal Blows",
-        "value": 3,
-        "value2": null
+        "value": 3
       },
       {
+        "bonus_type": "Quality",
+        "effect": "Strength",
+        "effect_id": 116,
         "equipped_count": 2,
         "id": 81,
         "name": "Captain's Set (2)",
         "set_id": 73,
         "set_name": "Captain's Set",
-        "value": 1,
-        "value2": null
+        "value": 1
       },
       {
+        "bonus_type": "Artifact",
+        "effect": "All Ability Scores",
+        "effect_id": 1802,
         "equipped_count": 3,
         "id": 280,
         "name": "Devils' Infernal Dance (3)",
         "set_id": 237,
         "set_name": "Devils' Infernal Dance",
-        "value": 1,
-        "value2": null
+        "value": 1
       }
     ],
     "total": 37

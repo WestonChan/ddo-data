@@ -1,5 +1,5 @@
 use super::bonus_types::{BonusOwner, BonusOwnerKind};
-use super::enchantments::EnchantmentOwner;
+use super::effects::EffectOwner;
 use super::{trimmed_non_empty, BuildReport, TableWriter};
 use crate::xml::sentient_gems;
 use crate::xml::set_bonuses::parse_set_bonus_file;
@@ -48,7 +48,7 @@ impl TableWriter<'_> {
                     self.written.set_tier_descriptions_by_id.entry(tier_id).or_insert_with(|| description.to_string());
                 }
                 self.write_modifiers(ModifierSource::SetBonusTier, tier_id, &tier.effects)?;
-                let written_count = self.write_set_tier_enchantments(set_name, tier_id, tier, next_order)?;
+                let written_count = self.write_set_tier_effects(set_name, tier_id, tier, next_order)?;
                 tier_ids_and_orders.insert(tier.equipped_count, (tier_id, next_order + written_count));
             }
         }
@@ -78,7 +78,7 @@ impl TableWriter<'_> {
         Ok(())
     }
 
-    fn write_set_tier_enchantments(
+    fn write_set_tier_effects(
         &mut self,
         set_name: &str,
         tier_id: i64,
@@ -86,12 +86,12 @@ impl TableWriter<'_> {
         first_order: usize,
     ) -> Result<usize> {
         let owner = BonusOwner { kind: BonusOwnerKind::SetBonusTier, name: set_name, family: None };
-        let links = self.ensure_derived_enchantments(&owner, &tier.effects)?;
+        let links = self.ensure_derived_effects(&owner, &tier.effects)?;
         for (offset, link) in links.iter().enumerate() {
-            self.enchantments.insert_link(
-                EnchantmentOwner::SetBonusTier,
+            self.effects.insert_link(
+                EffectOwner::SetBonusTier,
                 tier_id,
-                link.enchantment_id,
+                link.effect_id,
                 link.bonus_type,
                 (link.value, link.value2),
                 first_order + offset,
@@ -100,22 +100,20 @@ impl TableWriter<'_> {
         if links.is_empty() {
             if let Some(description) = trimmed_non_empty(tier.description.as_deref()) {
                 let family_name = self.buff_resolver.set_tier_prose_name(set_name, tier.equipped_count, description)?;
-                let existing = self
-                    .enchantments
-                    .family_named(&family_name)
-                    .map(|family| (family.id, family.text_template.clone()));
-                let enchantment_id = match existing {
+                let existing =
+                    self.effects.family_named(&family_name).map(|family| (family.id, family.text_template.clone()));
+                let effect_id = match existing {
                     Some((id, text_template)) if text_template == description => id,
                     Some(_) => anyhow::bail!(
                         "set {set_name:?} tier {} prose {description:?} collides with family {family_name:?}; add a [names] entry",
                         tier.equipped_count
                     ),
-                    None => self.enchantments.ensure_family( &family_name, description, None, 0)?,
+                    None => self.effects.ensure_family( &family_name, description, None, 0)?,
                 };
-                self.enchantments.insert_link(
-                    EnchantmentOwner::SetBonusTier,
+                self.effects.insert_link(
+                    EffectOwner::SetBonusTier,
                     tier_id,
-                    enchantment_id,
+                    effect_id,
                     None,
                     (None, None),
                     first_order,

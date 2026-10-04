@@ -91,7 +91,7 @@ fn parses_every_fixture_item() {
         parse_item_file(&path).unwrap_or_else(|e| panic!("{}: {e}", path.display()));
         item_file_count += 1;
     }
-    assert_eq!(item_file_count, 57);
+    assert_eq!(item_file_count, 59);
 }
 
 #[test]
@@ -178,7 +178,7 @@ fn parses_quests_patrons_and_item_buffs() {
 #[test]
 fn parses_every_effect_in_an_item_buff_definition() {
     let definitions =
-        item_buffs::parse(&data_files_fixture_dir().parent().unwrap().join("enchantment_item_buffs.xml")).unwrap();
+        item_buffs::parse(&data_files_fixture_dir().parent().unwrap().join("effect_item_buffs.xml")).unwrap();
     let ghostly = &definitions["Ghostly"];
     let effect_types: Vec<&str> = ghostly.effects.iter().map(|effect| effect.types[0].as_str()).collect();
     assert_eq!(effect_types, ["GhostTouch", "Incorporeality", "SkillBonus"]);

@@ -426,11 +426,17 @@ fn links_maetrims_items_to_a_wiki_quest_their_drop_text_names() {
         .unwrap()
         .collect::<rusqlite::Result<_>>()
         .unwrap();
-    assert_eq!(drop_text_links, [("Argenti's Armor".to_string(), "chest".to_string(), false)]);
-    assert_eq!(report.drop_text_wiki_quest_link_count, 1);
+    assert_eq!(
+        drop_text_links,
+        [
+            ("Argenti's Armor".to_string(), "chest".to_string(), false),
+            ("Epic Ethereal Bracers".to_string(), "chest".to_string(), false),
+        ]
+    );
+    assert_eq!(report.drop_text_wiki_quest_link_count, 2);
     let (_, without_report) = built_db_with(&WikiOverrides::default());
     assert_eq!(without_report.drop_text_wiki_quest_link_count, 0);
-    assert_eq!(report.quest_loot_link_count, without_report.quest_loot_link_count + 1);
+    assert_eq!(report.quest_loot_link_count, without_report.quest_loot_link_count + 2);
 }
 
 #[test]
@@ -903,7 +909,7 @@ fn crafting_never_adds_innate_item_bonuses_or_augments() {
     let (with, _) = built_db_with(&WikiOverrides::from_dir(&fixtures_dir().join("wiki")).unwrap());
     for table in [
         "augments WHERE provenance = 'maetrim'",
-        "item_enchantments JOIN items ON items.id = item_enchantments.item_id WHERE items.provenance = 'maetrim'",
+        "item_effects JOIN items ON items.id = item_effects.item_id WHERE items.provenance = 'maetrim'",
         "items WHERE provenance = 'maetrim'",
         "adventure_packs",
         "augment_slot_types",
@@ -1225,7 +1231,7 @@ fn drops_a_wiki_item_maetrim_already_carries_and_reports_it() {
         string_column(
             db,
             "SELECT s.name || ' +' || CASE es.amount_from WHEN 0 THEN es.constant WHEN 1 THEN ie.value ELSE ie.value2 END
-             FROM item_enchantments ie JOIN enchantment_stats es ON es.enchantment_id = ie.enchantment_id
+             FROM item_effects ie JOIN effect_bonuses es ON es.effect_id = ie.effect_id
              JOIN stats s ON s.id = es.stat_id JOIN items i ON i.id = ie.item_id
              WHERE i.name = 'Five Rings' ORDER BY ie.sort_order, es.sort_order",
         )
@@ -1286,7 +1292,7 @@ fn writes_a_new_wiki_item_with_its_stats_bonuses_effects_sockets_set_and_quests(
     assert_eq!(
         item_column(
             "SELECT s.name || '|' || bt.name || '|' || CASE es.amount_from WHEN 0 THEN es.constant WHEN 1 THEN ie.value ELSE ie.value2 END
-               FROM item_enchantments ie JOIN enchantment_stats es ON es.enchantment_id = ie.enchantment_id
+               FROM item_effects ie JOIN effect_bonuses es ON es.effect_id = ie.effect_id
                JOIN stats s ON s.id = es.stat_id JOIN bonus_types bt ON bt.id = COALESCE(es.bonus_type_id, ie.bonus_type_id)
               WHERE ie.item_id = ?item ORDER BY ie.sort_order, es.sort_order"
         ),
@@ -1294,9 +1300,9 @@ fn writes_a_new_wiki_item_with_its_stats_bonuses_effects_sockets_set_and_quests(
     );
     let effect_lines = item_column(
         "SELECT e.name || '|' || COALESCE(e.text_template || ': ' || e.description_template, '')
-           FROM item_enchantments ie JOIN enchantments e ON e.id = ie.enchantment_id
+           FROM item_effects ie JOIN effects e ON e.id = ie.effect_id
            WHERE ie.item_id = ?item AND NOT EXISTS
-             (SELECT 1 FROM enchantment_stats es WHERE es.enchantment_id = e.id) ORDER BY ie.sort_order",
+             (SELECT 1 FROM effect_bonuses es WHERE es.effect_id = e.id) ORDER BY ie.sort_order",
     );
     assert_eq!(effect_lines[0], "Test Oozing Hunger|Test Oozing Hunger: Test description: on hit, the target oozes.");
     assert!(
@@ -1305,7 +1311,7 @@ fn writes_a_new_wiki_item_with_its_stats_bonuses_effects_sockets_set_and_quests(
     );
     assert_eq!(effect_lines.len(), 2);
     assert_eq!(
-        string_column(&db, "SELECT COUNT(*) || '' FROM enchantments WHERE name = 'Ethereal'"),
+        string_column(&db, "SELECT COUNT(*) || '' FROM effects WHERE name = 'Ethereal'"),
         ["1"],
         "his Ethereal is reused"
     );
@@ -1341,8 +1347,8 @@ fn a_wiki_item_effect_with_a_value_reuses_the_written_buff_family() {
     let identity_for = |item_name: &str| -> (i64, Option<i64>, Option<i64>) {
         db.query_row(
             "SELECT e.id, link.value, link.value2 FROM items i
-             JOIN item_enchantments link ON link.item_id = i.id
-             JOIN enchantments e ON e.id = link.enchantment_id
+             JOIN item_effects link ON link.item_id = i.id
+             JOIN effects e ON e.id = link.effect_id
              WHERE i.name = ?1 AND e.name = 'Command'",
             [item_name],
             |row| Ok((row.get(0)?, row.get(1)?, row.get(2)?)),
@@ -1352,9 +1358,7 @@ fn a_wiki_item_effect_with_a_value_reuses_the_written_buff_family() {
     let maetrim_family = identity_for("Grudgebearer's Plate").0;
     assert_eq!(identity_for(WIKI_AXE), (maetrim_family, Some(3), None));
     let command_stat_count: i64 = db
-        .query_row("SELECT COUNT(*) FROM enchantment_stats WHERE enchantment_id = ?1", [maetrim_family], |row| {
-            row.get(0)
-        })
+        .query_row("SELECT COUNT(*) FROM effect_bonuses WHERE effect_id = ?1", [maetrim_family], |row| row.get(0))
         .unwrap();
     assert_eq!(command_stat_count, 1);
 }
@@ -1485,9 +1489,9 @@ fn reuses_maetrims_effect_whose_name_differs_only_by_case_spaces_and_hyphens() {
         &db,
         &format!(
             "SELECT e.name || '|' || COALESCE(e.text_template || ': ' || e.description_template, '')
-             FROM item_enchantments ie JOIN enchantments e ON e.id = ie.enchantment_id
+             FROM item_effects ie JOIN effects e ON e.id = ie.effect_id
              JOIN items i ON i.id = ie.item_id WHERE i.name = '{WIKI_AXE}'
-             AND NOT EXISTS (SELECT 1 FROM enchantment_stats es WHERE es.enchantment_id = e.id)
+             AND NOT EXISTS (SELECT 1 FROM effect_bonuses es WHERE es.effect_id = e.id)
              ORDER BY ie.sort_order"
         ),
     );
@@ -1498,7 +1502,7 @@ fn reuses_maetrims_effect_whose_name_differs_only_by_case_spaces_and_hyphens() {
     assert!(effect_lines[2].starts_with("Feather Falling|Feather Falling: This item"), "{effect_lines:?}");
     assert_eq!(effect_lines[3], "Rune Arm Imbue - Acid II|");
     let effect_count = |db: &Connection| -> i64 {
-        db.query_row("SELECT COUNT(*) FROM enchantments e WHERE NOT EXISTS (SELECT 1 FROM enchantment_stats es WHERE es.enchantment_id = e.id)", [], |r| r.get(0)).unwrap()
+        db.query_row("SELECT COUNT(*) FROM effects e WHERE NOT EXISTS (SELECT 1 FROM effect_bonuses es WHERE es.effect_id = e.id)", [], |r| r.get(0)).unwrap()
     };
     assert_eq!(effect_count(&db), effect_count(&without) + 1, "only Test Oozing Hunger is new");
 }
@@ -1518,9 +1522,9 @@ fn reuses_maetrims_effect_whose_name_differs_only_by_colons_commas_periods_and_a
     let effect_names = string_column(
         &db,
         &format!(
-            "SELECT e.name FROM item_enchantments ie JOIN enchantments e ON e.id = ie.enchantment_id
+            "SELECT e.name FROM item_effects ie JOIN effects e ON e.id = ie.effect_id
                JOIN items i ON i.id = ie.item_id WHERE i.name = '{WIKI_AXE}'
-               AND NOT EXISTS (SELECT 1 FROM enchantment_stats es WHERE es.enchantment_id = e.id)
+               AND NOT EXISTS (SELECT 1 FROM effect_bonuses es WHERE es.effect_id = e.id)
                ORDER BY ie.sort_order"
         ),
     );
@@ -1530,7 +1534,7 @@ fn reuses_maetrims_effect_whose_name_differs_only_by_colons_commas_periods_and_a
         "{effect_names:?}"
     );
     let effect_count = |db: &Connection| -> i64 {
-        db.query_row("SELECT COUNT(*) FROM enchantments e WHERE NOT EXISTS (SELECT 1 FROM enchantment_stats es WHERE es.enchantment_id = e.id)", [], |r| r.get(0)).unwrap()
+        db.query_row("SELECT COUNT(*) FROM effects e WHERE NOT EXISTS (SELECT 1 FROM effect_bonuses es WHERE es.effect_id = e.id)", [], |r| r.get(0)).unwrap()
     };
     assert_eq!(effect_count(&db), effect_count(&without) + 1, "only Test Oozing Hunger is new");
 }

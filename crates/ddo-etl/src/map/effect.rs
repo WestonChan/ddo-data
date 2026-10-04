@@ -1,4 +1,4 @@
-use super::enchantment::{EffectTargetQualifiers, EnchantmentMap, ENCHANTMENT_MAP};
+use super::effect_map::{EffectMap, EffectTargetQualifiers, EFFECT_MAP};
 use crate::xml::effect::Effect;
 use anyhow::Result;
 use ddo_model::enums::BonusType;
@@ -14,7 +14,7 @@ pub struct DerivedBonus {
 }
 
 pub struct EffectResolver {
-    vocabulary: &'static EnchantmentMap,
+    vocabulary: &'static EffectMap,
     unmapped_type_counts: RefCell<BTreeMap<String, usize>>,
     qualifiers: EffectTargetQualifiers,
 }
@@ -28,7 +28,7 @@ impl Default for EffectResolver {
 impl EffectResolver {
     pub fn new() -> Self {
         Self {
-            vocabulary: &ENCHANTMENT_MAP,
+            vocabulary: &EFFECT_MAP,
             unmapped_type_counts: RefCell::new(BTreeMap::new()),
             qualifiers: EffectTargetQualifiers::default(),
         }

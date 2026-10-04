@@ -1,4 +1,4 @@
-use super::enchantment::{EffectTargetQualifiers, EnchantmentMap, ENCHANTMENT_MAP};
+use super::effect_map::{EffectMap, EffectTargetQualifiers, EFFECT_MAP};
 use crate::xml::item_buffs::ItemBuffDefinition;
 use crate::xml::items::Buff;
 use anyhow::{bail, Result};
@@ -64,7 +64,7 @@ pub enum ResolvedBuff {
 }
 
 pub struct BuffResolver {
-    vocabulary: &'static EnchantmentMap,
+    vocabulary: &'static EffectMap,
     definitions_by_buff_kind: HashMap<String, ItemBuffDefinition>,
     colliding_titles: HashSet<String>,
     qualifiers: EffectTargetQualifiers,
@@ -72,7 +72,7 @@ pub struct BuffResolver {
 
 impl BuffResolver {
     pub fn from_definitions(item_buff_definitions: &HashMap<String, ItemBuffDefinition>) -> Self {
-        let vocabulary: &'static EnchantmentMap = &ENCHANTMENT_MAP;
+        let vocabulary: &'static EffectMap = &EFFECT_MAP;
         let mut kinds_by_title: HashMap<String, Vec<&str>> = HashMap::new();
         for (buff_kind, definition) in item_buff_definitions {
             let title = split_display_title(&definition.display_text)

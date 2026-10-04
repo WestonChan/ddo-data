@@ -1,6 +1,6 @@
 use crate::db::paged_rows;
 use crate::db::{
-    convert_to_booleans, enchantments_via, json_row, json_rows, modifiers_for, paged_table_json, TableListSource,
+    convert_to_booleans, effects_via, json_row, json_rows, modifiers_for, paged_table_json, TableListSource,
 };
 use crate::error::ApiError;
 use crate::query::{declare_list_parameters, ApiQuery};
@@ -69,7 +69,7 @@ async fn sets(State(state): State<AppState>, ApiQuery(query, _): ApiQuery) -> Re
     path = "/v1/sets/{id}",
     tag = "sets",
     summary = "Get a set",
-    description = "Returns a set with tier enchantments, members, augments and filigrees.",
+    description = "Returns a set with tier effects, members, augments and filigrees.",
     params(("id" = i64, Path, description = "The set's numeric id from the list endpoint")), responses((status = 200, description = "The set with its child collections", body = crate::routes::v1::response_schemas::SetsDetailResponse), (status = 404, description = "No set has this id", body = crate::error::ErrorBody))
 )]
 async fn set_detail(State(state): State<AppState>, Path(id): Path<i64>) -> Result<Json<Value>, ApiError> {
@@ -82,16 +82,16 @@ async fn set_detail(State(state): State<AppState>, Path(id): Path<i64>) -> Resul
                 "SELECT id, equipped_count FROM set_bonus_tiers WHERE set_id = ?1 ORDER BY equipped_count",
                 [id],
             )?;
-            let mut enchantments_by_tier = enchantments_via(
+            let mut effects_by_tier = effects_via(
                 db,
-                "set_bonus_tier_enchantments",
+                "set_bonus_tier_effects",
                 "tier_id",
                 "j.tier_id IN (SELECT id FROM set_bonus_tiers WHERE set_id = ?1)",
                 [id],
             )?;
             for tier in &mut tiers {
                 let tier_id = tier["id"].as_i64().unwrap_or(0);
-                tier["enchantments"] = Value::Array(enchantments_by_tier.remove(&tier_id).unwrap_or_default());
+                tier["effects"] = Value::Array(effects_by_tier.remove(&tier_id).unwrap_or_default());
                 tier["modifiers"] = Value::Array(modifiers_for(db, "set_bonus_tier", tier_id)?);
             }
             set["tiers"] = Value::Array(tiers);

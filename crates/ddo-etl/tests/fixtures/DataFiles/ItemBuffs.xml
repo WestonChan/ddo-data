@@ -1,6 +1,23 @@
 <?xml version='1.0' encoding='utf-8'?>
 <Buffs>
   <Buff>
+    <Type>SpeedRomanNumeral</Type>
+    <DisplayText>Speed %i1: Passive: %v1% Enhancement bonus to movement speed, %v2% Enhancement bonus to melee and ranged attack speed.</DisplayText>
+    <Effect>
+      <Type>MovementSpeed</Type>
+      <Bonus>Enhancement</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+    </Effect>
+    <Effect>
+      <Type>Weapon_Alacrity</Type>
+      <Bonus>Enhancement</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+      <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
     <Type>AbilityBonus</Type>
     <DisplayText>%b1 %i1 %v1: Passive: %v1 %b1 bonus to %i1.</DisplayText>
     <Ignore>Enhancement</Ignore>
@@ -572,6 +589,45 @@
       <AType>Simple</AType>
       <Amount size="1">0</Amount>
       <Item>Stun</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Firestorm Lore</Type>
+    <DisplayText>Firestorm Lore %v1%: Passive: Your Fire and Lightning spells gain a %v1%% Equipment bonus to their chance to critical hit.</DisplayText>
+    <Effect>
+      <Type>SpellLore</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+      <Item>Electric</Item>
+      <Item>Fire</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Power of the Firestorm</Type>
+    <DisplayText>Power of the Firestorm %v1: Passive: %v1 Equipment bonus to Fire and Electric Spell Power.</DisplayText>
+    <Effect>
+      <Type>SpellPower</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+      <Item>Electric</Item>
+      <Item>Fire</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Burning Glory 1</Type>
+    <DisplayText>Burning Glory 1: On Harmful Spellcast: Do an additional 1 to 6 Fire damage.</DisplayText>
+  </Buff>
+  <Buff>
+    <Type>RoughHide</Type>
+    <DisplayText>%b1 Rough Hide %v1: This item fuses with your body and toughens your skin, providing a %v1 %b1 bonus to your natural armor.</DisplayText>
+    <Ignore>Primal</Ignore>
+    <Effect>
+      <Type>NaturalArmor</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
     </Effect>
   </Buff>
 </Buffs>

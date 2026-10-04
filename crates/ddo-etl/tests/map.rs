@@ -2,7 +2,7 @@ use ddo_etl::map::augment_slot::AugmentSlotType;
 use ddo_etl::map::bonus_type::parse_buff_bonus_type;
 use ddo_etl::map::buff::{AmountFrom, BuffResolutionSource, BuffResolver, FamilyResolution, ResolvedBuff};
 use ddo_etl::map::effect::EffectResolver;
-use ddo_etl::map::enchantment::{EffectTargetQualifiers, EnchantmentMap, ENCHANTMENT_MAP};
+use ddo_etl::map::effect_map::{EffectMap, EffectTargetQualifiers, EFFECT_MAP};
 use ddo_etl::map::item_version::names_legacy_version;
 use ddo_etl::map::placement::{placement_of, CosmeticExclusion, Placement};
 use ddo_etl::xml::effect::Effect;
@@ -32,8 +32,8 @@ fn fixture_item_buff_definitions() -> HashMap<String, ItemBuffDefinition> {
     item_buffs::parse(&Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures/DataFiles/ItemBuffs.xml")).unwrap()
 }
 
-fn enchantment_item_buff_definitions() -> HashMap<String, ItemBuffDefinition> {
-    item_buffs::parse(&Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures/enchantment_item_buffs.xml")).unwrap()
+fn effect_item_buff_definitions() -> HashMap<String, ItemBuffDefinition> {
+    item_buffs::parse(&Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures/effect_item_buffs.xml")).unwrap()
 }
 
 fn resolved_bonus_type(map: &BuffResolver, buff: &Buff) -> Option<BonusType> {
@@ -305,7 +305,7 @@ fn bonus_descriptions_fill_the_display_template() {
 
 #[test]
 fn effect_fallback_uses_definition_amounts_and_item_bonus_types() {
-    let definitions = enchantment_item_buff_definitions();
+    let definitions = effect_item_buff_definitions();
     let map = BuffResolver::from_definitions(&definitions);
     let cases = [
         ("Improved Deception", 13, "Insight", vec![("Bluff", 13, BonusType::Insight)]),
@@ -349,7 +349,7 @@ fn effect_fallback_uses_definition_amounts_and_item_bonus_types() {
 
 #[test]
 fn mapped_effects_survive_engine_only_siblings_and_keep_definition_defaults() {
-    let map = BuffResolver::from_definitions(&enchantment_item_buff_definitions());
+    let map = BuffResolver::from_definitions(&effect_item_buff_definitions());
     let ghostly = buff("Ghostly", None, None, None);
     match map.resolved(&ghostly).unwrap() {
         ResolvedBuff::Bonuses { stats, .. } => {
@@ -387,12 +387,11 @@ fn mapped_effects_survive_engine_only_siblings_and_keep_definition_defaults() {
 
 #[test]
 fn effect_amount_sources_follow_definition_text_and_item_values() {
-    let definitions = enchantment_item_buff_definitions();
+    let definitions = effect_item_buff_definitions();
     let resolver = BuffResolver::from_definitions(&definitions);
-    let items =
-        parse_item_file(&Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures/enchantment_real_items.item"))
-            .unwrap()
-            .items;
+    let items = parse_item_file(&Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures/effect_real_items.item"))
+        .unwrap()
+        .items;
     let cases = [
         ("Legendary Amethyst Loupe", "Improved Deception", vec![("Bluff", AmountFrom::ItemValue1, Some(20))]),
         (
@@ -458,12 +457,11 @@ fn effect_amount_sources_follow_definition_text_and_item_values() {
 
 #[test]
 fn definition_bonus_type_is_fixed_unless_display_text_has_an_item_type_slot() {
-    let definitions = enchantment_item_buff_definitions();
+    let definitions = effect_item_buff_definitions();
     let resolver = BuffResolver::from_definitions(&definitions);
-    let items =
-        parse_item_file(&Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures/enchantment_real_items.item"))
-            .unwrap()
-            .items;
+    let items = parse_item_file(&Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures/effect_real_items.item"))
+        .unwrap()
+        .items;
     let alaric = items.iter().find(|item| item.name == "Alaric's Grim Gauntlets").unwrap();
     for (kind, stat_name, expected_type, has_item_type_slot) in [
         ("AbilityBonus", "Wisdom", BonusType::Enhancement, true),
@@ -503,7 +501,7 @@ fn definition_bonus_type_is_fixed_unless_display_text_has_an_item_type_slot() {
 
 #[test]
 fn family_mapping_precedes_effect_fallback_and_unmappable_definitions_stay_effects() {
-    let map = BuffResolver::from_definitions(&enchantment_item_buff_definitions());
+    let map = BuffResolver::from_definitions(&effect_item_buff_definitions());
     for kind in ["Hallowed", "Sacred"] {
         assert!(
             matches!(
@@ -549,13 +547,12 @@ fn family_mapping_precedes_effect_fallback_and_unmappable_definitions_stay_effec
 
 #[test]
 fn fixed_effects_with_specific_targets_stay_family_effects() {
-    let definitions = enchantment_item_buff_definitions();
+    let definitions = effect_item_buff_definitions();
     let qualifiers = EffectTargetQualifiers::from_vocabularies(["Sorcerer".to_string()], &[]);
     let resolver = BuffResolver::from_definitions(&definitions).with_qualifiers(qualifiers);
-    let items =
-        parse_item_file(&Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures/enchantment_real_items.item"))
-            .unwrap()
-            .items;
+    let items = parse_item_file(&Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures/effect_real_items.item"))
+        .unwrap()
+        .items;
     for (item_name, kind, effect_type, target) in [
         ("Creeping Dust Conduit", "Arcane Augmentation IX", "CasterLevel", "Sorcerer"),
         ("Bow of the Jade Elf", "RangedAlacrity", "Weapon_Alacrity", "Dart"),
@@ -577,7 +574,7 @@ fn fixed_effects_with_specific_targets_stay_family_effects() {
 
 #[test]
 fn an_untyped_item_keeps_the_family_plan_and_needs_a_per_item_correction() {
-    let definitions = enchantment_item_buff_definitions();
+    let definitions = effect_item_buff_definitions();
     let typed_poison = buff("ProofAgainstPoison", None, Some(7), Some("Enhancement"));
     let untyped_poison = buff("ProofAgainstPoison", None, Some(6), None);
     let resolver = BuffResolver::from_definitions(&definitions);
@@ -592,7 +589,7 @@ fn an_untyped_item_keeps_the_family_plan_and_needs_a_per_item_correction() {
 
 #[test]
 fn a_missing_placeholder_value_affects_only_its_item() {
-    let definitions = enchantment_item_buff_definitions();
+    let definitions = effect_item_buff_definitions();
     let valued = buff("Silent Moves", None, Some(5), Some("Competence"));
     let missing = buff("Silent Moves", None, None, Some("Competence"));
     let resolver = BuffResolver::from_definitions(&definitions);
@@ -602,8 +599,8 @@ fn a_missing_placeholder_value_affects_only_its_item() {
 }
 
 #[test]
-fn merged_enchantment_map_rejects_unknown_stat_template_alias_and_conflicting_type() {
-    let source = include_str!("../data/enchantment_map.toml");
+fn merged_effect_map_rejects_unknown_stat_template_alias_and_conflicting_type() {
+    let source = include_str!("../data/effect_map.toml");
     let invalid_cases = [
         (source.replace("Hallowed = \"Turn Undead Max Dice\"", "Hallowed = \"Unknown Stat\""), "Hallowed"),
         (source.replace("AbilityBonus = \"{item}\"", "AbilityBonus = \"{item} Unknown Stat\""), "AbilityBonus"),
@@ -621,7 +618,7 @@ fn merged_enchantment_map_rejects_unknown_stat_template_alias_and_conflicting_ty
         ),
     ];
     for (invalid_source, entry) in invalid_cases {
-        let error = EnchantmentMap::from_toml(&invalid_source).expect_err("invalid map rejected");
+        let error = EffectMap::from_toml(&invalid_source).expect_err("invalid map rejected");
         assert!(error.to_string().contains(entry), "{entry}: {error}");
     }
 }
@@ -763,16 +760,16 @@ fn character_wide_effect_types_resolve_to_their_stats() {
 }
 
 #[test]
-fn every_stat_named_in_the_enchantment_map_exists() {
-    let missing: Vec<_> = ENCHANTMENT_MAP
+fn every_stat_named_in_the_effect_map_exists() {
+    let missing: Vec<_> = EFFECT_MAP
         .effect
         .fixed
         .iter()
-        .chain(&ENCHANTMENT_MAP.effect.by_item_default)
+        .chain(&EFFECT_MAP.effect.by_item_default)
         .filter(|(_, stat)| ddo_model::stats::Stat::by_name(stat).is_none())
         .collect();
     assert!(missing.is_empty(), "stats missing from STATS: {missing:?}");
-    assert!(EnchantmentMap::load().is_ok(), "the load-time validation agrees");
+    assert!(EffectMap::load().is_ok(), "the load-time validation agrees");
 }
 
 #[test]
@@ -790,14 +787,14 @@ fn engine_only_effect_types_are_not_reported_as_unmapped() {
 
 #[test]
 fn an_effect_type_cannot_be_both_mapped_and_engine_only() {
-    let enchantment_map_toml = |extra_fixed: &str| {
+    let effect_map_toml = |extra_fixed: &str| {
         format!(
             "[family]\nenhancement = []\n[family.fixed]\n[family.by_item]\n[effect.fixed]\n{extra_fixed}\n[effect.by_item]\n[effect.by_item_default]\n[effect.companion_targets]\nwords = []\n[effect.energy_target_artifacts]\nstats = []\n[effect.engine_only]\nDR = \"typed by bypass material\"\n[item_aliases]\n[bonus_type_aliases]\n[weapon_aliases]\n"
         )
     };
-    assert!(EnchantmentMap::from_toml(&enchantment_map_toml("PRR = \"Physical Resistance Rating\"")).is_ok());
-    let error = EnchantmentMap::from_toml(&enchantment_map_toml("DR = \"Physical Resistance Rating\""))
-        .expect_err("overlap rejected");
+    assert!(EffectMap::from_toml(&effect_map_toml("PRR = \"Physical Resistance Rating\"")).is_ok());
+    let error =
+        EffectMap::from_toml(&effect_map_toml("DR = \"Physical Resistance Rating\"")).expect_err("overlap rejected");
     assert!(error.to_string().contains("DR"), "{error}");
 }
 

@@ -3,7 +3,7 @@ pub mod bonus_type;
 pub mod buff;
 pub mod drop_location;
 pub mod effect;
-pub mod enchantment;
+pub mod effect_map;
 pub mod item_version;
 pub mod legacy_drop_source;
 pub mod material;

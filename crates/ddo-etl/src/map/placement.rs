@@ -1,4 +1,4 @@
-use super::enchantment::ENCHANTMENT_MAP;
+use super::effect_map::EFFECT_MAP;
 use crate::xml::items::{EquipmentSlotTag, EquipmentSlots};
 use anyhow::{bail, Result};
 use ddo_model::enums::{EquipmentSlot, Handedness, ItemCategory};
@@ -49,11 +49,8 @@ pub fn placement_of(
         let Some(upstream_weapon_name) = weapon_name else {
             bail!("item occupies a weapon slot but has no <Weapon>");
         };
-        let canonical_weapon_name = ENCHANTMENT_MAP
-            .weapon_aliases
-            .get(upstream_weapon_name)
-            .map(String::as_str)
-            .unwrap_or(upstream_weapon_name);
+        let canonical_weapon_name =
+            EFFECT_MAP.weapon_aliases.get(upstream_weapon_name).map(String::as_str).unwrap_or(upstream_weapon_name);
         let Some(weapon_type) = WeaponType::by_name(canonical_weapon_name) else {
             bail!(
                 "unknown weapon type {upstream_weapon_name:?}; add it to ddo-model's WEAPON_TYPES or to [weapon_aliases]"

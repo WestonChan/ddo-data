@@ -1,36 +1,36 @@
 use super::bonus_types::BonusOwnerKind;
 use super::bonus_types::{BonusOrigin, BonusOwner};
-use super::enchantments::EnchantmentOwner;
+use super::effects::EffectOwner;
 use super::{json_number_array, json_string_array, trimmed_non_empty, TableWriter};
-use crate::map::enchantment::ENCHANTMENT_MAP;
+use crate::map::effect_map::EFFECT_MAP;
 use crate::xml::effect::Effect;
 use crate::xml::requirements::Requirements;
 use anyhow::Result;
 use ddo_model::enums::{ModifierSource, RequirementOwner};
 use rusqlite::params;
 
-pub(super) struct DerivedEnchantmentLink {
-    pub(super) enchantment_id: i64,
+pub(super) struct DerivedEffectLink {
+    pub(super) effect_id: i64,
     pub(super) bonus_type: Option<ddo_model::enums::BonusType>,
     pub(super) value: Option<i64>,
     pub(super) value2: Option<i64>,
 }
 
 impl TableWriter<'_> {
-    pub(super) fn link_pending_derived_enchantments(&mut self) -> Result<()> {
-        let pending = std::mem::take(&mut self.pending_derived_enchantments);
+    pub(super) fn link_pending_derived_effects(&mut self) -> Result<()> {
+        let pending = std::mem::take(&mut self.pending_derived_effects);
         for (owner_kind, owner_id, owner_name, effects) in pending {
             let bonus_owner_kind = match owner_kind {
-                EnchantmentOwner::Feat => BonusOwnerKind::Feat,
-                EnchantmentOwner::ItemAugmentSlotOption => BonusOwnerKind::ItemAugmentSlotOption,
+                EffectOwner::Feat => BonusOwnerKind::Feat,
+                EffectOwner::ItemAugmentSlotOption => BonusOwnerKind::ItemAugmentSlotOption,
                 _ => unreachable!(),
             };
             let owner = BonusOwner { kind: bonus_owner_kind, name: &owner_name, family: None };
-            for (sort_order, link) in self.ensure_derived_enchantments(&owner, &effects)?.into_iter().enumerate() {
-                self.enchantments.insert_link(
+            for (sort_order, link) in self.ensure_derived_effects(&owner, &effects)?.into_iter().enumerate() {
+                self.effects.insert_link(
                     owner_kind,
                     owner_id,
-                    link.enchantment_id,
+                    link.effect_id,
                     link.bonus_type,
                     (link.value, link.value2),
                     sort_order,
@@ -113,11 +113,11 @@ impl TableWriter<'_> {
         Ok(())
     }
 
-    pub(super) fn ensure_derived_enchantments(
+    pub(super) fn ensure_derived_effects(
         &mut self,
         owner: &BonusOwner,
         effects: &[Effect],
-    ) -> Result<Vec<DerivedEnchantmentLink>> {
+    ) -> Result<Vec<DerivedEffectLink>> {
         let mut links = Vec::new();
         for effect in effects {
             for effect_type in &effect.types {
@@ -153,10 +153,10 @@ impl TableWriter<'_> {
                     };
                     let bonus_type = self.bonus_type_of(&bonus_origin, first_bonus.bonus_type)?;
                     let existing = self
-                        .enchantments
+                        .effects
                         .family_named(&family_name)
                         .map(|family| (family.id, family.amount_count, family.uses_link_type));
-                    let (enchantment_id, count, uses_link_type) = match existing {
+                    let (effect_id, count, uses_link_type) = match existing {
                         Some(family) => family,
                         None => {
                             let (text_template, description_template) = if all_abilities {
@@ -164,26 +164,22 @@ impl TableWriter<'_> {
                             } else {
                                 (format!("%b1 {family_name} +{{1}}"), None)
                             };
-                            let enchantment_id = self.enchantments.ensure_family(
-                                &family_name,
-                                &text_template,
-                                description_template,
-                                1,
-                            )?;
-                            (enchantment_id, 1, true)
+                            let effect_id =
+                                self.effects.ensure_family(&family_name, &text_template, description_template, 1)?;
+                            (effect_id, 1, true)
                         }
                     };
                     let stat_bonus_type = (!uses_link_type).then_some(bonus_type);
-                    let existing_stat = self.enchantments.stat(
-                        enchantment_id,
+                    let existing_stat = self.effects.stat(
+                        effect_id,
                         first_bonus.stat.id,
                         stat_bonus_type.map(ddo_model::enums::BonusType::id),
                     );
                     let (amount_from, constant) =
                         existing_stat.unwrap_or(if count == 0 { (0, Some(first_bonus.value)) } else { (1, None) });
                     for (stat_order, bonus) in bonuses.into_iter().enumerate() {
-                        self.enchantments.ensure_stat(
-                            enchantment_id,
+                        self.effects.ensure_stat(
+                            effect_id,
                             bonus.stat,
                             stat_bonus_type,
                             amount_from,
@@ -197,8 +193,8 @@ impl TableWriter<'_> {
                         2 => (Some(first_bonus.value), Some(first_bonus.value)),
                         _ => unreachable!(),
                     };
-                    links.push(DerivedEnchantmentLink {
-                        enchantment_id,
+                    links.push(DerivedEffectLink {
+                        effect_id,
                         bonus_type: uses_link_type.then_some(bonus_type),
                         value,
                         value2,
@@ -209,8 +205,8 @@ impl TableWriter<'_> {
         Ok(links)
     }
 
-    fn ensure_targeted_fixed_effect(&mut self, effect: &Effect, links: &mut Vec<DerivedEnchantmentLink>) -> Result<()> {
-        let Some(stat_name) = ENCHANTMENT_MAP.effect.fixed.get(&effect.types[0]) else {
+    fn ensure_targeted_fixed_effect(&mut self, effect: &Effect, links: &mut Vec<DerivedEffectLink>) -> Result<()> {
+        let Some(stat_name) = EFFECT_MAP.effect.fixed.get(&effect.types[0]) else {
             return Ok(());
         };
         let Some(target) = self.effect_resolver.qualified_targets(effect) else {
@@ -219,8 +215,8 @@ impl TableWriter<'_> {
         let family_name = format!("{stat_name} ({target})");
         let value = effect.simple_integer_amount();
         let text_template = format!("{stat_name} +{{1}} ({target})");
-        let enchantment_id = self.enchantments.ensure_family(&family_name, &text_template, None, 1)?;
-        links.push(DerivedEnchantmentLink { enchantment_id, bonus_type: None, value, value2: None });
+        let effect_id = self.effects.ensure_family(&family_name, &text_template, None, 1)?;
+        links.push(DerivedEffectLink { effect_id, bonus_type: None, value, value2: None });
         Ok(())
     }
 }

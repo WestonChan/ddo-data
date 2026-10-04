@@ -10,7 +10,7 @@ use std::sync::LazyLock;
 
 #[derive(Debug, Deserialize)]
 #[serde(deny_unknown_fields)]
-pub struct EnchantmentMap {
+pub struct EffectMap {
     pub family: FamilyVocabulary,
     pub effect: EffectVocabulary,
     pub item_aliases: BTreeMap<String, String>,
@@ -55,8 +55,8 @@ pub struct EnergyTargetArtifacts {
     pub stats: BTreeSet<String>,
 }
 
-pub static ENCHANTMENT_MAP: LazyLock<EnchantmentMap> =
-    LazyLock::new(|| EnchantmentMap::load().expect("data/enchantment_map.toml is valid"));
+pub static EFFECT_MAP: LazyLock<EffectMap> =
+    LazyLock::new(|| EffectMap::load().expect("data/effect_map.toml is valid"));
 
 #[derive(Clone, Default)]
 pub struct EffectTargetQualifiers {
@@ -71,7 +71,7 @@ impl EffectTargetQualifiers {
         Self { names }
     }
 
-    pub fn contains(&self, target: &str, vocabulary: &EnchantmentMap) -> bool {
+    pub fn contains(&self, target: &str, vocabulary: &EffectMap) -> bool {
         self.names.contains(target)
             || WeaponType::by_name(target).is_some()
             || vocabulary.weapon_aliases.get(target).is_some_and(|name| WeaponType::by_name(name).is_some())
@@ -79,9 +79,9 @@ impl EffectTargetQualifiers {
     }
 }
 
-impl EnchantmentMap {
+impl EffectMap {
     pub fn load() -> Result<Self> {
-        Self::from_toml(include_str!("../../data/enchantment_map.toml"))
+        Self::from_toml(include_str!("../../data/effect_map.toml"))
     }
 
     pub fn from_toml(toml_text: &str) -> Result<Self> {
@@ -93,7 +93,7 @@ impl EnchantmentMap {
         ] {
             for (kind, stat_name) in stat_names {
                 if Stat::by_name(stat_name).is_none() {
-                    bail!("enchantment_map.toml [{section}] {kind} names unknown stat {stat_name:?}");
+                    bail!("effect_map.toml [{section}] {kind} names unknown stat {stat_name:?}");
                 }
             }
         }
@@ -102,23 +102,23 @@ impl EnchantmentMap {
         {
             for (kind, template) in templates {
                 let Some((prefix, suffix)) = template.split_once("{item}") else {
-                    bail!("enchantment_map.toml [{section}] {kind} template {template:?} names no stat");
+                    bail!("effect_map.toml [{section}] {kind} template {template:?} names no stat");
                 };
                 if suffix.contains("{item}")
                     || !STATS.iter().any(|stat| stat.name.starts_with(prefix) && stat.name.ends_with(suffix))
                 {
-                    bail!("enchantment_map.toml [{section}] {kind} template {template:?} names no stat");
+                    bail!("effect_map.toml [{section}] {kind} template {template:?} names no stat");
                 }
             }
         }
         for stat_name in &vocabulary.effect.energy_target_artifacts.stats {
             if !vocabulary.effect.fixed.values().any(|mapped_stat| mapped_stat == stat_name) {
-                bail!("enchantment_map.toml [effect.energy_target_artifacts] names unmapped fixed stat {stat_name:?}");
+                bail!("effect_map.toml [effect.energy_target_artifacts] names unmapped fixed stat {stat_name:?}");
             }
         }
         for word in &vocabulary.effect.companion_targets.words {
             if word.trim().is_empty() || word == "All" {
-                bail!("enchantment_map.toml [effect.companion_targets] has invalid word {word:?}");
+                bail!("effect_map.toml [effect.companion_targets] has invalid word {word:?}");
             }
         }
         let mapped_effect_types = vocabulary
@@ -130,11 +130,13 @@ impl EnchantmentMap {
         let overlapping_types: BTreeSet<_> =
             mapped_effect_types.filter(|kind| vocabulary.effect.engine_only.contains_key(*kind)).collect();
         if !overlapping_types.is_empty() {
-            bail!("enchantment_map.toml: {overlapping_types:?} are both mapped to a stat and listed in [effect.engine_only]");
+            bail!(
+                "effect_map.toml: {overlapping_types:?} are both mapped to a stat and listed in [effect.engine_only]"
+            );
         }
         for kind in vocabulary.effect.fixed.keys() {
             if vocabulary.effect.by_item.contains_key(kind) {
-                bail!("enchantment_map.toml [effect.fixed] {kind} is also mapped in [effect.by_item]");
+                bail!("effect_map.toml [effect.fixed] {kind} is also mapped in [effect.by_item]");
             }
         }
         for kind in &vocabulary.family.enhancement {
@@ -142,15 +144,15 @@ impl EnchantmentMap {
                 || vocabulary.family.by_item.contains_key(kind)
                 || vocabulary.family.text_only.contains_key(kind)
             {
-                bail!("enchantment_map.toml [family.enhancement] {kind} is also mapped in another family section");
+                bail!("effect_map.toml [family.enhancement] {kind} is also mapped in another family section");
             }
         }
         for (kind, reason) in &vocabulary.family.text_only {
             if kind.trim().is_empty() || reason.trim().is_empty() {
-                bail!("enchantment_map.toml [family.text_only] {kind:?} needs a buff type and reason");
+                bail!("effect_map.toml [family.text_only] {kind:?} needs a buff type and reason");
             }
             if vocabulary.family.fixed.contains_key(kind) || vocabulary.family.by_item.contains_key(kind) {
-                bail!("enchantment_map.toml [family.text_only] {kind} is also mapped to a stat");
+                bail!("effect_map.toml [family.text_only] {kind} is also mapped to a stat");
             }
         }
         for (alias, word) in &vocabulary.item_aliases {
@@ -162,32 +164,32 @@ impl EnchantmentMap {
                     .chain(vocabulary.effect.by_item.values())
                     .any(|template| Stat::by_name(&template.replace("{item}", word)).is_some());
             if !names_a_stat {
-                bail!("enchantment_map.toml [item_aliases] {alias} names no stat through {word:?}");
+                bail!("effect_map.toml [item_aliases] {alias} names no stat through {word:?}");
             }
         }
         for (alias, bonus_type_name) in &vocabulary.bonus_type_aliases {
             if !bonus_type_name.is_empty() && BonusType::parse(bonus_type_name).is_none() {
-                bail!("enchantment_map.toml [bonus_type_aliases] {alias} names unknown bonus type {bonus_type_name:?}");
+                bail!("effect_map.toml [bonus_type_aliases] {alias} names unknown bonus type {bonus_type_name:?}");
             }
         }
         for (alias, weapon_name) in &vocabulary.weapon_aliases {
             if WeaponType::by_name(weapon_name).is_none() {
-                bail!("enchantment_map.toml [weapon_aliases] {alias} names unknown weapon type {weapon_name:?}");
+                bail!("effect_map.toml [weapon_aliases] {alias} names unknown weapon type {weapon_name:?}");
             }
         }
         for (buff_type, family_name) in &vocabulary.names {
             if buff_type.trim().is_empty() || family_name.trim().is_empty() {
-                bail!("enchantment_map.toml [names] {buff_type:?} needs a buff type and a family name");
+                bail!("effect_map.toml [names] {buff_type:?} needs a buff type and a family name");
             }
         }
         let mut assigned_steps = BTreeSet::new();
         for (ladder_name, steps) in &vocabulary.ladders {
             if ladder_name.trim().is_empty() || steps.len() < 2 {
-                bail!("enchantment_map.toml [ladders] {ladder_name:?} needs at least two named steps");
+                bail!("effect_map.toml [ladders] {ladder_name:?} needs at least two named steps");
             }
             for step in steps {
                 if step.trim().is_empty() || !assigned_steps.insert(step) {
-                    bail!("enchantment_map.toml [ladders] {ladder_name:?} repeats or leaves blank step {step:?}");
+                    bail!("effect_map.toml [ladders] {ladder_name:?} repeats or leaves blank step {step:?}");
                 }
             }
         }
@@ -279,6 +281,6 @@ impl EnchantmentMap {
         }
         BonusType::parse(canonical_name)
             .map(Some)
-            .ok_or_else(|| anyhow::anyhow!("unknown bonus type {upstream_name:?}; add it to data/enchantment_map.toml [bonus_type_aliases] or to ddo-model's BonusType"))
+            .ok_or_else(|| anyhow::anyhow!("unknown bonus type {upstream_name:?}; add it to data/effect_map.toml [bonus_type_aliases] or to ddo-model's BonusType"))
     }
 }

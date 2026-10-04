@@ -1,8 +1,7 @@
 use super::crafting::crafting_recipes_yielding;
 use super::quests::{adventure_packs_dropping_via, quests_dropping_via, sources_via};
 use crate::db::{
-    convert_to_booleans, enchantments_for_owner, enchantments_via, json_row, json_rows, modifiers_for, paged_query,
-    WhereClause,
+    convert_to_booleans, effects_for_owner, effects_via, json_row, json_rows, modifiers_for, paged_query, WhereClause,
 };
 use crate::error::ApiError;
 use crate::query::{declare_list_parameters, declare_query_parameters, ApiQuery};
@@ -30,7 +29,7 @@ const AUGMENT_FLAG_COLUMNS: &[&str] = &["choose_level", "dual_values", "enter_va
 fn attach_child_collections(
     db: &rusqlite::Connection,
     augment: &mut Value,
-    enchantments: Vec<Value>,
+    effects: Vec<Value>,
 ) -> Result<(), ApiError> {
     let augment_id = augment["id"].as_i64().unwrap_or(0);
     let slot_labels: Vec<Value> = json_rows(
@@ -42,7 +41,7 @@ fn attach_child_collections(
     .map(|row| row["label"].clone())
     .collect();
     augment["slots"] = Value::Array(slot_labels);
-    augment["enchantments"] = Value::Array(enchantments);
+    augment["effects"] = Value::Array(effects);
     augment["crafting"] = Value::Array(crafting_recipes_yielding(db, augment_id)?);
     Ok(())
 }
@@ -79,7 +78,7 @@ declare_list_parameters!(AugmentsParameters, AUGMENTS_SORT_FIELDS, "");
     path = "/v1/augments",
     tag = "augments",
     summary = "List augments",
-    description = "Lists augments with sockets, rendered enchantments and crafting recipes.",
+    description = "Lists augments with sockets, rendered effects and crafting recipes.",
     params(
         AugmentsParameters,
         ("slot" = Option<String>, Query, description = "Socket label as /v1/augment-slot-types lists it, e.g. `red` or `lamordia: melancholic (accessory)`; case-insensitive"),
@@ -120,13 +119,13 @@ async fn augments(
                 &where_clause,
             )?;
             let augment_ids: Vec<i64> = page.rows.iter().filter_map(|augment| augment["id"].as_i64()).collect();
-            let mut enchantments_by_augment = if augment_ids.is_empty() {
+            let mut effects_by_augment = if augment_ids.is_empty() {
                 std::collections::BTreeMap::new()
             } else {
                 let placeholders = (1..=augment_ids.len()).map(|index| format!("?{index}")).collect::<Vec<_>>().join(", ");
-                enchantments_via(
+                effects_via(
                     db,
-                    "augment_enchantments",
+                    "augment_effects",
                     "augment_id",
                     &format!("j.augment_id IN ({placeholders})"),
                     rusqlite::params_from_iter(augment_ids.iter()),
@@ -135,7 +134,7 @@ async fn augments(
             for augment in &mut page.rows {
                 convert_to_booleans(augment, AUGMENT_FLAG_COLUMNS);
                 let augment_id = augment["id"].as_i64().unwrap_or(0);
-                attach_child_collections(db, augment, enchantments_by_augment.remove(&augment_id).unwrap_or_default())?;
+                attach_child_collections(db, augment, effects_by_augment.remove(&augment_id).unwrap_or_default())?;
             }
             Ok(Json(page.into_json("augments")))
         })
@@ -147,7 +146,7 @@ async fn augments(
     path = "/v1/augments/{id}",
     tag = "augments",
     summary = "Get an augment",
-    description = "Returns an augment with enchantments, crafting recipes, modifiers and drop sources.",
+    description = "Returns an augment with effects, crafting recipes, modifiers and drop sources.",
     params(("id" = i64, Path, description = "The augment's numeric id from the list endpoint")), responses((status = 200, description = "The augment with its child collections", body = crate::routes::v1::response_schemas::AugmentsDetailResponse), (status = 404, description = "No augment has this id", body = crate::error::ErrorBody))
 )]
 async fn augment_detail(State(state): State<AppState>, Path(id): Path<i64>) -> Result<Json<Value>, ApiError> {
@@ -155,8 +154,8 @@ async fn augment_detail(State(state): State<AppState>, Path(id): Path<i64>) -> R
         .read_db(move |db| {
             let mut augment = json_row(db, &format!("SELECT {AUGMENT_COLUMNS} FROM augments a WHERE a.id = ?1"), [id])?;
             convert_to_booleans(&mut augment, AUGMENT_FLAG_COLUMNS);
-            let enchantments = enchantments_for_owner(db, "augment_enchantments", "augment_id", id)?;
-            attach_child_collections(db, &mut augment, enchantments)?;
+            let effects = effects_for_owner(db, "augment_effects", "augment_id", id)?;
+            attach_child_collections(db, &mut augment, effects)?;
             augment["quests"] = Value::Array(quests_dropping_via(db, "augment_id", id)?);
             augment["adventure_packs"] = Value::Array(adventure_packs_dropping_via(db, "augment_id", id)?);
             augment["sources"] = Value::Array(sources_via(db, "augment_id", id)?);

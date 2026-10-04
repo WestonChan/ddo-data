@@ -83,8 +83,8 @@ impl TableWriter<'_> {
         self.write_abilities(AbilityOwner::Feat, feat_id, &feat.stances, &feat.dcs, feat.attack.as_ref())?;
         self.write_modifiers(ModifierSource::Feat, feat_id, &feat.effects)?;
         self.write_attack_bonuses(AbilityOwner::Feat, feat_id, feat.attack.as_ref())?;
-        self.pending_derived_enchantments.push((
-            super::enchantments::EnchantmentOwner::Feat,
+        self.pending_derived_effects.push((
+            super::effects::EffectOwner::Feat,
             feat_id,
             feat.name.trim().to_string(),
             feat.effects.clone(),

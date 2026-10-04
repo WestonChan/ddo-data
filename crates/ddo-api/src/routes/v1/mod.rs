@@ -44,20 +44,21 @@ use utoipa_axum::router::OpenApiRouter;
                        `{ total, limit, offset, <name>: [...] }`, and detail routes return an entity with its related collections. \
                        Booleans are JSON booleans, absent values are `null`, and unknown ids return 404.\n\n\
                        **Query parameters.** Different filters are AND-ed. On `/v1/items`, repeat `slot`, `category`, \
-                       `pack`, `quest`, `quest_chain`, `saga` or `enchantment` for any matching value; comma-separated \
+                       `pack`, `quest`, `quest_chain`, `saga` or `bonus` for any matching value; comma-separated \
                        lists are never used. `pack_match`, `quest_match`, `quest_chain_match`, `saga_match` and \
-                       `enchantment_match` accept `any` (default) or `all`; `slot_match` and `category_match` return 400 \
+                       `bonus_match` accept `any` (default) or `all`; `slot_match` and `category_match` return 400 \
                        because an item has one slot and category. `q` matches a case-insensitive name substring unless \
                        a route says otherwise. `limit` defaults to 100 and clamps to 1–10000; `offset` defaults to zero \
                        and clamps to nonnegative values; `total` counts before paging. Repeat `sort` keys in priority \
                        order and prefix `-` for descending; nulls sort last in either direction. Each route lists its \
                        sort fields, and invalid or unknown query keys return 400 naming the bad key and accepted keys.\n\n\
-                       **Enchantments.** A family is one line of equipment text; its owner link carries values and \
+                       **Effects and bonuses.** An effect is one line of equipment text; its owner link carries values and \
                        sometimes a bonus type, while its stat rows derive zero or more typed bonuses from those \
-                       amounts. Item, augment and set details render family templates into `enchantments` in owner \
-                       order. `/v1/enchantments` lists families and stats together; each row's `kind` and `detail_path` \
-                       identify the correct detail route, because `/v1/enchantments/{id}` and `/v1/stats/{id}` use \
-                       separate id spaces. Item `enchantment` filters accept a family, ladder or stat name, and \
+                       amounts. Item, augment and set details render family templates into `effects` in owner \
+                       order. `/v1/effects` lists families and stats together; each row's `kind` and `detail_path` \
+                       identify the correct detail route, because `/v1/effects/{id}` and `/v1/stats/{id}` use \
+                       separate id spaces. Its `q` also finds effects through granted stat names, never stats through \
+                       effect names, and returns each effect once. Item `bonus` filters accept an effect, ladder or stat name, and \
                        `stat:bonus type` narrows a stat to that type. Family and stat detail page items, augments and \
                        set tiers independently with their own limit and offset parameters.\n\n\
                        **Bulk.** Download `/v1/dump.sqlite` once instead of paging. Icons are at \
@@ -69,12 +70,12 @@ use utoipa_axum::router::OpenApiRouter;
     ),
     components(schemas(
         version::VersionDatasetResponse,
-        response_schemas::EnchantmentStatBonus,
-        response_schemas::EnchantmentLadderPosition,
-        response_schemas::EnchantmentLine,
-        response_schemas::EnchantmentLadderDetail,
-        response_schemas::EnchantmentLadderStep,
-        response_schemas::EnchantmentSetTierCarrier,
+        response_schemas::EffectStatBonus,
+        response_schemas::EffectLadderPosition,
+        response_schemas::EffectLine,
+        response_schemas::EffectLadderDetail,
+        response_schemas::EffectLadderStep,
+        response_schemas::EffectSetTierCarrier,
         response_schemas::AdventurePacksPageResponseAdventurePacksEntry,
         response_schemas::AdventurePacksPageResponse,
         response_schemas::AdventurePacksDetailResponseItemsEntry,
@@ -111,16 +112,16 @@ use utoipa_axum::router::OpenApiRouter;
         response_schemas::CraftingSystemsDetailResponse,
         response_schemas::DamageTypesPageResponseDamageTypesEntry,
         response_schemas::DamageTypesPageResponse,
-        response_schemas::EnchantmentsPageResponseEnchantmentsEntryBonusTypesEntry,
-        response_schemas::EnchantmentsPageResponseEnchantmentsEntry,
-        response_schemas::EnchantmentsPageResponse,
-        response_schemas::EnchantmentsDetailResponseAugmentsAugmentsEntry,
-        response_schemas::EnchantmentsDetailResponseAugments,
-        response_schemas::EnchantmentsDetailResponseItemsItemsEntry,
-        response_schemas::EnchantmentsDetailResponseItems,
-        response_schemas::EnchantmentsDetailResponseSetTiers,
-        response_schemas::EnchantmentsDetailResponseStatsEntry,
-        response_schemas::EnchantmentsDetailResponse,
+        response_schemas::EffectsPageResponseEffectsEntryBonusTypesEntry,
+        response_schemas::EffectsPageResponseEffectsEntry,
+        response_schemas::EffectsPageResponse,
+        response_schemas::EffectsDetailResponseAugmentsAugmentsEntry,
+        response_schemas::EffectsDetailResponseAugments,
+        response_schemas::EffectsDetailResponseItemsItemsEntry,
+        response_schemas::EffectsDetailResponseItems,
+        response_schemas::EffectsDetailResponseSetTiers,
+        response_schemas::EffectsDetailResponseStatsEntry,
+        response_schemas::EffectsDetailResponse,
         response_schemas::EnhancementTreesPageResponseEnhancementTreesEntryRequirementsEntry,
         response_schemas::EnhancementTreesPageResponseEnhancementTreesEntry,
         response_schemas::EnhancementTreesPageResponse,
@@ -245,9 +246,9 @@ use utoipa_axum::router::OpenApiRouter;
     )),
     tags(
         (name = "meta", description = "Dataset version, schema version and row counts"),
-        (name = "items", description = "Equipment, its enchantments, sockets, vocabularies and sources"),
-        (name = "augments", description = "Augments, compatible sockets, enchantments and crafting recipes"),
-        (name = "enchantments", description = "Enchantment families, stats, bonus types and carrier backlinks"),
+        (name = "items", description = "Equipment, its effects, sockets, vocabularies and sources"),
+        (name = "augments", description = "Augments, compatible sockets, effects and crafting recipes"),
+        (name = "bonuses", description = "Effect families, stats, bonus types and carrier backlinks"),
         (name = "sets", description = "Gear and filigree sets, tiers, filigrees and sentient gems"),
         (name = "crafting", description = "Crafting systems, ingredients and recipes"),
         (name = "quests", description = "Quests, challenges, packs, patrons, chains and sagas"),
@@ -269,8 +270,8 @@ declare_response_examples! { "v1":
     ("/v1/stats", "stats"),
     ("/v1/stats/{id}", "stats_id"),
     ("/v1/bonus-types", "bonus-types"),
-    ("/v1/enchantments", "enchantments"),
-    ("/v1/enchantments/{id}", "enchantments_id"),
+    ("/v1/effects", "effects"),
+    ("/v1/effects/{id}", "effects_id"),
     ("/v1/equipment-slots", "equipment-slots"),
     ("/v1/weapon-types", "weapon-types"),
     ("/v1/damage-types", "damage-types"),

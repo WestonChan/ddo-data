@@ -236,7 +236,7 @@ pub(crate) fn bonuses_via(
     owner_id: i64,
 ) -> Result<Vec<Value>, ApiError> {
     let source_amount = "CASE es.amount_from WHEN 0 THEN es.constant WHEN 1 THEN COALESCE(j.value, e.default_value) ELSE COALESCE(j.value2, e.default_value2) END";
-    let scaled_amount = ddo_model::enchantment_amount::rounded_amount_sql(source_amount, "es.scale", "es.rounding");
+    let scaled_amount = ddo_model::effect_amount::rounded_amount_sql(source_amount, "es.scale", "es.rounding");
     let sql = format!(
         "SELECT e.id, e.text_template, e.description_template, s.name AS stat, s.category AS stat_category,
                 bt.name AS bonus_type,
@@ -244,8 +244,8 @@ pub(crate) fn bonuses_via(
                 CASE WHEN es.amount_from = 2 THEN {scaled_amount} END AS value2,
                 COALESCE(j.value, e.default_value) AS template_value,
                 COALESCE(j.value2, e.default_value2) AS template_value2
-           FROM {junction_table} j JOIN enchantments e ON e.id = j.enchantment_id
-           JOIN enchantment_stats es ON es.enchantment_id = e.id JOIN stats s ON s.id = es.stat_id
+           FROM {junction_table} j JOIN effects e ON e.id = j.effect_id
+           JOIN effect_bonuses es ON es.effect_id = e.id JOIN stats s ON s.id = es.stat_id
            LEFT JOIN bonus_types bt ON bt.id = COALESCE(es.bonus_type_id, j.bonus_type_id)
           WHERE j.{owner_column} = ?1
             AND ({source_amount}) IS NOT NULL
@@ -261,8 +261,8 @@ pub(crate) fn bonuses_via(
             None => stat_name.to_string(),
         };
         let description = bonus["description_template"].as_str().map(|template| {
-            let rendered_title = render_enchantment_template(bonus["text_template"].as_str().unwrap_or(""), bonus);
-            format!("{rendered_title}: {}", render_enchantment_template(template, bonus))
+            let rendered_title = render_effect_template(bonus["text_template"].as_str().unwrap_or(""), bonus);
+            format!("{rendered_title}: {}", render_effect_template(template, bonus))
         });
         let object = bonus.as_object_mut().expect("query returns objects");
         object.remove("text_template");
@@ -275,30 +275,29 @@ pub(crate) fn bonuses_via(
     Ok(bonuses)
 }
 
-pub(crate) fn enchantments_via<P: Params>(
+pub(crate) fn effects_via<P: Params>(
     db: &Connection,
     junction_table: &str,
     owner_column: &str,
     owner_condition: &str,
     selector_params: P,
 ) -> Result<BTreeMap<i64, Vec<Value>>, ApiError> {
-    let source_amount = "CASE es.amount_from WHEN 0 THEN es.constant WHEN 1 THEN COALESCE(j.value, e.default_value) ELSE COALESCE(j.value2, e.default_value2) END";
-    let scaled_amount = ddo_model::enchantment_amount::rounded_amount_sql(source_amount, "es.scale", "es.rounding");
+    let stat_value = effect_bonus_value_sql("j", "e", "es");
     let sql = format!(
-        "SELECT j.{owner_column} AS owner_id, j.sort_order, e.id AS enchantment_id, e.name,
+        "SELECT j.{owner_column} AS owner_id, j.sort_order, e.id AS effect_id, e.name,
                 e.text_template, e.description_template, j.value, j.value2,
                 COALESCE(j.value, e.default_value) AS template_value,
                 COALESCE(j.value2, e.default_value2) AS template_value2,
                 link_type.name AS template_bonus_type,
-                CASE WHEN INSTR(e.text_template, '%b1') > 0 THEN link_type.name END AS bonus_type,
+                CASE WHEN INSTR(e.text_template, '%b1') > 0 OR INSTR(e.description_template, '%b1') > 0 THEN link_type.name END AS bonus_type,
                 l.id AS ladder_id, l.name AS ladder_name, e.ladder_rank,
                 s.name AS stat, s.category AS stat_category,
                 COALESCE(stat_type.name, link_type.name) AS stat_bonus_type,
-                CASE WHEN {source_amount} IS NOT NULL THEN {scaled_amount} END AS stat_value
-           FROM {junction_table} j JOIN enchantments e ON e.id = j.enchantment_id
-           LEFT JOIN enchantment_ladders l ON l.id = e.ladder_id
+                {stat_value} AS stat_value
+           FROM {junction_table} j JOIN effects e ON e.id = j.effect_id
+           LEFT JOIN effect_ladders l ON l.id = e.ladder_id
            LEFT JOIN bonus_types link_type ON link_type.id = j.bonus_type_id
-           LEFT JOIN enchantment_stats es ON es.enchantment_id = e.id
+           LEFT JOIN effect_bonuses es ON es.effect_id = e.id
            LEFT JOIN stats s ON s.id = es.stat_id
            LEFT JOIN bonus_types stat_type ON stat_type.id = es.bonus_type_id
           WHERE {owner_condition}
@@ -321,14 +320,14 @@ pub(crate) fn enchantments_via<P: Params>(
                         "id": row["ladder_id"], "name": row["ladder_name"], "rank": row["ladder_rank"]
                     })
                 };
-                let text = render_enchantment_template(row["text_template"].as_str().unwrap_or(""), &row);
+                let text = render_effect_template(row["text_template"].as_str().unwrap_or(""), &row);
                 let description = row["description_template"]
                     .as_str()
-                    .map(|template| Value::String(render_enchantment_template(template, &row)))
+                    .map(|template| Value::String(render_effect_template(template, &row)))
                     .unwrap_or(Value::Null);
                 let position = lines.len();
                 lines.push(serde_json::json!({
-                    "enchantment_id": row["enchantment_id"], "name": row["name"], "ladder": ladder,
+                    "effect_id": row["effect_id"], "name": row["name"], "ladder": ladder,
                     "text": text, "description": description, "value": row["value"], "value2": row["value2"],
                     "bonus_type": row["bonus_type"], "bonuses": []
                 }));
@@ -346,19 +345,28 @@ pub(crate) fn enchantments_via<P: Params>(
     Ok(by_owner)
 }
 
-pub(crate) fn enchantments_for_owner(
+pub(crate) fn effect_bonus_value_sql(link: &str, effect: &str, bonus: &str) -> String {
+    let source = format!(
+        "CASE {bonus}.amount_from WHEN 0 THEN {bonus}.constant WHEN 1 THEN COALESCE({link}.value, {effect}.default_value) ELSE COALESCE({link}.value2, {effect}.default_value2) END"
+    );
+    let rounded =
+        ddo_model::effect_amount::rounded_amount_sql(&source, &format!("{bonus}.scale"), &format!("{bonus}.rounding"));
+    format!("CASE WHEN {source} IS NOT NULL THEN {rounded} END")
+}
+
+pub(crate) fn effects_for_owner(
     db: &Connection,
     junction_table: &str,
     owner_column: &str,
     owner_id: i64,
 ) -> Result<Vec<Value>, ApiError> {
     let owner_condition = format!("j.{owner_column} = ?1");
-    Ok(enchantments_via(db, junction_table, owner_column, &owner_condition, [owner_id])?
+    Ok(effects_via(db, junction_table, owner_column, &owner_condition, [owner_id])?
         .remove(&owner_id)
         .unwrap_or_default())
 }
 
-fn render_enchantment_template(template: &str, row: &Value) -> String {
+fn render_effect_template(template: &str, row: &Value) -> String {
     let value = row["template_value"].as_i64();
     let value2 = row["template_value2"].as_i64();
     let signed_value = value.map(|number| format!("{number:+}")).unwrap_or_default();
@@ -372,18 +380,15 @@ fn render_enchantment_template(template: &str, row: &Value) -> String {
 }
 
 #[cfg(test)]
-mod enchantment_template_tests {
-    use super::render_enchantment_template;
+mod effect_template_tests {
+    use super::render_effect_template;
     use serde_json::json;
 
     #[test]
     fn a_negative_amount_replaces_an_explicit_plus_sign() {
         let row = json!({"template_value": -1, "template_value2": null, "bonus_type": "Penalty"});
-        assert_eq!(
-            render_enchantment_template("Curse of Weakness +{1}: {1} %b1", &row),
-            "Curse of Weakness -1: -1 Penalty"
-        );
-        assert_eq!(render_enchantment_template("Curse +{2}", &row), "Curse ");
+        assert_eq!(render_effect_template("Curse of Weakness +{1}: {1} %b1", &row), "Curse of Weakness -1: -1 Penalty");
+        assert_eq!(render_effect_template("Curse +{2}", &row), "Curse ");
     }
 }
 

@@ -4,7 +4,8 @@ mod buffs;
 mod characters;
 mod corrections;
 mod drop_text;
-mod enchantments;
+mod effect_vocabulary;
+mod effects;
 mod items;
 mod modifiers;
 mod quest_series;
@@ -18,7 +19,7 @@ use crate::map::augment_slot::AugmentSlotType;
 use crate::map::buff::BuffResolver;
 use crate::map::drop_location::{names_saga, reward_giver_name, segment_head};
 use crate::map::effect::EffectResolver;
-use crate::map::enchantment::EffectTargetQualifiers;
+use crate::map::effect_map::EffectTargetQualifiers;
 use crate::map::legacy_drop_source::LegacyDropSources;
 use crate::map::source_alias::SourceAliases;
 use crate::wiki::WikiOverrides;
@@ -42,6 +43,7 @@ pub struct BuildReport {
     pub legacy_item_count: usize,
     pub bonus_count: usize,
     pub effect_count: usize,
+    pub text_only_effect_count: usize,
     pub family_buff_count: usize,
     pub effect_fallback_buff_count: usize,
     pub effect_buff_count: usize,
@@ -217,12 +219,12 @@ pub fn build_database(
         effect_resolver: &effect_resolver,
         drop_text_linker: &drop_text_linker,
         untyped_bonus_corrections: UntypedBonusCorrections::from_corrections(corrections)?,
-        enchantments: enchantments::EnchantmentCache::new(&transaction),
+        effects: effects::EffectCache::new(&transaction),
         written: WrittenRows::default(),
         pending_set_item_links: Vec::new(),
         pending_set_augment_links: Vec::new(),
         pending_set_option_links: Vec::new(),
-        pending_derived_enchantments: Vec::new(),
+        pending_derived_effects: Vec::new(),
     };
 
     writer.write_standard_feats(&data_files_dir.join("Feats.xml"), &mut report)?;
@@ -252,7 +254,7 @@ pub fn build_database(
             writer.write_item(item, &mut report).with_context(|| format!("{}", path.display()))?;
         }
     }
-    writer.link_pending_derived_enchantments()?;
+    writer.link_pending_derived_effects()?;
 
     for path in files_with_extension(&data_files_dir.join("Augments"), "xml")? {
         writer.write_augments_file(&path, &mut report).with_context(|| format!("{}", path.display()))?;
@@ -278,7 +280,7 @@ pub fn build_database(
     )?;
     corrections::apply_non_quest_corrections(
         &transaction,
-        &mut writer.enchantments,
+        &mut writer.effects,
         corrections,
         &corrections_applied_while_writing,
         &writer.written.set_tier_descriptions_by_id,
@@ -288,13 +290,15 @@ pub fn build_database(
     wiki::apply_wiki_overrides(&transaction, wiki_overrides, &drop_text_linker, &mut report)?;
     quest_series::write_wiki_quest_series_rewards(&transaction, wiki_overrides, &mut report)?;
     vendors_and_events::write_wiki_vendor_and_event_items(&transaction, wiki_overrides, &mut report)?;
-    enchantments::insert_ladders(&writer.enchantments, &crate::map::enchantment::ENCHANTMENT_MAP.ladders)?;
+    effects::insert_ladders(&writer.effects, &crate::map::effect_map::EFFECT_MAP.ladders)?;
+    effect_vocabulary::insert_effect_vocabulary(&transaction)?;
     report.legacy_item_count =
         transaction.query_row("SELECT COUNT(*) FROM items WHERE is_legacy", [], |r| r.get::<_, i64>(0))? as usize;
     report.bonus_count =
-        transaction.query_row("SELECT COUNT(*) FROM enchantment_stats", [], |r| r.get::<_, i64>(0))? as usize;
-    report.effect_count = transaction.query_row(
-        "SELECT COUNT(*) FROM enchantments WHERE NOT EXISTS (SELECT 1 FROM enchantment_stats s WHERE s.enchantment_id = enchantments.id)",
+        transaction.query_row("SELECT COUNT(*) FROM effect_bonuses", [], |r| r.get::<_, i64>(0))? as usize;
+    report.effect_count = transaction.query_row("SELECT COUNT(*) FROM effects", [], |r| r.get::<_, i64>(0))? as usize;
+    report.text_only_effect_count = transaction.query_row(
+        "SELECT COUNT(*) FROM effects WHERE NOT EXISTS (SELECT 1 FROM effect_bonuses s WHERE s.effect_id = effects.id)",
         [],
         |r| r.get::<_, i64>(0),
     )? as usize;
@@ -479,7 +483,7 @@ pub(crate) struct WrittenRows {
     set_bonus_ids_by_name: HashMap<String, i64>,
     feat_ids_by_key: HashMap<FeatKey, i64>,
     set_tier_descriptions_by_id: HashMap<i64, String>,
-    written_enchantment_defaults: HashSet<(i64, Option<i64>, Option<i64>)>,
+    written_effect_defaults: HashSet<(i64, Option<i64>, Option<i64>)>,
     modifier_count: usize,
 }
 
@@ -489,12 +493,12 @@ pub(crate) struct TableWriter<'a> {
     effect_resolver: &'a EffectResolver,
     drop_text_linker: &'a DropTextLinker,
     untyped_bonus_corrections: UntypedBonusCorrections<'a>,
-    enchantments: enchantments::EnchantmentCache<'a>,
+    effects: effects::EffectCache<'a>,
     written: WrittenRows,
     pending_set_item_links: Vec<(i64, String)>,
     pending_set_augment_links: Vec<(i64, String)>,
     pending_set_option_links: Vec<(i64, String)>,
-    pending_derived_enchantments: Vec<(enchantments::EnchantmentOwner, i64, String, Vec<crate::xml::effect::Effect>)>,
+    pending_derived_effects: Vec<(effects::EffectOwner, i64, String, Vec<crate::xml::effect::Effect>)>,
 }
 
 impl TableWriter<'_> {

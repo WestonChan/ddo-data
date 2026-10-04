@@ -1,4 +1,4 @@
-pub mod enchantment_amount;
+pub mod effect_amount;
 pub mod enums;
 pub mod schema;
 pub mod seeds;

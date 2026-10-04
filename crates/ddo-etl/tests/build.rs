@@ -40,14 +40,14 @@ fn item_id(db: &Connection, name: &str) -> i64 {
 #[test]
 fn writes_improved_deception_from_its_definition_as_a_typed_bluff_bonus() {
     let (db, report) = built_fixture_db();
-    assert_eq!(report.effect_fallback_buff_count, 6);
+    assert_eq!(report.effect_fallback_buff_count, 9);
     assert!(report.family_buff_count > 0);
     assert!(report.effect_buff_count > 0);
     let gloves = item_id(&db, "Backstabber's Gloves (Level 25)");
     let written_bonuses: Vec<(String, i64, String)> = db
         .prepare(
             "SELECT s.name, CASE es.amount_from WHEN 0 THEN es.constant WHEN 1 THEN ie.value ELSE ie.value2 END, bt.name
-             FROM item_enchantments ie JOIN enchantment_stats es ON es.enchantment_id = ie.enchantment_id
+             FROM item_effects ie JOIN effect_bonuses es ON es.effect_id = ie.effect_id
              JOIN stats s ON s.id = es.stat_id JOIN bonus_types bt ON bt.id = COALESCE(es.bonus_type_id, ie.bonus_type_id)
              WHERE ie.item_id = ?1 AND ie.value = 5",
         )
@@ -64,8 +64,8 @@ fn written_deception_steps_share_the_named_ladder_in_order() {
     let (db, _) = built_fixture_db();
     let steps: Vec<(String, i64)> = db
         .prepare(
-            "SELECT e.name, e.ladder_rank FROM enchantments e
-                  JOIN enchantment_ladders l ON l.id = e.ladder_id
+            "SELECT e.name, e.ladder_rank FROM effects e
+                  JOIN effect_ladders l ON l.id = e.ladder_id
                   WHERE l.name = 'Deception' ORDER BY e.ladder_rank",
         )
         .unwrap()
@@ -83,7 +83,7 @@ fn effect_fallback_rows_stay_adjacent_and_distinct_descriptions_survive() {
     let ordered_rows: Vec<(String, i64, i64)> = db
         .prepare(
             "SELECT s.name, CASE es.amount_from WHEN 0 THEN es.constant WHEN 1 THEN ie.value ELSE ie.value2 END, ie.sort_order
-             FROM item_enchantments ie JOIN enchantment_stats es ON es.enchantment_id = ie.enchantment_id
+             FROM item_effects ie JOIN effect_bonuses es ON es.effect_id = ie.effect_id
              JOIN stats s ON s.id = es.stat_id WHERE ie.item_id = ?1 ORDER BY ie.sort_order, es.sort_order",
         )
         .unwrap()
@@ -98,9 +98,9 @@ fn effect_fallback_rows_stay_adjacent_and_distinct_descriptions_survive() {
 
     let bluff_rows: Vec<(String, String, String)> = db
         .prepare(
-            "SELECT i.name, e.text_template || ': ' || e.description_template, bt.name FROM item_enchantments ie
-             JOIN items i ON i.id = ie.item_id JOIN enchantments e ON e.id = ie.enchantment_id
-             JOIN enchantment_stats es ON es.enchantment_id = e.id JOIN stats s ON s.id = es.stat_id
+            "SELECT i.name, e.text_template || ': ' || e.description_template, bt.name FROM item_effects ie
+             JOIN items i ON i.id = ie.item_id JOIN effects e ON e.id = ie.effect_id
+             JOIN effect_bonuses es ON es.effect_id = e.id JOIN stats s ON s.id = es.stat_id
              JOIN bonus_types bt ON bt.id = COALESCE(es.bonus_type_id, ie.bonus_type_id)
              WHERE i.name IN ('Alaric''s Grim Gauntlets', 'Acrobat''s Ring') \
              AND s.name = 'Bluff' AND CASE es.amount_from WHEN 0 THEN es.constant WHEN 1 THEN ie.value ELSE ie.value2 END = 3
@@ -135,9 +135,18 @@ fn excludes_cosmetic_shields_from_items() {
 #[test]
 fn builds_items_and_skips_cosmetics() {
     let (db, report) = built_fixture_db();
-    assert_eq!(report.written_item_count, 55);
+    assert_eq!(report.written_item_count, 57);
+    assert_eq!(report.effect_count as i64, count(&db, "SELECT COUNT(*) FROM effects"));
+    assert_eq!(report.bonus_count as i64, count(&db, "SELECT COUNT(*) FROM effect_bonuses"));
+    assert_eq!(
+        report.text_only_effect_count as i64,
+        count(
+            &db,
+            "SELECT COUNT(*) FROM effects e WHERE NOT EXISTS (SELECT 1 FROM effect_bonuses b WHERE b.effect_id = e.id)"
+        )
+    );
     assert_eq!(report.skipped_cosmetic_item_count, 2, "the cosmetic helm and the cosmetic shield");
-    assert_eq!(count(&db, "SELECT COUNT(*) FROM items WHERE provenance = 'maetrim'"), 55);
+    assert_eq!(count(&db, "SELECT COUNT(*) FROM items WHERE provenance = 'maetrim'"), 57);
     assert_eq!(count(&db, "SELECT COUNT(*) FROM items WHERE name = '17th Anniversary Dark Helm'"), 0);
     let reason: String = db
         .query_row("SELECT reason FROM excluded_items WHERE name = '17th Anniversary Dark Helm'", [], |r| r.get(0))
@@ -277,8 +286,8 @@ fn splits_buffs_into_bonuses_and_effects() {
     let bonuses: Vec<(String, String, Option<String>, i64)> = db
         .prepare(
             "SELECT s.name || ' +' || CASE es.amount_from WHEN 0 THEN es.constant WHEN 1 THEN ie.value ELSE ie.value2 END,
-                    s.name, bt.name, ie.sort_order FROM item_enchantments ie
-               JOIN enchantment_stats es ON es.enchantment_id = ie.enchantment_id
+                    s.name, bt.name, ie.sort_order FROM item_effects ie
+               JOIN effect_bonuses es ON es.effect_id = ie.effect_id
                JOIN stats s ON s.id = es.stat_id LEFT JOIN bonus_types bt ON bt.id = COALESCE(es.bonus_type_id, ie.bonus_type_id)
               WHERE ie.item_id = ?1 ORDER BY ie.sort_order, es.sort_order",
         )
@@ -301,10 +310,12 @@ fn splits_buffs_into_bonuses_and_effects() {
         ]
     );
     let effects: Vec<(String, Option<i64>, Option<String>)> = db
-        .prepare("SELECT e.name, ie.value, e.text_template || ': ' || COALESCE(e.description_template, '')
-                  FROM item_enchantments ie JOIN enchantments e ON e.id = ie.enchantment_id
-                  WHERE ie.item_id = ?1 AND NOT EXISTS (SELECT 1 FROM enchantment_stats es WHERE es.enchantment_id = e.id)
-                  ORDER BY ie.sort_order")
+        .prepare(
+            "SELECT e.name, ie.value, e.text_template || ': ' || COALESCE(e.description_template, '')
+                  FROM item_effects ie JOIN effects e ON e.id = ie.effect_id
+                  WHERE ie.item_id = ?1 AND NOT EXISTS (SELECT 1 FROM effect_bonuses es WHERE es.effect_id = e.id)
+                  ORDER BY ie.sort_order",
+        )
         .unwrap()
         .query_map(params![cloak], |r| Ok((r.get(0)?, r.get(1)?, r.get(2)?)))
         .unwrap()
@@ -316,14 +327,14 @@ fn splits_buffs_into_bonuses_and_effects() {
 
     let fire_family_count = count(
         &db,
-        "SELECT COUNT(*) FROM enchantments e JOIN enchantment_stats es ON es.enchantment_id = e.id
+        "SELECT COUNT(*) FROM effects e JOIN effect_bonuses es ON es.effect_id = e.id
          JOIN stats s ON s.id = es.stat_id WHERE s.name = 'Fire Spell Power' AND e.name = 'Combustion'",
     );
     assert_eq!(fire_family_count, 1);
     let description_template: String = db
         .query_row(
-            "SELECT e.description_template FROM item_enchantments ie JOIN enchantments e ON e.id = ie.enchantment_id
-         JOIN enchantment_stats es ON es.enchantment_id = e.id JOIN stats s ON s.id = es.stat_id
+            "SELECT e.description_template FROM item_effects ie JOIN effects e ON e.id = ie.effect_id
+         JOIN effect_bonuses es ON es.effect_id = e.id JOIN stats s ON s.id = es.stat_id
          WHERE ie.item_id = ?1 AND s.name = 'Hit Points'",
             [cloak],
             |r| r.get(0),
@@ -339,7 +350,7 @@ fn writes_tactical_dc_buffs_as_bonuses() {
     let tactical_dc_bonuses: Vec<(String, Option<String>, i64)> = db
         .prepare(
             "SELECT s.name, bt.name, CASE es.amount_from WHEN 0 THEN es.constant WHEN 1 THEN ie.value ELSE ie.value2 END
-               FROM item_enchantments ie JOIN enchantment_stats es ON es.enchantment_id = ie.enchantment_id
+               FROM item_effects ie JOIN effect_bonuses es ON es.effect_id = ie.effect_id
                JOIN stats s ON s.id = es.stat_id LEFT JOIN bonus_types bt ON bt.id = COALESCE(es.bonus_type_id, ie.bonus_type_id)
               WHERE ie.item_id = ?1 AND s.name LIKE '% DC' ORDER BY s.name",
         )
@@ -358,9 +369,9 @@ fn writes_tactical_dc_buffs_as_bonuses() {
     let shatter_effect_count = count(
         &db,
         &format!(
-            "SELECT COUNT(*) FROM item_enchantments ie JOIN enchantments e ON e.id = ie.enchantment_id
+            "SELECT COUNT(*) FROM item_effects ie JOIN effects e ON e.id = ie.effect_id
              WHERE ie.item_id = {ring} AND e.name = 'Shatter' AND NOT EXISTS
-               (SELECT 1 FROM enchantment_stats es WHERE es.enchantment_id = e.id)"
+               (SELECT 1 FROM effect_bonuses es WHERE es.effect_id = e.id)"
         ),
     );
     assert_eq!(shatter_effect_count, 0);
@@ -373,7 +384,7 @@ fn writes_a_buff_without_a_value_at_the_amount_its_definition_fixes() {
     let rage_bonuses: Vec<(Option<String>, Option<i64>)> = db
         .prepare(
             "SELECT bt.name, CASE es.amount_from WHEN 0 THEN es.constant WHEN 1 THEN ie.value ELSE ie.value2 END
-               FROM item_enchantments ie JOIN enchantment_stats es ON es.enchantment_id = ie.enchantment_id
+               FROM item_effects ie JOIN effect_bonuses es ON es.effect_id = ie.effect_id
                JOIN stats s ON s.id = es.stat_id LEFT JOIN bonus_types bt ON bt.id = COALESCE(es.bonus_type_id, ie.bonus_type_id)
               WHERE ie.item_id = ?1 AND s.name = 'Rage Uses'",
         )
@@ -390,9 +401,9 @@ fn writes_a_buff_without_a_value_at_the_amount_its_definition_fixes() {
     let major_anger_effect_count = count(
         &db,
         &format!(
-            "SELECT COUNT(*) FROM item_enchantments ie JOIN enchantments e ON e.id = ie.enchantment_id
+            "SELECT COUNT(*) FROM item_effects ie JOIN effects e ON e.id = ie.effect_id
              WHERE ie.item_id = {reign} AND e.name = 'Major Anger' AND NOT EXISTS
-               (SELECT 1 FROM enchantment_stats es WHERE es.enchantment_id = e.id)"
+               (SELECT 1 FROM effect_bonuses es WHERE es.effect_id = e.id)"
         ),
     );
     assert_eq!(major_anger_effect_count, 0);
@@ -404,7 +415,7 @@ fn writes_buffs_named_after_a_stat_as_bonuses() {
     let stat_bonuses_by_item = |item_name: &str, stat_name: &str| -> Vec<(Option<String>, Option<i64>, Option<i64>)> {
         db.prepare(
             "SELECT bt.name, CASE es.amount_from WHEN 0 THEN es.constant WHEN 1 THEN ie.value ELSE ie.value2 END, ie.value2
-               FROM item_enchantments ie JOIN enchantment_stats es ON es.enchantment_id = ie.enchantment_id
+               FROM item_effects ie JOIN effect_bonuses es ON es.effect_id = ie.effect_id
                JOIN stats s ON s.id = es.stat_id LEFT JOIN bonus_types bt ON bt.id = COALESCE(es.bonus_type_id, ie.bonus_type_id)
               WHERE ie.item_id = ?1 AND s.name = ?2 ORDER BY ie.sort_order, es.sort_order",
         )
@@ -447,7 +458,7 @@ fn writes_buffs_named_after_a_stat_as_bonuses() {
     );
     let linguistic_line: String = db
         .query_row(
-            "SELECT e.text_template FROM item_enchantments ie JOIN enchantments e ON e.id = ie.enchantment_id
+            "SELECT e.text_template FROM item_effects ie JOIN effects e ON e.id = ie.effect_id
          JOIN items i ON i.id = ie.item_id WHERE i.name = 'Celestial Emerald Ring' AND e.name = 'Linguistics'",
             [],
             |row| row.get(0),
@@ -489,9 +500,9 @@ fn writes_buffs_named_after_a_stat_as_bonuses() {
     assert_eq!(stat_bonuses_by_item("Epic Ring of Master Artifice", "Spell Lore"), vec![]);
     let effects_named_after_a_stat: Vec<String> = db
         .prepare(
-            "SELECT DISTINCT e.name FROM item_enchantments ie JOIN enchantments e ON e.id = ie.enchantment_id
+            "SELECT DISTINCT e.name FROM item_effects ie JOIN effects e ON e.id = ie.effect_id
               WHERE lower(replace(e.name, ' ', '')) IN (SELECT lower(replace(name, ' ', '')) FROM stats)
-              AND NOT EXISTS (SELECT 1 FROM enchantment_stats es WHERE es.enchantment_id = e.id)
+              AND NOT EXISTS (SELECT 1 FROM effect_bonuses es WHERE es.effect_id = e.id)
               ORDER BY e.name",
         )
         .unwrap()
@@ -547,7 +558,7 @@ const OPTION_GRANT_LABELS_SQL: &str = "SELECT t.label FROM item_augment_slot_opt
 
 const OPTION_BONUSES_SQL: &str =
     "SELECT s.name || ' ' || bt.name || ' ' || CASE es.amount_from WHEN 0 THEN es.constant WHEN 1 THEN oe.value ELSE oe.value2 END
-     FROM item_augment_slot_option_enchantments oe JOIN enchantment_stats es ON es.enchantment_id = oe.enchantment_id
+     FROM item_augment_slot_option_effects oe JOIN effect_bonuses es ON es.effect_id = oe.effect_id
      JOIN stats s ON s.id = es.stat_id JOIN bonus_types bt ON bt.id = COALESCE(es.bonus_type_id, oe.bonus_type_id)
      WHERE oe.option_id = ?1 ORDER BY oe.sort_order, es.sort_order";
 
@@ -577,7 +588,7 @@ fn keeps_what_an_augment_slot_option_gives_on_the_option() {
         count(
             &db,
             &format!(
-                "SELECT COUNT(*) FROM item_enchantments ie JOIN enchantment_stats es ON es.enchantment_id = ie.enchantment_id
+                "SELECT COUNT(*) FROM item_effects ie JOIN effect_bonuses es ON es.effect_id = ie.effect_id
                  JOIN stats s ON s.id = es.stat_id WHERE ie.item_id = {axe}
                  AND s.name IN ('Spell Penetration', 'Fire Spell Lore')"
             )
@@ -858,7 +869,7 @@ fn diff_reports_coverage_against_a_legacy_database() {
     );
     assert_eq!(
         coverage.names_only_in_built.len(),
-        53,
+        55,
         "the wiki fixture item and the legacy fixture items are only in the build"
     );
     assert!((coverage.coverage_ratio() - 0.75).abs() < 1e-9);
@@ -889,7 +900,7 @@ fn writes_augments_with_slots_bonuses_and_modifiers() {
         .map(Result::unwrap)
         .collect();
     assert_eq!(slots, vec!["orange", "purple", "red"]);
-    assert_eq!(count(&db, &format!("SELECT COUNT(*) FROM augment_enchantments WHERE augment_id = {ruby}")), 0);
+    assert_eq!(count(&db, &format!("SELECT COUNT(*) FROM augment_effects WHERE augment_id = {ruby}")), 0);
     let (modifier_count, dice_damage, dice_counts): (i64, String, String) = db
         .query_row(
             "SELECT COUNT(*), MIN(dice_damage), MIN(dice_number) FROM modifiers WHERE source_kind = 'augment' AND source_id = ?1",
@@ -903,7 +914,7 @@ fn writes_augments_with_slots_bonuses_and_modifiers() {
     let bonuses: Vec<(String, String)> = db
         .prepare(
             "SELECT s.name || ' +' || CASE es.amount_from WHEN 0 THEN es.constant WHEN 1 THEN ae.value ELSE ae.value2 END,
-                    bt.name FROM augment_enchantments ae JOIN enchantment_stats es ON es.enchantment_id = ae.enchantment_id
+                    bt.name FROM augment_effects ae JOIN effect_bonuses es ON es.effect_id = ae.effect_id
               JOIN stats s ON s.id = es.stat_id JOIN bonus_types bt ON bt.id = COALESCE(es.bonus_type_id, ae.bonus_type_id)
               WHERE ae.augment_id = ?1 ORDER BY ae.sort_order, es.sort_order",
         )
@@ -941,7 +952,7 @@ fn writes_augments_with_slots_bonuses_and_modifiers() {
     assert!(description.starts_with("Combustion 152") && description.contains("Fire Lore +21%"), "{description}");
     let fire: Vec<String> = db
         .prepare("SELECT s.name || ' +' || CASE es.amount_from WHEN 0 THEN es.constant WHEN 1 THEN ae.value ELSE ae.value2 END
-                  FROM augment_enchantments ae JOIN enchantment_stats es ON es.enchantment_id = ae.enchantment_id
+                  FROM augment_effects ae JOIN effect_bonuses es ON es.effect_id = ae.effect_id
                   JOIN stats s ON s.id = es.stat_id JOIN augments a ON a.id = ae.augment_id
                   WHERE a.name = 'Fire I: Combustion' ORDER BY ae.sort_order, es.sort_order")
         .unwrap()
@@ -976,8 +987,8 @@ fn writes_sets_filigrees_and_their_items() {
     let tiers: Vec<(i64, String)> = db
         .prepare(
             "SELECT t.equipped_count, e.name FROM set_bonus_tiers t
-                  JOIN set_bonus_tier_enchantments te ON te.tier_id = t.id AND te.sort_order = 0
-                  JOIN enchantments e ON e.id = te.enchantment_id
+                  JOIN set_bonus_tier_effects te ON te.tier_id = t.id AND te.sort_order = 0
+                  JOIN effects e ON e.id = te.effect_id
                   WHERE t.set_id = ?1 ORDER BY t.equipped_count",
         )
         .unwrap()
@@ -989,10 +1000,10 @@ fn writes_sets_filigrees_and_their_items() {
     assert!(tiers.iter().all(|(n, _)| *n >= 2));
     let tiers_with_prose_and_structured_facts = count(
         &db,
-        "SELECT COUNT(*) FROM set_bonus_tier_enchantments te
-         WHERE NOT EXISTS (SELECT 1 FROM enchantment_stats es WHERE es.enchantment_id = te.enchantment_id)
-           AND EXISTS (SELECT 1 FROM set_bonus_tier_enchantments structured
-                       JOIN enchantment_stats es ON es.enchantment_id = structured.enchantment_id
+        "SELECT COUNT(*) FROM set_bonus_tier_effects te
+         WHERE NOT EXISTS (SELECT 1 FROM effect_bonuses es WHERE es.effect_id = te.effect_id)
+           AND EXISTS (SELECT 1 FROM set_bonus_tier_effects structured
+                       JOIN effect_bonuses es ON es.effect_id = structured.effect_id
                        WHERE structured.tier_id = te.tier_id)",
     );
     assert_eq!(tiers_with_prose_and_structured_facts, 1);
@@ -1001,8 +1012,8 @@ fn writes_sets_filigrees_and_their_items() {
     let winter_tier_bonuses: Vec<(i64, String, i64)> = db
         .prepare(
             "SELECT t.equipped_count, s.name, CASE es.amount_from WHEN 0 THEN es.constant WHEN 1 THEN te.value ELSE te.value2 END
-               FROM set_bonus_tier_enchantments te JOIN set_bonus_tiers t ON t.id = te.tier_id
-               JOIN enchantment_stats es ON es.enchantment_id = te.enchantment_id JOIN stats s ON s.id = es.stat_id
+               FROM set_bonus_tier_effects te JOIN set_bonus_tiers t ON t.id = te.tier_id
+               JOIN effect_bonuses es ON es.effect_id = te.effect_id JOIN stats s ON s.id = es.stat_id
               WHERE t.set_id = ?1 ORDER BY t.equipped_count, te.sort_order, es.sort_order",
         )
         .unwrap()
@@ -1043,11 +1054,11 @@ fn all_ability_set_tier_uses_one_family_with_six_stats() {
     let (db, _) = built_fixture_db();
     let families: Vec<(String, i64)> = db
         .prepare(
-            "SELECT e.name, COUNT(es.stat_id) FROM set_bonus_tier_enchantments l
+            "SELECT e.name, COUNT(es.stat_id) FROM set_bonus_tier_effects l
              JOIN set_bonus_tiers t ON t.id = l.tier_id
              JOIN set_bonuses sb ON sb.id = t.set_id
-             JOIN enchantments e ON e.id = l.enchantment_id
-             JOIN enchantment_stats es ON es.enchantment_id = e.id
+             JOIN effects e ON e.id = l.effect_id
+             JOIN effect_bonuses es ON es.effect_id = e.id
              WHERE sb.name = 'Fried & Frozen Frenzy' AND t.equipped_count = 2
              GROUP BY e.id",
         )
@@ -1059,7 +1070,7 @@ fn all_ability_set_tier_uses_one_family_with_six_stats() {
     assert_eq!(families, [("All Ability Scores".to_string(), 6)]);
     let templates: (String, Option<String>, i64) = db
         .query_row(
-            "SELECT e.text_template, e.description_template, e.amount_count FROM enchantments e
+            "SELECT e.text_template, e.description_template, e.amount_count FROM effects e
          WHERE e.name = 'All Ability Scores'",
             [],
             |row| Ok((row.get(0)?, row.get(1)?, row.get(2)?)),

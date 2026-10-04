@@ -1,6 +1,6 @@
 use super::bonus_types::{BonusOrigin, BonusOwner, BonusOwnerKind};
 use super::drop_text::DroppedLoot;
-use super::enchantments::{amount_count, split_template, EnchantmentOwner};
+use super::effects::{amount_count, split_template, EffectOwner};
 use super::quest_series::QuestSeriesTable;
 use super::{joined_non_empty, trimmed_non_empty, BuildReport, TableWriter};
 use crate::map::buff::{BuffResolutionSource, ResolvedBuff};
@@ -228,7 +228,7 @@ impl TableWriter<'_> {
                         }
                     }
                     let count = amount_count(&text_template, description_template.as_deref());
-                    let enchantment_id = self.enchantments.ensure_family(
+                    let effect_id = self.effects.ensure_family(
                         &family_name,
                         &text_template,
                         description_template.as_deref(),
@@ -236,9 +236,9 @@ impl TableWriter<'_> {
                     )?;
                     let defaults = self.buff_resolver.definition_defaults(buff.kind.trim(), count);
                     if defaults != (None, None)
-                        && self.written.written_enchantment_defaults.insert((enchantment_id, defaults.0, defaults.1))
+                        && self.written.written_effect_defaults.insert((effect_id, defaults.0, defaults.1))
                     {
-                        self.enchantments.set_defaults(enchantment_id, defaults)?;
+                        self.effects.set_defaults(effect_id, defaults)?;
                     }
                     for (stat_order, (resolved_stat, bonus_type)) in typed_stats.into_iter().enumerate() {
                         let (amount_from, constant) = match resolved_stat.amount_from {
@@ -246,8 +246,8 @@ impl TableWriter<'_> {
                             crate::map::buff::AmountFrom::ItemValue2 => (2, None),
                             crate::map::buff::AmountFrom::Constant(amount) => (0, Some(amount)),
                         };
-                        self.enchantments.ensure_stat(
-                            enchantment_id,
+                        self.effects.ensure_stat(
+                            effect_id,
                             resolved_stat.stat,
                             (!uses_link_type).then_some(bonus_type),
                             amount_from,
@@ -255,10 +255,10 @@ impl TableWriter<'_> {
                             stat_order,
                         )?;
                     }
-                    self.enchantments.insert_link(
-                        EnchantmentOwner::Item,
+                    self.effects.insert_link(
+                        EffectOwner::Item,
                         item_id,
-                        enchantment_id,
+                        effect_id,
                         uses_link_type.then_some(first_type).flatten(),
                         (
                             (count >= 1).then_some(buff.value).flatten(),
@@ -274,7 +274,7 @@ impl TableWriter<'_> {
                     let (text_template, description_template) =
                         split_template(if family_text.is_empty() { &family_name } else { &family_text });
                     let count = amount_count(&text_template, description_template.as_deref());
-                    let enchantment_id = self.enchantments.ensure_family(
+                    let effect_id = self.effects.ensure_family(
                         &family_name,
                         &text_template,
                         description_template.as_deref(),
@@ -282,16 +282,16 @@ impl TableWriter<'_> {
                     )?;
                     let defaults = self.buff_resolver.definition_defaults(buff.kind.trim(), count);
                     if defaults != (None, None)
-                        && self.written.written_enchantment_defaults.insert((enchantment_id, defaults.0, defaults.1))
+                        && self.written.written_effect_defaults.insert((effect_id, defaults.0, defaults.1))
                     {
-                        self.enchantments.set_defaults(enchantment_id, defaults)?;
+                        self.effects.set_defaults(effect_id, defaults)?;
                     }
                     let uses_link_type = family_text.contains("%b1");
                     let bonus_type = if uses_link_type { self.buff_resolver.link_bonus_type(buff)? } else { None };
-                    self.enchantments.insert_link(
-                        EnchantmentOwner::Item,
+                    self.effects.insert_link(
+                        EffectOwner::Item,
                         item_id,
-                        enchantment_id,
+                        effect_id,
                         bonus_type,
                         (
                             (count >= 1).then_some(buff.value).flatten(),
@@ -368,8 +368,8 @@ impl TableWriter<'_> {
             self.pending_set_option_links.push((option_id, set_name.to_string()));
         }
         self.write_modifiers(ModifierSource::ItemAugmentSlotOption, option_id, &slot_option.effects)?;
-        self.pending_derived_enchantments.push((
-            EnchantmentOwner::ItemAugmentSlotOption,
+        self.pending_derived_effects.push((
+            EffectOwner::ItemAugmentSlotOption,
             option_id,
             item_name.to_string(),
             slot_option.effects.clone(),

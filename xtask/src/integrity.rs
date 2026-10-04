@@ -1,6 +1,6 @@
 use anyhow::{Context, Result};
 use ddo_etl::corrections::Corrections;
-use ddo_etl::map::enchantment::ENCHANTMENT_MAP;
+use ddo_etl::map::effect_map::EFFECT_MAP;
 use ddo_etl::xml::item_buffs;
 use ddo_etl::xml::items::parse_item_file;
 use rusqlite::Connection;
@@ -61,12 +61,12 @@ const DROP_LOCATION_HEAD_SQL: &str = "COALESCE(NULLIF(TRIM(CASE WHEN instr(i.dro
      THEN substr(i.drop_location, 1, instr(i.drop_location, ',') - 1) ELSE i.drop_location END), ''), \
      '(no drop location)')";
 
-const ENCHANTMENT_OWNER_LINKS: [(&str, &str); 5] = [
-    ("item_enchantments", "item_id"),
-    ("augment_enchantments", "augment_id"),
-    ("set_bonus_tier_enchantments", "tier_id"),
-    ("feat_enchantments", "feat_id"),
-    ("item_augment_slot_option_enchantments", "option_id"),
+const EFFECT_OWNER_LINKS: [(&str, &str); 5] = [
+    ("item_effects", "item_id"),
+    ("augment_effects", "augment_id"),
+    ("set_bonus_tier_effects", "tier_id"),
+    ("feat_effects", "feat_id"),
+    ("item_augment_slot_option_effects", "option_id"),
 ];
 
 impl IntegrityCheck {
@@ -107,23 +107,23 @@ pub const INTEGRITY_CHECKS: &[IntegrityCheck] = &[
         OffenderQuery::Built(empty_tables),
     ),
     IntegrityCheck::hard(
-        "enchantment_link_amount_counts",
-        "every enchantment owner link carries no more amounts than its family allows",
-        OffenderQuery::Built(enchantment_link_amount_counts),
+        "effect_link_amount_counts",
+        "every effect owner link carries no more amounts than its family allows",
+        OffenderQuery::Built(effect_link_amount_counts),
     ),
     IntegrityCheck::hard(
-        "enchantment_stat_amount_sources",
+        "effect_stat_amount_sources",
         "every stat row reads at most the amount slots its family carries",
         OffenderQuery::Sql(
-            "SELECT e.name, e.id, 'stat amount source exceeds family amount count' FROM enchantments e
-             JOIN enchantment_stats s ON s.enchantment_id = e.id WHERE s.amount_from > e.amount_count",
+            "SELECT e.name, e.id, 'stat amount source exceeds family amount count' FROM effects e
+             JOIN effect_bonuses s ON s.effect_id = e.id WHERE s.amount_from > e.amount_count",
         ),
     ),
     IntegrityCheck::hard(
-        "enchantment_template_placeholders",
+        "effect_template_placeholders",
         "family templates carry exactly the amount placeholders allowed by amount_count",
         OffenderQuery::Sql(
-            "SELECT e.name, e.id, 'amount placeholders differ from amount_count' FROM enchantments e
+            "SELECT e.name, e.id, 'amount placeholders differ from amount_count' FROM effects e
              WHERE (INSTR(e.text_template || COALESCE(e.description_template, ''), '{1}') > 0) <> (e.amount_count >= 1)
                 OR (INSTR(e.text_template || COALESCE(e.description_template, ''), '{2}') > 0) <> (e.amount_count >= 2)
                 OR INSTR(e.text_template || COALESCE(e.description_template, ''), '%v1') > 0
@@ -131,32 +131,32 @@ pub const INTEGRITY_CHECKS: &[IntegrityCheck] = &[
         ),
     ),
     IntegrityCheck::hard(
-        "enchantment_bonus_type_sources",
+        "effect_bonus_type_sources",
         "a family with a %b1 template takes its type from every owner link; other families type their stat rows",
-        OffenderQuery::Built(enchantment_bonus_type_sources),
+        OffenderQuery::Built(effect_bonus_type_sources),
     ),
     IntegrityCheck::hard(
-        "enchantment_families_have_owners",
-        "every enchantment family has at least one item, augment, set tier, feat or slot option owner",
+        "effect_families_have_owners",
+        "every effect family has at least one item, augment, set tier, feat or slot option owner",
         OffenderQuery::Sql(
-            "SELECT e.name, e.id, 'no owner link' FROM enchantments e WHERE e.id NOT IN
-               (SELECT enchantment_id FROM item_enchantments UNION SELECT enchantment_id FROM augment_enchantments
-                UNION SELECT enchantment_id FROM set_bonus_tier_enchantments UNION SELECT enchantment_id FROM feat_enchantments
-                UNION SELECT enchantment_id FROM item_augment_slot_option_enchantments)",
+            "SELECT e.name, e.id, 'no owner link' FROM effects e WHERE e.id NOT IN
+               (SELECT effect_id FROM item_effects UNION SELECT effect_id FROM augment_effects
+                UNION SELECT effect_id FROM set_bonus_tier_effects UNION SELECT effect_id FROM feat_effects
+                UNION SELECT effect_id FROM item_augment_slot_option_effects)",
         ),
     ),
     IntegrityCheck::hard(
-        "enchantment_ladders_have_steps",
-        "every enchantment ladder groups at least two ordered family steps",
+        "effect_ladders_have_steps",
+        "every effect ladder groups at least two ordered family steps",
         OffenderQuery::Sql(
-            "SELECT l.name, l.id, 'fewer than two members' FROM enchantment_ladders l
-             LEFT JOIN enchantments e ON e.ladder_id = l.id GROUP BY l.id HAVING COUNT(e.id) < 2",
+            "SELECT l.name, l.id, 'fewer than two members' FROM effect_ladders l
+             LEFT JOIN effects e ON e.ladder_id = l.id GROUP BY l.id HAVING COUNT(e.id) < 2",
         ),
     ),
     IntegrityCheck::hard(
-        "enchantment_names_have_no_em_dash",
+        "effect_names_have_no_em_dash",
         "family names contain no em dash separated prose",
-        OffenderQuery::Sql("SELECT name, id, 'em dash in family name' FROM enchantments WHERE INSTR(name, ' — ') > 0"),
+        OffenderQuery::Sql("SELECT name, id, 'em dash in family name' FROM effects WHERE INSTR(name, ' — ') > 0"),
     ),
     IntegrityCheck::hard(
         "set_tier_lines_do_not_repeat_structured_facts",
@@ -164,7 +164,7 @@ pub const INTEGRITY_CHECKS: &[IntegrityCheck] = &[
         OffenderQuery::Sql(
             "WITH lines AS (
                SELECT t.id AS tier_id, sb.name || ' (' || t.equipped_count || ' pieces)' AS tier_name,
-                      EXISTS (SELECT 1 FROM enchantment_stats es WHERE es.enchantment_id = e.id) AS structured,
+                      EXISTS (SELECT 1 FROM effect_bonuses es WHERE es.effect_id = e.id) AS structured,
                       REPLACE(REPLACE(REPLACE(
                         REPLACE(REPLACE(e.text_template, '+{1}', '{1}'), '+{2}', '{2}'),
                         '{1}', CASE WHEN COALESCE(l.value, e.default_value) IS NULL THEN ''
@@ -173,8 +173,8 @@ pub const INTEGRITY_CHECKS: &[IntegrityCheck] = &[
                                     ELSE printf('%+d', COALESCE(l.value2, e.default_value2)) END),
                         '%b1', COALESCE(bt.name, '')) AS rendered
                FROM set_bonus_tiers t JOIN set_bonuses sb ON sb.id = t.set_id
-               JOIN set_bonus_tier_enchantments l ON l.tier_id = t.id
-               JOIN enchantments e ON e.id = l.enchantment_id
+               JOIN set_bonus_tier_effects l ON l.tier_id = t.id
+               JOIN effects e ON e.id = l.effect_id
                LEFT JOIN bonus_types bt ON bt.id = l.bonus_type_id)
              SELECT prose.tier_name, prose.tier_id, prose.rendered
              FROM lines prose JOIN lines structured ON structured.tier_id = prose.tier_id
@@ -280,13 +280,13 @@ pub const INTEGRITY_CHECKS: &[IntegrityCheck] = &[
     ),
     IntegrityCheck::warn(
         "effects_named_after_stats",
-        "text-only enchantments whose rendered name equals a stat's ignoring case and spaces; \
+        "text-only effects whose rendered name equals a stat's ignoring case and spaces; \
          families with stat rows are excluded",
         OffenderQuery::Sql(
-            "SELECT e.name, e.id, 'named like the stat ' || s.name FROM enchantments e \
+            "SELECT e.name, e.id, 'named like the stat ' || s.name FROM effects e \
              JOIN stats s ON lower(replace(e.name, ' ', '')) = lower(replace(s.name, ' ', '')) \
-             WHERE EXISTS (SELECT 1 FROM item_enchantments ie WHERE ie.enchantment_id = e.id) \
-             AND NOT EXISTS (SELECT 1 FROM enchantment_stats es WHERE es.enchantment_id = e.id) \
+             WHERE EXISTS (SELECT 1 FROM item_effects ie WHERE ie.effect_id = e.id) \
+             AND NOT EXISTS (SELECT 1 FROM effect_bonuses es WHERE es.effect_id = e.id) \
              ORDER BY e.name",
         ),
     )
@@ -298,38 +298,38 @@ pub const INTEGRITY_CHECKS: &[IntegrityCheck] = &[
     )
     .showing_every_offender(),
     IntegrityCheck::warn(
-        "enchantments_named_like_identifiers",
-        "enchantment names with an unspaced lowercase-to-uppercase change or trailing digits need a display name in [names]",
+        "effects_named_like_identifiers",
+        "effect names with an unspaced lowercase-to-uppercase change or trailing digits need a display name in [names]",
         OffenderQuery::Sql(
-            "SELECT name, id, 'identifier-like name' FROM enchantments
+            "SELECT name, id, 'identifier-like name' FROM effects
              WHERE name GLOB '*[a-z][A-Z]*' OR name GLOB '*[0-9]' ORDER BY name",
         ),
     )
     .showing_every_offender(),
     IntegrityCheck::warn(
-        "enchantments_with_values_in_names",
+        "effects_with_values_in_names",
         "family names containing + followed by a number may embed an owner value; wiki prose stays here until its family and amount fields are read",
         OffenderQuery::Sql(
-            "SELECT name, id, 'value-looking text in family name' FROM enchantments
+            "SELECT name, id, 'value-looking text in family name' FROM effects
              WHERE name GLOB '*+[0-9]*' ORDER BY name",
         ),
     )
     .showing_every_offender(),
     IntegrityCheck::warn(
-        "enchantments_with_amounts_named_with_digits",
+        "effects_with_amounts_named_with_digits",
         "a family name with a digit and amount slot may have a value embedded in its identity",
         OffenderQuery::Sql(
-            "SELECT name, id, 'digit in family name with an amount slot' FROM enchantments
+            "SELECT name, id, 'digit in family name with an amount slot' FROM effects
              WHERE amount_count >= 1 AND name GLOB '*[0-9]*' ORDER BY name",
         ),
     )
     .showing_every_offender(),
     IntegrityCheck::warn(
-        "enchantment_templates_with_digits_without_amounts",
+        "effect_templates_with_digits_without_amounts",
         "families whose rendered template contains a digit even though owner links carry no amount: \
          decide whether the digit is a fixed rule, an unmodelled amount or prose",
         OffenderQuery::Sql(
-            "SELECT e.name, e.id, 'digit in template without an owner amount' FROM enchantments e \
+            "SELECT e.name, e.id, 'digit in template without an owner amount' FROM effects e \
              WHERE e.amount_count = 0 AND e.text_template GLOB '*[0-9]*' \
              ORDER BY e.name",
         ),
@@ -369,52 +369,52 @@ pub const INTEGRITY_CHECKS: &[IntegrityCheck] = &[
     )
     .showing_every_offender(),
     IntegrityCheck::warn(
-        "enchantment_links_missing_first_amount",
+        "effect_links_missing_first_amount",
         "an owner of a family with a first amount lacks both an explicit value and a family default",
-        OffenderQuery::Built(enchantment_links_missing_first_amount),
+        OffenderQuery::Built(effect_links_missing_first_amount),
     ),
     IntegrityCheck::warn(
-        "enchantments_with_unused_default",
+        "effects_with_unused_default",
         "families whose default amount is used by every link may have a constant instead",
-        OffenderQuery::Built(enchantments_with_unused_default),
+        OffenderQuery::Built(effects_with_unused_default),
     ),
     IntegrityCheck::warn(
-        "enchantments_text_only_with_item_values",
+        "effects_text_only_with_item_values",
         "text-only families with amounts are candidates for a stat mapping",
         OffenderQuery::Sql(
             "SELECT e.name, e.id, 'text-only family with ' || e.amount_count || ' amount slot(s)'
-             FROM enchantments e WHERE e.amount_count > 0 AND NOT EXISTS
-             (SELECT 1 FROM enchantment_stats s WHERE s.enchantment_id = e.id) ORDER BY e.name",
+             FROM effects e WHERE e.amount_count > 0 AND NOT EXISTS
+             (SELECT 1 FROM effect_bonuses s WHERE s.effect_id = e.id) ORDER BY e.name",
         ),
     ),
     IntegrityCheck::warn(
-        "enchantment_families_sharing_stat_and_type",
+        "effect_families_sharing_stat_and_type",
         "distinct buff families affecting one stat with one bonus type; review identity before consolidating",
         OffenderQuery::Sql(
             "WITH owned AS (
-               SELECT enchantment_id, bonus_type_id FROM item_enchantments
-               UNION SELECT enchantment_id, bonus_type_id FROM augment_enchantments
-               UNION SELECT enchantment_id, bonus_type_id FROM set_bonus_tier_enchantments
-               UNION SELECT enchantment_id, bonus_type_id FROM feat_enchantments
-               UNION SELECT enchantment_id, bonus_type_id FROM item_augment_slot_option_enchantments)
+               SELECT effect_id, bonus_type_id FROM item_effects
+               UNION SELECT effect_id, bonus_type_id FROM augment_effects
+               UNION SELECT effect_id, bonus_type_id FROM set_bonus_tier_effects
+               UNION SELECT effect_id, bonus_type_id FROM feat_effects
+               UNION SELECT effect_id, bonus_type_id FROM item_augment_slot_option_effects)
              SELECT s.name || ' / ' || bt.name, s.id, GROUP_CONCAT(DISTINCT e.name)
-             FROM owned o JOIN enchantments e ON e.id = o.enchantment_id
-             JOIN enchantment_stats es ON es.enchantment_id = e.id
+             FROM owned o JOIN effects e ON e.id = o.effect_id
+             JOIN effect_bonuses es ON es.effect_id = e.id
              JOIN stats s ON s.id = es.stat_id
              JOIN bonus_types bt ON bt.id = COALESCE(es.bonus_type_id, o.bonus_type_id)
              GROUP BY s.id, bt.id HAVING COUNT(DISTINCT e.id) > 1",
         ),
     ),
     IntegrityCheck::warn(
-        "items_without_enchantments",
+        "items_without_effects",
         "items that carry nothing beyond their base weapon or armor stats: no bonus, effect, enhancement bonus, \
          modifier, clicky, augment slot or set membership. Maetrim's files give these items nothing more, so each is \
          either genuinely bare (starter and event gear, ritual components) or a correction candidate whose wiki page \
-         lists enchantments; the top categories are listed",
+         lists effects; the top categories are listed",
         OffenderQuery::Sql(
             "SELECT i.name, i.id, i.item_category FROM items i \
              WHERE i.enhancement_bonus IS NULL \
-             AND NOT EXISTS (SELECT 1 FROM item_enchantments e WHERE e.item_id = i.id) \
+             AND NOT EXISTS (SELECT 1 FROM item_effects e WHERE e.item_id = i.id) \
              AND NOT EXISTS (SELECT 1 FROM modifiers m WHERE m.source_kind = 'item' AND m.source_id = i.id) \
              AND NOT EXISTS (SELECT 1 FROM item_clickies c WHERE c.item_id = i.id) \
              AND NOT EXISTS (SELECT 1 FROM item_augment_slots s WHERE s.item_id = i.id) \
@@ -459,9 +459,9 @@ pub const INTEGRITY_CHECKS: &[IntegrityCheck] = &[
     .ranking_top_details(10),
     IntegrityCheck::warn(
         "unreferenced_stats",
-        "stats that no enchantment an item, augment, feat or set tier carries is on. The guard against a duplicate or \
+        "stats that no effect an item, augment, feat or set tier carries is on. The guard against a duplicate or \
          non-stat name in the seed is the every_seed_stat_has_a_source_or_is_kept_without_one test in \
-         crates/ddo-etl/tests/stats_seed.rs, which fails on any seed stat no enchantment map entry, fixture \
+         crates/ddo-etl/tests/stats_seed.rs, which fails on any seed stat no effect map entry, fixture \
          bonus, wiki or correction bonus reaches unless its STATS_KEPT_WITHOUT_A_SOURCE list names it with a \
          reason. A full upstream build lists that list plus Caster Level, Critical Threat Range, Ki and Maximum \
          Caster Level, whose mapped effect types no current owner carries as a plain stat number",
@@ -474,7 +474,7 @@ pub const INTEGRITY_CHECKS: &[IntegrityCheck] = &[
          grants, or one holding the options an item upgrades through (item_augment_slot_options), is filled by \
          those options and is not listed. Three stay on a full upstream build: Cannith Weapon Extra on the crafting \
          tutorial's Fire Touch Heavy Mace, which no Cannith augment in Maetrim's files fits, and Random Effect 1 and \
-         2 on +5 Engraved Cormyrian Leather Armor, whose random enchantments his files do not model",
+         2 on +5 Engraved Cormyrian Leather Armor, whose random effects his files do not model",
         OffenderQuery::Sql(
             "SELECT t.label, t.id, (SELECT COUNT(*) FROM item_augment_slots s WHERE s.slot_id = t.id) \
              || ' item socket(s)' FROM augment_slot_types t \
@@ -523,13 +523,13 @@ fn offenders_from_sql(db: &Connection, sql: &str) -> Result<Vec<Offender>> {
     Ok(offenders)
 }
 
-fn enchantment_link_amount_counts(db: &Connection, _options: &IntegrityOptions) -> Result<Findings> {
-    let queries: Vec<String> = ENCHANTMENT_OWNER_LINKS
+fn effect_link_amount_counts(db: &Connection, _options: &IntegrityOptions) -> Result<Findings> {
+    let queries: Vec<String> = EFFECT_OWNER_LINKS
         .iter()
         .map(|(table, owner_column)| {
             format!(
                 "SELECT e.name, e.id, '{table} owner ' || l.{owner_column} || ' carries wrong amount count'
-                 FROM {table} l JOIN enchantments e ON e.id = l.enchantment_id
+                 FROM {table} l JOIN effects e ON e.id = l.effect_id
                  WHERE (l.value IS NOT NULL) + (l.value2 IS NOT NULL) > e.amount_count"
             )
         })
@@ -537,13 +537,13 @@ fn enchantment_link_amount_counts(db: &Connection, _options: &IntegrityOptions) 
     Ok(Findings { offenders: Some(offenders_from_sql(db, &queries.join(" UNION ALL "))?), notes: Vec::new() })
 }
 
-fn enchantment_links_missing_first_amount(db: &Connection, _options: &IntegrityOptions) -> Result<Findings> {
-    let queries: Vec<String> = ENCHANTMENT_OWNER_LINKS
+fn effect_links_missing_first_amount(db: &Connection, _options: &IntegrityOptions) -> Result<Findings> {
+    let queries: Vec<String> = EFFECT_OWNER_LINKS
         .iter()
         .map(|(table, owner_column)| {
             format!(
                 "SELECT e.name, e.id, '{table} owner ' || l.{owner_column} || ' lacks first amount'
-                 FROM {table} l JOIN enchantments e ON e.id = l.enchantment_id
+                 FROM {table} l JOIN effects e ON e.id = l.effect_id
                  WHERE e.amount_count >= 1 AND l.value IS NULL AND e.default_value IS NULL"
             )
         })
@@ -551,33 +551,33 @@ fn enchantment_links_missing_first_amount(db: &Connection, _options: &IntegrityO
     Ok(Findings { offenders: Some(offenders_from_sql(db, &queries.join(" UNION ALL "))?), notes: Vec::new() })
 }
 
-fn enchantments_with_unused_default(db: &Connection, _options: &IntegrityOptions) -> Result<Findings> {
+fn effects_with_unused_default(db: &Connection, _options: &IntegrityOptions) -> Result<Findings> {
     let mut queries = Vec::new();
     for (slot, default_column, link_column) in [(1, "default_value", "value"), (2, "default_value2", "value2")] {
-        let any_explicit = ENCHANTMENT_OWNER_LINKS
+        let any_explicit = EFFECT_OWNER_LINKS
             .iter()
-            .map(|(table, _)| format!("SELECT enchantment_id FROM {table} WHERE {link_column} IS NOT NULL"))
+            .map(|(table, _)| format!("SELECT effect_id FROM {table} WHERE {link_column} IS NOT NULL"))
             .collect::<Vec<_>>()
             .join(" UNION ");
         queries.push(format!(
-            "SELECT e.name, e.id, 'slot {slot} default is used by every link' FROM enchantments e
+            "SELECT e.name, e.id, 'slot {slot} default is used by every link' FROM effects e
              WHERE e.{default_column} IS NOT NULL AND e.id NOT IN ({any_explicit})"
         ));
     }
     Ok(Findings { offenders: Some(offenders_from_sql(db, &queries.join(" UNION ALL "))?), notes: Vec::new() })
 }
 
-fn enchantment_bonus_type_sources(db: &Connection, _options: &IntegrityOptions) -> Result<Findings> {
+fn effect_bonus_type_sources(db: &Connection, _options: &IntegrityOptions) -> Result<Findings> {
     let mut queries = vec![
-        "SELECT e.name, e.id, 'stat type conflicts with %b1 template' FROM enchantments e
-         JOIN enchantment_stats s ON s.enchantment_id = e.id
+        "SELECT e.name, e.id, 'stat type conflicts with %b1 template' FROM effects e
+         JOIN effect_bonuses s ON s.effect_id = e.id
          WHERE (s.bonus_type_id IS NULL) <> (INSTR(e.text_template || COALESCE(e.description_template, ''), '%b1') > 0)"
             .to_string(),
     ];
-    queries.extend(ENCHANTMENT_OWNER_LINKS.iter().map(|(table, owner_column)| {
+    queries.extend(EFFECT_OWNER_LINKS.iter().map(|(table, owner_column)| {
         format!(
             "SELECT e.name, e.id, '{table} owner ' || l.{owner_column} || ' has wrong type source'
-             FROM {table} l JOIN enchantments e ON e.id = l.enchantment_id
+             FROM {table} l JOIN effects e ON e.id = l.effect_id
              WHERE (l.bonus_type_id IS NOT NULL) <> (INSTR(e.text_template || COALESCE(e.description_template, ''), '%b1') > 0)"
         )
     }));
@@ -590,7 +590,7 @@ fn effect_types_not_classified(db: &Connection, options: &IntegrityOptions) -> R
         return Ok(Findings { offenders: None, notes: vec![format!("{} is absent", definition_path.display())] });
     }
     let definitions = item_buffs::parse(&definition_path)?;
-    let vocabulary = &ENCHANTMENT_MAP.effect;
+    let vocabulary = &EFFECT_MAP.effect;
     let is_classified = |effect_type: &str| {
         vocabulary.fixed.contains_key(effect_type)
             || vocabulary.by_item.contains_key(effect_type)
@@ -795,10 +795,10 @@ fn unreferenced_stats(db: &Connection, _options: &IntegrityOptions) -> Result<Fi
     let offenders = offenders_from_sql(
         db,
         "SELECT s.name, s.id, s.category FROM stats s WHERE NOT EXISTS (
-           SELECT 1 FROM enchantment_stats es WHERE es.stat_id = s.id AND es.enchantment_id IN (
-             SELECT enchantment_id FROM item_enchantments UNION SELECT enchantment_id FROM augment_enchantments
-             UNION SELECT enchantment_id FROM set_bonus_tier_enchantments UNION SELECT enchantment_id FROM feat_enchantments
-             UNION SELECT enchantment_id FROM item_augment_slot_option_enchantments)) ORDER BY s.name",
+           SELECT 1 FROM effect_bonuses es WHERE es.stat_id = s.id AND es.effect_id IN (
+             SELECT effect_id FROM item_effects UNION SELECT effect_id FROM augment_effects
+             UNION SELECT effect_id FROM set_bonus_tier_effects UNION SELECT effect_id FROM feat_effects
+             UNION SELECT effect_id FROM item_augment_slot_option_effects)) ORDER BY s.name",
     )?;
     Ok(Findings { offenders: Some(offenders), notes: Vec::new() })
 }

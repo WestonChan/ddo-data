@@ -1,5 +1,5 @@
 {
-  "enchantments": [
+  "effects": [
     {
       "augment_count": 9,
       "bonus_types": [
@@ -16,10 +16,10 @@
           "name": "Equipment"
         }
       ],
-      "detail_path": "/v1/enchantments/289",
+      "detail_path": "/v1/effects/289",
       "id": 289,
       "item_count": 47,
-      "kind": "enchantment",
+      "kind": "effect",
       "name": "Acid Absorption",
       "set_count": 2
     },
@@ -54,15 +54,15 @@
           "name": "Enhancement"
         }
       ],
-      "detail_path": "/v1/enchantments/100",
+      "detail_path": "/v1/effects/100",
       "id": 100,
       "item_count": 6,
-      "kind": "enchantment",
+      "kind": "effect",
       "name": "Alignment Absorption",
       "set_count": 0
     }
   ],
   "limit": 100,
   "offset": 0,
-  "total": 35
+  "total": 47
 }

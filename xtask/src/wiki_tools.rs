@@ -236,10 +236,10 @@ fn maetrim_effect_names(db: &Connection) -> Result<Vec<String>> {
         db,
         "SELECT DISTINCT CASE WHEN INSTR(e.name, ' — ') > 0
                 THEN SUBSTR(e.name, 1, INSTR(e.name, ' — ') - 1) ELSE e.name END
-         FROM enchantments e JOIN item_enchantments ie ON ie.enchantment_id = e.id
+         FROM effects e JOIN item_effects ie ON ie.effect_id = e.id
          JOIN items i ON i.id = ie.item_id
          WHERE i.provenance = ?1 AND NOT EXISTS
-           (SELECT 1 FROM enchantment_stats es WHERE es.enchantment_id = e.id)
+           (SELECT 1 FROM effect_bonuses es WHERE es.effect_id = e.id)
          ORDER BY e.id",
         &[Provenance::Maetrim.as_str()],
     )
@@ -249,14 +249,14 @@ fn wiki_created_effect_names(db: &Connection) -> Result<Vec<String>> {
     effect_names_from(
         db,
         "SELECT DISTINCT e.name
-         FROM enchantments e JOIN item_enchantments ie ON ie.enchantment_id = e.id
+         FROM effects e JOIN item_effects ie ON ie.effect_id = e.id
          JOIN items i ON i.id = ie.item_id
          WHERE i.provenance = ?2 AND NOT EXISTS
-           (SELECT 1 FROM enchantment_stats es WHERE es.enchantment_id = e.id)
+           (SELECT 1 FROM effect_bonuses es WHERE es.effect_id = e.id)
            AND NOT EXISTS (
-             SELECT 1 FROM item_enchantments AS maetrim_links
+             SELECT 1 FROM item_effects AS maetrim_links
              JOIN items AS maetrim_items ON maetrim_items.id = maetrim_links.item_id
-             WHERE maetrim_links.enchantment_id = e.id AND maetrim_items.provenance = ?1)
+             WHERE maetrim_links.effect_id = e.id AND maetrim_items.provenance = ?1)
          ORDER BY e.name",
         &[Provenance::Maetrim.as_str(), Provenance::Wiki.as_str()],
     )

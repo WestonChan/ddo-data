@@ -104,9 +104,9 @@ impl<'a> UntypedBonusCorrections<'a> {
             Some(correction_kind) => format!(
                 "type it with a {} bonus_type correction from \"null\" (data/corrections/README.md) or in {}",
                 correction_kind.as_str(),
-                "data/enchantment_map.toml"
+                "data/effect_map.toml"
             ),
-            None => "type it in data/enchantment_map.toml".to_string(),
+            None => "type it in data/effect_map.toml".to_string(),
         };
         bail!(
             "{} {:?}: {} {source_name:?} gives stat {stat_name:?} a bonus with no bonus type; every bonus carries one, so {remedy}",

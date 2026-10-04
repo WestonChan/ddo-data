@@ -26,7 +26,7 @@
       "options": [
         {
           "description": "Accuracy IX: Passive: +9 Competence bonus to attack rolls",
-          "enchantments": [
+          "effects": [
             {
               "bonus_type": "Competence",
               "bonuses": [
@@ -38,7 +38,7 @@
                 }
               ],
               "description": "Provides a 9 Competence bonus to your attack rolls.",
-              "enchantment_id": 75,
+              "effect_id": 75,
               "ladder": null,
               "name": "Attack Bonus",
               "text": "Competence Attack Bonus 9",
@@ -85,7 +85,7 @@
         },
         {
           "description": "Natural Armor +9: Passive: +9 Natural Armor Bonus to Armor Class.",
-          "enchantments": [
+          "effects": [
             {
               "bonus_type": "Resistance",
               "bonuses": [
@@ -97,7 +97,7 @@
                 }
               ],
               "description": "Passive: 9 Natural Armor Bonus to Armor Class.",
-              "enchantment_id": 149,
+              "effect_id": 149,
               "ladder": null,
               "name": "Natural Armor",
               "text": "Resistance Natural Armor 9",
@@ -144,7 +144,7 @@
         },
         {
           "description": "Resistance +9: Passive: +9 Resistance bonus to Fortitude, Reflex, and Will Saving Throws.",
-          "enchantments": [
+          "effects": [
             {
               "bonus_type": "Resistance",
               "bonuses": [
@@ -156,7 +156,7 @@
                 }
               ],
               "description": null,
-              "enchantment_id": 1828,
+              "effect_id": 1828,
               "ladder": null,
               "name": "Saving Throws",
               "text": "Resistance Saving Throws +9",
@@ -223,7 +223,7 @@
   "crafting_systems": [],
   "description": "Lost to a pocket, away from it's locket, the gem was precious indeed.\nOnce fit for a king, of whom bards did sing, the necklace is now in need.",
   "drop_location": "Friends in Low Places, end chest (Epic Normal); Shadow Over Wheloon, quest chain end reward (Epic)",
-  "enchantments": [
+  "effects": [
     {
       "bonus_type": "Enhancement",
       "bonuses": [
@@ -235,7 +235,7 @@
         }
       ],
       "description": "Passive: 8 Enhancement bonus to Charisma.",
-      "enchantment_id": 86,
+      "effect_id": 86,
       "ladder": null,
       "name": "Charisma",
       "text": "Enhancement Charisma 8",

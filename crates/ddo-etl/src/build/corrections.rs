@@ -1,4 +1,4 @@
-use super::enchantments::{EnchantmentCache, EnchantmentOwner};
+use super::effects::{EffectCache, EffectOwner};
 use super::items::item_wiki_url;
 use super::wiki::folded_effect_name;
 use super::{BuildReport, StaleCorrection, StaleCorrectionCause};
@@ -24,7 +24,7 @@ pub(super) fn apply_quest_corrections(
 
 pub(super) fn apply_non_quest_corrections(
     transaction: &Transaction,
-    enchantments: &mut EnchantmentCache<'_>,
+    effects: &mut EffectCache<'_>,
     corrections: &Corrections,
     corrections_applied_while_writing: &[&Correction],
     set_tier_descriptions_by_id: &HashMap<i64, String>,
@@ -33,7 +33,7 @@ pub(super) fn apply_non_quest_corrections(
 ) -> Result<()> {
     apply_corrections_where(
         transaction,
-        Some(enchantments),
+        Some(effects),
         corrections,
         Some(set_tier_descriptions_by_id),
         Some(buff_resolver),
@@ -60,7 +60,7 @@ pub(super) fn record_corrections_applied_while_writing(
 
 fn apply_corrections_where(
     transaction: &Transaction,
-    mut enchantments: Option<&mut EnchantmentCache<'_>>,
+    mut effects: Option<&mut EffectCache<'_>>,
     corrections: &Corrections,
     set_tier_descriptions_by_id: Option<&HashMap<i64, String>>,
     buff_resolver: Option<&BuffResolver>,
@@ -74,7 +74,7 @@ fn apply_corrections_where(
     for correction in field_corrections.into_iter().chain(renames) {
         apply_correction(
             transaction,
-            enchantments.as_deref_mut(),
+            effects.as_deref_mut(),
             correction,
             set_tier_descriptions_by_id,
             buff_resolver,
@@ -87,7 +87,7 @@ fn apply_corrections_where(
 
 fn apply_correction(
     transaction: &Transaction,
-    enchantments: Option<&mut EnchantmentCache<'_>>,
+    effects: Option<&mut EffectCache<'_>>,
     correction: &Correction,
     set_tier_descriptions_by_id: Option<&HashMap<i64, String>>,
     buff_resolver: Option<&BuffResolver>,
@@ -155,7 +155,7 @@ fn apply_correction(
         );
         return Ok(());
     }
-    write_correction(transaction, enchantments, correction, field, &row_ids, buff_resolver)?;
+    write_correction(transaction, effects, correction, field, &row_ids, buff_resolver)?;
     record_applied_correction(transaction, correction, report)
 }
 
@@ -196,7 +196,7 @@ fn record_stale_correction(report: &mut BuildReport, correction: &Correction, ca
 
 fn write_correction(
     transaction: &Transaction,
-    enchantments: Option<&mut EnchantmentCache<'_>>,
+    effects: Option<&mut EffectCache<'_>>,
     correction: &Correction,
     field: &CorrectableField,
     row_ids: &[i64],
@@ -212,7 +212,7 @@ fn write_correction(
             let corrected_bonus = CorrectedBonus::of(transaction, correction)?;
             repoint_bonuses(
                 transaction,
-                enchantments.context("bonus corrections need the family cache")?,
+                effects.context("bonus corrections need the family cache")?,
                 &corrected_bonus,
                 row_ids,
                 corrected_bonus.bonus_type_id,
@@ -225,7 +225,7 @@ fn write_correction(
             let corrected_bonus = CorrectedBonus::of(transaction, correction)?;
             repoint_bonuses(
                 transaction,
-                enchantments.context("bonus corrections need the family cache")?,
+                effects.context("bonus corrections need the family cache")?,
                 &corrected_bonus,
                 row_ids,
                 Some(new_type_id),
@@ -238,7 +238,7 @@ fn write_correction(
                 let stat_row_ids = corrected_bonus.stat_row_ids_on(transaction, *owner_id)?;
                 ensure!(stat_row_ids.len() == 1, "scale or rounding correction must identify one stat row");
                 transaction.execute(
-                    &format!("UPDATE enchantment_stats SET {} = ?1 WHERE rowid = ?2", field.column),
+                    &format!("UPDATE effect_bonuses SET {} = ?1 WHERE rowid = ?2", field.column),
                     params![correction.to.to_sql(), stat_row_ids[0]],
                 )?;
             }
@@ -247,7 +247,7 @@ fn write_correction(
             let CorrectionValue::Bonus(bonus) = &correction.to else { bail!("an add names the bonus in to") };
             add_bonus(
                 transaction,
-                enchantments.context("bonus corrections need the family cache")?,
+                effects.context("bonus corrections need the family cache")?,
                 BonusLinkTable::of(correction.kind)?,
                 row_ids,
                 bonus,
@@ -261,7 +261,7 @@ fn write_correction(
             let CorrectionValue::Tier(tier) = &correction.to else { bail!("a tier add names the tier in to") };
             add_set_tier(
                 transaction,
-                enchantments.context("tier corrections need the family cache")?,
+                effects.context("tier corrections need the family cache")?,
                 row_ids,
                 tier,
                 buff_resolver.context("set tier resolver")?,
@@ -271,7 +271,7 @@ fn write_correction(
             let effect_name = correction.to.added_effect_name().context("an add names the effect in to")?;
             add_item_effect(
                 transaction,
-                enchantments.context("effect corrections need the family cache")?,
+                effects.context("effect corrections need the family cache")?,
                 row_ids,
                 effect_name,
                 correction.to.added_effect_description(),
@@ -284,7 +284,7 @@ fn write_correction(
         FieldShape::Text if correction.kind == CorrectionKind::SetTier && field.name == "description" => {
             write_set_tier_descriptions(
                 transaction,
-                enchantments.context("tier corrections need the family cache")?,
+                effects.context("tier corrections need the family cache")?,
                 row_ids,
                 correction.to.as_text(),
                 buff_resolver.context("set tier resolver")?,
@@ -292,7 +292,7 @@ fn write_correction(
         }
         FieldShape::Removal => remove_rows(
             transaction,
-            enchantments.context("owner removals need the family cache")?,
+            effects.context("owner removals need the family cache")?,
             correction.kind,
             row_ids,
         )?,
@@ -389,7 +389,7 @@ fn current_value(
             ensure!(stat_row_ids.len() <= 1, "scale or rounding correction must identify one stat row");
             let Some(stat_row_id) = stat_row_ids.first() else { return Ok(CorrectionValue::Null) };
             let current: rusqlite::types::Value = transaction.query_row(
-                &format!("SELECT {} FROM enchantment_stats WHERE rowid = ?1", field.column),
+                &format!("SELECT {} FROM effect_bonuses WHERE rowid = ?1", field.column),
                 [stat_row_id],
                 |row| row.get(0),
             )?;
@@ -436,10 +436,10 @@ fn current_value(
             }
             let description = transaction.query_row(
                 "SELECT e.text_template || CASE WHEN e.description_template IS NULL THEN '' ELSE ': ' || e.description_template END
-                 FROM set_bonus_tier_enchantments ste
-                 JOIN enchantments e ON e.id = ste.enchantment_id
+                 FROM set_bonus_tier_effects ste
+                 JOIN effects e ON e.id = ste.effect_id
                  WHERE ste.tier_id = ?1 AND NOT EXISTS
-                   (SELECT 1 FROM enchantment_stats es WHERE es.enchantment_id = e.id)
+                   (SELECT 1 FROM effect_bonuses es WHERE es.effect_id = e.id)
                  ORDER BY ste.sort_order LIMIT 1",
                 [row_id],
                 |row| row.get::<_, String>(0),
@@ -469,9 +469,9 @@ struct BonusLinkTable {
 }
 
 impl BonusLinkTable {
-    const AUGMENT: Self = Self { table_name: "augment_enchantments", owner_column: "augment_id" };
-    const ITEM: Self = Self { table_name: "item_enchantments", owner_column: "item_id" };
-    const SET_TIER: Self = Self { table_name: "set_bonus_tier_enchantments", owner_column: "tier_id" };
+    const AUGMENT: Self = Self { table_name: "augment_effects", owner_column: "augment_id" };
+    const ITEM: Self = Self { table_name: "item_effects", owner_column: "item_id" };
+    const SET_TIER: Self = Self { table_name: "set_bonus_tier_effects", owner_column: "tier_id" };
 
     fn of(kind: CorrectionKind) -> Result<Self> {
         match kind {
@@ -492,7 +492,7 @@ struct CorrectedBonus {
 
 struct BonusToRepoint {
     sort_order: i64,
-    enchantment_id: i64,
+    effect_id: i64,
     link_bonus_type_id: Option<i64>,
     value: Option<i64>,
     second_value: Option<i64>,
@@ -521,8 +521,8 @@ impl CorrectedBonus {
         let effective_value = self.effective_value_sql();
         format!(
             "SELECT {selected_columns} FROM {table_name}
-              JOIN enchantment_stats es ON es.enchantment_id = {table_name}.enchantment_id
-              JOIN enchantments e ON e.id = es.enchantment_id
+              JOIN effect_bonuses es ON es.effect_id = {table_name}.effect_id
+              JOIN effects e ON e.id = es.effect_id
               WHERE {table_name}.{owner_column} = ?1 AND es.stat_id = ?2 AND COALESCE(es.bonus_type_id, {table_name}.bonus_type_id) IS ?3
                 AND (?4 IS NULL OR {effective_value} = ?4)
               ORDER BY {table_name}.sort_order"
@@ -535,7 +535,7 @@ impl CorrectedBonus {
             "CASE es.amount_from WHEN 0 THEN es.constant WHEN 1 THEN COALESCE({table_name}.value, e.default_value)
              ELSE COALESCE({table_name}.value2, e.default_value2) END"
         );
-        ddo_model::enchantment_amount::rounded_amount_sql(&source, "es.scale", "es.rounding")
+        ddo_model::effect_amount::rounded_amount_sql(&source, "es.scale", "es.rounding")
     }
 
     fn stat_row_ids_on(&self, transaction: &Transaction, owner_id: i64) -> Result<Vec<i64>> {
@@ -574,8 +574,8 @@ impl CorrectedBonus {
         let effective_value = self.effective_value_sql();
         let mut statement = transaction.prepare(&format!(
             "SELECT COALESCE(es.bonus_type_id, {table_name}.bonus_type_id), bonus_types.name FROM {table_name}
-               JOIN enchantment_stats es ON es.enchantment_id = {table_name}.enchantment_id
-               JOIN enchantments e ON e.id = es.enchantment_id
+               JOIN effect_bonuses es ON es.effect_id = {table_name}.effect_id
+               JOIN effects e ON e.id = es.effect_id
                LEFT JOIN bonus_types ON bonus_types.id = COALESCE(es.bonus_type_id, {table_name}.bonus_type_id)
               WHERE {table_name}.{owner_column} = ?1 AND es.stat_id = ?2
                 AND (?3 IS NULL OR {effective_value} = ?3)
@@ -597,8 +597,8 @@ const NO_SUCH_BONUS: &str = "no such bonus";
 
 fn item_effect_names(transaction: &Transaction, item_id: i64) -> Result<Vec<String>> {
     let mut statement = transaction.prepare(
-        "SELECT e.name FROM item_enchantments ie JOIN enchantments e ON e.id = ie.enchantment_id
-          WHERE ie.item_id = ?1 AND NOT EXISTS (SELECT 1 FROM enchantment_stats s WHERE s.enchantment_id = e.id)
+        "SELECT e.name FROM item_effects ie JOIN effects e ON e.id = ie.effect_id
+          WHERE ie.item_id = ?1 AND NOT EXISTS (SELECT 1 FROM effect_bonuses s WHERE s.effect_id = e.id)
           ORDER BY ie.sort_order",
     )?;
     let effect_names = statement.query_map(params![item_id], |r| r.get(0))?.collect::<rusqlite::Result<_>>()?;
@@ -607,7 +607,7 @@ fn item_effect_names(transaction: &Transaction, item_id: i64) -> Result<Vec<Stri
 
 fn repoint_bonuses(
     transaction: &Transaction,
-    enchantments: &mut EnchantmentCache<'_>,
+    effects: &mut EffectCache<'_>,
     corrected_bonus: &CorrectedBonus,
     owner_ids: &[i64],
     new_bonus_type_id: Option<i64>,
@@ -616,7 +616,7 @@ fn repoint_bonuses(
     let BonusLinkTable { table_name, owner_column } = corrected_bonus.link_table;
     for owner_id in owner_ids {
         let mut statement = transaction.prepare(&corrected_bonus.matching_bonuses_sql(&format!(
-            "{table_name}.sort_order, {table_name}.enchantment_id, {table_name}.bonus_type_id, {table_name}.value, {table_name}.value2, es.amount_from"
+            "{table_name}.sort_order, {table_name}.effect_id, {table_name}.bonus_type_id, {table_name}.value, {table_name}.value2, es.amount_from"
         )))?;
         let matching_bonuses: Vec<BonusToRepoint> = statement
             .query_map(
@@ -624,7 +624,7 @@ fn repoint_bonuses(
                 |r| {
                     Ok(BonusToRepoint {
                         sort_order: r.get(0)?,
-                        enchantment_id: r.get(1)?,
+                        effect_id: r.get(1)?,
                         link_bonus_type_id: r.get(2)?,
                         value: r.get(3)?,
                         second_value: r.get(4)?,
@@ -633,12 +633,12 @@ fn repoint_bonuses(
                 },
             )?
             .collect::<rusqlite::Result<_>>()?;
-        for BonusToRepoint { sort_order, enchantment_id, link_bonus_type_id, value, second_value, amount_from } in
+        for BonusToRepoint { sort_order, effect_id, link_bonus_type_id, value, second_value, amount_from } in
             matching_bonuses
         {
             let stat_count: i64 = transaction.query_row(
-                "SELECT COUNT(*) FROM enchantment_stats WHERE enchantment_id = ?1",
-                [enchantment_id],
+                "SELECT COUNT(*) FROM effect_bonuses WHERE effect_id = ?1",
+                [effect_id],
                 |row| row.get(0),
             )?;
             if link_bonus_type_id.is_some() && new_bonus_type_id != corrected_bonus.bonus_type_id {
@@ -664,17 +664,17 @@ fn repoint_bonuses(
                 )?;
                 continue;
             }
-            let new_enchantment_id = corrected_enchantment(
+            let new_effect_id = corrected_effect(
                 transaction,
-                enchantments,
-                enchantment_id,
+                effects,
+                effect_id,
                 corrected_bonus.stat_id,
                 new_bonus_type_id,
                 new_value,
             )?;
             transaction.execute(
-                &format!("UPDATE {table_name} SET enchantment_id = ?3, value = ?4, value2 = ?5 WHERE {owner_column} = ?1 AND sort_order = ?2"),
-                params![owner_id, sort_order, new_enchantment_id, value, second_value],
+                &format!("UPDATE {table_name} SET effect_id = ?3, value = ?4, value2 = ?5 WHERE {owner_column} = ?1 AND sort_order = ?2"),
+                params![owner_id, sort_order, new_effect_id, value, second_value],
             )?;
         }
     }
@@ -683,7 +683,7 @@ fn repoint_bonuses(
 
 fn add_bonus(
     transaction: &Transaction,
-    enchantments: &mut EnchantmentCache<'_>,
+    effects: &mut EffectCache<'_>,
     link_table: BonusLinkTable,
     owner_ids: &[i64],
     bonus: &BonusAddition,
@@ -693,23 +693,23 @@ fn add_bonus(
     let _bonus_type_id = bonus_type_id_named(transaction, &bonus.bonus_type)?;
     let bonus_type_name = &bonus.bonus_type;
     let existing =
-        enchantments.family_named(&bonus.stat).map(|family| (family.id, family.amount_count, family.uses_link_type));
-    let enchantment_id = match existing {
+        effects.family_named(&bonus.stat).map(|family| (family.id, family.amount_count, family.uses_link_type));
+    let effect_id = match existing {
         Some((id, count, true)) if count >= 1 => id,
         Some(_) => {
             let name = format!("{} Bonus", bonus.stat);
             let template = format!("%b1 {name} +{{1}}");
-            enchantments.ensure_family(&name, &template, None, 1)?
+            effects.ensure_family(&name, &template, None, 1)?
         }
         None => {
             let name = bonus.stat.clone();
             let template = format!("%b1 {name} +{{1}}");
-            enchantments.ensure_family(&name, &template, None, 1)?
+            effects.ensure_family(&name, &template, None, 1)?
         }
     };
     let stat = ddo_model::stats::Stat::by_name(&bonus.stat).context("validated stat exists")?;
     let bonus_type = ddo_model::enums::BonusType::parse(bonus_type_name).context("validated bonus type exists")?;
-    enchantments.ensure_stat(enchantment_id, stat, None, 1, None, 0)?;
+    effects.ensure_stat(effect_id, stat, None, 1, None, 0)?;
     let BonusLinkTable { table_name, owner_column } = link_table;
     for owner_id in owner_ids {
         let next_order: i64 = transaction.query_row(
@@ -718,15 +718,15 @@ fn add_bonus(
             |row| row.get(0),
         )?;
         let owner = match link_table.table_name {
-            "augment_enchantments" => EnchantmentOwner::Augment,
-            "item_enchantments" => EnchantmentOwner::Item,
-            "set_bonus_tier_enchantments" => EnchantmentOwner::SetBonusTier,
+            "augment_effects" => EffectOwner::Augment,
+            "item_effects" => EffectOwner::Item,
+            "set_bonus_tier_effects" => EffectOwner::SetBonusTier,
             _ => unreachable!(),
         };
-        enchantments.insert_link(
+        effects.insert_link(
             owner,
             *owner_id,
-            enchantment_id,
+            effect_id,
             Some(bonus_type),
             (Some(bonus.value), None),
             next_order as usize,
@@ -735,9 +735,9 @@ fn add_bonus(
     Ok(())
 }
 
-fn corrected_enchantment(
+fn corrected_effect(
     transaction: &Transaction,
-    enchantments: &mut EnchantmentCache<'_>,
+    effects: &mut EffectCache<'_>,
     original_id: i64,
     corrected_stat_id: i64,
     new_bonus_type_id: Option<i64>,
@@ -750,7 +750,7 @@ fn corrected_enchantment(
         constant: Option<i64>,
         sort_order: i64,
     }
-    let original = enchantments.family(original_id).context("corrected family is cached")?;
+    let original = effects.family(original_id).context("corrected family is cached")?;
     let (old_name, text_template, description_template, amount_count) = (
         original.name.clone(),
         original.text_template.clone(),
@@ -758,8 +758,8 @@ fn corrected_enchantment(
         original.amount_count,
     );
     let mut statement = transaction.prepare(
-        "SELECT stat_id, bonus_type_id, amount_from, constant, sort_order FROM enchantment_stats
-         WHERE enchantment_id = ?1 ORDER BY sort_order",
+        "SELECT stat_id, bonus_type_id, amount_from, constant, sort_order FROM effect_bonuses
+         WHERE effect_id = ?1 ORDER BY sort_order",
     )?;
     let stat_rows: Vec<ExistingStatRow> = statement
         .query_map([original_id], |row| {
@@ -776,7 +776,7 @@ fn corrected_enchantment(
         .iter()
         .find(|stat_row| stat_row.stat_id == corrected_stat_id)
         .map(|stat_row| stat_row.bonus_type_id)
-        .context("corrected stat belongs to its enchantment")?;
+        .context("corrected stat belongs to its effect")?;
     let stat_name: String =
         transaction.query_row("SELECT name FROM stats WHERE id = ?1", [corrected_stat_id], |row| row.get(0))?;
     let mut corrected_name = old_name.clone();
@@ -812,7 +812,7 @@ fn corrected_enchantment(
         corrected_name = format!("{corrected_name} ({stat_name} {new_value})");
     }
     let corrected_id =
-        enchantments.ensure_family(&corrected_name, &corrected_text, corrected_description.as_deref(), amount_count)?;
+        effects.ensure_family(&corrected_name, &corrected_text, corrected_description.as_deref(), amount_count)?;
     for ExistingStatRow { stat_id, bonus_type_id, amount_from, constant, sort_order } in stat_rows {
         let stat = ddo_model::stats::STATS.iter().find(|stat| stat.id == stat_id).context("seeded stat exists")?;
         let resolved_type_id =
@@ -828,7 +828,7 @@ fn corrected_enchantment(
             .transpose()?;
         let resolved_amount_from = if stat_id == corrected_stat_id && new_value.is_some() { 0 } else { amount_from };
         let resolved_constant = if stat_id == corrected_stat_id { new_value.or(constant) } else { constant };
-        enchantments.ensure_stat(
+        effects.ensure_stat(
             corrected_id,
             stat,
             bonus_type,
@@ -856,7 +856,7 @@ fn remove_bonuses(transaction: &Transaction, corrected_bonus: &CorrectedBonus, o
 
 fn add_set_tier(
     transaction: &Transaction,
-    enchantments: &mut EnchantmentCache<'_>,
+    effects: &mut EffectCache<'_>,
     set_ids: &[i64],
     tier: &TierAddition,
     buff_resolver: &BuffResolver,
@@ -870,23 +870,23 @@ fn add_set_tier(
         )?;
         let tier_id = transaction.last_insert_rowid();
         let family_name = buff_resolver.set_tier_prose_name(&set_name, tier.equipped_count, &tier.description)?;
-        let enchantment_id = enchantments.ensure_family(&family_name, &tier.description, None, 0)?;
-        enchantments.insert_link(EnchantmentOwner::SetBonusTier, tier_id, enchantment_id, None, (None, None), 0)?;
+        let effect_id = effects.ensure_family(&family_name, &tier.description, None, 0)?;
+        effects.insert_link(EffectOwner::SetBonusTier, tier_id, effect_id, None, (None, None), 0)?;
     }
     Ok(())
 }
 
 fn write_set_tier_descriptions(
     transaction: &Transaction,
-    enchantments: &mut EnchantmentCache<'_>,
+    effects: &mut EffectCache<'_>,
     tier_ids: &[i64],
     description: Option<&str>,
     buff_resolver: &BuffResolver,
 ) -> Result<()> {
     for tier_id in tier_ids {
         let has_structured: bool = transaction.query_row(
-            "SELECT EXISTS (SELECT 1 FROM set_bonus_tier_enchantments l
-             JOIN enchantment_stats s ON s.enchantment_id = l.enchantment_id WHERE l.tier_id = ?1)",
+            "SELECT EXISTS (SELECT 1 FROM set_bonus_tier_effects l
+             JOIN effect_bonuses s ON s.effect_id = l.effect_id WHERE l.tier_id = ?1)",
             [tier_id],
             |row| row.get(0),
         )?;
@@ -895,8 +895,8 @@ fn write_set_tier_descriptions(
         }
         let old_link = transaction
             .query_row(
-                "SELECT l.sort_order, l.enchantment_id, e.name FROM set_bonus_tier_enchantments l
-             JOIN enchantments e ON e.id = l.enchantment_id WHERE l.tier_id = ?1 ORDER BY l.sort_order LIMIT 1",
+                "SELECT l.sort_order, l.effect_id, e.name FROM set_bonus_tier_effects l
+             JOIN effects e ON e.id = l.effect_id WHERE l.tier_id = ?1 ORDER BY l.sort_order LIMIT 1",
                 [tier_id],
                 |row| Ok((row.get::<_, i64>(0)?, row.get::<_, i64>(1)?, row.get::<_, String>(2)?)),
             )
@@ -911,58 +911,58 @@ fn write_set_tier_descriptions(
             if let Some((_, old_id, old_name)) = &old_link {
                 if *old_name == family_name {
                     let owner_count: i64 = transaction.query_row(
-                        "SELECT (SELECT COUNT(*) FROM item_enchantments WHERE enchantment_id = ?1)
-                              + (SELECT COUNT(*) FROM augment_enchantments WHERE enchantment_id = ?1)
-                              + (SELECT COUNT(*) FROM set_bonus_tier_enchantments WHERE enchantment_id = ?1)
-                              + (SELECT COUNT(*) FROM feat_enchantments WHERE enchantment_id = ?1)
-                              + (SELECT COUNT(*) FROM item_augment_slot_option_enchantments WHERE enchantment_id = ?1)",
+                        "SELECT (SELECT COUNT(*) FROM item_effects WHERE effect_id = ?1)
+                              + (SELECT COUNT(*) FROM augment_effects WHERE effect_id = ?1)
+                              + (SELECT COUNT(*) FROM set_bonus_tier_effects WHERE effect_id = ?1)
+                              + (SELECT COUNT(*) FROM feat_effects WHERE effect_id = ?1)
+                              + (SELECT COUNT(*) FROM item_augment_slot_option_effects WHERE effect_id = ?1)",
                         [old_id],
                         |row| row.get(0),
                     )?;
                     if owner_count == 1 {
-                        enchantments.replace_family_text(*old_id, description)?;
+                        effects.replace_family_text(*old_id, description)?;
                         continue;
                     }
                 }
             }
             if let Some((old_order, old_id, _)) = &old_link {
                 transaction.execute(
-                    "DELETE FROM set_bonus_tier_enchantments WHERE tier_id = ?1 AND sort_order = ?2",
+                    "DELETE FROM set_bonus_tier_effects WHERE tier_id = ?1 AND sort_order = ?2",
                     params![tier_id, old_order],
                 )?;
-                enchantments.delete_unowned(*old_id)?;
+                effects.delete_unowned(*old_id)?;
             }
             let existing_family =
-                enchantments.family_named(&family_name).map(|family| (family.id, family.text_template.clone()));
-            let enchantment_id = match existing_family {
+                effects.family_named(&family_name).map(|family| (family.id, family.text_template.clone()));
+            let effect_id = match existing_family {
                 Some((id, text)) if text == description => id,
                 Some(_) => anyhow::bail!(
                     "set {set_name:?} tier {equipped_count} prose needs a distinct [names] entry for {description:?}"
                 ),
-                None => enchantments.ensure_family(&family_name, description, None, 0)?,
+                None => effects.ensure_family(&family_name, description, None, 0)?,
             };
             let next_order = match old_link {
                 Some((old_order, _, _)) => old_order,
                 None => transaction.query_row(
-                    "SELECT COALESCE(MAX(sort_order) + 1, 0) FROM set_bonus_tier_enchantments WHERE tier_id = ?1",
+                    "SELECT COALESCE(MAX(sort_order) + 1, 0) FROM set_bonus_tier_effects WHERE tier_id = ?1",
                     [tier_id],
                     |row| row.get(0),
                 )?,
             };
-            enchantments.insert_link(
-                EnchantmentOwner::SetBonusTier,
+            effects.insert_link(
+                EffectOwner::SetBonusTier,
                 *tier_id,
-                enchantment_id,
+                effect_id,
                 None,
                 (None, None),
                 next_order as usize,
             )?;
         } else if let Some((old_order, old_id, _)) = old_link {
             transaction.execute(
-                "DELETE FROM set_bonus_tier_enchantments WHERE tier_id = ?1 AND sort_order = ?2",
+                "DELETE FROM set_bonus_tier_effects WHERE tier_id = ?1 AND sort_order = ?2",
                 params![tier_id, old_order],
             )?;
-            enchantments.delete_unowned(old_id)?;
+            effects.delete_unowned(old_id)?;
         }
     }
     Ok(())
@@ -970,47 +970,40 @@ fn write_set_tier_descriptions(
 
 fn add_item_effect(
     transaction: &Transaction,
-    enchantments: &mut EnchantmentCache<'_>,
+    effects: &mut EffectCache<'_>,
     item_ids: &[i64],
     effect_name: &str,
     description_of_new_effect: Option<&str>,
 ) -> Result<()> {
-    let effect_id = match matching_effect_id(enchantments, effect_name) {
+    let effect_id = match matching_effect_id(effects, effect_name) {
         Some(effect_id) => effect_id,
         None => {
             let rendered_text = match description_of_new_effect {
                 Some(description) => format!("{effect_name}: {description}"),
                 None => effect_name.to_string(),
             };
-            enchantments.ensure_text(effect_name, &rendered_text)?
+            effects.ensure_text(effect_name, &rendered_text)?
         }
     };
     for item_id in item_ids {
         let sort_order: i64 = transaction.query_row(
-            "SELECT COALESCE(MAX(sort_order) + 1, 0) FROM item_enchantments WHERE item_id = ?1",
+            "SELECT COALESCE(MAX(sort_order) + 1, 0) FROM item_effects WHERE item_id = ?1",
             [item_id],
             |row| row.get(0),
         )?;
-        enchantments.insert_link(
-            EnchantmentOwner::Item,
-            *item_id,
-            effect_id,
-            None,
-            (None, None),
-            sort_order as usize,
-        )?;
+        effects.insert_link(EffectOwner::Item, *item_id, effect_id, None, (None, None), sort_order as usize)?;
     }
     Ok(())
 }
 
-fn matching_effect_id(enchantments: &EnchantmentCache<'_>, effect_name: &str) -> Option<i64> {
-    if let Some(family) = enchantments.family_named(effect_name) {
+fn matching_effect_id(effects: &EffectCache<'_>, effect_name: &str) -> Option<i64> {
+    if let Some(family) = effects.family_named(effect_name) {
         return Some(family.id);
     }
     let folded_name = folded_effect_name(effect_name);
-    enchantments
+    effects
         .families()
-        .filter(|family| !enchantments.has_stats(family.id))
+        .filter(|family| !effects.has_stats(family.id))
         .filter(|family| folded_effect_name(&family.name) == folded_name)
         .map(|family| family.id)
         .min()
@@ -1032,7 +1025,7 @@ fn add_item_socket(transaction: &Transaction, item_ids: &[i64], socket_label: &s
 
 fn remove_rows(
     transaction: &Transaction,
-    enchantments: &mut EnchantmentCache<'_>,
+    effects: &mut EffectCache<'_>,
     kind: CorrectionKind,
     row_ids: &[i64],
 ) -> Result<()> {
@@ -1045,15 +1038,15 @@ fn remove_rows(
     let owner_values = vec!["(?)"; row_ids.len()].join(", ");
     let link_query = match kind {
         CorrectionKind::Item => {
-            "SELECT enchantment_id FROM item_enchantments WHERE item_id IN (SELECT id FROM removed_owner)
-             UNION SELECT oe.enchantment_id FROM item_augment_slot_option_enchantments oe
+            "SELECT effect_id FROM item_effects WHERE item_id IN (SELECT id FROM removed_owner)
+             UNION SELECT oe.effect_id FROM item_augment_slot_option_effects oe
              JOIN item_augment_slot_options o ON o.id = oe.option_id WHERE o.item_id IN (SELECT id FROM removed_owner)"
         }
         CorrectionKind::Augment => {
-            "SELECT enchantment_id FROM augment_enchantments WHERE augment_id IN (SELECT id FROM removed_owner)"
+            "SELECT effect_id FROM augment_effects WHERE augment_id IN (SELECT id FROM removed_owner)"
         }
         CorrectionKind::SetTier => {
-            "SELECT enchantment_id FROM set_bonus_tier_enchantments WHERE tier_id IN (SELECT id FROM removed_owner)"
+            "SELECT effect_id FROM set_bonus_tier_effects WHERE tier_id IN (SELECT id FROM removed_owner)"
         }
         _ => unreachable!(),
     };
@@ -1076,7 +1069,7 @@ fn remove_rows(
         transaction.execute(&format!("DELETE FROM {} WHERE id = ?1", kind.table_name()), params![row_id])?;
     }
     for family_id in linked_family_ids {
-        enchantments.delete_unowned(family_id)?;
+        effects.delete_unowned(family_id)?;
     }
     Ok(())
 }

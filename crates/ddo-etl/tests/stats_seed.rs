@@ -1,6 +1,6 @@
 use ddo_etl::build::build_database;
 use ddo_etl::corrections::Corrections;
-use ddo_etl::map::enchantment::ENCHANTMENT_MAP;
+use ddo_etl::map::effect_map::EFFECT_MAP;
 use ddo_etl::wiki::WikiOverrides;
 use ddo_model::stats::STATS;
 use ddo_model::DatasetVersion;
@@ -147,13 +147,13 @@ fn record_template_targets(
 
 fn record_map_targets(sources_by_stat: &mut BTreeMap<String, String>) {
     let item_words_by_kind = his_item_words_by_kind();
-    let vocabulary = &*ENCHANTMENT_MAP;
+    let vocabulary = &*EFFECT_MAP;
     for (kind, stat_name) in &vocabulary.family.fixed {
-        record_source(sources_by_stat, stat_name, format!("enchantment_map.toml [family.fixed] {kind}"));
+        record_source(sources_by_stat, stat_name, format!("effect_map.toml [family.fixed] {kind}"));
     }
     record_template_targets(
         sources_by_stat,
-        "enchantment_map.toml [family]",
+        "effect_map.toml [family]",
         &vocabulary.family.by_item,
         &vocabulary.item_aliases,
         &item_words_by_kind,
@@ -163,12 +163,12 @@ fn record_map_targets(sources_by_stat: &mut BTreeMap<String, String>) {
         [("[effect.fixed]", &vocabulary.effect.fixed), ("[effect.by_item_default]", &vocabulary.effect.by_item_default)]
     {
         for (kind, stat_name) in stat_names_by_kind {
-            record_source(sources_by_stat, stat_name, format!("enchantment_map.toml {section} {kind}"));
+            record_source(sources_by_stat, stat_name, format!("effect_map.toml {section} {kind}"));
         }
     }
     record_template_targets(
         sources_by_stat,
-        "enchantment_map.toml [effect]",
+        "effect_map.toml [effect]",
         &vocabulary.effect.by_item,
         &vocabulary.item_aliases,
         &item_words_by_kind,
@@ -188,12 +188,12 @@ fn record_fixture_build_bonuses(sources_by_stat: &mut BTreeMap<String, String>) 
     .expect("build succeeds on fixtures");
     let mut statement = db
         .prepare(
-            "SELECT s.name, 'a feat bonus' FROM feat_enchantments fe
-             JOIN enchantment_stats es ON es.enchantment_id = fe.enchantment_id JOIN stats s ON s.id = es.stat_id
-             UNION SELECT s.name, 'a set tier bonus' FROM set_bonus_tier_enchantments te
-             JOIN enchantment_stats es ON es.enchantment_id = te.enchantment_id JOIN stats s ON s.id = es.stat_id
-             UNION SELECT s.name, 'an augment bonus' FROM augment_enchantments ae JOIN augments a ON a.id = ae.augment_id
-             JOIN enchantment_stats es ON es.enchantment_id = ae.enchantment_id JOIN stats s ON s.id = es.stat_id
+            "SELECT s.name, 'a feat bonus' FROM feat_effects fe
+             JOIN effect_bonuses es ON es.effect_id = fe.effect_id JOIN stats s ON s.id = es.stat_id
+             UNION SELECT s.name, 'a set tier bonus' FROM set_bonus_tier_effects te
+             JOIN effect_bonuses es ON es.effect_id = te.effect_id JOIN stats s ON s.id = es.stat_id
+             UNION SELECT s.name, 'an augment bonus' FROM augment_effects ae JOIN augments a ON a.id = ae.augment_id
+             JOIN effect_bonuses es ON es.effect_id = ae.effect_id JOIN stats s ON s.id = es.stat_id
              WHERE a.provenance = 'maetrim'",
         )
         .unwrap();

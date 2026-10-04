@@ -6,7 +6,7 @@ use rusqlite::{params, Transaction};
 use std::collections::{BTreeMap, HashMap};
 
 #[derive(Clone)]
-pub(super) struct CachedEnchantment {
+pub(super) struct CachedEffect {
     pub(super) id: i64,
     pub(super) name: String,
     pub(super) text_template: String,
@@ -21,26 +21,26 @@ pub(super) struct CachedEnchantment {
 type StatIdentity = (i64, i64, Option<i64>);
 type StatAmount = (i64, Option<i64>);
 
-pub(super) struct EnchantmentCache<'a> {
+pub(super) struct EffectCache<'a> {
     transaction: &'a Transaction<'a>,
     families_by_name: HashMap<String, i64>,
-    families_by_id: HashMap<i64, CachedEnchantment>,
+    families_by_id: HashMap<i64, CachedEffect>,
     stats: HashMap<StatIdentity, StatAmount>,
 }
 
-impl<'a> EnchantmentCache<'a> {
+impl<'a> EffectCache<'a> {
     pub(super) fn new(transaction: &'a Transaction<'a>) -> Self {
         Self { transaction, families_by_name: HashMap::new(), families_by_id: HashMap::new(), stats: HashMap::new() }
     }
-    pub(super) fn family_named(&self, name: &str) -> Option<&CachedEnchantment> {
+    pub(super) fn family_named(&self, name: &str) -> Option<&CachedEffect> {
         self.families_by_name.get(name).and_then(|id| self.families_by_id.get(id))
     }
 
-    pub(super) fn family(&self, id: i64) -> Option<&CachedEnchantment> {
+    pub(super) fn family(&self, id: i64) -> Option<&CachedEffect> {
         self.families_by_id.get(&id)
     }
 
-    pub(super) fn families(&self) -> impl Iterator<Item = &CachedEnchantment> {
+    pub(super) fn families(&self) -> impl Iterator<Item = &CachedEffect> {
         self.families_by_id.values()
     }
 
@@ -64,21 +64,21 @@ impl<'a> EnchantmentCache<'a> {
                 existing.text_template == text_template
                     && existing.description_template.as_deref() == description_template
                     && existing.amount_count == count,
-                "enchantment {name:?} has conflicting templates or amount counts"
+                "effect {name:?} has conflicting templates or amount counts"
             );
             return Ok(existing.id);
         }
-        ensure!(!name.contains(" — "), "enchantment family {name:?} contains an em dash; add a [names] entry");
+        ensure!(!name.contains(" — "), "effect family {name:?} contains an em dash; add a [names] entry");
         validate_templates(name, text_template, description_template, count)?;
         self.transaction.execute(
-            "INSERT INTO enchantments (name, text_template, description_template, amount_count) VALUES (?1, ?2, ?3, ?4)",
+            "INSERT INTO effects (name, text_template, description_template, amount_count) VALUES (?1, ?2, ?3, ?4)",
             params![name, text_template, description_template, count],
         )?;
         let id = self.transaction.last_insert_rowid();
         self.families_by_name.insert(name.to_string(), id);
         self.families_by_id.insert(
             id,
-            CachedEnchantment {
+            CachedEffect {
                 id,
                 name: name.to_string(),
                 text_template: text_template.to_string(),
@@ -107,24 +107,20 @@ impl<'a> EnchantmentCache<'a> {
         if let Some(existing) = self.stats.get(&key) {
             ensure!(
                 *existing == (amount_from, constant),
-                "enchantment {family_id} stat {:?} has conflicting amount sources",
+                "effect {family_id} stat {:?} has conflicting amount sources",
                 stat.name
             );
             return Ok(());
         }
         let family = self.family(family_id).expect("family is cached before its stat rows");
-        ensure!(
-            amount_from <= family.amount_count,
-            "enchantment {family_id} stat {:?} reads beyond its slots",
-            stat.name
-        );
+        ensure!(amount_from <= family.amount_count, "effect {family_id} stat {:?} reads beyond its slots", stat.name);
         ensure!(
             family.uses_link_type == bonus_type.is_none(),
-            "enchantment {family_id} stat {:?} has its bonus type at the wrong level",
+            "effect {family_id} stat {:?} has its bonus type at the wrong level",
             stat.name
         );
         self.transaction.execute(
-            "INSERT INTO enchantment_stats (enchantment_id, stat_id, bonus_type_id, amount_from, constant, sort_order)
+            "INSERT INTO effect_bonuses (effect_id, stat_id, bonus_type_id, amount_from, constant, sort_order)
              VALUES (?1, ?2, ?3, ?4, ?5, ?6)",
             params![family_id, stat.id, bonus_type.map(BonusType::id), amount_from, constant, sort_order as i64],
         )?;
@@ -138,7 +134,7 @@ impl<'a> EnchantmentCache<'a> {
         if let Some(existing) = self.family_named(family_name) {
             ensure!(
                 !self.has_stats(existing.id),
-                "enchantment family {family_name:?} has both text-only and structured uses"
+                "effect family {family_name:?} has both text-only and structured uses"
             );
         }
         self.ensure_family(family_name, source_name, description, 0)
@@ -152,7 +148,7 @@ impl<'a> EnchantmentCache<'a> {
                 !existing.has_stats
                     && existing.text_template == text_template
                     && existing.description_template == description_template,
-                "enchantment family {family_name:?} has conflicting text {rendered_text:?}; add a [names] entry"
+                "effect family {family_name:?} has conflicting text {rendered_text:?}; add a [names] entry"
             );
         }
         self.ensure_family(family_name, &text_template, description_template.as_deref(), 0)
@@ -164,12 +160,12 @@ impl<'a> EnchantmentCache<'a> {
         ensure!(
             first.is_none_or(|value| family.default_value.is_none_or(|current| current == value))
                 && second.is_none_or(|value| family.default_value2.is_none_or(|current| current == value)),
-            "enchantment {family_id} has conflicting definition defaults"
+            "effect {family_id} has conflicting definition defaults"
         );
         if (first.is_some() && family.default_value.is_none()) || (second.is_some() && family.default_value2.is_none())
         {
             self.transaction.execute(
-                "UPDATE enchantments SET default_value = COALESCE(default_value, ?2),
+                "UPDATE effects SET default_value = COALESCE(default_value, ?2),
                  default_value2 = COALESCE(default_value2, ?3) WHERE id = ?1",
                 params![family_id, first, second],
             )?;
@@ -184,7 +180,7 @@ impl<'a> EnchantmentCache<'a> {
         ensure!(!family.has_stats, "structured family text cannot be replaced");
         validate_templates(&family.name, text_template, None, 0)?;
         self.transaction.execute(
-            "UPDATE enchantments SET text_template = ?2, description_template = NULL, amount_count = 0 WHERE id = ?1",
+            "UPDATE effects SET text_template = ?2, description_template = NULL, amount_count = 0 WHERE id = ?1",
             params![family_id, text_template],
         )?;
         family.text_template = text_template.to_string();
@@ -194,12 +190,12 @@ impl<'a> EnchantmentCache<'a> {
 
     pub(super) fn delete_unowned(&mut self, family_id: i64) -> Result<()> {
         let deleted = self.transaction.execute(
-            "DELETE FROM enchantments WHERE id = ?1
-             AND NOT EXISTS (SELECT 1 FROM item_enchantments WHERE enchantment_id = ?1)
-             AND NOT EXISTS (SELECT 1 FROM augment_enchantments WHERE enchantment_id = ?1)
-             AND NOT EXISTS (SELECT 1 FROM set_bonus_tier_enchantments WHERE enchantment_id = ?1)
-             AND NOT EXISTS (SELECT 1 FROM feat_enchantments WHERE enchantment_id = ?1)
-             AND NOT EXISTS (SELECT 1 FROM item_augment_slot_option_enchantments WHERE enchantment_id = ?1)",
+            "DELETE FROM effects WHERE id = ?1
+             AND NOT EXISTS (SELECT 1 FROM item_effects WHERE effect_id = ?1)
+             AND NOT EXISTS (SELECT 1 FROM augment_effects WHERE effect_id = ?1)
+             AND NOT EXISTS (SELECT 1 FROM set_bonus_tier_effects WHERE effect_id = ?1)
+             AND NOT EXISTS (SELECT 1 FROM feat_effects WHERE effect_id = ?1)
+             AND NOT EXISTS (SELECT 1 FROM item_augment_slot_option_effects WHERE effect_id = ?1)",
             [family_id],
         )?;
         if deleted > 0 {
@@ -213,7 +209,7 @@ impl<'a> EnchantmentCache<'a> {
 
     pub(super) fn insert_link(
         &self,
-        owner: EnchantmentOwner,
+        owner: EffectOwner,
         owner_id: i64,
         family_id: i64,
         bonus_type: Option<BonusType>,
@@ -227,7 +223,7 @@ impl<'a> EnchantmentCache<'a> {
 }
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
-pub(super) enum EnchantmentOwner {
+pub(super) enum EffectOwner {
     Item,
     Augment,
     SetBonusTier,
@@ -235,14 +231,14 @@ pub(super) enum EnchantmentOwner {
     ItemAugmentSlotOption,
 }
 
-impl EnchantmentOwner {
+impl EffectOwner {
     pub(super) const fn table(self) -> (&'static str, &'static str) {
         match self {
-            Self::Item => ("item_enchantments", "item_id"),
-            Self::Augment => ("augment_enchantments", "augment_id"),
-            Self::SetBonusTier => ("set_bonus_tier_enchantments", "tier_id"),
-            Self::Feat => ("feat_enchantments", "feat_id"),
-            Self::ItemAugmentSlotOption => ("item_augment_slot_option_enchantments", "option_id"),
+            Self::Item => ("item_effects", "item_id"),
+            Self::Augment => ("augment_effects", "augment_id"),
+            Self::SetBonusTier => ("set_bonus_tier_effects", "tier_id"),
+            Self::Feat => ("feat_effects", "feat_id"),
+            Self::ItemAugmentSlotOption => ("item_augment_slot_option_effects", "option_id"),
         }
     }
 }
@@ -264,18 +260,18 @@ pub(super) fn validate_templates(
     description_template: Option<&str>,
     count: i64,
 ) -> Result<()> {
-    ensure!((0..=2).contains(&count), "enchantment {name:?}: amount_count {count} is outside 0..=2");
+    ensure!((0..=2).contains(&count), "effect {name:?}: amount_count {count} is outside 0..=2");
     let template_text = format!("{text_template}{}", description_template.unwrap_or(""));
     for slot in 1..=2 {
         let has_slot = template_text.contains(&format!("{{{slot}}}"));
         ensure!(
             has_slot == (slot <= count),
-            "enchantment {name:?}: template placeholders do not match amount_count {count}"
+            "effect {name:?}: template placeholders do not match amount_count {count}"
         );
     }
     ensure!(
         !template_text.contains("%v1") && !template_text.contains("%v2"),
-        "enchantment {name:?}: unconverted amount placeholder"
+        "effect {name:?}: unconverted amount placeholder"
     );
     Ok(())
 }
@@ -289,16 +285,16 @@ fn validate_link(
 ) -> Result<()> {
     let (value, value2) = amounts;
     let present_count = i64::from(value.is_some()) + i64::from(value2.is_some());
-    ensure!(present_count <= count, "enchantment {name:?} link has {present_count} values, at most {count} allowed");
-    ensure!(uses_link_type == bonus_type.is_some(), "enchantment {name:?} link has its bonus type at the wrong level");
+    ensure!(present_count <= count, "effect {name:?} link has {present_count} values, at most {count} allowed");
+    ensure!(uses_link_type == bonus_type.is_some(), "effect {name:?} link has its bonus type at the wrong level");
     Ok(())
 }
 
 fn write_link(
     transaction: &Transaction,
-    owner: EnchantmentOwner,
+    owner: EffectOwner,
     owner_id: i64,
-    enchantment_id: i64,
+    effect_id: i64,
     bonus_type: Option<BonusType>,
     amounts: (Option<i64>, Option<i64>),
     sort_order: usize,
@@ -307,9 +303,9 @@ fn write_link(
     let (table_name, owner_column) = owner.table();
     transaction.prepare_cached(
         &format!(
-            "INSERT INTO {table_name} ({owner_column}, enchantment_id, bonus_type_id, value, value2, sort_order) VALUES (?1, ?2, ?3, ?4, ?5, ?6)"
+            "INSERT INTO {table_name} ({owner_column}, effect_id, bonus_type_id, value, value2, sort_order) VALUES (?1, ?2, ?3, ?4, ?5, ?6)"
         ),
-    )?.execute(params![owner_id, enchantment_id, bonus_type.map(BonusType::id), value, value2, sort_order as i64])?;
+    )?.execute(params![owner_id, effect_id, bonus_type.map(BonusType::id), value, value2, sort_order as i64])?;
     Ok(())
 }
 
@@ -321,31 +317,25 @@ pub(super) fn split_template(display_text: &str) -> (String, Option<String>) {
     }
 }
 
-pub(super) fn insert_ladders(
-    enchantments: &EnchantmentCache<'_>,
-    ladders: &BTreeMap<String, Vec<String>>,
-) -> Result<()> {
-    let transaction = enchantments.transaction;
+pub(super) fn insert_ladders(effects: &EffectCache<'_>, ladders: &BTreeMap<String, Vec<String>>) -> Result<()> {
+    let transaction = effects.transaction;
     for (ladder_name, steps) in ladders {
         ensure!(steps.len() >= 2, "ladder {ladder_name:?} needs at least two steps");
         let present_steps: Vec<_> = steps
             .iter()
-            .filter_map(|step_name| enchantments.family_named(step_name).map(|family| (step_name, family.id)))
+            .filter_map(|step_name| effects.family_named(step_name).map(|family| (step_name, family.id)))
             .collect();
         if present_steps.len() < 2 {
             continue;
         }
-        transaction.execute("INSERT INTO enchantment_ladders (name) VALUES (?1)", [ladder_name])?;
+        transaction.execute("INSERT INTO effect_ladders (name) VALUES (?1)", [ladder_name])?;
         let ladder_id = transaction.last_insert_rowid();
         for (index, (step_name, family_id)) in present_steps.iter().enumerate() {
             let changed_rows = transaction.execute(
-                "UPDATE enchantments SET ladder_id = ?1, ladder_rank = ?2 WHERE id = ?3 AND ladder_id IS NULL",
+                "UPDATE effects SET ladder_id = ?1, ladder_rank = ?2 WHERE id = ?3 AND ladder_id IS NULL",
                 params![ladder_id, index as i64 + 1, family_id],
             )?;
-            ensure!(
-                changed_rows == 1,
-                "ladder {ladder_name:?} step {step_name:?} has no unique owned enchantment family"
-            );
+            ensure!(changed_rows == 1, "ladder {ladder_name:?} step {step_name:?} has no unique owned effect family");
         }
     }
     Ok(())
@@ -353,7 +343,7 @@ pub(super) fn insert_ladders(
 
 #[cfg(test)]
 mod tests {
-    use super::{EnchantmentCache, EnchantmentOwner};
+    use super::{EffectCache, EffectOwner};
     use ddo_model::enums::BonusType;
     use ddo_model::stats::Stat;
     use rusqlite::Connection;
@@ -363,14 +353,14 @@ mod tests {
         let mut db = Connection::open_in_memory().unwrap();
         db.execute_batch(ddo_model::ddl()).unwrap();
         let transaction = db.transaction().unwrap();
-        let mut enchantments = EnchantmentCache::new(&transaction);
-        let stat_id = enchantments.ensure_family("Riposte", "Riposte {1}", None, 1).unwrap();
-        let error = enchantments.ensure_text("Riposte", "Riposte").unwrap_err();
+        let mut effects = EffectCache::new(&transaction);
+        let stat_id = effects.ensure_family("Riposte", "Riposte {1}", None, 1).unwrap();
+        let error = effects.ensure_text("Riposte", "Riposte").unwrap_err();
         assert!(error.to_string().contains("[names]"));
         assert!(stat_id > 0);
-        let linguistics_id = enchantments.ensure_text("Linguistics", "Linguistics 10%").unwrap();
+        let linguistics_id = effects.ensure_text("Linguistics", "Linguistics 10%").unwrap();
         let linguistics_name: String = transaction
-            .query_row("SELECT name FROM enchantments WHERE id = ?1", [linguistics_id], |row| row.get(0))
+            .query_row("SELECT name FROM effects WHERE id = ?1", [linguistics_id], |row| row.get(0))
             .unwrap();
         assert_eq!(linguistics_name, "Linguistics");
     }
@@ -389,14 +379,14 @@ mod tests {
         .unwrap();
         let item_id = db.last_insert_rowid();
         let transaction = db.transaction().unwrap();
-        let mut enchantments = EnchantmentCache::new(&transaction);
-        let enchantment_id = enchantments.ensure_family("Dual Speed", "Dual Speed {1}: {2}", None, 2).unwrap();
+        let mut effects = EffectCache::new(&transaction);
+        let effect_id = effects.ensure_family("Dual Speed", "Dual Speed {1}: {2}", None, 2).unwrap();
         for (sort_order, (stat_name, amount_from)) in
             [("Movement Speed", 1), ("Attack Speed", 2)].into_iter().enumerate()
         {
-            enchantments
+            effects
                 .ensure_stat(
-                    enchantment_id,
+                    effect_id,
                     Stat::by_name(stat_name).unwrap(),
                     Some(BonusType::Enhancement),
                     amount_from,
@@ -405,11 +395,11 @@ mod tests {
                 )
                 .unwrap();
         }
-        enchantments.insert_link(EnchantmentOwner::Item, item_id, enchantment_id, None, (Some(19), None), 0).unwrap();
+        effects.insert_link(EffectOwner::Item, item_id, effect_id, None, (Some(19), None), 0).unwrap();
         let amounts: Vec<Option<i64>> = transaction
             .prepare(
                 "SELECT CASE es.amount_from WHEN 1 THEN ie.value ELSE ie.value2 END
-                 FROM item_enchantments ie JOIN enchantment_stats es ON es.enchantment_id = ie.enchantment_id
+                 FROM item_effects ie JOIN effect_bonuses es ON es.effect_id = ie.effect_id
                  WHERE ie.item_id = ?1 ORDER BY es.sort_order",
             )
             .unwrap()
@@ -418,6 +408,6 @@ mod tests {
             .map(Result::unwrap)
             .collect();
         assert_eq!(amounts, [Some(19), None]);
-        enchantments.insert_link(EnchantmentOwner::Item, item_id, enchantment_id, None, (None, None), 1).unwrap();
+        effects.insert_link(EffectOwner::Item, item_id, effect_id, None, (None, None), 1).unwrap();
     }
 }

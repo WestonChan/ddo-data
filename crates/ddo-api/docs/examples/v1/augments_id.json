@@ -31,7 +31,7 @@
   "description": "+10 Artifact Bonus to Physical Resistance Rating.\nDrops in: Secrets of the Red Wizards, end chest\nThe Darkness and the Light, end chest\nThe Covered Culvert, optional chest\nZoo Creeper, end chest",
   "dual_values": false,
   "effect_description": null,
-  "enchantments": [
+  "effects": [
     {
       "bonus_type": "Artifact",
       "bonuses": [
@@ -43,7 +43,7 @@
         }
       ],
       "description": null,
-      "enchantment_id": 1796,
+      "effect_id": 1796,
       "ladder": null,
       "name": "Physical Resistance Rating",
       "text": "Artifact Physical Resistance Rating +10",
