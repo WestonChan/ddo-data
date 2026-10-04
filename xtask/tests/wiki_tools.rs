@@ -259,7 +259,7 @@ fn wiki_check_warns_about_a_wiki_effect_spelled_like_a_maetrim_effect_apart_from
 
     let report = report_for(&items_with_effect("Maximum Charge Tier / III"));
     let effect_warning =
-        "warning: wiki effect \"Maximum Charge Tier / III\" may be Maetrim's \"MaximumChargeTierIII\" spelled differently";
+        "warning: wiki effect \"Maximum Charge Tier / III\" may be Maetrim's \"Maximum Charge Tier III\" spelled differently";
     let warnings_start = report.find("\nwarnings:").unwrap_or_else(|| panic!("no warnings section in\n{report}"));
     assert!(
         report[warnings_start..].lines().any(|line| line == effect_warning),

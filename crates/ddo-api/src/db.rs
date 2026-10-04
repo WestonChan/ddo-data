@@ -234,13 +234,125 @@ pub(crate) fn bonuses_via(
     owner_column: &str,
     owner_id: i64,
 ) -> Result<Vec<Value>, ApiError> {
+    let source_amount = "CASE es.amount_from WHEN 0 THEN es.constant WHEN 1 THEN COALESCE(j.value, e.default_value) ELSE COALESCE(j.value2, e.default_value2) END";
+    let scaled_amount = ddo_model::enchantment_amount::rounded_amount_sql(source_amount, "es.scale", "es.rounding");
     let sql = format!(
-        "SELECT b.id, b.name, b.description, s.name AS stat, s.category AS stat_category, bt.name AS bonus_type, b.value, b.value2
-           FROM {junction_table} j JOIN bonuses b ON b.id = j.bonus_id JOIN stats s ON s.id = b.stat_id
-           LEFT JOIN bonus_types bt ON bt.id = b.bonus_type_id
-          WHERE j.{owner_column} = ?1 ORDER BY j.sort_order"
+        "SELECT e.id, e.text_template, e.description_template, s.name AS stat, s.category AS stat_category,
+                bt.name AS bonus_type,
+                {scaled_amount} AS value,
+                CASE WHEN es.amount_from = 2 THEN {scaled_amount} END AS value2,
+                COALESCE(j.value, e.default_value) AS template_value,
+                COALESCE(j.value2, e.default_value2) AS template_value2
+           FROM {junction_table} j JOIN enchantments e ON e.id = j.enchantment_id
+           JOIN enchantment_stats es ON es.enchantment_id = e.id JOIN stats s ON s.id = es.stat_id
+           LEFT JOIN bonus_types bt ON bt.id = COALESCE(es.bonus_type_id, j.bonus_type_id)
+          WHERE j.{owner_column} = ?1
+            AND ({source_amount}) IS NOT NULL
+          ORDER BY j.sort_order, es.sort_order"
     );
-    json_rows(db, &sql, [owner_id])
+    let mut bonuses = json_rows(db, &sql, [owner_id])?;
+    for bonus in &mut bonuses {
+        let stat_name = bonus["stat"].as_str().unwrap_or("");
+        let value = bonus["value"].as_i64();
+        let name = match value {
+            Some(value) if value < 0 => format!("{stat_name} {value}"),
+            Some(value) => format!("{stat_name} +{value}"),
+            None => stat_name.to_string(),
+        };
+        let description = bonus["description_template"].as_str().map(|template| {
+            let rendered_title = render_enchantment_template(bonus["text_template"].as_str().unwrap_or(""), bonus);
+            format!("{rendered_title}: {}", render_enchantment_template(template, bonus))
+        });
+        let object = bonus.as_object_mut().expect("query returns objects");
+        object.remove("text_template");
+        object.remove("description_template");
+        object.remove("template_value");
+        object.remove("template_value2");
+        object.insert("name".to_string(), Value::String(name));
+        object.insert("description".to_string(), description.map_or(Value::Null, Value::String));
+    }
+    Ok(bonuses)
+}
+
+pub(crate) fn effects_via(db: &Connection, owner_id: i64) -> Result<Vec<Value>, ApiError> {
+    let mut effects = json_rows(
+        db,
+        "SELECT e.id, e.name AS family_name, e.text_template, e.description_template, bt.name AS bonus_type,
+                COALESCE(ie.value, e.default_value) AS template_value,
+                COALESCE(ie.value2, e.default_value2) AS template_value2,
+                (i.provenance = 'wiki'
+                 AND NOT EXISTS (SELECT 1 FROM item_enchantments other JOIN items source_item ON source_item.id = other.item_id
+                                 WHERE other.enchantment_id = e.id AND source_item.provenance <> 'wiki')
+                 AND NOT EXISTS (SELECT 1 FROM augment_enchantments other WHERE other.enchantment_id = e.id)
+                 AND NOT EXISTS (SELECT 1 FROM set_bonus_tier_enchantments other WHERE other.enchantment_id = e.id)
+                 AND NOT EXISTS (SELECT 1 FROM feat_enchantments other WHERE other.enchantment_id = e.id)
+                 AND NOT EXISTS (SELECT 1 FROM item_augment_slot_option_enchantments other WHERE other.enchantment_id = e.id)) AS wiki_only
+           FROM item_enchantments ie JOIN items i ON i.id = ie.item_id JOIN enchantments e ON e.id = ie.enchantment_id
+           LEFT JOIN bonus_types bt ON bt.id = ie.bonus_type_id
+          WHERE ie.item_id = ?1 AND NOT EXISTS
+                (SELECT 1 FROM enchantment_stats es WHERE es.enchantment_id = e.id)
+          ORDER BY ie.sort_order",
+        [owner_id],
+    )?;
+    for effect in &mut effects {
+        let family_name = effect["family_name"].as_str().unwrap_or("");
+        let text_template = effect["text_template"].as_str().unwrap_or("");
+        let wiki_only = effect["wiki_only"].as_i64() == Some(1);
+        let name = if wiki_only { render_enchantment_template(text_template, effect) } else { family_name.to_string() };
+        let description = if wiki_only {
+            effect["description_template"].as_str().map(|template| render_enchantment_template(template, effect))
+        } else {
+            effect["description_template"].as_str().map_or_else(
+                || (text_template != family_name).then(|| render_enchantment_template(text_template, effect)),
+                |template| {
+                    let rendered_title = render_enchantment_template(text_template, effect);
+                    Some(format!("{rendered_title}: {}", render_enchantment_template(template, effect)))
+                },
+            )
+        };
+        let object = effect.as_object_mut().expect("query returns objects");
+        object.remove("text_template");
+        object.remove("family_name");
+        object.remove("description_template");
+        object.remove("bonus_type");
+        object.remove("template_value");
+        object.remove("template_value2");
+        object.remove("wiki_only");
+        object.insert("name".to_string(), Value::String(name));
+        object.insert("description".to_string(), description.map_or(Value::Null, Value::String));
+        object.insert("value".to_string(), Value::Null);
+        object.insert("target".to_string(), Value::Null);
+    }
+    Ok(effects)
+}
+
+fn render_enchantment_template(template: &str, row: &Value) -> String {
+    let value = row["template_value"].as_i64();
+    let value2 = row["template_value2"].as_i64();
+    let signed_value = value.map(|number| format!("{number:+}")).unwrap_or_default();
+    let signed_value2 = value2.map(|number| format!("{number:+}")).unwrap_or_default();
+    template
+        .replace("+{1}", &signed_value)
+        .replace("+{2}", &signed_value2)
+        .replace("{1}", &value.map(|number| number.to_string()).unwrap_or_default())
+        .replace("{2}", &value2.map(|number| number.to_string()).unwrap_or_default())
+        .replace("%b1", row["bonus_type"].as_str().unwrap_or(""))
+}
+
+#[cfg(test)]
+mod enchantment_template_tests {
+    use super::render_enchantment_template;
+    use serde_json::json;
+
+    #[test]
+    fn a_negative_amount_replaces_an_explicit_plus_sign() {
+        let row = json!({"template_value": -1, "template_value2": null, "bonus_type": "Penalty"});
+        assert_eq!(
+            render_enchantment_template("Curse of Weakness +{1}: {1} %b1", &row),
+            "Curse of Weakness -1: -1 Penalty"
+        );
+        assert_eq!(render_enchantment_template("Curse +{2}", &row), "Curse ");
+    }
 }
 
 #[derive(Default)]

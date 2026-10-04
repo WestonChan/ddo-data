@@ -18,7 +18,7 @@ fn table_names(db: &Connection) -> HashSet<String> {
 }
 
 #[test]
-fn ddl_creates_every_v2_table() {
+fn ddl_creates_enchantment_tables_without_legacy_bonus_tables() {
     let db = fresh_db();
     let tables = table_names(&db);
     for expected_table in [
@@ -39,10 +39,10 @@ fn ddl_creates_every_v2_table() {
         "item_weapon_stats",
         "item_dr_bypass",
         "item_armor_stats",
-        "bonuses",
-        "item_bonuses",
-        "effects",
-        "item_effects",
+        "enchantments",
+        "enchantment_ladders",
+        "enchantment_stats",
+        "item_enchantments",
         "item_augment_slots",
         "item_augment_slot_options",
         "sources",
@@ -56,10 +56,10 @@ fn ddl_creates_every_v2_table() {
         "requirements",
         "augments",
         "augment_slots",
-        "augment_bonuses",
+        "augment_enchantments",
         "set_bonuses",
         "set_bonus_tiers",
-        "set_bonus_tier_bonuses",
+        "set_bonus_tier_enchantments",
         "set_bonus_items",
         "set_bonus_augments",
         "filigrees",
@@ -72,7 +72,8 @@ fn ddl_creates_every_v2_table() {
         "feat_groups",
         "feat_conditional_groups",
         "feat_sub_items",
-        "feat_bonuses",
+        "feat_enchantments",
+        "item_augment_slot_option_enchantments",
         "stances",
         "dcs",
         "attacks",
@@ -102,6 +103,19 @@ fn ddl_creates_every_v2_table() {
         "corrections",
     ] {
         assert!(tables.contains(expected_table), "missing table {expected_table}");
+    }
+    for removed_table in [
+        "bonuses",
+        "effects",
+        "enchantment_tiers",
+        "item_bonuses",
+        "item_effects",
+        "augment_bonuses",
+        "set_bonus_tier_bonuses",
+        "feat_bonuses",
+        "item_augment_slot_option_bonuses",
+    ] {
+        assert!(!tables.contains(removed_table), "legacy table {removed_table} remains");
     }
 }
 
@@ -576,19 +590,157 @@ fn save_progressions_follow_upstream_type_codes() {
 }
 
 #[test]
-fn every_bonus_carries_a_bonus_type() {
+fn enchantment_stat_amount_sources_and_constants_are_checked() {
     let db = fresh_db();
     ddo_model::seeds::insert_all(&db).unwrap();
-    let insert_bonus = |bonus_type_sql: &str| {
-        db.execute(
-            &format!(
-                "INSERT INTO bonuses (name, stat_id, bonus_type_id, value) VALUES ('Probe +1', (SELECT MIN(id) FROM stats), {bonus_type_sql}, 1)"
-            ),
-            [],
+    db.execute(
+        "INSERT INTO enchantments (id, name, text_template, amount_count) VALUES (1, 'Probe', 'Probe {1}', 1)",
+        [],
+    )
+    .unwrap();
+    for (amount_from, constant) in [(0, "NULL"), (1, "1"), (3, "NULL")] {
+        assert!(db
+            .execute(
+                &format!(
+            "INSERT INTO enchantment_stats (enchantment_id, stat_id, bonus_type_id, amount_from, constant, sort_order)
+             VALUES (1, 1, 1, {amount_from}, {constant}, 0)"),
+                []
+            )
+            .is_err());
+    }
+    db.execute(
+        "INSERT INTO enchantment_stats (enchantment_id, stat_id, bonus_type_id, amount_from, sort_order) VALUES (1, 1, 1, 1, 0)",
+        [],
+    ).unwrap();
+}
+
+#[test]
+fn enchantment_defaults_and_scaled_stat_constraints_are_checked() {
+    let db = fresh_db();
+    ddo_model::seeds::insert_all(&db).unwrap();
+    db.execute(
+        "INSERT INTO enchantments (id, name, text_template, amount_count, default_value, default_value2)
+         VALUES (1, 'Scaled Probe', 'Scaled Probe {1} {2}', 2, 3, 4)",
+        [],
+    )
+    .unwrap();
+    db.execute(
+        "INSERT INTO enchantment_stats
+         (enchantment_id, stat_id, bonus_type_id, amount_from, scale, rounding, sort_order)
+         VALUES (1, 1, 1, 1, 0.5, 'up', 0)",
+        [],
+    )
+    .unwrap();
+    for (amount_from, constant, scale, rounding) in [
+        (0, "2", "0.5", "'up'"),
+        (0, "2", "1", "'nearest'"),
+        (1, "NULL", "1", "'away'"),
+        (1, "NULL", "0", "'down'"),
+        (1, "NULL", "-0.5", "'down'"),
+    ] {
+        assert!(db
+            .execute(
+                &format!(
+                    "INSERT INTO enchantment_stats
+                     (enchantment_id, stat_id, bonus_type_id, amount_from, constant, scale, rounding, sort_order)
+                     VALUES (1, 2, 1, {amount_from}, {constant}, {scale}, {rounding}, 1)"
+                ),
+                [],
+            )
+            .is_err());
+    }
+}
+
+#[test]
+fn rounded_amount_sql_handles_positive_and_negative_halves() {
+    let db = fresh_db();
+    let expression = ddo_model::enchantment_amount::rounded_amount_sql("?1", "0.5", "?2");
+    for (amount, rounding, expected) in
+        [(3, "down", 1), (3, "up", 2), (3, "nearest", 2), (-3, "down", -2), (-3, "up", -1), (-3, "nearest", -2)]
+    {
+        let actual: i64 = db.query_row(&format!("SELECT {expression}"), (amount, rounding), |row| row.get(0)).unwrap();
+        assert_eq!(actual, expected, "{amount} with {rounding}");
+    }
+}
+
+#[test]
+fn enchantment_family_amount_urls_and_ladder_positions_are_checked() {
+    let db = fresh_db();
+    for (name, amount_count, wiki_url) in [
+        ("Negative", -1, "NULL"),
+        ("Third", 3, "NULL"),
+        ("Wrong Host", 1, "'https://example.com/page/Wrong_Host'"),
+        ("Wrong Path", 1, "'https://ddowiki.com/Wrong_Path'"),
+    ] {
+        assert!(
+            db.execute(
+                &format!(
+                    "INSERT INTO enchantments (name, text_template, amount_count, wiki_url)
+             VALUES (?1, 'A {{1}}', {amount_count}, {wiki_url})"
+                ),
+                [name]
+            )
+            .is_err(),
+            "{name}"
+        );
+    }
+    db.execute("INSERT INTO enchantment_ladders (id, name) VALUES (1, 'Deception')", []).unwrap();
+    db.execute(
+        "INSERT INTO enchantments (id, name, text_template, amount_count, ladder_id, ladder_rank, wiki_url)
+                VALUES (1, 'Deception', 'Deception {1}', 1, 1, 1, 'https://ddowiki.com/page/Deception')",
+        [],
+    )
+    .unwrap();
+    assert!(db
+        .execute(
+            "INSERT INTO enchantments (name, text_template, amount_count, ladder_id)
+                        VALUES ('Improved Deception', 'Improved Deception', 0, 1)",
+            []
         )
-    };
-    assert!(insert_bonus("NULL").is_err(), "an untyped bonus is refused");
-    insert_bonus("(SELECT id FROM bonus_types WHERE name = 'Enhancement')").unwrap();
+        .is_err());
+    assert!(db
+        .execute(
+            "INSERT INTO enchantments (name, text_template, amount_count, ladder_rank)
+                        VALUES ('Greater Deception', 'Greater Deception', 0, 2)",
+            []
+        )
+        .is_err());
+    assert!(db
+        .execute(
+            "INSERT INTO enchantments (name, text_template, amount_count, ladder_id, ladder_rank)
+                        VALUES ('Duplicate Rank', 'Duplicate Rank', 0, 1, 1)",
+            []
+        )
+        .is_err());
+}
+
+#[test]
+fn enchantment_owner_links_require_the_first_amount_before_the_second() {
+    let db = fresh_db();
+    db.execute(
+        "INSERT INTO enchantments (id, name, text_template, amount_count)
+                VALUES (1, 'Probe', 'Probe {1} {2}', 2)",
+        [],
+    )
+    .unwrap();
+    for (table, owner_column) in [
+        ("item_enchantments", "item_id"),
+        ("augment_enchantments", "augment_id"),
+        ("set_bonus_tier_enchantments", "tier_id"),
+        ("feat_enchantments", "feat_id"),
+        ("item_augment_slot_option_enchantments", "option_id"),
+    ] {
+        assert!(
+            db.execute(
+                &format!(
+                    "INSERT INTO {table} ({owner_column}, enchantment_id, value2, sort_order) VALUES (1, 1, 2, 0)"
+                ),
+                []
+            )
+            .is_err(),
+            "{table}"
+        );
+    }
 }
 
 #[test]
@@ -652,7 +804,8 @@ fn an_item_augment_slot_option_keeps_its_granted_socket_sets_and_bonuses_on_the_
          INSERT INTO augment_slot_types (id, label, family, variant) VALUES (1, 'crafting: attuned to heroism 4', 'crafting', 'attuned to heroism 4'), (2, 'red', 'standard', 'red');
          INSERT INTO item_augment_slots (item_id, sort_order, slot_id) VALUES (1, 0, 1);
          INSERT INTO set_bonuses (id, name) VALUES (1, 'Prowess / Planar Conflux Set Bonus');
-         INSERT INTO bonuses (id, name, stat_id, bonus_type_id, value) VALUES (1, 'Strength +8', 1, 1, 8);",
+         INSERT INTO enchantments (id, name, text_template, amount_count) VALUES (1, 'Strength', 'Strength {1}', 1);
+         INSERT INTO enchantment_stats (enchantment_id, stat_id, bonus_type_id, amount_from, sort_order) VALUES (1, 1, 1, 1, 0);",
     )
     .unwrap();
     db.execute(
@@ -668,7 +821,7 @@ fn an_item_augment_slot_option_keeps_its_granted_socket_sets_and_bonuses_on_the_
     .unwrap();
     db.execute("INSERT INTO item_augment_slot_option_sets (option_id, set_id) VALUES (?1, 1)", [option_id]).unwrap();
     db.execute(
-        "INSERT INTO item_augment_slot_option_bonuses (option_id, bonus_id, sort_order) VALUES (?1, 1, 0)",
+        "INSERT INTO item_augment_slot_option_enchantments (option_id, enchantment_id, value, sort_order) VALUES (?1, 1, 8, 0)",
         [option_id],
     )
     .unwrap();
@@ -694,7 +847,7 @@ fn an_item_augment_slot_option_keeps_its_granted_socket_sets_and_bonuses_on_the_
     assert_eq!(item_socket_count, 1, "a granted socket stays on the option, never an item socket");
     db.execute("DELETE FROM items WHERE id = 1", []).unwrap();
     for option_table in
-        ["item_augment_slot_option_grants", "item_augment_slot_option_sets", "item_augment_slot_option_bonuses"]
+        ["item_augment_slot_option_grants", "item_augment_slot_option_sets", "item_augment_slot_option_enchantments"]
     {
         let row_count: i64 = db.query_row(&format!("SELECT COUNT(*) FROM {option_table}"), [], |r| r.get(0)).unwrap();
         assert_eq!(row_count, 0, "{option_table} rows go with their item");

@@ -117,7 +117,7 @@ declare_list_parameters!(
         ("quest" = Option<i64>, Query, description = "Quest id as /v1/quests lists it; keeps the items its /v1/quests/{id} `items` lists, dropped from any chest, as raid loot or as an end reward (loot his drop text credits to the whole pack is matched by `pack` instead); an id no quest has matches nothing rather than a 400, as an unknown `pack` does"),
         ("quest_chain" = Option<i64>, Query, description = "Quest chain id as /v1/quest-chains lists it; keeps items its end reward offers; an id no chain has matches nothing"),
         ("saga" = Option<i64>, Query, description = "Saga id as /v1/sagas lists it; keeps items its end reward offers in any tier; an id no saga has matches nothing"),
-        ("enchantment" = Option<String>, Query, description = "An enchantment name exactly as /v1/enchantments lists it (a stat name from /v1/stats or an effect name as an item's `effects` give it); several are given as repeated keys (`enchantment=Strength&enchantment=Vorpal`) and keep items carrying any of them. A name may contain commas and is matched whole (`enchantment=Constitution%20Poison%2C%20Lesser`), so a comma never separates names. A stat name matches an item with at least one bonus of its own to that stat, and with `include_set_bonuses=true` also an item whose set has a tier with a bonus to it; an effect name matches an item whose `effects` (its `item_effects` rows) name it; a name that is both matches either way. Matching is case-sensitive; a name that is neither a stat nor an effect is a 400 naming it"),
+        ("enchantment" = Option<String>, Query, description = "An enchantment name exactly as /v1/enchantments lists it (a stat name from /v1/stats or an effect name as an item's `effects` give it); several are given as repeated keys (`enchantment=Strength&enchantment=Vorpal`) and keep items carrying any of them. A name may contain commas and is matched whole (`enchantment=Constitution%20Poison%2C%20Lesser`), so a comma never separates names. A stat name matches an item with at least one bonus of its own to that stat, and with `include_set_bonuses=true` also an item whose set has a tier with a bonus to it; an effect name matches an item's text-only enchantment links; a name that is both matches either way. Matching is case-sensitive; a name that is neither a stat nor an effect is a 400 naming it"),
         ("include_set_bonuses" = Option<bool>, Query, description = "`true` widens the stat names in `enchantment` to also match an item when any tier of its set (see /v1/sets/{id}) carries a bonus to one of them; the item's own bonuses and effects match either way; `false` and unset match the item's own bonuses only; no effect without `enchantment`"),
         ("include_legacy" = Option<bool>, Query, description = "`true` also lists legacy items (`is_legacy`: old versions such as names ending `(legacy)` or `(historic)`, and items the wiki says no longer drop) and counts them in `total`; `false` and unset leave them out. /v1/items/{id} serves a legacy item either way"),
     ),
@@ -222,23 +222,27 @@ const ITEMS_MATCHING_SEARCH_TEXT_SQL: &str = "(i.name LIKE '%' || ? || '%' ESCAP
                  JOIN adventure_packs ap ON ap.id = packs.pack_id WHERE ap.name LIKE ? ESCAPE '\\'))";
 
 const ITEMS_WITH_OWN_BONUS_TO_STATS_SQL: &str =
-    "i.id IN (SELECT ib.item_id FROM stats s JOIN bonuses b ON b.stat_id = s.id \
-     JOIN item_bonuses ib ON ib.bonus_id = b.id WHERE s.name IN (?))";
+    "i.id IN (SELECT ie.item_id FROM stats s JOIN enchantment_stats es ON es.stat_id = s.id \
+     JOIN item_enchantments ie ON ie.enchantment_id = es.enchantment_id WHERE s.name IN (?))";
 
 const ITEMS_WITH_SET_TIER_BONUS_TO_STATS_SQL: &str =
-    "i.id IN (SELECT sbi.item_id FROM stats s JOIN bonuses b ON b.stat_id = s.id \
-     JOIN set_bonus_tier_bonuses tb ON tb.bonus_id = b.id JOIN set_bonus_tiers t ON t.id = tb.tier_id \
+    "i.id IN (SELECT sbi.item_id FROM stats s JOIN enchantment_stats es ON es.stat_id = s.id \
+     JOIN set_bonus_tier_enchantments tb ON tb.enchantment_id = es.enchantment_id JOIN set_bonus_tiers t ON t.id = tb.tier_id \
      JOIN set_bonus_items sbi ON sbi.set_id = t.set_id WHERE s.name IN (?))";
 
 const ITEMS_WITH_EFFECTS_SQL: &str =
-    "i.id IN (SELECT ie.item_id FROM effects e JOIN item_effects ie ON ie.effect_id = e.id WHERE e.name IN (?))";
+    "i.id IN (SELECT ie.item_id FROM enchantments e JOIN item_enchantments ie ON ie.enchantment_id = e.id \
+     WHERE (CASE WHEN INSTR(e.name, ' — ') > 0 THEN SUBSTR(e.name, 1, INSTR(e.name, ' — ') - 1) ELSE e.name END) IN (?)
+     AND NOT EXISTS (SELECT 1 FROM enchantment_stats es WHERE es.enchantment_id = e.id))";
 
 fn first_unknown_enchantment_name(
     db: &rusqlite::Connection,
     enchantment_names: &[String],
 ) -> Result<Option<String>, ApiError> {
     let mut statement = db.prepare_cached(
-        "SELECT EXISTS (SELECT 1 FROM stats WHERE name = ?1) OR EXISTS (SELECT 1 FROM effects WHERE name = ?1)",
+        "SELECT EXISTS (SELECT 1 FROM stats WHERE name = ?1) OR EXISTS (SELECT 1 FROM enchantments e
+         WHERE (CASE WHEN INSTR(e.name, ' — ') > 0 THEN SUBSTR(e.name, 1, INSTR(e.name, ' — ') - 1) ELSE e.name END) = ?1
+         AND NOT EXISTS (SELECT 1 FROM enchantment_stats es WHERE es.enchantment_id = e.id))",
     )?;
     for enchantment_name in enchantment_names {
         if !statement.query_row([enchantment_name], |row| row.get::<_, bool>(0))? {
@@ -348,13 +352,8 @@ async fn item_detail(State(state): State<AppState>, Path(id): Path<i64>) -> Resu
             .pop()
             .unwrap_or(Value::Null);
 
-            item["bonuses"] = Value::Array(bonuses_via(db, "item_bonuses", "item_id", id)?);
-            item["effects"] = Value::Array(json_rows(
-                db,
-                "SELECT e.id, e.name, e.description, ie.value, ie.target FROM item_effects ie JOIN effects e ON e.id = ie.effect_id
-                  WHERE ie.item_id = ?1 ORDER BY ie.sort_order",
-                [id],
-            )?);
+            item["bonuses"] = Value::Array(bonuses_via(db, "item_enchantments", "item_id", id)?);
+            item["effects"] = Value::Array(crate::db::effects_via(db, id)?);
 
             let mut augment_slots = json_rows(
                 db,
@@ -414,7 +413,8 @@ fn augment_slot_options(db: &Connection, item_id: i64, slot_order: i64) -> Resul
               WHERE os.option_id = ?1 ORDER BY s.name",
             [option_id],
         )?);
-        option["bonuses"] = Value::Array(bonuses_via(db, "item_augment_slot_option_bonuses", "option_id", option_id)?);
+        option["bonuses"] =
+            Value::Array(bonuses_via(db, "item_augment_slot_option_enchantments", "option_id", option_id)?);
         option["modifiers"] = Value::Array(modifiers_for(db, "item_augment_slot_option", option_id)?);
     }
     Ok(options)

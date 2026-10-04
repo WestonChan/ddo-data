@@ -5,6 +5,7 @@ use ddo_api::{app, AppState};
 use http_body_util::BodyExt;
 use serde_json::{Map, Value};
 use std::collections::BTreeSet;
+use std::io::{BufWriter, Write};
 use std::path::Path;
 use tower::ServiceExt;
 
@@ -111,6 +112,28 @@ pub fn write_response_examples(
             Ok(WrittenExample { file_name, size_bytes: example_text.len() })
         })
         .collect()
+}
+
+pub fn write_v1_detail_snapshot(db_path: &Path, out_path: &Path) -> Result<usize> {
+    let state = AppState::open(db_path)?;
+    let db = rusqlite::Connection::open_with_flags(db_path, rusqlite::OpenFlags::SQLITE_OPEN_READ_ONLY)?;
+    let runtime = tokio::runtime::Builder::new_current_thread().enable_all().build()?;
+    let mut output = BufWriter::new(std::fs::File::create(out_path)?);
+    let mut count = 0;
+    for (kind, table) in [("items", "items"), ("augments", "augments"), ("sets", "set_bonuses"), ("feats", "feats")] {
+        let mut statement = db.prepare(&format!("SELECT id FROM {table} ORDER BY id"))?;
+        let ids = statement.query_map([], |row| row.get::<_, i64>(0))?;
+        for id in ids {
+            let id = id?;
+            let path = format!("/v1/{kind}/{id}");
+            let detail =
+                runtime.block_on(sampled_response(&state, &path))?.into_json().with_context(|| path.clone())?;
+            writeln!(output, "{kind}\t{id}\t{}", serde_json::to_string(&detail)?)?;
+            count += 1;
+        }
+    }
+    output.flush()?;
+    Ok(count)
 }
 
 fn example_file_name(example_name: &str) -> String {

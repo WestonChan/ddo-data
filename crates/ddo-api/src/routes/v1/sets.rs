@@ -82,12 +82,34 @@ async fn set_detail(State(state): State<AppState>, Path(id): Path<i64>) -> Resul
             convert_to_booleans(&mut set, &["is_filigree_set"]);
             let mut tiers = json_rows(
                 db,
-                "SELECT id, equipped_count, description FROM set_bonus_tiers WHERE set_id = ?1 ORDER BY equipped_count",
+                "SELECT id, equipped_count FROM set_bonus_tiers WHERE set_id = ?1 ORDER BY equipped_count",
                 [id],
             )?;
+            let tier_lines = json_rows(
+                db,
+                "SELECT l.tier_id, e.text_template,
+                        COALESCE(l.value, e.default_value) AS value,
+                        COALESCE(l.value2, e.default_value2) AS value2,
+                        bt.name AS bonus_type
+                 FROM set_bonus_tier_enchantments l
+                 JOIN set_bonus_tiers t ON t.id = l.tier_id
+                 JOIN enchantments e ON e.id = l.enchantment_id
+                 LEFT JOIN bonus_types bt ON bt.id = l.bonus_type_id
+                 WHERE t.set_id = ?1 ORDER BY t.equipped_count, l.sort_order",
+                [id],
+            )?;
+            let mut lines_by_tier: std::collections::HashMap<i64, Vec<String>> = std::collections::HashMap::new();
+            for line in tier_lines {
+                let tier_id = line["tier_id"].as_i64().unwrap_or(0);
+                lines_by_tier.entry(tier_id).or_default().push(render_set_tier_line(&line));
+            }
             for tier in &mut tiers {
                 let tier_id = tier["id"].as_i64().unwrap_or(0);
-                tier["bonuses"] = Value::Array(bonuses_via(db, "set_bonus_tier_bonuses", "tier_id", tier_id)?);
+                tier["description"] = lines_by_tier
+                    .remove(&tier_id)
+                    .filter(|lines| !lines.is_empty())
+                    .map_or(Value::Null, |lines| Value::String(lines.join("\n")));
+                tier["bonuses"] = Value::Array(bonuses_via(db, "set_bonus_tier_enchantments", "tier_id", tier_id)?);
                 tier["modifiers"] = Value::Array(modifiers_for(db, "set_bonus_tier", tier_id)?);
             }
             set["tiers"] = Value::Array(tiers);
@@ -107,6 +129,19 @@ async fn set_detail(State(state): State<AppState>, Path(id): Path<i64>) -> Resul
             Ok(Json(set))
         })
         .await
+}
+
+fn render_set_tier_line(line: &Value) -> String {
+    let signed_value = line["value"].as_i64().map(|amount| format!("{amount:+}")).unwrap_or_default();
+    let signed_value2 = line["value2"].as_i64().map(|amount| format!("{amount:+}")).unwrap_or_default();
+    line["text_template"]
+        .as_str()
+        .unwrap_or("")
+        .replace("+{1}", "{1}")
+        .replace("+{2}", "{2}")
+        .replace("{1}", &signed_value)
+        .replace("{2}", &signed_value2)
+        .replace("%b1", line["bonus_type"].as_str().unwrap_or(""))
 }
 
 fn filigrees_matching_set(db: &rusqlite::Connection, set_id: Option<i64>) -> Result<Vec<Value>, ApiError> {

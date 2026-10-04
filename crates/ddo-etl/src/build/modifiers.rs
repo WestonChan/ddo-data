@@ -1,12 +1,45 @@
+use super::bonus_types::BonusOwnerKind;
 use super::bonus_types::{BonusOrigin, BonusOwner};
+use super::enchantments::EnchantmentOwner;
 use super::{json_number_array, json_string_array, trimmed_non_empty, TableWriter};
+use crate::map::enchantment::ENCHANTMENT_MAP;
 use crate::xml::effect::Effect;
 use crate::xml::requirements::Requirements;
 use anyhow::Result;
 use ddo_model::enums::{ModifierSource, RequirementOwner};
 use rusqlite::params;
 
+pub(super) struct DerivedEnchantmentLink {
+    pub(super) enchantment_id: i64,
+    pub(super) bonus_type: Option<ddo_model::enums::BonusType>,
+    pub(super) value: Option<i64>,
+    pub(super) value2: Option<i64>,
+}
+
 impl TableWriter<'_> {
+    pub(super) fn link_pending_derived_enchantments(&mut self) -> Result<()> {
+        let pending = std::mem::take(&mut self.pending_derived_enchantments);
+        for (owner_kind, owner_id, owner_name, effects) in pending {
+            let bonus_owner_kind = match owner_kind {
+                EnchantmentOwner::Feat => BonusOwnerKind::Feat,
+                EnchantmentOwner::ItemAugmentSlotOption => BonusOwnerKind::ItemAugmentSlotOption,
+                _ => unreachable!(),
+            };
+            let owner = BonusOwner { kind: bonus_owner_kind, name: &owner_name, family: None };
+            for (sort_order, link) in self.ensure_derived_enchantments(&owner, &effects)?.into_iter().enumerate() {
+                self.enchantments.insert_link(
+                    owner_kind,
+                    owner_id,
+                    link.enchantment_id,
+                    link.bonus_type,
+                    (link.value, link.value2),
+                    sort_order,
+                )?;
+            }
+        }
+        Ok(())
+    }
+
     pub(super) fn write_modifiers(&mut self, source: ModifierSource, source_id: i64, effects: &[Effect]) -> Result<()> {
         for (sort_order, effect) in effects.iter().enumerate() {
             let bonus_type_id =
@@ -80,20 +113,114 @@ impl TableWriter<'_> {
         Ok(())
     }
 
-    pub(super) fn ensure_derived_bonuses(&mut self, owner: &BonusOwner, effects: &[Effect]) -> Result<Vec<i64>> {
-        let mut bonus_ids = Vec::new();
+    pub(super) fn ensure_derived_enchantments(
+        &mut self,
+        owner: &BonusOwner,
+        effects: &[Effect],
+    ) -> Result<Vec<DerivedEnchantmentLink>> {
+        let mut links = Vec::new();
         for effect in effects {
-            for bonus in self.effect_resolver.derive_bonuses(effect)? {
-                let bonus_origin = BonusOrigin {
-                    owner,
-                    source_name: &effect.types[0],
-                    stat_name: bonus.stat.name,
-                    value: Some(bonus.value),
+            for effect_type in &effect.types {
+                let mut single_type_effect = effect.clone();
+                single_type_effect.types = vec![effect_type.clone()];
+                let derived_bonuses = self.effect_resolver.derive_bonuses(&single_type_effect)?;
+                if derived_bonuses.is_empty() {
+                    self.ensure_targeted_fixed_effect(&single_type_effect, &mut links)?;
+                    continue;
+                }
+                let all_abilities =
+                    effect_type == "AbilityBonus" && effect.targets.iter().any(|target| target == "All");
+                let groups: Vec<Vec<_>> = if all_abilities {
+                    vec![derived_bonuses]
+                } else {
+                    derived_bonuses.into_iter().map(|bonus| vec![bonus]).collect()
                 };
-                let bonus_type = self.bonus_type_of(&bonus_origin, bonus.bonus_type)?;
-                bonus_ids.push(self.ensure_bonus(bonus.stat, bonus_type, Some(bonus.value), None, None)?);
+                for (group_order, bonuses) in groups.into_iter().enumerate() {
+                    let first_bonus = bonuses[0];
+                    let target = if all_abilities {
+                        Some("All")
+                    } else if effect.targets.len() > group_order {
+                        Some(effect.targets[group_order].as_str())
+                    } else {
+                        effect.targets.first().map(String::as_str)
+                    };
+                    let family_name = self.buff_resolver.effect_family_name(effect_type, target, first_bonus.stat.name);
+                    let bonus_origin = BonusOrigin {
+                        owner,
+                        source_name: effect_type,
+                        stat_name: first_bonus.stat.name,
+                        value: Some(first_bonus.value),
+                    };
+                    let bonus_type = self.bonus_type_of(&bonus_origin, first_bonus.bonus_type)?;
+                    let existing = self
+                        .enchantments
+                        .family_named(&family_name)
+                        .map(|family| (family.id, family.amount_count, family.uses_link_type));
+                    let (enchantment_id, count, uses_link_type) = match existing {
+                        Some(family) => family,
+                        None => {
+                            let (text_template, description_template) = if all_abilities {
+                                ("%b1 All Ability Scores +{1}".to_string(), Some("{1} %b1 bonus to all Ability Scores"))
+                            } else {
+                                (format!("%b1 {family_name} +{{1}}"), None)
+                            };
+                            let enchantment_id = self.enchantments.ensure_family(
+                                &family_name,
+                                &text_template,
+                                description_template,
+                                1,
+                            )?;
+                            (enchantment_id, 1, true)
+                        }
+                    };
+                    let stat_bonus_type = (!uses_link_type).then_some(bonus_type);
+                    let existing_stat = self.enchantments.stat(
+                        enchantment_id,
+                        first_bonus.stat.id,
+                        stat_bonus_type.map(ddo_model::enums::BonusType::id),
+                    );
+                    let (amount_from, constant) =
+                        existing_stat.unwrap_or(if count == 0 { (0, Some(first_bonus.value)) } else { (1, None) });
+                    for (stat_order, bonus) in bonuses.into_iter().enumerate() {
+                        self.enchantments.ensure_stat(
+                            enchantment_id,
+                            bonus.stat,
+                            stat_bonus_type,
+                            amount_from,
+                            constant,
+                            stat_order,
+                        )?;
+                    }
+                    let (value, value2) = match amount_from {
+                        0 => (None, None),
+                        1 => (Some(first_bonus.value), None),
+                        2 => (Some(first_bonus.value), Some(first_bonus.value)),
+                        _ => unreachable!(),
+                    };
+                    links.push(DerivedEnchantmentLink {
+                        enchantment_id,
+                        bonus_type: uses_link_type.then_some(bonus_type),
+                        value,
+                        value2,
+                    });
+                }
             }
         }
-        Ok(bonus_ids)
+        Ok(links)
+    }
+
+    fn ensure_targeted_fixed_effect(&mut self, effect: &Effect, links: &mut Vec<DerivedEnchantmentLink>) -> Result<()> {
+        let Some(stat_name) = ENCHANTMENT_MAP.effect.fixed.get(&effect.types[0]) else {
+            return Ok(());
+        };
+        let Some(target) = self.effect_resolver.qualified_targets(effect) else {
+            return Ok(());
+        };
+        let family_name = format!("{stat_name} ({target})");
+        let value = effect.simple_integer_amount();
+        let text_template = format!("{stat_name} +{{1}} ({target})");
+        let enchantment_id = self.enchantments.ensure_family(&family_name, &text_template, None, 1)?;
+        links.push(DerivedEnchantmentLink { enchantment_id, bonus_type: None, value, value2: None });
+        Ok(())
     }
 }

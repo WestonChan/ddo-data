@@ -4,6 +4,7 @@ mod buffs;
 mod characters;
 mod corrections;
 mod drop_text;
+mod enchantments;
 mod items;
 mod modifiers;
 mod quest_series;
@@ -17,21 +18,21 @@ use crate::map::augment_slot::AugmentSlotType;
 use crate::map::buff::BuffResolver;
 use crate::map::drop_location::{names_saga, reward_giver_name, segment_head};
 use crate::map::effect::EffectResolver;
+use crate::map::enchantment::EffectTargetQualifiers;
 use crate::map::legacy_drop_source::LegacyDropSources;
 use crate::map::source_alias::SourceAliases;
 use crate::wiki::WikiOverrides;
 use crate::xml::challenges::{self, Challenge};
 use crate::xml::items::parse_item_file;
 use crate::xml::quests::Quest;
-use crate::xml::{clickies, item_buffs, patrons, quests};
+use crate::xml::{classes, clickies, item_buffs, patrons, quests, spells};
 use anyhow::{Context, Result};
 use bonus_types::{BonusOrigin, UntypedBonusCorrections};
 use ddo_model::enums::{BonusType, FeatSource, ModifierSource};
-use ddo_model::stats::Stat;
 use ddo_model::{seeds, DatasetVersion, SCHEMA_VERSION};
 use drop_text::DropTextLinker;
 use rusqlite::{params, Connection, OptionalExtension, Transaction};
-use std::collections::{BTreeMap, HashMap};
+use std::collections::{BTreeMap, HashMap, HashSet};
 use std::path::{Path, PathBuf};
 
 #[derive(Debug, Default, Clone, PartialEq, Eq)]
@@ -164,8 +165,18 @@ pub fn build_database(
     seeds::insert_all(db).context("inserting seed tables")?;
 
     let item_buff_definitions = item_buffs::parse(&data_files_dir.join("ItemBuffs.xml"))?;
-    let buff_resolver = BuffResolver::from_definitions(&item_buff_definitions);
-    let effect_resolver = EffectResolver::new();
+    let class_names = files_with_extension(&data_files_dir.join("Classes"), "xml")?
+        .iter()
+        .map(|path| classes::parse(path).map(|class| class.name))
+        .collect::<Result<Vec<_>>>()?;
+    let parsed_spells = if data_files_dir.join("Spells.xml").is_file() {
+        spells::parse(&data_files_dir.join("Spells.xml"))?
+    } else {
+        Vec::new()
+    };
+    let qualifiers = EffectTargetQualifiers::from_vocabularies(class_names, &parsed_spells);
+    let buff_resolver = BuffResolver::from_definitions(&item_buff_definitions).with_qualifiers(qualifiers.clone());
+    let effect_resolver = EffectResolver::new().with_qualifiers(qualifiers);
     let parsed_quests = quests::parse(&data_files_dir.join("Quests.xml"))?;
     let parsed_patrons = patrons::parse(&data_files_dir.join("Patrons.xml"))?;
     let challenges_path = data_files_dir.join("Challenges.xml");
@@ -206,10 +217,12 @@ pub fn build_database(
         effect_resolver: &effect_resolver,
         drop_text_linker: &drop_text_linker,
         untyped_bonus_corrections: UntypedBonusCorrections::from_corrections(corrections)?,
+        enchantments: enchantments::EnchantmentCache::new(&transaction),
         written: WrittenRows::default(),
         pending_set_item_links: Vec::new(),
         pending_set_augment_links: Vec::new(),
         pending_set_option_links: Vec::new(),
+        pending_derived_enchantments: Vec::new(),
     };
 
     writer.write_standard_feats(&data_files_dir.join("Feats.xml"), &mut report)?;
@@ -226,7 +239,7 @@ pub fn build_database(
     {
         writer.write_tree_file(&path, &mut report).with_context(|| format!("{}", path.display()))?;
     }
-    writer.write_spells(&data_files_dir.join("Spells.xml"), &mut report)?;
+    writer.write_spells(&parsed_spells, &mut report)?;
 
     for clickie in &parsed_clickies {
         writer.write_clickie(clickie)?;
@@ -239,6 +252,7 @@ pub fn build_database(
             writer.write_item(item, &mut report).with_context(|| format!("{}", path.display()))?;
         }
     }
+    writer.link_pending_derived_enchantments()?;
 
     for path in files_with_extension(&data_files_dir.join("Augments"), "xml")? {
         writer.write_augments_file(&path, &mut report).with_context(|| format!("{}", path.display()))?;
@@ -264,19 +278,26 @@ pub fn build_database(
     )?;
     corrections::apply_non_quest_corrections(
         &transaction,
+        &mut writer.enchantments,
         corrections,
         &corrections_applied_while_writing,
+        &writer.written.set_tier_descriptions_by_id,
+        &buff_resolver,
         &mut report,
     )?;
     wiki::apply_wiki_overrides(&transaction, wiki_overrides, &drop_text_linker, &mut report)?;
     quest_series::write_wiki_quest_series_rewards(&transaction, wiki_overrides, &mut report)?;
     vendors_and_events::write_wiki_vendor_and_event_items(&transaction, wiki_overrides, &mut report)?;
-    delete_bonuses_nothing_carries(&transaction)?;
-
+    enchantments::insert_ladders(&writer.enchantments, &crate::map::enchantment::ENCHANTMENT_MAP.ladders)?;
     report.legacy_item_count =
         transaction.query_row("SELECT COUNT(*) FROM items WHERE is_legacy", [], |r| r.get::<_, i64>(0))? as usize;
-    report.bonus_count = transaction.query_row("SELECT COUNT(*) FROM bonuses", [], |r| r.get::<_, i64>(0))? as usize;
-    report.effect_count = writer.written.effect_ids_by_name.len();
+    report.bonus_count =
+        transaction.query_row("SELECT COUNT(*) FROM enchantment_stats", [], |r| r.get::<_, i64>(0))? as usize;
+    report.effect_count = transaction.query_row(
+        "SELECT COUNT(*) FROM enchantments WHERE NOT EXISTS (SELECT 1 FROM enchantment_stats s WHERE s.enchantment_id = enchantments.id)",
+        [],
+        |r| r.get::<_, i64>(0),
+    )? as usize;
     report.augment_slot_type_count =
         transaction.query_row("SELECT COUNT(*) FROM augment_slot_types", [], |r| r.get::<_, i64>(0))? as usize;
     report.set_bonus_count = writer.written.set_bonus_ids_by_name.len();
@@ -284,18 +305,6 @@ pub fn build_database(
     report.unmapped_effect_type_counts = effect_resolver.unmapped_type_counts();
     transaction.commit()?;
     Ok(report)
-}
-
-fn delete_bonuses_nothing_carries(transaction: &Transaction) -> Result<()> {
-    transaction.execute(
-        "DELETE FROM bonuses WHERE NOT EXISTS (SELECT 1 FROM item_bonuses r WHERE r.bonus_id = bonuses.id)
-            AND NOT EXISTS (SELECT 1 FROM item_augment_slot_option_bonuses r WHERE r.bonus_id = bonuses.id)
-            AND NOT EXISTS (SELECT 1 FROM augment_bonuses r WHERE r.bonus_id = bonuses.id)
-            AND NOT EXISTS (SELECT 1 FROM feat_bonuses r WHERE r.bonus_id = bonuses.id)
-            AND NOT EXISTS (SELECT 1 FROM set_bonus_tier_bonuses r WHERE r.bonus_id = bonuses.id)",
-        [],
-    )?;
-    Ok(())
 }
 
 #[derive(Debug, Clone, PartialEq, Eq)]
@@ -460,19 +469,17 @@ fn write_challenges(transaction: &Transaction, challenges: &[Challenge]) -> Resu
     Ok(inserted_count)
 }
 
-type BonusKey = (i64, i64, Option<i64>, Option<i64>, Option<String>);
-
 type FeatKey = (String, FeatSource, Option<i64>);
 
 #[derive(Default)]
 pub(crate) struct WrittenRows {
     material_ids_by_name: HashMap<String, i64>,
     augment_slot_type_ids_by_label: HashMap<String, i64>,
-    bonus_ids_by_key: HashMap<BonusKey, i64>,
-    effect_ids_by_name: HashMap<String, i64>,
     clickie_ids_by_name: HashMap<String, i64>,
     set_bonus_ids_by_name: HashMap<String, i64>,
     feat_ids_by_key: HashMap<FeatKey, i64>,
+    set_tier_descriptions_by_id: HashMap<i64, String>,
+    written_enchantment_defaults: HashSet<(i64, Option<i64>, Option<i64>)>,
     modifier_count: usize,
 }
 
@@ -482,10 +489,12 @@ pub(crate) struct TableWriter<'a> {
     effect_resolver: &'a EffectResolver,
     drop_text_linker: &'a DropTextLinker,
     untyped_bonus_corrections: UntypedBonusCorrections<'a>,
+    enchantments: enchantments::EnchantmentCache<'a>,
     written: WrittenRows,
     pending_set_item_links: Vec<(i64, String)>,
     pending_set_augment_links: Vec<(i64, String)>,
     pending_set_option_links: Vec<(i64, String)>,
+    pending_derived_enchantments: Vec<(enchantments::EnchantmentOwner, i64, String, Vec<crate::xml::effect::Effect>)>,
 }
 
 impl TableWriter<'_> {
@@ -494,28 +503,6 @@ impl TableWriter<'_> {
             Some(bonus_type) => Ok(bonus_type),
             None => self.untyped_bonus_corrections.bonus_type_for(bonus_origin),
         }
-    }
-
-    fn ensure_bonus(
-        &mut self,
-        stat: &'static Stat,
-        bonus_type: BonusType,
-        value: Option<i64>,
-        second_value: Option<i64>,
-        description: Option<&str>,
-    ) -> Result<i64> {
-        let key = (stat.id, bonus_type.id(), value, second_value, description.map(str::to_string));
-        if let Some(id) = self.written.bonus_ids_by_key.get(&key) {
-            return Ok(*id);
-        }
-        let bonus_name = bonus_name(stat.name, value);
-        self.transaction.execute(
-            "INSERT INTO bonuses (name, description, stat_id, bonus_type_id, value, value2) VALUES (?1, ?2, ?3, ?4, ?5, ?6)",
-            params![bonus_name, description, stat.id, key.1, value, second_value],
-        )?;
-        let id = self.transaction.last_insert_rowid();
-        self.written.bonus_ids_by_key.insert(key, id);
-        Ok(id)
     }
 
     fn ensure_material(&mut self, name: &str) -> Result<i64> {
@@ -559,14 +546,6 @@ impl TableWriter<'_> {
             self.write_modifiers(ModifierSource::Clickie, id, &clickie.effects)?;
         }
         Ok(())
-    }
-}
-
-pub(crate) fn bonus_name(stat_name: &str, value: Option<i64>) -> String {
-    match value {
-        Some(v) if v < 0 => format!("{stat_name} {v}"),
-        Some(v) => format!("{stat_name} +{v}"),
-        None => stat_name.to_string(),
     }
 }
 

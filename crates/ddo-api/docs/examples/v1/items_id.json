@@ -28,8 +28,8 @@
           "bonuses": [
             {
               "bonus_type": "Competence",
-              "description": null,
-              "id": 4927,
+              "description": "Competence Attack Bonus 9: Provides a 9 Competence bonus to your attack rolls.",
+              "id": 75,
               "name": "Attack Bonus +9",
               "stat": "Attack Bonus",
               "stat_category": "martial",
@@ -79,8 +79,8 @@
           "bonuses": [
             {
               "bonus_type": "Resistance",
-              "description": null,
-              "id": 4928,
+              "description": "Resistance Natural Armor 9: Passive: 9 Natural Armor Bonus to Armor Class.",
+              "id": 149,
               "name": "Armor Class +9",
               "stat": "Armor Class",
               "stat_category": "defensive",
@@ -131,7 +131,7 @@
             {
               "bonus_type": "Resistance",
               "description": null,
-              "id": 2641,
+              "id": 1828,
               "name": "Saving Throws +9",
               "stat": "Saving Throws",
               "stat_category": "defensive",
@@ -197,7 +197,7 @@
     {
       "bonus_type": "Enhancement",
       "description": "Enhancement Charisma 8: Passive: 8 Enhancement bonus to Charisma.",
-      "id": 1697,
+      "id": 86,
       "name": "Charisma +8",
       "stat": "Charisma",
       "stat_category": "ability",

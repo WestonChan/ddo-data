@@ -138,7 +138,7 @@ fn writes_feats_from_all_three_sources() {
         single_value(&db, "SELECT max_times_acquire FROM feats WHERE id = ?1", &[&toughness]);
     assert_eq!(maximum_times_acquired, 99);
     assert_eq!(
-        count(&db, &format!("SELECT COUNT(*) FROM feat_bonuses WHERE feat_id = {toughness}")),
+        count(&db, &format!("SELECT COUNT(*) FROM feat_enchantments WHERE feat_id = {toughness}")),
         0,
         "a TotalLevel vector is not a simple bonus"
     );
@@ -157,7 +157,15 @@ fn writes_feats_from_all_three_sources() {
     let dwarven_stability: i64 =
         single_value(&db, "SELECT id FROM feats WHERE name = 'Dwarven Stability' AND source_kind = 'race'", &[]);
     let (bonus, bonus_type): (String, String) = db
-        .query_row("SELECT b.name, bt.name FROM feat_bonuses fb JOIN bonuses b ON b.id = fb.bonus_id JOIN bonus_types bt ON bt.id = b.bonus_type_id WHERE fb.feat_id = ?1", params![dwarven_stability], |r| Ok((r.get(0)?, r.get(1)?)))
+        .query_row(
+            "SELECT s.name || ' +' || fe.value, bt.name FROM feat_enchantments fe
+                    JOIN enchantment_stats es ON es.enchantment_id = fe.enchantment_id
+                    JOIN stats s ON s.id = es.stat_id
+                    JOIN bonus_types bt ON bt.id = COALESCE(es.bonus_type_id, fe.bonus_type_id)
+                    WHERE fe.feat_id = ?1",
+            params![dwarven_stability],
+            |r| Ok((r.get(0)?, r.get(1)?)),
+        )
         .unwrap();
     assert_eq!((bonus.as_str(), bonus_type.as_str()), ("Balance +4", "Feat"));
 }

@@ -489,6 +489,60 @@ fn qualified_correction_toml(
     correction_toml(kind, name, field, from, to).replacen("\nfield = ", &format!("\n{qualifier_keys}\nfield = "), 1)
 }
 
+#[test]
+fn item_and_set_tier_stat_transform_corrections_follow_written_links() {
+    let (source_db, _) = built_db_with(&[]).unwrap();
+    for (kind, owner_sql) in [
+        (
+            "item_bonus",
+            "SELECT i.name, NULL, s.name, bt.name FROM items i
+             JOIN item_enchantments l ON l.item_id = i.id",
+        ),
+        (
+            "set_tier_bonus",
+            "SELECT sb.name, t.equipped_count, s.name, bt.name FROM set_bonuses sb
+             JOIN set_bonus_tiers t ON t.set_id = sb.id
+             JOIN set_bonus_tier_enchantments l ON l.tier_id = t.id",
+        ),
+    ] {
+        let source_sql = format!(
+            "{owner_sql} JOIN enchantments e ON e.id = l.enchantment_id
+             JOIN enchantment_stats es ON es.enchantment_id = e.id
+             JOIN stats s ON s.id = es.stat_id
+             JOIN bonus_types bt ON bt.id = COALESCE(es.bonus_type_id, l.bonus_type_id)
+             WHERE es.amount_from = 1 AND l.value IS NOT NULL AND es.scale = 1
+             ORDER BY l.value % 2 DESC, l.value DESC LIMIT 1"
+        );
+        let (owner_name, tier_count, stat_name, bonus_type): (String, Option<i64>, String, String) = source_db
+            .query_row(&source_sql, [], |row| Ok((row.get(0)?, row.get(1)?, row.get(2)?, row.get(3)?)))
+            .unwrap();
+        let qualifier = format!(
+            "{}stat = {stat_name:?}\nbonus_type = {bonus_type:?}",
+            tier_count.map_or(String::new(), |count| format!("equipped_count = {count}\n"))
+        );
+        let corrections = format!(
+            "{}{}",
+            qualified_correction_toml(kind, &owner_name, &qualifier, "scale", "1.0", "0.5"),
+            qualified_correction_toml(kind, &owner_name, &qualifier, "rounding", "\"down\"", "\"up\""),
+        );
+        let (corrected_db, report) = built_db_with(&[("transforms.toml", &corrections)]).unwrap();
+        assert_eq!(
+            (report.correction_applied_count, report.correction_stale_count),
+            (2, 0),
+            "{kind}: {:?}",
+            report.stale_corrections
+        );
+        let corrected_sql = source_sql
+            .replace("SELECT i.name, NULL, s.name, bt.name", "SELECT es.scale, es.rounding, l.value, NULL")
+            .replace("SELECT sb.name, t.equipped_count, s.name, bt.name", "SELECT es.scale, es.rounding, l.value, NULL")
+            .replace("AND es.scale = 1", "AND es.scale = 0.5");
+        let (scale, rounding, _, _): (f64, String, i64, Option<i64>) = corrected_db
+            .query_row(&corrected_sql, [], |row| Ok((row.get(0)?, row.get(1)?, row.get(2)?, row.get(3)?)))
+            .unwrap();
+        assert_eq!((scale, rounding.as_str()), (0.5, "up"));
+    }
+}
+
 fn item_names(db: &Connection) -> Vec<String> {
     db.prepare("SELECT name FROM items ORDER BY id")
         .unwrap()
@@ -500,9 +554,11 @@ fn item_names(db: &Connection) -> Vec<String> {
 
 fn augment_bonus_rows(db: &Connection, augment_name: &str) -> Vec<(String, Option<String>, Option<i64>)> {
     db.prepare(
-        "SELECT s.name, bt.name, b.value FROM augments a JOIN augment_bonuses ab ON ab.augment_id = a.id
-           JOIN bonuses b ON b.id = ab.bonus_id JOIN stats s ON s.id = b.stat_id LEFT JOIN bonus_types bt ON bt.id = b.bonus_type_id
-          WHERE a.name = ?1 ORDER BY a.id, ab.sort_order",
+        "SELECT s.name, bt.name, CASE es.amount_from WHEN 0 THEN es.constant WHEN 1 THEN ae.value ELSE ae.value2 END
+           FROM augments a JOIN augment_enchantments ae ON ae.augment_id = a.id
+           JOIN enchantment_stats es ON es.enchantment_id = ae.enchantment_id JOIN stats s ON s.id = es.stat_id
+           LEFT JOIN bonus_types bt ON bt.id = COALESCE(es.bonus_type_id, ae.bonus_type_id)
+          WHERE a.name = ?1 ORDER BY a.id, ae.sort_order, es.sort_order",
     )
     .unwrap()
     .query_map([augment_name], |r| Ok((r.get(0)?, r.get(1)?, r.get(2)?)))
@@ -713,9 +769,7 @@ fn removes_an_item_with_its_child_rows() {
     assert_eq!(report.correction_applied_count, 2, "{:?}", report.stale_corrections);
     assert!(!item_names(&db).iter().any(|name| name == "Legendary Cloak of Winter" || name == "Acid Rune Arm"));
     let id_list = format!("({}, {})", item_ids[0], item_ids[1]);
-    for child_table in
-        ["item_bonuses", "item_effects", "item_augment_slots", "sources", "set_bonus_items", "item_clickies"]
-    {
+    for child_table in ["item_enchantments", "item_augment_slots", "sources", "set_bonus_items", "item_clickies"] {
         assert_eq!(
             row_count(&db, &format!("SELECT COUNT(*) FROM {child_table} WHERE item_id IN {id_list}")),
             0,
@@ -754,7 +808,7 @@ fn removes_an_augment_with_its_child_rows() {
     );
     for orphan_sql in [
         "SELECT COUNT(*) FROM augment_slots WHERE augment_id NOT IN (SELECT id FROM augments)",
-        "SELECT COUNT(*) FROM augment_bonuses WHERE augment_id NOT IN (SELECT id FROM augments)",
+        "SELECT COUNT(*) FROM augment_enchantments WHERE augment_id NOT IN (SELECT id FROM augments)",
         "SELECT COUNT(*) FROM set_bonus_augments WHERE augment_id NOT IN (SELECT id FROM augments)",
         "SELECT COUNT(*) FROM modifiers WHERE source_kind = 'augment' AND source_id NOT IN (SELECT id FROM augments)",
     ] {
@@ -805,23 +859,28 @@ fn corrects_an_augment_bonus_value_and_type_without_touching_the_shared_bonus() 
         report.stale_corrections
     );
     assert_eq!(
-        row_count(&db, "SELECT COUNT(*) FROM bonuses WHERE name = 'Healing Amplification +56'"),
+        row_count(
+            &db,
+            "SELECT COUNT(*) FROM augment_enchantments ae JOIN augments a ON a.id = ae.augment_id
+            JOIN enchantment_stats es ON es.enchantment_id = ae.enchantment_id JOIN stats s ON s.id = es.stat_id
+            WHERE a.name = 'Silverscale' AND s.name = 'Healing Amplification' AND ae.value = 56"
+        ),
         0,
         "the old bonus row is left unchanged for anything else that carries it, then deleted as nothing does"
     );
     assert_eq!(
         row_count(
             &db,
-            "SELECT COUNT(*) FROM bonuses b WHERE NOT EXISTS (SELECT 1 FROM item_bonuses r WHERE r.bonus_id = b.id)
-               AND NOT EXISTS (SELECT 1 FROM item_augment_slot_option_bonuses r WHERE r.bonus_id = b.id)
-               AND NOT EXISTS (SELECT 1 FROM augment_bonuses r WHERE r.bonus_id = b.id)
-               AND NOT EXISTS (SELECT 1 FROM feat_bonuses r WHERE r.bonus_id = b.id)
-               AND NOT EXISTS (SELECT 1 FROM set_bonus_tier_bonuses r WHERE r.bonus_id = b.id)"
+            "SELECT COUNT(*) FROM enchantments e WHERE NOT EXISTS (SELECT 1 FROM item_enchantments r WHERE r.enchantment_id = e.id)
+               AND NOT EXISTS (SELECT 1 FROM item_augment_slot_option_enchantments r WHERE r.enchantment_id = e.id)
+               AND NOT EXISTS (SELECT 1 FROM augment_enchantments r WHERE r.enchantment_id = e.id)
+               AND NOT EXISTS (SELECT 1 FROM feat_enchantments r WHERE r.enchantment_id = e.id)
+               AND NOT EXISTS (SELECT 1 FROM set_bonus_tier_enchantments r WHERE r.enchantment_id = e.id)"
         ),
         0,
         "a bonus the corrections leave nothing carrying is deleted"
     );
-    assert_eq!(report.bonus_count as i64, row_count(&db, "SELECT COUNT(*) FROM bonuses"));
+    assert_eq!(report.bonus_count as i64, row_count(&db, "SELECT COUNT(*) FROM enchantment_stats"));
     let qualifiers: Vec<String> = db
         .prepare("SELECT qualifier FROM corrections ORDER BY qualifier")
         .unwrap()
@@ -881,9 +940,11 @@ fn adds_a_bonus_an_augment_lacks_and_goes_stale_once_he_carries_it() {
 
 fn item_bonus_rows(db: &Connection, item_name: &str) -> Vec<(String, Option<String>, Option<i64>)> {
     db.prepare(
-        "SELECT s.name, bt.name, b.value FROM items i JOIN item_bonuses ib ON ib.item_id = i.id
-           JOIN bonuses b ON b.id = ib.bonus_id JOIN stats s ON s.id = b.stat_id LEFT JOIN bonus_types bt ON bt.id = b.bonus_type_id
-          WHERE i.name = ?1 ORDER BY ib.sort_order",
+        "SELECT s.name, bt.name, CASE es.amount_from WHEN 0 THEN es.constant WHEN 1 THEN ie.value ELSE ie.value2 END
+           FROM items i JOIN item_enchantments ie ON ie.item_id = i.id
+           JOIN enchantment_stats es ON es.enchantment_id = ie.enchantment_id JOIN stats s ON s.id = es.stat_id
+           LEFT JOIN bonus_types bt ON bt.id = COALESCE(es.bonus_type_id, ie.bonus_type_id)
+          WHERE i.name = ?1 ORDER BY ie.sort_order, es.sort_order",
     )
     .unwrap()
     .query_map([item_name], |r| Ok((r.get(0)?, r.get(1)?, r.get(2)?)))
@@ -894,14 +955,17 @@ fn item_bonus_rows(db: &Connection, item_name: &str) -> Vec<(String, Option<Stri
 
 fn set_tier_bonus_rows(db: &Connection, set_name: &str, equipped_count: i64) -> Vec<(String, String, i64)> {
     db.prepare(
-        "SELECT stats.name, bonus_types.name, bonuses.value FROM set_bonuses
+        "SELECT stats.name, bonus_types.name,
+                CASE enchantment_stats.amount_from WHEN 0 THEN enchantment_stats.constant
+                  WHEN 1 THEN set_bonus_tier_enchantments.value ELSE set_bonus_tier_enchantments.value2 END
+         FROM set_bonuses
          JOIN set_bonus_tiers ON set_bonus_tiers.set_id = set_bonuses.id
-         JOIN set_bonus_tier_bonuses ON set_bonus_tier_bonuses.tier_id = set_bonus_tiers.id
-         JOIN bonuses ON bonuses.id = set_bonus_tier_bonuses.bonus_id
-         JOIN stats ON stats.id = bonuses.stat_id
-         JOIN bonus_types ON bonus_types.id = bonuses.bonus_type_id
+         JOIN set_bonus_tier_enchantments ON set_bonus_tier_enchantments.tier_id = set_bonus_tiers.id
+         JOIN enchantment_stats ON enchantment_stats.enchantment_id = set_bonus_tier_enchantments.enchantment_id
+         JOIN stats ON stats.id = enchantment_stats.stat_id
+         JOIN bonus_types ON bonus_types.id = COALESCE(enchantment_stats.bonus_type_id, set_bonus_tier_enchantments.bonus_type_id)
          WHERE set_bonuses.name = ?1 AND set_bonus_tiers.equipped_count = ?2
-         ORDER BY set_bonus_tier_bonuses.sort_order",
+         ORDER BY set_bonus_tier_enchantments.sort_order, enchantment_stats.sort_order",
     )
     .unwrap()
     .query_map(rusqlite::params![set_name, equipped_count], |row| Ok((row.get(0)?, row.get(1)?, row.get(2)?)))
@@ -1213,12 +1277,37 @@ fn corrects_a_set_tier_description_and_removes_an_unlisted_tier() {
     assert_eq!(
         row_count(
             &db,
-            "SELECT COUNT(*) FROM set_bonus_tier_bonuses WHERE tier_id NOT IN (SELECT id FROM set_bonus_tiers)"
+            "SELECT COUNT(*) FROM set_bonus_tier_enchantments WHERE tier_id NOT IN (SELECT id FROM set_bonus_tiers)"
         ),
         0
     );
-    let description: String = db.query_row("SELECT t.description FROM set_bonus_tiers t JOIN set_bonuses s ON s.id = t.set_id WHERE s.name = 'Eminence of Winter' AND t.equipped_count = 2", [], |row| row.get(0)).unwrap();
-    assert_eq!(description, "+31 Artifact PRR");
+    let (family_template, recorded_description): (String, String) = db
+        .query_row(
+            "SELECT e.text_template, c.to_value FROM set_bonus_tiers t JOIN set_bonuses s ON s.id = t.set_id
+         JOIN set_bonus_tier_enchantments te ON te.tier_id = t.id JOIN enchantments e ON e.id = te.enchantment_id
+         JOIN corrections c ON c.name = s.name AND c.kind = 'set_tier' AND c.field = 'description'
+         WHERE s.name = 'Eminence of Winter' AND t.equipped_count = 2
+         ORDER BY te.sort_order LIMIT 1",
+            [],
+            |row| Ok((row.get(0)?, row.get(1)?)),
+        )
+        .unwrap();
+    assert_eq!(family_template, "%b1 Physical Resistance Rating +{1}");
+    assert_eq!(recorded_description, "\"+31 Artifact PRR\"");
+}
+
+#[test]
+fn removing_a_set_tier_deletes_its_unowned_prose_family() {
+    let data_files_dir = data_files_with_untyped("remove-prose-family", &[]);
+    let set_file = data_files_dir.join("SetBonuses.xml");
+    let set_xml = std::fs::read_to_string(&set_file).unwrap();
+    let extra_set = "<SetBonus><Type>Removable Family Set</Type><Buff><EquippedCount>2</EquippedCount><Description>Unshared removable prose</Description></Buff></SetBonus></SetBonuses>";
+    std::fs::write(&set_file, set_xml.replace("</SetBonuses>", extra_set)).unwrap();
+    let correction =
+        qualified_correction_toml("set_tier", "Removable Family Set", "equipped_count = 2", "remove", "0", "1");
+    let (db, report) = built_db_from(&data_files_dir, &[("corrections.toml", &correction)]).unwrap();
+    assert_eq!((report.correction_applied_count, report.correction_stale_count), (1, 0));
+    assert_eq!(row_count(&db, "SELECT COUNT(*) FROM enchantments WHERE name = 'Unshared removable prose'"), 0);
 }
 
 #[test]
@@ -1240,50 +1329,27 @@ fn set_tier_qualifiers_must_be_complete_and_match_the_added_tier() {
 }
 
 #[test]
-fn embedded_set_corrections_structure_the_typed_description_only_tiers() {
+fn embedded_set_corrections_keep_only_fact_changes() {
     let corrections = Corrections::embedded().unwrap();
-    for (name, equipped_count, bonus_type, amount, stats) in [
-        (
-            "Eminence of Winter",
-            3,
-            "Artifact",
-            30,
-            "Healing Amplification,Repair Amplification,Negative Healing Amplification",
-        ),
-        (
-            "Eminence of Winter",
-            5,
-            "Artifact",
-            100,
-            "Melee Threat Generation,Ranged Threat Generation,Spell Threat Generation",
-        ),
-        ("Eminence of Spring", 6, "Artifact", 15, "Doublestrike,Doubleshot"),
-        ("Eminence of Spring", 7, "Artifact", 15, "Melee Power,Ranged Power"),
-        ("Dusk Raider", 3, "Artifact", 15, "Melee Power,Ranged Power"),
-        ("Quickblade", 3, "Artifact", 15, "Doublestrike,Doubleshot"),
-        ("Seasons of the Feywild", 4, "Artifact", 1, "Strength,Dexterity,Constitution,Intelligence,Wisdom,Charisma"),
-        ("Seasons of the Feywild", 7, "Artifact", 5, "Physical Resistance Rating,Magical Resistance Rating"),
-        ("Unbreakable Adamancy", 2, "Luck", 5, "Physical Resistance Rating,Magical Resistance Rating"),
-        ("Double Helix Set", 2, "Insight", 2, "Physical and Magical Resistance Rating"),
-        ("Epic Double Helix Set", 2, "Insight", 5, "Physical and Magical Resistance Rating"),
-        ("The Devil's Handiwork", 5, "Quality", 2, "Strength,Dexterity,Constitution,Intelligence,Wisdom,Charisma"),
-        ("Epic The Devil's Handiwork", 5, "Quality", 3, "Strength,Dexterity,Constitution,Intelligence,Wisdom,Charisma"),
-        ("Planar Focus: Subterfuge", 2, "Insight", 5, "Sneak Attack Hit"),
-    ] {
-        for stat in stats.split(',') {
-            assert!(
-                corrections.entries.iter().any(|correction| {
-                    correction.kind.as_str() == "set_tier_bonus"
-                        && correction.name == name
-                        && correction.equipped_count == Some(equipped_count)
-                        && correction.field == "add"
-                        && correction.from == CorrectionValue::Null
-                        && matches!(&correction.to, CorrectionValue::Bonus(bonus)
-                            if bonus.stat == stat && bonus.bonus_type == bonus_type && bonus.value == amount)
-                }),
-                "{name} {equipped_count}: {stat} {bonus_type} {amount}"
-            );
-        }
+    let set_bonus_additions = corrections
+        .entries
+        .iter()
+        .filter(|correction| correction.kind.as_str() == "set_tier_bonus" && correction.field == "add");
+    assert_eq!(set_bonus_additions.count(), 50);
+    for stat in ["Melee Power", "Ranged Power"] {
+        assert!(
+            corrections.entries.iter().any(|correction| {
+                correction.kind.as_str() == "set_tier_bonus"
+                    && correction.name == "Heart of Blades"
+                    && correction.equipped_count == Some(3)
+                    && correction.stat.as_deref() == Some(stat)
+                    && correction.bonus_type.as_deref() == Some("Artifact")
+                    && correction.field == "value"
+                    && correction.from == CorrectionValue::Integer(5)
+                    && correction.to == CorrectionValue::Integer(10)
+            }),
+            "{stat}"
+        );
     }
 }
 
@@ -1318,8 +1384,10 @@ fn embedded_set_corrections_fix_feather_falling_and_remove_only_celeritys_moveme
 
 fn item_effect_names(db: &Connection, item_name: &str) -> Vec<String> {
     db.prepare(
-        "SELECT e.name FROM items i JOIN item_effects ie ON ie.item_id = i.id JOIN effects e ON e.id = ie.effect_id
-          WHERE i.name = ?1 ORDER BY ie.sort_order",
+        "SELECT CASE WHEN INSTR(e.name, ' — ') > 0 THEN SUBSTR(e.name, 1, INSTR(e.name, ' — ') - 1) ELSE e.name END
+           FROM items i JOIN item_enchantments ie ON ie.item_id = i.id JOIN enchantments e ON e.id = ie.enchantment_id
+          WHERE i.name = ?1 AND NOT EXISTS (SELECT 1 FROM enchantment_stats es WHERE es.enchantment_id = e.id)
+          ORDER BY ie.sort_order",
     )
     .unwrap()
     .query_map([item_name], |r| r.get(0))
@@ -1382,7 +1450,8 @@ fn adds_a_bonus_an_item_lacks_and_goes_stale_once_he_carries_it() {
 
 #[test]
 fn adds_an_effect_an_item_lacks_reusing_his_effect_row_and_goes_stale_once_he_carries_it() {
-    let effect_count_without_corrections = row_count(&built_db_with(&[]).unwrap().0, "SELECT COUNT(*) FROM effects");
+    let effect_count_without_corrections =
+        row_count(&built_db_with(&[]).unwrap().0, "SELECT COUNT(*) FROM enchantments");
     let (db, report) = built_db_with(&[(
         "corrections.toml",
         &(correction_toml("item_effect", "Docent of Defiance", "add", "\"null\"", "\"Feather Falling\"")
@@ -1398,10 +1467,10 @@ fn adds_an_effect_an_item_lacks_reusing_his_effect_row_and_goes_stale_once_he_ca
     );
     assert_eq!(
         item_effect_names(&db, "Docent of Defiance"),
-        ["Hidden Effect Cursed Defiance", "FeatherFalling", "Book Shot"]
+        ["Hidden Effect - Cursed Defiance", "Feather Falling", "Book Shot"]
     );
     assert_eq!(item_effect_names(&db, "Kundarak Delving Boots"), ["Freedom of Movement"]);
-    assert_eq!(row_count(&db, "SELECT COUNT(*) FROM effects"), effect_count_without_corrections + 1);
+    assert_eq!(row_count(&db, "SELECT COUNT(*) FROM enchantments"), effect_count_without_corrections + 1);
     let qualifiers: Vec<String> = db
         .prepare("SELECT qualifier FROM corrections ORDER BY qualifier")
         .unwrap()
@@ -1419,7 +1488,7 @@ fn adds_an_effect_an_item_lacks_reusing_his_effect_row_and_goes_stale_once_he_ca
 }
 
 fn effect_description(db: &Connection, effect_name: &str) -> Option<String> {
-    db.query_row("SELECT description FROM effects WHERE name = ?1", [effect_name], |r| r.get(0)).unwrap()
+    db.query_row("SELECT description_template FROM enchantments WHERE name = ?1", [effect_name], |r| r.get(0)).unwrap()
 }
 
 #[test]
@@ -1455,11 +1524,11 @@ fn an_added_effect_writes_its_description_only_on_the_effect_it_creates() {
     );
     assert_eq!(
         item_effect_names(&db, "Docent of Defiance"),
-        ["Hidden Effect Cursed Defiance", "Book Shot", "FeatherFalling"]
+        ["Hidden Effect - Cursed Defiance", "Book Shot", "Feather Falling"]
     );
     assert_eq!(effect_description(&db, "Book Shot").as_deref(), Some("Hurls books at enemies."));
     assert!(
-        effect_description(&db, "FeatherFalling").unwrap().starts_with("Feather Falling: "),
+        effect_description(&db, "Feather Falling").unwrap().starts_with("This item"),
         "his description wins on the effect row the correction reuses"
     );
     let recorded: Vec<(String, String)> = db
@@ -1596,6 +1665,81 @@ fn built_db_from(
 }
 
 #[test]
+fn a_set_tier_correction_shares_a_family_with_the_same_effect_on_another_set() {
+    let data_files_dir = data_files_with_untyped("shared-set-family", &[]);
+    let set_file = data_files_dir.join("SetBonuses.xml");
+    let source = std::fs::read_to_string(&set_file).unwrap();
+    let added_sets = r#"
+  <SetBonus>
+    <Type>Shaman's Fury</Type>
+    <Buff><EquippedCount>2</EquippedCount><Description>+55 Equipment bonus to your Acid, Cold, Electric, and Fire Spell Power.</Description>
+      <Effect><Type>SpellPower</Type><Bonus>Equipment</Bonus><AType>Simple</AType><Amount size="1">55</Amount>
+        <Item>Acid</Item><Item>Cold</Item><Item>Electric</Item><Item>Fire</Item></Effect>
+    </Buff>
+  </SetBonus>
+  <SetBonus>
+    <Type>Epic Shaman's Fury</Type>
+    <Buff><EquippedCount>2</EquippedCount><Description>+20 Artifact bonus Fire, Cold, Electric, and Acid Spell Power</Description>
+      <Effect><Type>SpellPower</Type><Bonus>Artifact</Bonus><AType>Simple</AType><Amount size="1">20</Amount>
+        <Item>Acid</Item><Item>Cold</Item><Item>Electric</Item><Item>Fire</Item></Effect>
+    </Buff>
+  </SetBonus>
+"#;
+    std::fs::write(&set_file, source.replace("</SetBonuses>", &format!("{added_sets}</SetBonuses>"))).unwrap();
+    let mut corrections = String::new();
+    for stat in ["Acid", "Cold", "Electric", "Fire"] {
+        let qualifier = format!("equipped_count = 2\nstat = \"{stat} Spell Power\"\nbonus_type = \"Equipment\"");
+        corrections.push_str(&qualified_correction_toml(
+            "set_tier_bonus",
+            "Shaman's Fury",
+            &qualifier,
+            "bonus_type",
+            "\"Equipment\"",
+            "\"Artifact\"",
+        ));
+        let qualifier = format!("equipped_count = 2\nstat = \"{stat} Spell Power\"\nbonus_type = \"Artifact\"");
+        corrections.push_str(&qualified_correction_toml(
+            "set_tier_bonus",
+            "Shaman's Fury",
+            &qualifier,
+            "value",
+            "55",
+            "10",
+        ));
+    }
+    let (db, report) = built_db_from(&data_files_dir, &[("corrections.toml", &corrections)]).unwrap();
+    assert_eq!((report.correction_applied_count, report.correction_stale_count), (8, 0));
+    let mut first_family_id = None;
+    for (set_name, expected_value) in [("Shaman's Fury", 10), ("Epic Shaman's Fury", 20)] {
+        let rows = set_tier_bonus_rows(&db, set_name, 2);
+        assert_eq!(rows.len(), 4, "{set_name}: {rows:?}");
+        assert!(
+            rows.iter().all(|(_, bonus_type, value)| bonus_type == "Artifact" && *value == expected_value),
+            "{set_name}: {rows:?}"
+        );
+        let family: (i64, String, String, Option<i64>) = db
+            .query_row(
+                "SELECT e.id, e.name, e.text_template, te.value FROM set_bonus_tiers t JOIN set_bonuses s ON s.id = t.set_id
+             JOIN set_bonus_tier_enchantments te ON te.tier_id = t.id JOIN enchantments e ON e.id = te.enchantment_id
+             WHERE s.name = ?1 AND t.equipped_count = 2 AND EXISTS
+               (SELECT 1 FROM enchantment_stats es JOIN stats stat ON stat.id = es.stat_id
+                WHERE es.enchantment_id = e.id AND stat.name = 'Acid Spell Power')",
+                [set_name],
+                |row| Ok((row.get(0)?, row.get(1)?, row.get(2)?, row.get(3)?)),
+            )
+            .unwrap();
+        assert_eq!(family.1, "Acid Spell Power", "{family:?}");
+        assert_eq!(family.2, "%b1 Acid Spell Power +{1}", "{family:?}");
+        assert_eq!(family.3, Some(expected_value));
+        if let Some(first_id) = first_family_id {
+            assert_eq!(family.0, first_id);
+        } else {
+            first_family_id = Some(family.0);
+        }
+    }
+}
+
+#[test]
 fn types_an_item_bonus_his_files_leave_untyped_and_retypes_a_typed_one() {
     let data_files_dir = data_files_with_untyped("item-bonus-type", &[UNTYPED_ITEMS]);
     let (db, report) = built_db_from(
@@ -1719,7 +1863,7 @@ fn refuses_to_write_an_augment_bonus_without_a_type_unless_a_correction_types_it
     for expected_text in ["augment \"Dolorous Invigorator (Heroic)\"", "effect \"TacticalDC\"", "stat \"Trip DC\""] {
         assert!(error.contains(expected_text), "{expected_text} missing from {error}");
     }
-    let profane_corrections: String = ["Trip DC", "Sunder DC", "Stun DC", "Assassinate DC"]
+    let profane_corrections: String = ["Trip DC", "Sunder DC", "Stun DC", "Tactics", "Assassinate DC"]
         .iter()
         .map(|stat_name| {
             qualified_correction_toml(
@@ -1735,17 +1879,20 @@ fn refuses_to_write_an_augment_bonus_without_a_type_unless_a_correction_types_it
     let (db, report) = built_db_from(&data_files_dir, &[("corrections.toml", &profane_corrections)]).unwrap();
     assert_eq!(
         (report.correction_applied_count, report.correction_stale_count),
-        (4, 0),
+        (5, 0),
         "{:?}",
         report.stale_corrections
     );
     let dolorous_bonuses = augment_bonus_rows(&db, "Dolorous Invigorator (Heroic)");
-    assert!(
-        dolorous_bonuses.iter().all(|(_, bonus_type, _)| bonus_type.as_deref() == Some("Profane")),
-        "{dolorous_bonuses:?}"
-    );
-    assert!(dolorous_bonuses.contains(&("Trip DC".into(), Some("Profane".into()), Some(1))), "{dolorous_bonuses:?}");
-    assert_eq!(row_count(&db, "SELECT COUNT(*) FROM corrections WHERE kind = 'augment_bonus'"), 4);
+    for stat_name in ["Trip DC", "Sunder DC", "Stun DC", "Tactics", "Assassinate DC"] {
+        assert!(
+            dolorous_bonuses.contains(&(stat_name.into(), Some("Profane".into()), Some(1))),
+            "{dolorous_bonuses:?}"
+        );
+    }
+    assert!(dolorous_bonuses.contains(&("Spell DCs".into(), Some("Profane".into()), Some(1))), "{dolorous_bonuses:?}");
+    assert_eq!(dolorous_bonuses.len(), 6);
+    assert_eq!(row_count(&db, "SELECT COUNT(*) FROM corrections WHERE kind = 'augment_bonus'"), 5);
 }
 
 #[test]
@@ -1822,10 +1969,11 @@ fn refuses_an_untyped_augment_slot_option_bonus_unless_an_item_bonus_correction_
     );
     let lore_bonuses: Vec<(String, i64)> = db
         .prepare(
-            "SELECT bt.name, b.value FROM item_augment_slot_option_bonuses ob JOIN bonuses b ON b.id = ob.bonus_id
-               JOIN stats s ON s.id = b.stat_id JOIN bonus_types bt ON bt.id = b.bonus_type_id
-               JOIN item_augment_slot_options o ON o.id = ob.option_id JOIN items i ON i.id = o.item_id
-              WHERE i.name = 'Epic Bracers of Wind' AND s.name = 'Electric Spell Lore' ORDER BY b.value",
+            "SELECT bt.name, CASE es.amount_from WHEN 0 THEN es.constant WHEN 1 THEN oe.value ELSE oe.value2 END
+               FROM item_augment_slot_option_enchantments oe JOIN enchantment_stats es ON es.enchantment_id = oe.enchantment_id
+               JOIN stats s ON s.id = es.stat_id JOIN bonus_types bt ON bt.id = COALESCE(es.bonus_type_id, oe.bonus_type_id)
+               JOIN item_augment_slot_options o ON o.id = oe.option_id JOIN items i ON i.id = o.item_id
+              WHERE i.name = 'Epic Bracers of Wind' AND s.name = 'Electric Spell Lore' ORDER BY 2",
         )
         .unwrap()
         .query_map([], |r| Ok((r.get(0)?, r.get(1)?)))

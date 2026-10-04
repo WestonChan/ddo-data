@@ -86,6 +86,18 @@ async fn version_reports_dataset_and_schema() {
     assert_eq!(status, StatusCode::OK);
     assert_eq!(json["dataset"]["upstream_sha"], "fixture-sha");
     assert_eq!(json["schema_version"], ddo_model::SCHEMA_VERSION);
+    for count_name in [
+        "enchantments",
+        "enchantment_stats",
+        "item_enchantments",
+        "augment_enchantments",
+        "set_bonus_tier_enchantments",
+        "feat_enchantments",
+        "item_augment_slot_option_enchantments",
+    ] {
+        assert!(json["counts"][count_name].is_number(), "missing {count_name}");
+    }
+    assert!(json["counts"].get("bonuses").is_none());
     assert!(json.get("api_commit").is_some(), "version must report the API build commit, null when unknown");
     assert_eq!(json["counts"]["items"], 56, "55 of Maetrim's and the wiki fixture's axe");
     assert_eq!(
@@ -286,7 +298,7 @@ async fn enchantments_list_every_stat_and_effect_an_item_carries_with_its_item_c
     assert!(enchantment_named(&enchantments, "Fire Spell Power", "stat").is_none(), "only a legacy item carries it");
     assert!(enchantment_named(&enchantments, "ElfBane", "effect").is_none(), "only a legacy item carries it");
     let rows = enchantments.as_array().unwrap();
-    assert_eq!(rows.len(), 103, "58 stats and 45 effects carried by fixture items that are not legacy");
+    assert_eq!(rows.len(), 103, "every stat and text-only family carried by fixture items that are not legacy");
     assert!(rows.iter().all(|row| row["item_count"].as_i64().unwrap() > 0));
     let names: Vec<&str> = rows.iter().map(|row| row["name"].as_str().unwrap()).collect();
     let mut sorted_names = names.clone();
@@ -306,8 +318,13 @@ async fn enchantments_narrow_by_search_text_and_kind() {
 
     let (_, _, effects) = get_list_rows("/v1/enchantments?kind=effect").await;
     let effects = effects.as_array().unwrap();
-    assert_eq!(effects.len(), 42);
+    assert_eq!(effects.len(), 41);
     assert!(effects.iter().all(|row| row["kind"] == "effect"), "kind=effect lists a stat");
+    assert!(effects
+        .iter()
+        .all(|row| !["Linguistics", "Lifesealed", "Ghostly"].contains(&row["name"].as_str().unwrap())));
+    let (_, _, linguistics_stats) = get_list_rows("/v1/enchantments?kind=stat&q=linguistics").await;
+    assert_eq!(linguistics_stats, serde_json::json!([{ "name": "Linguistics", "kind": "stat", "item_count": 1 }]));
     let (_, _, strength_stats) = get_list_rows("/v1/enchantments?kind=stat&q=strength").await;
     assert_eq!(strength_stats, serde_json::json!([{ "name": "Strength", "kind": "stat", "item_count": 3 }]));
 
@@ -418,6 +435,25 @@ async fn items_hide_whether_maetrim_or_the_wiki_supplied_them() {
 
     let (_, _, version) = get("/v1/version").await;
     assert_eq!(version["counts"]["wiki_items"], 1);
+}
+
+#[tokio::test]
+async fn wiki_only_effects_keep_their_v1_names_and_descriptions() {
+    let axe = item_detail_named("Battle%20Axe%20of%20the%20Oozing%20Hunger").await;
+    let effect = axe["effects"]
+        .as_array()
+        .unwrap()
+        .iter()
+        .find(|effect| effect["name"] == "Test Oozing Hunger")
+        .expect("wiki-only effect");
+    assert_eq!(effect["description"], "Test description: on hit, the target oozes.");
+    let ethereal = axe["effects"]
+        .as_array()
+        .unwrap()
+        .iter()
+        .find(|effect| effect["name"] == "Ethereal")
+        .expect("Maetrim family reused by wiki item");
+    assert!(ethereal["description"].as_str().unwrap().starts_with("Ethereal: Equipping this item"));
 }
 
 #[tokio::test]
@@ -1315,7 +1351,7 @@ async fn openapi_lists_every_item_filter_in_the_route_description_and_parameters
             .as_str()
             .unwrap();
     for expected_phrase in
-        ["repeated keys", "may contain commas", "/v1/enchantments", "/v1/stats", "effect", "item_effects"]
+        ["repeated keys", "may contain commas", "/v1/enchantments", "/v1/stats", "effect", "text-only"]
     {
         assert!(
             enchantment_description.contains(expected_phrase),

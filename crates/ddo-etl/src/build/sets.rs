@@ -1,10 +1,13 @@
 use super::bonus_types::{BonusOwner, BonusOwnerKind};
+use super::enchantments::EnchantmentOwner;
 use super::{trimmed_non_empty, BuildReport, TableWriter};
 use crate::xml::sentient_gems;
 use crate::xml::set_bonuses::parse_set_bonus_file;
+use crate::xml::set_bonuses::SetBonusTier;
 use anyhow::Result;
 use ddo_model::enums::ModifierSource;
 use rusqlite::params;
+use std::collections::HashMap;
 use std::path::Path;
 
 impl TableWriter<'_> {
@@ -20,41 +23,33 @@ impl TableWriter<'_> {
         let set_bonus_file = parse_set_bonus_file(path)?;
         for set_bonus in &set_bonus_file.set_bonuses {
             let set_name = set_bonus.name.trim();
-            self.transaction.execute(
-                "INSERT OR IGNORE INTO set_bonuses (name, icon, is_filigree_set) VALUES (?1, ?2, ?3)",
-                params![set_name, trimmed_non_empty(set_bonus.icon.as_deref()), is_filigree_set],
-            )?;
-            let set_id: i64 =
-                self.transaction
-                    .query_row("SELECT id FROM set_bonuses WHERE name = ?1", params![set_name], |r| r.get(0))?;
-            if self.written.set_bonus_ids_by_name.insert(set_name.to_string(), set_id).is_some() {
+            if self.written.set_bonus_ids_by_name.contains_key(set_name) {
                 continue;
             }
+            self.transaction.execute(
+                "INSERT INTO set_bonuses (name, icon, is_filigree_set) VALUES (?1, ?2, ?3)",
+                params![set_name, trimmed_non_empty(set_bonus.icon.as_deref()), is_filigree_set],
+            )?;
+            let set_id = self.transaction.last_insert_rowid();
+            self.written.set_bonus_ids_by_name.insert(set_name.to_string(), set_id);
+            let mut tier_ids_and_orders: HashMap<i64, (i64, usize)> = HashMap::new();
             for tier in &set_bonus.tiers {
-                self.transaction.execute(
-                    "INSERT OR IGNORE INTO set_bonus_tiers (set_id, equipped_count, description) VALUES (?1, ?2, ?3)",
-                    params![set_id, tier.equipped_count, trimmed_non_empty(tier.description.as_deref())],
-                )?;
-                let tier_id: i64 = self.transaction.query_row(
-                    "SELECT id FROM set_bonus_tiers WHERE set_id = ?1 AND equipped_count = ?2",
-                    params![set_id, tier.equipped_count],
-                    |r| r.get(0),
-                )?;
-                self.write_modifiers(ModifierSource::SetBonusTier, tier_id, &tier.effects)?;
-                let earlier_bonus_count: i64 = self.transaction.query_row(
-                    "SELECT COUNT(*) FROM set_bonus_tier_bonuses WHERE tier_id = ?1",
-                    params![tier_id],
-                    |r| r.get(0),
-                )?;
-                let tier_owner = BonusOwner { kind: BonusOwnerKind::SetBonusTier, name: set_name, family: None };
-                for (bonus_index, bonus_id) in
-                    self.ensure_derived_bonuses(&tier_owner, &tier.effects)?.into_iter().enumerate()
-                {
-                    self.transaction.execute(
-                        "INSERT INTO set_bonus_tier_bonuses (tier_id, bonus_id, sort_order) VALUES (?1, ?2, ?3)",
-                        params![tier_id, bonus_id, earlier_bonus_count + bonus_index as i64],
-                    )?;
+                let (tier_id, next_order) = match tier_ids_and_orders.entry(tier.equipped_count) {
+                    std::collections::hash_map::Entry::Occupied(entry) => *entry.get(),
+                    std::collections::hash_map::Entry::Vacant(entry) => {
+                        self.transaction.execute(
+                            "INSERT INTO set_bonus_tiers (set_id, equipped_count) VALUES (?1, ?2)",
+                            params![set_id, tier.equipped_count],
+                        )?;
+                        *entry.insert((self.transaction.last_insert_rowid(), 0))
+                    }
+                };
+                if let Some(description) = trimmed_non_empty(tier.description.as_deref()) {
+                    self.written.set_tier_descriptions_by_id.entry(tier_id).or_insert_with(|| description.to_string());
                 }
+                self.write_modifiers(ModifierSource::SetBonusTier, tier_id, &tier.effects)?;
+                let written_count = self.write_set_tier_enchantments(set_name, tier_id, tier, next_order)?;
+                tier_ids_and_orders.insert(tier.equipped_count, (tier_id, next_order + written_count));
             }
         }
         for filigree in &set_bonus_file.filigrees {
@@ -81,6 +76,54 @@ impl TableWriter<'_> {
             report.filigree_count += 1;
         }
         Ok(())
+    }
+
+    fn write_set_tier_enchantments(
+        &mut self,
+        set_name: &str,
+        tier_id: i64,
+        tier: &SetBonusTier,
+        first_order: usize,
+    ) -> Result<usize> {
+        let owner = BonusOwner { kind: BonusOwnerKind::SetBonusTier, name: set_name, family: None };
+        let links = self.ensure_derived_enchantments(&owner, &tier.effects)?;
+        for (offset, link) in links.iter().enumerate() {
+            self.enchantments.insert_link(
+                EnchantmentOwner::SetBonusTier,
+                tier_id,
+                link.enchantment_id,
+                link.bonus_type,
+                (link.value, link.value2),
+                first_order + offset,
+            )?;
+        }
+        if links.is_empty() {
+            if let Some(description) = trimmed_non_empty(tier.description.as_deref()) {
+                let family_name = self.buff_resolver.set_tier_prose_name(set_name, tier.equipped_count, description)?;
+                let existing = self
+                    .enchantments
+                    .family_named(&family_name)
+                    .map(|family| (family.id, family.text_template.clone()));
+                let enchantment_id = match existing {
+                    Some((id, text_template)) if text_template == description => id,
+                    Some(_) => anyhow::bail!(
+                        "set {set_name:?} tier {} prose {description:?} collides with family {family_name:?}; add a [names] entry",
+                        tier.equipped_count
+                    ),
+                    None => self.enchantments.ensure_family( &family_name, description, None, 0)?,
+                };
+                self.enchantments.insert_link(
+                    EnchantmentOwner::SetBonusTier,
+                    tier_id,
+                    enchantment_id,
+                    None,
+                    (None, None),
+                    first_order,
+                )?;
+                return Ok(1);
+            }
+        }
+        Ok(links.len())
     }
 
     pub(super) fn write_sentient_gems(&mut self, path: &Path, report: &mut BuildReport) -> Result<()> {

@@ -23,6 +23,7 @@ pub struct Spell {
     pub description: Option<String>,
     pub icon: Option<String>,
     pub schools: Vec<String>,
+    pub primers: Vec<String>,
     pub maximum_caster_level: Option<i64>,
     pub cost: Option<i64>,
     pub metamagics: Vec<String>,
@@ -105,7 +106,7 @@ enum SpellChild {
     Extend(EmptyElement),
     Accelerate(EmptyElement),
     EmpowerHealing(EmptyElement),
-    Primer(EmptyElement),
+    Primer(String),
     Effect(Effect),
     Stance(Stance),
     SpellDamage(SpellDamage),
@@ -137,7 +138,13 @@ impl<'de> Deserialize<'de> for Spell {
                 SpellChild::Extend(_) => add_metamagic(&mut spell, "Extend"),
                 SpellChild::Accelerate(_) => add_metamagic(&mut spell, "Accelerate"),
                 SpellChild::EmpowerHealing(_) => add_metamagic(&mut spell, "EmpowerHealing"),
-                SpellChild::Primer(_) => add_metamagic(&mut spell, "Primer"),
+                SpellChild::Primer(v) => {
+                    let primer = trimmed(v);
+                    if !primer.is_empty() {
+                        spell.primers.push(primer);
+                    }
+                    add_metamagic(&mut spell, "Primer");
+                }
                 SpellChild::Effect(v) => spell.effects.push(v),
                 SpellChild::Stance(v) => spell.stances.push(v),
                 SpellChild::SpellDamage(v) => spell.damage_components.push(v),

@@ -1,5 +1,32 @@
 <Buffs>
   <Buff>
+    <Type>Finesse</Type>
+    <DisplayText>Finesse %v1: This weapon has a small Air Elemental bound to it. The wielder can use a finesse weapon as if they had the Weapon Finesse feat. In addition, the weapon grants a %v1 enhancement bonus to the wielder's Dexterity score.</DisplayText>
+    <Effect>
+      <Type>AbilityBonus</Type>
+      <Bonus>Enhancement</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">2</Amount>
+      <Item>Dexterity</Item>
+    </Effect>
+    <Effect>
+      <Type>GrantFeat</Type>
+      <Bonus>Enhancement</Bonus>
+      <Item>Weapon Finesse</Item>
+      <AType>NotNeeded</AType>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>ActionBoostEnhancement</Type>
+    <DisplayText>Action Boost Enhancement: This will increase the total number of Action Boosts you can use by 3. However, these additional Action Boosts will only take effect after the wielder rests.</DisplayText>
+    <Effect>
+      <Type>ExtraActionBoost</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">3</Amount>
+    </Effect>
+  </Buff>
+  <Buff>
     <Type>Ghostly</Type>
     <DisplayText>Ghostly: Equipping this item causes you to become partially incorporeal. Your melee attacks do not roll a miss chance for Incorporeal targets. Enemy attacks have a 10% chance to miss you due to incorporeality. You receive a +5 enhancement bonus to your Hide and Move Silently skills.</DisplayText>
     <Effect>

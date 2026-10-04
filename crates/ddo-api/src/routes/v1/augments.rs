@@ -35,7 +35,7 @@ fn attach_child_collections(db: &rusqlite::Connection, augment: &mut Value) -> R
     .map(|row| row["label"].clone())
     .collect();
     augment["slots"] = Value::Array(slot_labels);
-    augment["bonuses"] = Value::Array(bonuses_via(db, "augment_bonuses", "augment_id", augment_id)?);
+    augment["bonuses"] = Value::Array(bonuses_via(db, "augment_enchantments", "augment_id", augment_id)?);
     augment["crafting"] = Value::Array(crafting_recipes_yielding(db, augment_id)?);
     Ok(())
 }

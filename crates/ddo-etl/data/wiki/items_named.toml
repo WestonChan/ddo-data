@@ -694,7 +694,7 @@ bonuses = [
   { stat = "Armor Class", bonus_type = "Natural Armor", value = 16 },
 ]
 effects = [
-  { name = "Lifeblood of the Undead Prince", description = "This artifact displays incredible regenerative abilities. You gain a +65 Competence Bonus to Positive Healing Amplification, a +65 Enhancement Bonus to Repair Healing Amplification and +65 Profane Bonus to Negative Healing Amplification." },
+  { name = "Lifeblood of the Undead Prince", description = "This artifact displays incredible regenerative abilities. You gain a +65 Competence Bonus to Positive Healing Amplification, a +65 Enhancement Bonus to Repair Healing Amplification and +65 Profane Bonus to Negative Healing Amplification.", value = 65 },
   { name = "Legendary Demonic Curse", description = "Each time you are hit in melee combat there is a chance that your attacker will be Cursed." },
   { name = "Mythic Head Boost +1 or +3", description = "+1 or +3 Mythic bonus to Physical and Magical Resistance Ratings.(This is a rare enchantment that does not show up on all drops of this item.)" },
 ]

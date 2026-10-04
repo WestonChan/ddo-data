@@ -234,12 +234,13 @@ fn effect_names_from(db: &Connection, sql: &str, item_sources: &[&str]) -> Resul
 fn maetrim_effect_names(db: &Connection) -> Result<Vec<String>> {
     effect_names_from(
         db,
-        "SELECT DISTINCT effects.name
-         FROM effects
-         JOIN item_effects ON item_effects.effect_id = effects.id
-         JOIN items ON items.id = item_effects.item_id
-         WHERE items.provenance = ?1
-         ORDER BY effects.id",
+        "SELECT DISTINCT CASE WHEN INSTR(e.name, ' — ') > 0
+                THEN SUBSTR(e.name, 1, INSTR(e.name, ' — ') - 1) ELSE e.name END
+         FROM enchantments e JOIN item_enchantments ie ON ie.enchantment_id = e.id
+         JOIN items i ON i.id = ie.item_id
+         WHERE i.provenance = ?1 AND NOT EXISTS
+           (SELECT 1 FROM enchantment_stats es WHERE es.enchantment_id = e.id)
+         ORDER BY e.id",
         &[Provenance::Maetrim.as_str()],
     )
 }
@@ -247,16 +248,16 @@ fn maetrim_effect_names(db: &Connection) -> Result<Vec<String>> {
 fn wiki_created_effect_names(db: &Connection) -> Result<Vec<String>> {
     effect_names_from(
         db,
-        "SELECT DISTINCT effects.name
-         FROM effects
-         JOIN item_effects ON item_effects.effect_id = effects.id
-         JOIN items ON items.id = item_effects.item_id
-         WHERE items.provenance = ?2
+        "SELECT DISTINCT e.name
+         FROM enchantments e JOIN item_enchantments ie ON ie.enchantment_id = e.id
+         JOIN items i ON i.id = ie.item_id
+         WHERE i.provenance = ?2 AND NOT EXISTS
+           (SELECT 1 FROM enchantment_stats es WHERE es.enchantment_id = e.id)
            AND NOT EXISTS (
-             SELECT 1 FROM item_effects AS maetrim_item_effects
-             JOIN items AS maetrim_items ON maetrim_items.id = maetrim_item_effects.item_id
-             WHERE maetrim_item_effects.effect_id = effects.id AND maetrim_items.provenance = ?1)
-         ORDER BY effects.name",
+             SELECT 1 FROM item_enchantments AS maetrim_links
+             JOIN items AS maetrim_items ON maetrim_items.id = maetrim_links.item_id
+             WHERE maetrim_links.enchantment_id = e.id AND maetrim_items.provenance = ?1)
+         ORDER BY e.name",
         &[Provenance::Maetrim.as_str(), Provenance::Wiki.as_str()],
     )
 }

@@ -142,11 +142,8 @@ impl TableWriter<'_> {
         Ok(())
     }
 
-    pub(super) fn write_spells(&mut self, path: &Path, report: &mut BuildReport) -> Result<()> {
-        if !path.is_file() {
-            return Ok(());
-        }
-        for spell in spells::parse(path)? {
+    pub(super) fn write_spells(&mut self, spells: &[spells::Spell], report: &mut BuildReport) -> Result<()> {
+        for spell in spells {
             let inserted_row_count = self.transaction.execute(
                 "INSERT OR IGNORE INTO spells (name, description, icon, schools, max_caster_level, cost, metamagics) VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7)",
                 params![

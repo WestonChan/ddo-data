@@ -2,6 +2,7 @@ use super::drop_text::{
     insert_source_link, insert_source_link_unless_linked_as, insert_source_link_unless_loot_linked_there,
     mark_quest_source_link_rare, DropTextLinker, DroppedLoot, SourceLink,
 };
+use super::enchantments::EnchantmentOwner;
 use super::items::{ArmorStatsRow, ItemRow, WeaponStatsRow};
 use super::{BuildReport, ProbableDuplicateWikiEntry, SupersededWikiEntry, TableWriter};
 use crate::map::drop_location::drop_text_in_description;
@@ -423,11 +424,14 @@ impl TableWriter<'_> {
         };
         let maetrim_item_name_set: HashSet<&str> = maetrim_item_names.iter().map(String::as_str).collect();
         let maetrim_item_names_by_normalised_name = names_by_normalised_name(&maetrim_item_names);
-        let mut effect_ids_by_folded_name: HashMap<String, i64> = HashMap::new();
-        let mut effect_names_by_id: Vec<(&String, &i64)> = self.written.effect_ids_by_name.iter().collect();
-        effect_names_by_id.sort_by_key(|(_, id)| **id);
-        for (effect_name, effect_id) in effect_names_by_id {
-            effect_ids_by_folded_name.entry(folded_effect_name(effect_name)).or_insert(*effect_id);
+        let mut effect_ids_by_folded_name: HashMap<String, (i64, i64)> = HashMap::new();
+        let mut text_families: Vec<_> =
+            self.enchantments.families().filter(|family| !self.enchantments.has_stats(family.id)).collect();
+        text_families.sort_by_key(|family| family.id);
+        for family in text_families {
+            effect_ids_by_folded_name
+                .entry(folded_effect_name(&family.name))
+                .or_insert((family.id, family.amount_count));
         }
         for wiki_item in wiki_items {
             if maetrim_item_name_set.contains(wiki_item.name.as_str()) {
@@ -458,7 +462,7 @@ impl TableWriter<'_> {
     fn write_wiki_item(
         &mut self,
         wiki_item: &WikiItem,
-        effect_ids_by_folded_name: &mut HashMap<String, i64>,
+        effect_ids_by_folded_name: &mut HashMap<String, (i64, i64)>,
     ) -> Result<i64> {
         let material_id = match &wiki_item.material {
             Some(material_name) => Some(*self.written.material_ids_by_name.get(material_name).with_context(|| {
@@ -550,12 +554,26 @@ impl TableWriter<'_> {
             )?;
         }
         for (sort_order, bonus) in wiki_item.bonuses.iter().enumerate() {
-            let bonus_id = self.ensure_wiki_bonus(bonus)?;
-            self.insert_item_bonus(item_id, bonus_id, sort_order)?;
+            let (enchantment_id, link_bonus_type) = self.ensure_wiki_enchantment(bonus)?;
+            self.enchantments.insert_link(
+                EnchantmentOwner::Item,
+                item_id,
+                enchantment_id,
+                link_bonus_type,
+                (Some(bonus.value), bonus.value2),
+                sort_order,
+            )?;
         }
         for (sort_order, effect) in wiki_item.effects.iter().enumerate() {
-            let effect_id = self.wiki_effect_id(effect, effect_ids_by_folded_name)?;
-            self.insert_item_effect(item_id, effect_id, sort_order, effect.value, effect.target.as_deref())?;
+            let (enchantment_id, count) = self.wiki_effect_id(effect, effect_ids_by_folded_name)?;
+            self.enchantments.insert_link(
+                EnchantmentOwner::Item,
+                item_id,
+                enchantment_id,
+                None,
+                (if count > 0 { effect.value } else { None }, None),
+                wiki_item.bonuses.len() + sort_order,
+            )?;
         }
         for (sort_order, slot_type_id) in slot_type_ids.into_iter().enumerate() {
             self.insert_item_augment_slot(item_id, sort_order, slot_type_id)?;
@@ -572,8 +590,37 @@ impl TableWriter<'_> {
         Ok(item_id)
     }
 
-    fn ensure_wiki_bonus(&mut self, bonus: &WikiBonus) -> Result<i64> {
-        self.ensure_bonus(bonus.stat(), bonus.bonus_type(), Some(bonus.value), bonus.value2, None)
+    fn ensure_wiki_enchantment(&mut self, bonus: &WikiBonus) -> Result<(i64, Option<ddo_model::enums::BonusType>)> {
+        let stat = bonus.stat();
+        let bonus_type = bonus.bonus_type();
+        let count = if bonus.value2.is_some() { 2 } else { 1 };
+        let existing = self.enchantments.family_named(stat.name);
+        let family_name = match existing {
+            Some(family)
+                if !family.uses_link_type
+                    && self.enchantments.stat(family.id, stat.id, Some(bonus_type.id())).is_none() =>
+            {
+                format!("{} Bonus", stat.name)
+            }
+            _ => stat.name.to_string(),
+        };
+        let (enchantment_id, uses_link_type) = match self.enchantments.family_named(&family_name) {
+            Some(family) if family.amount_count >= count => (family.id, family.uses_link_type),
+            Some(family) => anyhow::bail!(
+                "wiki bonus {family_name:?} carries {count} amounts but its shared family allows {}",
+                family.amount_count
+            ),
+            None => {
+                let text_template = if count == 2 {
+                    format!("%b1 {family_name} +{{1}} {{2}}")
+                } else {
+                    format!("%b1 {family_name} +{{1}}")
+                };
+                (self.enchantments.ensure_family(&family_name, &text_template, None, count)?, true)
+            }
+        };
+        self.enchantments.ensure_stat(enchantment_id, stat, (!uses_link_type).then_some(bonus_type), 1, None, 0)?;
+        Ok((enchantment_id, uses_link_type.then_some(bonus_type)))
     }
 
     pub(super) fn write_wiki_augments(
@@ -662,10 +709,14 @@ impl TableWriter<'_> {
             )?;
         }
         for (sort_order, bonus) in wiki_augment.bonuses.iter().enumerate() {
-            let bonus_id = self.ensure_wiki_bonus(bonus)?;
-            self.transaction.execute(
-                "INSERT INTO augment_bonuses (augment_id, bonus_id, sort_order) VALUES (?1, ?2, ?3)",
-                params![augment_id, bonus_id, sort_order as i64],
+            let (enchantment_id, link_bonus_type) = self.ensure_wiki_enchantment(bonus)?;
+            self.enchantments.insert_link(
+                EnchantmentOwner::Augment,
+                augment_id,
+                enchantment_id,
+                link_bonus_type,
+                (Some(bonus.value), bonus.value2),
+                sort_order,
             )?;
         }
         if let Some(set_name) = &wiki_augment.set {
@@ -677,16 +728,24 @@ impl TableWriter<'_> {
     fn wiki_effect_id(
         &mut self,
         effect: &WikiItemEffect,
-        effect_ids_by_folded_name: &mut HashMap<String, i64>,
-    ) -> Result<i64> {
-        if let Some(effect_id) = self.written.effect_ids_by_name.get(&effect.name) {
-            return Ok(*effect_id);
-        }
+        effect_ids_by_folded_name: &mut HashMap<String, (i64, i64)>,
+    ) -> Result<(i64, i64)> {
         let folded_name = folded_effect_name(&effect.name);
         if let Some(effect_id) = effect_ids_by_folded_name.get(&folded_name) {
             return Ok(*effect_id);
         }
-        let effect_id = self.ensure_effect(&effect.name, effect.description.as_deref())?;
+        let matching_stat_family = self.enchantments.family_named(&effect.name).and_then(|family| {
+            (!family.uses_link_type
+                && self.enchantments.has_stats(family.id)
+                && ((family.amount_count == 0
+                    && family.description_template.as_deref() == effect.description.as_deref())
+                    || (family.amount_count > 0 && effect.value.is_some())))
+            .then_some((family.id, family.amount_count))
+        });
+        let effect_id = match matching_stat_family {
+            Some(identity) => identity,
+            None => (self.enchantments.ensure_wiki_text(&effect.name, effect.description.as_deref())?, 0),
+        };
         effect_ids_by_folded_name.insert(folded_name, effect_id);
         Ok(effect_id)
     }

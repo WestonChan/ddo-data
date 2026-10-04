@@ -1,4 +1,3 @@
-use super::bonus_types::{BonusOwner, BonusOwnerKind};
 use super::{json_number_array, json_string_array, trimmed_non_empty, BuildReport, TableWriter};
 use crate::xml::classes::{self, FeatSlot};
 use crate::xml::feats::{self, Feat};
@@ -84,13 +83,12 @@ impl TableWriter<'_> {
         self.write_abilities(AbilityOwner::Feat, feat_id, &feat.stances, &feat.dcs, feat.attack.as_ref())?;
         self.write_modifiers(ModifierSource::Feat, feat_id, &feat.effects)?;
         self.write_attack_bonuses(AbilityOwner::Feat, feat_id, feat.attack.as_ref())?;
-        let feat_owner = BonusOwner { kind: BonusOwnerKind::Feat, name: feat.name.trim(), family: None };
-        for (sort_order, bonus_id) in self.ensure_derived_bonuses(&feat_owner, &feat.effects)?.into_iter().enumerate() {
-            self.transaction.execute(
-                "INSERT INTO feat_bonuses (feat_id, bonus_id, sort_order) VALUES (?1, ?2, ?3)",
-                params![feat_id, bonus_id, sort_order as i64],
-            )?;
-        }
+        self.pending_derived_enchantments.push((
+            super::enchantments::EnchantmentOwner::Feat,
+            feat_id,
+            feat.name.trim().to_string(),
+            feat.effects.clone(),
+        ));
         Ok(feat_id)
     }
 

@@ -1,4 +1,4 @@
-use super::enchantment::{EnchantmentMap, ENCHANTMENT_MAP};
+use super::enchantment::{EffectTargetQualifiers, EnchantmentMap, ENCHANTMENT_MAP};
 use crate::xml::effect::Effect;
 use anyhow::Result;
 use ddo_model::enums::BonusType;
@@ -16,6 +16,7 @@ pub struct DerivedBonus {
 pub struct EffectResolver {
     vocabulary: &'static EnchantmentMap,
     unmapped_type_counts: RefCell<BTreeMap<String, usize>>,
+    qualifiers: EffectTargetQualifiers,
 }
 
 impl Default for EffectResolver {
@@ -26,7 +27,20 @@ impl Default for EffectResolver {
 
 impl EffectResolver {
     pub fn new() -> Self {
-        Self { vocabulary: &ENCHANTMENT_MAP, unmapped_type_counts: RefCell::new(BTreeMap::new()) }
+        Self {
+            vocabulary: &ENCHANTMENT_MAP,
+            unmapped_type_counts: RefCell::new(BTreeMap::new()),
+            qualifiers: EffectTargetQualifiers::default(),
+        }
+    }
+
+    pub fn with_qualifiers(mut self, qualifiers: EffectTargetQualifiers) -> Self {
+        self.qualifiers = qualifiers;
+        self
+    }
+
+    pub fn qualified_targets(&self, effect: &Effect) -> Option<String> {
+        self.vocabulary.qualified_targets(effect, &self.qualifiers)
     }
 
     pub fn parse_bonus_type(&self, upstream_name: &str) -> Result<Option<BonusType>> {
@@ -40,14 +54,17 @@ impl EffectResolver {
         let effect_type = effect.types[0].as_str();
         let bonus_type = self.parse_bonus_type(effect.bonus.as_deref().unwrap_or(""))?;
 
-        if let Some(stat_name) = self.vocabulary.effect.fixed.get(effect_type) {
-            let stat = Stat::by_name(stat_name).expect("validated at load");
-            return Ok(vec![DerivedBonus { stat, bonus_type, value }]);
+        if effect_type == "AbilityBonus" && effect.targets.iter().any(|target| target == "All") {
+            return Ok(["Strength", "Dexterity", "Constitution", "Intelligence", "Wisdom", "Charisma"]
+                .into_iter()
+                .map(|name| DerivedBonus { stat: Stat::by_name(name).expect("seeded ability stat"), bonus_type, value })
+                .collect());
         }
 
-        let stat_template = self.vocabulary.effect.by_item.get(effect_type);
-        let default_stat_name = self.vocabulary.effect.by_item_default.get(effect_type);
-        if stat_template.is_none() && default_stat_name.is_none() {
+        if !self.vocabulary.effect.fixed.contains_key(effect_type)
+            && !self.vocabulary.effect.by_item.contains_key(effect_type)
+            && !self.vocabulary.effect.by_item_default.contains_key(effect_type)
+        {
             if self.vocabulary.effect.engine_only.contains_key(effect_type) {
                 return Ok(Vec::new());
             }
@@ -55,16 +72,13 @@ impl EffectResolver {
             return Ok(Vec::new());
         }
 
-        let targets: Vec<&str> =
-            if effect.targets.is_empty() { vec![""] } else { effect.targets.iter().map(String::as_str).collect() };
-        let mut bonuses = Vec::new();
-        for target in targets {
-            let stat = self.vocabulary.effect_stat(effect_type, target);
-            if let Some(stat) = stat {
-                bonuses.push(DerivedBonus { stat, bonus_type, value });
-            }
-        }
-        Ok(bonuses)
+        Ok(self
+            .vocabulary
+            .stats_for_effect(effect, &self.qualifiers)
+            .unwrap_or_default()
+            .into_iter()
+            .map(|stat| DerivedBonus { stat, bonus_type, value })
+            .collect())
     }
 
     pub fn unmapped_type_counts(&self) -> BTreeMap<String, usize> {

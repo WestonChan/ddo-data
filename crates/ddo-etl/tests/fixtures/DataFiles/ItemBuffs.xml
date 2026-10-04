@@ -1,6 +1,29 @@
 <?xml version='1.0' encoding='utf-8'?>
 <Buffs>
   <Buff>
+    <Type>AbilityBonus</Type>
+    <DisplayText>%b1 %i1 %v1: Passive: %v1 %b1 bonus to %i1.</DisplayText>
+    <Ignore>Enhancement</Ignore>
+    <Effect>
+      <Type>AbilityBonus</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+      <Item>Unknown</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Fortification</Type>
+    <DisplayText>%b1 Fortification %v1%: %v1 %b1 bonus to reduced chance of taking critical damage on a critical hit.</DisplayText>
+    <Ignore>Enhancement</Ignore>
+    <Effect>
+      <Type>Fortification</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+    </Effect>
+  </Buff>
+  <Buff>
     <Type>Absorption</Type>
     <DisplayText>%b1 %i1 Absorption %v1%: Passive: %v1 %b1 Bonus to %i1 Absorption. (Absorption reduces damage from an element by a percentage, after resistance have been taken into account.)</DisplayText>
     <Ignore>Enhancement</Ignore>
@@ -527,4 +550,28 @@
     </Effect>
   </Buff>
 
+  <Buff>
+    <Type>Shatter</Type>
+    <DisplayText>%b1 Shatter %v1: This effect gives a %v1 %b1 bonus to the DC to resist the character's Sunder and Improved Sunder attempts.</DisplayText>
+    <Ignore>Enhancement</Ignore>
+    <Effect>
+      <Type>TacticalDC</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+      <Item>Sunder</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Stunning</Type>
+    <DisplayText>%b1 Stunning %v1: %v1 %b1 bonus to the DC of character's Stunning Blow and Stunning Fist attempts.</DisplayText>
+    <Ignore>Enhancement</Ignore>
+    <Effect>
+      <Type>TacticalDC</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+      <Item>Stun</Item>
+    </Effect>
+  </Buff>
 </Buffs>

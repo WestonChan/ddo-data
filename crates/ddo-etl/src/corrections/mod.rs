@@ -153,6 +153,8 @@ impl CorrectionValue {
         match (self, field.shape) {
             (Self::Null, _) => field.is_nullable,
             (Self::Integer(_), FieldShape::Integer) => true,
+            (Self::Float(number), FieldShape::StatScale) => number.is_finite() && *number > 0.0,
+            (Self::Text(rounding), FieldShape::StatRounding) => matches!(rounding.as_str(), "down" | "up" | "nearest"),
             (Self::Integer(flag), FieldShape::Flag) => matches!(flag, 0 | 1),
             (
                 Self::Text(_),
@@ -273,7 +275,7 @@ impl Correction {
         }
         if names_a_bonus && !needs_a_bonus {
             bail!(
-                "stat, bonus_type and bonus_value name the bonus of an augment_bonus, item_bonus or set_tier_bonus value, bonus_type or remove correction; an add names them in to"
+                "stat, bonus_type and bonus_value name the bonus of an augment_bonus, item_bonus or set_tier_bonus value, bonus_type, scale, rounding or remove correction; an add names them in to"
             );
         }
         if field.shape == FieldShape::BonusTypeName && self.bonus_type.as_deref() != self.from.as_bonus_type_name() {
@@ -374,6 +376,8 @@ impl Correction {
 fn expected_value_text(field: &CorrectableField) -> String {
     let non_null_text = match field.shape {
         FieldShape::Integer => "an integer",
+        FieldShape::StatScale => "a positive finite number",
+        FieldShape::StatRounding => "down, up or nearest",
         FieldShape::Flag => "0 or 1",
         FieldShape::Text => "a string",
         FieldShape::NamedReference { .. } | FieldShape::SetName | FieldShape::BonusTypeName => {

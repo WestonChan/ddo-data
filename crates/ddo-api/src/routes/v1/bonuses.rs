@@ -89,13 +89,15 @@ declare_query_parameters! {
 const ENCHANTMENT_KINDS: [&str; 2] = ["stat", "effect"];
 
 const ENCHANTMENTS_CARRIED_BY_ITEMS_SQL: &str = "SELECT name, kind, item_count FROM (
-         SELECT s.name, 'stat' AS kind, COUNT(DISTINCT ib.item_id) AS item_count
-         FROM stats s JOIN bonuses b ON b.stat_id = s.id JOIN item_bonuses ib ON ib.bonus_id = b.id
-         JOIN items i ON i.id = ib.item_id WHERE NOT i.is_legacy GROUP BY s.id
+         SELECT s.name, 'stat' AS kind, COUNT(DISTINCT ie.item_id) AS item_count
+         FROM stats s JOIN enchantment_stats es ON es.stat_id = s.id JOIN item_enchantments ie ON ie.enchantment_id = es.enchantment_id
+         JOIN items i ON i.id = ie.item_id WHERE NOT i.is_legacy GROUP BY s.id
          UNION ALL
-         SELECT e.name, 'effect' AS kind, COUNT(DISTINCT ie.item_id) AS item_count
-         FROM effects e JOIN item_effects ie ON ie.effect_id = e.id
-         JOIN items i ON i.id = ie.item_id WHERE NOT i.is_legacy GROUP BY e.id
+         SELECT CASE WHEN INSTR(e.name, ' — ') > 0 THEN SUBSTR(e.name, 1, INSTR(e.name, ' — ') - 1) ELSE e.name END AS name,
+                'effect' AS kind, COUNT(DISTINCT ie.item_id) AS item_count
+         FROM enchantments e JOIN item_enchantments ie ON ie.enchantment_id = e.id
+         JOIN items i ON i.id = ie.item_id WHERE NOT i.is_legacy
+         AND NOT EXISTS (SELECT 1 FROM enchantment_stats es WHERE es.enchantment_id = e.id) GROUP BY 1
      )";
 
 const ENCHANTMENTS_SORT_FIELDS: &[(&str, &str)] =

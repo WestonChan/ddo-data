@@ -150,7 +150,7 @@ async fn feat_detail(State(state): State<AppState>, Path(id): Path<i64>) -> Resu
             feat["attack"] = attack_for(db, "feat", id)?;
             feat["this_attack_modifiers"] = Value::Array(modifiers_for(db, "feat_this_attack", id)?);
             feat["follow_on_modifiers"] = Value::Array(modifiers_for(db, "feat_follow_on", id)?);
-            feat["bonuses"] = Value::Array(bonuses_via(db, "feat_bonuses", "feat_id", id)?);
+            feat["bonuses"] = Value::Array(bonuses_via(db, "feat_enchantments", "feat_id", id)?);
             feat["modifiers"] = Value::Array(modifiers_for(db, "feat", id)?);
             Ok(Json(feat))
         })

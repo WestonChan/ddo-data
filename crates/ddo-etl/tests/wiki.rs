@@ -903,7 +903,7 @@ fn crafting_never_adds_innate_item_bonuses_or_augments() {
     let (with, _) = built_db_with(&WikiOverrides::from_dir(&fixtures_dir().join("wiki")).unwrap());
     for table in [
         "augments WHERE provenance = 'maetrim'",
-        "item_bonuses JOIN items ON items.id = item_bonuses.item_id WHERE items.provenance = 'maetrim'",
+        "item_enchantments JOIN items ON items.id = item_enchantments.item_id WHERE items.provenance = 'maetrim'",
         "items WHERE provenance = 'maetrim'",
         "adventure_packs",
         "augment_slot_types",
@@ -1224,8 +1224,10 @@ fn drops_a_wiki_item_maetrim_already_carries_and_reports_it() {
     let bonus_names = |db: &Connection| {
         string_column(
             db,
-            "SELECT b.name FROM item_bonuses ib JOIN bonuses b ON b.id = ib.bonus_id JOIN items i ON i.id = ib.item_id
-              WHERE i.name = 'Five Rings' ORDER BY ib.sort_order",
+            "SELECT s.name || ' +' || CASE es.amount_from WHEN 0 THEN es.constant WHEN 1 THEN ie.value ELSE ie.value2 END
+             FROM item_enchantments ie JOIN enchantment_stats es ON es.enchantment_id = ie.enchantment_id
+             JOIN stats s ON s.id = es.stat_id JOIN items i ON i.id = ie.item_id
+             WHERE i.name = 'Five Rings' ORDER BY ie.sort_order, es.sort_order",
         )
     };
     assert_eq!(bonus_names(&with), bonus_names(&without));
@@ -1283,25 +1285,27 @@ fn writes_a_new_wiki_item_with_its_stats_bonuses_effects_sockets_set_and_quests(
     );
     assert_eq!(
         item_column(
-            "SELECT s.name || '|' || bt.name || '|' || b.value FROM item_bonuses ib JOIN bonuses b ON b.id = ib.bonus_id
-               JOIN stats s ON s.id = b.stat_id JOIN bonus_types bt ON bt.id = b.bonus_type_id
-              WHERE ib.item_id = ?item ORDER BY ib.sort_order"
+            "SELECT s.name || '|' || bt.name || '|' || CASE es.amount_from WHEN 0 THEN es.constant WHEN 1 THEN ie.value ELSE ie.value2 END
+               FROM item_enchantments ie JOIN enchantment_stats es ON es.enchantment_id = ie.enchantment_id
+               JOIN stats s ON s.id = es.stat_id JOIN bonus_types bt ON bt.id = COALESCE(es.bonus_type_id, ie.bonus_type_id)
+              WHERE ie.item_id = ?item ORDER BY ie.sort_order, es.sort_order"
         ),
         ["Strength|Enhancement|15", "Doublestrike|Insight|5"]
     );
     let effect_lines = item_column(
-        "SELECT e.name || '|' || COALESCE(ie.value, '') || '|' || COALESCE(ie.target, '') || '|' ||
-                COALESCE(e.description, '')
-           FROM item_effects ie JOIN effects e ON e.id = ie.effect_id WHERE ie.item_id = ?item ORDER BY ie.sort_order",
+        "SELECT e.name || '|' || COALESCE(e.text_template || ': ' || e.description_template, '')
+           FROM item_enchantments ie JOIN enchantments e ON e.id = ie.enchantment_id
+           WHERE ie.item_id = ?item AND NOT EXISTS
+             (SELECT 1 FROM enchantment_stats es WHERE es.enchantment_id = e.id) ORDER BY ie.sort_order",
     );
-    assert_eq!(effect_lines[0], "Test Oozing Hunger|3|All|Test description: on hit, the target oozes.");
+    assert_eq!(effect_lines[0], "Test Oozing Hunger|Test Oozing Hunger: Test description: on hit, the target oozes.");
     assert!(
-        effect_lines[1].starts_with("Ethereal|||Ethereal: Equipping this item"),
+        effect_lines[1].starts_with("Ethereal|Ethereal: Equipping this item"),
         "his description stands: {effect_lines:?}"
     );
     assert_eq!(effect_lines.len(), 2);
     assert_eq!(
-        string_column(&db, "SELECT COUNT(*) || '' FROM effects WHERE name = 'Ethereal'"),
+        string_column(&db, "SELECT COUNT(*) || '' FROM enchantments WHERE name = 'Ethereal'"),
         ["1"],
         "his Ethereal is reused"
     );
@@ -1322,6 +1326,37 @@ fn writes_a_new_wiki_item_with_its_stats_bonuses_effects_sockets_set_and_quests(
     assert_eq!(quest_loot_row(&db, WIKI_QUEST, WIKI_AXE), Some(("reward".into(), false)), "links the wiki quest");
     assert_eq!(report.wiki_item_written_count, 1);
     assert_eq!(item_count(&db, "provenance = 'wiki'"), report.wiki_item_written_count as i64);
+}
+
+#[test]
+fn a_wiki_item_effect_with_a_value_reuses_the_written_buff_family() {
+    let wiki = parsed_edited_items(|source| {
+        source.replace(
+            "{ name = \"Test Oozing Hunger\", description = \"Test description: on hit, the target oozes.\", value = 3, target = \"All\" }",
+            "{ name = \"Command\", description = \"The wiki describes this command bonus.\", value = 3 }",
+        )
+    })
+    .unwrap();
+    let (db, _) = built_db_with(&wiki);
+    let identity_for = |item_name: &str| -> (i64, Option<i64>, Option<i64>) {
+        db.query_row(
+            "SELECT e.id, link.value, link.value2 FROM items i
+             JOIN item_enchantments link ON link.item_id = i.id
+             JOIN enchantments e ON e.id = link.enchantment_id
+             WHERE i.name = ?1 AND e.name = 'Command'",
+            [item_name],
+            |row| Ok((row.get(0)?, row.get(1)?, row.get(2)?)),
+        )
+        .unwrap()
+    };
+    let maetrim_family = identity_for("Grudgebearer's Plate").0;
+    assert_eq!(identity_for(WIKI_AXE), (maetrim_family, Some(3), None));
+    let command_stat_count: i64 = db
+        .query_row("SELECT COUNT(*) FROM enchantment_stats WHERE enchantment_id = ?1", [maetrim_family], |row| {
+            row.get(0)
+        })
+        .unwrap();
+    assert_eq!(command_stat_count, 1);
 }
 
 #[test]
@@ -1375,7 +1410,7 @@ fn wiki_items_never_change_maetrims_items() {
     assert_eq!(item_count(&without, "provenance = 'wiki'"), 0);
 }
 
-const WIKI_RUNE_ARM: &str = "[[item]]\nname = \"Test Rune Arm of the Oozing Hunger\"\npage = \"https://ddowiki.com/page/Item:Test\"\nread = \"2026-09-29\"\nslot = \"Runearm\"\ncategory = \"Weapon\"\nitem_type = \"Rune Arm\"\nminimum_level = 29\ndrop_location = \"Test source\"\n\n[item.weapon]\nhandedness = \"Off-hand\"\n";
+const WIKI_RUNE_ARM: &str = "[[item]]\nname = \"Test Rune Arm of the Oozing Hunger\"\npage = \"https://ddowiki.com/page/Item:Test\"\nread = \"2026-09-29\"\nslot = \"Off Hand\"\ncategory = \"Weapon\"\nitem_type = \"Rune Arm\"\nminimum_level = 29\ndrop_location = \"Test source\"\n\n[item.weapon]\nhandedness = \"Off-hand\"\n";
 
 type WeaponStatsColumns = (
     String,
@@ -1449,18 +1484,22 @@ fn reuses_maetrims_effect_whose_name_differs_only_by_case_spaces_and_hyphens() {
     let effect_lines = string_column(
         &db,
         &format!(
-            "SELECT e.name || '|' || COALESCE(e.description, '') FROM item_effects ie JOIN effects e ON e.id = ie.effect_id
-               JOIN items i ON i.id = ie.item_id WHERE i.name = '{WIKI_AXE}' ORDER BY ie.sort_order"
+            "SELECT e.name || '|' || COALESCE(e.text_template || ': ' || e.description_template, '')
+             FROM item_enchantments ie JOIN enchantments e ON e.id = ie.enchantment_id
+             JOIN items i ON i.id = ie.item_id WHERE i.name = '{WIKI_AXE}'
+             AND NOT EXISTS (SELECT 1 FROM enchantment_stats es WHERE es.enchantment_id = e.id)
+             ORDER BY ie.sort_order"
         ),
     );
     assert!(
         effect_lines[1].starts_with("Ethereal|Ethereal: Equipping"),
         "an exact match still reuses his: {effect_lines:?}"
     );
-    assert!(effect_lines[2].starts_with("FeatherFalling|Feather Falling: This item"), "{effect_lines:?}");
+    assert!(effect_lines[2].starts_with("Feather Falling|Feather Falling: This item"), "{effect_lines:?}");
     assert_eq!(effect_lines[3], "Rune Arm Imbue - Acid II|");
-    let effect_count =
-        |db: &Connection| -> i64 { db.query_row("SELECT COUNT(*) FROM effects", [], |r| r.get(0)).unwrap() };
+    let effect_count = |db: &Connection| -> i64 {
+        db.query_row("SELECT COUNT(*) FROM enchantments e WHERE NOT EXISTS (SELECT 1 FROM enchantment_stats es WHERE es.enchantment_id = e.id)", [], |r| r.get(0)).unwrap()
+    };
     assert_eq!(effect_count(&db), effect_count(&without) + 1, "only Test Oozing Hunger is new");
 }
 
@@ -1479,17 +1518,20 @@ fn reuses_maetrims_effect_whose_name_differs_only_by_colons_commas_periods_and_a
     let effect_names = string_column(
         &db,
         &format!(
-            "SELECT e.name FROM item_effects ie JOIN effects e ON e.id = ie.effect_id
-               JOIN items i ON i.id = ie.item_id WHERE i.name = '{WIKI_AXE}' ORDER BY ie.sort_order"
+            "SELECT e.name FROM item_enchantments ie JOIN enchantments e ON e.id = ie.enchantment_id
+               JOIN items i ON i.id = ie.item_id WHERE i.name = '{WIKI_AXE}'
+               AND NOT EXISTS (SELECT 1 FROM enchantment_stats es WHERE es.enchantment_id = e.id)
+               ORDER BY ie.sort_order"
         ),
     );
     assert_eq!(
         effect_names[2..],
-        ["MaximumChargeTierIII", "Rune Arm Imbue - Acid II", "Rune Arm Imbue - Acid II"],
+        ["Maximum Charge Tier III", "Rune Arm Imbue - Acid II", "Rune Arm Imbue - Acid II"],
         "{effect_names:?}"
     );
-    let effect_count =
-        |db: &Connection| -> i64 { db.query_row("SELECT COUNT(*) FROM effects", [], |r| r.get(0)).unwrap() };
+    let effect_count = |db: &Connection| -> i64 {
+        db.query_row("SELECT COUNT(*) FROM enchantments e WHERE NOT EXISTS (SELECT 1 FROM enchantment_stats es WHERE es.enchantment_id = e.id)", [], |r| r.get(0)).unwrap()
+    };
     assert_eq!(effect_count(&db), effect_count(&without) + 1, "only Test Oozing Hunger is new");
 }
 

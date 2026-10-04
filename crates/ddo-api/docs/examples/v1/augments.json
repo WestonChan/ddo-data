@@ -5,8 +5,8 @@
       "bonuses": [
         {
           "bonus_type": "Artifact",
-          "description": null,
-          "id": 6301,
+          "description": "Artifact Abjuration Focus 2: 2 Artifact bonus to the DC of Abjuration spells.",
+          "id": 98,
           "name": "Abjuration Spell Focus +2",
           "stat": "Abjuration Spell Focus",
           "stat_category": "magical",
@@ -41,8 +41,8 @@
       "bonuses": [
         {
           "bonus_type": "Artifact",
-          "description": null,
-          "id": 6486,
+          "description": "Artifact Abjuration Focus 4: 4 Artifact bonus to the DC of Abjuration spells.",
+          "id": 98,
           "name": "Abjuration Spell Focus +4",
           "stat": "Abjuration Spell Focus",
           "stat_category": "magical",

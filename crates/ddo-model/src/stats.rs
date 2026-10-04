@@ -262,4 +262,5 @@ pub const STATS: &[Stat] = &[
     Stat { id: 303, name: "Hireling Physical Resistance Rating", category: StatCategory::Other },
     Stat { id: 304, name: "Hireling Ranged Power", category: StatCategory::Other },
     Stat { id: 305, name: "Hireling Spell Power", category: StatCategory::Other },
+    Stat { id: 306, name: "Action Boosts", category: StatCategory::Other },
 ];

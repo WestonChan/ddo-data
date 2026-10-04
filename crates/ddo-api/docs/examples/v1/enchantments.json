@@ -11,12 +11,12 @@
       "name": "Alignment Absorption"
     },
     {
-      "item_count": 23,
+      "item_count": 24,
       "kind": "stat",
       "name": "Chaos Absorption"
     }
   ],
   "limit": 100,
   "offset": 0,
-  "total": 16
+  "total": 18
 }

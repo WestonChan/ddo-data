@@ -8,7 +8,7 @@ use std::process::Command;
 use walkdir::WalkDir;
 use xtask::dataset::{build_database_file, corrections_from, wiki_overrides_from};
 use xtask::integrity::{integrity_report, IntegrityOptions};
-use xtask::response_examples::{write_response_examples, EXAMPLE_REQUESTS};
+use xtask::response_examples::{write_response_examples, write_v1_detail_snapshot, EXAMPLE_REQUESTS};
 use xtask::wiki_tools::{wiki_check_report, write_wiki_batch};
 use xtask::workspace_root;
 
@@ -33,6 +33,12 @@ enum Task {
         #[arg(long)]
         out: Option<PathBuf>,
     },
+    SnapshotV1Details {
+        #[arg(long)]
+        db: PathBuf,
+        #[arg(long)]
+        out: PathBuf,
+    },
     WikiCheck {
         #[arg(long)]
         wiki: Option<PathBuf>,
@@ -43,6 +49,8 @@ enum Task {
     },
     CheckDb {
         db: PathBuf,
+        #[arg(long)]
+        source: Option<PathBuf>,
         #[arg(long)]
         corrections: Option<PathBuf>,
         #[arg(long = "allow-empty-table")]
@@ -73,13 +81,17 @@ fn main() -> Result<()> {
         Task::RefreshExamples { db: db_path, source: data_files_dir, out: examples_dir } => {
             refresh_response_examples(db_path.as_deref(), data_files_dir, examples_dir)
         }
+        Task::SnapshotV1Details { db, out } => {
+            println!("wrote {} v1 details to {}", write_v1_detail_snapshot(&db, &out)?, out.display());
+            Ok(())
+        }
         Task::WikiCheck { wiki: wiki_dir, corrections: corrections_dir, source: data_files_dir } => {
             let data_files_dir = data_files_dir.unwrap_or_else(default_data_files_dir);
             println!("{}", wiki_check_report(&data_files_dir, wiki_dir.as_deref(), corrections_dir.as_deref())?);
             Ok(())
         }
-        Task::CheckDb { db: db_path, corrections: corrections_dir, allowed_empty_tables } => {
-            check_database_integrity(&db_path, corrections_dir.as_deref(), allowed_empty_tables)
+        Task::CheckDb { db: db_path, source: data_files_dir, corrections: corrections_dir, allowed_empty_tables } => {
+            check_database_integrity(&db_path, data_files_dir, corrections_dir.as_deref(), allowed_empty_tables)
         }
         Task::WikiBatch { out: batch_dir, wiki: wiki_dir, corrections: corrections_dir, source: data_files_dir } => {
             let data_files_dir = data_files_dir.unwrap_or_else(default_data_files_dir);
@@ -124,12 +136,17 @@ fn refresh_response_examples(
 
 fn check_database_integrity(
     db_path: &Path,
+    data_files_dir: Option<PathBuf>,
     corrections_dir: Option<&Path>,
     allowed_empty_tables: Vec<String>,
 ) -> Result<()> {
     let db = rusqlite::Connection::open_with_flags(db_path, rusqlite::OpenFlags::SQLITE_OPEN_READ_ONLY)
         .with_context(|| format!("opening {}", db_path.display()))?;
-    let options = IntegrityOptions { corrections: corrections_from(corrections_dir)?, allowed_empty_tables };
+    let options = IntegrityOptions {
+        corrections: corrections_from(corrections_dir)?,
+        allowed_empty_tables,
+        data_files_dir: data_files_dir.unwrap_or_else(default_data_files_dir),
+    };
     let report = integrity_report(&db, &options)?;
     println!("{report}");
     let failed_check_names = report.failed_hard_check_names();

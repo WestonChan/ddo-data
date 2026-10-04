@@ -5,7 +5,7 @@ use crate::enums::{
 };
 use std::sync::LazyLock;
 
-pub const SCHEMA_VERSION: i64 = 20;
+pub const SCHEMA_VERSION: i64 = 21;
 
 fn sql_in_clause<'a>(allowed_values: impl Iterator<Item = &'a str>) -> String {
     let quoted_values: Vec<String> = allowed_values.map(|value| format!("'{value}'")).collect();
@@ -220,44 +220,58 @@ CREATE TABLE IF NOT EXISTS item_armor_stats (
     adamantine_body     INTEGER                       -- <AdamantineBody>, docents only
 );
 
--- Bonuses: a typed number applied to a stat. Deduplicated across items.
-CREATE TABLE IF NOT EXISTS bonuses (
-    id            INTEGER PRIMARY KEY,
-    name          TEXT    NOT NULL,                   -- computed '{{stat}} +{{value}}'
-    description   TEXT,                               -- ItemBuffs.xml <DisplayText> with placeholders filled
-    stat_id       INTEGER NOT NULL REFERENCES stats(id),
-    bonus_type_id INTEGER NOT NULL REFERENCES bonus_types(id), -- <Buff><BonusType>, its definition's, or a correction's
-    value         INTEGER,                            -- <Buff><Value1>
-    value2        INTEGER                             -- <Buff><Value2>
+CREATE TABLE IF NOT EXISTS enchantment_ladders (
+    id   INTEGER PRIMARY KEY,
+    name TEXT NOT NULL UNIQUE CHECK (TRIM(name) <> '')
 );
-CREATE UNIQUE INDEX IF NOT EXISTS idx_bonuses_unique
-    ON bonuses(stat_id, bonus_type_id, COALESCE(value, -1), COALESCE(value2, -1), COALESCE(description, ''));
-CREATE INDEX IF NOT EXISTS idx_bonuses_stat ON bonuses(stat_id);
 
-CREATE TABLE IF NOT EXISTS item_bonuses (
-    item_id    INTEGER NOT NULL REFERENCES items(id) ON DELETE CASCADE,
-    bonus_id   INTEGER NOT NULL REFERENCES bonuses(id),
-    sort_order INTEGER NOT NULL,                      -- <Buff> position within the item
+CREATE TABLE IF NOT EXISTS enchantments (
+    id                   INTEGER PRIMARY KEY,
+    name                 TEXT NOT NULL UNIQUE CHECK (TRIM(name) <> ''),
+    text_template        TEXT NOT NULL,
+    description_template TEXT,
+    amount_count         INTEGER NOT NULL CHECK (amount_count BETWEEN 0 AND 2),
+    default_value        INTEGER,
+    default_value2       INTEGER,
+    wiki_url             TEXT CHECK (wiki_url IS NULL OR wiki_url GLOB 'https://ddowiki.com/page/?*'),
+    stacking_note        TEXT,
+    ladder_id            INTEGER REFERENCES enchantment_ladders(id),
+    ladder_rank          INTEGER CHECK (ladder_rank IS NULL OR ladder_rank > 0),
+    CHECK (default_value IS NULL OR amount_count >= 1),
+    CHECK (default_value2 IS NULL OR amount_count >= 2),
+    CHECK ((ladder_id IS NULL) = (ladder_rank IS NULL)),
+    UNIQUE (ladder_id, ladder_rank)
+);
+
+CREATE TABLE IF NOT EXISTS enchantment_stats (
+    enchantment_id INTEGER NOT NULL REFERENCES enchantments(id) ON DELETE CASCADE,
+    stat_id        INTEGER NOT NULL REFERENCES stats(id),
+    bonus_type_id  INTEGER REFERENCES bonus_types(id),
+    amount_from    INTEGER NOT NULL CHECK (amount_from BETWEEN 0 AND 2),
+    constant       INTEGER,
+    scale          REAL NOT NULL DEFAULT 1,
+    rounding       TEXT NOT NULL DEFAULT 'down' CHECK (rounding IN ('down', 'up', 'nearest')),
+    sort_order     INTEGER NOT NULL,
+    CHECK ((amount_from = 0) = (constant IS NOT NULL)),
+    CHECK (scale > 0),
+    CHECK (amount_from <> 0 OR (scale = 1 AND rounding = 'down')),
+    UNIQUE (enchantment_id, stat_id, bonus_type_id)
+);
+CREATE INDEX IF NOT EXISTS idx_enchantment_stats_stat ON enchantment_stats(stat_id);
+CREATE UNIQUE INDEX IF NOT EXISTS idx_enchantment_stats_identity
+    ON enchantment_stats(enchantment_id, stat_id, COALESCE(bonus_type_id, -1));
+
+CREATE TABLE IF NOT EXISTS item_enchantments (
+    item_id        INTEGER NOT NULL REFERENCES items(id) ON DELETE CASCADE,
+    enchantment_id INTEGER NOT NULL REFERENCES enchantments(id),
+    bonus_type_id  INTEGER REFERENCES bonus_types(id),
+    value          INTEGER,
+    value2         INTEGER,
+    sort_order     INTEGER NOT NULL,
+    CHECK ((value IS NULL) <= (value2 IS NULL)),
     PRIMARY KEY (item_id, sort_order)
 );
-CREATE INDEX IF NOT EXISTS idx_item_bonuses_bonus ON item_bonuses(bonus_id);
-
--- Effects: a named property that is not a number on a stat (Vorpal, Ghost Touch, Feather Falling).
-CREATE TABLE IF NOT EXISTS effects (
-    id          INTEGER PRIMARY KEY,
-    name        TEXT NOT NULL UNIQUE,                 -- <Buff><Type>
-    description TEXT                                  -- ItemBuffs.xml <DisplayText>
-);
-
-CREATE TABLE IF NOT EXISTS item_effects (
-    item_id    INTEGER NOT NULL REFERENCES items(id) ON DELETE CASCADE,
-    effect_id  INTEGER NOT NULL REFERENCES effects(id),
-    sort_order INTEGER NOT NULL,                      -- <Buff> position within the item
-    value      INTEGER,                               -- <Buff><Value1>, when present
-    target     TEXT,                                  -- <Buff><Item>, e.g. 'Fire', 'All'
-    PRIMARY KEY (item_id, sort_order)
-);
-CREATE INDEX IF NOT EXISTS idx_item_effects_effect ON item_effects(effect_id);
+CREATE INDEX IF NOT EXISTS idx_item_enchantments_enchantment ON item_enchantments(enchantment_id);
 
 CREATE TABLE IF NOT EXISTS item_augment_slots (
     item_id    INTEGER NOT NULL REFERENCES items(id) ON DELETE CASCADE,
@@ -268,9 +282,9 @@ CREATE TABLE IF NOT EXISTS item_augment_slots (
 
 -- The <Augment> choices upstream fixes for a socket: the upgrade tiers a player unlocks on Quenched, Smoldering,
 -- Energized, Thunder-Forged, Attuned to Heroism and Upgradeable items, or the choices a crafting step offers;
--- no rows is an ordinary open socket. Whatever an option gives (a socket, set membership, bonuses, the raw <Effect>
+-- no rows is an ordinary open socket. Whatever an option gives (a socket, set membership, enchantments, the raw <Effect>
 -- rows as modifiers with source_kind 'item_augment_slot_option') stays on the option until the player picks or
--- unlocks it, so none of it is the item's own socket, set or bonus.
+-- unlocks it, so none of it is the item's own socket, set or enchantment.
 CREATE TABLE IF NOT EXISTS item_augment_slot_options (
     id           INTEGER PRIMARY KEY,
     item_id      INTEGER NOT NULL,
@@ -298,13 +312,18 @@ CREATE TABLE IF NOT EXISTS item_augment_slot_option_sets (
 );
 CREATE INDEX IF NOT EXISTS idx_item_augment_slot_option_sets_set ON item_augment_slot_option_sets(set_id);
 
-CREATE TABLE IF NOT EXISTS item_augment_slot_option_bonuses (
-    option_id  INTEGER NOT NULL REFERENCES item_augment_slot_options(id) ON DELETE CASCADE,
-    bonus_id   INTEGER NOT NULL REFERENCES bonuses(id),
-    sort_order INTEGER NOT NULL,                      -- derived from the option's simple <Effect> rows, in order
+CREATE TABLE IF NOT EXISTS item_augment_slot_option_enchantments (
+    option_id      INTEGER NOT NULL REFERENCES item_augment_slot_options(id) ON DELETE CASCADE,
+    enchantment_id INTEGER NOT NULL REFERENCES enchantments(id),
+    bonus_type_id  INTEGER REFERENCES bonus_types(id),
+    value          INTEGER,
+    value2         INTEGER,
+    sort_order     INTEGER NOT NULL,
+    CHECK ((value IS NULL) <= (value2 IS NULL)),
     PRIMARY KEY (option_id, sort_order)
 );
-CREATE INDEX IF NOT EXISTS idx_item_augment_slot_option_bonuses_bonus ON item_augment_slot_option_bonuses(bonus_id);
+CREATE INDEX IF NOT EXISTS idx_item_augment_slot_option_enchantments_enchantment
+    ON item_augment_slot_option_enchantments(enchantment_id);
 
 -- Quest chains and sagas (data/wiki quest_chains and sagas) ---------------------------
 --
@@ -407,7 +426,7 @@ CREATE INDEX IF NOT EXISTS idx_sources_event ON sources(event_id) WHERE event_id
 -- Modifiers and requirements: the two grammars every family shares ---------------
 --
 -- A modifier is one upstream <Effect>, stored faithfully: the engine (Phases 6–8) reads these.
--- `bonuses` rows are derived from the simple ones for display; see the V3 roadmap entry.
+-- Enchantment stat rows come from mapped effects; modifiers keep the upstream mechanics.
 CREATE TABLE IF NOT EXISTS modifiers (
     id                   INTEGER PRIMARY KEY,
     source_kind          TEXT    NOT NULL CHECK (source_kind {modifier_source}),
@@ -494,10 +513,14 @@ CREATE TABLE IF NOT EXISTS feat_sub_items (
     PRIMARY KEY (feat_id, sort_order)
 );
 
-CREATE TABLE IF NOT EXISTS feat_bonuses (
-    feat_id    INTEGER NOT NULL REFERENCES feats(id) ON DELETE CASCADE,
-    bonus_id   INTEGER NOT NULL REFERENCES bonuses(id),
-    sort_order INTEGER NOT NULL,
+CREATE TABLE IF NOT EXISTS feat_enchantments (
+    feat_id        INTEGER NOT NULL REFERENCES feats(id) ON DELETE CASCADE,
+    enchantment_id INTEGER NOT NULL REFERENCES enchantments(id),
+    bonus_type_id  INTEGER REFERENCES bonus_types(id),
+    value          INTEGER,
+    value2         INTEGER,
+    sort_order     INTEGER NOT NULL,
+    CHECK ((value IS NULL) <= (value2 IS NULL)),
     PRIMARY KEY (feat_id, sort_order)
 );
 
@@ -791,10 +814,14 @@ CREATE TABLE IF NOT EXISTS augment_slots (
 );
 CREATE INDEX IF NOT EXISTS idx_augment_slots_slot ON augment_slots(slot_id);
 
-CREATE TABLE IF NOT EXISTS augment_bonuses (
-    augment_id INTEGER NOT NULL REFERENCES augments(id) ON DELETE CASCADE,
-    bonus_id   INTEGER NOT NULL REFERENCES bonuses(id),
-    sort_order INTEGER NOT NULL,
+CREATE TABLE IF NOT EXISTS augment_enchantments (
+    augment_id     INTEGER NOT NULL REFERENCES augments(id) ON DELETE CASCADE,
+    enchantment_id INTEGER NOT NULL REFERENCES enchantments(id),
+    bonus_type_id  INTEGER REFERENCES bonus_types(id),
+    value          INTEGER,
+    value2         INTEGER,
+    sort_order     INTEGER NOT NULL,
+    CHECK ((value IS NULL) <= (value2 IS NULL)),
     PRIMARY KEY (augment_id, sort_order)
 );
 
@@ -883,18 +910,21 @@ CREATE TABLE IF NOT EXISTS set_bonus_tiers (
     id             INTEGER PRIMARY KEY,
     set_id         INTEGER NOT NULL REFERENCES set_bonuses(id) ON DELETE CASCADE,
     equipped_count INTEGER NOT NULL,                   -- <Buff><EquippedCount>
-    description    TEXT,                               -- <Buff><Description>
     UNIQUE (set_id, equipped_count)
 );
 
--- Bonuses derived from a tier's plain stat effects, as feat_bonuses and augment_bonuses are from theirs.
-CREATE TABLE IF NOT EXISTS set_bonus_tier_bonuses (
-    tier_id    INTEGER NOT NULL REFERENCES set_bonus_tiers(id) ON DELETE CASCADE,
-    bonus_id   INTEGER NOT NULL REFERENCES bonuses(id),
-    sort_order INTEGER NOT NULL,
+CREATE TABLE IF NOT EXISTS set_bonus_tier_enchantments (
+    tier_id        INTEGER NOT NULL REFERENCES set_bonus_tiers(id) ON DELETE CASCADE,
+    enchantment_id INTEGER NOT NULL REFERENCES enchantments(id),
+    bonus_type_id  INTEGER REFERENCES bonus_types(id),
+    value          INTEGER,
+    value2         INTEGER,
+    sort_order     INTEGER NOT NULL,
+    CHECK ((value IS NULL) <= (value2 IS NULL)),
     PRIMARY KEY (tier_id, sort_order)
 );
-CREATE INDEX IF NOT EXISTS idx_set_bonus_tier_bonuses_bonus ON set_bonus_tier_bonuses(bonus_id);
+CREATE INDEX IF NOT EXISTS idx_set_bonus_tier_enchantments_enchantment
+    ON set_bonus_tier_enchantments(enchantment_id);
 
 CREATE TABLE IF NOT EXISTS set_bonus_items (
     set_id  INTEGER NOT NULL REFERENCES set_bonuses(id) ON DELETE CASCADE,

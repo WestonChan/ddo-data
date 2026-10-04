@@ -188,12 +188,13 @@ fn record_fixture_build_bonuses(sources_by_stat: &mut BTreeMap<String, String>) 
     .expect("build succeeds on fixtures");
     let mut statement = db
         .prepare(
-            "SELECT s.name, 'a feat bonus' FROM feat_bonuses fb JOIN bonuses b ON b.id = fb.bonus_id \
-             JOIN stats s ON s.id = b.stat_id \
-             UNION SELECT s.name, 'a set tier bonus' FROM set_bonus_tier_bonuses tb \
-             JOIN bonuses b ON b.id = tb.bonus_id JOIN stats s ON s.id = b.stat_id \
-             UNION SELECT s.name, 'an augment bonus' FROM augment_bonuses ab JOIN augments a ON a.id = ab.augment_id \
-             JOIN bonuses b ON b.id = ab.bonus_id JOIN stats s ON s.id = b.stat_id WHERE a.provenance = 'maetrim'",
+            "SELECT s.name, 'a feat bonus' FROM feat_enchantments fe
+             JOIN enchantment_stats es ON es.enchantment_id = fe.enchantment_id JOIN stats s ON s.id = es.stat_id
+             UNION SELECT s.name, 'a set tier bonus' FROM set_bonus_tier_enchantments te
+             JOIN enchantment_stats es ON es.enchantment_id = te.enchantment_id JOIN stats s ON s.id = es.stat_id
+             UNION SELECT s.name, 'an augment bonus' FROM augment_enchantments ae JOIN augments a ON a.id = ae.augment_id
+             JOIN enchantment_stats es ON es.enchantment_id = ae.enchantment_id JOIN stats s ON s.id = es.stat_id
+             WHERE a.provenance = 'maetrim'",
         )
         .unwrap();
     let stat_names_with_owner: Vec<(String, String)> =

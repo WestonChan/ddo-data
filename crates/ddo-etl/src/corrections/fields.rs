@@ -10,6 +10,8 @@ pub enum FieldShape {
     RowName,
     Removal,
     BonusTypeName,
+    StatScale,
+    StatRounding,
     BonusAddition,
     BonusRemoval,
     TierAddition,
@@ -82,8 +84,15 @@ const AUGMENT_BONUS_FIELDS: &[CorrectableField] = &[
     field("remove", FieldShape::BonusRemoval, false),
 ];
 
-const ITEM_BONUS_FIELDS: &[CorrectableField] = AUGMENT_BONUS_FIELDS;
-const SET_TIER_BONUS_FIELDS: &[CorrectableField] = AUGMENT_BONUS_FIELDS;
+const ITEM_BONUS_FIELDS: &[CorrectableField] = &[
+    field("value", FieldShape::Integer, false),
+    field("bonus_type", FieldShape::BonusTypeName, false),
+    field("scale", FieldShape::StatScale, false),
+    field("rounding", FieldShape::StatRounding, false),
+    field("add", FieldShape::BonusAddition, false),
+    field("remove", FieldShape::BonusRemoval, false),
+];
+const SET_TIER_BONUS_FIELDS: &[CorrectableField] = ITEM_BONUS_FIELDS;
 
 const SET_TIER_FIELDS: &[CorrectableField] = &[
     field("add", FieldShape::TierAddition, false),

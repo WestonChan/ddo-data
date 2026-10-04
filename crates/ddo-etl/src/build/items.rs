@@ -1,5 +1,6 @@
 use super::bonus_types::{BonusOrigin, BonusOwner, BonusOwnerKind};
 use super::drop_text::DroppedLoot;
+use super::enchantments::{amount_count, split_template, EnchantmentOwner};
 use super::quest_series::QuestSeriesTable;
 use super::{joined_non_empty, trimmed_non_empty, BuildReport, TableWriter};
 use crate::map::buff::{BuffResolutionSource, ResolvedBuff};
@@ -7,7 +8,7 @@ use crate::map::item_version::names_legacy_version;
 use crate::map::material;
 use crate::map::placement::placement_of;
 use crate::xml::items::{AugmentSlotOption, Item};
-use anyhow::{bail, Result};
+use anyhow::{bail, ensure, Result};
 use ddo_model::enums::{ArmorType, EquipmentSlot, Handedness, ItemCategory, ModifierSource, Provenance};
 use rusqlite::params;
 
@@ -167,13 +168,11 @@ impl TableWriter<'_> {
 
         let mut sort_order = 0;
         for (buff, resolved_buff) in resolved_buffs {
-            let template = self.buff_resolver.description_template(buff.kind.trim());
             match resolved_buff {
-                ResolvedBuff::Bonuses { source, stats } => {
-                    let description =
-                        if template.is_empty() { None } else { Some(self.buff_resolver.description(template, buff)) };
+                ResolvedBuff::Bonuses { source: _, stats } => {
                     let item_owner = BonusOwner { kind: BonusOwnerKind::Item, name: item_name, family: None };
-                    for resolved_stat in stats {
+                    let mut typed_stats = Vec::with_capacity(stats.len());
+                    for resolved_stat in &stats {
                         let stat = resolved_stat.stat;
                         let value = resolved_stat.amount(buff);
                         let bonus_type = self.bonus_type_of(
@@ -185,18 +184,121 @@ impl TableWriter<'_> {
                             },
                             resolved_stat.bonus_type,
                         )?;
-                        let second_value =
-                            (source == BuffResolutionSource::Family).then_some(buff.second_value).flatten();
-                        let bonus_id =
-                            self.ensure_bonus(stat, bonus_type, value, second_value, description.as_deref())?;
-                        self.insert_item_bonus(item_id, bonus_id, sort_order)?;
-                        sort_order += 1;
+                        typed_stats.push((resolved_stat, bonus_type));
                     }
+                    let first_type = typed_stats.first().map(|(_, bonus_type)| *bonus_type);
+                    let family_name = self.buff_resolver.family_name(buff, stats.first().map(|stat| stat.stat.name));
+                    let family_text = self.buff_resolver.family_template(buff);
+                    let uses_link_type = family_text.contains("%b1");
+                    if uses_link_type {
+                        ensure!(typed_stats.iter().all(|(_, bonus_type)| Some(*bonus_type) == first_type),
+                            "item {item_name:?} family {family_name:?} resolves to multiple bonus types for one %b1 slot");
+                    }
+                    let (mut text_template, description_template) =
+                        if family_text.is_empty() { (family_name.clone(), None) } else { split_template(&family_text) };
+                    let constant_amounts: std::collections::BTreeSet<i64> = stats
+                        .iter()
+                        .filter_map(|stat| match stat.amount_from {
+                            crate::map::buff::AmountFrom::Constant(amount) => Some(amount),
+                            _ => None,
+                        })
+                        .collect();
+                    if constant_amounts.len() == 1
+                        && !text_template.chars().any(|character| character.is_ascii_digit())
+                        && !text_template.contains("{1}")
+                        && !text_template.contains("{2}")
+                    {
+                        text_template.push_str(&format!(" {:+}", constant_amounts.first().expect("one constant")));
+                    }
+                    let required_count = stats
+                        .iter()
+                        .map(|stat| match stat.amount_from {
+                            crate::map::buff::AmountFrom::ItemValue1 => 1,
+                            crate::map::buff::AmountFrom::ItemValue2 => 2,
+                            crate::map::buff::AmountFrom::Constant(_) => 0,
+                        })
+                        .max()
+                        .unwrap_or(0);
+                    for slot in 1..=required_count {
+                        let placeholder = format!("{{{slot}}}");
+                        if !text_template.contains(&placeholder)
+                            && !description_template.as_deref().is_some_and(|text| text.contains(&placeholder))
+                        {
+                            text_template.push_str(&format!(" {placeholder}"));
+                        }
+                    }
+                    let count = amount_count(&text_template, description_template.as_deref());
+                    let enchantment_id = self.enchantments.ensure_family(
+                        &family_name,
+                        &text_template,
+                        description_template.as_deref(),
+                        count,
+                    )?;
+                    let defaults = self.buff_resolver.definition_defaults(buff.kind.trim(), count);
+                    if defaults != (None, None)
+                        && self.written.written_enchantment_defaults.insert((enchantment_id, defaults.0, defaults.1))
+                    {
+                        self.enchantments.set_defaults(enchantment_id, defaults)?;
+                    }
+                    for (stat_order, (resolved_stat, bonus_type)) in typed_stats.into_iter().enumerate() {
+                        let (amount_from, constant) = match resolved_stat.amount_from {
+                            crate::map::buff::AmountFrom::ItemValue1 => (1, None),
+                            crate::map::buff::AmountFrom::ItemValue2 => (2, None),
+                            crate::map::buff::AmountFrom::Constant(amount) => (0, Some(amount)),
+                        };
+                        self.enchantments.ensure_stat(
+                            enchantment_id,
+                            resolved_stat.stat,
+                            (!uses_link_type).then_some(bonus_type),
+                            amount_from,
+                            constant,
+                            stat_order,
+                        )?;
+                    }
+                    self.enchantments.insert_link(
+                        EnchantmentOwner::Item,
+                        item_id,
+                        enchantment_id,
+                        uses_link_type.then_some(first_type).flatten(),
+                        (
+                            (count >= 1).then_some(buff.value).flatten(),
+                            (count >= 2).then_some(buff.second_value).flatten(),
+                        ),
+                        sort_order,
+                    )?;
+                    sort_order += 1;
                 }
-                ResolvedBuff::Effect { name: effect_name, value, target } => {
-                    let description = if template.is_empty() { None } else { Some(template) };
-                    let effect_id = self.ensure_effect(&effect_name, description)?;
-                    self.insert_item_effect(item_id, effect_id, sort_order, value, target.as_deref())?;
+                ResolvedBuff::Effect { .. } => {
+                    let family_name = self.buff_resolver.family_name(buff, None);
+                    let family_text = self.buff_resolver.family_template(buff);
+                    let (text_template, description_template) =
+                        split_template(if family_text.is_empty() { &family_name } else { &family_text });
+                    let count = amount_count(&text_template, description_template.as_deref());
+                    let enchantment_id = self.enchantments.ensure_family(
+                        &family_name,
+                        &text_template,
+                        description_template.as_deref(),
+                        count,
+                    )?;
+                    let defaults = self.buff_resolver.definition_defaults(buff.kind.trim(), count);
+                    if defaults != (None, None)
+                        && self.written.written_enchantment_defaults.insert((enchantment_id, defaults.0, defaults.1))
+                    {
+                        self.enchantments.set_defaults(enchantment_id, defaults)?;
+                    }
+                    let uses_link_type = family_text.contains("%b1");
+                    let bonus_type = if uses_link_type { self.buff_resolver.link_bonus_type(buff)? } else { None };
+                    self.enchantments.insert_link(
+                        EnchantmentOwner::Item,
+                        item_id,
+                        enchantment_id,
+                        bonus_type,
+                        (
+                            (count >= 1).then_some(buff.value).flatten(),
+                            (count >= 2).then_some(buff.second_value).flatten(),
+                        ),
+                        sort_order,
+                    )?;
                     sort_order += 1;
                 }
                 ResolvedBuff::EnhancementBonus(_) => unreachable!("filtered above"),
@@ -266,15 +368,12 @@ impl TableWriter<'_> {
             self.pending_set_option_links.push((option_id, set_name.to_string()));
         }
         self.write_modifiers(ModifierSource::ItemAugmentSlotOption, option_id, &slot_option.effects)?;
-        let option_owner = BonusOwner { kind: BonusOwnerKind::ItemAugmentSlotOption, name: item_name, family: None };
-        for (sort_order, bonus_id) in
-            self.ensure_derived_bonuses(&option_owner, &slot_option.effects)?.into_iter().enumerate()
-        {
-            self.transaction.execute(
-                "INSERT INTO item_augment_slot_option_bonuses (option_id, bonus_id, sort_order) VALUES (?1, ?2, ?3)",
-                params![option_id, bonus_id, sort_order as i64],
-            )?;
-        }
+        self.pending_derived_enchantments.push((
+            EnchantmentOwner::ItemAugmentSlotOption,
+            option_id,
+            item_name.to_string(),
+            slot_option.effects.clone(),
+        ));
         Ok(())
     }
 
@@ -368,40 +467,6 @@ impl TableWriter<'_> {
                 row.mithral_body,
                 row.adamantine_body,
             ],
-        )?;
-        Ok(())
-    }
-
-    pub(super) fn insert_item_bonus(&self, item_id: i64, bonus_id: i64, sort_order: usize) -> Result<()> {
-        self.transaction.execute(
-            "INSERT INTO item_bonuses (item_id, bonus_id, sort_order) VALUES (?1, ?2, ?3)",
-            params![item_id, bonus_id, sort_order as i64],
-        )?;
-        Ok(())
-    }
-
-    pub(super) fn ensure_effect(&mut self, effect_name: &str, description: Option<&str>) -> Result<i64> {
-        if let Some(id) = self.written.effect_ids_by_name.get(effect_name) {
-            return Ok(*id);
-        }
-        self.transaction
-            .execute("INSERT INTO effects (name, description) VALUES (?1, ?2)", params![effect_name, description])?;
-        let id = self.transaction.last_insert_rowid();
-        self.written.effect_ids_by_name.insert(effect_name.to_string(), id);
-        Ok(id)
-    }
-
-    pub(super) fn insert_item_effect(
-        &self,
-        item_id: i64,
-        effect_id: i64,
-        sort_order: usize,
-        value: Option<i64>,
-        target: Option<&str>,
-    ) -> Result<()> {
-        self.transaction.execute(
-            "INSERT INTO item_effects (item_id, effect_id, sort_order, value, target) VALUES (?1, ?2, ?3, ?4, ?5)",
-            params![item_id, effect_id, sort_order as i64, value, target],
         )?;
         Ok(())
     }

@@ -1,5 +1,6 @@
 use super::bonus_types::{BonusOwner, BonusOwnerKind};
 use super::drop_text::DroppedLoot;
+use super::enchantments::EnchantmentOwner;
 use super::{joined_non_empty, json_number_array, trimmed_non_empty, BuildReport, TableWriter};
 use crate::map::drop_location::drop_text_in_description;
 use crate::xml::augments::parse_augments_file;
@@ -54,12 +55,16 @@ impl TableWriter<'_> {
             self.write_modifiers(ModifierSource::Augment, augment_id, &augment.effects)?;
             let augment_owner =
                 BonusOwner { kind: BonusOwnerKind::Augment, name: &augment.name, family: Some(&family) };
-            for (sort_order, bonus_id) in
-                self.ensure_derived_bonuses(&augment_owner, &augment.effects)?.into_iter().enumerate()
+            for (sort_order, link) in
+                self.ensure_derived_enchantments(&augment_owner, &augment.effects)?.into_iter().enumerate()
             {
-                self.transaction.execute(
-                    "INSERT INTO augment_bonuses (augment_id, bonus_id, sort_order) VALUES (?1, ?2, ?3)",
-                    params![augment_id, bonus_id, sort_order as i64],
+                self.enchantments.insert_link(
+                    EnchantmentOwner::Augment,
+                    augment_id,
+                    link.enchantment_id,
+                    link.bonus_type,
+                    (link.value, link.value2),
+                    sort_order,
                 )?;
             }
         }

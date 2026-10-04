@@ -128,9 +128,10 @@ fn writes_a_new_wiki_augment_with_its_slots_bonuses_and_set() {
     );
     assert_eq!(
         augment_column(
-            "SELECT s.name || '|' || bt.name || '|' || b.value FROM augment_bonuses ab JOIN bonuses b ON b.id = ab.bonus_id
-               JOIN stats s ON s.id = b.stat_id JOIN bonus_types bt ON bt.id = b.bonus_type_id
-              WHERE ab.augment_id = ?augment ORDER BY ab.sort_order"
+            "SELECT s.name || '|' || bt.name || '|' || CASE es.amount_from WHEN 0 THEN es.constant WHEN 1 THEN ae.value ELSE ae.value2 END
+               FROM augment_enchantments ae JOIN enchantment_stats es ON es.enchantment_id = ae.enchantment_id
+               JOIN stats s ON s.id = es.stat_id JOIN bonus_types bt ON bt.id = COALESCE(es.bonus_type_id, ae.bonus_type_id)
+              WHERE ae.augment_id = ?augment ORDER BY ae.sort_order, es.sort_order"
         ),
         ["Strength|Insight|3", "Doublestrike|Enhancement|5"]
     );
