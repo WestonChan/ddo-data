@@ -35,6 +35,14 @@ const FEATS_SORT_FIELDS: &[(&str, &str)] = &[
     ("source_kind", "f.source_kind"),
     ("acquire", "f.acquire"),
     ("sphere", "f.sphere"),
+    ("auto_acquire_ignores_requirements", "auto_acquire_ignores_requirements"),
+    ("description", "description"),
+    ("icon", "icon"),
+    ("max_times_acquire", "max_times_acquire"),
+    ("source_id", "source_id"),
+    ("source_name", "source_name"),
+    ("source", "f.source_kind"),
+    ("group", "(SELECT MIN(fg.group_name) FROM feat_groups fg WHERE fg.feat_id = f.id)"),
 ];
 
 declare_list_parameters!(FeatsParameters, FEATS_SORT_FIELDS, "");
@@ -44,10 +52,7 @@ declare_list_parameters!(FeatsParameters, FEATS_SORT_FIELDS, "");
     path = "/v1/feats",
     tag = "feats",
     summary = "List feats",
-    description = "One page of feats ordered by name. `source_kind` says where the feat comes from: `standard` for \
-                   the general list, `class` or `race` for feats granted by one class or race, with `source_name` \
-                   naming it. Each row also carries how the feat is acquired, how many times, its sphere, and the \
-                   feat `groups` it belongs to. Requirements and bonuses are on the detail endpoint.",
+    description = "Lists feats with sources, acquisition rules and groups.",
     params(
         FeatsParameters,
         ("source" = Option<String>, Query, description = "`standard`, `class` or `race`; anything else is a 400"),
@@ -55,7 +60,7 @@ declare_list_parameters!(FeatsParameters, FEATS_SORT_FIELDS, "");
         ("acquire" = Option<String>, Query, description = "How the feat is taken, e.g. `Train`, `Automatic`, `Special`"),
     ),
     responses(
-        (status = 200, description = "`total`, `limit`, `offset` and the `feats` page", body = Value),
+        (status = 200, description = "`total`, `limit`, `offset` and the `feats` page", body = crate::routes::v1::response_schemas::FeatsPageResponse),
         (status = 400, description = "Unknown source, or an unknown or malformed query parameter", body = crate::error::ErrorBody)
     )
 )]
@@ -115,14 +120,8 @@ fn feat_group_names(db: &rusqlite::Connection, feat_id: i64) -> Result<Vec<Value
     path = "/v1/feats/{id}",
     tag = "feats",
     summary = "Get a feat",
-    description = "One feat with its `requirements` to train it, `auto_acquire_requirements` for automatic grants, \
-                   `conditional_groups` (alternative requirement sets), `sub_items` (the choices a selector feat \
-                   offers), `stances`, `dcs`, an `attack` if the feat is one (name, description, icon, \
-                   `cooldown_seconds`, and the `duration_seconds` of what it applies afterwards), the attack's \
-                   `this_attack_modifiers` (bonuses to its own hit, e.g. `BonusDamagePercent`) and \
-                   `follow_on_modifiers` (what it applies afterwards, e.g. `AllowSneakAttack`), its derived \
-                   `bonuses`, and the raw `modifiers` they came from.",
-    params(("id" = i64, Path, description = "The feat's numeric id from the list endpoint")), responses((status = 200, description = "The feat with its child collections", body = Value), (status = 404, description = "No feat has this id", body = crate::error::ErrorBody))
+    description = "Returns a feat with requirements, bonuses, attacks and modifiers.",
+    params(("id" = i64, Path, description = "The feat's numeric id from the list endpoint")), responses((status = 200, description = "The feat with its child collections", body = crate::routes::v1::response_schemas::FeatsDetailResponse), (status = 404, description = "No feat has this id", body = crate::error::ErrorBody))
 )]
 async fn feat_detail(State(state): State<AppState>, Path(id): Path<i64>) -> Result<Json<Value>, ApiError> {
     state

@@ -1,0 +1,89 @@
+{
+  "augments": {
+    "augments": [
+      {
+        "id": 1460,
+        "name": "+1 Quality Strength",
+        "value": 1,
+        "value2": null
+      },
+      {
+        "id": 1479,
+        "name": "+15 Strength",
+        "value": 15,
+        "value2": null
+      },
+      {
+        "id": 969,
+        "name": "+15 Strength (Enhancement)",
+        "value": 15,
+        "value2": null
+      }
+    ],
+    "limit": 100,
+    "offset": 0,
+    "total": 51
+  },
+  "category": "ability",
+  "id": 1,
+  "items": {
+    "items": [
+      {
+        "id": 454,
+        "name": "-1 Quarterstaff of Lesser Halfling Bane",
+        "value": null,
+        "value2": null
+      },
+      {
+        "id": 495,
+        "name": "Agarta's Belt",
+        "value": 3,
+        "value2": null
+      },
+      {
+        "id": 495,
+        "name": "Agarta's Belt",
+        "value": 1,
+        "value2": null
+      }
+    ],
+    "limit": 100,
+    "offset": 0,
+    "total": 238
+  },
+  "name": "Strength",
+  "set_tiers": {
+    "limit": 100,
+    "offset": 0,
+    "set_tiers": [
+      {
+        "equipped_count": 3,
+        "id": 250,
+        "name": "Brutal Blows (3)",
+        "set_id": 211,
+        "set_name": "Brutal Blows",
+        "value": 3,
+        "value2": null
+      },
+      {
+        "equipped_count": 2,
+        "id": 81,
+        "name": "Captain's Set (2)",
+        "set_id": 73,
+        "set_name": "Captain's Set",
+        "value": 1,
+        "value2": null
+      },
+      {
+        "equipped_count": 3,
+        "id": 280,
+        "name": "Devils' Infernal Dance (3)",
+        "set_id": 237,
+        "set_name": "Devils' Infernal Dance",
+        "value": 1,
+        "value2": null
+      }
+    ],
+    "total": 37
+  }
+}

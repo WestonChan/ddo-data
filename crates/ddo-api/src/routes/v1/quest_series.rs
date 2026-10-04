@@ -91,6 +91,7 @@ const QUEST_SERIES_SORT_FIELDS: &[(&str, &str)] = &[
     ("pack", "listed.pack"),
     ("quest_count", "listed.quest_count"),
     ("reward_count", "listed.reward_count"),
+    ("wiki_url", "wiki_url"),
 ];
 
 fn quest_series_page(db: &Connection, table: QuestSeriesTable, query: &ListQuery) -> Result<ListPage, ApiError> {
@@ -150,17 +151,11 @@ declare_list_parameters!(QuestChainsParameters, QUEST_SERIES_SORT_FIELDS, "");
     path = "/v1/quest-chains",
     tag = "quests",
     summary = "List quest chains",
-    description = "Every quest chain (what ddowiki calls a story arc: a run of quests whose end reward an NPC gives \
-                   after the last of them, not any one quest), ordered by name, with its adventure `pack` (null \
-                   when the wiki names none; every chain is read from ddowiki, since Maetrim's files have none), the \
-                   `wiki_url` it was read from, and how many quests and end rewards it has (`quest_count`, \
-                   `reward_count`). The rewards are those the wiki page lists plus the items whose drop text \
-                   credits the chain with its end reward. Empty until a chain has been read from ddowiki; \
-                   /v1/sagas lists the saga system's rewards.",
+    description = "Lists quest chains with pack and reward counts.",
     params(
         QuestChainsParameters,
     ),
-    responses((status = 200, description = "`total`, `limit`, `offset` and the `quest_chains` page", body = Value),
+    responses((status = 200, description = "`total`, `limit`, `offset` and the `quest_chains` page", body = crate::routes::v1::response_schemas::QuestChainsPageResponse),
         (status = 400, description = "Invalid sort field or malformed query parameter", body = crate::error::ErrorBody))
 )]
 async fn quest_chains(State(state): State<AppState>, ApiQuery(query, _): ApiQuery) -> Result<Json<Value>, ApiError> {
@@ -176,14 +171,10 @@ async fn quest_chains(State(state): State<AppState>, ApiQuery(query, _): ApiQuer
     path = "/v1/quest-chains/{id}",
     tag = "quests",
     summary = "Get a quest chain",
-    description = "One quest chain as the list returns it, plus `quests`, its quests in the order they are run, \
-                   each with `id`, `name` and heroic `level` (see /v1/quests/{id}), and `rewards`, the items its \
-                   end reward offers, sorted by name, each with `id`, `name`, `is_rare` (the wiki or Maetrim's \
-                   drop text marks it rare), `minimum_level` and equipment `slot`. Either array is empty when \
-                   nothing is known.",
+    description = "Returns a quest chain with its quests and end rewards.",
     params(("id" = i64, Path, description = "The quest chain's numeric id from /v1/quest-chains")),
     responses(
-        (status = 200, description = "The quest chain with its quests and rewards", body = Value),
+        (status = 200, description = "The quest chain with its quests and rewards", body = crate::routes::v1::response_schemas::QuestChainsDetailResponse),
         (status = 404, description = "No quest chain has this id", body = crate::error::ErrorBody)
     )
 )]
@@ -199,17 +190,11 @@ declare_list_parameters!(SagasParameters, QUEST_SERIES_SORT_FIELDS, "");
     path = "/v1/sagas",
     tag = "quests",
     summary = "List sagas",
-    description = "Every saga (a set of quests whose saga NPC gives an end reward once they are all done, in \
-                   heroic, epic and legendary reward lists), ordered by name, with its adventure `pack` (null \
-                   when the wiki names none; every saga is read from ddowiki, since Maetrim's files have none), the \
-                   `wiki_url` it was read from, and how many quests and end rewards it has (`quest_count`, \
-                   `reward_count`, one per item and tier). The rewards are those the wiki page lists plus the \
-                   items whose drop text credits the saga. Empty until a saga has been read from ddowiki; \
-                   /v1/quest-chains lists quest chains.",
+    description = "Lists sagas with pack, quest and reward counts.",
     params(
         SagasParameters,
     ),
-    responses((status = 200, description = "`total`, `limit`, `offset` and the `sagas` page", body = Value),
+    responses((status = 200, description = "`total`, `limit`, `offset` and the `sagas` page", body = crate::routes::v1::response_schemas::SagasPageResponse),
         (status = 400, description = "Invalid sort field or malformed query parameter", body = crate::error::ErrorBody))
 )]
 async fn sagas(State(state): State<AppState>, ApiQuery(query, _): ApiQuery) -> Result<Json<Value>, ApiError> {
@@ -221,14 +206,10 @@ async fn sagas(State(state): State<AppState>, ApiQuery(query, _): ApiQuery) -> R
     path = "/v1/sagas/{id}",
     tag = "quests",
     summary = "Get a saga",
-    description = "One saga as the list returns it, plus `quests`, its quests in the wiki's order, each with \
-                   `id`, `name` and heroic `level`, and `rewards`, the items its end reward offers, sorted by \
-                   `tier` (heroic, epic, legendary, then null when neither the wiki nor the drop text names one) \
-                   and then name, each with `id`, `name`, `tier`, `is_rare`, `minimum_level` and equipment `slot`. \
-                   An item offered at two tiers appears once per tier. Either array is empty when nothing is known.",
+    description = "Returns a saga with its quests and tiered end rewards.",
     params(("id" = i64, Path, description = "The saga's numeric id from /v1/sagas")),
     responses(
-        (status = 200, description = "The saga with its quests and rewards", body = Value),
+        (status = 200, description = "The saga with its quests and rewards", body = crate::routes::v1::response_schemas::SagasDetailResponse),
         (status = 404, description = "No saga has this id", body = crate::error::ErrorBody)
     )
 )]

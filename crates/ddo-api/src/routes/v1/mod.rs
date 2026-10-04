@@ -10,6 +10,7 @@ mod items;
 mod quest_series;
 mod quests;
 mod races;
+mod response_schemas;
 mod sets;
 mod spells;
 mod stances;
@@ -39,20 +40,26 @@ use utoipa_axum::router::OpenApiRouter;
                        `/v1/version` reports the current commit and carries `Cache-Control: no-cache`, so every use \
                        revalidates it. Error responses (every 4xx and 5xx, 429 included) carry \
                        `Cache-Control: no-store` and no `ETag`.\n\n\
-                       **Shapes.** Every entity has a numeric `id` except derived enchantments. Every list returns \
-                       `{ total, limit, offset, <name>: [...] }`, where `<name>` is the resource name. \
-                       `<name>/{id}` returns the full entity with its child \
-                       collections. Booleans are JSON booleans; absent values are `null`. Unknown ids are 404 with \
-                       `{ \"error\": ... }`.\n\n\
-                       **Query parameters.** Different filters are AND-ed. List-valued parameters use repeated keys, \
-                       not comma-separated values because names may contain commas. `q` matches a case-insensitive \
-                       substring of the row name, or its display label when it has no `name`; routes with richer \
-                       `q` behavior describe it locally. `limit` defaults to 100 and is clamped to 1–10000; \
-                       `offset` defaults to 0 and is clamped to zero or greater. `total` counts matches before \
-                       paging. Repeat `sort` keys in priority order, for example `sort=-name&sort=minimum_level`; \
-                       a leading `-` means descending. Sort keys override each route's default order; nulls \
-                       sort last in both directions. Each route's `sort` parameter names its allowed fields. \
-                       An unknown field or a bare `-` returns 400 naming the bad value and allowed fields.\n\n\
+                       **Shapes.** Each resource has numeric ids; family ids and stat ids are separate spaces and may overlap. Every list returns \
+                       `{ total, limit, offset, <name>: [...] }`, and detail routes return an entity with its related collections. \
+                       Booleans are JSON booleans, absent values are `null`, and unknown ids return 404.\n\n\
+                       **Query parameters.** Different filters are AND-ed. On `/v1/items`, repeat `slot`, `category`, \
+                       `pack`, `quest`, `quest_chain`, `saga` or `enchantment` for any matching value; comma-separated \
+                       lists are never used. `pack_match`, `quest_match`, `quest_chain_match`, `saga_match` and \
+                       `enchantment_match` accept `any` (default) or `all`; `slot_match` and `category_match` return 400 \
+                       because an item has one slot and category. `q` matches a case-insensitive name substring unless \
+                       a route says otherwise. `limit` defaults to 100 and clamps to 1–10000; `offset` defaults to zero \
+                       and clamps to nonnegative values; `total` counts before paging. Repeat `sort` keys in priority \
+                       order and prefix `-` for descending; nulls sort last in either direction. Each route lists its \
+                       sort fields, and invalid or unknown query keys return 400 naming the bad key and accepted keys.\n\n\
+                       **Enchantments.** A family is one line of equipment text; its owner link carries values and \
+                       sometimes a bonus type, while its stat rows derive zero or more typed bonuses from those \
+                       amounts. Item, augment and set details render family templates into `enchantments` in owner \
+                       order. `/v1/enchantments` lists families and stats together; each row's `kind` and `detail_path` \
+                       identify the correct detail route, because `/v1/enchantments/{id}` and `/v1/stats/{id}` use \
+                       separate id spaces. Item `enchantment` filters accept a family, ladder or stat name, and \
+                       `stat:bonus type` narrows a stat to that type. Family and stat detail page items, augments and \
+                       set tiers independently with their own limit and offset parameters.\n\n\
                        **Bulk.** Download `/v1/dump.sqlite` once instead of paging. Icons are at \
                        `/icons/{family}/{icon}.png`, where `family` is `items`, `augments`, `feats`, `enhancements`, \
                        `spells`, `classes`, `filigrees`, `sets`, `sentient-gems` or `ui` and `icon` is the row's \
@@ -60,23 +67,199 @@ use utoipa_axum::router::OpenApiRouter;
                        Requests are rate limited per IP (5 per second, bursts of 100); a limited request gets 429 with `Retry-After` in seconds. CORS allows any origin for GET, on error responses too, and exposes `Retry-After`.",
         license(name = "MIT")
     ),
+    components(schemas(
+        version::VersionDatasetResponse,
+        response_schemas::EnchantmentStatBonus,
+        response_schemas::EnchantmentLadderPosition,
+        response_schemas::EnchantmentLine,
+        response_schemas::EnchantmentLadderDetail,
+        response_schemas::EnchantmentLadderStep,
+        response_schemas::EnchantmentSetTierCarrier,
+        response_schemas::AdventurePacksPageResponseAdventurePacksEntry,
+        response_schemas::AdventurePacksPageResponse,
+        response_schemas::AdventurePacksDetailResponseItemsEntry,
+        response_schemas::AdventurePacksDetailResponse,
+        response_schemas::AugmentSlotTypesPageResponseAugmentSlotTypesEntry,
+        response_schemas::AugmentSlotTypesPageResponse,
+        response_schemas::AugmentsPageResponseAugmentsEntry,
+        response_schemas::AugmentsPageResponse,
+        response_schemas::AugmentsDetailResponseAdventurePacksEntry,
+        response_schemas::AugmentsDetailResponseCraftingEntryCostEntry,
+        response_schemas::AugmentsDetailResponseCraftingEntry,
+        response_schemas::AugmentsDetailResponseModifiersEntryRequirementsEntry,
+        response_schemas::AugmentsDetailResponseModifiersEntry,
+        response_schemas::AugmentsDetailResponseQuestsEntry,
+        response_schemas::AugmentsDetailResponseSourcesEntry,
+        response_schemas::AugmentsDetailResponse,
+        response_schemas::BonusTypesPageResponseBonusTypesEntry,
+        response_schemas::BonusTypesPageResponse,
+        response_schemas::ClassesPageResponseClassesEntry,
+        response_schemas::ClassesPageResponse,
+        response_schemas::ClassesDetailResponseAutomaticFeatsEntry,
+        response_schemas::ClassesDetailResponseFeatSlotsEntry,
+        response_schemas::ClassesDetailResponseFeatsEntry,
+        response_schemas::ClassesDetailResponseSpellsEntry,
+        response_schemas::ClassesDetailResponse,
+        response_schemas::ClickiesPageResponseClickiesEntry,
+        response_schemas::ClickiesPageResponse,
+        response_schemas::CraftingSystemsPageResponseCraftingSystemsEntry,
+        response_schemas::CraftingSystemsPageResponse,
+        response_schemas::CraftingSystemsDetailResponseIngredientsEntry,
+        response_schemas::CraftingSystemsDetailResponseRecipesEntryAugmentsEntry,
+        response_schemas::CraftingSystemsDetailResponseRecipesEntryCostEntry,
+        response_schemas::CraftingSystemsDetailResponseRecipesEntry,
+        response_schemas::CraftingSystemsDetailResponse,
+        response_schemas::DamageTypesPageResponseDamageTypesEntry,
+        response_schemas::DamageTypesPageResponse,
+        response_schemas::EnchantmentsPageResponseEnchantmentsEntryBonusTypesEntry,
+        response_schemas::EnchantmentsPageResponseEnchantmentsEntry,
+        response_schemas::EnchantmentsPageResponse,
+        response_schemas::EnchantmentsDetailResponseAugmentsAugmentsEntry,
+        response_schemas::EnchantmentsDetailResponseAugments,
+        response_schemas::EnchantmentsDetailResponseItemsItemsEntry,
+        response_schemas::EnchantmentsDetailResponseItems,
+        response_schemas::EnchantmentsDetailResponseSetTiers,
+        response_schemas::EnchantmentsDetailResponseStatsEntry,
+        response_schemas::EnchantmentsDetailResponse,
+        response_schemas::EnhancementTreesPageResponseEnhancementTreesEntryRequirementsEntry,
+        response_schemas::EnhancementTreesPageResponseEnhancementTreesEntry,
+        response_schemas::EnhancementTreesPageResponse,
+        response_schemas::EnhancementTreesDetailResponseEnhancementsEntryDcsEntry,
+        response_schemas::EnhancementTreesDetailResponseEnhancementsEntryModifiersEntry,
+        response_schemas::EnhancementTreesDetailResponseEnhancementsEntryRequirementsEntry,
+        response_schemas::EnhancementTreesDetailResponseEnhancementsEntry,
+        response_schemas::EnhancementTreesDetailResponseRequirementsEntry,
+        response_schemas::EnhancementTreesDetailResponse,
+        response_schemas::EquipmentSlotsPageResponseEquipmentSlotsEntry,
+        response_schemas::EquipmentSlotsPageResponse,
+        response_schemas::EventsPageResponseEventsEntry,
+        response_schemas::EventsPageResponse,
+        response_schemas::EventsDetailResponseItemsEntry,
+        response_schemas::EventsDetailResponse,
+        response_schemas::FeatsPageResponseFeatsEntry,
+        response_schemas::FeatsPageResponse,
+        response_schemas::FeatsDetailResponseAttack,
+        response_schemas::FeatsDetailResponseAutoAcquireRequirementsEntry,
+        response_schemas::FeatsDetailResponseBonusesEntry,
+        response_schemas::FeatsDetailResponseConditionalGroupsEntryRequirementsEntry,
+        response_schemas::FeatsDetailResponseConditionalGroupsEntry,
+        response_schemas::FeatsDetailResponseDcsEntry,
+        response_schemas::FeatsDetailResponseFollowOnModifiersEntry,
+        response_schemas::FeatsDetailResponseModifiersEntryRequirementsEntry,
+        response_schemas::FeatsDetailResponseModifiersEntry,
+        response_schemas::FeatsDetailResponseRequirementsEntry,
+        response_schemas::FeatsDetailResponseStancesEntry,
+        response_schemas::FeatsDetailResponseSubItemsEntry,
+        response_schemas::FeatsDetailResponseThisAttackModifiersEntry,
+        response_schemas::FeatsDetailResponse,
+        response_schemas::FiligreesPageResponseFiligreesEntryModifiersEntry,
+        response_schemas::FiligreesPageResponseFiligreesEntry,
+        response_schemas::FiligreesPageResponse,
+        response_schemas::GuildBuffsPageResponseGuildBuffsEntryModifiersEntry,
+        response_schemas::GuildBuffsPageResponseGuildBuffsEntry,
+        response_schemas::GuildBuffsPageResponse,
+        response_schemas::ItemsPageResponseItemsEntry,
+        response_schemas::ItemsPageResponse,
+        response_schemas::ItemsDetailResponseAdventurePacksEntry,
+        response_schemas::ItemsDetailResponseArmor,
+        response_schemas::ItemsDetailResponseAugmentSlotsEntryOptionsEntryModifiersEntry,
+        response_schemas::ItemsDetailResponseAugmentSlotsEntryOptionsEntrySetsEntry,
+        response_schemas::ItemsDetailResponseAugmentSlotsEntryOptionsEntry,
+        response_schemas::ItemsDetailResponseAugmentSlotsEntry,
+        response_schemas::ItemsDetailResponseChallengePacksEntry,
+        response_schemas::ItemsDetailResponseClickiesEntry,
+        response_schemas::ItemsDetailResponseCraftingSystemsEntry,
+        response_schemas::ItemsDetailResponseEventsEntry,
+        response_schemas::ItemsDetailResponseModifiersEntry,
+        response_schemas::ItemsDetailResponseQuestChainsEntry,
+        response_schemas::ItemsDetailResponseQuestsEntry,
+        response_schemas::ItemsDetailResponseSagasEntry,
+        response_schemas::ItemsDetailResponseSet,
+        response_schemas::ItemsDetailResponseSourcesEntry,
+        response_schemas::ItemsDetailResponseStarterRewardsEntry,
+        response_schemas::ItemsDetailResponseVendorsEntry,
+        response_schemas::ItemsDetailResponseWeapon,
+        response_schemas::ItemsDetailResponse,
+        response_schemas::OptionalBuffsPageResponseOptionalBuffsEntryModifiersEntryRequirementsEntry,
+        response_schemas::OptionalBuffsPageResponseOptionalBuffsEntryModifiersEntry,
+        response_schemas::OptionalBuffsPageResponseOptionalBuffsEntry,
+        response_schemas::OptionalBuffsPageResponse,
+        response_schemas::PatronsPageResponsePatronsEntry,
+        response_schemas::PatronsPageResponse,
+        response_schemas::QuestChainsPageResponseQuestChainsEntry,
+        response_schemas::QuestChainsPageResponse,
+        response_schemas::QuestChainsDetailResponseQuestsEntry,
+        response_schemas::QuestChainsDetailResponseRewardsEntry,
+        response_schemas::QuestChainsDetailResponse,
+        response_schemas::QuestsPageResponseQuestsEntry,
+        response_schemas::QuestsPageResponse,
+        response_schemas::QuestsDetailResponseQuestChainsEntry,
+        response_schemas::QuestsDetailResponse,
+        response_schemas::RacesPageResponseRacesEntry,
+        response_schemas::RacesPageResponse,
+        response_schemas::RacesDetailResponseAbilityModifiersEntry,
+        response_schemas::RacesDetailResponseFeatSlotsEntry,
+        response_schemas::RacesDetailResponseFeatsEntry,
+        response_schemas::RacesDetailResponseGrantedFeatsEntry,
+        response_schemas::RacesDetailResponse,
+        response_schemas::SagasPageResponseSagasEntry,
+        response_schemas::SagasPageResponse,
+        response_schemas::SagasDetailResponseQuestsEntry,
+        response_schemas::SagasDetailResponseRewardsEntry,
+        response_schemas::SagasDetailResponse,
+        response_schemas::SentientGemsPageResponseSentientGemsEntry,
+        response_schemas::SentientGemsPageResponse,
+        response_schemas::SetsPageResponseSetsEntry,
+        response_schemas::SetsPageResponse,
+        response_schemas::SetsDetailResponseAugmentsEntry,
+        response_schemas::SetsDetailResponseFiligreesEntryModifiersEntry,
+        response_schemas::SetsDetailResponseFiligreesEntry,
+        response_schemas::SetsDetailResponseItemsEntry,
+        response_schemas::SetsDetailResponseTiersEntryModifiersEntry,
+        response_schemas::SetsDetailResponseTiersEntry,
+        response_schemas::SetsDetailResponse,
+        response_schemas::SpellsPageResponseSpellsEntry,
+        response_schemas::SpellsPageResponse,
+        response_schemas::SpellsDetailResponseClassesEntry,
+        response_schemas::SpellsDetailResponseDamageEntry,
+        response_schemas::SpellsDetailResponseDcsEntry,
+        response_schemas::SpellsDetailResponse,
+        response_schemas::StancesPageResponseStancesEntryRequirementsEntry,
+        response_schemas::StancesPageResponseStancesEntry,
+        response_schemas::StancesPageResponse,
+        response_schemas::StatsPageResponseStatsEntry,
+        response_schemas::StatsPageResponse,
+        response_schemas::StatsDetailResponseAugmentsAugmentsEntry,
+        response_schemas::StatsDetailResponseAugments,
+        response_schemas::StatsDetailResponseItemsItemsEntry,
+        response_schemas::StatsDetailResponseItems,
+        response_schemas::StatsDetailResponseSetTiersSetTiersEntry,
+        response_schemas::StatsDetailResponseSetTiers,
+        response_schemas::StatsDetailResponse,
+        response_schemas::VendorsPageResponseVendorsEntry,
+        response_schemas::VendorsPageResponse,
+        response_schemas::VendorsDetailResponseItemsEntry,
+        response_schemas::VendorsDetailResponse,
+        response_schemas::WeaponTypesPageResponseWeaponTypesEntry,
+        response_schemas::WeaponTypesPageResponse,
+    )),
     tags(
-        (name = "meta", description = "Which DDOBuilderV2 commit the data came from, the schema version and row counts"),
-        (name = "items", description = "Equipment: weapons, armor, shields, jewelry and clothing with their bonuses, sockets and drop sources, plus the slot, weapon, damage and socket vocabularies they use. A few items are read from ddowiki until DDOBuilderV2 carries them"),
-        (name = "augments", description = "Augments and crafting-family inserts, with the sockets each one fits and the crafting recipes that yield them"),
-        (name = "crafting", description = "Crafting systems from the wiki: ingredients, and recipes that turn ingredients into the augments Maetrim's files carry"),
-        (name = "sets", description = "Gear set bonuses, sentient-weapon filigree sets, the filigrees themselves and the sentient gems they slot into"),
-        (name = "feats", description = "Feats from the standard list and those granted by classes and races, with requirements and effects"),
-        (name = "races", description = "Playable races with ability modifiers, granted feats and racial feats"),
-        (name = "classes", description = "Classes and archetypes with progressions, feat slots and spell lists"),
-        (name = "stances", description = "Combat and defensive stances a character can toggle, with their requirements and effects"),
-        (name = "buffs", description = "Guild buffs and the spell, potion and party buffs a planner can toggle on, with their effects"),
-        (name = "enhancements", description = "Enhancement, epic destiny and reaper trees with every enhancement and selection"),
-        (name = "spells", description = "Spells with damage, saves and class lists, and the clickies items grant"),
-        (name = "bonuses", description = "The stats a bonus can apply to, the bonus types that decide whether two bonuses stack, and the enchantments (stats and named effects) items carry, which /v1/items filters by"),
-        (name = "quests", description = "Quests, challenges, adventure packs and favor patrons: the sources items drop from, with each quest's free-to-play status, legendary level, zone, quest giver and flagging from ddowiki, and the quests DDOBuilderV2 lacks read whole from ddowiki. Quest chains and sagas from ddowiki are listed here too, each with its quests and the end rewards its NPC gives once they are done"),
-        (name = "sources", description = "Vendors and events from ddowiki: the NPCs that sell or trade items and the festivals that reward them, each with its items. Item detail `sources` also names the quests, chains, sagas, packs, challenge packs, crafting systems and starter levels an item comes from"),
-        (name = "bulk", description = "The whole dataset as one SQLite download")
+        (name = "meta", description = "Dataset version, schema version and row counts"),
+        (name = "items", description = "Equipment, its enchantments, sockets, vocabularies and sources"),
+        (name = "augments", description = "Augments, compatible sockets, enchantments and crafting recipes"),
+        (name = "enchantments", description = "Enchantment families, stats, bonus types and carrier backlinks"),
+        (name = "sets", description = "Gear and filigree sets, tiers, filigrees and sentient gems"),
+        (name = "crafting", description = "Crafting systems, ingredients and recipes"),
+        (name = "quests", description = "Quests, challenges, packs, patrons, chains and sagas"),
+        (name = "sources", description = "Vendors and events that offer equipment"),
+        (name = "spells", description = "Spells and item clickies"),
+        (name = "feats", description = "Feats and their requirements, attacks and modifiers"),
+        (name = "enhancements", description = "Enhancement, epic destiny and reaper trees"),
+        (name = "classes", description = "Class progression, feats and spell lists"),
+        (name = "races", description = "Playable races, traits and granted feats"),
+        (name = "stances", description = "Standalone toggleable combat stances"),
+        (name = "buffs", description = "Guild buffs and optional planner buffs"),
+        (name = "bulk", description = "Complete SQLite dataset download")
     )
 )]
 struct ApiDoc;
@@ -84,8 +267,10 @@ struct ApiDoc;
 declare_response_examples! { "v1":
     ("/v1/version", "version"),
     ("/v1/stats", "stats"),
+    ("/v1/stats/{id}", "stats_id"),
     ("/v1/bonus-types", "bonus-types"),
     ("/v1/enchantments", "enchantments"),
+    ("/v1/enchantments/{id}", "enchantments_id"),
     ("/v1/equipment-slots", "equipment-slots"),
     ("/v1/weapon-types", "weapon-types"),
     ("/v1/damage-types", "damage-types"),

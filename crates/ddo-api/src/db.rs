@@ -3,6 +3,7 @@ use crate::query::{sort_order, ListQuery};
 use rusqlite::types::ValueRef;
 use rusqlite::{Connection, Params, Row};
 use serde_json::{Map, Value};
+use std::collections::{BTreeMap, HashMap};
 
 pub(crate) fn json_rows<P: Params>(db: &Connection, sql: &str, params: P) -> Result<Vec<Value>, ApiError> {
     let mut statement = db.prepare_cached(sql)?;
@@ -274,56 +275,87 @@ pub(crate) fn bonuses_via(
     Ok(bonuses)
 }
 
-pub(crate) fn effects_via(db: &Connection, owner_id: i64) -> Result<Vec<Value>, ApiError> {
-    let mut effects = json_rows(
-        db,
-        "SELECT e.id, e.name AS family_name, e.text_template, e.description_template, bt.name AS bonus_type,
-                COALESCE(ie.value, e.default_value) AS template_value,
-                COALESCE(ie.value2, e.default_value2) AS template_value2,
-                (i.provenance = 'wiki'
-                 AND NOT EXISTS (SELECT 1 FROM item_enchantments other JOIN items source_item ON source_item.id = other.item_id
-                                 WHERE other.enchantment_id = e.id AND source_item.provenance <> 'wiki')
-                 AND NOT EXISTS (SELECT 1 FROM augment_enchantments other WHERE other.enchantment_id = e.id)
-                 AND NOT EXISTS (SELECT 1 FROM set_bonus_tier_enchantments other WHERE other.enchantment_id = e.id)
-                 AND NOT EXISTS (SELECT 1 FROM feat_enchantments other WHERE other.enchantment_id = e.id)
-                 AND NOT EXISTS (SELECT 1 FROM item_augment_slot_option_enchantments other WHERE other.enchantment_id = e.id)) AS wiki_only
-           FROM item_enchantments ie JOIN items i ON i.id = ie.item_id JOIN enchantments e ON e.id = ie.enchantment_id
-           LEFT JOIN bonus_types bt ON bt.id = ie.bonus_type_id
-          WHERE ie.item_id = ?1 AND NOT EXISTS
-                (SELECT 1 FROM enchantment_stats es WHERE es.enchantment_id = e.id)
-          ORDER BY ie.sort_order",
-        [owner_id],
-    )?;
-    for effect in &mut effects {
-        let family_name = effect["family_name"].as_str().unwrap_or("");
-        let text_template = effect["text_template"].as_str().unwrap_or("");
-        let wiki_only = effect["wiki_only"].as_i64() == Some(1);
-        let name = if wiki_only { render_enchantment_template(text_template, effect) } else { family_name.to_string() };
-        let description = if wiki_only {
-            effect["description_template"].as_str().map(|template| render_enchantment_template(template, effect))
-        } else {
-            effect["description_template"].as_str().map_or_else(
-                || (text_template != family_name).then(|| render_enchantment_template(text_template, effect)),
-                |template| {
-                    let rendered_title = render_enchantment_template(text_template, effect);
-                    Some(format!("{rendered_title}: {}", render_enchantment_template(template, effect)))
-                },
-            )
+pub(crate) fn enchantments_via<P: Params>(
+    db: &Connection,
+    junction_table: &str,
+    owner_column: &str,
+    owner_condition: &str,
+    selector_params: P,
+) -> Result<BTreeMap<i64, Vec<Value>>, ApiError> {
+    let source_amount = "CASE es.amount_from WHEN 0 THEN es.constant WHEN 1 THEN COALESCE(j.value, e.default_value) ELSE COALESCE(j.value2, e.default_value2) END";
+    let scaled_amount = ddo_model::enchantment_amount::rounded_amount_sql(source_amount, "es.scale", "es.rounding");
+    let sql = format!(
+        "SELECT j.{owner_column} AS owner_id, j.sort_order, e.id AS enchantment_id, e.name,
+                e.text_template, e.description_template, j.value, j.value2,
+                COALESCE(j.value, e.default_value) AS template_value,
+                COALESCE(j.value2, e.default_value2) AS template_value2,
+                link_type.name AS template_bonus_type,
+                CASE WHEN INSTR(e.text_template, '%b1') > 0 THEN link_type.name END AS bonus_type,
+                l.id AS ladder_id, l.name AS ladder_name, e.ladder_rank,
+                s.name AS stat, s.category AS stat_category,
+                COALESCE(stat_type.name, link_type.name) AS stat_bonus_type,
+                CASE WHEN {source_amount} IS NOT NULL THEN {scaled_amount} END AS stat_value
+           FROM {junction_table} j JOIN enchantments e ON e.id = j.enchantment_id
+           LEFT JOIN enchantment_ladders l ON l.id = e.ladder_id
+           LEFT JOIN bonus_types link_type ON link_type.id = j.bonus_type_id
+           LEFT JOIN enchantment_stats es ON es.enchantment_id = e.id
+           LEFT JOIN stats s ON s.id = es.stat_id
+           LEFT JOIN bonus_types stat_type ON stat_type.id = es.bonus_type_id
+          WHERE {owner_condition}
+          ORDER BY j.{owner_column}, j.sort_order, es.sort_order"
+    );
+    let rows = json_rows(db, &sql, selector_params)?;
+    let mut by_owner: BTreeMap<i64, Vec<Value>> = BTreeMap::new();
+    let mut position_by_link: HashMap<(i64, i64), usize> = HashMap::new();
+    for row in rows {
+        let owner_id = row["owner_id"].as_i64().unwrap_or_default();
+        let sort_order = row["sort_order"].as_i64().unwrap_or_default();
+        let lines = by_owner.entry(owner_id).or_default();
+        let position = match position_by_link.get(&(owner_id, sort_order)) {
+            Some(position) => *position,
+            None => {
+                let ladder = if row["ladder_id"].is_null() {
+                    Value::Null
+                } else {
+                    serde_json::json!({
+                        "id": row["ladder_id"], "name": row["ladder_name"], "rank": row["ladder_rank"]
+                    })
+                };
+                let text = render_enchantment_template(row["text_template"].as_str().unwrap_or(""), &row);
+                let description = row["description_template"]
+                    .as_str()
+                    .map(|template| Value::String(render_enchantment_template(template, &row)))
+                    .unwrap_or(Value::Null);
+                let position = lines.len();
+                lines.push(serde_json::json!({
+                    "enchantment_id": row["enchantment_id"], "name": row["name"], "ladder": ladder,
+                    "text": text, "description": description, "value": row["value"], "value2": row["value2"],
+                    "bonus_type": row["bonus_type"], "bonuses": []
+                }));
+                position_by_link.insert((owner_id, sort_order), position);
+                position
+            }
         };
-        let object = effect.as_object_mut().expect("query returns objects");
-        object.remove("text_template");
-        object.remove("family_name");
-        object.remove("description_template");
-        object.remove("bonus_type");
-        object.remove("template_value");
-        object.remove("template_value2");
-        object.remove("wiki_only");
-        object.insert("name".to_string(), Value::String(name));
-        object.insert("description".to_string(), description.map_or(Value::Null, Value::String));
-        object.insert("value".to_string(), Value::Null);
-        object.insert("target".to_string(), Value::Null);
+        if !row["stat_value"].is_null() {
+            lines[position]["bonuses"].as_array_mut().expect("bonus array").push(serde_json::json!({
+                "stat": row["stat"], "stat_category": row["stat_category"],
+                "bonus_type": row["stat_bonus_type"], "value": row["stat_value"]
+            }));
+        }
     }
-    Ok(effects)
+    Ok(by_owner)
+}
+
+pub(crate) fn enchantments_for_owner(
+    db: &Connection,
+    junction_table: &str,
+    owner_column: &str,
+    owner_id: i64,
+) -> Result<Vec<Value>, ApiError> {
+    let owner_condition = format!("j.{owner_column} = ?1");
+    Ok(enchantments_via(db, junction_table, owner_column, &owner_condition, [owner_id])?
+        .remove(&owner_id)
+        .unwrap_or_default())
 }
 
 fn render_enchantment_template(template: &str, row: &Value) -> String {
@@ -336,7 +368,7 @@ fn render_enchantment_template(template: &str, row: &Value) -> String {
         .replace("+{2}", &signed_value2)
         .replace("{1}", &value.map(|number| number.to_string()).unwrap_or_default())
         .replace("{2}", &value2.map(|number| number.to_string()).unwrap_or_default())
-        .replace("%b1", row["bonus_type"].as_str().unwrap_or(""))
+        .replace("%b1", row["template_bonus_type"].as_str().or_else(|| row["bonus_type"].as_str()).unwrap_or(""))
 }
 
 #[cfg(test)]
@@ -362,6 +394,25 @@ pub(crate) struct WhereClause {
 }
 
 impl WhereClause {
+    pub(crate) fn add_repeated_filter<V: Clone + Into<rusqlite::types::Value>>(
+        &mut self,
+        any_condition: &str,
+        all_condition: &str,
+        values: &[V],
+        match_mode: Option<&str>,
+    ) {
+        if values.is_empty() {
+            return;
+        }
+        if match_mode == Some("all") {
+            for value in values {
+                self.add_bound_condition(all_condition, value.clone());
+            }
+        } else {
+            self.add_bound_list_condition(any_condition, values.iter().cloned());
+        }
+    }
+
     pub(crate) fn add_name_search(&mut self, search_text: Option<&str>, name_column: &str) {
         if let Some(search_text) = search_text.filter(|search_text| !search_text.trim().is_empty()) {
             self.add_bound_condition(&format!("{name_column} LIKE ? ESCAPE '\\'"), substring_like_pattern(search_text));

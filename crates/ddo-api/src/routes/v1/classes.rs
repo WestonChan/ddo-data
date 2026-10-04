@@ -22,6 +22,14 @@ const CLASSES_SORT_FIELDS: &[(&str, &str)] = &[
     ("base_class", "listed.base_class"),
     ("skill_points", "listed.skill_points"),
     ("hit_points", "listed.hit_points"),
+    ("base_class_id", "base_class_id"),
+    ("description", "description"),
+    ("fortitude", "fortitude"),
+    ("large_icon", "large_icon"),
+    ("not_heroic", "not_heroic"),
+    ("reflex", "reflex"),
+    ("small_icon", "small_icon"),
+    ("will", "will"),
 ];
 
 declare_list_parameters!(ClassesParameters, CLASSES_SORT_FIELDS, "");
@@ -31,13 +39,11 @@ declare_list_parameters!(ClassesParameters, CLASSES_SORT_FIELDS, "");
     path = "/v1/classes",
     tag = "classes",
     summary = "List classes",
-    description = "Every class and archetype ordered by name with its base class, allowed alignments, hit and \
-                   skill points per level, save and base-attack progressions, spell points, casting stats and \
-                   class-specific feat types. Archetypes carry `base_class`; epic-only classes are `not_heroic`.",
+    description = "Lists classes with base class, saves and hit points.",
     params(
         ClassesParameters,
     ),
-    responses((status = 200, description = "`total`, `limit`, `offset` and the `classes` page", body = Value),
+    responses((status = 200, description = "`total`, `limit`, `offset` and the `classes` page", body = crate::routes::v1::response_schemas::ClassesPageResponse),
         (status = 400, description = "Invalid sort field or malformed query parameter", body = crate::error::ErrorBody))
 )]
 async fn classes(State(state): State<AppState>, ApiQuery(query, _): ApiQuery) -> Result<Json<Value>, ApiError> {
@@ -58,10 +64,8 @@ async fn classes(State(state): State<AppState>, ApiQuery(query, _): ApiQuery) ->
     path = "/v1/classes/{id}",
     tag = "classes",
     summary = "Get a class",
-    description = "One class with its `class_skills` and `auto_buy_skills`, `spell_slots` keyed by class level, its \
-                   `spells` with spell level and cost, `feat_slots` by level, `automatic_feats` granted by level, \
-                   and the class `feats` it makes available.",
-    params(("id" = i64, Path, description = "The class's numeric id from the list endpoint")), responses((status = 200, description = "The class with its child collections", body = Value), (status = 404, description = "No class has this id", body = crate::error::ErrorBody))
+    description = "Returns a class with progression, feat slots and spell lists.",
+    params(("id" = i64, Path, description = "The class's numeric id from the list endpoint")), responses((status = 200, description = "The class with its child collections", body = crate::routes::v1::response_schemas::ClassesDetailResponse), (status = 404, description = "No class has this id", body = crate::error::ErrorBody))
 )]
 async fn class_detail(State(state): State<AppState>, Path(id): Path<i64>) -> Result<Json<Value>, ApiError> {
     state

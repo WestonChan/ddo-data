@@ -5,11 +5,13 @@ use super::quests::{
 };
 use super::vendors_and_events::{events_rewarding, vendors_offering};
 use crate::db::{
-    bonuses_via, convert_to_booleans, json_row, json_rows, like_escaped_text, modifiers_for, paged_query,
-    paged_table_json, TableListSource, WhereClause,
+    convert_to_booleans, enchantments_for_owner, enchantments_via, json_row, json_rows, like_escaped_text,
+    modifiers_for, paged_query, paged_table_json, TableListSource, WhereClause,
 };
 use crate::error::ApiError;
-use crate::query::{declare_list_parameters, declare_query_parameters, repeated_key_values, ApiQuery};
+use crate::query::{
+    declare_list_parameters, declare_query_parameters, repeated_integer_values, repeated_key_values, ApiQuery,
+};
 use crate::state::AppState;
 use axum::extract::{Path, State};
 use axum::Json;
@@ -31,22 +33,35 @@ pub(super) fn router() -> OpenApiRouter<AppState> {
 
 declare_query_parameters! {
     pub(super) struct ItemFilters {
-        pub slot: Option<String>,
-        pub category: Option<String>,
+        #[serde(default, deserialize_with = "repeated_key_values")]
+        pub slot: Vec<String>,
+        #[serde(default, deserialize_with = "repeated_key_values")]
+        pub category: Vec<String>,
         pub min_level: Option<i64>,
         pub max_level: Option<i64>,
-        pub pack: Option<String>,
+        #[serde(default, deserialize_with = "repeated_key_values")]
+        pub pack: Vec<String>,
+        pub pack_match: Option<String>,
         pub raid: Option<bool>,
         pub rare: Option<bool>,
-        pub quest: Option<i64>,
-        pub quest_chain: Option<i64>,
-        pub saga: Option<i64>,
+        #[serde(default, deserialize_with = "repeated_integer_values")]
+        pub quest: Vec<i64>,
+        pub quest_match: Option<String>,
+        #[serde(default, deserialize_with = "repeated_integer_values")]
+        pub quest_chain: Vec<i64>,
+        pub quest_chain_match: Option<String>,
+        #[serde(default, deserialize_with = "repeated_integer_values")]
+        pub saga: Vec<i64>,
+        pub saga_match: Option<String>,
         #[serde(default, deserialize_with = "repeated_key_values")]
         pub enchantment: Vec<String>,
+        pub enchantment_match: Option<String>,
         pub include_set_bonuses: Option<bool>,
         pub include_legacy: Option<bool>,
     }
-    repeatable: ["enchantment"]
+    repeatable: ["slot", "category", "pack", "quest", "quest_chain", "saga", "enchantment"]
+    matchable: ["pack", "quest", "quest_chain", "saga", "enchantment"]
+    single_value_match: ["slot", "category"]
 }
 
 const ITEM_LIST_COLUMNS: &str =
@@ -67,6 +82,20 @@ const ITEMS_SORT_FIELDS: &[(&str, &str)] = &[
     ("category", "i.item_category"),
     ("pack", "pack"),
     ("enhancement_bonus", "i.enhancement_bonus"),
+
+    ("icon", "icon"),
+    ("is_legacy", "is_legacy"),
+    ("is_raid", "is_raid"),
+    ("is_rare", "is_rare"),
+    ("item_type", "item_type"),
+    ("min_level", "i.minimum_level"),
+    ("max_level", "i.minimum_level"),
+    ("raid", "is_raid"),
+    ("rare", "is_rare"),
+    ("quest", "(SELECT MIN(quest_id) FROM sources WHERE item_id = i.id AND kind = 'quest')"),
+    ("quest_chain", "(SELECT MIN(chain_id) FROM sources WHERE item_id = i.id AND kind = 'quest_chain')"),
+    ("saga", "(SELECT MIN(saga_id) FROM sources WHERE item_id = i.id AND kind = 'saga')"),
+    ("enchantment", "(SELECT MIN(e.name) FROM item_enchantments ie JOIN enchantments e ON e.id = ie.enchantment_id WHERE ie.item_id = i.id)"),
 ];
 
 declare_list_parameters!(
@@ -74,10 +103,7 @@ declare_list_parameters!(
     ITEMS_SORT_FIELDS,
     "",
     Some(
-        "Search text, trimmed and matched ignoring case: keeps items whose name contains it, \
-         or whose slot, category or any adventure pack reached through its sources is named exactly it. Without \
-         `sort`, ranks an exact name first, then names starting with it, then the rest, each group by name. \
-         Blank applies no search."
+        "Case-insensitive item-name substring or exact slot, category or pack name; exact and prefix names rank first without sort."
     )
 );
 
@@ -86,43 +112,32 @@ declare_list_parameters!(
     path = "/v1/items",
     tag = "items",
     summary = "List items",
-    description = "One page of equipment matching every filter given, so a client needs no matching of its own. \
-                   Filters: `q` (search text against the name, or exactly a slot, category or pack name), `slot`, \
-                   `category`, `min_level` and `max_level`, `pack`, `raid`, `rare`, `quest`, `quest_chain` and `saga` \
-                   (ids of what drops or rewards the item), `enchantment` (a name from /v1/enchantments, \
-                   or several as repeated `enchantment` keys, any of which the item must carry, as a stat bonus or as \
-                   a named effect) and \
-                   `include_set_bonuses` (let the stat names in `enchantment` also match the item's set tiers) and \
-                   `include_legacy` (also list legacy items, which are left out by default); \
-                   `limit` and `offset` page the matches; `sort` chooses the ordering. \
-                   Without `sort`, ordered by name; with `q`, an exact name match comes first, then names starting \
-                   with the text, then the rest, each group by name. Each row carries what a picker needs: id, name, \
-                   slot, category, item type, minimum level, enhancement bonus, icon name, the alphabetically first \
-                   adventure pack reached through any source kind, whether any of its sources is a raid, whether it is rare loot from \
-                   at least one quest (marked rare in Maetrim's drop text or on ddowiki), `is_legacy` (an old version \
-                   kept beside the current one, such as a name ending `(legacy)` or `(historic)`, or an item the \
-                   wiki says no longer drops; always false unless `include_legacy=true`). The items his files lack \
-                   are read whole from ddowiki and listed like his, dropped as soon as his files carry an item of \
-                   that name. Use the detail endpoint for \
-                   bonuses, sockets and quests. `total` counts every match, not just this page.",
+    description = "Lists equipment matching the declared filters, with slot, level, pack and source flags.",
     params(
         ItemsParameters,
-        ("slot" = Option<String>, Query, description = "Equipment slot name exactly as /v1/equipment-slots lists it, e.g. `Main Hand`"),
-        ("category" = Option<String>, Query, description = "One of `Armor`, `Shield`, `Weapon`, `Jewelry`, `Clothing`; anything else is a 400"),
-        ("min_level" = Option<i64>, Query, description = "Only items whose minimum level is at least this"),
-        ("max_level" = Option<i64>, Query, description = "Only items whose minimum level is at most this"),
-        ("pack" = Option<String>, Query, description = "Adventure pack name as /v1/adventure-packs lists it; matches any pack reached through an item's quest, quest chain, saga, direct pack, challenge, crafting system or vendor sources; omitted keeps every pack"),
-        ("raid" = Option<bool>, Query, description = "`true` keeps only items that drop from a raid; `false` and unset apply no filter"),
-        ("rare" = Option<bool>, Query, description = "`true` keeps only items that are rare loot from at least one quest or from any quest of a pack, per Maetrim's drop text or ddowiki; `false` and unset apply no filter"),
-        ("quest" = Option<i64>, Query, description = "Quest id as /v1/quests lists it; keeps the items its /v1/quests/{id} `items` lists, dropped from any chest, as raid loot or as an end reward (loot his drop text credits to the whole pack is matched by `pack` instead); an id no quest has matches nothing rather than a 400, as an unknown `pack` does"),
-        ("quest_chain" = Option<i64>, Query, description = "Quest chain id as /v1/quest-chains lists it; keeps items its end reward offers; an id no chain has matches nothing"),
-        ("saga" = Option<i64>, Query, description = "Saga id as /v1/sagas lists it; keeps items its end reward offers in any tier; an id no saga has matches nothing"),
-        ("enchantment" = Option<String>, Query, description = "An enchantment name exactly as /v1/enchantments lists it (a stat name from /v1/stats or an effect name as an item's `effects` give it); several are given as repeated keys (`enchantment=Strength&enchantment=Vorpal`) and keep items carrying any of them. A name may contain commas and is matched whole (`enchantment=Constitution%20Poison%2C%20Lesser`), so a comma never separates names. A stat name matches an item with at least one bonus of its own to that stat, and with `include_set_bonuses=true` also an item whose set has a tier with a bonus to it; an effect name matches an item's text-only enchantment links; a name that is both matches either way. Matching is case-sensitive; a name that is neither a stat nor an effect is a 400 naming it"),
-        ("include_set_bonuses" = Option<bool>, Query, description = "`true` widens the stat names in `enchantment` to also match an item when any tier of its set (see /v1/sets/{id}) carries a bonus to one of them; the item's own bonuses and effects match either way; `false` and unset match the item's own bonuses only; no effect without `enchantment`"),
-        ("include_legacy" = Option<bool>, Query, description = "`true` also lists legacy items (`is_legacy`: old versions such as names ending `(legacy)` or `(historic)`, and items the wiki says no longer drop) and counts them in `total`; `false` and unset leave them out. /v1/items/{id} serves a legacy item either way"),
+        ("slot" = Option<Vec<String>>, Query, style = Form, explode = true, description = "Repeat equipment slot names from /v1/equipment-slots to match any."),
+        ("slot_match" = Option<String>, Query, description = "Unsupported for a single-slot item; this parameter returns 400."),
+        ("category" = Option<Vec<String>>, Query, style = Form, explode = true, description = "Repeat Armor, Shield, Weapon, Jewelry or Clothing to match any."),
+        ("category_match" = Option<String>, Query, description = "Unsupported for a single-category item; this parameter returns 400."),
+        ("min_level" = Option<i64>, Query, description = "Minimum item level to include."),
+        ("max_level" = Option<i64>, Query, description = "Maximum item level to include."),
+        ("pack" = Option<Vec<String>>, Query, style = Form, explode = true, description = "Repeat adventure pack names reached through item sources."),
+        ("pack_match" = Option<String>, Query, description = "Use `all` to require every named pack, or `any` by default."),
+        ("raid" = Option<bool>, Query, description = "Use true to keep items from raid quests."),
+        ("rare" = Option<bool>, Query, description = "Use true to keep rare loot from quests or packs."),
+        ("quest" = Option<Vec<i64>>, Query, style = Form, explode = true, description = "Repeat quest ids from /v1/quests to match their item drops."),
+        ("quest_match" = Option<String>, Query, description = "Use `all` to require every quest, or `any` by default."),
+        ("quest_chain" = Option<Vec<i64>>, Query, style = Form, explode = true, description = "Repeat quest chain ids to match end rewards."),
+        ("quest_chain_match" = Option<String>, Query, description = "Use `all` to require every quest chain, or `any` by default."),
+        ("saga" = Option<Vec<i64>>, Query, style = Form, explode = true, description = "Repeat saga ids to match end rewards."),
+        ("saga_match" = Option<String>, Query, description = "Use `all` to require every saga, or `any` by default."),
+        ("enchantment" = Option<Vec<String>>, Query, style = Form, explode = true, description = "Repeat family, ladder or stat names; `stat:bonus type` narrows a stat."),
+        ("enchantment_match" = Option<String>, Query, description = "Use `all` to require every enchantment, or `any` by default."),
+        ("include_set_bonuses" = Option<bool>, Query, description = "Use true to match enchantments through the item's set tiers too."),
+        ("include_legacy" = Option<bool>, Query, description = "Use true to include legacy item versions in the list."),
     ),
     responses(
-        (status = 200, description = "`total`, `limit`, `offset` and the `items` page", body = Value),
+        (status = 200, description = "`total`, `limit`, `offset` and the `items` page", body = crate::routes::v1::response_schemas::ItemsPageResponse),
         (status = 400, description = "Unknown category or enchantment, or an unknown or malformed query parameter", body = crate::error::ErrorBody)
     )
 )]
@@ -130,7 +145,7 @@ async fn items(
     State(state): State<AppState>,
     ApiQuery(query, filters): ApiQuery<ItemFilters>,
 ) -> Result<Json<Value>, ApiError> {
-    if let Some(category) = &filters.category {
+    for category in &filters.category {
         if !ItemCategory::ALL.iter().any(|known| known.as_str() == category) {
             return Err(ApiError::BadRequest(format!("unknown category {category:?}")));
         }
@@ -150,54 +165,46 @@ async fn items(
                           WHEN i.name LIKE {search_placeholder} || '%' ESCAPE '\\' THEN 1 ELSE 2 END, i.name"
                 );
             }
-            if let Some(slot) = &filters.slot {
-                where_clause.add_bound_condition("es.name = ?", slot.clone());
-            }
-            if let Some(category) = &filters.category {
-                where_clause.add_bound_condition("i.item_category = ?", category.clone());
-            }
+            where_clause.add_repeated_filter("es.name IN (?)", "es.name = ?", &filters.slot, None);
+            where_clause.add_repeated_filter("i.item_category IN (?)", "i.item_category = ?", &filters.category, None);
             if let Some(min_level) = filters.min_level {
                 where_clause.add_bound_condition("i.minimum_level >= ?", min_level);
             }
             if let Some(max_level) = filters.max_level {
                 where_clause.add_bound_condition("i.minimum_level <= ?", max_level);
             }
-            if let Some(pack) = &filters.pack {
-                where_clause.add_bound_condition("EXISTS (SELECT 1 FROM loot_adventure_packs packs JOIN adventure_packs ap ON ap.id = packs.pack_id WHERE packs.item_id = i.id AND ap.name = ?)",
-                    pack.clone(),
-                );
-            }
+            where_clause.add_repeated_filter(
+                "EXISTS (SELECT 1 FROM loot_adventure_packs packs JOIN adventure_packs ap ON ap.id = packs.pack_id WHERE packs.item_id = i.id AND ap.name IN (?))",
+                "EXISTS (SELECT 1 FROM loot_adventure_packs packs JOIN adventure_packs ap ON ap.id = packs.pack_id WHERE packs.item_id = i.id AND ap.name = ?)",
+                &filters.pack, filters.pack_match.as_deref(),
+            );
             if filters.raid == Some(true) {
                 where_clause.add_condition("EXISTS (SELECT 1 FROM sources ql WHERE ql.item_id = i.id AND ql.kind = 'quest' AND ql.loot_type = 'raid')");
             }
             if filters.rare == Some(true) {
                 where_clause.add_condition("EXISTS (SELECT 1 FROM sources ql WHERE ql.item_id = i.id AND ql.kind IN ('quest', 'adventure_pack') AND ql.is_rare)");
             }
-            if let Some(quest_id) = filters.quest {
-                where_clause.add_bound_condition("i.id IN (SELECT d.item_id FROM sources d WHERE d.kind = 'quest' AND d.quest_id = ?)", quest_id);
-            }
-            if let Some(chain_id) = filters.quest_chain {
-                where_clause.add_bound_condition("i.id IN (SELECT d.item_id FROM sources d WHERE d.kind = 'quest_chain' AND d.chain_id = ?)", chain_id);
-            }
-            if let Some(saga_id) = filters.saga {
-                where_clause.add_bound_condition("i.id IN (SELECT d.item_id FROM sources d WHERE d.kind = 'saga' AND d.saga_id = ?)", saga_id);
-            }
-            let enchantment_names = filters.enchantment;
-            if let Some(unknown_enchantment_name) = first_unknown_enchantment_name(db, &enchantment_names)? {
-                return Err(ApiError::BadRequest(format!("unknown enchantment {unknown_enchantment_name:?}")));
-            }
-            if !enchantment_names.is_empty() {
-                let set_tier_match_sql = if filters.include_set_bonuses == Some(true) {
-                    format!(" OR {ITEMS_WITH_SET_TIER_BONUS_TO_STATS_SQL}")
-                } else {
-                    String::new()
-                };
-                where_clause.add_bound_list_condition(
-                    &format!(
-                        "({ITEMS_WITH_OWN_BONUS_TO_STATS_SQL}{set_tier_match_sql} OR {ITEMS_WITH_EFFECTS_SQL})"
-                    ),
-                    enchantment_names,
-                );
+            where_clause.add_repeated_filter(
+                "i.id IN (SELECT d.item_id FROM sources d WHERE d.kind = 'quest' AND d.quest_id IN (?))",
+                "i.id IN (SELECT d.item_id FROM sources d WHERE d.kind = 'quest' AND d.quest_id = ?)",
+                &filters.quest, filters.quest_match.as_deref(),
+            );
+            where_clause.add_repeated_filter(
+                "i.id IN (SELECT d.item_id FROM sources d WHERE d.kind = 'quest_chain' AND d.chain_id IN (?))",
+                "i.id IN (SELECT d.item_id FROM sources d WHERE d.kind = 'quest_chain' AND d.chain_id = ?)",
+                &filters.quest_chain, filters.quest_chain_match.as_deref(),
+            );
+            where_clause.add_repeated_filter(
+                "i.id IN (SELECT d.item_id FROM sources d WHERE d.kind = 'saga' AND d.saga_id IN (?))",
+                "i.id IN (SELECT d.item_id FROM sources d WHERE d.kind = 'saga' AND d.saga_id = ?)",
+                &filters.saga, filters.saga_match.as_deref(),
+            );
+            let enchantment_conditions = filters.enchantment.iter().map(|name| {
+                enchantment_match_sql(db, name, filters.include_set_bonuses == Some(true))
+            }).collect::<Result<Vec<_>, _>>()?;
+            if !enchantment_conditions.is_empty() {
+                let separator = if filters.enchantment_match.as_deref() == Some("all") { " AND " } else { " OR " };
+                where_clause.add_condition(&format!("({})", enchantment_conditions.join(separator)));
             }
             let mut page = paged_query(
                 db,
@@ -221,35 +228,58 @@ const ITEMS_MATCHING_SEARCH_TEXT_SQL: &str = "(i.name LIKE '%' || ? || '%' ESCAP
      OR i.id IN (SELECT packs.item_id FROM loot_adventure_packs packs \
                  JOIN adventure_packs ap ON ap.id = packs.pack_id WHERE ap.name LIKE ? ESCAPE '\\'))";
 
-const ITEMS_WITH_OWN_BONUS_TO_STATS_SQL: &str =
-    "i.id IN (SELECT ie.item_id FROM stats s JOIN enchantment_stats es ON es.stat_id = s.id \
-     JOIN item_enchantments ie ON ie.enchantment_id = es.enchantment_id WHERE s.name IN (?))";
+fn enchantment_match_sql(db: &Connection, name: &str, include_set_bonuses: bool) -> Result<String, ApiError> {
+    use rusqlite::OptionalExtension;
 
-const ITEMS_WITH_SET_TIER_BONUS_TO_STATS_SQL: &str =
-    "i.id IN (SELECT sbi.item_id FROM stats s JOIN enchantment_stats es ON es.stat_id = s.id \
-     JOIN set_bonus_tier_enchantments tb ON tb.enchantment_id = es.enchantment_id JOIN set_bonus_tiers t ON t.id = tb.tier_id \
-     JOIN set_bonus_items sbi ON sbi.set_id = t.set_id WHERE s.name IN (?))";
-
-const ITEMS_WITH_EFFECTS_SQL: &str =
-    "i.id IN (SELECT ie.item_id FROM enchantments e JOIN item_enchantments ie ON ie.enchantment_id = e.id \
-     WHERE (CASE WHEN INSTR(e.name, ' — ') > 0 THEN SUBSTR(e.name, 1, INSTR(e.name, ' — ') - 1) ELSE e.name END) IN (?)
-     AND NOT EXISTS (SELECT 1 FROM enchantment_stats es WHERE es.enchantment_id = e.id))";
-
-fn first_unknown_enchantment_name(
-    db: &rusqlite::Connection,
-    enchantment_names: &[String],
-) -> Result<Option<String>, ApiError> {
-    let mut statement = db.prepare_cached(
-        "SELECT EXISTS (SELECT 1 FROM stats WHERE name = ?1) OR EXISTS (SELECT 1 FROM enchantments e
-         WHERE (CASE WHEN INSTR(e.name, ' — ') > 0 THEN SUBSTR(e.name, 1, INSTR(e.name, ' — ') - 1) ELSE e.name END) = ?1
-         AND NOT EXISTS (SELECT 1 FROM enchantment_stats es WHERE es.enchantment_id = e.id))",
-    )?;
-    for enchantment_name in enchantment_names {
-        if !statement.query_row([enchantment_name], |row| row.get::<_, bool>(0))? {
-            return Ok(Some(enchantment_name.clone()));
+    let (stat_name, type_name) = name.split_once(':').map_or((name, None), |(stat, kind)| (stat, Some(kind)));
+    let stat_id =
+        db.query_row("SELECT id FROM stats WHERE name = ?1", [stat_name], |row| row.get::<_, i64>(0)).optional()?;
+    let type_id = match type_name {
+        Some(type_name) => {
+            if stat_id.is_none() {
+                return Err(ApiError::BadRequest(format!("unknown enchantment {name:?}")));
+            }
+            Some(
+                db.query_row("SELECT id FROM bonus_types WHERE name = ?1", [type_name], |row| row.get::<_, i64>(0))
+                    .optional()?
+                    .ok_or_else(|| ApiError::BadRequest(format!("unknown bonus type {type_name:?}")))?,
+            )
         }
+        None => None,
+    };
+    let family_ids = if type_name.is_none() {
+        let mut statement = db.prepare_cached("SELECT e.id FROM enchantments e LEFT JOIN enchantment_ladders l ON l.id = e.ladder_id WHERE e.name = ?1 OR l.name = ?1")?;
+        let ids = statement.query_map([name], |row| row.get::<_, i64>(0))?.collect::<Result<Vec<_>, _>>()?;
+        ids
+    } else {
+        Vec::new()
+    };
+    if stat_id.is_none() && family_ids.is_empty() {
+        return Err(ApiError::BadRequest(format!("unknown enchantment {name:?}")));
     }
-    Ok(None)
+    let matches_link = |link: &str| {
+        let mut alternatives = Vec::new();
+        if !family_ids.is_empty() {
+            alternatives.push(format!(
+                "{link}.enchantment_id IN ({})",
+                family_ids.iter().map(ToString::to_string).collect::<Vec<_>>().join(",")
+            ));
+        }
+        if let Some(stat_id) = stat_id {
+            let type_condition = type_id.map_or(String::new(), |type_id| {
+                format!(" AND COALESCE(es.bonus_type_id, {link}.bonus_type_id) = {type_id}")
+            });
+            alternatives.push(format!("EXISTS (SELECT 1 FROM enchantment_stats es WHERE es.enchantment_id = {link}.enchantment_id AND es.stat_id = {stat_id}{type_condition})"));
+        }
+        format!("({})", alternatives.join(" OR "))
+    };
+    let own = format!("EXISTS (SELECT 1 FROM item_enchantments ie WHERE ie.item_id = i.id AND {})", matches_link("ie"));
+    if include_set_bonuses {
+        let set = format!("EXISTS (SELECT 1 FROM set_bonus_items sbi JOIN set_bonus_tiers t ON t.set_id = sbi.set_id JOIN set_bonus_tier_enchantments te ON te.tier_id = t.id WHERE sbi.item_id = i.id AND {})", matches_link("te"));
+        Ok(format!("({own} OR {set})"))
+    } else {
+        Ok(own)
+    }
 }
 
 #[utoipa::path(
@@ -257,57 +287,8 @@ fn first_unknown_enchantment_name(
     path = "/v1/items/{id}",
     tag = "items",
     summary = "Get an item",
-    description = "One item with everything the dataset knows about it: the core row (slot, category, type, minimum \
-                   level, enhancement bonus, material, race restriction, description, drop location text, set name, \
-                   sentience and minor-artifact flags, `is_legacy` (served whatever its value; the list hides legacy \
-                   items by default) and wiki URL), \
-                   then `weapon` (dice, threat range, multipliers, \
-                   proficiency, `dr_bypass`) or `armor` (AC, max Dex, spell failure, check penalty) when the item is \
-                   one, `bonuses` (stat, bonus type, value), `effects` (named effects with value and target), \
-                   `augment_slots` (sockets in order, each with its `label` and the fixed `options` upstream gives \
-                   it: the upgrade tiers a player unlocks on Quenched, Smoldering, Thunder-Forged, Attuned to Heroism \
-                   and other upgradeable items, or the choices a crafting step offers; an open socket has none. Each \
-                   option has `id`, `name`, `description`, `min_level`, `icon` (an icon name like the item's), \
-                   `grants_slot` (the label, as /v1/augment-slot-types lists it, of the socket the option adds, or \
-                   null), `sets` (each set the option makes the item count toward, with `id` and `name`; see \
-                   /v1/sets/{id}), `bonuses` (stat, bonus type and value, as the item's) and `modifiers` (the raw \
-                   effects those bonuses come from, as the item's). What an option gives is the option's until the \
-                   player unlocks or picks it, so it is never among the item's own `bonuses`, `augment_slots` or \
-                   `set`), `clickies`, `set`, `quests` it drops \
-                   from (once per loot type, so a quest that both drops it and gives it as an end reward appears twice) with loot type, raid flag, `is_rare` (rare loot in that quest, per Maetrim's drop text or ddowiki), \
-                   `chest` (the chest his drop text names for that quest, lower-cased, such as `end chest` or \
-                   `optional chest`; null when it names none, and always null on a `reward` row), the \
-                   `difficulties` each offers, and ddowiki's `is_free_to_play` for each \
-                   (see /v1/quests for the rest of the quest), `quest_chains` and `sagas` whose end reward offers the item (each with `id`, `name`, `is_rare` and the ddowiki page it was read from as `wiki_url`, a saga also with its reward `tier`; see /v1/quest-chains and /v1/sagas), \
-                   `adventure_packs` reached through any source kind: direct pack and challenge sources, quests, \
-                   the quests of chains and sagas, crafting systems and vendors (events and starter gear carry no \
-                   pack). Each has `id`, `name`, `loot_type`, `chest`, `is_rare` and the ddowiki page named after the \
-                   pack as `wiki_url`, once per distinct combination of pack, `loot_type`, `is_rare` and `chest`, \
-                   sorted by pack name, loot type, rarity and chest. Rarity and chest values are preserved from \
-                   each source; identical combinations reached through several sources appear once. `is_rare` \
-                   remains a boolean; `loot_type` and `chest` stay null on source kinds that have none. Individual \
-                   sources remain in `sources`. See /v1/adventure-packs/{id}. `challenge_packs` whose challenges' ingredients or \
-                   commendations are turned in for it (`Vaults of the Artificers, Turn in various challenge \
-                   ingredients`; each with the pack's `id` and `name`, `is_rare` and `wiki_url`), \
-                   `crafting_systems` whose station crafts or upgrades it, as \
-                   his drop text names the system or its station (`Magma Forge, Crafted from various ingredients`; \
-                   each with `id`, `name`, `is_rare` and the ddowiki page as `wiki_url`; see \
-                   /v1/crafting-systems/{id}), `vendors` that sell or trade it (each with `id`, `name`, `location`, \
-                   `cost`, `is_rare` and `wiki_url`; see /v1/vendors/{id}), `events` that reward it (each with `id`, \
-                   `name`, `is_rare` and `wiki_url`; see /v1/events/{id}), as a wiki vendors or events file lists it \
-                   or his drop text names one, `starter_rewards`, the `character_level` an iconic hero reaches to \
-                   be given it as starter gear (`Advance to level 15, End reward`), \
-                   `sources`, every one of those sources in one array, each \
-                   with `kind` (`quest`, `quest_chain`, `saga`, `adventure_pack`, `challenge`, `crafting_system`, \
-                   `vendor`, `event` or `starter`), the source's \
-                   `id` and `name` (a starter row has no `id`, and `Advance to level N` as its name), \
-                   `loot_type` (set only on a quest or pack drop), `chest`, `is_rare`, `tier` (a saga reward's list, \
-                   null otherwise), `character_level` (a starter row's, null otherwise), `cost` (a vendor row's, null \
-                   otherwise) and the source's ddowiki page as `wiki_url` (the page read for a chain, saga, crafting \
-                   system, vendor or event, null on a starter row, the page \
-                   named after a quest or pack otherwise), sorted by kind in that order and then by name, and \
-                   the raw `modifiers` the ETL derived the bonuses from.",
-    params(("id" = i64, Path, description = "The item's numeric id from the list endpoint")), responses((status = 200, description = "The item with its child collections", body = Value), (status = 404, description = "No item has this id", body = crate::error::ErrorBody))
+    description = "Returns an item with rendered enchantments, sockets, modifiers and drop sources.",
+    params(("id" = i64, Path, description = "The item's numeric id from the list endpoint")), responses((status = 200, description = "The item with its child collections", body = crate::routes::v1::response_schemas::ItemsDetailResponse), (status = 404, description = "No item has this id", body = crate::error::ErrorBody))
 )]
 async fn item_detail(State(state): State<AppState>, Path(id): Path<i64>) -> Result<Json<Value>, ApiError> {
     state
@@ -352,8 +333,7 @@ async fn item_detail(State(state): State<AppState>, Path(id): Path<i64>) -> Resu
             .pop()
             .unwrap_or(Value::Null);
 
-            item["bonuses"] = Value::Array(bonuses_via(db, "item_enchantments", "item_id", id)?);
-            item["effects"] = Value::Array(crate::db::effects_via(db, id)?);
+            item["enchantments"] = Value::Array(enchantments_for_owner(db, "item_enchantments", "item_id", id)?);
 
             let mut augment_slots = json_rows(
                 db,
@@ -361,9 +341,16 @@ async fn item_detail(State(state): State<AppState>, Path(id): Path<i64>) -> Resu
                    JOIN augment_slot_types t ON t.id = s.slot_id WHERE s.item_id = ?1 ORDER BY s.sort_order",
                 [id],
             )?;
+            let mut option_enchantments = enchantments_via(
+                db,
+                "item_augment_slot_option_enchantments",
+                "option_id",
+                "j.option_id IN (SELECT id FROM item_augment_slot_options WHERE item_id = ?1)",
+                [id],
+            )?;
             for augment_slot in &mut augment_slots {
                 let slot_order = augment_slot["sort_order"].as_i64().unwrap_or(0);
-                augment_slot["options"] = Value::Array(augment_slot_options(db, id, slot_order)?);
+                augment_slot["options"] = Value::Array(augment_slot_options(db, id, slot_order, &mut option_enchantments)?);
             }
             item["augment_slots"] = Value::Array(augment_slots);
 
@@ -396,7 +383,12 @@ async fn item_detail(State(state): State<AppState>, Path(id): Path<i64>) -> Resu
         .await
 }
 
-fn augment_slot_options(db: &Connection, item_id: i64, slot_order: i64) -> Result<Vec<Value>, ApiError> {
+fn augment_slot_options(
+    db: &Connection,
+    item_id: i64,
+    slot_order: i64,
+    option_enchantments: &mut std::collections::BTreeMap<i64, Vec<Value>>,
+) -> Result<Vec<Value>, ApiError> {
     let mut options = json_rows(
         db,
         "SELECT o.id, o.name, o.description, o.min_level, o.icon,
@@ -413,8 +405,7 @@ fn augment_slot_options(db: &Connection, item_id: i64, slot_order: i64) -> Resul
               WHERE os.option_id = ?1 ORDER BY s.name",
             [option_id],
         )?);
-        option["bonuses"] =
-            Value::Array(bonuses_via(db, "item_augment_slot_option_enchantments", "option_id", option_id)?);
+        option["enchantments"] = Value::Array(option_enchantments.remove(&option_id).unwrap_or_default());
         option["modifiers"] = Value::Array(modifiers_for(db, "item_augment_slot_option", option_id)?);
     }
     Ok(options)
@@ -434,12 +425,11 @@ declare_list_parameters!(EquipmentSlotsParameters, EQUIPMENT_SLOTS_SORT_FIELDS, 
     path = "/v1/equipment-slots",
     tag = "items",
     summary = "List equipment slots",
-    description = "The equipment slots an item can occupy, in display order, with a category (weapon, armor, \
-                   accessory). /v1/items accepts these names in `slot`.",
+    description = "Lists equipment slots, their categories and display order.",
     params(
         EquipmentSlotsParameters,
     ),
-    responses((status = 200, description = "`total`, `limit`, `offset` and the `equipment_slots` page", body = Value),
+    responses((status = 200, description = "`total`, `limit`, `offset` and the `equipment_slots` page", body = crate::routes::v1::response_schemas::EquipmentSlotsPageResponse),
         (status = 400, description = "Invalid sort field or malformed query parameter", body = crate::error::ErrorBody))
 )]
 async fn equipment_slots(State(state): State<AppState>, ApiQuery(query, _): ApiQuery) -> Result<Json<Value>, ApiError> {
@@ -459,7 +449,7 @@ async fn equipment_slots(State(state): State<AppState>, ApiQuery(query, _): ApiQ
 }
 
 const WEAPON_TYPES_SORT_FIELDS: &[(&str, &str)] =
-    &[("name", "listed.name"), ("id", "listed.id"), ("proficiency", "listed.proficiency")];
+    &[("name", "listed.name"), ("id", "listed.id"), ("proficiency", "listed.proficiency"), ("is_shield", "is_shield")];
 
 declare_list_parameters!(WeaponTypesParameters, WEAPON_TYPES_SORT_FIELDS, "");
 
@@ -468,12 +458,11 @@ declare_list_parameters!(WeaponTypesParameters, WEAPON_TYPES_SORT_FIELDS, "");
     path = "/v1/weapon-types",
     tag = "items",
     summary = "List weapon types",
-    description = "Every weapon and shield type with the proficiency it needs and whether it is a shield. Item \
-                   `weapon` blocks name their type from this list.",
+    description = "Lists weapon and shield types with proficiency and shield status.",
     params(
         WeaponTypesParameters,
     ),
-    responses((status = 200, description = "`total`, `limit`, `offset` and the `weapon_types` page", body = Value),
+    responses((status = 200, description = "`total`, `limit`, `offset` and the `weapon_types` page", body = crate::routes::v1::response_schemas::WeaponTypesPageResponse),
         (status = 400, description = "Invalid sort field or malformed query parameter", body = crate::error::ErrorBody))
 )]
 async fn weapon_types(State(state): State<AppState>, ApiQuery(query, _): ApiQuery) -> Result<Json<Value>, ApiError> {
@@ -503,12 +492,11 @@ declare_list_parameters!(DamageTypesParameters, DAMAGE_TYPES_SORT_FIELDS, "");
     path = "/v1/damage-types",
     tag = "items",
     summary = "List damage types",
-    description = "Every damage type (physical, elemental, alignment, special) with its category. Spell damage \
-                   lines and DR bypass entries use these names.",
+    description = "Lists damage types and their categories.",
     params(
         DamageTypesParameters,
     ),
-    responses((status = 200, description = "`total`, `limit`, `offset` and the `damage_types` page", body = Value),
+    responses((status = 200, description = "`total`, `limit`, `offset` and the `damage_types` page", body = crate::routes::v1::response_schemas::DamageTypesPageResponse),
         (status = 400, description = "Invalid sort field or malformed query parameter", body = crate::error::ErrorBody))
 )]
 async fn damage_types(State(state): State<AppState>, ApiQuery(query, _): ApiQuery) -> Result<Json<Value>, ApiError> {
@@ -533,6 +521,7 @@ const AUGMENT_SLOT_TYPES_SORT_FIELDS: &[(&str, &str)] = &[
     ("family", "listed.family"),
     ("variant", "listed.variant"),
     ("qualifier", "listed.qualifier"),
+    ("label", "label"),
 ];
 
 declare_list_parameters!(
@@ -550,14 +539,12 @@ declare_list_parameters!(
     path = "/v1/augment-slot-types",
     tag = "items",
     summary = "List augment slot types",
-    description = "Every socket an item can carry: gem colours (`red`, `colorless`, `sun`, ...) and crafting-family \
-                   sockets (`lamordia: melancholic (accessory)`, `isle of dread: set bonus`, ...). `family` says which \
-                   kind it is; `label` is what /v1/augments accepts in `slot`.",
+    description = "Lists socket labels and their family, variant and qualifier.",
     params(
         AugmentSlotTypesParameters,
     ),
     responses(
-        (status = 200, description = "`total`, `limit`, `offset` and the `augment_slot_types` page", body = Value),
+        (status = 200, description = "`total`, `limit`, `offset` and the `augment_slot_types` page", body = crate::routes::v1::response_schemas::AugmentSlotTypesPageResponse),
         (status = 400, description = "Invalid sort field or malformed query parameter", body = crate::error::ErrorBody))
 )]
 async fn augment_slot_types(

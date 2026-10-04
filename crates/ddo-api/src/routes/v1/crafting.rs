@@ -58,6 +58,8 @@ const CRAFTING_SYSTEMS_SORT_FIELDS: &[(&str, &str)] = &[
     ("pack", "listed.pack"),
     ("ingredient_count", "listed.ingredient_count"),
     ("recipe_count", "listed.recipe_count"),
+    ("npc", "npc"),
+    ("page", "page"),
 ];
 
 declare_list_parameters!(CraftingSystemsParameters, CRAFTING_SYSTEMS_SORT_FIELDS, "");
@@ -67,16 +69,11 @@ declare_list_parameters!(CraftingSystemsParameters, CRAFTING_SYSTEMS_SORT_FIELDS
     path = "/v1/crafting-systems",
     tag = "crafting",
     summary = "List crafting systems",
-    description = "Every crafting system read from ddowiki, one per wiki crafting page, ordered by name: its `page`, \
-                   the adventure `pack` it belongs to (null when the wiki names none), the crafting `npc` or station \
-                   (free text, may be null), the Maetrim augment `families` its options live in (the values \
-                   /v1/augments accepts in `family`; empty for an upgrade or ingredient-only system whose recipes \
-                   grant sockets or carry notes rather than yield augments), and how many ingredients and recipes the wiki lists \
-                   (`ingredient_count`, `recipe_count`). Empty until a system has been read.",
+    description = "Lists crafting systems with their ingredient and recipe counts.",
     params(
         CraftingSystemsParameters,
     ),
-    responses((status = 200, description = "`total`, `limit`, `offset` and the `crafting_systems` page", body = Value),
+    responses((status = 200, description = "`total`, `limit`, `offset` and the `crafting_systems` page", body = crate::routes::v1::response_schemas::CraftingSystemsPageResponse),
         (status = 400, description = "Invalid sort field or malformed query parameter", body = crate::error::ErrorBody))
 )]
 async fn crafting_systems(
@@ -101,19 +98,10 @@ async fn crafting_systems(
     path = "/v1/crafting-systems/{id}",
     tag = "crafting",
     summary = "Get a crafting system",
-    description = "One crafting system as the list returns it, plus its `ingredients` (each with `name`, `tier` of \
-                   heroic, epic, legendary or any, and the wiki's free-text `bind` and `source`, either may be null) \
-                   and its `recipes` in page order. Each recipe carries its `tier`, the socket label it fills \
-                   (`slot`, as /v1/augment-slot-types lists it, null when the wiki row names none), the socket label \
-                   the row adds to the item (`grants_slot`, such as `colorless` or `upgrade: tier 2`; null when it \
-                   adds none; an upgrade is a socket, never a new item), the wiki's label for the row (`option`), \
-                   a free-text `note`, the `augments` it yields (`id`, `name`, \
-                   `min_level`; every Maetrim augment of that name in the system's families, so a name that repeats \
-                   per level or element appears once per augment; empty when the row has no augment counterpart, \
-                   and then `grants_slot` or `note` says what it does) and its `cost`, one `{ ingredient, tier, quantity }` per ingredient.",
+    description = "Returns a crafting system with ingredient families and recipes.",
     params(("id" = i64, Path, description = "The crafting system's numeric id from the list endpoint")),
     responses(
-        (status = 200, description = "The system with its ingredients and recipes", body = Value),
+        (status = 200, description = "The system with its ingredients and recipes", body = crate::routes::v1::response_schemas::CraftingSystemsDetailResponse),
         (status = 404, description = "No crafting system has this id", body = crate::error::ErrorBody)
     )
 )]

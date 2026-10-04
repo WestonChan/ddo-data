@@ -32,6 +32,7 @@ const VENDORS_SORT_FIELDS: &[(&str, &str)] = &[
     ("pack", "listed.pack"),
     ("location", "listed.location"),
     ("item_count", "listed.item_count"),
+    ("wiki_url", "wiki_url"),
 ];
 
 declare_list_parameters!(VendorsParameters, VENDORS_SORT_FIELDS, "");
@@ -41,15 +42,11 @@ declare_list_parameters!(VendorsParameters, VENDORS_SORT_FIELDS, "");
     path = "/v1/vendors",
     tag = "sources",
     summary = "List vendors",
-    description = "Every vendor (an NPC or place that sells items or trades them for tokens, read from ddowiki, since \
-                   Maetrim's files have none), ordered by name, with the `location` the wiki gives (free text, null \
-                   when it gives none), its adventure `pack` (null when it names none), \
-                   the `wiki_url` it was read from, and `item_count`, the items it offers: those the wiki page lists \
-                   plus the items whose drop text names the vendor. Empty until a vendor has been read from ddowiki.",
+    description = "Lists vendors and the number of items each offers.",
     params(
         VendorsParameters,
     ),
-    responses((status = 200, description = "`total`, `limit`, `offset` and the `vendors` page", body = Value),
+    responses((status = 200, description = "`total`, `limit`, `offset` and the `vendors` page", body = crate::routes::v1::response_schemas::VendorsPageResponse),
         (status = 400, description = "Invalid sort field or malformed query parameter", body = crate::error::ErrorBody))
 )]
 async fn vendors(State(state): State<AppState>, ApiQuery(query, _): ApiQuery) -> Result<Json<Value>, ApiError> {
@@ -68,13 +65,10 @@ async fn vendors(State(state): State<AppState>, ApiQuery(query, _): ApiQuery) ->
     path = "/v1/vendors/{id}",
     tag = "sources",
     summary = "Get a vendor",
-    description = "One vendor as the list returns it, plus `items`, the items it offers, sorted by name, each with \
-                   `id`, `name`, `cost` (what the wiki says it asks, free text, null when unknown), `is_rare`, \
-                   `minimum_level` and equipment `slot`; empty when nothing is known. Item detail `vendors` reports \
-                   the same link from the other side.",
+    description = "Returns a vendor with its page, location and offered items.",
     params(("id" = i64, Path, description = "The vendor's numeric id from /v1/vendors")),
     responses(
-        (status = 200, description = "The vendor with the items it offers", body = Value),
+        (status = 200, description = "The vendor with the items it offers", body = crate::routes::v1::response_schemas::VendorsDetailResponse),
         (status = 404, description = "No vendor has this id", body = crate::error::ErrorBody)
     )
 )]
@@ -95,7 +89,7 @@ async fn vendor_detail(State(state): State<AppState>, Path(id): Path<i64>) -> Re
 }
 
 const EVENTS_SORT_FIELDS: &[(&str, &str)] =
-    &[("name", "listed.name"), ("id", "listed.id"), ("item_count", "listed.item_count")];
+    &[("name", "listed.name"), ("id", "listed.id"), ("item_count", "listed.item_count"), ("wiki_url", "wiki_url")];
 
 declare_list_parameters!(EventsParameters, EVENTS_SORT_FIELDS, "");
 
@@ -104,15 +98,11 @@ declare_list_parameters!(EventsParameters, EVENTS_SORT_FIELDS, "");
     path = "/v1/events",
     tag = "sources",
     summary = "List events",
-    description = "Every event (a festival or limited-time event whose rewards are items, such as Treasure of Crystal \
-                   Cove or The Night Revels, read from ddowiki, since Maetrim's files have none), ordered by name, \
-                   with the `wiki_url` it was read from, and `item_count`, the items it \
-                   rewards: those the wiki page lists plus the items whose drop text names the event. Empty until an \
-                   event has been read from ddowiki.",
+    description = "Lists events and the number of items each rewards.",
     params(
         EventsParameters,
     ),
-    responses((status = 200, description = "`total`, `limit`, `offset` and the `events` page", body = Value),
+    responses((status = 200, description = "`total`, `limit`, `offset` and the `events` page", body = crate::routes::v1::response_schemas::EventsPageResponse),
         (status = 400, description = "Invalid sort field or malformed query parameter", body = crate::error::ErrorBody))
 )]
 async fn events(State(state): State<AppState>, ApiQuery(query, _): ApiQuery) -> Result<Json<Value>, ApiError> {
@@ -131,12 +121,10 @@ async fn events(State(state): State<AppState>, ApiQuery(query, _): ApiQuery) -> 
     path = "/v1/events/{id}",
     tag = "sources",
     summary = "Get an event",
-    description = "One event as the list returns it, plus `items`, the items it rewards, sorted by name, each with \
-                   `id`, `name`, `is_rare`, `minimum_level` and equipment `slot`; empty when nothing is known. Item \
-                   detail `events` reports the same link from the other side.",
+    description = "Returns an event with its page and rewarded items.",
     params(("id" = i64, Path, description = "The event's numeric id from /v1/events")),
     responses(
-        (status = 200, description = "The event with the items it rewards", body = Value),
+        (status = 200, description = "The event with the items it rewards", body = crate::routes::v1::response_schemas::EventsDetailResponse),
         (status = 404, description = "No event has this id", body = crate::error::ErrorBody)
     )
 )]

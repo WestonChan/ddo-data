@@ -21,19 +21,26 @@
   "name": "Devoted Heart",
   "tiers": [
     {
-      "bonuses": [
+      "enchantments": [
         {
           "bonus_type": "Equipment",
+          "bonuses": [
+            {
+              "bonus_type": "Equipment",
+              "stat": "Positive Spell Power",
+              "stat_category": "magical",
+              "value": 36
+            }
+          ],
           "description": null,
-          "id": 1803,
-          "name": "Positive Spell Power +36",
-          "stat": "Positive Spell Power",
-          "stat_category": "magical",
+          "enchantment_id": 1803,
+          "ladder": null,
+          "name": "Positive Spell Power",
+          "text": "Equipment Positive Spell Power +36",
           "value": 36,
           "value2": null
         }
       ],
-      "description": "Equipment Positive Spell Power +36",
       "equipped_count": 2,
       "id": 6,
       "modifiers": [

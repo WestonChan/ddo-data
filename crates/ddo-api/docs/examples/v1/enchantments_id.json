@@ -1,0 +1,78 @@
+{
+  "amount_count": 1,
+  "augments": {
+    "augments": [
+      {
+        "id": 910,
+        "name": "+11 Charisma Skills / +3 UMD, +151 Spell Points",
+        "value": 11,
+        "value2": null
+      },
+      {
+        "id": 883,
+        "name": "+22 Charisma Skills / +6 UMD, +151 Spell Points",
+        "value": 22,
+        "value2": null
+      },
+      {
+        "id": 937,
+        "name": "+6 Charisma Skills / +1 UMD, +75 Spell Points",
+        "value": 6,
+        "value2": null
+      }
+    ],
+    "limit": 100,
+    "offset": 0,
+    "total": 16
+  },
+  "default_value": null,
+  "default_value2": null,
+  "description_template": "Passive: {1} %b1 bonus to the Intimidate skill.",
+  "id": 1,
+  "items": {
+    "items": [
+      {
+        "id": 2,
+        "name": "+1 Intimidating Dagger of Acid",
+        "value": 3,
+        "value2": null
+      },
+      {
+        "id": 21,
+        "name": "+2 Intimidating Dagger of Paralyzing Acid",
+        "value": 3,
+        "value2": null
+      },
+      {
+        "id": 627,
+        "name": "Arm of the Aggressor",
+        "value": 9,
+        "value2": null
+      }
+    ],
+    "limit": 100,
+    "offset": 0,
+    "total": 108
+  },
+  "ladder": null,
+  "name": "Intimidate",
+  "set_tiers": {
+    "limit": 100,
+    "offset": 0,
+    "set_tiers": [],
+    "total": 0
+  },
+  "stacking_note": null,
+  "stats": [
+    {
+      "amount_from": 1,
+      "bonus_type": null,
+      "constant": null,
+      "rounding": "down",
+      "scale": 1.0,
+      "stat": "Intimidate"
+    }
+  ],
+  "text_template": "%b1 Intimidate {1}",
+  "wiki_url": null
+}

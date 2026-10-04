@@ -81,6 +81,277 @@ async fn get_list_rows(path: &str) -> (StatusCode, axum::http::HeaderMap, Value)
 }
 
 #[tokio::test]
+async fn detail_enchantments_render_family_stats_and_text_only_lines() {
+    let item = item_detail_named("oozing").await;
+    let lines = item["enchantments"].as_array().expect("item enchantments");
+    assert!(item.get("bonuses").is_none());
+    assert!(item.get("effects").is_none());
+    assert!(lines.iter().all(|line| {
+        ["enchantment_id", "name", "ladder", "text", "description", "value", "value2", "bonus_type", "bonuses"]
+            .iter()
+            .all(|key| line.get(*key).is_some())
+    }));
+    assert!(lines.iter().any(|line| line["bonuses"].as_array().is_some_and(|rows| !rows.is_empty())));
+    assert!(lines.iter().any(|line| line["bonuses"] == serde_json::json!([])));
+
+    let (_, _, augment_list) = get("/v1/augments?q=Silverscale").await;
+    let augment_id = augment_list["augments"][0]["id"].as_i64().unwrap();
+    let (_, _, augment) = get(&format!("/v1/augments/{augment_id}")).await;
+    assert!(augment.get("bonuses").is_none());
+    assert!(augment["enchantments"]
+        .as_array()
+        .unwrap()
+        .iter()
+        .flat_map(|line| line["bonuses"].as_array().unwrap())
+        .any(|bonus| bonus["stat"] == "Healing Amplification"));
+
+    let (_, _, set) = get("/v1/sets/6").await;
+    for tier in set["tiers"].as_array().unwrap() {
+        assert!(tier.get("description").is_none());
+        assert!(tier["enchantments"].is_array());
+        assert!(tier.get("bonuses").is_none());
+    }
+}
+
+#[tokio::test]
+async fn vocabulary_rows_route_by_kind_even_when_database_ids_overlap() {
+    let (_, _, page) = get("/v1/enchantments?limit=10000").await;
+    let rows = page["enchantments"].as_array().unwrap();
+    let family = rows.iter().find(|row| row["kind"] == "enchantment").unwrap();
+    let stat = rows.iter().find(|row| row["kind"] == "stat").unwrap();
+    for (row, prefix) in [(family, "/v1/enchantments/"), (stat, "/v1/stats/")] {
+        assert_eq!(row["detail_path"], format!("{prefix}{}", row["id"]));
+        assert!(row["bonus_types"].is_array());
+        let (status, _, detail) = get(row["detail_path"].as_str().unwrap()).await;
+        assert_eq!(status, StatusCode::OK, "{detail}");
+    }
+}
+
+#[tokio::test]
+async fn repeated_item_vocabulary_filters_support_any_and_all() {
+    let (_, _, feet) = get("/v1/items?slot=Feet").await;
+    let (_, _, hands) = get("/v1/items?slot=Main%20Hand").await;
+    let (_, _, either) = get("/v1/items?slot=Feet&slot=Main%20Hand").await;
+    assert_eq!(either["total"].as_i64(), Some(feet["total"].as_i64().unwrap() + hands["total"].as_i64().unwrap()));
+    let (status, _, invalid) = get("/v1/items?slot=Feet&slot_match=all").await;
+    assert_eq!(status, StatusCode::BAD_REQUEST, "{invalid}");
+    assert!(invalid["error"].as_str().unwrap().contains("slot"));
+    let (status, _, invalid) = get("/v1/items?category=Armor&category_match=all").await;
+    assert_eq!(status, StatusCode::BAD_REQUEST, "{invalid}");
+    assert!(invalid["error"].as_str().unwrap().contains("category"));
+
+    let (_, _, strength) = get("/v1/items?enchantment=Strength").await;
+    let (_, _, charisma) = get("/v1/items?enchantment=Charisma").await;
+    let (_, _, both) = get("/v1/items?enchantment=Strength&enchantment=Charisma&enchantment_match=all").await;
+    let strength_ids: std::collections::BTreeSet<_> =
+        strength["items"].as_array().unwrap().iter().map(|row| row["id"].as_i64().unwrap()).collect();
+    let charisma_ids: std::collections::BTreeSet<_> =
+        charisma["items"].as_array().unwrap().iter().map(|row| row["id"].as_i64().unwrap()).collect();
+    let expected: std::collections::BTreeSet<_> = strength_ids.intersection(&charisma_ids).copied().collect();
+    let actual: std::collections::BTreeSet<_> =
+        both["items"].as_array().unwrap().iter().map(|row| row["id"].as_i64().unwrap()).collect();
+    assert_eq!(actual, expected);
+}
+
+#[tokio::test]
+async fn family_and_stat_detail_page_their_real_carriers() {
+    let (_, _, vocabulary) = get_list_rows("/v1/enchantments").await;
+    let freedom = enchantment_named(&vocabulary, "Freedom of Movement", "enchantment").unwrap();
+    let family_path = freedom["detail_path"].as_str().unwrap();
+    let (status, _, family) = get(&format!("{family_path}?items_limit=1&items_offset=1")).await;
+    assert_eq!(status, StatusCode::OK, "{family}");
+    assert_eq!(family["name"], "Freedom of Movement");
+    assert_eq!(family["items"]["total"], 3);
+    assert_eq!(family["items"]["items"].as_array().unwrap().len(), 1);
+    assert_eq!(family["items"]["offset"], 1);
+
+    let strength = enchantment_named(&vocabulary, "Strength", "stat").unwrap();
+    let (status, _, stat) = get(strength["detail_path"].as_str().unwrap()).await;
+    assert_eq!(status, StatusCode::OK, "{stat}");
+    assert_eq!(stat["name"], "Strength");
+    assert!(stat["items"]["total"].as_i64().unwrap() >= 3);
+    let (_, _, stat_page) =
+        get(&format!("{}?items_limit=1&items_offset=1", strength["detail_path"].as_str().unwrap())).await;
+    assert_eq!(stat_page["items"]["items"].as_array().unwrap().len(), 1);
+    assert_eq!(stat_page["items"]["offset"], 1);
+    let (status, _, _) = get("/v1/stats/999999").await;
+    assert_eq!(status, StatusCode::NOT_FOUND);
+
+    let deception = enchantment_named(&vocabulary, "Deception", "enchantment").unwrap();
+    let (_, _, step) = get(deception["detail_path"].as_str().unwrap()).await;
+    assert_eq!(step["ladder"]["name"], "Deception");
+    assert_eq!(step["ladder"]["steps"].as_array().unwrap().len(), 2);
+    let carrier_id = step["items"]["items"][0]["id"].as_i64().unwrap();
+    let (_, _, carrier) = get(&format!("/v1/items/{carrier_id}")).await;
+    assert!(carrier["enchantments"]
+        .as_array()
+        .unwrap()
+        .iter()
+        .any(|line| line["enchantment_id"] == deception["id"] && line["ladder"]["name"] == "Deception"));
+
+    let multi_stat = enchantment_named(&vocabulary, "Spell Focus Mastery", "enchantment").unwrap();
+    let (_, _, mastery) = get(multi_stat["detail_path"].as_str().unwrap()).await;
+    let carrier_id = mastery["items"]["items"][0]["id"].as_i64().unwrap();
+    let (_, _, carrier) = get(&format!("/v1/items/{carrier_id}")).await;
+    let line = carrier["enchantments"]
+        .as_array()
+        .unwrap()
+        .iter()
+        .find(|line| line["enchantment_id"] == multi_stat["id"])
+        .unwrap();
+    assert_eq!(line["bonuses"].as_array().unwrap().len(), 4);
+
+    let all_abilities = enchantment_named(&vocabulary, "All Ability Scores", "enchantment").unwrap();
+    assert!(all_abilities["bonus_types"]
+        .as_array()
+        .unwrap()
+        .iter()
+        .any(|kind| kind["name"] == "Artifact" && kind["item_count"] == 0));
+    let (_, _, family) = get(all_abilities["detail_path"].as_str().unwrap()).await;
+    assert_eq!(family["stats"].as_array().unwrap().len(), 6);
+    let tier = &family["set_tiers"]["set_tiers"][0];
+    let (_, _, set) = get(&format!("/v1/sets/{}", tier["set_id"])).await;
+    let tier_line = set["tiers"].as_array().unwrap().iter().find(|candidate| candidate["id"] == tier["id"]).unwrap()
+        ["enchantments"]
+        .as_array()
+        .unwrap()
+        .iter()
+        .find(|line| line["enchantment_id"] == all_abilities["id"])
+        .unwrap();
+    assert_eq!(tier_line["bonuses"].as_array().unwrap().len(), 6);
+}
+
+fn item_ids_in_page(page: &Value) -> std::collections::BTreeSet<i64> {
+    page["items"].as_array().unwrap().iter().map(|item| item["id"].as_i64().unwrap()).collect()
+}
+
+#[tokio::test]
+async fn every_repeated_source_filter_uses_union_or_intersection() {
+    let db = rusqlite::Connection::open(fixture_db_path()).unwrap();
+    for (filter, sql) in [
+        ("pack", "SELECT DISTINCT ap.name FROM loot_adventure_packs lp JOIN adventure_packs ap ON ap.id = lp.pack_id ORDER BY ap.name LIMIT 2"),
+        ("quest", "SELECT DISTINCT quest_id FROM sources WHERE kind = 'quest' AND quest_id IS NOT NULL ORDER BY quest_id LIMIT 2"),
+        ("quest_chain", "SELECT DISTINCT chain_id FROM sources WHERE kind = 'quest_chain' AND chain_id IS NOT NULL ORDER BY chain_id LIMIT 2"),
+        ("saga", "SELECT DISTINCT saga_id FROM sources WHERE kind = 'saga' AND saga_id IS NOT NULL ORDER BY saga_id LIMIT 2"),
+    ] {
+        let mut statement = db.prepare(sql).unwrap();
+        let mut values: Vec<String> = statement.query_map([], |row| row.get::<_, rusqlite::types::Value>(0)).unwrap()
+            .map(|result| match result.unwrap() {
+                rusqlite::types::Value::Text(text) => text,
+                rusqlite::types::Value::Integer(number) => number.to_string(),
+                other => panic!("unexpected filter value {other:?}"),
+            }).collect();
+        if values.len() == 1 { values.push("999999".to_string()); }
+        assert_eq!(values.len(), 2, "{filter} fixture needs two values");
+        let single_paths: Vec<String> = values.iter().map(|value| format!("/v1/items?{}&limit=10000",
+            serde_urlencoded::to_string([(filter, value)]).unwrap())).collect();
+        let (_, _, first) = get(&single_paths[0]).await;
+        let (_, _, second) = get(&single_paths[1]).await;
+        let base_query = serde_urlencoded::to_string([(filter, &values[0]), (filter, &values[1])]).unwrap();
+        let (status, _, any) = get(&format!("/v1/items?{base_query}&limit=10000")).await;
+        assert_eq!(status, StatusCode::OK, "{filter}: {any}");
+        let (status, _, all) = get(&format!("/v1/items?{base_query}&{filter}_match=all&limit=10000")).await;
+        assert_eq!(status, StatusCode::OK, "{filter}: {all}");
+        assert_eq!(item_ids_in_page(&any), item_ids_in_page(&first).union(&item_ids_in_page(&second)).copied().collect(), "{filter} any");
+        assert_eq!(item_ids_in_page(&all), item_ids_in_page(&first).intersection(&item_ids_in_page(&second)).copied().collect(), "{filter} all");
+        let (status, _, invalid) = get(&format!("/v1/items?{filter}_match=neither")).await;
+        assert_eq!(status, StatusCode::BAD_REQUEST, "{filter}: {invalid}");
+    }
+}
+
+#[tokio::test]
+async fn enchantment_filter_matches_families_ladders_and_typed_stats() {
+    let (_, _, deception) = get("/v1/items?enchantment=Deception&limit=10000").await;
+    let (_, _, improved) = get("/v1/items?enchantment=Improved%20Deception&limit=10000").await;
+    assert!(item_ids_in_page(&improved).is_subset(&item_ids_in_page(&deception)));
+
+    let (_, _, typed) = get("/v1/items?enchantment=Strength%3AEnhancement&limit=10000").await;
+    assert!(typed["total"].as_i64().unwrap() > 0);
+    for item in typed["items"].as_array().unwrap() {
+        let (_, _, detail) = get(&format!("/v1/items/{}", item["id"])).await;
+        assert!(detail["enchantments"].as_array().unwrap().iter().any(|line| {
+            line["bonuses"]
+                .as_array()
+                .unwrap()
+                .iter()
+                .any(|bonus| bonus["stat"] == "Strength" && bonus["bonus_type"] == "Enhancement")
+        }));
+    }
+    let (status, _, unknown_type) = get("/v1/items?enchantment=Strength%3ANotAType").await;
+    assert_eq!(status, StatusCode::BAD_REQUEST);
+    assert!(unknown_type["error"].as_str().unwrap().contains("NotAType"));
+}
+
+#[tokio::test]
+async fn item_enchantment_rendering_uses_one_query_at_small_and_large_link_counts() {
+    static ENCHANTMENT_QUERY_COUNT: AtomicUsize = AtomicUsize::new(0);
+    static OPTION_ENCHANTMENT_QUERY_COUNT: AtomicUsize = AtomicUsize::new(0);
+    let db = rusqlite::Connection::open(fixture_db_path()).unwrap();
+    let mut statement =
+        db.prepare("SELECT item_id, COUNT(*) FROM item_enchantments GROUP BY item_id ORDER BY COUNT(*)").unwrap();
+    let counts: Vec<(i64, i64)> =
+        statement.query_map([], |row| Ok((row.get(0)?, row.get(1)?))).unwrap().map(Result::unwrap).collect();
+    assert!(counts.last().unwrap().1 > counts.first().unwrap().1);
+    let state = fixture_state();
+    state
+        .read_db(|db| {
+            db.trace_v2(
+                TraceEventCodes::SQLITE_TRACE_STMT,
+                Some(|event| {
+                    if let TraceEvent::Stmt(statement, _) = event {
+                        if statement.sql().contains("FROM item_enchantments j JOIN enchantments e") {
+                            ENCHANTMENT_QUERY_COUNT.fetch_add(1, Ordering::SeqCst);
+                        }
+                        if statement.sql().contains("FROM item_augment_slot_option_enchantments j JOIN enchantments e")
+                        {
+                            OPTION_ENCHANTMENT_QUERY_COUNT.fetch_add(1, Ordering::SeqCst);
+                        }
+                    }
+                }),
+            );
+            Ok(())
+        })
+        .await
+        .unwrap();
+    for (item_id, _) in [counts[0], *counts.last().unwrap()] {
+        ENCHANTMENT_QUERY_COUNT.store(0, Ordering::SeqCst);
+        OPTION_ENCHANTMENT_QUERY_COUNT.store(0, Ordering::SeqCst);
+        let (status, _, item) = get_from(state.clone(), &format!("/v1/items/{item_id}")).await;
+        assert_eq!(status, StatusCode::OK, "{item}");
+        assert_eq!(ENCHANTMENT_QUERY_COUNT.load(Ordering::SeqCst), 1, "item {item_id}");
+        assert_eq!(OPTION_ENCHANTMENT_QUERY_COUNT.load(Ordering::SeqCst), 1, "item {item_id}");
+    }
+}
+
+#[tokio::test]
+async fn augment_page_enchantments_use_one_query_for_one_or_many_rows() {
+    static ENCHANTMENT_QUERY_COUNT: AtomicUsize = AtomicUsize::new(0);
+    let state = fixture_state();
+    state
+        .read_db(|db| {
+            db.trace_v2(
+                TraceEventCodes::SQLITE_TRACE_STMT,
+                Some(|event| {
+                    if let TraceEvent::Stmt(statement, _) = event {
+                        if statement.sql().contains("FROM augment_enchantments j JOIN enchantments e") {
+                            ENCHANTMENT_QUERY_COUNT.fetch_add(1, Ordering::SeqCst);
+                        }
+                    }
+                }),
+            );
+            Ok(())
+        })
+        .await
+        .unwrap();
+    for limit in [1, 100] {
+        ENCHANTMENT_QUERY_COUNT.store(0, Ordering::SeqCst);
+        let (status, _, page) = get_from(state.clone(), &format!("/v1/augments?limit={limit}")).await;
+        assert_eq!(status, StatusCode::OK, "{page}");
+        assert_eq!(ENCHANTMENT_QUERY_COUNT.load(Ordering::SeqCst), 1, "limit {limit}");
+    }
+}
+
+#[tokio::test]
 async fn version_reports_dataset_and_schema() {
     let (status, headers, json) = get("/v1/version").await;
     assert_eq!(status, StatusCode::OK);
@@ -278,59 +549,40 @@ fn enchantment_named<'a>(enchantments: &'a Value, name: &str, kind: &str) -> Opt
 }
 
 #[tokio::test]
-async fn enchantments_list_every_stat_and_effect_an_item_carries_with_its_item_count() {
-    let (status, _, enchantments) = get_list_rows("/v1/enchantments").await;
-    assert_eq!(status, StatusCode::OK, "{enchantments}");
-    assert_eq!(
-        enchantment_named(&enchantments, "Strength", "stat"),
-        Some(&serde_json::json!({ "name": "Strength", "kind": "stat", "item_count": 3 }))
-    );
-    assert_eq!(
-        enchantment_named(&enchantments, "Freedom of Movement", "effect"),
-        Some(&serde_json::json!({ "name": "Freedom of Movement", "kind": "effect", "item_count": 3 }))
-    );
-    assert!(enchantment_named(&enchantments, "Sneak Attack Dice", "stat").is_none(), "only a set tier carries it");
-    assert_eq!(
-        enchantment_named(&enchantments, "Universal Spell Power", "stat"),
-        Some(&serde_json::json!({ "name": "Universal Spell Power", "kind": "stat", "item_count": 3 })),
-        "the legacy +3 Combustion Scorched Battle Axe is not counted, as the default item list leaves it out"
-    );
-    assert!(enchantment_named(&enchantments, "Fire Spell Power", "stat").is_none(), "only a legacy item carries it");
-    assert!(enchantment_named(&enchantments, "ElfBane", "effect").is_none(), "only a legacy item carries it");
-    let rows = enchantments.as_array().unwrap();
-    assert_eq!(rows.len(), 103, "every stat and text-only family carried by fixture items that are not legacy");
-    assert!(rows.iter().all(|row| row["item_count"].as_i64().unwrap() > 0));
-    let names: Vec<&str> = rows.iter().map(|row| row["name"].as_str().unwrap()).collect();
-    let mut sorted_names = names.clone();
-    sorted_names.sort_unstable();
-    assert_eq!(names, sorted_names, "ordered by name");
+async fn enchantment_vocabulary_lists_each_family_and_stat_with_carrier_counts() {
+    let (status, _, rows) = get_list_rows("/v1/enchantments").await;
+    assert_eq!(status, StatusCode::OK);
+    let rows = rows.as_array().unwrap();
+    let db = rusqlite::Connection::open(fixture_db_path()).unwrap();
+    let expected_count: i64 = db
+        .query_row("SELECT (SELECT COUNT(*) FROM enchantments) + (SELECT COUNT(*) FROM stats)", [], |row| row.get(0))
+        .unwrap();
+    assert_eq!(rows.len(), expected_count as usize);
+    let strength = rows.iter().find(|row| row["name"] == "Strength" && row["kind"] == "stat").unwrap();
+    assert_eq!(strength["item_count"], 3);
+    assert!(strength["augment_count"].as_i64().unwrap() > 0);
+    assert!(strength["bonus_types"].as_array().unwrap().iter().any(|kind| kind["name"] == "Enhancement"));
+    let freedom = rows.iter().find(|row| row["name"] == "Freedom of Movement" && row["kind"] == "enchantment").unwrap();
+    assert_eq!(freedom["item_count"], 3);
+    assert_eq!(freedom["detail_path"], format!("/v1/enchantments/{}", freedom["id"]));
+    assert!(rows.iter().all(|row| row["id"].is_i64() && row["detail_path"].is_string()));
 }
 
 #[tokio::test]
-async fn enchantments_narrow_by_search_text_and_kind() {
+async fn enchantment_vocabulary_searches_both_kinds_and_rejects_unknown_kind() {
     let (_, _, resistances) = get_list_rows("/v1/enchantments?q=RESISTANCE").await;
-    let resistance_names: Vec<&str> =
-        resistances.as_array().unwrap().iter().map(|row| row["name"].as_str().unwrap()).collect();
-    assert_eq!(
-        resistance_names,
-        ["Cold Resistance", "Electric Resistance", "Fire Resistance", "Physical and Magical Resistance Rating"]
-    );
-
-    let (_, _, effects) = get_list_rows("/v1/enchantments?kind=effect").await;
-    let effects = effects.as_array().unwrap();
-    assert_eq!(effects.len(), 41);
-    assert!(effects.iter().all(|row| row["kind"] == "effect"), "kind=effect lists a stat");
-    assert!(effects
-        .iter()
-        .all(|row| !["Linguistics", "Lifesealed", "Ghostly"].contains(&row["name"].as_str().unwrap())));
-    let (_, _, linguistics_stats) = get_list_rows("/v1/enchantments?kind=stat&q=linguistics").await;
-    assert_eq!(linguistics_stats, serde_json::json!([{ "name": "Linguistics", "kind": "stat", "item_count": 1 }]));
-    let (_, _, strength_stats) = get_list_rows("/v1/enchantments?kind=stat&q=strength").await;
-    assert_eq!(strength_stats, serde_json::json!([{ "name": "Strength", "kind": "stat", "item_count": 3 }]));
-
-    let (status, _, unknown_kind) = get("/v1/enchantments?kind=bonus").await;
+    assert!(resistances.as_array().unwrap().iter().all(|row| row["name"]
+        .as_str()
+        .unwrap()
+        .to_ascii_lowercase()
+        .contains("resistance")));
+    let (_, _, families) = get_list_rows("/v1/enchantments?kind=enchantment").await;
+    assert!(families.as_array().unwrap().iter().all(|row| row["kind"] == "enchantment"));
+    let (_, _, stat_rows) = get_list_rows("/v1/enchantments?kind=stat&q=strength").await;
+    assert!(stat_rows.as_array().unwrap().iter().any(|row| row["name"] == "Strength"));
+    let (status, _, unknown) = get("/v1/enchantments?kind=effect").await;
     assert_eq!(status, StatusCode::BAD_REQUEST);
-    assert_eq!(unknown_kind["error"], r#"unknown kind "bonus""#);
+    assert!(unknown["error"].as_str().unwrap().contains("effect"));
 }
 
 async fn id_in_list_named(list_path: &str, name: &str) -> i64 {
@@ -438,22 +690,22 @@ async fn items_hide_whether_maetrim_or_the_wiki_supplied_them() {
 }
 
 #[tokio::test]
-async fn wiki_only_effects_keep_their_v1_names_and_descriptions() {
+async fn wiki_only_enchantments_render_shared_family_templates() {
     let axe = item_detail_named("Battle%20Axe%20of%20the%20Oozing%20Hunger").await;
-    let effect = axe["effects"]
+    let effect = axe["enchantments"]
         .as_array()
         .unwrap()
         .iter()
         .find(|effect| effect["name"] == "Test Oozing Hunger")
         .expect("wiki-only effect");
     assert_eq!(effect["description"], "Test description: on hit, the target oozes.");
-    let ethereal = axe["effects"]
+    let ethereal = axe["enchantments"]
         .as_array()
         .unwrap()
         .iter()
         .find(|effect| effect["name"] == "Ethereal")
         .expect("Maetrim family reused by wiki item");
-    assert!(ethereal["description"].as_str().unwrap().starts_with("Ethereal: Equipping this item"));
+    assert!(ethereal["description"].as_str().unwrap().starts_with("Equipping this item"));
 }
 
 #[tokio::test]
@@ -489,10 +741,11 @@ async fn item_detail_named(search_text: &str) -> Value {
 async fn item_detail_keeps_what_each_augment_slot_option_gives_on_the_option() {
     let axe = item_detail_named("Combustion%20Scorched").await;
     let first_tier = &axe["augment_slots"][0]["options"][0];
-    let bonus_lines: Vec<String> = first_tier["bonuses"]
+    let bonus_lines: Vec<String> = first_tier["enchantments"]
         .as_array()
-        .unwrap_or_else(|| panic!("an option lists its bonuses: {first_tier}"))
+        .unwrap()
         .iter()
+        .flat_map(|line| line["bonuses"].as_array().unwrap())
         .map(|bonus| format!("{} {} {}", bonus["stat"], bonus["bonus_type"], bonus["value"]))
         .collect();
     assert_eq!(bonus_lines, ["\"Spell Penetration\" \"Equipment\" 1", "\"Armor Class\" \"Insight\" 1"]);
@@ -501,7 +754,12 @@ async fn item_detail_keeps_what_each_augment_slot_option_gives_on_the_option() {
     assert_eq!(first_tier["sets"], serde_json::json!([]));
     assert_eq!(axe["augment_slots"][1]["options"][0]["grants_slot"], "purple");
     assert!(
-        !axe["bonuses"].as_array().unwrap().iter().any(|bonus| bonus["stat"] == "Spell Penetration"),
+        !axe["enchantments"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .flat_map(|line| line["bonuses"].as_array().unwrap())
+            .any(|bonus| bonus["stat"] == "Spell Penetration"),
         "an option's bonus is not the item's"
     );
 
@@ -529,7 +787,7 @@ async fn item_detail_joins_every_satellite() {
     assert_eq!(json["weapon"]["weapon_type"], "Quarterstaff");
     assert_eq!(json["weapon"]["dr_bypass"].as_array().unwrap().len(), 4);
     assert!(json["armor"].is_null());
-    assert!(json["effects"].as_array().unwrap().iter().any(|e| e["name"] == "Supreme Good"));
+    assert!(json["enchantments"].as_array().unwrap().iter().any(|e| e["name"] == "Supreme Good"));
     let augment_slots = json["augment_slots"].as_array().unwrap();
     assert_eq!(augment_slots.len(), 4);
     assert_eq!(augment_slots[0]["options"][0]["name"], "Planar Conflux");
@@ -544,9 +802,15 @@ async fn item_detail_joins_every_satellite() {
     let (_, _, list) = get("/v1/items?q=cloak+of+winter").await;
     let id = list["items"][0]["id"].as_i64().unwrap();
     let (_, _, cloak) = get(&format!("/v1/items/{id}")).await;
-    assert_eq!(cloak["bonuses"][0]["stat"], "Cold Absorption");
-    assert_eq!(cloak["bonuses"][0]["value"], 34);
-    assert_eq!(cloak["bonuses"][0]["bonus_type"], "Enhancement");
+    let cold_absorption = cloak["enchantments"]
+        .as_array()
+        .unwrap()
+        .iter()
+        .flat_map(|line| line["bonuses"].as_array().unwrap())
+        .find(|bonus| bonus["stat"] == "Cold Absorption")
+        .unwrap();
+    assert_eq!(cold_absorption["value"], 34);
+    assert_eq!(cold_absorption["bonus_type"], "Enhancement");
     assert_eq!(cloak["set"]["name"], "Eminence of Winter");
 
     let (_, _, list) = get("/v1/items?q=buckler+of+the+golden").await;
@@ -656,7 +920,7 @@ async fn lookups_and_augments() {
     assert!(silverscale.is_none(), "Silverscale is an Isle of Dread scale slot, not a red gem");
     let (_, _, all_augments) = get("/v1/augments").await;
     let silverscale = all_augments["augments"].as_array().unwrap().iter().find(|a| a["name"] == "Silverscale").unwrap();
-    assert_eq!(silverscale["bonuses"][0]["stat"], "Healing Amplification");
+    assert_eq!(silverscale["enchantments"][0]["bonuses"][0]["stat"], "Healing Amplification");
     assert_eq!(silverscale["slots"][0], "isle of dread: scale (armor)");
     let id = silverscale["id"].as_i64().unwrap();
     let (_, _, silverscale_detail) = get(&format!("/v1/augments/{id}")).await;
@@ -751,8 +1015,11 @@ async fn sets_feats_races_classes_trees_spells() {
     assert!(set["tiers"].as_array().unwrap().iter().all(|t| t["equipped_count"].as_i64().unwrap() >= 2));
     assert_eq!(set["items"][0]["name"], "Legendary Cloak of Winter");
     let two_piece_tier = set["tiers"].as_array().unwrap().iter().find(|t| t["equipped_count"] == 2).unwrap();
-    assert_eq!(two_piece_tier["bonuses"][0]["stat"], "Physical Resistance Rating", "tier {two_piece_tier}");
-    assert_eq!(two_piece_tier["bonuses"][0]["value"], 30);
+    assert_eq!(
+        two_piece_tier["enchantments"][0]["bonuses"][0]["stat"], "Physical Resistance Rating",
+        "tier {two_piece_tier}"
+    );
+    assert_eq!(two_piece_tier["enchantments"][0]["bonuses"][0]["value"], 30);
     let winter_augment_names: Vec<&str> =
         set["augments"].as_array().unwrap().iter().map(|augment| augment["name"].as_str().unwrap()).collect();
     assert_eq!(winter_augment_names, ["Test Gem of Oozing Resistance"], "the fixture wiki augment joins its set");
@@ -905,8 +1172,12 @@ async fn openapi_describes_every_operation_parameter_and_tag() {
             assert!(!summary.ends_with('.'), "{operation_label}: summary is a title, not a sentence");
             let description = operation["description"].as_str().unwrap_or("");
             assert!(
-                description.len() >= 60,
-                "{operation_label}: description {description:?} must explain the response"
+                (35..=180).contains(&description.len()),
+                "{operation_label}: description {description:?} must name the response in at most two sentences"
+            );
+            assert!(
+                description.split(". ").count() <= 2,
+                "{operation_label}: route details belong in schemas and the Introduction: {description:?}"
             );
             for param in operation["parameters"].as_array().into_iter().flatten() {
                 let name = param["name"].as_str().unwrap();
@@ -914,6 +1185,12 @@ async fn openapi_describes_every_operation_parameter_and_tag() {
                     param["description"].as_str().is_some_and(|d| d.len() >= 15),
                     "{operation_label}: parameter {name} needs a description"
                 );
+                if name != "sort" {
+                    assert!(
+                        param["description"].as_str().unwrap().split_whitespace().count() <= 35,
+                        "{operation_label}: parameter {name} should be one concise sentence"
+                    );
+                }
             }
             for (status, response) in operation["responses"].as_object().unwrap() {
                 assert!(
@@ -997,6 +1274,116 @@ async fn openapi_carries_a_real_example_for_every_json_response() {
 }
 
 #[tokio::test]
+async fn typed_response_schemas_resolve_every_reference_and_describe_fields() {
+    let (_, _, spec) = get("/v1/openapi.json").await;
+    let schemas = spec["components"]["schemas"].as_object().unwrap();
+    assert!(schemas.len() > 100, "nested response bodies should expose field trees");
+    fn inspect(value: &Value, schemas: &serde_json::Map<String, Value>) {
+        match value {
+            Value::Object(object) => {
+                if let Some(reference) = object.get("$ref").and_then(Value::as_str) {
+                    let name = reference.strip_prefix("#/components/schemas/").expect("local schema reference");
+                    assert!(schemas.contains_key(name), "unresolved {reference}");
+                }
+                for field in object.values() {
+                    inspect(field, schemas);
+                }
+            }
+            Value::Array(values) => {
+                for field in values {
+                    inspect(field, schemas);
+                }
+            }
+            _ => {}
+        }
+    }
+    inspect(&spec["paths"], schemas);
+    inspect(&spec["components"], schemas);
+    for (name, schema) in schemas {
+        if !name.contains("Response") && !matches!(name.as_str(), "VersionReport" | "ErrorBody") {
+            continue;
+        }
+        if let Some(fields) = schema["properties"].as_object() {
+            for (field_name, field) in fields {
+                assert!(
+                    field["description"].as_str().is_some_and(|text| !text.is_empty()),
+                    "{name}.{field_name} needs a schema description"
+                );
+            }
+        }
+    }
+}
+
+#[tokio::test]
+async fn documentation_tags_follow_reader_tasks() {
+    let (_, _, spec) = get("/v1/openapi.json").await;
+    let names: Vec<&str> = spec["tags"].as_array().unwrap().iter().map(|tag| tag["name"].as_str().unwrap()).collect();
+    assert_eq!(
+        names,
+        [
+            "meta",
+            "items",
+            "augments",
+            "enchantments",
+            "sets",
+            "crafting",
+            "quests",
+            "sources",
+            "spells",
+            "feats",
+            "enhancements",
+            "classes",
+            "races",
+            "stances",
+            "buffs",
+            "bulk"
+        ]
+    );
+}
+
+#[tokio::test]
+async fn owner_response_schemas_share_one_typed_enchantment_line() {
+    let (_, _, spec) = get("/v1/openapi.json").await;
+    let schemas = &spec["components"]["schemas"];
+    let line = &schemas["EnchantmentLine"]["properties"];
+    let expected: std::collections::BTreeSet<&str> =
+        ["enchantment_id", "name", "ladder", "text", "description", "value", "value2", "bonus_type", "bonuses"]
+            .into_iter()
+            .collect();
+    let actual: std::collections::BTreeSet<&str> = line.as_object().unwrap().keys().map(String::as_str).collect();
+    assert_eq!(actual, expected);
+    for owner_line in [
+        &schemas["ItemsDetailResponse"]["properties"]["enchantments"]["items"]["properties"],
+        &schemas["AugmentsDetailResponse"]["properties"]["enchantments"]["items"]["properties"],
+        &schemas["SetsDetailResponse"]["properties"]["tiers"]["items"]["properties"]["enchantments"]["items"]
+            ["properties"],
+    ] {
+        let owner_keys: std::collections::BTreeSet<&str> =
+            owner_line.as_object().unwrap().keys().map(String::as_str).collect();
+        assert_eq!(owner_keys, expected);
+        assert_eq!(owner_line["bonuses"]["items"]["properties"], schemas["EnchantmentStatBonus"]["properties"]);
+    }
+}
+
+#[tokio::test]
+async fn enchantment_and_stat_detail_schemas_type_every_backlink_and_rule() {
+    let (_, _, spec) = get("/v1/openapi.json").await;
+    let schemas = &spec["components"]["schemas"];
+    let family = &schemas["EnchantmentsDetailResponse"]["properties"];
+    let stat = &schemas["StatsDetailResponse"]["properties"];
+    for owner in [family, stat] {
+        for page in ["items", "augments", "set_tiers"] {
+            assert!(
+                owner[page]["properties"][page]["items"]["properties"].is_object(),
+                "{page} backlink entries need typed fields"
+            );
+        }
+    }
+    assert!(family["stats"]["items"]["properties"]["amount_from"]["type"].is_string());
+    assert!(family["ladder"]["oneOf"][1]["properties"]["steps"]["items"]["properties"].is_object());
+}
+
+#[tokio::test]
 async fn item_and_quest_examples_show_the_quest_chains_they_belong_to() {
     let (_, _, spec) = get("/v1/openapi.json").await;
     for path in ["/v1/items/{id}", "/v1/quests/{id}"] {
@@ -1063,6 +1450,57 @@ const ALL_LIST_PATHS: &[(&str, &str)] = &[
 ];
 
 #[tokio::test]
+async fn every_scalar_list_column_and_filter_has_a_sort_key() {
+    let (_, _, spec) = get("/v1/openapi.json").await;
+    let filter_only_toggles = ["include_set_bonuses", "include_legacy"];
+    for &(path, rows_key) in ALL_LIST_PATHS {
+        let parameters = spec["paths"][path]["get"]["parameters"].as_array().unwrap();
+        let sort_description =
+            parameters.iter().find(|parameter| parameter["name"] == "sort").unwrap()["description"].as_str().unwrap();
+        let allowed: std::collections::BTreeSet<&str> =
+            sort_description.split("Allowed fields: ").nth(1).unwrap().split('.').next().unwrap().split(", ").collect();
+        let (_, _, page) = get(&format!("{path}?limit=10000")).await;
+        let rows = page[rows_key].as_array().unwrap();
+        let column_names: std::collections::BTreeSet<&str> =
+            rows.iter().flat_map(|row| row.as_object().unwrap().keys()).map(String::as_str).collect();
+        let scalar_columns: std::collections::BTreeSet<&str> = column_names
+            .into_iter()
+            .filter(|name| rows.iter().all(|row| !row[*name].is_array() && !row[*name].is_object()))
+            .collect();
+        for column in scalar_columns {
+            assert!(allowed.contains(column), "{path}: row column {column} cannot be sorted");
+        }
+        for parameter in parameters {
+            if parameter["in"] != "query" {
+                continue;
+            }
+            let name = parameter["name"].as_str().unwrap();
+            if ["q", "limit", "offset", "sort"].contains(&name)
+                || name.ends_with("_match")
+                || filter_only_toggles.contains(&name)
+            {
+                continue;
+            }
+            assert!(allowed.contains(name), "{path}: filter {name} cannot be sorted");
+        }
+    }
+}
+
+#[tokio::test]
+async fn boolean_sort_fields_put_false_before_true_and_keep_null_last() {
+    for key in ["is_raid", "is_rare", "is_legacy"] {
+        let (_, _, ascending) = get(&format!("/v1/items?include_legacy=true&sort={key}&limit=10000")).await;
+        let values: Vec<bool> =
+            ascending["items"].as_array().unwrap().iter().map(|item| item[key].as_bool().unwrap()).collect();
+        assert!(values.windows(2).all(|pair| !pair[0] || pair[1]), "{key} ascending");
+        let (_, _, descending) = get(&format!("/v1/items?include_legacy=true&sort=-{key}&limit=10000")).await;
+        let values: Vec<bool> =
+            descending["items"].as_array().unwrap().iter().map(|item| item[key].as_bool().unwrap()).collect();
+        assert!(values.windows(2).all(|pair| pair[0] || !pair[1]), "{key} descending");
+    }
+}
+
+#[tokio::test]
 async fn list_parameter_docs_share_descriptions_and_match_runtime_sort_fields() {
     let (_, _, spec) = get("/v1/openapi.json").await;
     let reference_params = spec["paths"]["/v1/patrons"]["get"]["parameters"].as_array().unwrap();
@@ -1079,18 +1517,14 @@ async fn list_parameter_docs_share_descriptions_and_match_runtime_sort_fields() 
             params.iter().find(|param| param["name"] == "q").unwrap()["description"].as_str().unwrap();
         let expected_search_description = match path {
             "/v1/items" => {
-                "Search text, trimmed and matched ignoring case: keeps items whose name contains it, \
-                or whose slot, category or any adventure pack reached through its sources is named exactly it. Without \
-                `sort`, ranks an exact name first, then names starting with it, then the rest, each group by name. \
-                Blank applies no search."
+                "Case-insensitive item-name substring or exact slot, category or pack name; exact and prefix names rank first without sort."
             }
             "/v1/augment-slot-types" => {
                 "Case-insensitive substring of the socket's display `label`; \
                 surrounding whitespace is trimmed and blank applies no search."
             }
             _ => {
-                "Case-insensitive substring of the row's name; surrounding whitespace is trimmed \
-                and blank applies no search."
+                "Case-insensitive name substring after trimming; blank applies no search."
             }
         };
         assert_eq!(search_description, expected_search_description, "{path}");
@@ -1241,6 +1675,8 @@ fn accepted_sample_value(param_name: &str, schema_type: &str) -> &'static str {
         ("source", _) => "standard",
         ("enchantment", _) => "Strength",
         ("kind", _) => "stat",
+        ("enchantment_match" | "pack_match" | "quest_match" | "quest_chain_match" | "saga_match", _) => "any",
+        ("quest" | "quest_chain" | "saga", _) => "1",
         (_, "boolean") => "true",
         (_, "integer" | "number") => "1",
         _ => "x",
@@ -1308,6 +1744,9 @@ async fn list_endpoints_accept_every_documented_query_parameter() {
         assert!(query_params.len() >= 4, "{path} documents only {} query parameters", query_params.len());
         for param in query_params {
             let name = param["name"].as_str().unwrap();
+            if matches!(name, "slot_match" | "category_match") {
+                continue;
+            }
             let sample_value = accepted_sample_value(name, param_schema_type(param));
             let (status, _, json) = get(&format!("{path}?{name}={sample_value}")).await;
             assert_eq!(status, StatusCode::OK, "{path}?{name}={sample_value} is documented but rejected: {json}");
@@ -1316,60 +1755,50 @@ async fn list_endpoints_accept_every_documented_query_parameter() {
 }
 
 #[tokio::test]
-async fn openapi_lists_every_item_filter_in_the_route_description_and_parameters() {
+async fn openapi_documents_item_filters_and_shared_query_conventions() {
     let (_, _, spec) = get("/v1/openapi.json").await;
     let operation = &spec["paths"]["/v1/items"]["get"];
-    let documented_names: Vec<&str> =
-        operation["parameters"].as_array().unwrap().iter().map(|param| param["name"].as_str().unwrap()).collect();
-    let item_filters = [
-        "q",
+    let parameters = operation["parameters"].as_array().unwrap();
+    let names: std::collections::BTreeSet<_> =
+        parameters.iter().map(|parameter| parameter["name"].as_str().unwrap()).collect();
+    for name in [
         "slot",
+        "slot_match",
         "category",
-        "min_level",
-        "max_level",
+        "category_match",
         "pack",
-        "raid",
-        "rare",
+        "pack_match",
         "quest",
+        "quest_match",
         "quest_chain",
+        "quest_chain_match",
         "saga",
+        "saga_match",
         "enchantment",
+        "enchantment_match",
         "include_set_bonuses",
         "include_legacy",
-        "limit",
-        "offset",
-        "sort",
-    ];
-    let route_description = operation["description"].as_str().unwrap();
-    for filter_name in item_filters {
-        assert!(documented_names.contains(&filter_name), "/v1/items does not document {filter_name}");
-        assert!(route_description.contains(&format!("`{filter_name}`")), "/v1/items description omits `{filter_name}`");
+    ] {
+        assert!(names.contains(name), "missing {name}");
     }
-    assert!(!documented_names.contains(&"stat"), "/v1/items still documents the retired `stat`");
-    let enchantment_description =
-        operation["parameters"].as_array().unwrap().iter().find(|p| p["name"] == "enchantment").unwrap()["description"]
-            .as_str()
-            .unwrap();
-    for expected_phrase in
-        ["repeated keys", "may contain commas", "/v1/enchantments", "/v1/stats", "effect", "text-only"]
-    {
-        assert!(
-            enchantment_description.contains(expected_phrase),
-            "missing {expected_phrase:?}: {enchantment_description}"
-        );
+    for name in ["slot", "category", "pack", "quest", "quest_chain", "saga", "enchantment"] {
+        let parameter = parameters.iter().find(|parameter| parameter["name"] == name).unwrap();
+        assert_eq!(parameter["schema"]["type"], "array", "{name}");
+        assert_eq!(parameter["style"], "form", "{name}");
+        assert_eq!(parameter["explode"], true, "{name}");
     }
-    assert!(
-        !enchantment_description.contains("comma-separated"),
-        "`enchantment` no longer splits on commas: {enchantment_description}"
-    );
-    assert!(
-        route_description.contains("repeated `enchantment` keys"),
-        "the route description must say several enchantments are repeated keys: {route_description}"
-    );
-    assert!(
-        route_description.contains("stat bonus") && route_description.contains("named effect"),
-        "the route description must say `enchantment` matches stat bonuses and named effects: {route_description}"
-    );
+    let introduction = spec["info"]["description"].as_str().unwrap();
+    for phrase in [
+        "**Query parameters.**",
+        "**Enchantments.**",
+        "separate id spaces",
+        "detail_path",
+        "enchantment_match",
+        "slot_match",
+        "stat:bonus type",
+    ] {
+        assert!(introduction.contains(phrase), "missing {phrase} in Introduction");
+    }
 }
 
 #[tokio::test]

@@ -14,6 +14,8 @@ macro_rules! declare_query_parameters {
             $($(#[$attribute:meta])* $field_visibility:vis $field:ident: $field_type:ty),* $(,)?
         }
         $(repeatable: [$($repeatable_key:literal),* $(,)?])?
+        $(matchable: [$($matchable_key:literal),* $(,)?])?
+        $(single_value_match: [$($single_value_match_key:literal),* $(,)?])?
     ) => {
         #[derive(Default, serde::Deserialize)]
         $visibility struct $name {
@@ -23,6 +25,8 @@ macro_rules! declare_query_parameters {
         impl crate::query::QueryParameters for $name {
             const KEYS: &'static [&'static str] = &[$(stringify!($field)),*];
             const REPEATABLE_KEYS: &'static [&'static str] = &[$($($repeatable_key),*)?];
+            const MATCHABLE_KEYS: &'static [&'static str] = &[$($($matchable_key),*)?];
+            const SINGLE_VALUE_MATCH_KEYS: &'static [&'static str] = &[$($($single_value_match_key),*)?];
         }
     };
 }
@@ -44,10 +48,13 @@ declare_query_parameters! {
 }
 
 pub(crate) struct ApiQuery<T = NoFilters>(pub ListQuery, pub T);
+pub(crate) struct ApiFilterQuery<T>(pub T);
 
 pub(crate) trait QueryParameters: DeserializeOwned {
     const KEYS: &'static [&'static str];
     const REPEATABLE_KEYS: &'static [&'static str] = &[];
+    const MATCHABLE_KEYS: &'static [&'static str] = &[];
+    const SINGLE_VALUE_MATCH_KEYS: &'static [&'static str] = &[];
 }
 
 const REPEATED_VALUE_SEPARATOR: char = '\u{1F}';
@@ -64,16 +71,51 @@ impl<T: QueryParameters, S: Send + Sync> FromRequestParts<S> for ApiQuery<T> {
         for (key, value) in pairs {
             if ListQuery::KEYS.contains(&key.as_str()) {
                 list_pairs.push((key, value));
-            } else if T::KEYS.contains(&key.as_str()) {
+            } else if T::KEYS.contains(&key.as_str())
+                || key.strip_suffix("_match").is_some_and(|filter| T::SINGLE_VALUE_MATCH_KEYS.contains(&filter))
+            {
+                if let Some(filter) = key.strip_suffix("_match") {
+                    if T::SINGLE_VALUE_MATCH_KEYS.contains(&filter) {
+                        return Err(ApiError::BadRequest(format!("{filter} does not support a match mode")));
+                    }
+                    if T::MATCHABLE_KEYS.contains(&filter) && !matches!(value.as_str(), "any" | "all") {
+                        return Err(ApiError::BadRequest(format!("invalid {key} {value:?}; expected any or all")));
+                    }
+                }
                 filter_pairs.push((key, value));
             } else {
-                let allowed_parameters = ListQuery::KEYS.iter().chain(T::KEYS).copied().collect::<Vec<_>>().join(", ");
+                let allowed_parameters = ListQuery::KEYS
+                    .iter()
+                    .chain(T::KEYS)
+                    .copied()
+                    .map(str::to_string)
+                    .chain(T::SINGLE_VALUE_MATCH_KEYS.iter().map(|key| format!("{key}_match")))
+                    .collect::<Vec<_>>()
+                    .join(", ");
                 return Err(ApiError::BadRequest(format!(
                     "unknown query parameter {key:?}; allowed parameters: {allowed_parameters}"
                 )));
             }
         }
         Ok(ApiQuery(query_from_pairs(list_pairs)?, query_from_pairs(filter_pairs)?))
+    }
+}
+
+impl<T: QueryParameters, S: Send + Sync> FromRequestParts<S> for ApiFilterQuery<T> {
+    type Rejection = ApiError;
+
+    async fn from_request_parts(parts: &mut Parts, _state: &S) -> Result<Self, Self::Rejection> {
+        let pairs: Vec<(String, String)> = serde_urlencoded::from_str(parts.uri.query().unwrap_or_default())
+            .map_err(|error| ApiError::BadRequest(format!("Failed to deserialize query string: {error}")))?;
+        for (key, _) in &pairs {
+            if !T::KEYS.contains(&key.as_str()) {
+                return Err(ApiError::BadRequest(format!(
+                    "unknown query parameter {key:?}; allowed parameters: {}",
+                    T::KEYS.join(", ")
+                )));
+            }
+        }
+        Ok(ApiFilterQuery(query_from_pairs(pairs)?))
     }
 }
 
@@ -90,11 +132,7 @@ fn query_from_pairs<T: QueryParameters>(pairs: Vec<(String, String)>) -> Result<
 impl IntoParams for ListQuery {
     fn into_params(_parameter_in_provider: impl Fn() -> Option<ParameterIn>) -> Vec<Parameter> {
         vec![
-            query_parameter::<String>(
-                "q",
-                "Case-insensitive substring of the row's name; surrounding whitespace is trimmed \
-                and blank applies no search.",
-            ),
+            query_parameter::<String>("q", "Case-insensitive name substring after trimming; blank applies no search."),
             query_parameter::<i64>("limit", "Page size, 1 to 10000; defaults to 100; out-of-range values are clamped"),
             query_parameter::<i64>("offset", "Rows to skip; defaults to 0; negative values are clamped to 0"),
             ParameterBuilder::from(query_parameter::<Vec<String>>("sort", SORT_DESCRIPTION))
@@ -115,9 +153,8 @@ fn query_parameter<T: PartialSchema>(name: &str, description: &str) -> Parameter
         .build()
 }
 
-const SORT_DESCRIPTION: &str = "Repeat `sort` for each key in priority order; prefix `-` for descending. \
-    Values are never comma-split. Nulls sort last in either direction. Omitting sort keeps the route's default order. \
-    An unknown field or bare `-` returns 400.";
+const SORT_DESCRIPTION: &str =
+    "Repeat `sort` in priority order; prefix `-` for descending; nulls sort last; an invalid field returns 400";
 
 pub(crate) fn list_parameters(
     sortable_fields: &[(&str, &str)],
@@ -132,7 +169,7 @@ pub(crate) fn list_parameters(
             }
         } else if parameter.name == "sort" {
             parameter.description = Some(
-                format!("{SORT_DESCRIPTION} Allowed fields: {}. {sort_note}", allowed_sort_fields(sortable_fields))
+                format!("{SORT_DESCRIPTION}; Allowed fields: {}. {sort_note}", allowed_sort_fields(sortable_fields))
                     .trim_end()
                     .to_string(),
             );
@@ -185,6 +222,14 @@ pub(crate) fn repeated_key_values<'de, D: Deserializer<'de>>(deserializer: D) ->
         .filter(|value| !value.is_empty())
         .map(str::to_string)
         .collect())
+}
+
+pub(crate) fn repeated_integer_values<'de, D: Deserializer<'de>>(deserializer: D) -> Result<Vec<i64>, D::Error> {
+    let joined_values = String::deserialize(deserializer)?;
+    joined_values
+        .split(REPEATED_VALUE_SEPARATOR)
+        .map(|value| value.parse::<i64>().map_err(serde::de::Error::custom))
+        .collect()
 }
 
 fn repeated_sort_values<'de, D: Deserializer<'de>>(deserializer: D) -> Result<Vec<String>, D::Error> {

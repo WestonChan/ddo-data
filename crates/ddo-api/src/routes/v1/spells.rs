@@ -23,7 +23,19 @@ declare_query_parameters! {
 
 const SPELL_COLUMNS: &str = "s.id, s.name, s.description, s.icon, s.schools, s.max_caster_level, s.cost, s.metamagics";
 
-const SPELLS_SORT_FIELDS: &[(&str, &str)] = &[("name", "s.name"), ("id", "s.id"), ("school", "s.schools")];
+const SPELLS_SORT_FIELDS: &[(&str, &str)] = &[
+    ("name", "s.name"),
+    ("id", "s.id"),
+    ("school", "s.schools"),
+    ("cost", "cost"),
+    ("description", "description"),
+    ("icon", "icon"),
+    ("max_caster_level", "max_caster_level"),
+    (
+        "class",
+        "(SELECT MIN(c.name) FROM class_spells cs JOIN classes c ON c.id = cs.class_id WHERE cs.spell_id = s.id)",
+    ),
+];
 
 declare_list_parameters!(SpellsParameters, SPELLS_SORT_FIELDS, "`school` orders the stored schools list.");
 
@@ -32,16 +44,14 @@ declare_list_parameters!(SpellsParameters, SPELLS_SORT_FIELDS, "`school` orders 
     path = "/v1/spells",
     tag = "spells",
     summary = "List spells",
-    description = "One page of spells ordered by name with description, icon, `schools`, maximum caster level, \
-                   spell point `cost` and the `metamagics` that apply. Damage, saving throws and which classes get \
-                   the spell at which level are on the detail endpoint.",
+    description = "Lists spells with schools, spell-point cost and maximum caster level.",
     params(
         SpellsParameters,
         ("school" = Option<String>, Query, description = "Spell school, e.g. `Evocation`; matches spells listing it among their schools"),
         ("class" = Option<String>, Query, description = "Class name as /v1/classes lists it; keeps spells on that class's list"),
     ),
     responses(
-        (status = 200, description = "`total`, `limit`, `offset` and the `spells` page", body = Value),
+        (status = 200, description = "`total`, `limit`, `offset` and the `spells` page", body = crate::routes::v1::response_schemas::SpellsPageResponse),
         (status = 400, description = "Unknown or malformed query parameter", body = crate::error::ErrorBody)
     )
 )]
@@ -83,10 +93,8 @@ async fn spells(
     path = "/v1/spells/{id}",
     tag = "spells",
     summary = "Get a spell",
-    description = "One spell with its `damage` lines (base and per-caster-level dice, damage type, spell power), \
-                   `dcs` (save type, what it is versus, which stat sets it), the `classes` that cast it with spell \
-                   level and cost, `stances` it grants, and raw `modifiers`.",
-    params(("id" = i64, Path, description = "The spell's numeric id from the list endpoint")), responses((status = 200, description = "The spell with its child collections", body = Value), (status = 404, description = "No spell has this id", body = crate::error::ErrorBody))
+    description = "Returns a spell with damage, saves and the classes that learn it.",
+    params(("id" = i64, Path, description = "The spell's numeric id from the list endpoint")), responses((status = 200, description = "The spell with its child collections", body = crate::routes::v1::response_schemas::SpellsDetailResponse), (status = 404, description = "No spell has this id", body = crate::error::ErrorBody))
 )]
 async fn spell_detail(State(state): State<AppState>, Path(id): Path<i64>) -> Result<Json<Value>, ApiError> {
     state
@@ -120,8 +128,13 @@ async fn spell_detail(State(state): State<AppState>, Path(id): Path<i64>) -> Res
         .await
 }
 
-const CLICKIES_SORT_FIELDS: &[(&str, &str)] =
-    &[("name", "listed.name"), ("id", "listed.id"), ("school", "listed.school")];
+const CLICKIES_SORT_FIELDS: &[(&str, &str)] = &[
+    ("name", "listed.name"),
+    ("id", "listed.id"),
+    ("school", "listed.school"),
+    ("description", "description"),
+    ("icon", "icon"),
+];
 
 declare_list_parameters!(ClickiesParameters, CLICKIES_SORT_FIELDS, "");
 
@@ -130,12 +143,11 @@ declare_list_parameters!(ClickiesParameters, CLICKIES_SORT_FIELDS, "");
     path = "/v1/clickies",
     tag = "spells",
     summary = "List clickies",
-    description = "Every clickie (an item-granted spell-like ability) ordered by name, with description, icon, \
-                   school and the raw `modifiers` it applies. Items reference these by name in their `clickies`.",
+    description = "Lists item-granted clickies with spell schools and modifiers.",
     params(
         ClickiesParameters,
     ),
-    responses((status = 200, description = "`total`, `limit`, `offset` and the `clickies` page", body = Value),
+    responses((status = 200, description = "`total`, `limit`, `offset` and the `clickies` page", body = crate::routes::v1::response_schemas::ClickiesPageResponse),
         (status = 400, description = "Invalid sort field or malformed query parameter", body = crate::error::ErrorBody))
 )]
 async fn clickies(State(state): State<AppState>, ApiQuery(query, _): ApiQuery) -> Result<Json<Value>, ApiError> {

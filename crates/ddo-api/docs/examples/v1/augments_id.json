@@ -26,23 +26,31 @@
       "wiki_url": "https://ddowiki.com/page/Tavern_Tales"
     }
   ],
-  "bonuses": [
-    {
-      "bonus_type": "Artifact",
-      "description": null,
-      "id": 1796,
-      "name": "Physical Resistance Rating +10",
-      "stat": "Physical Resistance Rating",
-      "stat_category": "defensive",
-      "value": 10,
-      "value2": null
-    }
-  ],
   "choose_level": false,
   "crafting": [],
   "description": "+10 Artifact Bonus to Physical Resistance Rating.\nDrops in: Secrets of the Red Wizards, end chest\nThe Darkness and the Light, end chest\nThe Covered Culvert, optional chest\nZoo Creeper, end chest",
   "dual_values": false,
   "effect_description": null,
+  "enchantments": [
+    {
+      "bonus_type": "Artifact",
+      "bonuses": [
+        {
+          "bonus_type": "Artifact",
+          "stat": "Physical Resistance Rating",
+          "stat_category": "defensive",
+          "value": 10
+        }
+      ],
+      "description": null,
+      "enchantment_id": 1796,
+      "ladder": null,
+      "name": "Physical Resistance Rating",
+      "text": "Artifact Physical Resistance Rating +10",
+      "value": 10,
+      "value2": null
+    }
+  ],
   "enter_value": false,
   "family": "SunAndMoon",
   "grants_augment": null,

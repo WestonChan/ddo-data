@@ -22,6 +22,11 @@ const RACES_SORT_FIELDS: &[(&str, &str)] = &[
     ("starting_world", "listed.starting_world"),
     ("build_points", "listed.build_points"),
     ("skill_points", "listed.skill_points"),
+    ("description", "description"),
+    ("iconic_class", "iconic_class"),
+    ("is_construct", "is_construct"),
+    ("no_past_life", "no_past_life"),
+    ("short_name", "short_name"),
 ];
 
 declare_list_parameters!(RacesParameters, RACES_SORT_FIELDS, "");
@@ -31,12 +36,11 @@ declare_list_parameters!(RacesParameters, RACES_SORT_FIELDS, "");
     path = "/v1/races",
     tag = "races",
     summary = "List races",
-    description = "Every playable race ordered by name with its short name, description, starting world, build \
-                   points, the iconic class if it is an iconic race, and the construct and past-life flags.",
+    description = "Lists playable races with starting traits and build costs.",
     params(
         RacesParameters,
     ),
-    responses((status = 200, description = "`total`, `limit`, `offset` and the `races` page", body = Value),
+    responses((status = 200, description = "`total`, `limit`, `offset` and the `races` page", body = crate::routes::v1::response_schemas::RacesPageResponse),
         (status = 400, description = "Invalid sort field or malformed query parameter", body = crate::error::ErrorBody))
 )]
 async fn races(State(state): State<AppState>, ApiQuery(query, _): ApiQuery) -> Result<Json<Value>, ApiError> {
@@ -57,9 +61,8 @@ async fn races(State(state): State<AppState>, ApiQuery(query, _): ApiQuery) -> R
     path = "/v1/races/{id}",
     tag = "races",
     summary = "Get a race",
-    description = "One race with its `ability_modifiers`, the `granted_feats` every member gets, the racial `feats` \
-                   it makes available, its `feat_slots` by level, and the skills it auto-buys.",
-    params(("id" = i64, Path, description = "The race's numeric id from the list endpoint")), responses((status = 200, description = "The race with its child collections", body = Value), (status = 404, description = "No race has this id", body = crate::error::ErrorBody))
+    description = "Returns a race with ability modifiers, granted feats and racial feats.",
+    params(("id" = i64, Path, description = "The race's numeric id from the list endpoint")), responses((status = 200, description = "The race with its child collections", body = crate::routes::v1::response_schemas::RacesDetailResponse), (status = 404, description = "No race has this id", body = crate::error::ErrorBody))
 )]
 async fn race_detail(State(state): State<AppState>, Path(id): Path<i64>) -> Result<Json<Value>, ApiError> {
     state

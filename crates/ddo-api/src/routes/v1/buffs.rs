@@ -30,8 +30,12 @@ fn buffs_with_modifiers(
     Ok(Json(page.into_json(rows_key)))
 }
 
-const GUILD_BUFFS_SORT_FIELDS: &[(&str, &str)] =
-    &[("name", "listed.name"), ("id", "listed.id"), ("guild_level", "listed.guild_level")];
+const GUILD_BUFFS_SORT_FIELDS: &[(&str, &str)] = &[
+    ("name", "listed.name"),
+    ("id", "listed.id"),
+    ("guild_level", "listed.guild_level"),
+    ("description", "description"),
+];
 
 declare_list_parameters!(GuildBuffsParameters, GUILD_BUFFS_SORT_FIELDS, "");
 
@@ -40,14 +44,11 @@ declare_list_parameters!(GuildBuffsParameters, GUILD_BUFFS_SORT_FIELDS, "");
     path = "/v1/guild-buffs",
     tag = "buffs",
     summary = "List guild buffs",
-    description = "Every guild airship amenity ordered by the guild level that unlocks it (`guild_level`), then \
-                   name, with its description and the raw `modifiers` it applies. Most modifiers have `amount_type` \
-                   `TotalLevel` and 40 `amounts`, one per character level, so the bonus a character gets is the \
-                   entry at its level minus one; the rest are `Simple` with a single amount.",
+    description = "Lists guild buffs with unlock levels and modifiers.",
     params(
         GuildBuffsParameters,
     ),
-    responses((status = 200, description = "`total`, `limit`, `offset` and the `guild_buffs` page", body = Value),
+    responses((status = 200, description = "`total`, `limit`, `offset` and the `guild_buffs` page", body = crate::routes::v1::response_schemas::GuildBuffsPageResponse),
         (status = 400, description = "Invalid sort field or malformed query parameter", body = crate::error::ErrorBody))
 )]
 async fn guild_buffs(State(state): State<AppState>, ApiQuery(query, _): ApiQuery) -> Result<Json<Value>, ApiError> {
@@ -66,7 +67,8 @@ async fn guild_buffs(State(state): State<AppState>, ApiQuery(query, _): ApiQuery
         .await
 }
 
-const OPTIONAL_BUFFS_SORT_FIELDS: &[(&str, &str)] = &[("name", "listed.name"), ("id", "listed.id")];
+const OPTIONAL_BUFFS_SORT_FIELDS: &[(&str, &str)] =
+    &[("name", "listed.name"), ("id", "listed.id"), ("description", "description"), ("icon", "icon")];
 
 declare_list_parameters!(OptionalBuffsParameters, OPTIONAL_BUFFS_SORT_FIELDS, "");
 
@@ -75,14 +77,11 @@ declare_list_parameters!(OptionalBuffsParameters, OPTIONAL_BUFFS_SORT_FIELDS, ""
     path = "/v1/optional-buffs",
     tag = "buffs",
     summary = "List optional buffs",
-    description = "The spell, enhancement, epic destiny, bard song, monk finisher, potion, Stone of Change ritual \
-                   and legacy guild buffs a planner can toggle on for a character, ordered by name, each with its \
-                   icon, description and the raw `modifiers` it applies. A modifier's `requirements` name the \
-                   stance or gear it needs, e.g. a shield ritual that only counts with the Shield stance.",
+    description = "Lists optional planner buffs with their modifiers.",
     params(
         OptionalBuffsParameters,
     ),
-    responses((status = 200, description = "`total`, `limit`, `offset` and the `optional_buffs` page", body = Value),
+    responses((status = 200, description = "`total`, `limit`, `offset` and the `optional_buffs` page", body = crate::routes::v1::response_schemas::OptionalBuffsPageResponse),
         (status = 400, description = "Invalid sort field or malformed query parameter", body = crate::error::ErrorBody))
 )]
 async fn optional_buffs(State(state): State<AppState>, ApiQuery(query, _): ApiQuery) -> Result<Json<Value>, ApiError> {

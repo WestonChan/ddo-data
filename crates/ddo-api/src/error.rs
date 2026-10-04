@@ -13,7 +13,15 @@ pub enum ApiError {
 
 #[derive(Serialize, ToSchema)]
 pub struct ErrorBody {
+    #[schema(schema_with = error_field)]
     pub error: String,
+}
+
+fn error_field() -> utoipa::openapi::RefOr<utoipa::openapi::schema::Schema> {
+    utoipa::openapi::schema::ObjectBuilder::new()
+        .schema_type(utoipa::openapi::schema::Type::String)
+        .description(Some("Reason the request could not be served."))
+        .into()
 }
 
 impl IntoResponse for ApiError {

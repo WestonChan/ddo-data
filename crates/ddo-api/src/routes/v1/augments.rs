@@ -1,6 +1,9 @@
 use super::crafting::crafting_recipes_yielding;
 use super::quests::{adventure_packs_dropping_via, quests_dropping_via, sources_via};
-use crate::db::{bonuses_via, convert_to_booleans, json_row, json_rows, modifiers_for, paged_query, WhereClause};
+use crate::db::{
+    convert_to_booleans, enchantments_for_owner, enchantments_via, json_row, json_rows, modifiers_for, paged_query,
+    WhereClause,
+};
 use crate::error::ApiError;
 use crate::query::{declare_list_parameters, declare_query_parameters, ApiQuery};
 use crate::state::AppState;
@@ -24,7 +27,11 @@ declare_query_parameters! {
 
 const AUGMENT_FLAG_COLUMNS: &[&str] = &["choose_level", "dual_values", "enter_value", "suppress_set_bonus"];
 
-fn attach_child_collections(db: &rusqlite::Connection, augment: &mut Value) -> Result<(), ApiError> {
+fn attach_child_collections(
+    db: &rusqlite::Connection,
+    augment: &mut Value,
+    enchantments: Vec<Value>,
+) -> Result<(), ApiError> {
     let augment_id = augment["id"].as_i64().unwrap_or(0);
     let slot_labels: Vec<Value> = json_rows(
         db,
@@ -35,7 +42,7 @@ fn attach_child_collections(db: &rusqlite::Connection, augment: &mut Value) -> R
     .map(|row| row["label"].clone())
     .collect();
     augment["slots"] = Value::Array(slot_labels);
-    augment["bonuses"] = Value::Array(bonuses_via(db, "augment_enchantments", "augment_id", augment_id)?);
+    augment["enchantments"] = Value::Array(enchantments);
     augment["crafting"] = Value::Array(crafting_recipes_yielding(db, augment_id)?);
     Ok(())
 }
@@ -46,7 +53,24 @@ const AUGMENT_COLUMNS: &str =
                        a.adds_augment, a.grants_augment, a.weapon_class";
 
 const AUGMENTS_SORT_FIELDS: &[(&str, &str)] =
-    &[("name", "a.name"), ("id", "a.id"), ("min_level", "a.min_level"), ("family", "a.family")];
+    &[("name", "a.name"), ("id", "a.id"), ("min_level", "a.min_level"), ("family", "a.family"),
+    ("adds_augment", "adds_augment"),
+    ("choose_level", "choose_level"),
+    ("description", "description"),
+    ("dual_values", "dual_values"),
+    ("effect_description", "effect_description"),
+    ("enter_value", "enter_value"),
+    ("grants_augment", "grants_augment"),
+    ("icon", "icon"),
+    ("level_values", "level_values"),
+    ("level_values2", "level_values2"),
+    ("levels", "levels"),
+    ("set_bonus", "set_bonus"),
+    ("suppress_set_bonus", "suppress_set_bonus"),
+    ("weapon_class", "weapon_class"),
+    ("slot", "(SELECT MIN(t.label) FROM augment_slots s JOIN augment_slot_types t ON t.id = s.slot_id WHERE s.augment_id = a.id)"),
+    ("max_level", "a.min_level"),
+];
 
 declare_list_parameters!(AugmentsParameters, AUGMENTS_SORT_FIELDS, "");
 
@@ -55,14 +79,7 @@ declare_list_parameters!(AugmentsParameters, AUGMENTS_SORT_FIELDS, "");
     path = "/v1/augments",
     tag = "augments",
     summary = "List augments",
-    description = "One page of augments ordered by name then minimum level, each with the socket labels it fits \
-                   (`slots`), its `bonuses`, the crafting fields DDOBuilderV2 records (level tables, dual values, \
-                   set bonus, granted augments), and `crafting`: the wiki crafting recipes that yield it, each with \
-                   its `system` name, `tier`, the wiki's `option` label and its `cost` as \
-                   `{ ingredient, tier, quantity }` entries (see /v1/crafting-systems); empty when no recipe read \
-                   from the wiki yields it. The augments DDOBuilderV2 lacks are read whole from ddowiki and listed \
-                   like his. Filter by `slot` to get the candidates for \
-                   one socket on an item.",
+    description = "Lists augments with sockets, rendered enchantments and crafting recipes.",
     params(
         AugmentsParameters,
         ("slot" = Option<String>, Query, description = "Socket label as /v1/augment-slot-types lists it, e.g. `red` or `lamordia: melancholic (accessory)`; case-insensitive"),
@@ -70,7 +87,7 @@ declare_list_parameters!(AugmentsParameters, AUGMENTS_SORT_FIELDS, "");
         ("max_level" = Option<i64>, Query, description = "Only augments usable at this character level or lower; augments with no minimum level always pass"),
     ),
     responses(
-        (status = 200, description = "`total`, `limit`, `offset` and the `augments` page", body = Value),
+        (status = 200, description = "`total`, `limit`, `offset` and the `augments` page", body = crate::routes::v1::response_schemas::AugmentsPageResponse),
         (status = 400, description = "Unknown or malformed query parameter", body = crate::error::ErrorBody)
     )
 )]
@@ -102,9 +119,23 @@ async fn augments(
                 AUGMENTS_SORT_FIELDS,
                 &where_clause,
             )?;
+            let augment_ids: Vec<i64> = page.rows.iter().filter_map(|augment| augment["id"].as_i64()).collect();
+            let mut enchantments_by_augment = if augment_ids.is_empty() {
+                std::collections::BTreeMap::new()
+            } else {
+                let placeholders = (1..=augment_ids.len()).map(|index| format!("?{index}")).collect::<Vec<_>>().join(", ");
+                enchantments_via(
+                    db,
+                    "augment_enchantments",
+                    "augment_id",
+                    &format!("j.augment_id IN ({placeholders})"),
+                    rusqlite::params_from_iter(augment_ids.iter()),
+                )?
+            };
             for augment in &mut page.rows {
                 convert_to_booleans(augment, AUGMENT_FLAG_COLUMNS);
-                attach_child_collections(db, augment)?;
+                let augment_id = augment["id"].as_i64().unwrap_or(0);
+                attach_child_collections(db, augment, enchantments_by_augment.remove(&augment_id).unwrap_or_default())?;
             }
             Ok(Json(page.into_json("augments")))
         })
@@ -116,22 +147,16 @@ async fn augments(
     path = "/v1/augments/{id}",
     tag = "augments",
     summary = "Get an augment",
-    description = "One augment as the list returns it, including its `crafting` recipes, plus `quests`, the quests it drops in, read from the `Drops in` text of Maetrim's description and ddowiki's rare drops, once per loot type, each \
-                   with the fields item detail `quests` carry (loot type, raid flag, `is_rare`, `chest`, difficulties, \
-                   pack, patron; empty when neither names a quest), `adventure_packs` and `sources` as item detail \
-                   carries them (packs reached through any source kind, once per distinct combination of pack, \
-                   `loot_type`, `is_rare` and `chest`, preserving each source's rarity and chest and collapsing \
-                   identical combinations, sorted by pack name, loot type, rarity and chest; and every \
-                   source in one array sorted by kind and name), and the raw `modifiers` its bonuses were \
-                   derived from, including the conditional and dice-valued ones that do not reduce to a bonus.",
-    params(("id" = i64, Path, description = "The augment's numeric id from the list endpoint")), responses((status = 200, description = "The augment with its child collections", body = Value), (status = 404, description = "No augment has this id", body = crate::error::ErrorBody))
+    description = "Returns an augment with enchantments, crafting recipes, modifiers and drop sources.",
+    params(("id" = i64, Path, description = "The augment's numeric id from the list endpoint")), responses((status = 200, description = "The augment with its child collections", body = crate::routes::v1::response_schemas::AugmentsDetailResponse), (status = 404, description = "No augment has this id", body = crate::error::ErrorBody))
 )]
 async fn augment_detail(State(state): State<AppState>, Path(id): Path<i64>) -> Result<Json<Value>, ApiError> {
     state
         .read_db(move |db| {
             let mut augment = json_row(db, &format!("SELECT {AUGMENT_COLUMNS} FROM augments a WHERE a.id = ?1"), [id])?;
             convert_to_booleans(&mut augment, AUGMENT_FLAG_COLUMNS);
-            attach_child_collections(db, &mut augment)?;
+            let enchantments = enchantments_for_owner(db, "augment_enchantments", "augment_id", id)?;
+            attach_child_collections(db, &mut augment, enchantments)?;
             augment["quests"] = Value::Array(quests_dropping_via(db, "augment_id", id)?);
             augment["adventure_packs"] = Value::Array(adventure_packs_dropping_via(db, "augment_id", id)?);
             augment["sources"] = Value::Array(sources_via(db, "augment_id", id)?);

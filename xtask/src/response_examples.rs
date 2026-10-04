@@ -26,8 +26,10 @@ const fn sample(example_name: &'static str, path: &'static str) -> ExampleReques
 pub const EXAMPLE_REQUESTS: &[ExampleRequest<'static>] = &[
     sample("version", "/v1/version"),
     sample("stats", "/v1/stats"),
+    sample("stats_id", "/v1/stats/1"),
     sample("bonus-types", "/v1/bonus-types"),
     sample("enchantments", "/v1/enchantments?q=absorption"),
+    sample("enchantments_id", "/v1/enchantments/1"),
     sample("equipment-slots", "/v1/equipment-slots"),
     sample("weapon-types", "/v1/weapon-types"),
     sample("damage-types", "/v1/damage-types"),

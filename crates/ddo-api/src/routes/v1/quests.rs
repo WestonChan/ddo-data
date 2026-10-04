@@ -26,7 +26,8 @@ const QUEST_SELECT: &str =
    FROM quests q LEFT JOIN adventure_packs p ON p.id = q.pack_id LEFT JOIN patrons pt ON pt.id = q.patron_id";
 const QUEST_FLAG_COLUMNS: &[&str] = &["is_raid", "is_challenge", "is_free_to_play"];
 
-const ADVENTURE_PACKS_SORT_FIELDS: &[(&str, &str)] = &[("name", "listed.name"), ("id", "listed.id")];
+const ADVENTURE_PACKS_SORT_FIELDS: &[(&str, &str)] =
+    &[("name", "listed.name"), ("id", "listed.id"), ("is_free_to_play", "is_free_to_play")];
 
 declare_list_parameters!(AdventurePacksParameters, ADVENTURE_PACKS_SORT_FIELDS, "");
 
@@ -35,12 +36,11 @@ declare_list_parameters!(AdventurePacksParameters, ADVENTURE_PACKS_SORT_FIELDS, 
     path = "/v1/adventure-packs",
     tag = "quests",
     summary = "List adventure packs",
-    description = "Every adventure pack and expansion by name with whether it is free to play. /v1/items accepts \
-                   these names in `pack`; /v1/adventure-packs/{id} adds the loot credited to the whole pack.",
+    description = "Lists adventure packs and free-to-play status.",
     params(
         AdventurePacksParameters,
     ),
-    responses((status = 200, description = "`total`, `limit`, `offset` and the `adventure_packs` page", body = Value),
+    responses((status = 200, description = "`total`, `limit`, `offset` and the `adventure_packs` page", body = crate::routes::v1::response_schemas::AdventurePacksPageResponse),
         (status = 400, description = "Invalid sort field or malformed query parameter", body = crate::error::ErrorBody))
 )]
 async fn adventure_packs(State(state): State<AppState>, ApiQuery(query, _): ApiQuery) -> Result<Json<Value>, ApiError> {
@@ -64,18 +64,10 @@ async fn adventure_packs(State(state): State<AppState>, ApiQuery(query, _): ApiQ
     path = "/v1/adventure-packs/{id}",
     tag = "quests",
     summary = "Get an adventure pack",
-    description = "One adventure pack as the list returns it (`id`, `name`, `is_free_to_play`), plus the loot any \
-                   of its quests drops, which Maetrim's drop text credits to the pack rather than to a quest \
-                   (`Magic of Myth Drannor, any end chest`): `items`, each with its `minimum_level` and `slot`, and \
-                   `augments`, each with its `family` and `min_level`. Every loot row carries `id`, `name`, \
-                   `loot_type` (chest or reward), `is_rare` and `chest` (the chest his text names, lower-cased, null \
-                   when it names none and on every `reward` row). These direct pack sources also contribute to \
-                   item and augment detail `adventure_packs`. Both arrays are sorted by name, then loot type, \
-                   and empty when nothing is credited to the pack as a whole; the loot of one quest of the pack is \
-                   on /v1/quests/{id}.",
+    description = "Returns an adventure pack with its quests, challenges and loot.",
     params(("id" = i64, Path, description = "The adventure pack's numeric id from /v1/adventure-packs")),
     responses(
-        (status = 200, description = "The adventure pack with the items and augments any of its quests drops", body = Value),
+        (status = 200, description = "The adventure pack with the items and augments any of its quests drops", body = crate::routes::v1::response_schemas::AdventurePacksDetailResponse),
         (status = 404, description = "No adventure pack has this id", body = crate::error::ErrorBody)
     )
 )]
@@ -113,11 +105,11 @@ declare_list_parameters!(PatronsParameters, PATRONS_SORT_FIELDS, "");
     path = "/v1/patrons",
     tag = "quests",
     summary = "List patrons",
-    description = "The favor patrons (The Coin Lords, House Kundarak, ...) that quests belong to.",
+    description = "Lists patrons that award favor for quests.",
     params(
         PatronsParameters,
     ),
-    responses((status = 200, description = "`total`, `limit`, `offset` and the `patrons` page", body = Value),
+    responses((status = 200, description = "`total`, `limit`, `offset` and the `patrons` page", body = crate::routes::v1::response_schemas::PatronsPageResponse),
         (status = 400, description = "Invalid sort field or malformed query parameter", body = crate::error::ErrorBody))
 )]
 async fn patrons(State(state): State<AppState>, ApiQuery(query, _): ApiQuery) -> Result<Json<Value>, ApiError> {
@@ -145,6 +137,14 @@ const QUESTS_SORT_FIELDS: &[(&str, &str)] = &[
     ("favor", "listed.favor"),
     ("pack", "listed.pack"),
     ("patron", "listed.patron"),
+    ("bestowed_by", "bestowed_by"),
+    ("epic_name", "epic_name"),
+    ("flagging", "flagging"),
+    ("is_challenge", "is_challenge"),
+    ("is_free_to_play", "is_free_to_play"),
+    ("is_raid", "is_raid"),
+    ("max_level", "max_level"),
+    ("zone", "zone"),
 ];
 
 declare_list_parameters!(QuestsParameters, QUESTS_SORT_FIELDS, "");
@@ -154,22 +154,11 @@ declare_list_parameters!(QuestsParameters, QUESTS_SORT_FIELDS, "");
     path = "/v1/quests",
     tag = "quests",
     summary = "List quests",
-    description = "Every quest, adventure area and challenge with its pack, patron, heroic and epic levels, favor, \
-                   whether it is a raid, the `epic_name` its epic version goes by when that differs (null \
-                   otherwise), and the `difficulties` it offers as an array in the order casual, normal, hard, \
-                   elite, reaper, solo. Challenges (the Cannith and Eveningstar challenge instances) have \
-                   `is_challenge` true and a level range from `level` to `max_level`; regular quests have \
-                   `max_level` null. Read from ddowiki, since Maetrim's files carry none of them: \
-                   `is_free_to_play` (the quest itself, not its pack), `legendary_level`, `zone` (where it takes \
-                   place), `bestowed_by` (the quest giver) and `flagging` (free text on what must be run first), \
-                   each null or false when the wiki has not been read for that quest. The quests his files lack \
-                   are read whole from ddowiki and listed like his, replaced by his as soon as his files carry a \
-                   quest of that name. Item and augment detail responses reference these in `quests`; \
-                   /v1/quests/{id} adds the items and augments each one drops.",
+    description = "Lists quests with level, pack, patron and wiki facts.",
     params(
         QuestsParameters,
     ),
-    responses((status = 200, description = "`total`, `limit`, `offset` and the `quests` page", body = Value),
+    responses((status = 200, description = "`total`, `limit`, `offset` and the `quests` page", body = crate::routes::v1::response_schemas::QuestsPageResponse),
         (status = 400, description = "Invalid sort field or malformed query parameter", body = crate::error::ErrorBody))
 )]
 async fn quests(State(state): State<AppState>, ApiQuery(query, _): ApiQuery) -> Result<Json<Value>, ApiError> {
@@ -190,18 +179,10 @@ async fn quests(State(state): State<AppState>, ApiQuery(query, _): ApiQuery) -> 
     path = "/v1/quests/{id}",
     tag = "quests",
     summary = "Get a quest",
-    description = "One quest as the list returns it, plus the loot it drops: `items`, each named item linked to the \
-                   quest with its `minimum_level` and `slot`, and `augments`, each augment with its `family` and \
-                   `min_level`. Every loot row carries `id`, `name`, `loot_type` (chest, raid or reward), `is_rare` \
-                   and `chest` (the chest Maetrim's drop text names, lower-cased, null when it names none and on every `reward` row), the same \
-                   link item and augment detail `quests` report from the other side. An item or augment that is both \
-                   a chest (or raid) drop and an end reward of the quest appears once per loot type. Both arrays are \
-                   sorted by name, then loot type, and empty when nothing is known to drop there. `quest_chains` and `sagas` \
-                   name (`id`, `name`, and the ddowiki page each was read from as `wiki_url`) the quest chains and sagas the quest belongs to, whose end rewards come from \
-                   their NPCs rather than from the quest; see /v1/quest-chains/{id} and /v1/sagas/{id}.",
+    description = "Returns a quest with difficulties, loot, rewards and wiki facts.",
     params(("id" = i64, Path, description = "The quest's numeric id from /v1/quests")),
     responses(
-        (status = 200, description = "The quest with the items and augments it drops", body = Value),
+        (status = 200, description = "The quest with the items and augments it drops", body = crate::routes::v1::response_schemas::QuestsDetailResponse),
         (status = 404, description = "No quest has this id", body = crate::error::ErrorBody)
     )
 )]

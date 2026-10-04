@@ -13,7 +13,15 @@ pub(super) fn router() -> OpenApiRouter<AppState> {
     OpenApiRouter::new().routes(routes!(stances))
 }
 
-const STANCES_SORT_FIELDS: &[(&str, &str)] = &[("name", "name"), ("id", "id"), ("group_name", "group_name")];
+const STANCES_SORT_FIELDS: &[(&str, &str)] = &[
+    ("name", "name"),
+    ("id", "id"),
+    ("group_name", "group_name"),
+    ("auto_controlled", "auto_controlled"),
+    ("description", "description"),
+    ("icon", "icon"),
+    ("incompatible", "incompatible"),
+];
 
 declare_list_parameters!(StancesParameters, STANCES_SORT_FIELDS, "");
 
@@ -22,15 +30,11 @@ declare_list_parameters!(StancesParameters, STANCES_SORT_FIELDS, "");
     path = "/v1/stances",
     tag = "stances",
     summary = "List stances",
-    description = "The standalone stances from DDOBuilderV2's stance list (Two Weapon Fighting, Heavy Armor, Aura \
-                   of Good, ...) in the order the planner shows them, each with its icon, description, `group_name`, \
-                   whether the planner turns it on automatically (`auto_controlled`), the stances it cannot be \
-                   combined with (`incompatible`), the `requirements` that switch it on, and the raw `modifiers` it \
-                   applies. Stances granted by a feat, enhancement or spell are on that entity's `stances` instead.",
+    description = "Lists standalone stances with requirements and modifiers.",
     params(
         StancesParameters,
     ),
-    responses((status = 200, description = "`total`, `limit`, `offset` and the `stances` page", body = Value),
+    responses((status = 200, description = "`total`, `limit`, `offset` and the `stances` page", body = crate::routes::v1::response_schemas::StancesPageResponse),
         (status = 400, description = "Invalid sort field or malformed query parameter", body = crate::error::ErrorBody))
 )]
 async fn stances(State(state): State<AppState>, ApiQuery(query, _): ApiQuery) -> Result<Json<Value>, ApiError> {

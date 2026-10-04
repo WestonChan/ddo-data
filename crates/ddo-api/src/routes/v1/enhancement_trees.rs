@@ -24,6 +24,9 @@ const ENHANCEMENT_TREES_SORT_FIELDS: &[(&str, &str)] = &[
     ("kind", "listed.kind"),
     ("version", "listed.version"),
     ("enhancement_count", "listed.enhancement_count"),
+    ("background", "background"),
+    ("icon", "icon"),
+    ("is_legacy", "is_legacy"),
 ];
 
 declare_list_parameters!(EnhancementTreesParameters, ENHANCEMENT_TREES_SORT_FIELDS, "");
@@ -33,13 +36,11 @@ declare_list_parameters!(EnhancementTreesParameters, ENHANCEMENT_TREES_SORT_FIEL
     path = "/v1/enhancement-trees",
     tag = "enhancements",
     summary = "List enhancement trees",
-    description = "Every enhancement, destiny and reaper tree ordered by kind then name, with its version, icon, \
-                   background art name, whether it is a legacy tree, how many enhancements it holds, and the \
-                   `requirements` to access it. The enhancements themselves are on the detail endpoint.",
+    description = "Lists enhancement trees with kind, version and enhancement count.",
     params(
         EnhancementTreesParameters,
     ),
-    responses((status = 200, description = "`total`, `limit`, `offset` and the `enhancement_trees` page", body = Value),
+    responses((status = 200, description = "`total`, `limit`, `offset` and the `enhancement_trees` page", body = crate::routes::v1::response_schemas::EnhancementTreesPageResponse),
         (status = 400, description = "Invalid sort field or malformed query parameter", body = crate::error::ErrorBody))
 )]
 async fn enhancement_trees(
@@ -78,16 +79,8 @@ fn attach_ability_children(db: &rusqlite::Connection, owner_kind: &str, ability:
     path = "/v1/enhancement-trees/{id}",
     tag = "enhancements",
     summary = "Get an enhancement tree",
-    description = "One tree with every `enhancement` in grid order (`x`, `y`), each with cost per rank, ranks, \
-                   points that must be spent in the tree first, tier-5 and clickie flags, `arrows` to prerequisites, \
-                   `exclusions`, and for selector enhancements the `selections`. Enhancements and selections both \
-                   carry `requirements`, raw `modifiers`, `stances`, `dcs` and an `attack` (with its \
-                   `cooldown_seconds` and `duration_seconds`) when they grant one. The attack's `cooldown_seconds`, \
-                   the `duration_seconds` of what it applies afterwards, the bonuses it applies to its own hit as \
-                   `this_attack_modifiers` (e.g. `BonusDamagePercent`) and those after-use bonuses as \
-                   `follow_on_modifiers` (effect type named for the attack bonus, e.g. `BonusAlacrity`, with \
-                   per-rank `amounts`) also sit on the enhancement or selection itself.",
-    params(("id" = i64, Path, description = "The tree's numeric id from the list endpoint")), responses((status = 200, description = "The tree with its child collections", body = Value), (status = 404, description = "No tree has this id", body = crate::error::ErrorBody))
+    description = "Returns a tree with its enhancements, selections and requirements.",
+    params(("id" = i64, Path, description = "The tree's numeric id from the list endpoint")), responses((status = 200, description = "The tree with its child collections", body = crate::routes::v1::response_schemas::EnhancementTreesDetailResponse), (status = 404, description = "No tree has this id", body = crate::error::ErrorBody))
 )]
 async fn enhancement_tree_detail(State(state): State<AppState>, Path(id): Path<i64>) -> Result<Json<Value>, ApiError> {
     state

@@ -16,11 +16,47 @@ pub(super) fn router() -> OpenApiRouter<AppState> {
 
 #[derive(Serialize, ToSchema)]
 pub(super) struct VersionReport {
+    #[schema(schema_with = schema_version_field)]
     pub schema_version: i64,
+    #[schema(schema_with = api_commit_field)]
     pub api_commit: Option<String>,
-    #[schema(value_type = Object)]
+    #[schema(schema_with = dataset_field)]
     pub dataset: DatasetVersion,
+    #[schema(schema_with = counts_field)]
     pub counts: BTreeMap<String, i64>,
+}
+
+#[allow(dead_code)]
+#[derive(ToSchema)]
+pub(super) struct VersionDatasetResponse {
+    #[schema(schema_with = upstream_sha_field)]
+    pub upstream_sha: String,
+    #[schema(schema_with = built_at_field)]
+    pub built_at: String,
+}
+
+fn schema_version_field() -> utoipa::openapi::RefOr<utoipa::openapi::schema::Schema> {
+    super::response_schemas::described_schema::<i64>("SQLite schema version of this dataset.")
+}
+
+fn api_commit_field() -> utoipa::openapi::RefOr<utoipa::openapi::schema::Schema> {
+    super::response_schemas::described_schema::<Option<String>>("API build commit serving this dataset.")
+}
+
+fn dataset_field() -> utoipa::openapi::RefOr<utoipa::openapi::schema::Schema> {
+    super::response_schemas::described_schema::<VersionDatasetResponse>("Upstream commit and database build time.")
+}
+
+fn upstream_sha_field() -> utoipa::openapi::RefOr<utoipa::openapi::schema::Schema> {
+    super::response_schemas::described_schema::<String>("Commit of the upstream DDOBuilderV2 data.")
+}
+
+fn built_at_field() -> utoipa::openapi::RefOr<utoipa::openapi::schema::Schema> {
+    super::response_schemas::described_schema::<String>("UTC time this database was built.")
+}
+
+fn counts_field() -> utoipa::openapi::RefOr<utoipa::openapi::schema::Schema> {
+    super::response_schemas::described_schema::<BTreeMap<String, i64>>("Counts of each stored entity and link table.")
 }
 
 const COUNTED_ROWS: &[(&str, &str)] = &[
@@ -78,11 +114,7 @@ const COUNTED_ROWS: &[(&str, &str)] = &[
     path = "/v1/version",
     tag = "meta",
     summary = "Get the dataset version",
-    description = "Which DDOBuilderV2 commit the data was built from and when, which ddo-data commit the API binary \
-                   was built from (`api_commit`, null for local builds), the schema version, and row counts for \
-                   the main tables (`legacy_items` counts the items flagged `is_legacy`, which /v1/items leaves out unless `include_legacy=true`; `sources` counts every link between loot and a source, and splits by kind into `quest_loot` and `quest_augment_loot`, a quest's item and augment drops, `quest_chain_rewards` and `saga_rewards`, the items each quest chain's and saga's end reward offers, `pack_loot` and `pack_augment_loot`, the items and augments credited to any quest of an adventure pack, `challenge_rewards`, the items and augments a challenge pack's turn-in rewards offer, `crafting_system_sources`, the items and augments a wiki crafting system makes, `starter_items`, the iconic heroes' starter gear, and `vendor_items` and `event_items`, the items each vendor offers and each event rewards; `vendors` and `events` count those read from ddowiki) plus `wiki_items`, `wiki_quests` and `wiki_augments`, the items, quests and augments read from ddowiki because \
-                   DDOBuilderV2 lacks them. \
-                   The dataset SHA is the same value every response carries in its `X-Dataset-Version` header; a change in it or in `api_commit` changes every `ETag`, so every cached response revalidates to fresh content.",
+    description = "Returns the dataset commit, schema version, build time and row counts.",
     responses((status = 200, description = "Dataset, schema and counts", body = VersionReport))
 )]
 async fn version_report(State(state): State<AppState>) -> Result<Json<VersionReport>, ApiError> {
