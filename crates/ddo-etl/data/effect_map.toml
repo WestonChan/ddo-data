@@ -98,7 +98,7 @@ IllusionSave = "Illusion Save (variable type)"
 "With 2–6 augments, gain 3%–7% Melee and Ranged critical damage and 9%–17% Spell critical damage." = "Critical Damage Augment Scaling"
 "With 2–6 augments, gain a 5%–9% Legendary bonus to Spell Points." = "Spell Point Augment Scaling"
 
-[ladders]
+[tier_groups]
 Deception = ["Deception", "Improved Deception"]
 "Spell Lore" = ["Spell Lore", "Spell Lore I", "Spell Lore II", "Spell Lore III", "Spell Lore V", "Spell Lore VI", "Spell Lore VII", "Spell Lore VIII", "Spell Lore IX", "Spell Lore X"]
 Wizardry = ["Wizardry I", "Wizardry II", "Wizardry III", "Wizardry V", "Wizardry VI", "Wizardry VII", "Wizardry IX", "Wizardry X", "Wizardry XI"]

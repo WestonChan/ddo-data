@@ -25,7 +25,7 @@ impl WikiBonus {
 pub(super) fn validate_bonuses(bonuses: &[WikiBonus]) -> Result<()> {
     for bonus in bonuses {
         if Stat::by_name(&bonus.stat).is_none() {
-            bail!("bonus stat {:?} is not a stat /v1/stats lists; use its exact name", bonus.stat);
+            bail!("bonus stat {:?} is not a stat /v1/effects lists; use its exact name", bonus.stat);
         }
         if BonusType::parse(&bonus.bonus_type).is_none() {
             bail!(

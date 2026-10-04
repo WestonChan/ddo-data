@@ -508,7 +508,7 @@ fn item_and_set_tier_stat_transform_corrections_follow_written_links() {
         let source_sql = format!(
             "{owner_sql} JOIN effects e ON e.id = l.effect_id
              JOIN effect_bonuses es ON es.effect_id = e.id
-             JOIN stats s ON s.id = es.stat_id
+             JOIN effects s ON s.id = es.stat_id
              JOIN bonus_types bt ON bt.id = COALESCE(es.bonus_type_id, l.bonus_type_id)
              WHERE es.amount_from = 1 AND l.value IS NOT NULL AND es.scale = 1
              ORDER BY l.value % 2 DESC, l.value DESC LIMIT 1"
@@ -554,11 +554,11 @@ fn item_names(db: &Connection) -> Vec<String> {
 
 fn augment_bonus_rows(db: &Connection, augment_name: &str) -> Vec<(String, Option<String>, Option<i64>)> {
     db.prepare(
-        "SELECT s.name, bt.name, CASE es.amount_from WHEN 0 THEN es.constant WHEN 1 THEN ae.value ELSE ae.value2 END
-           FROM augments a JOIN augment_effects ae ON ae.augment_id = a.id
-           JOIN effect_bonuses es ON es.effect_id = ae.effect_id JOIN stats s ON s.id = es.stat_id
-           LEFT JOIN bonus_types bt ON bt.id = COALESCE(es.bonus_type_id, ae.bonus_type_id)
-          WHERE a.name = ?1 ORDER BY a.id, ae.sort_order, es.sort_order",
+        "SELECT s.name, bt.name, ob.amount
+           FROM augments a JOIN owner_bonuses ob ON ob.owner_kind = 'augment' AND ob.owner_id = a.id
+           JOIN effects s ON s.id = ob.stat_id
+           LEFT JOIN bonus_types bt ON bt.id = ob.bonus_type_id
+          WHERE a.name = ?1 ORDER BY a.id, ob.effect_link_order, ob.stat_id",
     )
     .unwrap()
     .query_map([augment_name], |r| Ok((r.get(0)?, r.get(1)?, r.get(2)?)))
@@ -862,7 +862,7 @@ fn corrects_an_augment_bonus_value_and_type_without_touching_the_shared_bonus() 
         row_count(
             &db,
             "SELECT COUNT(*) FROM augment_effects ae JOIN augments a ON a.id = ae.augment_id
-            JOIN effect_bonuses es ON es.effect_id = ae.effect_id JOIN stats s ON s.id = es.stat_id
+            JOIN effect_bonuses es ON es.effect_id = ae.effect_id JOIN effects s ON s.id = es.stat_id
             WHERE a.name = 'Silverscale' AND s.name = 'Healing Amplification' AND ae.value = 56"
         ),
         0,
@@ -871,7 +871,7 @@ fn corrects_an_augment_bonus_value_and_type_without_touching_the_shared_bonus() 
     assert_eq!(
         row_count(
             &db,
-            "SELECT COUNT(*) FROM effects e WHERE NOT EXISTS (SELECT 1 FROM item_effects r WHERE r.effect_id = e.id)
+            "SELECT COUNT(*) FROM effects e WHERE e.is_stat = 0 AND NOT EXISTS (SELECT 1 FROM item_effects r WHERE r.effect_id = e.id)
                AND NOT EXISTS (SELECT 1 FROM item_augment_slot_option_effects r WHERE r.effect_id = e.id)
                AND NOT EXISTS (SELECT 1 FROM augment_effects r WHERE r.effect_id = e.id)
                AND NOT EXISTS (SELECT 1 FROM feat_effects r WHERE r.effect_id = e.id)
@@ -940,11 +940,11 @@ fn adds_a_bonus_an_augment_lacks_and_goes_stale_once_he_carries_it() {
 
 fn item_bonus_rows(db: &Connection, item_name: &str) -> Vec<(String, Option<String>, Option<i64>)> {
     db.prepare(
-        "SELECT s.name, bt.name, CASE es.amount_from WHEN 0 THEN es.constant WHEN 1 THEN ie.value ELSE ie.value2 END
-           FROM items i JOIN item_effects ie ON ie.item_id = i.id
-           JOIN effect_bonuses es ON es.effect_id = ie.effect_id JOIN stats s ON s.id = es.stat_id
-           LEFT JOIN bonus_types bt ON bt.id = COALESCE(es.bonus_type_id, ie.bonus_type_id)
-          WHERE i.name = ?1 ORDER BY ie.sort_order, es.sort_order",
+        "SELECT s.name, bt.name, ob.amount
+           FROM items i JOIN owner_bonuses ob ON ob.owner_kind = 'item' AND ob.owner_id = i.id
+           JOIN effects s ON s.id = ob.stat_id
+           LEFT JOIN bonus_types bt ON bt.id = ob.bonus_type_id
+          WHERE i.name = ?1 ORDER BY ob.effect_link_order, ob.stat_id",
     )
     .unwrap()
     .query_map([item_name], |r| Ok((r.get(0)?, r.get(1)?, r.get(2)?)))
@@ -955,17 +955,14 @@ fn item_bonus_rows(db: &Connection, item_name: &str) -> Vec<(String, Option<Stri
 
 fn set_tier_bonus_rows(db: &Connection, set_name: &str, equipped_count: i64) -> Vec<(String, String, i64)> {
     db.prepare(
-        "SELECT stats.name, bonus_types.name,
-                CASE effect_bonuses.amount_from WHEN 0 THEN effect_bonuses.constant
-                  WHEN 1 THEN set_bonus_tier_effects.value ELSE set_bonus_tier_effects.value2 END
+        "SELECT stats.name, bonus_types.name, owner_bonuses.amount
          FROM set_bonuses
          JOIN set_bonus_tiers ON set_bonus_tiers.set_id = set_bonuses.id
-         JOIN set_bonus_tier_effects ON set_bonus_tier_effects.tier_id = set_bonus_tiers.id
-         JOIN effect_bonuses ON effect_bonuses.effect_id = set_bonus_tier_effects.effect_id
-         JOIN stats ON stats.id = effect_bonuses.stat_id
-         JOIN bonus_types ON bonus_types.id = COALESCE(effect_bonuses.bonus_type_id, set_bonus_tier_effects.bonus_type_id)
+         JOIN owner_bonuses ON owner_bonuses.owner_kind = 'set_bonus_tier' AND owner_bonuses.owner_id = set_bonus_tiers.id
+         JOIN effects stats ON stats.id = owner_bonuses.stat_id
+         JOIN bonus_types ON bonus_types.id = owner_bonuses.bonus_type_id
          WHERE set_bonuses.name = ?1 AND set_bonus_tiers.equipped_count = ?2
-         ORDER BY set_bonus_tier_effects.sort_order, effect_bonuses.sort_order",
+         ORDER BY owner_bonuses.effect_link_order, owner_bonuses.stat_id",
     )
     .unwrap()
     .query_map(rusqlite::params![set_name, equipped_count], |row| Ok((row.get(0)?, row.get(1)?, row.get(2)?)))
@@ -1210,7 +1207,6 @@ fn bonus_removal_requires_qualifiers_a_current_integer_and_a_null_destination() 
         for (bonus_qualifier, from, to) in [
             ("", "3", "\"null\""),
             ("stat = \"Strength\"", "3", "\"null\""),
-            ("stat = \"Strength\"\nbonus_type = \"Quality\"", "\"null\"", "1"),
             ("stat = \"Strength\"\nbonus_type = \"Quality\"", "3", "1"),
             ("stat = \"Strength\"\nbonus_type = \"Quality\"", "3.5", "\"null\""),
             ("stat = \"Strength\"\nbonus_type = \"Quality\"", "\"3\"", "\"null\""),
@@ -1386,7 +1382,7 @@ fn item_effect_names(db: &Connection, item_name: &str) -> Vec<String> {
     db.prepare(
         "SELECT CASE WHEN INSTR(e.name, ' — ') > 0 THEN SUBSTR(e.name, 1, INSTR(e.name, ' — ') - 1) ELSE e.name END
            FROM items i JOIN item_effects ie ON ie.item_id = i.id JOIN effects e ON e.id = ie.effect_id
-          WHERE i.name = ?1 AND NOT EXISTS (SELECT 1 FROM effect_bonuses es WHERE es.effect_id = e.id)
+          WHERE i.name = ?1 AND e.is_stat = 0 AND NOT EXISTS (SELECT 1 FROM effect_bonuses es WHERE es.effect_id = e.id)
           ORDER BY ie.sort_order",
     )
     .unwrap()
@@ -1664,6 +1660,221 @@ fn built_db_from(
 }
 
 #[test]
+fn owner_bonuses_resolve_owner_default_and_constant_amounts() {
+    let data_files_dir = data_files_with_untyped("owner-bonus-sources", &[]);
+    let buffs_file = data_files_dir.join("ItemBuffs.xml");
+    let buffs_source = std::fs::read_to_string(&buffs_file).unwrap();
+    let real_effect_sources = r#"  <Buff>
+    <Type>Riposte</Type>
+    <DisplayText>Riposte %v1: This item enchants its user with incredible awareness and speed, granting a %v1 %b1 bonus to AC and to Saves.</DisplayText>
+    <Ignore>Insightful</Ignore>
+    <Effect><Type>ACBonus</Type><Bonus>Not Set</Bonus><AType>Simple</AType><Amount size="1">2</Amount></Effect>
+    <Effect><Type>SaveBonus</Type><Bonus>Not Set</Bonus><AType>Simple</AType><Amount size="1">2</Amount><Item>All</Item></Effect>
+  </Buff>
+  <Buff>
+    <Type>Ghostly</Type>
+    <DisplayText>Ghostly: Equipping this item causes you to become partially incorporeal. Your melee attacks do not roll a miss chance for Incorporeal targets. Enemy attacks have a 10% chance to miss you due to incorporeality. You receive a +5 enhancement bonus to your Hide and Move Silently skills.</DisplayText>
+    <Effect><Type>GhostTouch</Type><Bonus>Equipment</Bonus><AType>Simple</AType><Amount size="1">1</Amount><Item>All</Item></Effect>
+    <Effect><Type>Incorporeality</Type><Bonus>Equipment</Bonus><AType>Simple</AType><Amount size="1">10</Amount><Item>All</Item></Effect>
+    <Effect><Type>SkillBonus</Type><Bonus>Enhancement</Bonus><AType>Simple</AType><Amount size="1">5</Amount><Item>Hide</Item><Item>Move Silently</Item></Effect>
+  </Buff>
+"#;
+    std::fs::write(&buffs_file, buffs_source.replace("</Buffs>", &format!("{real_effect_sources}</Buffs>"))).unwrap();
+    let cloak_file = data_files_dir.join("Items/Legendary Cloak of Winter.item");
+    let cloak_source = std::fs::read_to_string(&cloak_file).unwrap();
+    assert!(cloak_source.contains("<Type>FalseLife</Type>\n      <Value1>50</Value1>"));
+    std::fs::write(
+        &cloak_file,
+        cloak_source.replace("<Type>FalseLife</Type>\n      <Value1>50</Value1>", "<Type>FalseLife</Type>"),
+    )
+    .unwrap();
+    let correction_file = r#"
+[[correction]]
+kind = "item_bonus"
+name = "Epic Ethereal Bracers"
+stat = "Armor Class"
+bonus_type = "Insight"
+field = "scale"
+from = 1.0
+to = 0.5
+reason = "Riposte grants half the listed rank to Armor Class."
+source = "https://ddowiki.com/page/Item:Epic_Ethereal_Bracers"
+read = "2026-10-04"
+
+[[correction]]
+kind = "item_bonus"
+name = "Epic Ethereal Bracers"
+stat = "Armor Class"
+bonus_type = "Insight"
+field = "rounding"
+from = "down"
+to = "up"
+reason = "Riposte rounds Armor Class upward."
+source = "https://ddowiki.com/page/Item:Epic_Ethereal_Bracers"
+read = "2026-10-04"
+
+[[correction]]
+kind = "item_bonus"
+name = "Epic Ethereal Bracers"
+stat = "Saving Throws"
+bonus_type = "Insight"
+field = "scale"
+from = 1.0
+to = 0.5
+reason = "Riposte grants half the listed rank to Saving Throws."
+source = "https://ddowiki.com/page/Item:Epic_Ethereal_Bracers"
+read = "2026-10-04"
+"#;
+    let (db, report) = built_db_from(&data_files_dir, &[("riposte.toml", correction_file)]).unwrap();
+    assert_eq!(report.correction_applied_count, 3);
+    let resolved: Vec<(String, i64, String, f64)> = db
+        .prepare(
+            "SELECT s.name, ob.amount, ob.amount_source, ob.scale FROM owner_bonuses ob
+             JOIN effects s ON s.id = ob.stat_id JOIN items i ON i.id = ob.owner_id
+             WHERE ob.owner_kind = 'item' AND ((i.name = 'Epic Ethereal Bracers' AND s.name IN
+             ('Armor Class', 'Saving Throws', 'Hide')) OR (i.name = 'Legendary Cloak of Winter'
+             AND s.name = 'Hit Points')) ORDER BY i.name, s.name",
+        )
+        .unwrap()
+        .query_map([], |row| Ok((row.get(0)?, row.get(1)?, row.get(2)?, row.get(3)?)))
+        .unwrap()
+        .map(Result::unwrap)
+        .collect();
+    assert!(resolved.contains(&("Armor Class".into(), 3, "owner".into(), 0.5)));
+    assert!(resolved.contains(&("Saving Throws".into(), 2, "owner".into(), 0.5)));
+    assert!(resolved.contains(&("Hide".into(), 5, "constant".into(), 1.0)));
+    assert!(resolved.contains(&("Hit Points".into(), 10, "default".into(), 1.0)));
+}
+
+#[test]
+fn a_stacked_critical_range_feat_stays_text_without_a_value() {
+    let data_files_dir = data_files_with_untyped("stacked-critical-feat", &[]);
+    let feats_file = data_files_dir.join("Feats.xml");
+    let feats_source = std::fs::read_to_string(&feats_file).unwrap();
+    let piercing_feat = r#"  <Feat>
+    <Name>Improved Critical: Piercing Weapons</Name>
+    <Description>Doubles the base critical hit threat range of any piercing weapon you use.</Description>
+    <Group>Standard</Group><Acquire>Train</Acquire><Icon>ImprovedCriticalPiercing</Icon>
+    <Effect><DisplayName>Swashbuckler: Swashbuckling</DisplayName><Type>Weapon_CriticalRange</Type>
+      <Bonus>Competence</Bonus><AType>Stacks</AType><Amount size="3">0 1 2</Amount>
+      <ApplyAsItemEffect/><Item>Dagger</Item></Effect>
+  </Feat>
+"#;
+    std::fs::write(&feats_file, feats_source.replace("</Feats>", &format!("{piercing_feat}</Feats>"))).unwrap();
+    let (db, _) = built_db_from(&data_files_dir, &[]).unwrap();
+    let (effect_name, value, bonus_rows): (String, Option<i64>, i64) = db
+        .query_row(
+            "SELECT e.name, fe.value, (SELECT COUNT(*) FROM effect_bonuses b WHERE b.effect_id = e.id)
+             FROM feat_effects fe JOIN feats f ON f.id = fe.feat_id JOIN effects e ON e.id = fe.effect_id
+             WHERE f.name = 'Improved Critical: Piercing Weapons' AND e.name LIKE 'Critical Threat Range (%'",
+            [],
+            |row| Ok((row.get(0)?, row.get(1)?, row.get(2)?)),
+        )
+        .unwrap();
+    assert_eq!(effect_name, "Critical Threat Range (Dagger)");
+    assert_eq!(value, None);
+    assert_eq!(bonus_rows, 0);
+}
+
+#[test]
+fn a_merged_stat_keeps_each_owners_source_bonus_type() {
+    let data_files_dir = data_files_with_untyped("illusion-save-types", &[]);
+    let augments_file = data_files_dir.join("Augments/Named.Augments.xml");
+    let augments_source = std::fs::read_to_string(&augments_file).unwrap();
+    let illusion_augments = r#"  <Augment><Name>Illusion Resistance</Name><Description>Resistance to illusions.</Description>
+    <MinLevel>1</MinLevel><Type>Blue</Type><Icon>Cannith</Icon>
+    <Effect><Type>SaveBonus</Type><Bonus>Resistance</Bonus><AType>Simple</AType>
+      <Amount size="1">11</Amount><Item>Illusion</Item></Effect></Augment>
+  <Augment><Name>Insightful Illusion Resistance</Name><Description>Insight into illusions.</Description>
+    <MinLevel>1</MinLevel><Type>Blue</Type><Icon>Cannith</Icon>
+    <Effect><Type>SaveBonus</Type><Bonus>Insightful</Bonus><AType>Simple</AType>
+      <Amount size="1">11</Amount><Item>Illusion</Item></Effect></Augment>
+"#;
+    std::fs::write(&augments_file, augments_source.replace("</Augments>", &format!("{illusion_augments}</Augments>")))
+        .unwrap();
+    let (db, _) = built_db_from(&data_files_dir, &[]).unwrap();
+    let rows: Vec<(String, String, i64)> = db
+        .prepare(
+            "SELECT a.name, bt.name, ob.amount FROM owner_bonuses ob
+             JOIN augments a ON a.id = ob.owner_id JOIN effects s ON s.id = ob.stat_id
+             JOIN bonus_types bt ON bt.id = ob.bonus_type_id
+             WHERE ob.owner_kind = 'augment' AND s.name = 'Illusion Save'
+               AND a.name IN ('Illusion Resistance', 'Insightful Illusion Resistance')
+             ORDER BY a.name",
+        )
+        .unwrap()
+        .query_map([], |row| Ok((row.get(0)?, row.get(1)?, row.get(2)?)))
+        .unwrap()
+        .map(Result::unwrap)
+        .collect();
+    assert_eq!(
+        rows,
+        [
+            ("Illusion Resistance".into(), "Resistance".into(), 11),
+            ("Insightful Illusion Resistance".into(), "Insight".into(), 11)
+        ]
+    );
+    let visor_type: String = db
+        .query_row(
+            "SELECT bt.name FROM owner_bonuses ob JOIN items i ON i.id = ob.owner_id
+             JOIN effects s ON s.id = ob.stat_id JOIN bonus_types bt ON bt.id = ob.bonus_type_id
+             WHERE ob.owner_kind = 'item' AND i.name = 'Visor of Fraz-Urb''luu' AND s.name = 'Illusion Save'",
+            [],
+            |row| row.get(0),
+        )
+        .unwrap();
+    assert_eq!(visor_type, "Resistance");
+}
+
+#[test]
+fn acid_damage_correction_uses_the_real_buff_and_item_writer() {
+    let data_files_dir = data_files_with_untyped("acid-damage", &[]);
+    let buffs_file = data_files_dir.join("ItemBuffs.xml");
+    let buffs_source = std::fs::read_to_string(&buffs_file).unwrap();
+    let acid_buff = r#"  <Buff>
+    <Type>AcidII</Type><ApplyToWeaponOnly/>
+    <DisplayText>Acid II: On Hit: 2 to 8 Acid Damage.</DisplayText>
+    <Effect><Type>WeaponOtherDamageBonus</Type><Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus><AType>NotNeeded</AType><Dice><Number size="1">2</Number>
+      <Sides size="1">4</Sides><Damage>Acid</Damage></Dice><Item>All</Item></Effect>
+  </Buff>
+"#;
+    std::fs::write(&buffs_file, buffs_source.replace("</Buffs>", &format!("{acid_buff}</Buffs>"))).unwrap();
+    std::fs::write(
+        data_files_dir.join("Items/Stoneworker's Hammer.item"),
+        r#"<Items><Item><Name>Stoneworker's Hammer</Name><Icon>LightHammer_1j</Icon>
+        <Description/><DropLocation>Advance to level 15, End reward</DropLocation><MinLevel>15</MinLevel>
+        <EquipmentSlot><Weapon1/><Weapon2/></EquipmentSlot><Weapon>Light Hammer</Weapon>
+        <Buff><Type>AcidII</Type><BonusType>Enhancement</BonusType></Buff></Item></Items>"#,
+    )
+    .unwrap();
+    let correction_file = r#"[[correction]]
+kind = "effect_damage"
+name = "Acid II"
+field = "add"
+from = "null"
+to = { trigger = "On Hit", damage_type = "Acid", dice_number = 1, dice_sides = 7, dice_bonus = 1, amount_from = 0, scale = 1.0, sort_order = 0 }
+reason = "Stoneworker's Hammer deals 2 to 8 Acid damage on hit."
+source = "https://ddowiki.com/page/Item:Stoneworker%27s_Hammer"
+read = "2026-10-04"
+"#;
+    let (db, report) = built_db_from(&data_files_dir, &[("damage.toml", correction_file)]).unwrap();
+    assert_eq!((report.correction_applied_count, report.correction_stale_count), (1, 0));
+    let damage: (String, String, i64, i64, i64, i64, f64) = db
+        .query_row(
+            "SELECT t.name, dt.name, ed.dice_number, ed.dice_sides, ed.dice_bonus, ed.amount_from, ed.scale
+             FROM effect_damage ed JOIN effects e ON e.id = ed.effect_id JOIN triggers t ON t.id = ed.trigger_id
+             JOIN damage_types dt ON dt.id = ed.damage_type_id
+             JOIN item_effects ie ON ie.effect_id = e.id JOIN items i ON i.id = ie.item_id
+             WHERE i.name = 'Stoneworker''s Hammer' AND e.name = 'Acid II'",
+            [],
+            |row| Ok((row.get(0)?, row.get(1)?, row.get(2)?, row.get(3)?, row.get(4)?, row.get(5)?, row.get(6)?)),
+        )
+        .unwrap();
+    assert_eq!(damage, ("On Hit".into(), "Acid".into(), 1, 7, 1, 0, 1.0));
+}
+
+#[test]
 fn a_set_tier_correction_shares_a_family_with_the_same_effect_on_another_set() {
     let data_files_dir = data_files_with_untyped("shared-set-family", &[]);
     let set_file = data_files_dir.join("SetBonuses.xml");
@@ -1720,9 +1931,7 @@ fn a_set_tier_correction_shares_a_family_with_the_same_effect_on_another_set() {
             .query_row(
                 "SELECT e.id, e.name, e.text_template, te.value FROM set_bonus_tiers t JOIN set_bonuses s ON s.id = t.set_id
              JOIN set_bonus_tier_effects te ON te.tier_id = t.id JOIN effects e ON e.id = te.effect_id
-             WHERE s.name = ?1 AND t.equipped_count = 2 AND EXISTS
-               (SELECT 1 FROM effect_bonuses es JOIN stats stat ON stat.id = es.stat_id
-                WHERE es.effect_id = e.id AND stat.name = 'Acid Spell Power')",
+             WHERE s.name = ?1 AND t.equipped_count = 2 AND e.name = 'Acid Spell Power'",
                 [set_name],
                 |row| Ok((row.get(0)?, row.get(1)?, row.get(2)?, row.get(3)?)),
             )
@@ -1968,11 +2177,12 @@ fn refuses_an_untyped_augment_slot_option_bonus_unless_an_item_bonus_correction_
     );
     let lore_bonuses: Vec<(String, i64)> = db
         .prepare(
-            "SELECT bt.name, CASE es.amount_from WHEN 0 THEN es.constant WHEN 1 THEN oe.value ELSE oe.value2 END
-               FROM item_augment_slot_option_effects oe JOIN effect_bonuses es ON es.effect_id = oe.effect_id
-               JOIN stats s ON s.id = es.stat_id JOIN bonus_types bt ON bt.id = COALESCE(es.bonus_type_id, oe.bonus_type_id)
-               JOIN item_augment_slot_options o ON o.id = oe.option_id JOIN items i ON i.id = o.item_id
-              WHERE i.name = 'Epic Bracers of Wind' AND s.name = 'Electric Spell Lore' ORDER BY 2",
+            "SELECT bt.name, ob.amount
+               FROM owner_bonuses ob JOIN effects s ON s.id = ob.stat_id
+               JOIN bonus_types bt ON bt.id = ob.bonus_type_id
+               JOIN item_augment_slot_options o ON o.id = ob.owner_id JOIN items i ON i.id = o.item_id
+              WHERE ob.owner_kind = 'item_augment_slot_option' AND i.name = 'Epic Bracers of Wind'
+                AND s.name = 'Electric Spell Lore' ORDER BY 2",
         )
         .unwrap()
         .query_map([], |r| Ok((r.get(0)?, r.get(1)?)))

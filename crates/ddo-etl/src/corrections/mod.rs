@@ -6,7 +6,7 @@ use crate::wiki::is_iso_date;
 use anyhow::{bail, Context, Result};
 use ddo_model::enums::CorrectionKind;
 use rusqlite::types::Value as SqlValue;
-use serde::Deserialize;
+use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 use std::path::Path;
 
@@ -23,6 +23,7 @@ pub enum CorrectionValue {
     Bonus(BonusAddition),
     Tier(TierAddition),
     Effect(EffectAddition),
+    Damage(DamageRow),
     Null,
 }
 
@@ -46,6 +47,21 @@ pub struct TierAddition {
 pub struct EffectAddition {
     pub name: String,
     pub description: String,
+    #[serde(default)]
+    pub value: Option<i64>,
+}
+
+#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct DamageRow {
+    pub trigger: String,
+    pub damage_type: String,
+    pub dice_number: i64,
+    pub dice_sides: i64,
+    pub dice_bonus: i64,
+    pub amount_from: i64,
+    pub scale: f64,
+    pub sort_order: i64,
 }
 
 #[derive(Deserialize)]
@@ -57,6 +73,7 @@ enum TomlCorrectionValue {
     Bonus(BonusAddition),
     Tier(TierAddition),
     Effect(EffectAddition),
+    Damage(DamageRow),
 }
 
 impl From<TomlCorrectionValue> for CorrectionValue {
@@ -69,6 +86,7 @@ impl From<TomlCorrectionValue> for CorrectionValue {
             TomlCorrectionValue::Bonus(bonus) => Self::Bonus(bonus),
             TomlCorrectionValue::Tier(tier) => Self::Tier(tier),
             TomlCorrectionValue::Effect(effect) => Self::Effect(effect),
+            TomlCorrectionValue::Damage(damage) => Self::Damage(damage),
         }
     }
 }
@@ -90,11 +108,14 @@ impl CorrectionValue {
                 serde_json::Value::from(tier.description.as_str()),
                 tier.equipped_count
             ),
-            Self::Effect(effect) => format!(
-                "{{\"description\":{},\"name\":{}}}",
-                serde_json::Value::from(effect.description.as_str()),
-                serde_json::Value::from(effect.name.as_str())
-            ),
+            Self::Effect(effect) => {
+                let mut fields = serde_json::json!({"description": effect.description, "name": effect.name});
+                if let Some(amount) = effect.value {
+                    fields["value"] = serde_json::json!(amount);
+                }
+                fields.to_string()
+            }
+            Self::Damage(damage) => serde_json::to_string(damage).expect("damage row serializes"),
             Self::Null => NULL_SPELLING.to_string(),
         }
     }
@@ -104,7 +125,7 @@ impl CorrectionValue {
             Self::Integer(number) => SqlValue::Integer(*number),
             Self::Float(number) => SqlValue::Real(*number),
             Self::Text(text) => SqlValue::Text(text.clone()),
-            Self::Bonus(_) | Self::Tier(_) | Self::Effect(_) => SqlValue::Text(self.to_json()),
+            Self::Bonus(_) | Self::Tier(_) | Self::Effect(_) | Self::Damage(_) => SqlValue::Text(self.to_json()),
             Self::Null => SqlValue::Null,
         }
     }
@@ -149,12 +170,29 @@ impl CorrectionValue {
         }
     }
 
+    pub fn added_effect_value(&self) -> Option<i64> {
+        match self {
+            Self::Effect(effect) => effect.value,
+            _ => None,
+        }
+    }
+
     fn fits(&self, field: &CorrectableField) -> bool {
         match (self, field.shape) {
             (Self::Null, _) => field.is_nullable,
             (Self::Integer(_), FieldShape::Integer) => true,
             (Self::Float(number), FieldShape::StatScale) => number.is_finite() && *number > 0.0,
             (Self::Text(rounding), FieldShape::StatRounding) => matches!(rounding.as_str(), "down" | "up" | "nearest"),
+            (Self::Damage(damage), FieldShape::DamageAddition | FieldShape::DamageRemoval) => {
+                !damage.trigger.trim().is_empty()
+                    && !damage.damage_type.trim().is_empty()
+                    && damage.dice_number > 0
+                    && damage.dice_sides > 0
+                    && (0..=2).contains(&damage.amount_from)
+                    && damage.scale.is_finite()
+                    && damage.scale > 0.0
+                    && damage.sort_order >= 0
+            }
             (Self::Integer(flag), FieldShape::Flag) => matches!(flag, 0 | 1),
             (
                 Self::Text(_),
@@ -302,8 +340,12 @@ impl Correction {
                 }
             }
             FieldShape::BonusRemoval => {
-                if !matches!((&self.from, &self.to), (CorrectionValue::Integer(_), CorrectionValue::Null)) {
-                    bail!("a bonus remove takes from = its current integer value and to = \"null\"");
+                if !matches!(
+                    (&self.from, &self.to),
+                    (CorrectionValue::Integer(_), CorrectionValue::Null)
+                        | (CorrectionValue::Null, CorrectionValue::Integer(1))
+                ) {
+                    bail!("a bonus remove takes its current integer value to \"null\", or a missing value from \"null\" to 1");
                 }
             }
             FieldShape::TierAddition => {
@@ -335,6 +377,22 @@ impl Correction {
                     bail!(
                         "an add takes from = \"null\" and to = the name of the effect to add, or {{ name = \"...\", description = \"...\" }}"
                     );
+                }
+            }
+            FieldShape::DamageAddition => {
+                if !matches!((&self.from, &self.to), (CorrectionValue::Null, CorrectionValue::Damage(_))) {
+                    bail!("damage add takes from = \"null\" and to = a damage row");
+                }
+                if !self.to.fits(field) {
+                    bail!("damage row needs positive dice and scale, an amount slot 0–2, and a nonnegative order");
+                }
+            }
+            FieldShape::DamageRemoval => {
+                if !matches!((&self.from, &self.to), (CorrectionValue::Damage(_), CorrectionValue::Null)) {
+                    bail!("damage remove takes from = the existing damage row and to = \"null\"");
+                }
+                if !self.from.fits(field) {
+                    bail!("damage row needs positive dice and scale, an amount slot 0–2, and a nonnegative order");
                 }
             }
             _ => {
@@ -389,6 +447,7 @@ fn expected_value_text(field: &CorrectableField) -> String {
         FieldShape::BonusRemoval => "the current integer value for from and \"null\" for to",
         FieldShape::TierAddition => "a { equipped_count, description } table",
         FieldShape::EffectAddition => "an effect name or a { name, description } table",
+        FieldShape::DamageAddition | FieldShape::DamageRemoval => "a damage row",
         FieldShape::SocketAddition => "a socket label",
     };
     if field.is_nullable {

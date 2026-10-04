@@ -16,6 +16,8 @@ pub enum FieldShape {
     BonusRemoval,
     TierAddition,
     EffectAddition,
+    DamageAddition,
+    DamageRemoval,
     SocketAddition,
 }
 
@@ -78,14 +80,14 @@ const QUEST_FIELDS: &[CorrectableField] = &[
 ];
 
 const AUGMENT_BONUS_FIELDS: &[CorrectableField] = &[
-    field("value", FieldShape::Integer, false),
+    field("value", FieldShape::Integer, true),
     field("bonus_type", FieldShape::BonusTypeName, false),
     field("add", FieldShape::BonusAddition, false),
     field("remove", FieldShape::BonusRemoval, false),
 ];
 
 const ITEM_BONUS_FIELDS: &[CorrectableField] = &[
-    field("value", FieldShape::Integer, false),
+    field("value", FieldShape::Integer, true),
     field("bonus_type", FieldShape::BonusTypeName, false),
     field("scale", FieldShape::StatScale, false),
     field("rounding", FieldShape::StatRounding, false),
@@ -101,6 +103,9 @@ const SET_TIER_FIELDS: &[CorrectableField] = &[
 ];
 
 const ITEM_EFFECT_FIELDS: &[CorrectableField] = &[field("add", FieldShape::EffectAddition, false)];
+
+const EFFECT_DAMAGE_FIELDS: &[CorrectableField] =
+    &[field("add", FieldShape::DamageAddition, false), field("remove", FieldShape::DamageRemoval, false)];
 
 const ITEM_SOCKET_FIELDS: &[CorrectableField] = &[field("add", FieldShape::SocketAddition, false)];
 
@@ -130,6 +135,7 @@ pub fn correctable_fields(kind: CorrectionKind) -> &'static [CorrectableField] {
         CorrectionKind::SetTier => SET_TIER_FIELDS,
         CorrectionKind::SetTierBonus => SET_TIER_BONUS_FIELDS,
         CorrectionKind::ItemEffect => ITEM_EFFECT_FIELDS,
+        CorrectionKind::EffectDamage => EFFECT_DAMAGE_FIELDS,
         CorrectionKind::ItemSocket => ITEM_SOCKET_FIELDS,
     }
 }

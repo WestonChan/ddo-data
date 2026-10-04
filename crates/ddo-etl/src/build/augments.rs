@@ -55,8 +55,10 @@ impl TableWriter<'_> {
             self.write_modifiers(ModifierSource::Augment, augment_id, &augment.effects)?;
             let augment_owner =
                 BonusOwner { kind: BonusOwnerKind::Augment, name: &augment.name, family: Some(&family) };
-            for (sort_order, link) in
-                self.ensure_derived_effects(&augment_owner, &augment.effects)?.into_iter().enumerate()
+            for (sort_order, link) in self
+                .ensure_derived_effects(&augment_owner, ModifierSource::Augment, augment_id, &augment.effects)?
+                .into_iter()
+                .enumerate()
             {
                 self.effects.insert_link(
                     EffectOwner::Augment,

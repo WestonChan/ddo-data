@@ -19,7 +19,7 @@ pub struct EffectMap {
     #[serde(default)]
     pub names: BTreeMap<String, String>,
     #[serde(default)]
-    pub ladders: BTreeMap<String, Vec<String>>,
+    pub tier_groups: BTreeMap<String, Vec<String>>,
 }
 
 #[derive(Debug, Deserialize)]
@@ -183,13 +183,13 @@ impl EffectMap {
             }
         }
         let mut assigned_steps = BTreeSet::new();
-        for (ladder_name, steps) in &vocabulary.ladders {
-            if ladder_name.trim().is_empty() || steps.len() < 2 {
-                bail!("effect_map.toml [ladders] {ladder_name:?} needs at least two named steps");
+        for (group_name, steps) in &vocabulary.tier_groups {
+            if group_name.trim().is_empty() || steps.len() < 2 {
+                bail!("effect_map.toml [tier_groups] {group_name:?} needs at least two named steps");
             }
             for step in steps {
                 if step.trim().is_empty() || !assigned_steps.insert(step) {
-                    bail!("effect_map.toml [ladders] {ladder_name:?} repeats or leaves blank step {step:?}");
+                    bail!("effect_map.toml [tier_groups] {group_name:?} repeats or leaves blank step {step:?}");
                 }
             }
         }

@@ -23,7 +23,6 @@ fn ddl_creates_effect_tables_without_legacy_bonus_tables() {
     let tables = table_names(&db);
     for expected_table in [
         "schema_version",
-        "stats",
         "bonus_types",
         "bonus_type_aliases",
         "equipment_slots",
@@ -41,8 +40,10 @@ fn ddl_creates_effect_tables_without_legacy_bonus_tables() {
         "item_dr_bypass",
         "item_armor_stats",
         "effects",
-        "effect_ladders",
+        "effect_tier_groups",
         "effect_bonuses",
+        "effect_damage",
+        "triggers",
         "effect_vocabulary_counts",
         "effect_vocabulary_bonus_types",
         "item_effects",
@@ -108,6 +109,8 @@ fn ddl_creates_effect_tables_without_legacy_bonus_tables() {
         assert!(tables.contains(expected_table), "missing table {expected_table}");
     }
     for removed_table in [
+        "stats",
+        "effect_ladders",
         "bonuses",
         "effect_tiers",
         "item_bonuses",
@@ -568,7 +571,7 @@ fn weapon_types_carry_proficiency_and_ddo_spellings() {
 fn seed_tables_load_into_the_schema() {
     let db = fresh_db();
     ddo_model::seeds::insert_all(&db).expect("seeds insert");
-    let stat_count: i64 = db.query_row("SELECT COUNT(*) FROM stats", [], |r| r.get(0)).unwrap();
+    let stat_count: i64 = db.query_row("SELECT COUNT(*) FROM effects WHERE is_stat = 1", [], |r| r.get(0)).unwrap();
     assert_eq!(stat_count as usize, STATS.len());
     let hands: String = db.query_row("SELECT name FROM equipment_slots WHERE id = 10", [], |r| r.get(0)).unwrap();
     assert_eq!(hands, "Hands");
@@ -583,6 +586,32 @@ fn seed_tables_load_into_the_schema() {
 }
 
 #[test]
+fn seeded_stats_share_effect_identity_and_direct_links_yield_owner_bonuses() {
+    let db = fresh_db();
+    ddo_model::seeds::insert_all(&db).unwrap();
+    let strength_id: i64 = db
+        .query_row(
+            "SELECT id FROM effects WHERE name = 'Strength' AND is_stat = 1 AND category = 'ability'",
+            [],
+            |row| row.get(0),
+        )
+        .unwrap();
+    assert_eq!(strength_id, Stat::by_name("Strength").unwrap().id);
+    db.execute("INSERT INTO items (id, name, slot_id, item_category, provenance, wiki_url) VALUES (9001, 'Probe', 1, 'Jewelry', 'maetrim', 'https://ddowiki.com/page/Item:Probe')", []).unwrap();
+    db.execute(
+        "INSERT INTO item_effects (item_id, effect_id, bonus_type_id, value, sort_order) VALUES (9001, ?1, 1, 7, 0)",
+        [strength_id],
+    )
+    .unwrap();
+    let bonus: (i64, i64, String, Option<i64>, String, f64) = db.query_row(
+        "SELECT stat_id, amount, amount_source, via_effect_id, owner_kind, scale FROM owner_bonuses WHERE owner_id = 9001",
+        [],
+        |row| Ok((row.get(0)?, row.get(1)?, row.get(2)?, row.get(3)?, row.get(4)?, row.get(5)?)),
+    ).unwrap();
+    assert_eq!(bonus, (strength_id, 7, "owner".to_string(), None, "item".to_string(), 1.0));
+}
+
+#[test]
 fn save_progressions_follow_upstream_type_codes() {
     assert_eq!(SaveProgression::parse("Type2"), Some(SaveProgression::Good), "Paladin Fortitude is Type2");
     assert_eq!(SaveProgression::parse("Type1"), Some(SaveProgression::Poor));
@@ -594,21 +623,20 @@ fn save_progressions_follow_upstream_type_codes() {
 fn effect_stat_amount_sources_and_constants_are_checked() {
     let db = fresh_db();
     ddo_model::seeds::insert_all(&db).unwrap();
-    db.execute("INSERT INTO effects (id, name, text_template, amount_count) VALUES (1, 'Probe', 'Probe {1}', 1)", [])
-        .unwrap();
+    db.execute("INSERT INTO effects (id, name, text_template) VALUES (1000, 'Probe', 'Probe {1}')", []).unwrap();
     for (amount_from, constant) in [(0, "NULL"), (1, "1"), (3, "NULL")] {
         assert!(db
             .execute(
                 &format!(
                     "INSERT INTO effect_bonuses (effect_id, stat_id, bonus_type_id, amount_from, constant, sort_order)
-             VALUES (1, 1, 1, {amount_from}, {constant}, 0)"
+             VALUES (1000, 1, 1, {amount_from}, {constant}, 0)"
                 ),
                 []
             )
             .is_err());
     }
     db.execute(
-        "INSERT INTO effect_bonuses (effect_id, stat_id, bonus_type_id, amount_from, sort_order) VALUES (1, 1, 1, 1, 0)",
+        "INSERT INTO effect_bonuses (effect_id, stat_id, bonus_type_id, amount_from, sort_order) VALUES (1000, 1, 1, 1, 0)",
         [],
     ).unwrap();
 }
@@ -618,15 +646,15 @@ fn effect_defaults_and_scaled_stat_constraints_are_checked() {
     let db = fresh_db();
     ddo_model::seeds::insert_all(&db).unwrap();
     db.execute(
-        "INSERT INTO effects (id, name, text_template, amount_count, default_value, default_value2)
-         VALUES (1, 'Scaled Probe', 'Scaled Probe {1} {2}', 2, 3, 4)",
+        "INSERT INTO effects (id, name, text_template, default_value, default_value2)
+         VALUES (1000, 'Scaled Probe', 'Scaled Probe {1} {2}', 3, 4)",
         [],
     )
     .unwrap();
     db.execute(
         "INSERT INTO effect_bonuses
          (effect_id, stat_id, bonus_type_id, amount_from, scale, rounding, sort_order)
-         VALUES (1, 1, 1, 1, 0.5, 'up', 0)",
+         VALUES (1000, 1, 1, 1, 0.5, 'up', 0)",
         [],
     )
     .unwrap();
@@ -642,7 +670,7 @@ fn effect_defaults_and_scaled_stat_constraints_are_checked() {
                 &format!(
                     "INSERT INTO effect_bonuses
                      (effect_id, stat_id, bonus_type_id, amount_from, constant, scale, rounding, sort_order)
-                     VALUES (1, 2, 1, {amount_from}, {constant}, {scale}, {rounding}, 1)"
+                     VALUES (1000, 2, 1, {amount_from}, {constant}, {scale}, {rounding}, 1)"
                 ),
                 [],
             )
@@ -663,19 +691,16 @@ fn rounded_amount_sql_handles_positive_and_negative_halves() {
 }
 
 #[test]
-fn effect_family_amount_urls_and_ladder_positions_are_checked() {
+fn effect_urls_and_tier_positions_are_checked() {
     let db = fresh_db();
-    for (name, amount_count, wiki_url) in [
-        ("Negative", -1, "NULL"),
-        ("Third", 3, "NULL"),
-        ("Wrong Host", 1, "'https://example.com/page/Wrong_Host'"),
-        ("Wrong Path", 1, "'https://ddowiki.com/Wrong_Path'"),
-    ] {
+    for (name, wiki_url) in
+        [("Wrong Host", "'https://example.com/page/Wrong_Host'"), ("Wrong Path", "'https://ddowiki.com/Wrong_Path'")]
+    {
         assert!(
             db.execute(
                 &format!(
-                    "INSERT INTO effects (name, text_template, amount_count, wiki_url)
-             VALUES (?1, 'A {{1}}', {amount_count}, {wiki_url})"
+                    "INSERT INTO effects (name, text_template, wiki_url)
+             VALUES (?1, 'A {{1}}', {wiki_url})"
                 ),
                 [name]
             )
@@ -683,31 +708,31 @@ fn effect_family_amount_urls_and_ladder_positions_are_checked() {
             "{name}"
         );
     }
-    db.execute("INSERT INTO effect_ladders (id, name) VALUES (1, 'Deception')", []).unwrap();
+    db.execute("INSERT INTO effect_tier_groups (id, name) VALUES (1, 'Deception')", []).unwrap();
     db.execute(
-        "INSERT INTO effects (id, name, text_template, amount_count, ladder_id, ladder_rank, wiki_url)
-                VALUES (1, 'Deception', 'Deception {1}', 1, 1, 1, 'https://ddowiki.com/page/Deception')",
+        "INSERT INTO effects (id, name, text_template, tier_group_id, tier, wiki_url)
+                VALUES (1000, 'Deception', 'Deception {1}', 1, 1, 'https://ddowiki.com/page/Deception')",
         [],
     )
     .unwrap();
     assert!(db
         .execute(
-            "INSERT INTO effects (name, text_template, amount_count, ladder_id)
-                        VALUES ('Improved Deception', 'Improved Deception', 0, 1)",
+            "INSERT INTO effects (name, text_template, tier_group_id)
+                        VALUES ('Improved Deception', 'Improved Deception', 1)",
             []
         )
         .is_err());
     assert!(db
         .execute(
-            "INSERT INTO effects (name, text_template, amount_count, ladder_rank)
-                        VALUES ('Greater Deception', 'Greater Deception', 0, 2)",
+            "INSERT INTO effects (name, text_template, tier)
+                        VALUES ('Greater Deception', 'Greater Deception', 2)",
             []
         )
         .is_err());
     assert!(db
         .execute(
-            "INSERT INTO effects (name, text_template, amount_count, ladder_id, ladder_rank)
-                        VALUES ('Duplicate Rank', 'Duplicate Rank', 0, 1, 1)",
+            "INSERT INTO effects (name, text_template, tier_group_id, tier)
+                        VALUES ('Duplicate Rank', 'Duplicate Rank', 1, 1)",
             []
         )
         .is_err());
@@ -717,8 +742,8 @@ fn effect_family_amount_urls_and_ladder_positions_are_checked() {
 fn effect_owner_links_require_the_first_amount_before_the_second() {
     let db = fresh_db();
     db.execute(
-        "INSERT INTO effects (id, name, text_template, amount_count)
-                VALUES (1, 'Probe', 'Probe {1} {2}', 2)",
+        "INSERT INTO effects (id, name, text_template)
+                VALUES (1000, 'Probe', 'Probe {1} {2}')",
         [],
     )
     .unwrap();
@@ -731,7 +756,7 @@ fn effect_owner_links_require_the_first_amount_before_the_second() {
     ] {
         assert!(
             db.execute(
-                &format!("INSERT INTO {table} ({owner_column}, effect_id, value2, sort_order) VALUES (1, 1, 2, 0)"),
+                &format!("INSERT INTO {table} ({owner_column}, effect_id, value2, sort_order) VALUES (1, 1000, 2, 0)"),
                 []
             )
             .is_err(),
@@ -800,9 +825,7 @@ fn an_item_augment_slot_option_keeps_its_granted_socket_sets_and_bonuses_on_the_
          INSERT INTO items (id, name, slot_id, item_category, wiki_url) VALUES (1, 'Sireth', 1, 'Weapon', 'https://ddowiki.com/page/Item:Sireth');
          INSERT INTO augment_slot_types (id, label, family, variant) VALUES (1, 'crafting: attuned to heroism 4', 'crafting', 'attuned to heroism 4'), (2, 'red', 'standard', 'red');
          INSERT INTO item_augment_slots (item_id, sort_order, slot_id) VALUES (1, 0, 1);
-         INSERT INTO set_bonuses (id, name) VALUES (1, 'Prowess / Planar Conflux Set Bonus');
-         INSERT INTO effects (id, name, text_template, amount_count) VALUES (1, 'Strength', 'Strength {1}', 1);
-         INSERT INTO effect_bonuses (effect_id, stat_id, bonus_type_id, amount_from, sort_order) VALUES (1, 1, 1, 1, 0);",
+         INSERT INTO set_bonuses (id, name) VALUES (1, 'Prowess / Planar Conflux Set Bonus');",
     )
     .unwrap();
     db.execute(
@@ -818,7 +841,7 @@ fn an_item_augment_slot_option_keeps_its_granted_socket_sets_and_bonuses_on_the_
     .unwrap();
     db.execute("INSERT INTO item_augment_slot_option_sets (option_id, set_id) VALUES (?1, 1)", [option_id]).unwrap();
     db.execute(
-        "INSERT INTO item_augment_slot_option_effects (option_id, effect_id, value, sort_order) VALUES (?1, 1, 8, 0)",
+        "INSERT INTO item_augment_slot_option_effects (option_id, effect_id, bonus_type_id, value, sort_order) VALUES (?1, 1, 1, 8, 0)",
         [option_id],
     )
     .unwrap();

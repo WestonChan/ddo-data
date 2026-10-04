@@ -8,29 +8,6 @@
           "name": "Artifact"
         },
         {
-          "item_count": 43,
-          "name": "Enhancement"
-        },
-        {
-          "item_count": 0,
-          "name": "Equipment"
-        }
-      ],
-      "detail_path": "/v1/effects/289",
-      "id": 289,
-      "item_count": 47,
-      "kind": "effect",
-      "name": "Acid Absorption",
-      "set_count": 2
-    },
-    {
-      "augment_count": 9,
-      "bonus_types": [
-        {
-          "item_count": 0,
-          "name": "Artifact"
-        },
-        {
           "item_count": 46,
           "name": "Enhancement"
         },
@@ -39,7 +16,7 @@
           "name": "Equipment"
         }
       ],
-      "detail_path": "/v1/stats/87",
+      "detail_path": "/v1/effects/87",
       "id": 87,
       "item_count": 50,
       "kind": "stat",
@@ -54,15 +31,34 @@
           "name": "Enhancement"
         }
       ],
-      "detail_path": "/v1/effects/100",
-      "id": 100,
+      "detail_path": "/v1/effects/158",
+      "id": 158,
       "item_count": 6,
-      "kind": "effect",
+      "kind": "stat",
       "name": "Alignment Absorption",
+      "set_count": 0
+    },
+    {
+      "augment_count": 3,
+      "bonus_types": [
+        {
+          "item_count": 0,
+          "name": "Artifact"
+        },
+        {
+          "item_count": 24,
+          "name": "Enhancement"
+        }
+      ],
+      "detail_path": "/v1/effects/154",
+      "id": 154,
+      "item_count": 24,
+      "kind": "stat",
+      "name": "Chaos Absorption",
       "set_count": 0
     }
   ],
   "limit": 100,
   "offset": 0,
-  "total": 47
+  "total": 32
 }

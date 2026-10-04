@@ -158,11 +158,10 @@ fn writes_feats_from_all_three_sources() {
         single_value(&db, "SELECT id FROM feats WHERE name = 'Dwarven Stability' AND source_kind = 'race'", &[]);
     let (bonus, bonus_type): (String, String) = db
         .query_row(
-            "SELECT s.name || ' +' || fe.value, bt.name FROM feat_effects fe
-                    JOIN effect_bonuses es ON es.effect_id = fe.effect_id
-                    JOIN stats s ON s.id = es.stat_id
-                    JOIN bonus_types bt ON bt.id = COALESCE(es.bonus_type_id, fe.bonus_type_id)
-                    WHERE fe.feat_id = ?1",
+            "SELECT s.name || ' +' || ob.amount, bt.name FROM owner_bonuses ob
+                    JOIN effects s ON s.id = ob.stat_id
+                    JOIN bonus_types bt ON bt.id = ob.bonus_type_id
+                    WHERE ob.owner_kind = 'feat' AND ob.owner_id = ?1",
             params![dwarven_stability],
             |r| Ok((r.get(0)?, r.get(1)?)),
         )
@@ -182,7 +181,7 @@ fn writes_races() {
         .unwrap();
     assert_eq!((points.as_str(), world.as_str()), ("[28,32,34,36]", "Eberron"));
     let modifiers: Vec<(String, i64)> = db
-        .prepare("SELECT s.name, m.modifier FROM race_ability_modifiers m JOIN stats s ON s.id = m.stat_id WHERE m.race_id = ?1 ORDER BY s.id")
+        .prepare("SELECT s.name, m.modifier FROM race_ability_modifiers m JOIN effects s ON s.id = m.stat_id WHERE m.race_id = ?1 ORDER BY s.id")
         .unwrap()
         .query_map(params![dwarf], |r| Ok((r.get(0)?, r.get(1)?)))
         .unwrap()

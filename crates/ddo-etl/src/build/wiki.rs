@@ -566,11 +566,15 @@ impl TableWriter<'_> {
         }
         for (sort_order, effect) in wiki_item.effects.iter().enumerate() {
             let (effect_id, count) = self.wiki_effect_id(effect, effect_ids_by_folded_name)?;
+            let bonus_type = self
+                .effects
+                .family(effect_id)
+                .and_then(|family| family.is_stat.then_some(ddo_model::enums::BonusType::Equipment));
             self.effects.insert_link(
                 EffectOwner::Item,
                 item_id,
                 effect_id,
-                None,
+                bonus_type,
                 (if count > 0 { effect.value } else { None }, None),
                 wiki_item.bonuses.len() + sort_order,
             )?;
@@ -594,15 +598,15 @@ impl TableWriter<'_> {
         let stat = bonus.stat();
         let bonus_type = bonus.bonus_type();
         let count = if bonus.value2.is_some() { 2 } else { 1 };
-        let existing = self.effects.family_named(stat.name);
-        let family_name = match existing {
-            Some(family)
-                if !family.uses_link_type && self.effects.stat(family.id, stat.id, Some(bonus_type.id())).is_none() =>
-            {
-                format!("{} Bonus", stat.name)
-            }
-            _ => stat.name.to_string(),
-        };
+        let family_name = stat.name.to_string();
+        if self.effects.family_named(&family_name).is_some_and(|family| family.text_template.is_empty()) {
+            let text_template = if count == 2 {
+                format!("%b1 {family_name} +{{1}} {{2}}")
+            } else {
+                format!("%b1 {family_name} +{{1}}")
+            };
+            self.effects.ensure_family(&family_name, &text_template, None, count)?;
+        }
         let (effect_id, uses_link_type) = match self.effects.family_named(&family_name) {
             Some(family) if family.amount_count >= count => (family.id, family.uses_link_type),
             Some(family) => anyhow::bail!(
@@ -619,7 +623,11 @@ impl TableWriter<'_> {
             }
         };
         self.effects.ensure_stat(effect_id, stat, (!uses_link_type).then_some(bonus_type), 1, None, 0)?;
-        Ok((effect_id, uses_link_type.then_some(bonus_type)))
+        Ok((
+            effect_id,
+            (uses_link_type || self.effects.family(effect_id).is_some_and(|family| family.is_stat))
+                .then_some(bonus_type),
+        ))
     }
 
     pub(super) fn write_wiki_augments(

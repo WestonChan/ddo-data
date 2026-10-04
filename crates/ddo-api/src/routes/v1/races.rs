@@ -71,7 +71,7 @@ async fn race_detail(State(state): State<AppState>, Path(id): Path<i64>) -> Resu
             convert_to_booleans(&mut race, RACE_FLAG_COLUMNS);
             race["ability_modifiers"] = Value::Array(json_rows(
                 db,
-                "SELECT s.name AS stat, m.modifier FROM race_ability_modifiers m JOIN stats s ON s.id = m.stat_id WHERE m.race_id = ?1 ORDER BY s.id",
+                "SELECT s.name AS stat, m.modifier FROM race_ability_modifiers m JOIN effects s ON s.id = m.stat_id WHERE m.race_id = ?1 ORDER BY s.id",
                 [id],
             )?);
             race["granted_feats"] = Value::Array(json_rows(

@@ -7,7 +7,7 @@ use std::sync::OnceLock;
 use xtask::dataset::build_database_file;
 use xtask::integrity::{integrity_report, CheckStatus, IntegrityOptions, Severity, INTEGRITY_CHECKS};
 
-const TABLES_EMPTY_IN_FIXTURES: [&str; 2] = ["corrections", "race_feat_slots"];
+const TABLES_EMPTY_IN_FIXTURES: [&str; 3] = ["corrections", "effect_damage", "race_feat_slots"];
 
 fn fixtures_dir() -> PathBuf {
     Path::new(env!("CARGO_MANIFEST_DIR")).join("../crates/ddo-etl/tests/fixtures")
@@ -91,7 +91,7 @@ fn text_only_effect_named_after_a_stat_is_warned() {
     let work_dir = tempfile::tempdir().unwrap();
     let db_path = fixture_db_copy_with(
         work_dir.path(),
-        "INSERT INTO effects (name, text_template, amount_count) VALUES ('hitpoints', 'hitpoints', 0);
+        "INSERT INTO effects (name, text_template) VALUES ('hitpoints', 'hitpoints');
          INSERT INTO item_effects (item_id, effect_id, sort_order)
          VALUES ((SELECT MIN(id) FROM items), last_insert_rowid(), 999);",
     );
@@ -132,10 +132,10 @@ fn identifier_like_effect_names_are_warned() {
     let work_dir = tempfile::tempdir().unwrap();
     let db_path = fixture_db_copy_with(
         work_dir.path(),
-        "INSERT INTO effects (name, text_template, amount_count) VALUES ('CamelCase', 'Camel Case', 0);
+        "INSERT INTO effects (name, text_template) VALUES ('CamelCase', 'Camel Case');
          INSERT INTO item_effects (item_id, effect_id, sort_order)
          VALUES ((SELECT MIN(id) FROM items), last_insert_rowid(), 999);
-         INSERT INTO effects (name, text_template, amount_count) VALUES ('Telekinetic117', 'Telekinetic 117', 0);
+         INSERT INTO effects (name, text_template) VALUES ('Telekinetic117', 'Telekinetic 117');
          INSERT INTO item_effects (item_id, effect_id, sort_order)
          VALUES ((SELECT MIN(id) FROM items), last_insert_rowid(), 998);",
     );
@@ -165,7 +165,7 @@ fn a_warning_never_fails_the_command() {
     let work_dir = tempfile::tempdir().unwrap();
     let db_path = fixture_db_copy_with(
         work_dir.path(),
-        "INSERT INTO effects (name, text_template, amount_count) VALUES ('hitpoints', 'hitpoints', 0);
+        "INSERT INTO effects (name, text_template) VALUES ('hitpoints', 'hitpoints');
          INSERT INTO items (name, slot_id, item_category, wiki_url, drop_location, minimum_level)
          VALUES ('Integrity Probe Ring', (SELECT id FROM equipment_slots WHERE name = 'Ring'), 'Jewelry',
                  'https://ddowiki.com/page/Item:Integrity_Probe_Ring', 'Nowhere Keep, chest', 1);
@@ -257,45 +257,45 @@ fn injected_violations() -> Vec<InjectedViolation> {
         ),
         violation(
             "effects_named_after_stats",
-            "INSERT INTO effects (name, text_template, amount_count) VALUES ('hitpoints', 'hitpoints', 0); \
+            "INSERT INTO effects (name, text_template) VALUES ('hitpoints', 'hitpoints'); \
              INSERT INTO item_effects (item_id, effect_id, sort_order) \
              VALUES ((SELECT MIN(id) FROM items), last_insert_rowid(), 999);",
             "hitpoints",
         ),
         violation(
             "effect_templates_with_digits_without_amounts",
-            "INSERT INTO effects (name, text_template, amount_count) VALUES ('Integrity Probe Glow', 'Glow 7', 0); \
+            "INSERT INTO effects (name, text_template) VALUES ('Integrity Probe Glow', 'Glow 7'); \
              INSERT INTO item_effects (item_id, effect_id, sort_order) \
              VALUES ((SELECT MIN(id) FROM items), last_insert_rowid(), 998);",
             "Integrity Probe Glow",
         ),
         violation(
             "effects_with_amounts_named_with_digits",
-            "INSERT INTO effects (name, text_template, amount_count)
-             VALUES ('Integrity 12 Power', 'Power {1}', 1);
+            "INSERT INTO effects (name, text_template)
+             VALUES ('Integrity 12 Power', 'Power {1}');
              INSERT INTO item_effects (item_id, effect_id, value, sort_order)
              VALUES ((SELECT MIN(id) FROM items), last_insert_rowid(), 12, 998);",
             "Integrity 12 Power",
         ),
         violation(
             "effects_with_values_in_names",
-            "INSERT INTO effects (name, text_template, amount_count) VALUES ('+7 Integrity Probe', '+7 Integrity Probe', 0); \
+            "INSERT INTO effects (name, text_template) VALUES ('+7 Integrity Probe', '+7 Integrity Probe'); \
              INSERT INTO item_effects (item_id, effect_id, sort_order) \
              VALUES ((SELECT MIN(id) FROM items), last_insert_rowid(), 998);",
             "+7 Integrity Probe",
         ),
         violation(
             "effects_with_unused_default",
-            "INSERT INTO effects (name, text_template, amount_count, default_value)
-             VALUES ('Integrity Default', 'Default {1}', 1, 7);
+            "INSERT INTO effects (name, text_template, default_value)
+             VALUES ('Integrity Default', 'Default {1}', 7);
              INSERT INTO item_effects (item_id, effect_id, sort_order)
              VALUES ((SELECT MIN(id) FROM items), last_insert_rowid(), 998);",
             "Integrity Default",
         ),
         violation(
             "effect_link_amount_counts",
-            "INSERT INTO effects (name, text_template, amount_count)
-             VALUES ('Integrity Excess Amount', 'No amount', 0);
+            "INSERT INTO effects (name, text_template)
+             VALUES ('Integrity Excess Amount', 'No amount');
              INSERT INTO item_effects (item_id, effect_id, value, sort_order)
              VALUES ((SELECT MIN(id) FROM items), last_insert_rowid(), 1, 998);",
             "Integrity Excess Amount",
@@ -308,44 +308,69 @@ fn injected_violations() -> Vec<InjectedViolation> {
         ),
         violation(
             "effect_template_placeholders",
-            "UPDATE effects SET text_template = 'No amount', description_template = NULL
+            "UPDATE effects SET text_template = 'Only {2}', description_template = NULL
              WHERE name = 'Improved Deception';",
             "Improved Deception",
         ),
         violation(
             "effect_bonus_type_sources",
             "UPDATE item_effects SET bonus_type_id = NULL WHERE effect_id =
+             (SELECT id FROM effects WHERE name = 'Improved Deception');",
+            "Improved Deception",
+        ),
+        violation(
+            "stat_links_have_bonus_types",
+            "UPDATE item_effects SET bonus_type_id = NULL WHERE effect_id =
              (SELECT id FROM effects WHERE name = 'Strength');",
             "Strength",
         ),
         violation(
+            "stat_links_missing_value",
+            "UPDATE item_effects SET value = NULL WHERE effect_id =
+             (SELECT id FROM effects WHERE name = 'Strength');",
+            "Strength",
+        ),
+        violation(
+            "stat_links_with_prose_only_second_value",
+            "UPDATE item_effects SET value2 = 42 WHERE effect_id =
+             (SELECT id FROM effects WHERE name = 'Strength') AND value IS NOT NULL;",
+            "Strength",
+        ),
+        violation(
+            "effects_with_dice_but_no_damage_rows",
+            "INSERT INTO modifiers (source_kind, source_id, sort_order, effect_type, effect_id, dice_number, dice_sides)
+             VALUES ('item', (SELECT MIN(id) FROM items), 998, 'IntegrityDice',
+             (SELECT id FROM effects WHERE name = 'Improved Deception'), '[1]', '[6]');",
+            "Improved Deception",
+        ),
+        violation(
             "effect_families_have_owners",
-            "INSERT INTO effects (name, text_template, amount_count)
-             VALUES ('Integrity Orphan Effect', 'Integrity Orphan Effect', 0);",
+            "INSERT INTO effects (name, text_template)
+             VALUES ('Integrity Orphan Effect', 'Integrity Orphan Effect');",
             "Integrity Orphan Effect",
         ),
         violation(
-            "effect_ladders_have_steps",
-            "INSERT INTO effect_ladders (name) VALUES ('Integrity Ladder');",
-            "Integrity Ladder",
+            "effect_tier_groups_have_steps",
+            "INSERT INTO effect_tier_groups (name) VALUES ('Integrity Tier Group');",
+            "Integrity Tier Group",
         ),
         violation(
             "effect_names_have_no_em_dash",
-            "INSERT INTO effects (name, text_template, amount_count)
-             VALUES ('Integrity — Prose', 'Integrity prose', 0);
+            "INSERT INTO effects (name, text_template)
+             VALUES ('Integrity — Prose', 'Integrity prose');
              INSERT INTO item_effects (item_id, effect_id, sort_order)
              VALUES ((SELECT MIN(id) FROM items), last_insert_rowid(), 997);",
             "Integrity — Prose",
         ),
         violation(
             "set_tier_lines_do_not_repeat_structured_facts",
-            "INSERT INTO effects (name, text_template, amount_count)
+            "INSERT INTO effects (name, text_template)
              SELECT 'Integrity Duplicate Tier Fact',
                     REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(e.text_template,
                     '+{1}', '{1}'), '+{2}', '{2}'),
                     '{1}', printf('%+d', COALESCE(te.value, e.default_value))),
                     '{2}', COALESCE(printf('%+d', COALESCE(te.value2, e.default_value2)), '')),
-                    '%b1', COALESCE(bt.name, '')), 0
+                    '%b1', COALESCE(bt.name, ''))
              FROM set_bonus_tier_effects te JOIN effects e ON e.id = te.effect_id
              LEFT JOIN bonus_types bt ON bt.id = te.bonus_type_id
              WHERE EXISTS (SELECT 1 FROM effect_bonuses es WHERE es.effect_id = e.id)
@@ -355,7 +380,7 @@ fn injected_violations() -> Vec<InjectedViolation> {
              FROM set_bonus_tier_effects te JOIN effects e ON e.id = te.effect_id
              WHERE EXISTS (SELECT 1 FROM effect_bonuses es WHERE es.effect_id = e.id)
              ORDER BY te.tier_id, te.sort_order LIMIT 1;",
-            "Inevitable Balance",
+            "Fried & Frozen Frenzy",
         ),
         violation("tables_not_empty", "DELETE FROM guild_buffs;", "guild_buffs"),
         violation(
@@ -427,7 +452,7 @@ fn injected_violations() -> Vec<InjectedViolation> {
         violation("quests_without_loot", PROBE_QUEST_INSERT, "Integrity Probe Quest"),
         violation(
             "unreferenced_stats",
-            "INSERT INTO stats (name, category) VALUES ('Integrity Probe Stat', 'probe');",
+            "INSERT INTO effects (name, is_stat, category) VALUES ('Integrity Probe Stat', 1, 'probe');",
             "Integrity Probe Stat",
         ),
         violation(
@@ -604,7 +629,10 @@ fn tables_not_empty_prints_the_tables_allowed_to_be_empty() {
     let outcome = report.outcome("tables_not_empty").unwrap();
 
     assert_eq!(outcome.status, CheckStatus::Passed, "{report}");
-    assert!(outcome.notes.iter().any(|note| note == "allowed empty: corrections, race_feat_slots"), "{report}");
+    assert!(
+        outcome.notes.iter().any(|note| note == "allowed empty: corrections, effect_damage, race_feat_slots"),
+        "{report}"
+    );
 
     let options_allowing_nothing = IntegrityOptions { allowed_empty_tables: Vec::new(), ..fixture_options() };
     let strict_report = integrity_report(&db, &options_allowing_nothing).unwrap();

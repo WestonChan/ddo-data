@@ -36,17 +36,20 @@
       "bonus_type": "Artifact",
       "bonuses": [
         {
+          "amount_source": "owner",
           "bonus_type": "Artifact",
+          "scale": 1.0,
           "stat": "Physical Resistance Rating",
           "stat_category": "defensive",
           "value": 10
         }
       ],
+      "damage": [],
       "description": null,
-      "effect_id": 1796,
-      "ladder": null,
+      "effect_id": 14,
       "name": "Physical Resistance Rating",
       "text": "Artifact Physical Resistance Rating +10",
+      "tier": null,
       "value": 10,
       "value2": null
     }

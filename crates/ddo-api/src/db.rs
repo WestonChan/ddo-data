@@ -235,20 +235,24 @@ pub(crate) fn bonuses_via(
     owner_column: &str,
     owner_id: i64,
 ) -> Result<Vec<Value>, ApiError> {
-    let source_amount = "CASE es.amount_from WHEN 0 THEN es.constant WHEN 1 THEN COALESCE(j.value, e.default_value) ELSE COALESCE(j.value2, e.default_value2) END";
-    let scaled_amount = ddo_model::effect_amount::rounded_amount_sql(source_amount, "es.scale", "es.rounding");
+    let owner_kind = match junction_table {
+        "feat_effects" => "feat",
+        _ => unreachable!("bonus rendering is only used for feats"),
+    };
     let sql = format!(
         "SELECT e.id, e.text_template, e.description_template, s.name AS stat, s.category AS stat_category,
                 bt.name AS bonus_type,
-                {scaled_amount} AS value,
-                CASE WHEN es.amount_from = 2 THEN {scaled_amount} END AS value2,
+                ob.amount AS value,
+                CASE WHEN es.amount_from = 2 THEN ob.amount END AS value2,
                 COALESCE(j.value, e.default_value) AS template_value,
                 COALESCE(j.value2, e.default_value2) AS template_value2
            FROM {junction_table} j JOIN effects e ON e.id = j.effect_id
-           JOIN effect_bonuses es ON es.effect_id = e.id JOIN stats s ON s.id = es.stat_id
-           LEFT JOIN bonus_types bt ON bt.id = COALESCE(es.bonus_type_id, j.bonus_type_id)
+           JOIN owner_bonuses ob ON ob.owner_kind = '{owner_kind}' AND ob.owner_id = j.{owner_column}
+                AND ob.effect_link_order = j.sort_order
+           JOIN effects s ON s.id = ob.stat_id
+           LEFT JOIN effect_bonuses es ON es.effect_id = e.id AND es.stat_id = ob.stat_id
+           LEFT JOIN bonus_types bt ON bt.id = ob.bonus_type_id
           WHERE j.{owner_column} = ?1
-            AND ({source_amount}) IS NOT NULL
           ORDER BY j.sort_order, es.sort_order"
     );
     let mut bonuses = json_rows(db, &sql, [owner_id])?;
@@ -282,28 +286,52 @@ pub(crate) fn effects_via<P: Params>(
     owner_condition: &str,
     selector_params: P,
 ) -> Result<BTreeMap<i64, Vec<Value>>, ApiError> {
-    let stat_value = effect_bonus_value_sql("j", "e", "es");
+    let owner_kind = match junction_table {
+        "item_effects" => "item",
+        "augment_effects" => "augment",
+        "set_bonus_tier_effects" => "set_bonus_tier",
+        "feat_effects" => "feat",
+        "item_augment_slot_option_effects" => "item_augment_slot_option",
+        _ => unreachable!("unknown effect owner table"),
+    };
     let sql = format!(
         "SELECT j.{owner_column} AS owner_id, j.sort_order, e.id AS effect_id, e.name,
-                e.text_template, e.description_template, j.value, j.value2,
+                COALESCE(e.text_template, '%b1 ' || e.name || ' +{{1}}') AS text_template,
+                e.description_template, j.value, j.value2,
                 COALESCE(j.value, e.default_value) AS template_value,
                 COALESCE(j.value2, e.default_value2) AS template_value2,
                 link_type.name AS template_bonus_type,
                 CASE WHEN INSTR(e.text_template, '%b1') > 0 OR INSTR(e.description_template, '%b1') > 0 THEN link_type.name END AS bonus_type,
-                l.id AS ladder_id, l.name AS ladder_name, e.ladder_rank,
+                tg.name AS tier_group, e.tier AS tier_rank,
                 s.name AS stat, s.category AS stat_category,
-                COALESCE(stat_type.name, link_type.name) AS stat_bonus_type,
-                {stat_value} AS stat_value
+                stat_type.name AS stat_bonus_type, ob.amount AS stat_value,
+                ob.amount_source, ob.scale
            FROM {junction_table} j JOIN effects e ON e.id = j.effect_id
-           LEFT JOIN effect_ladders l ON l.id = e.ladder_id
+           LEFT JOIN effect_tier_groups tg ON tg.id = e.tier_group_id
            LEFT JOIN bonus_types link_type ON link_type.id = j.bonus_type_id
-           LEFT JOIN effect_bonuses es ON es.effect_id = e.id
-           LEFT JOIN stats s ON s.id = es.stat_id
-           LEFT JOIN bonus_types stat_type ON stat_type.id = es.bonus_type_id
+           LEFT JOIN owner_bonuses ob ON ob.owner_kind = '{owner_kind}' AND ob.owner_id = j.{owner_column}
+                AND ob.effect_link_order = j.sort_order
+           LEFT JOIN effects s ON s.id = ob.stat_id
+           LEFT JOIN bonus_types stat_type ON stat_type.id = ob.bonus_type_id
           WHERE {owner_condition}
-          ORDER BY j.{owner_column}, j.sort_order, es.sort_order"
+          ORDER BY j.{owner_column}, j.sort_order, ob.stat_id"
     );
     let rows = json_rows(db, &sql, selector_params)?;
+    let damage_rows = json_rows(
+        db,
+        "SELECT ed.effect_id, t.name AS trigger, dt.name AS damage_type, ed.dice_number,
+                ed.dice_sides, ed.dice_bonus, ed.amount_from, ed.scale
+           FROM effect_damage ed JOIN triggers t ON t.id = ed.trigger_id
+           JOIN damage_types dt ON dt.id = ed.damage_type_id
+          ORDER BY ed.effect_id, ed.sort_order",
+        [],
+    )?;
+    let mut damage_by_effect: HashMap<i64, Vec<Value>> = HashMap::new();
+    for mut damage in damage_rows {
+        let effect_id = damage["effect_id"].as_i64().unwrap_or_default();
+        damage.as_object_mut().expect("damage row").remove("effect_id");
+        damage_by_effect.entry(effect_id).or_default().push(damage);
+    }
     let mut by_owner: BTreeMap<i64, Vec<Value>> = BTreeMap::new();
     let mut position_by_link: HashMap<(i64, i64), usize> = HashMap::new();
     for row in rows {
@@ -313,11 +341,11 @@ pub(crate) fn effects_via<P: Params>(
         let position = match position_by_link.get(&(owner_id, sort_order)) {
             Some(position) => *position,
             None => {
-                let ladder = if row["ladder_id"].is_null() {
+                let tier = if row["tier_group"].is_null() {
                     Value::Null
                 } else {
                     serde_json::json!({
-                        "id": row["ladder_id"], "name": row["ladder_name"], "rank": row["ladder_rank"]
+                        "group": row["tier_group"], "rank": row["tier_rank"]
                     })
                 };
                 let text = render_effect_template(row["text_template"].as_str().unwrap_or(""), &row);
@@ -327,9 +355,10 @@ pub(crate) fn effects_via<P: Params>(
                     .unwrap_or(Value::Null);
                 let position = lines.len();
                 lines.push(serde_json::json!({
-                    "effect_id": row["effect_id"], "name": row["name"], "ladder": ladder,
+                    "effect_id": row["effect_id"], "name": row["name"], "tier": tier,
                     "text": text, "description": description, "value": row["value"], "value2": row["value2"],
-                    "bonus_type": row["bonus_type"], "bonuses": []
+                    "bonus_type": row["bonus_type"], "bonuses": [],
+                    "damage": damage_by_effect.get(&row["effect_id"].as_i64().unwrap_or_default()).cloned().unwrap_or_default()
                 }));
                 position_by_link.insert((owner_id, sort_order), position);
                 position
@@ -338,20 +367,12 @@ pub(crate) fn effects_via<P: Params>(
         if !row["stat_value"].is_null() {
             lines[position]["bonuses"].as_array_mut().expect("bonus array").push(serde_json::json!({
                 "stat": row["stat"], "stat_category": row["stat_category"],
-                "bonus_type": row["stat_bonus_type"], "value": row["stat_value"]
+                "bonus_type": row["stat_bonus_type"], "value": row["stat_value"],
+                "amount_source": row["amount_source"], "scale": row["scale"]
             }));
         }
     }
     Ok(by_owner)
-}
-
-pub(crate) fn effect_bonus_value_sql(link: &str, effect: &str, bonus: &str) -> String {
-    let source = format!(
-        "CASE {bonus}.amount_from WHEN 0 THEN {bonus}.constant WHEN 1 THEN COALESCE({link}.value, {effect}.default_value) ELSE COALESCE({link}.value2, {effect}.default_value2) END"
-    );
-    let rounded =
-        ddo_model::effect_amount::rounded_amount_sql(&source, &format!("{bonus}.scale"), &format!("{bonus}.rounding"));
-    format!("CASE WHEN {source} IS NOT NULL THEN {rounded} END")
 }
 
 pub(crate) fn effects_for_owner(

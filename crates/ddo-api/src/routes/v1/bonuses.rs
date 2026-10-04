@@ -1,6 +1,4 @@
-use crate::db::{
-    effect_bonus_value_sql, json_row, json_rows, paged_query, paged_table_json, ListPage, TableListSource, WhereClause,
-};
+use crate::db::{json_row, json_rows, paged_query, paged_table_json, ListPage, TableListSource, WhereClause};
 use crate::error::ApiError;
 use crate::query::{declare_list_parameters, declare_query_parameters, ApiFilterQuery, ApiQuery, ListQuery};
 use crate::state::AppState;
@@ -13,43 +11,7 @@ use utoipa_axum::router::OpenApiRouter;
 use utoipa_axum::routes;
 
 pub(super) fn router() -> OpenApiRouter<AppState> {
-    OpenApiRouter::new()
-        .routes(routes!(stats))
-        .routes(routes!(stat_detail))
-        .routes(routes!(bonus_types))
-        .routes(routes!(effects))
-        .routes(routes!(effect_detail))
-}
-
-const STATS_SORT_FIELDS: &[(&str, &str)] =
-    &[("name", "listed.name"), ("id", "listed.id"), ("category", "listed.category")];
-
-declare_list_parameters!(StatsParameters, STATS_SORT_FIELDS, "");
-
-#[utoipa::path(
-    get,
-    path = "/v1/stats",
-    tag = "bonuses",
-    summary = "List stats",
-    description = "Lists stats and their categories for effect and bonus lookups.",
-    params(StatsParameters),
-    responses((status = 200, description = "Paged stats", body = crate::routes::v1::response_schemas::StatsPageResponse),
-        (status = 400, description = "Invalid query", body = crate::error::ErrorBody))
-)]
-async fn stats(State(state): State<AppState>, ApiQuery(query, _): ApiQuery) -> Result<Json<Value>, ApiError> {
-    paged_table_json(
-        state,
-        query,
-        TableListSource {
-            select_sql: "SELECT id, name, category FROM stats",
-            rows_key: "stats",
-            name_column: "listed.name",
-            default_order: "listed.id",
-            sortable_fields: STATS_SORT_FIELDS,
-            flag_columns: &[],
-        },
-    )
-    .await
+    OpenApiRouter::new().routes(routes!(bonus_types)).routes(routes!(effects)).routes(routes!(effect_detail))
 }
 
 const BONUS_TYPES_SORT_FIELDS: &[(&str, &str)] =
@@ -92,13 +54,11 @@ declare_query_parameters! {
 const EFFECT_KINDS: [&str; 2] = ["stat", "effect"];
 
 const EFFECT_VOCABULARY_SQL: &str = "
-    SELECT e.id, e.name, 'effect' AS kind, '/v1/effects/' || e.id AS detail_path,
+    SELECT e.id, e.name, CASE WHEN e.is_stat = 1 THEN 'stat' ELSE 'effect' END AS kind,
+           '/v1/effects/' || e.id AS detail_path,
            c.item_count, c.augment_count, c.set_count
-      FROM effects e JOIN effect_vocabulary_counts c ON c.kind = 'effect' AND c.id = e.id
-    UNION ALL
-    SELECT s.id, s.name, 'stat' AS kind, '/v1/stats/' || s.id AS detail_path,
-           c.item_count, c.augment_count, c.set_count
-      FROM stats s JOIN effect_vocabulary_counts c ON c.kind = 'stat' AND c.id = s.id";
+      FROM effects e JOIN effect_vocabulary_counts c ON c.id = e.id
+       AND c.kind = CASE WHEN e.is_stat = 1 THEN 'stat' ELSE 'effect' END";
 
 const EFFECT_TYPES_SQL: &str = "
     SELECT v.kind, v.id, bt.name, v.item_count
@@ -153,7 +113,7 @@ async fn effects(
                 let search_placeholder = where_clause.add_bound_condition(
                     "(instr(lower(listed.name), lower(?)) > 0 OR
                       (listed.kind = 'effect' AND EXISTS (
-                          SELECT 1 FROM effect_bonuses eb JOIN stats s ON s.id = eb.stat_id
+                          SELECT 1 FROM effect_bonuses eb JOIN effects s ON s.id = eb.stat_id
                            WHERE eb.effect_id = listed.id AND instr(lower(s.name), lower(?)) > 0)))",
                     search_text.to_string(),
                 );
@@ -211,37 +171,49 @@ fn carrier_pages(
     id: i64,
     pages: BacklinkPages,
 ) -> Result<(Value, Value, Value), ApiError> {
-    let (match_join, match_id, carrier_columns) = if kind == "effect" {
-        ("", "j.effect_id", "j.value, j.value2".to_string())
+    let carrier_columns = if kind == "effect" {
+        "NULL AS effect_id, NULL AS effect, NULL AS bonus_type,
+         COALESCE(ob.amount, j.value) AS value, j.value2, ob.amount_source, ob.scale"
+            .to_string()
     } else {
-        (
-            "JOIN effect_bonuses es ON es.effect_id = j.effect_id
-             JOIN effects e ON e.id = j.effect_id
-             LEFT JOIN bonus_types stat_type ON stat_type.id = es.bonus_type_id
-             LEFT JOIN bonus_types link_type ON link_type.id = j.bonus_type_id",
-            "es.stat_id",
-            format!(
-                "e.id AS effect_id, e.name AS effect, COALESCE(stat_type.name, link_type.name) AS bonus_type, {} AS value",
-                effect_bonus_value_sql("j", "e", "es")
-            ),
-        )
+        "e.id AS effect_id, e.name AS effect, bt.name AS bonus_type, ob.amount AS value,
+         NULL AS value2, ob.amount_source, ob.scale"
+            .to_string()
+    };
+    let match_id = if kind == "effect" { "j.effect_id" } else { "ob.stat_id" };
+    let join_for = |owner_kind: &str, owner_column: &str| -> String {
+        let join_kind = if kind == "effect" { "LEFT JOIN" } else { "JOIN" };
+        let mut joined = format!(
+            "{join_kind} owner_bonuses ob ON ob.owner_kind = '{owner_kind}'
+             AND ob.owner_id = j.{owner_column} AND ob.effect_link_order = j.sort_order"
+        );
+        if kind == "stat" {
+            joined.push_str(
+                " JOIN effects e ON e.id = COALESCE(ob.via_effect_id, ob.stat_id)
+                  LEFT JOIN bonus_types bt ON bt.id = ob.bonus_type_id",
+            );
+        }
+        joined
     };
     let current_items = if pages.include_legacy == Some(true) { "" } else { "WHERE NOT i.is_legacy" };
     let items_sql = format!(
         "SELECT i.id, i.name, {carrier_columns}, {match_id} AS match_id
            FROM item_effects j JOIN items i ON i.id = j.item_id {match_join}
-          {current_items} ORDER BY i.name, j.sort_order"
+          {current_items} ORDER BY i.name, j.sort_order",
+        match_join = join_for("item", "item_id")
     );
     let augments_sql = format!(
         "SELECT a.id, a.name, {carrier_columns}, {match_id} AS match_id
            FROM augment_effects j JOIN augments a ON a.id = j.augment_id {match_join}
-          ORDER BY a.name, j.sort_order"
+          ORDER BY a.name, j.sort_order",
+        match_join = join_for("augment", "augment_id")
     );
     let tiers_sql = format!(
         "SELECT t.id, s.id AS set_id, s.name AS set_name, t.equipped_count, {carrier_columns}, {match_id} AS match_id,
                 s.name || ' (' || t.equipped_count || ')' AS name
            FROM set_bonus_tier_effects j JOIN set_bonus_tiers t ON t.id = j.tier_id
-           JOIN set_bonuses s ON s.id = t.set_id {match_join} ORDER BY s.name, t.equipped_count, j.sort_order"
+           JOIN set_bonuses s ON s.id = t.set_id {match_join} ORDER BY s.name, t.equipped_count, j.sort_order",
+        match_join = join_for("set_bonus_tier", "tier_id")
     );
     let page =
         |sql: String, limit: Option<i64>, offset: Option<i64>, distinct_total: bool| -> Result<ListPage, ApiError> {
@@ -277,8 +249,8 @@ fn carrier_pages(
 
 #[utoipa::path(
     get, path = "/v1/effects/{id}", tag = "bonuses", summary = "Get an effect",
-    description = "Returns a family, its stat rules and ladder, and paged item, augment and set-tier links.",
-    params(("id" = i64, Path, description = "Family id from an effect-kind vocabulary row."),
+    description = "Returns an effect or stat, its bonus and damage rules, tier group and paged carriers.",
+    params(("id" = i64, Path, description = "Effect or stat id from the vocabulary."),
         ("items_limit" = Option<i64>, Query, description = "Maximum item links in this page."),
         ("items_offset" = Option<i64>, Query, description = "Item links to skip."),
         ("augments_limit" = Option<i64>, Query, description = "Maximum augment links in this page."),
@@ -286,8 +258,8 @@ fn carrier_pages(
         ("set_tiers_limit" = Option<i64>, Query, description = "Maximum set-tier links in this page."),
         ("set_tiers_offset" = Option<i64>, Query, description = "Set-tier links to skip."),
         ("include_legacy" = Option<bool>, Query, description = "Use true to include legacy items in carrier links.")),
-    responses((status = 200, description = "Family and paged carriers", body = crate::routes::v1::response_schemas::EffectsDetailResponse),
-        (status = 404, description = "No family has this id", body = crate::error::ErrorBody))
+    responses((status = 200, description = "Effect and paged carriers", body = crate::routes::v1::response_schemas::EffectsDetailResponse),
+        (status = 404, description = "No effect has this id", body = crate::error::ErrorBody))
 )]
 async fn effect_detail(
     State(state): State<AppState>,
@@ -298,70 +270,50 @@ async fn effect_detail(
         .read_db(move |db| {
             let mut family = json_row(
                 db,
-                "SELECT id, name, text_template, description_template, amount_count, wiki_url, stacking_note,
-                    default_value, default_value2, ladder_id, ladder_rank FROM effects WHERE id = ?1",
+                "SELECT id, name, is_stat, category, text_template, description_template, wiki_url,
+                    default_value, default_value2, tier_group_id, tier FROM effects WHERE id = ?1",
                 [id],
             )?;
-            family["stats"] = Value::Array(json_rows(
+            family["kind"] = Value::String(if family["is_stat"] == 1 { "stat" } else { "effect" }.to_string());
+            family.as_object_mut().expect("effect object").remove("is_stat");
+            family["bonuses"] = Value::Array(json_rows(
                 db,
                 "SELECT s.name AS stat, bt.name AS bonus_type, es.amount_from, es.constant, es.scale, es.rounding
-               FROM effect_bonuses es JOIN stats s ON s.id = es.stat_id
+               FROM effect_bonuses es JOIN effects s ON s.id = es.stat_id
                LEFT JOIN bonus_types bt ON bt.id = es.bonus_type_id
               WHERE es.effect_id = ?1 ORDER BY es.sort_order",
                 [id],
             )?);
-            let ladder_id = family["ladder_id"].as_i64();
-            let ladder_rank = family["ladder_rank"].clone();
-            family.as_object_mut().expect("family object").remove("ladder_id");
-            family.as_object_mut().expect("family object").remove("ladder_rank");
-            family["ladder"] = if let Some(ladder_id) = ladder_id {
-                let mut ladder = json_row(db, "SELECT id, name FROM effect_ladders WHERE id = ?1", [ladder_id])?;
-                ladder["steps"] = Value::Array(json_rows(
+            family["damage"] = Value::Array(json_rows(
+                db,
+                "SELECT t.name AS trigger, dt.name AS damage_type, ed.dice_number, ed.dice_sides,
+                        ed.dice_bonus, ed.amount_from, ed.scale FROM effect_damage ed
+                  JOIN triggers t ON t.id = ed.trigger_id JOIN damage_types dt ON dt.id = ed.damage_type_id
+                 WHERE ed.effect_id = ?1 ORDER BY ed.sort_order",
+                [id],
+            )?);
+            let tier_group_id = family["tier_group_id"].as_i64();
+            let tier_rank = family["tier"].clone();
+            family.as_object_mut().expect("effect object").remove("tier_group_id");
+            family["tier"] = if let Some(tier_group_id) = tier_group_id {
+                let mut tier =
+                    json_row(db, "SELECT name AS `group` FROM effect_tier_groups WHERE id = ?1", [tier_group_id])?;
+                tier["steps"] = Value::Array(json_rows(
                     db,
-                    "SELECT id, name, ladder_rank AS rank FROM effects WHERE ladder_id = ?1 ORDER BY ladder_rank",
-                    [ladder_id],
+                    "SELECT id, name, tier AS rank FROM effects WHERE tier_group_id = ?1 ORDER BY tier",
+                    [tier_group_id],
                 )?);
-                ladder["rank"] = ladder_rank;
-                ladder
+                tier["rank"] = tier_rank;
+                tier
             } else {
                 Value::Null
             };
-            let (items, augments, set_tiers) = carrier_pages(db, "effect", id, pages)?;
+            let kind = family["kind"].as_str().unwrap_or("effect");
+            let (items, augments, set_tiers) = carrier_pages(db, kind, id, pages)?;
             family["items"] = items;
             family["augments"] = augments;
             family["set_tiers"] = set_tiers;
             Ok(Json(family))
-        })
-        .await
-}
-
-#[utoipa::path(
-    get, path = "/v1/stats/{id}", tag = "bonuses", summary = "Get a stat",
-    description = "Returns a stat with paged item, augment and set-tier links through its families.",
-    params(("id" = i64, Path, description = "Stat id from a stat-kind vocabulary row."),
-        ("items_limit" = Option<i64>, Query, description = "Maximum item links in this page."),
-        ("items_offset" = Option<i64>, Query, description = "Item links to skip."),
-        ("augments_limit" = Option<i64>, Query, description = "Maximum augment links in this page."),
-        ("augments_offset" = Option<i64>, Query, description = "Augment links to skip."),
-        ("set_tiers_limit" = Option<i64>, Query, description = "Maximum set-tier links in this page."),
-        ("set_tiers_offset" = Option<i64>, Query, description = "Set-tier links to skip."),
-        ("include_legacy" = Option<bool>, Query, description = "Use true to include legacy items in carrier links.")),
-    responses((status = 200, description = "Stat and paged carriers", body = crate::routes::v1::response_schemas::StatsDetailResponse),
-        (status = 404, description = "No stat has this id", body = crate::error::ErrorBody))
-)]
-async fn stat_detail(
-    State(state): State<AppState>,
-    Path(id): Path<i64>,
-    ApiFilterQuery(pages): ApiFilterQuery<BacklinkPages>,
-) -> Result<Json<Value>, ApiError> {
-    state
-        .read_db(move |db| {
-            let mut stat = json_row(db, "SELECT id, name, category FROM stats WHERE id = ?1", [id])?;
-            let (items, augments, set_tiers) = carrier_pages(db, "stat", id, pages)?;
-            stat["items"] = items;
-            stat["augments"] = augments;
-            stat["set_tiers"] = set_tiers;
-            Ok(Json(stat))
         })
         .await
 }

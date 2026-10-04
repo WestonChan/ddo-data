@@ -130,7 +130,7 @@ pub const DAMAGE_TYPES: &[DamageType] = &[
 pub fn insert_all(db: &Connection) -> rusqlite::Result<()> {
     for stat in STATS {
         db.execute(
-            "INSERT OR REPLACE INTO stats (id, name, category) VALUES (?1, ?2, ?3)",
+            "INSERT OR REPLACE INTO effects (id, name, is_stat, category) VALUES (?1, ?2, 1, ?3)",
             params![stat.id, stat.name, stat.category.as_str()],
         )?;
     }

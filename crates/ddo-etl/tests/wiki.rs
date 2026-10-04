@@ -1230,10 +1230,9 @@ fn drops_a_wiki_item_maetrim_already_carries_and_reports_it() {
     let bonus_names = |db: &Connection| {
         string_column(
             db,
-            "SELECT s.name || ' +' || CASE es.amount_from WHEN 0 THEN es.constant WHEN 1 THEN ie.value ELSE ie.value2 END
-             FROM item_effects ie JOIN effect_bonuses es ON es.effect_id = ie.effect_id
-             JOIN stats s ON s.id = es.stat_id JOIN items i ON i.id = ie.item_id
-             WHERE i.name = 'Five Rings' ORDER BY ie.sort_order, es.sort_order",
+            "SELECT s.name || ' +' || ob.amount
+             FROM owner_bonuses ob JOIN effects s ON s.id = ob.stat_id JOIN items i ON i.id = ob.owner_id
+             WHERE ob.owner_kind = 'item' AND i.name = 'Five Rings' ORDER BY ob.effect_link_order, ob.stat_id",
         )
     };
     assert_eq!(bonus_names(&with), bonus_names(&without));
@@ -1291,17 +1290,17 @@ fn writes_a_new_wiki_item_with_its_stats_bonuses_effects_sockets_set_and_quests(
     );
     assert_eq!(
         item_column(
-            "SELECT s.name || '|' || bt.name || '|' || CASE es.amount_from WHEN 0 THEN es.constant WHEN 1 THEN ie.value ELSE ie.value2 END
-               FROM item_effects ie JOIN effect_bonuses es ON es.effect_id = ie.effect_id
-               JOIN stats s ON s.id = es.stat_id JOIN bonus_types bt ON bt.id = COALESCE(es.bonus_type_id, ie.bonus_type_id)
-              WHERE ie.item_id = ?item ORDER BY ie.sort_order, es.sort_order"
+            "SELECT s.name || '|' || bt.name || '|' || ob.amount
+               FROM owner_bonuses ob JOIN effects s ON s.id = ob.stat_id
+               JOIN bonus_types bt ON bt.id = ob.bonus_type_id
+              WHERE ob.owner_kind = 'item' AND ob.owner_id = ?item ORDER BY ob.effect_link_order, ob.stat_id"
         ),
         ["Strength|Enhancement|15", "Doublestrike|Insight|5"]
     );
     let effect_lines = item_column(
         "SELECT e.name || '|' || COALESCE(e.text_template || ': ' || e.description_template, '')
            FROM item_effects ie JOIN effects e ON e.id = ie.effect_id
-           WHERE ie.item_id = ?item AND NOT EXISTS
+           WHERE ie.item_id = ?item AND e.is_stat = 0 AND NOT EXISTS
              (SELECT 1 FROM effect_bonuses es WHERE es.effect_id = e.id) ORDER BY ie.sort_order",
     );
     assert_eq!(effect_lines[0], "Test Oozing Hunger|Test Oozing Hunger: Test description: on hit, the target oozes.");
@@ -1357,10 +1356,9 @@ fn a_wiki_item_effect_with_a_value_reuses_the_written_buff_family() {
     };
     let maetrim_family = identity_for("Grudgebearer's Plate").0;
     assert_eq!(identity_for(WIKI_AXE), (maetrim_family, Some(3), None));
-    let command_stat_count: i64 = db
-        .query_row("SELECT COUNT(*) FROM effect_bonuses WHERE effect_id = ?1", [maetrim_family], |row| row.get(0))
-        .unwrap();
-    assert_eq!(command_stat_count, 1);
+    let command_is_stat: i64 =
+        db.query_row("SELECT is_stat FROM effects WHERE id = ?1", [maetrim_family], |row| row.get(0)).unwrap();
+    assert_eq!(command_is_stat, 1);
 }
 
 #[test]
@@ -1491,7 +1489,7 @@ fn reuses_maetrims_effect_whose_name_differs_only_by_case_spaces_and_hyphens() {
             "SELECT e.name || '|' || COALESCE(e.text_template || ': ' || e.description_template, '')
              FROM item_effects ie JOIN effects e ON e.id = ie.effect_id
              JOIN items i ON i.id = ie.item_id WHERE i.name = '{WIKI_AXE}'
-             AND NOT EXISTS (SELECT 1 FROM effect_bonuses es WHERE es.effect_id = e.id)
+             AND e.is_stat = 0 AND NOT EXISTS (SELECT 1 FROM effect_bonuses es WHERE es.effect_id = e.id)
              ORDER BY ie.sort_order"
         ),
     );
@@ -1502,7 +1500,7 @@ fn reuses_maetrims_effect_whose_name_differs_only_by_case_spaces_and_hyphens() {
     assert!(effect_lines[2].starts_with("Feather Falling|Feather Falling: This item"), "{effect_lines:?}");
     assert_eq!(effect_lines[3], "Rune Arm Imbue - Acid II|");
     let effect_count = |db: &Connection| -> i64 {
-        db.query_row("SELECT COUNT(*) FROM effects e WHERE NOT EXISTS (SELECT 1 FROM effect_bonuses es WHERE es.effect_id = e.id)", [], |r| r.get(0)).unwrap()
+        db.query_row("SELECT COUNT(*) FROM effects e WHERE e.is_stat = 0 AND NOT EXISTS (SELECT 1 FROM effect_bonuses es WHERE es.effect_id = e.id)", [], |r| r.get(0)).unwrap()
     };
     assert_eq!(effect_count(&db), effect_count(&without) + 1, "only Test Oozing Hunger is new");
 }
@@ -1524,7 +1522,7 @@ fn reuses_maetrims_effect_whose_name_differs_only_by_colons_commas_periods_and_a
         &format!(
             "SELECT e.name FROM item_effects ie JOIN effects e ON e.id = ie.effect_id
                JOIN items i ON i.id = ie.item_id WHERE i.name = '{WIKI_AXE}'
-               AND NOT EXISTS (SELECT 1 FROM effect_bonuses es WHERE es.effect_id = e.id)
+               AND e.is_stat = 0 AND NOT EXISTS (SELECT 1 FROM effect_bonuses es WHERE es.effect_id = e.id)
                ORDER BY ie.sort_order"
         ),
     );
@@ -1534,7 +1532,7 @@ fn reuses_maetrims_effect_whose_name_differs_only_by_colons_commas_periods_and_a
         "{effect_names:?}"
     );
     let effect_count = |db: &Connection| -> i64 {
-        db.query_row("SELECT COUNT(*) FROM effects e WHERE NOT EXISTS (SELECT 1 FROM effect_bonuses es WHERE es.effect_id = e.id)", [], |r| r.get(0)).unwrap()
+        db.query_row("SELECT COUNT(*) FROM effects e WHERE e.is_stat = 0 AND NOT EXISTS (SELECT 1 FROM effect_bonuses es WHERE es.effect_id = e.id)", [], |r| r.get(0)).unwrap()
     };
     assert_eq!(effect_count(&db), effect_count(&without) + 1, "only Test Oozing Hunger is new");
 }

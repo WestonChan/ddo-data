@@ -61,8 +61,8 @@ fn refresh_writes_a_trimmed_example_for_every_documented_route() {
         assert_arrays_trimmed(&example, documented_example.file_name);
         assert!(example_text.ends_with("}\n") || example_text.ends_with("]\n"), "{}", documented_example.file_name);
     }
-    let stats_text = std::fs::read_to_string(examples_dir.join("stats.json")).unwrap();
-    assert!(stats_text.starts_with("{\n  \"limit\": 100,"), "two-space indentation: {stats_text}");
+    let stats_text = std::fs::read_to_string(examples_dir.join("effects.json")).unwrap();
+    assert!(stats_text.starts_with("{\n  \"effects\": ["), "two-space indentation: {stats_text}");
 }
 
 #[test]

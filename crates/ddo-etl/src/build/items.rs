@@ -259,7 +259,9 @@ impl TableWriter<'_> {
                         EffectOwner::Item,
                         item_id,
                         effect_id,
-                        uses_link_type.then_some(first_type).flatten(),
+                        (uses_link_type || self.effects.family(effect_id).is_some_and(|family| family.is_stat))
+                            .then_some(first_type)
+                            .flatten(),
                         (
                             (count >= 1).then_some(buff.value).flatten(),
                             (count >= 2).then_some(buff.second_value).flatten(),

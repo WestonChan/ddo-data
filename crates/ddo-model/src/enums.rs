@@ -981,6 +981,7 @@ pub enum CorrectionKind {
     AugmentBonus,
     ItemBonus,
     ItemEffect,
+    EffectDamage,
     ItemSocket,
     SocketLabel,
 }
@@ -1003,6 +1004,7 @@ impl CorrectionKind {
         Self::AugmentBonus,
         Self::ItemBonus,
         Self::ItemEffect,
+        Self::EffectDamage,
         Self::ItemSocket,
         Self::SocketLabel,
     ];
@@ -1025,6 +1027,7 @@ impl CorrectionKind {
             Self::AugmentBonus => "augment_bonus",
             Self::ItemBonus => "item_bonus",
             Self::ItemEffect => "item_effect",
+            Self::EffectDamage => "effect_damage",
             Self::ItemSocket => "item_socket",
             Self::SocketLabel => "socket_label",
         }
@@ -1046,6 +1049,7 @@ impl CorrectionKind {
             Self::Spell => "spells",
             Self::AugmentBonus => "augments",
             Self::ItemBonus | Self::ItemEffect | Self::ItemSocket => "items",
+            Self::EffectDamage => "effects",
             Self::SocketLabel => "augment_slot_types",
         }
     }

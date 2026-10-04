@@ -5,7 +5,7 @@ use crate::enums::{
 };
 use std::sync::LazyLock;
 
-pub const SCHEMA_VERSION: i64 = 23;
+pub const SCHEMA_VERSION: i64 = 24;
 
 fn sql_in_clause<'a>(allowed_values: impl Iterator<Item = &'a str>) -> String {
     let quoted_values: Vec<String> = allowed_values.map(|value| format!("'{value}'")).collect();
@@ -48,6 +48,42 @@ static DDL: LazyLock<String> = LazyLock::new(|| {
     );
     let quest_series_quest_columns = "quest_id   INTEGER NOT NULL REFERENCES quests(id) ON DELETE CASCADE,
     sort_order INTEGER NOT NULL,";
+    let owner_links = [
+        ("item", "item_effects", "item_id"),
+        ("augment", "augment_effects", "augment_id"),
+        ("set_bonus_tier", "set_bonus_tier_effects", "tier_id"),
+        ("feat", "feat_effects", "feat_id"),
+        ("item_augment_slot_option", "item_augment_slot_option_effects", "option_id"),
+    ]
+    .iter()
+    .map(|(kind, table, owner_column)| {
+        format!("SELECT '{kind}' AS owner_kind, {owner_column} AS owner_id, effect_id, bonus_type_id, value, value2, sort_order AS effect_link_order FROM {table}")
+    })
+    .collect::<Vec<_>>()
+    .join(" UNION ALL ");
+    let amount_expression = "CASE eb.amount_from WHEN 0 THEN eb.constant WHEN 1 THEN COALESCE(j.value, e.default_value) ELSE COALESCE(j.value2, e.default_value2) END";
+    let rounded_amount = crate::effect_amount::rounded_amount_sql(amount_expression, "eb.scale", "eb.rounding");
+    let owner_bonuses_sql = format!(
+        "CREATE VIEW IF NOT EXISTS owner_bonuses AS
+         WITH links AS ({owner_links})
+         SELECT j.owner_kind, j.owner_id, e.id AS stat_id, j.bonus_type_id,
+                COALESCE(j.value, e.default_value) AS amount, NULL AS via_effect_id,
+                CASE WHEN j.value IS NOT NULL THEN 'owner' ELSE 'default' END AS amount_source,
+                1.0 AS scale, j.effect_link_order
+           FROM links j JOIN effects e ON e.id = j.effect_id
+          WHERE e.is_stat = 1 AND COALESCE(j.value, e.default_value) IS NOT NULL
+         UNION ALL
+         SELECT j.owner_kind, j.owner_id, eb.stat_id, COALESCE(eb.bonus_type_id, j.bonus_type_id),
+                {rounded_amount} AS amount, e.id AS via_effect_id,
+                CASE WHEN eb.amount_from = 0 THEN 'constant'
+                     WHEN eb.amount_from = 1 AND j.value IS NULL THEN 'default'
+                     WHEN eb.amount_from = 2 AND j.value2 IS NULL THEN 'default'
+                     ELSE 'owner' END AS amount_source,
+                eb.scale, j.effect_link_order
+           FROM links j JOIN effects e ON e.id = j.effect_id
+           JOIN effect_bonuses eb ON eb.effect_id = e.id
+          WHERE e.is_stat = 0 AND ({amount_expression}) IS NOT NULL;"
+    );
     format!(
         r#"
 PRAGMA foreign_keys = ON;
@@ -64,12 +100,6 @@ CREATE TABLE IF NOT EXISTS dataset_version (
 );
 
 -- Seed tables ----------------------------------------------------------------
-
-CREATE TABLE IF NOT EXISTS stats (
-    id       INTEGER PRIMARY KEY,
-    name     TEXT    NOT NULL UNIQUE,
-    category TEXT    NOT NULL
-);
 
 CREATE TABLE IF NOT EXISTS bonus_types (
     id               INTEGER PRIMARY KEY,
@@ -105,6 +135,12 @@ CREATE TABLE IF NOT EXISTS damage_types (
     id       INTEGER PRIMARY KEY,
     name     TEXT    NOT NULL UNIQUE,
     category TEXT    NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS triggers (
+    id          INTEGER PRIMARY KEY,
+    name        TEXT NOT NULL UNIQUE CHECK (TRIM(name) <> ''),
+    description TEXT
 );
 
 -- Vocabularies filled from the data ------------------------------------------
@@ -225,7 +261,7 @@ CREATE TABLE IF NOT EXISTS item_armor_stats (
     adamantine_body     INTEGER                       -- <AdamantineBody>, docents only
 );
 
-CREATE TABLE IF NOT EXISTS effect_ladders (
+CREATE TABLE IF NOT EXISTS effect_tier_groups (
     id   INTEGER PRIMARY KEY,
     name TEXT NOT NULL UNIQUE CHECK (TRIM(name) <> '')
 );
@@ -233,29 +269,33 @@ CREATE TABLE IF NOT EXISTS effect_ladders (
 CREATE TABLE IF NOT EXISTS effects (
     id                   INTEGER PRIMARY KEY,
     name                 TEXT NOT NULL UNIQUE CHECK (TRIM(name) <> ''),
-    text_template        TEXT NOT NULL,
+    is_stat              INTEGER NOT NULL DEFAULT 0 CHECK (is_stat IN (0, 1)),
+    category             TEXT,
+    text_template        TEXT,
     description_template TEXT,
-    amount_count         INTEGER NOT NULL CHECK (amount_count BETWEEN 0 AND 2),
     default_value        INTEGER,
     default_value2       INTEGER,
     wiki_url             TEXT CHECK (wiki_url IS NULL OR wiki_url GLOB 'https://ddowiki.com/page/?*'),
-    stacking_note        TEXT,
-    ladder_id            INTEGER REFERENCES effect_ladders(id),
-    ladder_rank          INTEGER CHECK (ladder_rank IS NULL OR ladder_rank > 0),
-    CHECK (default_value IS NULL OR amount_count >= 1),
-    CHECK (default_value2 IS NULL OR amount_count >= 2),
-    CHECK ((ladder_id IS NULL) = (ladder_rank IS NULL)),
-    UNIQUE (ladder_id, ladder_rank)
+    tier_group_id        INTEGER REFERENCES effect_tier_groups(id),
+    tier                 INTEGER CHECK (tier IS NULL OR tier > 0),
+    CHECK ((is_stat = 1) = (category IS NOT NULL)),
+    CHECK (is_stat = 1 OR text_template IS NOT NULL),
+    CHECK (text_template IS NOT NULL OR (description_template IS NULL AND default_value IS NULL AND default_value2 IS NULL)),
+    CHECK (default_value IS NULL OR INSTR(COALESCE(text_template, '') || COALESCE(description_template, ''), '{{1}}') > 0),
+    CHECK (default_value2 IS NULL OR INSTR(COALESCE(text_template, '') || COALESCE(description_template, ''), '{{2}}') > 0),
+    CHECK ((tier_group_id IS NULL) = (tier IS NULL)),
+    UNIQUE (tier_group_id, tier)
 );
 
 CREATE TABLE IF NOT EXISTS effect_bonuses (
     effect_id     INTEGER NOT NULL REFERENCES effects(id) ON DELETE CASCADE,
-    stat_id        INTEGER NOT NULL REFERENCES stats(id),
+    stat_id        INTEGER NOT NULL REFERENCES effects(id),
     bonus_type_id  INTEGER REFERENCES bonus_types(id),
     amount_from    INTEGER NOT NULL CHECK (amount_from BETWEEN 0 AND 2),
     constant       INTEGER,
     scale          REAL NOT NULL DEFAULT 1,
     rounding       TEXT NOT NULL DEFAULT 'down' CHECK (rounding IN ('down', 'up', 'nearest')),
+    trigger_id     INTEGER REFERENCES triggers(id),
     sort_order     INTEGER NOT NULL,
     CHECK ((amount_from = 0) = (constant IS NOT NULL)),
     CHECK (scale > 0),
@@ -265,6 +305,34 @@ CREATE TABLE IF NOT EXISTS effect_bonuses (
 CREATE INDEX IF NOT EXISTS idx_effect_bonuses_stat ON effect_bonuses(stat_id);
 CREATE UNIQUE INDEX IF NOT EXISTS idx_effect_bonuses_identity
     ON effect_bonuses(effect_id, stat_id, COALESCE(bonus_type_id, -1));
+
+CREATE TRIGGER IF NOT EXISTS effect_bonuses_stat_target_insert BEFORE INSERT ON effect_bonuses
+BEGIN
+    SELECT RAISE(ABORT, 'effect bonus target must be a stat')
+      WHERE NOT EXISTS (SELECT 1 FROM effects WHERE id = NEW.stat_id AND is_stat = 1);
+    SELECT RAISE(ABORT, 'stat effects carry bonuses directly')
+      WHERE EXISTS (SELECT 1 FROM effects WHERE id = NEW.effect_id AND is_stat = 1);
+END;
+CREATE TRIGGER IF NOT EXISTS effect_bonuses_stat_target_update BEFORE UPDATE ON effect_bonuses
+BEGIN
+    SELECT RAISE(ABORT, 'effect bonus target must be a stat')
+      WHERE NOT EXISTS (SELECT 1 FROM effects WHERE id = NEW.stat_id AND is_stat = 1);
+    SELECT RAISE(ABORT, 'stat effects carry bonuses directly')
+      WHERE EXISTS (SELECT 1 FROM effects WHERE id = NEW.effect_id AND is_stat = 1);
+END;
+
+CREATE TABLE IF NOT EXISTS effect_damage (
+    effect_id      INTEGER NOT NULL REFERENCES effects(id) ON DELETE CASCADE,
+    trigger_id     INTEGER NOT NULL REFERENCES triggers(id),
+    damage_type_id INTEGER NOT NULL REFERENCES damage_types(id),
+    dice_number    INTEGER NOT NULL CHECK (dice_number > 0),
+    dice_sides     INTEGER NOT NULL CHECK (dice_sides > 0),
+    dice_bonus     INTEGER NOT NULL DEFAULT 0,
+    amount_from    INTEGER NOT NULL DEFAULT 0 CHECK (amount_from BETWEEN 0 AND 2),
+    scale          REAL NOT NULL DEFAULT 1 CHECK (scale > 0),
+    sort_order     INTEGER NOT NULL,
+    PRIMARY KEY (effect_id, sort_order)
+);
 
 CREATE TABLE IF NOT EXISTS effect_vocabulary_counts (
     kind          TEXT NOT NULL CHECK (kind IN ('effect', 'stat')),
@@ -452,6 +520,7 @@ CREATE INDEX IF NOT EXISTS idx_sources_event ON sources(event_id) WHERE event_id
 -- Effect bonus rows come from mapped effects; modifiers keep the upstream mechanics.
 CREATE TABLE IF NOT EXISTS modifiers (
     id                   INTEGER PRIMARY KEY,
+    effect_id            INTEGER REFERENCES effects(id),
     source_kind          TEXT    NOT NULL CHECK (source_kind {modifier_source}),
     source_id            INTEGER NOT NULL,
     sort_order           INTEGER NOT NULL,             -- <Effect> position within the source
@@ -610,10 +679,21 @@ CREATE TABLE IF NOT EXISTS races (
 
 CREATE TABLE IF NOT EXISTS race_ability_modifiers (
     race_id  INTEGER NOT NULL REFERENCES races(id) ON DELETE CASCADE,
-    stat_id  INTEGER NOT NULL REFERENCES stats(id),   -- <Strength>+2 etc.
+    stat_id  INTEGER NOT NULL REFERENCES effects(id),   -- <Strength>+2 etc.
     modifier INTEGER NOT NULL,
     PRIMARY KEY (race_id, stat_id)
 );
+
+CREATE TRIGGER IF NOT EXISTS race_ability_stat_target_insert BEFORE INSERT ON race_ability_modifiers
+BEGIN
+    SELECT RAISE(ABORT, 'race ability target must be a stat')
+      WHERE NOT EXISTS (SELECT 1 FROM effects WHERE id = NEW.stat_id AND is_stat = 1);
+END;
+CREATE TRIGGER IF NOT EXISTS race_ability_stat_target_update BEFORE UPDATE ON race_ability_modifiers
+BEGIN
+    SELECT RAISE(ABORT, 'race ability target must be a stat')
+      WHERE NOT EXISTS (SELECT 1 FROM effects WHERE id = NEW.stat_id AND is_stat = 1);
+END;
 
 CREATE TABLE IF NOT EXISTS race_granted_feats (
     race_id    INTEGER NOT NULL REFERENCES races(id) ON DELETE CASCADE,
@@ -1030,6 +1110,7 @@ LEFT JOIN quests quest ON quest.id = COALESCE(loot.quest_id, chain_quest.quest_i
 LEFT JOIN crafting_systems crafting_system ON crafting_system.id = loot.crafting_system_id
 LEFT JOIN vendors vendor ON vendor.id = loot.vendor_id
 JOIN adventure_packs pack ON pack.id = COALESCE(loot.pack_id, quest.pack_id, crafting_system.pack_id, vendor.pack_id);
+{owner_bonuses_sql}
 "#
     )
 });

@@ -86,7 +86,7 @@ impl TableWriter<'_> {
         first_order: usize,
     ) -> Result<usize> {
         let owner = BonusOwner { kind: BonusOwnerKind::SetBonusTier, name: set_name, family: None };
-        let links = self.ensure_derived_effects(&owner, &tier.effects)?;
+        let links = self.ensure_derived_effects(&owner, ModifierSource::SetBonusTier, tier_id, &tier.effects)?;
         for (offset, link) in links.iter().enumerate() {
             self.effects.insert_link(
                 EffectOwner::SetBonusTier,

@@ -128,10 +128,10 @@ fn writes_a_new_wiki_augment_with_its_slots_bonuses_and_set() {
     );
     assert_eq!(
         augment_column(
-            "SELECT s.name || '|' || bt.name || '|' || CASE es.amount_from WHEN 0 THEN es.constant WHEN 1 THEN ae.value ELSE ae.value2 END
-               FROM augment_effects ae JOIN effect_bonuses es ON es.effect_id = ae.effect_id
-               JOIN stats s ON s.id = es.stat_id JOIN bonus_types bt ON bt.id = COALESCE(es.bonus_type_id, ae.bonus_type_id)
-              WHERE ae.augment_id = ?augment ORDER BY ae.sort_order, es.sort_order"
+            "SELECT s.name || '|' || bt.name || '|' || ob.amount
+               FROM owner_bonuses ob JOIN effects s ON s.id = ob.stat_id
+               JOIN bonus_types bt ON bt.id = ob.bonus_type_id
+              WHERE ob.owner_kind = 'augment' AND ob.owner_id = ?augment ORDER BY ob.effect_link_order, ob.stat_id"
         ),
         ["Strength|Insight|3", "Doublestrike|Enhancement|5"]
     );

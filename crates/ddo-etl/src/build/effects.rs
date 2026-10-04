@@ -1,7 +1,8 @@
 use crate::map::buff::split_display_title;
+use crate::xml::item_buffs::ItemBuffDefinition;
 use anyhow::{ensure, Result};
 use ddo_model::enums::BonusType;
-use ddo_model::stats::Stat;
+use ddo_model::stats::{Stat, STATS};
 use rusqlite::{params, Transaction};
 use std::collections::{BTreeMap, HashMap};
 
@@ -13,6 +14,7 @@ pub(super) struct CachedEffect {
     pub(super) description_template: Option<String>,
     pub(super) amount_count: i64,
     pub(super) uses_link_type: bool,
+    pub(super) is_stat: bool,
     default_value: Option<i64>,
     default_value2: Option<i64>,
     has_stats: bool,
@@ -30,7 +32,27 @@ pub(super) struct EffectCache<'a> {
 
 impl<'a> EffectCache<'a> {
     pub(super) fn new(transaction: &'a Transaction<'a>) -> Self {
-        Self { transaction, families_by_name: HashMap::new(), families_by_id: HashMap::new(), stats: HashMap::new() }
+        let mut families_by_name = HashMap::new();
+        let mut families_by_id = HashMap::new();
+        for stat in STATS {
+            families_by_name.insert(stat.name.to_string(), stat.id);
+            families_by_id.insert(
+                stat.id,
+                CachedEffect {
+                    id: stat.id,
+                    name: stat.name.to_string(),
+                    text_template: String::new(),
+                    description_template: None,
+                    amount_count: 1,
+                    uses_link_type: false,
+                    is_stat: true,
+                    default_value: None,
+                    default_value2: None,
+                    has_stats: true,
+                },
+            );
+        }
+        Self { transaction, families_by_name, families_by_id, stats: HashMap::new() }
     }
     pub(super) fn family_named(&self, name: &str) -> Option<&CachedEffect> {
         self.families_by_name.get(name).and_then(|id| self.families_by_id.get(id))
@@ -60,6 +82,21 @@ impl<'a> EffectCache<'a> {
         count: i64,
     ) -> Result<i64> {
         if let Some(existing) = self.family_named(name) {
+            if existing.is_stat && existing.text_template.is_empty() {
+                let stat_id = existing.id;
+                validate_templates(name, text_template, description_template, count)?;
+                self.transaction.execute(
+                    "UPDATE effects SET text_template = ?2, description_template = ?3 WHERE id = ?1",
+                    params![stat_id, text_template, description_template],
+                )?;
+                let family = self.families_by_id.get_mut(&stat_id).expect("seed stat cached");
+                family.text_template = text_template.to_string();
+                family.description_template = description_template.map(str::to_string);
+                family.amount_count = count;
+                family.uses_link_type = text_template.contains("%b1")
+                    || description_template.is_some_and(|template| template.contains("%b1"));
+                return Ok(stat_id);
+            }
             ensure!(
                 existing.text_template == text_template
                     && existing.description_template.as_deref() == description_template
@@ -71,8 +108,8 @@ impl<'a> EffectCache<'a> {
         ensure!(!name.contains(" — "), "effect family {name:?} contains an em dash; add a [names] entry");
         validate_templates(name, text_template, description_template, count)?;
         self.transaction.execute(
-            "INSERT INTO effects (name, text_template, description_template, amount_count) VALUES (?1, ?2, ?3, ?4)",
-            params![name, text_template, description_template, count],
+            "INSERT INTO effects (name, text_template, description_template) VALUES (?1, ?2, ?3)",
+            params![name, text_template, description_template],
         )?;
         let id = self.transaction.last_insert_rowid();
         self.families_by_name.insert(name.to_string(), id);
@@ -86,6 +123,7 @@ impl<'a> EffectCache<'a> {
                 amount_count: count,
                 uses_link_type: text_template.contains("%b1")
                     || description_template.is_some_and(|template| template.contains("%b1")),
+                is_stat: false,
                 default_value: None,
                 default_value2: None,
                 has_stats: false,
@@ -114,6 +152,14 @@ impl<'a> EffectCache<'a> {
         }
         let family = self.family(family_id).expect("family is cached before its stat rows");
         ensure!(amount_from <= family.amount_count, "effect {family_id} stat {:?} reads beyond its slots", stat.name);
+        if family.is_stat {
+            ensure!(
+                family_id == stat.id && amount_from == 1 && constant.is_none(),
+                "direct stat effect {family_id} must read its own first value"
+            );
+            self.stats.insert(key, (amount_from, constant));
+            return Ok(());
+        }
         ensure!(
             family.uses_link_type == bonus_type.is_none(),
             "effect {family_id} stat {:?} has its bonus type at the wrong level",
@@ -151,7 +197,8 @@ impl<'a> EffectCache<'a> {
                 "effect family {family_name:?} has conflicting text {rendered_text:?}; add a [names] entry"
             );
         }
-        self.ensure_family(family_name, &text_template, description_template.as_deref(), 0)
+        let count = amount_count(&text_template, description_template.as_deref());
+        self.ensure_family(family_name, &text_template, description_template.as_deref(), count)
     }
 
     pub(super) fn set_defaults(&mut self, family_id: i64, defaults: (Option<i64>, Option<i64>)) -> Result<()> {
@@ -180,7 +227,7 @@ impl<'a> EffectCache<'a> {
         ensure!(!family.has_stats, "structured family text cannot be replaced");
         validate_templates(&family.name, text_template, None, 0)?;
         self.transaction.execute(
-            "UPDATE effects SET text_template = ?2, description_template = NULL, amount_count = 0 WHERE id = ?1",
+            "UPDATE effects SET text_template = ?2, description_template = NULL WHERE id = ?1",
             params![family_id, text_template],
         )?;
         family.text_template = text_template.to_string();
@@ -189,6 +236,9 @@ impl<'a> EffectCache<'a> {
     }
 
     pub(super) fn delete_unowned(&mut self, family_id: i64) -> Result<()> {
+        if self.family(family_id).is_some_and(|family| family.is_stat) {
+            return Ok(());
+        }
         let deleted = self.transaction.execute(
             "DELETE FROM effects WHERE id = ?1
              AND NOT EXISTS (SELECT 1 FROM item_effects WHERE effect_id = ?1)
@@ -217,7 +267,11 @@ impl<'a> EffectCache<'a> {
         sort_order: usize,
     ) -> Result<()> {
         let family = self.family(family_id).expect("every writer family is cached");
-        validate_link(&family.name, family.amount_count, family.uses_link_type, bonus_type, amounts)?;
+        if family.is_stat {
+            ensure!(bonus_type.is_some(), "stat link {:?} needs a bonus type", family.name);
+        } else {
+            validate_link(&family.name, family.amount_count, family.uses_link_type, bonus_type, amounts)?;
+        }
         write_link(self.transaction, owner, owner_id, family_id, bonus_type, amounts, sort_order)
     }
 }
@@ -317,10 +371,10 @@ pub(super) fn split_template(display_text: &str) -> (String, Option<String>) {
     }
 }
 
-pub(super) fn insert_ladders(effects: &EffectCache<'_>, ladders: &BTreeMap<String, Vec<String>>) -> Result<()> {
+pub(super) fn insert_tier_groups(effects: &EffectCache<'_>, tier_groups: &BTreeMap<String, Vec<String>>) -> Result<()> {
     let transaction = effects.transaction;
-    for (ladder_name, steps) in ladders {
-        ensure!(steps.len() >= 2, "ladder {ladder_name:?} needs at least two steps");
+    for (group_name, steps) in tier_groups {
+        ensure!(steps.len() >= 2, "tier group {group_name:?} needs at least two steps");
         let present_steps: Vec<_> = steps
             .iter()
             .filter_map(|step_name| effects.family_named(step_name).map(|family| (step_name, family.id)))
@@ -328,15 +382,53 @@ pub(super) fn insert_ladders(effects: &EffectCache<'_>, ladders: &BTreeMap<Strin
         if present_steps.len() < 2 {
             continue;
         }
-        transaction.execute("INSERT INTO effect_ladders (name) VALUES (?1)", [ladder_name])?;
-        let ladder_id = transaction.last_insert_rowid();
+        transaction.execute("INSERT INTO effect_tier_groups (name) VALUES (?1)", [group_name])?;
+        let group_id = transaction.last_insert_rowid();
         for (index, (step_name, family_id)) in present_steps.iter().enumerate() {
             let changed_rows = transaction.execute(
-                "UPDATE effects SET ladder_id = ?1, ladder_rank = ?2 WHERE id = ?3 AND ladder_id IS NULL",
-                params![ladder_id, index as i64 + 1, family_id],
+                "UPDATE effects SET tier_group_id = ?1, tier = ?2 WHERE id = ?3 AND tier_group_id IS NULL",
+                params![group_id, index as i64 + 1, family_id],
             )?;
-            ensure!(changed_rows == 1, "ladder {ladder_name:?} step {step_name:?} has no unique owned effect family");
+            ensure!(
+                changed_rows == 1,
+                "tier group {group_name:?} step {step_name:?} has no unique owned effect family"
+            );
         }
+    }
+    Ok(())
+}
+
+pub(super) fn insert_triggers(
+    transaction: &Transaction,
+    definitions: &HashMap<String, ItemBuffDefinition>,
+) -> Result<()> {
+    let mut names = std::collections::BTreeSet::from([
+        "On Hit".to_string(),
+        "On Critical Hit".to_string(),
+        "On Vorpal".to_string(),
+        "When Hit".to_string(),
+        "When Missed in Melee".to_string(),
+        "On Kill".to_string(),
+    ]);
+    for definition in definitions.values() {
+        for line in definition.display_text.lines() {
+            let candidate = line.split(':').next().unwrap_or("").trim();
+            if (candidate.starts_with("On ") || candidate.starts_with("When "))
+                && candidate.len() <= 50
+                && !candidate.eq_ignore_ascii_case("On items")
+                && !candidate.contains('.')
+            {
+                if candidate.to_ascii_lowercase().starts_with("on critical hits,") {
+                    names.insert("On Critical Hit".to_string());
+                } else if !candidate.contains(',') {
+                    let canonical = names.iter().find(|name| name.eq_ignore_ascii_case(candidate)).cloned();
+                    names.insert(canonical.unwrap_or_else(|| candidate.to_string()));
+                }
+            }
+        }
+    }
+    for name in names {
+        transaction.execute("INSERT INTO triggers (name) VALUES (?1)", [name])?;
     }
     Ok(())
 }
@@ -358,11 +450,7 @@ mod tests {
         let error = effects.ensure_text("Riposte", "Riposte").unwrap_err();
         assert!(error.to_string().contains("[names]"));
         assert!(stat_id > 0);
-        let linguistics_id = effects.ensure_text("Linguistics", "Linguistics 10%").unwrap();
-        let linguistics_name: String = transaction
-            .query_row("SELECT name FROM effects WHERE id = ?1", [linguistics_id], |row| row.get(0))
-            .unwrap();
-        assert_eq!(linguistics_name, "Linguistics");
+        assert!(effects.ensure_text("Linguistics", "Linguistics 10%").is_err());
     }
 
     #[test]

@@ -62,60 +62,6 @@ effects = [
 ]
 
 [[item]]
-name = "Epic Docent of Shadow (Level 20)"
-page = "https://ddowiki.com/page/Item:Epic_Docent_of_Shadow_%28level_20%29"
-read = "2026-09-29"
-slot = "Body"
-category = "Armor"
-item_type = "Docent"
-minimum_level = 20
-material = "Gem"
-description = "This docent is as dark as the night sky and almost seems to crawl visibly with moving shadows. It boosts the power of its wearer's negative energy magic, and grants a measure of necromantic protection against enemy attacks."
-drop_location = "The Night Revels, Turn in Docent of Shadow (level 16) and 150 Piece of Darkest Chocolate, 80 Spooky Almond, 40 Black Apple"
-bonuses = [
-  { stat = "Negative Spell Power", bonus_type = "Equipment", value = 90 },
-  { stat = "Poison Spell Power", bonus_type = "Equipment", value = 90 },
-  { stat = "Negative Spell Lore", bonus_type = "Equipment", value = 16 },
-  { stat = "Poison Spell Lore", bonus_type = "Equipment", value = 16 },
-  { stat = "Necromancy Spell Focus", bonus_type = "Equipment", value = 2 },
-]
-effects = [
-  { name = "Nightshield — 5 Charges", description = "Caster level: 14 Charges: 5 (5/day)" },
-  { name = "Superior False Life", description = "This item grants the wearer +40 maximum health." },
-  { name = "Boon of Undeath", description = "Undead take solace in the hate of others. Every time a character wearing a Boon of Undeath item is struck in combat, an Inflict Light Wounds spell will be cast on the character." },
-]
-
-[item.armor]
-armor_type = "Docent"
-
-[[item]]
-name = "Epic Docent of Shadow (Level 24)"
-page = "https://ddowiki.com/page/Item:Epic_Docent_of_Shadow_%28level_24%29"
-read = "2026-09-29"
-slot = "Body"
-category = "Armor"
-item_type = "Docent"
-minimum_level = 24
-material = "Gem"
-description = "This docent is as dark as the night sky and almost seems to crawl visibly with moving shadows. It boosts the power of its wearer's negative energy magic, and grants a measure of necromantic protection against enemy attacks."
-drop_location = "The Night Revels, Turn in Docent of Shadow (level 20) and 200 Piece of Darkest Chocolate, 100 Shadowy Caramel, 60 Pinch of Sinister Cinnamon"
-bonuses = [
-  { stat = "Negative Spell Power", bonus_type = "Equipment", value = 114 },
-  { stat = "Poison Spell Power", bonus_type = "Equipment", value = 114 },
-  { stat = "Negative Spell Lore", bonus_type = "Equipment", value = 16 },
-  { stat = "Poison Spell Lore", bonus_type = "Equipment", value = 16 },
-  { stat = "Necromancy Spell Focus", bonus_type = "Equipment", value = 3 },
-]
-effects = [
-  { name = "Nightshield — 5 Charges", description = "Caster level: 14 Charges: 5 (5/day)" },
-  { name = "Superior False Life", description = "This item grants the wearer +40 maximum health." },
-  { name = "Boon of Undeath", description = "Undead take solace in the hate of others. Every time a character wearing a Boon of Undeath item is struck in combat, an Inflict Light Wounds spell will be cast on the character." },
-]
-
-[item.armor]
-armor_type = "Docent"
-
-[[item]]
 name = "Epic Docent of Shadow (Level 28)"
 page = "https://ddowiki.com/page/Item:Epic_Docent_of_Shadow_%28level_28%29"
 read = "2026-09-29"

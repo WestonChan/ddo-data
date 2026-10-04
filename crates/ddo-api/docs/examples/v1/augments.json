@@ -12,17 +12,20 @@
           "bonus_type": "Artifact",
           "bonuses": [
             {
+              "amount_source": "owner",
               "bonus_type": "Artifact",
+              "scale": 1.0,
               "stat": "Abjuration Spell Focus",
               "stat_category": "magical",
               "value": 2
             }
           ],
+          "damage": [],
           "description": "2 Artifact bonus to the DC of Abjuration spells.",
-          "effect_id": 98,
-          "ladder": null,
+          "effect_id": 92,
           "name": "Abjuration Spell Focus",
           "text": "Artifact Abjuration Focus 2",
+          "tier": null,
           "value": 2,
           "value2": null
         }
@@ -56,17 +59,20 @@
           "bonus_type": "Artifact",
           "bonuses": [
             {
+              "amount_source": "owner",
               "bonus_type": "Artifact",
+              "scale": 1.0,
               "stat": "Abjuration Spell Focus",
               "stat_category": "magical",
               "value": 4
             }
           ],
+          "damage": [],
           "description": "4 Artifact bonus to the DC of Abjuration spells.",
-          "effect_id": 98,
-          "ladder": null,
+          "effect_id": 92,
           "name": "Abjuration Spell Focus",
           "text": "Artifact Abjuration Focus 4",
+          "tier": null,
           "value": 4,
           "value2": null
         }

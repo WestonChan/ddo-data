@@ -1,0 +1,9 @@
+[[correction]]
+kind = "effect_damage"
+name = "Acid II"
+field = "add"
+from = "null"
+to = { trigger = "On Hit", damage_type = "Acid", dice_number = 1, dice_sides = 7, dice_bonus = 1, amount_from = 0, scale = 1.0, sort_order = 0 }
+reason = "Stoneworker's Hammer deals 2 to 8 Acid damage on hit, represented as 1d7+1."
+source = "https://ddowiki.com/page/Item:Stoneworker%27s_Hammer"
+read = "2026-10-04"

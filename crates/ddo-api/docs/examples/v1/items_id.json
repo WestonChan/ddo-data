@@ -31,17 +31,20 @@
               "bonus_type": "Competence",
               "bonuses": [
                 {
+                  "amount_source": "owner",
                   "bonus_type": "Competence",
+                  "scale": 1.0,
                   "stat": "Attack Bonus",
                   "stat_category": "martial",
                   "value": 9
                 }
               ],
+              "damage": [],
               "description": "Provides a 9 Competence bonus to your attack rolls.",
-              "effect_id": 75,
-              "ladder": null,
+              "effect_id": 9,
               "name": "Attack Bonus",
               "text": "Competence Attack Bonus 9",
+              "tier": null,
               "value": 9,
               "value2": null
             }
@@ -90,17 +93,20 @@
               "bonus_type": "Resistance",
               "bonuses": [
                 {
+                  "amount_source": "owner",
                   "bonus_type": "Resistance",
+                  "scale": 1.0,
                   "stat": "Armor Class",
                   "stat_category": "defensive",
                   "value": 9
                 }
               ],
+              "damage": [],
               "description": "Passive: 9 Natural Armor Bonus to Armor Class.",
-              "effect_id": 149,
-              "ladder": null,
+              "effect_id": 409,
               "name": "Natural Armor",
               "text": "Resistance Natural Armor 9",
+              "tier": null,
               "value": 9,
               "value2": null
             }
@@ -149,17 +155,20 @@
               "bonus_type": "Resistance",
               "bonuses": [
                 {
+                  "amount_source": "owner",
                   "bonus_type": "Resistance",
+                  "scale": 1.0,
                   "stat": "Saving Throws",
                   "stat_category": "defensive",
                   "value": 9
                 }
               ],
+              "damage": [],
               "description": null,
-              "effect_id": 1828,
-              "ladder": null,
+              "effect_id": 161,
               "name": "Saving Throws",
               "text": "Resistance Saving Throws +9",
+              "tier": null,
               "value": 9,
               "value2": null
             }
@@ -228,17 +237,20 @@
       "bonus_type": "Enhancement",
       "bonuses": [
         {
+          "amount_source": "owner",
           "bonus_type": "Enhancement",
+          "scale": 1.0,
           "stat": "Charisma",
           "stat_category": "ability",
           "value": 8
         }
       ],
+      "damage": [],
       "description": "Passive: 8 Enhancement bonus to Charisma.",
-      "effect_id": 86,
-      "ladder": null,
+      "effect_id": 6,
       "name": "Charisma",
       "text": "Enhancement Charisma 8",
+      "tier": null,
       "value": 8,
       "value2": null
     }

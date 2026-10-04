@@ -26,7 +26,14 @@ impl TableWriter<'_> {
                 _ => unreachable!(),
             };
             let owner = BonusOwner { kind: bonus_owner_kind, name: &owner_name, family: None };
-            for (sort_order, link) in self.ensure_derived_effects(&owner, &effects)?.into_iter().enumerate() {
+            let modifier_source = match owner_kind {
+                EffectOwner::Feat => ModifierSource::Feat,
+                EffectOwner::ItemAugmentSlotOption => ModifierSource::ItemAugmentSlotOption,
+                _ => unreachable!(),
+            };
+            for (sort_order, link) in
+                self.ensure_derived_effects(&owner, modifier_source, owner_id, &effects)?.into_iter().enumerate()
+            {
                 self.effects.insert_link(
                     owner_kind,
                     owner_id,
@@ -116,10 +123,13 @@ impl TableWriter<'_> {
     pub(super) fn ensure_derived_effects(
         &mut self,
         owner: &BonusOwner,
+        modifier_source: ModifierSource,
+        owner_id: i64,
         effects: &[Effect],
     ) -> Result<Vec<DerivedEffectLink>> {
         let mut links = Vec::new();
-        for effect in effects {
+        for (source_order, effect) in effects.iter().enumerate() {
+            let first_link = links.len();
             for effect_type in &effect.types {
                 let mut single_type_effect = effect.clone();
                 single_type_effect.types = vec![effect_type.clone()];
@@ -155,6 +165,7 @@ impl TableWriter<'_> {
                     let existing = self
                         .effects
                         .family_named(&family_name)
+                        .filter(|family| !family.text_template.is_empty())
                         .map(|family| (family.id, family.amount_count, family.uses_link_type));
                     let (effect_id, count, uses_link_type) = match existing {
                         Some(family) => family,
@@ -195,10 +206,20 @@ impl TableWriter<'_> {
                     };
                     links.push(DerivedEffectLink {
                         effect_id,
-                        bonus_type: uses_link_type.then_some(bonus_type),
+                        bonus_type: (uses_link_type
+                            || self.effects.family(effect_id).is_some_and(|family| family.is_stat))
+                        .then_some(bonus_type),
                         value,
                         value2,
                     });
+                }
+            }
+            if let Some(first) = links.get(first_link) {
+                if links[first_link..].iter().all(|link| link.effect_id == first.effect_id) {
+                    self.transaction.execute(
+                        "UPDATE modifiers SET effect_id = ?4 WHERE source_kind = ?1 AND source_id = ?2 AND sort_order = ?3",
+                        params![modifier_source.as_str(), owner_id, source_order as i64, first.effect_id],
+                    )?;
                 }
             }
         }
@@ -213,6 +234,11 @@ impl TableWriter<'_> {
             return Ok(());
         };
         let family_name = format!("{stat_name} ({target})");
+        if effect.types[0] == "Weapon_CriticalRange" && effect.amount_type.as_deref() == Some("Stacks") {
+            let effect_id = self.effects.ensure_family(&family_name, &family_name, None, 0)?;
+            links.push(DerivedEffectLink { effect_id, bonus_type: None, value: None, value2: None });
+            return Ok(());
+        }
         let value = effect.simple_integer_amount();
         let text_template = format!("{stat_name} +{{1}} ({target})");
         let effect_id = self.effects.ensure_family(&family_name, &text_template, None, 1)?;

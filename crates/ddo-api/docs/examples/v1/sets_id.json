@@ -26,17 +26,20 @@
           "bonus_type": "Equipment",
           "bonuses": [
             {
+              "amount_source": "owner",
               "bonus_type": "Equipment",
+              "scale": 1.0,
               "stat": "Positive Spell Power",
               "stat_category": "magical",
               "value": 36
             }
           ],
+          "damage": [],
           "description": null,
-          "effect_id": 1803,
-          "ladder": null,
+          "effect_id": 33,
           "name": "Positive Spell Power",
           "text": "Equipment Positive Spell Power +36",
+          "tier": null,
           "value": 36,
           "value2": null
         }

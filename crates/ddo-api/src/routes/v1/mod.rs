@@ -53,12 +53,12 @@ use utoipa_axum::router::OpenApiRouter;
                        order and prefix `-` for descending; nulls sort last in either direction. Each route lists its \
                        sort fields, and invalid or unknown query keys return 400 naming the bad key and accepted keys.\n\n\
                        **Effects and bonuses.** An effect is one line of equipment text; its owner link carries values and \
-                       sometimes a bonus type, while its stat rows derive zero or more typed bonuses from those \
-                       amounts. Item, augment and set details render family templates into `effects` in owner \
-                       order. `/v1/effects` lists families and stats together; each row's `kind` and `detail_path` \
-                       identify the correct detail route, because `/v1/effects/{id}` and `/v1/stats/{id}` use \
-                       separate id spaces. Its `q` also finds effects through granted stat names, never stats through \
-                       effect names, and returns each effect once. Item `bonus` filters accept an effect, ladder or stat name, and \
+                       sometimes a bonus type, while its bonus rows derive zero or more typed bonuses from those \
+                       amounts. Stats are effects identified by `is_stat`; direct stat links carry a value and type. \
+                       Item, augment and set details render effect templates in owner order. `/v1/effects` lists \
+                       both kinds in one id space; each row's `kind` and `detail_path` identify the detail route. \
+                       Its `q` also finds effects through granted stat names, never stats through effect names, and \
+                       returns each effect once. Item `bonus` filters accept an effect, tier group or stat name, and \
                        `stat:bonus type` narrows a stat to that type. Family and stat detail page items, augments and \
                        set tiers independently with their own limit and offset parameters.\n\n\
                        **Bulk.** Download `/v1/dump.sqlite` once instead of paging. Icons are at \
@@ -71,10 +71,11 @@ use utoipa_axum::router::OpenApiRouter;
     components(schemas(
         version::VersionDatasetResponse,
         response_schemas::EffectStatBonus,
-        response_schemas::EffectLadderPosition,
+        response_schemas::EffectTierPosition,
         response_schemas::EffectLine,
-        response_schemas::EffectLadderDetail,
-        response_schemas::EffectLadderStep,
+        response_schemas::EffectTierDetail,
+        response_schemas::EffectTierStep,
+        response_schemas::EffectDamage,
         response_schemas::EffectSetTierCarrier,
         response_schemas::AdventurePacksPageResponseAdventurePacksEntry,
         response_schemas::AdventurePacksPageResponse,
@@ -120,7 +121,7 @@ use utoipa_axum::router::OpenApiRouter;
         response_schemas::EffectsDetailResponseItemsItemsEntry,
         response_schemas::EffectsDetailResponseItems,
         response_schemas::EffectsDetailResponseSetTiers,
-        response_schemas::EffectsDetailResponseStatsEntry,
+        response_schemas::EffectsDetailResponseBonusesEntry,
         response_schemas::EffectsDetailResponse,
         response_schemas::EnhancementTreesPageResponseEnhancementTreesEntryRequirementsEntry,
         response_schemas::EnhancementTreesPageResponseEnhancementTreesEntry,
@@ -228,15 +229,6 @@ use utoipa_axum::router::OpenApiRouter;
         response_schemas::StancesPageResponseStancesEntryRequirementsEntry,
         response_schemas::StancesPageResponseStancesEntry,
         response_schemas::StancesPageResponse,
-        response_schemas::StatsPageResponseStatsEntry,
-        response_schemas::StatsPageResponse,
-        response_schemas::StatsDetailResponseAugmentsAugmentsEntry,
-        response_schemas::StatsDetailResponseAugments,
-        response_schemas::StatsDetailResponseItemsItemsEntry,
-        response_schemas::StatsDetailResponseItems,
-        response_schemas::StatsDetailResponseSetTiersSetTiersEntry,
-        response_schemas::StatsDetailResponseSetTiers,
-        response_schemas::StatsDetailResponse,
         response_schemas::VendorsPageResponseVendorsEntry,
         response_schemas::VendorsPageResponse,
         response_schemas::VendorsDetailResponseItemsEntry,
@@ -267,8 +259,6 @@ struct ApiDoc;
 
 declare_response_examples! { "v1":
     ("/v1/version", "version"),
-    ("/v1/stats", "stats"),
-    ("/v1/stats/{id}", "stats_id"),
     ("/v1/bonus-types", "bonus-types"),
     ("/v1/effects", "effects"),
     ("/v1/effects/{id}", "effects_id"),

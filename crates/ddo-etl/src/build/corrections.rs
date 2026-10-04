@@ -3,7 +3,8 @@ use super::items::item_wiki_url;
 use super::wiki::folded_effect_name;
 use super::{BuildReport, StaleCorrection, StaleCorrectionCause};
 use crate::corrections::{
-    BonusAddition, CorrectableField, Correction, CorrectionValue, Corrections, FieldShape, TierAddition, NULL_SPELLING,
+    BonusAddition, CorrectableField, Correction, CorrectionValue, Corrections, DamageRow, FieldShape, TierAddition,
+    NULL_SPELLING,
 };
 use crate::map::buff::BuffResolver;
 use anyhow::{bail, ensure, Context, Result};
@@ -275,7 +276,41 @@ fn write_correction(
                 row_ids,
                 effect_name,
                 correction.to.added_effect_description(),
+                correction.to.added_effect_value(),
             )?;
+        }
+        FieldShape::DamageAddition => {
+            let CorrectionValue::Damage(damage) = &correction.to else { bail!("damage add needs a row") };
+            let trigger_id = id_named(transaction, "triggers", &damage.trigger)?
+                .with_context(|| format!("unknown trigger {:?}", damage.trigger))?;
+            let damage_type_id = id_named(transaction, "damage_types", &damage.damage_type)?
+                .with_context(|| format!("unknown damage type {:?}", damage.damage_type))?;
+            for effect_id in row_ids {
+                transaction.execute(
+                    "INSERT INTO effect_damage (effect_id, trigger_id, damage_type_id, dice_number, dice_sides,
+                     dice_bonus, amount_from, scale, sort_order) VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9)",
+                    params![
+                        effect_id,
+                        trigger_id,
+                        damage_type_id,
+                        damage.dice_number,
+                        damage.dice_sides,
+                        damage.dice_bonus,
+                        damage.amount_from,
+                        damage.scale,
+                        damage.sort_order
+                    ],
+                )?;
+            }
+        }
+        FieldShape::DamageRemoval => {
+            let CorrectionValue::Damage(damage) = &correction.from else { bail!("damage remove needs a row") };
+            for effect_id in row_ids {
+                transaction.execute(
+                    "DELETE FROM effect_damage WHERE effect_id = ?1 AND sort_order = ?2",
+                    params![effect_id, damage.sort_order],
+                )?;
+            }
         }
         FieldShape::SocketAddition => {
             let socket_label = correction.to.as_text().context("an add names the socket label in to")?;
@@ -359,6 +394,30 @@ fn maetrim_row_ids_named(transaction: &Transaction, correction: &Correction, row
     Ok(row_ids)
 }
 
+fn damage_row_is_present(transaction: &Transaction, effect_id: i64, damage: &DamageRow) -> Result<bool> {
+    let present = transaction.query_row(
+        "SELECT EXISTS (
+           SELECT 1 FROM effect_damage ed JOIN triggers t ON t.id = ed.trigger_id
+           JOIN damage_types dt ON dt.id = ed.damage_type_id
+          WHERE ed.effect_id = ?1 AND t.name = ?2 AND dt.name = ?3
+            AND ed.dice_number = ?4 AND ed.dice_sides = ?5 AND ed.dice_bonus = ?6
+            AND ed.amount_from = ?7 AND ed.scale = ?8 AND ed.sort_order = ?9)",
+        params![
+            effect_id,
+            damage.trigger,
+            damage.damage_type,
+            damage.dice_number,
+            damage.dice_sides,
+            damage.dice_bonus,
+            damage.amount_from,
+            damage.scale,
+            damage.sort_order
+        ],
+        |row| row.get(0),
+    )?;
+    Ok(present)
+}
+
 fn current_value(
     transaction: &Transaction,
     correction: &Correction,
@@ -370,7 +429,11 @@ fn current_value(
     let value_sql = match field.shape {
         FieldShape::Removal => return Ok(CorrectionValue::Integer(0)),
         FieldShape::Integer | FieldShape::BonusRemoval if correction.kind.corrects_a_bonus() => {
-            let matching_values = CorrectedBonus::of(transaction, correction)?.values_on(transaction, row_id)?;
+            let corrected_bonus = CorrectedBonus::of(transaction, correction)?;
+            let matching_values = corrected_bonus.values_on(transaction, row_id)?;
+            if matching_values.is_empty() {
+                return Ok(CorrectionValue::Text(NO_SUCH_BONUS.to_string()));
+            }
             if field.shape == FieldShape::BonusRemoval && correction.bonus_value.is_none() && matching_values.len() > 1 {
                 let value_texts: Vec<String> = matching_values.iter().map(CorrectionValue::to_json).collect();
                 bail!(
@@ -416,6 +479,19 @@ fn current_value(
                 .iter()
                 .any(|carried_effect_name| folded_effect_name(carried_effect_name) == folded_effect_name(effect_name));
             return Ok(if carries_effect { correction.to.clone() } else { CorrectionValue::Null });
+        }
+        FieldShape::DamageAddition | FieldShape::DamageRemoval => {
+            let damage = match field.shape {
+                FieldShape::DamageAddition => &correction.to,
+                FieldShape::DamageRemoval => &correction.from,
+                _ => unreachable!(),
+            };
+            let CorrectionValue::Damage(damage_row) = damage else { bail!("damage correction needs a row") };
+            return Ok(if damage_row_is_present(transaction, row_id, damage_row)? {
+                damage.clone()
+            } else {
+                CorrectionValue::Null
+            });
         }
         FieldShape::SocketAddition => {
             let socket_label = correction.to.as_text().context("an add names the socket label in to")?;
@@ -502,8 +578,8 @@ struct BonusToRepoint {
 impl CorrectedBonus {
     fn of(transaction: &Transaction, correction: &Correction) -> Result<Self> {
         let (stat_name, bonus_type_name) = correction.bonus_key().context("a bonus correction names its bonus")?;
-        let stat_id = id_named(transaction, "stats", stat_name)?
-            .with_context(|| format!("stat {stat_name:?} is not in the stats table; use its exact name"))?;
+        let stat_id = id_named(transaction, "effects", stat_name)?
+            .with_context(|| format!("stat {stat_name:?} is not an effect; use its exact name"))?;
         let bonus_type_id = match bonus_type_name {
             NULL_SPELLING => None,
             _ => Some(bonus_type_id_named(transaction, bonus_type_name)?),
@@ -521,9 +597,10 @@ impl CorrectedBonus {
         let effective_value = self.effective_value_sql();
         format!(
             "SELECT {selected_columns} FROM {table_name}
-              JOIN effect_bonuses es ON es.effect_id = {table_name}.effect_id
-              JOIN effects e ON e.id = es.effect_id
-              WHERE {table_name}.{owner_column} = ?1 AND es.stat_id = ?2 AND COALESCE(es.bonus_type_id, {table_name}.bonus_type_id) IS ?3
+              JOIN effects e ON e.id = {table_name}.effect_id
+              LEFT JOIN effect_bonuses es ON es.effect_id = e.id
+              WHERE {table_name}.{owner_column} = ?1 AND (es.stat_id = ?2 OR (e.is_stat = 1 AND e.id = ?2))
+                AND COALESCE(es.bonus_type_id, {table_name}.bonus_type_id) IS ?3
                 AND (?4 IS NULL OR {effective_value} = ?4)
               ORDER BY {table_name}.sort_order"
         )
@@ -532,10 +609,12 @@ impl CorrectedBonus {
     fn effective_value_sql(&self) -> String {
         let table_name = self.link_table.table_name;
         let source = format!(
-            "CASE es.amount_from WHEN 0 THEN es.constant WHEN 1 THEN COALESCE({table_name}.value, e.default_value)
+            "CASE WHEN e.is_stat = 1 THEN COALESCE({table_name}.value, e.default_value)
+             WHEN es.amount_from = 0 THEN es.constant WHEN es.amount_from = 1 THEN COALESCE({table_name}.value, e.default_value)
              ELSE COALESCE({table_name}.value2, e.default_value2) END"
         );
-        ddo_model::effect_amount::rounded_amount_sql(&source, "es.scale", "es.rounding")
+        let scaled = ddo_model::effect_amount::rounded_amount_sql(&source, "es.scale", "es.rounding");
+        format!("CASE WHEN e.is_stat = 1 THEN {source} ELSE {scaled} END")
     }
 
     fn stat_row_ids_on(&self, transaction: &Transaction, owner_id: i64) -> Result<Vec<i64>> {
@@ -574,10 +653,10 @@ impl CorrectedBonus {
         let effective_value = self.effective_value_sql();
         let mut statement = transaction.prepare(&format!(
             "SELECT COALESCE(es.bonus_type_id, {table_name}.bonus_type_id), bonus_types.name FROM {table_name}
-               JOIN effect_bonuses es ON es.effect_id = {table_name}.effect_id
-               JOIN effects e ON e.id = es.effect_id
+               JOIN effects e ON e.id = {table_name}.effect_id
+               LEFT JOIN effect_bonuses es ON es.effect_id = e.id
                LEFT JOIN bonus_types ON bonus_types.id = COALESCE(es.bonus_type_id, {table_name}.bonus_type_id)
-              WHERE {table_name}.{owner_column} = ?1 AND es.stat_id = ?2
+              WHERE {table_name}.{owner_column} = ?1 AND (es.stat_id = ?2 OR (e.is_stat = 1 AND e.id = ?2))
                 AND (?3 IS NULL OR {effective_value} = ?3)
               ORDER BY {table_name}.sort_order"
         ))?;
@@ -598,7 +677,7 @@ const NO_SUCH_BONUS: &str = "no such bonus";
 fn item_effect_names(transaction: &Transaction, item_id: i64) -> Result<Vec<String>> {
     let mut statement = transaction.prepare(
         "SELECT e.name FROM item_effects ie JOIN effects e ON e.id = ie.effect_id
-          WHERE ie.item_id = ?1 AND NOT EXISTS (SELECT 1 FROM effect_bonuses s WHERE s.effect_id = e.id)
+          WHERE ie.item_id = ?1 AND e.is_stat = 0 AND NOT EXISTS (SELECT 1 FROM effect_bonuses s WHERE s.effect_id = e.id)
           ORDER BY ie.sort_order",
     )?;
     let effect_names = statement.query_map(params![item_id], |r| r.get(0))?.collect::<rusqlite::Result<_>>()?;
@@ -616,7 +695,7 @@ fn repoint_bonuses(
     let BonusLinkTable { table_name, owner_column } = corrected_bonus.link_table;
     for owner_id in owner_ids {
         let mut statement = transaction.prepare(&corrected_bonus.matching_bonuses_sql(&format!(
-            "{table_name}.sort_order, {table_name}.effect_id, {table_name}.bonus_type_id, {table_name}.value, {table_name}.value2, es.amount_from"
+            "{table_name}.sort_order, {table_name}.effect_id, {table_name}.bonus_type_id, {table_name}.value, {table_name}.value2, COALESCE(es.amount_from, 1)"
         )))?;
         let matching_bonuses: Vec<BonusToRepoint> = statement
             .query_map(
@@ -636,6 +715,13 @@ fn repoint_bonuses(
         for BonusToRepoint { sort_order, effect_id, link_bonus_type_id, value, second_value, amount_from } in
             matching_bonuses
         {
+            if effects.family(effect_id).is_some_and(|family| family.is_stat) {
+                transaction.execute(
+                    &format!("UPDATE {table_name} SET bonus_type_id = COALESCE(?3, bonus_type_id), value = COALESCE(?4, value) WHERE {owner_column} = ?1 AND sort_order = ?2"),
+                    params![owner_id, sort_order, new_bonus_type_id, new_value],
+                )?;
+                continue;
+            }
             let stat_count: i64 = transaction.query_row(
                 "SELECT COUNT(*) FROM effect_bonuses WHERE effect_id = ?1",
                 [effect_id],
@@ -688,28 +774,20 @@ fn add_bonus(
     owner_ids: &[i64],
     bonus: &BonusAddition,
 ) -> Result<()> {
-    let _stat_id = id_named(transaction, "stats", &bonus.stat)?
-        .with_context(|| format!("stat {:?} is not in the stats table; use its exact name", bonus.stat))?;
+    let _stat_id = id_named(transaction, "effects", &bonus.stat)?
+        .with_context(|| format!("stat {:?} is not an effect; use its exact name", bonus.stat))?;
     let _bonus_type_id = bonus_type_id_named(transaction, &bonus.bonus_type)?;
     let bonus_type_name = &bonus.bonus_type;
-    let existing =
-        effects.family_named(&bonus.stat).map(|family| (family.id, family.amount_count, family.uses_link_type));
-    let effect_id = match existing {
-        Some((id, count, true)) if count >= 1 => id,
-        Some(_) => {
-            let name = format!("{} Bonus", bonus.stat);
-            let template = format!("%b1 {name} +{{1}}");
-            effects.ensure_family(&name, &template, None, 1)?
-        }
-        None => {
-            let name = bonus.stat.clone();
-            let template = format!("%b1 {name} +{{1}}");
-            effects.ensure_family(&name, &template, None, 1)?
+    let effect_id = match effects.family_named(&bonus.stat) {
+        Some(family) if !family.text_template.is_empty() => family.id,
+        _ => {
+            let template = format!("%b1 {} +{{1}}", bonus.stat);
+            effects.ensure_family(&bonus.stat, &template, None, 1)?
         }
     };
     let stat = ddo_model::stats::Stat::by_name(&bonus.stat).context("validated stat exists")?;
     let bonus_type = ddo_model::enums::BonusType::parse(bonus_type_name).context("validated bonus type exists")?;
-    effects.ensure_stat(effect_id, stat, None, 1, None, 0)?;
+    effects.ensure_stat(effect_id, stat, Some(bonus_type), 1, None, 0)?;
     let BonusLinkTable { table_name, owner_column } = link_table;
     for owner_id in owner_ids {
         let next_order: i64 = transaction.query_row(
@@ -777,8 +855,11 @@ fn corrected_effect(
         .find(|stat_row| stat_row.stat_id == corrected_stat_id)
         .map(|stat_row| stat_row.bonus_type_id)
         .context("corrected stat belongs to its effect")?;
-    let stat_name: String =
-        transaction.query_row("SELECT name FROM stats WHERE id = ?1", [corrected_stat_id], |row| row.get(0))?;
+    let stat_name: String = transaction.query_row(
+        "SELECT name FROM effects WHERE id = ?1 AND is_stat = 1",
+        [corrected_stat_id],
+        |row| row.get(0),
+    )?;
     let mut corrected_name = old_name.clone();
     let mut corrected_text = text_template;
     let mut corrected_description = description_template;
@@ -885,8 +966,8 @@ fn write_set_tier_descriptions(
 ) -> Result<()> {
     for tier_id in tier_ids {
         let has_structured: bool = transaction.query_row(
-            "SELECT EXISTS (SELECT 1 FROM set_bonus_tier_effects l
-             JOIN effect_bonuses s ON s.effect_id = l.effect_id WHERE l.tier_id = ?1)",
+            "SELECT EXISTS (SELECT 1 FROM set_bonus_tier_effects l JOIN effects e ON e.id = l.effect_id
+             WHERE l.tier_id = ?1 AND (e.is_stat = 1 OR EXISTS (SELECT 1 FROM effect_bonuses s WHERE s.effect_id = e.id)))",
             [tier_id],
             |row| row.get(0),
         )?;
@@ -974,6 +1055,7 @@ fn add_item_effect(
     item_ids: &[i64],
     effect_name: &str,
     description_of_new_effect: Option<&str>,
+    amount: Option<i64>,
 ) -> Result<()> {
     let effect_id = match matching_effect_id(effects, effect_name) {
         Some(effect_id) => effect_id,
@@ -991,7 +1073,7 @@ fn add_item_effect(
             [item_id],
             |row| row.get(0),
         )?;
-        effects.insert_link(EffectOwner::Item, *item_id, effect_id, None, (None, None), sort_order as usize)?;
+        effects.insert_link(EffectOwner::Item, *item_id, effect_id, None, (amount, None), sort_order as usize)?;
     }
     Ok(())
 }

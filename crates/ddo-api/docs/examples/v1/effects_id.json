@@ -1,78 +1,143 @@
 {
-  "amount_count": 1,
   "augments": {
     "augments": [
       {
-        "id": 910,
-        "name": "+11 Charisma Skills / +3 UMD, +151 Spell Points",
-        "value": 11,
+        "amount_source": "owner",
+        "bonus_type": "Quality",
+        "effect": "Strength",
+        "effect_id": 1,
+        "id": 1460,
+        "name": "+1 Quality Strength",
+        "scale": 1.0,
+        "value": 1,
         "value2": null
       },
       {
-        "id": 883,
-        "name": "+22 Charisma Skills / +6 UMD, +151 Spell Points",
-        "value": 22,
+        "amount_source": "owner",
+        "bonus_type": "Enhancement",
+        "effect": "Strength",
+        "effect_id": 1,
+        "id": 1479,
+        "name": "+15 Strength",
+        "scale": 1.0,
+        "value": 15,
         "value2": null
       },
       {
-        "id": 937,
-        "name": "+6 Charisma Skills / +1 UMD, +75 Spell Points",
-        "value": 6,
+        "amount_source": "owner",
+        "bonus_type": "Enhancement",
+        "effect": "Strength",
+        "effect_id": 1,
+        "id": 969,
+        "name": "+15 Strength (Enhancement)",
+        "scale": 1.0,
+        "value": 15,
         "value2": null
       }
     ],
     "limit": 100,
     "offset": 0,
-    "total": 16
+    "total": 51
   },
+  "bonuses": [],
+  "category": "ability",
+  "damage": [],
   "default_value": null,
   "default_value2": null,
-  "description_template": "Passive: {1} %b1 bonus to the Intimidate skill.",
+  "description_template": "Passive: {1} %b1 bonus to Strength.",
   "id": 1,
   "items": {
     "items": [
       {
-        "id": 2,
-        "name": "+1 Intimidating Dagger of Acid",
+        "amount_source": "constant",
+        "bonus_type": "Penalty",
+        "effect": "Curse of Weakness",
+        "effect_id": 326,
+        "id": 454,
+        "name": "-1 Quarterstaff of Lesser Halfling Bane",
+        "scale": 1.0,
+        "value": -1,
+        "value2": null
+      },
+      {
+        "amount_source": "owner",
+        "bonus_type": "Enhancement",
+        "effect": "Strength",
+        "effect_id": 1,
+        "id": 495,
+        "name": "Agarta's Belt",
+        "scale": 1.0,
         "value": 3,
         "value2": null
       },
       {
-        "id": 21,
-        "name": "+2 Intimidating Dagger of Paralyzing Acid",
-        "value": 3,
-        "value2": null
-      },
-      {
-        "id": 627,
-        "name": "Arm of the Aggressor",
-        "value": 9,
+        "amount_source": "owner",
+        "bonus_type": "Insight",
+        "effect": "Strength",
+        "effect_id": 1,
+        "id": 495,
+        "name": "Agarta's Belt",
+        "scale": 1.0,
+        "value": 1,
         "value2": null
       }
     ],
     "limit": 100,
     "offset": 0,
-    "total": 98
+    "total": 213
   },
-  "ladder": null,
-  "name": "Intimidate",
+  "kind": "stat",
+  "name": "Strength",
   "set_tiers": {
     "limit": 100,
     "offset": 0,
-    "set_tiers": [],
-    "total": 0
+    "set_tiers": [
+      {
+        "amount_source": "owner",
+        "bonus_type": "Artifact",
+        "effect": "Strength",
+        "effect_id": 1,
+        "equipped_count": 3,
+        "id": 250,
+        "name": "Brutal Blows (3)",
+        "scale": 1.0,
+        "set_id": 211,
+        "set_name": "Brutal Blows",
+        "value": 3,
+        "value2": null
+      },
+      {
+        "amount_source": "owner",
+        "bonus_type": "Quality",
+        "effect": "Strength",
+        "effect_id": 1,
+        "equipped_count": 2,
+        "id": 81,
+        "name": "Captain's Set (2)",
+        "scale": 1.0,
+        "set_id": 73,
+        "set_name": "Captain's Set",
+        "value": 1,
+        "value2": null
+      },
+      {
+        "amount_source": "owner",
+        "bonus_type": "Artifact",
+        "effect": "All Ability Scores",
+        "effect_id": 2000,
+        "equipped_count": 3,
+        "id": 280,
+        "name": "Devils' Infernal Dance (3)",
+        "scale": 1.0,
+        "set_id": 237,
+        "set_name": "Devils' Infernal Dance",
+        "value": 1,
+        "value2": null
+      }
+    ],
+    "total": 37
   },
-  "stacking_note": null,
-  "stats": [
-    {
-      "amount_from": 1,
-      "bonus_type": null,
-      "constant": null,
-      "rounding": "down",
-      "scale": 1.0,
-      "stat": "Intimidate"
-    }
-  ],
-  "text_template": "%b1 Intimidate {1}",
+  "text_template": "%b1 Strength {1}",
+  "tier": null,
   "wiki_url": null
 }

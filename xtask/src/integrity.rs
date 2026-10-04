@@ -115,19 +115,21 @@ pub const INTEGRITY_CHECKS: &[IntegrityCheck] = &[
         "effect_stat_amount_sources",
         "every stat row reads at most the amount slots its family carries",
         OffenderQuery::Sql(
-            "SELECT e.name, e.id, 'stat amount source exceeds family amount count' FROM effects e
-             JOIN effect_bonuses s ON s.effect_id = e.id WHERE s.amount_from > e.amount_count",
+            "SELECT e.name, e.id, 'bonus reads an absent amount slot' FROM effects e
+             JOIN effect_bonuses s ON s.effect_id = e.id
+             WHERE s.amount_from > CASE WHEN INSTR(COALESCE(e.text_template, '') || COALESCE(e.description_template, ''), '{2}') > 0 THEN 2
+             WHEN INSTR(COALESCE(e.text_template, '') || COALESCE(e.description_template, ''), '{1}') > 0 THEN 1 ELSE 0 END",
         ),
     ),
     IntegrityCheck::hard(
         "effect_template_placeholders",
-        "family templates carry exactly the amount placeholders allowed by amount_count",
+        "amount placeholders in a template are contiguous and use only converted tokens",
         OffenderQuery::Sql(
-            "SELECT e.name, e.id, 'amount placeholders differ from amount_count' FROM effects e
-             WHERE (INSTR(e.text_template || COALESCE(e.description_template, ''), '{1}') > 0) <> (e.amount_count >= 1)
-                OR (INSTR(e.text_template || COALESCE(e.description_template, ''), '{2}') > 0) <> (e.amount_count >= 2)
-                OR INSTR(e.text_template || COALESCE(e.description_template, ''), '%v1') > 0
-                OR INSTR(e.text_template || COALESCE(e.description_template, ''), '%v2') > 0",
+            "SELECT e.name, e.id, 'invalid template amount placeholder' FROM effects e
+             WHERE (INSTR(COALESCE(e.text_template, '') || COALESCE(e.description_template, ''), '{2}') > 0
+                    AND INSTR(COALESCE(e.text_template, '') || COALESCE(e.description_template, ''), '{1}') = 0)
+                OR INSTR(COALESCE(e.text_template, '') || COALESCE(e.description_template, ''), '%v1') > 0
+                OR INSTR(COALESCE(e.text_template, '') || COALESCE(e.description_template, ''), '%v2') > 0",
         ),
     ),
     IntegrityCheck::hard(
@@ -136,21 +138,26 @@ pub const INTEGRITY_CHECKS: &[IntegrityCheck] = &[
         OffenderQuery::Built(effect_bonus_type_sources),
     ),
     IntegrityCheck::hard(
+        "stat_links_have_bonus_types",
+        "every direct link to a stat has a bonus type from its owner",
+        OffenderQuery::Built(stat_links_without_bonus_types),
+    ),
+    IntegrityCheck::hard(
         "effect_families_have_owners",
         "every effect family has at least one item, augment, set tier, feat or slot option owner",
         OffenderQuery::Sql(
-            "SELECT e.name, e.id, 'no owner link' FROM effects e WHERE e.id NOT IN
+            "SELECT e.name, e.id, 'no owner link' FROM effects e WHERE e.is_stat = 0 AND e.id NOT IN
                (SELECT effect_id FROM item_effects UNION SELECT effect_id FROM augment_effects
                 UNION SELECT effect_id FROM set_bonus_tier_effects UNION SELECT effect_id FROM feat_effects
                 UNION SELECT effect_id FROM item_augment_slot_option_effects)",
         ),
     ),
     IntegrityCheck::hard(
-        "effect_ladders_have_steps",
-        "every effect ladder groups at least two ordered family steps",
+        "effect_tier_groups_have_steps",
+        "every effect tier group has at least two ordered steps",
         OffenderQuery::Sql(
-            "SELECT l.name, l.id, 'fewer than two members' FROM effect_ladders l
-             LEFT JOIN effects e ON e.ladder_id = l.id GROUP BY l.id HAVING COUNT(e.id) < 2",
+            "SELECT tg.name, tg.id, 'fewer than two members' FROM effect_tier_groups tg
+             LEFT JOIN effects e ON e.tier_group_id = tg.id GROUP BY tg.id HAVING COUNT(e.id) < 2",
         ),
     ),
     IntegrityCheck::hard(
@@ -164,7 +171,7 @@ pub const INTEGRITY_CHECKS: &[IntegrityCheck] = &[
         OffenderQuery::Sql(
             "WITH lines AS (
                SELECT t.id AS tier_id, sb.name || ' (' || t.equipped_count || ' pieces)' AS tier_name,
-                      EXISTS (SELECT 1 FROM effect_bonuses es WHERE es.effect_id = e.id) AS structured,
+                      (e.is_stat = 1 OR EXISTS (SELECT 1 FROM effect_bonuses es WHERE es.effect_id = e.id)) AS structured,
                       REPLACE(REPLACE(REPLACE(
                         REPLACE(REPLACE(e.text_template, '+{1}', '{1}'), '+{2}', '{2}'),
                         '{1}', CASE WHEN COALESCE(l.value, e.default_value) IS NULL THEN ''
@@ -284,8 +291,8 @@ pub const INTEGRITY_CHECKS: &[IntegrityCheck] = &[
          families with stat rows are excluded",
         OffenderQuery::Sql(
             "SELECT e.name, e.id, 'named like the stat ' || s.name FROM effects e \
-             JOIN stats s ON lower(replace(e.name, ' ', '')) = lower(replace(s.name, ' ', '')) \
-             WHERE EXISTS (SELECT 1 FROM item_effects ie WHERE ie.effect_id = e.id) \
+             JOIN effects s ON s.is_stat = 1 AND lower(replace(e.name, ' ', '')) = lower(replace(s.name, ' ', '')) \
+             WHERE e.is_stat = 0 AND EXISTS (SELECT 1 FROM item_effects ie WHERE ie.effect_id = e.id) \
              AND NOT EXISTS (SELECT 1 FROM effect_bonuses es WHERE es.effect_id = e.id) \
              ORDER BY e.name",
         ),
@@ -320,7 +327,8 @@ pub const INTEGRITY_CHECKS: &[IntegrityCheck] = &[
         "a family name with a digit and amount slot may have a value embedded in its identity",
         OffenderQuery::Sql(
             "SELECT name, id, 'digit in family name with an amount slot' FROM effects
-             WHERE amount_count >= 1 AND name GLOB '*[0-9]*' ORDER BY name",
+             WHERE (INSTR(COALESCE(text_template, '') || COALESCE(description_template, ''), '{1}') > 0
+                    OR is_stat = 1) AND name GLOB '*[0-9]*' ORDER BY name",
         ),
     )
     .showing_every_offender(),
@@ -330,7 +338,8 @@ pub const INTEGRITY_CHECKS: &[IntegrityCheck] = &[
          decide whether the digit is a fixed rule, an unmodelled amount or prose",
         OffenderQuery::Sql(
             "SELECT e.name, e.id, 'digit in template without an owner amount' FROM effects e \
-             WHERE e.amount_count = 0 AND e.text_template GLOB '*[0-9]*' \
+             WHERE e.is_stat = 0 AND INSTR(COALESCE(e.text_template, '') || COALESCE(e.description_template, ''), '{1}') = 0
+               AND e.text_template GLOB '*[0-9]*' \
              ORDER BY e.name",
         ),
     ),
@@ -374,6 +383,27 @@ pub const INTEGRITY_CHECKS: &[IntegrityCheck] = &[
         OffenderQuery::Built(effect_links_missing_first_amount),
     ),
     IntegrityCheck::warn(
+        "stat_links_missing_value",
+        "direct stat links whose owner has no value and the stat has no default",
+        OffenderQuery::Built(stat_links_missing_value),
+    ),
+    IntegrityCheck::warn(
+        "stat_links_with_prose_only_second_value",
+        "direct stat links carrying a second value used by prose but not by a bonus row",
+        OffenderQuery::Built(stat_links_with_prose_only_second_value),
+    ),
+    IntegrityCheck::warn(
+        "effects_with_dice_but_no_damage_rows",
+        "resolved effects with source dice but no structured damage row",
+        OffenderQuery::Sql(
+            "SELECT e.name, e.id, COUNT(*) || ' source modifier(s) with dice'
+             FROM effects e JOIN modifiers m ON m.effect_id = e.id
+             WHERE (m.dice_number IS NOT NULL OR m.dice_sides IS NOT NULL)
+               AND NOT EXISTS (SELECT 1 FROM effect_damage d WHERE d.effect_id = e.id)
+             GROUP BY e.id ORDER BY e.name",
+        ),
+    ),
+    IntegrityCheck::warn(
         "effects_with_unused_default",
         "families whose default amount is used by every link may have a constant instead",
         OffenderQuery::Built(effects_with_unused_default),
@@ -382,8 +412,10 @@ pub const INTEGRITY_CHECKS: &[IntegrityCheck] = &[
         "effects_text_only_with_item_values",
         "text-only families with amounts are candidates for a stat mapping",
         OffenderQuery::Sql(
-            "SELECT e.name, e.id, 'text-only family with ' || e.amount_count || ' amount slot(s)'
-             FROM effects e WHERE e.amount_count > 0 AND NOT EXISTS
+            "SELECT e.name, e.id, 'text-only effect with amount slot(s)'
+             FROM effects e WHERE e.is_stat = 0
+               AND INSTR(COALESCE(e.text_template, '') || COALESCE(e.description_template, ''), '{1}') > 0
+               AND NOT EXISTS
              (SELECT 1 FROM effect_bonuses s WHERE s.effect_id = e.id) ORDER BY e.name",
         ),
     ),
@@ -400,7 +432,7 @@ pub const INTEGRITY_CHECKS: &[IntegrityCheck] = &[
              SELECT s.name || ' / ' || bt.name, s.id, GROUP_CONCAT(DISTINCT e.name)
              FROM owned o JOIN effects e ON e.id = o.effect_id
              JOIN effect_bonuses es ON es.effect_id = e.id
-             JOIN stats s ON s.id = es.stat_id
+             JOIN effects s ON s.id = es.stat_id
              JOIN bonus_types bt ON bt.id = COALESCE(es.bonus_type_id, o.bonus_type_id)
              GROUP BY s.id, bt.id HAVING COUNT(DISTINCT e.id) > 1",
         ),
@@ -524,13 +556,15 @@ fn offenders_from_sql(db: &Connection, sql: &str) -> Result<Vec<Offender>> {
 }
 
 fn effect_link_amount_counts(db: &Connection, _options: &IntegrityOptions) -> Result<Findings> {
+    let count = "CASE WHEN e.is_stat = 1 OR INSTR(COALESCE(e.text_template, '') || COALESCE(e.description_template, ''), '{2}') > 0 THEN 2
+                 WHEN INSTR(COALESCE(e.text_template, '') || COALESCE(e.description_template, ''), '{1}') > 0 THEN 1 ELSE 0 END";
     let queries: Vec<String> = EFFECT_OWNER_LINKS
         .iter()
         .map(|(table, owner_column)| {
             format!(
                 "SELECT e.name, e.id, '{table} owner ' || l.{owner_column} || ' carries wrong amount count'
                  FROM {table} l JOIN effects e ON e.id = l.effect_id
-                 WHERE (l.value IS NOT NULL) + (l.value2 IS NOT NULL) > e.amount_count"
+                 WHERE (l.value IS NOT NULL) + (l.value2 IS NOT NULL) > ({count})"
             )
         })
         .collect();
@@ -544,7 +578,8 @@ fn effect_links_missing_first_amount(db: &Connection, _options: &IntegrityOption
             format!(
                 "SELECT e.name, e.id, '{table} owner ' || l.{owner_column} || ' lacks first amount'
                  FROM {table} l JOIN effects e ON e.id = l.effect_id
-                 WHERE e.amount_count >= 1 AND l.value IS NULL AND e.default_value IS NULL"
+                 WHERE e.is_stat = 0 AND INSTR(COALESCE(e.text_template, '') || COALESCE(e.description_template, ''), '{{1}}') > 0
+                   AND l.value IS NULL AND e.default_value IS NULL"
             )
         })
         .collect();
@@ -571,17 +606,44 @@ fn effect_bonus_type_sources(db: &Connection, _options: &IntegrityOptions) -> Re
     let mut queries = vec![
         "SELECT e.name, e.id, 'stat type conflicts with %b1 template' FROM effects e
          JOIN effect_bonuses s ON s.effect_id = e.id
-         WHERE (s.bonus_type_id IS NULL) <> (INSTR(e.text_template || COALESCE(e.description_template, ''), '%b1') > 0)"
+         WHERE (s.bonus_type_id IS NULL) <> (INSTR(COALESCE(e.text_template, '') || COALESCE(e.description_template, ''), '%b1') > 0)"
             .to_string(),
     ];
     queries.extend(EFFECT_OWNER_LINKS.iter().map(|(table, owner_column)| {
         format!(
             "SELECT e.name, e.id, '{table} owner ' || l.{owner_column} || ' has wrong type source'
              FROM {table} l JOIN effects e ON e.id = l.effect_id
-             WHERE (l.bonus_type_id IS NOT NULL) <> (INSTR(e.text_template || COALESCE(e.description_template, ''), '%b1') > 0)"
+             WHERE e.is_stat = 0 AND (l.bonus_type_id IS NOT NULL) <>
+                    (INSTR(COALESCE(e.text_template, '') || COALESCE(e.description_template, ''), '%b1') > 0)"
         )
     }));
     Ok(Findings { offenders: Some(offenders_from_sql(db, &queries.join(" UNION ALL "))?), notes: Vec::new() })
+}
+
+fn stat_link_findings(db: &Connection, condition: &str, detail: &str) -> Result<Findings> {
+    let queries = EFFECT_OWNER_LINKS
+        .iter()
+        .map(|(table, owner_column)| {
+            format!(
+                "SELECT e.name, e.id, '{table} owner ' || l.{owner_column} || ' {detail}'
+                 FROM {table} l JOIN effects e ON e.id = l.effect_id
+                 WHERE e.is_stat = 1 AND ({condition})"
+            )
+        })
+        .collect::<Vec<_>>();
+    Ok(Findings { offenders: Some(offenders_from_sql(db, &queries.join(" UNION ALL "))?), notes: Vec::new() })
+}
+
+fn stat_links_without_bonus_types(db: &Connection, _options: &IntegrityOptions) -> Result<Findings> {
+    stat_link_findings(db, "l.bonus_type_id IS NULL", "has no bonus type")
+}
+
+fn stat_links_missing_value(db: &Connection, _options: &IntegrityOptions) -> Result<Findings> {
+    stat_link_findings(db, "l.value IS NULL AND e.default_value IS NULL", "has no first amount")
+}
+
+fn stat_links_with_prose_only_second_value(db: &Connection, _options: &IntegrityOptions) -> Result<Findings> {
+    stat_link_findings(db, "l.value2 IS NOT NULL", "has a prose-only second amount")
 }
 
 fn effect_types_not_classified(db: &Connection, options: &IntegrityOptions) -> Result<Findings> {
@@ -794,11 +856,8 @@ fn near_duplicate_item_names(db: &Connection, _options: &IntegrityOptions) -> Re
 fn unreferenced_stats(db: &Connection, _options: &IntegrityOptions) -> Result<Findings> {
     let offenders = offenders_from_sql(
         db,
-        "SELECT s.name, s.id, s.category FROM stats s WHERE NOT EXISTS (
-           SELECT 1 FROM effect_bonuses es WHERE es.stat_id = s.id AND es.effect_id IN (
-             SELECT effect_id FROM item_effects UNION SELECT effect_id FROM augment_effects
-             UNION SELECT effect_id FROM set_bonus_tier_effects UNION SELECT effect_id FROM feat_effects
-             UNION SELECT effect_id FROM item_augment_slot_option_effects)) ORDER BY s.name",
+        "SELECT s.name, s.id, s.category FROM effects s WHERE s.is_stat = 1 AND NOT EXISTS (
+           SELECT 1 FROM owner_bonuses ob WHERE ob.stat_id = s.id) ORDER BY s.name",
     )?;
     Ok(Findings { offenders: Some(offenders), notes: Vec::new() })
 }

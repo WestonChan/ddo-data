@@ -239,8 +239,9 @@ fn bonus_match_sql(db: &Connection, name: &str, include_set_bonuses: bool) -> Re
     use rusqlite::OptionalExtension;
 
     let (stat_name, type_name) = name.split_once(':').map_or((name, None), |(stat, kind)| (stat, Some(kind)));
-    let stat_id =
-        db.query_row("SELECT id FROM stats WHERE name = ?1", [stat_name], |row| row.get::<_, i64>(0)).optional()?;
+    let stat_id = db
+        .query_row("SELECT id FROM effects WHERE name = ?1 AND is_stat = 1", [stat_name], |row| row.get::<_, i64>(0))
+        .optional()?;
     let type_id = match type_name {
         Some(type_name) => {
             if stat_id.is_none() {
@@ -255,7 +256,7 @@ fn bonus_match_sql(db: &Connection, name: &str, include_set_bonuses: bool) -> Re
         None => None,
     };
     let family_ids = if type_name.is_none() {
-        let mut statement = db.prepare_cached("SELECT e.id FROM effects e LEFT JOIN effect_ladders l ON l.id = e.ladder_id WHERE e.name = ?1 OR l.name = ?1")?;
+        let mut statement = db.prepare_cached("SELECT e.id FROM effects e LEFT JOIN effect_tier_groups tg ON tg.id = e.tier_group_id WHERE e.name = ?1 OR tg.name = ?1")?;
         let ids = statement.query_map([name], |row| row.get::<_, i64>(0))?.collect::<Result<Vec<_>, _>>()?;
         ids
     } else {
@@ -264,7 +265,7 @@ fn bonus_match_sql(db: &Connection, name: &str, include_set_bonuses: bool) -> Re
     if stat_id.is_none() && family_ids.is_empty() {
         return Err(ApiError::BadRequest(format!("unknown bonus {name:?}")));
     }
-    let matches_link = |link: &str| {
+    let matches_link = |link: &str, owner_kind: &str, owner_column: &str| {
         let mut alternatives = Vec::new();
         if !family_ids.is_empty() {
             alternatives.push(format!(
@@ -273,16 +274,17 @@ fn bonus_match_sql(db: &Connection, name: &str, include_set_bonuses: bool) -> Re
             ));
         }
         if let Some(stat_id) = stat_id {
-            let type_condition = type_id.map_or(String::new(), |type_id| {
-                format!(" AND COALESCE(es.bonus_type_id, {link}.bonus_type_id) = {type_id}")
-            });
-            alternatives.push(format!("EXISTS (SELECT 1 FROM effect_bonuses es WHERE es.effect_id = {link}.effect_id AND es.stat_id = {stat_id}{type_condition})"));
+            let type_condition = type_id.map_or(String::new(), |type_id| format!(" AND ob.bonus_type_id = {type_id}"));
+            alternatives.push(format!("EXISTS (SELECT 1 FROM owner_bonuses ob WHERE ob.owner_kind = '{owner_kind}' AND ob.owner_id = {link}.{owner_column} AND ob.effect_link_order = {link}.sort_order AND ob.stat_id = {stat_id}{type_condition})"));
         }
         format!("({})", alternatives.join(" OR "))
     };
-    let own = format!("EXISTS (SELECT 1 FROM item_effects ie WHERE ie.item_id = i.id AND {})", matches_link("ie"));
+    let own = format!(
+        "EXISTS (SELECT 1 FROM item_effects ie WHERE ie.item_id = i.id AND {})",
+        matches_link("ie", "item", "item_id")
+    );
     if include_set_bonuses {
-        let set = format!("EXISTS (SELECT 1 FROM set_bonus_items sbi JOIN set_bonus_tiers t ON t.set_id = sbi.set_id JOIN set_bonus_tier_effects te ON te.tier_id = t.id WHERE sbi.item_id = i.id AND {})", matches_link("te"));
+        let set = format!("EXISTS (SELECT 1 FROM set_bonus_items sbi JOIN set_bonus_tiers t ON t.set_id = sbi.set_id JOIN set_bonus_tier_effects te ON te.tier_id = t.id WHERE sbi.item_id = i.id AND {})", matches_link("te", "set_bonus_tier", "tier_id"));
         Ok(format!("({own} OR {set})"))
     } else {
         Ok(own)

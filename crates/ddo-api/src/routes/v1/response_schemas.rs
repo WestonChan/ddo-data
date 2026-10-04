@@ -32,16 +32,25 @@ pub(crate) struct EffectStatBonus {
     pub(crate) bonus_type: String,
     #[schema(schema_with = schema_stat_value)]
     pub(crate) value: i64,
+    pub(crate) amount_source: String,
+    pub(crate) scale: f64,
 }
 
 #[derive(utoipa::ToSchema)]
-pub(crate) struct EffectLadderPosition {
-    #[schema(schema_with = schema_ladder_id)]
-    pub(crate) id: i64,
-    #[schema(schema_with = schema_ladder_name)]
-    pub(crate) name: String,
-    #[schema(schema_with = schema_ladder_rank)]
+pub(crate) struct EffectTierPosition {
+    pub(crate) group: String,
     pub(crate) rank: i64,
+}
+
+#[derive(utoipa::ToSchema)]
+pub(crate) struct EffectDamage {
+    pub(crate) trigger: String,
+    pub(crate) damage_type: String,
+    pub(crate) dice_number: i64,
+    pub(crate) dice_sides: i64,
+    pub(crate) dice_bonus: i64,
+    pub(crate) amount_from: i64,
+    pub(crate) scale: f64,
 }
 
 #[derive(utoipa::ToSchema)]
@@ -50,8 +59,8 @@ pub(crate) struct EffectLine {
     pub(crate) effect_id: i64,
     #[schema(schema_with = schema_line_name)]
     pub(crate) name: String,
-    #[schema(schema_with = schema_line_ladder)]
-    pub(crate) ladder: Option<EffectLadderPosition>,
+    #[schema(schema_with = schema_line_tier)]
+    pub(crate) tier: Option<EffectTierPosition>,
     #[schema(schema_with = schema_line_text)]
     pub(crate) text: String,
     #[schema(schema_with = schema_line_description)]
@@ -64,6 +73,7 @@ pub(crate) struct EffectLine {
     pub(crate) bonus_type: Option<String>,
     #[schema(schema_with = schema_line_bonuses)]
     pub(crate) bonuses: Vec<EffectStatBonus>,
+    pub(crate) damage: Vec<EffectDamage>,
 }
 
 fn schema_stat_name() -> RefOr<Schema> {
@@ -78,23 +88,14 @@ fn schema_stat_bonus_type() -> RefOr<Schema> {
 fn schema_stat_value() -> RefOr<Schema> {
     described_schema::<i64>("Final amount after defaults, scaling and rounding.")
 }
-fn schema_ladder_id() -> RefOr<Schema> {
-    described_schema::<i64>("Identifier of this ladder.")
-}
-fn schema_ladder_name() -> RefOr<Schema> {
-    described_schema::<String>("Display name of this ladder.")
-}
-fn schema_ladder_rank() -> RefOr<Schema> {
-    described_schema::<i64>("Rank of this family within the ladder.")
-}
 fn schema_line_id() -> RefOr<Schema> {
     described_schema::<i64>("Identifier of the shared effect family.")
 }
 fn schema_line_name() -> RefOr<Schema> {
     described_schema::<String>("Display name of the shared family.")
 }
-fn schema_line_ladder() -> RefOr<Schema> {
-    described_schema::<Option<EffectLadderPosition>>("Ladder membership and rank, if any.")
+fn schema_line_tier() -> RefOr<Schema> {
+    described_schema::<Option<EffectTierPosition>>("Tier group and rank, if any.")
 }
 fn schema_line_text() -> RefOr<Schema> {
     described_schema::<String>("Line rendered from the family template and effective amounts.")
@@ -585,17 +586,14 @@ fn schema_family_default_value2() -> RefOr<Schema> {
 fn schema_family_description_template() -> RefOr<Schema> {
     described_schema::<Option<String>>("Template for the rendered description, if defined.")
 }
-fn schema_family_ladder() -> RefOr<Schema> {
-    described_schema::<Option<EffectLadderDetail>>("Ladder and ordered steps for this family, if any.")
-}
-fn schema_family_stacking_note() -> RefOr<Schema> {
-    described_schema::<Option<String>>("Stacking guidance for this family, if known.")
+fn schema_family_tier() -> RefOr<Schema> {
+    described_schema::<Option<EffectTierDetail>>("Tier group and ordered steps for this effect, if any.")
 }
 fn schema_family_wiki_url() -> RefOr<Schema> {
     described_schema::<Option<String>>("Wiki page for this family, if known.")
 }
-fn schema_ladder_steps() -> RefOr<Schema> {
-    described_schema::<Vec<EffectLadderStep>>("Families in this ladder ordered by rank.")
+fn schema_tier_steps() -> RefOr<Schema> {
+    described_schema::<Vec<EffectTierStep>>("Effects in this tier group ordered by rank.")
 }
 
 #[derive(utoipa::ToSchema)]
@@ -606,6 +604,11 @@ pub(crate) struct EffectsDetailResponseAugmentsAugmentsEntry {
     pub(crate) value: Option<i64>,
     #[schema(schema_with = schema_carrier_value2)]
     pub(crate) value2: Option<i64>,
+    pub(crate) effect_id: Option<i64>,
+    pub(crate) effect: Option<String>,
+    pub(crate) bonus_type: Option<String>,
+    pub(crate) amount_source: Option<String>,
+    pub(crate) scale: Option<f64>,
 }
 
 #[derive(utoipa::ToSchema)]
@@ -624,6 +627,11 @@ pub(crate) struct EffectsDetailResponseItemsItemsEntry {
     pub(crate) value: Option<i64>,
     #[schema(schema_with = schema_carrier_value2)]
     pub(crate) value2: Option<i64>,
+    pub(crate) effect_id: Option<i64>,
+    pub(crate) effect: Option<String>,
+    pub(crate) bonus_type: Option<String>,
+    pub(crate) amount_source: Option<String>,
+    pub(crate) scale: Option<f64>,
 }
 
 #[derive(utoipa::ToSchema)]
@@ -645,6 +653,11 @@ pub(crate) struct EffectSetTierCarrier {
     pub(crate) value: Option<i64>,
     #[schema(schema_with = schema_carrier_value2)]
     pub(crate) value2: Option<i64>,
+    pub(crate) effect_id: Option<i64>,
+    pub(crate) effect: Option<String>,
+    pub(crate) bonus_type: Option<String>,
+    pub(crate) amount_source: Option<String>,
+    pub(crate) scale: Option<f64>,
 }
 
 #[derive(utoipa::ToSchema)]
@@ -657,7 +670,7 @@ pub(crate) struct EffectsDetailResponseSetTiers {
 }
 
 #[derive(utoipa::ToSchema)]
-pub(crate) struct EffectsDetailResponseStatsEntry {
+pub(crate) struct EffectsDetailResponseBonusesEntry {
     pub(crate) amount_from: i64,
     #[schema(schema_with = schema_stat_rule_bonus_type)]
     pub(crate) bonus_type: Option<String>,
@@ -669,26 +682,22 @@ pub(crate) struct EffectsDetailResponseStatsEntry {
 }
 
 #[derive(utoipa::ToSchema)]
-pub(crate) struct EffectLadderStep {
+pub(crate) struct EffectTierStep {
     pub(crate) id: i64,
     pub(crate) name: String,
-    #[schema(schema_with = schema_ladder_rank)]
     pub(crate) rank: i64,
 }
 
 #[derive(utoipa::ToSchema)]
-pub(crate) struct EffectLadderDetail {
-    pub(crate) id: i64,
-    pub(crate) name: String,
-    #[schema(schema_with = schema_ladder_rank)]
+pub(crate) struct EffectTierDetail {
+    pub(crate) group: String,
     pub(crate) rank: i64,
-    #[schema(schema_with = schema_ladder_steps)]
-    pub(crate) steps: Vec<EffectLadderStep>,
+    #[schema(schema_with = schema_tier_steps)]
+    pub(crate) steps: Vec<EffectTierStep>,
 }
 
 #[derive(utoipa::ToSchema)]
 pub(crate) struct EffectsDetailResponse {
-    pub(crate) amount_count: i64,
     pub(crate) augments: EffectsDetailResponseAugments,
     #[schema(schema_with = schema_family_default_value)]
     pub(crate) default_value: Option<i64>,
@@ -698,14 +707,15 @@ pub(crate) struct EffectsDetailResponse {
     pub(crate) description_template: Option<String>,
     pub(crate) id: i64,
     pub(crate) items: EffectsDetailResponseItems,
-    #[schema(schema_with = schema_family_ladder)]
-    pub(crate) ladder: Option<EffectLadderDetail>,
+    pub(crate) kind: String,
+    pub(crate) category: Option<String>,
+    #[schema(schema_with = schema_family_tier)]
+    pub(crate) tier: Option<EffectTierDetail>,
     pub(crate) name: String,
     pub(crate) set_tiers: EffectsDetailResponseSetTiers,
-    #[schema(schema_with = schema_family_stacking_note)]
-    pub(crate) stacking_note: Option<String>,
-    pub(crate) stats: Vec<EffectsDetailResponseStatsEntry>,
-    pub(crate) text_template: String,
+    pub(crate) bonuses: Vec<EffectsDetailResponseBonusesEntry>,
+    pub(crate) damage: Vec<EffectDamage>,
+    pub(crate) text_template: Option<String>,
     #[schema(schema_with = schema_family_wiki_url)]
     pub(crate) wiki_url: Option<String>,
 }
@@ -2040,91 +2050,6 @@ pub(crate) struct StancesPageResponse {
     pub(crate) offset: i64,
     pub(crate) stances: Vec<StancesPageResponseStancesEntry>,
     pub(crate) total: i64,
-}
-
-#[derive(utoipa::ToSchema)]
-pub(crate) struct StatsPageResponseStatsEntry {
-    pub(crate) category: String,
-    pub(crate) id: i64,
-    pub(crate) name: String,
-}
-
-#[derive(utoipa::ToSchema)]
-pub(crate) struct StatsPageResponse {
-    pub(crate) limit: i64,
-    pub(crate) offset: i64,
-    pub(crate) stats: Vec<StatsPageResponseStatsEntry>,
-    pub(crate) total: i64,
-}
-
-#[derive(utoipa::ToSchema)]
-pub(crate) struct StatsDetailResponseAugmentsAugmentsEntry {
-    pub(crate) bonus_type: String,
-    pub(crate) effect: String,
-    pub(crate) effect_id: i64,
-    pub(crate) id: i64,
-    pub(crate) name: String,
-    #[schema(schema_with = schema_resolved_bonus_value)]
-    pub(crate) value: Option<i64>,
-}
-
-#[derive(utoipa::ToSchema)]
-pub(crate) struct StatsDetailResponseAugments {
-    pub(crate) augments: Vec<StatsDetailResponseAugmentsAugmentsEntry>,
-    pub(crate) limit: i64,
-    pub(crate) offset: i64,
-    pub(crate) total: i64,
-}
-
-#[derive(utoipa::ToSchema)]
-pub(crate) struct StatsDetailResponseItemsItemsEntry {
-    pub(crate) bonus_type: String,
-    pub(crate) effect: String,
-    pub(crate) effect_id: i64,
-    pub(crate) id: i64,
-    pub(crate) name: String,
-    #[schema(schema_with = schema_resolved_bonus_value)]
-    pub(crate) value: Option<i64>,
-}
-
-#[derive(utoipa::ToSchema)]
-pub(crate) struct StatsDetailResponseItems {
-    pub(crate) items: Vec<StatsDetailResponseItemsItemsEntry>,
-    pub(crate) limit: i64,
-    pub(crate) offset: i64,
-    pub(crate) total: i64,
-}
-
-#[derive(utoipa::ToSchema)]
-pub(crate) struct StatsDetailResponseSetTiersSetTiersEntry {
-    pub(crate) bonus_type: String,
-    pub(crate) effect: String,
-    pub(crate) effect_id: i64,
-    pub(crate) equipped_count: i64,
-    pub(crate) id: i64,
-    pub(crate) name: String,
-    pub(crate) set_id: i64,
-    pub(crate) set_name: String,
-    #[schema(schema_with = schema_resolved_bonus_value)]
-    pub(crate) value: Option<i64>,
-}
-
-#[derive(utoipa::ToSchema)]
-pub(crate) struct StatsDetailResponseSetTiers {
-    pub(crate) limit: i64,
-    pub(crate) offset: i64,
-    pub(crate) set_tiers: Vec<StatsDetailResponseSetTiersSetTiersEntry>,
-    pub(crate) total: i64,
-}
-
-#[derive(utoipa::ToSchema)]
-pub(crate) struct StatsDetailResponse {
-    pub(crate) augments: StatsDetailResponseAugments,
-    pub(crate) category: String,
-    pub(crate) id: i64,
-    pub(crate) items: StatsDetailResponseItems,
-    pub(crate) name: String,
-    pub(crate) set_tiers: StatsDetailResponseSetTiers,
 }
 
 #[derive(utoipa::ToSchema)]

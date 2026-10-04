@@ -187,6 +187,7 @@ pub fn build_database(
 
     let transaction = db.transaction()?;
     let mut report = BuildReport::default();
+    effects::insert_triggers(&transaction, &item_buff_definitions)?;
 
     transaction.execute("DELETE FROM schema_version", [])?;
     transaction.execute("INSERT INTO schema_version (version) VALUES (?1)", params![SCHEMA_VERSION])?;
@@ -290,7 +291,7 @@ pub fn build_database(
     wiki::apply_wiki_overrides(&transaction, wiki_overrides, &drop_text_linker, &mut report)?;
     quest_series::write_wiki_quest_series_rewards(&transaction, wiki_overrides, &mut report)?;
     vendors_and_events::write_wiki_vendor_and_event_items(&transaction, wiki_overrides, &mut report)?;
-    effects::insert_ladders(&writer.effects, &crate::map::effect_map::EFFECT_MAP.ladders)?;
+    effects::insert_tier_groups(&writer.effects, &crate::map::effect_map::EFFECT_MAP.tier_groups)?;
     effect_vocabulary::insert_effect_vocabulary(&transaction)?;
     report.legacy_item_count =
         transaction.query_row("SELECT COUNT(*) FROM items WHERE is_legacy", [], |r| r.get::<_, i64>(0))? as usize;
@@ -298,7 +299,7 @@ pub fn build_database(
         transaction.query_row("SELECT COUNT(*) FROM effect_bonuses", [], |r| r.get::<_, i64>(0))? as usize;
     report.effect_count = transaction.query_row("SELECT COUNT(*) FROM effects", [], |r| r.get::<_, i64>(0))? as usize;
     report.text_only_effect_count = transaction.query_row(
-        "SELECT COUNT(*) FROM effects WHERE NOT EXISTS (SELECT 1 FROM effect_bonuses s WHERE s.effect_id = effects.id)",
+        "SELECT COUNT(*) FROM effects WHERE is_stat = 0 AND NOT EXISTS (SELECT 1 FROM effect_bonuses s WHERE s.effect_id = effects.id)",
         [],
         |r| r.get::<_, i64>(0),
     )? as usize;

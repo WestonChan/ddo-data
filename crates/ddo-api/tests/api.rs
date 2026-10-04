@@ -86,7 +86,7 @@ async fn detail_effects_render_family_stats_and_text_only_lines() {
     let lines = item["effects"].as_array().expect("item effects");
     assert!(item.get("bonuses").is_none());
     assert!(lines.iter().all(|line| {
-        ["effect_id", "name", "ladder", "text", "description", "value", "value2", "bonus_type", "bonuses"]
+        ["effect_id", "name", "tier", "text", "description", "value", "value2", "bonus_type", "bonuses", "damage"]
             .iter()
             .all(|key| line.get(*key).is_some())
     }));
@@ -123,8 +123,8 @@ async fn vocabulary_rows_route_by_kind_even_when_database_ids_overlap() {
     let rows = page["effects"].as_array().unwrap();
     let family = rows.iter().find(|row| row["kind"] == "effect").unwrap();
     let stat = rows.iter().find(|row| row["kind"] == "stat").unwrap();
-    for (row, prefix) in [(family, "/v1/effects/"), (stat, "/v1/stats/")] {
-        assert_eq!(row["detail_path"], format!("{prefix}{}", row["id"]));
+    for row in [family, stat] {
+        assert_eq!(row["detail_path"], format!("/v1/effects/{}", row["id"]));
         assert!(row["bonus_types"].is_array());
         let (status, _, detail) = get(row["detail_path"].as_str().unwrap()).await;
         assert_eq!(status, StatusCode::OK, "{detail}");
@@ -190,29 +190,30 @@ async fn family_and_stat_detail_page_their_real_carriers() {
     assert_eq!(bracers["effect"], "Speed Roman Numeral XIV");
     assert_eq!(bracers["bonus_type"], "Enhancement");
     assert_eq!(bracers["value"], 14);
-    assert!(bracers.get("value2").is_none());
-    let (status, _, _) = get("/v1/stats/999999").await;
+    assert!(bracers["value2"].is_null());
+    let (status, _, _) = get("/v1/effects/999999").await;
     assert_eq!(status, StatusCode::NOT_FOUND);
 
-    let deception = effect_named(&vocabulary, "Deception", "effect").unwrap();
+    let deception = effect_named(&vocabulary, "Deception", "stat").unwrap();
     let (_, _, step) = get(deception["detail_path"].as_str().unwrap()).await;
-    assert_eq!(step["ladder"]["name"], "Deception");
-    assert_eq!(step["ladder"]["steps"].as_array().unwrap().len(), 2);
+    assert_eq!(step["tier"]["group"], "Deception");
+    assert_eq!(step["tier"]["steps"].as_array().unwrap().len(), 2);
     let carrier_id = step["items"]["items"][0]["id"].as_i64().unwrap();
     let (_, _, carrier) = get(&format!("/v1/items/{carrier_id}")).await;
     assert!(carrier["effects"]
         .as_array()
         .unwrap()
         .iter()
-        .any(|line| line["effect_id"] == deception["id"] && line["ladder"]["name"] == "Deception"));
+        .any(|line| line["effect_id"] == deception["id"] && line["tier"]["group"] == "Deception"));
 
-    let multi_stat = effect_named(&vocabulary, "Spell Focus Mastery", "effect").unwrap();
-    let (_, _, mastery) = get(multi_stat["detail_path"].as_str().unwrap()).await;
+    let spell_focus = effect_named(&vocabulary, "Spell Focus Mastery", "stat").unwrap();
+    let (_, _, mastery) = get(spell_focus["detail_path"].as_str().unwrap()).await;
     let carrier_id = mastery["items"]["items"][0]["id"].as_i64().unwrap();
     let (_, _, carrier) = get(&format!("/v1/items/{carrier_id}")).await;
     let line =
-        carrier["effects"].as_array().unwrap().iter().find(|line| line["effect_id"] == multi_stat["id"]).unwrap();
-    assert_eq!(line["bonuses"].as_array().unwrap().len(), 4);
+        carrier["effects"].as_array().unwrap().iter().find(|line| line["effect_id"] == spell_focus["id"]).unwrap();
+    assert_eq!(line["bonuses"].as_array().unwrap().len(), 1);
+    assert_eq!(line["bonuses"][0]["stat"], "Spell Focus Mastery");
 
     let all_abilities = effect_named(&vocabulary, "All Ability Scores", "effect").unwrap();
     assert!(all_abilities["bonus_types"]
@@ -221,7 +222,7 @@ async fn family_and_stat_detail_page_their_real_carriers() {
         .iter()
         .any(|kind| kind["name"] == "Artifact" && kind["item_count"] == 0));
     let (_, _, family) = get(all_abilities["detail_path"].as_str().unwrap()).await;
-    assert_eq!(family["stats"].as_array().unwrap().len(), 6);
+    assert_eq!(family["bonuses"].as_array().unwrap().len(), 6);
     let tier = &family["set_tiers"]["set_tiers"][0];
     let (_, _, set) = get(&format!("/v1/sets/{}", tier["set_id"])).await;
     let tier_line = set["tiers"].as_array().unwrap().iter().find(|candidate| candidate["id"] == tier["id"]).unwrap()
@@ -580,9 +581,7 @@ async fn effect_vocabulary_lists_each_family_and_stat_with_carrier_counts() {
     assert_eq!(status, StatusCode::OK);
     let rows = rows.as_array().unwrap();
     let db = rusqlite::Connection::open(fixture_db_path()).unwrap();
-    let expected_count: i64 = db
-        .query_row("SELECT (SELECT COUNT(*) FROM effects) + (SELECT COUNT(*) FROM stats)", [], |row| row.get(0))
-        .unwrap();
+    let expected_count: i64 = db.query_row("SELECT COUNT(*) FROM effects", [], |row| row.get(0)).unwrap();
     assert_eq!(rows.len(), expected_count as usize);
     assert_eq!(
         db.query_row("SELECT COUNT(*) FROM effect_vocabulary_counts", [], |row| row.get::<_, i64>(0)).unwrap(),
@@ -632,7 +631,7 @@ async fn effect_search_matches_its_own_name_then_granted_stats_in_one_direction(
     let (_, _, strength_page) = get("/v1/effects?q=strength&limit=10000").await;
     let strength_rows = strength_page["effects"].as_array().unwrap();
     let own_matches = strength_rows.iter().take_while(|row| row["name"] == "Strength").count();
-    assert_eq!(own_matches, 2);
+    assert_eq!(own_matches, 1);
     assert!(strength_rows.iter().skip(own_matches).any(|row| row["name"] == "All Ability Scores"));
     let (_, _, alphabetic_page) = get("/v1/effects?q=strength&sort=name&limit=10000").await;
     assert_eq!(alphabetic_page["effects"][0]["name"], "All Ability Scores");
@@ -1016,7 +1015,7 @@ async fn etag_roundtrip_returns_not_modified() {
 
 #[tokio::test]
 async fn lookups_and_augments() {
-    let (_, _, stats) = get_list_rows("/v1/stats").await;
+    let (_, _, stats) = get_list_rows("/v1/effects?kind=stat").await;
     assert_eq!(stats.as_array().unwrap().len(), ddo_model::stats::STATS.len());
     let (_, _, augment_slot_types) = get_list_rows("/v1/augment-slot-types").await;
     assert!(augment_slot_types.as_array().unwrap().iter().any(|s| s["label"] == "red"));
@@ -1566,7 +1565,7 @@ async fn owner_response_schemas_share_one_typed_effect_line() {
     let schemas = &spec["components"]["schemas"];
     let line = &schemas["EffectLine"]["properties"];
     let expected: std::collections::BTreeSet<&str> =
-        ["effect_id", "name", "ladder", "text", "description", "value", "value2", "bonus_type", "bonuses"]
+        ["effect_id", "name", "tier", "text", "description", "value", "value2", "bonus_type", "bonuses", "damage"]
             .into_iter()
             .collect();
     let actual: std::collections::BTreeSet<&str> = line.as_object().unwrap().keys().map(String::as_str).collect();
@@ -1591,7 +1590,10 @@ async fn owner_response_schemas_share_one_typed_effect_line() {
 fn schema_reference<'a>(schema: &'a Value, schemas: &'a Value) -> &'a Value {
     match schema["$ref"].as_str() {
         Some(reference) => schema_reference(&schemas[reference.trim_start_matches("#/components/schemas/")], schemas),
-        None => schema,
+        None => schema["allOf"]
+            .as_array()
+            .and_then(|items| items.first())
+            .map_or(schema, |item| schema_reference(item, schemas)),
     }
 }
 
@@ -1600,17 +1602,16 @@ async fn effect_and_stat_detail_schemas_type_every_backlink_and_rule() {
     let (_, _, spec) = get("/v1/openapi.json").await;
     let schemas = &spec["components"]["schemas"];
     let family = &schemas["EffectsDetailResponse"]["properties"];
-    let stat = &schemas["StatsDetailResponse"]["properties"];
-    for owner in [family, stat] {
+    for owner in [family] {
         for page in ["items", "augments", "set_tiers"] {
             let page_schema = schema_reference(&owner[page], schemas);
             let entry_schema = schema_reference(&page_schema["properties"][page]["items"], schemas);
             assert!(entry_schema["properties"].is_object(), "{page} backlink entries need typed fields");
         }
     }
-    assert!(schema_reference(&family["stats"]["items"], schemas)["properties"]["amount_from"]["type"].is_string());
-    let ladder_schema = schema_reference(&family["ladder"]["oneOf"][1], schemas);
-    assert!(schema_reference(&ladder_schema["properties"]["steps"]["items"], schemas)["properties"].is_object());
+    assert!(schema_reference(&family["bonuses"]["items"], schemas)["properties"]["amount_from"]["type"].is_string());
+    let tier_schema = schema_reference(&family["tier"]["oneOf"][1], schemas);
+    assert!(schema_reference(&tier_schema["properties"]["steps"]["items"], schemas)["properties"].is_object());
 }
 
 #[tokio::test]
@@ -1668,7 +1669,6 @@ const ALL_LIST_PATHS: &[(&str, &str)] = &[
     ("/v1/effects", "effects"),
     ("/v1/adventure-packs", "adventure_packs"),
     ("/v1/patrons", "patrons"),
-    ("/v1/stats", "stats"),
     ("/v1/bonus-types", "bonus_types"),
     ("/v1/equipment-slots", "equipment_slots"),
     ("/v1/augment-slot-types", "augment_slot_types"),
@@ -2025,7 +2025,7 @@ async fn openapi_documents_item_filters_and_shared_query_conventions() {
     for phrase in [
         "**Query parameters.**",
         "**Effects and bonuses.**",
-        "separate id spaces",
+        "one id space",
         "detail_path",
         "bonus_match",
         "slot_match",
@@ -2986,7 +2986,7 @@ async fn error_responses_are_never_cached() {
     let router = app(fixture_state().with_rate_limit());
     let mut rate_limited_response = None;
     for _ in 0..200 {
-        let response = response_to_cross_origin_get(router.clone(), "/v1/stats").await;
+        let response = response_to_cross_origin_get(router.clone(), "/v1/effects").await;
         if response.status() == StatusCode::TOO_MANY_REQUESTS {
             rate_limited_response = Some(response);
             break;
@@ -2995,7 +2995,7 @@ async fn error_responses_are_never_cached() {
     assert_never_cached(&rate_limited_response.expect("the burst of 100 runs out within 200 requests"), "a 429");
 
     let response_without_client_address = app(fixture_state().with_rate_limit())
-        .oneshot(Request::get("/v1/stats").body(Body::empty()).unwrap())
+        .oneshot(Request::get("/v1/effects").body(Body::empty()).unwrap())
         .await
         .unwrap();
     assert_eq!(response_without_client_address.status(), StatusCode::INTERNAL_SERVER_ERROR);

@@ -1,0 +1,351 @@
+[[correction]]
+kind = "item_bonus"
+name = "Docent of Shadow (level 4)"
+stat = "Negative Spell Lore"
+bonus_type = "Equipment"
+field = "value"
+from = "null"
+to = 12
+reason = "The wiki Void Lore tier grants 12% Negative and Poison spell lore."
+source = "https://ddowiki.com/page/Item:Docent_of_Shadow_(level_4)"
+read = "2026-10-04"
+
+[[correction]]
+kind = "item_bonus"
+name = "Docent of Shadow (level 8)"
+stat = "Negative Spell Lore"
+bonus_type = "Equipment"
+field = "value"
+from = "null"
+to = 13
+reason = "The wiki Void Lore tier grants 13% Negative and Poison spell lore."
+source = "https://ddowiki.com/page/Item:Docent_of_Shadow_(level_8)"
+read = "2026-10-04"
+
+[[correction]]
+kind = "item_bonus"
+name = "Docent of Shadow (level 12)"
+stat = "Negative Spell Lore"
+bonus_type = "Equipment"
+field = "value"
+from = "null"
+to = 14
+reason = "The wiki Void Lore tier grants 14% Negative and Poison spell lore."
+source = "https://ddowiki.com/page/Item:Docent_of_Shadow_(level_12)"
+read = "2026-10-04"
+
+[[correction]]
+kind = "item_bonus"
+name = "Docent of Shadow (level 16)"
+stat = "Negative Spell Lore"
+bonus_type = "Equipment"
+field = "value"
+from = "null"
+to = 15
+reason = "The wiki Void Lore tier grants 15% Negative and Poison spell lore."
+source = "https://ddowiki.com/page/Item:Docent_of_Shadow_(level_16)"
+read = "2026-10-04"
+
+[[correction]]
+kind = "item_bonus"
+name = "Docent of Shadow (level 20)"
+stat = "Negative Spell Lore"
+bonus_type = "Equipment"
+field = "value"
+from = "null"
+to = 16
+reason = "The wiki Void Lore tier grants 16% Negative and Poison spell lore."
+source = "https://ddowiki.com/page/Item:Epic_Docent_of_Shadow_%28level_20%29"
+read = "2026-09-29"
+
+[[correction]]
+kind = "item_bonus"
+name = "Docent of Shadow (level 20)"
+field = "add"
+from = "null"
+to = { stat = "Poison Spell Power", bonus_type = "Equipment", value = 90 }
+reason = "The wiki item grants Poison Spell Power alongside Negative Spell Power."
+source = "https://ddowiki.com/page/Item:Epic_Docent_of_Shadow_%28level_20%29"
+read = "2026-09-29"
+
+[[correction]]
+kind = "item_bonus"
+name = "Docent of Shadow (level 20)"
+field = "add"
+from = "null"
+to = { stat = "Poison Spell Lore", bonus_type = "Equipment", value = 16 }
+reason = "The wiki Void Lore tier grants Poison Spell Lore alongside Negative Spell Lore."
+source = "https://ddowiki.com/page/Item:Epic_Docent_of_Shadow_%28level_20%29"
+read = "2026-09-29"
+
+[[correction]]
+kind = "item_effect"
+name = "Docent of Shadow (level 20)"
+field = "add"
+from = "null"
+to = { name = "Nightshield", description = "5 Charges: Caster level: 14 Charges: 5 (5/day)" }
+reason = "The wiki item carries Nightshield with five charges."
+source = "https://ddowiki.com/page/Item:Epic_Docent_of_Shadow_%28level_20%29"
+read = "2026-09-29"
+
+[[correction]]
+kind = "item"
+name = "Docent of Shadow (level 20)"
+field = "name"
+from = "Docent of Shadow (level 20)"
+to = "Epic Docent of Shadow (Level 20)"
+reason = "The wiki titles this epic variant with the Epic prefix."
+source = "https://ddowiki.com/page/Item:Epic_Docent_of_Shadow_%28level_20%29"
+read = "2026-09-29"
+
+[[correction]]
+kind = "item_bonus"
+name = "Docent of Shadow (level 24)"
+stat = "Negative Spell Lore"
+bonus_type = "Equipment"
+field = "value"
+from = "null"
+to = 16
+reason = "The wiki Void Lore tier grants 16% Negative and Poison spell lore."
+source = "https://ddowiki.com/page/Item:Epic_Docent_of_Shadow_%28level_24%29"
+read = "2026-09-29"
+
+[[correction]]
+kind = "item_bonus"
+name = "Docent of Shadow (level 24)"
+field = "add"
+from = "null"
+to = { stat = "Poison Spell Power", bonus_type = "Equipment", value = 114 }
+reason = "The wiki item grants Poison Spell Power alongside Negative Spell Power."
+source = "https://ddowiki.com/page/Item:Epic_Docent_of_Shadow_%28level_24%29"
+read = "2026-09-29"
+
+[[correction]]
+kind = "item_bonus"
+name = "Docent of Shadow (level 24)"
+field = "add"
+from = "null"
+to = { stat = "Poison Spell Lore", bonus_type = "Equipment", value = 16 }
+reason = "The wiki Void Lore tier grants Poison Spell Lore alongside Negative Spell Lore."
+source = "https://ddowiki.com/page/Item:Epic_Docent_of_Shadow_%28level_24%29"
+read = "2026-09-29"
+
+[[correction]]
+kind = "item_effect"
+name = "Docent of Shadow (level 24)"
+field = "add"
+from = "null"
+to = { name = "Nightshield", description = "5 Charges: Caster level: 14 Charges: 5 (5/day)" }
+reason = "The wiki item carries Nightshield with five charges."
+source = "https://ddowiki.com/page/Item:Epic_Docent_of_Shadow_%28level_24%29"
+read = "2026-09-29"
+
+[[correction]]
+kind = "item_bonus"
+name = "Docent of Shadow (level 24)"
+stat = "Necromancy Spell Focus"
+bonus_type = "Equipment"
+field = "value"
+from = 1
+to = 3
+reason = "The wiki item grants Necromancy Spell Focus +3 rather than +1."
+source = "https://ddowiki.com/page/Item:Epic_Docent_of_Shadow_%28level_24%29"
+read = "2026-09-29"
+
+[[correction]]
+kind = "item"
+name = "Docent of Shadow (level 24)"
+field = "name"
+from = "Docent of Shadow (level 24)"
+to = "Epic Docent of Shadow (Level 24)"
+reason = "The wiki titles this epic variant with the Epic prefix."
+source = "https://ddowiki.com/page/Item:Epic_Docent_of_Shadow_%28level_24%29"
+read = "2026-09-29"
+
+[[correction]]
+kind = "item_bonus"
+name = "Livewood Core (Level 15)"
+stat = "Fortification"
+bonus_type = "Exceptional"
+field = "value"
+from = "null"
+to = 10
+reason = "The wiki has a separate Exceptional Fortification line at this value."
+source = "https://ddowiki.com/page/Item:Livewood_Core_(level_15)"
+read = "2026-10-04"
+
+[[correction]]
+kind = "item_bonus"
+name = "Livewood Core (Level 16)"
+stat = "Fortification"
+bonus_type = "Exceptional"
+field = "value"
+from = "null"
+to = 10
+reason = "The wiki has a separate Exceptional Fortification line at this value."
+source = "https://ddowiki.com/page/Item:Livewood_Core_(level_16)"
+read = "2026-10-04"
+
+[[correction]]
+kind = "item_bonus"
+name = "Livewood Core (Level 17)"
+stat = "Fortification"
+bonus_type = "Exceptional"
+field = "value"
+from = "null"
+to = 25
+reason = "The wiki has a separate Exceptional Fortification line at this value."
+source = "https://ddowiki.com/page/Item:Livewood_Core_(level_17)"
+read = "2026-10-04"
+
+[[correction]]
+kind = "item_bonus"
+name = "Livewood Core (Level 22)"
+stat = "Fortification"
+bonus_type = "Exceptional"
+field = "value"
+from = "null"
+to = 25
+reason = "The wiki has a separate Exceptional Fortification line at this value."
+source = "https://ddowiki.com/page/Item:Livewood_Core_(level_22)"
+read = "2026-10-04"
+
+[[correction]]
+kind = "item_bonus"
+name = "Livewood Core (Level 23)"
+stat = "Fortification"
+bonus_type = "Exceptional"
+field = "value"
+from = "null"
+to = 25
+reason = "The wiki has a separate Exceptional Fortification line at this value."
+source = "https://ddowiki.com/page/Item:Livewood_Core_(level_23)"
+read = "2026-10-04"
+
+[[correction]]
+kind = "item_bonus"
+name = "Livewood Core (Level 24)"
+stat = "Fortification"
+bonus_type = "Exceptional"
+field = "value"
+from = "null"
+to = 50
+reason = "The wiki has a separate Exceptional Fortification line at this value."
+source = "https://ddowiki.com/page/Item:Livewood_Core_(level_24)"
+read = "2026-10-04"
+
+[[correction]]
+kind = "item_bonus"
+name = "Implement of Stone Magic"
+stat = "Acid Spell Lore"
+bonus_type = "Equipment"
+field = "value"
+from = "null"
+to = 15
+reason = "The wiki lists Acid Lore +15%."
+source = "https://ddowiki.com/page/Item:Implement_of_Stone_Magic"
+read = "2026-10-04"
+
+[[correction]]
+kind = "item_bonus"
+name = "Stoneworker's Hammer"
+stat = "Deadly"
+bonus_type = "Competence"
+field = "value"
+from = "null"
+to = 4
+reason = "The wiki lists Deadly +4."
+source = "https://ddowiki.com/page/Item:Stoneworker%27s_Hammer"
+read = "2026-10-04"
+
+[[correction]]
+kind = "item_bonus"
+name = "Epic Flamekeep Docent"
+stat = "Repair"
+bonus_type = "Competence"
+field = "remove"
+from = "null"
+to = 1
+reason = "The wiki has Repair Lore instead of an untyped Repair skill line."
+source = "https://ddowiki.com/page/Item:Epic_Flamekeep_Docent"
+read = "2026-10-04"
+
+[[correction]]
+kind = "item_bonus"
+name = "Epic Flamekeep Docent"
+field = "add"
+from = "null"
+to = { stat = "Repair Spell Lore", bonus_type = "Equipment", value = 18 }
+reason = "The wiki lists Repair Lore +18%."
+source = "https://ddowiki.com/page/Item:Epic_Flamekeep_Docent"
+read = "2026-10-04"
+
+[[correction]]
+kind = "item_bonus"
+name = "Epic Flamekeep Docent"
+stat = "Repair Amplification"
+bonus_type = "Competence"
+field = "bonus_type"
+from = "Competence"
+to = "Enhancement"
+reason = "The wiki calls Repair Amplification an Enhancement bonus."
+source = "https://ddowiki.com/page/Item:Epic_Flamekeep_Docent"
+read = "2026-10-04"
+
+[[correction]]
+kind = "item_bonus"
+name = "Robe of Arcane Power"
+stat = "Universal Spell Power"
+bonus_type = "Equipment"
+field = "remove"
+from = "null"
+to = 1
+reason = "The wiki describes this old Potency as spell damage only, not a general Potency stat."
+source = "https://ddowiki.com/page/Item:Robe_of_Arcane_Power"
+read = "2026-10-04"
+
+[[correction]]
+kind = "item_effect"
+name = "Robe of Arcane Power"
+field = "add"
+from = "null"
+to = { name = "Potency for Low-Level Spells", description = "+{1}% damage to 4th level and lower spells", value = 20 }
+reason = "The wiki describes +20% damage to 4th level and lower spells."
+source = "https://ddowiki.com/page/Item:Robe_of_Arcane_Power"
+read = "2026-10-04"
+
+[[correction]]
+kind = "item_bonus"
+name = "Epic Ethereal Bracers"
+stat = "Armor Class"
+bonus_type = "Insight"
+field = "scale"
+from = 1.0
+to = 0.5
+reason = "Riposte grants one Armor Class per two listed ranks, rounding up."
+source = "https://ddowiki.com/page/Item:Epic_Ethereal_Bracers"
+read = "2026-10-04"
+
+[[correction]]
+kind = "item_bonus"
+name = "Epic Ethereal Bracers"
+stat = "Armor Class"
+bonus_type = "Insight"
+field = "rounding"
+from = "down"
+to = "up"
+reason = "Riposte rounds its half-rank Armor Class bonus up."
+source = "https://ddowiki.com/page/Item:Epic_Ethereal_Bracers"
+read = "2026-10-04"
+
+[[correction]]
+kind = "item_bonus"
+name = "Epic Ethereal Bracers"
+stat = "Saving Throws"
+bonus_type = "Insight"
+field = "scale"
+from = 1.0
+to = 0.5
+reason = "Riposte grants one Saving Throws per two listed ranks, rounding down."
+source = "https://ddowiki.com/page/Item:Epic_Ethereal_Bracers"
+read = "2026-10-04"
