@@ -15,6 +15,10 @@ pub struct EffectMap {
     pub description_trim_period: BTreeSet<String>,
     pub family: FamilyVocabulary,
     pub effect: EffectVocabulary,
+    #[serde(default)]
+    pub named_effect_ids: BTreeMap<String, i64>,
+    #[serde(default)]
+    pub augment_line_names: Vec<AugmentLineName>,
     pub item_aliases: BTreeMap<String, String>,
     #[serde(default)]
     pub stat_name_aliases: BTreeMap<String, String>,
@@ -81,6 +85,18 @@ pub struct TargetedEffect {
     pub qualified_name: Option<String>,
     #[serde(default)]
     pub family_names: BTreeMap<String, String>,
+    #[serde(default)]
+    pub shared_targets: BTreeMap<String, String>,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct AugmentLineName {
+    pub augment: String,
+    pub source_name: String,
+    pub effect_name: String,
+    pub source: String,
+    pub read: String,
 }
 
 #[derive(Debug, Deserialize)]
@@ -126,6 +142,28 @@ impl EffectMap {
 
     pub fn from_toml(toml_text: &str) -> Result<Self> {
         let vocabulary: Self = toml::from_str(toml_text)?;
+        let mut reserved_ids = BTreeSet::new();
+        for (name, effect_id) in &vocabulary.named_effect_ids {
+            if name.trim().is_empty()
+                || *effect_id <= 0
+                || !reserved_ids.insert(effect_id)
+                || STATS.iter().any(|stat| stat.id == *effect_id || stat.name == name)
+            {
+                bail!("effect_map.toml [named_effect_ids] {name:?} has a blank name, duplicate or seeded stat id");
+            }
+        }
+        let mut augmented_names = BTreeSet::new();
+        for rule in &vocabulary.augment_line_names {
+            if rule.augment.trim().is_empty()
+                || rule.source_name.trim().is_empty()
+                || !vocabulary.named_effect_ids.contains_key(&rule.effect_name)
+                || !rule.source.starts_with("https://ddowiki.com/page/")
+                || rule.read.len() != 10
+                || !augmented_names.insert((&rule.augment, &rule.source_name))
+            {
+                bail!("effect_map.toml [[augment_line_names]] has an invalid or repeated rule for {:?}", rule.augment);
+            }
+        }
         for (effect_name, bonus_type_name) in &vocabulary.home_bonus_types {
             if effect_name.trim().is_empty()
                 || (bonus_type_name != "none" && BonusType::parse(bonus_type_name).is_none())
@@ -209,6 +247,11 @@ impl EffectMap {
                     || !targeted.targets.values().any(|stat_names| stat_names.contains(stat_name))
                 {
                     bail!("effect_map.toml [effect.targeted] {effect_type} has a family name for unmapped stat {stat_name:?}");
+                }
+            }
+            for (target, family_name) in &targeted.shared_targets {
+                if family_name.trim().is_empty() || targeted.targets.get(target).is_none_or(|stats| stats.len() < 2) {
+                    bail!("effect_map.toml [effect.targeted] {effect_type} has invalid shared target {target:?}");
                 }
             }
         }
@@ -433,6 +476,13 @@ impl EffectMap {
             .cloned()
             .chain(self.skill_ability_groups.skills.keys().map(|ability| format!("{ability} Skills")))
             .collect()
+    }
+
+    pub fn augment_line_name<'a>(&'a self, augment_name: &str, source_name: &str) -> Option<&'a str> {
+        self.augment_line_names
+            .iter()
+            .find(|rule| rule.augment == augment_name && rule.source_name == source_name)
+            .map(|rule| rule.effect_name.as_str())
     }
 
     pub fn qualified_targeted_name(&self, effect: &Effect) -> Option<String> {

@@ -140,28 +140,82 @@ impl TableWriter<'_> {
                 }
                 let all_abilities =
                     effect_type == "AbilityBonus" && effect.targets.iter().any(|target| target == "All");
-                let shared_target = all_abilities || effect_type == "SkillBonusAbility";
-                let groups: Vec<Vec<_>> = if shared_target {
-                    vec![derived_bonuses]
+                let named_shared_target = EFFECT_MAP.effect.targeted.get(effect_type).and_then(|targeted| {
+                    effect
+                        .targets
+                        .iter()
+                        .find_map(|target| {
+                            targeted.shared_targets.get(target).map(|name| (target.as_str(), name.as_str()))
+                        })
+                        .or_else(|| {
+                            effect
+                                .targets
+                                .is_empty()
+                                .then(|| targeted.shared_targets.get("All").map(|name| ("All", name.as_str())))
+                                .flatten()
+                        })
+                });
+                let groups: Vec<(Vec<_>, Option<&str>)> = if all_abilities || effect_type == "SkillBonusAbility" {
+                    vec![(derived_bonuses, None)]
+                } else if let Some((shared_target, shared_name)) = named_shared_target {
+                    let members = &EFFECT_MAP.effect.targeted[effect_type].targets[shared_target];
+                    let mut remaining = derived_bonuses;
+                    let mut grouped = Vec::new();
+                    while let Some(first) = remaining.first().copied() {
+                        if members.iter().any(|member| member == first.stat.name) {
+                            let shared: Vec<_> = remaining
+                                .iter()
+                                .copied()
+                                .filter(|bonus| members.iter().any(|member| member == bonus.stat.name))
+                                .collect();
+                            remaining.retain(|bonus| !members.iter().any(|member| member == bonus.stat.name));
+                            grouped.push((shared, Some(shared_name)));
+                        } else {
+                            grouped.push((vec![remaining.remove(0)], None));
+                        }
+                    }
+                    grouped
                 } else {
-                    derived_bonuses.into_iter().map(|bonus| vec![bonus]).collect()
+                    derived_bonuses.into_iter().map(|bonus| (vec![bonus], None)).collect()
                 };
-                for (group_order, bonuses) in groups.into_iter().enumerate() {
+                for (group_order, (bonuses, shared_name)) in groups.into_iter().enumerate() {
                     let first_bonus = bonuses[0];
                     let target = if all_abilities {
                         Some("All")
+                    } else if let Some((shared_target, _)) = named_shared_target {
+                        shared_name.map(|_| shared_target).or_else(|| {
+                            effect.targets.iter().find_map(|target| {
+                                EFFECT_MAP
+                                    .effect_stat(effect_type, target)
+                                    .filter(|stat| stat.id == first_bonus.stat.id)
+                                    .map(|_| target.as_str())
+                            })
+                        })
                     } else if effect.targets.len() > group_order {
                         Some(effect.targets[group_order].as_str())
                     } else {
                         effect.targets.first().map(String::as_str)
                     };
-                    let bonus_origin = BonusOrigin {
-                        owner,
-                        source_name: effect_type,
-                        stat_name: first_bonus.stat.name,
-                        value: Some(first_bonus.value),
-                    };
-                    let bonus_type = self.bonus_type_of(&bonus_origin, first_bonus.bonus_type)?;
+                    let mut resolved_types = bonuses.iter().map(|bonus| {
+                        self.bonus_type_of(
+                            &BonusOrigin {
+                                owner,
+                                source_name: effect_type,
+                                stat_name: bonus.stat.name,
+                                value: Some(bonus.value),
+                            },
+                            bonus.bonus_type,
+                        )
+                    });
+                    let bonus_type = resolved_types.next().expect("derived group has a first bonus")?;
+                    for resolved_type in resolved_types {
+                        anyhow::ensure!(
+                            resolved_type? == bonus_type,
+                            "{:?} {:?} has different types within one {effect_type} line",
+                            owner.kind,
+                            owner.name
+                        );
+                    }
                     if effect_type == "SkillBonusAbility" {
                         let ability = target.expect("resolved skill group has an ability target");
                         let effect_id = self.effects.ensure_group(&format!("{ability} Skills"))?;
@@ -173,7 +227,14 @@ impl TableWriter<'_> {
                         });
                         continue;
                     }
-                    let family_name = self.buff_resolver.effect_family_name(effect_type, target, first_bonus.stat.name);
+                    let source_name = shared_name.map(str::to_string).unwrap_or_else(|| {
+                        self.buff_resolver.effect_family_name(effect_type, target, first_bonus.stat.name)
+                    });
+                    let family_name = if owner.kind == BonusOwnerKind::Augment {
+                        EFFECT_MAP.augment_line_name(owner.name, &source_name).unwrap_or(&source_name).to_string()
+                    } else {
+                        source_name
+                    };
                     let existing = self
                         .effects
                         .family_named(&family_name)

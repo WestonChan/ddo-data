@@ -112,6 +112,17 @@ pub const INTEGRITY_CHECKS: &[IntegrityCheck] = &[
         OffenderQuery::Built(effect_link_amount_counts),
     ),
     IntegrityCheck::hard(
+        "owner_bonuses_have_one_stat_type_per_source_line",
+        "an owner source line grants each stat and bonus type once after group expansion",
+        OffenderQuery::Sql(
+            "SELECT ob.owner_kind || ':' || ob.owner_id, ob.owner_id,
+                    'line ' || ob.effect_link_order || ' repeats stat ' || ob.stat_id || ' and type ' || ob.bonus_type_id
+               FROM owner_bonuses ob
+              GROUP BY ob.owner_kind, ob.owner_id, ob.effect_link_order, ob.stat_id, ob.bonus_type_id
+             HAVING COUNT(*) > 1",
+        ),
+    ),
+    IntegrityCheck::hard(
         "effect_stat_amount_sources",
         "every stat row reads at most the amount slots its family carries",
         OffenderQuery::Sql(

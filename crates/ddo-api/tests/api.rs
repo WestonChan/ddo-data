@@ -368,14 +368,15 @@ async fn family_and_stat_detail_page_their_real_carriers() {
         .iter()
         .any(|line| line["effect_id"] == deception["id"] && line["tier"]["group"] == "Deception"));
 
-    let spell_focus = effect_named(&vocabulary, "Spell Focus Mastery", "stat").unwrap();
+    let spell_focus = effect_named(&vocabulary, "Spell Focus Mastery", "effect").unwrap();
+    assert_eq!(spell_focus["id"], 100);
     let (_, _, mastery) = get(spell_focus["detail_path"].as_str().unwrap()).await;
-    let carrier_id = mastery["items"]["items"][0]["id"].as_i64().unwrap();
-    let (_, _, carrier) = get(&format!("/v1/items/{carrier_id}")).await;
+    assert!(mastery["items"]["total"].as_i64().unwrap() > 0);
+    let carrier = item_detail_named("Band%20of%20Diani%20ir%27Wynarn").await;
     let line =
         carrier["effects"].as_array().unwrap().iter().find(|line| line["effect_id"] == spell_focus["id"]).unwrap();
     assert_eq!(line["bonuses"].as_array().unwrap().len(), 1);
-    assert_eq!(line["bonuses"][0]["stat"], "Spell Focus Mastery");
+    assert_eq!(line["bonuses"][0]["stat"], "Spell DCs");
 
     let all_abilities = effect_named(&vocabulary, "All Ability Scores", "group").unwrap();
     assert!(all_abilities["bonus_types"]

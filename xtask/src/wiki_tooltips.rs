@@ -13,6 +13,7 @@ const GOLDEN_LINES: &str = include_str!("../data/tooltip_golden.json");
 
 #[derive(Default)]
 struct TooltipComparison {
+    enhancement_bonuses_checked: usize,
     matched_fields: usize,
     matched_lines: usize,
     known_lines: usize,
@@ -54,6 +55,13 @@ pub fn check_wiki_tooltips(db_path: &Path) -> Result<String> {
                     )?;
                 }
             } else {
+                if collection == "items" {
+                    for golden in owner["lines"].as_array().context("golden item lines")? {
+                        if golden["kind"] == "enhancement_bonus" {
+                            compare_enhancement_bonus(owner_name, golden, &detail, &mut comparison);
+                        }
+                    }
+                }
                 compare_lines(owner_name, &owner["lines"], &detail["effects"], &mut comparison)?;
             }
         }
@@ -66,9 +74,38 @@ pub fn check_wiki_tooltips(db_path: &Path) -> Result<String> {
         );
     }
     Ok(format!(
-        "wiki tooltips: {} lines matched as-is, {} lines with recorded differences, {} matched fields; known differences: {:?}",
-        comparison.matched_lines, comparison.known_lines, comparison.matched_fields, comparison.known_by_reason
+        "wiki tooltips: {} lines matched as-is, {} lines with recorded differences, {} matched fields, {} enhancement bonuses checked; known differences: {:?}",
+        comparison.matched_lines, comparison.known_lines, comparison.matched_fields,
+        comparison.enhancement_bonuses_checked, comparison.known_by_reason
     ))
+}
+
+fn compare_enhancement_bonus(owner_name: &str, golden: &Value, detail: &Value, comparison: &mut TooltipComparison) {
+    comparison.enhancement_bonuses_checked += 1;
+    let expected = golden["wiki_text"]
+        .as_str()
+        .and_then(|line| line.strip_suffix(" Enhancement Bonus"))
+        .and_then(|amount| amount.parse::<i64>().ok());
+    let actual = detail["enhancement_bonus"].as_i64();
+    match (expected, actual) {
+        (Some(expected), Some(actual)) if expected == actual => {
+            if golden["known_differences"].get("enhancement_bonus").is_some() {
+                comparison
+                    .unrecorded
+                    .push(format!("{owner_name}: recorded enhancement bonus difference now matches the wiki"));
+            }
+        }
+        (Some(_), _)
+            if golden["known_differences"]["enhancement_bonus"]["reason"].as_str().is_some()
+                && golden["known_differences"]["enhancement_bonus"]["served"].as_i64() == actual =>
+        {
+            let reason = golden["known_differences"]["enhancement_bonus"]["reason"].as_str().unwrap();
+            *comparison.known_by_reason.entry(reason.to_string()).or_default() += 1;
+        }
+        _ => comparison.unrecorded.push(format!(
+            "{owner_name}: wiki enhancement bonus {expected:?}, served item enhancement_bonus {actual:?}"
+        )),
+    }
 }
 
 async fn served_detail(state: &AppState, path: &str) -> Result<Value> {
@@ -189,7 +226,7 @@ fn wiki_label(wiki_text: &str, golden: &Value) -> String {
 
 #[cfg(test)]
 mod tests {
-    use super::{collapse_whitespace, compare_field, wiki_label, TooltipComparison};
+    use super::{collapse_whitespace, compare_enhancement_bonus, compare_field, wiki_label, TooltipComparison};
     use serde_json::json;
 
     #[test]
@@ -217,6 +254,17 @@ mod tests {
         let served = json!({"name": "Evocation Focus"});
         let mut comparison = TooltipComparison::default();
         compare_field("Probe", 0, &golden, &served, "name", "Evocation Focus", &mut comparison);
+        assert_eq!(comparison.unrecorded.len(), 1);
+    }
+
+    #[test]
+    fn enhancement_bonus_golden_lines_check_the_item_field() {
+        let golden = json!({"kind": "enhancement_bonus", "wiki_text": "+15 Enhancement Bonus"});
+        let mut comparison = TooltipComparison::default();
+        compare_enhancement_bonus("Golden sword", &golden, &json!({"enhancement_bonus": 15}), &mut comparison);
+        assert_eq!(comparison.enhancement_bonuses_checked, 1);
+        assert!(comparison.unrecorded.is_empty());
+        compare_enhancement_bonus("Golden sword", &golden, &json!({"enhancement_bonus": 14}), &mut comparison);
         assert_eq!(comparison.unrecorded.len(), 1);
     }
 }

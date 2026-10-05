@@ -7669,31 +7669,17 @@
           "tooltip_is_standard": true,
           "standard_evidence": "same wording as Sacred/Profane/Quality Spell Focus Mastery tooltips on Legendary Occultic Circlet, Legendary Great Forge Cowl and Legendary Alchemist's Pendant",
           "wiki_link": null,
-          "ours": "Spell DCs",
+          "ours": "Spell Focus Mastery",
           "ours_line": {
             "index": 0,
-            "template": "%b1 Spell DCs +{1}",
+            "template": "%b1 Spell Focus Mastery +{1}",
             "type": "Profane",
             "value": 2,
             "value2": null
           },
-          "note": "wiki names the effect Spell Focus Mastery; ours renders 'Spell DCs'",
           "page": "https://ddowiki.com/page/Item:Dolorous_Invigorator_(legendary)",
           "read": "2026-10-05",
-          "known_differences": {
-            "name": {
-              "reason": "Wiki groups several augment stat lines under one named bonus.",
-              "served": "Spell DCs"
-            },
-            "verbose_name": {
-              "reason": "Wiki groups several augment stat lines under one named bonus.",
-              "served": "Profane Spell DCs +2"
-            },
-            "description": {
-              "reason": "Wiki folds multiple augment stat lines into one tooltip.",
-              "served": ""
-            }
-          }
+          "known_differences": null
         },
         {
           "kind": "enchantment",
@@ -7702,31 +7688,17 @@
           "tooltip_is_standard": true,
           "standard_evidence": "same wording (bonus type aside) as Quality Combat Mastery +3 on Item:Dolorous Quality Combat Mastery (legendary)",
           "wiki_link": null,
-          "ours": "Tactics",
+          "ours": "Combat Mastery",
           "ours_line": {
-            "index": 4,
-            "template": "%b1 Tactics +{1}",
+            "index": 1,
+            "template": "%b1 Combat Mastery +{1}",
             "type": "Profane",
             "value": 2,
             "value2": null
           },
-          "note": "one wiki line covers four of ours: Trip DC, Sunder DC, Stun DC and Tactics; paired with Tactics, the other three are listed as ours_only",
           "page": "https://ddowiki.com/page/Item:Dolorous_Invigorator_(legendary)",
           "read": "2026-10-05",
-          "known_differences": {
-            "name": {
-              "reason": "Wiki groups several augment stat lines under one named bonus.",
-              "served": "Tactics"
-            },
-            "verbose_name": {
-              "reason": "Wiki groups several augment stat lines under one named bonus.",
-              "served": "Profane Tactics +2"
-            },
-            "description": {
-              "reason": "Wiki folds multiple augment stat lines into one tooltip.",
-              "served": ""
-            }
-          }
+          "known_differences": null
         },
         {
           "kind": "enchantment",
@@ -7735,84 +7707,17 @@
           "tooltip_is_standard": true,
           "standard_evidence": "same wording as Assassinate +16 / Quality Assassinate +3 on Legendary Bracers of the Unseen Assassin",
           "wiki_link": null,
-          "ours": "Assassinate DC",
+          "ours": "Assassinate",
           "ours_line": {
-            "index": 5,
-            "template": "%b1 Assassinate DC +{1}",
+            "index": 2,
+            "template": "%b1 Assassinate +{1}",
             "type": "Profane",
             "value": 2,
             "value2": null
           },
           "page": "https://ddowiki.com/page/Item:Dolorous_Invigorator_(legendary)",
           "read": "2026-10-05",
-          "known_differences": {
-            "name": {
-              "reason": "Wiki groups several augment stat lines under one named bonus.",
-              "served": "Assassinate DC"
-            },
-            "verbose_name": {
-              "reason": "Wiki groups several augment stat lines under one named bonus.",
-              "served": "Profane Assassinate DC +2"
-            },
-            "description": {
-              "reason": "Wiki folds multiple augment stat lines into one tooltip.",
-              "served": ""
-            }
-          }
-        },
-        {
-          "kind": "ours_only",
-          "wiki_text": null,
-          "wiki_tooltip": null,
-          "tooltip_is_standard": null,
-          "wiki_link": null,
-          "ours": "Trip DC",
-          "ours_line": {
-            "index": 1,
-            "template": "%b1 Trip DC +{1}",
-            "type": "Profane",
-            "value": 2,
-            "value2": null
-          },
-          "note": "covered by the wiki's single 'Profane Combat Mastery +2' line",
-          "page": "https://ddowiki.com/page/Item:Dolorous_Invigorator_(legendary)",
-          "read": "2026-10-05"
-        },
-        {
-          "kind": "ours_only",
-          "wiki_text": null,
-          "wiki_tooltip": null,
-          "tooltip_is_standard": null,
-          "wiki_link": null,
-          "ours": "Sunder DC",
-          "ours_line": {
-            "index": 2,
-            "template": "%b1 Sunder DC +{1}",
-            "type": "Profane",
-            "value": 2,
-            "value2": null
-          },
-          "note": "covered by the wiki's single 'Profane Combat Mastery +2' line",
-          "page": "https://ddowiki.com/page/Item:Dolorous_Invigorator_(legendary)",
-          "read": "2026-10-05"
-        },
-        {
-          "kind": "ours_only",
-          "wiki_text": null,
-          "wiki_tooltip": null,
-          "tooltip_is_standard": null,
-          "wiki_link": null,
-          "ours": "Stun DC",
-          "ours_line": {
-            "index": 3,
-            "template": "%b1 Stun DC +{1}",
-            "type": "Profane",
-            "value": 2,
-            "value2": null
-          },
-          "note": "covered by the wiki's single 'Profane Combat Mastery +2' line",
-          "page": "https://ddowiki.com/page/Item:Dolorous_Invigorator_(legendary)",
-          "read": "2026-10-05"
+          "known_differences": null
         }
       ]
     },
@@ -7838,97 +7743,17 @@
           "tooltip_is_standard": true,
           "standard_evidence": "same wording (bonus type aside) as Profane Combat Mastery +2 on Item:Dolorous Invigorator (legendary)",
           "wiki_link": "/page/Combat_Mastery",
-          "ours": "Tactics",
-          "ours_line": {
-            "index": 3,
-            "template": "%b1 Tactics +{1}",
-            "type": "Quality",
-            "value": 3,
-            "value2": null
-          },
-          "note": "one wiki line covers all five of ours (Stun DC twice, Trip DC, Sunder DC, Tactics); paired with Tactics, the rest are listed as ours_only",
-          "page": "https://ddowiki.com/page/Item:Dolorous_Quality_Combat_Mastery_(legendary)",
-          "read": "2026-10-05",
-          "known_differences": {
-            "name": {
-              "reason": "Wiki groups several augment stat lines under one named bonus.",
-              "served": "Tactics"
-            },
-            "verbose_name": {
-              "reason": "Wiki groups several augment stat lines under one named bonus.",
-              "served": "Quality Tactics +3"
-            },
-            "description": {
-              "reason": "Wiki folds multiple augment stat lines into one tooltip.",
-              "served": ""
-            }
-          }
-        },
-        {
-          "kind": "ours_only",
-          "wiki_text": null,
-          "wiki_tooltip": null,
-          "tooltip_is_standard": null,
-          "wiki_link": null,
-          "ours": "Stun DC",
+          "ours": "Combat Mastery",
           "ours_line": {
             "index": 0,
-            "template": "%b1 Stun DC +{1}",
+            "template": "%b1 Combat Mastery +{1}",
             "type": "Quality",
             "value": 3,
             "value2": null
           },
-          "note": "covered by the wiki's single 'Quality Combat Mastery +3' line",
           "page": "https://ddowiki.com/page/Item:Dolorous_Quality_Combat_Mastery_(legendary)",
-          "read": "2026-10-05"
-        },
-        {
-          "kind": "ours_only",
-          "wiki_text": null,
-          "wiki_tooltip": null,
-          "tooltip_is_standard": null,
-          "wiki_link": null,
-          "ours": "Trip DC",
-          "ours_line": {
-            "index": 1,
-            "template": "%b1 Trip DC +{1}",
-            "type": "Quality",
-            "value": 3,
-            "value2": null
-          },
-          "note": "covered by the wiki's single 'Quality Combat Mastery +3' line",
-          "page": "https://ddowiki.com/page/Item:Dolorous_Quality_Combat_Mastery_(legendary)",
-          "read": "2026-10-05"
-        },
-        {
-          "kind": "ours_only",
-          "wiki_text": null,
-          "wiki_tooltip": null,
-          "tooltip_is_standard": null,
-          "wiki_link": null,
-          "ours": "Sunder DC",
-          "ours_line": {
-            "index": 2,
-            "template": "%b1 Sunder DC +{1}",
-            "type": "Quality",
-            "value": 3,
-            "value2": null
-          },
-          "note": "covered by the wiki's single 'Quality Combat Mastery +3' line",
-          "page": "https://ddowiki.com/page/Item:Dolorous_Quality_Combat_Mastery_(legendary)",
-          "read": "2026-10-05"
-        },
-        {
-          "kind": "ours_only",
-          "wiki_text": null,
-          "wiki_tooltip": null,
-          "tooltip_is_standard": null,
-          "wiki_link": null,
-          "ours": "Stun DC",
-          "ours_line": null,
-          "note": "Maetrim duplicated Stun DC; the cited correction removes the extra link.",
-          "page": "https://ddowiki.com/page/Item:Dolorous_Quality_Combat_Mastery_(legendary)",
-          "read": "2026-10-05"
+          "read": "2026-10-05",
+          "known_differences": null
         }
       ]
     },

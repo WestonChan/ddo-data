@@ -2070,7 +2070,7 @@ fn refuses_to_write_an_augment_bonus_without_a_type_unless_a_correction_types_it
     for expected_text in ["augment \"Dolorous Invigorator (Heroic)\"", "effect \"TacticalDC\"", "stat \"Trip DC\""] {
         assert!(error.contains(expected_text), "{expected_text} missing from {error}");
     }
-    let profane_corrections: String = ["Trip DC", "Sunder DC", "Stun DC", "Tactics", "Assassinate DC"]
+    let profane_corrections: String = ["Trip DC", "Sunder DC", "Stun DC", "Assassinate DC"]
         .iter()
         .map(|stat_name| {
             qualified_correction_toml(
@@ -2086,20 +2086,32 @@ fn refuses_to_write_an_augment_bonus_without_a_type_unless_a_correction_types_it
     let (db, report) = built_db_from(&data_files_dir, &[("corrections.toml", &profane_corrections)]).unwrap();
     assert_eq!(
         (report.correction_applied_count, report.correction_stale_count),
-        (5, 0),
+        (4, 0),
         "{:?}",
         report.stale_corrections
     );
     let dolorous_bonuses = augment_bonus_rows(&db, "Dolorous Invigorator (Heroic)");
-    for stat_name in ["Trip DC", "Sunder DC", "Stun DC", "Tactics", "Assassinate DC"] {
+    for stat_name in ["Trip DC", "Sunder DC", "Stun DC", "Assassinate DC"] {
         assert!(
             dolorous_bonuses.contains(&(stat_name.into(), Some("Profane".into()), Some(1))),
             "{dolorous_bonuses:?}"
         );
     }
     assert!(dolorous_bonuses.contains(&("Spell DCs".into(), Some("Profane".into()), Some(1))), "{dolorous_bonuses:?}");
-    assert_eq!(dolorous_bonuses.len(), 6);
-    assert_eq!(row_count(&db, "SELECT COUNT(*) FROM corrections WHERE kind = 'augment_bonus'"), 5);
+    assert_eq!(dolorous_bonuses.len(), 5);
+    let lines: Vec<String> = db
+        .prepare(
+            "SELECT e.name FROM augment_effects ae JOIN augments a ON a.id = ae.augment_id
+             JOIN effects e ON e.id = ae.effect_id WHERE a.name = 'Dolorous Invigorator (Heroic)'
+             ORDER BY ae.sort_order",
+        )
+        .unwrap()
+        .query_map([], |row| row.get(0))
+        .unwrap()
+        .map(Result::unwrap)
+        .collect();
+    assert_eq!(lines, ["Spell Focus Mastery", "Combat Mastery", "Assassinate"]);
+    assert_eq!(row_count(&db, "SELECT COUNT(*) FROM corrections WHERE kind = 'augment_bonus'"), 4);
 }
 
 #[test]

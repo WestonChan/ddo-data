@@ -1,5 +1,10 @@
 description_trim_period = ["Sheltering"]
 
+[named_effect_ids]
+"Spell Focus Mastery" = 100
+"Combat Mastery" = 118
+Tactics = 198
+
 [family]
 enhancement = ["WeaponEnchantment", "ArmorEnchantment", "ShieldEnchantment"]
 owner_type_precedence = ["ExtraLayOnHands", "Constitution Skills - Exceptional", "Charisma Skills - Exceptional", "Strength Skills - Exceptional", "Wisdom Skills - Exceptional"]
@@ -139,6 +144,9 @@ ExtraLayOnHands = "Lay on Hands Uses"
 "Universal Spell Lore" = "+{1}% %b1 Bonus to Spell Critical Chance"
 
 [description_templates]
+"Spell Focus Mastery" = "+{1} %b1 bonus to the DC of all spells."
+"Combat Mastery" = "+{1} %b1 bonus to the DC to resist the character's Trip, Improved Trip, Sunder, Improved Sunder, Stunning Blow, and Stunning Fist attempts."
+Assassinate = "+{1} %b1 bonus to the DC of character's Assassinate attempts."
 "Armor Bonus" = "This item surrounds the wearer with an invisible but tangible field of force, granting {1} armor bonus to AC, just as though he were wearing armor."
 "Fortification" = "+{1}% %b1 bonus to reduced chance of taking critical damage on a critical hit."
 "Improved Deception" = "This item makes your weapons hard to focus upon and thus provides a {1} enhancement bonus to Bluff checks. In addition, while using this item your weapons have a chance to envelop the target in darkness, making them vulnerable to sneak attacks for a short time."
@@ -165,6 +173,48 @@ Wizardry = ["Wizardry I", "Wizardry II", "Wizardry III", "Wizardry V", "Wizardry
 Sheltering = ["Physical Resistance Rating", "Magical Resistance Rating"]
 "Melee and Ranged Power" = ["Melee Power", "Ranged Power"]
 "Doublestrike and Doubleshot" = ["Doublestrike", "Doubleshot"]
+
+[[augment_line_names]]
+augment = "Dolorous Invigorator (Heroic)"
+source_name = "Tactics"
+effect_name = "Combat Mastery"
+source = "https://ddowiki.com/page/Item:Dolorous_Invigorator_(heroic)"
+read = "2026-10-05"
+
+[[augment_line_names]]
+augment = "Dolorous Invigorator (Heroic)"
+source_name = "Spell DCs"
+effect_name = "Spell Focus Mastery"
+source = "https://ddowiki.com/page/Item:Dolorous_Invigorator_(heroic)"
+read = "2026-10-05"
+
+[[augment_line_names]]
+augment = "Dolorous Invigorator (Legendary)"
+source_name = "Tactics"
+effect_name = "Combat Mastery"
+source = "https://ddowiki.com/page/Item:Dolorous_Invigorator_(legendary)"
+read = "2026-10-05"
+
+[[augment_line_names]]
+augment = "Dolorous Invigorator (Legendary)"
+source_name = "Spell DCs"
+effect_name = "Spell Focus Mastery"
+source = "https://ddowiki.com/page/Item:Dolorous_Invigorator_(legendary)"
+read = "2026-10-05"
+
+[[augment_line_names]]
+augment = "Dolorous Quality Combat Mastery (Heroic)"
+source_name = "Tactics"
+effect_name = "Combat Mastery"
+source = "https://ddowiki.com/page/Item:Dolorous_Quality_Combat_Mastery_(heroic)"
+read = "2026-10-05"
+
+[[augment_line_names]]
+augment = "Dolorous Quality Combat Mastery (Legendary)"
+source_name = "Tactics"
+effect_name = "Combat Mastery"
+source = "https://ddowiki.com/page/Item:Dolorous_Quality_Combat_Mastery_(legendary)"
+read = "2026-10-05"
 
 [skill_ability_groups]
 source = "https://ddowiki.com/page/Skills"
@@ -209,7 +259,6 @@ SpellLoreNumeral = "Spell Lore"
 SpellLore = "Spell Lore"
 DarkRestorationLore = "Dark Restoration Lore"
 SacredGroundLore = "Sacred Ground Lore"
-SpellFocusMastery = "Spell Focus Mastery"
 SpellPenetration = "Spell Penetration"
 SpellPenetrationNumeral = "Spell Penetration"
 WizardryNumber = "Spell Points"
@@ -255,7 +304,6 @@ AttackBonus = "Attack Bonus"
 Doublestrike = "Doublestrike"
 Doubleshot = "Doubleshot"
 ArmorPiercing = "Fortification Bypass"
-CombatMastery = "Combat Mastery"
 Stunning = "Stun DC"
 Shatter = "Sunder DC"
 Vertigo = "Trip DC"
@@ -395,6 +443,11 @@ qualified_name = "Melee and Ranged Attack Speed"
 targets = { Melee = ["Melee Attack Speed"], Ranged = ["Ranged Attack Speed"] }
 family_names = { "Melee Attack Speed" = "Melee Alacrity", "Ranged Attack Speed" = "Ranged Alacrity" }
 
+[effect.targeted.TacticalDC]
+targets = { All = ["Trip DC", "Sunder DC", "Stun DC"], General = ["Trip DC", "Sunder DC", "Stun DC"], Trip = ["Trip DC"], Sunder = ["Sunder DC"], Stun = ["Stun DC"], Assassinate = ["Assassinate DC"], "Rune Arm" = ["Rune Arm DC"], Vertigo = ["Trip DC"] }
+shared_targets = { All = "Tactics", General = "Tactics" }
+family_names = { "Assassinate DC" = "Assassinate" }
+
 [effect.by_item]
 AbilityBonus = "{item}"
 SkillBonus = "{item}"
@@ -403,7 +456,6 @@ SpellLore = "{item} Spell Lore"
 SpellCriticalDamage = "{item} Spell Critical Damage"
 SpellDC = "{item} Spell Focus"
 SaveBonus = "{item} Save"
-TacticalDC = "{item} DC"
 EnergyResistance = "{item} Resistance"
 EnergyAbsorbance = "{item} Absorption"
 
@@ -413,7 +465,6 @@ SpellLore = "Universal Spell Lore"
 SpellCriticalDamage = "Universal Spell Critical Damage"
 SpellDC = "Spell DCs"
 SaveBonus = "Saving Throws"
-TacticalDC = "Tactics"
 EnergyResistance = "Elemental Resistance"
 Weapon_Attack = "Attack Bonus"
 Weapon_Damage = "Damage Bonus"
@@ -430,8 +481,6 @@ Lawful = "Law"
 Chaotic = "Chaos"
 Electricity = "Electric"
 Traps = "Trap"
-General = "Tactics"
-Vertigo = "Trip"
 "Rune Arm" = "Rune Arm"
 
 [stat_name_aliases]

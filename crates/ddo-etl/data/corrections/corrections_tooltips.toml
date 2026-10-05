@@ -1,8 +1,7 @@
 [[correction]]
-kind = "item_bonus"
+kind = "item_effect"
 name = "Legendary Staff of Arcane Power"
-stat = "Spell Focus Mastery"
-bonus_type = "Equipment"
+effect = "Spell Focus Mastery"
 field = "value"
 from = 5
 to = 7
@@ -187,19 +186,3 @@ to = { name = "Planar Searing", description = "This weapon harbors a burn unlike
 reason = "The wiki lists Planar Searing on this weapon, which Maetrim omits."
 source = "https://ddowiki.com/page/Item:Marro,_the_Bone_of_Demons"
 read = "2026-10-05"
-
-
-[[correction]]
-kind = "augment_bonus"
-name = "Dolorous Quality Combat Mastery (Legendary)"
-family = "Lamordia_Legendary"
-stat = "Stun DC"
-bonus_type = "Quality"
-bonus_value = 3
-field = "dedupe"
-from = 2
-to = 1
-reason = "Maetrim repeats the Stun DC bonus, while the wiki lists it once."
-source = "https://ddowiki.com/page/Item:Dolorous_Quality_Combat_Mastery_(legendary)"
-read = "2026-10-05"
-

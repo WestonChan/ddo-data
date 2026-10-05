@@ -309,7 +309,7 @@ impl TableWriter<'_> {
                     {
                         self.effects.set_defaults(effect_id, defaults)?;
                     }
-                    let uses_link_type = family_text.contains("%b1");
+                    let uses_link_type = self.effects.family(effect_id).expect("effect cached").uses_link_type;
                     let bonus_type = if uses_link_type { self.buff_resolver.link_bonus_type(buff)? } else { None };
                     let family_amount_count = self.effects.family(effect_id).expect("effect cached").amount_count;
                     self.effects.insert_link(

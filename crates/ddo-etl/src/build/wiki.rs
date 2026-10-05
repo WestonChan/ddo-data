@@ -633,6 +633,15 @@ impl TableWriter<'_> {
             ensure!(bonus.value2.is_none(), "wiki group {group_name:?} reads one value");
             return Ok((self.effects.ensure_group(group_name)?, Some(bonus_type)));
         }
+        if let Some(effect_name) = bonus.effect.as_deref() {
+            ensure!(bonus.value2.is_none(), "wiki effect {effect_name:?} reads one value");
+            let family = self
+                .effects
+                .family_named(effect_name)
+                .with_context(|| format!("wiki effect {effect_name:?} was not written"))?;
+            ensure!(!family.is_stat && family.amount_count == 1, "wiki effect {effect_name:?} must read one value");
+            return Ok((family.id, Some(bonus_type)));
+        }
         let stat = ddo_model::stats::Stat::by_name(bonus.name()).expect("validated wiki stat");
         let count = if bonus.value2.is_some() { 2 } else { 1 };
         let family_name = stat.name.to_string();

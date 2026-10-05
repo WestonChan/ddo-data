@@ -310,6 +310,21 @@ fn probe_quest_source_insert(loot_type: &str, chest: &str) -> String {
 fn injected_violations() -> Vec<InjectedViolation> {
     vec![
         violation(
+            "owner_bonuses_have_one_stat_type_per_source_line",
+            "INSERT INTO effects (name, verbose_name_template) VALUES ('Integrity Double Bonus', '%b1 Integrity Double Bonus +{1}');
+             INSERT INTO effect_bonuses (effect_id, target_effect_id, bonus_type_id, amount_from, sort_order)
+             VALUES ((SELECT id FROM effects WHERE name = 'Integrity Double Bonus'),
+                     (SELECT id FROM effects WHERE name = 'Strength'), NULL, 1, 0);
+             INSERT INTO effect_bonuses (effect_id, target_effect_id, bonus_type_id, amount_from, sort_order)
+             VALUES ((SELECT id FROM effects WHERE name = 'Integrity Double Bonus'),
+                     (SELECT id FROM effects WHERE name = 'Strength'),
+                     (SELECT id FROM bonus_types WHERE name = 'Enhancement'), 1, 1);
+             INSERT INTO item_effects (item_id, effect_id, value, bonus_type_id, sort_order)
+             VALUES ((SELECT MIN(id) FROM items), (SELECT id FROM effects WHERE name = 'Integrity Double Bonus'),
+                     1, (SELECT id FROM bonus_types WHERE name = 'Enhancement'), 997);",
+            "item:",
+        ),
+        violation(
             "items_with_a_source_but_no_pack",
             "UPDATE vendors SET pack_id = NULL WHERE name = 'Morten Edgewright';",
             "Ethereal Great Crossbow",

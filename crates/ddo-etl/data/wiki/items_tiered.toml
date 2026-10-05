@@ -481,7 +481,7 @@ material = "Force"
 description = "The manifestation of your mind has been sharpened to a keen edge. As you increase in level, this weapon will also grow in power. Because it is a manifestation of pure mind rather than a physical weapon, it will dissipate if unequipped."
 drop_location = "The page gives no location"
 bonuses = [
-  { stat = "Combat Mastery", bonus_type = "Enhancement", value = 2 },
+  { effect = "Combat Mastery", bonus_type = "Enhancement", value = 2 },
 ]
 effects = [
   { name = "Mindcleaver", description = "This blade is made of pure force and is surprisingly light to the touch. It bypasses the Incorporeal chances of Ethereal monsters innately." },
@@ -508,7 +508,7 @@ material = "Force"
 description = "The manifestation of your mind has been sharpened to a keen edge. As you increase in level, this weapon will also grow in power. Because it is a manifestation of pure mind rather than a physical weapon, it will dissipate if unequipped."
 drop_location = "The page gives no location"
 bonuses = [
-  { stat = "Combat Mastery", bonus_type = "Enhancement", value = 5 },
+  { effect = "Combat Mastery", bonus_type = "Enhancement", value = 5 },
 ]
 effects = [
   { name = "Mindcleaver", description = "This blade is made of pure force and is surprisingly light to the touch. It bypasses the Incorporeal chances of Ethereal monsters innately." },
@@ -538,7 +538,7 @@ material = "Force"
 description = "The manifestation of your mind has been sharpened to a keen edge. As you increase in level, this weapon will also grow in power. Because it is a manifestation of pure mind rather than a physical weapon, it will dissipate if unequipped."
 drop_location = "The page gives no location"
 bonuses = [
-  { stat = "Combat Mastery", bonus_type = "Enhancement", value = 6 },
+  { effect = "Combat Mastery", bonus_type = "Enhancement", value = 6 },
 ]
 effects = [
   { name = "Mindcleaver", description = "This blade is made of pure force and is surprisingly light to the touch. It bypasses the Incorporeal chances of Ethereal monsters innately." },
@@ -568,7 +568,7 @@ material = "Force"
 description = "The manifestation of your mind has been sharpened to a keen edge. As you increase in level, this weapon will also grow in power. Because it is a manifestation of pure mind rather than a physical weapon, it will dissipate if unequipped."
 drop_location = "The page gives no location"
 bonuses = [
-  { stat = "Combat Mastery", bonus_type = "Enhancement", value = 8 },
+  { effect = "Combat Mastery", bonus_type = "Enhancement", value = 8 },
 ]
 effects = [
   { name = "Mindcleaver", description = "This blade is made of pure force and is surprisingly light to the touch. It bypasses the Incorporeal chances of Ethereal monsters innately." },
@@ -598,7 +598,7 @@ material = "Force"
 description = "The manifestation of your mind has been sharpened to a keen edge. As you increase in level, this weapon will also grow in power. Because it is a manifestation of pure mind rather than a physical weapon, it will dissipate if unequipped."
 drop_location = "The page gives no location"
 bonuses = [
-  { stat = "Combat Mastery", bonus_type = "Enhancement", value = 9 },
+  { effect = "Combat Mastery", bonus_type = "Enhancement", value = 9 },
 ]
 effects = [
   { name = "Mindcleaver", description = "This blade is made of pure force and is surprisingly light to the touch. It bypasses the Incorporeal chances of Ethereal monsters innately." },
@@ -628,7 +628,7 @@ material = "Force"
 description = "The manifestation of your mind has been sharpened to a keen edge. As you increase in level, this weapon will also grow in power. Because it is a manifestation of pure mind rather than a physical weapon, it will dissipate if unequipped."
 drop_location = "The page gives no location"
 bonuses = [
-  { stat = "Combat Mastery", bonus_type = "Enhancement", value = 11 },
+  { effect = "Combat Mastery", bonus_type = "Enhancement", value = 11 },
 ]
 effects = [
   { name = "Mindcleaver", description = "This blade is made of pure force and is surprisingly light to the touch. It bypasses the Incorporeal chances of Ethereal monsters innately." },
@@ -659,7 +659,7 @@ material = "Force"
 description = "The manifestation of your mind has been sharpened to a keen edge. As you increase in level, this weapon will also grow in power. Because it is a manifestation of pure mind rather than a physical weapon, it will dissipate if unequipped."
 drop_location = "The page gives no location"
 bonuses = [
-  { stat = "Combat Mastery", bonus_type = "Enhancement", value = 3 },
+  { effect = "Combat Mastery", bonus_type = "Enhancement", value = 3 },
 ]
 effects = [
   { name = "Mindcleaver", description = "This blade is made of pure force and is surprisingly light to the touch. It bypasses the Incorporeal chances of Ethereal monsters innately." },
@@ -689,7 +689,7 @@ drop_location = "Timeline Fragment Exchange, Turn in 50 Timeline Fragments"
 augment_slots = ["blue", "sun"]
 bonuses = [
   { stat = "Will Save", bonus_type = "Resistance", value = 6 },
-  { stat = "Combat Mastery", bonus_type = "Enhancement", value = 5 },
+  { effect = "Combat Mastery", bonus_type = "Enhancement", value = 5 },
   { stat = "Fortification", bonus_type = "Quality", value = 20 },
   { stat = "Chaos Absorption", bonus_type = "Enhancement", value = 15 },
 ]
@@ -712,7 +712,7 @@ drop_location = "Timeline Fragment Exchange, Turn in 50 Timeline Fragments"
 augment_slots = ["blue", "sun"]
 bonuses = [
   { stat = "Will Save", bonus_type = "Resistance", value = 7 },
-  { stat = "Combat Mastery", bonus_type = "Enhancement", value = 6 },
+  { effect = "Combat Mastery", bonus_type = "Enhancement", value = 6 },
   { stat = "Fortification", bonus_type = "Quality", value = 23 },
   { stat = "Chaos Absorption", bonus_type = "Enhancement", value = 15 },
 ]
@@ -735,7 +735,7 @@ drop_location = "Timeline Fragment Exchange, Turn in 50 Timeline Fragments"
 augment_slots = ["green", "colorless", "sun"]
 bonuses = [
   { stat = "Will Save", bonus_type = "Resistance", value = 9 },
-  { stat = "Combat Mastery", bonus_type = "Enhancement", value = 8 },
+  { effect = "Combat Mastery", bonus_type = "Enhancement", value = 8 },
   { stat = "Fortification", bonus_type = "Quality", value = 27 },
   { stat = "Chaos Absorption", bonus_type = "Enhancement", value = 18 },
 ]
@@ -758,7 +758,7 @@ drop_location = "Timeline Fragment Exchange, Turn in 50 Timeline Fragments"
 augment_slots = ["green", "colorless", "sun"]
 bonuses = [
   { stat = "Will Save", bonus_type = "Resistance", value = 10 },
-  { stat = "Combat Mastery", bonus_type = "Enhancement", value = 9 },
+  { effect = "Combat Mastery", bonus_type = "Enhancement", value = 9 },
   { stat = "Fortification", bonus_type = "Quality", value = 30 },
   { stat = "Chaos Absorption", bonus_type = "Enhancement", value = 20 },
 ]
@@ -781,7 +781,7 @@ drop_location = "Timeline Fragment Exchange, Turn in 50 Timeline Fragments"
 augment_slots = ["green", "colorless", "sun"]
 bonuses = [
   { stat = "Will Save", bonus_type = "Resistance", value = 11 },
-  { stat = "Combat Mastery", bonus_type = "Enhancement", value = 10 },
+  { effect = "Combat Mastery", bonus_type = "Enhancement", value = 10 },
   { stat = "Fortification", bonus_type = "Quality", value = 34 },
   { stat = "Chaos Absorption", bonus_type = "Enhancement", value = 21 },
 ]
@@ -804,7 +804,7 @@ drop_location = "Timeline Fragment Exchange, Turn in 50 Timeline Fragments"
 augment_slots = ["green", "colorless", "sun"]
 bonuses = [
   { stat = "Will Save", bonus_type = "Resistance", value = 12 },
-  { stat = "Combat Mastery", bonus_type = "Enhancement", value = 11 },
+  { effect = "Combat Mastery", bonus_type = "Enhancement", value = 11 },
   { stat = "Fortification", bonus_type = "Quality", value = 37 },
   { stat = "Chaos Absorption", bonus_type = "Enhancement", value = 23 },
 ]
@@ -827,7 +827,7 @@ drop_location = "Timeline Fragment Exchange, Turn in 50 Timeline Fragments"
 augment_slots = ["green", "colorless", "sun"]
 bonuses = [
   { stat = "Will Save", bonus_type = "Resistance", value = 13 },
-  { stat = "Combat Mastery", bonus_type = "Enhancement", value = 12 },
+  { effect = "Combat Mastery", bonus_type = "Enhancement", value = 12 },
   { stat = "Fortification", bonus_type = "Quality", value = 41 },
   { stat = "Chaos Absorption", bonus_type = "Enhancement", value = 24 },
 ]
@@ -850,7 +850,7 @@ drop_location = "Timeline Fragment Exchange, Turn in 50 Timeline Fragments"
 augment_slots = ["blue", "sun"]
 bonuses = [
   { stat = "Will Save", bonus_type = "Resistance", value = 4 },
-  { stat = "Combat Mastery", bonus_type = "Enhancement", value = 3 },
+  { effect = "Combat Mastery", bonus_type = "Enhancement", value = 3 },
   { stat = "Fortification", bonus_type = "Quality", value = 13 },
   { stat = "Chaos Absorption", bonus_type = "Enhancement", value = 12 },
 ]
@@ -873,7 +873,7 @@ drop_location = "Timeline Fragment Exchange, Turn in 50 Timeline Fragments"
 augment_slots = ["blue", "sun"]
 bonuses = [
   { stat = "Will Save", bonus_type = "Resistance", value = 5 },
-  { stat = "Combat Mastery", bonus_type = "Enhancement", value = 4 },
+  { effect = "Combat Mastery", bonus_type = "Enhancement", value = 4 },
   { stat = "Fortification", bonus_type = "Quality", value = 17 },
   { stat = "Chaos Absorption", bonus_type = "Enhancement", value = 14 },
 ]

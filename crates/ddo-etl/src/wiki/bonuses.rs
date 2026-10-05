@@ -8,6 +8,7 @@ use serde::Deserialize;
 pub struct WikiBonus {
     pub stat: Option<String>,
     pub group: Option<String>,
+    pub effect: Option<String>,
     pub bonus_type: String,
     pub value: i64,
     pub value2: Option<i64>,
@@ -15,7 +16,7 @@ pub struct WikiBonus {
 
 impl WikiBonus {
     pub fn name(&self) -> &str {
-        self.stat.as_deref().or(self.group.as_deref()).expect("validated bonus target")
+        self.stat.as_deref().or(self.group.as_deref()).or(self.effect.as_deref()).expect("validated bonus target")
     }
 
     pub fn bonus_type(&self) -> BonusType {
@@ -25,14 +26,26 @@ impl WikiBonus {
 
 pub(super) fn validate_bonuses(bonuses: &[WikiBonus]) -> Result<()> {
     for bonus in bonuses {
-        if bonus.stat.is_some() == bonus.group.is_some() {
-            bail!("wiki bonus needs exactly one stat or group");
+        if [bonus.stat.is_some(), bonus.group.is_some(), bonus.effect.is_some()]
+            .into_iter()
+            .filter(|present| *present)
+            .count()
+            != 1
+        {
+            bail!("wiki bonus needs exactly one stat, group or effect");
         }
         if bonus.stat.as_deref().is_some_and(|name| Stat::by_name(name).is_none()) {
             bail!("bonus stat {:?} is not a stat /v1/effects lists; use its exact name", bonus.stat);
         }
         if bonus.group.as_deref().is_some_and(|name| crate::map::effect_map::EFFECT_MAP.group_members(name).is_none()) {
             bail!("bonus group {:?} is not declared in effect_map.toml", bonus.group);
+        }
+        if bonus
+            .effect
+            .as_deref()
+            .is_some_and(|name| !crate::map::effect_map::EFFECT_MAP.named_effect_ids.contains_key(name))
+        {
+            bail!("bonus effect {:?} is not a declared named effect", bonus.effect);
         }
         if BonusType::parse(&bonus.bonus_type).is_none() {
             bail!(

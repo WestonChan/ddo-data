@@ -299,10 +299,11 @@ impl<'a> EffectCache<'a> {
         ensure!(!name.contains(" — "), "effect family {name:?} contains an em dash; add a [names] entry");
         validate_templates(name, verbose_name_template, description_template, count)?;
         self.transaction.execute(
-            "INSERT INTO effects (name, verbose_name_template, description_template, home_bonus_type_id,
+            "INSERT INTO effects (id, name, verbose_name_template, description_template, home_bonus_type_id,
                                   set_bonus_line_template)
-                 VALUES (?1, ?2, ?3, ?4, ?5)",
+                 VALUES (?1, ?2, ?3, ?4, ?5, ?6)",
             params![
+                EFFECT_MAP.named_effect_ids.get(name),
                 name,
                 verbose_name_template,
                 description_template,

@@ -29,6 +29,16 @@ fn parses_a_simple_effect() {
 }
 
 #[test]
+fn general_tactical_target_names_the_three_explicit_dc_stats_once() {
+    let effect = parsed_effect(
+        "<Effect><Type>TacticalDC</Type><Bonus>Quality</Bonus><AType>Simple</AType><Amount size=\"1\">3</Amount><Item>Trip</Item><Item>Sunder</Item><Item>Stun</Item><Item>General</Item></Effect>",
+    );
+    let names: Vec<&str> =
+        EffectResolver::new().derive_bonuses(&effect).unwrap().iter().map(|bonus| bonus.stat.name).collect();
+    assert_eq!(names, ["Trip DC", "Sunder DC", "Stun DC"]);
+}
+
+#[test]
 fn fixed_stat_effects_with_class_targets_do_not_become_generic_bonuses() {
     let qualifiers = EffectTargetQualifiers::from_vocabularies(["Sorcerer".to_string()], &[]);
     let resolver = EffectResolver::new().with_qualifiers(qualifiers);
@@ -124,7 +134,7 @@ fn real_companion_targets_preserve_their_mapped_siblings() {
         ),
         (
             "<Effect><Type>TacticalDC</Type><Bonus>Not Set</Bonus><AType>Simple</AType><Amount size=\"1\">1</Amount><Item>Trip</Item><Item>Sunder</Item><Item>Stun</Item><Item>General</Item><Item>Assassinate</Item></Effect>",
-            vec!["Trip DC", "Sunder DC", "Stun DC", "Tactics", "Assassinate DC"],
+            vec!["Trip DC", "Sunder DC", "Stun DC", "Assassinate DC"],
             1,
         ),
         (

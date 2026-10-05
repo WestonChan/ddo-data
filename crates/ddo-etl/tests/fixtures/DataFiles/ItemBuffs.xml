@@ -662,4 +662,19 @@
       <Amount size="1">0</Amount>
     </Effect>
   </Buff>
+  <Buff>
+    <Type>SpellFocusMastery</Type>
+    <DisplayText>%b1 Spell Focus Mastery %v1: %v1 %b1 bonus to the DC of all spells.</DisplayText>
+    <Effect><Type>SpellDC</Type><Bonus>Not Set</Bonus><AType>Simple</AType><Amount size="1">0</Amount><Item>All</Item></Effect>
+  </Buff>
+  <Buff>
+    <Type>CombatMastery</Type>
+    <DisplayText>%b1 Combat Mastery %v1: %v1 %b1 bonus to the DC to resist the character's Trip, Improved Trip, Sunder, Improved Sunder, Stunning Blow, and Stunning Fist attempts.</DisplayText>
+    <Effect><Type>TacticalDC</Type><Bonus>Not Set</Bonus><AType>Simple</AType><Amount size="1">0</Amount><Item>Trip</Item><Item>Sunder</Item><Item>Stun</Item><Item>General</Item></Effect>
+  </Buff>
+  <Buff>
+    <Type>Assassinate</Type>
+    <DisplayText>%b1 Assassinate %v1: %v1 %b1 bonus to the DC of character's Assassinate attempts.</DisplayText>
+    <Effect><Type>TacticalDC</Type><Bonus>Not Set</Bonus><AType>Simple</AType><Amount size="1">0</Amount><Item>Assassinate</Item></Effect>
+  </Buff>
 </Buffs>

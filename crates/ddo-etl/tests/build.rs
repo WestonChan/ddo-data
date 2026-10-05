@@ -40,7 +40,7 @@ fn item_id(db: &Connection, name: &str) -> i64 {
 #[test]
 fn writes_improved_deception_from_its_definition_as_a_typed_bluff_bonus() {
     let (db, report) = built_fixture_db();
-    assert_eq!(report.effect_fallback_buff_count, 19);
+    assert_eq!(report.effect_fallback_buff_count, 23);
     assert!(report.family_buff_count > 0);
     assert!(report.effect_buff_count > 0);
     let gloves = item_id(&db, "Backstabber's Gloves (Level 25)");
