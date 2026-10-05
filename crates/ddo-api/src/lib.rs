@@ -5,6 +5,7 @@ pub mod error;
 mod etag;
 mod query;
 mod routes;
+pub mod schema_validation;
 pub mod state;
 
 pub use docs::ResponseExample;

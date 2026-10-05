@@ -251,6 +251,7 @@ pub(crate) fn bonuses_via(
                 AND ob.effect_link_order = j.sort_order
            JOIN effects s ON s.id = ob.stat_id
            LEFT JOIN effect_bonuses es ON es.effect_id = e.id AND es.stat_id = ob.stat_id
+                AND (es.bonus_type_id IS ob.bonus_type_id OR es.bonus_type_id IS NULL)
            LEFT JOIN bonus_types bt ON bt.id = ob.bonus_type_id
           WHERE j.{owner_column} = ?1
           ORDER BY j.sort_order, es.sort_order"

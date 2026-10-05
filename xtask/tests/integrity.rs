@@ -102,6 +102,31 @@ fn text_only_effect_named_after_a_stat_is_warned() {
 }
 
 #[test]
+fn a_link_granting_only_zero_bonuses_is_warned() {
+    let work_dir = tempfile::tempdir().unwrap();
+    let db_path = fixture_db_copy_with(
+        work_dir.path(),
+        "UPDATE item_effects SET value = 0 WHERE item_id =
+           (SELECT id FROM items WHERE name = 'Epic Ethereal Bracers')
+           AND effect_id = (SELECT id FROM effects WHERE name = 'Riposte');",
+    );
+    let db = Connection::open(&db_path).unwrap();
+    let report = integrity_report(&db, &fixture_options()).unwrap();
+    let outcome = report.outcome("effect_links_with_only_zero_bonuses").unwrap();
+    assert!(outcome.offenders.iter().any(|offender| offender.name == "Riposte"));
+    let bonus_count: i64 = db
+        .query_row(
+            "SELECT COUNT(*) FROM owner_bonuses WHERE owner_kind = 'item'
+             AND owner_id = (SELECT id FROM items WHERE name = 'Epic Ethereal Bracers')
+             AND via_effect_id = (SELECT id FROM effects WHERE name = 'Riposte')",
+            [],
+            |row| row.get(0),
+        )
+        .unwrap();
+    assert_eq!(bonus_count, 0);
+}
+
+#[test]
 fn an_unclassified_effect_type_reports_its_family_and_item_count() {
     let source_dir = tempfile::tempdir().unwrap();
     std::fs::create_dir(source_dir.path().join("Items")).unwrap();
@@ -317,6 +342,14 @@ fn injected_violations() -> Vec<InjectedViolation> {
             "UPDATE item_effects SET bonus_type_id = NULL WHERE effect_id =
              (SELECT id FROM effects WHERE name = 'Improved Deception');",
             "Improved Deception",
+        ),
+        violation(
+            "effect_bonuses_have_one_rule_per_stat",
+            "INSERT INTO effect_bonuses (effect_id, stat_id, bonus_type_id, amount_from, sort_order)
+             SELECT eb.effect_id, eb.stat_id, (SELECT id FROM bonus_types WHERE name = 'Feat'),
+                    eb.amount_from, 998 FROM effect_bonuses eb JOIN effects e ON e.id = eb.effect_id
+              JOIN effects s ON s.id = eb.stat_id WHERE e.name = 'Command' AND s.name = 'Bluff' LIMIT 1;",
+            "Command",
         ),
         violation(
             "stat_links_have_bonus_types",

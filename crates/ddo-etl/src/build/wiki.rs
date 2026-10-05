@@ -424,6 +424,8 @@ impl TableWriter<'_> {
         };
         let maetrim_item_name_set: HashSet<&str> = maetrim_item_names.iter().map(String::as_str).collect();
         let maetrim_item_names_by_normalised_name = names_by_normalised_name(&maetrim_item_names);
+        let maetrim_item_names_by_unprefixed_name: HashMap<String, &str> =
+            maetrim_item_names.iter().map(|name| (unprefixed_item_name(name), name.as_str())).collect();
         let mut effect_ids_by_folded_name: HashMap<String, (i64, i64)> = HashMap::new();
         let mut text_families: Vec<_> =
             self.effects.families().filter(|family| !self.effects.has_stats(family.id)).collect();
@@ -448,7 +450,10 @@ impl TableWriter<'_> {
                 self.link_to_drop_text_packs(DroppedLoot::Item(item_id), &wiki_item.drop_location)?;
             self.link_to_sources_named_in_drop_text(DroppedLoot::Item(item_id), &wiki_item.drop_location, report)?;
             report.wiki_item_written_count += 1;
-            if let Some(maetrim_name) = maetrim_item_names_by_normalised_name.get(&normalised_name(&wiki_item.name)) {
+            if let Some(maetrim_name) = maetrim_item_names_by_normalised_name
+                .get(&normalised_name(&wiki_item.name))
+                .or_else(|| maetrim_item_names_by_unprefixed_name.get(&unprefixed_item_name(&wiki_item.name)))
+            {
                 report.probable_duplicate_wiki_items.push(ProbableDuplicateWikiEntry {
                     name: wiki_item.name.clone(),
                     maetrim_name: (*maetrim_name).to_string(),
@@ -566,10 +571,15 @@ impl TableWriter<'_> {
         }
         for (sort_order, effect) in wiki_item.effects.iter().enumerate() {
             let (effect_id, count) = self.wiki_effect_id(effect, effect_ids_by_folded_name)?;
-            let bonus_type = self
-                .effects
-                .family(effect_id)
-                .and_then(|family| family.is_stat.then_some(ddo_model::enums::BonusType::Equipment));
+            let bonus_type = self.effects.family(effect_id).and_then(|family| {
+                if family.is_stat {
+                    Some(ddo_model::enums::BonusType::Equipment)
+                } else if family.uses_link_type {
+                    self.effects.unique_link_bonus_type(effect_id)
+                } else {
+                    None
+                }
+            });
             self.effects.insert_link(
                 EffectOwner::Item,
                 item_id,
@@ -782,4 +792,30 @@ fn normalised_name(name: &str) -> String {
         .filter(|(_, level)| !level.is_empty() && level.bytes().all(|b| b.is_ascii_digit()))
         .map_or(lowercase_name.as_str(), |(before_level, _)| before_level);
     name_without_level.chars().filter(|character| character.is_alphanumeric()).collect()
+}
+
+fn unprefixed_item_name(name: &str) -> String {
+    let lowercase = name.trim().to_lowercase();
+    let unprefixed = ["epic ", "legendary ", "heroic "]
+        .into_iter()
+        .find_map(|prefix| lowercase.strip_prefix(prefix))
+        .unwrap_or(&lowercase);
+    unprefixed.chars().filter(|character| character.is_alphanumeric()).collect()
+}
+
+#[cfg(test)]
+mod tests {
+    use super::unprefixed_item_name;
+
+    #[test]
+    fn rarity_prefix_and_level_case_do_not_hide_a_duplicate() {
+        assert_eq!(
+            unprefixed_item_name("Epic Docent of Shadow (Level 28)"),
+            unprefixed_item_name("Docent of Shadow (level 28)")
+        );
+        assert_ne!(
+            unprefixed_item_name("Legendary Docent of Shadow (Level 32)"),
+            unprefixed_item_name("Docent of Shadow (level 28)")
+        );
+    }
 }

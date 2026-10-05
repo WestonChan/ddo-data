@@ -240,6 +240,7 @@ impl TableWriter<'_> {
                     {
                         self.effects.set_defaults(effect_id, defaults)?;
                     }
+                    let link_typed = uses_link_type || typed_stats.len() == 1;
                     for (stat_order, (resolved_stat, bonus_type)) in typed_stats.into_iter().enumerate() {
                         let (amount_from, constant) = match resolved_stat.amount_from {
                             crate::map::buff::AmountFrom::ItemValue1 => (1, None),
@@ -249,7 +250,7 @@ impl TableWriter<'_> {
                         self.effects.ensure_stat(
                             effect_id,
                             resolved_stat.stat,
-                            (!uses_link_type).then_some(bonus_type),
+                            (!link_typed).then_some(bonus_type),
                             amount_from,
                             constant,
                             stat_order,
@@ -259,7 +260,7 @@ impl TableWriter<'_> {
                         EffectOwner::Item,
                         item_id,
                         effect_id,
-                        (uses_link_type || self.effects.family(effect_id).is_some_and(|family| family.is_stat))
+                        (link_typed || self.effects.family(effect_id).is_some_and(|family| family.is_stat))
                             .then_some(first_type)
                             .flatten(),
                         (

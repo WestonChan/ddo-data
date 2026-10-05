@@ -1,5 +1,6 @@
 use axum::body::Body;
 use axum::http::{header, Request, StatusCode};
+use ddo_api::schema_validation::response_matches_schema;
 use ddo_api::{app, AppState};
 use ddo_model::DatasetVersion;
 use http_body_util::BodyExt;
@@ -242,6 +243,53 @@ async fn family_and_stat_detail_page_their_real_carriers() {
     assert_eq!(all["items"]["total"], 1);
 }
 
+#[tokio::test]
+async fn named_effect_carriers_page_links_and_nest_each_resolved_bonus() {
+    let (_, _, vocabulary) = get_list_rows("/v1/effects").await;
+    let riposte_id = effect_named(&vocabulary, "Riposte", "effect").unwrap()["id"].as_i64().unwrap();
+    let (_, _, riposte) = get(&format!("/v1/effects/{riposte_id}?items_limit=100")).await;
+    let bracers: Vec<_> = riposte["items"]["items"]
+        .as_array()
+        .unwrap()
+        .iter()
+        .filter(|row| row["name"] == "Epic Ethereal Bracers")
+        .collect();
+    assert_eq!(bracers.len(), 1);
+    assert_eq!(bracers[0]["value"], 5);
+    assert_eq!(bracers[0]["bonus_type"], "Insight");
+    assert_eq!(bracers[0]["bonuses"].as_array().unwrap().len(), 2);
+    assert!(bracers[0]["bonuses"]
+        .as_array()
+        .unwrap()
+        .iter()
+        .any(|row| row["stat"] == "Armor Class" && row["value"] == 3));
+    assert!(bracers[0]["bonuses"]
+        .as_array()
+        .unwrap()
+        .iter()
+        .any(|row| row["stat"] == "Saving Throws" && row["value"] == 2));
+    assert_eq!(riposte["items"]["total"], riposte["items"]["items"].as_array().unwrap().len());
+
+    let deception_id = effect_named(&vocabulary, "Improved Deception", "effect").unwrap()["id"].as_i64().unwrap();
+    let (_, _, deception) = get(&format!("/v1/effects/{deception_id}?items_limit=100")).await;
+    assert!(deception["items"]["items"].as_array().unwrap().iter().any(|row| row["bonus_type"] == "Enhancement"));
+
+    let strength_id = effect_named(&vocabulary, "Strength", "stat").unwrap()["id"].as_i64().unwrap();
+    let (_, _, strength) = get(&format!("/v1/effects/{strength_id}?augments_limit=100")).await;
+    assert!(strength["augments"]["augments"]
+        .as_array()
+        .unwrap()
+        .iter()
+        .any(|row| row["name"] == "Solar Gem of Strength (Heroic)"));
+    let all_abilities_id = effect_named(&vocabulary, "All Ability Scores", "effect").unwrap()["id"].as_i64().unwrap();
+    let (_, _, all_abilities) = get(&format!("/v1/effects/{all_abilities_id}")).await;
+    assert!(all_abilities["set_tiers"]["set_tiers"]
+        .as_array()
+        .unwrap()
+        .iter()
+        .any(|row| row["bonuses"].as_array().is_some_and(|rows| rows.len() == 6)));
+}
+
 fn item_ids_in_page(page: &Value) -> std::collections::BTreeSet<i64> {
     page["items"].as_array().unwrap().iter().map(|item| item["id"].as_i64().unwrap()).collect()
 }
@@ -400,7 +448,7 @@ async fn version_reports_dataset_and_schema() {
     }
     assert!(json["counts"].get("bonuses").is_none());
     assert!(json.get("api_commit").is_some(), "version must report the API build commit, null when unknown");
-    assert_eq!(json["counts"]["items"], 58, "57 of Maetrim's and the wiki fixture's axe");
+    assert_eq!(json["counts"]["items"], 59, "58 of Maetrim's and the wiki fixture's axe");
     assert_eq!(
         json["counts"]["legacy_items"], 3,
         "a legacy and a historic version, and an axe that drops only in a retired Temple of Elemental Evil part"
@@ -433,7 +481,7 @@ async fn items_list_filters_and_pages() {
 
     let (_, _, first_page) = get("/v1/items?limit=5&offset=0").await;
     assert_eq!(first_page["items"].as_array().unwrap().len(), 5);
-    assert_eq!(first_page["total"], 55, "the three legacy items are left out by default");
+    assert_eq!(first_page["total"], 56, "the three legacy items are left out by default");
     let (_, _, armor) = get("/v1/items?category=Armor").await;
     assert!(armor["items"].as_array().unwrap().iter().all(|i| i["category"] == "Armor"));
     let (_, _, level_range) = get("/v1/items?min_level=20&max_level=25").await;
@@ -453,7 +501,7 @@ async fn items_list_filters_and_pages() {
     );
     assert!(rare.iter().all(|item| item["is_rare"] == true));
     let (_, _, unfiltered) = get("/v1/items?rare=false").await;
-    assert_eq!(unfiltered["total"], 55);
+    assert_eq!(unfiltered["total"], 56);
     let (status, _, _) = get("/v1/items?category=Hat").await;
     assert_eq!(status, StatusCode::BAD_REQUEST, "unknown category is a client error");
 }
@@ -464,13 +512,13 @@ async fn items_list_leaves_out_legacy_items_unless_asked_to_include_them() {
     for path in ["/v1/items?limit=10000", "/v1/items?limit=10000&include_legacy=false"] {
         let (status, _, current) = get(path).await;
         assert_eq!(status, StatusCode::OK);
-        assert_eq!(current["total"], 55, "{path}");
+        assert_eq!(current["total"], 56, "{path}");
         let rows = current["items"].as_array().unwrap();
         assert!(rows.iter().all(|row| row["is_legacy"] == false), "{path}");
         assert!(legacy_names.iter().all(|name| rows.iter().all(|row| row["name"] != *name)), "{path}");
     }
     let (_, _, with_legacy) = get("/v1/items?limit=10000&include_legacy=true").await;
-    assert_eq!(with_legacy["total"], 58);
+    assert_eq!(with_legacy["total"], 59);
     let legacy_rows: Vec<&Value> =
         with_legacy["items"].as_array().unwrap().iter().filter(|row| row["is_legacy"] == true).collect();
     assert_eq!(legacy_rows.iter().map(|row| row["name"].as_str().unwrap()).collect::<Vec<_>>(), legacy_names);
@@ -1349,14 +1397,20 @@ fn assert_same_shape(location: &str, example: &Value, real: &Value) {
     }
 }
 
-async fn sample_response_for(path: &str) -> Value {
+async fn sample_response_for(path: &str, example: &Value) -> Value {
     if let Some(list_path) = path.strip_suffix("/{id}") {
         let (_, _, list_response) = get_list_rows(list_path).await;
         let list_rows = list_response
             .as_array()
             .cloned()
             .or_else(|| list_response.as_object().and_then(|o| o.values().find_map(|v| v.as_array().cloned())));
-        let id = list_rows.and_then(|r| r.first().and_then(|row| row["id"].as_i64())).expect("a row to sample");
+        let id = list_rows
+            .and_then(|rows| {
+                rows.into_iter()
+                    .find(|row| path != "/v1/effects/{id}" || row["kind"] == example["kind"])
+                    .and_then(|row| row["id"].as_i64())
+            })
+            .expect("a row to sample");
         get(&format!("{list_path}/{id}")).await.2
     } else {
         get(path).await.2
@@ -1373,7 +1427,7 @@ async fn openapi_carries_a_real_example_for_every_json_response() {
         };
         let example = content.get("example").unwrap_or(&Value::Null);
         assert!(!example.is_null(), "GET {path}: 200 response has no example");
-        let real_response = sample_response_for(path).await;
+        let real_response = sample_response_for(path, example).await;
         assert_same_shape(&format!("GET {path}"), example, &real_response);
         checked_response_count += 1;
     }
@@ -1425,76 +1479,6 @@ async fn typed_response_schemas_resolve_every_reference_and_describe_fields() {
             }
         }
     }
-}
-
-fn response_matches_schema(
-    value: &Value,
-    schema: &Value,
-    schemas: &serde_json::Map<String, Value>,
-    path: &str,
-) -> Result<(), String> {
-    if let Some(reference) = schema["$ref"].as_str() {
-        let name =
-            reference.strip_prefix("#/components/schemas/").ok_or_else(|| format!("{path}: invalid {reference}"))?;
-        let target = schemas.get(name).ok_or_else(|| format!("{path}: missing {name}"))?;
-        return response_matches_schema(value, target, schemas, path);
-    }
-    if let Some(choices) = schema["oneOf"].as_array().or_else(|| schema["anyOf"].as_array()) {
-        if choices.iter().any(|choice| response_matches_schema(value, choice, schemas, path).is_ok()) {
-            return Ok(());
-        }
-        return Err(format!("{path}: {value} matches no schema choice"));
-    }
-    if let Some(parts) = schema["allOf"].as_array() {
-        for part in parts {
-            response_matches_schema(value, part, schemas, path)?;
-        }
-        return Ok(());
-    }
-    let allowed_types: Vec<&str> = match &schema["type"] {
-        Value::String(kind) => vec![kind],
-        Value::Array(kinds) => kinds.iter().filter_map(Value::as_str).collect(),
-        _ => Vec::new(),
-    };
-    let actual_type = match value {
-        Value::Null => "null",
-        Value::Bool(_) => "boolean",
-        Value::Number(number) if number.is_i64() || number.is_u64() => "integer",
-        Value::Number(_) => "number",
-        Value::String(_) => "string",
-        Value::Array(_) => "array",
-        Value::Object(_) => "object",
-    };
-    if !allowed_types.contains(&actual_type) && !(actual_type == "integer" && allowed_types.contains(&"number")) {
-        return Err(format!("{path}: expected {allowed_types:?}, got {actual_type}"));
-    }
-    if let Some(object) = value.as_object() {
-        let properties = schema["properties"].as_object();
-        let additional = schema.get("additionalProperties");
-        if properties.is_none() && additional.is_none() {
-            return Err(format!("{path}: untyped object"));
-        }
-        for required in schema["required"].as_array().into_iter().flatten() {
-            let name = required.as_str().ok_or_else(|| format!("{path}: invalid required field"))?;
-            if !object.contains_key(name) {
-                return Err(format!("{path}: missing {name}"));
-            }
-        }
-        for (name, field) in object {
-            let field_schema = properties
-                .and_then(|fields| fields.get(name))
-                .or(additional)
-                .ok_or_else(|| format!("{path}: undocumented {name}"))?;
-            response_matches_schema(field, field_schema, schemas, &format!("{path}.{name}"))?;
-        }
-    }
-    if let Some(items) = value.as_array() {
-        let item_schema = schema.get("items").ok_or_else(|| format!("{path}: untyped array"))?;
-        for (index, item) in items.iter().enumerate() {
-            response_matches_schema(item, item_schema, schemas, &format!("{path}[{index}]"))?;
-        }
-    }
-    Ok(())
 }
 
 #[tokio::test]

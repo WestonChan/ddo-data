@@ -40,7 +40,7 @@ fn item_id(db: &Connection, name: &str) -> i64 {
 #[test]
 fn writes_improved_deception_from_its_definition_as_a_typed_bluff_bonus() {
     let (db, report) = built_fixture_db();
-    assert_eq!(report.effect_fallback_buff_count, 13);
+    assert_eq!(report.effect_fallback_buff_count, 15);
     assert!(report.family_buff_count > 0);
     assert!(report.effect_buff_count > 0);
     let gloves = item_id(&db, "Backstabber's Gloves (Level 25)");
@@ -135,7 +135,7 @@ fn excludes_cosmetic_shields_from_items() {
 #[test]
 fn builds_items_and_skips_cosmetics() {
     let (db, report) = built_fixture_db();
-    assert_eq!(report.written_item_count, 57);
+    assert_eq!(report.written_item_count, 58);
     assert_eq!(report.effect_count as i64, count(&db, "SELECT COUNT(*) FROM effects"));
     assert_eq!(report.bonus_count as i64, count(&db, "SELECT COUNT(*) FROM effect_bonuses"));
     assert_eq!(
@@ -146,7 +146,7 @@ fn builds_items_and_skips_cosmetics() {
         )
     );
     assert_eq!(report.skipped_cosmetic_item_count, 2, "the cosmetic helm and the cosmetic shield");
-    assert_eq!(count(&db, "SELECT COUNT(*) FROM items WHERE provenance = 'maetrim'"), 57);
+    assert_eq!(count(&db, "SELECT COUNT(*) FROM items WHERE provenance = 'maetrim'"), 58);
     assert_eq!(count(&db, "SELECT COUNT(*) FROM items WHERE name = '17th Anniversary Dark Helm'"), 0);
     let reason: String = db
         .query_row("SELECT reason FROM excluded_items WHERE name = '17th Anniversary Dark Helm'", [], |r| r.get(0))
@@ -518,6 +518,47 @@ fn writes_buffs_named_after_a_stat_as_bonuses() {
 }
 
 #[test]
+fn one_stat_effect_uses_each_owners_bonus_type() {
+    let (db, _) = built_fixture_db();
+    let separate_effect_count: i64 =
+        db.query_row("SELECT COUNT(*) FROM effects WHERE name = 'Extra Lay on Hands'", [], |row| row.get(0)).unwrap();
+    assert_eq!(separate_effect_count, 0);
+    let item: (i64, String) = db
+        .query_row(
+            "SELECT ob.amount, bt.name FROM owner_bonuses ob JOIN items i ON i.id = ob.owner_id
+             JOIN effects s ON s.id = ob.stat_id JOIN bonus_types bt ON bt.id = ob.bonus_type_id
+             WHERE ob.owner_kind = 'item' AND i.name = 'Lindal''s Mighty Belt' AND s.name = 'Lay on Hands Uses'
+               AND ob.via_effect_id IS NULL",
+            [],
+            |row| Ok((row.get(0)?, row.get(1)?)),
+        )
+        .unwrap();
+    assert_eq!(item, (3, "Enhancement".into()));
+    let feat_types: Vec<String> = db
+        .prepare(
+            "SELECT bt.name FROM feat_effects fe JOIN effects e ON e.id = fe.effect_id
+             JOIN bonus_types bt ON bt.id = fe.bonus_type_id WHERE e.name = 'Lay on Hands Uses'",
+        )
+        .unwrap()
+        .query_map([], |row| row.get(0))
+        .unwrap()
+        .map(Result::unwrap)
+        .collect();
+    assert!(!feat_types.is_empty());
+    assert!(feat_types.iter().all(|bonus_type| bonus_type == "Feat"));
+    let illusion_stat: (i64, String) = db
+        .query_row("SELECT is_stat, text_template FROM effects WHERE name = 'Illusion Save'", [], |row| {
+            Ok((row.get(0)?, row.get(1)?))
+        })
+        .unwrap();
+    assert_eq!(illusion_stat, (1, "%b1 Illusion Save {1}".into()));
+    let illusion_named_effect_count: i64 = db
+        .query_row("SELECT COUNT(*) FROM effects WHERE name = 'Illusion Save (variable type)'", [], |row| row.get(0))
+        .unwrap();
+    assert_eq!(illusion_named_effect_count, 0);
+}
+
+#[test]
 fn writes_augment_slots_and_presets() {
     let (db, _) = built_fixture_db();
     let cloak = item_id(&db, "Legendary Cloak of Winter");
@@ -873,8 +914,8 @@ fn diff_reports_coverage_against_a_legacy_database() {
     );
     assert_eq!(
         coverage.names_only_in_built.len(),
-        55,
-        "the wiki fixture item and the legacy fixture items are only in the build"
+        56,
+        "the wiki fixture item, Lindal's Mighty Belt and the legacy fixture items are only in the build"
     );
     assert!((coverage.coverage_ratio() - 0.75).abs() < 1e-9);
 }

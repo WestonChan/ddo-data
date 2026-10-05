@@ -164,6 +164,86 @@ read = "2026-09-29"
 
 [[correction]]
 kind = "item_bonus"
+name = "Docent of Shadow (level 28)"
+field = "add"
+from = "null"
+to = { stat = "Poison Spell Power", bonus_type = "Equipment", value = 139 }
+reason = "The wiki item grants Poison Spell Power alongside Negative Spell Power."
+source = "https://ddowiki.com/page/Item:Epic_Docent_of_Shadow_%28level_28%29"
+read = "2026-09-29"
+
+[[correction]]
+kind = "item_bonus"
+name = "Docent of Shadow (level 28)"
+field = "add"
+from = "null"
+to = { stat = "Poison Spell Lore", bonus_type = "Equipment", value = 20 }
+reason = "The wiki Void Lore tier grants Poison Spell Lore alongside Negative Spell Lore."
+source = "https://ddowiki.com/page/Item:Epic_Docent_of_Shadow_%28level_28%29"
+read = "2026-09-29"
+
+[[correction]]
+kind = "item_effect"
+name = "Docent of Shadow (level 28)"
+field = "add"
+from = "null"
+to = { name = "Nightshield", description = "5 Charges: Caster level: 14 Charges: 5 (5/day)" }
+reason = "The wiki item carries Nightshield with five charges."
+source = "https://ddowiki.com/page/Item:Epic_Docent_of_Shadow_%28level_28%29"
+read = "2026-09-29"
+
+[[correction]]
+kind = "item"
+name = "Docent of Shadow (level 28)"
+field = "name"
+from = "Docent of Shadow (level 28)"
+to = "Epic Docent of Shadow (Level 28)"
+reason = "The wiki titles this variant with the Epic prefix."
+source = "https://ddowiki.com/page/Item:Epic_Docent_of_Shadow_%28level_28%29"
+read = "2026-09-29"
+
+[[correction]]
+kind = "item_bonus"
+name = "Docent of Shadow (level 32)"
+field = "add"
+from = "null"
+to = { stat = "Poison Spell Power", bonus_type = "Equipment", value = 153 }
+reason = "The wiki item grants Poison Spell Power alongside Negative Spell Power."
+source = "https://ddowiki.com/page/Item:Legendary_Docent_of_Shadow_%28level_32%29"
+read = "2026-09-29"
+
+[[correction]]
+kind = "item_bonus"
+name = "Docent of Shadow (level 32)"
+field = "add"
+from = "null"
+to = { stat = "Poison Spell Lore", bonus_type = "Equipment", value = 22 }
+reason = "The wiki Void Lore tier grants Poison Spell Lore alongside Negative Spell Lore."
+source = "https://ddowiki.com/page/Item:Legendary_Docent_of_Shadow_%28level_32%29"
+read = "2026-09-29"
+
+[[correction]]
+kind = "item_effect"
+name = "Docent of Shadow (level 32)"
+field = "add"
+from = "null"
+to = { name = "Nightshield", description = "5 Charges: Caster level: 14 Charges: 5 (5/day)" }
+reason = "The wiki item carries Nightshield with five charges."
+source = "https://ddowiki.com/page/Item:Legendary_Docent_of_Shadow_%28level_32%29"
+read = "2026-09-29"
+
+[[correction]]
+kind = "item"
+name = "Docent of Shadow (level 32)"
+field = "name"
+from = "Docent of Shadow (level 32)"
+to = "Legendary Docent of Shadow (Level 32)"
+reason = "The wiki titles this variant with the Legendary prefix."
+source = "https://ddowiki.com/page/Item:Legendary_Docent_of_Shadow_%28level_32%29"
+read = "2026-09-29"
+
+[[correction]]
+kind = "item_bonus"
 name = "Livewood Core (Level 15)"
 stat = "Fortification"
 bonus_type = "Exceptional"

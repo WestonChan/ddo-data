@@ -630,4 +630,16 @@
       <Amount size="1">0</Amount>
     </Effect>
   </Buff>
+  <Buff>
+    <Type>Riposte</Type>
+    <DisplayText>Riposte %v1: This item enchants its user with incredible awareness and speed, granting a %v1 %b1 bonus to AC and to Saves.</DisplayText>
+    <Ignore>Insightful</Ignore>
+    <Effect><Type>ACBonus</Type><Bonus>Not Set</Bonus><AType>Simple</AType><Amount size="1">2</Amount></Effect>
+    <Effect><Type>SaveBonus</Type><Bonus>Not Set</Bonus><AType>Simple</AType><Amount size="1">2</Amount><Item>All</Item></Effect>
+  </Buff>
+  <Buff>
+    <Type>ExtraLayOnHands</Type>
+    <DisplayText>Extra Lay on Hands %v1: You have %v1 Lay on Hands charges.</DisplayText>
+    <Effect><Type>ExtraLayOnHands</Type><Bonus>Equipment</Bonus><AType>Simple</AType><Amount size="1">5</Amount></Effect>
+  </Buff>
 </Buffs>

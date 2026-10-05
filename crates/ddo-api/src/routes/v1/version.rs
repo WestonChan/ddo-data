@@ -56,7 +56,10 @@ fn built_at_field() -> utoipa::openapi::RefOr<utoipa::openapi::schema::Schema> {
 }
 
 fn counts_field() -> utoipa::openapi::RefOr<utoipa::openapi::schema::Schema> {
-    super::response_schemas::described_schema::<BTreeMap<String, i64>>("Counts of each stored entity and link table.")
+    utoipa::openapi::schema::ObjectBuilder::new()
+        .additional_properties(Some(<i64 as utoipa::PartialSchema>::schema()))
+        .description(Some("Counts of each stored entity and link table."))
+        .into()
 }
 
 const COUNTED_ROWS: &[(&str, &str)] = &[

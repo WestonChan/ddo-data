@@ -32,7 +32,7 @@ fn wiki_check_counts_corrections_and_warns_about_each_stale_one() {
         Some(&fixture_corrections_dir()),
     )
     .unwrap();
-    for expected_line in ["correction_applied_count: 3", "correction_stale_count: 1"] {
+    for expected_line in ["correction_applied_count: 6", "correction_stale_count: 1"] {
         assert!(report.lines().any(|line| line == expected_line), "missing {expected_line:?} in\n{report}");
     }
     let (_, warnings) = report.split_once("warnings:\n").unwrap();
@@ -154,6 +154,24 @@ fn wiki_check_warns_about_superseded_and_probably_duplicate_wiki_items() {
         );
     }
     assert!(report[..warnings_start].lines().any(|line| line == "wiki_item_probable_duplicate_count: 1"), "{report}");
+}
+
+#[test]
+fn wiki_check_warns_about_rarity_prefixed_wiki_items() {
+    let fixture_items = std::fs::read_to_string(fixtures_dir().join("wiki/items.toml")).unwrap();
+    let draft_dir = draft_dir_with_fixture_quests();
+    std::fs::write(
+        draft_dir.path().join("items_draft.toml"),
+        fixture_items.replace("Battle Axe of the Oozing Hunger", "Epic Five Rings"),
+    )
+    .unwrap();
+    let report =
+        wiki_check_report(&fixtures_dir().join("DataFiles"), Some(draft_dir.path()), Some(&fixture_corrections_dir()))
+            .unwrap();
+    assert!(
+        report.contains("warning: wiki item \"Epic Five Rings\" may duplicate Maetrim's \"Five Rings\""),
+        "{report}"
+    );
 }
 
 #[test]
@@ -417,7 +435,7 @@ fn wiki_batch_writes_the_reading_agent_inputs() {
     )
     .unwrap();
 
-    assert_eq!(line_count(&out_dir.path().join("item_names.txt")), 57);
+    assert_eq!(line_count(&out_dir.path().join("item_names.txt")), 58);
     assert_eq!(
         std::fs::read_to_string(out_dir.path().join("wiki_source_items.txt")).unwrap(),
         "Battle Axe of the Oozing Hunger\n"

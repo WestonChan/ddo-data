@@ -39,3 +39,39 @@ to = 8
 reason = "Test correction whose from no longer matches the fixture."
 source = "https://ddowiki.com/page/Item:Ruby_of_Acid_Damage"
 read = "2026-09-29"
+
+[[correction]]
+kind = "item_bonus"
+name = "Epic Ethereal Bracers"
+stat = "Armor Class"
+bonus_type = "Insight"
+field = "scale"
+from = 1.0
+to = 0.5
+reason = "Riposte grants half the listed rank to Armor Class."
+source = "https://ddowiki.com/page/Item:Epic_Ethereal_Bracers"
+read = "2026-10-04"
+
+[[correction]]
+kind = "item_bonus"
+name = "Epic Ethereal Bracers"
+stat = "Armor Class"
+bonus_type = "Insight"
+field = "rounding"
+from = "down"
+to = "up"
+reason = "Riposte rounds Armor Class upward."
+source = "https://ddowiki.com/page/Item:Epic_Ethereal_Bracers"
+read = "2026-10-04"
+
+[[correction]]
+kind = "item_bonus"
+name = "Epic Ethereal Bracers"
+stat = "Saving Throws"
+bonus_type = "Insight"
+field = "scale"
+from = 1.0
+to = 0.5
+reason = "Riposte grants half the listed rank to Saving Throws."
+source = "https://ddowiki.com/page/Item:Epic_Ethereal_Bracers"
+read = "2026-10-04"

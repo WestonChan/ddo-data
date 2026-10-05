@@ -2,7 +2,7 @@ use crate::xml::effect::Effect;
 use crate::xml::spells::Spell;
 use anyhow::{bail, Result};
 use ddo_model::enums::{BonusType, DamageCategory};
-use ddo_model::seeds::{WeaponType, DAMAGE_TYPES};
+use ddo_model::seeds::{WeaponType, DAMAGE_TYPES, WEAPON_TYPES};
 use ddo_model::stats::{Stat, STATS};
 use serde::Deserialize;
 use std::collections::{BTreeMap, BTreeSet, HashSet};
@@ -257,7 +257,9 @@ impl EffectMap {
             return None;
         }
         if let Some(targeted) = self.effect.targeted.get(effect_type) {
-            let targets: Vec<&str> = if effect.targets.is_empty() {
+            let targets: Vec<&str> = if let Some(weapon_class) = self.complete_weapon_class(effect, targeted) {
+                vec![weapon_class]
+            } else if effect.targets.is_empty() {
                 vec!["All"]
             } else {
                 effect.targets.iter().map(String::as_str).collect()
@@ -295,7 +297,10 @@ impl EffectMap {
     pub fn qualified_targeted_name(&self, effect: &Effect) -> Option<String> {
         let targeted = self.effect.targeted.get(effect.types.first()?)?;
         let base_name = targeted.qualified_name.as_deref()?;
-        if effect.targets.is_empty() || effect.targets.iter().all(|target| targeted.targets.contains_key(target)) {
+        if self.complete_weapon_class(effect, targeted).is_some()
+            || effect.targets.is_empty()
+            || effect.targets.iter().all(|target| targeted.targets.contains_key(target))
+        {
             return None;
         }
         let weapon_kinds: Option<Vec<&str>> = effect
@@ -303,6 +308,12 @@ impl EffectMap {
             .iter()
             .map(|target| {
                 let canonical = self.weapon_aliases.get(target).map(String::as_str).unwrap_or(target);
+                if matches!(canonical, "One Handed" | "Melee") {
+                    return Some("Melee");
+                }
+                if canonical == "Thrown" {
+                    return Some("Ranged");
+                }
                 let weapon = WeaponType::by_name(canonical)?;
                 Some(if weapon.is_ranged() || weapon.is_thrown() { "Ranged" } else { "Melee" })
             })
@@ -318,6 +329,36 @@ impl EffectMap {
             .flatten();
         let name = weapon_stat_name.unwrap_or(base_name);
         Some(format!("{name} ({})", effect.targets.join(", ")))
+    }
+
+    fn complete_weapon_class(&self, effect: &Effect, targeted: &TargetedEffect) -> Option<&'static str> {
+        let actual: BTreeSet<&str> = effect
+            .targets
+            .iter()
+            .map(|target| self.weapon_aliases.get(target).map(String::as_str).unwrap_or(target))
+            .collect();
+        if actual.is_empty() || actual.len() != effect.targets.len() {
+            return None;
+        }
+        let ranged: BTreeSet<&str> = WEAPON_TYPES
+            .iter()
+            .filter(|weapon| weapon.is_ranged() || weapon.name == "Dart")
+            .map(|weapon| weapon.name)
+            .collect();
+        if actual.is_superset(&ranged)
+            && actual
+                .iter()
+                .all(|name| WeaponType::by_name(name).is_some_and(|weapon| weapon.is_ranged() || weapon.is_thrown()))
+            && targeted.targets.contains_key("Ranged")
+        {
+            return Some("Ranged");
+        }
+        let melee: BTreeSet<&str> = WEAPON_TYPES
+            .iter()
+            .filter(|weapon| weapon.proficiency.is_some() && !weapon.is_ranged() && !weapon.is_thrown())
+            .map(|weapon| weapon.name)
+            .collect();
+        (actual == melee && targeted.targets.contains_key("Melee")).then_some("Melee")
     }
 
     pub fn qualified_targets(&self, effect: &Effect, qualifiers: &EffectTargetQualifiers) -> Option<String> {

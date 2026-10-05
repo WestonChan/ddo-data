@@ -5,7 +5,7 @@ use crate::enums::{
 };
 use std::sync::LazyLock;
 
-pub const SCHEMA_VERSION: i64 = 25;
+pub const SCHEMA_VERSION: i64 = 26;
 
 fn sql_in_clause<'a>(allowed_values: impl Iterator<Item = &'a str>) -> String {
     let quoted_values: Vec<String> = allowed_values.map(|value| format!("'{value}'")).collect();
@@ -72,6 +72,7 @@ static DDL: LazyLock<String> = LazyLock::new(|| {
                 1.0 AS scale, j.effect_link_order
            FROM links j JOIN effects e ON e.id = j.effect_id
           WHERE e.is_stat = 1 AND COALESCE(j.value, e.default_value) IS NOT NULL
+            AND COALESCE(j.value, e.default_value) <> 0
          UNION ALL
          SELECT j.owner_kind, j.owner_id, eb.stat_id, COALESCE(eb.bonus_type_id, j.bonus_type_id),
                 {rounded_amount} AS amount, e.id AS via_effect_id,
@@ -82,7 +83,7 @@ static DDL: LazyLock<String> = LazyLock::new(|| {
                 eb.scale, j.effect_link_order
            FROM links j JOIN effects e ON e.id = j.effect_id
            JOIN effect_bonuses eb ON eb.effect_id = e.id
-          WHERE e.is_stat = 0 AND ({amount_expression}) IS NOT NULL;"
+          WHERE e.is_stat = 0 AND ({amount_expression}) IS NOT NULL AND {rounded_amount} <> 0;"
     );
     format!(
         r#"

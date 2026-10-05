@@ -22,6 +22,12 @@ pub(crate) fn described_schema<T: PartialSchema>(description: &str) -> RefOr<Sch
     }
 }
 
+fn schema_spell_slots() -> RefOr<Schema> {
+    utoipa::openapi::schema::ObjectBuilder::new()
+        .additional_properties(Some(<Vec<i64> as PartialSchema>::schema()))
+        .into()
+}
+
 #[derive(utoipa::ToSchema)]
 pub(crate) struct EffectStatBonus {
     #[schema(schema_with = schema_stat_name)]
@@ -308,7 +314,7 @@ pub(crate) struct AugmentsDetailResponse {
     pub(crate) grants_augment: Option<String>,
     pub(crate) icon: Option<String>,
     pub(crate) id: i64,
-    pub(crate) level_values: Option<Vec<i64>>,
+    pub(crate) level_values: Option<Vec<f64>>,
     pub(crate) level_values2: Option<Vec<i64>>,
     pub(crate) levels: Option<Vec<i64>>,
     pub(crate) min_level: Option<i64>,
@@ -386,7 +392,7 @@ pub(crate) struct ClassesDetailResponseFeatSlotsEntry {
 #[derive(utoipa::ToSchema)]
 pub(crate) struct ClassesDetailResponseFeatsEntry {
     pub(crate) acquire: String,
-    pub(crate) description: String,
+    pub(crate) description: Option<String>,
     pub(crate) icon: String,
     pub(crate) id: i64,
     pub(crate) max_times_acquire: Option<i64>,
@@ -426,6 +432,7 @@ pub(crate) struct ClassesDetailResponse {
     pub(crate) skill_points: i64,
     pub(crate) small_icon: String,
     pub(crate) spell_points_per_level: Vec<i64>,
+    #[schema(schema_with = schema_spell_slots)]
     pub(crate) spell_slots: std::collections::BTreeMap<String, Vec<i64>>,
     pub(crate) spells: Vec<ClassesDetailResponseSpellsEntry>,
     pub(crate) will: String,
@@ -597,6 +604,16 @@ fn schema_tier_steps() -> RefOr<Schema> {
 }
 
 #[derive(utoipa::ToSchema)]
+pub(crate) struct EffectCarrierBonus {
+    pub(crate) stat: String,
+    pub(crate) stat_category: String,
+    pub(crate) bonus_type: String,
+    pub(crate) value: i64,
+    pub(crate) amount_source: String,
+    pub(crate) scale: f64,
+}
+
+#[derive(utoipa::ToSchema)]
 pub(crate) struct EffectsDetailResponseAugmentsAugmentsEntry {
     pub(crate) id: i64,
     pub(crate) name: String,
@@ -609,6 +626,7 @@ pub(crate) struct EffectsDetailResponseAugmentsAugmentsEntry {
     pub(crate) bonus_type: Option<String>,
     pub(crate) amount_source: Option<String>,
     pub(crate) scale: Option<f64>,
+    pub(crate) bonuses: Option<Vec<EffectCarrierBonus>>,
 }
 
 #[derive(utoipa::ToSchema)]
@@ -632,6 +650,7 @@ pub(crate) struct EffectsDetailResponseItemsItemsEntry {
     pub(crate) bonus_type: Option<String>,
     pub(crate) amount_source: Option<String>,
     pub(crate) scale: Option<f64>,
+    pub(crate) bonuses: Option<Vec<EffectCarrierBonus>>,
 }
 
 #[derive(utoipa::ToSchema)]
@@ -658,6 +677,7 @@ pub(crate) struct EffectSetTierCarrier {
     pub(crate) bonus_type: Option<String>,
     pub(crate) amount_source: Option<String>,
     pub(crate) scale: Option<f64>,
+    pub(crate) bonuses: Option<Vec<EffectCarrierBonus>>,
 }
 
 #[derive(utoipa::ToSchema)]
@@ -1990,7 +2010,7 @@ pub(crate) struct SpellsDetailResponseDamageEntry {
     pub(crate) bonus_dice_bonus: Option<i64>,
     pub(crate) bonus_dice_number: Option<i64>,
     pub(crate) bonus_dice_sides: Option<i64>,
-    pub(crate) damage: String,
+    pub(crate) damage: Option<String>,
     pub(crate) per_caster_levels: Option<i64>,
     pub(crate) spell_power: Option<String>,
 }
@@ -2001,14 +2021,14 @@ pub(crate) struct SpellsDetailResponseDcsEntry {
     pub(crate) casting_stat_mod: bool,
     pub(crate) dc_type: String,
     pub(crate) dc_versus: String,
-    pub(crate) mod_abilities: Option<String>,
-    pub(crate) schools: Vec<String>,
+    pub(crate) mod_abilities: Option<Vec<String>>,
+    pub(crate) schools: Option<Vec<String>>,
 }
 
 #[derive(utoipa::ToSchema)]
 pub(crate) struct SpellsDetailResponse {
     pub(crate) classes: Vec<SpellsDetailResponseClassesEntry>,
-    pub(crate) cost: Option<String>,
+    pub(crate) cost: Option<i64>,
     pub(crate) damage: Vec<SpellsDetailResponseDamageEntry>,
     pub(crate) dcs: Vec<SpellsDetailResponseDcsEntry>,
     pub(crate) description: String,

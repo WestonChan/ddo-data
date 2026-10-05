@@ -6,6 +6,7 @@ use comments::{comments_in, without_comments};
 use std::path::{Path, PathBuf};
 use std::process::Command;
 use walkdir::WalkDir;
+use xtask::api_validation::validate_api;
 use xtask::dataset::{build_database_file, corrections_from, wiki_overrides_from};
 use xtask::integrity::{integrity_report, IntegrityOptions};
 use xtask::response_examples::{write_response_examples, write_v1_detail_snapshot, EXAMPLE_REQUESTS};
@@ -38,6 +39,12 @@ enum Task {
         db: PathBuf,
         #[arg(long)]
         out: PathBuf,
+    },
+    ValidateApi {
+        #[arg(long)]
+        db: PathBuf,
+        #[arg(long)]
+        all_details: bool,
     },
     WikiCheck {
         #[arg(long)]
@@ -83,6 +90,11 @@ fn main() -> Result<()> {
         }
         Task::SnapshotV1Details { db, out } => {
             println!("wrote {} v1 details to {}", write_v1_detail_snapshot(&db, &out)?, out.display());
+            Ok(())
+        }
+        Task::ValidateApi { db, all_details } => {
+            let (routes, responses) = validate_api(&db, all_details)?;
+            println!("validated {responses} real responses across {routes} JSON routes");
             Ok(())
         }
         Task::WikiCheck { wiki: wiki_dir, corrections: corrections_dir, source: data_files_dir } => {

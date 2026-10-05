@@ -171,9 +171,37 @@ fn carrier_pages(
     id: i64,
     pages: BacklinkPages,
 ) -> Result<(Value, Value, Value), ApiError> {
+    let mut bonuses_by_link: HashMap<(String, i64, i64), Vec<Value>> = HashMap::new();
+    if kind == "effect" {
+        for mut bonus in json_rows(
+            db,
+            "SELECT ob.owner_kind, ob.owner_id, ob.effect_link_order,
+                    s.name AS stat, s.category AS stat_category, bt.name AS bonus_type,
+                    ob.amount AS value, ob.amount_source, ob.scale
+               FROM owner_bonuses ob JOIN effects s ON s.id = ob.stat_id
+               LEFT JOIN bonus_types bt ON bt.id = ob.bonus_type_id
+               JOIN effect_bonuses eb ON eb.effect_id = ob.via_effect_id AND eb.stat_id = ob.stat_id
+              WHERE ob.via_effect_id = ?1
+              ORDER BY ob.owner_kind, ob.owner_id, ob.effect_link_order, eb.sort_order",
+            [id],
+        )? {
+            let owner_kind = bonus["owner_kind"].as_str().unwrap_or("").to_string();
+            let owner_id = bonus["owner_id"].as_i64().unwrap_or(0);
+            let link_order = bonus["effect_link_order"].as_i64().unwrap_or(0);
+            let object = bonus.as_object_mut().expect("bonus object");
+            object.remove("owner_kind");
+            object.remove("owner_id");
+            object.remove("effect_link_order");
+            bonuses_by_link.entry((owner_kind, owner_id, link_order)).or_default().push(bonus);
+        }
+    }
     let carrier_columns = if kind == "effect" {
-        "NULL AS effect_id, NULL AS effect, NULL AS bonus_type,
-         COALESCE(ob.amount, j.value) AS value, j.value2, ob.amount_source, ob.scale"
+        "NULL AS effect_id, NULL AS effect,
+         COALESCE(bt.name, (SELECT MIN(fixed_type.name) FROM effect_bonuses fixed_bonus
+              JOIN bonus_types fixed_type ON fixed_type.id = fixed_bonus.bonus_type_id
+             WHERE fixed_bonus.effect_id = j.effect_id
+            HAVING COUNT(DISTINCT fixed_bonus.bonus_type_id) = 1)) AS bonus_type,
+         j.value, j.value2, NULL AS amount_source, NULL AS scale"
             .to_string()
     } else {
         "e.id AS effect_id, e.name AS effect, bt.name AS bonus_type, ob.amount AS value,
@@ -182,9 +210,11 @@ fn carrier_pages(
     };
     let match_id = if kind == "effect" { "j.effect_id" } else { "ob.stat_id" };
     let join_for = |owner_kind: &str, owner_column: &str| -> String {
-        let join_kind = if kind == "effect" { "LEFT JOIN" } else { "JOIN" };
+        if kind == "effect" {
+            return "LEFT JOIN bonus_types bt ON bt.id = j.bonus_type_id".to_string();
+        }
         let mut joined = format!(
-            "{join_kind} owner_bonuses ob ON ob.owner_kind = '{owner_kind}'
+            "JOIN owner_bonuses ob ON ob.owner_kind = '{owner_kind}'
              AND ob.owner_id = j.{owner_column} AND ob.effect_link_order = j.sort_order"
         );
         if kind == "stat" {
@@ -197,53 +227,54 @@ fn carrier_pages(
     };
     let current_items = if pages.include_legacy == Some(true) { "" } else { "WHERE NOT i.is_legacy" };
     let items_sql = format!(
-        "SELECT i.id, i.name, {carrier_columns}, {match_id} AS match_id
+        "SELECT i.id, i.name, {carrier_columns}, {match_id} AS match_id, j.sort_order AS link_order
            FROM item_effects j JOIN items i ON i.id = j.item_id {match_join}
           {current_items} ORDER BY i.name, j.sort_order",
         match_join = join_for("item", "item_id")
     );
     let augments_sql = format!(
-        "SELECT a.id, a.name, {carrier_columns}, {match_id} AS match_id
+        "SELECT a.id, a.name, {carrier_columns}, {match_id} AS match_id, j.sort_order AS link_order
            FROM augment_effects j JOIN augments a ON a.id = j.augment_id {match_join}
           ORDER BY a.name, j.sort_order",
         match_join = join_for("augment", "augment_id")
     );
     let tiers_sql = format!(
         "SELECT t.id, s.id AS set_id, s.name AS set_name, t.equipped_count, {carrier_columns}, {match_id} AS match_id,
+                j.sort_order AS link_order,
                 s.name || ' (' || t.equipped_count || ')' AS name
            FROM set_bonus_tier_effects j JOIN set_bonus_tiers t ON t.id = j.tier_id
            JOIN set_bonuses s ON s.id = t.set_id {match_join} ORDER BY s.name, t.equipped_count, j.sort_order",
         match_join = join_for("set_bonus_tier", "tier_id")
     );
-    let page =
-        |sql: String, limit: Option<i64>, offset: Option<i64>, distinct_total: bool| -> Result<ListPage, ApiError> {
-            let query = ListQuery { q: None, limit, offset, sort: Vec::new() };
-            let mut where_clause = WhereClause::default();
-            where_clause.add_bound_condition("listed.match_id = ?", id);
-            let mut result = paged_query(
-                db,
-                "*",
-                &format!("({sql}) listed"),
-                &query,
-                "listed.name",
-                BACKLINK_SORT_FIELDS,
-                &where_clause,
-            )?;
-            if distinct_total {
-                result.total = db.query_row(
-                    &format!("SELECT COUNT(DISTINCT listed.id) FROM ({sql}) listed WHERE listed.match_id = ?1"),
-                    [id],
-                    |row| row.get(0),
-                )?;
+    let page = |sql: String, owner_kind: &str, limit: Option<i64>, offset: Option<i64>| -> Result<ListPage, ApiError> {
+        let query = ListQuery { q: None, limit, offset, sort: Vec::new() };
+        let mut where_clause = WhereClause::default();
+        where_clause.add_bound_condition("listed.match_id = ?", id);
+        let mut result = paged_query(
+            db,
+            "*",
+            &format!("({sql}) listed"),
+            &query,
+            "listed.name",
+            BACKLINK_SORT_FIELDS,
+            &where_clause,
+        )?;
+        for row in &mut result.rows {
+            if kind == "effect" {
+                let key =
+                    (owner_kind.to_string(), row["id"].as_i64().unwrap_or(0), row["link_order"].as_i64().unwrap_or(0));
+                row["bonuses"] = Value::Array(bonuses_by_link.get(&key).cloned().unwrap_or_default());
             }
-            for row in &mut result.rows {
-                row.as_object_mut().expect("backlink object").remove("match_id");
-            }
-            Ok(result)
-        };
-    let items = page(items_sql, pages.items_limit, pages.items_offset, true)?.into_json("items");
-    let augments = page(augments_sql, pages.augments_limit, pages.augments_offset, false)?.into_json("augments");
-    let tiers = page(tiers_sql, pages.set_tiers_limit, pages.set_tiers_offset, false)?.into_json("set_tiers");
+            let object = row.as_object_mut().expect("backlink object");
+            object.remove("match_id");
+            object.remove("link_order");
+        }
+        Ok(result)
+    };
+    let items = page(items_sql, "item", pages.items_limit, pages.items_offset)?.into_json("items");
+    let augments = page(augments_sql, "augment", pages.augments_limit, pages.augments_offset)?.into_json("augments");
+    let tiers =
+        page(tiers_sql, "set_bonus_tier", pages.set_tiers_limit, pages.set_tiers_offset)?.into_json("set_tiers");
     Ok((items, augments, tiers))
 }
 

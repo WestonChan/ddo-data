@@ -9,6 +9,7 @@ use ddo_etl::xml::effect::Effect;
 use ddo_etl::xml::item_buffs::{self, ItemBuffDefinition};
 use ddo_etl::xml::items::{parse_item_file, Buff, EquipmentSlotTag, EquipmentSlots};
 use ddo_model::enums::{BonusType, EquipmentSlot, Handedness, ItemCategory, StatCategory};
+use ddo_model::seeds::WEAPON_TYPES;
 use std::collections::HashMap;
 use std::path::Path;
 
@@ -414,7 +415,50 @@ fn attack_speed_effect_types_resolve_all_and_class_targets() {
     let buff_resolver = BuffResolver::from_definitions(&definitions);
     assert!(buff_resolver
         .family_template(&buff("RangedAlacrity", None, Some(15), Some("Enhancement")))
-        .starts_with("Ranged Attack Speed +%v1% (Dart, Great Crossbow"));
+        .starts_with("Ranged Alacrity %v1%"));
+    for (kind, expected) in [
+        ("RangedAlacrity", vec!["Ranged Attack Speed"]),
+        ("RangedSpeedRomanNumeralXV", vec!["Movement Speed", "Ranged Attack Speed"]),
+    ] {
+        let FamilyResolution::EffectFallback(stats) = buff_resolver.family_resolution(kind).unwrap() else {
+            panic!("{kind} should map its complete ranged weapon list");
+        };
+        assert_eq!(stats.iter().map(|row| row.stat.name).collect::<Vec<_>>(), expected);
+    }
+    let mut complete_with_extra_thrown = definitions["RangedAlacrity"].effects[0].clone();
+    complete_with_extra_thrown.targets.push("Shuriken".into());
+    assert_eq!(
+        resolver
+            .derive_bonuses(&complete_with_extra_thrown)
+            .unwrap()
+            .iter()
+            .map(|bonus| bonus.stat.name)
+            .collect::<Vec<_>>(),
+        ["Ranged Attack Speed"]
+    );
+    let all_melee: Vec<String> = WEAPON_TYPES
+        .iter()
+        .filter(|weapon| weapon.proficiency.is_some() && !weapon.is_ranged() && !weapon.is_thrown())
+        .map(|weapon| weapon.name.to_string())
+        .collect();
+    let melee_class = Effect { targets: all_melee.clone(), ..simple_effect("Weapon_Alacrity") };
+    assert_eq!(
+        resolver.derive_bonuses(&melee_class).unwrap().iter().map(|bonus| bonus.stat.name).collect::<Vec<_>>(),
+        ["Melee Attack Speed"]
+    );
+    let partial_melee = Effect { targets: all_melee.into_iter().skip(1).collect(), ..melee_class };
+    assert!(resolver.derive_bonuses(&partial_melee).unwrap().is_empty());
+    let short_list = Effect { targets: vec!["Dart".into(), "Longbow".into()], ..simple_effect("Weapon_Alacrity") };
+    assert!(resolver.derive_bonuses(&short_list).unwrap().is_empty());
+    assert_eq!(resolver.qualified_targeted_name(&short_list), Some("Ranged Attack Speed (Dart, Longbow)".into()));
+    let stacks = Effect {
+        amount_type: Some("Stacks".into()),
+        amounts: vec![7.5, 10.0, 12.5, 15.0],
+        targets: vec!["Melee".into(), "Thrown".into()],
+        ..simple_effect("WeaponAlacrityClass")
+    };
+    assert!(resolver.derive_bonuses(&stacks).unwrap().is_empty());
+    assert_eq!(resolver.qualified_targeted_name(&stacks), Some("Melee and Ranged Attack Speed (Melee, Thrown)".into()));
 }
 
 #[test]
@@ -627,20 +671,17 @@ fn fixed_effects_with_specific_targets_stay_family_effects() {
     let items = parse_item_file(&Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures/effect_real_items.item"))
         .unwrap()
         .items;
-    for (item_name, kind, effect_type, target) in [
-        ("Creeping Dust Conduit", "Arcane Augmentation IX", "CasterLevel", "Sorcerer"),
-        ("Bow of the Jade Elf", "RangedAlacrity", "Weapon_Alacrity", "Dart"),
-    ] {
-        let definition = &definitions[kind];
-        assert!(definition.effects.iter().any(|effect| {
-            effect.types == [effect_type] && effect.targets.iter().any(|effect_target| effect_target == target)
-        }));
-        let item = items.iter().find(|item| item.name == item_name).unwrap();
-        let item_buff = item.buffs.iter().find(|buff| buff.kind == kind).unwrap();
-        assert!(matches!(resolver.family_resolution(kind).unwrap(), FamilyResolution::Effect), "{kind}");
-        assert!(matches!(resolver.resolved(item_buff).unwrap(), ResolvedBuff::Effect { .. }), "{kind}");
-    }
-    for kind in ["Arcane Augmentation I", "Memory of Shattered Life", "RangedSpeedRomanNumeralXV"] {
+    let kind = "Arcane Augmentation IX";
+    let definition = &definitions[kind];
+    assert!(definition
+        .effects
+        .iter()
+        .any(|effect| { effect.types == ["CasterLevel"] && effect.targets.iter().any(|target| target == "Sorcerer") }));
+    let item = items.iter().find(|item| item.name == "Creeping Dust Conduit").unwrap();
+    let item_buff = item.buffs.iter().find(|buff| buff.kind == kind).unwrap();
+    assert!(matches!(resolver.family_resolution(kind).unwrap(), FamilyResolution::Effect), "{kind}");
+    assert!(matches!(resolver.resolved(item_buff).unwrap(), ResolvedBuff::Effect { .. }), "{kind}");
+    for kind in ["Arcane Augmentation I", "Memory of Shattered Life"] {
         assert!(matches!(resolver.family_resolution(kind).unwrap(), FamilyResolution::Effect), "{kind}");
     }
     assert!(matches!(resolver.family_resolution("SpeedRomanNumeral").unwrap(), FamilyResolution::EffectFallback(_)));

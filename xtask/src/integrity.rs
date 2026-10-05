@@ -134,8 +134,18 @@ pub const INTEGRITY_CHECKS: &[IntegrityCheck] = &[
     ),
     IntegrityCheck::hard(
         "effect_bonus_type_sources",
-        "a family with a %b1 template takes its type from every owner link; other families type their stat rows",
+        "an owner types every bonus row that reads its type from the link, including one-stat effects",
         OffenderQuery::Built(effect_bonus_type_sources),
+    ),
+    IntegrityCheck::hard(
+        "effect_bonuses_have_one_rule_per_stat",
+        "a named effect cannot carry multiple bonus-type rules for the same stat",
+        OffenderQuery::Sql(
+            "SELECT e.name, e.id, s.name || ' has ' || COUNT(*) || ' rules'
+             FROM effect_bonuses eb JOIN effects e ON e.id = eb.effect_id
+             JOIN effects s ON s.id = eb.stat_id
+             GROUP BY e.id, eb.stat_id HAVING COUNT(*) > 1",
+        ),
     ),
     IntegrityCheck::hard(
         "stat_links_have_bonus_types",
@@ -388,6 +398,12 @@ pub const INTEGRITY_CHECKS: &[IntegrityCheck] = &[
         OffenderQuery::Built(stat_links_missing_value),
     ),
     IntegrityCheck::warn(
+        "effect_links_with_only_zero_bonuses",
+        "owner links whose resolved bonuses are all zero; check whether the source meant to grant a bonus",
+        OffenderQuery::Built(effect_links_with_only_zero_bonuses),
+    )
+    .showing_every_offender(),
+    IntegrityCheck::warn(
         "effects_with_dice_but_no_damage_rows",
         "dice modifiers without structured damage rows, grouped by source kind and effect type; unresolved modifiers remain on the backfill list",
         OffenderQuery::Sql(
@@ -585,6 +601,34 @@ fn effect_links_missing_first_amount(db: &Connection, _options: &IntegrityOption
     Ok(Findings { offenders: Some(offenders_from_sql(db, &queries.join(" UNION ALL "))?), notes: Vec::new() })
 }
 
+fn effect_links_with_only_zero_bonuses(db: &Connection, _options: &IntegrityOptions) -> Result<Findings> {
+    let links = EFFECT_OWNER_LINKS
+        .iter()
+        .map(|(table, owner_column)| {
+            format!(
+                "SELECT '{table}' AS owner_kind, {owner_column} AS owner_id, effect_id, value, value2, sort_order FROM {table}"
+            )
+        })
+        .collect::<Vec<_>>()
+        .join(" UNION ALL ");
+    let amount = "CASE eb.amount_from WHEN 0 THEN eb.constant WHEN 1 THEN COALESCE(l.value, e.default_value) ELSE COALESCE(l.value2, e.default_value2) END";
+    let rounded = ddo_model::effect_amount::rounded_amount_sql(amount, "eb.scale", "eb.rounding");
+    let sql = format!(
+        "WITH links AS ({links}), resolved AS (
+           SELECT l.owner_kind, l.owner_id, l.sort_order, e.name, e.id,
+                  COALESCE(l.value, e.default_value) AS amount
+             FROM links l JOIN effects e ON e.id = l.effect_id WHERE e.is_stat = 1
+           UNION ALL
+           SELECT l.owner_kind, l.owner_id, l.sort_order, e.name, e.id, {rounded} AS amount
+             FROM links l JOIN effects e ON e.id = l.effect_id
+             JOIN effect_bonuses eb ON eb.effect_id = e.id WHERE e.is_stat = 0)
+         SELECT name, id, owner_kind || ' owner ' || owner_id || ' has only zero bonuses'
+           FROM resolved GROUP BY owner_kind, owner_id, sort_order, id
+          HAVING COUNT(amount) > 0 AND SUM(amount <> 0) = 0"
+    );
+    Ok(Findings { offenders: Some(offenders_from_sql(db, &sql)?), notes: Vec::new() })
+}
+
 fn effects_with_unused_default(db: &Connection, _options: &IntegrityOptions) -> Result<Findings> {
     let mut queries = Vec::new();
     for (slot, default_column, link_column) in [(1, "default_value", "value"), (2, "default_value2", "value2")] {
@@ -602,18 +646,22 @@ fn effects_with_unused_default(db: &Connection, _options: &IntegrityOptions) -> 
 }
 
 fn effect_bonus_type_sources(db: &Connection, _options: &IntegrityOptions) -> Result<Findings> {
-    let mut queries = vec![
-        "SELECT e.name, e.id, 'stat type conflicts with %b1 template' FROM effects e
+    let mut queries = vec!["SELECT e.name, e.id, 'fixed stat type conflicts with %b1 template' FROM effects e
          JOIN effect_bonuses s ON s.effect_id = e.id
-         WHERE (s.bonus_type_id IS NULL) <> (INSTR(COALESCE(e.text_template, '') || COALESCE(e.description_template, ''), '%b1') > 0)"
-            .to_string(),
-    ];
+         WHERE s.bonus_type_id IS NOT NULL
+           AND INSTR(COALESCE(e.text_template, '') || COALESCE(e.description_template, ''), '%b1') > 0"
+        .to_string()];
     queries.extend(EFFECT_OWNER_LINKS.iter().map(|(table, owner_column)| {
         format!(
             "SELECT e.name, e.id, '{table} owner ' || l.{owner_column} || ' has wrong type source'
              FROM {table} l JOIN effects e ON e.id = l.effect_id
-             WHERE e.is_stat = 0 AND (l.bonus_type_id IS NOT NULL) <>
-                    (INSTR(COALESCE(e.text_template, '') || COALESCE(e.description_template, ''), '%b1') > 0)"
+             WHERE e.is_stat = 0 AND
+               ((l.bonus_type_id IS NULL AND EXISTS
+                 (SELECT 1 FROM effect_bonuses eb WHERE eb.effect_id = e.id AND eb.bonus_type_id IS NULL))
+                OR (l.bonus_type_id IS NOT NULL
+                    AND INSTR(COALESCE(e.text_template, '') || COALESCE(e.description_template, ''), '%b1') = 0
+                    AND NOT EXISTS
+                      (SELECT 1 FROM effect_bonuses eb WHERE eb.effect_id = e.id AND eb.bonus_type_id IS NULL)))"
         )
     }));
     Ok(Findings { offenders: Some(offenders_from_sql(db, &queries.join(" UNION ALL "))?), notes: Vec::new() })

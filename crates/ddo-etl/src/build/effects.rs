@@ -28,6 +28,23 @@ pub(super) struct EffectCache<'a> {
     families_by_name: HashMap<String, i64>,
     families_by_id: HashMap<i64, CachedEffect>,
     stats: HashMap<StatIdentity, StatAmount>,
+    link_types_by_family: HashMap<i64, Option<BonusType>>,
+}
+
+fn stat_templates_share_fact(
+    dynamic_text: &str,
+    dynamic_description: Option<&str>,
+    fixed_text: &str,
+    fixed_description: Option<&str>,
+) -> bool {
+    let untyped_text = dynamic_text.replace("%b1", "").split_whitespace().collect::<Vec<_>>().join(" ");
+    if untyped_text != fixed_text {
+        return false;
+    }
+    BonusType::ALL.iter().any(|bonus_type| {
+        dynamic_description.map(|description| description.replace("%b1", bonus_type.name())).as_deref()
+            == fixed_description
+    })
 }
 
 impl<'a> EffectCache<'a> {
@@ -52,7 +69,13 @@ impl<'a> EffectCache<'a> {
                 },
             );
         }
-        Self { transaction, families_by_name, families_by_id, stats: HashMap::new() }
+        Self {
+            transaction,
+            families_by_name,
+            families_by_id,
+            stats: HashMap::new(),
+            link_types_by_family: HashMap::new(),
+        }
     }
     pub(super) fn family_named(&self, name: &str) -> Option<&CachedEffect> {
         self.families_by_name.get(name).and_then(|id| self.families_by_id.get(id))
@@ -68,6 +91,10 @@ impl<'a> EffectCache<'a> {
 
     pub(super) fn has_stats(&self, family_id: i64) -> bool {
         self.family(family_id).is_some_and(|family| family.has_stats)
+    }
+
+    pub(super) fn unique_link_bonus_type(&self, family_id: i64) -> Option<BonusType> {
+        self.link_types_by_family.get(&family_id).copied().flatten()
     }
 
     pub(super) fn stat(&self, family_id: i64, stat_id: i64, bonus_type_id: Option<i64>) -> Option<(i64, Option<i64>)> {
@@ -96,6 +123,43 @@ impl<'a> EffectCache<'a> {
                 family.amount_count = count;
                 family.uses_link_type = text_template.contains("%b1")
                     || description_template.is_some_and(|template| template.contains("%b1"));
+                return Ok(stat_id);
+            }
+            let incoming_uses_link_type =
+                text_template.contains("%b1") || description_template.is_some_and(|template| template.contains("%b1"));
+            if existing.is_stat && count == 1 && existing.uses_link_type != incoming_uses_link_type {
+                let (dynamic_text, dynamic_description, fixed_text, fixed_description) = if existing.uses_link_type {
+                    (
+                        existing.text_template.as_str(),
+                        existing.description_template.as_deref(),
+                        text_template,
+                        description_template,
+                    )
+                } else {
+                    (
+                        text_template,
+                        description_template,
+                        existing.text_template.as_str(),
+                        existing.description_template.as_deref(),
+                    )
+                };
+                ensure!(
+                    stat_templates_share_fact(dynamic_text, dynamic_description, fixed_text, fixed_description),
+                    "effect {name:?} has conflicting stat templates"
+                );
+                if existing.uses_link_type {
+                    return Ok(existing.id);
+                }
+                let stat_id = existing.id;
+                validate_templates(name, text_template, description_template, count)?;
+                self.transaction.execute(
+                    "UPDATE effects SET text_template = ?2, description_template = ?3 WHERE id = ?1",
+                    params![stat_id, text_template, description_template],
+                )?;
+                let family = self.families_by_id.get_mut(&stat_id).expect("seed stat cached");
+                family.text_template = text_template.to_string();
+                family.description_template = description_template.map(str::to_string);
+                family.uses_link_type = true;
                 return Ok(stat_id);
             }
             ensure!(
@@ -162,7 +226,7 @@ impl<'a> EffectCache<'a> {
             return Ok(());
         }
         ensure!(
-            family.uses_link_type == bonus_type.is_none(),
+            !family.uses_link_type || bonus_type.is_none(),
             "effect {family_id} stat {:?} has its bonus type at the wrong level",
             stat.name
         );
@@ -172,17 +236,18 @@ impl<'a> EffectCache<'a> {
             params![family_id, stat.id, bonus_type.map(BonusType::id), amount_from, constant, sort_order as i64],
         )?;
         self.stats.insert(key, (amount_from, constant));
-        self.families_by_id.get_mut(&family_id).expect("family is cached before its stat rows").has_stats = true;
+        let family = self.families_by_id.get_mut(&family_id).expect("family is cached before its stat rows");
+        family.has_stats = true;
+        family.uses_link_type |= bonus_type.is_none();
         Ok(())
     }
 
     pub(super) fn ensure_wiki_text(&mut self, source_name: &str, description: Option<&str>) -> Result<i64> {
         let family_name = source_name.split_once(" — ").map_or(source_name, |(title, _)| title);
         if let Some(existing) = self.family_named(family_name) {
-            ensure!(
-                !self.has_stats(existing.id),
-                "effect family {family_name:?} has both text-only and structured uses"
-            );
+            if self.has_stats(existing.id) {
+                return Ok(existing.id);
+            }
         }
         self.ensure_family(family_name, source_name, description, 0)
     }
@@ -259,7 +324,7 @@ impl<'a> EffectCache<'a> {
     }
 
     pub(super) fn insert_link(
-        &self,
+        &mut self,
         owner: EffectOwner,
         owner_id: i64,
         family_id: i64,
@@ -274,7 +339,18 @@ impl<'a> EffectCache<'a> {
         } else {
             validate_link(&family.name, family.amount_count, family.uses_link_type, bonus_type, amounts)?;
         }
-        write_link(self.transaction, owner, owner_id, family_id, bonus_type, amounts, sort_order)
+        write_link(self.transaction, owner, owner_id, family_id, bonus_type, amounts, sort_order)?;
+        if let Some(bonus_type) = bonus_type {
+            self.link_types_by_family
+                .entry(family_id)
+                .and_modify(|existing| {
+                    if *existing != Some(bonus_type) {
+                        *existing = None;
+                    }
+                })
+                .or_insert(Some(bonus_type));
+        }
+        Ok(())
     }
 }
 
@@ -441,6 +517,35 @@ mod tests {
     use ddo_model::enums::BonusType;
     use ddo_model::stats::Stat;
     use rusqlite::Connection;
+
+    #[test]
+    fn stat_templates_merge_only_when_type_is_the_difference() {
+        let mut db = Connection::open_in_memory().unwrap();
+        db.execute_batch(ddo_model::ddl()).unwrap();
+        ddo_model::seeds::insert_all(&db).unwrap();
+        let transaction = db.transaction().unwrap();
+        let mut effects = EffectCache::new(&transaction);
+        let stat_id = effects
+            .ensure_family(
+                "Illusion Save",
+                "Illusion Save {1}",
+                Some("{1} Resistance bonus to your saves versus illusions"),
+                1,
+            )
+            .unwrap();
+        assert_eq!(
+            effects
+                .ensure_family(
+                    "Illusion Save",
+                    "%b1 Illusion Save {1}",
+                    Some("{1} %b1 bonus to your saves versus illusions"),
+                    1,
+                )
+                .unwrap(),
+            stat_id
+        );
+        assert!(effects.ensure_family("Illusion Save", "Illusion Save {1}", Some("A different rule"), 1).is_err());
+    }
 
     #[test]
     fn a_text_line_cannot_reuse_a_stat_family_name() {

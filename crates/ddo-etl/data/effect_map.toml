@@ -36,7 +36,8 @@ enhancement = ["WeaponEnchantment", "ArmorEnchantment", "ShieldEnchantment"]
 "+5% Light Spell Critical Damage" = "Light Spell Critical Damage Boost"
 SpellLoreNumeral = "Spell Lore"
 DeceptionFixed = "Deception +3"
-IllusionSave = "Illusion Save (variable type)"
+IllusionSave = "Illusion Save"
+ExtraLayOnHands = "Lay on Hands Uses"
 "Spell Lore Weapon" = "Spell Lore (weapon)"
 "Crown of Summer:" = "Crown of Summer (power)"
 "Smoke Screen" = "Smoke Screen +20"
@@ -317,7 +318,7 @@ qualified_name = "Attack Speed"
 targets = { All = ["Melee Attack Speed", "Ranged Attack Speed"], Melee = ["Melee Attack Speed"], Ranged = ["Ranged Attack Speed"] }
 
 [effect.targeted.WeaponAlacrityClass]
-qualified_name = "Attack Speed"
+qualified_name = "Melee and Ranged Attack Speed"
 targets = { Melee = ["Melee Attack Speed"], Ranged = ["Ranged Attack Speed"] }
 
 [effect.targeted.SkillBonusAbility]
