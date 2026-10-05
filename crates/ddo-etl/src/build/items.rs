@@ -75,7 +75,12 @@ impl ArmorStatsRow {
 }
 
 impl TableWriter<'_> {
-    pub(super) fn write_item(&mut self, item: &Item, report: &mut BuildReport) -> Result<()> {
+    pub(super) fn write_item(
+        &mut self,
+        item: &Item,
+        drop_location: Option<&str>,
+        report: &mut BuildReport,
+    ) -> Result<()> {
         let placement = match placement_of(&item.equipment_slots, item.weapon.as_deref(), item.armor.as_deref())? {
             Ok(placement) => placement,
             Err(cosmetic_exclusion) => {
@@ -128,7 +133,7 @@ impl TableWriter<'_> {
             race_required: item.race_required(),
             icon: item.icon.as_deref().map(str::trim),
             description: trimmed_non_empty(item.description.as_deref()),
-            drop_location: trimmed_non_empty(item.drop_location.as_deref()),
+            drop_location: trimmed_non_empty(drop_location),
             set_bonus: item.set_bonus_names.first().map(|s| s.trim()),
             accepts_sentience: item.accepts_sentience,
             is_minor_artifact: item.is_minor_artifact,
@@ -349,7 +354,7 @@ impl TableWriter<'_> {
             self.pending_set_item_links.push((item_id, set_name.to_string()));
         }
 
-        if let Some(drop_location) = item.drop_location.as_deref() {
+        if let Some(drop_location) = drop_location {
             self.flag_item_naming_only_legacy_sources(item_id, drop_location, report)?;
             self.link_item_to_quests(item_id, drop_location, report)?;
         }

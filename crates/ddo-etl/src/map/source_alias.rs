@@ -30,6 +30,8 @@ pub struct ChallengeAlias {
     pub text: String,
     pub pack: String,
     pub reason: String,
+    pub source: Option<String>,
+    pub read: Option<String>,
 }
 
 #[derive(Debug, Clone, PartialEq, Eq, Deserialize)]
@@ -41,9 +43,21 @@ pub struct VendorAlias {
     pub reason: String,
 }
 
+#[derive(Debug, Clone, PartialEq, Eq, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct AdventurePackAlias {
+    pub text: String,
+    pub pack: String,
+    pub reason: String,
+    pub source: String,
+    pub read: String,
+}
+
 #[derive(Debug, Default, Clone, PartialEq, Eq, Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct SourceAliases {
+    #[serde(default, rename = "adventure_pack")]
+    pub adventure_packs: Vec<AdventurePackAlias>,
     #[serde(default, rename = "challenge")]
     pub challenges: Vec<ChallengeAlias>,
     #[serde(default, rename = "crafting_system")]
@@ -59,6 +73,28 @@ impl SourceAliases {
 
     pub fn from_toml_str(text: &str) -> Result<Self> {
         let aliases: Self = toml::from_str(text)?;
+        for alias in &aliases.adventure_packs {
+            if alias.text.trim().is_empty()
+                || alias.pack.trim().is_empty()
+                || alias.reason.trim().is_empty()
+                || !alias.source.starts_with("https://ddowiki.com/page/")
+                || !crate::wiki::is_iso_date(&alias.read)
+            {
+                bail!("adventure pack alias {:?} needs a name, target, reason, wiki page and read date", alias.text);
+            }
+            if aliases.adventure_packs.iter().filter(|known| known.text.eq_ignore_ascii_case(&alias.text)).count() != 1
+            {
+                bail!("adventure pack alias {:?} is duplicated", alias.text);
+            }
+        }
+        for alias in &aliases.challenges {
+            if alias.source.is_some() != alias.read.is_some()
+                || alias.source.as_ref().is_some_and(|source| !source.starts_with("https://ddowiki.com/page/"))
+                || alias.read.as_ref().is_some_and(|read| !crate::wiki::is_iso_date(read))
+            {
+                bail!("challenge alias {:?} needs a wiki page and read date together", alias.text);
+            }
+        }
         let challenge_aliases = aliases.challenges.iter().map(|alias| AliasFields {
             table_name: "challenge",
             text: &alias.text,
@@ -114,6 +150,10 @@ impl SourceAliases {
         }
         Ok(aliases)
     }
+
+    pub fn pack_name<'name>(&'name self, name: &'name str) -> &'name str {
+        self.adventure_packs.iter().find(|alias| alias.text == name).map_or(name, |alias| alias.pack.as_str())
+    }
 }
 
 struct AliasFields<'alias> {
@@ -123,4 +163,16 @@ struct AliasFields<'alias> {
     minimum_levels: Option<RangeInclusive<i64>>,
     target_name: &'alias str,
     reason: &'alias str,
+}
+
+#[cfg(test)]
+mod tests {
+    use super::SourceAliases;
+
+    #[test]
+    fn isle_of_dread_area_uses_the_expansion_pack_identity() {
+        let aliases = SourceAliases::embedded().unwrap();
+        assert_eq!(aliases.pack_name("Isle of Dread"), "The Isle of Dread");
+        assert_eq!(aliases.pack_name("The Isle of Dread"), "The Isle of Dread");
+    }
 }

@@ -406,7 +406,7 @@ fn a_saga_reward_has_one_row_per_item_and_tier() {
 }
 
 #[test]
-fn sources_record_the_chest_as_free_text() {
+fn sources_record_the_chest_and_drop_text_provenance() {
     let db = fresh_db();
     let mut statement = db.prepare("SELECT name, type FROM pragma_table_info('sources') ORDER BY cid").unwrap();
     let columns: Vec<(String, String)> =
@@ -431,10 +431,19 @@ fn sources_record_the_chest_as_free_text() {
             "chest",
             "is_rare",
             "tier",
-            "cost"
+            "cost",
+            "drop_text_segment",
+            "source_match"
         ]
     );
     assert!(columns.contains(&("chest".to_string(), "TEXT".to_string())));
+    assert!(columns.contains(&("drop_text_segment".to_string(), "TEXT".to_string())));
+    assert!(columns.contains(&("source_match".to_string(), "TEXT".to_string())));
+    let source_db = db_with_one_source_of_each_kind();
+    insert_source(&source_db, "kind, quest_id, item_id, loot_type = 'quest', 1, 1, 'chest'").unwrap();
+    assert!(source_db
+        .execute("UPDATE sources SET drop_text_segment = 'Quest chest' WHERE id = (SELECT MIN(id) FROM sources)", [])
+        .is_err());
 }
 
 #[test]

@@ -135,6 +135,8 @@ fn insert_quest_series_rewards<Reward: QuestSeriesReward>(
                 chest: None,
                 tier: reward.tier(),
                 cost: None,
+                drop_text_segment: None,
+                source_match: None,
             },
         )?;
     }

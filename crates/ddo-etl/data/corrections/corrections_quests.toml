@@ -397,3 +397,373 @@ to = "The Jungle of Khyber"
 reason = "The wiki titles the quest The Jungle of Khyber."
 source = "https://ddowiki.com/page/The_Jungle_of_Khyber"
 read = "2026-10-02"
+
+[[correction]]
+kind = "quest"
+name = "Ritual Table"
+field = "remove"
+from = 0
+to = 1
+reason = "The Ritual Table is a crafting station, already modeled as a crafting system, not a quest."
+source = "https://ddowiki.com/page/Ritual_Table"
+read = "2026-10-05"
+
+[[correction]]
+kind = "quest"
+name = "Dr. Rushmore's Mansion - Behind the Door"
+field = "pack"
+from = "Free to Play"
+to = "Vaults of the Artificers"
+reason = "The Cannith challenge belongs to the Vaults of the Artificers adventure pack; free daily tokens do not change its pack."
+source = "https://ddowiki.com/page/Vaults_of_the_Artificers"
+read = "2026-10-05"
+
+[[correction]]
+kind = "quest"
+name = "Dr. Rushmore's Mansion - Moving Targets"
+field = "pack"
+from = "Secrets of the Artificers"
+to = "Vaults of the Artificers"
+reason = "The Cannith challenge belongs to the Vaults of the Artificers adventure pack; free daily tokens do not change its pack."
+source = "https://ddowiki.com/page/Vaults_of_the_Artificers"
+read = "2026-10-05"
+
+[[correction]]
+kind = "quest"
+name = "Dr. Rushmore's Mansion - Moving Targets - EPIC"
+field = "pack"
+from = "Secrets of the Artificers"
+to = "Vaults of the Artificers"
+reason = "The Cannith challenge belongs to the Vaults of the Artificers adventure pack; free daily tokens do not change its pack."
+source = "https://ddowiki.com/page/Vaults_of_the_Artificers"
+read = "2026-10-05"
+
+[[correction]]
+kind = "quest"
+name = "Dr. Rushmore's Mansion - Picture Portals"
+field = "pack"
+from = "Free to Play"
+to = "Vaults of the Artificers"
+reason = "The Cannith challenge belongs to the Vaults of the Artificers adventure pack; free daily tokens do not change its pack."
+source = "https://ddowiki.com/page/Vaults_of_the_Artificers"
+read = "2026-10-05"
+
+[[correction]]
+kind = "quest"
+name = "Dr. Rushmore's Mansion - Picture Portals - EPIC"
+field = "pack"
+from = "Secrets of the Artificers"
+to = "Vaults of the Artificers"
+reason = "The Cannith challenge belongs to the Vaults of the Artificers adventure pack; free daily tokens do not change its pack."
+source = "https://ddowiki.com/page/Vaults_of_the_Artificers"
+read = "2026-10-05"
+
+[[correction]]
+kind = "quest"
+name = "Extraplanar Mining - Buying Time"
+field = "pack"
+from = "Secrets of the Artificers"
+to = "Vaults of the Artificers"
+reason = "The Cannith challenge belongs to the Vaults of the Artificers adventure pack; free daily tokens do not change its pack."
+source = "https://ddowiki.com/page/Vaults_of_the_Artificers"
+read = "2026-10-05"
+
+[[correction]]
+kind = "quest"
+name = "Extraplanar Mining - Buying Time - EPIC"
+field = "pack"
+from = "Secrets of the Artificers"
+to = "Vaults of the Artificers"
+reason = "The Cannith challenge belongs to the Vaults of the Artificers adventure pack; free daily tokens do not change its pack."
+source = "https://ddowiki.com/page/Vaults_of_the_Artificers"
+read = "2026-10-05"
+
+[[correction]]
+kind = "quest"
+name = "Extraplanar Mining - Epic Buying Time"
+field = "pack"
+from = "Free to Play"
+to = "Vaults of the Artificers"
+reason = "The Cannith challenge belongs to the Vaults of the Artificers adventure pack; free daily tokens do not change its pack."
+source = "https://ddowiki.com/page/Extraplanar_Palace:_Buying_Time_-_EPIC"
+read = "2026-10-05"
+
+[[correction]]
+kind = "quest"
+name = "Extraplanar Mining - Epic Buying Time"
+field = "patron"
+from = "null"
+to = "House Cannith"
+reason = "The Cannith challenge awards House Cannith favor."
+source = "https://ddowiki.com/page/Extraplanar_Palace:_Buying_Time_-_EPIC"
+read = "2026-10-05"
+
+[[correction]]
+kind = "quest"
+name = "Extraplanar Mining - Epic Labor Shortage"
+field = "pack"
+from = "Free to Play"
+to = "Vaults of the Artificers"
+reason = "The Cannith challenge belongs to the Vaults of the Artificers adventure pack; free daily tokens do not change its pack."
+source = "https://ddowiki.com/page/Extraplanar_Palace:_Labor_Shortage_-_EPIC"
+read = "2026-10-05"
+
+[[correction]]
+kind = "quest"
+name = "Extraplanar Mining - Epic Labor Shortage"
+field = "patron"
+from = "null"
+to = "House Cannith"
+reason = "The Cannith challenge awards House Cannith favor."
+source = "https://ddowiki.com/page/Extraplanar_Palace:_Labor_Shortage_-_EPIC"
+read = "2026-10-05"
+
+[[correction]]
+kind = "quest"
+name = "Extraplanar Mining - Epic The Dragon's Horde"
+field = "pack"
+from = "Free to Play"
+to = "Vaults of the Artificers"
+reason = "The Cannith challenge belongs to the Vaults of the Artificers adventure pack; free daily tokens do not change its pack."
+source = "https://ddowiki.com/page/Extraplanar_Palace:_The_Dragon%27s_Hoard_-_EPIC"
+read = "2026-10-05"
+
+[[correction]]
+kind = "quest"
+name = "Extraplanar Mining - Epic The Dragon's Horde"
+field = "patron"
+from = "null"
+to = "House Cannith"
+reason = "The Cannith challenge awards House Cannith favor."
+source = "https://ddowiki.com/page/Extraplanar_Palace:_The_Dragon%27s_Hoard_-_EPIC"
+read = "2026-10-05"
+
+[[correction]]
+kind = "quest"
+name = "Extraplanar Mining - Epic The Dragon's Horde"
+field = "name"
+from = "Extraplanar Mining - Epic The Dragon's Horde"
+to = "Extraplanar Mining - Epic The Dragon's Hoard"
+reason = "The wiki spells the challenge name The Dragon's Hoard."
+source = "https://ddowiki.com/page/Extraplanar_Palace:_The_Dragon%27s_Hoard_-_EPIC"
+read = "2026-10-05"
+
+[[correction]]
+kind = "quest"
+name = "Extraplanar Mining - Labor Shortage"
+field = "pack"
+from = "Secrets of the Artificers"
+to = "Vaults of the Artificers"
+reason = "The Cannith challenge belongs to the Vaults of the Artificers adventure pack; free daily tokens do not change its pack."
+source = "https://ddowiki.com/page/Vaults_of_the_Artificers"
+read = "2026-10-05"
+
+[[correction]]
+kind = "quest"
+name = "Extraplanar Mining - Labor Shortage - EPIC"
+field = "pack"
+from = "Secrets of the Artificers"
+to = "Vaults of the Artificers"
+reason = "The Cannith challenge belongs to the Vaults of the Artificers adventure pack; free daily tokens do not change its pack."
+source = "https://ddowiki.com/page/Vaults_of_the_Artificers"
+read = "2026-10-05"
+
+[[correction]]
+kind = "quest"
+name = "Extraplanar Mining - The Dragon's Horde"
+field = "pack"
+from = "Secrets of the Artificers"
+to = "Vaults of the Artificers"
+reason = "The Cannith challenge belongs to the Vaults of the Artificers adventure pack; free daily tokens do not change its pack."
+source = "https://ddowiki.com/page/Vaults_of_the_Artificers"
+read = "2026-10-05"
+
+[[correction]]
+kind = "quest"
+name = "Extraplanar Mining - The Dragon's Horde"
+field = "name"
+from = "Extraplanar Mining - The Dragon's Horde"
+to = "Extraplanar Mining - The Dragon's Hoard"
+reason = "The wiki spells the challenge name The Dragon's Hoard."
+source = "https://ddowiki.com/page/Extraplanar_Palace:_The_Dragon%27s_Hoard_-_EPIC"
+read = "2026-10-05"
+
+[[correction]]
+kind = "quest"
+name = "Extraplanar Mining - The Dragon's Horde - EPIC"
+field = "pack"
+from = "Free to Play"
+to = "Vaults of the Artificers"
+reason = "The Cannith challenge belongs to the Vaults of the Artificers adventure pack; free daily tokens do not change its pack."
+source = "https://ddowiki.com/page/Vaults_of_the_Artificers"
+read = "2026-10-05"
+
+[[correction]]
+kind = "quest"
+name = "Extraplanar Mining - The Dragon's Horde - EPIC"
+field = "name"
+from = "Extraplanar Mining - The Dragon's Horde - EPIC"
+to = "Extraplanar Mining - The Dragon's Hoard - EPIC"
+reason = "The wiki spells the challenge name The Dragon's Hoard."
+source = "https://ddowiki.com/page/Extraplanar_Palace:_The_Dragon%27s_Hoard_-_EPIC"
+read = "2026-10-05"
+
+[[correction]]
+kind = "quest"
+name = "Kobold Island - Kobold Chaos"
+field = "pack"
+from = "Secrets of the Artificers"
+to = "Vaults of the Artificers"
+reason = "The Cannith challenge belongs to the Vaults of the Artificers adventure pack; free daily tokens do not change its pack."
+source = "https://ddowiki.com/page/Vaults_of_the_Artificers"
+read = "2026-10-05"
+
+[[correction]]
+kind = "quest"
+name = "Kobold Island - Short Cuts"
+field = "pack"
+from = "Secrets of the Artificers"
+to = "Vaults of the Artificers"
+reason = "The Cannith challenge belongs to the Vaults of the Artificers adventure pack; free daily tokens do not change its pack."
+source = "https://ddowiki.com/page/Vaults_of_the_Artificers"
+read = "2026-10-05"
+
+[[correction]]
+kind = "quest"
+name = "Kobold Island - Short Cuts - EPIC"
+field = "pack"
+from = "Secrets of the Artificers"
+to = "Vaults of the Artificers"
+reason = "The Cannith challenge belongs to the Vaults of the Artificers adventure pack; free daily tokens do not change its pack."
+source = "https://ddowiki.com/page/Vaults_of_the_Artificers"
+read = "2026-10-05"
+
+[[correction]]
+kind = "quest"
+name = "Kobold Island - Short Cuts Epic"
+field = "pack"
+from = "Free to Play"
+to = "Vaults of the Artificers"
+reason = "The Cannith challenge belongs to the Vaults of the Artificers adventure pack; free daily tokens do not change its pack."
+source = "https://ddowiki.com/page/Kobold_Island:_Short_Cuts_-_EPIC"
+read = "2026-10-05"
+
+[[correction]]
+kind = "quest"
+name = "Kobold Island - Short Cuts Epic"
+field = "patron"
+from = "null"
+to = "House Cannith"
+reason = "The Cannith challenge awards House Cannith favor."
+source = "https://ddowiki.com/page/Kobold_Island:_Short_Cuts_-_EPIC"
+read = "2026-10-05"
+
+[[correction]]
+kind = "quest"
+name = "Kobold Island - The Disruptor"
+field = "pack"
+from = "Secrets of the Artificers"
+to = "Vaults of the Artificers"
+reason = "The Cannith challenge belongs to the Vaults of the Artificers adventure pack; free daily tokens do not change its pack."
+source = "https://ddowiki.com/page/Vaults_of_the_Artificers"
+read = "2026-10-05"
+
+[[correction]]
+kind = "quest"
+name = "Kobold Island - The Disruptor - EPIC"
+field = "pack"
+from = "Secrets of the Artificers"
+to = "Vaults of the Artificers"
+reason = "The Cannith challenge belongs to the Vaults of the Artificers adventure pack; free daily tokens do not change its pack."
+source = "https://ddowiki.com/page/Vaults_of_the_Artificers"
+read = "2026-10-05"
+
+[[correction]]
+kind = "quest"
+name = "The Lava Caves - Circles of Power"
+field = "pack"
+from = "Secrets of the Artificers"
+to = "Vaults of the Artificers"
+reason = "The Cannith challenge belongs to the Vaults of the Artificers adventure pack; free daily tokens do not change its pack."
+source = "https://ddowiki.com/page/Vaults_of_the_Artificers"
+read = "2026-10-05"
+
+[[correction]]
+kind = "quest"
+name = "The Lava Caves - Colossal Crystals"
+field = "pack"
+from = "Secrets of the Artificers"
+to = "Vaults of the Artificers"
+reason = "The Cannith challenge belongs to the Vaults of the Artificers adventure pack; free daily tokens do not change its pack."
+source = "https://ddowiki.com/page/Vaults_of_the_Artificers"
+read = "2026-10-05"
+
+[[correction]]
+kind = "quest"
+name = "The Lava Caves - Colossal Crystals - EPIC"
+field = "pack"
+from = "Secrets of the Artificers"
+to = "Vaults of the Artificers"
+reason = "The Cannith challenge belongs to the Vaults of the Artificers adventure pack; free daily tokens do not change its pack."
+source = "https://ddowiki.com/page/Vaults_of_the_Artificers"
+read = "2026-10-05"
+
+[[correction]]
+kind = "quest"
+name = "The Lava Caves - Epic Colossal Crystals"
+field = "pack"
+from = "Free to Play"
+to = "Vaults of the Artificers"
+reason = "The Cannith challenge belongs to the Vaults of the Artificers adventure pack; free daily tokens do not change its pack."
+source = "https://ddowiki.com/page/Lava_Caves:_Colossal_Crystals_-_EPIC"
+read = "2026-10-05"
+
+[[correction]]
+kind = "quest"
+name = "The Lava Caves - Epic Colossal Crystals"
+field = "patron"
+from = "null"
+to = "House Cannith"
+reason = "The Cannith challenge awards House Cannith favor."
+source = "https://ddowiki.com/page/Lava_Caves:_Colossal_Crystals_-_EPIC"
+read = "2026-10-05"
+
+[[correction]]
+kind = "quest"
+name = "The Lava Caves - Epic Time is Money"
+field = "pack"
+from = "Free to Play"
+to = "Vaults of the Artificers"
+reason = "The Cannith challenge belongs to the Vaults of the Artificers adventure pack; free daily tokens do not change its pack."
+source = "https://ddowiki.com/page/Lava_Caves:_Time_is_Money_-_EPIC"
+read = "2026-10-05"
+
+[[correction]]
+kind = "quest"
+name = "The Lava Caves - Epic Time is Money"
+field = "patron"
+from = "null"
+to = "House Cannith"
+reason = "The Cannith challenge awards House Cannith favor."
+source = "https://ddowiki.com/page/Lava_Caves:_Time_is_Money_-_EPIC"
+read = "2026-10-05"
+
+[[correction]]
+kind = "quest"
+name = "The Lava Caves - Time is Money"
+field = "pack"
+from = "Secrets of the Artificers"
+to = "Vaults of the Artificers"
+reason = "The Cannith challenge belongs to the Vaults of the Artificers adventure pack; free daily tokens do not change its pack."
+source = "https://ddowiki.com/page/Vaults_of_the_Artificers"
+read = "2026-10-05"
+
+[[correction]]
+kind = "quest"
+name = "The Lava Caves - Time is Money - EPIC"
+field = "pack"
+from = "Secrets of the Artificers"
+to = "Vaults of the Artificers"
+reason = "The Cannith challenge belongs to the Vaults of the Artificers adventure pack; free daily tokens do not change its pack."
+source = "https://ddowiki.com/page/Vaults_of_the_Artificers"
+read = "2026-10-05"

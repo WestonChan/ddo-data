@@ -401,6 +401,11 @@ fn write_correction(
                 buff_resolver.context("set tier resolver")?,
             )?;
         }
+        FieldShape::Removal if correction.kind == CorrectionKind::Quest => {
+            for row_id in row_ids {
+                transaction.execute("DELETE FROM quests WHERE id = ?1", [row_id])?;
+            }
+        }
         FieldShape::Removal => remove_rows(
             transaction,
             effects.context("owner removals need the family cache")?,

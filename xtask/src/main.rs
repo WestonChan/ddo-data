@@ -8,6 +8,7 @@ use std::process::Command;
 use walkdir::WalkDir;
 use xtask::api_validation::validate_api;
 use xtask::dataset::{build_database_file, corrections_from, wiki_overrides_from};
+use xtask::golden_refresh::{golden_merge_changes, golden_sample, merge_golden, SampleRequest};
 use xtask::integrity::{integrity_report, IntegrityOptions};
 use xtask::response_examples::{write_response_examples, write_v1_detail_snapshot, EXAMPLE_REQUESTS};
 use xtask::wiki_tools::{wiki_check_report, write_wiki_batch};
@@ -50,6 +51,41 @@ enum Task {
     WikiTooltips {
         #[arg(long)]
         db: PathBuf,
+    },
+    #[command(
+        about = "Write a browser reading list of served effect lines",
+        long_about = "Choose modern owners that add missing or stale golden coverage, or name owners and effects for a targeted browser re-read. The command reads a built database and writes target/tooltip_sample.json by default; it never fetches the wiki."
+    )]
+    GoldenSample {
+        #[arg(long, help = "Built database to sample")]
+        db: PathBuf,
+        #[arg(long, default_value_t = 20, help = "Maximum number of automatically selected owners")]
+        count: usize,
+        #[arg(long, default_value_t = 90, help = "Skip ordinary samples read within this many days")]
+        fresh_days: i64,
+        #[arg(long = "item", help = "Include an exact item name; repeatable")]
+        items: Vec<String>,
+        #[arg(long = "augment", help = "Include an exact augment name; repeatable")]
+        augments: Vec<String>,
+        #[arg(long = "set", help = "Include an exact set name; repeatable")]
+        sets: Vec<String>,
+        #[arg(long = "effect", help = "Sample modern owners carrying an exact effect name; repeatable")]
+        effects: Vec<String>,
+        #[arg(
+            long = "effect-like",
+            help = "Sample modern owners carrying an effect matching a SQL LIKE pattern; repeatable"
+        )]
+        effect_likes: Vec<String>,
+        #[arg(long, help = "Write the reading list to this JSON path")]
+        out: Option<PathBuf>,
+    },
+    #[command(
+        about = "Merge a browser reader's golden entries",
+        long_about = "Validate browser-read golden entries and replace matching owners in xtask/data/tooltip_golden.json. A re-read replaces its entire owner entry, so old recorded differences are dropped unless the input still records them."
+    )]
+    GoldenMerge {
+        #[arg(help = "JSON file containing items, augments or sets in golden entry shape")]
+        file: PathBuf,
     },
     WikiCheck {
         #[arg(long)]
@@ -106,6 +142,33 @@ fn main() -> Result<()> {
         Task::WikiTooltips { db } => {
             let report = check_wiki_tooltips(&db)?;
             println!("{report}");
+            Ok(())
+        }
+        Task::GoldenSample { db, count, fresh_days, items, augments, sets, effects, effect_likes, out } => {
+            let sample =
+                golden_sample(&db, &SampleRequest { count, fresh_days, items, augments, sets, effects, effect_likes })?;
+            let out = out.unwrap_or_else(|| workspace_root().join("target/tooltip_sample.json"));
+            if let Some(parent) = out.parent() {
+                std::fs::create_dir_all(parent)?;
+            }
+            std::fs::write(&out, format!("{}\n", serde_json::to_string_pretty(&sample)?))?;
+            println!(
+                "wrote {} items, {} augments and {} sets to {}",
+                sample["items"].as_array().unwrap().len(),
+                sample["augments"].as_array().unwrap().len(),
+                sample["sets"].as_array().unwrap().len(),
+                out.display()
+            );
+            Ok(())
+        }
+        Task::GoldenMerge { file } => {
+            let golden_path = workspace_root().join("xtask/data/tooltip_golden.json");
+            let old: serde_json::Value = serde_json::from_slice(&std::fs::read(&golden_path)?)?;
+            let incoming: serde_json::Value = serde_json::from_slice(&std::fs::read(&file)?)?;
+            let changes = golden_merge_changes(&old, &incoming)?;
+            let merged = merge_golden(old.clone(), incoming)?;
+            std::fs::write(&golden_path, format!("{}\n", serde_json::to_string_pretty(&merged)?))?;
+            println!("merged {} into {}\n{}", file.display(), golden_path.display(), changes.join("\n"));
             Ok(())
         }
         Task::WikiCheck { wiki: wiki_dir, corrections: corrections_dir, source: data_files_dir } => {

@@ -5,7 +5,7 @@ use crate::enums::{
 };
 use std::sync::LazyLock;
 
-pub const SCHEMA_VERSION: i64 = 31;
+pub const SCHEMA_VERSION: i64 = 32;
 
 fn sql_in_clause<'a>(allowed_values: impl Iterator<Item = &'a str>) -> String {
     let quoted_values: Vec<String> = allowed_values.map(|value| format!("'{value}'")).collect();
@@ -526,6 +526,9 @@ CREATE TABLE IF NOT EXISTS sources (
     is_rare     INTEGER NOT NULL DEFAULT 0 CHECK (is_rare IN (0, 1)),
     tier        TEXT    CHECK (tier {saga_tier}),
     cost        TEXT,
+    drop_text_segment TEXT,
+    source_match TEXT,
+    CHECK ((drop_text_segment IS NULL) = (source_match IS NULL)),
     CHECK ({source_id_count} = 1),
     CHECK (CASE kind {source_id_for_kind} ELSE 0 END),
     CHECK ((item_id IS NOT NULL) + (augment_id IS NOT NULL) = 1),

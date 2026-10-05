@@ -28,11 +28,11 @@
     "optional_buffs": 138,
     "pack_augment_loot": 0,
     "pack_loot": 489,
-    "quest_augment_loot": 603,
+    "quest_augment_loot": 589,
     "quest_chain_rewards": 243,
     "quest_chains": 43,
-    "quest_loot": 5032,
-    "quests": 608,
+    "quest_loot": 4954,
+    "quests": 607,
     "races": 30,
     "requirements": 9919,
     "saga_rewards": 51,
@@ -40,7 +40,7 @@
     "sentient_gems": 14,
     "set_bonus_tier_effects": 1308,
     "set_bonuses": 327,
-    "sources": 9053,
+    "sources": 8961,
     "spells": 706,
     "starter_items": 174,
     "vendor_items": 585,
@@ -50,8 +50,8 @@
     "wiki_quests": 5
   },
   "dataset": {
-    "built_at": "2026-10-05T08:57:27Z",
+    "built_at": "2026-10-05T11:11:11Z",
     "upstream_sha": "31ef0201ea8e28604de2b6242988aee6d63733b0"
   },
-  "schema_version": 31
+  "schema_version": 32
 }

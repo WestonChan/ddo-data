@@ -96,6 +96,8 @@ fn insert_listed_item(transaction: &Transaction, source: LootSource, item_id: i6
             chest: None,
             tier: None,
             cost: None,
+            drop_text_segment: None,
+            source_match: None,
         },
     )
 }

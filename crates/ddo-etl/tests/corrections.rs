@@ -53,6 +53,64 @@ fn recorded_corrections(db: &Connection) -> Vec<(String, String, String, String,
 }
 
 #[test]
+fn drop_location_correction_changes_the_source_before_links_are_written() {
+    let correction = correction_toml(
+        "item",
+        "Sireth, Spear of the Sky",
+        "drop_location",
+        "\"Caught in the Web, End Chest\"",
+        "\"The Chronoscope, End Chest\"",
+    );
+    let (db, report) = built_db_with(&[("drop.toml", &correction)]).unwrap();
+    assert_eq!(report.correction_applied_count, 1);
+    assert_eq!(report.correction_stale_count, 0);
+    let linked: Vec<String> = db
+        .prepare(
+            "SELECT q.name FROM sources s JOIN quests q ON q.id = s.quest_id
+         JOIN items i ON i.id = s.item_id WHERE i.name = 'Sireth, Spear of the Sky' ORDER BY q.name",
+        )
+        .unwrap()
+        .query_map([], |row| row.get(0))
+        .unwrap()
+        .map(Result::unwrap)
+        .collect();
+    assert_eq!(linked, ["The Chronoscope"]);
+    let segment: String = db
+        .query_row(
+            "SELECT s.drop_text_segment FROM sources s JOIN items i ON i.id = s.item_id
+         WHERE i.name = 'Sireth, Spear of the Sky'",
+            [],
+            |row| row.get(0),
+        )
+        .unwrap();
+    assert_eq!(segment, "The Chronoscope, End Chest");
+}
+
+#[test]
+fn prerequisite_quest_words_do_not_create_sources() {
+    let correction = correction_toml(
+        "item",
+        "Sireth, Spear of the Sky",
+        "drop_location",
+        "\"Caught in the Web, End Chest\"",
+        "\"Caught in the Web, End Chest (rare, requires completion of The Cursed Crypt)\\nRedemption, end chest\"",
+    );
+    let (db, report) = built_db_with(&[("drop.toml", &correction)]).unwrap();
+    assert_eq!(report.correction_applied_count, 1);
+    let linked: Vec<String> = db
+        .prepare(
+            "SELECT q.name FROM sources s JOIN quests q ON q.id = s.quest_id
+         JOIN items i ON i.id = s.item_id WHERE i.name = 'Sireth, Spear of the Sky' ORDER BY q.name",
+        )
+        .unwrap()
+        .query_map([], |row| row.get(0))
+        .unwrap()
+        .map(Result::unwrap)
+        .collect();
+    assert_eq!(linked, ["Caught in the Web", "Redemption"]);
+}
+
+#[test]
 fn item_effect_corrections_change_a_text_line_type_or_remove_its_link() {
     let type_correction =
         correction_toml("item_effect", "Epic Ethereal Bracers", "bonus_type", "\"Insight\"", "\"Quality\"")
@@ -326,6 +384,39 @@ fn resolves_reference_fields_by_name() {
         )
         .unwrap();
     assert_eq!((pack.as_str(), patron.as_str()), ("Devil Assault", "The Twelve"));
+}
+
+#[test]
+fn cited_cannith_challenge_corrections_use_their_own_pack_and_patron() {
+    let dragon = "Extraplanar Mining - Epic The Dragon's Horde";
+    let corrections = correction_toml("quest", dragon, "pack", "\"Free to Play\"", "\"Vaults of the Artificers\"")
+        + &correction_toml("quest", dragon, "patron", "\"null\"", "\"House Cannith\"")
+        + &correction_toml(
+            "quest",
+            dragon,
+            "name",
+            "\"Extraplanar Mining - Epic The Dragon's Horde\"",
+            "\"Extraplanar Mining - Epic The Dragon's Hoard\"",
+        )
+        + &correction_toml(
+            "quest",
+            "Dr. Rushmore's Mansion - Moving Targets - EPIC",
+            "pack",
+            "\"Secrets of the Artificers\"",
+            "\"Vaults of the Artificers\"",
+        );
+    let (db, report) = built_db_with(&[("cannith.toml", &corrections)]).unwrap();
+    assert_eq!(report.correction_applied_count, 4);
+    for name in ["Extraplanar Mining - Epic The Dragon's Hoard", "Dr. Rushmore's Mansion - Moving Targets - EPIC"] {
+        let (pack, patron): (String, String) = db
+            .query_row(
+                "SELECT p.name, pa.name FROM quests q JOIN adventure_packs p ON p.id = q.pack_id JOIN patrons pa ON pa.id = q.patron_id WHERE q.name = ?1",
+                [name],
+                |row| Ok((row.get(0)?, row.get(1)?)),
+            )
+            .unwrap();
+        assert_eq!((pack.as_str(), patron.as_str()), ("Vaults of the Artificers", "House Cannith"));
+    }
 }
 
 #[test]

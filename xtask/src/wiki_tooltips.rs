@@ -1,3 +1,4 @@
+use crate::golden_refresh::{golden_age_report, today_day};
 use anyhow::{bail, Context, Result};
 use axum::body::Body;
 use axum::http::{Request, StatusCode};
@@ -27,6 +28,7 @@ pub fn check_wiki_tooltips(db_path: &Path) -> Result<String> {
     let state = AppState::open(db_path)?;
     let runtime = tokio::runtime::Builder::new_current_thread().enable_all().build()?;
     let mut comparison = TooltipComparison::default();
+    let mut reread_commands = std::collections::BTreeSet::new();
     for (collection, table, name_key, route) in [
         ("items", "items", "item", "items"),
         ("augments", "augments", "augment", "augments"),
@@ -34,6 +36,7 @@ pub fn check_wiki_tooltips(db_path: &Path) -> Result<String> {
     ] {
         for owner in corpus[collection].as_array().context("golden owner list")? {
             let owner_name = owner[name_key].as_str().context("golden owner name")?;
+            let mismatches_before = comparison.unrecorded.len();
             let owner_id: i64 = db
                 .query_row(&format!("SELECT id FROM {table} WHERE name = ?1"), [owner_name], |row| row.get(0))
                 .with_context(|| format!("golden {collection} owner {owner_name:?}"))?;
@@ -64,19 +67,34 @@ pub fn check_wiki_tooltips(db_path: &Path) -> Result<String> {
                 }
                 compare_lines(owner_name, &owner["lines"], &detail["effects"], &mut comparison)?;
             }
+            if comparison.unrecorded.len() > mismatches_before {
+                let selector = match collection {
+                    "items" => "item",
+                    "augments" => "augment",
+                    _ => "set",
+                };
+                reread_commands.insert(format!(
+                    "cargo xtask golden-sample --db {} --{selector} {:?}",
+                    db_path.display(),
+                    owner_name
+                ));
+            }
         }
     }
+    let age_report = golden_age_report(&corpus, today_day()?)?;
     if !comparison.unrecorded.is_empty() {
         bail!(
-            "{} unrecorded wiki tooltip mismatch(es):\n{}",
+            "{} unrecorded wiki tooltip mismatch(es):\n{}\nRe-read the affected owner in a browser; start with:\n{}\n{}",
             comparison.unrecorded.len(),
-            comparison.unrecorded.join("\n")
+            comparison.unrecorded.join("\n"),
+            reread_commands.into_iter().collect::<Vec<_>>().join("\n"),
+            age_report
         );
     }
     Ok(format!(
-        "wiki tooltips: {} lines matched as-is, {} lines with recorded differences, {} matched fields, {} enhancement bonuses checked; known differences: {:?}",
+        "wiki tooltips: {} lines matched as-is, {} lines with recorded differences, {} matched fields, {} enhancement bonuses checked; known differences: {:?}; {}",
         comparison.matched_lines, comparison.known_lines, comparison.matched_fields,
-        comparison.enhancement_bonuses_checked, comparison.known_by_reason
+        comparison.enhancement_bonuses_checked, comparison.known_by_reason, age_report
     ))
 }
 

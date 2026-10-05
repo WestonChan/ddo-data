@@ -95,6 +95,94 @@ fn clean_fixture_database_exits_zero_and_prints_every_check() {
 }
 
 #[test]
+fn duplicate_pack_names_after_normalization_fail() {
+    let work_dir = tempfile::tempdir().unwrap();
+    let db_path = fixture_db_copy_with(work_dir.path(),
+        "INSERT INTO adventure_packs(name) SELECT 'The ' || name FROM adventure_packs WHERE name NOT LIKE 'The %' LIMIT 1;");
+    let report = integrity_report(&Connection::open(db_path).unwrap(), &fixture_options()).unwrap();
+    assert_eq!(report.outcome("adventure_pack_names_distinct").unwrap().status, CheckStatus::Failed);
+}
+
+#[test]
+fn a_source_named_only_inside_a_prerequisite_clause_fails() {
+    let work_dir = tempfile::tempdir().unwrap();
+    let db_path = fixture_db_copy_with(work_dir.path(),
+        "UPDATE sources SET drop_text_segment = 'Stealing from Sorcere (requires completion of Sleeping with the Fishes)',
+         source_match = 'Sleeping with the Fishes' WHERE id = (SELECT MIN(id) FROM sources);");
+    let report = integrity_report(&Connection::open(db_path).unwrap(), &fixture_options()).unwrap();
+    assert_eq!(report.outcome("sources_not_from_prerequisite_clauses").unwrap().status, CheckStatus::Failed);
+}
+
+#[test]
+fn a_crafting_station_in_quests_fails() {
+    let work_dir = tempfile::tempdir().unwrap();
+    let db_path = fixture_db_copy_with(work_dir.path(),
+        "INSERT INTO crafting_systems(name,page) SELECT name, 'https://ddowiki.com/page/Ritual_Table' FROM quests LIMIT 1;");
+    let report = integrity_report(&Connection::open(db_path).unwrap(), &fixture_options()).unwrap();
+    assert_eq!(report.outcome("quests_not_crafting_systems").unwrap().status, CheckStatus::Failed);
+}
+
+#[test]
+fn pending_quest_version_difference_warns_without_failing_the_hard_rule() {
+    let work_dir = tempfile::tempdir().unwrap();
+    let db_path = fixture_db_copy_with(
+        work_dir.path(),
+        "INSERT OR IGNORE INTO adventure_packs (name) VALUES ('Integrity Heroic Pack'), ('Integrity Epic Pack');
+         INSERT INTO quests (name, pack_id, level) VALUES
+           ('Dr. Rushmore''s Mansion - Picture Portals',
+            (SELECT id FROM adventure_packs WHERE name = 'Integrity Heroic Pack'), 15),
+           ('Dr. Rushmore''s Mansion - Picture Portals - EPIC',
+            (SELECT id FROM adventure_packs WHERE name = 'Integrity Epic Pack'), 25);",
+    );
+    let report = integrity_report(&Connection::open(db_path).unwrap(), &fixture_options()).unwrap();
+    assert_eq!(report.outcome("quest_versions_match_heroic_pack_and_patron").unwrap().status, CheckStatus::Passed);
+    assert_eq!(report.outcome("quest_versions_pending_wiki_read").unwrap().status, CheckStatus::Warned);
+}
+
+#[test]
+fn legendary_quest_version_matches_a_heroic_name_with_an_article() {
+    let work_dir = tempfile::tempdir().unwrap();
+    let db_path = fixture_db_copy_with(
+        work_dir.path(),
+        "INSERT OR IGNORE INTO adventure_packs (name) VALUES ('Integrity Heroic Pack'), ('Integrity Legendary Pack');
+         INSERT INTO quests (name, pack_id, level) VALUES
+           ('The Integrity Article Quest', (SELECT id FROM adventure_packs WHERE name = 'Integrity Heroic Pack'), 10),
+           ('Legendary Integrity Article Quest',
+            (SELECT id FROM adventure_packs WHERE name = 'Integrity Legendary Pack'), 32);",
+    );
+    let report = integrity_report(&Connection::open(db_path).unwrap(), &fixture_options()).unwrap();
+    assert_eq!(report.outcome("quest_versions_match_heroic_pack_and_patron").unwrap().status, CheckStatus::Failed);
+}
+
+#[test]
+fn cross_pack_drop_and_multi_patron_pack_are_warned() {
+    let work_dir = tempfile::tempdir().unwrap();
+    let db_path = fixture_db_copy_with(
+        work_dir.path(),
+        "INSERT INTO adventure_packs(name) VALUES ('Unreviewed Second Pack');
+         INSERT INTO sources(kind,pack_id,item_id,loot_type,is_rare)
+           SELECT 'adventure_pack', last_insert_rowid(), MIN(id), 'chest', 0 FROM items;
+         INSERT INTO patrons(name) VALUES ('Unreviewed Patron');
+         INSERT INTO quests(name,pack_id,patron_id)
+           SELECT 'Unreviewed Quest', pack_id, last_insert_rowid() FROM quests WHERE pack_id IS NOT NULL LIMIT 1;",
+    );
+    let report = integrity_report(&Connection::open(db_path).unwrap(), &fixture_options()).unwrap();
+    assert_eq!(report.outcome("items_spanning_packs").unwrap().status, CheckStatus::Warned);
+    assert_eq!(report.outcome("packs_with_several_patrons").unwrap().status, CheckStatus::Warned);
+}
+
+#[test]
+fn a_drop_text_quest_missing_from_a_wiki_loot_read_is_warned() {
+    let work_dir = tempfile::tempdir().unwrap();
+    let db_path = fixture_db_copy_with(work_dir.path(),
+        "INSERT INTO quests(name) VALUES ('The Proper Authorities');
+         INSERT INTO sources(kind,quest_id,item_id,loot_type,is_rare,drop_text_segment,source_match)
+           SELECT 'quest', last_insert_rowid(), MIN(id), 'chest', 0, 'The Proper Authorities chest', 'The Proper Authorities' FROM items;");
+    let report = integrity_report(&Connection::open(db_path).unwrap(), &fixture_options()).unwrap();
+    assert_eq!(report.outcome("drop_text_disagrees_with_quest_loot").unwrap().status, CheckStatus::Warned);
+}
+
+#[test]
 fn effect_line_rendering_faults_fail_the_hard_check() {
     for bad_template in ["%b1 Enhancement bonus to Strength.", "Gain {3} bonus to Strength."] {
         let work_dir = tempfile::tempdir().unwrap();
@@ -309,6 +397,14 @@ fn probe_quest_source_insert(loot_type: &str, chest: &str) -> String {
 
 fn injected_violations() -> Vec<InjectedViolation> {
     vec![
+        violation(
+            "quest_versions_match_heroic_pack_and_patron",
+            "INSERT OR IGNORE INTO adventure_packs (name) VALUES ('Integrity Heroic Pack'), ('Integrity Epic Pack');
+             INSERT INTO quests (name, pack_id, level) VALUES
+               ('Integrity Version Quest', (SELECT id FROM adventure_packs WHERE name = 'Integrity Heroic Pack'), 10),
+               ('Epic Integrity Version Quest', (SELECT id FROM adventure_packs WHERE name = 'Integrity Epic Pack'), 20);",
+            "Epic Integrity Version Quest",
+        ),
         violation(
             "effect_templates_disagree_with_names",
             "INSERT INTO effects (name, verbose_name_template) VALUES ('Integrity Title Probe', 'Wrong Title');

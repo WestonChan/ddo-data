@@ -29,7 +29,7 @@ use crate::xml::quests::Quest;
 use crate::xml::{classes, clickies, item_buffs, patrons, quests, spells};
 use anyhow::{Context, Result};
 use bonus_types::{BonusOrigin, UntypedBonusCorrections};
-use ddo_model::enums::{BonusType, FeatSource, ModifierSource};
+use ddo_model::enums::{BonusType, CorrectionKind, FeatSource, ModifierSource};
 use ddo_model::{seeds, DatasetVersion, SCHEMA_VERSION};
 use drop_text::DropTextLinker;
 use rusqlite::{params, Connection, OptionalExtension, Transaction};
@@ -184,6 +184,7 @@ pub fn build_database(
     let challenges_path = data_files_dir.join("Challenges.xml");
     let parsed_challenges = if challenges_path.is_file() { challenges::parse(&challenges_path)? } else { Vec::new() };
     let parsed_clickies = clickies::parse(&data_files_dir.join("ItemClickies.xml"))?;
+    let source_aliases = SourceAliases::embedded()?;
 
     let transaction = db.transaction()?;
     let mut report = BuildReport::default();
@@ -200,18 +201,18 @@ pub fn build_database(
     for patron in &parsed_patrons {
         transaction.execute("INSERT OR IGNORE INTO patrons (name) VALUES (?1)", params![patron.name.trim()])?;
     }
-    report.quest_count = write_quests(&transaction, &parsed_quests)?;
-    report.challenge_count = write_challenges(&transaction, &parsed_challenges)?;
+    for alias in source_aliases.challenges.iter().filter(|alias| alias.source.is_some()) {
+        ensure_adventure_pack(&transaction, Some(&alias.pack), &source_aliases)?;
+    }
+    report.quest_count = write_quests(&transaction, &parsed_quests, &source_aliases)?;
+    report.challenge_count = write_challenges(&transaction, &parsed_challenges, &source_aliases)?;
     corrections::apply_quest_corrections(&transaction, corrections, &mut report)?;
     wiki::write_wiki_quests(&transaction, &wiki_overrides.quests, &mut report)?;
     quest_series::write_wiki_quest_series(&transaction, wiki_overrides, &mut report)?;
     wiki::write_wiki_crafting_systems(&transaction, wiki_overrides)?;
     vendors_and_events::write_wiki_vendors_and_events(&transaction, wiki_overrides, &mut report)?;
-    let drop_text_linker = DropTextLinker::from_written_tables(
-        &transaction,
-        &LegacyDropSources::embedded()?,
-        &SourceAliases::embedded()?,
-    )?;
+    let drop_text_linker =
+        DropTextLinker::from_written_tables(&transaction, &LegacyDropSources::embedded()?, &source_aliases)?;
     report.unresolved_source_aliases = drop_text_linker.unresolved_alias_texts().to_vec();
 
     let mut writer = TableWriter {
@@ -249,10 +250,26 @@ pub fn build_database(
     }
     report.clickie_count = writer.written.clickie_ids_by_name.len();
 
+    let drop_location_corrections: HashMap<_, _> = corrections
+        .entries
+        .iter()
+        .filter(|correction| correction.kind == CorrectionKind::Item && correction.field == "drop_location")
+        .map(|correction| (correction.name.as_str(), correction))
+        .collect();
+    let mut applied_drop_location_corrections = Vec::new();
     for path in files_with_extension(&data_files_dir.join("Items"), "item")? {
         let item_file = parse_item_file(&path)?;
         for item in &item_file.items {
-            writer.write_item(item, &mut report).with_context(|| format!("{}", path.display()))?;
+            let mut drop_location = item.drop_location.as_deref();
+            if let Some(correction) = drop_location_corrections.get(item.name.trim()) {
+                let source = correction.from.as_text().context("drop-location correction source must be text")?;
+                if drop_location == Some(source) {
+                    drop_location =
+                        Some(correction.to.as_text().context("drop-location correction target must be text")?);
+                    applied_drop_location_corrections.push(*correction);
+                }
+            }
+            writer.write_item(item, drop_location, &mut report).with_context(|| format!("{}", path.display()))?;
         }
     }
     writer.link_pending_derived_effects()?;
@@ -273,7 +290,8 @@ pub fn build_database(
     writer.write_standalone_stances(&data_files_dir.join("Stances.xml"), &mut report)?;
     writer.write_guild_buffs(&data_files_dir.join("GuildBuffs.xml"), &mut report)?;
     writer.write_optional_buffs(&data_files_dir.join("SelfAndPartyBuffs.xml"), &mut report)?;
-    let corrections_applied_while_writing = writer.untyped_bonus_corrections.applied_corrections();
+    let mut corrections_applied_while_writing = writer.untyped_bonus_corrections.applied_corrections();
+    corrections_applied_while_writing.extend(applied_drop_location_corrections);
     corrections::record_corrections_applied_while_writing(
         &transaction,
         &corrections_applied_while_writing,
@@ -438,10 +456,15 @@ fn files_with_extension(dir: &Path, extension: &str) -> Result<Vec<PathBuf>> {
     Ok(paths)
 }
 
-fn ensure_adventure_pack(transaction: &Transaction, pack_name: Option<&str>) -> Result<Option<i64>> {
+fn ensure_adventure_pack(
+    transaction: &Transaction,
+    pack_name: Option<&str>,
+    source_aliases: &SourceAliases,
+) -> Result<Option<i64>> {
     let Some(pack_name) = pack_name else {
         return Ok(None);
     };
+    let pack_name = source_aliases.pack_name(pack_name);
     transaction.execute(
         "INSERT OR IGNORE INTO adventure_packs (name, is_free_to_play) VALUES (?1, ?2)",
         params![pack_name, pack_name == "Free to Play"],
@@ -458,14 +481,14 @@ fn patron_id(transaction: &Transaction, patron_name: Option<&str>) -> Result<Opt
     }
 }
 
-fn write_quests(transaction: &Transaction, quests: &[Quest]) -> Result<usize> {
+fn write_quests(transaction: &Transaction, quests: &[Quest], source_aliases: &SourceAliases) -> Result<usize> {
     for quest in quests {
         transaction.execute(
             "INSERT OR IGNORE INTO quests (name, pack_id, patron_id, level, epic_level, favor, is_raid, epic_name, difficulties)
              VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9)",
             params![
                 quest.name,
-                ensure_adventure_pack(transaction, quest.adventure_pack.as_deref())?,
+                ensure_adventure_pack(transaction, quest.adventure_pack.as_deref(), source_aliases)?,
                 patron_id(transaction, quest.patron.as_deref())?,
                 quest.levels.first(),
                 quest.levels.get(1),
@@ -479,14 +502,18 @@ fn write_quests(transaction: &Transaction, quests: &[Quest]) -> Result<usize> {
     Ok(quests.len())
 }
 
-fn write_challenges(transaction: &Transaction, challenges: &[Challenge]) -> Result<usize> {
+fn write_challenges(
+    transaction: &Transaction,
+    challenges: &[Challenge],
+    source_aliases: &SourceAliases,
+) -> Result<usize> {
     let mut inserted_count = 0;
     for challenge in challenges {
         inserted_count += transaction.execute(
             "INSERT OR IGNORE INTO quests (name, pack_id, patron_id, level, max_level, is_challenge) VALUES (?1, ?2, ?3, ?4, ?5, 1)",
             params![
                 challenge.name,
-                ensure_adventure_pack(transaction, challenge.adventure_pack.as_deref())?,
+                ensure_adventure_pack(transaction, challenge.adventure_pack.as_deref(), source_aliases)?,
                 patron_id(transaction, challenge.patron.as_deref())?,
                 challenge.level_range.first(),
                 challenge.level_range.get(1),

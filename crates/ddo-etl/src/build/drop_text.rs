@@ -2,8 +2,8 @@ use super::quest_series::QuestSeriesTable;
 use super::{BuildReport, TableWriter};
 use crate::map::drop_location::{
     chest_following, marks_rare_loot, names_chest_drop, names_quest_end_reward, names_saga, names_store_purchase,
-    quest_name_spans, reward_giver_name, saga_tier_credited_to, segment_head, segment_ranges, segment_spanning,
-    starts_with_saga_tier_aside,
+    prerequisite_spans, quest_name_spans, reward_giver_name, saga_tier_credited_to, segment_head, segment_ranges,
+    segment_spanning, starts_with_saga_tier_aside,
 };
 use crate::map::legacy_drop_source::LegacyDropSources;
 use crate::map::source_alias::SourceAliases;
@@ -26,6 +26,11 @@ struct DropTextQuest {
 struct NamedDropSource {
     name: String,
     id: i64,
+}
+
+struct MatchedLootSource {
+    source: LootSource,
+    source_match: String,
 }
 
 struct AliasedDropSource {
@@ -73,6 +78,8 @@ pub(super) struct RewardGiverLink {
     pub(super) reward_giver_id: i64,
     pub(super) tier: Option<SagaTier>,
     pub(super) is_rare: bool,
+    source_match: String,
+    drop_text_segment: String,
 }
 
 struct DropTextPackLink {
@@ -80,6 +87,8 @@ struct DropTextPackLink {
     loot_type: LootType,
     is_rare: bool,
     chest: Option<String>,
+    source_match: String,
+    drop_text_segment: String,
 }
 
 struct DropTextQuestLink {
@@ -88,6 +97,8 @@ struct DropTextQuestLink {
     is_rare: bool,
     chest: Option<String>,
     is_wiki_quest: bool,
+    source_match: String,
+    drop_text_segment: String,
 }
 
 impl DropTextLinker {
@@ -122,11 +133,23 @@ impl DropTextLinker {
                 .then_with(|| a.name_in_drop_text.cmp(&b.name_in_drop_text))
         });
         let mut unresolved_alias_texts = Vec::new();
+        let mut packs_longest_name_first =
+            named_sources_longest_name_first(db, "SELECT name, id FROM adventure_packs")?;
+        for alias in &source_aliases.adventure_packs {
+            if let Some(pack_id) = db
+                .query_row("SELECT id FROM adventure_packs WHERE name = ?1", [&alias.pack], |row| row.get(0))
+                .optional()?
+            {
+                packs_longest_name_first.push(NamedDropSource { name: alias.text.clone(), id: pack_id });
+            }
+        }
+        packs_longest_name_first
+            .sort_by(|left, right| right.name.len().cmp(&left.name.len()).then_with(|| left.name.cmp(&right.name)));
         Ok(Self {
             quests_longest_name_first: longest_name_first,
             quest_chains_longest_name_first: named_sources_longest_name_first(db, "SELECT name, id FROM quest_chains")?,
             sagas_longest_name_first: named_sources_longest_name_first(db, "SELECT name, id FROM sagas")?,
-            packs_longest_name_first: named_sources_longest_name_first(db, "SELECT name, id FROM adventure_packs")?,
+            packs_longest_name_first,
             crafting_systems_longest_name_first: named_sources_longest_name_first(
                 db,
                 "SELECT name, id FROM crafting_systems",
@@ -172,6 +195,10 @@ impl DropTextLinker {
     }
 
     fn reward_givers_in_segment(&self, segment: &str) -> Vec<RewardGiverLink> {
+        if !prerequisite_spans(segment).is_empty() && segment_head(segment).to_ascii_lowercase().starts_with("requires")
+        {
+            return Vec::new();
+        }
         if reward_giver_name(segment).is_none() {
             return Vec::new();
         }
@@ -183,6 +210,7 @@ impl DropTextLinker {
         let preferred_tables = if names_saga(segment) { sagas_first } else { chains_first };
         for (table, reward_givers) in preferred_tables {
             let mut unmatched_segment = segment.to_string();
+            mask_matched_spans(&mut unmatched_segment, &prerequisite_spans(segment));
             let mut reward_giver_links = Vec::new();
             for reward_giver in reward_givers {
                 let name_spans = quest_name_spans(&unmatched_segment, &reward_giver.name);
@@ -198,6 +226,8 @@ impl DropTextLinker {
                         QuestSeriesTable::QuestChains => None,
                     },
                     is_rare: marks_rare_loot(segment),
+                    source_match: segment[name_spans[0].clone()].to_string(),
+                    drop_text_segment: segment.to_string(),
                 });
             }
             if !reward_giver_links.is_empty() {
@@ -231,6 +261,7 @@ impl DropTextLinker {
 
     fn quest_name_spans_in(&self, drop_text: &str) -> Vec<(&DropTextQuest, Vec<Range<usize>>)> {
         let mut unmatched_text = drop_text.to_string();
+        mask_matched_spans(&mut unmatched_text, &prerequisite_spans(drop_text));
         let lowercase_drop_text = drop_text.to_lowercase();
         let mut quest_name_spans_by_quest: Vec<(&DropTextQuest, Vec<Range<usize>>)> = Vec::new();
         let mut packs_to_mask = self.packs_longest_name_first.iter().peekable();
@@ -302,6 +333,7 @@ impl DropTextLinker {
             return Vec::new();
         }
         let mut unmatched_segment = segment.to_string();
+        mask_matched_spans(&mut unmatched_segment, &prerequisite_spans(segment));
         let mut pack_name_spans_by_pack = Vec::new();
         for pack in &self.packs_longest_name_first {
             let pack_name_spans = quest_name_spans(&unmatched_segment, &pack.name);
@@ -318,6 +350,9 @@ impl DropTextLinker {
     fn pack_links_in(&self, drop_text: &str) -> Vec<DropTextPackLink> {
         let mut pack_links: Vec<DropTextPackLink> = Vec::new();
         for segment in self.segments_naming_no_quest(drop_text) {
+            if self.challenge_packs_by_text.iter().any(|alias| alias.is_named_by(segment, None)) {
+                continue;
+            }
             let pack_name_spans_by_pack = self.pack_name_spans_in(segment);
             let every_pack_name_span: Vec<Range<usize>> =
                 pack_name_spans_by_pack.iter().flat_map(|(_, spans)| spans).cloned().collect();
@@ -339,7 +374,17 @@ impl DropTextLinker {
                             known_link.is_rare |= is_rare;
                             known_link.chest = known_link.chest.take().or(chest);
                         }
-                        None => pack_links.push(DropTextPackLink { pack_id: *pack_id, loot_type, is_rare, chest }),
+                        None => {
+                            let source_match = segment[pack_name_spans[0].clone()].to_string();
+                            pack_links.push(DropTextPackLink {
+                                pack_id: *pack_id,
+                                loot_type,
+                                is_rare,
+                                chest,
+                                source_match,
+                                drop_text_segment: segment.to_string(),
+                            });
+                        }
                     }
                 }
             }
@@ -422,6 +467,8 @@ impl DropTextLinker {
                     is_rare,
                     chest: None,
                     is_wiki_quest: quest.is_wiki,
+                    source_match: drop_text[quest_name_spans[0].clone()].to_string(),
+                    drop_text_segment: segment_spanning(drop_text, &quest_name_spans[0]).to_string(),
                 });
                 quest_name_spans_by_quest.push((quest.id, quest_name_spans.clone()));
             }
@@ -440,11 +487,18 @@ impl DropTextLinker {
 }
 
 impl DropTextLinker {
-    fn named_sources_in(&self, segment: &str, loot_minimum_level: Option<i64>) -> Vec<LootSource> {
+    fn named_sources_in(&self, segment: &str, loot_minimum_level: Option<i64>) -> Vec<MatchedLootSource> {
+        let original_segment = segment;
+        let mut masked_segment = segment.to_string();
+        mask_matched_spans(&mut masked_segment, &prerequisite_spans(segment));
+        let segment = masked_segment.as_str();
         let mut named_sources = Vec::new();
         let head = segment_head(segment);
         if let Some(character_level) = starter_character_level(head) {
-            named_sources.push(LootSource::Starter(character_level));
+            named_sources.push(MatchedLootSource {
+                source: LootSource::Starter(character_level),
+                source_match: head.to_string(),
+            });
         }
         let aliased_kinds: [(&[AliasedDropSource], LootSourceOfId); 3] = [
             (&self.challenge_packs_by_text, LootSource::Challenge),
@@ -455,7 +509,8 @@ impl DropTextLinker {
             for aliased_source in
                 aliased_sources.iter().filter(|aliased_source| aliased_source.is_named_by(segment, loot_minimum_level))
             {
-                named_sources.push(loot_source(aliased_source.id));
+                named_sources
+                    .push(MatchedLootSource { source: loot_source(aliased_source.id), source_match: head.to_string() });
             }
         }
         let named_kinds: [(&[NamedDropSource], LootSourceOfId); 3] = [
@@ -471,12 +526,15 @@ impl DropTextLinker {
                     continue;
                 }
                 mask_matched_spans(&mut unmatched_segment, &name_spans);
-                named_sources.push(loot_source(named_source.id));
+                named_sources.push(MatchedLootSource {
+                    source: loot_source(named_source.id),
+                    source_match: original_segment[name_spans[0].clone()].to_string(),
+                });
             }
         }
-        let mut distinct_sources: Vec<LootSource> = Vec::new();
+        let mut distinct_sources: Vec<MatchedLootSource> = Vec::new();
         for named_source in named_sources {
-            if !distinct_sources.iter().any(|known| known.same_source_as(named_source)) {
+            if !distinct_sources.iter().any(|known| known.source.same_source_as(named_source.source)) {
                 distinct_sources.push(named_source);
             }
         }
@@ -500,17 +558,19 @@ impl DropTextLinker {
                 let changed_row_count = insert_source_link(
                     transaction,
                     &SourceLink {
-                        source: named_source,
+                        source: named_source.source,
                         loot,
                         loot_type: None,
                         is_rare: marks_rare_loot(segment),
                         chest: None,
                         tier: None,
                         cost: None,
+                        drop_text_segment: Some(segment),
+                        source_match: Some(&named_source.source_match),
                     },
                 )?;
                 if changed_row_count > 0 {
-                    linked_kinds.push(named_source.kind());
+                    linked_kinds.push(named_source.source.kind());
                 }
             }
         }
@@ -654,6 +714,8 @@ pub(super) struct SourceLink<'a> {
     pub(super) chest: Option<&'a str>,
     pub(super) tier: Option<SagaTier>,
     pub(super) cost: Option<&'a str>,
+    pub(super) drop_text_segment: Option<&'a str>,
+    pub(super) source_match: Option<&'a str>,
 }
 
 impl SourceLink<'_> {
@@ -666,6 +728,8 @@ impl SourceLink<'_> {
             chest: None,
             tier: None,
             cost: None,
+            drop_text_segment: None,
+            source_match: None,
         }
     }
 
@@ -681,7 +745,11 @@ impl SourceLink<'_> {
         values.push(Box::new(self.chest));
         values.push(Box::new(self.tier.map(SagaTier::as_str)));
         values.push(Box::new(self.cost));
-        Ok(transaction.execute(sql, rusqlite::params_from_iter(values))?)
+        values.push(Box::new(self.drop_text_segment));
+        values.push(Box::new(self.source_match));
+        let mut statement = transaction.prepare(sql)?;
+        let parameter_count = statement.parameter_count();
+        Ok(statement.execute(rusqlite::params_from_iter(values.into_iter().take(parameter_count)))?)
     }
 }
 
@@ -697,7 +765,17 @@ static SOURCE_LINK_SQL: LazyLock<SourceLinkSql> = LazyLock::new(|| {
     let identifying_columns = SourceKind::identifying_columns();
     let columns: Vec<&str> = std::iter::once("kind")
         .chain(identifying_columns.iter().copied())
-        .chain(["item_id", "augment_id", "loot_type", "is_rare", "chest", "tier", "cost"])
+        .chain([
+            "item_id",
+            "augment_id",
+            "loot_type",
+            "is_rare",
+            "chest",
+            "tier",
+            "cost",
+            "drop_text_segment",
+            "source_match",
+        ])
         .collect();
     let values: Vec<String> = (1..=columns.len()).map(|position| format!("?{position}")).collect();
     let same_source_and_loot: Vec<String> = columns[..identifying_columns.len() + 3]
@@ -709,7 +787,7 @@ static SOURCE_LINK_SQL: LazyLock<SourceLinkSql> = LazyLock::new(|| {
         columns
             .iter()
             .enumerate()
-            .filter(|(_, column)| !excluded.contains(column))
+            .filter(|(_, column)| !excluded.contains(column) && !["drop_text_segment", "source_match"].contains(column))
             .map(|(index, column)| format!("{column} IS ?{}", index + 1))
             .collect::<Vec<_>>()
             .join(" AND ")
@@ -807,6 +885,8 @@ impl DropTextLinker {
                 &SourceLink {
                     is_rare: quest_link.is_rare,
                     chest: quest_link.chest.as_deref(),
+                    drop_text_segment: Some(&quest_link.drop_text_segment),
+                    source_match: Some(&quest_link.source_match),
                     ..SourceLink::from_quest(quest_link.quest_id, loot, quest_link.loot_type)
                 },
             )?;
@@ -838,6 +918,8 @@ impl DropTextLinker {
                     chest: pack_link.chest.as_deref(),
                     tier: None,
                     cost: None,
+                    drop_text_segment: Some(&pack_link.drop_text_segment),
+                    source_match: Some(&pack_link.source_match),
                 },
             )?;
         }
@@ -867,6 +949,8 @@ impl TableWriter<'_> {
                     chest: None,
                     tier: reward_giver_link.tier,
                     cost: None,
+                    drop_text_segment: Some(&reward_giver_link.drop_text_segment),
+                    source_match: Some(&reward_giver_link.source_match),
                 },
             )?;
             if changed_row_count > 0 {

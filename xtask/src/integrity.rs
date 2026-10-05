@@ -1,6 +1,8 @@
 use anyhow::{Context, Result};
 use ddo_etl::corrections::Corrections;
+use ddo_etl::map::drop_location::prerequisite_spans;
 use ddo_etl::map::effect_map::EFFECT_MAP;
+use ddo_etl::wiki::WikiOverrides;
 use ddo_etl::xml::item_buffs;
 use ddo_etl::xml::items::parse_item_file;
 use rusqlite::{Connection, OptionalExtension};
@@ -105,6 +107,26 @@ pub const INTEGRITY_CHECKS: &[IntegrityCheck] = &[
         "tables_not_empty",
         "every table has rows, except those --allow-empty-table names",
         OffenderQuery::Built(empty_tables),
+    ),
+    IntegrityCheck::hard(
+        "adventure_pack_names_distinct",
+        "adventure packs remain distinct after case folding, dropping a leading The and removing punctuation",
+        OffenderQuery::Built(adventure_pack_names_not_distinct),
+    ),
+    IntegrityCheck::hard(
+        "sources_not_from_prerequisite_clauses",
+        "a source named only inside a drop-text prerequisite clause is never linked as loot",
+        OffenderQuery::Built(sources_from_prerequisite_clauses),
+    ),
+    IntegrityCheck::hard(
+        "quests_not_crafting_systems",
+        "a crafting station is not a quest",
+        OffenderQuery::Sql("SELECT q.name, q.id, 'also a crafting system' FROM quests q JOIN crafting_systems c ON c.name = q.name"),
+    ),
+    IntegrityCheck::hard(
+        "quest_versions_match_heroic_pack_and_patron",
+        "epic and legendary quest rows have the heroic version's pack and patron unless awaiting a named wiki read",
+        OffenderQuery::Built(unreviewed_quest_version_differences),
     ),
     IntegrityCheck::hard(
         "effect_link_amount_counts",
@@ -332,6 +354,11 @@ pub const INTEGRITY_CHECKS: &[IntegrityCheck] = &[
         ),
     ),
     IntegrityCheck::warn(
+        "quest_versions_pending_wiki_read",
+        "named epic and legendary version pairs await a wiki pack and patron read",
+        OffenderQuery::Built(reviewed_quest_version_differences),
+    ),
+    IntegrityCheck::warn(
         "items_without_a_source",
         "items (other than legacy ones) with no sources row. Every kind of source now has a table, but some remain \
          unmodelled: vendors and events no wiki file records yet (wiki-batch's vendor_names.txt and \
@@ -345,6 +372,21 @@ pub const INTEGRITY_CHECKS: &[IntegrityCheck] = &[
         "non-legacy items with a quest, quest chain, saga, adventure pack, challenge, crafting system or vendor \
          source but no adventure pack reached through any source; fill missing source pack links in the wiki data",
         OffenderQuery::Built(items_with_a_source_but_no_pack),
+    ),
+    IntegrityCheck::warn(
+        "items_spanning_packs",
+        "items with sources in several packs need review; wiki-confirmed drops and saga roll-ups are listed separately",
+        OffenderQuery::Built(items_spanning_packs),
+    ),
+    IntegrityCheck::warn(
+        "packs_with_several_patrons",
+        "packs serving quests from several patrons need review; wiki-confirmed packs are allow-listed",
+        OffenderQuery::Built(packs_with_several_patrons),
+    ),
+    IntegrityCheck::warn(
+        "drop_text_disagrees_with_quest_loot",
+        "an item drop text names a quest whose wiki loot read does not list it",
+        OffenderQuery::Built(drop_text_disagrees_with_quest_loot),
     ),
     IntegrityCheck::warn(
         "effects_named_after_stats",
@@ -625,6 +667,263 @@ fn offenders_from_sql(db: &Connection, sql: &str) -> Result<Vec<Offender>> {
         })?
         .collect::<rusqlite::Result<Vec<_>>>()?;
     Ok(offenders)
+}
+
+fn normalized_pack_name(name: &str) -> String {
+    let lowercase = name.to_lowercase();
+    lowercase
+        .strip_prefix("the ")
+        .unwrap_or(&lowercase)
+        .chars()
+        .filter(|character| character.is_alphanumeric())
+        .collect()
+}
+
+fn adventure_pack_names_not_distinct(db: &Connection, _options: &IntegrityOptions) -> Result<Findings> {
+    let mut names = BTreeMap::new();
+    let mut offenders = Vec::new();
+    let mut statement = db.prepare("SELECT id, name FROM adventure_packs ORDER BY name")?;
+    for row in statement.query_map([], |row| Ok((row.get::<_, i64>(0)?, row.get::<_, String>(1)?)))? {
+        let (id, name) = row?;
+        if let Some((other_id, other_name)) = names.insert(normalized_pack_name(&name), (id, name.clone())) {
+            offenders.push(Offender { name, id: Some(id), detail: format!("matches {other_name:?} ({other_id})") });
+        }
+    }
+    Ok(Findings { offenders: Some(offenders), notes: Vec::new() })
+}
+
+fn source_match_is_only_in_prerequisite(segment: &str, source_match: &str) -> bool {
+    if source_match.is_empty() {
+        return false;
+    }
+    let lowercase = segment.to_ascii_lowercase();
+    let matching = source_match.to_ascii_lowercase();
+    let spans = prerequisite_spans(segment);
+    let matches =
+        lowercase.match_indices(&matching).map(|(start, _)| start..start + matching.len()).collect::<Vec<_>>();
+    !matches.is_empty()
+        && matches
+            .iter()
+            .all(|candidate| spans.iter().any(|span| span.start <= candidate.start && candidate.end <= span.end))
+}
+
+fn sources_from_prerequisite_clauses(db: &Connection, _options: &IntegrityOptions) -> Result<Findings> {
+    let mut offenders = Vec::new();
+    let mut statement = db.prepare(
+        "SELECT s.id, COALESCE(i.name, a.name), s.drop_text_segment, s.source_match
+         FROM sources s LEFT JOIN items i ON i.id = s.item_id LEFT JOIN augments a ON a.id = s.augment_id
+         WHERE s.drop_text_segment IS NOT NULL ORDER BY s.id",
+    )?;
+    for row in statement.query_map([], |row| {
+        Ok((row.get::<_, i64>(0)?, row.get::<_, String>(1)?, row.get::<_, String>(2)?, row.get::<_, String>(3)?))
+    })? {
+        let (id, name, segment, source_match) = row?;
+        if source_match_is_only_in_prerequisite(&segment, &source_match) {
+            offenders.push(Offender { name, id: Some(id), detail: format!("{source_match:?} inside {segment:?}") });
+        }
+    }
+    Ok(Findings { offenders: Some(offenders), notes: Vec::new() })
+}
+
+fn source_review_allowlist(collection: &str) -> Result<BTreeMap<String, String>> {
+    let review: serde_json::Value = serde_json::from_str(include_str!("../data/source_review.json"))?;
+    let entries = review[collection].as_object().context("source review allow-list")?;
+    entries
+        .iter()
+        .map(|(name, page)| {
+            let page = page.as_str().context("source review page")?;
+            anyhow::ensure!(page.starts_with("https://ddowiki.com/page/"), "source review {name:?} has no wiki page");
+            Ok((name.clone(), page.to_string()))
+        })
+        .collect()
+}
+
+fn quest_version_base(name: &str) -> Option<String> {
+    if let Some(base) = name.strip_prefix("Epic ").or_else(|| name.strip_prefix("Legendary ")) {
+        return Some(base.to_string());
+    }
+    if let Some(base) = name.strip_suffix(" - EPIC").or_else(|| name.strip_suffix(" Epic")) {
+        return Some(base.to_string());
+    }
+    name.split_once(" - Epic ").map(|(area, challenge)| format!("{area} - {challenge}"))
+}
+
+fn pending_quest_versions() -> Result<BTreeMap<String, String>> {
+    let review: serde_json::Value = serde_json::from_str(include_str!("../data/source_review.json"))?;
+    let entries = review["quest_versions_pending_wiki_read"].as_object().context("quest version pending wiki reads")?;
+    entries
+        .iter()
+        .map(|(name, reason)| {
+            anyhow::ensure!(
+                reason.as_str().is_some_and(|reason| !reason.trim().is_empty()),
+                "quest version {name:?} needs a reason for the pending wiki read"
+            );
+            Ok((name.clone(), reason.as_str().unwrap().to_string()))
+        })
+        .collect()
+}
+
+fn quest_version_differences(db: &Connection) -> Result<Vec<Offender>> {
+    let mut statement = db.prepare(
+        "SELECT q.id, q.name, pack.name, patron.name FROM quests q
+         LEFT JOIN adventure_packs pack ON pack.id = q.pack_id
+         LEFT JOIN patrons patron ON patron.id = q.patron_id ORDER BY q.name",
+    )?;
+    let quests: BTreeMap<String, (i64, Option<String>, Option<String>)> = statement
+        .query_map([], |row| Ok((row.get::<_, String>(1)?, (row.get(0)?, row.get(2)?, row.get(3)?))))?
+        .collect::<rusqlite::Result<_>>()?;
+    let mut offenders = Vec::new();
+    for (version_name, (id, version_pack, version_patron)) in &quests {
+        let Some(heroic_name) = quest_version_base(version_name) else { continue };
+        let heroic_with_the = format!("The {heroic_name}");
+        let heroic_with_a = format!("A {heroic_name}");
+        let Some((heroic_name, (_, heroic_pack, heroic_patron))) =
+            [heroic_name.as_str(), heroic_with_the.as_str(), heroic_with_a.as_str()]
+                .into_iter()
+                .find_map(|name| quests.get_key_value(name))
+        else {
+            continue;
+        };
+        if version_pack != heroic_pack || version_patron != heroic_patron {
+            offenders.push(Offender {
+                name: version_name.clone(),
+                id: Some(*id),
+                detail: format!(
+                    "heroic {heroic_name:?}: pack {heroic_pack:?}, patron {heroic_patron:?}; version: pack {version_pack:?}, patron {version_patron:?}"
+                ),
+            });
+        }
+    }
+    Ok(offenders)
+}
+
+fn unreviewed_quest_version_differences(db: &Connection, _options: &IntegrityOptions) -> Result<Findings> {
+    let pending = pending_quest_versions()?;
+    let offenders =
+        quest_version_differences(db)?.into_iter().filter(|quest| !pending.contains_key(&quest.name)).collect();
+    Ok(Findings { offenders: Some(offenders), notes: Vec::new() })
+}
+
+fn reviewed_quest_version_differences(db: &Connection, _options: &IntegrityOptions) -> Result<Findings> {
+    let pending = pending_quest_versions()?;
+    let differences =
+        quest_version_differences(db)?.into_iter().map(|quest| (quest.name.clone(), quest)).collect::<BTreeMap<_, _>>();
+    let mut offenders = Vec::new();
+    for (name, reason) in pending {
+        let difference = differences.get(&name);
+        let id = match difference {
+            Some(difference) => difference.id,
+            None => db.query_row("SELECT id FROM quests WHERE name = ?1", [&name], |row| row.get(0)).optional()?,
+        };
+        let detail = match difference {
+            Some(difference) => format!("{reason} {}", difference.detail),
+            None => format!("{reason} Current version has no differing pack or patron, or its row is absent."),
+        };
+        offenders.push(Offender { name, id, detail });
+    }
+    Ok(Findings { offenders: Some(offenders), notes: Vec::new() })
+}
+
+fn items_spanning_packs(db: &Connection, _options: &IntegrityOptions) -> Result<Findings> {
+    let reviewed = source_review_allowlist("items_spanning_packs")?;
+    let mut by_item: BTreeMap<(i64, String), Vec<(String, String)>> = BTreeMap::new();
+    let mut statement = db.prepare(
+        "SELECT i.id, i.name, pack.name, source.source_kind
+         FROM items i JOIN loot_adventure_packs source ON source.item_id = i.id
+         JOIN adventure_packs pack ON pack.id = source.pack_id ORDER BY i.id, pack.name",
+    )?;
+    for row in statement.query_map([], |row| Ok((row.get(0)?, row.get(1)?, row.get(2)?, row.get(3)?)))? {
+        let (id, name, pack, kind): (i64, String, String, String) = row?;
+        by_item.entry((id, name)).or_default().push((pack, kind));
+    }
+    let mut offenders = Vec::new();
+    let mut saga_rollups = Vec::new();
+    let mut reviewed_count = 0;
+    for ((id, name), entries) in by_item {
+        let packs = entries.iter().map(|(pack, _)| pack.as_str()).collect::<BTreeSet<_>>();
+        if packs.len() < 2 {
+            continue;
+        }
+        if reviewed.contains_key(&name) {
+            reviewed_count += 1;
+            continue;
+        }
+        if entries.iter().any(|(_, kind)| kind == "saga") {
+            saga_rollups.push(name);
+        } else {
+            offenders.push(Offender { name, id: Some(id), detail: packs.into_iter().collect::<Vec<_>>().join(", ") });
+        }
+    }
+    let notes = vec![format!(
+        "{} wiki-reviewed true cross-pack items; {} saga roll-ups through another pack: {}",
+        reviewed_count,
+        saga_rollups.len(),
+        saga_rollups.join(", ")
+    )];
+    Ok(Findings { offenders: Some(offenders), notes })
+}
+
+fn packs_with_several_patrons(db: &Connection, _options: &IntegrityOptions) -> Result<Findings> {
+    let reviewed = source_review_allowlist("packs_with_several_patrons")?;
+    let mut offenders = Vec::new();
+    let mut reviewed_count = 0;
+    let mut statement = db.prepare(
+        "SELECT p.id, p.name, COUNT(DISTINCT q.patron_id), GROUP_CONCAT(DISTINCT patron.name)
+         FROM adventure_packs p JOIN quests q ON q.pack_id = p.id
+         JOIN patrons patron ON patron.id = q.patron_id
+         WHERE p.name <> 'Free to Play' GROUP BY p.id HAVING COUNT(DISTINCT q.patron_id) > 1",
+    )?;
+    for row in statement.query_map([], |row| {
+        Ok((row.get::<_, i64>(0)?, row.get::<_, String>(1)?, row.get::<_, i64>(2)?, row.get::<_, String>(3)?))
+    })? {
+        let (id, name, count, patrons) = row?;
+        if reviewed.contains_key(&name) {
+            reviewed_count += 1;
+        } else {
+            offenders.push(Offender { name, id: Some(id), detail: format!("{count} patrons: {patrons}") });
+        }
+    }
+    Ok(Findings {
+        offenders: Some(offenders),
+        notes: vec![format!("{reviewed_count} wiki-reviewed multi-patron packs")],
+    })
+}
+
+fn drop_text_disagrees_with_quest_loot(db: &Connection, _options: &IntegrityOptions) -> Result<Findings> {
+    let wiki = WikiOverrides::embedded()?;
+    let listed = wiki
+        .quest_loot
+        .iter()
+        .filter(|quest| !quest.items.is_empty())
+        .map(|quest| {
+            let names = quest
+                .items
+                .iter()
+                .map(|item| item.name().to_string())
+                .chain(quest.rare.iter().map(|item| item.name().to_string()))
+                .collect::<BTreeSet<_>>();
+            (quest.name.as_str(), names)
+        })
+        .collect::<BTreeMap<_, _>>();
+    let mut offenders = Vec::new();
+    let mut statement = db.prepare(
+        "SELECT DISTINCT i.id, i.name, q.name FROM sources source
+         JOIN items i ON i.id = source.item_id JOIN quests q ON q.id = source.quest_id
+         WHERE source.drop_text_segment IS NOT NULL ORDER BY i.name, q.name",
+    )?;
+    for row in statement
+        .query_map([], |row| Ok((row.get::<_, i64>(0)?, row.get::<_, String>(1)?, row.get::<_, String>(2)?)))?
+    {
+        let (id, item, quest) = row?;
+        if listed.get(quest.as_str()).is_some_and(|names| !names.contains(&item)) {
+            offenders.push(Offender {
+                name: item,
+                id: Some(id),
+                detail: format!("drop text names {quest:?}, absent from its wiki loot read"),
+            });
+        }
+    }
+    Ok(Findings { offenders: Some(offenders), notes: Vec::new() })
 }
 
 fn effects_named_like_identifiers(db: &Connection, _options: &IntegrityOptions) -> Result<Findings> {

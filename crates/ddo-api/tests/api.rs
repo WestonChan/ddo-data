@@ -2784,14 +2784,14 @@ async fn item_detail_lists_the_crafting_systems_that_make_it() {
 #[tokio::test]
 async fn item_detail_lists_the_challenge_pack_whose_ingredients_buy_it() {
     let (_, _, ring) = get(&format!("/v1/items/{}", id_of_item_named("Epic Ring of the Stalker").await)).await;
-    let pack_id = id_in_list_named("/v1/adventure-packs", "Secrets of the Artificers").await;
+    let pack_id = id_in_list_named("/v1/adventure-packs", "Vaults of the Artificers").await;
     assert_eq!(
         ring["challenge_packs"],
         serde_json::json!([{
             "id": pack_id,
-            "name": "Secrets of the Artificers",
+            "name": "Vaults of the Artificers",
             "is_rare": false,
-            "wiki_url": "https://ddowiki.com/page/Secrets_of_the_Artificers"
+            "wiki_url": "https://ddowiki.com/page/Vaults_of_the_Artificers"
         }])
     );
     assert_eq!(ring["adventure_packs"], serde_json::json!([]));
@@ -2961,7 +2961,7 @@ async fn item_pack_surfaces_follow_every_source_kind() {
         ("Acrobat's Ring", "quest_chain", Some("Free to Play")),
         ("Thunder-Forged Orb", "crafting_system", Some("Free to Play")),
         ("Ethereal Great Crossbow", "vendor", Some("Free to Play")),
-        ("Epic Ring of the Stalker", "challenge", Some("Secrets of the Artificers")),
+        ("Epic Ring of the Stalker", "challenge", Some("Vaults of the Artificers")),
         ("Light Crossbow of the Golden Age", "adventure_pack", Some("Magic of Myth Drannor")),
         ("Bold Trinket", "event", None),
         ("Blood-Red Lenses", "starter", None),
@@ -2985,7 +2985,7 @@ async fn item_pack_surfaces_follow_every_source_kind() {
             }
             assert_eq!(packs[0]["wiki_url"], format!("https://ddowiki.com/page/{}", pack_name.replace(' ', "_")));
         }
-        for searched_pack in ["Free to Play", "Secrets of the Artificers", "Magic of Myth Drannor"] {
+        for searched_pack in ["Free to Play", "Vaults of the Artificers", "Magic of Myth Drannor"] {
             for parameter in ["pack", "q"] {
                 let encoded_pack = searched_pack.replace(' ', "%20");
                 let (status, _, matches) =

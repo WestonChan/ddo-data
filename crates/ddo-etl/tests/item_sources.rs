@@ -81,7 +81,7 @@ fn loot_adventure_packs_has_one_row_per_loot_pack_and_source() {
         ("Acrobat's Ring", vec![("Free to Play", "quest_chain")]),
         ("Thunder-Forged Orb", vec![("Free to Play", "crafting_system")]),
         ("Ethereal Great Crossbow", vec![("Free to Play", "vendor")]),
-        ("Epic Ring of the Stalker", vec![("Secrets of the Artificers", "challenge")]),
+        ("Epic Ring of the Stalker", vec![("Vaults of the Artificers", "challenge")]),
         ("Light Crossbow of the Golden Age", vec![("Magic of Myth Drannor", "adventure_pack")]),
         ("Lunar Gem of Magical Protection (Heroic)", vec![("Magic of Myth Drannor", "quest")]),
         ("Bold Trinket", vec![]),
@@ -198,9 +198,8 @@ fn links_an_item_his_text_gives_for_challenge_ingredients_to_the_challenge_pack(
     let (db, report) = built_with(&WikiOverrides::default());
     assert_eq!(
         source_rows(&db, "Epic Ring of the Stalker"),
-        ["challenge Secrets of the Artificers 0"],
-        "'Vaults of the Artificers, Turn in various ingredients', the Vaults being where the Cannith challenges of \
-         Secrets of the Artificers are turned in"
+        ["challenge Vaults of the Artificers 0"],
+        "'Vaults of the Artificers, Turn in various ingredients' names the Cannith challenge pack"
     );
     assert_eq!(report.drop_text_challenge_source_count, 1);
     assert!(!unlinked_heads(&db).iter().any(|head| head == "Vaults of the Artificers"));

@@ -84,6 +84,29 @@ pub fn segment_ranges(drop_text: &str) -> Vec<Range<usize>> {
     ranges
 }
 
+pub fn prerequisite_spans(drop_text: &str) -> Vec<Range<usize>> {
+    let lowercase = drop_text.to_ascii_lowercase();
+    let mut spans = Vec::new();
+    let mut from = 0;
+    while let Some(relative_start) = lowercase[from..].find("(requires") {
+        let start = from + relative_start;
+        let end = lowercase[start..].find(')').map_or(drop_text.len(), |relative_end| start + relative_end + 1);
+        spans.push(start..end);
+        from = end;
+    }
+    let mut from = 0;
+    while let Some(relative_start) = lowercase[from..].find("requires completion of") {
+        let start = from + relative_start;
+        if !spans.iter().any(|span| span.start <= start && start < span.end) {
+            let end =
+                lowercase[start..].find([')', ';', '\n']).map_or(drop_text.len(), |relative_end| start + relative_end);
+            spans.push(start..end);
+        }
+        from = start + "requires completion of".len();
+    }
+    spans
+}
+
 const SAGA_WORD: &str = "saga";
 const SAGA_REWARD_LIST_MARKER: &str = "true elite";
 const STORE_PURCHASE_MARKERS: [&str; 4] = ["ddo store", "collector's edition", "fan bundle", "bonus items pack"];
@@ -267,4 +290,25 @@ pub fn drop_text_in_description(description: &str) -> Option<&str> {
     let text_after_quest_word = text_after_update.trim_start().strip_prefix("Quest").unwrap_or(text_after_update);
     let drop_text = text_after_quest_word.trim_start().trim_start_matches([':', ';']).trim_start();
     Some(drop_text.strip_prefix(DROP_LOCATION_MARKER).unwrap_or(drop_text).trim())
+}
+
+#[cfg(test)]
+mod prerequisite_tests {
+    use super::prerequisite_spans;
+
+    #[test]
+    fn prerequisite_spans_cover_only_the_prerequisite_in_real_drop_text() {
+        let text = "Stealing from Sorcere, Romira and Juvian 's chest (requires completion of Sleeping with the Fishes and visits to The Cerulean Hills and Ruins of Myth Drannor )";
+        let spans = prerequisite_spans(text);
+        assert_eq!(spans.len(), 1);
+        assert_eq!(&text[spans[0].clone()], "(requires completion of Sleeping with the Fishes and visits to The Cerulean Hills and Ruins of Myth Drannor )");
+        let unparenthesized =
+            "Stealing from Sorcere requires completion of Sleeping with the Fishes; Flocked Together chest";
+        let spans = prerequisite_spans(unparenthesized);
+        assert_eq!(&unparenthesized[spans[0].clone()], "requires completion of Sleeping with the Fishes");
+        let multiline = "Romira and Juvian's right chest (rare, requires completion of Sleeping with the Fishes)\nThe Wizard's Labyrinth, end chest (rare)\nToil and Trouble, end chest (rare)";
+        let spans = prerequisite_spans(multiline);
+        assert_eq!(&multiline[spans[0].clone()], "requires completion of Sleeping with the Fishes");
+        assert!(!spans.iter().any(|span| span.end > multiline.find('\n').unwrap()));
+    }
 }

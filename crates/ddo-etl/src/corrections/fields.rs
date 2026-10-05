@@ -79,6 +79,7 @@ const QUEST_FIELDS: &[CorrectableField] = &[
     named_reference("pack", "pack_id", "adventure_packs", true),
     named_reference("patron", "patron_id", "patrons", true),
     field("name", FieldShape::RowName, false),
+    field("remove", FieldShape::Removal, false),
 ];
 
 const AUGMENT_BONUS_FIELDS: &[CorrectableField] = &[

@@ -360,6 +360,36 @@ read = "2026-10-02"
 
 [[correction]]
 kind = "item"
+name = "Powder-Packed Barrel"
+field = "drop_location"
+from = "Isle of Dread (wilderness), rare encounter chest, and All Hail the King end chest"
+to = "All Hail the King end chest"
+reason = "The non-legendary barrel drops from All Hail the King, not the wilderness rare encounter."
+source = "https://ddowiki.com/page/Item:Powder-Packed_Barrel"
+read = "2026-10-05"
+
+[[correction]]
+kind = "item"
+name = "Spider's Bite"
+field = "drop_location"
+from = "Stealing from Sorcere, Romira and Juvian 's chest (requires completion of Sleeping with the Fishes and visits to The Cerulean Hills and Ruins of Myth Drannor )"
+to = "Flocked Together, The Decomposter's chest"
+reason = "The wiki lists Flocked Together's Decomposter chest as this item's only drop; his drop text belongs to Stitched Great Forge Shroud."
+source = "https://ddowiki.com/page/Item:Spider%27s_Bite"
+read = "2026-10-05"
+
+[[correction]]
+kind = "item"
+name = "Legendary Spider's Bite"
+field = "drop_location"
+from = "Stealing from Sorcere, Romira and Juvian 's chest (requires completion of Sleeping with the Fishes and visits to The Cerulean Hills and Ruins of Myth Drannor )"
+to = "Flocked Together, The Decomposter's chest"
+reason = "The wiki lists Flocked Together's Decomposter chest as this item's only drop; his drop text belongs to Stitched Great Forge Shroud."
+source = "https://ddowiki.com/page/Item:Legendary_Spider%27s_Bite"
+read = "2026-10-05"
+
+[[correction]]
+kind = "item"
 name = "Spectral Great Axe (level 8)"
 field = "name"
 from = "Spectral Great Axe (level 8)"
