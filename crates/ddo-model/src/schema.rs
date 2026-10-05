@@ -5,7 +5,7 @@ use crate::enums::{
 };
 use std::sync::LazyLock;
 
-pub const SCHEMA_VERSION: i64 = 26;
+pub const SCHEMA_VERSION: i64 = 27;
 
 fn sql_in_clause<'a>(allowed_values: impl Iterator<Item = &'a str>) -> String {
     let quoted_values: Vec<String> = allowed_values.map(|value| format!("'{value}'")).collect();
@@ -69,21 +69,26 @@ static DDL: LazyLock<String> = LazyLock::new(|| {
          SELECT j.owner_kind, j.owner_id, e.id AS stat_id, j.bonus_type_id,
                 COALESCE(j.value, e.default_value) AS amount, NULL AS via_effect_id,
                 CASE WHEN j.value IS NOT NULL THEN 'owner' ELSE 'default' END AS amount_source,
-                1.0 AS scale, j.effect_link_order
+                1.0 AS scale, j.effect_link_order, NULL AS group_effect_id
            FROM links j JOIN effects e ON e.id = j.effect_id
           WHERE e.is_stat = 1 AND COALESCE(j.value, e.default_value) IS NOT NULL
             AND COALESCE(j.value, e.default_value) <> 0
          UNION ALL
-         SELECT j.owner_kind, j.owner_id, eb.stat_id, COALESCE(eb.bonus_type_id, j.bonus_type_id),
+         SELECT j.owner_kind, j.owner_id, COALESCE(member.target_effect_id, eb.target_effect_id),
+                COALESCE(eb.bonus_type_id, j.bonus_type_id),
                 {rounded_amount} AS amount, e.id AS via_effect_id,
                 CASE WHEN eb.amount_from = 0 THEN 'constant'
                      WHEN eb.amount_from = 1 AND j.value IS NULL THEN 'default'
                      WHEN eb.amount_from = 2 AND j.value2 IS NULL THEN 'default'
                      ELSE 'owner' END AS amount_source,
-                eb.scale, j.effect_link_order
+                eb.scale, j.effect_link_order,
+                CASE WHEN e.is_group = 1 THEN e.id WHEN target.is_group = 1 THEN target.id END AS group_effect_id
            FROM links j JOIN effects e ON e.id = j.effect_id
            JOIN effect_bonuses eb ON eb.effect_id = e.id
-          WHERE e.is_stat = 0 AND ({amount_expression}) IS NOT NULL AND {rounded_amount} <> 0;"
+           JOIN effects target ON target.id = eb.target_effect_id
+           LEFT JOIN effect_bonuses member ON member.effect_id = target.id AND target.is_group = 1
+          WHERE e.is_stat = 0 AND (target.is_stat = 1 OR member.target_effect_id IS NOT NULL)
+            AND ({amount_expression}) IS NOT NULL AND {rounded_amount} <> 0;"
     );
     format!(
         r#"
@@ -271,6 +276,7 @@ CREATE TABLE IF NOT EXISTS effects (
     id                   INTEGER PRIMARY KEY,
     name                 TEXT NOT NULL UNIQUE CHECK (TRIM(name) <> ''),
     is_stat              INTEGER NOT NULL DEFAULT 0 CHECK (is_stat IN (0, 1)),
+    is_group             INTEGER NOT NULL DEFAULT 0 CHECK (is_group IN (0, 1)),
     category             TEXT,
     text_template        TEXT,
     description_template TEXT,
@@ -280,6 +286,7 @@ CREATE TABLE IF NOT EXISTS effects (
     tier_group_id        INTEGER REFERENCES effect_tier_groups(id),
     tier                 INTEGER CHECK (tier IS NULL OR tier > 0),
     CHECK ((is_stat = 1) = (category IS NOT NULL)),
+    CHECK (is_stat = 0 OR is_group = 0),
     CHECK (is_stat = 1 OR text_template IS NOT NULL),
     CHECK (text_template IS NOT NULL OR (description_template IS NULL AND default_value IS NULL AND default_value2 IS NULL)),
     CHECK (default_value IS NULL OR INSTR(COALESCE(text_template, '') || COALESCE(description_template, ''), '{{1}}') > 0),
@@ -290,7 +297,7 @@ CREATE TABLE IF NOT EXISTS effects (
 
 CREATE TABLE IF NOT EXISTS effect_bonuses (
     effect_id     INTEGER NOT NULL REFERENCES effects(id) ON DELETE CASCADE,
-    stat_id        INTEGER NOT NULL REFERENCES effects(id),
+    target_effect_id INTEGER NOT NULL REFERENCES effects(id) CHECK (target_effect_id > 0),
     bonus_type_id  INTEGER REFERENCES bonus_types(id),
     amount_from    INTEGER NOT NULL CHECK (amount_from BETWEEN 0 AND 2),
     constant       INTEGER,
@@ -301,25 +308,50 @@ CREATE TABLE IF NOT EXISTS effect_bonuses (
     CHECK ((amount_from = 0) = (constant IS NOT NULL)),
     CHECK (scale > 0),
     CHECK (amount_from <> 0 OR (scale = 1 AND rounding = 'down')),
-    UNIQUE (effect_id, stat_id, bonus_type_id)
+    UNIQUE (effect_id, target_effect_id, bonus_type_id)
 );
-CREATE INDEX IF NOT EXISTS idx_effect_bonuses_stat ON effect_bonuses(stat_id);
+CREATE INDEX IF NOT EXISTS idx_effect_bonuses_target ON effect_bonuses(target_effect_id);
 CREATE UNIQUE INDEX IF NOT EXISTS idx_effect_bonuses_identity
-    ON effect_bonuses(effect_id, stat_id, COALESCE(bonus_type_id, -1));
+    ON effect_bonuses(effect_id, target_effect_id, COALESCE(bonus_type_id, -1));
 
 CREATE TRIGGER IF NOT EXISTS effect_bonuses_stat_target_insert BEFORE INSERT ON effect_bonuses
 BEGIN
-    SELECT RAISE(ABORT, 'effect bonus target must be a stat')
-      WHERE NOT EXISTS (SELECT 1 FROM effects WHERE id = NEW.stat_id AND is_stat = 1);
+    SELECT RAISE(ABORT, 'effect bonus target must be a stat or group')
+      WHERE NOT EXISTS (SELECT 1 FROM effects WHERE id = NEW.target_effect_id AND (is_stat = 1 OR is_group = 1));
     SELECT RAISE(ABORT, 'stat effects carry bonuses directly')
       WHERE EXISTS (SELECT 1 FROM effects WHERE id = NEW.effect_id AND is_stat = 1);
+    SELECT RAISE(ABORT, 'group bonuses must target stats and read slot one with link type')
+      WHERE EXISTS (SELECT 1 FROM effects WHERE id = NEW.effect_id AND is_group = 1)
+        AND (NOT EXISTS (SELECT 1 FROM effects WHERE id = NEW.target_effect_id AND is_stat = 1)
+             OR NEW.amount_from <> 1 OR NEW.bonus_type_id IS NOT NULL OR NEW.scale <> 1
+             OR NEW.rounding <> 'down' OR NEW.trigger_id IS NOT NULL);
 END;
 CREATE TRIGGER IF NOT EXISTS effect_bonuses_stat_target_update BEFORE UPDATE ON effect_bonuses
 BEGIN
-    SELECT RAISE(ABORT, 'effect bonus target must be a stat')
-      WHERE NOT EXISTS (SELECT 1 FROM effects WHERE id = NEW.stat_id AND is_stat = 1);
+    SELECT RAISE(ABORT, 'effect bonus target must be a stat or group')
+      WHERE NOT EXISTS (SELECT 1 FROM effects WHERE id = NEW.target_effect_id AND (is_stat = 1 OR is_group = 1));
     SELECT RAISE(ABORT, 'stat effects carry bonuses directly')
       WHERE EXISTS (SELECT 1 FROM effects WHERE id = NEW.effect_id AND is_stat = 1);
+    SELECT RAISE(ABORT, 'group bonuses must target stats and read slot one with link type')
+      WHERE EXISTS (SELECT 1 FROM effects WHERE id = NEW.effect_id AND is_group = 1)
+        AND (NOT EXISTS (SELECT 1 FROM effects WHERE id = NEW.target_effect_id AND is_stat = 1)
+             OR NEW.amount_from <> 1 OR NEW.bonus_type_id IS NOT NULL OR NEW.scale <> 1
+             OR NEW.rounding <> 'down' OR NEW.trigger_id IS NOT NULL);
+END;
+CREATE TRIGGER IF NOT EXISTS effects_bonus_target_flags_update BEFORE UPDATE OF is_stat, is_group ON effects
+BEGIN
+    SELECT RAISE(ABORT, 'effect bonus target must remain a stat or group')
+      WHERE NEW.is_stat = 0 AND NEW.is_group = 0
+        AND EXISTS (SELECT 1 FROM effect_bonuses WHERE target_effect_id = NEW.id);
+    SELECT RAISE(ABORT, 'group bonuses must target stats without nesting')
+      WHERE NEW.is_group = 1 AND
+        (EXISTS (SELECT 1 FROM effect_bonuses eb
+                 JOIN effects target ON target.id = eb.target_effect_id
+                WHERE eb.effect_id = NEW.id AND
+                  (target.is_stat <> 1 OR eb.amount_from <> 1 OR eb.bonus_type_id IS NOT NULL
+                   OR eb.scale <> 1 OR eb.rounding <> 'down' OR eb.trigger_id IS NOT NULL))
+         OR EXISTS (SELECT 1 FROM effect_bonuses eb JOIN effects parent ON parent.id = eb.effect_id
+                     WHERE eb.target_effect_id = NEW.id AND parent.is_group = 1));
 END;
 
 CREATE TABLE IF NOT EXISTS effect_damage (
@@ -336,7 +368,7 @@ CREATE TABLE IF NOT EXISTS effect_damage (
 );
 
 CREATE TABLE IF NOT EXISTS effect_vocabulary_counts (
-    kind          TEXT NOT NULL CHECK (kind IN ('effect', 'stat')),
+    kind          TEXT NOT NULL CHECK (kind IN ('effect', 'stat', 'group')),
     id            INTEGER NOT NULL,
     item_count    INTEGER NOT NULL,
     augment_count INTEGER NOT NULL,
@@ -345,7 +377,7 @@ CREATE TABLE IF NOT EXISTS effect_vocabulary_counts (
 );
 
 CREATE TABLE IF NOT EXISTS effect_vocabulary_bonus_types (
-    kind          TEXT NOT NULL CHECK (kind IN ('effect', 'stat')),
+    kind          TEXT NOT NULL CHECK (kind IN ('effect', 'stat', 'group')),
     id            INTEGER NOT NULL,
     bonus_type_id INTEGER NOT NULL REFERENCES bonus_types(id),
     item_count    INTEGER NOT NULL,

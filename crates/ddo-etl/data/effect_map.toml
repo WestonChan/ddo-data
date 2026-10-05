@@ -104,6 +104,24 @@ Deception = ["Deception", "Improved Deception"]
 "Spell Lore" = ["Spell Lore", "Spell Lore I", "Spell Lore II", "Spell Lore III", "Spell Lore V", "Spell Lore VI", "Spell Lore VII", "Spell Lore VIII", "Spell Lore IX", "Spell Lore X"]
 Wizardry = ["Wizardry I", "Wizardry II", "Wizardry III", "Wizardry V", "Wizardry VI", "Wizardry VII", "Wizardry IX", "Wizardry X", "Wizardry XI"]
 
+[groups]
+"All Ability Scores" = ["Strength", "Dexterity", "Constitution", "Intelligence", "Wisdom", "Charisma"]
+Sheltering = ["Physical Resistance Rating", "Magical Resistance Rating"]
+"Melee and Ranged Power" = ["Melee Power", "Ranged Power"]
+"Doublestrike and Doubleshot" = ["Doublestrike", "Doubleshot"]
+
+[skill_ability_groups]
+source = "https://ddowiki.com/page/Skills"
+read = "2026-10-05"
+
+[skill_ability_groups.skills]
+Strength = ["Jump", "Swim"]
+Dexterity = ["Balance", "Hide", "Move Silently", "Open Lock", "Tumble"]
+Constitution = ["Concentration"]
+Intelligence = ["Disable Device", "Repair", "Search", "Spellcraft"]
+Wisdom = ["Heal", "Listen", "Spot"]
+Charisma = ["Bluff", "Diplomacy", "Haggle", "Intimidate", "Perform", "Use Magic Device"]
+
 [family.fixed]
 Linguistics = "Linguistics"
 Hallowed = "Turn Undead Max Dice"
@@ -146,7 +164,6 @@ OrbBonus = "Spell DCs"
 Fortification = "Fortification"
 PhysicalSheltering = "Physical Resistance Rating"
 MagicalSheltering = "Magical Resistance Rating"
-Sheltering = "Physical and Magical Resistance Rating"
 Resistance = "Saving Throws"
 GoodLuck = "Saving Throws"
 ReflexSave = "Reflex Save"
@@ -320,9 +337,6 @@ targets = { All = ["Melee Attack Speed", "Ranged Attack Speed"], Melee = ["Melee
 [effect.targeted.WeaponAlacrityClass]
 qualified_name = "Melee and Ranged Attack Speed"
 targets = { Melee = ["Melee Attack Speed"], Ranged = ["Ranged Attack Speed"] }
-
-[effect.targeted.SkillBonusAbility]
-targets = { Charisma = ["Bluff", "Diplomacy", "Haggle", "Intimidate", "Perform", "Use Magic Device"] }
 
 [effect.by_item]
 AbilityBonus = "{item}"

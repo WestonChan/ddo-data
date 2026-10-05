@@ -1,10 +1,19 @@
 use crate::map::buff::split_display_title;
+use crate::map::effect_map::EFFECT_MAP;
 use crate::xml::item_buffs::ItemBuffDefinition;
 use anyhow::{ensure, Result};
 use ddo_model::enums::BonusType;
 use ddo_model::stats::{Stat, STATS};
 use rusqlite::{params, Transaction};
-use std::collections::{BTreeMap, HashMap};
+use std::collections::{BTreeMap, HashMap, HashSet};
+
+#[derive(Clone, Copy)]
+pub(super) struct BonusRule {
+    pub(super) stat: &'static Stat,
+    pub(super) bonus_type: Option<BonusType>,
+    pub(super) amount_from: i64,
+    pub(super) constant: Option<i64>,
+}
 
 #[derive(Clone)]
 pub(super) struct CachedEffect {
@@ -15,6 +24,7 @@ pub(super) struct CachedEffect {
     pub(super) amount_count: i64,
     pub(super) uses_link_type: bool,
     pub(super) is_stat: bool,
+    pub(super) is_group: bool,
     default_value: Option<i64>,
     default_value2: Option<i64>,
     has_stats: bool,
@@ -63,6 +73,7 @@ impl<'a> EffectCache<'a> {
                     amount_count: 1,
                     uses_link_type: false,
                     is_stat: true,
+                    is_group: false,
                     default_value: None,
                     default_value2: None,
                     has_stats: true,
@@ -189,6 +200,7 @@ impl<'a> EffectCache<'a> {
                 uses_link_type: text_template.contains("%b1")
                     || description_template.is_some_and(|template| template.contains("%b1")),
                 is_stat: false,
+                is_group: false,
                 default_value: None,
                 default_value2: None,
                 has_stats: false,
@@ -231,7 +243,7 @@ impl<'a> EffectCache<'a> {
             stat.name
         );
         self.transaction.execute(
-            "INSERT INTO effect_bonuses (effect_id, stat_id, bonus_type_id, amount_from, constant, sort_order)
+            "INSERT INTO effect_bonuses (effect_id, target_effect_id, bonus_type_id, amount_from, constant, sort_order)
              VALUES (?1, ?2, ?3, ?4, ?5, ?6)",
             params![family_id, stat.id, bonus_type.map(BonusType::id), amount_from, constant, sort_order as i64],
         )?;
@@ -239,6 +251,114 @@ impl<'a> EffectCache<'a> {
         let family = self.families_by_id.get_mut(&family_id).expect("family is cached before its stat rows");
         family.has_stats = true;
         family.uses_link_type |= bonus_type.is_none();
+        Ok(())
+    }
+
+    pub(super) fn ensure_group(&mut self, name: &str) -> Result<i64> {
+        let members = EFFECT_MAP.group_members(name).expect("declared group has members");
+        let id = match self.family_named(name) {
+            Some(family) => family.id,
+            None => self.ensure_family(name, &format!("%b1 {name} +{{1}}"), None, 1)?,
+        };
+        let family = self.family(id).expect("group family cached");
+        ensure!(!family.is_stat && family.amount_count == 1, "group {name:?} must be a one-value named effect");
+        if !family.is_group {
+            self.transaction.execute("UPDATE effects SET is_group = 1 WHERE id = ?1", [id])?;
+            self.families_by_id.get_mut(&id).expect("group family cached").is_group = true;
+        }
+        for (sort_order, member) in members.iter().enumerate() {
+            self.ensure_stat(id, Stat::by_name(member).expect("validated group member"), None, 1, None, sort_order)?;
+        }
+        Ok(id)
+    }
+
+    fn ensure_group_target(&mut self, family_id: i64, group_id: i64, rule: BonusRule, sort_order: usize) -> Result<()> {
+        let key = (family_id, group_id, rule.bonus_type.map(BonusType::id));
+        if let Some(existing) = self.stats.get(&key) {
+            ensure!(
+                *existing == (rule.amount_from, rule.constant),
+                "effect {family_id} group {group_id} has conflicting amounts"
+            );
+            return Ok(());
+        }
+        let family = self.family(family_id).expect("parent family cached");
+        ensure!(!family.is_group && !family.is_stat, "group {family_id} cannot contain group {group_id}");
+        ensure!(rule.amount_from <= family.amount_count, "effect {family_id} reads group {group_id} beyond its slots");
+        self.transaction.execute(
+            "INSERT INTO effect_bonuses (effect_id, target_effect_id, bonus_type_id, amount_from, constant, sort_order)
+             VALUES (?1, ?2, ?3, ?4, ?5, ?6)",
+            params![
+                family_id,
+                group_id,
+                rule.bonus_type.map(BonusType::id),
+                rule.amount_from,
+                rule.constant,
+                sort_order as i64
+            ],
+        )?;
+        self.stats.insert(key, (rule.amount_from, rule.constant));
+        let family = self.families_by_id.get_mut(&family_id).expect("parent family cached");
+        family.has_stats = true;
+        family.uses_link_type |= rule.bonus_type.is_none();
+        Ok(())
+    }
+
+    pub(super) fn ensure_bonus_rules(&mut self, family_id: i64, rules: &[BonusRule]) -> Result<()> {
+        let family = self.family(family_id).expect("family cached before its rules");
+        if family.is_stat {
+            for (sort_order, rule) in rules.iter().enumerate() {
+                self.ensure_stat(family_id, rule.stat, rule.bonus_type, rule.amount_from, rule.constant, sort_order)?;
+            }
+            return Ok(());
+        }
+        let family_name = family.name.clone();
+        let mut handled = HashSet::new();
+        let mut group_names = EFFECT_MAP.group_names();
+        group_names
+            .sort_by_key(|name| std::cmp::Reverse(EFFECT_MAP.group_members(name).expect("declared group").len()));
+        for group_name in group_names {
+            let members = EFFECT_MAP.group_members(&group_name).expect("declared group");
+            if members.len() == 1
+                && !family_name.contains(&group_name)
+                && !group_name.strip_suffix(" Skills").is_some_and(|ability| family_name == format!("Skills {ability}"))
+            {
+                continue;
+            }
+            let mut indices = Vec::new();
+            for member in members {
+                let Some(index) = rules
+                    .iter()
+                    .enumerate()
+                    .find_map(|(index, rule)| (!handled.contains(&index) && rule.stat.name == member).then_some(index))
+                else {
+                    indices.clear();
+                    break;
+                };
+                indices.push(index);
+            }
+            if indices.len() != members.len() {
+                continue;
+            }
+            let first = rules[indices[0]];
+            if !indices.iter().all(|index| {
+                let rule = rules[*index];
+                rule.bonus_type == first.bonus_type
+                    && rule.amount_from == first.amount_from
+                    && rule.constant == first.constant
+            }) {
+                continue;
+            }
+            let group_id = self.ensure_group(&group_name)?;
+            if group_id != family_id {
+                self.ensure_group_target(family_id, group_id, first, indices[0])?;
+            }
+            handled.extend(indices);
+        }
+        for (sort_order, rule) in rules.iter().enumerate() {
+            if !handled.contains(&sort_order) {
+                self.ensure_stat(family_id, rule.stat, rule.bonus_type, rule.amount_from, rule.constant, sort_order)?;
+            }
+        }
         Ok(())
     }
 

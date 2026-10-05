@@ -119,6 +119,25 @@ async fn detail_effects_render_family_stats_and_text_only_lines() {
 }
 
 #[tokio::test]
+async fn command_expands_charisma_skills_and_group_filters_find_its_item() {
+    let plate = item_detail_named("grudgebearer").await;
+    let command = plate["effects"].as_array().unwrap().iter().find(|line| line["name"] == "Command").unwrap();
+    let bonuses = command["bonuses"].as_array().unwrap();
+    let grouped: Vec<_> = bonuses.iter().filter(|bonus| bonus["group"]["name"] == "Charisma Skills").collect();
+    assert_eq!(grouped.len(), 6);
+    assert!(grouped.iter().all(|bonus| bonus["value"] == command["value"] && bonus["bonus_type"] == "Insight"));
+    assert!(bonuses.iter().any(|bonus| bonus["stat"] == "Hide" && bonus["bonus_type"] == "Penalty"));
+    let (_, _, vocabulary) = get_list_rows("/v1/effects?kind=group").await;
+    let group = effect_named(&vocabulary, "Charisma Skills", "group").unwrap();
+    let (_, _, detail) = get(group["detail_path"].as_str().unwrap()).await;
+    assert_eq!(detail["bonuses"].as_array().unwrap().len(), 6);
+    for filter in ["Bluff", "Charisma%20Skills"] {
+        let (_, _, page) = get(&format!("/v1/items?bonus={filter}")).await;
+        assert!(item_names(&page).contains(&"Grudgebearer's Plate"), "{filter}");
+    }
+}
+
+#[tokio::test]
 async fn vocabulary_rows_route_by_kind_even_when_database_ids_overlap() {
     let (_, _, page) = get("/v1/effects?limit=10000").await;
     let rows = page["effects"].as_array().unwrap();
@@ -216,7 +235,7 @@ async fn family_and_stat_detail_page_their_real_carriers() {
     assert_eq!(line["bonuses"].as_array().unwrap().len(), 1);
     assert_eq!(line["bonuses"][0]["stat"], "Spell Focus Mastery");
 
-    let all_abilities = effect_named(&vocabulary, "All Ability Scores", "effect").unwrap();
+    let all_abilities = effect_named(&vocabulary, "All Ability Scores", "group").unwrap();
     assert!(all_abilities["bonus_types"]
         .as_array()
         .unwrap()
@@ -281,7 +300,7 @@ async fn named_effect_carriers_page_links_and_nest_each_resolved_bonus() {
         .unwrap()
         .iter()
         .any(|row| row["name"] == "Solar Gem of Strength (Heroic)"));
-    let all_abilities_id = effect_named(&vocabulary, "All Ability Scores", "effect").unwrap()["id"].as_i64().unwrap();
+    let all_abilities_id = effect_named(&vocabulary, "All Ability Scores", "group").unwrap()["id"].as_i64().unwrap();
     let (_, _, all_abilities) = get(&format!("/v1/effects/{all_abilities_id}")).await;
     assert!(all_abilities["set_tiers"]["set_tiers"]
         .as_array()

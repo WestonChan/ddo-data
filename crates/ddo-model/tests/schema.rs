@@ -483,7 +483,6 @@ fn stats_carry_no_second_name_for_a_stat_the_maps_already_target() {
     let canonical_stat_by_alias = [
         ("Physical Sheltering", "Physical Resistance Rating"),
         ("Magical Sheltering", "Magical Resistance Rating"),
-        ("Sheltering", "Physical and Magical Resistance Rating"),
         ("Potency", "Universal Spell Power"),
         ("Alignment Spell Power", "Light Spell Power"),
         ("Protection", "Armor Class"),
@@ -617,6 +616,47 @@ fn seeded_stats_share_effect_identity_and_direct_links_yield_owner_bonuses() {
 }
 
 #[test]
+fn group_bonus_targets_expand_once_and_reject_nested_groups() {
+    let db = fresh_db();
+    ddo_model::seeds::insert_all(&db).unwrap();
+    db.execute("INSERT INTO effects (id, name, is_group, text_template) VALUES (1000, 'Charisma Skills', 1, '%b1 Charisma Skills {1}')", []).unwrap();
+    db.execute("INSERT INTO effects (id, name, text_template) VALUES (1001, 'Command', 'Command {1} {2}')", [])
+        .unwrap();
+    db.execute(
+        "INSERT INTO effects (id, name, is_group, text_template) VALUES (1002, 'Other Group', 1, 'Other Group {1}')",
+        [],
+    )
+    .unwrap();
+    db.execute(
+        "INSERT INTO effect_bonuses (effect_id, target_effect_id, amount_from, sort_order) VALUES (1000, 42, 1, 0)",
+        [],
+    )
+    .unwrap();
+    db.execute("INSERT INTO effect_bonuses (effect_id, target_effect_id, bonus_type_id, amount_from, sort_order) VALUES (1001, 1000, 1, 1, 0)", []).unwrap();
+    assert!(db.execute("UPDATE effects SET is_group = 0 WHERE id = 1000", []).is_err());
+    assert!(db.execute("UPDATE effects SET is_group = 1 WHERE id = 1001", []).is_err());
+    assert!(db.execute("INSERT INTO effect_bonuses (effect_id, target_effect_id, amount_from, sort_order) VALUES (1002, 1000, 1, 0)", []).is_err());
+    assert!(db.execute("INSERT INTO effect_bonuses (effect_id, target_effect_id, amount_from, sort_order) VALUES (1000, 1001, 1, 1)", []).is_err());
+    assert!(db
+        .execute(
+            "INSERT INTO effect_bonuses (effect_id, target_effect_id, amount_from, sort_order) VALUES (1000, 44, 2, 1)",
+            []
+        )
+        .is_err());
+    db.execute("INSERT INTO items (id, name, slot_id, item_category, wiki_url) VALUES (9001, 'Probe', 1, 'Jewelry', 'https://ddowiki.com/page/Item:Probe')", []).unwrap();
+    db.execute("INSERT INTO item_effects (item_id, effect_id, value, sort_order) VALUES (9001, 1001, 7, 0)", [])
+        .unwrap();
+    let bonus: (i64, i64, i64, i64) = db
+        .query_row(
+            "SELECT stat_id, amount, via_effect_id, group_effect_id FROM owner_bonuses WHERE owner_id = 9001",
+            [],
+            |row| Ok((row.get(0)?, row.get(1)?, row.get(2)?, row.get(3)?)),
+        )
+        .unwrap();
+    assert_eq!(bonus, (42, 7, 1001, 1000));
+}
+
+#[test]
 fn save_progressions_follow_upstream_type_codes() {
     assert_eq!(SaveProgression::parse("Type2"), Some(SaveProgression::Good), "Paladin Fortitude is Type2");
     assert_eq!(SaveProgression::parse("Type1"), Some(SaveProgression::Poor));
@@ -633,7 +673,7 @@ fn effect_stat_amount_sources_and_constants_are_checked() {
         assert!(db
             .execute(
                 &format!(
-                    "INSERT INTO effect_bonuses (effect_id, stat_id, bonus_type_id, amount_from, constant, sort_order)
+                    "INSERT INTO effect_bonuses (effect_id, target_effect_id, bonus_type_id, amount_from, constant, sort_order)
              VALUES (1000, 1, 1, {amount_from}, {constant}, 0)"
                 ),
                 []
@@ -641,7 +681,7 @@ fn effect_stat_amount_sources_and_constants_are_checked() {
             .is_err());
     }
     db.execute(
-        "INSERT INTO effect_bonuses (effect_id, stat_id, bonus_type_id, amount_from, sort_order) VALUES (1000, 1, 1, 1, 0)",
+        "INSERT INTO effect_bonuses (effect_id, target_effect_id, bonus_type_id, amount_from, sort_order) VALUES (1000, 1, 1, 1, 0)",
         [],
     ).unwrap();
 }
@@ -658,7 +698,7 @@ fn effect_defaults_and_scaled_stat_constraints_are_checked() {
     .unwrap();
     db.execute(
         "INSERT INTO effect_bonuses
-         (effect_id, stat_id, bonus_type_id, amount_from, scale, rounding, sort_order)
+         (effect_id, target_effect_id, bonus_type_id, amount_from, scale, rounding, sort_order)
          VALUES (1000, 1, 1, 1, 0.5, 'up', 0)",
         [],
     )
@@ -674,7 +714,7 @@ fn effect_defaults_and_scaled_stat_constraints_are_checked() {
             .execute(
                 &format!(
                     "INSERT INTO effect_bonuses
-                     (effect_id, stat_id, bonus_type_id, amount_from, constant, scale, rounding, sort_order)
+                     (effect_id, target_effect_id, bonus_type_id, amount_from, constant, scale, rounding, sort_order)
                      VALUES (1000, 2, 1, {amount_from}, {constant}, {scale}, {rounding}, 1)"
                 ),
                 [],

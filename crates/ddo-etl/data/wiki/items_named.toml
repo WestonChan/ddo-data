@@ -97,7 +97,7 @@ race_required = "Dhampir Dark Bargainer"
 description = "This armor was fashionable in your homeland... where ever that was."
 drop_location = "Advance to level 15, End reward"
 bonuses = [
-  { stat = "Physical and Magical Resistance Rating", bonus_type = "Enhancement", value = 15 },
+  { group = "Sheltering", bonus_type = "Enhancement", value = 15 },
   { stat = "Armor Class", bonus_type = "Insight", value = 2 },
   { stat = "Saving Throws", bonus_type = "Insight", value = 2 },
 ]
@@ -816,7 +816,7 @@ quests = [
 ]
 augment_slots = ["crafting: nearly complete: insightful ability score (legendary)", "green", "yellow", "sun"]
 bonuses = [
-  { stat = "Physical and Magical Resistance Rating", bonus_type = "Enhancement", value = 41 },
+  { group = "Sheltering", bonus_type = "Enhancement", value = 41 },
   { stat = "Saving Throws", bonus_type = "Resistance", value = 13 },
   { stat = "Fortification", bonus_type = "Insight", value = 84 },
 ]

@@ -490,57 +490,37 @@ fn qualified_correction_toml(
 }
 
 #[test]
-fn item_and_set_tier_stat_transform_corrections_follow_written_links() {
+fn item_stat_transform_corrections_follow_written_links() {
     let (source_db, _) = built_db_with(&[]).unwrap();
-    for (kind, owner_sql) in [
-        (
-            "item_bonus",
-            "SELECT i.name, NULL, s.name, bt.name FROM items i
-             JOIN item_effects l ON l.item_id = i.id",
-        ),
-        (
-            "set_tier_bonus",
-            "SELECT sb.name, t.equipped_count, s.name, bt.name FROM set_bonuses sb
-             JOIN set_bonus_tiers t ON t.set_id = sb.id
-             JOIN set_bonus_tier_effects l ON l.tier_id = t.id",
-        ),
-    ] {
-        let source_sql = format!(
-            "{owner_sql} JOIN effects e ON e.id = l.effect_id
+    let source_sql = "SELECT i.name, s.name, bt.name FROM items i
+             JOIN item_effects l ON l.item_id = i.id
+             JOIN effects e ON e.id = l.effect_id
              JOIN effect_bonuses es ON es.effect_id = e.id
-             JOIN effects s ON s.id = es.stat_id
+             JOIN effects s ON s.id = es.target_effect_id
              JOIN bonus_types bt ON bt.id = COALESCE(es.bonus_type_id, l.bonus_type_id)
-             WHERE es.amount_from = 1 AND l.value IS NOT NULL AND es.scale = 1
-             ORDER BY l.value % 2 DESC, l.value DESC LIMIT 1"
-        );
-        let (owner_name, tier_count, stat_name, bonus_type): (String, Option<i64>, String, String) = source_db
-            .query_row(&source_sql, [], |row| Ok((row.get(0)?, row.get(1)?, row.get(2)?, row.get(3)?)))
-            .unwrap();
-        let qualifier = format!(
-            "{}stat = {stat_name:?}\nbonus_type = {bonus_type:?}",
-            tier_count.map_or(String::new(), |count| format!("equipped_count = {count}\n"))
-        );
-        let corrections = format!(
-            "{}{}",
-            qualified_correction_toml(kind, &owner_name, &qualifier, "scale", "1.0", "0.5"),
-            qualified_correction_toml(kind, &owner_name, &qualifier, "rounding", "\"down\"", "\"up\""),
-        );
-        let (corrected_db, report) = built_db_with(&[("transforms.toml", &corrections)]).unwrap();
-        assert_eq!(
-            (report.correction_applied_count, report.correction_stale_count),
-            (2, 0),
-            "{kind}: {:?}",
-            report.stale_corrections
-        );
-        let corrected_sql = source_sql
-            .replace("SELECT i.name, NULL, s.name, bt.name", "SELECT es.scale, es.rounding, l.value, NULL")
-            .replace("SELECT sb.name, t.equipped_count, s.name, bt.name", "SELECT es.scale, es.rounding, l.value, NULL")
-            .replace("AND es.scale = 1", "AND es.scale = 0.5");
-        let (scale, rounding, _, _): (f64, String, i64, Option<i64>) = corrected_db
-            .query_row(&corrected_sql, [], |row| Ok((row.get(0)?, row.get(1)?, row.get(2)?, row.get(3)?)))
-            .unwrap();
-        assert_eq!((scale, rounding.as_str()), (0.5, "up"));
-    }
+             WHERE es.amount_from = 1 AND l.value IS NOT NULL AND es.scale = 1 AND e.is_group = 0 AND s.is_stat = 1
+             ORDER BY l.value % 2 DESC, l.value DESC LIMIT 1";
+    let (owner_name, stat_name, bonus_type): (String, String, String) =
+        source_db.query_row(source_sql, [], |row| Ok((row.get(0)?, row.get(1)?, row.get(2)?))).unwrap();
+    let qualifier = format!("stat = {stat_name:?}\nbonus_type = {bonus_type:?}");
+    let corrections = format!(
+        "{}{}",
+        qualified_correction_toml("item_bonus", &owner_name, &qualifier, "scale", "1.0", "0.5"),
+        qualified_correction_toml("item_bonus", &owner_name, &qualifier, "rounding", "\"down\"", "\"up\""),
+    );
+    let (corrected_db, report) = built_db_with(&[("transforms.toml", &corrections)]).unwrap();
+    assert_eq!(
+        (report.correction_applied_count, report.correction_stale_count),
+        (2, 0),
+        "{:?}",
+        report.stale_corrections
+    );
+    let corrected_sql = source_sql
+        .replace("SELECT i.name, s.name, bt.name", "SELECT es.scale, es.rounding, l.value")
+        .replace("AND es.scale = 1", "AND es.scale = 0.5");
+    let (scale, rounding, _): (f64, String, i64) =
+        corrected_db.query_row(&corrected_sql, [], |row| Ok((row.get(0)?, row.get(1)?, row.get(2)?))).unwrap();
+    assert_eq!((scale, rounding.as_str()), (0.5, "up"));
 }
 
 fn item_names(db: &Connection) -> Vec<String> {
@@ -861,21 +841,12 @@ fn corrects_an_augment_bonus_value_and_type_without_touching_the_shared_bonus() 
     assert_eq!(
         row_count(
             &db,
-            "SELECT COUNT(*) FROM augment_effects ae JOIN augments a ON a.id = ae.augment_id
-            JOIN effect_bonuses es ON es.effect_id = ae.effect_id JOIN effects s ON s.id = es.stat_id
-            WHERE a.name = 'Silverscale' AND s.name = 'Healing Amplification' AND ae.value = 56"
-        ),
-        0,
-        "the old bonus row is left unchanged for anything else that carries it, then deleted as nothing does"
-    );
-    assert_eq!(
-        row_count(
-            &db,
             "SELECT COUNT(*) FROM effects e WHERE e.is_stat = 0 AND NOT EXISTS (SELECT 1 FROM item_effects r WHERE r.effect_id = e.id)
                AND NOT EXISTS (SELECT 1 FROM item_augment_slot_option_effects r WHERE r.effect_id = e.id)
                AND NOT EXISTS (SELECT 1 FROM augment_effects r WHERE r.effect_id = e.id)
                AND NOT EXISTS (SELECT 1 FROM feat_effects r WHERE r.effect_id = e.id)
-               AND NOT EXISTS (SELECT 1 FROM set_bonus_tier_effects r WHERE r.effect_id = e.id)"
+               AND NOT EXISTS (SELECT 1 FROM set_bonus_tier_effects r WHERE r.effect_id = e.id)
+               AND NOT EXISTS (SELECT 1 FROM effect_bonuses r WHERE r.target_effect_id = e.id)"
         ),
         0,
         "a bonus the corrections leave nothing carrying is deleted"

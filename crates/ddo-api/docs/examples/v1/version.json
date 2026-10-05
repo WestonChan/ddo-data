@@ -10,13 +10,13 @@
     "crafting_recipes": 2956,
     "crafting_system_sources": 1074,
     "crafting_systems": 43,
-    "effect_bonuses": 506,
-    "effects": 2160,
+    "effect_bonuses": 503,
+    "effects": 2170,
     "enhancement_trees": 114,
     "enhancements": 3228,
     "event_items": 642,
     "events": 9,
-    "feat_effects": 1096,
+    "feat_effects": 1092,
     "feats": 1022,
     "filigrees": 437,
     "guild_buffs": 37,
@@ -50,8 +50,8 @@
     "wiki_quests": 5
   },
   "dataset": {
-    "built_at": "2026-10-05T00:27:46Z",
+    "built_at": "2026-10-05T01:08:46Z",
     "upstream_sha": "31ef0201ea8e28604de2b6242988aee6d63733b0"
   },
-  "schema_version": 26
+  "schema_version": 27
 }

@@ -250,7 +250,7 @@ pub(crate) fn bonuses_via(
            JOIN owner_bonuses ob ON ob.owner_kind = '{owner_kind}' AND ob.owner_id = j.{owner_column}
                 AND ob.effect_link_order = j.sort_order
            JOIN effects s ON s.id = ob.stat_id
-           LEFT JOIN effect_bonuses es ON es.effect_id = e.id AND es.stat_id = ob.stat_id
+           LEFT JOIN effect_bonuses es ON es.effect_id = e.id AND es.target_effect_id = COALESCE(ob.group_effect_id, ob.stat_id)
                 AND (es.bonus_type_id IS ob.bonus_type_id OR es.bonus_type_id IS NULL)
            LEFT JOIN bonus_types bt ON bt.id = ob.bonus_type_id
           WHERE j.{owner_column} = ?1
@@ -306,13 +306,14 @@ pub(crate) fn effects_via<P: Params>(
                 tg.name AS tier_group, e.tier AS tier_rank,
                 s.name AS stat, s.category AS stat_category,
                 stat_type.name AS stat_bonus_type, ob.amount AS stat_value,
-                ob.amount_source, ob.scale
+                ob.amount_source, ob.scale, g.id AS group_id, g.name AS group_name
            FROM {junction_table} j JOIN effects e ON e.id = j.effect_id
            LEFT JOIN effect_tier_groups tg ON tg.id = e.tier_group_id
            LEFT JOIN bonus_types link_type ON link_type.id = j.bonus_type_id
            LEFT JOIN owner_bonuses ob ON ob.owner_kind = '{owner_kind}' AND ob.owner_id = j.{owner_column}
                 AND ob.effect_link_order = j.sort_order
            LEFT JOIN effects s ON s.id = ob.stat_id
+           LEFT JOIN effects g ON g.id = ob.group_effect_id
            LEFT JOIN bonus_types stat_type ON stat_type.id = ob.bonus_type_id
           WHERE {owner_condition}
           ORDER BY j.{owner_column}, j.sort_order, ob.stat_id"
@@ -369,7 +370,10 @@ pub(crate) fn effects_via<P: Params>(
             lines[position]["bonuses"].as_array_mut().expect("bonus array").push(serde_json::json!({
                 "stat": row["stat"], "stat_category": row["stat_category"],
                 "bonus_type": row["stat_bonus_type"], "value": row["stat_value"],
-                "amount_source": row["amount_source"], "scale": row["scale"]
+                "amount_source": row["amount_source"], "scale": row["scale"],
+                "group": if row["group_id"].is_null() { Value::Null } else {
+                    serde_json::json!({"id": row["group_id"], "name": row["group_name"]})
+                }
             }));
         }
     }

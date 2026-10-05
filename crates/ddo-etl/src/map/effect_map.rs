@@ -20,6 +20,18 @@ pub struct EffectMap {
     pub names: BTreeMap<String, String>,
     #[serde(default)]
     pub tier_groups: BTreeMap<String, Vec<String>>,
+    #[serde(default)]
+    pub groups: BTreeMap<String, Vec<String>>,
+    #[serde(default)]
+    pub skill_ability_groups: SkillAbilityGroups,
+}
+
+#[derive(Debug, Default, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct SkillAbilityGroups {
+    pub source: String,
+    pub read: String,
+    pub skills: BTreeMap<String, Vec<String>>,
 }
 
 #[derive(Debug, Deserialize)]
@@ -141,6 +153,32 @@ impl EffectMap {
                 }
             }
         }
+        if !vocabulary.skill_ability_groups.skills.is_empty()
+            && (vocabulary.skill_ability_groups.source != "https://ddowiki.com/page/Skills"
+                || vocabulary.skill_ability_groups.read.trim().is_empty())
+        {
+            bail!("effect_map.toml [skill_ability_groups] needs its Skills page and read date");
+        }
+        for (group_name, stat_names) in &vocabulary.groups {
+            if group_name.trim().is_empty() || stat_names.len() < 2 {
+                bail!("effect_map.toml [groups] {group_name:?} needs at least two stats");
+            }
+            for stat_name in stat_names {
+                if Stat::by_name(stat_name).is_none() {
+                    bail!("effect_map.toml [groups] {group_name:?} names unknown stat {stat_name:?}");
+                }
+            }
+        }
+        for (ability, stat_names) in &vocabulary.skill_ability_groups.skills {
+            if Stat::by_name(ability).is_none() || stat_names.is_empty() {
+                bail!("effect_map.toml [skill_ability_groups.skills] invalid ability {ability:?}");
+            }
+            for stat_name in stat_names {
+                if Stat::by_name(stat_name).is_none() {
+                    bail!("effect_map.toml [skill_ability_groups.skills] {ability:?} names unknown stat {stat_name:?}");
+                }
+            }
+        }
         for stat_name in &vocabulary.effect.energy_target_artifacts.stats {
             if !vocabulary.effect.fixed.values().any(|mapped_stat| mapped_stat == stat_name) {
                 bail!("effect_map.toml [effect.energy_target_artifacts] names unmapped fixed stat {stat_name:?}");
@@ -256,6 +294,14 @@ impl EffectMap {
         if self.effect.engine_only.contains_key(effect_type) {
             return None;
         }
+        if effect_type == "SkillBonusAbility" {
+            let [ability] = effect.targets.as_slice() else { return None };
+            return self
+                .skill_ability_groups
+                .skills
+                .get(ability)
+                .map(|names| names.iter().map(|name| Stat::by_name(name).expect("validated skill stat")).collect());
+        }
         if let Some(targeted) = self.effect.targeted.get(effect_type) {
             let targets: Vec<&str> = if let Some(weapon_class) = self.complete_weapon_class(effect, targeted) {
                 vec![weapon_class]
@@ -292,6 +338,23 @@ impl EffectMap {
             }
         }
         (!stats.is_empty()).then_some(stats)
+    }
+
+    pub fn group_members(&self, group_name: &str) -> Option<&[String]> {
+        self.groups
+            .get(group_name)
+            .or_else(|| {
+                group_name.strip_suffix(" Skills").and_then(|ability| self.skill_ability_groups.skills.get(ability))
+            })
+            .map(Vec::as_slice)
+    }
+
+    pub fn group_names(&self) -> Vec<String> {
+        self.groups
+            .keys()
+            .cloned()
+            .chain(self.skill_ability_groups.skills.keys().map(|ability| format!("{ability} Skills")))
+            .collect()
     }
 
     pub fn qualified_targeted_name(&self, effect: &Effect) -> Option<String> {

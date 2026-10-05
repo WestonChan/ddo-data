@@ -10,7 +10,7 @@ use crate::wiki::{
     CraftingRecipe, CraftingSystem, DescriptionKind, ListedDrop, WikiAugment, WikiBonus, WikiDescription, WikiItem,
     WikiItemEffect, WikiOverrides, WikiQuest,
 };
-use anyhow::{bail, Context, Result};
+use anyhow::{bail, ensure, Context, Result};
 use ddo_model::enums::{LootType, Provenance};
 use rusqlite::{params, OptionalExtension, Transaction};
 use std::collections::{HashMap, HashSet};
@@ -605,8 +605,12 @@ impl TableWriter<'_> {
     }
 
     fn ensure_wiki_effect(&mut self, bonus: &WikiBonus) -> Result<(i64, Option<ddo_model::enums::BonusType>)> {
-        let stat = bonus.stat();
         let bonus_type = bonus.bonus_type();
+        if let Some(group_name) = bonus.group.as_deref() {
+            ensure!(bonus.value2.is_none(), "wiki group {group_name:?} reads one value");
+            return Ok((self.effects.ensure_group(group_name)?, Some(bonus_type)));
+        }
+        let stat = ddo_model::stats::Stat::by_name(bonus.name()).expect("validated wiki stat");
         let count = if bonus.value2.is_some() { 2 } else { 1 };
         let family_name = stat.name.to_string();
         if self.effects.family_named(&family_name).is_some_and(|family| family.text_template.is_empty()) {

@@ -55,10 +55,11 @@ use utoipa_axum::router::OpenApiRouter;
                        **Effects and bonuses.** An effect is one line of equipment text; its owner link carries values and \
                        sometimes a bonus type, while its bonus rows derive zero or more typed bonuses from those \
                        amounts. Stats are effects identified by `is_stat`; direct stat links carry a value and type. \
+                       Groups expand one level into member stats, with the group named on each derived bonus. \
                        Item, augment and set details render effect templates in owner order. `/v1/effects` lists \
-                       both kinds in one id space; each row's `kind` and `detail_path` identify the detail route. \
+                       effects, groups and stats in one id space; each row's `kind` and `detail_path` identify the detail route. \
                        Its `q` also finds effects through granted stat names, never stats through effect names, and \
-                       returns each effect once. Item `bonus` filters accept an effect, tier group or stat name, and \
+                       returns each effect once. Item `bonus` filters accept an effect, group, tier group or stat name, and \
                        `stat:bonus type` narrows a stat to that type. Family and stat detail page items, augments and \
                        set tiers independently with their own limit and offset parameters.\n\n\
                        **Bulk.** Download `/v1/dump.sqlite` once instead of paging. Icons are at \
@@ -71,6 +72,7 @@ use utoipa_axum::router::OpenApiRouter;
     components(schemas(
         version::VersionDatasetResponse,
         response_schemas::EffectStatBonus,
+        response_schemas::EffectBonusGroup,
         response_schemas::EffectTierPosition,
         response_schemas::EffectLine,
         response_schemas::EffectTierDetail,

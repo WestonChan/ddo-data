@@ -47,6 +47,7 @@ pub enum FamilyResolution {
         definition_amount: Option<i64>,
     },
     EffectFallback(Vec<ResolvedStat>),
+    SkillGroup,
     Effect,
 }
 
@@ -109,6 +110,9 @@ impl BuffResolver {
     }
 
     pub fn family_resolution(&self, buff_kind: &str) -> Result<FamilyResolution> {
+        if buff_kind == "SkillBonusAbility" {
+            return Ok(FamilyResolution::SkillGroup);
+        }
         if self.vocabulary.family.enhancement.iter().any(|kind| kind == buff_kind) {
             return Ok(FamilyResolution::Enhancement);
         }
@@ -222,6 +226,25 @@ impl BuffResolver {
                         self.resolved_bonus_type(buff_kind, item_bonus_type, stat.bonus_type)?
                     };
                 }
+                Ok(ResolvedBuff::Bonuses { source: BuffResolutionSource::EffectFallback, stats })
+            }
+            FamilyResolution::SkillGroup => {
+                let ability = target.ok_or_else(|| anyhow::anyhow!("SkillBonusAbility needs an ability target"))?;
+                let group_name = format!("{ability} Skills");
+                let members = self
+                    .vocabulary
+                    .group_members(&group_name)
+                    .ok_or_else(|| anyhow::anyhow!("SkillBonusAbility has unknown ability {ability:?}"))?;
+                let bonus_type = self.vocabulary.family_bonus_type(buff.bonus_type.as_deref().unwrap_or(""))?;
+                let stats = members
+                    .iter()
+                    .map(|name| ResolvedStat {
+                        stat: Stat::by_name(name).expect("validated skill stat"),
+                        bonus_type,
+                        amount_from: AmountFrom::ItemValue1,
+                        definition_amount: None,
+                    })
+                    .collect();
                 Ok(ResolvedBuff::Bonuses { source: BuffResolutionSource::EffectFallback, stats })
             }
             FamilyResolution::Effect => Ok(ResolvedBuff::Effect {

@@ -789,6 +789,33 @@ fn simple_effect(effect_type: &str) -> Effect {
 }
 
 #[test]
+fn skill_ability_effects_and_item_buffs_grant_the_same_curated_groups() {
+    let effect_resolver = EffectResolver::new();
+    let buff_resolver = BuffResolver::from_definitions(&HashMap::new());
+    for (ability, expected) in [
+        ("Strength", &["Jump", "Swim"][..]),
+        ("Dexterity", &["Balance", "Hide", "Move Silently", "Open Lock", "Tumble"]),
+        ("Constitution", &["Concentration"]),
+        ("Intelligence", &["Disable Device", "Repair", "Search", "Spellcraft"]),
+        ("Wisdom", &["Heal", "Listen", "Spot"]),
+        ("Charisma", &["Bluff", "Diplomacy", "Haggle", "Intimidate", "Perform", "Use Magic Device"]),
+    ] {
+        let mut effect = simple_effect("SkillBonusAbility");
+        effect.targets = vec![ability.to_string()];
+        let derived: Vec<_> =
+            effect_resolver.derive_bonuses(&effect).unwrap().iter().map(|bonus| bonus.stat.name).collect();
+        assert_eq!(derived, expected, "{ability} effect");
+        let ResolvedBuff::Bonuses { stats, .. } =
+            buff_resolver.resolved(&buff("SkillBonusAbility", Some(ability), Some(3), Some("Enhancement"))).unwrap()
+        else {
+            panic!("{ability} item buff did not resolve");
+        };
+        let resolved: Vec<_> = stats.iter().map(|bonus| bonus.stat.name).collect();
+        assert_eq!(resolved, expected, "{ability} item buff");
+    }
+}
+
+#[test]
 fn character_wide_effect_types_resolve_to_their_stats() {
     use StatCategory::*;
     let cases: &[(&str, &str, StatCategory)] = &[

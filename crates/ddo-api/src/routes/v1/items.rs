@@ -262,6 +262,12 @@ fn bonus_match_sql(db: &Connection, name: &str, include_set_bonuses: bool) -> Re
     } else {
         Vec::new()
     };
+    let group_id = if type_name.is_none() {
+        db.query_row("SELECT id FROM effects WHERE name = ?1 AND is_group = 1", [name], |row| row.get::<_, i64>(0))
+            .optional()?
+    } else {
+        None
+    };
     if stat_id.is_none() && family_ids.is_empty() {
         return Err(ApiError::BadRequest(format!("unknown bonus {name:?}")));
     }
@@ -276,6 +282,9 @@ fn bonus_match_sql(db: &Connection, name: &str, include_set_bonuses: bool) -> Re
         if let Some(stat_id) = stat_id {
             let type_condition = type_id.map_or(String::new(), |type_id| format!(" AND ob.bonus_type_id = {type_id}"));
             alternatives.push(format!("EXISTS (SELECT 1 FROM owner_bonuses ob WHERE ob.owner_kind = '{owner_kind}' AND ob.owner_id = {link}.{owner_column} AND ob.effect_link_order = {link}.sort_order AND ob.stat_id = {stat_id}{type_condition})"));
+        }
+        if let Some(group_id) = group_id {
+            alternatives.push(format!("EXISTS (SELECT 1 FROM owner_bonuses ob WHERE ob.owner_kind = '{owner_kind}' AND ob.owner_id = {link}.{owner_column} AND ob.effect_link_order = {link}.sort_order AND ob.group_effect_id = {group_id})"));
         }
         format!("({})", alternatives.join(" OR "))
     };

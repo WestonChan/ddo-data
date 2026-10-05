@@ -133,7 +133,6 @@ pub const STATS: &[Stat] = &[
     Stat { id: 129, name: "Positive Healing Amplification", category: StatCategory::Other },
     Stat { id: 130, name: "Negative Healing Amplification", category: StatCategory::Other },
     Stat { id: 133, name: "Critical Threat Range", category: StatCategory::Martial },
-    Stat { id: 135, name: "Physical and Magical Resistance Rating", category: StatCategory::Defensive },
     Stat { id: 140, name: "Poison Spell Power", category: StatCategory::Magical },
     Stat { id: 142, name: "Temporary Hit Points", category: StatCategory::Defensive },
     Stat { id: 143, name: "Bard Songs", category: StatCategory::Other },

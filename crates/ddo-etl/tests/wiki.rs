@@ -1119,7 +1119,7 @@ fn reads_wiki_items_from_items_files() {
     assert_eq!(axe.quests[0].name, "The Grotto");
     assert_eq!(axe.quests[0].loot_type, "chest");
     assert_eq!(axe.augment_slots, ["red", "colorless"]);
-    assert_eq!(axe.bonuses[1].stat, "Doublestrike");
+    assert_eq!(axe.bonuses[1].stat.as_deref(), Some("Doublestrike"));
     assert_eq!(axe.effects[1].name, "Ethereal");
     let weapon = axe.weapon.as_ref().unwrap();
     assert_eq!(

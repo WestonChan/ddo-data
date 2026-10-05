@@ -33,6 +33,7 @@
                 {
                   "amount_source": "owner",
                   "bonus_type": "Competence",
+                  "group": null,
                   "scale": 1.0,
                   "stat": "Attack Bonus",
                   "stat_category": "martial",
@@ -95,6 +96,7 @@
                 {
                   "amount_source": "owner",
                   "bonus_type": "Resistance",
+                  "group": null,
                   "scale": 1.0,
                   "stat": "Armor Class",
                   "stat_category": "defensive",
@@ -103,7 +105,7 @@
               ],
               "damage": [],
               "description": "Passive: 9 Natural Armor Bonus to Armor Class.",
-              "effect_id": 414,
+              "effect_id": 415,
               "name": "Natural Armor",
               "text": "Resistance Natural Armor 9",
               "tier": null,
@@ -157,6 +159,7 @@
                 {
                   "amount_source": "owner",
                   "bonus_type": "Resistance",
+                  "group": null,
                   "scale": 1.0,
                   "stat": "Saving Throws",
                   "stat_category": "defensive",
@@ -239,6 +242,7 @@
         {
           "amount_source": "owner",
           "bonus_type": "Enhancement",
+          "group": null,
           "scale": 1.0,
           "stat": "Charisma",
           "stat_category": "ability",

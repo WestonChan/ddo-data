@@ -143,8 +143,8 @@ pub const INTEGRITY_CHECKS: &[IntegrityCheck] = &[
         OffenderQuery::Sql(
             "SELECT e.name, e.id, s.name || ' has ' || COUNT(*) || ' rules'
              FROM effect_bonuses eb JOIN effects e ON e.id = eb.effect_id
-             JOIN effects s ON s.id = eb.stat_id
-             GROUP BY e.id, eb.stat_id HAVING COUNT(*) > 1",
+             JOIN effects s ON s.id = eb.target_effect_id
+             GROUP BY e.id, eb.target_effect_id HAVING COUNT(*) > 1",
         ),
     ),
     IntegrityCheck::hard(
@@ -154,12 +154,26 @@ pub const INTEGRITY_CHECKS: &[IntegrityCheck] = &[
     ),
     IntegrityCheck::hard(
         "effect_families_have_owners",
-        "every effect family has at least one item, augment, set tier, feat or slot option owner",
+        "every effect family has an owner link or is a group granted by an owned effect",
         OffenderQuery::Sql(
             "SELECT e.name, e.id, 'no owner link' FROM effects e WHERE e.is_stat = 0 AND e.id NOT IN
                (SELECT effect_id FROM item_effects UNION SELECT effect_id FROM augment_effects
                 UNION SELECT effect_id FROM set_bonus_tier_effects UNION SELECT effect_id FROM feat_effects
-                UNION SELECT effect_id FROM item_augment_slot_option_effects)",
+                UNION SELECT effect_id FROM item_augment_slot_option_effects
+                UNION SELECT eb.target_effect_id FROM effect_bonuses eb WHERE eb.target_effect_id IN
+                  (SELECT id FROM effects WHERE is_group = 1))",
+        ),
+    ),
+    IntegrityCheck::hard(
+        "effect_groups_have_flat_members",
+        "every group has stat members reading slot one from the link with one type source and no nested group",
+        OffenderQuery::Sql(
+            "SELECT e.name, e.id, 'invalid group members' FROM effects e WHERE e.is_group = 1 AND
+              (NOT EXISTS (SELECT 1 FROM effect_bonuses eb WHERE eb.effect_id = e.id)
+               OR EXISTS (SELECT 1 FROM effect_bonuses eb LEFT JOIN effects target ON target.id = eb.target_effect_id
+                          WHERE eb.effect_id = e.id AND
+                            (target.is_stat <> 1 OR eb.amount_from <> 1 OR eb.bonus_type_id IS NOT NULL
+                             OR eb.scale <> 1 OR eb.rounding <> 'down' OR eb.trigger_id IS NOT NULL)))",
         ),
     ),
     IntegrityCheck::hard(
@@ -437,17 +451,10 @@ pub const INTEGRITY_CHECKS: &[IntegrityCheck] = &[
         "effect_families_sharing_stat_and_type",
         "distinct buff families affecting one stat with one bonus type; review identity before consolidating",
         OffenderQuery::Sql(
-            "WITH owned AS (
-               SELECT effect_id, bonus_type_id FROM item_effects
-               UNION SELECT effect_id, bonus_type_id FROM augment_effects
-               UNION SELECT effect_id, bonus_type_id FROM set_bonus_tier_effects
-               UNION SELECT effect_id, bonus_type_id FROM feat_effects
-               UNION SELECT effect_id, bonus_type_id FROM item_augment_slot_option_effects)
-             SELECT s.name || ' / ' || bt.name, s.id, GROUP_CONCAT(DISTINCT e.name)
-             FROM owned o JOIN effects e ON e.id = o.effect_id
-             JOIN effect_bonuses es ON es.effect_id = e.id
-             JOIN effects s ON s.id = es.stat_id
-             JOIN bonus_types bt ON bt.id = COALESCE(es.bonus_type_id, o.bonus_type_id)
+            "SELECT s.name || ' / ' || bt.name, s.id, GROUP_CONCAT(DISTINCT e.name)
+             FROM owner_bonuses ob JOIN effects e ON e.id = ob.via_effect_id
+             JOIN effects s ON s.id = ob.stat_id
+             JOIN bonus_types bt ON bt.id = ob.bonus_type_id
              GROUP BY s.id, bt.id HAVING COUNT(DISTINCT e.id) > 1",
         ),
     ),
@@ -702,6 +709,7 @@ fn effect_types_not_classified(db: &Connection, options: &IntegrityOptions) -> R
             || vocabulary.by_item.contains_key(effect_type)
             || vocabulary.by_item_default.contains_key(effect_type)
             || vocabulary.engine_only.contains_key(effect_type)
+            || effect_type == "SkillBonusAbility"
     };
     let mut families_by_type: BTreeMap<String, BTreeSet<String>> = BTreeMap::new();
     let mut items_by_type: BTreeMap<String, BTreeSet<String>> = BTreeMap::new();

@@ -345,11 +345,11 @@ fn injected_violations() -> Vec<InjectedViolation> {
         ),
         violation(
             "effect_bonuses_have_one_rule_per_stat",
-            "INSERT INTO effect_bonuses (effect_id, stat_id, bonus_type_id, amount_from, sort_order)
-             SELECT eb.effect_id, eb.stat_id, (SELECT id FROM bonus_types WHERE name = 'Feat'),
+            "INSERT INTO effect_bonuses (effect_id, target_effect_id, bonus_type_id, amount_from, sort_order)
+             SELECT eb.effect_id, eb.target_effect_id, (SELECT id FROM bonus_types WHERE name = 'Feat'),
                     eb.amount_from, 998 FROM effect_bonuses eb JOIN effects e ON e.id = eb.effect_id
-              JOIN effects s ON s.id = eb.stat_id WHERE e.name = 'Command' AND s.name = 'Bluff' LIMIT 1;",
-            "Command",
+              JOIN effects s ON s.id = eb.target_effect_id WHERE e.name = 'Improved Deception' AND s.name = 'Bluff' LIMIT 1;",
+            "Improved Deception",
         ),
         violation(
             "stat_links_have_bonus_types",
@@ -387,6 +387,11 @@ fn injected_violations() -> Vec<InjectedViolation> {
             "INSERT INTO effects (name, text_template)
              VALUES ('Integrity Orphan Effect', 'Integrity Orphan Effect');",
             "Integrity Orphan Effect",
+        ),
+        violation(
+            "effect_groups_have_flat_members",
+            "INSERT INTO effects (name, text_template, is_group) VALUES ('Integrity Empty Group', 'Integrity Empty Group +{1}', 1);",
+            "Integrity Empty Group",
         ),
         violation(
             "effect_tier_groups_have_steps",

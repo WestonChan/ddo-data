@@ -28,6 +28,7 @@
             {
               "amount_source": "owner",
               "bonus_type": "Equipment",
+              "group": null,
               "scale": 1.0,
               "stat": "Positive Spell Power",
               "stat_category": "magical",

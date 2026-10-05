@@ -48,7 +48,7 @@ fn writes_improved_deception_from_its_definition_as_a_typed_bluff_bonus() {
         .prepare(
             "SELECT s.name, CASE es.amount_from WHEN 0 THEN es.constant WHEN 1 THEN ie.value ELSE ie.value2 END, bt.name
              FROM item_effects ie JOIN effect_bonuses es ON es.effect_id = ie.effect_id
-             JOIN effects s ON s.id = es.stat_id JOIN bonus_types bt ON bt.id = COALESCE(es.bonus_type_id, ie.bonus_type_id)
+             JOIN effects s ON s.id = es.target_effect_id JOIN bonus_types bt ON bt.id = COALESCE(es.bonus_type_id, ie.bonus_type_id)
              WHERE ie.item_id = ?1 AND ie.value = 5",
         )
         .unwrap()
@@ -100,7 +100,7 @@ fn effect_fallback_rows_stay_adjacent_and_distinct_descriptions_survive() {
         .prepare(
             "SELECT i.name, e.text_template || ': ' || e.description_template, bt.name FROM item_effects ie
              JOIN items i ON i.id = ie.item_id JOIN effects e ON e.id = ie.effect_id
-             JOIN effect_bonuses es ON es.effect_id = e.id JOIN effects s ON s.id = es.stat_id
+             JOIN effect_bonuses es ON es.effect_id = e.id JOIN effects s ON s.id = es.target_effect_id
              JOIN bonus_types bt ON bt.id = COALESCE(es.bonus_type_id, ie.bonus_type_id)
              WHERE i.name IN ('Alaric''s Grim Gauntlets', 'Acrobat''s Ring') \
              AND s.name = 'Bluff' AND CASE es.amount_from WHEN 0 THEN es.constant WHEN 1 THEN ie.value ELSE ie.value2 END = 3
@@ -327,13 +327,13 @@ fn splits_buffs_into_bonuses_and_effects() {
     let fire_family_count = count(
         &db,
         "SELECT COUNT(*) FROM effects e JOIN effect_bonuses es ON es.effect_id = e.id
-         JOIN effects s ON s.id = es.stat_id WHERE s.name = 'Fire Spell Power' AND e.name = 'Combustion'",
+         JOIN effects s ON s.id = es.target_effect_id WHERE s.name = 'Fire Spell Power' AND e.name = 'Combustion'",
     );
     assert_eq!(fire_family_count, 1);
     let description_template: String = db
         .query_row(
             "SELECT e.description_template FROM item_effects ie JOIN effects e ON e.id = ie.effect_id
-         JOIN effect_bonuses es ON es.effect_id = e.id JOIN effects s ON s.id = es.stat_id
+         JOIN effect_bonuses es ON es.effect_id = e.id JOIN effects s ON s.id = es.target_effect_id
          WHERE ie.item_id = ?1 AND s.name = 'Hit Points'",
             [cloak],
             |r| r.get(0),
@@ -634,7 +634,7 @@ fn keeps_what_an_augment_slot_option_gives_on_the_option() {
             &db,
             &format!(
                 "SELECT COUNT(*) FROM item_effects ie JOIN effect_bonuses es ON es.effect_id = ie.effect_id
-                 JOIN effects s ON s.id = es.stat_id WHERE ie.item_id = {axe}
+                 JOIN effects s ON s.id = es.target_effect_id WHERE ie.item_id = {axe}
                  AND s.name IN ('Spell Penetration', 'Fire Spell Lore')"
             )
         ),
@@ -1101,7 +1101,7 @@ fn all_ability_set_tier_uses_one_family_with_six_stats() {
     let (db, _) = built_fixture_db();
     let families: Vec<(String, i64)> = db
         .prepare(
-            "SELECT e.name, COUNT(es.stat_id) FROM set_bonus_tier_effects l
+            "SELECT e.name, COUNT(es.target_effect_id) FROM set_bonus_tier_effects l
              JOIN set_bonus_tiers t ON t.id = l.tier_id
              JOIN set_bonuses sb ON sb.id = t.set_id
              JOIN effects e ON e.id = l.effect_id

@@ -69,6 +69,7 @@ impl EffectResolver {
             && !self.vocabulary.effect.targeted.contains_key(effect_type)
             && !self.vocabulary.effect.by_item.contains_key(effect_type)
             && !self.vocabulary.effect.by_item_default.contains_key(effect_type)
+            && effect_type != "SkillBonusAbility"
         {
             if self.vocabulary.effect.engine_only.contains_key(effect_type) {
                 return Ok(Vec::new());

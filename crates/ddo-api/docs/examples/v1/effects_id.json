@@ -124,7 +124,7 @@
         "amount_source": "owner",
         "bonus_type": "Artifact",
         "effect": "All Ability Scores",
-        "effect_id": 2004,
+        "effect_id": 2011,
         "equipped_count": 3,
         "id": 280,
         "name": "Devils' Infernal Dance (3)",

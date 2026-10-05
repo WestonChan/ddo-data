@@ -40,6 +40,13 @@ pub(crate) struct EffectStatBonus {
     pub(crate) value: i64,
     pub(crate) amount_source: String,
     pub(crate) scale: f64,
+    pub(crate) group: Option<EffectBonusGroup>,
+}
+
+#[derive(utoipa::ToSchema)]
+pub(crate) struct EffectBonusGroup {
+    pub(crate) id: i64,
+    pub(crate) name: String,
 }
 
 #[derive(utoipa::ToSchema)]
@@ -611,6 +618,7 @@ pub(crate) struct EffectCarrierBonus {
     pub(crate) value: i64,
     pub(crate) amount_source: String,
     pub(crate) scale: f64,
+    pub(crate) group: Option<EffectBonusGroup>,
 }
 
 #[derive(utoipa::ToSchema)]
@@ -698,7 +706,8 @@ pub(crate) struct EffectsDetailResponseBonusesEntry {
     pub(crate) constant: Option<i64>,
     pub(crate) rounding: String,
     pub(crate) scale: f64,
-    pub(crate) stat: String,
+    pub(crate) target: String,
+    pub(crate) target_kind: String,
 }
 
 #[derive(utoipa::ToSchema)]

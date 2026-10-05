@@ -599,7 +599,7 @@ impl CorrectedBonus {
             "SELECT {selected_columns} FROM {table_name}
               JOIN effects e ON e.id = {table_name}.effect_id
               LEFT JOIN effect_bonuses es ON es.effect_id = e.id
-              WHERE {table_name}.{owner_column} = ?1 AND (es.stat_id = ?2 OR (e.is_stat = 1 AND e.id = ?2))
+              WHERE {table_name}.{owner_column} = ?1 AND (es.target_effect_id = ?2 OR (e.is_stat = 1 AND e.id = ?2))
                 AND COALESCE(es.bonus_type_id, {table_name}.bonus_type_id) IS ?3
                 AND (?4 IS NULL OR {effective_value} = ?4)
               ORDER BY {table_name}.sort_order"
@@ -656,7 +656,7 @@ impl CorrectedBonus {
                JOIN effects e ON e.id = {table_name}.effect_id
                LEFT JOIN effect_bonuses es ON es.effect_id = e.id
                LEFT JOIN bonus_types ON bonus_types.id = COALESCE(es.bonus_type_id, {table_name}.bonus_type_id)
-              WHERE {table_name}.{owner_column} = ?1 AND (es.stat_id = ?2 OR (e.is_stat = 1 AND e.id = ?2))
+              WHERE {table_name}.{owner_column} = ?1 AND (es.target_effect_id = ?2 OR (e.is_stat = 1 AND e.id = ?2))
                 AND (?3 IS NULL OR {effective_value} = ?3)
               ORDER BY {table_name}.sort_order"
         ))?;
@@ -836,7 +836,7 @@ fn corrected_effect(
         original.amount_count,
     );
     let mut statement = transaction.prepare(
-        "SELECT stat_id, bonus_type_id, amount_from, constant, sort_order FROM effect_bonuses
+        "SELECT target_effect_id, bonus_type_id, amount_from, constant, sort_order FROM effect_bonuses
          WHERE effect_id = ?1 ORDER BY sort_order",
     )?;
     let stat_rows: Vec<ExistingStatRow> = statement

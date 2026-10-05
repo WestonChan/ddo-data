@@ -51,14 +51,14 @@ declare_query_parameters! {
     }
 }
 
-const EFFECT_KINDS: [&str; 2] = ["stat", "effect"];
+const EFFECT_KINDS: [&str; 3] = ["stat", "effect", "group"];
 
 const EFFECT_VOCABULARY_SQL: &str = "
-    SELECT e.id, e.name, CASE WHEN e.is_stat = 1 THEN 'stat' ELSE 'effect' END AS kind,
+    SELECT e.id, e.name, CASE WHEN e.is_stat = 1 THEN 'stat' WHEN e.is_group = 1 THEN 'group' ELSE 'effect' END AS kind,
            '/v1/effects/' || e.id AS detail_path,
            c.item_count, c.augment_count, c.set_count
       FROM effects e JOIN effect_vocabulary_counts c ON c.id = e.id
-       AND c.kind = CASE WHEN e.is_stat = 1 THEN 'stat' ELSE 'effect' END";
+       AND c.kind = CASE WHEN e.is_stat = 1 THEN 'stat' WHEN e.is_group = 1 THEN 'group' ELSE 'effect' END";
 
 const EFFECT_TYPES_SQL: &str = "
     SELECT v.kind, v.id, bt.name, v.item_count
@@ -86,10 +86,10 @@ declare_list_parameters!(
     get,
     path = "/v1/effects",
     tag = "bonuses",
-    summary = "List effects and stats",
-    description = "Lists every effect family and stat with carrier counts, types and a detail path.",
+    summary = "List effects, groups and stats",
+    description = "Lists every effect, group and stat with carrier counts, types and a detail path.",
     params(EffectsParameters,
-        ("kind" = Option<String>, Query, description = "Keep `effect` or `stat` rows only.")),
+        ("kind" = Option<String>, Query, description = "Keep `effect`, `group` or `stat` rows only.")),
     responses((status = 200, description = "Paged effect vocabulary", body = crate::routes::v1::response_schemas::EffectsPageResponse),
         (status = 400, description = "Invalid kind or query", body = crate::error::ErrorBody))
 )]
@@ -112,9 +112,11 @@ async fn effects(
             if let Some(search_text) = query.q.as_deref().map(str::trim).filter(|text| !text.is_empty()) {
                 let search_placeholder = where_clause.add_bound_condition(
                     "(instr(lower(listed.name), lower(?)) > 0 OR
-                      (listed.kind = 'effect' AND EXISTS (
-                          SELECT 1 FROM effect_bonuses eb JOIN effects s ON s.id = eb.stat_id
-                           WHERE eb.effect_id = listed.id AND instr(lower(s.name), lower(?)) > 0)))",
+                      (listed.kind IN ('effect', 'group') AND EXISTS (
+                          SELECT 1 FROM effect_bonuses eb JOIN effects s ON s.id = eb.target_effect_id
+                           WHERE eb.effect_id = listed.id AND (instr(lower(s.name), lower(?)) > 0 OR
+                             EXISTS (SELECT 1 FROM effect_bonuses member JOIN effects ms ON ms.id = member.target_effect_id
+                                      WHERE member.effect_id = s.id AND instr(lower(ms.name), lower(?)) > 0)))))",
                     search_text.to_string(),
                 );
                 default_order = format!(
@@ -172,18 +174,18 @@ fn carrier_pages(
     pages: BacklinkPages,
 ) -> Result<(Value, Value, Value), ApiError> {
     let mut bonuses_by_link: HashMap<(String, i64, i64), Vec<Value>> = HashMap::new();
-    if kind == "effect" {
+    if kind != "stat" {
         for mut bonus in json_rows(
             db,
             "SELECT ob.owner_kind, ob.owner_id, ob.effect_link_order,
                     s.name AS stat, s.category AS stat_category, bt.name AS bonus_type,
-                    ob.amount AS value, ob.amount_source, ob.scale
+                    ob.amount AS value, ob.amount_source, ob.scale, g.id AS group_id, g.name AS group_name
                FROM owner_bonuses ob JOIN effects s ON s.id = ob.stat_id
+               LEFT JOIN effects g ON g.id = ob.group_effect_id
                LEFT JOIN bonus_types bt ON bt.id = ob.bonus_type_id
-               JOIN effect_bonuses eb ON eb.effect_id = ob.via_effect_id AND eb.stat_id = ob.stat_id
-              WHERE ob.via_effect_id = ?1
-              ORDER BY ob.owner_kind, ob.owner_id, ob.effect_link_order, eb.sort_order",
-            [id],
+              WHERE (ob.via_effect_id = ?1 AND ?2 = 'effect') OR (ob.group_effect_id = ?1 AND ?2 = 'group')
+              ORDER BY ob.owner_kind, ob.owner_id, ob.effect_link_order, ob.stat_id",
+            rusqlite::params![id, kind],
         )? {
             let owner_kind = bonus["owner_kind"].as_str().unwrap_or("").to_string();
             let owner_id = bonus["owner_id"].as_i64().unwrap_or(0);
@@ -192,10 +194,14 @@ fn carrier_pages(
             object.remove("owner_kind");
             object.remove("owner_id");
             object.remove("effect_link_order");
+            let group_id = object.remove("group_id").unwrap_or(Value::Null);
+            let group_name = object.remove("group_name").unwrap_or(Value::Null);
+            let group = if group_id.is_null() { Value::Null } else { json!({"id": group_id, "name": group_name}) };
+            object.insert("group".to_string(), group);
             bonuses_by_link.entry((owner_kind, owner_id, link_order)).or_default().push(bonus);
         }
     }
-    let carrier_columns = if kind == "effect" {
+    let carrier_columns = if kind != "stat" {
         "NULL AS effect_id, NULL AS effect,
          COALESCE(bt.name, (SELECT MIN(fixed_type.name) FROM effect_bonuses fixed_bonus
               JOIN bonus_types fixed_type ON fixed_type.id = fixed_bonus.bonus_type_id
@@ -208,7 +214,13 @@ fn carrier_pages(
          NULL AS value2, ob.amount_source, ob.scale"
             .to_string()
     };
-    let match_id = if kind == "effect" { "j.effect_id" } else { "ob.stat_id" };
+    let match_id = if kind == "effect" {
+        "j.effect_id"
+    } else if kind == "group" {
+        "COALESCE(ob.group_effect_id, -1)"
+    } else {
+        "ob.stat_id"
+    };
     let join_for = |owner_kind: &str, owner_column: &str| -> String {
         if kind == "effect" {
             return "LEFT JOIN bonus_types bt ON bt.id = j.bonus_type_id".to_string();
@@ -217,7 +229,7 @@ fn carrier_pages(
             "JOIN owner_bonuses ob ON ob.owner_kind = '{owner_kind}'
              AND ob.owner_id = j.{owner_column} AND ob.effect_link_order = j.sort_order"
         );
-        if kind == "stat" {
+        if kind == "stat" || kind == "group" {
             joined.push_str(
                 " JOIN effects e ON e.id = COALESCE(ob.via_effect_id, ob.stat_id)
                   LEFT JOIN bonus_types bt ON bt.id = ob.bonus_type_id",
@@ -226,20 +238,21 @@ fn carrier_pages(
         joined
     };
     let current_items = if pages.include_legacy == Some(true) { "" } else { "WHERE NOT i.is_legacy" };
+    let distinct = if kind == "group" { "DISTINCT" } else { "" };
     let items_sql = format!(
-        "SELECT i.id, i.name, {carrier_columns}, {match_id} AS match_id, j.sort_order AS link_order
+        "SELECT {distinct} i.id, i.name, {carrier_columns}, {match_id} AS match_id, j.sort_order AS link_order
            FROM item_effects j JOIN items i ON i.id = j.item_id {match_join}
           {current_items} ORDER BY i.name, j.sort_order",
         match_join = join_for("item", "item_id")
     );
     let augments_sql = format!(
-        "SELECT a.id, a.name, {carrier_columns}, {match_id} AS match_id, j.sort_order AS link_order
+        "SELECT {distinct} a.id, a.name, {carrier_columns}, {match_id} AS match_id, j.sort_order AS link_order
            FROM augment_effects j JOIN augments a ON a.id = j.augment_id {match_join}
           ORDER BY a.name, j.sort_order",
         match_join = join_for("augment", "augment_id")
     );
     let tiers_sql = format!(
-        "SELECT t.id, s.id AS set_id, s.name AS set_name, t.equipped_count, {carrier_columns}, {match_id} AS match_id,
+        "SELECT {distinct} t.id, s.id AS set_id, s.name AS set_name, t.equipped_count, {carrier_columns}, {match_id} AS match_id,
                 j.sort_order AS link_order,
                 s.name || ' (' || t.equipped_count || ')' AS name
            FROM set_bonus_tier_effects j JOIN set_bonus_tiers t ON t.id = j.tier_id
@@ -260,7 +273,7 @@ fn carrier_pages(
             &where_clause,
         )?;
         for row in &mut result.rows {
-            if kind == "effect" {
+            if kind != "stat" {
                 let key =
                     (owner_kind.to_string(), row["id"].as_i64().unwrap_or(0), row["link_order"].as_i64().unwrap_or(0));
                 row["bonuses"] = Value::Array(bonuses_by_link.get(&key).cloned().unwrap_or_default());
@@ -280,8 +293,8 @@ fn carrier_pages(
 
 #[utoipa::path(
     get, path = "/v1/effects/{id}", tag = "bonuses", summary = "Get an effect",
-    description = "Returns an effect or stat, its bonus and damage rules, tier group and paged carriers.",
-    params(("id" = i64, Path, description = "Effect or stat id from the vocabulary."),
+    description = "Returns an effect, group or stat with its bonus and damage rules, tier group and paged carriers.",
+    params(("id" = i64, Path, description = "Effect, group or stat id from the vocabulary."),
         ("items_limit" = Option<i64>, Query, description = "Maximum item links in this page."),
         ("items_offset" = Option<i64>, Query, description = "Item links to skip."),
         ("augments_limit" = Option<i64>, Query, description = "Maximum augment links in this page."),
@@ -301,16 +314,27 @@ async fn effect_detail(
         .read_db(move |db| {
             let mut family = json_row(
                 db,
-                "SELECT id, name, is_stat, category, text_template, description_template, wiki_url,
+                "SELECT id, name, is_stat, is_group, category, text_template, description_template, wiki_url,
                     default_value, default_value2, tier_group_id, tier FROM effects WHERE id = ?1",
                 [id],
             )?;
-            family["kind"] = Value::String(if family["is_stat"] == 1 { "stat" } else { "effect" }.to_string());
+            family["kind"] = Value::String(
+                if family["is_stat"] == 1 {
+                    "stat"
+                } else if family["is_group"] == 1 {
+                    "group"
+                } else {
+                    "effect"
+                }
+                .to_string(),
+            );
             family.as_object_mut().expect("effect object").remove("is_stat");
+            family.as_object_mut().expect("effect object").remove("is_group");
             family["bonuses"] = Value::Array(json_rows(
                 db,
-                "SELECT s.name AS stat, bt.name AS bonus_type, es.amount_from, es.constant, es.scale, es.rounding
-               FROM effect_bonuses es JOIN effects s ON s.id = es.stat_id
+                "SELECT s.name AS target, CASE WHEN s.is_group = 1 THEN 'group' ELSE 'stat' END AS target_kind,
+                        bt.name AS bonus_type, es.amount_from, es.constant, es.scale, es.rounding
+               FROM effect_bonuses es JOIN effects s ON s.id = es.target_effect_id
                LEFT JOIN bonus_types bt ON bt.id = es.bonus_type_id
               WHERE es.effect_id = ?1 ORDER BY es.sort_order",
                 [id],

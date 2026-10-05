@@ -38,6 +38,7 @@
         {
           "amount_source": "owner",
           "bonus_type": "Artifact",
+          "group": null,
           "scale": 1.0,
           "stat": "Physical Resistance Rating",
           "stat_category": "defensive",

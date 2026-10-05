@@ -1,6 +1,6 @@
 use super::bonus_types::BonusOwnerKind;
 use super::bonus_types::{BonusOrigin, BonusOwner};
-use super::effects::EffectOwner;
+use super::effects::{BonusRule, EffectOwner};
 use super::{json_number_array, json_string_array, trimmed_non_empty, TableWriter};
 use crate::map::effect_map::EFFECT_MAP;
 use crate::xml::effect::Effect;
@@ -140,7 +140,8 @@ impl TableWriter<'_> {
                 }
                 let all_abilities =
                     effect_type == "AbilityBonus" && effect.targets.iter().any(|target| target == "All");
-                let groups: Vec<Vec<_>> = if all_abilities {
+                let shared_target = all_abilities || effect_type == "SkillBonusAbility";
+                let groups: Vec<Vec<_>> = if shared_target {
                     vec![derived_bonuses]
                 } else {
                     derived_bonuses.into_iter().map(|bonus| vec![bonus]).collect()
@@ -188,16 +189,11 @@ impl TableWriter<'_> {
                     );
                     let (amount_from, constant) =
                         existing_stat.unwrap_or(if count == 0 { (0, Some(first_bonus.value)) } else { (1, None) });
-                    for (stat_order, bonus) in bonuses.into_iter().enumerate() {
-                        self.effects.ensure_stat(
-                            effect_id,
-                            bonus.stat,
-                            stat_bonus_type,
-                            amount_from,
-                            constant,
-                            stat_order,
-                        )?;
-                    }
+                    let rules: Vec<BonusRule> = bonuses
+                        .iter()
+                        .map(|bonus| BonusRule { stat: bonus.stat, bonus_type: stat_bonus_type, amount_from, constant })
+                        .collect();
+                    self.effects.ensure_bonus_rules(effect_id, &rules)?;
                     let (value, value2) = match amount_from {
                         0 => (None, None),
                         1 => (Some(first_bonus.value), None),

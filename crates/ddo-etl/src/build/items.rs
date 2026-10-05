@@ -1,6 +1,6 @@
 use super::bonus_types::{BonusOrigin, BonusOwner, BonusOwnerKind};
 use super::drop_text::DroppedLoot;
-use super::effects::{amount_count, split_template, EffectOwner};
+use super::effects::{amount_count, split_template, BonusRule, EffectOwner};
 use super::quest_series::QuestSeriesTable;
 use super::{joined_non_empty, trimmed_non_empty, BuildReport, TableWriter};
 use crate::map::buff::{BuffResolutionSource, ResolvedBuff};
@@ -241,21 +241,23 @@ impl TableWriter<'_> {
                         self.effects.set_defaults(effect_id, defaults)?;
                     }
                     let link_typed = uses_link_type || typed_stats.len() == 1;
-                    for (stat_order, (resolved_stat, bonus_type)) in typed_stats.into_iter().enumerate() {
-                        let (amount_from, constant) = match resolved_stat.amount_from {
-                            crate::map::buff::AmountFrom::ItemValue1 => (1, None),
-                            crate::map::buff::AmountFrom::ItemValue2 => (2, None),
-                            crate::map::buff::AmountFrom::Constant(amount) => (0, Some(amount)),
-                        };
-                        self.effects.ensure_stat(
-                            effect_id,
-                            resolved_stat.stat,
-                            (!link_typed).then_some(bonus_type),
-                            amount_from,
-                            constant,
-                            stat_order,
-                        )?;
-                    }
+                    let rules: Vec<BonusRule> = typed_stats
+                        .into_iter()
+                        .map(|(resolved_stat, bonus_type)| {
+                            let (amount_from, constant) = match resolved_stat.amount_from {
+                                crate::map::buff::AmountFrom::ItemValue1 => (1, None),
+                                crate::map::buff::AmountFrom::ItemValue2 => (2, None),
+                                crate::map::buff::AmountFrom::Constant(amount) => (0, Some(amount)),
+                            };
+                            BonusRule {
+                                stat: resolved_stat.stat,
+                                bonus_type: (!link_typed).then_some(bonus_type),
+                                amount_from,
+                                constant,
+                            }
+                        })
+                        .collect();
+                    self.effects.ensure_bonus_rules(effect_id, &rules)?;
                     self.effects.insert_link(
                         EffectOwner::Item,
                         item_id,
