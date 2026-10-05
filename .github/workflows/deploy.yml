@@ -120,6 +120,10 @@ jobs:
         if: steps.compare.outputs.changed == 'true'
         run: cargo run --release -q -p xtask -- validate-api --db ddo.db --all-details
 
+      - name: Compare served lines with the wiki's tooltips
+        if: steps.compare.outputs.changed == 'true'
+        run: cargo run --release -q -p xtask -- wiki-tooltips --db ddo.db
+
       - name: Keep the dataset as a workflow artifact
         if: steps.compare.outputs.changed == 'true'
         uses: actions/upload-artifact@v4
