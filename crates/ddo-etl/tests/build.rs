@@ -40,7 +40,7 @@ fn item_id(db: &Connection, name: &str) -> i64 {
 #[test]
 fn writes_improved_deception_from_its_definition_as_a_typed_bluff_bonus() {
     let (db, report) = built_fixture_db();
-    assert_eq!(report.effect_fallback_buff_count, 15);
+    assert_eq!(report.effect_fallback_buff_count, 18);
     assert!(report.family_buff_count > 0);
     assert!(report.effect_buff_count > 0);
     let gloves = item_id(&db, "Backstabber's Gloves (Level 25)");
@@ -556,6 +556,64 @@ fn one_stat_effect_uses_each_owners_bonus_type() {
         .query_row("SELECT COUNT(*) FROM effects WHERE name = 'Illusion Save (variable type)'", [], |row| row.get(0))
         .unwrap();
     assert_eq!(illusion_named_effect_count, 0);
+
+    let fixed_item_types: Vec<(String, String)> = db
+        .prepare(
+            "SELECT e.name, bt.name FROM owner_bonuses ob
+             JOIN items i ON i.id = ob.owner_id JOIN effects e ON e.id = ob.via_effect_id
+             JOIN bonus_types bt ON bt.id = ob.bonus_type_id
+             WHERE ob.owner_kind = 'item' AND i.name = 'Lindal''s Mighty Belt'
+               AND e.name IN ('Invisibility', 'Unwieldy') ORDER BY e.name",
+        )
+        .unwrap()
+        .query_map([], |row| Ok((row.get(0)?, row.get(1)?)))
+        .unwrap()
+        .map(Result::unwrap)
+        .collect();
+    assert_eq!(fixed_item_types, [("Invisibility".into(), "Deflection".into()), ("Unwieldy".into(), "Penalty".into())]);
+
+    for (owner_kind, owner_table, owner_name, expected_type) in [
+        ("item", "items", "Visor of Fraz-Urb'luu", "Resistance"),
+        ("augment", "augments", "Storm's Bulwark", "Insight"),
+        ("feat", "feats", "Adamantine Body", "Feat"),
+    ] {
+        let sql = format!(
+            "SELECT bt.name FROM owner_bonuses ob JOIN effects s ON s.id = ob.stat_id
+             JOIN bonus_types bt ON bt.id = ob.bonus_type_id
+             WHERE ob.owner_kind = ?1 AND ob.owner_id = (SELECT id FROM {owner_table} WHERE name = ?2)
+               AND s.name = 'Illusion Save'"
+        );
+        let served_type: String = db.query_row(&sql, params![owner_kind, owner_name], |row| row.get(0)).unwrap();
+        assert_eq!(served_type, expected_type, "{owner_kind} {owner_name}");
+    }
+}
+
+#[test]
+fn skill_ability_item_links_the_group_without_a_wrapper() {
+    let (db, _) = built_fixture_db();
+    let linked: (i64, String) = db
+        .query_row(
+            "SELECT ie.value, bt.name FROM item_effects ie
+         JOIN items i ON i.id = ie.item_id JOIN effects e ON e.id = ie.effect_id
+         JOIN bonus_types bt ON bt.id = ie.bonus_type_id
+         WHERE i.name = 'Lindal''s Mighty Belt' AND e.name = 'Charisma Skills' AND e.is_group = 1",
+            [],
+            |row| Ok((row.get(0)?, row.get(1)?)),
+        )
+        .unwrap();
+    assert_eq!(linked, (4, "Insight".into()));
+    assert_eq!(count(&db, "SELECT COUNT(*) FROM effects WHERE name = 'Skills Charisma'"), 0);
+    let augment_link: (i64, String) = db
+        .query_row(
+            "SELECT ae.value, bt.name FROM augment_effects ae
+         JOIN augments a ON a.id = ae.augment_id JOIN effects e ON e.id = ae.effect_id
+         JOIN bonus_types bt ON bt.id = ae.bonus_type_id
+         WHERE a.name = 'Storm''s Bulwark' AND e.name = 'Charisma Skills' AND e.is_group = 1",
+            [],
+            |row| Ok((row.get(0)?, row.get(1)?)),
+        )
+        .unwrap();
+    assert_eq!(augment_link, (5, "Insight".into()));
 }
 
 #[test]

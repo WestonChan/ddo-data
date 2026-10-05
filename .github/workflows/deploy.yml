@@ -116,6 +116,10 @@ jobs:
         if: steps.compare.outputs.changed == 'true'
         run: cargo run --release -q -p xtask -- check-db ddo.db --allow-empty-table vendors --allow-empty-table events
 
+      - name: Validate every API response against its schema
+        if: steps.compare.outputs.changed == 'true'
+        run: cargo run --release -q -p xtask -- validate-api --db ddo.db --all-details
+
       - name: Keep the dataset as a workflow artifact
         if: steps.compare.outputs.changed == 'true'
         uses: actions/upload-artifact@v4

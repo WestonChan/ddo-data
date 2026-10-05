@@ -5,7 +5,7 @@ use rusqlite::{Connection, OpenFlags};
 use std::path::{Path, PathBuf};
 use std::sync::{Arc, Mutex};
 
-const POOL_CAPACITY: usize = 8;
+const POOL_CAPACITY: usize = 16;
 
 #[derive(Clone)]
 pub struct AppState {

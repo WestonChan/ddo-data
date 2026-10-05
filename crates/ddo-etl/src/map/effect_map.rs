@@ -38,6 +38,8 @@ pub struct SkillAbilityGroups {
 #[serde(deny_unknown_fields)]
 pub struct FamilyVocabulary {
     pub enhancement: Vec<String>,
+    #[serde(default)]
+    pub owner_type_precedence: BTreeSet<String>,
     pub fixed: BTreeMap<String, String>,
     pub by_item: BTreeMap<String, String>,
     #[serde(default)]
@@ -220,6 +222,9 @@ impl EffectMap {
             {
                 bail!("effect_map.toml [family.enhancement] {kind} is also mapped in another family section");
             }
+        }
+        if vocabulary.family.owner_type_precedence.iter().any(|kind| kind.trim().is_empty()) {
+            bail!("effect_map.toml [family] owner_type_precedence contains a blank buff type");
         }
         for (kind, reason) in &vocabulary.family.text_only {
             if kind.trim().is_empty() || reason.trim().is_empty() {

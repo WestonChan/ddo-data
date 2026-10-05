@@ -70,6 +70,13 @@ dexterity bonus.</Description>
       <AType>Simple</AType>
       <Amount size="1">1</Amount>
     </Effect>
+    <Effect>
+      <Type>SaveBonus</Type>
+      <Bonus>Feat</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">2</Amount>
+      <Item>Illusion</Item>
+    </Effect>
   </Feat>
   <Feat>
     <Name>Adept of Forms</Name>

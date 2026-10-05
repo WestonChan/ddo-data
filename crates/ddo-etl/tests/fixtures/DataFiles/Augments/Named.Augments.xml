@@ -31,5 +31,19 @@ Drops in U48 Quest: The Knight who Cried Windmill</Description>
       <Item>Air Elemental Knockdown and Slow</Item>
       <Bonus>Stacking</Bonus>
     </Effect>
+    <Effect>
+      <Type>SkillBonusAbility</Type>
+      <Bonus>Insight</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">5</Amount>
+      <Item>Charisma</Item>
+    </Effect>
+    <Effect>
+      <Type>SaveBonus</Type>
+      <Bonus>Insight</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">3</Amount>
+      <Item>Illusion</Item>
+    </Effect>
   </Augment>
   </Augments>

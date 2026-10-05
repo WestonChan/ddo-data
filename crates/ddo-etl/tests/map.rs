@@ -615,6 +615,28 @@ fn definition_bonus_type_is_fixed_unless_display_text_has_an_item_type_slot() {
 }
 
 #[test]
+fn fixed_definition_type_beats_an_items_default_type() {
+    let resolver = BuffResolver::from_definitions(&effect_item_buff_definitions());
+    for (kind, stat_name, bonus_type) in
+        [("Invisibility", "Armor Class", BonusType::Deflection), ("Unwieldy", "Dexterity", BonusType::Penalty)]
+    {
+        let buff_resolution = resolver.resolved(&buff(kind, None, Some(2), Some("Enhancement"))).unwrap();
+        let ResolvedBuff::Bonuses { stats, .. } = buff_resolution else { panic!("{kind} did not grant a bonus") };
+        assert_eq!(stats.len(), 1, "{kind}");
+        assert_eq!((stats[0].stat.name, stats[0].bonus_type), (stat_name, Some(bonus_type)), "{kind}");
+    }
+    let resolver = BuffResolver::from_definitions(&fixture_item_buff_definitions());
+    assert_eq!(
+        resolved_bonus_type(&resolver, &buff("IllusionSave", None, Some(3), Some("Insight"))),
+        Some(BonusType::Insight)
+    );
+    assert_eq!(
+        resolved_bonus_type(&resolver, &buff("Illusion Save", None, Some(3), Some("Enhancement"))),
+        Some(BonusType::Resistance)
+    );
+}
+
+#[test]
 fn family_mapping_precedes_effect_fallback_and_unmappable_definitions_stay_effects() {
     let map = BuffResolver::from_definitions(&effect_item_buff_definitions());
     for kind in ["Hallowed", "Sacred"] {

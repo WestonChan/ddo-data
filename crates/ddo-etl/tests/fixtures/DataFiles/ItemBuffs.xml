@@ -642,4 +642,14 @@
     <DisplayText>Extra Lay on Hands %v1: You have %v1 Lay on Hands charges.</DisplayText>
     <Effect><Type>ExtraLayOnHands</Type><Bonus>Equipment</Bonus><AType>Simple</AType><Amount size="1">5</Amount></Effect>
   </Buff>
+  <Buff>
+    <Type>Invisibility</Type>
+    <DisplayText>Invisibility: %v1 Deflection bonus to Armor Class</DisplayText>
+    <Effect><Type>ACBonus</Type><Bonus>Deflection</Bonus><AType>Simple</AType><Amount size="1">0</Amount></Effect>
+  </Buff>
+  <Buff>
+    <Type>Unwieldy</Type>
+    <DisplayText>Unwieldy: -%v1 Dexterity</DisplayText>
+    <Effect><Type>AbilityBonus</Type><Bonus>Penalty</Bonus><AType>Simple</AType><Amount size="1">0</Amount><Item>Dexterity</Item></Effect>
+  </Buff>
 </Buffs>

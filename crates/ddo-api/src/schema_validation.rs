@@ -1,4 +1,5 @@
 use serde_json::Value;
+use std::fmt::Write;
 
 pub fn response_matches_schema(
     value: &Value,
@@ -6,21 +7,30 @@ pub fn response_matches_schema(
     schemas: &serde_json::Map<String, Value>,
     path: &str,
 ) -> Result<(), String> {
+    validate_response(value, schema, schemas, &mut path.to_string())
+}
+
+fn validate_response(
+    value: &Value,
+    schema: &Value,
+    schemas: &serde_json::Map<String, Value>,
+    path: &mut String,
+) -> Result<(), String> {
     if let Some(reference) = schema["$ref"].as_str() {
         let name =
             reference.strip_prefix("#/components/schemas/").ok_or_else(|| format!("{path}: invalid {reference}"))?;
         let target = schemas.get(name).ok_or_else(|| format!("{path}: missing {name}"))?;
-        return response_matches_schema(value, target, schemas, path);
+        return validate_response(value, target, schemas, path);
     }
     if let Some(choices) = schema["oneOf"].as_array().or_else(|| schema["anyOf"].as_array()) {
-        if choices.iter().any(|choice| response_matches_schema(value, choice, schemas, path).is_ok()) {
+        if choices.iter().any(|choice| validate_response(value, choice, schemas, path).is_ok()) {
             return Ok(());
         }
         return Err(format!("{path}: {value} matches no schema choice"));
     }
     if let Some(parts) = schema["allOf"].as_array() {
         for part in parts {
-            response_matches_schema(value, part, schemas, path)?;
+            validate_response(value, part, schemas, path)?;
         }
         return Ok(());
     }
@@ -58,13 +68,22 @@ pub fn response_matches_schema(
                 .and_then(|fields| fields.get(name))
                 .or(additional)
                 .ok_or_else(|| format!("{path}: undocumented {name}"))?;
-            response_matches_schema(field, field_schema, schemas, &format!("{path}.{name}"))?;
+            let parent_length = path.len();
+            path.push('.');
+            path.push_str(name);
+            let validated = validate_response(field, field_schema, schemas, path);
+            path.truncate(parent_length);
+            validated?;
         }
     }
     if let Some(items) = value.as_array() {
         let item_schema = schema.get("items").ok_or_else(|| format!("{path}: untyped array"))?;
         for (index, item) in items.iter().enumerate() {
-            response_matches_schema(item, item_schema, schemas, &format!("{path}[{index}]"))?;
+            let parent_length = path.len();
+            write!(path, "[{index}]").expect("writing to a String cannot fail");
+            let validated = validate_response(item, item_schema, schemas, path);
+            path.truncate(parent_length);
+            validated?;
         }
     }
     Ok(())

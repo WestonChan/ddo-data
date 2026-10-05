@@ -603,4 +603,25 @@
     </Effect>
   </Buff>
   
+  <Buff>
+    <Type>Invisibility</Type>
+    <DisplayText>Invisibility: Deflection armor class %v1</DisplayText>
+    <Effect>
+      <Type>ACBonus</Type>
+      <Bonus>Deflection</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Unwieldy</Type>
+    <DisplayText>Unwieldy: -%v1 Dexterity</DisplayText>
+    <Effect>
+      <Type>AbilityBonus</Type>
+      <Bonus>Penalty</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+      <Item>Dexterity</Item>
+    </Effect>
+  </Buff>
 </Buffs>

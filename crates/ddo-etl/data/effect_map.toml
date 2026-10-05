@@ -1,5 +1,6 @@
 [family]
 enhancement = ["WeaponEnchantment", "ArmorEnchantment", "ShieldEnchantment"]
+owner_type_precedence = ["ExtraLayOnHands", "Constitution Skills - Exceptional"]
 
 [names]
 "+25 Artifact bonus to Electric, Fire, Force, and Repair Spell Power" = "Electric Fire Force Repair Spell Power"

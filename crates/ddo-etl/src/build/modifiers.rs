@@ -155,7 +155,6 @@ impl TableWriter<'_> {
                     } else {
                         effect.targets.first().map(String::as_str)
                     };
-                    let family_name = self.buff_resolver.effect_family_name(effect_type, target, first_bonus.stat.name);
                     let bonus_origin = BonusOrigin {
                         owner,
                         source_name: effect_type,
@@ -163,6 +162,18 @@ impl TableWriter<'_> {
                         value: Some(first_bonus.value),
                     };
                     let bonus_type = self.bonus_type_of(&bonus_origin, first_bonus.bonus_type)?;
+                    if effect_type == "SkillBonusAbility" {
+                        let ability = target.expect("resolved skill group has an ability target");
+                        let effect_id = self.effects.ensure_group(&format!("{ability} Skills"))?;
+                        links.push(DerivedEffectLink {
+                            effect_id,
+                            bonus_type: Some(bonus_type),
+                            value: Some(first_bonus.value),
+                            value2: None,
+                        });
+                        continue;
+                    }
+                    let family_name = self.buff_resolver.effect_family_name(effect_type, target, first_bonus.stat.name);
                     let existing = self
                         .effects
                         .family_named(&family_name)

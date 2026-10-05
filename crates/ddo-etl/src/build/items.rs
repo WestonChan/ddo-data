@@ -187,6 +187,25 @@ impl TableWriter<'_> {
                         typed_stats.push((resolved_stat, bonus_type));
                     }
                     let first_type = typed_stats.first().map(|(_, bonus_type)| *bonus_type);
+                    if buff.kind.trim() == "SkillBonusAbility" {
+                        ensure!(
+                            typed_stats.iter().all(|(_, bonus_type)| Some(*bonus_type) == first_type),
+                            "item {item_name:?} skill group has multiple bonus types"
+                        );
+                        let ability =
+                            buff.target.as_deref().expect("resolved skill group has an ability target").trim();
+                        let group_id = self.effects.ensure_group(&format!("{ability} Skills"))?;
+                        self.effects.insert_link(
+                            EffectOwner::Item,
+                            item_id,
+                            group_id,
+                            first_type,
+                            (buff.value, None),
+                            sort_order,
+                        )?;
+                        sort_order += 1;
+                        continue;
+                    }
                     let family_name = self.buff_resolver.family_name(buff, stats.first().map(|stat| stat.stat.name));
                     let family_text = self.buff_resolver.family_template(buff);
                     let uses_link_type = family_text.contains("%b1");

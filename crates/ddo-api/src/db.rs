@@ -295,6 +295,7 @@ pub(crate) fn effects_via<P: Params>(
         "item_augment_slot_option_effects" => "item_augment_slot_option",
         _ => unreachable!("unknown effect owner table"),
     };
+    let bonus_owner_condition = owner_condition.replace(&format!("j.{owner_column}"), "filtered_bonus.owner_id");
     let sql = format!(
         "SELECT j.{owner_column} AS owner_id, j.sort_order, e.id AS effect_id, e.name,
                 COALESCE(e.text_template, '%b1 ' || e.name || ' +{{1}}') AS text_template,
@@ -310,7 +311,9 @@ pub(crate) fn effects_via<P: Params>(
            FROM {junction_table} j JOIN effects e ON e.id = j.effect_id
            LEFT JOIN effect_tier_groups tg ON tg.id = e.tier_group_id
            LEFT JOIN bonus_types link_type ON link_type.id = j.bonus_type_id
-           LEFT JOIN owner_bonuses ob ON ob.owner_kind = '{owner_kind}' AND ob.owner_id = j.{owner_column}
+           LEFT JOIN (SELECT * FROM owner_bonuses filtered_bonus
+                       WHERE filtered_bonus.owner_kind = '{owner_kind}' AND {bonus_owner_condition}) ob
+                ON ob.owner_id = j.{owner_column}
                 AND ob.effect_link_order = j.sort_order
            LEFT JOIN effects s ON s.id = ob.stat_id
            LEFT JOIN effects g ON g.id = ob.group_effect_id

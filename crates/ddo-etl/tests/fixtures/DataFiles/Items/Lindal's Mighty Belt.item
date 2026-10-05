@@ -8,5 +8,8 @@
     <EquipmentSlot><Belt/></EquipmentSlot>
     <Material>Bone</Material>
     <Buff><Type>ExtraLayOnHands</Type><Value1>3</Value1><BonusType>Enhancement</BonusType></Buff>
+    <Buff><Type>SkillBonusAbility</Type><Item>Charisma</Item><Value1>4</Value1><BonusType>Insight</BonusType></Buff>
+    <Buff><Type>Invisibility</Type><Value1>2</Value1><BonusType>Enhancement</BonusType></Buff>
+    <Buff><Type>Unwieldy</Type><Value1>-2</Value1><BonusType>Enhancement</BonusType></Buff>
   </Item>
 </Items>

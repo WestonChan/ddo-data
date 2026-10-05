@@ -7,11 +7,12 @@ use http_body_util::BodyExt;
 use serde_json::Value;
 use std::collections::{BTreeMap, BTreeSet};
 use std::path::Path;
+use std::sync::Arc;
 use tower::ServiceExt;
 
 const PAGE_SIZE: usize = 1000;
 const DETAIL_SAMPLE_COUNT: usize = 32;
-const PARALLEL_DETAIL_REQUESTS: usize = 8;
+const PARALLEL_DETAIL_REQUESTS: usize = 16;
 
 async fn json_response(router: &axum::Router, path: &str) -> Result<Value> {
     let response = router.clone().oneshot(Request::get(path).body(Body::empty())?).await?;
@@ -27,6 +28,7 @@ pub fn validate_api(db_path: &Path, all_details: bool) -> Result<(usize, usize)>
     let runtime = tokio::runtime::Builder::new_current_thread().enable_all().build()?;
     let spec = runtime.block_on(json_response(&router, "/v1/openapi.json"))?;
     let schemas = spec["components"]["schemas"].as_object().context("OpenAPI components.schemas is absent")?;
+    let shared_schemas = Arc::new(schemas.clone());
     let paths = spec["paths"].as_object().context("OpenAPI paths is absent")?;
     let detail_paths: BTreeSet<&str> = paths.keys().filter_map(|path| path.strip_suffix("/{id}")).collect();
     let mut ids_by_list_path: BTreeMap<&str, BTreeSet<i64>> = BTreeMap::new();
@@ -94,25 +96,32 @@ pub fn validate_api(db_path: &Path, all_details: bool) -> Result<(usize, usize)>
                 .into_iter()
                 .collect()
         };
+        let detail_schema = Arc::new(schema.clone());
         for id_group in selected_ids.chunks(PARALLEL_DETAIL_REQUESTS) {
-            let responses: Vec<(String, Value)> = runtime.block_on(async {
+            let validated_responses: Vec<Option<String>> = runtime.block_on(async {
                 let mut requests = tokio::task::JoinSet::new();
                 for id in id_group {
                     let request_path = format!("{list_path}/{id}");
                     let request_router = router.clone();
+                    let detail_schema = detail_schema.clone();
+                    let shared_schemas = shared_schemas.clone();
                     requests.spawn(async move {
                         let response = json_response(&request_router, &request_path).await?;
-                        Ok::<_, anyhow::Error>((request_path, response))
+                        let violation = tokio::task::spawn_blocking(move || {
+                            response_matches_schema(&response, &detail_schema, &shared_schemas, &request_path).err()
+                        })
+                        .await?;
+                        Ok::<_, anyhow::Error>(violation)
                     });
                 }
-                let mut responses = Vec::new();
+                let mut validated_responses = Vec::new();
                 while let Some(response) = requests.join_next().await {
-                    responses.push(response??);
+                    validated_responses.push(response??);
                 }
-                Ok::<_, anyhow::Error>(responses)
+                Ok::<_, anyhow::Error>(validated_responses)
             })?;
-            for (request_path, response) in responses {
-                if let Err(error) = response_matches_schema(&response, schema, schemas, &request_path) {
+            for violation in validated_responses {
+                if let Some(error) = violation {
                     if violations.len() < 100 {
                         violations.push(error);
                     }

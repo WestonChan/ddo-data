@@ -218,13 +218,8 @@ impl BuffResolver {
             }
             FamilyResolution::EffectFallback(mut stats) => {
                 let item_bonus_type = self.vocabulary.family_bonus_type(buff.bonus_type.as_deref().unwrap_or(""))?;
-                let one_stat = stats.len() == 1;
                 for stat in &mut stats {
-                    stat.bonus_type = if one_stat {
-                        item_bonus_type.or(stat.bonus_type).or(self.definition_bonus_type(buff_kind)?)
-                    } else {
-                        self.resolved_bonus_type(buff_kind, item_bonus_type, stat.bonus_type)?
-                    };
+                    stat.bonus_type = self.resolved_bonus_type(buff_kind, item_bonus_type, stat.bonus_type)?;
                 }
                 Ok(ResolvedBuff::Bonuses { source: BuffResolutionSource::EffectFallback, stats })
             }
@@ -279,7 +274,9 @@ impl BuffResolver {
         effect_bonus_type: Option<BonusType>,
     ) -> Result<Option<BonusType>> {
         let definition_bonus_type = self.definition_bonus_type(buff_kind)?;
-        if self.definition_uses_item_bonus_type(buff_kind) {
+        if self.definition_uses_item_bonus_type(buff_kind)
+            || self.vocabulary.family.owner_type_precedence.contains(buff_kind)
+        {
             Ok(item_bonus_type.or(effect_bonus_type).or(definition_bonus_type))
         } else {
             let fixed_default = (self.vocabulary.family.fixed.contains_key(buff_kind)
