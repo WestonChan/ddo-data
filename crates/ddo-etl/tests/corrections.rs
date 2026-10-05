@@ -189,6 +189,39 @@ fn applies_a_correction_whose_from_matches_and_records_it() {
 }
 
 #[test]
+fn effect_template_and_owner_link_value_corrections_keep_one_effect() {
+    let effect_template =
+        correction_toml("effect", "Riposte", "verbose_name_template", "\"Riposte +{1}\"", "\"Riposte {1}\"");
+    let owner_value =
+        correction_toml("item_effect", "Epic Ethereal Bracers", "value", "5", "6") + "effect = \"Riposte\"\n";
+    let (db, report) = built_db_with(&[("effect.toml", &(effect_template + &owner_value))]).unwrap();
+    assert_eq!(report.correction_applied_count, 2);
+    let rows: Vec<(String, Option<i64>)> = db
+        .prepare(
+            "SELECT e.name, ie.value FROM item_effects ie JOIN effects e ON e.id = ie.effect_id
+               JOIN items i ON i.id = ie.item_id WHERE i.name = 'Epic Ethereal Bracers' AND e.name = 'Riposte'",
+        )
+        .unwrap()
+        .query_map([], |row| Ok((row.get(0)?, row.get(1)?)))
+        .unwrap()
+        .map(Result::unwrap)
+        .collect();
+    assert_eq!(rows, [("Riposte".to_string(), Some(6))]);
+    let template: String =
+        db.query_row("SELECT verbose_name_template FROM effects WHERE name = 'Riposte'", [], |row| row.get(0)).unwrap();
+    assert_eq!(template, "Riposte {1}");
+}
+
+#[test]
+fn duplicate_bonus_correction_names_the_exact_augment_stat_type_and_value() {
+    let correction =
+        correction_toml("augment_bonus", "Dolorous Quality Combat Mastery (Legendary)", "dedupe", "2", "1")
+            + "stat = \"Stun DC\"\nbonus_type = \"Quality\"\nbonus_value = 3\n";
+    let parsed = parsed_corrections(&[("dedupe.toml", &correction)]).unwrap();
+    assert_eq!(parsed.entries[0].qualifier(), "Stun DC / Quality / 3");
+}
+
+#[test]
 fn leaves_his_value_and_reports_a_correction_whose_from_is_stale() {
     let (db, report) = built_db_with(&[(
         "corrections.toml",
@@ -1250,7 +1283,7 @@ fn corrects_a_set_tier_description_and_removes_an_unlisted_tier() {
     );
     let (family_template, recorded_description): (String, String) = db
         .query_row(
-            "SELECT e.text_template, c.to_value FROM set_bonus_tiers t JOIN set_bonuses s ON s.id = t.set_id
+            "SELECT e.verbose_name_template, c.to_value FROM set_bonus_tiers t JOIN set_bonuses s ON s.id = t.set_id
          JOIN set_bonus_tier_effects te ON te.tier_id = t.id JOIN effects e ON e.id = te.effect_id
          JOIN corrections c ON c.name = s.name AND c.kind = 'set_tier' AND c.field = 'description'
          WHERE s.name = 'Eminence of Winter' AND t.equipped_count = 2
@@ -1900,7 +1933,7 @@ fn a_set_tier_correction_shares_a_family_with_the_same_effect_on_another_set() {
         );
         let family: (i64, String, String, Option<i64>) = db
             .query_row(
-                "SELECT e.id, e.name, e.text_template, te.value FROM set_bonus_tiers t JOIN set_bonuses s ON s.id = t.set_id
+                "SELECT e.id, e.name, e.verbose_name_template, te.value FROM set_bonus_tiers t JOIN set_bonuses s ON s.id = t.set_id
              JOIN set_bonus_tier_effects te ON te.tier_id = t.id JOIN effects e ON e.id = te.effect_id
              WHERE s.name = ?1 AND t.equipped_count = 2 AND e.name = 'Acid Spell Power'",
                 [set_name],

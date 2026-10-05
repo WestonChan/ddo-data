@@ -117,8 +117,8 @@ pub const INTEGRITY_CHECKS: &[IntegrityCheck] = &[
         OffenderQuery::Sql(
             "SELECT e.name, e.id, 'bonus reads an absent amount slot' FROM effects e
              JOIN effect_bonuses s ON s.effect_id = e.id
-             WHERE s.amount_from > CASE WHEN INSTR(COALESCE(e.text_template, '') || COALESCE(e.description_template, ''), '{2}') > 0 THEN 2
-             WHEN INSTR(COALESCE(e.text_template, '') || COALESCE(e.description_template, ''), '{1}') > 0 THEN 1 ELSE 0 END",
+             WHERE s.amount_from > CASE WHEN INSTR(COALESCE(e.verbose_name_template, '') || COALESCE(e.description_template, ''), '{2}') > 0 THEN 2
+             WHEN INSTR(COALESCE(e.verbose_name_template, '') || COALESCE(e.description_template, ''), '{1}') > 0 THEN 1 ELSE 0 END",
         ),
     ),
     IntegrityCheck::hard(
@@ -126,10 +126,10 @@ pub const INTEGRITY_CHECKS: &[IntegrityCheck] = &[
         "amount placeholders in a template are contiguous and use only converted tokens",
         OffenderQuery::Sql(
             "SELECT e.name, e.id, 'invalid template amount placeholder' FROM effects e
-             WHERE (INSTR(COALESCE(e.text_template, '') || COALESCE(e.description_template, ''), '{2}') > 0
-                    AND INSTR(COALESCE(e.text_template, '') || COALESCE(e.description_template, ''), '{1}') = 0)
-                OR INSTR(COALESCE(e.text_template, '') || COALESCE(e.description_template, ''), '%v1') > 0
-                OR INSTR(COALESCE(e.text_template, '') || COALESCE(e.description_template, ''), '%v2') > 0",
+             WHERE (INSTR(COALESCE(e.verbose_name_template, '') || COALESCE(e.description_template, ''), '{2}') > 0
+                    AND INSTR(COALESCE(e.verbose_name_template, '') || COALESCE(e.description_template, ''), '{1}') = 0)
+                OR INSTR(COALESCE(e.verbose_name_template, '') || COALESCE(e.description_template, ''), '%v1') > 0
+                OR INSTR(COALESCE(e.verbose_name_template, '') || COALESCE(e.description_template, ''), '%v2') > 0",
         ),
     ),
     IntegrityCheck::hard(
@@ -197,7 +197,7 @@ pub const INTEGRITY_CHECKS: &[IntegrityCheck] = &[
                SELECT t.id AS tier_id, sb.name || ' (' || t.equipped_count || ' pieces)' AS tier_name,
                       (e.is_stat = 1 OR EXISTS (SELECT 1 FROM effect_bonuses es WHERE es.effect_id = e.id)) AS structured,
                       REPLACE(REPLACE(REPLACE(
-                        REPLACE(REPLACE(e.text_template, '+{1}', '{1}'), '+{2}', '{2}'),
+                        REPLACE(REPLACE(e.verbose_name_template, '+{1}', '{1}'), '+{2}', '{2}'),
                         '{1}', CASE WHEN COALESCE(l.value, e.default_value) IS NULL THEN ''
                                     ELSE printf('%+d', COALESCE(l.value, e.default_value)) END),
                         '{2}', CASE WHEN COALESCE(l.value2, e.default_value2) IS NULL THEN ''
@@ -369,7 +369,7 @@ pub const INTEGRITY_CHECKS: &[IntegrityCheck] = &[
         "a family name with a digit and amount slot may have a value embedded in its identity",
         OffenderQuery::Sql(
             "SELECT name, id, 'digit in family name with an amount slot' FROM effects
-             WHERE (INSTR(COALESCE(text_template, '') || COALESCE(description_template, ''), '{1}') > 0
+             WHERE (INSTR(COALESCE(verbose_name_template, '') || COALESCE(description_template, ''), '{1}') > 0
                     OR is_stat = 1) AND name GLOB '*[0-9]*' ORDER BY name",
         ),
     )
@@ -380,8 +380,8 @@ pub const INTEGRITY_CHECKS: &[IntegrityCheck] = &[
          decide whether the digit is a fixed rule, an unmodelled amount or prose",
         OffenderQuery::Sql(
             "SELECT e.name, e.id, 'digit in template without an owner amount' FROM effects e \
-             WHERE e.is_stat = 0 AND INSTR(COALESCE(e.text_template, '') || COALESCE(e.description_template, ''), '{1}') = 0
-               AND e.text_template GLOB '*[0-9]*' \
+             WHERE e.is_stat = 0 AND INSTR(COALESCE(e.verbose_name_template, '') || COALESCE(e.description_template, ''), '{1}') = 0
+               AND e.verbose_name_template GLOB '*[0-9]*' \
              ORDER BY e.name",
         ),
     ),
@@ -460,7 +460,7 @@ pub const INTEGRITY_CHECKS: &[IntegrityCheck] = &[
         OffenderQuery::Sql(
             "SELECT e.name, e.id, 'text-only effect with amount slot(s)'
              FROM effects e WHERE e.is_stat = 0
-               AND INSTR(COALESCE(e.text_template, '') || COALESCE(e.description_template, ''), '{1}') > 0
+               AND INSTR(COALESCE(e.verbose_name_template, '') || COALESCE(e.description_template, ''), '{1}') > 0
                AND NOT EXISTS
              (SELECT 1 FROM effect_bonuses s WHERE s.effect_id = e.id) ORDER BY e.name",
         ),
@@ -624,8 +624,8 @@ fn effects_named_like_identifiers(db: &Connection, _options: &IntegrityOptions) 
 
 fn effect_link_amount_counts(db: &Connection, _options: &IntegrityOptions) -> Result<Findings> {
     let count = "CASE WHEN e.is_stat = 1 THEN 1
-                 WHEN INSTR(COALESCE(e.text_template, '') || COALESCE(e.description_template, ''), '{2}') > 0 THEN 2
-                 WHEN INSTR(COALESCE(e.text_template, '') || COALESCE(e.description_template, ''), '{1}') > 0 THEN 1 ELSE 0 END";
+                 WHEN INSTR(COALESCE(e.verbose_name_template, '') || COALESCE(e.description_template, ''), '{2}') > 0 THEN 2
+                 WHEN INSTR(COALESCE(e.verbose_name_template, '') || COALESCE(e.description_template, ''), '{1}') > 0 THEN 1 ELSE 0 END";
     let queries: Vec<String> = EFFECT_OWNER_LINKS
         .iter()
         .map(|(table, owner_column)| {
@@ -646,7 +646,7 @@ fn effect_links_missing_first_amount(db: &Connection, _options: &IntegrityOption
             format!(
                 "SELECT e.name, e.id, '{table} owner ' || l.{owner_column} || ' lacks first amount'
                  FROM {table} l JOIN effects e ON e.id = l.effect_id
-                 WHERE e.is_stat = 0 AND INSTR(COALESCE(e.text_template, '') || COALESCE(e.description_template, ''), '{{1}}') > 0
+                 WHERE e.is_stat = 0 AND INSTR(COALESCE(e.verbose_name_template, '') || COALESCE(e.description_template, ''), '{{1}}') > 0
                    AND l.value IS NULL AND e.default_value IS NULL"
             )
         })
@@ -702,7 +702,7 @@ fn effect_bonus_type_sources(db: &Connection, _options: &IntegrityOptions) -> Re
     let mut queries = vec!["SELECT e.name, e.id, 'fixed stat type conflicts with %b1 template' FROM effects e
          JOIN effect_bonuses s ON s.effect_id = e.id
          WHERE s.bonus_type_id IS NOT NULL
-           AND INSTR(COALESCE(e.text_template, '') || COALESCE(e.description_template, ''), '%b1') > 0"
+           AND INSTR(COALESCE(e.verbose_name_template, '') || COALESCE(e.description_template, ''), '%b1') > 0"
         .to_string()];
     queries.extend(EFFECT_OWNER_LINKS.iter().map(|(table, owner_column)| {
         format!(
@@ -712,7 +712,7 @@ fn effect_bonus_type_sources(db: &Connection, _options: &IntegrityOptions) -> Re
                ((l.bonus_type_id IS NULL AND EXISTS
                  (SELECT 1 FROM effect_bonuses eb WHERE eb.effect_id = e.id AND eb.bonus_type_id IS NULL))
                 OR (l.bonus_type_id IS NOT NULL
-                    AND INSTR(COALESCE(e.text_template, '') || COALESCE(e.description_template, ''), '%b1') = 0
+                    AND INSTR(COALESCE(e.verbose_name_template, '') || COALESCE(e.description_template, ''), '%b1') = 0
                     AND NOT EXISTS
                       (SELECT 1 FROM effect_bonuses eb WHERE eb.effect_id = e.id AND eb.bonus_type_id IS NULL)))"
         )

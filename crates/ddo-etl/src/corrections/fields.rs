@@ -14,6 +14,8 @@ pub enum FieldShape {
     StatRounding,
     BonusAddition,
     BonusRemoval,
+    BonusDedupe,
+    EffectBonusConstant,
     TierAddition,
     EffectAddition,
     DamageAddition,
@@ -84,6 +86,7 @@ const AUGMENT_BONUS_FIELDS: &[CorrectableField] = &[
     field("bonus_type", FieldShape::BonusTypeName, false),
     field("add", FieldShape::BonusAddition, false),
     field("remove", FieldShape::BonusRemoval, false),
+    field("dedupe", FieldShape::BonusDedupe, false),
 ];
 
 const ITEM_BONUS_FIELDS: &[CorrectableField] = &[
@@ -102,7 +105,16 @@ const SET_TIER_FIELDS: &[CorrectableField] = &[
     field("remove", FieldShape::Removal, false),
 ];
 
-const ITEM_EFFECT_FIELDS: &[CorrectableField] = &[field("add", FieldShape::EffectAddition, false)];
+const ITEM_EFFECT_FIELDS: &[CorrectableField] =
+    &[field("add", FieldShape::EffectAddition, false), field("value", FieldShape::Integer, true)];
+
+const EFFECT_FIELDS: &[CorrectableField] = &[
+    field("name", FieldShape::RowName, false),
+    field("verbose_name_template", FieldShape::Text, false),
+    field("description_template", FieldShape::Text, true),
+    field("default_value", FieldShape::Integer, true),
+    field("constant", FieldShape::EffectBonusConstant, false),
+];
 
 const EFFECT_DAMAGE_FIELDS: &[CorrectableField] =
     &[field("add", FieldShape::DamageAddition, false), field("remove", FieldShape::DamageRemoval, false)];
@@ -119,6 +131,7 @@ pub(super) const WIKI_QUEST_FIELDS: &[&str] =
 pub fn correctable_fields(kind: CorrectionKind) -> &'static [CorrectableField] {
     match kind {
         CorrectionKind::Item => ITEM_FIELDS,
+        CorrectionKind::Effect => EFFECT_FIELDS,
         CorrectionKind::Augment => AUGMENT_FIELDS,
         CorrectionKind::Quest => QUEST_FIELDS,
         CorrectionKind::Feat

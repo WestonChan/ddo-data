@@ -12,6 +12,7 @@
       "minimum_level": 11,
       "name": "Ring of Baphomet",
       "pack": "Demon Sands",
+      "set": "The Desert's Starless Nights",
       "slot": "Ring"
     },
     {
@@ -26,6 +27,7 @@
       "minimum_level": 21,
       "name": "Ring of Brutal Force",
       "pack": "Keep on the Borderlands",
+      "set": null,
       "slot": "Ring"
     },
     {
@@ -40,6 +42,7 @@
       "minimum_level": 21,
       "name": "Ring of Crystalline Vanity",
       "pack": "Keep on the Borderlands",
+      "set": null,
       "slot": "Ring"
     }
   ],

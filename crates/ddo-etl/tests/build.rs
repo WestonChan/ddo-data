@@ -40,7 +40,7 @@ fn item_id(db: &Connection, name: &str) -> i64 {
 #[test]
 fn writes_improved_deception_from_its_definition_as_a_typed_bluff_bonus() {
     let (db, report) = built_fixture_db();
-    assert_eq!(report.effect_fallback_buff_count, 18);
+    assert_eq!(report.effect_fallback_buff_count, 19);
     assert!(report.family_buff_count > 0);
     assert!(report.effect_buff_count > 0);
     let gloves = item_id(&db, "Backstabber's Gloves (Level 25)");
@@ -98,7 +98,7 @@ fn effect_fallback_rows_stay_adjacent_and_distinct_descriptions_survive() {
 
     let bluff_rows: Vec<(String, String, String)> = db
         .prepare(
-            "SELECT i.name, e.text_template || ': ' || e.description_template, bt.name FROM item_effects ie
+            "SELECT i.name, e.verbose_name_template || ': ' || e.description_template, bt.name FROM item_effects ie
              JOIN items i ON i.id = ie.item_id JOIN effects e ON e.id = ie.effect_id
              JOIN effect_bonuses es ON es.effect_id = e.id JOIN effects s ON s.id = es.target_effect_id
              JOIN bonus_types bt ON bt.id = COALESCE(es.bonus_type_id, ie.bonus_type_id)
@@ -310,7 +310,7 @@ fn splits_buffs_into_bonuses_and_effects() {
     );
     let effects: Vec<(String, Option<i64>, Option<String>)> = db
         .prepare(
-            "SELECT e.name, ie.value, e.text_template || ': ' || COALESCE(e.description_template, '')
+            "SELECT e.name, ie.value, e.verbose_name_template || ': ' || COALESCE(e.description_template, '')
                   FROM item_effects ie JOIN effects e ON e.id = ie.effect_id
                   WHERE ie.item_id = ?1 AND e.is_stat = 0 AND NOT EXISTS (SELECT 1 FROM effect_bonuses es WHERE es.effect_id = e.id)
                   ORDER BY ie.sort_order",
@@ -462,13 +462,13 @@ fn writes_buffs_named_after_a_stat_as_bonuses() {
     );
     let linguistic_line: String = db
         .query_row(
-            "SELECT e.text_template FROM item_effects ie JOIN effects e ON e.id = ie.effect_id
+            "SELECT e.verbose_name_template FROM item_effects ie JOIN effects e ON e.id = ie.effect_id
          JOIN items i ON i.id = ie.item_id WHERE i.name = 'Celestial Emerald Ring' AND e.name = 'Linguistics'",
             [],
             |row| row.get(0),
         )
         .unwrap();
-    assert_eq!(linguistic_line, "Linguistics {1}%");
+    assert_eq!(linguistic_line, "Linguistics +{1}%");
     assert_eq!(
         stat_bonuses_by_item("Echoes of Night", "Rune Arm Charge Rate"),
         vec![(enhancement.clone(), Some(5), None)]
@@ -547,11 +547,11 @@ fn one_stat_effect_uses_each_owners_bonus_type() {
     assert!(!feat_types.is_empty());
     assert!(feat_types.iter().all(|bonus_type| bonus_type == "Feat"));
     let illusion_stat: (i64, String) = db
-        .query_row("SELECT is_stat, text_template FROM effects WHERE name = 'Illusion Save'", [], |row| {
+        .query_row("SELECT is_stat, verbose_name_template FROM effects WHERE name = 'Illusion Save'", [], |row| {
             Ok((row.get(0)?, row.get(1)?))
         })
         .unwrap();
-    assert_eq!(illusion_stat, (1, "%b1 Illusion Save {1}".into()));
+    assert_eq!(illusion_stat, (1, "%b1 Illusion Save +{1}".into()));
     let illusion_named_effect_count: i64 = db
         .query_row("SELECT COUNT(*) FROM effects WHERE name = 'Illusion Save (variable type)'", [], |row| row.get(0))
         .unwrap();
@@ -1179,7 +1179,7 @@ fn all_ability_set_tier_uses_one_family_with_six_stats() {
     assert_eq!(families, [("All Ability Scores".to_string(), 6)]);
     let templates: (String, Option<String>) = db
         .query_row(
-            "SELECT e.text_template, e.description_template FROM effects e
+            "SELECT e.verbose_name_template, e.description_template FROM effects e
          WHERE e.name = 'All Ability Scores'",
             [],
             |row| Ok((row.get(0)?, row.get(1)?)),

@@ -27,10 +27,10 @@
               "description": "Provides a 9 Competence bonus to your attack rolls.",
               "effect_id": 9,
               "name": "Attack Bonus",
-              "text": "Competence Attack Bonus 9",
               "tier": null,
               "value": 9,
-              "value2": null
+              "value2": null,
+              "verbose_name": "Attack Bonus +9"
             }
           ],
           "grants_slot": null,
@@ -90,10 +90,10 @@
               "description": "Passive: 9 Natural Armor Bonus to Armor Class.",
               "effect_id": 415,
               "name": "Natural Armor",
-              "text": "Resistance Natural Armor 9",
               "tier": null,
               "value": 9,
-              "value2": null
+              "value2": null,
+              "verbose_name": "Resistance Natural Armor +9"
             }
           ],
           "grants_slot": null,
@@ -153,10 +153,10 @@
               "description": null,
               "effect_id": 161,
               "name": "Saving Throws",
-              "text": "Resistance Saving Throws +9",
               "tier": null,
               "value": 9,
-              "value2": null
+              "value2": null,
+              "verbose_name": "Saving Throws +9"
             }
           ],
           "grants_slot": null,
@@ -236,10 +236,10 @@
       "description": "Passive: 8 Enhancement bonus to Charisma.",
       "effect_id": 6,
       "name": "Charisma",
-      "text": "Enhancement Charisma 8",
       "tier": null,
       "value": 8,
-      "value2": null
+      "value2": null,
+      "verbose_name": "Charisma +8"
     }
   ],
   "enhancement_bonus": null,

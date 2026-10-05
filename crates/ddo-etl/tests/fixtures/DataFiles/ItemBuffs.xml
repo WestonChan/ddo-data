@@ -652,4 +652,14 @@
     <DisplayText>Unwieldy: -%v1 Dexterity</DisplayText>
     <Effect><Type>AbilityBonus</Type><Bonus>Penalty</Bonus><AType>Simple</AType><Amount size="1">0</Amount><Item>Dexterity</Item></Effect>
   </Buff>
+  <Buff>
+    <Type>Heightened Awareness</Type>
+    <DisplayText>Heightened Awareness %v1: This item helps you to quickly read situations with sharpness and clarity, allowing you to predict actions before they occur. You gain a %v1 Insight bonus to AC.</DisplayText>
+    <Effect>
+      <Type>ACBonus</Type>
+      <Bonus>Insightful</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+    </Effect>
+  </Buff>
 </Buffs>

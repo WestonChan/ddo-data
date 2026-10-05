@@ -100,10 +100,12 @@ impl TableWriter<'_> {
         if links.is_empty() {
             if let Some(description) = trimmed_non_empty(tier.description.as_deref()) {
                 let family_name = self.buff_resolver.set_tier_prose_name(set_name, tier.equipped_count, description)?;
-                let existing =
-                    self.effects.family_named(&family_name).map(|family| (family.id, family.text_template.clone()));
+                let existing = self
+                    .effects
+                    .family_named(&family_name)
+                    .map(|family| (family.id, family.verbose_name_template.clone()));
                 let effect_id = match existing {
-                    Some((id, text_template)) if text_template == description => id,
+                    Some((id, verbose_name_template)) if verbose_name_template == description => id,
                     Some(_) => anyhow::bail!(
                         "set {set_name:?} tier {} prose {description:?} collides with family {family_name:?}; add a [names] entry",
                         tier.equipped_count

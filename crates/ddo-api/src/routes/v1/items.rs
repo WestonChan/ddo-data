@@ -42,6 +42,9 @@ declare_query_parameters! {
         #[serde(default, deserialize_with = "repeated_key_values")]
         pub pack: Vec<String>,
         pub pack_match: Option<String>,
+        #[serde(default, deserialize_with = "repeated_key_values")]
+        pub set: Vec<String>,
+        pub set_match: Option<String>,
         pub raid: Option<bool>,
         pub rare: Option<bool>,
         #[serde(default, deserialize_with = "repeated_integer_values")]
@@ -59,8 +62,8 @@ declare_query_parameters! {
         pub include_set_bonuses: Option<bool>,
         pub include_legacy: Option<bool>,
     }
-    repeatable: ["slot", "category", "pack", "quest", "quest_chain", "saga", "bonus"]
-    matchable: ["pack", "quest", "quest_chain", "saga", "bonus"]
+    repeatable: ["slot", "category", "pack", "set", "quest", "quest_chain", "saga", "bonus"]
+    matchable: ["pack", "set", "quest", "quest_chain", "saga", "bonus"]
     single_value_match: ["slot", "category"]
 }
 
@@ -69,6 +72,8 @@ const ITEM_LIST_COLUMNS: &str =
      i.enhancement_bonus, i.icon, i.is_legacy,
      (SELECT MIN(ap.name) FROM loot_adventure_packs packs
       JOIN adventure_packs ap ON ap.id = packs.pack_id WHERE packs.item_id = i.id) AS pack,
+     (SELECT MIN(s.name) FROM set_bonus_items member JOIN set_bonuses s ON s.id = member.set_id
+      WHERE member.item_id = i.id) AS \"set\",
      EXISTS (SELECT 1 FROM sources ql
              WHERE ql.item_id = i.id AND ql.kind = 'quest' AND ql.loot_type = 'raid') AS is_raid,
      EXISTS (SELECT 1 FROM sources ql
@@ -81,6 +86,7 @@ const ITEMS_SORT_FIELDS: &[(&str, &str)] = &[
     ("slot", "es.name"),
     ("category", "i.item_category"),
     ("pack", "pack"),
+    ("set", "\"set\""),
     ("enhancement_bonus", "i.enhancement_bonus"),
     ("icon", "icon"),
     ("is_legacy", "is_legacy"),
@@ -114,7 +120,7 @@ declare_list_parameters!(
     path = "/v1/items",
     tag = "items",
     summary = "List items",
-    description = "Lists equipment matching the declared filters, with slot, level, pack and source flags.",
+    description = "Lists equipment matching the declared filters, with slot, level, pack, set and source flags.",
     params(
         ItemsParameters,
         ("slot" = Option<Vec<String>>, Query, style = Form, explode = true, description = "Repeat equipment slot names from /v1/equipment-slots to match any."),
@@ -125,6 +131,8 @@ declare_list_parameters!(
         ("max_level" = Option<i64>, Query, description = "Maximum item level to include."),
         ("pack" = Option<Vec<String>>, Query, style = Form, explode = true, description = "Repeat adventure pack names reached through item sources."),
         ("pack_match" = Option<String>, Query, description = "Use `all` to require every named pack, or `any` by default."),
+        ("set" = Option<Vec<String>>, Query, style = Form, explode = true, description = "Repeat set names from /v1/sets to match member items."),
+        ("set_match" = Option<String>, Query, description = "Use `all` to require every named set, or `any` by default."),
         ("raid" = Option<bool>, Query, description = "Use true to keep items from raid quests."),
         ("rare" = Option<bool>, Query, description = "Use true to keep rare loot from quests or packs."),
         ("quest" = Option<Vec<i64>>, Query, style = Form, explode = true, description = "Repeat quest ids from /v1/quests to match their item drops."),
@@ -184,6 +192,21 @@ async fn items(
                 "EXISTS (SELECT 1 FROM loot_adventure_packs packs JOIN adventure_packs ap ON ap.id = packs.pack_id WHERE packs.item_id = i.id AND ap.name IN (?))",
                 "EXISTS (SELECT 1 FROM loot_adventure_packs packs JOIN adventure_packs ap ON ap.id = packs.pack_id WHERE packs.item_id = i.id AND ap.name = ?)",
                 &filters.pack, filters.pack_match.as_deref(),
+            );
+            for set_name in &filters.set {
+                let known_set: bool = db.query_row(
+                    "SELECT EXISTS(SELECT 1 FROM set_bonuses WHERE name = ?1)",
+                    [set_name],
+                    |row| row.get(0),
+                )?;
+                if !known_set {
+                    return Err(ApiError::BadRequest(format!("unknown set {set_name:?}")));
+                }
+            }
+            where_clause.add_repeated_filter(
+                "EXISTS (SELECT 1 FROM set_bonus_items member JOIN set_bonuses s ON s.id = member.set_id WHERE member.item_id = i.id AND s.name IN (?))",
+                "EXISTS (SELECT 1 FROM set_bonus_items member JOIN set_bonuses s ON s.id = member.set_id WHERE member.item_id = i.id AND s.name = ?)",
+                &filters.set, filters.set_match.as_deref(),
             );
             if filters.raid == Some(true) {
                 where_clause.add_condition("EXISTS (SELECT 1 FROM sources ql WHERE ql.item_id = i.id AND ql.kind = 'quest' AND ql.loot_type = 'raid')");

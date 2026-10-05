@@ -966,6 +966,7 @@ impl EnhancementTreeKind {
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
 pub enum CorrectionKind {
     Item,
+    Effect,
     Augment,
     Quest,
     Feat,
@@ -989,6 +990,7 @@ pub enum CorrectionKind {
 impl CorrectionKind {
     pub const ALL: &'static [CorrectionKind] = &[
         Self::Item,
+        Self::Effect,
         Self::Augment,
         Self::Quest,
         Self::Feat,
@@ -1012,6 +1014,7 @@ impl CorrectionKind {
     pub const fn as_str(self) -> &'static str {
         match self {
             Self::Item => "item",
+            Self::Effect => "effect",
             Self::Augment => "augment",
             Self::Quest => "quest",
             Self::Feat => "feat",
@@ -1036,6 +1039,7 @@ impl CorrectionKind {
     pub const fn table_name(self) -> &'static str {
         match self {
             Self::Item => "items",
+            Self::Effect => "effects",
             Self::Augment => "augments",
             Self::Quest => "quests",
             Self::Feat => "feats",

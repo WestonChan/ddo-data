@@ -320,6 +320,11 @@ impl BuffResolver {
         )
     }
 
+    pub fn link_amounts(&self, buff: &Buff, amount_count: i64) -> (Option<i64>, Option<i64>) {
+        let first = buff.value.or_else(|| self.vocabulary.fixed_buff_values.get(buff.kind.trim()).copied());
+        ((amount_count >= 1).then_some(first).flatten(), (amount_count >= 2).then_some(buff.second_value).flatten())
+    }
+
     pub fn family_name(&self, buff: &Buff, stat_name: Option<&str>) -> String {
         let buff_kind = buff.kind.trim();
         if self.vocabulary.family.by_item.contains_key(buff_kind) {
@@ -504,4 +509,28 @@ fn words_from_buff_kind(buff_kind: &str) -> String {
         })
         .collect::<Vec<_>>()
         .join(" ")
+}
+
+#[cfg(test)]
+mod tests {
+    use super::{Buff, BuffResolver};
+    use std::collections::HashMap;
+
+    #[test]
+    fn buff_type_amount_fills_only_an_unstated_owner_value() {
+        let resolver = BuffResolver::from_definitions(&HashMap::new());
+        let mut buff = Buff {
+            kind: "WindFrenzy122".to_string(),
+            target: None,
+            second_target: None,
+            value: None,
+            second_value: None,
+            bonus_type: None,
+            description: None,
+        };
+        assert_eq!(resolver.link_amounts(&buff, 1), (Some(122), None));
+        buff.value = Some(117);
+        assert_eq!(resolver.link_amounts(&buff, 1), (Some(117), None));
+        assert_eq!(resolver.link_amounts(&buff, 0), (None, None));
+    }
 }

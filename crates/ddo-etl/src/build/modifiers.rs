@@ -177,18 +177,22 @@ impl TableWriter<'_> {
                     let existing = self
                         .effects
                         .family_named(&family_name)
-                        .filter(|family| !family.text_template.is_empty())
+                        .filter(|family| !family.verbose_name_template.is_empty())
                         .map(|family| (family.id, family.amount_count, family.uses_link_type));
                     let (effect_id, count, uses_link_type) = match existing {
                         Some(family) => family,
                         None => {
-                            let (text_template, description_template) = if all_abilities {
+                            let (verbose_name_template, description_template) = if all_abilities {
                                 ("%b1 All Ability Scores +{1}".to_string(), Some("{1} %b1 bonus to all Ability Scores"))
                             } else {
                                 (format!("%b1 {family_name} +{{1}}"), None)
                             };
-                            let effect_id =
-                                self.effects.ensure_family(&family_name, &text_template, description_template, 1)?;
+                            let effect_id = self.effects.ensure_family(
+                                &family_name,
+                                &verbose_name_template,
+                                description_template,
+                                1,
+                            )?;
                             (effect_id, 1, true)
                         }
                     };
@@ -236,14 +240,14 @@ impl TableWriter<'_> {
     fn ensure_targeted_fixed_effect(&mut self, effect: &Effect, links: &mut Vec<DerivedEffectLink>) -> Result<()> {
         if let Some(family_name) = self.effect_resolver.qualified_targeted_name(effect) {
             let value = effect.simple_integer_amount();
-            let text_template = if value.is_some() {
+            let verbose_name_template = if value.is_some() {
                 let (stat_name, targets) = family_name.split_once(" (").expect("qualified name has targets");
                 format!("{stat_name} +{{1}}% ({targets}")
             } else {
                 family_name.clone()
             };
             let effect_id =
-                self.effects.ensure_family(&family_name, &text_template, None, i64::from(value.is_some()))?;
+                self.effects.ensure_family(&family_name, &verbose_name_template, None, i64::from(value.is_some()))?;
             links.push(DerivedEffectLink { effect_id, bonus_type: None, value, value2: None });
             return Ok(());
         }
@@ -260,8 +264,8 @@ impl TableWriter<'_> {
             return Ok(());
         }
         let value = effect.simple_integer_amount();
-        let text_template = format!("{stat_name} +{{1}} ({target})");
-        let effect_id = self.effects.ensure_family(&family_name, &text_template, None, 1)?;
+        let verbose_name_template = format!("{stat_name} +{{1}} ({target})");
+        let effect_id = self.effects.ensure_family(&family_name, &verbose_name_template, None, 1)?;
         links.push(DerivedEffectLink { effect_id, bonus_type: None, value, value2: None });
         Ok(())
     }

@@ -44,8 +44,8 @@ use utoipa_axum::router::OpenApiRouter;
                        `{ total, limit, offset, <name>: [...] }`, and detail routes return an entity with its related collections. \
                        Booleans are JSON booleans, absent values are `null`, and unknown ids return 404.\n\n\
                        **Query parameters.** Different filters are AND-ed. On `/v1/items`, repeat `slot`, `category`, \
-                       `pack`, `quest`, `quest_chain`, `saga` or `bonus` for any matching value; comma-separated \
-                       lists are never used. `pack_match`, `quest_match`, `quest_chain_match`, `saga_match` and \
+                       `pack`, `set`, `quest`, `quest_chain`, `saga` or `bonus` for any matching value; comma-separated \
+                       lists are never used. `pack_match`, `set_match`, `quest_match`, `quest_chain_match`, `saga_match` and \
                        `bonus_match` accept `any` (default) or `all`; `slot_match` and `category_match` return 400 \
                        because an item has one slot and category. `q` matches a case-insensitive name substring unless \
                        a route says otherwise. `limit` defaults to 100 and clamps to 1–10000; `offset` defaults to zero \
@@ -56,7 +56,9 @@ use utoipa_axum::router::OpenApiRouter;
                        sometimes a bonus type, while its bonus rows derive zero or more typed bonuses from those \
                        amounts. Stats are effects identified by `is_stat`; direct stat links carry a value and type. \
                        Groups expand one level into member stats, with the group named on each derived bonus. \
-                       Item, augment and set details render effect templates in owner order. `/v1/effects` lists \
+                       Item, augment and set details render effect templates in owner order. Each line has a concise \
+                       `name`, a displayed `verbose_name`, and a separate prose `description`; effect detail carriers \
+                       include the same line under `line`. `/v1/effects` lists \
                        effects, groups and stats in one id space; each row's `kind` and `detail_path` identify the detail route. \
                        Its `q` also finds effects through granted stat names, never stats through effect names, and \
                        returns each effect once. Item `bonus` filters accept an effect, group, tier group or stat name, and \

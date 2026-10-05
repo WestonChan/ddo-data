@@ -653,11 +653,11 @@ fn seeded_stats_share_effect_identity_and_direct_links_yield_owner_bonuses() {
 fn group_bonus_targets_expand_once_and_reject_nested_groups() {
     let db = fresh_db();
     ddo_model::seeds::insert_all(&db).unwrap();
-    db.execute("INSERT INTO effects (id, name, is_group, text_template) VALUES (1000, 'Charisma Skills', 1, '%b1 Charisma Skills {1}')", []).unwrap();
-    db.execute("INSERT INTO effects (id, name, text_template) VALUES (1001, 'Command', 'Command {1} {2}')", [])
+    db.execute("INSERT INTO effects (id, name, is_group, verbose_name_template) VALUES (1000, 'Charisma Skills', 1, '%b1 Charisma Skills {1}')", []).unwrap();
+    db.execute("INSERT INTO effects (id, name, verbose_name_template) VALUES (1001, 'Command', 'Command {1} {2}')", [])
         .unwrap();
     db.execute(
-        "INSERT INTO effects (id, name, is_group, text_template) VALUES (1002, 'Other Group', 1, 'Other Group {1}')",
+        "INSERT INTO effects (id, name, is_group, verbose_name_template) VALUES (1002, 'Other Group', 1, 'Other Group {1}')",
         [],
     )
     .unwrap();
@@ -702,7 +702,8 @@ fn save_progressions_follow_upstream_type_codes() {
 fn effect_stat_amount_sources_and_constants_are_checked() {
     let db = fresh_db();
     ddo_model::seeds::insert_all(&db).unwrap();
-    db.execute("INSERT INTO effects (id, name, text_template) VALUES (1000, 'Probe', 'Probe {1}')", []).unwrap();
+    db.execute("INSERT INTO effects (id, name, verbose_name_template) VALUES (1000, 'Probe', 'Probe {1}')", [])
+        .unwrap();
     for (amount_from, constant) in [(0, "NULL"), (1, "1"), (3, "NULL")] {
         assert!(db
             .execute(
@@ -725,7 +726,7 @@ fn effect_defaults_and_scaled_stat_constraints_are_checked() {
     let db = fresh_db();
     ddo_model::seeds::insert_all(&db).unwrap();
     db.execute(
-        "INSERT INTO effects (id, name, text_template, default_value, default_value2)
+        "INSERT INTO effects (id, name, verbose_name_template, default_value, default_value2)
          VALUES (1000, 'Scaled Probe', 'Scaled Probe {1} {2}', 3, 4)",
         [],
     )
@@ -778,7 +779,7 @@ fn effect_urls_and_tier_positions_are_checked() {
         assert!(
             db.execute(
                 &format!(
-                    "INSERT INTO effects (name, text_template, wiki_url)
+                    "INSERT INTO effects (name, verbose_name_template, wiki_url)
              VALUES (?1, 'A {{1}}', {wiki_url})"
                 ),
                 [name]
@@ -789,28 +790,28 @@ fn effect_urls_and_tier_positions_are_checked() {
     }
     db.execute("INSERT INTO effect_tier_groups (id, name) VALUES (1, 'Deception')", []).unwrap();
     db.execute(
-        "INSERT INTO effects (id, name, text_template, tier_group_id, tier, wiki_url)
+        "INSERT INTO effects (id, name, verbose_name_template, tier_group_id, tier, wiki_url)
                 VALUES (1000, 'Deception', 'Deception {1}', 1, 1, 'https://ddowiki.com/page/Deception')",
         [],
     )
     .unwrap();
     assert!(db
         .execute(
-            "INSERT INTO effects (name, text_template, tier_group_id)
+            "INSERT INTO effects (name, verbose_name_template, tier_group_id)
                         VALUES ('Improved Deception', 'Improved Deception', 1)",
             []
         )
         .is_err());
     assert!(db
         .execute(
-            "INSERT INTO effects (name, text_template, tier)
+            "INSERT INTO effects (name, verbose_name_template, tier)
                         VALUES ('Greater Deception', 'Greater Deception', 2)",
             []
         )
         .is_err());
     assert!(db
         .execute(
-            "INSERT INTO effects (name, text_template, tier_group_id, tier)
+            "INSERT INTO effects (name, verbose_name_template, tier_group_id, tier)
                         VALUES ('Duplicate Rank', 'Duplicate Rank', 1, 1)",
             []
         )
@@ -821,7 +822,7 @@ fn effect_urls_and_tier_positions_are_checked() {
 fn effect_owner_links_require_the_first_amount_before_the_second() {
     let db = fresh_db();
     db.execute(
-        "INSERT INTO effects (id, name, text_template)
+        "INSERT INTO effects (id, name, verbose_name_template)
                 VALUES (1000, 'Probe', 'Probe {1} {2}')",
         [],
     )

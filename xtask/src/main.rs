@@ -11,6 +11,7 @@ use xtask::dataset::{build_database_file, corrections_from, wiki_overrides_from}
 use xtask::integrity::{integrity_report, IntegrityOptions};
 use xtask::response_examples::{write_response_examples, write_v1_detail_snapshot, EXAMPLE_REQUESTS};
 use xtask::wiki_tools::{wiki_check_report, write_wiki_batch};
+use xtask::wiki_tooltips::check_wiki_tooltips;
 use xtask::workspace_root;
 
 #[derive(Parser)]
@@ -45,6 +46,10 @@ enum Task {
         db: PathBuf,
         #[arg(long)]
         all_details: bool,
+    },
+    WikiTooltips {
+        #[arg(long)]
+        db: PathBuf,
     },
     WikiCheck {
         #[arg(long)]
@@ -95,6 +100,11 @@ fn main() -> Result<()> {
         Task::ValidateApi { db, all_details } => {
             let (routes, responses) = validate_api(&db, all_details)?;
             println!("validated {responses} real responses across {routes} JSON routes");
+            Ok(())
+        }
+        Task::WikiTooltips { db } => {
+            let report = check_wiki_tooltips(&db)?;
+            println!("{report}");
             Ok(())
         }
         Task::WikiCheck { wiki: wiki_dir, corrections: corrections_dir, source: data_files_dir } => {

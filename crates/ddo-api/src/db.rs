@@ -240,7 +240,7 @@ pub(crate) fn bonuses_via(
         _ => unreachable!("bonus rendering is only used for feats"),
     };
     let sql = format!(
-        "SELECT e.id, e.text_template, e.description_template, s.name AS stat, s.category AS stat_category,
+        "SELECT e.id, e.verbose_name_template, e.description_template, s.name AS stat, s.category AS stat_category,
                 bt.name AS bonus_type,
                 ob.amount AS value,
                 CASE WHEN es.amount_from = 2 THEN ob.amount END AS value2,
@@ -266,11 +266,11 @@ pub(crate) fn bonuses_via(
             None => stat_name.to_string(),
         };
         let description = bonus["description_template"].as_str().map(|template| {
-            let rendered_title = render_effect_template(bonus["text_template"].as_str().unwrap_or(""), bonus);
+            let rendered_title = render_effect_template(bonus["verbose_name_template"].as_str().unwrap_or(""), bonus);
             format!("{rendered_title}: {}", render_effect_template(template, bonus))
         });
         let object = bonus.as_object_mut().expect("query returns objects");
-        object.remove("text_template");
+        object.remove("verbose_name_template");
         object.remove("description_template");
         object.remove("template_value");
         object.remove("template_value2");
@@ -287,6 +287,19 @@ pub(crate) fn effects_via<P: Params>(
     owner_condition: &str,
     selector_params: P,
 ) -> Result<BTreeMap<i64, Vec<Value>>, ApiError> {
+    Ok(effects_via_with_link_order(db, junction_table, owner_column, owner_condition, selector_params)?
+        .into_iter()
+        .map(|(owner_id, lines)| (owner_id, lines.into_iter().map(|(_, line)| line).collect()))
+        .collect())
+}
+
+pub(crate) fn effects_via_with_link_order<P: Params>(
+    db: &Connection,
+    junction_table: &str,
+    owner_column: &str,
+    owner_condition: &str,
+    selector_params: P,
+) -> Result<BTreeMap<i64, Vec<(i64, Value)>>, ApiError> {
     let owner_kind = match junction_table {
         "item_effects" => "item",
         "augment_effects" => "augment",
@@ -295,15 +308,22 @@ pub(crate) fn effects_via<P: Params>(
         "item_augment_slot_option_effects" => "item_augment_slot_option",
         _ => unreachable!("unknown effect owner table"),
     };
-    let bonus_owner_condition = owner_condition.replace(&format!("j.{owner_column}"), "filtered_bonus.owner_id");
+    let bonus_owner_condition = owner_condition
+        .replace(&format!("j.{owner_column}"), "filtered_bonus.owner_id")
+        .replace("j.sort_order", "filtered_bonus.effect_link_order");
     let sql = format!(
         "SELECT j.{owner_column} AS owner_id, j.sort_order, e.id AS effect_id, e.name,
-                COALESCE(e.text_template, '%b1 ' || e.name || ' +{{1}}') AS text_template,
+                COALESCE(e.verbose_name_template, '%b1 ' || e.name || ' +{{1}}') AS verbose_name_template,
                 e.description_template, j.value, j.value2,
-                COALESCE(j.value, e.default_value) AS template_value,
+                COALESCE(j.value, e.default_value,
+                    (SELECT MIN(eb.constant) FROM effect_bonuses eb
+                      WHERE eb.effect_id = e.id AND eb.amount_from = 0
+                     HAVING COUNT(*) > 0 AND COUNT(eb.constant) = COUNT(*)
+                        AND COUNT(DISTINCT eb.constant) = 1)) AS template_value,
                 COALESCE(j.value2, e.default_value2) AS template_value2,
                 link_type.name AS template_bonus_type,
-                CASE WHEN INSTR(e.text_template, '%b1') > 0 OR INSTR(e.description_template, '%b1') > 0 THEN link_type.name END AS bonus_type,
+                home_type.name AS home_bonus_type,
+                COALESCE(link_type.name, home_type.name) AS bonus_type,
                 tg.name AS tier_group, e.tier AS tier_rank,
                 s.name AS stat, s.category AS stat_category,
                 stat_type.name AS stat_bonus_type, ob.amount AS stat_value,
@@ -311,6 +331,7 @@ pub(crate) fn effects_via<P: Params>(
            FROM {junction_table} j JOIN effects e ON e.id = j.effect_id
            LEFT JOIN effect_tier_groups tg ON tg.id = e.tier_group_id
            LEFT JOIN bonus_types link_type ON link_type.id = j.bonus_type_id
+           LEFT JOIN bonus_types home_type ON home_type.id = e.home_bonus_type_id
            LEFT JOIN (SELECT * FROM owner_bonuses filtered_bonus
                        WHERE filtered_bonus.owner_kind = '{owner_kind}' AND {bonus_owner_condition}) ob
                 ON ob.owner_id = j.{owner_column}
@@ -337,7 +358,7 @@ pub(crate) fn effects_via<P: Params>(
         damage.as_object_mut().expect("damage row").remove("effect_id");
         damage_by_effect.entry(effect_id).or_default().push(damage);
     }
-    let mut by_owner: BTreeMap<i64, Vec<Value>> = BTreeMap::new();
+    let mut by_owner: BTreeMap<i64, Vec<(i64, Value)>> = BTreeMap::new();
     let mut position_by_link: HashMap<(i64, i64), usize> = HashMap::new();
     for row in rows {
         let owner_id = row["owner_id"].as_i64().unwrap_or_default();
@@ -353,24 +374,25 @@ pub(crate) fn effects_via<P: Params>(
                         "group": row["tier_group"], "rank": row["tier_rank"]
                     })
                 };
-                let text = render_effect_template(row["text_template"].as_str().unwrap_or(""), &row);
+                let verbose_name = render_verbose_name(&row);
                 let description = row["description_template"]
                     .as_str()
                     .map(|template| Value::String(render_effect_template(template, &row)))
                     .unwrap_or(Value::Null);
                 let position = lines.len();
-                lines.push(serde_json::json!({
+                lines.push((sort_order, serde_json::json!({
                     "effect_id": row["effect_id"], "name": row["name"], "tier": tier,
-                    "text": text, "description": description, "value": row["value"], "value2": row["value2"],
+                    "verbose_name": verbose_name, "description": description,
+                    "value": row["template_value"], "value2": row["template_value2"],
                     "bonus_type": row["bonus_type"], "bonuses": [],
                     "damage": damage_by_effect.get(&row["effect_id"].as_i64().unwrap_or_default()).cloned().unwrap_or_default()
-                }));
+                })));
                 position_by_link.insert((owner_id, sort_order), position);
                 position
             }
         };
         if !row["stat_value"].is_null() {
-            lines[position]["bonuses"].as_array_mut().expect("bonus array").push(serde_json::json!({
+            lines[position].1["bonuses"].as_array_mut().expect("bonus array").push(serde_json::json!({
                 "stat": row["stat"], "stat_category": row["stat_category"],
                 "bonus_type": row["stat_bonus_type"], "value": row["stat_value"],
                 "amount_source": row["amount_source"], "scale": row["scale"],
@@ -400,17 +422,43 @@ fn render_effect_template(template: &str, row: &Value) -> String {
     let value2 = row["template_value2"].as_i64();
     let signed_value = value.map(|number| format!("{number:+}")).unwrap_or_default();
     let signed_value2 = value2.map(|number| format!("{number:+}")).unwrap_or_default();
+    let negative_value = value.map(|number| format!("-{}", number.unsigned_abs())).unwrap_or_default();
+    let negative_value2 = value2.map(|number| format!("-{}", number.unsigned_abs())).unwrap_or_default();
     template
         .replace("+{1}", &signed_value)
         .replace("+{2}", &signed_value2)
+        .replace("-{1}", &negative_value)
+        .replace("-{2}", &negative_value2)
         .replace("{1}", &value.map(|number| number.to_string()).unwrap_or_default())
         .replace("{2}", &value2.map(|number| number.to_string()).unwrap_or_default())
         .replace("%b1", row["template_bonus_type"].as_str().or_else(|| row["bonus_type"].as_str()).unwrap_or(""))
 }
 
+fn render_verbose_name(row: &Value) -> String {
+    let template = row["verbose_name_template"].as_str().unwrap_or("");
+    let mut rendered_row = row.clone();
+    let bonus_type = row["bonus_type"].as_str().unwrap_or("");
+    let home_type = row["home_bonus_type"].as_str().unwrap_or("");
+    let visible_type = if bonus_type == home_type {
+        ""
+    } else if bonus_type == "Insight" {
+        "Insightful"
+    } else {
+        bonus_type
+    };
+    rendered_row["template_bonus_type"] = Value::String(visible_type.to_string());
+    let name = row["name"].as_str().unwrap_or("");
+    let template = if !template.contains("{1}") && !template.contains("{2}") && row["template_value"].is_number() {
+        name
+    } else {
+        template
+    };
+    render_effect_template(template, &rendered_row).split_whitespace().collect::<Vec<_>>().join(" ")
+}
+
 #[cfg(test)]
 mod effect_template_tests {
-    use super::render_effect_template;
+    use super::{render_effect_template, render_verbose_name};
     use serde_json::json;
 
     #[test]
@@ -418,6 +466,23 @@ mod effect_template_tests {
         let row = json!({"template_value": -1, "template_value2": null, "bonus_type": "Penalty"});
         assert_eq!(render_effect_template("Curse of Weakness +{1}: {1} %b1", &row), "Curse of Weakness -1: -1 Penalty");
         assert_eq!(render_effect_template("Curse +{2}", &row), "Curse ");
+        assert_eq!(render_effect_template("Unwieldy: -{1} Dexterity", &row), "Unwieldy: -1 Dexterity");
+    }
+
+    #[test]
+    fn wiki_line_formats_keep_their_per_effect_number_positions() {
+        let row = json!({
+            "name": "Orb Bonus", "verbose_name_template": "+{1} Orb Bonus",
+            "template_value": 15, "template_value2": null,
+            "bonus_type": "Orb", "home_bonus_type": "Orb"
+        });
+        assert_eq!(render_verbose_name(&row), "+15 Orb Bonus");
+        let row = json!({
+            "name": "Combustion", "verbose_name_template": "%b1 Combustion +{1}",
+            "template_value": 71, "template_value2": null,
+            "bonus_type": "Insight", "home_bonus_type": "Equipment"
+        });
+        assert_eq!(render_verbose_name(&row), "Insightful Combustion +71");
     }
 }
 

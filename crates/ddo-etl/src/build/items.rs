@@ -213,7 +213,7 @@ impl TableWriter<'_> {
                         ensure!(typed_stats.iter().all(|(_, bonus_type)| Some(*bonus_type) == first_type),
                             "item {item_name:?} family {family_name:?} resolves to multiple bonus types for one %b1 slot");
                     }
-                    let (mut text_template, description_template) =
+                    let (mut verbose_name_template, description_template) =
                         if family_text.is_empty() { (family_name.clone(), None) } else { split_template(&family_text) };
                     let constant_amounts: std::collections::BTreeSet<i64> = stats
                         .iter()
@@ -223,11 +223,12 @@ impl TableWriter<'_> {
                         })
                         .collect();
                     if constant_amounts.len() == 1
-                        && !text_template.chars().any(|character| character.is_ascii_digit())
-                        && !text_template.contains("{1}")
-                        && !text_template.contains("{2}")
+                        && !verbose_name_template.chars().any(|character| character.is_ascii_digit())
+                        && !verbose_name_template.contains("{1}")
+                        && !verbose_name_template.contains("{2}")
                     {
-                        text_template.push_str(&format!(" {:+}", constant_amounts.first().expect("one constant")));
+                        verbose_name_template
+                            .push_str(&format!(" {:+}", constant_amounts.first().expect("one constant")));
                     }
                     let required_count = stats
                         .iter()
@@ -240,16 +241,16 @@ impl TableWriter<'_> {
                         .unwrap_or(0);
                     for slot in 1..=required_count {
                         let placeholder = format!("{{{slot}}}");
-                        if !text_template.contains(&placeholder)
+                        if !verbose_name_template.contains(&placeholder)
                             && !description_template.as_deref().is_some_and(|text| text.contains(&placeholder))
                         {
-                            text_template.push_str(&format!(" {placeholder}"));
+                            verbose_name_template.push_str(&format!(" {placeholder}"));
                         }
                     }
-                    let count = amount_count(&text_template, description_template.as_deref());
+                    let count = amount_count(&verbose_name_template, description_template.as_deref());
                     let effect_id = self.effects.ensure_family(
                         &family_name,
-                        &text_template,
+                        &verbose_name_template,
                         description_template.as_deref(),
                         count,
                     )?;
@@ -277,6 +278,7 @@ impl TableWriter<'_> {
                         })
                         .collect();
                     self.effects.ensure_bonus_rules(effect_id, &rules)?;
+                    let family_amount_count = self.effects.family(effect_id).expect("effect cached").amount_count;
                     self.effects.insert_link(
                         EffectOwner::Item,
                         item_id,
@@ -284,10 +286,7 @@ impl TableWriter<'_> {
                         (link_typed || self.effects.family(effect_id).is_some_and(|family| family.is_stat))
                             .then_some(first_type)
                             .flatten(),
-                        (
-                            (count >= 1).then_some(buff.value).flatten(),
-                            (count >= 2).then_some(buff.second_value).flatten(),
-                        ),
+                        self.buff_resolver.link_amounts(buff, family_amount_count),
                         sort_order,
                     )?;
                     sort_order += 1;
@@ -295,12 +294,12 @@ impl TableWriter<'_> {
                 ResolvedBuff::Effect { .. } => {
                     let family_name = self.buff_resolver.family_name(buff, None);
                     let family_text = self.buff_resolver.family_template(buff);
-                    let (text_template, description_template) =
+                    let (verbose_name_template, description_template) =
                         split_template(if family_text.is_empty() { &family_name } else { &family_text });
-                    let count = amount_count(&text_template, description_template.as_deref());
+                    let count = amount_count(&verbose_name_template, description_template.as_deref());
                     let effect_id = self.effects.ensure_family(
                         &family_name,
-                        &text_template,
+                        &verbose_name_template,
                         description_template.as_deref(),
                         count,
                     )?;
@@ -312,15 +311,13 @@ impl TableWriter<'_> {
                     }
                     let uses_link_type = family_text.contains("%b1");
                     let bonus_type = if uses_link_type { self.buff_resolver.link_bonus_type(buff)? } else { None };
+                    let family_amount_count = self.effects.family(effect_id).expect("effect cached").amount_count;
                     self.effects.insert_link(
                         EffectOwner::Item,
                         item_id,
                         effect_id,
                         bonus_type,
-                        (
-                            (count >= 1).then_some(buff.value).flatten(),
-                            (count >= 2).then_some(buff.second_value).flatten(),
-                        ),
+                        self.buff_resolver.link_amounts(buff, family_amount_count),
                         sort_order,
                     )?;
                     sort_order += 1;

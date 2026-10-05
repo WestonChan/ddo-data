@@ -636,13 +636,13 @@ impl TableWriter<'_> {
         let stat = ddo_model::stats::Stat::by_name(bonus.name()).expect("validated wiki stat");
         let count = if bonus.value2.is_some() { 2 } else { 1 };
         let family_name = stat.name.to_string();
-        if self.effects.family_named(&family_name).is_some_and(|family| family.text_template.is_empty()) {
-            let text_template = if count == 2 {
+        if self.effects.family_named(&family_name).is_some_and(|family| family.verbose_name_template.is_empty()) {
+            let verbose_name_template = if count == 2 {
                 format!("%b1 {family_name} +{{1}} {{2}}")
             } else {
                 format!("%b1 {family_name} +{{1}}")
             };
-            self.effects.ensure_family(&family_name, &text_template, None, count)?;
+            self.effects.ensure_family(&family_name, &verbose_name_template, None, count)?;
         }
         let (effect_id, uses_link_type) = match self.effects.family_named(&family_name) {
             Some(family) if family.amount_count >= count => (family.id, family.uses_link_type),
@@ -651,12 +651,12 @@ impl TableWriter<'_> {
                 family.amount_count
             ),
             None => {
-                let text_template = if count == 2 {
+                let verbose_name_template = if count == 2 {
                     format!("%b1 {family_name} +{{1}} {{2}}")
                 } else {
                     format!("%b1 {family_name} +{{1}}")
                 };
-                (self.effects.ensure_family(&family_name, &text_template, None, count)?, true)
+                (self.effects.ensure_family(&family_name, &verbose_name_template, None, count)?, true)
             }
         };
         self.effects.ensure_stat(effect_id, stat, (!uses_link_type).then_some(bonus_type), 1, None, 0)?;

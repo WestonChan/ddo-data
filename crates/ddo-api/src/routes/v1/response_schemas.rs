@@ -74,8 +74,8 @@ pub(crate) struct EffectLine {
     pub(crate) name: String,
     #[schema(schema_with = schema_line_tier)]
     pub(crate) tier: Option<EffectTierPosition>,
-    #[schema(schema_with = schema_line_text)]
-    pub(crate) text: String,
+    #[schema(schema_with = schema_line_verbose_name)]
+    pub(crate) verbose_name: String,
     #[schema(schema_with = schema_line_description)]
     pub(crate) description: Option<String>,
     #[schema(schema_with = schema_line_value)]
@@ -105,25 +105,25 @@ fn schema_line_id() -> RefOr<Schema> {
     described_schema::<i64>("Identifier of the shared effect family.")
 }
 fn schema_line_name() -> RefOr<Schema> {
-    described_schema::<String>("Display name of the shared family.")
+    described_schema::<String>("Concise effect label, including any qualifier.")
 }
 fn schema_line_tier() -> RefOr<Schema> {
     described_schema::<Option<EffectTierPosition>>("Tier group and rank, if any.")
 }
-fn schema_line_text() -> RefOr<Schema> {
-    described_schema::<String>("Line rendered from the family template and effective amounts.")
+fn schema_line_verbose_name() -> RefOr<Schema> {
+    described_schema::<String>("Rendered effect label with its displayed type and amount.")
 }
 fn schema_line_description() -> RefOr<Schema> {
     described_schema::<Option<String>>("Description rendered from the family template, if any.")
 }
 fn schema_line_value() -> RefOr<Schema> {
-    described_schema::<Option<i64>>("First amount supplied by this owner link.")
+    described_schema::<Option<i64>>("Effective first amount from this owner, a default or a fixed bonus.")
 }
 fn schema_line_value2() -> RefOr<Schema> {
-    described_schema::<Option<i64>>("Second amount supplied by this owner link.")
+    described_schema::<Option<i64>>("Effective second amount from this owner or the effect default.")
 }
 fn schema_line_bonus_type() -> RefOr<Schema> {
-    described_schema::<Option<String>>("Link type when the text or description template has a type slot.")
+    described_schema::<Option<String>>("Type supplied by the link or fixed by the effect.")
 }
 fn schema_line_bonuses() -> RefOr<Schema> {
     described_schema::<Vec<EffectStatBonus>>("Stat bonuses derived from this owner link.")
@@ -580,6 +580,9 @@ fn schema_carrier_value() -> RefOr<Schema> {
 fn schema_carrier_value2() -> RefOr<Schema> {
     described_schema::<Option<i64>>("Second amount stated by this owner link, if any.")
 }
+fn schema_carrier_line() -> RefOr<Schema> {
+    described_schema::<EffectLine>("Rendered effect line carried by this owner link.")
+}
 fn schema_resolved_bonus_value() -> RefOr<Schema> {
     described_schema::<Option<i64>>("Stat bonus after applying the effect default, scale and rounding.")
 }
@@ -626,6 +629,8 @@ pub(crate) struct EffectCarrierBonus {
 pub(crate) struct EffectsDetailResponseAugmentsAugmentsEntry {
     pub(crate) id: i64,
     pub(crate) name: String,
+    #[schema(schema_with = schema_carrier_line)]
+    pub(crate) line: EffectLine,
     #[schema(schema_with = schema_carrier_value)]
     pub(crate) value: Option<i64>,
     #[schema(schema_with = schema_carrier_value2)]
@@ -650,6 +655,8 @@ pub(crate) struct EffectsDetailResponseAugments {
 pub(crate) struct EffectsDetailResponseItemsItemsEntry {
     pub(crate) id: i64,
     pub(crate) name: String,
+    #[schema(schema_with = schema_carrier_line)]
+    pub(crate) line: EffectLine,
     #[schema(schema_with = schema_carrier_value)]
     pub(crate) value: Option<i64>,
     #[schema(schema_with = schema_carrier_value2)]
@@ -674,6 +681,8 @@ pub(crate) struct EffectsDetailResponseItems {
 pub(crate) struct EffectSetTierCarrier {
     pub(crate) id: i64,
     pub(crate) name: String,
+    #[schema(schema_with = schema_carrier_line)]
+    pub(crate) line: EffectLine,
     pub(crate) set_id: i64,
     pub(crate) set_name: String,
     pub(crate) equipped_count: i64,
@@ -745,7 +754,7 @@ pub(crate) struct EffectsDetailResponse {
     pub(crate) set_tiers: EffectsDetailResponseSetTiers,
     pub(crate) bonuses: Vec<EffectsDetailResponseBonusesEntry>,
     pub(crate) damage: Vec<EffectDamage>,
-    pub(crate) text_template: Option<String>,
+    pub(crate) verbose_name_template: Option<String>,
     #[schema(schema_with = schema_family_wiki_url)]
     pub(crate) wiki_url: Option<String>,
 }
@@ -1275,7 +1284,13 @@ pub(crate) struct ItemsPageResponseItemsEntry {
     pub(crate) minimum_level: i64,
     pub(crate) name: String,
     pub(crate) pack: Option<String>,
+    #[schema(schema_with = schema_item_first_set)]
+    pub(crate) set: Option<String>,
     pub(crate) slot: String,
+}
+
+fn schema_item_first_set() -> RefOr<Schema> {
+    described_schema::<Option<String>>("First set name on the item, or null when it belongs to none.")
 }
 
 #[derive(utoipa::ToSchema)]

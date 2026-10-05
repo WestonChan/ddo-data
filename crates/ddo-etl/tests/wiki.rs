@@ -1327,7 +1327,7 @@ fn writes_a_new_wiki_item_with_its_stats_bonuses_effects_sockets_set_and_quests(
         ["Strength|Enhancement|15", "Doublestrike|Insight|5"]
     );
     let effect_lines = item_column(
-        "SELECT e.name || '|' || COALESCE(e.text_template || ': ' || e.description_template, '')
+        "SELECT e.name || '|' || COALESCE(e.verbose_name_template || ': ' || e.description_template, '')
            FROM item_effects ie JOIN effects e ON e.id = ie.effect_id
            WHERE ie.item_id = ?item AND e.is_stat = 0 AND NOT EXISTS
              (SELECT 1 FROM effect_bonuses es WHERE es.effect_id = e.id) ORDER BY ie.sort_order",
@@ -1515,7 +1515,7 @@ fn reuses_maetrims_effect_whose_name_differs_only_by_case_spaces_and_hyphens() {
     let effect_lines = string_column(
         &db,
         &format!(
-            "SELECT e.name || '|' || COALESCE(e.text_template || ': ' || e.description_template, '')
+            "SELECT e.name || '|' || COALESCE(e.verbose_name_template || ': ' || e.description_template, '')
              FROM item_effects ie JOIN effects e ON e.id = ie.effect_id
              JOIN items i ON i.id = ie.item_id WHERE i.name = '{WIKI_AXE}'
              AND e.is_stat = 0 AND NOT EXISTS (SELECT 1 FROM effect_bonuses es WHERE es.effect_id = e.id)

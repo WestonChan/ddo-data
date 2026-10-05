@@ -19,6 +19,16 @@ pub struct EffectMap {
     #[serde(default)]
     pub names: BTreeMap<String, String>,
     #[serde(default)]
+    pub home_bonus_types: BTreeMap<String, String>,
+    #[serde(default)]
+    pub line_templates: BTreeMap<String, String>,
+    #[serde(default)]
+    pub description_templates: BTreeMap<String, String>,
+    #[serde(default)]
+    pub definition_defaults: BTreeMap<String, i64>,
+    #[serde(default)]
+    pub fixed_buff_values: BTreeMap<String, i64>,
+    #[serde(default)]
     pub tier_groups: BTreeMap<String, Vec<String>>,
     #[serde(default)]
     pub groups: BTreeMap<String, Vec<String>>,
@@ -108,6 +118,33 @@ impl EffectMap {
 
     pub fn from_toml(toml_text: &str) -> Result<Self> {
         let vocabulary: Self = toml::from_str(toml_text)?;
+        for (effect_name, bonus_type_name) in &vocabulary.home_bonus_types {
+            if effect_name.trim().is_empty()
+                || (bonus_type_name != "none" && BonusType::parse(bonus_type_name).is_none())
+            {
+                bail!("effect_map.toml [home_bonus_types] {effect_name:?} has unknown type {bonus_type_name:?}");
+            }
+        }
+        for (effect_name, template) in &vocabulary.line_templates {
+            if effect_name.trim().is_empty() || template.trim().is_empty() {
+                bail!("effect_map.toml [line_templates] {effect_name:?} has an empty template");
+            }
+        }
+        for (effect_name, template) in &vocabulary.description_templates {
+            if effect_name.trim().is_empty() || template.trim().is_empty() {
+                bail!("effect_map.toml [description_templates] {effect_name:?} has an empty template");
+            }
+        }
+        for effect_name in vocabulary.definition_defaults.keys() {
+            if effect_name.trim().is_empty() {
+                bail!("effect_map.toml [definition_defaults] has an empty effect name");
+            }
+        }
+        for buff_kind in vocabulary.fixed_buff_values.keys() {
+            if buff_kind.trim().is_empty() {
+                bail!("effect_map.toml [fixed_buff_values] has an empty buff type");
+            }
+        }
         for (section, stat_names) in [
             ("family.fixed", &vocabulary.family.fixed),
             ("effect.fixed", &vocabulary.effect.fixed),

@@ -180,7 +180,7 @@ impl CorrectionValue {
     fn fits(&self, field: &CorrectableField) -> bool {
         match (self, field.shape) {
             (Self::Null, _) => field.is_nullable,
-            (Self::Integer(_), FieldShape::Integer) => true,
+            (Self::Integer(_), FieldShape::Integer | FieldShape::EffectBonusConstant | FieldShape::BonusDedupe) => true,
             (Self::Float(number), FieldShape::StatScale) => number.is_finite() && *number > 0.0,
             (Self::Text(rounding), FieldShape::StatRounding) => matches!(rounding.as_str(), "down" | "up" | "nearest"),
             (Self::Damage(damage), FieldShape::DamageAddition | FieldShape::DamageRemoval) => {
@@ -215,6 +215,7 @@ pub struct Correction {
     pub from: CorrectionValue,
     pub to: CorrectionValue,
     pub family: Option<String>,
+    pub effect: Option<String>,
     pub stat: Option<String>,
     pub bonus_type: Option<String>,
     pub bonus_value: Option<i64>,
@@ -260,10 +261,17 @@ impl Correction {
         if let Some(family) = &self.family {
             qualifier_parts.push(format!("family {family:?}"));
         }
+        if let Some(effect) = &self.effect {
+            qualifier_parts.push(format!("effect {effect:?}"));
+        }
         if let Some(equipped_count) = self.equipped_count {
             qualifier_parts.push(format!("equipped_count {equipped_count}"));
         }
-        if let (Some(stat), Some(bonus_type)) = (&self.stat, &self.bonus_type) {
+        if self.kind == CorrectionKind::Effect && self.field == "constant" {
+            if let Some(stat) = &self.stat {
+                qualifier_parts.push(format!("stat {stat:?}"));
+            }
+        } else if let (Some(stat), Some(bonus_type)) = (&self.stat, &self.bonus_type) {
             match self.bonus_value {
                 Some(bonus_value) => qualifier_parts.push(format!("{stat} / {bonus_type} / {bonus_value}")),
                 None => qualifier_parts.push(format!("{stat} / {bonus_type}")),
@@ -293,6 +301,9 @@ impl Correction {
     }
 
     fn validate_qualifier_keys(&self, field: &CorrectableField) -> Result<()> {
+        if self.effect.is_some() != (self.kind == CorrectionKind::ItemEffect && field.name == "value") {
+            bail!("effect names only an item_effect value correction, which requires effect");
+        }
         if self.family.is_some() && !matches!(self.kind, CorrectionKind::Augment | CorrectionKind::AugmentBonus) {
             bail!("family narrows only an augment or augment_bonus correction, not a {}", self.kind.as_str());
         }
@@ -311,7 +322,14 @@ impl Correction {
         if needs_a_bonus && (self.stat.is_none() || self.bonus_type.is_none()) {
             bail!("a {} {} correction names the bonus with stat and bonus_type", self.kind.as_str(), field.name);
         }
-        if names_a_bonus && !needs_a_bonus {
+        if field.shape == FieldShape::BonusDedupe && self.bonus_value.is_none() {
+            bail!("an augment_bonus dedupe correction needs bonus_value to identify the duplicate amount");
+        }
+        if self.kind == CorrectionKind::Effect && field.name == "constant" {
+            if self.stat.is_none() || self.bonus_type.is_some() || self.bonus_value.is_some() {
+                bail!("an effect constant correction names exactly one stat");
+            }
+        } else if names_a_bonus && !needs_a_bonus {
             bail!(
                 "stat, bonus_type and bonus_value name the bonus of an augment_bonus, item_bonus or set_tier_bonus value, bonus_type, scale, rounding or remove correction; an add names them in to"
             );
@@ -346,6 +364,11 @@ impl Correction {
                         | (CorrectionValue::Null, CorrectionValue::Integer(1))
                 ) {
                     bail!("a bonus remove takes its current integer value to \"null\", or a missing value from \"null\" to 1");
+                }
+            }
+            FieldShape::BonusDedupe => {
+                if (&self.from, &self.to) != (&CorrectionValue::Integer(2), &CorrectionValue::Integer(1)) {
+                    bail!("a duplicate bonus correction reduces exactly two matching links to one");
                 }
             }
             FieldShape::TierAddition => {
@@ -433,7 +456,7 @@ impl Correction {
 
 fn expected_value_text(field: &CorrectableField) -> String {
     let non_null_text = match field.shape {
-        FieldShape::Integer => "an integer",
+        FieldShape::Integer | FieldShape::EffectBonusConstant => "an integer",
         FieldShape::StatScale => "a positive finite number",
         FieldShape::StatRounding => "down, up or nearest",
         FieldShape::Flag => "0 or 1",
@@ -445,6 +468,7 @@ fn expected_value_text(field: &CorrectableField) -> String {
         FieldShape::Removal => "0 for from and 1 for to",
         FieldShape::BonusAddition => "a { stat, bonus_type, value } table",
         FieldShape::BonusRemoval => "the current integer value for from and \"null\" for to",
+        FieldShape::BonusDedupe => "2 for from and 1 for to",
         FieldShape::TierAddition => "a { equipped_count, description } table",
         FieldShape::EffectAddition => "an effect name or a { name, description } table",
         FieldShape::DamageAddition | FieldShape::DamageRemoval => "a damage row",
@@ -464,6 +488,7 @@ struct TomlCorrection {
     name: String,
     field: String,
     family: Option<String>,
+    effect: Option<String>,
     stat: Option<String>,
     bonus_type: Option<String>,
     bonus_value: Option<i64>,
@@ -488,6 +513,7 @@ impl TomlCorrection {
             from: self.from,
             to: self.to,
             family: self.family,
+            effect: self.effect,
             stat: self.stat,
             bonus_type: self.bonus_type,
             bonus_value: self.bonus_value,

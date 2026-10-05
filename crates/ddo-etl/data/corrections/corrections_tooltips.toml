@@ -1,0 +1,205 @@
+[[correction]]
+kind = "item_bonus"
+name = "Legendary Staff of Arcane Power"
+stat = "Spell Focus Mastery"
+bonus_type = "Equipment"
+field = "value"
+from = 5
+to = 7
+reason = "The wiki shows Spell Focus Mastery +7 on this staff; Maetrim gives it +5."
+source = "https://ddowiki.com/page/Item:Legendary_Staff_of_Arcane_Power"
+read = "2026-10-05"
+
+
+[[correction]]
+kind = "effect"
+name = "Paralyzing"
+field = "verbose_name_template"
+from = "Paralyzing"
+to = "Paralyzing {1}"
+reason = "The wiki gives the save DC as a line amount; Maetrim embeds 17 in prose."
+source = "https://ddowiki.com/page/Item:Legendary_Demogorgon%27s_Sinew"
+read = "2026-10-05"
+
+
+[[correction]]
+kind = "effect"
+name = "Paralyzing"
+field = "description_template"
+from = "Any creature struck by this weapon must succeed on a DC 17 Will save or be paralyzed. The target may attempt a new save to end the effect every several seconds; otherwise the paralysis lasts for 1 minute. Certain creatures, such as the Undead and Constructs, cannot be paralyzed."
+to = "Any creature struck by this weapon must succeed on a DC {1} Will save or be paralyzed. The target may attempt a new save to end the effect every several seconds; otherwise the paralysis lasts for 1 minute. Certain creatures, such as the Undead and Constructs, cannot be paralyzed."
+reason = "The save DC varies by item and must render from its effective value."
+source = "https://ddowiki.com/page/Item:Legendary_Demogorgon%27s_Sinew"
+read = "2026-10-05"
+
+
+[[correction]]
+kind = "effect"
+name = "Paralyzing"
+field = "default_value"
+from = "null"
+to = 17
+reason = "Maetrim states DC 17 as the unoverridden Paralyzing value."
+source = "https://ddowiki.com/page/Item:Legendary_Demogorgon%27s_Sinew"
+read = "2026-10-05"
+
+
+[[correction]]
+kind = "item_effect"
+name = "Legendary Demogorgon's Sinew"
+effect = "Paralyzing"
+field = "value"
+from = "null"
+to = 117
+reason = "The wiki gives this weapon DC 117 rather than the definition default of 17."
+source = "https://ddowiki.com/page/Item:Legendary_Demogorgon%27s_Sinew"
+read = "2026-10-05"
+
+
+[[correction]]
+kind = "effect"
+name = "Efficient Metamagic - Maximize II"
+field = "verbose_name_template"
+from = "Efficient Metamagic - Maximize II -2"
+to = "Efficient Metamagic - Maximize II"
+reason = "The wiki shows the tier name without the fixed spell-point reduction."
+source = "https://ddowiki.com/page/Item:Legendary_Staff_of_Arcane_Power"
+read = "2026-10-05"
+
+
+[[correction]]
+kind = "effect"
+name = "Efficient Metamagic - Maximize II"
+field = "description_template"
+from = "The additional spell point cost for using the Maximize Metamagic feat is reduced by 2 SP."
+to = "The additional spell point cost for using the Maximize Metamagic feat is reduced by 4 SP."
+reason = "The wiki says Maximize II reduces the cost by 4 SP rather than 2."
+source = "https://ddowiki.com/page/Item:Legendary_Staff_of_Arcane_Power"
+read = "2026-10-05"
+
+
+[[correction]]
+kind = "effect"
+name = "Efficient Metamagic - Maximize II"
+stat = "Maximize Cost Reduction"
+field = "constant"
+from = -2
+to = -4
+reason = "The wiki says the Maximize II cost reduction is 4 SP."
+source = "https://ddowiki.com/page/Item:Legendary_Staff_of_Arcane_Power"
+read = "2026-10-05"
+
+
+[[correction]]
+kind = "effect"
+name = "Greater Nimbleness"
+field = "description_template"
+from = "This suit of armor looks much less restrictive than others of its type. A suit of armor that has this property has a maximum Dexterity bonus 2 higher than normal, and its armor check penalty is reduced by 4."
+to = "This suit of armor looks much less restrictive than others of its type. A suit of armor that has this property has a maximum Dexterity bonus {1} higher than normal, and its armor check penalty is reduced by 4."
+reason = "The wiki distinguishes the maximum Dexterity bonus from the fixed armor-check reduction."
+source = "https://ddowiki.com/page/Item:Legendary_Tourney_Armor"
+read = "2026-10-05"
+
+
+[[correction]]
+kind = "effect"
+name = "Greater Nimbleness"
+field = "default_value"
+from = "null"
+to = 2
+reason = "The wiki gives this Nimbleness tier its own maximum Dexterity amount."
+source = "https://ddowiki.com/page/Item:Legendary_Tourney_Armor"
+read = "2026-10-05"
+
+
+[[correction]]
+kind = "effect"
+name = "Superior Nimbleness"
+field = "description_template"
+from = "This suit of armor looks much less restrictive than others of its type. A suit of armor that has this property has a maximum Dexterity bonus 4 higher than normal, and its armor check penalty is reduced by 4."
+to = "This suit of armor looks much less restrictive than others of its type. A suit of armor that has this property has a maximum Dexterity bonus {1} higher than normal, and its armor check penalty is reduced by 4."
+reason = "The wiki distinguishes the maximum Dexterity bonus from the fixed armor-check reduction."
+source = "https://ddowiki.com/page/Item:Legendary_Rakshasa_Hide"
+read = "2026-10-05"
+
+
+[[correction]]
+kind = "effect"
+name = "Superior Nimbleness"
+field = "default_value"
+from = "null"
+to = 4
+reason = "The wiki gives this Nimbleness tier its own maximum Dexterity amount."
+source = "https://ddowiki.com/page/Item:Legendary_Rakshasa_Hide"
+read = "2026-10-05"
+
+
+[[correction]]
+kind = "effect"
+name = "Epic Nimbleness"
+field = "description_template"
+from = "This suit of armor looks much less restrictive than others of its type. A suit of armor that has this property has a maximum Dexterity bonus 6 higher than normal, and its armor check penalty is reduced by 4."
+to = "This suit of armor looks much less restrictive than others of its type. A suit of armor that has this property has a maximum Dexterity bonus {1} higher than normal, and its armor check penalty is reduced by 4."
+reason = "The wiki distinguishes the maximum Dexterity bonus from the fixed armor-check reduction."
+source = "https://ddowiki.com/page/Item:Legendary_Snakeskin_Vest"
+read = "2026-10-05"
+
+
+[[correction]]
+kind = "effect"
+name = "Epic Nimbleness"
+field = "default_value"
+from = "null"
+to = 6
+reason = "The wiki gives this Nimbleness tier its own maximum Dexterity amount."
+source = "https://ddowiki.com/page/Item:Legendary_Snakeskin_Vest"
+read = "2026-10-05"
+
+
+[[correction]]
+kind = "effect"
+name = "Spell"
+field = "verbose_name_template"
+from = "Spell"
+to = "Spell: Summon Raptor"
+reason = "The wiki names this line Spell: Summon Raptor."
+source = "https://ddowiki.com/page/Item:Doctor_Lifestone%27s_Hunting_Horn"
+read = "2026-10-05"
+
+
+[[correction]]
+kind = "effect"
+name = "Spell"
+field = "name"
+from = "Spell"
+to = "Spell: Summon Raptor"
+reason = "The wiki names this item-only effect after the spell it summons."
+source = "https://ddowiki.com/page/Item:Doctor_Lifestone%27s_Hunting_Horn"
+read = "2026-10-05"
+
+
+[[correction]]
+kind = "item_effect"
+name = "Marro, the Bone of Demons"
+field = "add"
+from = "null"
+to = { name = "Planar Searing", description = "This weapon harbors a burn unlike anything you've ever seen - As if otherworldly power has started to change it forever." }
+reason = "The wiki lists Planar Searing on this weapon, which Maetrim omits."
+source = "https://ddowiki.com/page/Item:Marro,_the_Bone_of_Demons"
+read = "2026-10-05"
+
+
+[[correction]]
+kind = "augment_bonus"
+name = "Dolorous Quality Combat Mastery (Legendary)"
+family = "Lamordia_Legendary"
+stat = "Stun DC"
+bonus_type = "Quality"
+bonus_value = 3
+field = "dedupe"
+from = 2
+to = 1
+reason = "Maetrim repeats the Stun DC bonus, while the wiki lists it once."
+source = "https://ddowiki.com/page/Item:Dolorous_Quality_Combat_Mastery_(legendary)"
+read = "2026-10-05"
+

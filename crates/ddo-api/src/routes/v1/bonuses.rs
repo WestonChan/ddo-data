@@ -1,4 +1,7 @@
-use crate::db::{json_row, json_rows, paged_query, paged_table_json, ListPage, TableListSource, WhereClause};
+use crate::db::{
+    effects_via_with_link_order, json_row, json_rows, paged_query, paged_table_json, ListPage, TableListSource,
+    WhereClause,
+};
 use crate::error::ApiError;
 use crate::query::{declare_list_parameters, declare_query_parameters, ApiFilterQuery, ApiQuery, ListQuery};
 use crate::state::AppState;
@@ -167,6 +170,38 @@ declare_query_parameters! {
 
 const BACKLINK_SORT_FIELDS: &[(&str, &str)] = &[("name", "listed.name"), ("id", "listed.id")];
 
+fn carrier_lines(db: &Connection, owner_kind: &str, rows: &[Value]) -> Result<HashMap<(i64, i64), Value>, ApiError> {
+    if rows.is_empty() {
+        return Ok(HashMap::new());
+    }
+    let (table, owner_column) = match owner_kind {
+        "item" => ("item_effects", "item_id"),
+        "augment" => ("augment_effects", "augment_id"),
+        "set_bonus_tier" => ("set_bonus_tier_effects", "tier_id"),
+        _ => unreachable!("unknown carrier owner kind"),
+    };
+    let mut links =
+        rows.iter().filter_map(|row| Some((row["id"].as_i64()?, row["link_order"].as_i64()?))).collect::<Vec<_>>();
+    links.sort_unstable();
+    links.dedup();
+    let placeholders = (0..links.len())
+        .map(|index| format!("(?{}, ?{})", index * 2 + 1, index * 2 + 2))
+        .collect::<Vec<_>>()
+        .join(", ");
+    let condition = format!("(j.{owner_column}, j.sort_order) IN ({placeholders})");
+    let by_owner = effects_via_with_link_order(
+        db,
+        table,
+        owner_column,
+        &condition,
+        rusqlite::params_from_iter(links.into_iter().flat_map(|(owner_id, link_order)| [owner_id, link_order])),
+    )?;
+    Ok(by_owner
+        .into_iter()
+        .flat_map(|(owner_id, lines)| lines.into_iter().map(move |(link_order, line)| ((owner_id, link_order), line)))
+        .collect())
+}
+
 fn carrier_pages(
     db: &Connection,
     kind: &str,
@@ -272,12 +307,18 @@ fn carrier_pages(
             BACKLINK_SORT_FIELDS,
             &where_clause,
         )?;
+        let lines = carrier_lines(db, owner_kind, &result.rows)?;
         for row in &mut result.rows {
             if kind != "stat" {
                 let key =
                     (owner_kind.to_string(), row["id"].as_i64().unwrap_or(0), row["link_order"].as_i64().unwrap_or(0));
                 row["bonuses"] = Value::Array(bonuses_by_link.get(&key).cloned().unwrap_or_default());
             }
+            let owner_id = row["id"].as_i64().unwrap_or_default();
+            let link_order = row["link_order"].as_i64().unwrap_or_default();
+            row["line"] = lines.get(&(owner_id, link_order)).cloned().ok_or_else(|| {
+                ApiError::Internal(anyhow::anyhow!("missing {owner_kind} effect line {owner_id}:{link_order}"))
+            })?;
             let object = row.as_object_mut().expect("backlink object");
             object.remove("match_id");
             object.remove("link_order");
@@ -314,7 +355,7 @@ async fn effect_detail(
         .read_db(move |db| {
             let mut family = json_row(
                 db,
-                "SELECT id, name, is_stat, is_group, category, text_template, description_template, wiki_url,
+                "SELECT id, name, is_stat, is_group, category, verbose_name_template, description_template, wiki_url,
                     default_value, default_value2, tier_group_id, tier FROM effects WHERE id = ?1",
                 [id],
             )?;

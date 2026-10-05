@@ -39,10 +39,10 @@
           "description": null,
           "effect_id": 33,
           "name": "Positive Spell Power",
-          "text": "Equipment Positive Spell Power +36",
           "tier": null,
           "value": 36,
-          "value2": null
+          "value2": null,
+          "verbose_name": "Positive Spell Power +36"
         }
       ],
       "equipped_count": 2,

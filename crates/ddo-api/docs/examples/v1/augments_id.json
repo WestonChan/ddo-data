@@ -24,10 +24,10 @@
       "description": null,
       "effect_id": 14,
       "name": "Physical Resistance Rating",
-      "text": "Artifact Physical Resistance Rating +10",
       "tier": null,
       "value": 10,
-      "value2": null
+      "value2": null,
+      "verbose_name": "Artifact Physical Resistance Rating +10"
     }
   ],
   "enter_value": false,

@@ -99,7 +99,7 @@ fn text_only_effect_named_after_a_stat_is_warned() {
     let work_dir = tempfile::tempdir().unwrap();
     let db_path = fixture_db_copy_with(
         work_dir.path(),
-        "INSERT INTO effects (name, text_template) VALUES ('hitpoints', 'hitpoints');
+        "INSERT INTO effects (name, verbose_name_template) VALUES ('hitpoints', 'hitpoints');
          INSERT INTO item_effects (item_id, effect_id, sort_order)
          VALUES ((SELECT MIN(id) FROM items), last_insert_rowid(), 999);",
     );
@@ -165,17 +165,17 @@ fn identifier_like_effect_names_are_warned() {
     let work_dir = tempfile::tempdir().unwrap();
     let db_path = fixture_db_copy_with(
         work_dir.path(),
-        "INSERT INTO effects (name, text_template) VALUES ('CamelCase', 'Camel Case');
+        "INSERT INTO effects (name, verbose_name_template) VALUES ('CamelCase', 'Camel Case');
          INSERT INTO item_effects (item_id, effect_id, sort_order)
          VALUES ((SELECT MIN(id) FROM items), last_insert_rowid(), 999);
-         INSERT INTO effects (name, text_template) VALUES ('Telekinetic117', 'Telekinetic 117');
+         INSERT INTO effects (name, verbose_name_template) VALUES ('Telekinetic117', 'Telekinetic 117');
          INSERT INTO item_effects (item_id, effect_id, sort_order)
          VALUES ((SELECT MIN(id) FROM items), last_insert_rowid(), 998);
-         INSERT INTO effects (name, text_template) VALUES ('Parrying Number', 'Parrying');
-         INSERT INTO effects (name, text_template) VALUES ('Riposte Riposte', 'Riposte');
-         INSERT INTO effects (name, text_template) VALUES ('Feat Elusive Target', 'Elusive Target');
-         INSERT INTO effects (name, text_template) VALUES ('Penalty Good', 'Penalty');
-         INSERT INTO effects (name, text_template) VALUES ('Energy Absorption Negative', 'Absorption');",
+         INSERT INTO effects (name, verbose_name_template) VALUES ('Parrying Number', 'Parrying');
+         INSERT INTO effects (name, verbose_name_template) VALUES ('Riposte Riposte', 'Riposte');
+         INSERT INTO effects (name, verbose_name_template) VALUES ('Feat Elusive Target', 'Elusive Target');
+         INSERT INTO effects (name, verbose_name_template) VALUES ('Penalty Good', 'Penalty');
+         INSERT INTO effects (name, verbose_name_template) VALUES ('Energy Absorption Negative', 'Absorption');",
     );
     let db = Connection::open(&db_path).unwrap();
     let report = integrity_report(&db, &fixture_options()).unwrap();
@@ -219,7 +219,7 @@ fn a_warning_never_fails_the_command() {
     let work_dir = tempfile::tempdir().unwrap();
     let db_path = fixture_db_copy_with(
         work_dir.path(),
-        "INSERT INTO effects (name, text_template) VALUES ('hitpoints', 'hitpoints');
+        "INSERT INTO effects (name, verbose_name_template) VALUES ('hitpoints', 'hitpoints');
          INSERT INTO items (name, slot_id, item_category, wiki_url, drop_location, minimum_level)
          VALUES ('Integrity Probe Ring', (SELECT id FROM equipment_slots WHERE name = 'Ring'), 'Jewelry',
                  'https://ddowiki.com/page/Item:Integrity_Probe_Ring', 'Nowhere Keep, chest', 1);
@@ -311,21 +311,21 @@ fn injected_violations() -> Vec<InjectedViolation> {
         ),
         violation(
             "effects_named_after_stats",
-            "INSERT INTO effects (name, text_template) VALUES ('hitpoints', 'hitpoints'); \
+            "INSERT INTO effects (name, verbose_name_template) VALUES ('hitpoints', 'hitpoints'); \
              INSERT INTO item_effects (item_id, effect_id, sort_order) \
              VALUES ((SELECT MIN(id) FROM items), last_insert_rowid(), 999);",
             "hitpoints",
         ),
         violation(
             "effect_templates_with_digits_without_amounts",
-            "INSERT INTO effects (name, text_template) VALUES ('Integrity Probe Glow', 'Glow 7'); \
+            "INSERT INTO effects (name, verbose_name_template) VALUES ('Integrity Probe Glow', 'Glow 7'); \
              INSERT INTO item_effects (item_id, effect_id, sort_order) \
              VALUES ((SELECT MIN(id) FROM items), last_insert_rowid(), 998);",
             "Integrity Probe Glow",
         ),
         violation(
             "effects_with_amounts_named_with_digits",
-            "INSERT INTO effects (name, text_template)
+            "INSERT INTO effects (name, verbose_name_template)
              VALUES ('Integrity 12 Power', 'Power {1}');
              INSERT INTO item_effects (item_id, effect_id, value, sort_order)
              VALUES ((SELECT MIN(id) FROM items), last_insert_rowid(), 12, 998);",
@@ -333,14 +333,14 @@ fn injected_violations() -> Vec<InjectedViolation> {
         ),
         violation(
             "effects_with_values_in_names",
-            "INSERT INTO effects (name, text_template) VALUES ('+7 Integrity Probe', '+7 Integrity Probe'); \
+            "INSERT INTO effects (name, verbose_name_template) VALUES ('+7 Integrity Probe', '+7 Integrity Probe'); \
              INSERT INTO item_effects (item_id, effect_id, sort_order) \
              VALUES ((SELECT MIN(id) FROM items), last_insert_rowid(), 998);",
             "+7 Integrity Probe",
         ),
         violation(
             "effects_with_unused_default",
-            "INSERT INTO effects (name, text_template, default_value)
+            "INSERT INTO effects (name, verbose_name_template, default_value)
              VALUES ('Integrity Default', 'Default {1}', 7);
              INSERT INTO item_effects (item_id, effect_id, sort_order)
              VALUES ((SELECT MIN(id) FROM items), last_insert_rowid(), 998);",
@@ -348,7 +348,7 @@ fn injected_violations() -> Vec<InjectedViolation> {
         ),
         violation(
             "effect_link_amount_counts",
-            "INSERT INTO effects (name, text_template)
+            "INSERT INTO effects (name, verbose_name_template)
              VALUES ('Integrity Excess Amount', 'No amount');
              INSERT INTO item_effects (item_id, effect_id, value, sort_order)
              VALUES ((SELECT MIN(id) FROM items), last_insert_rowid(), 1, 998);",
@@ -362,7 +362,7 @@ fn injected_violations() -> Vec<InjectedViolation> {
         ),
         violation(
             "effect_template_placeholders",
-            "UPDATE effects SET text_template = 'Only {2}', description_template = NULL
+            "UPDATE effects SET verbose_name_template = 'Only {2}', description_template = NULL
              WHERE name = 'Improved Deception';",
             "Improved Deception",
         ),
@@ -413,13 +413,13 @@ fn injected_violations() -> Vec<InjectedViolation> {
         ),
         violation(
             "effect_families_have_owners",
-            "INSERT INTO effects (name, text_template)
+            "INSERT INTO effects (name, verbose_name_template)
              VALUES ('Integrity Orphan Effect', 'Integrity Orphan Effect');",
             "Integrity Orphan Effect",
         ),
         violation(
             "effect_groups_have_flat_members",
-            "INSERT INTO effects (name, text_template, is_group) VALUES ('Integrity Empty Group', 'Integrity Empty Group +{1}', 1);",
+            "INSERT INTO effects (name, verbose_name_template, is_group) VALUES ('Integrity Empty Group', 'Integrity Empty Group +{1}', 1);",
             "Integrity Empty Group",
         ),
         violation(
@@ -429,7 +429,7 @@ fn injected_violations() -> Vec<InjectedViolation> {
         ),
         violation(
             "effect_names_have_no_em_dash",
-            "INSERT INTO effects (name, text_template)
+            "INSERT INTO effects (name, verbose_name_template)
              VALUES ('Integrity — Prose', 'Integrity prose');
              INSERT INTO item_effects (item_id, effect_id, sort_order)
              VALUES ((SELECT MIN(id) FROM items), last_insert_rowid(), 997);",
@@ -437,9 +437,9 @@ fn injected_violations() -> Vec<InjectedViolation> {
         ),
         violation(
             "set_tier_lines_do_not_repeat_structured_facts",
-            "INSERT INTO effects (name, text_template)
+            "INSERT INTO effects (name, verbose_name_template)
              SELECT 'Integrity Duplicate Tier Fact',
-                    REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(e.text_template,
+                    REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(e.verbose_name_template,
                     '+{1}', '{1}'), '+{2}', '{2}'),
                     '{1}', printf('%+d', COALESCE(te.value, e.default_value))),
                     '{2}', COALESCE(printf('%+d', COALESCE(te.value2, e.default_value2)), '')),

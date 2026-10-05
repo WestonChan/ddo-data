@@ -293,6 +293,28 @@ pub fn build_database(
     vendors_and_events::write_wiki_vendor_and_event_items(&transaction, wiki_overrides, &mut report)?;
     effects::insert_tier_groups(&writer.effects, &crate::map::effect_map::EFFECT_MAP.tier_groups)?;
     effect_vocabulary::insert_effect_vocabulary(&transaction)?;
+    transaction.execute_batch(
+        "UPDATE effects SET home_bonus_type_id = COALESCE(home_bonus_type_id,
+           (SELECT MIN(eb.bonus_type_id) FROM effect_bonuses eb
+             WHERE eb.effect_id = effects.id
+            HAVING COUNT(*) > 0 AND COUNT(eb.bonus_type_id) = COUNT(*)
+               AND COUNT(DISTINCT eb.bonus_type_id) = 1),
+           (SELECT candidate.bonus_type_id FROM effect_vocabulary_bonus_types candidate
+             WHERE candidate.id = effects.id
+               AND candidate.kind = CASE WHEN effects.is_stat THEN 'stat' WHEN effects.is_group THEN 'group' ELSE 'effect' END
+               AND candidate.item_count > 0
+               AND candidate.item_count = (
+                   SELECT MAX(other.item_count) FROM effect_vocabulary_bonus_types other
+                    WHERE other.id = candidate.id AND other.kind = candidate.kind)
+               AND (SELECT COUNT(*) FROM effect_vocabulary_bonus_types tied
+                     WHERE tied.id = candidate.id AND tied.kind = candidate.kind
+                       AND tied.item_count = candidate.item_count) = 1));",
+    )?;
+    for (effect_name, home_type_name) in &crate::map::effect_map::EFFECT_MAP.home_bonus_types {
+        if home_type_name == "none" {
+            transaction.execute("UPDATE effects SET home_bonus_type_id = NULL WHERE name = ?1", [effect_name])?;
+        }
+    }
     report.legacy_item_count =
         transaction.query_row("SELECT COUNT(*) FROM items WHERE is_legacy", [], |r| r.get::<_, i64>(0))? as usize;
     report.bonus_count =

@@ -88,9 +88,20 @@ async fn detail_effects_render_family_stats_and_text_only_lines() {
     let lines = item["effects"].as_array().expect("item effects");
     assert!(item.get("bonuses").is_none());
     assert!(lines.iter().all(|line| {
-        ["effect_id", "name", "tier", "text", "description", "value", "value2", "bonus_type", "bonuses", "damage"]
-            .iter()
-            .all(|key| line.get(*key).is_some())
+        [
+            "effect_id",
+            "name",
+            "tier",
+            "verbose_name",
+            "description",
+            "value",
+            "value2",
+            "bonus_type",
+            "bonuses",
+            "damage",
+        ]
+        .iter()
+        .all(|key| line.get(*key).is_some())
     }));
     assert!(lines.iter().any(|line| line["bonuses"].as_array().is_some_and(|rows| !rows.is_empty())));
     assert!(lines.iter().any(|line| line["bonuses"] == serde_json::json!([])));
@@ -143,6 +154,69 @@ async fn direct_skill_group_links_render_the_group_description() {
     let item = item_detail_named("lindal").await;
     let line = item["effects"].as_array().unwrap().iter().find(|line| line["name"] == "Charisma Skills").unwrap();
     assert_eq!(line["description"], "4 Insight bonus to all Charisma based skills.");
+    assert_eq!(line["name"], "Charisma Skills");
+    assert_eq!(line["verbose_name"], "Charisma Skills +4");
+    assert!(line.get("text").is_none());
+}
+
+#[tokio::test]
+async fn effect_lines_separate_labels_from_rendered_names() {
+    let bracers = item_detail_named("Epic%20Ethereal%20Bracers").await;
+    let lines = bracers["effects"].as_array().unwrap();
+    let dexterity = lines.iter().find(|line| line["name"] == "Dexterity").unwrap();
+    assert_eq!(dexterity["verbose_name"], "Dexterity +11");
+    assert_eq!(dexterity["bonus_type"], "Enhancement");
+    let riposte = lines.iter().find(|line| line["name"] == "Riposte").unwrap();
+    assert_eq!(riposte["verbose_name"], "Riposte +5");
+    assert_eq!(riposte["value"], 5);
+    let speed = lines.iter().find(|line| line["name"] == "Speed XIV").unwrap();
+    assert_eq!(speed["value"], 30);
+    assert_eq!(speed["value2"], 14);
+    assert!(lines.iter().all(|line| line.get("text").is_none()));
+
+    let rune_arm = item_detail_named("Echoes%20of%20Night").await;
+    let lore = rune_arm["effects"].as_array().unwrap().iter().find(|line| line["name"] == "Sonic Lore").unwrap();
+    assert_eq!(lore["verbose_name"], "Sonic Lore +8");
+    assert_eq!(lore["bonus_type"], "Equipment");
+}
+
+#[tokio::test]
+async fn fixture_tooltip_templates_render_signed_units_types_groups_and_tiers() {
+    let cases = [
+        ("Epic%20Ethereal%20Bracers", "Dexterity", "Dexterity +11"),
+        ("Epic%20Ethereal%20Bracers", "Riposte", "Riposte +5"),
+        ("Epic%20Ethereal%20Bracers", "Speed XIV", "Speed XIV"),
+        ("Echoes%20of%20Night", "Sonic Lore", "Sonic Lore +8"),
+        ("Alaric%27s%20Grim%20Gauntlets", "Wisdom", "Wisdom +14"),
+        ("Alaric%27s%20Grim%20Gauntlets", "Dark Restoration Lore", "Dark Restoration Lore +23%"),
+        ("Alaric%27s%20Grim%20Gauntlets", "Parrying", "Parrying +5"),
+        ("Kardin%27s%20Eye", "Heightened Awareness", "Heightened Awareness 6"),
+        ("Lindal%27s%20Mighty%20Belt", "Charisma Skills", "Charisma Skills +4"),
+        ("Lindal%27s%20Mighty%20Belt", "Unwieldy", "Unwieldy"),
+        ("Epic%20Ring%20of%20the%20Stalker", "Deception", "Deception +3"),
+        ("Alarphon%27s%20Staff", "Spell Lore", "Spell Lore +6%"),
+    ];
+    for (item_search, effect_name, expected) in cases {
+        let item = item_detail_named(item_search).await;
+        let line = item["effects"].as_array().unwrap().iter().find(|line| line["name"] == effect_name).unwrap();
+        assert_eq!(line["verbose_name"], expected, "{item_search} {effect_name}");
+    }
+    let belt = item_detail_named("Lindal%27s%20Mighty%20Belt").await;
+    let unwieldy = belt["effects"].as_array().unwrap().iter().find(|line| line["name"] == "Unwieldy").unwrap();
+    assert_eq!(unwieldy["description"], "-2 Dexterity");
+    assert_eq!(unwieldy["value"], -2);
+    let invisibility = belt["effects"].as_array().unwrap().iter().find(|line| line["name"] == "Invisibility").unwrap();
+    assert_eq!(invisibility["verbose_name"], "Invisibility");
+    assert_eq!(invisibility["value"], 2);
+    let bracers = item_detail_named("Epic%20Ethereal%20Bracers").await;
+    let speed = bracers["effects"].as_array().unwrap().iter().find(|line| line["name"] == "Speed XIV").unwrap();
+    assert_eq!((speed["value"].as_i64(), speed["value2"].as_i64()), (Some(30), Some(14)));
+    let (_, _, sets) = get("/v1/sets?q=Cooking%20By%20the%20Book").await;
+    let set_id = sets["sets"][0]["id"].as_i64().unwrap();
+    let (_, _, set) = get(&format!("/v1/sets/{set_id}")).await;
+    let tier_line = &set["tiers"][0]["effects"][0];
+    assert_eq!(tier_line["name"], "Universal Spell Power");
+    assert_eq!(tier_line["verbose_name"], "Artifact Universal Spell Power +20");
 }
 
 #[tokio::test]
@@ -183,6 +257,49 @@ async fn repeated_item_vocabulary_filters_support_any_and_all() {
     let actual: std::collections::BTreeSet<_> =
         both["items"].as_array().unwrap().iter().map(|row| row["id"].as_i64().unwrap()).collect();
     assert_eq!(actual, expected);
+}
+
+#[tokio::test]
+async fn items_filter_by_any_or_all_sets_and_sort_by_first_set_name() {
+    let first_set = "Cooking%20By%20the%20Book";
+    let second_set = "Fried%20%26%20Frozen%20Frenzy";
+    let (_, _, cooking) = get(&format!("/v1/items?set={first_set}&limit=10000")).await;
+    let (_, _, fried) = get(&format!("/v1/items?set={second_set}&limit=10000")).await;
+    let (_, _, either) = get(&format!("/v1/items?set={first_set}&set={second_set}&limit=10000")).await;
+    let (_, _, both) = get(&format!("/v1/items?set={first_set}&set={second_set}&set_match=all&limit=10000")).await;
+    let ids = |page: &Value| -> std::collections::BTreeSet<i64> {
+        page["items"].as_array().unwrap().iter().map(|row| row["id"].as_i64().unwrap()).collect()
+    };
+    assert_eq!(ids(&either), ids(&cooking).union(&ids(&fried)).copied().collect());
+    assert_eq!(ids(&both), ids(&cooking).intersection(&ids(&fried)).copied().collect());
+    assert!(item_names(&both).contains(&"Fried Sword Fish"));
+
+    let (status, _, unknown) = get("/v1/items?set=Unknown%20Set").await;
+    assert_eq!(status, StatusCode::BAD_REQUEST);
+    assert!(unknown["error"].as_str().unwrap().contains("Unknown Set"));
+
+    let (_, _, sorted) = get("/v1/items?sort=set&limit=10000").await;
+    let set_names: Vec<_> = sorted["items"].as_array().unwrap().iter().filter_map(|row| row["set"].as_str()).collect();
+    assert!(set_names.windows(2).all(|pair| pair[0] <= pair[1]));
+    assert!(sorted["items"].as_array().unwrap().last().unwrap()["set"].is_null());
+    let fish = sorted["items"].as_array().unwrap().iter().find(|row| row["name"] == "Fried Sword Fish").unwrap();
+    assert_eq!(fish["set"], "Cooking By the Book");
+
+    let (_, _, spec) = get("/v1/openapi.json").await;
+    let params = spec["paths"]["/v1/items"]["get"]["parameters"].as_array().unwrap();
+    assert!(params.iter().any(|param| param["name"] == "set"));
+    assert!(params.iter().any(|param| param["name"] == "set_match"));
+}
+
+#[tokio::test]
+async fn sets_picker_supports_search_and_paging() {
+    let (_, _, page) = get("/v1/sets?q=Cooking%20By%20the%20Book&limit=1&offset=0").await;
+    assert_eq!(page["total"], 1);
+    assert_eq!(page["limit"], 1);
+    assert_eq!(page["sets"][0]["name"], "Cooking By the Book");
+    let (_, _, second_page) = get("/v1/sets?q=Cooking%20By%20the%20Book&limit=1&offset=1").await;
+    assert_eq!(second_page["total"], 1);
+    assert_eq!(second_page["sets"], serde_json::json!([]));
 }
 
 #[tokio::test]
@@ -284,6 +401,9 @@ async fn named_effect_carriers_page_links_and_nest_each_resolved_bonus() {
     assert_eq!(bracers.len(), 1);
     assert_eq!(bracers[0]["value"], 5);
     assert_eq!(bracers[0]["bonus_type"], "Insight");
+    assert_eq!(bracers[0]["line"]["name"], "Riposte");
+    assert_eq!(bracers[0]["line"]["verbose_name"], "Riposte +5");
+    assert!(bracers[0]["line"].get("text").is_none());
     assert_eq!(bracers[0]["bonuses"].as_array().unwrap().len(), 2);
     assert!(bracers[0]["bonuses"]
         .as_array()
@@ -307,14 +427,14 @@ async fn named_effect_carriers_page_links_and_nest_each_resolved_bonus() {
         .as_array()
         .unwrap()
         .iter()
-        .any(|row| row["name"] == "Solar Gem of Strength (Heroic)"));
+        .any(|row| row["name"] == "Solar Gem of Strength (Heroic)" && row["line"]["name"] == "Strength"));
     let all_abilities_id = effect_named(&vocabulary, "All Ability Scores", "group").unwrap()["id"].as_i64().unwrap();
     let (_, _, all_abilities) = get(&format!("/v1/effects/{all_abilities_id}")).await;
-    assert!(all_abilities["set_tiers"]["set_tiers"]
+    assert!(all_abilities["set_tiers"]["set_tiers"].as_array().unwrap().iter().any(|row| row["bonuses"]
         .as_array()
-        .unwrap()
-        .iter()
-        .any(|row| row["bonuses"].as_array().is_some_and(|rows| rows.len() == 6)));
+        .is_some_and(|rows| rows.len() == 6)
+        && row["line"]["name"] == "All Ability Scores"
+        && row["line"]["verbose_name"].as_str().is_some_and(|line| line.contains("All Ability Scores"))));
 }
 
 fn item_ids_in_page(page: &Value) -> std::collections::BTreeSet<i64> {
@@ -1575,10 +1695,20 @@ async fn owner_response_schemas_share_one_typed_effect_line() {
     let (_, _, spec) = get("/v1/openapi.json").await;
     let schemas = &spec["components"]["schemas"];
     let line = &schemas["EffectLine"]["properties"];
-    let expected: std::collections::BTreeSet<&str> =
-        ["effect_id", "name", "tier", "text", "description", "value", "value2", "bonus_type", "bonuses", "damage"]
-            .into_iter()
-            .collect();
+    let expected: std::collections::BTreeSet<&str> = [
+        "effect_id",
+        "name",
+        "tier",
+        "verbose_name",
+        "description",
+        "value",
+        "value2",
+        "bonus_type",
+        "bonuses",
+        "damage",
+    ]
+    .into_iter()
+    .collect();
     let actual: std::collections::BTreeSet<&str> = line.as_object().unwrap().keys().map(String::as_str).collect();
     assert_eq!(actual, expected);
     let set_tier = schema_reference(&schemas["SetsDetailResponse"]["properties"]["tiers"]["items"], schemas);
@@ -1919,8 +2049,9 @@ fn accepted_sample_value(param_name: &str, schema_type: &str) -> &'static str {
         ("category", _) => "Armor",
         ("source", _) => "standard",
         ("bonus", _) => "Strength",
+        ("set", _) => "Cooking%20By%20the%20Book",
         ("kind", _) => "stat",
-        ("bonus_match" | "pack_match" | "quest_match" | "quest_chain_match" | "saga_match", _) => "any",
+        ("bonus_match" | "pack_match" | "quest_match" | "quest_chain_match" | "saga_match" | "set_match", _) => "any",
         ("quest" | "quest_chain" | "saga", _) => "1",
         (_, "boolean") => "true",
         (_, "integer" | "number") => "1",

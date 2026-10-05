@@ -205,6 +205,30 @@ fn write_correction(
 ) -> Result<()> {
     let table_name = correction.kind.table_name();
     match field.shape {
+        FieldShape::EffectBonusConstant => {
+            let stat_name = correction.stat.as_deref().context("effect constant names a stat")?;
+            let effects = effects.context("effect corrections need the family cache")?;
+            for effect_id in row_ids {
+                let bonus_row_id = effect_bonus_row_id(transaction, *effect_id, stat_name)?;
+                transaction.execute(
+                    "UPDATE effect_bonuses SET constant = ?2 WHERE rowid = ?1",
+                    params![bonus_row_id, correction.to.to_sql()],
+                )?;
+                effects.refresh_family(*effect_id)?;
+            }
+        }
+        FieldShape::Integer if correction.kind == CorrectionKind::ItemEffect => {
+            let effect_name = correction.effect.as_deref().context("item_effect value names an effect")?;
+            let effect_id = id_named(transaction, "effects", effect_name)?
+                .with_context(|| format!("unknown effect {effect_name:?}"))?;
+            for item_id in row_ids {
+                let changed = transaction.execute(
+                    "UPDATE item_effects SET value = ?3 WHERE item_id = ?1 AND effect_id = ?2",
+                    params![item_id, effect_id, correction.to.to_sql()],
+                )?;
+                ensure!(changed == 1, "item {item_id} has no unique effect {effect_name:?}");
+            }
+        }
         FieldShape::Integer if correction.kind.corrects_a_bonus() => {
             let new_value = match correction.to {
                 CorrectionValue::Integer(number) => number,
@@ -257,6 +281,32 @@ fn write_correction(
         FieldShape::BonusRemoval => {
             let corrected_bonus = CorrectedBonus::of(transaction, correction)?;
             remove_bonuses(transaction, &corrected_bonus, row_ids)?;
+        }
+        FieldShape::BonusDedupe => {
+            let corrected_bonus = CorrectedBonus::of(transaction, correction)?;
+            let BonusLinkTable { table_name, owner_column } = corrected_bonus.link_table;
+            for owner_id in row_ids {
+                let mut statement =
+                    transaction.prepare(&corrected_bonus.matching_bonuses_sql(&format!("{table_name}.sort_order")))?;
+                let mut orders: Vec<i64> = statement
+                    .query_map(
+                        params![
+                            owner_id,
+                            corrected_bonus.stat_id,
+                            corrected_bonus.bonus_type_id,
+                            corrected_bonus.bonus_value
+                        ],
+                        |row| row.get(0),
+                    )?
+                    .collect::<rusqlite::Result<_>>()?;
+                orders.sort_unstable();
+                orders.dedup();
+                ensure!(orders.len() == 2, "augment {owner_id} must have two matching bonuses to dedupe");
+                transaction.execute(
+                    &format!("DELETE FROM {table_name} WHERE {owner_column} = ?1 AND sort_order = ?2"),
+                    params![owner_id, orders[1]],
+                )?;
+            }
         }
         FieldShape::TierAddition => {
             let CorrectionValue::Tier(tier) = &correction.to else { bail!("a tier add names the tier in to") };
@@ -333,6 +383,12 @@ fn write_correction(
         )?,
         FieldShape::Integer | FieldShape::Flag | FieldShape::Text => {
             write_column(transaction, table_name, field.column, row_ids, correction.to.to_sql())?;
+            if correction.kind == CorrectionKind::Effect {
+                let effects = effects.context("effect corrections need the family cache")?;
+                for family_id in row_ids {
+                    effects.refresh_family(*family_id)?;
+                }
+            }
         }
         FieldShape::NamedReference { referenced_table } => {
             let referenced_id = match correction.to.as_text() {
@@ -349,7 +405,15 @@ fn write_correction(
             write_column(transaction, table_name, field.column, row_ids, referenced_id)?;
         }
         FieldShape::SetName => relink_item_sets(transaction, row_ids, correction.to.as_text())?,
-        FieldShape::RowName => rename_rows(transaction, correction, row_ids)?,
+        FieldShape::RowName => {
+            rename_rows(transaction, correction, row_ids)?;
+            if correction.kind == CorrectionKind::Effect {
+                let effects = effects.context("effect corrections need the family cache")?;
+                for family_id in row_ids {
+                    effects.refresh_family(*family_id)?;
+                }
+            }
+        }
     }
     Ok(())
 }
@@ -427,6 +491,43 @@ fn current_value(
 ) -> Result<CorrectionValue> {
     let table_name = correction.kind.table_name();
     let value_sql = match field.shape {
+        FieldShape::EffectBonusConstant => {
+            let stat_name = correction.stat.as_deref().context("effect constant names a stat")?;
+            let bonus_row_id = effect_bonus_row_id(transaction, row_id, stat_name)?;
+            let constant: Option<i64> = transaction.query_row(
+                "SELECT constant FROM effect_bonuses WHERE rowid = ?1",
+                [bonus_row_id],
+                |row| row.get(0),
+            )?;
+            return Ok(constant.map_or(CorrectionValue::Null, CorrectionValue::Integer));
+        }
+        FieldShape::BonusDedupe => {
+            let corrected_bonus = CorrectedBonus::of(transaction, correction)?;
+            let mut statement = transaction.prepare(
+                &corrected_bonus.matching_bonuses_sql(&format!("{}.sort_order", corrected_bonus.link_table.table_name)),
+            )?;
+            let mut orders: Vec<i64> = statement
+                .query_map(
+                    params![row_id, corrected_bonus.stat_id, corrected_bonus.bonus_type_id, corrected_bonus.bonus_value],
+                    |row| row.get(0),
+                )?
+                .collect::<rusqlite::Result<_>>()?;
+            orders.sort_unstable();
+            orders.dedup();
+            return Ok(CorrectionValue::Integer(orders.len() as i64));
+        }
+        FieldShape::Integer if correction.kind == CorrectionKind::ItemEffect => {
+            let effect_name = correction.effect.as_deref().context("item_effect value names an effect")?;
+            let mut statement = transaction.prepare(
+                "SELECT ie.value FROM item_effects ie JOIN effects e ON e.id = ie.effect_id
+                  WHERE ie.item_id = ?1 AND e.name = ?2",
+            )?;
+            let values: Vec<Option<i64>> = statement
+                .query_map(params![row_id, effect_name], |row| row.get(0))?
+                .collect::<rusqlite::Result<_>>()?;
+            ensure!(values.len() == 1, "item {row_id} must have one effect {effect_name:?}");
+            return Ok(values[0].map_or(CorrectionValue::Null, CorrectionValue::Integer));
+        }
         FieldShape::Removal => return Ok(CorrectionValue::Integer(0)),
         FieldShape::Integer | FieldShape::BonusRemoval if correction.kind.corrects_a_bonus() => {
             let corrected_bonus = CorrectedBonus::of(transaction, correction)?;
@@ -511,7 +612,7 @@ fn current_value(
                     .map_or(CorrectionValue::Null, CorrectionValue::Text));
             }
             let description = transaction.query_row(
-                "SELECT e.text_template || CASE WHEN e.description_template IS NULL THEN '' ELSE ': ' || e.description_template END
+                "SELECT e.verbose_name_template || CASE WHEN e.description_template IS NULL THEN '' ELSE ': ' || e.description_template END
                  FROM set_bonus_tier_effects ste
                  JOIN effects e ON e.id = ste.effect_id
                  WHERE ste.tier_id = ?1 AND NOT EXISTS
@@ -531,6 +632,17 @@ fn current_value(
     };
     let sql_value: SqlValue = transaction.query_row(&value_sql, params![row_id], |r| r.get(0))?;
     Ok(CorrectionValue::from_sql(sql_value))
+}
+
+fn effect_bonus_row_id(transaction: &Transaction, effect_id: i64, stat_name: &str) -> Result<i64> {
+    let mut statement = transaction.prepare(
+        "SELECT eb.rowid FROM effect_bonuses eb JOIN effects target ON target.id = eb.target_effect_id
+          WHERE eb.effect_id = ?1 AND target.name = ?2",
+    )?;
+    let rows: Vec<i64> =
+        statement.query_map(params![effect_id, stat_name], |row| row.get(0))?.collect::<rusqlite::Result<_>>()?;
+    ensure!(rows.len() == 1, "effect {effect_id} must grant {stat_name:?} exactly once");
+    Ok(rows[0])
 }
 
 fn bonus_type_id_named(transaction: &Transaction, bonus_type_name: &str) -> Result<i64> {
@@ -779,7 +891,7 @@ fn add_bonus(
     let _bonus_type_id = bonus_type_id_named(transaction, &bonus.bonus_type)?;
     let bonus_type_name = &bonus.bonus_type;
     let effect_id = match effects.family_named(&bonus.stat) {
-        Some(family) if !family.text_template.is_empty() => family.id,
+        Some(family) if !family.verbose_name_template.is_empty() => family.id,
         _ => {
             let template = format!("%b1 {} +{{1}}", bonus.stat);
             effects.ensure_family(&bonus.stat, &template, None, 1)?
@@ -829,9 +941,9 @@ fn corrected_effect(
         sort_order: i64,
     }
     let original = effects.family(original_id).context("corrected family is cached")?;
-    let (old_name, text_template, description_template, amount_count) = (
+    let (old_name, verbose_name_template, description_template, amount_count) = (
         original.name.clone(),
-        original.text_template.clone(),
+        original.verbose_name_template.clone(),
         original.description_template.clone(),
         original.amount_count,
     );
@@ -861,7 +973,7 @@ fn corrected_effect(
         |row| row.get(0),
     )?;
     let mut corrected_name = old_name.clone();
-    let mut corrected_text = text_template;
+    let mut corrected_text = verbose_name_template;
     let mut corrected_description = description_template;
     if let Some(new_type_id) = new_bonus_type_id.filter(|type_id| Some(*type_id) != current_type_id) {
         let old_type_name: String = transaction.query_row(
@@ -1014,7 +1126,7 @@ fn write_set_tier_descriptions(
                 effects.delete_unowned(*old_id)?;
             }
             let existing_family =
-                effects.family_named(&family_name).map(|family| (family.id, family.text_template.clone()));
+                effects.family_named(&family_name).map(|family| (family.id, family.verbose_name_template.clone()));
             let effect_id = match existing_family {
                 Some((id, text)) if text == description => id,
                 Some(_) => anyhow::bail!(

@@ -5,7 +5,7 @@ use crate::enums::{
 };
 use std::sync::LazyLock;
 
-pub const SCHEMA_VERSION: i64 = 28;
+pub const SCHEMA_VERSION: i64 = 29;
 
 fn sql_in_clause<'a>(allowed_values: impl Iterator<Item = &'a str>) -> String {
     let quoted_values: Vec<String> = allowed_values.map(|value| format!("'{value}'")).collect();
@@ -278,19 +278,20 @@ CREATE TABLE IF NOT EXISTS effects (
     is_stat              INTEGER NOT NULL DEFAULT 0 CHECK (is_stat IN (0, 1)),
     is_group             INTEGER NOT NULL DEFAULT 0 CHECK (is_group IN (0, 1)),
     category             TEXT,
-    text_template        TEXT,
+    verbose_name_template        TEXT,
     description_template TEXT,
     default_value        INTEGER,
     default_value2       INTEGER,
+    home_bonus_type_id   INTEGER REFERENCES bonus_types(id),
     wiki_url             TEXT CHECK (wiki_url IS NULL OR wiki_url GLOB 'https://ddowiki.com/page/?*'),
     tier_group_id        INTEGER REFERENCES effect_tier_groups(id),
     tier                 INTEGER CHECK (tier IS NULL OR tier > 0),
     CHECK ((is_stat = 1) = (category IS NOT NULL)),
     CHECK (is_stat = 0 OR is_group = 0),
-    CHECK (is_stat = 1 OR text_template IS NOT NULL),
-    CHECK (text_template IS NOT NULL OR (description_template IS NULL AND default_value IS NULL AND default_value2 IS NULL)),
-    CHECK (default_value IS NULL OR INSTR(COALESCE(text_template, '') || COALESCE(description_template, ''), '{{1}}') > 0),
-    CHECK (default_value2 IS NULL OR INSTR(COALESCE(text_template, '') || COALESCE(description_template, ''), '{{2}}') > 0),
+    CHECK (is_stat = 1 OR verbose_name_template IS NOT NULL),
+    CHECK (verbose_name_template IS NOT NULL OR (description_template IS NULL AND default_value IS NULL AND default_value2 IS NULL)),
+    CHECK (default_value IS NULL OR INSTR(COALESCE(verbose_name_template, '') || COALESCE(description_template, ''), '{{1}}') > 0),
+    CHECK (default_value2 IS NULL OR INSTR(COALESCE(verbose_name_template, '') || COALESCE(description_template, ''), '{{2}}') > 0),
     CHECK ((tier_group_id IS NULL) = (tier IS NULL)),
     UNIQUE (tier_group_id, tier)
 );

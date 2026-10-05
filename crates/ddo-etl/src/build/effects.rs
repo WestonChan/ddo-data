@@ -19,7 +19,7 @@ pub(super) struct BonusRule {
 pub(super) struct CachedEffect {
     pub(super) id: i64,
     pub(super) name: String,
-    pub(super) text_template: String,
+    pub(super) verbose_name_template: String,
     pub(super) description_template: Option<String>,
     pub(super) amount_count: i64,
     pub(super) uses_link_type: bool,
@@ -58,6 +58,50 @@ fn stat_templates_share_fact(
 }
 
 impl<'a> EffectCache<'a> {
+    pub(super) fn refresh_family(&mut self, family_id: i64) -> Result<()> {
+        let (name, verbose_name_template, description_template, default_value, default_value2): (
+            String,
+            Option<String>,
+            Option<String>,
+            Option<i64>,
+            Option<i64>,
+        ) = self.transaction.query_row(
+            "SELECT name, verbose_name_template, description_template, default_value, default_value2
+               FROM effects WHERE id = ?1",
+            [family_id],
+            |row| Ok((row.get(0)?, row.get(1)?, row.get(2)?, row.get(3)?, row.get(4)?)),
+        )?;
+        let family = self.families_by_id.get_mut(&family_id).expect("corrected effect is cached");
+        if family.name != name {
+            self.families_by_name.remove(&family.name);
+            self.families_by_name.insert(name.clone(), family_id);
+        }
+        family.name = name;
+        family.verbose_name_template = verbose_name_template.unwrap_or_default();
+        family.description_template = description_template;
+        family.amount_count = amount_count(&family.verbose_name_template, family.description_template.as_deref());
+        family.uses_link_type = family.verbose_name_template.contains("%b1")
+            || family.description_template.as_deref().is_some_and(|template| template.contains("%b1"));
+        family.default_value = default_value;
+        family.default_value2 = default_value2;
+        self.stats.retain(|(effect_id, _, _), _| *effect_id != family_id);
+        let mut statement = self.transaction.prepare(
+            "SELECT target_effect_id, bonus_type_id, amount_from, constant
+               FROM effect_bonuses WHERE effect_id = ?1",
+        )?;
+        for row in statement.query_map([family_id], |row| {
+            Ok((
+                row.get::<_, i64>(0)?,
+                row.get::<_, Option<i64>>(1)?,
+                row.get::<_, i64>(2)?,
+                row.get::<_, Option<i64>>(3)?,
+            ))
+        })? {
+            let (target_id, bonus_type_id, amount_from, constant) = row?;
+            self.stats.insert((family_id, target_id, bonus_type_id), (amount_from, constant));
+        }
+        Ok(())
+    }
     pub(super) fn new(transaction: &'a Transaction<'a>) -> Self {
         let mut families_by_name = HashMap::new();
         let mut families_by_id = HashMap::new();
@@ -68,7 +112,7 @@ impl<'a> EffectCache<'a> {
                 CachedEffect {
                     id: stat.id,
                     name: stat.name.to_string(),
-                    text_template: String::new(),
+                    verbose_name_template: String::new(),
                     description_template: None,
                     amount_count: 1,
                     uses_link_type: false,
@@ -115,42 +159,95 @@ impl<'a> EffectCache<'a> {
     pub(super) fn ensure_family(
         &mut self,
         name: &str,
-        text_template: &str,
+        verbose_name_template: &str,
         description_template: Option<&str>,
         count: i64,
     ) -> Result<i64> {
+        let family_id = self.ensure_family_templates(name, verbose_name_template, description_template, count)?;
+        if let Some(default_value) = EFFECT_MAP.definition_defaults.get(name) {
+            self.set_defaults(family_id, (Some(*default_value), None))?;
+        }
+        Ok(family_id)
+    }
+
+    fn ensure_family_templates(
+        &mut self,
+        name: &str,
+        verbose_name_template: &str,
+        description_template: Option<&str>,
+        count: i64,
+    ) -> Result<i64> {
+        let paragraph = description_template.is_none()
+            && verbose_name_template.split_whitespace().count() >= 7
+            && (verbose_name_template
+                .trim_end()
+                .chars()
+                .last()
+                .is_some_and(|character| matches!(character, '.' | '!' | '?'))
+                || (verbose_name_template.len() > 75 && verbose_name_template.contains(';')));
+        let concise_template = if paragraph {
+            Some(match count {
+                0 => name.to_string(),
+                _ => format!("{name} +{{1}}"),
+            })
+        } else {
+            None
+        };
+        let description_template = if paragraph { Some(verbose_name_template) } else { description_template };
+        let description_template =
+            EFFECT_MAP.description_templates.get(name).map(String::as_str).or(description_template);
+        let verbose_name_template = concise_template.as_deref().unwrap_or(verbose_name_template);
+        let signed_template =
+            verbose_name_template.replace("{1}", "+{1}").replace("++{1}", "+{1}").replace("-+{1}", "-{1}");
+        let verbose_name_template = EFFECT_MAP.line_templates.get(name).map(String::as_str).unwrap_or(&signed_template);
+        let count =
+            if EFFECT_MAP.line_templates.contains_key(name) || EFFECT_MAP.description_templates.contains_key(name) {
+                amount_count(verbose_name_template, description_template)
+            } else {
+                count
+            };
         if let Some(existing) = self.family_named(name) {
-            if existing.is_stat && existing.text_template.is_empty() {
+            if existing.is_stat && existing.verbose_name_template.is_empty() {
                 let stat_id = existing.id;
                 ensure!(count == 1, "stat effect {name:?} must read exactly one value");
-                validate_templates(name, text_template, description_template, count)?;
+                validate_templates(name, verbose_name_template, description_template, count)?;
                 self.transaction.execute(
-                    "UPDATE effects SET text_template = ?2, description_template = ?3 WHERE id = ?1",
-                    params![stat_id, text_template, description_template],
+                    "UPDATE effects SET verbose_name_template = ?2, description_template = ?3,
+                        home_bonus_type_id = COALESCE(home_bonus_type_id, ?4) WHERE id = ?1",
+                    params![
+                        stat_id,
+                        verbose_name_template,
+                        description_template,
+                        EFFECT_MAP
+                            .home_bonus_types
+                            .get(name)
+                            .and_then(|name| BonusType::parse(name))
+                            .map(BonusType::id)
+                    ],
                 )?;
                 let family = self.families_by_id.get_mut(&stat_id).expect("seed stat cached");
-                family.text_template = text_template.to_string();
+                family.verbose_name_template = verbose_name_template.to_string();
                 family.description_template = description_template.map(str::to_string);
                 family.amount_count = count;
-                family.uses_link_type = text_template.contains("%b1")
+                family.uses_link_type = verbose_name_template.contains("%b1")
                     || description_template.is_some_and(|template| template.contains("%b1"));
                 return Ok(stat_id);
             }
-            let incoming_uses_link_type =
-                text_template.contains("%b1") || description_template.is_some_and(|template| template.contains("%b1"));
+            let incoming_uses_link_type = verbose_name_template.contains("%b1")
+                || description_template.is_some_and(|template| template.contains("%b1"));
             if existing.is_stat && count == 1 && existing.uses_link_type != incoming_uses_link_type {
                 let (dynamic_text, dynamic_description, fixed_text, fixed_description) = if existing.uses_link_type {
                     (
-                        existing.text_template.as_str(),
+                        existing.verbose_name_template.as_str(),
                         existing.description_template.as_deref(),
-                        text_template,
+                        verbose_name_template,
                         description_template,
                     )
                 } else {
                     (
-                        text_template,
+                        verbose_name_template,
                         description_template,
-                        existing.text_template.as_str(),
+                        existing.verbose_name_template.as_str(),
                         existing.description_template.as_deref(),
                     )
                 };
@@ -162,19 +259,29 @@ impl<'a> EffectCache<'a> {
                     return Ok(existing.id);
                 }
                 let stat_id = existing.id;
-                validate_templates(name, text_template, description_template, count)?;
+                validate_templates(name, verbose_name_template, description_template, count)?;
                 self.transaction.execute(
-                    "UPDATE effects SET text_template = ?2, description_template = ?3 WHERE id = ?1",
-                    params![stat_id, text_template, description_template],
+                    "UPDATE effects SET verbose_name_template = ?2, description_template = ?3,
+                        home_bonus_type_id = COALESCE(home_bonus_type_id, ?4) WHERE id = ?1",
+                    params![
+                        stat_id,
+                        verbose_name_template,
+                        description_template,
+                        EFFECT_MAP
+                            .home_bonus_types
+                            .get(name)
+                            .and_then(|name| BonusType::parse(name))
+                            .map(BonusType::id)
+                    ],
                 )?;
                 let family = self.families_by_id.get_mut(&stat_id).expect("seed stat cached");
-                family.text_template = text_template.to_string();
+                family.verbose_name_template = verbose_name_template.to_string();
                 family.description_template = description_template.map(str::to_string);
                 family.uses_link_type = true;
                 return Ok(stat_id);
             }
             ensure!(
-                existing.text_template == text_template
+                existing.verbose_name_template == verbose_name_template
                     && existing.description_template.as_deref() == description_template
                     && existing.amount_count == count,
                 "effect {name:?} has conflicting templates or amount counts"
@@ -182,10 +289,16 @@ impl<'a> EffectCache<'a> {
             return Ok(existing.id);
         }
         ensure!(!name.contains(" — "), "effect family {name:?} contains an em dash; add a [names] entry");
-        validate_templates(name, text_template, description_template, count)?;
+        validate_templates(name, verbose_name_template, description_template, count)?;
         self.transaction.execute(
-            "INSERT INTO effects (name, text_template, description_template) VALUES (?1, ?2, ?3)",
-            params![name, text_template, description_template],
+            "INSERT INTO effects (name, verbose_name_template, description_template, home_bonus_type_id)
+                 VALUES (?1, ?2, ?3, ?4)",
+            params![
+                name,
+                verbose_name_template,
+                description_template,
+                EFFECT_MAP.home_bonus_types.get(name).and_then(|name| BonusType::parse(name)).map(BonusType::id)
+            ],
         )?;
         let id = self.transaction.last_insert_rowid();
         self.families_by_name.insert(name.to_string(), id);
@@ -194,10 +307,10 @@ impl<'a> EffectCache<'a> {
             CachedEffect {
                 id,
                 name: name.to_string(),
-                text_template: text_template.to_string(),
+                verbose_name_template: verbose_name_template.to_string(),
                 description_template: description_template.map(str::to_string),
                 amount_count: count,
-                uses_link_type: text_template.contains("%b1")
+                uses_link_type: verbose_name_template.contains("%b1")
                     || description_template.is_some_and(|template| template.contains("%b1")),
                 is_stat: false,
                 is_group: false,
@@ -391,18 +504,18 @@ impl<'a> EffectCache<'a> {
     }
 
     pub(super) fn ensure_text(&mut self, source_name: &str, rendered_text: &str) -> Result<i64> {
-        let (text_template, description_template) = split_template(rendered_text);
+        let (verbose_name_template, description_template) = split_template(rendered_text);
         let family_name = source_name.split_once(" — ").map_or(source_name, |(title, _)| title);
         if let Some(existing) = self.family_named(family_name) {
             ensure!(
                 !existing.has_stats
-                    && existing.text_template == text_template
+                    && existing.verbose_name_template == verbose_name_template
                     && existing.description_template == description_template,
                 "effect family {family_name:?} has conflicting text {rendered_text:?}; add a [names] entry"
             );
         }
-        let count = amount_count(&text_template, description_template.as_deref());
-        self.ensure_family(family_name, &text_template, description_template.as_deref(), count)
+        let count = amount_count(&verbose_name_template, description_template.as_deref());
+        self.ensure_family(family_name, &verbose_name_template, description_template.as_deref(), count)
     }
 
     pub(super) fn set_defaults(&mut self, family_id: i64, defaults: (Option<i64>, Option<i64>)) -> Result<()> {
@@ -426,15 +539,15 @@ impl<'a> EffectCache<'a> {
         Ok(())
     }
 
-    pub(super) fn replace_family_text(&mut self, family_id: i64, text_template: &str) -> Result<()> {
+    pub(super) fn replace_family_text(&mut self, family_id: i64, verbose_name_template: &str) -> Result<()> {
         let family = self.families_by_id.get_mut(&family_id).expect("corrected family is cached");
         ensure!(!family.has_stats, "structured family text cannot be replaced");
-        validate_templates(&family.name, text_template, None, 0)?;
+        validate_templates(&family.name, verbose_name_template, None, 0)?;
         self.transaction.execute(
-            "UPDATE effects SET text_template = ?2, description_template = NULL WHERE id = ?1",
-            params![family_id, text_template],
+            "UPDATE effects SET verbose_name_template = ?2, description_template = NULL WHERE id = ?1",
+            params![family_id, verbose_name_template],
         )?;
-        family.text_template = text_template.to_string();
+        family.verbose_name_template = verbose_name_template.to_string();
         family.description_template = None;
         Ok(())
     }
@@ -513,8 +626,8 @@ impl EffectOwner {
     }
 }
 
-pub(super) fn amount_count(text_template: &str, description_template: Option<&str>) -> i64 {
-    let templates = [text_template, description_template.unwrap_or("")];
+pub(super) fn amount_count(verbose_name_template: &str, description_template: Option<&str>) -> i64 {
+    let templates = [verbose_name_template, description_template.unwrap_or("")];
     if templates.iter().any(|template| template.contains("{2}")) {
         2
     } else if templates.iter().any(|template| template.contains("{1}")) {
@@ -526,12 +639,12 @@ pub(super) fn amount_count(text_template: &str, description_template: Option<&st
 
 pub(super) fn validate_templates(
     name: &str,
-    text_template: &str,
+    verbose_name_template: &str,
     description_template: Option<&str>,
     count: i64,
 ) -> Result<()> {
     ensure!((0..=2).contains(&count), "effect {name:?}: amount_count {count} is outside 0..=2");
-    let template_text = format!("{text_template}{}", description_template.unwrap_or(""));
+    let template_text = format!("{verbose_name_template}{}", description_template.unwrap_or(""));
     for slot in 1..=2 {
         let has_slot = template_text.contains(&format!("{{{slot}}}"));
         ensure!(
@@ -655,6 +768,48 @@ mod tests {
     use ddo_model::enums::BonusType;
     use ddo_model::stats::Stat;
     use rusqlite::Connection;
+
+    #[test]
+    fn untitled_paragraph_becomes_description_with_a_concise_line_template() {
+        let mut db = Connection::open_in_memory().unwrap();
+        db.execute_batch(ddo_model::ddl()).unwrap();
+        let transaction = db.transaction().unwrap();
+        let mut effects = EffectCache::new(&transaction);
+        let paragraph = "Any creature struck by this weapon must succeed on a DC 17 Will save or be paralyzed. The target may try again to end the effect later.";
+        let effect_id = effects.ensure_family("Paralyzing", paragraph, None, 0).unwrap();
+        let templates: (String, Option<String>) = transaction
+            .query_row(
+                "SELECT verbose_name_template, description_template FROM effects WHERE id = ?1",
+                [effect_id],
+                |row| Ok((row.get(0)?, row.get(1)?)),
+            )
+            .unwrap();
+        assert_eq!(templates, ("Paralyzing".to_string(), Some(paragraph.to_string())));
+    }
+
+    #[test]
+    fn fixed_dc_variants_share_the_wild_frenzy_family_and_keep_a_default() {
+        let mut db = Connection::open_in_memory().unwrap();
+        db.execute_batch(ddo_model::ddl()).unwrap();
+        let transaction = db.transaction().unwrap();
+        let mut effects = EffectCache::new(&transaction);
+        let base_description = "This weapon has a tendency to drive those it strikes insane. On an attack roll of 20 which is confirmed as a critical hit the target will go wild and attack its own allies for 15 seconds if it fails a DC 25 Will save. Enemies driven wild in this way, however, have a chance of coming to their senses if damaged.";
+        let stronger_description = base_description.replace("DC 25", "DC 122");
+        let base = effects.ensure_family("Wild Frenzy", "Wild Frenzy", Some(base_description), 0).unwrap();
+        let stronger =
+            effects.ensure_family("Wild Frenzy", "Wild Frenzy +122", Some(&stronger_description), 0).unwrap();
+        assert_eq!(base, stronger);
+        let templates: (String, String, i64) = transaction
+            .query_row(
+                "SELECT verbose_name_template, description_template, default_value FROM effects WHERE id = ?1",
+                [base],
+                |row| Ok((row.get(0)?, row.get(1)?, row.get(2)?)),
+            )
+            .unwrap();
+        assert_eq!(templates.0, "Wild Frenzy +{1}");
+        assert!(templates.1.contains("DC {1} Will save"));
+        assert_eq!(templates.2, 25);
+    }
 
     #[test]
     fn every_ability_skill_group_has_its_own_description() {

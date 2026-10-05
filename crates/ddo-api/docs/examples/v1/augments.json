@@ -25,10 +25,10 @@
           "description": "2 Artifact bonus to the DC of Abjuration spells.",
           "effect_id": 92,
           "name": "Abjuration Spell Focus",
-          "text": "Artifact Abjuration Focus 2",
           "tier": null,
           "value": 2,
-          "value2": null
+          "value2": null,
+          "verbose_name": "Artifact Abjuration Focus +2"
         }
       ],
       "enter_value": false,
@@ -73,10 +73,10 @@
           "description": "4 Artifact bonus to the DC of Abjuration spells.",
           "effect_id": 92,
           "name": "Abjuration Spell Focus",
-          "text": "Artifact Abjuration Focus 4",
           "tier": null,
           "value": 4,
-          "value2": null
+          "value2": null,
+          "verbose_name": "Artifact Abjuration Focus +4"
         }
       ],
       "enter_value": false,

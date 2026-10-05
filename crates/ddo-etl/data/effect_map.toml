@@ -3,6 +3,10 @@ enhancement = ["WeaponEnchantment", "ArmorEnchantment", "ShieldEnchantment"]
 owner_type_precedence = ["ExtraLayOnHands", "Constitution Skills - Exceptional", "Charisma Skills - Exceptional", "Strength Skills - Exceptional", "Wisdom Skills - Exceptional"]
 
 [names]
+"DR 30/Adamantine" = "DR 30/Adamantine"
+FeatMobility = "Feat: Mobility"
+WindFrenzy122 = "Wild Frenzy"
+WindFrenzy50 = "Wild Frenzy"
 "+25 Artifact bonus to Electric, Fire, Force, and Repair Spell Power" = "Electric Fire Force Repair Spell Power"
 "+5% Artifact bonus to Electric, Fire, Force, and Repair Spell Critical Chance" = "Electric Fire Force Repair Spell Critical Chance"
 "+30 Artifact bonus to Electric, Fire, Force and Repair spell power" = "Greater Electric Fire Force Repair Spell Power"
@@ -99,6 +103,35 @@ ExtraLayOnHands = "Lay on Hands Uses"
 "With 2–6 augments, gain +5% to +9% Legendary maximum Hit Points." = "Hit Point Augment Scaling"
 "With 2–6 augments, gain 3%–7% Melee and Ranged critical damage and 9%–17% Spell critical damage." = "Critical Damage Augment Scaling"
 "With 2–6 augments, gain a 5%–9% Legendary bonus to Spell Points." = "Spell Point Augment Scaling"
+
+[home_bonus_types]
+"Negative Amplification" = "none"
+"Spell Focus Mastery" = "Equipment"
+"Universal Spell Lore" = "Equipment"
+"Elemental Resistance" = "Enhancement"
+
+[line_templates]
+"DR 30/Adamantine" = "DR 30/Adamantine"
+"Feat: Mobility" = "Feat: Mobility"
+"Heightened Awareness" = "Heightened Awareness {1}"
+"Parrying" = "%b1 Parrying +{1}"
+"Wild Frenzy" = "Wild Frenzy +{1}"
+"Magical Efficiency" = "%b1 Magical Efficiency {1}%"
+"Universal Spell Lore" = "%b1 Universal Spell Lore +{1}%"
+"Incite" = "%b1 Incite +{1}"
+"Ranged Alacrity" = "Ranged Alacrity {1}%"
+"Doublestrike" = "%b1 Doublestrike {1}%"
+"Doubleshot" = "%b1 Doubleshot {1}%"
+
+[description_templates]
+"Wild Frenzy" = "This weapon has a tendency to drive those it strikes insane. On an attack roll of 20 which is confirmed as a critical hit the target will go wild and attack its own allies for 15 seconds if it fails a DC {1} Will save. Enemies driven wild in this way, however, have a chance of coming to their senses if damaged."
+
+[definition_defaults]
+"Wild Frenzy" = 25
+
+[fixed_buff_values]
+WindFrenzy50 = 50
+WindFrenzy122 = 122
 
 [tier_groups]
 Deception = ["Deception", "Improved Deception"]
