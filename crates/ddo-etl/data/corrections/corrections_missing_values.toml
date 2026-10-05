@@ -143,12 +143,12 @@ read = "2026-09-29"
 [[correction]]
 kind = "item_bonus"
 name = "Docent of Shadow (level 24)"
-stat = "Necromancy Spell Focus"
+stat = "Necromancy Focus"
 bonus_type = "Equipment"
 field = "value"
 from = 1
 to = 3
-reason = "The wiki item grants Necromancy Spell Focus +3 rather than +1."
+reason = "The wiki item grants Necromancy Focus +3 rather than +1."
 source = "https://ddowiki.com/page/Item:Epic_Docent_of_Shadow_%28level_24%29"
 read = "2026-09-29"
 

@@ -1192,6 +1192,43 @@ fn all_ability_set_tier_uses_one_family_with_six_stats() {
 }
 
 #[test]
+fn set_tier_links_one_group_when_both_members_share_type_and_value() {
+    let (db, _) = built_fixture_db();
+    let tier_id: i64 = db
+        .query_row(
+            "SELECT t.id FROM set_bonus_tiers t JOIN set_bonuses s ON s.id = t.set_id
+             WHERE s.name = 'Kundarak Delving Equipment' AND t.equipped_count = 3",
+            [],
+            |row| row.get(0),
+        )
+        .unwrap();
+    let links: Vec<(String, i64, String)> = db
+        .prepare(
+            "SELECT e.name, l.value, bt.name FROM set_bonus_tier_effects l
+             JOIN effects e ON e.id = l.effect_id JOIN bonus_types bt ON bt.id = l.bonus_type_id
+             WHERE l.tier_id = ?1 AND e.name IN ('Doublestrike', 'Doubleshot', 'Doublestrike and Doubleshot')",
+        )
+        .unwrap()
+        .query_map([tier_id], |row| Ok((row.get(0)?, row.get(1)?, row.get(2)?)))
+        .unwrap()
+        .map(Result::unwrap)
+        .collect();
+    assert_eq!(links, [("Doublestrike and Doubleshot".to_string(), 5, "Artifact".to_string())]);
+    let bonuses: Vec<(String, i64)> = db
+        .prepare(
+            "SELECT e.name, ob.amount FROM owner_bonuses ob JOIN effects e ON e.id = ob.stat_id
+             WHERE ob.owner_kind = 'set_bonus_tier' AND ob.owner_id = ?1
+               AND e.name IN ('Doublestrike', 'Doubleshot') ORDER BY e.name",
+        )
+        .unwrap()
+        .query_map([tier_id], |row| Ok((row.get(0)?, row.get(1)?)))
+        .unwrap()
+        .map(Result::unwrap)
+        .collect();
+    assert_eq!(bonuses, [("Doubleshot".to_string(), 5), ("Doublestrike".to_string(), 5)]);
+}
+
+#[test]
 fn links_an_item_to_every_set_it_names() {
     let (db, _) = built_fixture_db();
     let fried_sword_fish = item_id(&db, "Fried Sword Fish");

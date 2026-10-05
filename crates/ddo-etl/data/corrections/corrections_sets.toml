@@ -246,25 +246,12 @@ read = "2026-10-02"
 kind = "set_tier_bonus"
 name = "Heart of Blades"
 equipped_count = 3
-stat = "Melee Power"
+stat = "Melee and Ranged Power"
 bonus_type = "Artifact"
 field = "value"
 from = 5
 to = 10
-reason = "The wiki gives Melee Power +10 Artifact at 3 pieces; his tier gives +5."
-source = "https://ddowiki.com/page/Named_item_sets"
-read = "2026-10-02"
-
-[[correction]]
-kind = "set_tier_bonus"
-name = "Heart of Blades"
-equipped_count = 3
-stat = "Ranged Power"
-bonus_type = "Artifact"
-field = "value"
-from = 5
-to = 10
-reason = "The wiki gives Ranged Power +10 Artifact at 3 pieces; his tier gives +5."
+reason = "The wiki gives Melee and Ranged Power +10 Artifact at 3 pieces; his tier gives +5 to both."
 source = "https://ddowiki.com/page/Named_item_sets"
 read = "2026-10-02"
 

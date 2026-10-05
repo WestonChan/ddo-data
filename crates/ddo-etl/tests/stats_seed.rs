@@ -16,7 +16,7 @@ const STATS_KEPT_WITHOUT_A_SOURCE: &[(&str, &str)] = &[
     ("Burning Ambition Dice", "the Burning Ambition damage dice, which no buff or effect type in his files carries"),
     ("Temporary Hit Points", "temporary hit points, which no buff or effect type in his files carries"),
     ("Sleep Save", "saves against sleep, which no SaveBonus in his files names"),
-    ("Divination Spell Focus", "divination spell DCs, which no SpellDC or SchoolFocusNumber in his files names"),
+    ("Divination Focus", "divination spell DCs, which no SpellDC or SchoolFocusNumber in his files names"),
     ("Force Resistance", "resistance to force damage, which no EnergyResistance in his files names"),
 ];
 
@@ -122,23 +122,26 @@ fn record_template_targets(
     map_name: &str,
     templates_by_kind: &BTreeMap<String, String>,
     item_aliases: &BTreeMap<String, String>,
+    stat_name_aliases: &BTreeMap<String, String>,
     item_words_by_kind: &BTreeMap<(ItemWordOwner, String), BTreeSet<String>>,
     owner: ItemWordOwner,
 ) {
     for (kind, template) in templates_by_kind {
         for alias in item_aliases.values() {
+            let source_name = template.replace("{item}", alias);
             record_source(
                 sources_by_stat,
-                &template.replace("{item}", alias),
+                stat_name_aliases.get(&source_name).unwrap_or(&source_name),
                 format!("{map_name} [by_item] {kind} over the [item_aliases] word {alias:?}"),
             );
         }
         let item_words = item_words_by_kind.get(&(owner, kind.clone())).into_iter().flatten();
         for item_word in item_words {
             let canonical_word = item_aliases.get(item_word).unwrap_or(item_word);
+            let source_name = template.replace("{item}", canonical_word);
             record_source(
                 sources_by_stat,
-                &template.replace("{item}", canonical_word),
+                stat_name_aliases.get(&source_name).unwrap_or(&source_name),
                 format!("{map_name} [by_item] {kind} over his item word {item_word:?}"),
             );
         }
@@ -156,6 +159,7 @@ fn record_map_targets(sources_by_stat: &mut BTreeMap<String, String>) {
         "effect_map.toml [family]",
         &vocabulary.family.by_item,
         &vocabulary.item_aliases,
+        &vocabulary.stat_name_aliases,
         &item_words_by_kind,
         ItemWordOwner::Buff,
     );
@@ -178,6 +182,7 @@ fn record_map_targets(sources_by_stat: &mut BTreeMap<String, String>) {
         "effect_map.toml [effect]",
         &vocabulary.effect.by_item,
         &vocabulary.item_aliases,
+        &vocabulary.stat_name_aliases,
         &item_words_by_kind,
         ItemWordOwner::Effect,
     );

@@ -267,7 +267,7 @@ pub(crate) fn bonuses_via(
         };
         let description = bonus["description_template"].as_str().map(|template| {
             let rendered_title = render_effect_template(bonus["verbose_name_template"].as_str().unwrap_or(""), bonus);
-            format!("{rendered_title}: {}", render_effect_template(template, bonus))
+            format!("{rendered_title}: {}", render_description_template(template, bonus))
         });
         let object = bonus.as_object_mut().expect("query returns objects");
         object.remove("verbose_name_template");
@@ -314,7 +314,7 @@ pub(crate) fn effects_via_with_link_order<P: Params>(
     let sql = format!(
         "SELECT j.{owner_column} AS owner_id, j.sort_order, e.id AS effect_id, e.name,
                 COALESCE(e.verbose_name_template, '%b1 ' || e.name || ' +{{1}}') AS verbose_name_template,
-                e.description_template, j.value, j.value2,
+                e.set_bonus_line_template, e.description_template, j.value, j.value2,
                 COALESCE(j.value, e.default_value,
                     (SELECT MIN(eb.constant) FROM effect_bonuses eb
                       WHERE eb.effect_id = e.id AND eb.amount_from = 0
@@ -374,10 +374,14 @@ pub(crate) fn effects_via_with_link_order<P: Params>(
                         "group": row["tier_group"], "rank": row["tier_rank"]
                     })
                 };
-                let verbose_name = render_verbose_name(&row);
+                let verbose_name = if owner_kind == "set_bonus_tier" && !row["stat_value"].is_null() {
+                    render_set_bonus_line(&row)
+                } else {
+                    render_verbose_name(&row)
+                };
                 let description = row["description_template"]
                     .as_str()
-                    .map(|template| Value::String(render_effect_template(template, &row)))
+                    .map(|template| Value::String(render_description_template(template, &row)))
                     .unwrap_or(Value::Null);
                 let position = lines.len();
                 lines.push((sort_order, serde_json::json!({
@@ -434,6 +438,40 @@ fn render_effect_template(template: &str, row: &Value) -> String {
         .replace("%b1", row["template_bonus_type"].as_str().or_else(|| row["bonus_type"].as_str()).unwrap_or(""))
 }
 
+fn render_description_template(template: &str, row: &Value) -> String {
+    let mut signed_template = String::with_capacity(template.len());
+    for clause in template.split_inclusive(['.', ';', ':']) {
+        let mut remainder = clause;
+        while let Some(position) = remainder.find(['{']) {
+            let (prefix, candidate) = remainder.split_at(position);
+            signed_template.push_str(prefix);
+            let amount_slot = if candidate.starts_with("{1}") {
+                Some("{1}")
+            } else if candidate.starts_with("{2}") {
+                Some("{2}")
+            } else {
+                None
+            };
+            if let Some(slot) = amount_slot {
+                let suffix = &candidate[slot.len()..];
+                let is_bonus_amount = !suffix.starts_with('%')
+                    && (suffix.to_ascii_lowercase().contains("bonus")
+                        || (clause.to_ascii_lowercase().contains("bonus") && suffix.starts_with(" Damage")));
+                if is_bonus_amount && !signed_template.ends_with(['+', '-']) {
+                    signed_template.push('+');
+                }
+                signed_template.push_str(slot);
+                remainder = suffix;
+            } else {
+                signed_template.push('{');
+                remainder = &candidate[1..];
+            }
+        }
+        signed_template.push_str(remainder);
+    }
+    render_effect_template(&signed_template, row)
+}
+
 fn render_verbose_name(row: &Value) -> String {
     let template = row["verbose_name_template"].as_str().unwrap_or("");
     let mut rendered_row = row.clone();
@@ -456,9 +494,21 @@ fn render_verbose_name(row: &Value) -> String {
     render_effect_template(template, &rendered_row).split_whitespace().collect::<Vec<_>>().join(" ")
 }
 
+fn render_set_bonus_line(row: &Value) -> String {
+    let template = row["set_bonus_line_template"].as_str().map(str::to_string).unwrap_or_else(|| {
+        let unit = if row["verbose_name_template"].as_str().is_some_and(|template| template.contains("{1}%")) {
+            "%"
+        } else {
+            ""
+        };
+        format!("+{{1}}{unit} %b1 Bonus to {}", row["name"].as_str().unwrap_or(""))
+    });
+    render_effect_template(&template, row).split_whitespace().collect::<Vec<_>>().join(" ")
+}
+
 #[cfg(test)]
 mod effect_template_tests {
-    use super::{render_effect_template, render_verbose_name};
+    use super::{render_description_template, render_effect_template, render_verbose_name};
     use serde_json::json;
 
     #[test]
@@ -483,6 +533,42 @@ mod effect_template_tests {
             "bonus_type": "Insight", "home_bonus_type": "Equipment"
         });
         assert_eq!(render_verbose_name(&row), "Insightful Combustion +71");
+    }
+
+    #[test]
+    fn descriptions_sign_bonus_amounts_without_signing_other_numbers() {
+        let row = json!({
+            "template_value": 29, "template_value2": 4,
+            "template_bonus_type": "Implement", "bonus_type": "Implement"
+        });
+        assert_eq!(
+            render_description_template("Passive: {1} %b1 bonus to Universal spell power.", &row),
+            "Passive: +29 Implement bonus to Universal spell power."
+        );
+        assert_eq!(
+            render_description_template("This item gives a {1} Luck bonus to all saves.", &row),
+            "This item gives a +29 Luck bonus to all saves."
+        );
+        assert_eq!(
+            render_description_template("The spell has DC {1} and lasts {2} seconds.", &row),
+            "The spell has DC 29 and lasts 4 seconds."
+        );
+        assert_eq!(
+            render_description_template("Gain {1}% Enhancement bonus to Ranged attack speed.", &row),
+            "Gain 29% Enhancement bonus to Ranged attack speed."
+        );
+        assert_eq!(
+            render_description_template("Maximum Dexterity bonus {1} higher than normal.", &row),
+            "Maximum Dexterity bonus 29 higher than normal."
+        );
+        let penalty = json!({
+            "template_value": -2, "template_value2": null,
+            "template_bonus_type": "Penalty", "bonus_type": "Penalty"
+        });
+        assert_eq!(
+            render_description_template("{1} %b1 bonus to Dexterity.", &penalty),
+            "-2 Penalty bonus to Dexterity."
+        );
     }
 }
 

@@ -95,6 +95,19 @@ fn clean_fixture_database_exits_zero_and_prints_every_check() {
 }
 
 #[test]
+fn effect_line_rendering_faults_fail_the_hard_check() {
+    for bad_template in ["%b1 Enhancement bonus to Strength.", "Gain {3} bonus to Strength."] {
+        let work_dir = tempfile::tempdir().unwrap();
+        let db_path = fixture_db_copy_in(work_dir.path());
+        let db = Connection::open(&db_path).unwrap();
+        db.execute("UPDATE effects SET description_template = ?1 WHERE name = 'Strength'", [bad_template]).unwrap();
+        let report = integrity_report(&db, &fixture_options()).unwrap();
+        let outcome = report.outcome("effect_line_rendering_tokens").unwrap();
+        assert_eq!(outcome.status, CheckStatus::Failed, "{bad_template}: {report}");
+    }
+}
+
+#[test]
 fn text_only_effect_named_after_a_stat_is_warned() {
     let work_dir = tempfile::tempdir().unwrap();
     let db_path = fixture_db_copy_with(
@@ -453,7 +466,7 @@ fn injected_violations() -> Vec<InjectedViolation> {
              FROM set_bonus_tier_effects te JOIN effects e ON e.id = te.effect_id
              WHERE EXISTS (SELECT 1 FROM effect_bonuses es WHERE es.effect_id = e.id)
              ORDER BY te.tier_id, te.sort_order LIMIT 1;",
-            "Fried & Frozen Frenzy",
+            "Kundarak Delving Equipment",
         ),
         violation("tables_not_empty", "DELETE FROM guild_buffs;", "guild_buffs"),
         violation(

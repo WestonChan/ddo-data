@@ -11,9 +11,13 @@ use std::sync::LazyLock;
 #[derive(Debug, Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct EffectMap {
+    #[serde(default)]
+    pub description_trim_period: BTreeSet<String>,
     pub family: FamilyVocabulary,
     pub effect: EffectVocabulary,
     pub item_aliases: BTreeMap<String, String>,
+    #[serde(default)]
+    pub stat_name_aliases: BTreeMap<String, String>,
     pub bonus_type_aliases: BTreeMap<String, String>,
     pub weapon_aliases: BTreeMap<String, String>,
     #[serde(default)]
@@ -22,6 +26,8 @@ pub struct EffectMap {
     pub home_bonus_types: BTreeMap<String, String>,
     #[serde(default)]
     pub line_templates: BTreeMap<String, String>,
+    #[serde(default)]
+    pub set_bonus_line_templates: BTreeMap<String, String>,
     #[serde(default)]
     pub description_templates: BTreeMap<String, String>,
     #[serde(default)]
@@ -73,6 +79,8 @@ pub struct EffectVocabulary {
 pub struct TargetedEffect {
     pub targets: BTreeMap<String, Vec<String>>,
     pub qualified_name: Option<String>,
+    #[serde(default)]
+    pub family_names: BTreeMap<String, String>,
 }
 
 #[derive(Debug, Deserialize)]
@@ -128,6 +136,11 @@ impl EffectMap {
         for (effect_name, template) in &vocabulary.line_templates {
             if effect_name.trim().is_empty() || template.trim().is_empty() {
                 bail!("effect_map.toml [line_templates] {effect_name:?} has an empty template");
+            }
+        }
+        for (effect_name, template) in &vocabulary.set_bonus_line_templates {
+            if effect_name.trim().is_empty() || template.trim().is_empty() || !template.contains("{1}") {
+                bail!("effect_map.toml [set_bonus_line_templates] {effect_name:?} needs a value template");
             }
         }
         for (effect_name, template) in &vocabulary.description_templates {
@@ -189,6 +202,13 @@ impl EffectMap {
                             "effect_map.toml [effect.targeted] {effect_type}.{target} names unknown stat {stat_name:?}"
                         );
                     }
+                }
+            }
+            for (stat_name, family_name) in &targeted.family_names {
+                if family_name.trim().is_empty()
+                    || !targeted.targets.values().any(|stat_names| stat_names.contains(stat_name))
+                {
+                    bail!("effect_map.toml [effect.targeted] {effect_type} has a family name for unmapped stat {stat_name:?}");
                 }
             }
         }
@@ -283,6 +303,14 @@ impl EffectMap {
                 bail!("effect_map.toml [item_aliases] {alias} names no stat through {word:?}");
             }
         }
+        for (source_name, stat_name) in &vocabulary.stat_name_aliases {
+            if source_name.trim().is_empty()
+                || Stat::by_name(source_name).is_some()
+                || Stat::by_name(stat_name).is_none()
+            {
+                bail!("effect_map.toml [stat_name_aliases] {source_name:?} must name a retired source stat and a seeded stat");
+            }
+        }
         for (alias, bonus_type_name) in &vocabulary.bonus_type_aliases {
             if !bonus_type_name.is_empty() && BonusType::parse(bonus_type_name).is_none() {
                 bail!("effect_map.toml [bonus_type_aliases] {alias} names unknown bonus type {bonus_type_name:?}");
@@ -321,13 +349,21 @@ impl EffectMap {
         }
         let template = self.effect.by_item.get(effect_type)?;
         let target_word = self.item_aliases.get(target).map(String::as_str).unwrap_or(target);
-        Stat::by_name(&template.replace("{item}", target_word)).or_else(|| {
+        self.stat_from_source_name(&template.replace("{item}", target_word)).or_else(|| {
             self.effect
                 .by_item_default
                 .get(effect_type)
                 .filter(|default_stat| default_stat.as_str() == target_word)
                 .and_then(|default_stat| Stat::by_name(default_stat))
         })
+    }
+
+    pub fn stat_name_from_source(&self, source_name: &str) -> String {
+        self.stat_name_aliases.get(source_name).cloned().unwrap_or_else(|| source_name.to_string())
+    }
+
+    fn stat_from_source_name(&self, source_name: &str) -> Option<&'static Stat> {
+        Stat::by_name(&self.stat_name_from_source(source_name))
     }
 
     pub fn stats_for_effect(&self, effect: &Effect, qualifiers: &EffectTargetQualifiers) -> Option<Vec<&'static Stat>> {

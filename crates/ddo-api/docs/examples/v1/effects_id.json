@@ -21,7 +21,7 @@
             }
           ],
           "damage": [],
-          "description": "Passive: 1 Quality bonus to Strength.",
+          "description": "Passive: +1 Quality bonus to Strength.",
           "effect_id": 1,
           "name": "Strength",
           "tier": null,
@@ -54,7 +54,7 @@
             }
           ],
           "damage": [],
-          "description": "Passive: 15 Enhancement bonus to Strength.",
+          "description": "Passive: +15 Enhancement bonus to Strength.",
           "effect_id": 1,
           "name": "Strength",
           "tier": null,
@@ -87,7 +87,7 @@
             }
           ],
           "damage": [],
-          "description": "Passive: 15 Enhancement bonus to Strength.",
+          "description": "Passive: +15 Enhancement bonus to Strength.",
           "effect_id": 1,
           "name": "Strength",
           "tier": null,
@@ -167,7 +167,7 @@
             }
           ],
           "damage": [],
-          "description": "Passive: 3 Enhancement bonus to Strength.",
+          "description": "Passive: +3 Enhancement bonus to Strength.",
           "effect_id": 1,
           "name": "Strength",
           "tier": null,
@@ -200,7 +200,7 @@
             }
           ],
           "damage": [],
-          "description": "Passive: 1 Insight bonus to Strength.",
+          "description": "Passive: +1 Insight bonus to Strength.",
           "effect_id": 1,
           "name": "Strength",
           "tier": null,
@@ -245,13 +245,13 @@
             }
           ],
           "damage": [],
-          "description": "Passive: 3 Artifact bonus to Strength.",
+          "description": "Passive: +3 Artifact bonus to Strength.",
           "effect_id": 1,
           "name": "Strength",
           "tier": null,
           "value": 3,
           "value2": null,
-          "verbose_name": "Artifact Strength +3"
+          "verbose_name": "+3 Artifact Bonus to Strength"
         },
         "name": "Brutal Blows (3)",
         "scale": 1.0,
@@ -281,13 +281,13 @@
             }
           ],
           "damage": [],
-          "description": "Passive: 1 Quality bonus to Strength.",
+          "description": "Passive: +1 Quality bonus to Strength.",
           "effect_id": 1,
           "name": "Strength",
           "tier": null,
           "value": 1,
           "value2": null,
-          "verbose_name": "Quality Strength +1"
+          "verbose_name": "+1 Quality Bonus to Strength"
         },
         "name": "Captain's Set (2)",
         "scale": 1.0,
@@ -344,13 +344,13 @@
             }
           ],
           "damage": [],
-          "description": "1 Artifact bonus to all Ability Scores",
+          "description": "+1 Artifact bonus to all Ability Scores",
           "effect_id": 2008,
           "name": "All Ability Scores",
           "tier": null,
           "value": 1,
           "value2": null,
-          "verbose_name": "Artifact All Ability Scores +1"
+          "verbose_name": "+1 Artifact Bonus to All Ability Scores"
         },
         "name": "Devils' Infernal Dance (3)",
         "scale": 1.0,

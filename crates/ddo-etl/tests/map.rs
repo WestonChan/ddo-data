@@ -438,6 +438,14 @@ fn attack_speed_effect_types_resolve_all_and_class_targets() {
     }
     let definitions = effect_item_buff_definitions();
     let buff_resolver = BuffResolver::from_definitions(&definitions);
+    assert_eq!(
+        buff_resolver.effect_family_name("WeaponAlacrityClass", Some("Melee"), "Melee Attack Speed"),
+        "Melee Alacrity"
+    );
+    assert_eq!(
+        buff_resolver.effect_family_name("WeaponAlacrityClass", Some("Ranged"), "Ranged Attack Speed"),
+        "Ranged Alacrity"
+    );
     assert!(buff_resolver
         .family_template(&buff("RangedAlacrity", None, Some(15), Some("Enhancement")))
         .starts_with("Ranged Alacrity %v1%"));

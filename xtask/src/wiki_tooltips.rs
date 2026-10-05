@@ -133,6 +133,12 @@ fn compare_field(
     let actual = served[field].as_str().unwrap_or("");
     if collapse_whitespace(actual) == collapse_whitespace(expected) {
         comparison.matched_fields += 1;
+        if golden["known_differences"].get(field).is_some() {
+            comparison.unrecorded.push(format!(
+                "{owner_name} [line {line_index}]: {:?} {field}: recorded difference now matches the wiki",
+                golden["ours"]
+            ));
+        }
     } else if let (Some(reason), Some(recorded)) =
         (golden["known_differences"][field]["reason"].as_str(), golden["known_differences"][field]["served"].as_str())
     {
@@ -183,7 +189,7 @@ fn wiki_label(wiki_text: &str, golden: &Value) -> String {
 
 #[cfg(test)]
 mod tests {
-    use super::{collapse_whitespace, wiki_label};
+    use super::{collapse_whitespace, compare_field, wiki_label, TooltipComparison};
     use serde_json::json;
 
     #[test]
@@ -201,5 +207,16 @@ mod tests {
             wiki_label("DR 30/Adamantine", &json!({"ours": "DR", "ours_line": {"type": null}})),
             "DR 30/Adamantine"
         );
+    }
+
+    #[test]
+    fn known_differences_are_removed_when_the_served_field_matches_wiki() {
+        let golden = json!({
+            "known_differences": {"name": {"reason": "Old model", "served": "Evocation Spell Focus"}}
+        });
+        let served = json!({"name": "Evocation Focus"});
+        let mut comparison = TooltipComparison::default();
+        compare_field("Probe", 0, &golden, &served, "name", "Evocation Focus", &mut comparison);
+        assert_eq!(comparison.unrecorded.len(), 1);
     }
 }

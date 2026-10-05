@@ -24,7 +24,7 @@
                 }
               ],
               "damage": [],
-              "description": "Provides a 9 Competence bonus to your attack rolls.",
+              "description": "Provides a +9 Competence bonus to your attack rolls.",
               "effect_id": 9,
               "name": "Attack Bonus",
               "tier": null,
@@ -87,7 +87,7 @@
                 }
               ],
               "damage": [],
-              "description": "Passive: 9 Natural Armor Bonus to Armor Class.",
+              "description": "Passive: +9 Natural Armor Bonus to Armor Class.",
               "effect_id": 415,
               "name": "Natural Armor",
               "tier": null,
@@ -233,7 +233,7 @@
         }
       ],
       "damage": [],
-      "description": "Passive: 8 Enhancement bonus to Charisma.",
+      "description": "Passive: +8 Enhancement bonus to Charisma.",
       "effect_id": 6,
       "name": "Charisma",
       "tier": null,

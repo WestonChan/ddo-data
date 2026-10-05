@@ -42,7 +42,7 @@
           "tier": null,
           "value": 36,
           "value2": null,
-          "verbose_name": "Positive Spell Power +36"
+          "verbose_name": "+36 Equipment Bonus to Positive Spell Power"
         }
       ],
       "equipped_count": 2,

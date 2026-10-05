@@ -22,13 +22,7 @@
           },
           "standard_evidence": "same tooltip (numbers aside) on Legendary Arcane Contraption",
           "page": "https://ddowiki.com/page/Item:Legendary_Combustible_Nullified_Quarterstaff",
-          "read": "2026-10-05",
-          "known_differences": {
-            "description": {
-              "reason": "Maetrim and wiki tooltip prose differ in sign, capitalization or punctuation.",
-              "served": "Passive: 29 Implement bonus to Universal spell power."
-            }
-          }
+          "read": "2026-10-05"
         },
         {
           "kind": "enhancement_bonus",
@@ -123,7 +117,7 @@
           "known_differences": {
             "description": {
               "reason": "Maetrim and wiki tooltip prose differ in wording.",
-              "served": "142 Equipment bonus to Negative and Poison spell power."
+              "served": "+142 Equipment bonus to Negative and Poison spell power."
             }
           }
         },
@@ -167,7 +161,7 @@
           "known_differences": {
             "description": {
               "reason": "Maetrim and wiki tooltip prose differ in wording.",
-              "served": "71 Insight bonus to Negative and Poison spell power."
+              "served": "+71 Insight bonus to Negative and Poison spell power."
             }
           }
         },
@@ -178,7 +172,7 @@
           "wiki_tooltip": "Evocation Focus +7: +7 Equipment bonus to the DC of Evocation spells.",
           "tooltip_is_standard": "unknown",
           "wiki_link": "/page/Spell_Focus",
-          "ours": "Evocation Spell Focus",
+          "ours": "Evocation Focus",
           "ours_line": {
             "index": 7,
             "template": "%b1 Evocation Focus {1}",
@@ -186,16 +180,9 @@
             "value": 7,
             "value2": null
           },
-          "note": "ours effect is 'Evocation Spell Focus'; the wiki and our template both say 'Evocation Focus'",
           "standard_evidence": "not seen on another sampled item; no extra page read",
           "page": "https://ddowiki.com/page/Item:Legendary_Combustible_Nullified_Quarterstaff",
-          "read": "2026-10-05",
-          "known_differences": {
-            "name": {
-              "reason": "The seeded stat uses Spell Focus while the wiki shortens its label to Focus.",
-              "served": "Evocation Spell Focus"
-            }
-          }
+          "read": "2026-10-05"
         },
         {
           "kind": "enchantment",
@@ -204,7 +191,7 @@
           "wiki_tooltip": "Necromancy Focus +7: +7 Equipment bonus to the DC of Necromancy spells.",
           "tooltip_is_standard": true,
           "wiki_link": "/page/Spell_Focus",
-          "ours": "Necromancy Spell Focus",
+          "ours": "Necromancy Focus",
           "ours_line": {
             "index": 8,
             "template": "%b1 Necromancy Focus {1}",
@@ -212,20 +199,9 @@
             "value": 7,
             "value2": null
           },
-          "note": "ours effect is 'Necromancy Spell Focus'; the wiki and our template both say 'Necromancy Focus'",
           "standard_evidence": "same tooltip (numbers aside) on Legendary Docent of Shadow (Level 32)",
           "page": "https://ddowiki.com/page/Item:Legendary_Combustible_Nullified_Quarterstaff",
-          "read": "2026-10-05",
-          "known_differences": {
-            "name": {
-              "reason": "The seeded stat uses Spell Focus while the wiki shortens its label to Focus.",
-              "served": "Necromancy Spell Focus"
-            },
-            "description": {
-              "reason": "Maetrim and wiki tooltip prose differ in sign, capitalization or punctuation.",
-              "served": "7 Equipment bonus to the DC of Necromancy spells."
-            }
-          }
+          "read": "2026-10-05"
         },
         {
           "kind": "enchantment",
@@ -297,13 +273,7 @@
           },
           "standard_evidence": "same tooltip (numbers aside) on Legendary Jidz-Tet'ka",
           "page": "https://ddowiki.com/page/Item:Perfected_Jidz-Tet%27ka",
-          "read": "2026-10-05",
-          "known_differences": {
-            "description": {
-              "reason": "Maetrim and wiki tooltip prose differ in wording.",
-              "served": "This item surrounds the wearer with an invisible but tangible field of force, granting Armor armor bonus to AC, just as though he were wearing armor."
-            }
-          }
+          "read": "2026-10-05"
         },
         {
           "kind": "enchantment",
@@ -326,7 +296,7 @@
           "known_differences": {
             "description": {
               "reason": "Maetrim and wiki tooltip prose differ in wording.",
-              "served": "Passive: 14 Enhancement bonus to Wisdom."
+              "served": "Passive: +14 Enhancement bonus to Wisdom."
             }
           }
         },
@@ -366,13 +336,7 @@
           },
           "standard_evidence": "same wording (numbers and bonus-type word aside) on Baphomet's Reign",
           "page": "https://ddowiki.com/page/Item:Perfected_Jidz-Tet%27ka",
-          "read": "2026-10-05",
-          "known_differences": {
-            "description": {
-              "reason": "Maetrim and wiki tooltip prose differ in sign, capitalization or punctuation.",
-              "served": "19 Insight bonus to Physical and Magical Resistance Ratings."
-            }
-          }
+          "read": "2026-10-05"
         },
         {
           "kind": "enchantment",
@@ -395,7 +359,7 @@
           "known_differences": {
             "description": {
               "reason": "Maetrim and wiki tooltip prose differ in wording.",
-              "served": "Passive: 2 Exceptional bonus to Wisdom."
+              "served": "Passive: +2 Exceptional bonus to Wisdom."
             }
           }
         },
@@ -603,13 +567,7 @@
           "note": "tooltip's bold title is 'Improved Deception' without the number",
           "standard_evidence": "same tooltip (numbers aside) on Legendary Cloak of the Ambassador",
           "page": "https://ddowiki.com/page/Item:Legendary_Bracers_of_the_Unseen_Assassin",
-          "read": "2026-10-05",
-          "known_differences": {
-            "description": {
-              "reason": "Maetrim and wiki tooltip prose differ in sign, capitalization or punctuation.",
-              "served": "This item makes your weapons hard to focus upon and thus provides a 21 Enhancement bonus to Bluff checks. In addition, while using this item your weapons have a chance to envelop the target in darkness, making them vulnerable to sneak attacks for a short time."
-            }
-          }
+          "read": "2026-10-05"
         },
         {
           "kind": "enchantment",
@@ -633,7 +591,7 @@
           "known_differences": {
             "description": {
               "reason": "Maetrim and wiki tooltip prose differ in wording.",
-              "served": "12 Enhancement bonus to hit and 18 Damage for Sneak Attacks."
+              "served": "+12 Enhancement bonus to hit and +18 Damage for Sneak Attacks."
             }
           }
         },
@@ -741,13 +699,7 @@
           "note": "VALUE DIFFERS: wiki +7, ours Equipment 5 (template '%b1 Spell Focus Mastery {1}')",
           "standard_evidence": "same wording (numbers and bonus-type word aside) on Legendary Occultic Circlet",
           "page": "https://ddowiki.com/page/Item:Legendary_Staff_of_Arcane_Power",
-          "read": "2026-10-05",
-          "known_differences": {
-            "description": {
-              "reason": "Maetrim and wiki tooltip prose differ in sign, capitalization or punctuation.",
-              "served": "7 Equipment bonus to the DC of all spells."
-            }
-          }
+          "read": "2026-10-05"
         },
         {
           "kind": "enchantment",
@@ -770,7 +722,7 @@
           "known_differences": {
             "description": {
               "reason": "Maetrim and wiki tooltip prose differ in wording.",
-              "served": "Passive: 291 Enhancement Bonus to Spell Points. If you have Sorcerer or Favored Soul levels, you gain additional spell points proportionate to the ratio of those levels to other heroic classes."
+              "served": "Passive: +291 Enhancement Bonus to Spell Points. If you have Sorcerer or Favored Soul levels, you gain additional spell points proportionate to the ratio of those levels to other heroic classes."
             }
           }
         },
@@ -891,13 +843,7 @@
           },
           "standard_evidence": "same tooltip (numbers aside) on Legendary Ring of the Buccaneer (level 32)",
           "page": "https://ddowiki.com/page/Item:Legendary_Staff_of_Arcane_Power",
-          "read": "2026-10-05",
-          "known_differences": {
-            "description": {
-              "reason": "Maetrim and wiki tooltip prose differ in sign, capitalization or punctuation.",
-              "served": "This item gives a 3 Luck bonus to all saves and skill checks."
-            }
-          }
+          "read": "2026-10-05"
         },
         {
           "kind": "set_bonus",
@@ -955,7 +901,7 @@
           "known_differences": {
             "description": {
               "reason": "Maetrim and wiki tooltip prose differ in wording.",
-              "served": "12 Enhancement bonus to hit and 18 Damage for Sneak Attacks."
+              "served": "+12 Enhancement bonus to hit and +18 Damage for Sneak Attacks."
             }
           }
         },
@@ -977,13 +923,7 @@
           "note": "tooltip's bold title is 'Improved Deception' without the number",
           "standard_evidence": "same tooltip (numbers aside) on Legendary Bracers of the Unseen Assassin",
           "page": "https://ddowiki.com/page/Item:Legendary_Cloak_of_the_Ambassador",
-          "read": "2026-10-05",
-          "known_differences": {
-            "description": {
-              "reason": "Maetrim and wiki tooltip prose differ in sign, capitalization or punctuation.",
-              "served": "This item makes your weapons hard to focus upon and thus provides a 21 Enhancement bonus to Bluff checks. In addition, while using this item your weapons have a chance to envelop the target in darkness, making them vulnerable to sneak attacks for a short time."
-            }
-          }
+          "read": "2026-10-05"
         },
         {
           "kind": "enchantment",
@@ -1002,13 +942,7 @@
           },
           "standard_evidence": "same tooltip (numbers aside) on Legendary Rakshasa Hide",
           "page": "https://ddowiki.com/page/Item:Legendary_Cloak_of_the_Ambassador",
-          "read": "2026-10-05",
-          "known_differences": {
-            "description": {
-              "reason": "Maetrim and wiki tooltip prose differ in sign, capitalization or punctuation.",
-              "served": "Passive: 23 Competence bonus to attack rolls"
-            }
-          }
+          "read": "2026-10-05"
         },
         {
           "kind": "enchantment",
@@ -1027,13 +961,7 @@
           },
           "standard_evidence": "same wording (numbers and bonus-type word aside) on Legendary Rakshasa Hide",
           "page": "https://ddowiki.com/page/Item:Legendary_Cloak_of_the_Ambassador",
-          "read": "2026-10-05",
-          "known_differences": {
-            "description": {
-              "reason": "Maetrim and wiki tooltip prose differ in sign, capitalization or punctuation.",
-              "served": "Passive: 5 Quality bonus to attack rolls"
-            }
-          }
+          "read": "2026-10-05"
         },
         {
           "kind": "augment_slot",
@@ -1129,7 +1057,7 @@
           "known_differences": {
             "description": {
               "reason": "Maetrim and wiki tooltip prose differ in wording.",
-              "served": "Passive: 3 Quality bonus to Intelligence."
+              "served": "Passive: +3 Quality bonus to Intelligence."
             }
           }
         },
@@ -1154,7 +1082,7 @@
           "known_differences": {
             "description": {
               "reason": "Maetrim and wiki tooltip prose differ in wording.",
-              "served": "Passive: 3 Quality bonus to Wisdom."
+              "served": "Passive: +3 Quality bonus to Wisdom."
             }
           }
         },
@@ -1179,7 +1107,7 @@
           "known_differences": {
             "description": {
               "reason": "Maetrim and wiki tooltip prose differ in wording.",
-              "served": "Passive: 3 Quality bonus to Charisma."
+              "served": "Passive: +3 Quality bonus to Charisma."
             }
           }
         },
@@ -1342,7 +1270,7 @@
           "known_differences": {
             "description": {
               "reason": "Maetrim and wiki tooltip prose differ in wording.",
-              "served": "153 Equipment bonus to Negative and Poison spell power."
+              "served": "+153 Equipment bonus to Negative and Poison spell power."
             }
           }
         },
@@ -1392,7 +1320,7 @@
           "wiki_tooltip": "Necromancy Focus +10: +10 Equipment bonus to the DC of Necromancy spells.",
           "tooltip_is_standard": true,
           "wiki_link": "/page/Spell_Focus",
-          "ours": "Necromancy Spell Focus",
+          "ours": "Necromancy Focus",
           "ours_line": {
             "index": 3,
             "template": "%b1 Necromancy Focus {1}",
@@ -1402,17 +1330,7 @@
           },
           "standard_evidence": "same tooltip (numbers aside) on Legendary Combustible Nullified Quarterstaff",
           "page": "https://ddowiki.com/page/Item:Legendary_Docent_of_Shadow_(level_32)",
-          "read": "2026-10-05",
-          "known_differences": {
-            "name": {
-              "reason": "The seeded stat uses Spell Focus while the wiki shortens its label to Focus.",
-              "served": "Necromancy Spell Focus"
-            },
-            "description": {
-              "reason": "Maetrim and wiki tooltip prose differ in sign, capitalization or punctuation.",
-              "served": "10 Equipment bonus to the DC of Necromancy spells."
-            }
-          }
+          "read": "2026-10-05"
         },
         {
           "kind": "enchantment",
@@ -1553,13 +1471,7 @@
           },
           "standard_evidence": "same tooltip (numbers aside) on Legendary Snakeskin Vest",
           "page": "https://ddowiki.com/page/Item:Legendary_Kundarak_Delving_Goggles",
-          "read": "2026-10-05",
-          "known_differences": {
-            "description": {
-              "reason": "Maetrim and wiki tooltip prose differ in sign, capitalization or punctuation.",
-              "served": "Passive: 21 Competence bonus to the Search skill."
-            }
-          }
+          "read": "2026-10-05"
         },
         {
           "kind": "enchantment",
@@ -1578,13 +1490,7 @@
           },
           "standard_evidence": "same tooltip (numbers aside) on Legendary Snakeskin Vest",
           "page": "https://ddowiki.com/page/Item:Legendary_Kundarak_Delving_Goggles",
-          "read": "2026-10-05",
-          "known_differences": {
-            "description": {
-              "reason": "Maetrim and wiki tooltip prose differ in sign, capitalization or punctuation.",
-              "served": "Passive: 21 Competence bonus to the Spot skill."
-            }
-          }
+          "read": "2026-10-05"
         },
         {
           "kind": "augment_slot",
@@ -1638,13 +1544,7 @@
           "note": "ours effect name already contains 'Legendary' (template 'Legendary Conditioning {1}%')",
           "standard_evidence": "same tooltip (numbers aside) on Legendary Tower Shield of the Fallen Age",
           "page": "https://ddowiki.com/page/Item:Baphomet%27s_Reign",
-          "read": "2026-10-05",
-          "known_differences": {
-            "description": {
-              "reason": "Maetrim and wiki tooltip prose differ in sign, capitalization or punctuation.",
-              "served": "You have a 15% Legendary bonus to Maximum Hit Points."
-            }
-          }
+          "read": "2026-10-05"
         },
         {
           "kind": "enchantment",
@@ -1702,13 +1602,7 @@
           },
           "standard_evidence": "same wording (numbers and bonus-type word aside) on Perfected Jidz-Tet'ka",
           "page": "https://ddowiki.com/page/Item:Baphomet%27s_Reign",
-          "read": "2026-10-05",
-          "known_differences": {
-            "description": {
-              "reason": "Maetrim and wiki tooltip prose differ in sign, capitalization or punctuation.",
-              "served": "11 Quality bonus to Physical and Magical Resistance Ratings."
-            }
-          }
+          "read": "2026-10-05"
         },
         {
           "kind": "enchantment",
@@ -1806,13 +1700,7 @@
           },
           "standard_evidence": "same tooltip (numbers aside) on Legendary Combustible Nullified Quarterstaff",
           "page": "https://ddowiki.com/page/Item:Legendary_Arcane_Contraption",
-          "read": "2026-10-05",
-          "known_differences": {
-            "description": {
-              "reason": "Maetrim and wiki tooltip prose differ in sign, capitalization or punctuation.",
-              "served": "Passive: 34 Implement bonus to Universal spell power."
-            }
-          }
+          "read": "2026-10-05"
         },
         {
           "kind": "enchantment",
@@ -1832,13 +1720,7 @@
           "note": "number before the name; our template '{1} Orb Bonus'",
           "standard_evidence": "same tooltip (numbers aside) on Legendary The Binding of the Blood",
           "page": "https://ddowiki.com/page/Item:Legendary_Arcane_Contraption",
-          "read": "2026-10-05",
-          "known_differences": {
-            "description": {
-              "reason": "Maetrim and wiki tooltip prose differ in sign, capitalization or punctuation.",
-              "served": "While this orb is equipped and you are actively blocking, you gain a 15 orb bonus to all saving throws, as well as Acid, Cold, Fire, Electric, and Sonic resistances."
-            }
-          }
+          "read": "2026-10-05"
         },
         {
           "kind": "enchantment",
@@ -1862,7 +1744,7 @@
           "known_differences": {
             "description": {
               "reason": "Maetrim and wiki tooltip prose differ in wording.",
-              "served": "55 Insight bonus to each individual spell power. (Universal Spell Power is a different statistic)"
+              "served": "+55 Insight bonus to each individual spell power. (Universal Spell Power is a different statistic)"
             }
           }
         },
@@ -1887,7 +1769,7 @@
           "known_differences": {
             "description": {
               "reason": "Maetrim and wiki tooltip prose differ in wording.",
-              "served": "This item gives a 13 Resistance bonus to your Will save."
+              "served": "This item gives a +13 Resistance bonus to your Will save."
             }
           }
         },
@@ -1988,13 +1870,7 @@
           },
           "standard_evidence": "same tooltip (numbers aside) on Legendary Combustible Nullified Quarterstaff",
           "page": "https://ddowiki.com/page/Item:Legendary_The_Binding_of_the_Blood",
-          "read": "2026-10-05",
-          "known_differences": {
-            "description": {
-              "reason": "Maetrim and wiki tooltip prose differ in sign, capitalization or punctuation.",
-              "served": "Passive: 32 Implement bonus to Universal spell power."
-            }
-          }
+          "read": "2026-10-05"
         },
         {
           "kind": "enchantment",
@@ -2014,13 +1890,7 @@
           "note": "number before the name; our template '{1} Orb Bonus'",
           "standard_evidence": "same tooltip (numbers aside) on Legendary Arcane Contraption",
           "page": "https://ddowiki.com/page/Item:Legendary_The_Binding_of_the_Blood",
-          "read": "2026-10-05",
-          "known_differences": {
-            "description": {
-              "reason": "Maetrim and wiki tooltip prose differ in sign, capitalization or punctuation.",
-              "served": "While this orb is equipped and you are actively blocking, you gain a 15 orb bonus to all saving throws, as well as Acid, Cold, Fire, Electric, and Sonic resistances."
-            }
-          }
+          "read": "2026-10-05"
         },
         {
           "kind": "enchantment",
@@ -2043,7 +1913,7 @@
           "known_differences": {
             "description": {
               "reason": "Maetrim and wiki tooltip prose differ in wording.",
-              "served": "76 Insight bonus to Negative and Poison spell power."
+              "served": "+76 Insight bonus to Negative and Poison spell power."
             }
           }
         },
@@ -2054,7 +1924,7 @@
           "wiki_tooltip": "Necromancy Focus +10: +10 Equipment bonus to the DC of Necromancy spells.",
           "tooltip_is_standard": true,
           "wiki_link": "/page/Spell_Focus",
-          "ours": "Necromancy Spell Focus",
+          "ours": "Necromancy Focus",
           "ours_line": {
             "index": 3,
             "template": "%b1 Necromancy Focus {1}",
@@ -2064,17 +1934,7 @@
           },
           "standard_evidence": "same tooltip (numbers aside) on Legendary Combustible Nullified Quarterstaff",
           "page": "https://ddowiki.com/page/Item:Legendary_The_Binding_of_the_Blood",
-          "read": "2026-10-05",
-          "known_differences": {
-            "name": {
-              "reason": "The seeded stat uses Spell Focus while the wiki shortens its label to Focus.",
-              "served": "Necromancy Spell Focus"
-            },
-            "description": {
-              "reason": "Maetrim and wiki tooltip prose differ in sign, capitalization or punctuation.",
-              "served": "10 Equipment bonus to the DC of Necromancy spells."
-            }
-          }
+          "read": "2026-10-05"
         },
         {
           "kind": "enchantment",
@@ -2083,7 +1943,7 @@
           "wiki_tooltip": "Enchantment Focus +10: +10 Equipment bonus to the DC of Enchantment spells.",
           "tooltip_is_standard": "unknown",
           "wiki_link": "/page/Spell_Focus",
-          "ours": "Enchantment Spell Focus",
+          "ours": "Enchantment Focus",
           "ours_line": {
             "index": 4,
             "template": "%b1 Enchantment Focus {1}",
@@ -2093,13 +1953,7 @@
           },
           "standard_evidence": "not seen on another sampled item; no extra page read",
           "page": "https://ddowiki.com/page/Item:Legendary_The_Binding_of_the_Blood",
-          "read": "2026-10-05",
-          "known_differences": {
-            "name": {
-              "reason": "The seeded stat uses Spell Focus while the wiki shortens its label to Focus.",
-              "served": "Enchantment Spell Focus"
-            }
-          }
+          "read": "2026-10-05"
         },
         {
           "kind": "enchantment",
@@ -2119,13 +1973,7 @@
           "note": "ours effect name contains 'Profane' (template 'Profane Lifeforce {1}')",
           "standard_evidence": "same tooltip (numbers aside) on Legendary Tower Shield of the Fallen Age",
           "page": "https://ddowiki.com/page/Item:Legendary_The_Binding_of_the_Blood",
-          "read": "2026-10-05",
-          "known_differences": {
-            "description": {
-              "reason": "Maetrim and wiki tooltip prose differ in sign, capitalization or punctuation.",
-              "served": "48 Profane bonus to Hit Points."
-            }
-          }
+          "read": "2026-10-05"
         },
         {
           "kind": "set_bonus",
@@ -2224,13 +2072,7 @@
           "note": "line has no %, the tooltip says +59%; our template '%b1 Incite {1}%' adds %",
           "standard_evidence": "same wording (numbers and bonus-type word aside) on Legendary Brawn's Spirits",
           "page": "https://ddowiki.com/page/Item:Legendary_Tower_Shield_of_the_Fallen_Age",
-          "read": "2026-10-05",
-          "known_differences": {
-            "description": {
-              "reason": "Maetrim and wiki tooltip prose differ in sign, capitalization or punctuation.",
-              "served": "59% Insight bonus to increased threat generation from melee damage"
-            }
-          }
+          "read": "2026-10-05"
         },
         {
           "kind": "enchantment",
@@ -2249,13 +2091,7 @@
           },
           "standard_evidence": "same tooltip (numbers aside) on Legendary Rakshasa Hide",
           "page": "https://ddowiki.com/page/Item:Legendary_Tower_Shield_of_the_Fallen_Age",
-          "read": "2026-10-05",
-          "known_differences": {
-            "description": {
-              "reason": "Maetrim and wiki tooltip prose differ in sign, capitalization or punctuation.",
-              "served": "This item fuses with your body and toughens your skin, providing a 14 Primal bonus to your natural armor."
-            }
-          }
+          "read": "2026-10-05"
         },
         {
           "kind": "enchantment",
@@ -2274,13 +2110,7 @@
           },
           "standard_evidence": "same tooltip (numbers aside) on Legendary The Binding of the Blood",
           "page": "https://ddowiki.com/page/Item:Legendary_Tower_Shield_of_the_Fallen_Age",
-          "read": "2026-10-05",
-          "known_differences": {
-            "description": {
-              "reason": "Maetrim and wiki tooltip prose differ in sign, capitalization or punctuation.",
-              "served": "49 Profane bonus to Hit Points."
-            }
-          }
+          "read": "2026-10-05"
         },
         {
           "kind": "enchantment",
@@ -2299,13 +2129,7 @@
           },
           "standard_evidence": "same tooltip (numbers aside) on Baphomet's Reign",
           "page": "https://ddowiki.com/page/Item:Legendary_Tower_Shield_of_the_Fallen_Age",
-          "read": "2026-10-05",
-          "known_differences": {
-            "description": {
-              "reason": "Maetrim and wiki tooltip prose differ in sign, capitalization or punctuation.",
-              "served": "You have a 20% Legendary bonus to Maximum Hit Points."
-            }
-          }
+          "read": "2026-10-05"
         },
         {
           "kind": "augment_slot",
@@ -2396,13 +2220,7 @@
           },
           "standard_evidence": "same tooltip (numbers aside) on Legendary Duergarcraft Cloak",
           "page": "https://ddowiki.com/page/Item:Legendary_University_Sentry%27s_Helm",
-          "read": "2026-10-05",
-          "known_differences": {
-            "description": {
-              "reason": "Maetrim and wiki tooltip prose differ in sign, capitalization or punctuation.",
-              "served": "76 Insight bonus to reduced chance of taking critical damage on a critical hit."
-            }
-          }
+          "read": "2026-10-05"
         },
         {
           "kind": "enchantment",
@@ -2421,13 +2239,7 @@
           },
           "standard_evidence": "same tooltip (numbers aside) on Legendary Belt of Myriad Pockets",
           "page": "https://ddowiki.com/page/Item:Legendary_University_Sentry%27s_Helm",
-          "read": "2026-10-05",
-          "known_differences": {
-            "description": {
-              "reason": "Maetrim and wiki tooltip prose differ in sign, capitalization or punctuation.",
-              "served": "While this item is equipped, you are partially protected by a field of magical force which can deflect enemy attacks. This item provides a 14 Shield bonus to Armor Class. It does not stack with an equipped shield."
-            }
-          }
+          "read": "2026-10-05"
         },
         {
           "kind": "enchantment",
@@ -2446,13 +2258,7 @@
           },
           "standard_evidence": "same tooltip (numbers aside) on Legendary Greenpine Gauntlets",
           "page": "https://ddowiki.com/page/Item:Legendary_University_Sentry%27s_Helm",
-          "read": "2026-10-05",
-          "known_differences": {
-            "description": {
-              "reason": "Maetrim and wiki tooltip prose differ in sign, capitalization or punctuation.",
-              "served": "Passive: 14 Natural Armor Bonus to Armor Class."
-            }
-          }
+          "read": "2026-10-05"
         },
         {
           "kind": "upgrade",
@@ -2549,7 +2355,7 @@
           "known_differences": {
             "description": {
               "reason": "Maetrim and wiki tooltip prose differ in wording.",
-              "served": "Passive: 14 Enhancement bonus to Constitution."
+              "served": "Passive: +14 Enhancement bonus to Constitution."
             }
           }
         },
@@ -2570,13 +2376,7 @@
           },
           "standard_evidence": "same tooltip (numbers aside) on Legendary Tourney Armor",
           "page": "https://ddowiki.com/page/Item:Doctor_Lifestone%27s_Hunting_Horn",
-          "read": "2026-10-05",
-          "known_differences": {
-            "description": {
-              "reason": "Maetrim and wiki tooltip prose differ in sign, capitalization or punctuation.",
-              "served": "35 Enhancement bonus to Physical and Magical Resistance Ratings."
-            }
-          }
+          "read": "2026-10-05"
         },
         {
           "kind": "enchantment",
@@ -2600,7 +2400,7 @@
           "known_differences": {
             "description": {
               "reason": "Maetrim and wiki tooltip prose differ in wording.",
-              "served": "11 Enhancement bonus to hit and 17 Damage for Sneak Attacks."
+              "served": "+11 Enhancement bonus to hit and +17 Damage for Sneak Attacks."
             }
           }
         },
@@ -2736,13 +2536,7 @@
           "note": "ours effect name contains 'Profane' (template 'Profane Well Rounded {1}')",
           "standard_evidence": "same tooltip (numbers aside) on Legendary Occultic Circlet",
           "page": "https://ddowiki.com/page/Item:Legendary_Wreckage_of_the_Drowned_Rat",
-          "read": "2026-10-05",
-          "known_differences": {
-            "description": {
-              "reason": "Maetrim and wiki tooltip prose differ in sign, capitalization or punctuation.",
-              "served": "2 Profane bonus to all abilities."
-            }
-          }
+          "read": "2026-10-05"
         },
         {
           "kind": "enchantment",
@@ -2761,13 +2555,7 @@
           },
           "standard_evidence": "same tooltip (numbers aside) on Legendary The Binding of the Blood",
           "page": "https://ddowiki.com/page/Item:Legendary_Wreckage_of_the_Drowned_Rat",
-          "read": "2026-10-05",
-          "known_differences": {
-            "description": {
-              "reason": "Maetrim and wiki tooltip prose differ in sign, capitalization or punctuation.",
-              "served": "47 Profane bonus to Hit Points."
-            }
-          }
+          "read": "2026-10-05"
         },
         {
           "kind": "enchantment",
@@ -2810,7 +2598,7 @@
           "known_differences": {
             "description": {
               "reason": "Maetrim and wiki tooltip prose differ in wording.",
-              "served": "Passive: 3 Quality bonus to Intelligence."
+              "served": "Passive: +3 Quality bonus to Intelligence."
             }
           }
         },
@@ -2887,7 +2675,7 @@
           "known_differences": {
             "description": {
               "reason": "Maetrim and wiki tooltip prose differ in wording.",
-              "served": "Passive: 6 Insight bonus to Constitution."
+              "served": "Passive: +6 Insight bonus to Constitution."
             }
           }
         },
@@ -2908,13 +2696,7 @@
           },
           "standard_evidence": "same tooltip (numbers aside) on Legendary Duergarcraft Cloak",
           "page": "https://ddowiki.com/page/Item:Legendary_Belt_of_Myriad_Pockets",
-          "read": "2026-10-05",
-          "known_differences": {
-            "description": {
-              "reason": "Maetrim and wiki tooltip prose differ in sign, capitalization or punctuation.",
-              "served": "34 Enhancement bonus to Physical Resistance Rating."
-            }
-          }
+          "read": "2026-10-05"
         },
         {
           "kind": "enchantment",
@@ -2933,13 +2715,7 @@
           },
           "standard_evidence": "same tooltip (numbers aside) on Legendary Giant's Platter",
           "page": "https://ddowiki.com/page/Item:Legendary_Belt_of_Myriad_Pockets",
-          "read": "2026-10-05",
-          "known_differences": {
-            "description": {
-              "reason": "Maetrim and wiki tooltip prose differ in sign, capitalization or punctuation.",
-              "served": "Passive: 11 Deflection bonus to Armor Class."
-            }
-          }
+          "read": "2026-10-05"
         },
         {
           "kind": "enchantment",
@@ -2958,13 +2734,7 @@
           },
           "standard_evidence": "same tooltip (numbers aside) on Legendary University Sentry's Helm",
           "page": "https://ddowiki.com/page/Item:Legendary_Belt_of_Myriad_Pockets",
-          "read": "2026-10-05",
-          "known_differences": {
-            "description": {
-              "reason": "Maetrim and wiki tooltip prose differ in sign, capitalization or punctuation.",
-              "served": "While this item is equipped, you are partially protected by a field of magical force which can deflect enemy attacks. This item provides a 13 Shield bonus to Armor Class. It does not stack with an equipped shield."
-            }
-          }
+          "read": "2026-10-05"
         },
         {
           "kind": "enchantment",
@@ -3064,13 +2834,7 @@
           },
           "standard_evidence": "same tooltip (numbers aside) on Legendary University Sentry's Helm",
           "page": "https://ddowiki.com/page/Item:Legendary_Greenpine_Gauntlets",
-          "read": "2026-10-05",
-          "known_differences": {
-            "description": {
-              "reason": "Maetrim and wiki tooltip prose differ in sign, capitalization or punctuation.",
-              "served": "Passive: 14 Natural Armor Bonus to Armor Class."
-            }
-          }
+          "read": "2026-10-05"
         },
         {
           "kind": "enchantment",
@@ -3089,13 +2853,7 @@
           },
           "standard_evidence": "same tooltip (numbers aside) on Legendary University Sentry's Helm",
           "page": "https://ddowiki.com/page/Item:Legendary_Greenpine_Gauntlets",
-          "read": "2026-10-05",
-          "known_differences": {
-            "description": {
-              "reason": "Maetrim and wiki tooltip prose differ in sign, capitalization or punctuation.",
-              "served": "While this item is equipped, you are partially protected by a field of magical force which can deflect enemy attacks. This item provides a 14 Shield bonus to Armor Class. It does not stack with an equipped shield."
-            }
-          }
+          "read": "2026-10-05"
         },
         {
           "kind": "enchantment",
@@ -3240,13 +2998,7 @@
           },
           "standard_evidence": "same tooltip (numbers aside) on Legendary University Sentry's Helm",
           "page": "https://ddowiki.com/page/Item:Legendary_Giant%27s_Platter",
-          "read": "2026-10-05",
-          "known_differences": {
-            "description": {
-              "reason": "Maetrim and wiki tooltip prose differ in sign, capitalization or punctuation.",
-              "served": "Passive: 13 Natural Armor Bonus to Armor Class."
-            }
-          }
+          "read": "2026-10-05"
         },
         {
           "kind": "enchantment",
@@ -3265,13 +3017,7 @@
           },
           "standard_evidence": "same tooltip (numbers aside) on Cloak of Winter's End (level 36)",
           "page": "https://ddowiki.com/page/Item:Legendary_Giant%27s_Platter",
-          "read": "2026-10-05",
-          "known_differences": {
-            "description": {
-              "reason": "Maetrim and wiki tooltip prose differ in sign, capitalization or punctuation.",
-              "served": "Passive: 44 Vitality bonus to Hit Points."
-            }
-          }
+          "read": "2026-10-05"
         },
         {
           "kind": "enchantment",
@@ -3290,13 +3036,7 @@
           },
           "standard_evidence": "same tooltip (numbers aside) on Legendary Belt of Myriad Pockets",
           "page": "https://ddowiki.com/page/Item:Legendary_Giant%27s_Platter",
-          "read": "2026-10-05",
-          "known_differences": {
-            "description": {
-              "reason": "Maetrim and wiki tooltip prose differ in sign, capitalization or punctuation.",
-              "served": "Passive: 10 Deflection bonus to Armor Class."
-            }
-          }
+          "read": "2026-10-05"
         },
         {
           "kind": "augment_slot",
@@ -3830,7 +3570,7 @@
           "known_differences": {
             "description": {
               "reason": "Maetrim and wiki tooltip prose differ in wording.",
-              "served": "Passive: 14 Enhancement bonus to Dexterity."
+              "served": "Passive: +14 Enhancement bonus to Dexterity."
             }
           }
         },
@@ -3851,13 +3591,7 @@
           },
           "standard_evidence": "same tooltip (numbers aside) on Legendary Staff of Arcane Power",
           "page": "https://ddowiki.com/page/Item:Legendary_Ring_of_the_Buccaneer_(level_32)",
-          "read": "2026-10-05",
-          "known_differences": {
-            "description": {
-              "reason": "Maetrim and wiki tooltip prose differ in sign, capitalization or punctuation.",
-              "served": "This item gives a 4 Luck bonus to all saves and skill checks."
-            }
-          }
+          "read": "2026-10-05"
         },
         {
           "kind": "enchantment",
@@ -3895,13 +3629,7 @@
           },
           "standard_evidence": "same tooltip (numbers aside) on Legendary Belt of Myriad Pockets",
           "page": "https://ddowiki.com/page/Item:Legendary_Ring_of_the_Buccaneer_(level_32)",
-          "read": "2026-10-05",
-          "known_differences": {
-            "description": {
-              "reason": "Maetrim and wiki tooltip prose differ in sign, capitalization or punctuation.",
-              "served": "Passive: 11 Deflection bonus to Armor Class."
-            }
-          }
+          "read": "2026-10-05"
         },
         {
           "kind": "augment_slot",
@@ -3973,13 +3701,7 @@
           "note": "line has no %, the tooltip says +124%; our template '%b1 Incite {1}%' adds %",
           "standard_evidence": "same wording (numbers and bonus-type word aside) on Legendary Tower Shield of the Fallen Age",
           "page": "https://ddowiki.com/page/Item:Legendary_Brawn%27s_Spirits",
-          "read": "2026-10-05",
-          "known_differences": {
-            "description": {
-              "reason": "Maetrim and wiki tooltip prose differ in sign, capitalization or punctuation.",
-              "served": "124% Enhancement bonus to increased threat generation from melee damage"
-            }
-          }
+          "read": "2026-10-05"
         },
         {
           "kind": "enchantment",
@@ -4002,7 +3724,7 @@
           "known_differences": {
             "description": {
               "reason": "Maetrim and wiki tooltip prose differ in wording.",
-              "served": "Passive: 6 Insight bonus to Strength."
+              "served": "Passive: +6 Insight bonus to Strength."
             }
           }
         },
@@ -4027,7 +3749,7 @@
           "known_differences": {
             "description": {
               "reason": "Maetrim and wiki tooltip prose differ in wording.",
-              "served": "Passive: 6 Insight bonus to Constitution."
+              "served": "Passive: +6 Insight bonus to Constitution."
             }
           }
         },
@@ -4108,13 +3830,7 @@
           },
           "standard_evidence": "same tooltip (numbers aside) on Legendary Combustible Nullified Quarterstaff",
           "page": "https://ddowiki.com/page/Item:Hyrsam%27s_Fiddle",
-          "read": "2026-10-05",
-          "known_differences": {
-            "description": {
-              "reason": "Maetrim and wiki tooltip prose differ in sign, capitalization or punctuation.",
-              "served": "Passive: 29 Implement bonus to Universal spell power."
-            }
-          }
+          "read": "2026-10-05"
         },
         {
           "kind": "enchantment",
@@ -4133,13 +3849,7 @@
           },
           "standard_evidence": "same tooltip (numbers aside) on Legendary Arcane Contraption",
           "page": "https://ddowiki.com/page/Item:Hyrsam%27s_Fiddle",
-          "read": "2026-10-05",
-          "known_differences": {
-            "description": {
-              "reason": "Maetrim and wiki tooltip prose differ in sign, capitalization or punctuation.",
-              "served": "While this orb is equipped and you are actively blocking, you gain a 15 orb bonus to all saving throws, as well as Acid, Cold, Fire, Electric, and Sonic resistances."
-            }
-          }
+          "read": "2026-10-05"
         },
         {
           "kind": "enchantment",
@@ -4177,13 +3887,7 @@
           },
           "standard_evidence": "same tooltip (numbers aside) on Legendary Staff of Arcane Power",
           "page": "https://ddowiki.com/page/Item:Hyrsam%27s_Fiddle",
-          "read": "2026-10-05",
-          "known_differences": {
-            "description": {
-              "reason": "Maetrim and wiki tooltip prose differ in sign, capitalization or punctuation.",
-              "served": "This item gives a 5 Luck bonus to all saves and skill checks."
-            }
-          }
+          "read": "2026-10-05"
         },
         {
           "kind": "enchantment",
@@ -4411,13 +4115,7 @@
           },
           "standard_evidence": "same tooltip (numbers aside) on Legendary Cloak of the Ambassador",
           "page": "https://ddowiki.com/page/Item:Legendary_Rakshasa_Hide",
-          "read": "2026-10-05",
-          "known_differences": {
-            "description": {
-              "reason": "Maetrim and wiki tooltip prose differ in sign, capitalization or punctuation.",
-              "served": "Passive: 21 Competence bonus to attack rolls"
-            }
-          }
+          "read": "2026-10-05"
         },
         {
           "kind": "enchantment",
@@ -4436,13 +4134,7 @@
           },
           "standard_evidence": "same tooltip (numbers aside) on Legendary Tower Shield of the Fallen Age",
           "page": "https://ddowiki.com/page/Item:Legendary_Rakshasa_Hide",
-          "read": "2026-10-05",
-          "known_differences": {
-            "description": {
-              "reason": "Maetrim and wiki tooltip prose differ in sign, capitalization or punctuation.",
-              "served": "This item fuses with your body and toughens your skin, providing a 6 Primal bonus to your natural armor."
-            }
-          }
+          "read": "2026-10-05"
         },
         {
           "kind": "augment_slot",
@@ -4519,13 +4211,7 @@
           },
           "standard_evidence": "same tooltip (numbers aside) on Baphomet's Reign",
           "page": "https://ddowiki.com/page/Item:Legendary_Fiendish_Requisition",
-          "read": "2026-10-05",
-          "known_differences": {
-            "description": {
-              "reason": "Maetrim and wiki tooltip prose differ in sign, capitalization or punctuation.",
-              "served": "You have a 20% Legendary bonus to Maximum Hit Points."
-            }
-          }
+          "read": "2026-10-05"
         },
         {
           "kind": "enchantment",
@@ -4719,13 +4405,7 @@
           },
           "standard_evidence": "same tooltip (numbers aside) on Legendary Tower Shield of the Fallen Age",
           "page": "https://ddowiki.com/page/Item:Legendary_Lolth%27s_Protection",
-          "read": "2026-10-05",
-          "known_differences": {
-            "description": {
-              "reason": "Maetrim and wiki tooltip prose differ in sign, capitalization or punctuation.",
-              "served": "This item fuses with your body and toughens your skin, providing a 16 Primal bonus to your natural armor."
-            }
-          }
+          "read": "2026-10-05"
         },
         {
           "kind": "enchantment",
@@ -4828,13 +4508,7 @@
           },
           "standard_evidence": "same tooltip (numbers aside) on Legendary Combustible Nullified Quarterstaff",
           "page": "https://ddowiki.com/page/Item:Legendary_Muck%27s_Ascension",
-          "read": "2026-10-05",
-          "known_differences": {
-            "description": {
-              "reason": "Maetrim and wiki tooltip prose differ in sign, capitalization or punctuation.",
-              "served": "Passive: 35 Implement bonus to Universal spell power."
-            }
-          }
+          "read": "2026-10-05"
         },
         {
           "kind": "enhancement_bonus",
@@ -4987,7 +4661,7 @@
           "known_differences": {
             "description": {
               "reason": "Maetrim and wiki tooltip prose differ in wording.",
-              "served": "118 Equipment bonus to each individual spell power. (Universal Spell Power is a different statistic)"
+              "served": "+118 Equipment bonus to each individual spell power. (Universal Spell Power is a different statistic)"
             }
           }
         },
@@ -5013,7 +4687,7 @@
           "known_differences": {
             "description": {
               "reason": "Maetrim and wiki tooltip prose differ in wording.",
-              "served": "59 Insight bonus to each individual spell power. (Universal Spell Power is a different statistic)"
+              "served": "+59 Insight bonus to each individual spell power. (Universal Spell Power is a different statistic)"
             }
           }
         },
@@ -5038,7 +4712,7 @@
           "known_differences": {
             "description": {
               "reason": "Maetrim and wiki tooltip prose differ in wording.",
-              "served": "29 Quality bonus to each individual spell power. (Universal Spell Power is a different statistic)"
+              "served": "+29 Quality bonus to each individual spell power. (Universal Spell Power is a different statistic)"
             }
           }
         },
@@ -5059,13 +4733,7 @@
           },
           "standard_evidence": "same tooltip (numbers aside) on Legendary Great Forge Cowl",
           "page": "https://ddowiki.com/page/Item:Legendary_Occultic_Circlet",
-          "read": "2026-10-05",
-          "known_differences": {
-            "description": {
-              "reason": "Maetrim and wiki tooltip prose differ in sign, capitalization or punctuation.",
-              "served": "3 Sacred bonus to the DC of all spells."
-            }
-          }
+          "read": "2026-10-05"
         },
         {
           "kind": "enchantment",
@@ -5084,13 +4752,7 @@
           },
           "standard_evidence": "same tooltip (numbers aside) on Legendary Wreckage of the Drowned Rat",
           "page": "https://ddowiki.com/page/Item:Legendary_Occultic_Circlet",
-          "read": "2026-10-05",
-          "known_differences": {
-            "description": {
-              "reason": "Maetrim and wiki tooltip prose differ in sign, capitalization or punctuation.",
-              "served": "3 Profane bonus to all abilities."
-            }
-          }
+          "read": "2026-10-05"
         },
         {
           "kind": "augment_slot",
@@ -5175,13 +4837,7 @@
           },
           "standard_evidence": "same tooltip (numbers aside) on Legendary Giant's Platter",
           "page": "https://ddowiki.com/page/Item:Cloak_of_Winter%27s_End_(level_36)",
-          "read": "2026-10-05",
-          "known_differences": {
-            "description": {
-              "reason": "Maetrim and wiki tooltip prose differ in sign, capitalization or punctuation.",
-              "served": "Passive: 53 Vitality bonus to Hit Points."
-            }
-          }
+          "read": "2026-10-05"
         },
         {
           "kind": "enchantment",
@@ -5420,13 +5076,7 @@
           },
           "standard_evidence": "same tooltip (numbers aside) on Legendary Giant's Platter",
           "page": "https://ddowiki.com/page/Item:Legendary_Duergarcraft_Cloak",
-          "read": "2026-10-05",
-          "known_differences": {
-            "description": {
-              "reason": "Maetrim and wiki tooltip prose differ in sign, capitalization or punctuation.",
-              "served": "Passive: 52 Vitality bonus to Hit Points."
-            }
-          }
+          "read": "2026-10-05"
         },
         {
           "kind": "enchantment",
@@ -5445,13 +5095,7 @@
           },
           "standard_evidence": "same tooltip (numbers aside) on Legendary Belt of Myriad Pockets",
           "page": "https://ddowiki.com/page/Item:Legendary_Duergarcraft_Cloak",
-          "read": "2026-10-05",
-          "known_differences": {
-            "description": {
-              "reason": "Maetrim and wiki tooltip prose differ in sign, capitalization or punctuation.",
-              "served": "39 Enhancement bonus to Physical Resistance Rating."
-            }
-          }
+          "read": "2026-10-05"
         },
         {
           "kind": "enchantment",
@@ -5470,13 +5114,7 @@
           },
           "standard_evidence": "same tooltip (numbers aside) on Legendary University Sentry's Helm",
           "page": "https://ddowiki.com/page/Item:Legendary_Duergarcraft_Cloak",
-          "read": "2026-10-05",
-          "known_differences": {
-            "description": {
-              "reason": "Maetrim and wiki tooltip prose differ in sign, capitalization or punctuation.",
-              "served": "81 Insight bonus to reduced chance of taking critical damage on a critical hit."
-            }
-          }
+          "read": "2026-10-05"
         },
         {
           "kind": "upgrade",
@@ -5664,7 +5302,7 @@
           "known_differences": {
             "description": {
               "reason": "Maetrim and wiki tooltip prose differ in wording.",
-              "served": "Passive: 159 Insight Bonus to Spell Points. If you have Sorcerer or Favored Soul levels, you gain additional spell points proportionate to the ratio of those levels to other heroic classes."
+              "served": "Passive: +159 Insight Bonus to Spell Points. If you have Sorcerer or Favored Soul levels, you gain additional spell points proportionate to the ratio of those levels to other heroic classes."
             }
           }
         },
@@ -5685,13 +5323,7 @@
           },
           "standard_evidence": "same tooltip (numbers aside) on Legendary Shaped Great Forge Cowl",
           "page": "https://ddowiki.com/page/Item:Legendary_Great_Forge_Cowl",
-          "read": "2026-10-05",
-          "known_differences": {
-            "description": {
-              "reason": "Maetrim and wiki tooltip prose differ in sign, capitalization or punctuation.",
-              "served": "2 Quality bonus to the DC of all spells."
-            }
-          }
+          "read": "2026-10-05"
         },
         {
           "kind": "enchantment",
@@ -5710,13 +5342,7 @@
           },
           "standard_evidence": "same tooltip (numbers aside) on Legendary Occultic Circlet",
           "page": "https://ddowiki.com/page/Item:Legendary_Great_Forge_Cowl",
-          "read": "2026-10-05",
-          "known_differences": {
-            "description": {
-              "reason": "Maetrim and wiki tooltip prose differ in sign, capitalization or punctuation.",
-              "served": "3 Sacred bonus to the DC of all spells."
-            }
-          }
+          "read": "2026-10-05"
         },
         {
           "kind": "upgrade",
@@ -5891,7 +5517,7 @@
           "known_differences": {
             "description": {
               "reason": "Maetrim and wiki tooltip prose differ in wording.",
-              "served": "Passive: 79 Quality Bonus to Spell Points. If you have Sorcerer or Favored Soul levels, you gain additional spell points proportionate to the ratio of those levels to other heroic classes."
+              "served": "Passive: +79 Quality Bonus to Spell Points. If you have Sorcerer or Favored Soul levels, you gain additional spell points proportionate to the ratio of those levels to other heroic classes."
             }
           }
         },
@@ -5912,13 +5538,7 @@
           },
           "standard_evidence": "same tooltip (numbers aside) on Legendary Great Forge Cowl",
           "page": "https://ddowiki.com/page/Item:Legendary_Shaped_Great_Forge_Cowl",
-          "read": "2026-10-05",
-          "known_differences": {
-            "description": {
-              "reason": "Maetrim and wiki tooltip prose differ in sign, capitalization or punctuation.",
-              "served": "2 Quality bonus to the DC of all spells."
-            }
-          }
+          "read": "2026-10-05"
         },
         {
           "kind": "enchantment",
@@ -5937,13 +5557,7 @@
           },
           "standard_evidence": "same tooltip (numbers aside) on Legendary Occultic Circlet",
           "page": "https://ddowiki.com/page/Item:Legendary_Shaped_Great_Forge_Cowl",
-          "read": "2026-10-05",
-          "known_differences": {
-            "description": {
-              "reason": "Maetrim and wiki tooltip prose differ in sign, capitalization or punctuation.",
-              "served": "3 Sacred bonus to the DC of all spells."
-            }
-          }
+          "read": "2026-10-05"
         },
         {
           "kind": "upgrade",
@@ -6727,13 +6341,7 @@
           },
           "standard_evidence": "same tooltip (numbers aside) on Perfected Jidz-Tet'ka",
           "page": "https://ddowiki.com/page/Item:Legendary_Jidz-Tet%27ka",
-          "read": "2026-10-05",
-          "known_differences": {
-            "description": {
-              "reason": "Maetrim and wiki tooltip prose differ in wording.",
-              "served": "This item surrounds the wearer with an invisible but tangible field of force, granting Armor armor bonus to AC, just as though he were wearing armor."
-            }
-          }
+          "read": "2026-10-05"
         },
         {
           "kind": "enchantment",
@@ -6756,7 +6364,7 @@
           "known_differences": {
             "description": {
               "reason": "Maetrim and wiki tooltip prose differ in wording.",
-              "served": "Passive: 1 Exceptional bonus to Wisdom."
+              "served": "Passive: +1 Exceptional bonus to Wisdom."
             }
           }
         },
@@ -6781,7 +6389,7 @@
           "known_differences": {
             "description": {
               "reason": "Maetrim and wiki tooltip prose differ in wording.",
-              "served": "This item gives a 12 Resistance bonus to your Will save."
+              "served": "This item gives a +12 Resistance bonus to your Will save."
             }
           }
         },
@@ -6802,13 +6410,7 @@
           },
           "standard_evidence": "same tooltip (numbers aside) on Legendary Belt of Myriad Pockets",
           "page": "https://ddowiki.com/page/Item:Legendary_Jidz-Tet%27ka",
-          "read": "2026-10-05",
-          "known_differences": {
-            "description": {
-              "reason": "Maetrim and wiki tooltip prose differ in sign, capitalization or punctuation.",
-              "served": "34 Enhancement bonus to Physical Resistance Rating."
-            }
-          }
+          "read": "2026-10-05"
         },
         {
           "kind": "enchantment",
@@ -6962,13 +6564,7 @@
           },
           "standard_evidence": "same tooltip (numbers aside) on Legendary Combustible Nullified Quarterstaff",
           "page": "https://ddowiki.com/page/Item:Marro,_the_Bone_of_Demons",
-          "read": "2026-10-05",
-          "known_differences": {
-            "description": {
-              "reason": "Maetrim and wiki tooltip prose differ in sign, capitalization or punctuation.",
-              "served": "Passive: 32 Implement bonus to Universal spell power."
-            }
-          }
+          "read": "2026-10-05"
         },
         {
           "kind": "enhancement_bonus",
@@ -7172,13 +6768,7 @@
           },
           "standard_evidence": "same tooltip (numbers aside) on Legendary Kundarak Delving Goggles",
           "page": "https://ddowiki.com/page/Item:Legendary_Snakeskin_Vest",
-          "read": "2026-10-05",
-          "known_differences": {
-            "description": {
-              "reason": "Maetrim and wiki tooltip prose differ in sign, capitalization or punctuation.",
-              "served": "Passive: 21 Competence bonus to the Search skill."
-            }
-          }
+          "read": "2026-10-05"
         },
         {
           "kind": "enchantment",
@@ -7197,13 +6787,7 @@
           },
           "standard_evidence": "same tooltip (numbers aside) on Legendary Kundarak Delving Goggles",
           "page": "https://ddowiki.com/page/Item:Legendary_Snakeskin_Vest",
-          "read": "2026-10-05",
-          "known_differences": {
-            "description": {
-              "reason": "Maetrim and wiki tooltip prose differ in sign, capitalization or punctuation.",
-              "served": "Passive: 21 Competence bonus to the Spot skill."
-            }
-          }
+          "read": "2026-10-05"
         },
         {
           "kind": "enchantment",
@@ -7322,13 +6906,7 @@
           },
           "standard_evidence": "same tooltip (numbers aside) on Doctor Lifestone's Hunting Horn",
           "page": "https://ddowiki.com/page/Item:Legendary_Tourney_Armor",
-          "read": "2026-10-05",
-          "known_differences": {
-            "description": {
-              "reason": "Maetrim and wiki tooltip prose differ in sign, capitalization or punctuation.",
-              "served": "34 Enhancement bonus to Physical and Magical Resistance Ratings."
-            }
-          }
+          "read": "2026-10-05"
         },
         {
           "kind": "enchantment",
@@ -7347,13 +6925,7 @@
           },
           "standard_evidence": "same tooltip (numbers aside) on Legendary Belt of Myriad Pockets",
           "page": "https://ddowiki.com/page/Item:Legendary_Tourney_Armor",
-          "read": "2026-10-05",
-          "known_differences": {
-            "description": {
-              "reason": "Maetrim and wiki tooltip prose differ in sign, capitalization or punctuation.",
-              "served": "Passive: 11 Deflection bonus to Armor Class."
-            }
-          }
+          "read": "2026-10-05"
         },
         {
           "kind": "enchantment",
@@ -7498,13 +7070,7 @@
           },
           "standard_evidence": "same tooltip (numbers aside) on Legendary Arcane Contraption",
           "page": "https://ddowiki.com/page/Item:Legendary_Immaculate_Globe",
-          "read": "2026-10-05",
-          "known_differences": {
-            "description": {
-              "reason": "Maetrim and wiki tooltip prose differ in sign, capitalization or punctuation.",
-              "served": "While this orb is equipped and you are actively blocking, you gain a 15 orb bonus to all saving throws, as well as Acid, Cold, Fire, Electric, and Sonic resistances."
-            }
-          }
+          "read": "2026-10-05"
         },
         {
           "kind": "enchantment",
@@ -7673,13 +7239,7 @@
           },
           "standard_evidence": "same tooltip (numbers aside) on Perfected Jidz-Tet'ka",
           "page": "https://ddowiki.com/page/Item:Legendary_Bracers_of_Deftness",
-          "read": "2026-10-05",
-          "known_differences": {
-            "description": {
-              "reason": "Maetrim and wiki tooltip prose differ in wording.",
-              "served": "This item surrounds the wearer with an invisible but tangible field of force, granting Armor armor bonus to AC, just as though he were wearing armor."
-            }
-          }
+          "read": "2026-10-05"
         },
         {
           "kind": "enchantment",
@@ -7988,13 +7548,7 @@
           },
           "standard_evidence": "same wording (numbers and bonus-type word aside) on Legendary Staff of Arcane Power",
           "page": "https://ddowiki.com/page/Item:Legendary_Alchemist%27s_Pendant",
-          "read": "2026-10-05",
-          "known_differences": {
-            "description": {
-              "reason": "Maetrim and wiki tooltip prose differ in sign, capitalization or punctuation.",
-              "served": "2 Profane bonus to the DC of all spells."
-            }
-          }
+          "read": "2026-10-05"
         },
         {
           "kind": "enchantment",
@@ -8433,31 +7987,16 @@
           "tooltip_is_standard": true,
           "standard_evidence": "same wording as Ranged Alacrity 20% on Aeon, the Blazing Reign (melee/ranged aside)",
           "wiki_link": "/page/Melee_Alacrity",
-          "ours": "Melee Attack Speed",
+          "ours": "Melee Alacrity",
           "ours_line": {
             "index": 2,
-            "template": "%b1 Melee Attack Speed +{1}",
+            "template": "Melee Alacrity {1}%",
             "type": "Enhancement",
             "value": 15,
             "value2": null
           },
-          "note": "wiki names it Melee Alacrity and writes N% without a sign; ours renders 'Melee Attack Speed +15' (no %)",
           "page": "https://ddowiki.com/page/Item:Woeful_Shadow",
-          "read": "2026-10-05",
-          "known_differences": {
-            "name": {
-              "reason": "Wiki says Alacrity while the direct stat link names Attack Speed.",
-              "served": "Melee Attack Speed"
-            },
-            "verbose_name": {
-              "reason": "Wiki says Alacrity while the direct stat link names Attack Speed.",
-              "served": "Melee Attack Speed +15"
-            },
-            "description": {
-              "reason": "Maetrim and wiki tooltip prose differ in wording.",
-              "served": ""
-            }
-          }
+          "read": "2026-10-05"
         },
         {
           "kind": "enchantment",
@@ -8466,31 +8005,16 @@
           "tooltip_is_standard": true,
           "standard_evidence": "identical tooltip on Aeon, the Blazing Reign",
           "wiki_link": "/page/Ranged_Alacrity",
-          "ours": "Ranged Attack Speed",
+          "ours": "Ranged Alacrity",
           "ours_line": {
             "index": 3,
-            "template": "%b1 Ranged Attack Speed +{1}",
+            "template": "Ranged Alacrity {1}%",
             "type": "Enhancement",
             "value": 20,
             "value2": null
           },
-          "note": "wiki names it Ranged Alacrity; Aeon, the Blazing Reign's own 'Ranged Alacrity' line uses our effect name Ranged Alacrity with template 'Ranged Alacrity {1}%'",
           "page": "https://ddowiki.com/page/Item:Woeful_Shadow",
-          "read": "2026-10-05",
-          "known_differences": {
-            "name": {
-              "reason": "Wiki says Alacrity while the direct stat link names Attack Speed.",
-              "served": "Ranged Attack Speed"
-            },
-            "verbose_name": {
-              "reason": "Wiki says Alacrity while the direct stat link names Attack Speed.",
-              "served": "Ranged Attack Speed +20"
-            },
-            "description": {
-              "reason": "Maetrim and wiki tooltip prose differ in wording.",
-              "served": ""
-            }
-          }
+          "read": "2026-10-05"
         }
       ]
     }
@@ -8535,10 +8059,6 @@
                 "name": {
                   "reason": "Wiki set text groups facts and uses its own set-bonus sentence.",
                   "served": "Fortification Bypass"
-                },
-                "verbose_name": {
-                  "reason": "Wiki set text groups facts and uses its own set-bonus sentence.",
-                  "served": "Artifact Fortification Bypass +30"
                 }
               }
             },
@@ -8548,10 +8068,10 @@
               "wiki_text_displayed": "♦+5%★+15% Artifact Bonus to Doublestrike and Doubleshot",
               "wiki_tooltip": null,
               "tooltip_is_standard": null,
-              "ours": "Doublestrike",
+              "ours": "Doublestrike and Doubleshot",
               "ours_line": {
                 "index": 1,
-                "template": "%b1 Doublestrike {1}%",
+                "template": "%b1 Doublestrike and Doubleshot +{1}",
                 "type": "Artifact",
                 "value": 15,
                 "value2": null
@@ -8562,31 +8082,9 @@
               "known_differences": {
                 "name": {
                   "reason": "Wiki set text groups facts and uses its own set-bonus sentence.",
-                  "served": "Doublestrike"
-                },
-                "verbose_name": {
-                  "reason": "Wiki set text groups facts and uses its own set-bonus sentence.",
-                  "served": "Artifact Doublestrike 15%"
+                  "served": "Doublestrike and Doubleshot"
                 }
               }
-            },
-            {
-              "kind": "ours_only",
-              "wiki_text": null,
-              "wiki_text_displayed": null,
-              "wiki_tooltip": null,
-              "tooltip_is_standard": null,
-              "ours": "Doubleshot",
-              "ours_line": {
-                "index": 2,
-                "template": "%b1 Doubleshot {1}%",
-                "type": "Artifact",
-                "value": 15,
-                "value2": null
-              },
-              "note": "covered by the same wiki line '+15% Artifact Bonus to Doublestrike and Doubleshot'",
-              "page": "https://ddowiki.com/page/Named_item_sets#Legendary_Remodeling_Renegade",
-              "read": "2026-10-05"
             },
             {
               "kind": "set_tier_line",
@@ -8596,7 +8094,7 @@
               "tooltip_is_standard": null,
               "ours": "Physical Resistance Rating",
               "ours_line": {
-                "index": 3,
+                "index": 2,
                 "template": "%b1 Physical Resistance Rating +{1}",
                 "type": "Artifact",
                 "value": 30,
@@ -8608,10 +8106,6 @@
                 "name": {
                   "reason": "Wiki set text groups facts and uses its own set-bonus sentence.",
                   "served": "Physical Resistance Rating"
-                },
-                "verbose_name": {
-                  "reason": "Wiki set text groups facts and uses its own set-bonus sentence.",
-                  "served": "Artifact Physical Resistance Rating +30"
                 }
               }
             }
@@ -8627,10 +8121,10 @@
               "wiki_text_displayed": "♦+5★+15 Artifact Bonus to Melee and Ranged Power",
               "wiki_tooltip": null,
               "tooltip_is_standard": null,
-              "ours": "Melee Power",
+              "ours": "Melee and Ranged Power",
               "ours_line": {
                 "index": 0,
-                "template": "%b1 Melee Power {1}",
+                "template": "%b1 Melee and Ranged Power +{1}",
                 "type": "Artifact",
                 "value": 15,
                 "value2": null
@@ -8641,31 +8135,9 @@
               "known_differences": {
                 "name": {
                   "reason": "Wiki set text groups facts and uses its own set-bonus sentence.",
-                  "served": "Melee Power"
-                },
-                "verbose_name": {
-                  "reason": "Wiki set text groups facts and uses its own set-bonus sentence.",
-                  "served": "Artifact Melee Power +15"
+                  "served": "Melee and Ranged Power"
                 }
               }
-            },
-            {
-              "kind": "ours_only",
-              "wiki_text": null,
-              "wiki_text_displayed": null,
-              "wiki_tooltip": null,
-              "tooltip_is_standard": null,
-              "ours": "Ranged Power",
-              "ours_line": {
-                "index": 1,
-                "template": "%b1 Ranged Power {1}",
-                "type": "Artifact",
-                "value": 15,
-                "value2": null
-              },
-              "note": "covered by the same wiki line '+15 Artifact Bonus to Melee and Ranged Power'",
-              "page": "https://ddowiki.com/page/Named_item_sets#Legendary_Remodeling_Renegade",
-              "read": "2026-10-05"
             },
             {
               "kind": "set_tier_line",
@@ -8675,7 +8147,7 @@
               "tooltip_is_standard": null,
               "ours": "Helpless Damage",
               "ours_line": {
-                "index": 2,
+                "index": 1,
                 "template": "%b1 Helpless Damage +{1}",
                 "type": "Artifact",
                 "value": 15,
@@ -8688,10 +8160,6 @@
                 "name": {
                   "reason": "Wiki set text groups facts and uses its own set-bonus sentence.",
                   "served": "Helpless Damage"
-                },
-                "verbose_name": {
-                  "reason": "Wiki set text groups facts and uses its own set-bonus sentence.",
-                  "served": "Artifact Helpless Damage +15"
                 }
               }
             }
@@ -8737,10 +8205,6 @@
                 "name": {
                   "reason": "Wiki set text groups facts and uses its own set-bonus sentence.",
                   "served": "Universal Spell Power"
-                },
-                "verbose_name": {
-                  "reason": "Wiki set text groups facts and uses its own set-bonus sentence.",
-                  "served": "Artifact Universal Spell Power +25"
                 }
               }
             },
@@ -8765,10 +8229,6 @@
                 "name": {
                   "reason": "Wiki set text groups facts and uses its own set-bonus sentence.",
                   "served": "Universal Spell Lore"
-                },
-                "verbose_name": {
-                  "reason": "Wiki set text groups facts and uses its own set-bonus sentence.",
-                  "served": "Artifact Universal Spell Lore +6%"
                 }
               }
             },
@@ -8792,10 +8252,6 @@
                 "name": {
                   "reason": "Wiki set text groups facts and uses its own set-bonus sentence.",
                   "served": "Imbue Dice"
-                },
-                "verbose_name": {
-                  "reason": "Wiki set text groups facts and uses its own set-bonus sentence.",
-                  "served": "Artifact Imbue Dice +3"
                 }
               }
             }
@@ -8811,10 +8267,10 @@
               "wiki_text_displayed": "♦+5★+15 Artifact Bonus to Melee and Ranged Power",
               "wiki_tooltip": null,
               "tooltip_is_standard": null,
-              "ours": "Melee Power",
+              "ours": "Melee and Ranged Power",
               "ours_line": {
                 "index": 0,
-                "template": "%b1 Melee Power {1}",
+                "template": "%b1 Melee and Ranged Power +{1}",
                 "type": "Artifact",
                 "value": 15,
                 "value2": null
@@ -8825,31 +8281,9 @@
               "known_differences": {
                 "name": {
                   "reason": "Wiki set text groups facts and uses its own set-bonus sentence.",
-                  "served": "Melee Power"
-                },
-                "verbose_name": {
-                  "reason": "Wiki set text groups facts and uses its own set-bonus sentence.",
-                  "served": "Artifact Melee Power +15"
+                  "served": "Melee and Ranged Power"
                 }
               }
-            },
-            {
-              "kind": "ours_only",
-              "wiki_text": null,
-              "wiki_text_displayed": null,
-              "wiki_tooltip": null,
-              "tooltip_is_standard": null,
-              "ours": "Ranged Power",
-              "ours_line": {
-                "index": 1,
-                "template": "%b1 Ranged Power {1}",
-                "type": "Artifact",
-                "value": 15,
-                "value2": null
-              },
-              "note": "covered by the same wiki line '+15 Artifact Bonus to Melee and Ranged Power'",
-              "page": "https://ddowiki.com/page/Named_item_sets#Cooking_by_the_Book",
-              "read": "2026-10-05"
             },
             {
               "kind": "set_tier_line",
@@ -8859,7 +8293,7 @@
               "tooltip_is_standard": null,
               "ours": "Universal Spell Critical Damage",
               "ours_line": {
-                "index": 2,
+                "index": 1,
                 "template": "%b1 Universal Spell Critical Damage +{1}",
                 "type": "Legendary",
                 "value": 15,
@@ -8872,10 +8306,6 @@
                 "name": {
                   "reason": "Wiki set text groups facts and uses its own set-bonus sentence.",
                   "served": "Universal Spell Critical Damage"
-                },
-                "verbose_name": {
-                  "reason": "Wiki set text groups facts and uses its own set-bonus sentence.",
-                  "served": "Legendary Universal Spell Critical Damage +15"
                 }
               }
             }
@@ -8916,10 +8346,6 @@
                 "name": {
                   "reason": "Wiki set text groups facts and uses its own set-bonus sentence.",
                   "served": "Physical Resistance Rating"
-                },
-                "verbose_name": {
-                  "reason": "Wiki set text groups facts and uses its own set-bonus sentence.",
-                  "served": "Artifact Physical Resistance Rating +30"
                 }
               }
             },
@@ -8943,10 +8369,6 @@
                 "name": {
                   "reason": "Wiki set text groups facts and uses its own set-bonus sentence.",
                   "served": "Magical Resistance Rating"
-                },
-                "verbose_name": {
-                  "reason": "Wiki set text groups facts and uses its own set-bonus sentence.",
-                  "served": "Artifact Magical Resistance Rating +30"
                 }
               }
             },
@@ -8971,10 +8393,6 @@
                 "name": {
                   "reason": "Wiki set text groups facts and uses its own set-bonus sentence.",
                   "served": "Armor Class Percentage"
-                },
-                "verbose_name": {
-                  "reason": "Wiki set text groups facts and uses its own set-bonus sentence.",
-                  "served": "Artifact Armor Class Percentage +15"
                 }
               }
             },
@@ -8999,10 +8417,6 @@
                 "name": {
                   "reason": "Wiki set text groups facts and uses its own set-bonus sentence.",
                   "served": "Maximum Hit Points"
-                },
-                "verbose_name": {
-                  "reason": "Wiki set text groups facts and uses its own set-bonus sentence.",
-                  "served": "Maximum Hit Points +10"
                 }
               }
             }

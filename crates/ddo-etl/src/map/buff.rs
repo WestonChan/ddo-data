@@ -252,7 +252,7 @@ impl BuffResolver {
 
     fn stat_name_from_template(&self, stat_template: &str, target: &str) -> String {
         let target = self.vocabulary.item_aliases.get(target).map(String::as_str).unwrap_or(target);
-        stat_template.replace("{item}", target)
+        self.vocabulary.stat_name_from_source(&stat_template.replace("{item}", target))
     }
 
     fn definition_bonus_type(&self, buff_kind: &str) -> Result<Option<BonusType>> {
@@ -363,6 +363,11 @@ impl BuffResolver {
     pub fn effect_family_name(&self, effect_type: &str, target: Option<&str>, stat_name: &str) -> String {
         if effect_type == "AbilityBonus" && target == Some("All") {
             return "All Ability Scores".to_string();
+        }
+        if let Some(family_name) =
+            self.vocabulary.effect.targeted.get(effect_type).and_then(|targeted| targeted.family_names.get(stat_name))
+        {
+            return family_name.clone();
         }
         if !self.definitions_by_buff_kind.contains_key(effect_type) {
             return stat_name.to_string();

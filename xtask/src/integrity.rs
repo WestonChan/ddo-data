@@ -133,6 +133,11 @@ pub const INTEGRITY_CHECKS: &[IntegrityCheck] = &[
         ),
     ),
     IntegrityCheck::hard(
+        "effect_line_rendering_tokens",
+        "effect line templates have no unfilled tokens or repeated bonus-type word where an amount belongs",
+        OffenderQuery::Built(effect_line_rendering_tokens),
+    ),
+    IntegrityCheck::hard(
         "effect_bonus_type_sources",
         "an owner types every bonus row that reads its type from the link, including one-stat effects",
         OffenderQuery::Built(effect_bonus_type_sources),
@@ -637,6 +642,99 @@ fn effect_link_amount_counts(db: &Connection, _options: &IntegrityOptions) -> Re
         })
         .collect();
     Ok(Findings { offenders: Some(offenders_from_sql(db, &queries.join(" UNION ALL "))?), notes: Vec::new() })
+}
+
+fn effect_line_rendering_tokens(db: &Connection, _options: &IntegrityOptions) -> Result<Findings> {
+    let mut offenders = Vec::new();
+    let mut templates_by_effect = BTreeMap::new();
+    let mut statement = db.prepare(
+        "SELECT e.id, e.name, e.verbose_name_template, e.set_bonus_line_template, e.description_template,
+                home_type.name FROM effects e LEFT JOIN bonus_types home_type ON home_type.id = e.home_bonus_type_id",
+    )?;
+    let effects = statement.query_map([], |row| {
+        Ok((
+            row.get::<_, i64>(0)?,
+            row.get::<_, String>(1)?,
+            [row.get::<_, Option<String>>(2)?, row.get::<_, Option<String>>(3)?, row.get::<_, Option<String>>(4)?],
+            row.get::<_, Option<String>>(5)?,
+        ))
+    })?;
+    for effect in effects {
+        let (effect_id, name, templates, home_type) = effect?;
+        for (field, template) in ["verbose_name", "set_bonus_line", "description"].into_iter().zip(&templates) {
+            if template.as_deref().is_some_and(has_unfilled_effect_token) {
+                offenders.push(Offender {
+                    name: name.clone(),
+                    id: Some(effect_id),
+                    detail: format!("{field} has an unfilled placeholder"),
+                });
+            }
+        }
+        templates_by_effect.insert(effect_id, (name, templates, home_type));
+    }
+    let links = EFFECT_OWNER_LINKS
+        .iter()
+        .map(|(table, _)| format!("SELECT effect_id, bonus_type_id FROM {table}"))
+        .collect::<Vec<_>>()
+        .join(" UNION ALL ");
+    let mut statement = db.prepare(&format!(
+        "WITH links AS ({links}) SELECT l.effect_id, bt.name, COUNT(*) FROM links l
+         LEFT JOIN bonus_types bt ON bt.id = l.bonus_type_id
+         GROUP BY l.effect_id, l.bonus_type_id"
+    ))?;
+    let types = statement
+        .query_map([], |row| Ok((row.get::<_, i64>(0)?, row.get::<_, Option<String>>(1)?, row.get::<_, i64>(2)?)))?;
+    for entry in types {
+        let (effect_id, bonus_type, link_count) = entry?;
+        let (name, templates, home_type) = &templates_by_effect[&effect_id];
+        for (field, template) in ["verbose_name", "set_bonus_line", "description"].into_iter().zip(templates) {
+            let Some(template) = template else { continue };
+            if template.contains("%b1") && bonus_type.is_none() {
+                offenders.push(Offender {
+                    name: name.clone(),
+                    id: Some(effect_id),
+                    detail: format!("{link_count} {field} line(s) have an unfilled bonus-type token"),
+                });
+                continue;
+            }
+            let Some(bonus_type) = bonus_type.as_deref() else { continue };
+            let shown_type =
+                if field == "verbose_name" && home_type.as_deref() == Some(bonus_type) { "" } else { bonus_type };
+            let rendered = template.replace("%b1", shown_type).to_ascii_lowercase();
+            let repeated_type =
+                format!("{} {} bonus", shown_type.to_ascii_lowercase(), shown_type.to_ascii_lowercase());
+            if !shown_type.is_empty() && rendered.contains(&repeated_type) {
+                offenders.push(Offender {
+                    name: name.clone(),
+                    id: Some(effect_id),
+                    detail: format!("{link_count} {field} line(s) repeat {bonus_type:?} in the amount position"),
+                });
+            }
+        }
+    }
+    Ok(Findings { offenders: Some(offenders), notes: Vec::new() })
+}
+
+fn has_unfilled_effect_token(template: &str) -> bool {
+    let bytes = template.as_bytes();
+    let mut index = 0;
+    while index < bytes.len() {
+        if bytes[index] == b'{'
+            && bytes.get(index + 1).is_some_and(u8::is_ascii_digit)
+            && !template[index..].starts_with("{1}")
+            && !template[index..].starts_with("{2}")
+        {
+            return true;
+        }
+        if bytes[index] == b'%'
+            && bytes.get(index + 1).is_some_and(u8::is_ascii_alphabetic)
+            && !template[index..].starts_with("%b1")
+        {
+            return true;
+        }
+        index += 1;
+    }
+    false
 }
 
 fn effect_links_missing_first_amount(db: &Connection, _options: &IntegrityOptions) -> Result<Findings> {

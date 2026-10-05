@@ -153,10 +153,22 @@ async fn command_expands_charisma_skills_and_group_filters_find_its_item() {
 async fn direct_skill_group_links_render_the_group_description() {
     let item = item_detail_named("lindal").await;
     let line = item["effects"].as_array().unwrap().iter().find(|line| line["name"] == "Charisma Skills").unwrap();
-    assert_eq!(line["description"], "4 Insight bonus to all Charisma based skills.");
+    assert_eq!(line["description"], "+4 Insight bonus to all Charisma based skills.");
     assert_eq!(line["name"], "Charisma Skills");
     assert_eq!(line["verbose_name"], "Charisma Skills +4");
     assert!(line.get("text").is_none());
+}
+
+#[tokio::test]
+async fn school_focus_uses_the_game_name_in_lines_and_filter_vocabulary() {
+    let visor = item_detail_named("Visor%20of%20Fraz-Urb%27luu").await;
+    assert!(visor["effects"].as_array().unwrap().iter().any(|line| line["name"] == "Illusion Focus"));
+    let (_, _, rows) = get("/v1/effects?q=Illusion%20Focus").await;
+    assert!(rows["effects"].as_array().unwrap().iter().any(|row| row["name"] == "Illusion Focus"));
+    let (_, _, items) = get("/v1/items?bonus=Illusion%20Focus&limit=10000").await;
+    assert!(item_names(&items).contains(&"Visor of Fraz-Urb'luu"));
+    let (status, _, error) = get("/v1/items?bonus=Illusion%20Spell%20Focus").await;
+    assert_eq!(status, StatusCode::BAD_REQUEST, "{error}");
 }
 
 #[tokio::test]
@@ -216,7 +228,12 @@ async fn fixture_tooltip_templates_render_signed_units_types_groups_and_tiers() 
     let (_, _, set) = get(&format!("/v1/sets/{set_id}")).await;
     let tier_line = &set["tiers"][0]["effects"][0];
     assert_eq!(tier_line["name"], "Universal Spell Power");
-    assert_eq!(tier_line["verbose_name"], "Artifact Universal Spell Power +20");
+    assert_eq!(tier_line["verbose_name"], "+20 Artifact Bonus to Universal Spell Power");
+    let (_, _, winter) = get("/v1/sets?q=Eminence%20of%20Winter").await;
+    let winter_id = winter["sets"][0]["id"].as_i64().unwrap();
+    let (_, _, winter) = get(&format!("/v1/sets/{winter_id}")).await;
+    let armor = winter["tiers"].as_array().unwrap().iter().find(|tier| tier["equipped_count"] == 7).unwrap();
+    assert_eq!(armor["effects"][0]["verbose_name"], "+15% Artifact Bonus to Armor Class");
 }
 
 #[tokio::test]

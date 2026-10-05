@@ -1336,21 +1336,16 @@ fn embedded_set_corrections_keep_only_fact_changes() {
         .iter()
         .filter(|correction| correction.kind.as_str() == "set_tier_bonus" && correction.field == "add");
     assert_eq!(set_bonus_additions.count(), 50);
-    for stat in ["Melee Power", "Ranged Power"] {
-        assert!(
-            corrections.entries.iter().any(|correction| {
-                correction.kind.as_str() == "set_tier_bonus"
-                    && correction.name == "Heart of Blades"
-                    && correction.equipped_count == Some(3)
-                    && correction.stat.as_deref() == Some(stat)
-                    && correction.bonus_type.as_deref() == Some("Artifact")
-                    && correction.field == "value"
-                    && correction.from == CorrectionValue::Integer(5)
-                    && correction.to == CorrectionValue::Integer(10)
-            }),
-            "{stat}"
-        );
-    }
+    assert!(corrections.entries.iter().any(|correction| {
+        correction.kind.as_str() == "set_tier_bonus"
+            && correction.name == "Heart of Blades"
+            && correction.equipped_count == Some(3)
+            && correction.stat.as_deref() == Some("Melee and Ranged Power")
+            && correction.bonus_type.as_deref() == Some("Artifact")
+            && correction.field == "value"
+            && correction.from == CorrectionValue::Integer(5)
+            && correction.to == CorrectionValue::Integer(10)
+    }));
 }
 
 #[test]

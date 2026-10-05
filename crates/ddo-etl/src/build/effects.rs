@@ -196,6 +196,10 @@ impl<'a> EffectCache<'a> {
         let description_template = if paragraph { Some(verbose_name_template) } else { description_template };
         let description_template =
             EFFECT_MAP.description_templates.get(name).map(String::as_str).or(description_template);
+        let trimmed_description = description_template
+            .filter(|_| EFFECT_MAP.description_trim_period.contains(name))
+            .map(|template| template.trim_end_matches('.').to_string());
+        let description_template = trimmed_description.as_deref().or(description_template);
         let verbose_name_template = concise_template.as_deref().unwrap_or(verbose_name_template);
         let signed_template =
             verbose_name_template.replace("{1}", "+{1}").replace("++{1}", "+{1}").replace("-+{1}", "-{1}");
@@ -213,7 +217,8 @@ impl<'a> EffectCache<'a> {
                 validate_templates(name, verbose_name_template, description_template, count)?;
                 self.transaction.execute(
                     "UPDATE effects SET verbose_name_template = ?2, description_template = ?3,
-                        home_bonus_type_id = COALESCE(home_bonus_type_id, ?4) WHERE id = ?1",
+                        home_bonus_type_id = COALESCE(home_bonus_type_id, ?4),
+                        set_bonus_line_template = ?5 WHERE id = ?1",
                     params![
                         stat_id,
                         verbose_name_template,
@@ -222,7 +227,8 @@ impl<'a> EffectCache<'a> {
                             .home_bonus_types
                             .get(name)
                             .and_then(|name| BonusType::parse(name))
-                            .map(BonusType::id)
+                            .map(BonusType::id),
+                        EFFECT_MAP.set_bonus_line_templates.get(name)
                     ],
                 )?;
                 let family = self.families_by_id.get_mut(&stat_id).expect("seed stat cached");
@@ -262,7 +268,8 @@ impl<'a> EffectCache<'a> {
                 validate_templates(name, verbose_name_template, description_template, count)?;
                 self.transaction.execute(
                     "UPDATE effects SET verbose_name_template = ?2, description_template = ?3,
-                        home_bonus_type_id = COALESCE(home_bonus_type_id, ?4) WHERE id = ?1",
+                        home_bonus_type_id = COALESCE(home_bonus_type_id, ?4),
+                        set_bonus_line_template = ?5 WHERE id = ?1",
                     params![
                         stat_id,
                         verbose_name_template,
@@ -271,7 +278,8 @@ impl<'a> EffectCache<'a> {
                             .home_bonus_types
                             .get(name)
                             .and_then(|name| BonusType::parse(name))
-                            .map(BonusType::id)
+                            .map(BonusType::id),
+                        EFFECT_MAP.set_bonus_line_templates.get(name)
                     ],
                 )?;
                 let family = self.families_by_id.get_mut(&stat_id).expect("seed stat cached");
@@ -291,13 +299,15 @@ impl<'a> EffectCache<'a> {
         ensure!(!name.contains(" — "), "effect family {name:?} contains an em dash; add a [names] entry");
         validate_templates(name, verbose_name_template, description_template, count)?;
         self.transaction.execute(
-            "INSERT INTO effects (name, verbose_name_template, description_template, home_bonus_type_id)
-                 VALUES (?1, ?2, ?3, ?4)",
+            "INSERT INTO effects (name, verbose_name_template, description_template, home_bonus_type_id,
+                                  set_bonus_line_template)
+                 VALUES (?1, ?2, ?3, ?4, ?5)",
             params![
                 name,
                 verbose_name_template,
                 description_template,
-                EFFECT_MAP.home_bonus_types.get(name).and_then(|name| BonusType::parse(name)).map(BonusType::id)
+                EFFECT_MAP.home_bonus_types.get(name).and_then(|name| BonusType::parse(name)).map(BonusType::id),
+                EFFECT_MAP.set_bonus_line_templates.get(name)
             ],
         )?;
         let id = self.transaction.last_insert_rowid();
@@ -785,6 +795,20 @@ mod tests {
             )
             .unwrap();
         assert_eq!(templates, ("Paralyzing".to_string(), Some(paragraph.to_string())));
+    }
+
+    #[test]
+    fn armor_bonus_definition_uses_its_amount_in_the_description() {
+        let mut db = Connection::open_in_memory().unwrap();
+        db.execute_batch(ddo_model::ddl()).unwrap();
+        let transaction = db.transaction().unwrap();
+        let mut effects = EffectCache::new(&transaction);
+        let source = "This item surrounds the wearer with an invisible but tangible field of force, granting %b1 armor bonus to AC, just as though he were wearing armor.";
+        let effect_id = effects.ensure_family("Armor Bonus", "Armor Bonus +{1}", Some(source), 1).unwrap();
+        let description: String = transaction
+            .query_row("SELECT description_template FROM effects WHERE id = ?1", [effect_id], |row| row.get(0))
+            .unwrap();
+        assert!(description.contains("granting {1} armor bonus"), "{description}");
     }
 
     #[test]

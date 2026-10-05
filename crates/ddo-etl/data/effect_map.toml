@@ -1,3 +1,5 @@
+description_trim_period = ["Sheltering"]
+
 [family]
 enhancement = ["WeaponEnchantment", "ArmorEnchantment", "ShieldEnchantment"]
 owner_type_precedence = ["ExtraLayOnHands", "Constitution Skills - Exceptional", "Charisma Skills - Exceptional", "Strength Skills - Exceptional", "Wisdom Skills - Exceptional"]
@@ -120,10 +122,30 @@ ExtraLayOnHands = "Lay on Hands Uses"
 "Universal Spell Lore" = "%b1 Universal Spell Lore +{1}%"
 "Incite" = "%b1 Incite +{1}"
 "Ranged Alacrity" = "Ranged Alacrity {1}%"
+"Melee Alacrity" = "Melee Alacrity {1}%"
 "Doublestrike" = "%b1 Doublestrike {1}%"
 "Doubleshot" = "%b1 Doubleshot {1}%"
 
+[set_bonus_line_templates]
+"Armor Class Percentage" = "+{1}% %b1 Bonus to Armor Class"
+"Doubleshot" = "+{1}% %b1 Bonus to Doubleshot"
+"Doublestrike" = "+{1}% %b1 Bonus to Doublestrike"
+"Doublestrike and Doubleshot" = "+{1}% %b1 Bonus to Doublestrike and Doubleshot"
+"Fortification Bypass" = "+{1}% %b1 Bonus to Fortification Bypass"
+"Helpless Damage" = "+{1}% %b1 Bonus to Damage vs. Helpless opponents"
+"Maximum Hit Points" = "+{1}% %b1 Bonus to Maximum Hit Points"
+"Melee and Ranged Power" = "+{1} %b1 Bonus to Melee and Ranged Power"
+"Universal Spell Critical Damage" = "+{1}% %b1 Bonus to Spell Critical Damage"
+"Universal Spell Lore" = "+{1}% %b1 Bonus to Spell Critical Chance"
+
 [description_templates]
+"Armor Bonus" = "This item surrounds the wearer with an invisible but tangible field of force, granting {1} armor bonus to AC, just as though he were wearing armor."
+"Fortification" = "+{1}% %b1 bonus to reduced chance of taking critical damage on a critical hit."
+"Improved Deception" = "This item makes your weapons hard to focus upon and thus provides a {1} enhancement bonus to Bluff checks. In addition, while using this item your weapons have a chance to envelop the target in darkness, making them vulnerable to sneak attacks for a short time."
+"Incite" = "+{1}% %b1 bonus to increased threat generation from melee damage"
+"Legendary Conditioning" = "You have a +{1}% Legendary bonus to Maximum Hit Points."
+"Physical Sheltering" = "{1} %b1 bonus to Physical Resistance Rating"
+"Spellcasting Implement" = "Passive: {1} Implement bonus to Universal Spell Power."
 "Wild Frenzy" = "This weapon has a tendency to drive those it strikes insane. On an attack roll of 20 which is confirmed as a critical hit the target will go wild and attack its own allies for 15 seconds if it fails a DC {1} Will save. Enemies driven wild in this way, however, have a chance of coming to their senses if damaged."
 
 [definition_defaults]
@@ -371,6 +393,7 @@ targets = { All = ["Melee Attack Speed", "Ranged Attack Speed"], Melee = ["Melee
 [effect.targeted.WeaponAlacrityClass]
 qualified_name = "Melee and Ranged Attack Speed"
 targets = { Melee = ["Melee Attack Speed"], Ranged = ["Ranged Attack Speed"] }
+family_names = { "Melee Attack Speed" = "Melee Alacrity", "Ranged Attack Speed" = "Ranged Alacrity" }
 
 [effect.by_item]
 AbilityBonus = "{item}"
@@ -410,6 +433,16 @@ Traps = "Trap"
 General = "Tactics"
 Vertigo = "Trip"
 "Rune Arm" = "Rune Arm"
+
+[stat_name_aliases]
+"Abjuration Spell Focus" = "Abjuration Focus"
+"Conjuration Spell Focus" = "Conjuration Focus"
+"Divination Spell Focus" = "Divination Focus"
+"Enchantment Spell Focus" = "Enchantment Focus"
+"Evocation Spell Focus" = "Evocation Focus"
+"Illusion Spell Focus" = "Illusion Focus"
+"Necromancy Spell Focus" = "Necromancy Focus"
+"Transmutation Spell Focus" = "Transmutation Focus"
 
 [bonus_type_aliases]
 Insightful = "Insight"

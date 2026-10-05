@@ -315,7 +315,7 @@ fn effect_resolver_derives_bonuses_from_simple_effects() {
         (simple_effect("SaveBonus", "Resistance", 4.0, &["All"]), "Saving Throws"),
         (simple_effect("SaveBonus", "Stacking", 2.0, &["Will"]), "Will Save"),
         (simple_effect("TacticalDC", "Enhancement", 3.0, &["Trip"]), "Trip DC"),
-        (simple_effect("SpellDC", "Equipment", 2.0, &["Evocation"]), "Evocation Spell Focus"),
+        (simple_effect("SpellDC", "Equipment", 2.0, &["Evocation"]), "Evocation Focus"),
         (simple_effect("SpellDC", "Equipment", 2.0, &["All"]), "Spell DCs"),
         (simple_effect("PRR", "Stacking", 10.0, &[]), "Physical Resistance Rating"),
         (simple_effect("ACBonus", "Insightful", 1.0, &[]), "Armor Class"),

@@ -1,11 +1,14 @@
 use super::bonus_types::{BonusOwner, BonusOwnerKind};
 use super::effects::EffectOwner;
+use super::modifiers::DerivedEffectLink;
 use super::{trimmed_non_empty, BuildReport, TableWriter};
+use crate::map::effect_map::EFFECT_MAP;
 use crate::xml::sentient_gems;
 use crate::xml::set_bonuses::parse_set_bonus_file;
 use crate::xml::set_bonuses::SetBonusTier;
 use anyhow::Result;
 use ddo_model::enums::ModifierSource;
+use ddo_model::stats::Stat;
 use rusqlite::params;
 use std::collections::HashMap;
 use std::path::Path;
@@ -86,7 +89,9 @@ impl TableWriter<'_> {
         first_order: usize,
     ) -> Result<usize> {
         let owner = BonusOwner { kind: BonusOwnerKind::SetBonusTier, name: set_name, family: None };
-        let links = self.ensure_derived_effects(&owner, ModifierSource::SetBonusTier, tier_id, &tier.effects)?;
+        let derived_links =
+            self.ensure_derived_effects(&owner, ModifierSource::SetBonusTier, tier_id, &tier.effects)?;
+        let links = self.collapse_set_tier_stat_groups(derived_links)?;
         for (offset, link) in links.iter().enumerate() {
             self.effects.insert_link(
                 EffectOwner::SetBonusTier,
@@ -124,6 +129,56 @@ impl TableWriter<'_> {
             }
         }
         Ok(links.len())
+    }
+
+    fn collapse_set_tier_stat_groups(&mut self, links: Vec<DerivedEffectLink>) -> Result<Vec<DerivedEffectLink>> {
+        let mut remaining: Vec<Option<DerivedEffectLink>> = links.into_iter().map(Some).collect();
+        let mut group_names = EFFECT_MAP.group_names();
+        group_names
+            .sort_by_key(|name| std::cmp::Reverse(EFFECT_MAP.group_members(name).expect("declared group").len()));
+        for group_name in group_names {
+            let members = EFFECT_MAP.group_members(&group_name).expect("declared group");
+            if members.len() < 2 {
+                continue;
+            }
+            let member_ids: Vec<i64> =
+                members.iter().map(|name| Stat::by_name(name).expect("validated group member").id).collect();
+            for first_index in 0..remaining.len() {
+                let Some(first) = remaining[first_index].as_ref() else { continue };
+                if first.effect_id != member_ids[0] {
+                    continue;
+                }
+                let indices: Vec<Vec<usize>> = member_ids
+                    .iter()
+                    .map(|member_id| {
+                        remaining
+                            .iter()
+                            .enumerate()
+                            .filter_map(|(index, candidate)| {
+                                candidate
+                                    .as_ref()
+                                    .filter(|candidate| {
+                                        candidate.effect_id == *member_id
+                                            && candidate.bonus_type == first.bonus_type
+                                            && (candidate.value, candidate.value2) == (first.value, first.value2)
+                                    })
+                                    .map(|_| index)
+                            })
+                            .collect()
+                    })
+                    .collect();
+                if indices.iter().any(|matches| matches.len() != 1) {
+                    continue;
+                }
+                let group_id = self.effects.ensure_group(&group_name)?;
+                let first_link = remaining[first_index].as_mut().expect("first member remains");
+                first_link.effect_id = group_id;
+                for index in indices.into_iter().flatten().filter(|index| *index != first_index) {
+                    remaining[index] = None;
+                }
+            }
+        }
+        Ok(remaining.into_iter().flatten().collect())
     }
 
     pub(super) fn write_sentient_gems(&mut self, path: &Path, report: &mut BuildReport) -> Result<()> {

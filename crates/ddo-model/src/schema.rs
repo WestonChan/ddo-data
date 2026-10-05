@@ -5,7 +5,7 @@ use crate::enums::{
 };
 use std::sync::LazyLock;
 
-pub const SCHEMA_VERSION: i64 = 29;
+pub const SCHEMA_VERSION: i64 = 30;
 
 fn sql_in_clause<'a>(allowed_values: impl Iterator<Item = &'a str>) -> String {
     let quoted_values: Vec<String> = allowed_values.map(|value| format!("'{value}'")).collect();
@@ -279,6 +279,7 @@ CREATE TABLE IF NOT EXISTS effects (
     is_group             INTEGER NOT NULL DEFAULT 0 CHECK (is_group IN (0, 1)),
     category             TEXT,
     verbose_name_template        TEXT,
+    set_bonus_line_template TEXT,
     description_template TEXT,
     default_value        INTEGER,
     default_value2       INTEGER,

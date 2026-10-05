@@ -510,6 +510,19 @@ fn stats_have_unique_ids_and_names() {
     }
     assert!(Stat::by_name("Melee Attack Speed").is_some());
     assert!(Stat::by_name("Ranged Attack Speed").is_some());
+    for (school, id) in [
+        ("Abjuration", 92),
+        ("Conjuration", 93),
+        ("Enchantment", 94),
+        ("Evocation", 95),
+        ("Illusion", 96),
+        ("Necromancy", 97),
+        ("Transmutation", 98),
+        ("Divination", 233),
+    ] {
+        assert_eq!(Stat::by_name(&format!("{school} Focus")).map(|stat| stat.id), Some(id));
+        assert!(Stat::by_name(&format!("{school} Spell Focus")).is_none());
+    }
 }
 
 #[test]

@@ -710,8 +710,8 @@ impl CorrectedBonus {
         format!(
             "SELECT {selected_columns} FROM {table_name}
               JOIN effects e ON e.id = {table_name}.effect_id
-              LEFT JOIN effect_bonuses es ON es.effect_id = e.id
-              WHERE {table_name}.{owner_column} = ?1 AND (es.target_effect_id = ?2 OR (e.is_stat = 1 AND e.id = ?2))
+              LEFT JOIN effect_bonuses es ON es.effect_id = e.id AND (e.is_group = 0 OR es.sort_order = 0)
+              WHERE {table_name}.{owner_column} = ?1 AND (es.target_effect_id = ?2 OR ((e.is_stat = 1 OR e.is_group = 1) AND e.id = ?2))
                 AND COALESCE(es.bonus_type_id, {table_name}.bonus_type_id) IS ?3
                 AND (?4 IS NULL OR {effective_value} = ?4)
               ORDER BY {table_name}.sort_order"
@@ -766,9 +766,9 @@ impl CorrectedBonus {
         let mut statement = transaction.prepare(&format!(
             "SELECT COALESCE(es.bonus_type_id, {table_name}.bonus_type_id), bonus_types.name FROM {table_name}
                JOIN effects e ON e.id = {table_name}.effect_id
-               LEFT JOIN effect_bonuses es ON es.effect_id = e.id
+               LEFT JOIN effect_bonuses es ON es.effect_id = e.id AND (e.is_group = 0 OR es.sort_order = 0)
                LEFT JOIN bonus_types ON bonus_types.id = COALESCE(es.bonus_type_id, {table_name}.bonus_type_id)
-              WHERE {table_name}.{owner_column} = ?1 AND (es.target_effect_id = ?2 OR (e.is_stat = 1 AND e.id = ?2))
+              WHERE {table_name}.{owner_column} = ?1 AND (es.target_effect_id = ?2 OR ((e.is_stat = 1 OR e.is_group = 1) AND e.id = ?2))
                 AND (?3 IS NULL OR {effective_value} = ?3)
               ORDER BY {table_name}.sort_order"
         ))?;
@@ -827,7 +827,7 @@ fn repoint_bonuses(
         for BonusToRepoint { sort_order, effect_id, link_bonus_type_id, value, second_value, amount_from } in
             matching_bonuses
         {
-            if effects.family(effect_id).is_some_and(|family| family.is_stat) {
+            if effects.family(effect_id).is_some_and(|family| family.is_stat || family.is_group) {
                 transaction.execute(
                     &format!("UPDATE {table_name} SET bonus_type_id = COALESCE(?3, bonus_type_id), value = COALESCE(?4, value) WHERE {owner_column} = ?1 AND sort_order = ?2"),
                     params![owner_id, sort_order, new_bonus_type_id, new_value],

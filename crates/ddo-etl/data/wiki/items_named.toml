@@ -843,7 +843,7 @@ accepts_sentience = true
 augment_slots = ["crafting: nearly complete: spell focus (legendary)", "orange", "purple"]
 bonuses = [
   { stat = "Universal Spell Power", bonus_type = "Implement", value = 35 },
-  { stat = "Conjuration Spell Focus", bonus_type = "Equipment", value = 14 },
+  { stat = "Conjuration Focus", bonus_type = "Equipment", value = 14 },
 ]
 effects = [
   { name = "Legendary Negation", description = "Attacks and offensive spells have a chance to inflict 1d3 Negative Levels. Cooldown: 30 seconds." },
@@ -877,7 +877,7 @@ quests = [
 augment_slots = ["crafting: nearly complete: insightful ability score (legendary)", "green", "yellow", "sun"]
 bonuses = [
   { stat = "Concealment", bonus_type = "Enhancement", value = 40 },
-  { stat = "Enchantment Spell Focus", bonus_type = "Quality", value = 3 },
+  { stat = "Enchantment Focus", bonus_type = "Quality", value = 3 },
 ]
 effects = [
   { name = "Shielded by Moonlight", description = "Being struck in melee has a small chance to return some lost Hitpoints and Spellpoints to you. Offensive spells have a chance to grant 100 temporary spellpoints. This has a one minute cooldown." },
@@ -984,7 +984,7 @@ quests = [
 ]
 augment_slots = ["crafting: nearly complete: spell focus (legendary)", "orange", "purple"]
 bonuses = [
-  { stat = "Necromancy Spell Focus", bonus_type = "Equipment", value = 14 },
+  { stat = "Necromancy Focus", bonus_type = "Equipment", value = 14 },
   { stat = "Negative Spell Power", bonus_type = "Insight", value = 84 },
   { stat = "Poison Spell Power", bonus_type = "Insight", value = 84 },
 ]
@@ -1020,7 +1020,7 @@ bonuses = [
   { stat = "Cold Spell Power", bonus_type = "Equipment", value = 169 },
   { stat = "Sonic Spell Power", bonus_type = "Equipment", value = 169 },
   { stat = "Electric Spell Power", bonus_type = "Equipment", value = 169 },
-  { stat = "Enchantment Spell Focus", bonus_type = "Insight", value = 7 },
+  { stat = "Enchantment Focus", bonus_type = "Insight", value = 7 },
 ]
 effects = [
   { name = "Shadow Striker", description = "Passive: +3% Profane bonus to Doublestrike and Doubleshot. (Doublestrike/Doubleshot is a chance to score an additional hit with a melee/ranged attack.) +15% Enhancement Bonus to Melee Attack Speed. +20% Enhancement Bonus to Ranged Attack Speed." },

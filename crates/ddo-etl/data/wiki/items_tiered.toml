@@ -77,7 +77,7 @@ bonuses = [
   { stat = "Poison Spell Power", bonus_type = "Equipment", value = 90 },
   { stat = "Negative Spell Lore", bonus_type = "Equipment", value = 16 },
   { stat = "Poison Spell Lore", bonus_type = "Equipment", value = 16 },
-  { stat = "Necromancy Spell Focus", bonus_type = "Equipment", value = 2 },
+  { stat = "Necromancy Focus", bonus_type = "Equipment", value = 2 },
 ]
 effects = [
   { name = "Nightshield — 5 Charges", description = "Caster level: 14 Charges: 5 (5/day)" },
@@ -105,7 +105,7 @@ bonuses = [
   { stat = "Poison Spell Power", bonus_type = "Equipment", value = 114 },
   { stat = "Negative Spell Lore", bonus_type = "Equipment", value = 16 },
   { stat = "Poison Spell Lore", bonus_type = "Equipment", value = 16 },
-  { stat = "Necromancy Spell Focus", bonus_type = "Equipment", value = 3 },
+  { stat = "Necromancy Focus", bonus_type = "Equipment", value = 3 },
 ]
 effects = [
   { name = "Nightshield — 5 Charges", description = "Caster level: 14 Charges: 5 (5/day)" },
@@ -133,7 +133,7 @@ bonuses = [
   { stat = "Poison Spell Power", bonus_type = "Equipment", value = 139 },
   { stat = "Negative Spell Lore", bonus_type = "Equipment", value = 20 },
   { stat = "Poison Spell Lore", bonus_type = "Equipment", value = 20 },
-  { stat = "Necromancy Spell Focus", bonus_type = "Equipment", value = 7 },
+  { stat = "Necromancy Focus", bonus_type = "Equipment", value = 7 },
 ]
 effects = [
   { name = "Nightshield — 5 Charges", description = "Caster level: 14 Charges: 5 (5/day)" },
@@ -456,7 +456,7 @@ bonuses = [
   { stat = "Poison Spell Power", bonus_type = "Equipment", value = 153 },
   { stat = "Negative Spell Lore", bonus_type = "Equipment", value = 22 },
   { stat = "Poison Spell Lore", bonus_type = "Equipment", value = 22 },
-  { stat = "Necromancy Spell Focus", bonus_type = "Equipment", value = 10 },
+  { stat = "Necromancy Focus", bonus_type = "Equipment", value = 10 },
 ]
 effects = [
   { name = "Nightshield — 5 Charges", description = "Caster level: 14 Charges: 5 (5/day)" },
