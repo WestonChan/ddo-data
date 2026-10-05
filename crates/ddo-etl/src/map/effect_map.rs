@@ -19,6 +19,8 @@ pub struct EffectMap {
     pub named_effect_ids: BTreeMap<String, i64>,
     #[serde(default)]
     pub augment_line_names: Vec<AugmentLineName>,
+    #[serde(default)]
+    pub augment_combined_lines: Vec<AugmentCombinedLine>,
     pub item_aliases: BTreeMap<String, String>,
     #[serde(default)]
     pub stat_name_aliases: BTreeMap<String, String>,
@@ -30,6 +32,8 @@ pub struct EffectMap {
     pub home_bonus_types: BTreeMap<String, String>,
     #[serde(default)]
     pub line_templates: BTreeMap<String, String>,
+    #[serde(default)]
+    pub template_name_aliases: BTreeMap<String, String>,
     #[serde(default)]
     pub set_bonus_line_templates: BTreeMap<String, String>,
     #[serde(default)]
@@ -60,6 +64,8 @@ pub struct FamilyVocabulary {
     pub enhancement: Vec<String>,
     #[serde(default)]
     pub owner_type_precedence: BTreeSet<String>,
+    #[serde(default)]
+    pub groups: BTreeMap<String, String>,
     pub fixed: BTreeMap<String, String>,
     pub by_item: BTreeMap<String, String>,
     #[serde(default)]
@@ -94,6 +100,22 @@ pub struct TargetedEffect {
 pub struct AugmentLineName {
     pub augment: String,
     pub source_name: String,
+    pub effect_name: String,
+    pub source: String,
+    pub read: String,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct AugmentCombinedLine {
+    pub augment: String,
+    pub first_effect: String,
+    pub first_bonus_type: String,
+    pub first_value_from: i64,
+    pub first_value_to: i64,
+    pub second_effect: String,
+    pub second_bonus_type: String,
+    pub second_value: i64,
     pub effect_name: String,
     pub source: String,
     pub read: String,
@@ -164,6 +186,19 @@ impl EffectMap {
                 bail!("effect_map.toml [[augment_line_names]] has an invalid or repeated rule for {:?}", rule.augment);
             }
         }
+        let mut combined_augments = BTreeSet::new();
+        for rule in &vocabulary.augment_combined_lines {
+            if !combined_augments.insert(&rule.augment)
+                || rule.augment.trim().is_empty()
+                || rule.first_effect == rule.second_effect
+                || !rule.source.starts_with("https://ddowiki.com/page/")
+                || rule.read.len() != 10
+                || BonusType::parse(&rule.first_bonus_type).is_none()
+                || BonusType::parse(&rule.second_bonus_type).is_none()
+            {
+                bail!("effect_map.toml [[augment_combined_lines]] has invalid rule for {:?}", rule.augment);
+            }
+        }
         for (effect_name, bonus_type_name) in &vocabulary.home_bonus_types {
             if effect_name.trim().is_empty()
                 || (bonus_type_name != "none" && BonusType::parse(bonus_type_name).is_none())
@@ -174,6 +209,11 @@ impl EffectMap {
         for (effect_name, template) in &vocabulary.line_templates {
             if effect_name.trim().is_empty() || template.trim().is_empty() {
                 bail!("effect_map.toml [line_templates] {effect_name:?} has an empty template");
+            }
+        }
+        for (effect_name, alias) in &vocabulary.template_name_aliases {
+            if effect_name.trim().is_empty() || alias.trim().is_empty() {
+                bail!("effect_map.toml [template_name_aliases] {effect_name:?} needs an effect name and alias");
             }
         }
         for (effect_name, template) in &vocabulary.set_bonus_line_templates {
@@ -205,6 +245,11 @@ impl EffectMap {
                 if Stat::by_name(stat_name).is_none() {
                     bail!("effect_map.toml [{section}] {kind} names unknown stat {stat_name:?}");
                 }
+            }
+        }
+        for (kind, group_name) in &vocabulary.family.groups {
+            if kind.trim().is_empty() || vocabulary.group_members(group_name).is_none() {
+                bail!("effect_map.toml [family.groups] {kind:?} names unknown group {group_name:?}");
             }
         }
         for (section, templates) in
@@ -318,6 +363,7 @@ impl EffectMap {
         for kind in &vocabulary.family.enhancement {
             if vocabulary.family.fixed.contains_key(kind)
                 || vocabulary.family.by_item.contains_key(kind)
+                || vocabulary.family.groups.contains_key(kind)
                 || vocabulary.family.text_only.contains_key(kind)
             {
                 bail!("effect_map.toml [family.enhancement] {kind} is also mapped in another family section");
@@ -330,8 +376,16 @@ impl EffectMap {
             if kind.trim().is_empty() || reason.trim().is_empty() {
                 bail!("effect_map.toml [family.text_only] {kind:?} needs a buff type and reason");
             }
-            if vocabulary.family.fixed.contains_key(kind) || vocabulary.family.by_item.contains_key(kind) {
+            if vocabulary.family.fixed.contains_key(kind)
+                || vocabulary.family.by_item.contains_key(kind)
+                || vocabulary.family.groups.contains_key(kind)
+            {
                 bail!("effect_map.toml [family.text_only] {kind} is also mapped to a stat");
+            }
+        }
+        for kind in vocabulary.family.groups.keys() {
+            if vocabulary.family.fixed.contains_key(kind) || vocabulary.family.by_item.contains_key(kind) {
+                bail!("effect_map.toml [family.groups] {kind} is also mapped to a stat");
             }
         }
         for (alias, word) in &vocabulary.item_aliases {

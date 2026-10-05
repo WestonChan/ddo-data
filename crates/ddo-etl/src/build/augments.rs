@@ -1,11 +1,13 @@
 use super::bonus_types::{BonusOwner, BonusOwnerKind};
 use super::drop_text::DroppedLoot;
 use super::effects::EffectOwner;
+use super::modifiers::DerivedEffectLink;
 use super::{joined_non_empty, json_number_array, trimmed_non_empty, BuildReport, TableWriter};
 use crate::map::drop_location::drop_text_in_description;
+use crate::map::effect_map::EFFECT_MAP;
 use crate::xml::augments::parse_augments_file;
-use anyhow::Result;
-use ddo_model::enums::ModifierSource;
+use anyhow::{ensure, Result};
+use ddo_model::enums::{BonusType, ModifierSource};
 use rusqlite::params;
 use std::path::Path;
 
@@ -55,10 +57,10 @@ impl TableWriter<'_> {
             self.write_modifiers(ModifierSource::Augment, augment_id, &augment.effects)?;
             let augment_owner =
                 BonusOwner { kind: BonusOwnerKind::Augment, name: &augment.name, family: Some(&family) };
-            for (sort_order, link) in self
-                .ensure_derived_effects(&augment_owner, ModifierSource::Augment, augment_id, &augment.effects)?
-                .into_iter()
-                .enumerate()
+            let links =
+                self.ensure_derived_effects(&augment_owner, ModifierSource::Augment, augment_id, &augment.effects)?;
+            for (sort_order, link) in
+                self.collapse_source_backed_augment_lines(&augment.name, links)?.into_iter().enumerate()
             {
                 self.effects.insert_link(
                     EffectOwner::Augment,
@@ -72,6 +74,62 @@ impl TableWriter<'_> {
         }
         report.augment_count += augments.len();
         Ok(())
+    }
+
+    fn collapse_source_backed_augment_lines(
+        &self,
+        augment_name: &str,
+        mut links: Vec<DerivedEffectLink>,
+    ) -> Result<Vec<DerivedEffectLink>> {
+        for rule in EFFECT_MAP.augment_combined_lines.iter().filter(|rule| rule.augment == augment_name) {
+            let first: Vec<usize> = links
+                .iter()
+                .enumerate()
+                .filter_map(|(index, link)| {
+                    self.effects.family(link.effect_id).filter(|family| family.name == rule.first_effect).map(|_| index)
+                })
+                .collect();
+            let second: Vec<usize> = links
+                .iter()
+                .enumerate()
+                .filter_map(|(index, link)| {
+                    self.effects
+                        .family(link.effect_id)
+                        .filter(|family| family.name == rule.second_effect)
+                        .map(|_| index)
+                })
+                .collect();
+            ensure!(
+                first.len() == 1 && second.len() == 1,
+                "augment {augment_name:?} combined line needs one of each source effect"
+            );
+            let first_index = first[0];
+            let second_index = second[0];
+            let first_type = BonusType::parse(&rule.first_bonus_type).expect("validated first type");
+            let second_type = BonusType::parse(&rule.second_bonus_type).expect("validated second type");
+            ensure!(
+                links[first_index].value == Some(rule.first_value_from)
+                    && links[first_index].value2.is_none()
+                    && links[first_index].bonus_type == Some(first_type)
+                    && links[second_index].value == Some(rule.second_value)
+                    && links[second_index].value2.is_none()
+                    && links[second_index].bonus_type == Some(second_type),
+                "augment {augment_name:?} changed from the cited combined-line source"
+            );
+            let effect_id = self
+                .effects
+                .family_named(&rule.effect_name)
+                .ok_or_else(|| anyhow::anyhow!("augment {augment_name:?} needs effect {:?}", rule.effect_name))?
+                .id;
+            links[first_index] = DerivedEffectLink {
+                effect_id,
+                bonus_type: None,
+                value: Some(rule.first_value_to),
+                value2: Some(rule.second_value),
+            };
+            links.remove(second_index);
+        }
+        Ok(links)
     }
 
     pub(super) fn link_augment_to_quests(

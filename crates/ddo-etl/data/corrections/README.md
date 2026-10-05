@@ -52,7 +52,7 @@ Only scalar columns can be corrected, never an id or a row's name (except where 
 | `item_bonus` | `value` (an integer), `bonus_type` (a `bonus_types.name`), `scale` (a positive float), `rounding` (`down`, `up` or `nearest`), `add` (`to = { stat = "...", bonus_type = "...", value = N }`), `remove` |
 | `set_tier` | `add` (`to = { equipped_count = N, description = "..." }`), `description`, `remove` |
 | `set_tier_bonus` | `value` (an integer), `bonus_type` (a `bonus_types.name`), `scale` (a positive float), `rounding` (`down`, `up` or `nearest`), `add` (`to = { stat = "...", bonus_type = "...", value = N }`), `remove` |
-| `item_effect` | `add` (`to` = the effect's name, or `{ name = "...", description = "...", value = N }`), `value` (requires `effect` to name its link) |
+| `item_effect` | `add` (`to` = the effect's name, or `{ name = "...", description = "...", value = N }`), `value`, `bonus_type`, `remove` (the last three require `effect` to name its link) |
 | `effect_damage` | `add` or `remove` (`to` or `from` = `{ trigger = "...", damage_type = "...", dice_number = N, dice_sides = N, dice_bonus = N, amount_from = N, scale = N, sort_order = N }`) |
 | `item_socket` | `add` (`to` = the socket label to add) |
 | `socket_label` | `name`, which renames the label everywhere it is used; when `to` is already a label the two merge |
@@ -68,6 +68,7 @@ Only scalar columns can be corrected, never an id or a row's name (except where 
 - A `bonus_type` correction's `from` is the `bonus_type` it names: his current type, or `"null"` when his buff or effect has none. One from `"null"` is applied while the effect is written, because the ETL refuses an unresolved stat type, naming the item or augment, the buff or effect and the stat; it is stale once his bonus has a type, or once he carries no bonus on that stat (with that `bonus_value`).
 - `item_effect` `add` appends a text-only `item_effects` link. It reuses his text-only effect when one has that name ignoring case, spaces and the punctuation `- : , . '` (as the wiki items writer does), and otherwise creates an effect, with `description` and `value` when supplied; it is stale once the item carries a matching effect.
 - `item_effect` `value` changes only the named item's link to the named effect; a null link value lets the family's default fill it.
+- `item_effect` `bonus_type` changes only that item's link type, including on a text-only effect; `remove` deletes only the named link when the wiki says the item lacks it.
 - `effect_damage` `add` or `remove` changes an effect's dice row by its trigger, damage type, dice and order. A range from minimum to maximum becomes 1d(max−min+1)+(min−1); Acid II's 2 to 8 is 1d7+1. The effect must already be written by an owner.
 - `item_socket` `add` appends an `item_augment_slots` row with that label, which must be one his files use; it is stale once the item carries the label.
 - `socket_label` `name` into a new label keeps the prefix (`crafting: `) and updates the variant; a label with a qualifier (`isle of dread: scale (weapon)`) can only merge into an existing label.

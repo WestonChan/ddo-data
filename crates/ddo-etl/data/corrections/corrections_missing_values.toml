@@ -373,14 +373,13 @@ source = "https://ddowiki.com/page/Item:Epic_Flamekeep_Docent"
 read = "2026-10-04"
 
 [[correction]]
-kind = "item_bonus"
+kind = "item_effect"
 name = "Robe of Arcane Power"
-stat = "Universal Spell Power"
-bonus_type = "Equipment"
+effect = "Potency"
 field = "remove"
-from = "null"
+from = 0
 to = 1
-reason = "The wiki describes this old Potency as spell damage only, not a general Potency stat."
+reason = "The wiki describes this old Potency as spell damage only, so its mapped Spell Powers group is absent."
 source = "https://ddowiki.com/page/Item:Robe_of_Arcane_Power"
 read = "2026-10-04"
 

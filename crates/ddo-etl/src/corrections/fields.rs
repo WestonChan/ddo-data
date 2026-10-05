@@ -105,8 +105,12 @@ const SET_TIER_FIELDS: &[CorrectableField] = &[
     field("remove", FieldShape::Removal, false),
 ];
 
-const ITEM_EFFECT_FIELDS: &[CorrectableField] =
-    &[field("add", FieldShape::EffectAddition, false), field("value", FieldShape::Integer, true)];
+const ITEM_EFFECT_FIELDS: &[CorrectableField] = &[
+    field("add", FieldShape::EffectAddition, false),
+    field("value", FieldShape::Integer, true),
+    field("bonus_type", FieldShape::BonusTypeName, false),
+    field("remove", FieldShape::Removal, false),
+];
 
 const EFFECT_FIELDS: &[CorrectableField] = &[
     field("name", FieldShape::RowName, false),

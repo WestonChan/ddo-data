@@ -42,7 +42,7 @@
           "depth": 0,
           "wiki_text": "Fire Lore +21%",
           "wiki_tooltip": "Fire Lore +21: Passive: Your Fire spells gain a 21% Equipment bonus to their chance to critical hit.",
-          "tooltip_is_standard": "unknown",
+          "tooltip_is_standard": true,
           "wiki_link": "/page/Spell_Lore",
           "ours": "Fire Lore",
           "ours_line": {
@@ -82,7 +82,7 @@
           "depth": 0,
           "wiki_text": "Combustion +142",
           "wiki_tooltip": "Combustion +142: Passive: +142 Equipment bonus to Fire Spell Power.",
-          "tooltip_is_standard": "unknown",
+          "tooltip_is_standard": true,
           "wiki_link": "/page/Combustion",
           "ours": "Combustion",
           "ours_line": {
@@ -94,7 +94,14 @@
           },
           "standard_evidence": "not seen on another sampled item; no extra page read",
           "page": "https://ddowiki.com/page/Item:Legendary_Combustible_Nullified_Quarterstaff",
-          "read": "2026-10-05"
+          "read": "2026-10-05",
+          "known_differences": {
+            "description": {
+              "code": "source_line_style",
+              "reason": "The same fact uses different tooltip punctuation, case, sign or short-form wording.",
+              "served": "+142 Equipment bonus to Fire spell power."
+            }
+          }
         },
         {
           "kind": "enchantment",
@@ -117,7 +124,8 @@
           "known_differences": {
             "description": {
               "reason": "Maetrim and wiki tooltip prose differ in wording.",
-              "served": "+142 Equipment bonus to Negative and Poison spell power."
+              "served": "+142 Equipment bonus to Negative and Poison spell power.",
+              "code": "source_wording"
             }
           }
         },
@@ -126,7 +134,7 @@
           "depth": 0,
           "wiki_text": "Insightful Combustion +71",
           "wiki_tooltip": "Insightful Combustion +71: Passive: +71 Insight bonus to Fire Spell Power.",
-          "tooltip_is_standard": "unknown",
+          "tooltip_is_standard": true,
           "wiki_link": "/page/Combustion",
           "ours": "Combustion",
           "ours_line": {
@@ -138,7 +146,14 @@
           },
           "standard_evidence": "not seen on another sampled item; no extra page read",
           "page": "https://ddowiki.com/page/Item:Legendary_Combustible_Nullified_Quarterstaff",
-          "read": "2026-10-05"
+          "read": "2026-10-05",
+          "known_differences": {
+            "description": {
+              "code": "source_line_style",
+              "reason": "The same fact uses different tooltip punctuation, case, sign or short-form wording.",
+              "served": "+71 Insight bonus to Fire spell power."
+            }
+          }
         },
         {
           "kind": "enchantment",
@@ -161,7 +176,8 @@
           "known_differences": {
             "description": {
               "reason": "Maetrim and wiki tooltip prose differ in wording.",
-              "served": "+71 Insight bonus to Negative and Poison spell power."
+              "served": "+71 Insight bonus to Negative and Poison spell power.",
+              "code": "source_wording"
             }
           }
         },
@@ -170,7 +186,7 @@
           "depth": 0,
           "wiki_text": "Evocation Focus +7",
           "wiki_tooltip": "Evocation Focus +7: +7 Equipment bonus to the DC of Evocation spells.",
-          "tooltip_is_standard": "unknown",
+          "tooltip_is_standard": true,
           "wiki_link": "/page/Spell_Focus",
           "ours": "Evocation Focus",
           "ours_line": {
@@ -296,7 +312,8 @@
           "known_differences": {
             "description": {
               "reason": "Maetrim and wiki tooltip prose differ in wording.",
-              "served": "Passive: +14 Enhancement bonus to Wisdom."
+              "served": "Passive: +14 Enhancement bonus to Wisdom.",
+              "code": "source_wording"
             }
           }
         },
@@ -305,7 +322,7 @@
           "depth": 0,
           "wiki_text": "Insightful Resistance +5",
           "wiki_tooltip": "Insightful Resistance +5: Passive: +5 Insight bonus to Fortitude, Reflex, and Will Saving Throws.",
-          "tooltip_is_standard": "unknown",
+          "tooltip_is_standard": true,
           "wiki_link": "/page/Resistance_(enchantment)",
           "ours": "Resistance",
           "ours_line": {
@@ -359,7 +376,8 @@
           "known_differences": {
             "description": {
               "reason": "Maetrim and wiki tooltip prose differ in wording.",
-              "served": "Passive: +2 Exceptional bonus to Wisdom."
+              "served": "Passive: +2 Exceptional bonus to Wisdom.",
+              "code": "source_wording"
             }
           }
         },
@@ -385,7 +403,8 @@
           "known_differences": {
             "description": {
               "reason": "Maetrim and wiki tooltip prose differ in wording.",
-              "served": "Whispers of the ancients grant you the ancient martial secrets of the Thri-Kreen. Your elemental Monk stances grant additional bonuses."
+              "served": "Whispers of the ancients grant you the ancient martial secrets of the Thri-Kreen. Your elemental Monk stances grant additional bonuses.",
+              "code": "source_wording"
             }
           }
         },
@@ -516,7 +535,7 @@
           "depth": 0,
           "wiki_text": "Assassinate +16",
           "wiki_tooltip": "Assassinate +16: +16 Enhancement bonus to the DC of character's Assassinate attempts.",
-          "tooltip_is_standard": "unknown",
+          "tooltip_is_standard": true,
           "wiki_link": "/page/Assassinate",
           "ours": "Assassinate",
           "ours_line": {
@@ -535,7 +554,7 @@
           "depth": 0,
           "wiki_text": "Quality Assassinate +3",
           "wiki_tooltip": "Quality Assassinate +3: +3 Quality bonus to the DC of character's Assassinate attempts.",
-          "tooltip_is_standard": "unknown",
+          "tooltip_is_standard": true,
           "wiki_link": "/page/Assassinate",
           "ours": "Assassinate",
           "ours_line": {
@@ -591,7 +610,8 @@
           "known_differences": {
             "description": {
               "reason": "Maetrim and wiki tooltip prose differ in wording.",
-              "served": "+12 Enhancement bonus to hit and +18 Damage for Sneak Attacks."
+              "served": "+12 Enhancement bonus to hit and +18 Damage for Sneak Attacks.",
+              "code": "source_wording"
             }
           }
         },
@@ -626,7 +646,7 @@
           "depth": 0,
           "wiki_text": "Moon Augment Slot",
           "wiki_tooltip": "Moon",
-          "tooltip_is_standard": "unknown",
+          "tooltip_is_standard": true,
           "wiki_link": "/page/Lunar_and_Solar_Gems",
           "ours": null,
           "ours_line": null,
@@ -722,7 +742,8 @@
           "known_differences": {
             "description": {
               "reason": "Maetrim and wiki tooltip prose differ in wording.",
-              "served": "Passive: +291 Enhancement Bonus to Spell Points. If you have Sorcerer or Favored Soul levels, you gain additional spell points proportionate to the ratio of those levels to other heroic classes."
+              "served": "Passive: +291 Enhancement Bonus to Spell Points. If you have Sorcerer or Favored Soul levels, you gain additional spell points proportionate to the ratio of those levels to other heroic classes.",
+              "code": "source_wording"
             }
           }
         },
@@ -731,7 +752,7 @@
           "depth": 0,
           "wiki_text": "Arcane Augmentation IX",
           "wiki_tooltip": "Arcane Augmentation IX: Increases the wearer's caster level when casting ninth level or lower sorcerer or wizard spells by two.",
-          "tooltip_is_standard": "unknown",
+          "tooltip_is_standard": true,
           "wiki_link": "/page/Spell_Augmentation",
           "ours": "Arcane Augmentation IX",
           "ours_line": {
@@ -751,7 +772,7 @@
           "depth": 0,
           "wiki_text": "Efficient Metamagic - Maximize II",
           "wiki_tooltip": "Efficient Metamagic - Maximize II: The additional spell point cost for using the Maximize Metamagic feat is reduced by 4 SP.",
-          "tooltip_is_standard": "unknown",
+          "tooltip_is_standard": true,
           "wiki_link": "/page/Efficient_Metamagic",
           "ours": "Efficient Metamagic - Maximize II",
           "ours_line": {
@@ -771,7 +792,7 @@
           "depth": 0,
           "wiki_text": "Efficient Metamagic - Empower II",
           "wiki_tooltip": "Efficient Metamagic - Empower II: The additional spell point cost for using the Empower Metamagic feat is reduced by 2 SP.",
-          "tooltip_is_standard": "unknown",
+          "tooltip_is_standard": true,
           "wiki_link": "/page/Efficient_Metamagic",
           "ours": "Efficient Metamagic - Empower II",
           "ours_line": {
@@ -791,7 +812,7 @@
           "depth": 0,
           "wiki_text": "Efficient Metamagic - Enlarge II",
           "wiki_tooltip": "Efficient Metamagic - Enlarge II: The additional spell point cost for using the Enlarge Metamagic feat is reduced by 2 SP.",
-          "tooltip_is_standard": "unknown",
+          "tooltip_is_standard": true,
           "wiki_link": "/page/Efficient_Metamagic",
           "ours": "Efficient Metamagic - Enlarge II",
           "ours_line": {
@@ -811,7 +832,7 @@
           "depth": 0,
           "wiki_text": "Efficient Metamagic - Extend II",
           "wiki_tooltip": "Efficient Metamagic - Extend II: The additional spell point cost for using the Extend Metamagic feat is reduced by 2 SP.",
-          "tooltip_is_standard": "unknown",
+          "tooltip_is_standard": true,
           "wiki_link": "/page/Efficient_Metamagic",
           "ours": "Efficient Metamagic - Extend II",
           "ours_line": {
@@ -850,7 +871,7 @@
           "depth": 0,
           "wiki_text": "The Legendary Desert's Biting Sands",
           "wiki_tooltip": "The Legendary Desert's Biting Sands: 2 Pieces Equipped:\n+6% Artifact bonus to Force Spellcrit Chance\n+30 Artifact bonus to Force Spellpower\n+30 Artifact bonus to Magical Resistance Rating Cap",
-          "tooltip_is_standard": "unknown",
+          "tooltip_is_standard": true,
           "wiki_link": "/page/Named_item_sets#The_Legendary_Desert's_Biting_Sands",
           "ours": null,
           "ours_line": null,
@@ -901,7 +922,8 @@
           "known_differences": {
             "description": {
               "reason": "Maetrim and wiki tooltip prose differ in wording.",
-              "served": "+12 Enhancement bonus to hit and +18 Damage for Sneak Attacks."
+              "served": "+12 Enhancement bonus to hit and +18 Damage for Sneak Attacks.",
+              "code": "source_wording"
             }
           }
         },
@@ -1028,7 +1050,7 @@
           "depth": 0,
           "wiki_text": "Superior Efficacy — 5 Charges (Recharged/Day:5)",
           "wiki_tooltip": "Superior Efficacy\nCaster level: 1\nCharges: 5 (5/day)",
-          "tooltip_is_standard": "unknown",
+          "tooltip_is_standard": true,
           "wiki_link": "/page/Superior_Efficacy",
           "ours": null,
           "ours_line": null,
@@ -1057,7 +1079,8 @@
           "known_differences": {
             "description": {
               "reason": "Maetrim and wiki tooltip prose differ in wording.",
-              "served": "Passive: +3 Quality bonus to Intelligence."
+              "served": "Passive: +3 Quality bonus to Intelligence.",
+              "code": "source_wording"
             }
           }
         },
@@ -1082,7 +1105,8 @@
           "known_differences": {
             "description": {
               "reason": "Maetrim and wiki tooltip prose differ in wording.",
-              "served": "Passive: +3 Quality bonus to Wisdom."
+              "served": "Passive: +3 Quality bonus to Wisdom.",
+              "code": "source_wording"
             }
           }
         },
@@ -1107,7 +1131,8 @@
           "known_differences": {
             "description": {
               "reason": "Maetrim and wiki tooltip prose differ in wording.",
-              "served": "Passive: +3 Quality bonus to Charisma."
+              "served": "Passive: +3 Quality bonus to Charisma.",
+              "code": "source_wording"
             }
           }
         },
@@ -1135,7 +1160,7 @@
           "depth": 0,
           "wiki_text": "Exceptional Universal Spell Power +15",
           "wiki_tooltip": "Exceptional Universal Spell Power +15: Passive: +15 Exceptional bonus to Universal Spell Power.",
-          "tooltip_is_standard": "unknown",
+          "tooltip_is_standard": true,
           "wiki_link": "/page/Universal_Spell_Power",
           "ours": "Universal Spell Power",
           "ours_line": {
@@ -1154,7 +1179,7 @@
           "depth": 0,
           "wiki_text": "Exceptional Universal Spell Lore +5%",
           "wiki_tooltip": "Exceptional Universal Spell Lore: 5% Exceptional bonus to Universal Spell Lore.",
-          "tooltip_is_standard": "unknown",
+          "tooltip_is_standard": true,
           "wiki_link": "/page/Spell_Lore",
           "ours": "Universal Spell Lore",
           "ours_line": {
@@ -1167,7 +1192,14 @@
           "note": "tooltip's bold title drops the number ('Exceptional Universal Spell Lore:') and the tooltip writes '5%' without a sign",
           "standard_evidence": "not seen on another sampled item; no extra page read",
           "page": "https://ddowiki.com/page/Item:Perfected_Dragon%27s_Eye",
-          "read": "2026-10-05"
+          "read": "2026-10-05",
+          "known_differences": {
+            "description": {
+              "code": "source_line_style",
+              "reason": "The same fact uses different tooltip punctuation, case, sign or short-form wording.",
+              "served": "+5% Exceptional bonus to Universal Spell Lore."
+            }
+          }
         },
         {
           "kind": "augment_slot",
@@ -1213,7 +1245,7 @@
           "depth": 0,
           "wiki_text": "Legendary Draconic Prophecy",
           "wiki_tooltip": "Legendary Draconic Prophecy: 2 Pieces Equipped:\n+15 Artifact bonus to Universal Spellpower\n+30 Artifact bonus to Magical Resistance Rating Cap",
-          "tooltip_is_standard": "unknown",
+          "tooltip_is_standard": true,
           "wiki_link": "/page/Named_item_sets#Legendary_Draconic_Prophecy",
           "ours": null,
           "ours_line": null,
@@ -1234,7 +1266,7 @@
           "depth": 0,
           "wiki_text": "Nightshield — 5 Charges",
           "wiki_tooltip": "Nightshield\nCaster level: 14\nCharges: 5 (5/day)",
-          "tooltip_is_standard": "unknown",
+          "tooltip_is_standard": true,
           "wiki_link": "/page/Nightshield",
           "ours": "Nightshield",
           "ours_line": {
@@ -1270,7 +1302,8 @@
           "known_differences": {
             "description": {
               "reason": "Maetrim and wiki tooltip prose differ in wording.",
-              "served": "+153 Equipment bonus to Negative and Poison spell power."
+              "served": "+153 Equipment bonus to Negative and Poison spell power.",
+              "code": "source_wording"
             }
           }
         },
@@ -1298,7 +1331,7 @@
           "depth": 0,
           "wiki_text": "Superior False Life",
           "wiki_tooltip": "Superior False Life: This item grants the wearer +40 maximum health.",
-          "tooltip_is_standard": "unknown",
+          "tooltip_is_standard": true,
           "wiki_link": "/page/False_Life_(enchantment)#Superior_False_Life",
           "ours": "Superior False Life",
           "ours_line": {
@@ -1337,7 +1370,7 @@
           "depth": 0,
           "wiki_text": "Boon of Undeath",
           "wiki_tooltip": "Boon of Undeath: Undead take solace in the hate of others. Every time a character wearing a Boon of Undeath item is struck in combat, an Inflict Light Wounds spell will be cast on the character.",
-          "tooltip_is_standard": "unknown",
+          "tooltip_is_standard": true,
           "wiki_link": "/page/Boon_of_Undeath",
           "ours": "Boon of Undeath",
           "ours_line": {
@@ -1402,7 +1435,7 @@
           "depth": 0,
           "wiki_text": "Eversight",
           "wiki_tooltip": "Eversight: You benefit from the spell True Seeing and are Immune to Blindness.",
-          "tooltip_is_standard": "unknown",
+          "tooltip_is_standard": true,
           "wiki_link": "/page/Eversight",
           "ours": "Eversight",
           "ours_line": {
@@ -1421,7 +1454,7 @@
           "depth": 0,
           "wiki_text": "Disable Device +21",
           "wiki_tooltip": "Disable Device +21: Passive: +21 Competence bonus to the Disable Device skill.",
-          "tooltip_is_standard": "unknown",
+          "tooltip_is_standard": true,
           "wiki_link": "/page/Disable_Device",
           "ours": "Disable Device",
           "ours_line": {
@@ -1440,7 +1473,7 @@
           "depth": 0,
           "wiki_text": "Open Lock +21",
           "wiki_tooltip": "Open Lock +21: Passive: +21 Competence bonus to the Open Lock skill.",
-          "tooltip_is_standard": "unknown",
+          "tooltip_is_standard": true,
           "wiki_link": "/page/Open_Lock",
           "ours": "Open Lock",
           "ours_line": {
@@ -1510,7 +1543,7 @@
           "depth": 0,
           "wiki_text": "Legendary Kundarak Delving Equipment",
           "wiki_tooltip": "Legendary Kundarak Delving Equipment: 3 Pieces Equipped: +3 Artifact bonus to Sneak Attack Dice. +15% Artifact bonus to Helplessness Damage. +15% Artifact bonus to Doublestrike and Doubleshot",
-          "tooltip_is_standard": "unknown",
+          "tooltip_is_standard": true,
           "wiki_link": "/page/Named_item_sets#Legendary_Kundarak_Delving_Equipment",
           "ours": null,
           "ours_line": null,
@@ -1551,7 +1584,7 @@
           "depth": 0,
           "wiki_text": "Legendary Deadly +3",
           "wiki_tooltip": "Legendary Deadly +3: +3 Legendary bonus to weapon damage.",
-          "tooltip_is_standard": "unknown",
+          "tooltip_is_standard": true,
           "wiki_link": "/page/Deadly",
           "ours": "Deadly",
           "ours_line": {
@@ -1571,7 +1604,7 @@
           "depth": 0,
           "wiki_text": "Unstoppable Staggering Blow",
           "wiki_tooltip": "Unstoppable Staggering Blow: On a Vorpal strike with a Melee weapon, this weapon will trip your opponent, forcing them to fall prone for 2 seconds. There is no save against this effect.",
-          "tooltip_is_standard": "unknown",
+          "tooltip_is_standard": true,
           "wiki_link": "/page/Unstoppable_Staggering_Blow",
           "ours": "Unstoppable Staggering Blow",
           "ours_line": {
@@ -1609,7 +1642,7 @@
           "depth": 0,
           "wiki_text": "Mind Drain",
           "wiki_tooltip": "Mind Drain: This item reduces your maximum spell points by 5% while equipped.",
-          "tooltip_is_standard": "unknown",
+          "tooltip_is_standard": true,
           "wiki_link": "/page/Mind_Drain",
           "ours": "Mind Drain",
           "ours_line": {
@@ -1744,7 +1777,8 @@
           "known_differences": {
             "description": {
               "reason": "Maetrim and wiki tooltip prose differ in wording.",
-              "served": "+55 Insight bonus to each individual spell power. (Universal Spell Power is a different statistic)"
+              "served": "+55 Insight bonus to each individual spell power. (Universal Spell Power is a different statistic)",
+              "code": "source_wording"
             }
           }
         },
@@ -1769,7 +1803,8 @@
           "known_differences": {
             "description": {
               "reason": "Maetrim and wiki tooltip prose differ in wording.",
-              "served": "This item gives a +13 Resistance bonus to your Will save."
+              "served": "This item gives a +13 Resistance bonus to your Will save.",
+              "code": "source_wording"
             }
           }
         },
@@ -1778,7 +1813,7 @@
           "depth": 0,
           "wiki_text": "Lamordia: Melancholic Slot (Weapon)",
           "wiki_tooltip": "Lamordia: Melancholic Slot (Weapon):\nApply a Lamordia augment to this item.",
-          "tooltip_is_standard": "unknown",
+          "tooltip_is_standard": true,
           "wiki_link": "/page/Viktranium_Experiment_crafting",
           "ours": null,
           "ours_line": null,
@@ -1792,7 +1827,7 @@
           "depth": 0,
           "wiki_text": "Lamordia: Dolorous Slot (Weapon)",
           "wiki_tooltip": "Lamordia: Dolorous Slot (Weapon):\nApply a Lamordia augment to this item.",
-          "tooltip_is_standard": "unknown",
+          "tooltip_is_standard": true,
           "wiki_link": "/page/Viktranium_Experiment_crafting",
           "ours": null,
           "ours_line": null,
@@ -1913,7 +1948,8 @@
           "known_differences": {
             "description": {
               "reason": "Maetrim and wiki tooltip prose differ in wording.",
-              "served": "+76 Insight bonus to Negative and Poison spell power."
+              "served": "+76 Insight bonus to Negative and Poison spell power.",
+              "code": "source_wording"
             }
           }
         },
@@ -1941,7 +1977,7 @@
           "depth": 0,
           "wiki_text": "Enchantment Focus +10",
           "wiki_tooltip": "Enchantment Focus +10: +10 Equipment bonus to the DC of Enchantment spells.",
-          "tooltip_is_standard": "unknown",
+          "tooltip_is_standard": true,
           "wiki_link": "/page/Spell_Focus",
           "ours": "Enchantment Focus",
           "ours_line": {
@@ -2188,7 +2224,7 @@
           "depth": 0,
           "wiki_text": "Resistance +11",
           "wiki_tooltip": "Resistance +11: Passive: +11 Resistance bonus to Fortitude, Reflex, and Will Saving Throws.",
-          "tooltip_is_standard": "unknown",
+          "tooltip_is_standard": true,
           "wiki_link": "/page/Resistance_(enchantment)",
           "ours": "Resistance",
           "ours_line": {
@@ -2326,7 +2362,7 @@
           "depth": 0,
           "wiki_text": "Summon Legendary Dinosaur — 1 Charges (Recharged/Day:1)",
           "wiki_tooltip": "Summon Legendary Dinosaur\nCharges: 1 (1/day)",
-          "tooltip_is_standard": "unknown",
+          "tooltip_is_standard": true,
           "wiki_link": "/page/Summon_Legendary_Dinosaur",
           "ours": null,
           "ours_line": null,
@@ -2355,7 +2391,8 @@
           "known_differences": {
             "description": {
               "reason": "Maetrim and wiki tooltip prose differ in wording.",
-              "served": "Passive: +14 Enhancement bonus to Constitution."
+              "served": "Passive: +14 Enhancement bonus to Constitution.",
+              "code": "source_wording"
             }
           }
         },
@@ -2400,7 +2437,8 @@
           "known_differences": {
             "description": {
               "reason": "Maetrim and wiki tooltip prose differ in wording.",
-              "served": "+11 Enhancement bonus to hit and +17 Damage for Sneak Attacks."
+              "served": "+11 Enhancement bonus to hit and +17 Damage for Sneak Attacks.",
+              "code": "source_wording"
             }
           }
         },
@@ -2409,7 +2447,7 @@
           "depth": 0,
           "wiki_text": "Speed +30%",
           "wiki_tooltip": "Speed +30%: +30% enhancement bonus to movement speed, 15% bonus to attack speed.",
-          "tooltip_is_standard": "unknown",
+          "tooltip_is_standard": true,
           "wiki_link": "/page/Speed",
           "ours": "Speed",
           "ours_line": {
@@ -2422,14 +2460,21 @@
           "note": "our second value (15, attack speed) appears only in the tooltip; ours type is null",
           "standard_evidence": "not seen on another sampled item; no extra page read",
           "page": "https://ddowiki.com/page/Item:Doctor_Lifestone%27s_Hunting_Horn",
-          "read": "2026-10-05"
+          "read": "2026-10-05",
+          "known_differences": {
+            "description": {
+              "code": "source_wording",
+              "reason": "Maetrim and the wiki describe this effect in different prose; the wiki wording has not been imported.",
+              "served": "Passive: 30% Enhancement bonus to movement speed, 15% Enhancement bonus to melee and ranged attack speed."
+            }
+          }
         },
         {
           "kind": "enchantment",
           "depth": 0,
           "wiki_text": "Spell: Summon Raptor",
           "wiki_tooltip": "Spell: Summon Raptor: Rawr I'm a raptor!\n(This enchantment has no effect.)",
-          "tooltip_is_standard": false,
+          "tooltip_is_standard": true,
           "wiki_link": "/edit/Spell:_Summon_Raptor?redlink=1",
           "ours": "Spell",
           "ours_line": {
@@ -2442,7 +2487,14 @@
           "note": "paired with ours 'Spell' (template 'Spell'); the wiki link is a red link (/edit/...redlink=1) and the tooltip says the enchantment has no effect",
           "standard_evidence": "flavor text for an effect that exists only on this item",
           "page": "https://ddowiki.com/page/Item:Doctor_Lifestone%27s_Hunting_Horn",
-          "read": "2026-10-05"
+          "read": "2026-10-05",
+          "known_differences": {
+            "description": {
+              "code": "nonstandard_tooltip",
+              "reason": "The wiki displays a placeholder tooltip that says this enchantment has no effect.",
+              "served": "Summon Raptor: Rawr I'm a raptor!"
+            }
+          }
         },
         {
           "kind": "set_bonus",
@@ -2562,7 +2614,7 @@
           "depth": 0,
           "wiki_text": "Profane Negative Amplification +56",
           "wiki_tooltip": "Negative Amplification: This effect amplifies all incoming negative energy healing by +56 (Profane bonus). Includes spells, potions, and other effects.",
-          "tooltip_is_standard": "unknown",
+          "tooltip_is_standard": true,
           "wiki_link": "/page/Negative_Amplification",
           "ours": "Negative Amplification",
           "ours_line": {
@@ -2575,7 +2627,14 @@
           "note": "tooltip's bold title is 'Negative Amplification:' (no adjective, no number) and the bonus type is given in parentheses",
           "standard_evidence": "not seen on another sampled item; no extra page read",
           "page": "https://ddowiki.com/page/Item:Legendary_Wreckage_of_the_Drowned_Rat",
-          "read": "2026-10-05"
+          "read": "2026-10-05",
+          "known_differences": {
+            "description": {
+              "code": "source_line_style",
+              "reason": "The same fact uses different tooltip punctuation, case, sign or short-form wording.",
+              "served": "This effect amplifies all incoming negative energy healing by +56 (Profane bonus ). Includes spells, potions, and other effects."
+            }
+          }
         },
         {
           "kind": "enchantment",
@@ -2598,7 +2657,8 @@
           "known_differences": {
             "description": {
               "reason": "Maetrim and wiki tooltip prose differ in wording.",
-              "served": "Passive: +3 Quality bonus to Intelligence."
+              "served": "Passive: +3 Quality bonus to Intelligence.",
+              "code": "source_wording"
             }
           }
         },
@@ -2675,7 +2735,8 @@
           "known_differences": {
             "description": {
               "reason": "Maetrim and wiki tooltip prose differ in wording.",
-              "served": "Passive: +6 Insight bonus to Constitution."
+              "served": "Passive: +6 Insight bonus to Constitution.",
+              "code": "source_wording"
             }
           }
         },
@@ -2860,7 +2921,7 @@
           "depth": 0,
           "wiki_text": "Fortitude Save +12",
           "wiki_tooltip": "Fortitude Save +12: This item gives a +12 Resistance bonus to your Fortitude saves.",
-          "tooltip_is_standard": "unknown",
+          "tooltip_is_standard": true,
           "wiki_link": "/page/Fortitude_save",
           "ours": "Fortitude Save",
           "ours_line": {
@@ -2872,14 +2933,21 @@
           },
           "standard_evidence": "not seen on another sampled item; no extra page read",
           "page": "https://ddowiki.com/page/Item:Legendary_Greenpine_Gauntlets",
-          "read": "2026-10-05"
+          "read": "2026-10-05",
+          "known_differences": {
+            "description": {
+              "code": "source_line_style",
+              "reason": "The same fact uses different tooltip punctuation, case, sign or short-form wording.",
+              "served": "This item gives a +12 Resistance bonus to your Fortitude save."
+            }
+          }
         },
         {
           "kind": "augment_slot",
           "depth": 0,
           "wiki_text": "Isle of Dread: Scale Slot (Accessory): Empty",
           "wiki_tooltip": "Isle of Dread: Scale Slot (Accessory):\nApply a dino bone augment to this item.",
-          "tooltip_is_standard": "unknown",
+          "tooltip_is_standard": true,
           "wiki_link": "/page/Dinosaur_Bone_crafting",
           "ours": null,
           "ours_line": null,
@@ -2967,7 +3035,7 @@
           "depth": 0,
           "wiki_text": "Magical Sheltering +33",
           "wiki_tooltip": "Magical Sheltering +33: +33 Enhancement bonus to Magical Resistance Rating",
-          "tooltip_is_standard": "unknown",
+          "tooltip_is_standard": true,
           "wiki_link": "/page/Sheltering",
           "ours": "Magical Sheltering",
           "ours_line": {
@@ -2979,7 +3047,14 @@
           },
           "standard_evidence": "not seen on another sampled item; no extra page read",
           "page": "https://ddowiki.com/page/Item:Legendary_Giant%27s_Platter",
-          "read": "2026-10-05"
+          "read": "2026-10-05",
+          "known_differences": {
+            "description": {
+              "code": "source_line_style",
+              "reason": "The same fact uses different tooltip punctuation, case, sign or short-form wording.",
+              "served": "+33 Enhancement bonus to Magical Resistance Rating."
+            }
+          }
         },
         {
           "kind": "enchantment",
@@ -3056,7 +3131,7 @@
           "depth": 0,
           "wiki_text": "Wayward Warrior (Legendary)",
           "wiki_tooltip": "Wayward Warrior (Legendary): 2 Pieces Equipped:\n+5 Artifact Bonus to Natural Armor\n+3 Artifact Bonus to Constitution",
-          "tooltip_is_standard": "unknown",
+          "tooltip_is_standard": true,
           "wiki_link": "/page/Named_item_sets#Wayward_Warrior_(Legendary)",
           "ours": null,
           "ours_line": null,
@@ -3070,7 +3145,7 @@
           "depth": 0,
           "wiki_text": "Seasons of Change (Legendary)",
           "wiki_tooltip": "Seasons of Change (Legendary): 2 Pieces Equipped:\n+30 Artifact Bonus to Fire and Cold Spell Power\n+3 Artifact Bonus to Evocation DCs",
-          "tooltip_is_standard": "unknown",
+          "tooltip_is_standard": true,
           "wiki_link": "/page/Named_item_sets#Seasons_of_Change_(Legendary)",
           "ours": null,
           "ours_line": null,
@@ -3122,7 +3197,7 @@
           "depth": 0,
           "wiki_text": "Anarchic Burst 7",
           "wiki_tooltip": "Anarchic Burst 7: This weapon is a chaotic conduit, dealing 7d6 Chaos damage on a successful hit to Lawful enemies, and 16d6 Chaos damage on a critical hit to Lawful enemies. This effect makes the weapon chaotically aligned.\nLawful characters wielding this weapon will suffer one negative level.",
-          "tooltip_is_standard": "unknown",
+          "tooltip_is_standard": true,
           "wiki_link": "/page/Anarchic_Burst#Anarchic_Burst",
           "ours": "Anarchic Burst 7",
           "ours_line": {
@@ -3139,7 +3214,13 @@
           "known_differences": {
             "name": {
               "reason": "A wiki-created effect retains its value-bearing source name until the wiki input has family and amount slots.",
-              "served": "Anarchic Burst 7"
+              "served": "Anarchic Burst 7",
+              "code": "value_in_wiki_name"
+            },
+            "description": {
+              "code": "wiki_may_be_stale",
+              "reason": "The wiki dice or target list may be stale; retain Maetrim pending a fresh source read.",
+              "served": "This weapon is a chaotic conduit, dealing 7d6 Chaos damage on a successful hit to Lawful enemies, and 14d6 Chaos damage on a critical hit to Lawful enemies. This effect makes the weapon chaotically aligned. Lawful characters wielding this weapon will suffer one negative level."
             }
           }
         },
@@ -3148,7 +3229,7 @@
           "depth": 0,
           "wiki_text": "Paralyzing 117",
           "wiki_tooltip": "Paralyzing 117: Any creature struck by this weapon must succeed on a DC 117 Will save or be paralyzed. The target may attempt a new save to end the effect every several seconds; otherwise the paralysis lasts for 1 minute.",
-          "tooltip_is_standard": "unknown",
+          "tooltip_is_standard": true,
           "wiki_link": "/page/Paralyzing",
           "ours": "Paralyzing",
           "ours_line": {
@@ -3161,14 +3242,21 @@
           "note": "VALUE DIFFERS: our 'Paralyzing' template is a fixed sentence naming DC 17 (and adds that Undead and Constructs cannot be paralyzed); the wiki line is 'Paralyzing 117' and its tooltip names DC 117",
           "standard_evidence": "not seen on another sampled item; no extra page read",
           "page": "https://ddowiki.com/page/Item:Legendary_Demogorgon%27s_Sinew",
-          "read": "2026-10-05"
+          "read": "2026-10-05",
+          "known_differences": {
+            "description": {
+              "code": "source_wording",
+              "reason": "Maetrim and the wiki describe this effect in different prose; the wiki wording has not been imported.",
+              "served": "Any creature struck by this weapon must succeed on a DC 117 Will save or be paralyzed. The target may attempt a new save to end the effect every several seconds; otherwise the paralysis lasts for 1 minute. Certain creatures, such as the Undead and Constructs, cannot be paralyzed."
+            }
+          }
         },
         {
           "kind": "enchantment",
           "depth": 0,
           "wiki_text": "Anarchic 7",
           "wiki_tooltip": "Anarchic 7: On Hit: 7 to 28 Chaos damage. Chaos-aligned creatures are immune to this effect.\nPenalty: If equipped by a Lawful user, they receive 1 Negative Level for as long as this item is equipped.",
-          "tooltip_is_standard": "unknown",
+          "tooltip_is_standard": true,
           "wiki_link": "/page/Alignment_damage_(weapon)",
           "ours": "Anarchic 7",
           "ours_line": {
@@ -3185,7 +3273,13 @@
           "known_differences": {
             "name": {
               "reason": "A wiki-created effect retains its value-bearing source name until the wiki input has family and amount slots.",
-              "served": "Anarchic 7"
+              "served": "Anarchic 7",
+              "code": "value_in_wiki_name"
+            },
+            "description": {
+              "code": "source_wording",
+              "reason": "Maetrim and the wiki describe this effect in different prose; the wiki wording has not been imported.",
+              "served": "This weapon is chaotic and used to undermine the righteous, dealing an additional 7d6 chaos damage on each hit. This effect makes the weapon chaotic aligned. (Lawful characters wielding this weapon will suffer one negative level.)"
             }
           }
         },
@@ -3313,7 +3407,7 @@
           "depth": 0,
           "wiki_text": "Stealth Strike",
           "wiki_tooltip": "Stealth Strike: Reduces the threat generated by ranged attacks and spells by 15%.",
-          "tooltip_is_standard": "unknown",
+          "tooltip_is_standard": true,
           "wiki_link": "/page/Stealth_Strike",
           "ours": "Stealth Strike",
           "ours_line": {
@@ -3349,7 +3443,8 @@
           "known_differences": {
             "description": {
               "reason": "Maetrim and wiki tooltip prose differ in wording.",
-              "served": "Your weapon hungers to let blood flow. Your attacks and offensive spells have a high chance to deal very strong Bane damage over time to creatures vulnerable to Bleeding. On weapon critical: 16d6 Piercing Damage."
+              "served": "Your weapon hungers to let blood flow. Your attacks and offensive spells have a high chance to deal very strong Bane damage over time to creatures vulnerable to Bleeding. On weapon critical: 16d6 Piercing Damage.",
+              "code": "source_wording"
             }
           }
         },
@@ -3358,7 +3453,7 @@
           "depth": 0,
           "wiki_text": "Overfocus",
           "wiki_tooltip": "Overfocus: This item helps you focus your attention, but it makes you somewhat oblivious to your surroundings, causing a -10 penalty to Search and Spot.",
-          "tooltip_is_standard": "unknown",
+          "tooltip_is_standard": true,
           "wiki_link": "/page/Overfocus",
           "ours": "Overfocus",
           "ours_line": {
@@ -3378,7 +3473,7 @@
           "depth": 0,
           "wiki_text": "Aligned",
           "wiki_tooltip": "Aligned: This weapon transmutes into a form that is able to bypass any alignment based Damage Reduction. (Chaotic, Good, Evil, Lawful)",
-          "tooltip_is_standard": "unknown",
+          "tooltip_is_standard": true,
           "wiki_link": "/page/Aligned",
           "ours": "Aligned",
           "ours_line": {
@@ -3443,7 +3538,7 @@
           "depth": 0,
           "wiki_text": "Wild Frenzy +122",
           "wiki_tooltip": "Wild Frenzy +122: This weapon has a tendency to drive those it strikes insane. On an attack roll of 20 which is confirmed as a critical hit the target will go wild and attack its own allies for 15 seconds if it fails a DC 122 Will save. Enemies driven wild in this way, however, have a chance of coming to their senses if damaged.",
-          "tooltip_is_standard": "unknown",
+          "tooltip_is_standard": true,
           "wiki_link": "/page/Wild_Frenzy",
           "ours": "Wind Frenzy 122",
           "ours_line": {
@@ -3463,7 +3558,7 @@
           "depth": 0,
           "wiki_text": "Revel in Blood (Slashing)",
           "wiki_tooltip": "Revel in Blood (Slashing): Your weapon hungers to let blood flow. Your attacks and offensive spells have a high chance to deal very strong Bane damage over time to creatures vulnerable to Bleeding. On weapon crit: 16d6 Slashing Damage.",
-          "tooltip_is_standard": "unknown",
+          "tooltip_is_standard": true,
           "wiki_link": "/page/Revel_in_Blood",
           "ours": "Revel in Blood (Slashing)",
           "ours_line": {
@@ -3475,14 +3570,21 @@
           },
           "standard_evidence": "not seen on another sampled item; no extra page read",
           "page": "https://ddowiki.com/page/Item:Legendary_Madness_of_the_Demon_Lords",
-          "read": "2026-10-05"
+          "read": "2026-10-05",
+          "known_differences": {
+            "description": {
+              "code": "source_wording",
+              "reason": "Maetrim and the wiki describe this effect in different prose; the wiki wording has not been imported.",
+              "served": "Your weapon hungers to let blood flow. Your attacks and offensive spells have a high chance to deal very strong Bane damage over time to creatures vulnerable to Bleeding. On weapon critical: 16d6 Slashing Damage."
+            }
+          }
         },
         {
           "kind": "enchantment",
           "depth": 0,
           "wiki_text": "Unbalancing",
           "wiki_tooltip": "Unbalancing: Anything that melee attacks a character with an Unbalancing item has a chance to be pulled off balance giving them a -2 penalty to their AC.",
-          "tooltip_is_standard": "unknown",
+          "tooltip_is_standard": true,
           "wiki_link": "/page/Unbalancing",
           "ours": "Unbalancing",
           "ours_line": {
@@ -3501,7 +3603,7 @@
           "depth": 0,
           "wiki_text": "Unwieldy",
           "wiki_tooltip": "Unwieldy: This weapon is very large and makes you clumsier as you wield it, causing a -2 Dexterity penalty.",
-          "tooltip_is_standard": "unknown",
+          "tooltip_is_standard": true,
           "wiki_link": "/page/Unwieldy",
           "ours": "Unwieldy",
           "ours_line": {
@@ -3570,7 +3672,8 @@
           "known_differences": {
             "description": {
               "reason": "Maetrim and wiki tooltip prose differ in wording.",
-              "served": "Passive: +14 Enhancement bonus to Dexterity."
+              "served": "Passive: +14 Enhancement bonus to Dexterity.",
+              "code": "source_wording"
             }
           }
         },
@@ -3598,7 +3701,7 @@
           "depth": 0,
           "wiki_text": "Underwater Action",
           "wiki_tooltip": "Underwater Action: This item grants the wearer the ability to breathe water as if it were air.",
-          "tooltip_is_standard": "unknown",
+          "tooltip_is_standard": true,
           "wiki_link": "/page/Underwater_Action",
           "ours": "Underwater Action",
           "ours_line": {
@@ -3656,7 +3759,7 @@
           "depth": 0,
           "wiki_text": "Rage — 5 Charges (Recharged/Day:5)",
           "wiki_tooltip": "Rage\nCaster level: 15\nCharges: 5 (5/day)",
-          "tooltip_is_standard": "unknown",
+          "tooltip_is_standard": true,
           "wiki_link": "/page/Rage_(spell)",
           "ours": null,
           "ours_line": null,
@@ -3669,7 +3772,7 @@
           "depth": 0,
           "wiki_text": "Intimidate +20",
           "wiki_tooltip": "Intimidate +20: Passive: +20 Competence bonus to the Intimidate skill.",
-          "tooltip_is_standard": "unknown",
+          "tooltip_is_standard": true,
           "wiki_link": "/page/Intimidate",
           "ours": "Intimidate",
           "ours_line": {
@@ -3724,7 +3827,8 @@
           "known_differences": {
             "description": {
               "reason": "Maetrim and wiki tooltip prose differ in wording.",
-              "served": "Passive: +6 Insight bonus to Strength."
+              "served": "Passive: +6 Insight bonus to Strength.",
+              "code": "source_wording"
             }
           }
         },
@@ -3749,7 +3853,8 @@
           "known_differences": {
             "description": {
               "reason": "Maetrim and wiki tooltip prose differ in wording.",
-              "served": "Passive: +6 Insight bonus to Constitution."
+              "served": "Passive: +6 Insight bonus to Constitution.",
+              "code": "source_wording"
             }
           }
         },
@@ -3758,7 +3863,7 @@
           "depth": 0,
           "wiki_text": "Curse of Foolishness",
           "wiki_tooltip": "Curse of Foolishness: Passive -1 Penalty to Wisdom. (The minimum level required to equip this item is lower than normal due to this curse.)",
-          "tooltip_is_standard": "unknown",
+          "tooltip_is_standard": true,
           "wiki_link": "/page/Cursed",
           "ours": "Curse of Foolishness",
           "ours_line": {
@@ -3771,14 +3876,21 @@
           "note": "wiki line has no number; our template is 'Curse of Foolishness -1'",
           "standard_evidence": "not seen on another sampled item; no extra page read",
           "page": "https://ddowiki.com/page/Item:Legendary_Brawn%27s_Spirits",
-          "read": "2026-10-05"
+          "read": "2026-10-05",
+          "known_differences": {
+            "description": {
+              "code": "source_line_style",
+              "reason": "The same fact uses different tooltip punctuation, case, sign or short-form wording.",
+              "served": "Passive -1 Penalty to Wisdom. The minimum level required to equip this item is lower than normal due to this curse."
+            }
+          }
         },
         {
           "kind": "enchantment",
           "depth": 0,
           "wiki_text": "Curse of Dullness",
           "wiki_tooltip": "Curse of Dullness: Passive -1 Penalty to Intelligence. (The minimum level required to equip this item is lower than normal due to this curse.)",
-          "tooltip_is_standard": "unknown",
+          "tooltip_is_standard": true,
           "wiki_link": "/page/Cursed",
           "ours": "Curse of Dullness",
           "ours_line": {
@@ -3791,7 +3903,14 @@
           "note": "wiki line has no number; our template is 'Curse of Dullness -1'",
           "standard_evidence": "not seen on another sampled item; no extra page read",
           "page": "https://ddowiki.com/page/Item:Legendary_Brawn%27s_Spirits",
-          "read": "2026-10-05"
+          "read": "2026-10-05",
+          "known_differences": {
+            "description": {
+              "code": "source_line_style",
+              "reason": "The same fact uses different tooltip punctuation, case, sign or short-form wording.",
+              "served": "Passive -1 Penalty to Intelligence. The minimum level required to equip this item is lower than normal due to this curse."
+            }
+          }
         },
         {
           "kind": "augment_slot",
@@ -3856,7 +3975,7 @@
           "depth": 0,
           "wiki_text": "Sounding",
           "wiki_tooltip": "Sounding: On Harmful Spellcast: Do an additional 4 to 24 Sonic Damage.",
-          "tooltip_is_standard": "unknown",
+          "tooltip_is_standard": true,
           "wiki_link": "/page/Sounding",
           "ours": "Sounding",
           "ours_line": {
@@ -3894,7 +4013,7 @@
           "depth": 0,
           "wiki_text": "Insightful Resonance +77",
           "wiki_tooltip": "Insightful Resonance +77: Passive: +77 Insight bonus to Sonic Spell Power.",
-          "tooltip_is_standard": "unknown",
+          "tooltip_is_standard": true,
           "wiki_link": "/page/Resonance",
           "ours": "Resonance",
           "ours_line": {
@@ -3906,14 +4025,21 @@
           },
           "standard_evidence": "not seen on another sampled item; no extra page read",
           "page": "https://ddowiki.com/page/Item:Hyrsam%27s_Fiddle",
-          "read": "2026-10-05"
+          "read": "2026-10-05",
+          "known_differences": {
+            "description": {
+              "code": "source_line_style",
+              "reason": "The same fact uses different tooltip punctuation, case, sign or short-form wording.",
+              "served": "+77 Insight bonus to Sonic spell power."
+            }
+          }
         },
         {
           "kind": "enchantment",
           "depth": 0,
           "wiki_text": "Quality Resonance +38",
           "wiki_tooltip": "Quality Resonance +38: Passive: +38 Quality bonus to Sonic Spell Power.",
-          "tooltip_is_standard": "unknown",
+          "tooltip_is_standard": true,
           "wiki_link": "/page/Resonance",
           "ours": "Resonance",
           "ours_line": {
@@ -3925,14 +4051,21 @@
           },
           "standard_evidence": "not seen on another sampled item; no extra page read",
           "page": "https://ddowiki.com/page/Item:Hyrsam%27s_Fiddle",
-          "read": "2026-10-05"
+          "read": "2026-10-05",
+          "known_differences": {
+            "description": {
+              "code": "source_line_style",
+              "reason": "The same fact uses different tooltip punctuation, case, sign or short-form wording.",
+              "served": "+38 Quality bonus to Sonic spell power."
+            }
+          }
         },
         {
           "kind": "enchantment",
           "depth": 0,
           "wiki_text": "Inspiration of the Inferno",
           "wiki_tooltip": "Inspiration of the Inferno: While this Fiddle is equipped, you will use it to perform your Bardic Music.",
-          "tooltip_is_standard": false,
+          "tooltip_is_standard": true,
           "wiki_link": "/page/Inspiration_of_the_Inferno",
           "ours": "Inspiration of the Inferno",
           "ours_line": {
@@ -3977,7 +4110,7 @@
           "depth": 0,
           "wiki_text": "Eminence of Spring",
           "wiki_tooltip": "Eminence of Spring: 2 Pieces Equipped: +10% Artifact bonus to Missile Deflection\n3 Pieces Equipped: +15% Artifact bonus do damage versus the Helpless\n4 Pieces Equipped: +3% Legendary bonus to Dodge Cap\n5 Pieces Equipped: +3 Artifact bonus to Sneak Attack Dice\n6 Pieces Equipped: +10% Artifact bonus to Doublestrike and Doubleshot\n7 Pieces Equipped: +15 Artifact bonus to Melee and Ranged Power",
-          "tooltip_is_standard": "unknown",
+          "tooltip_is_standard": true,
           "wiki_link": "/page/Named_item_sets#Eminence_of_Spring",
           "ours": null,
           "ours_line": null,
@@ -3991,7 +4124,7 @@
           "depth": 0,
           "wiki_text": "Eminence of Winter",
           "wiki_tooltip": "Eminence of Winter: 2 Pieces Equipped: +30 Artifact bonus to Physical Resistance Rating\n3 Pieces Equipped: +30 Artifact bonus to Healing, Repair, and Negative Amplification\n4 Pieces Equipped: +10% Legendary bonus to maximum hitpoints\n5 Pieces Equipped: +100% Artifact bonus to Threat Generation\n6 Pieces Equipped: +3 Artifact bonus to Constitution\n7 Pieces Equipped: +15% Artifact bonus to Armor Class",
-          "tooltip_is_standard": "unknown",
+          "tooltip_is_standard": true,
           "wiki_link": "/page/Named_item_sets#Eminence_of_Winter",
           "ours": null,
           "ours_line": null,
@@ -4044,7 +4177,7 @@
           "depth": 0,
           "wiki_text": "Roar",
           "wiki_tooltip": "Roar: This item emits a frightening roar when melee attackers score a critical hit on the wearer, causing them to resist or be shaken with fear.",
-          "tooltip_is_standard": "unknown",
+          "tooltip_is_standard": true,
           "wiki_link": "/page/Roar",
           "ours": "Roar",
           "ours_line": {
@@ -4063,7 +4196,7 @@
           "depth": 0,
           "wiki_text": "Heightened Awareness 6",
           "wiki_tooltip": "Heightened Awareness 6: This item helps you to quickly read situations with sharpness and clarity, allowing you to predict actions before they occur. You gain a +6 Insight bonus to AC.",
-          "tooltip_is_standard": "unknown",
+          "tooltip_is_standard": true,
           "wiki_link": "/page/Heightened_Awareness",
           "ours": "Heightened Awareness",
           "ours_line": {
@@ -4190,7 +4323,8 @@
           "known_differences": {
             "description": {
               "reason": "Maetrim and wiki tooltip prose differ in wording.",
-              "served": "Your weapon hungers to let blood flow. Your attacks and offensive spells have a high chance to deal very strong Bane damage over time to creatures vulnerable to Bleeding. On weapon critical: 16d6 Piercing Damage."
+              "served": "Your weapon hungers to let blood flow. Your attacks and offensive spells have a high chance to deal very strong Bane damage over time to creatures vulnerable to Bleeding. On weapon critical: 16d6 Piercing Damage.",
+              "code": "source_wording"
             }
           }
         },
@@ -4218,7 +4352,7 @@
           "depth": 0,
           "wiki_text": "Shield Bashing +25%",
           "wiki_tooltip": "Shield Bashing +25%: +25% Enhancement bonus to your chance of a Secondary Shield Bash. This stacks with bonuses granted by any relevant feats.",
-          "tooltip_is_standard": "unknown",
+          "tooltip_is_standard": true,
           "wiki_link": "/page/Shield_Bashing",
           "ours": "Shield Bashing",
           "ours_line": {
@@ -4237,7 +4371,7 @@
           "depth": 0,
           "wiki_text": "Unholy 7",
           "wiki_tooltip": "Unholy 7: On Hit: 7 to 42 Evil damage. Evil-aligned creatures are immune to this effect.\nPenalty: If equipped by a Good user, they receive 1 Negative Level for as long as this item is equipped.",
-          "tooltip_is_standard": "unknown",
+          "tooltip_is_standard": true,
           "wiki_link": "/page/Alignment_damage_(weapon)",
           "ours": "Unholy 7",
           "ours_line": {
@@ -4254,7 +4388,13 @@
           "known_differences": {
             "name": {
               "reason": "A wiki-created effect retains its value-bearing source name until the wiki input has family and amount slots.",
-              "served": "Unholy 7"
+              "served": "Unholy 7",
+              "code": "value_in_wiki_name"
+            },
+            "description": {
+              "code": "source_wording",
+              "reason": "Maetrim and the wiki describe this effect in different prose; the wiki wording has not been imported.",
+              "served": "This weapon is used by the wicked to smite the pure, dealing an additional 7d6 evil damage on each hit. This effect makes the weapon evil aligned. Good characters wielding this weapon will suffer one negative level."
             }
           }
         },
@@ -4263,7 +4403,7 @@
           "depth": 0,
           "wiki_text": "Petrification Immunity",
           "wiki_tooltip": "Petrification Immunity: This items gives immunity to Petrification.",
-          "tooltip_is_standard": "unknown",
+          "tooltip_is_standard": true,
           "wiki_link": "/page/Petrification_Immunity",
           "ours": "Petrification Immunity",
           "ours_line": {
@@ -4334,7 +4474,7 @@
           "depth": 0,
           "wiki_text": "Sacred +16",
           "wiki_tooltip": "Sacred +16: An item with this quality assists only wearers who have the ability to turn undead. Sacred items provide an +16 Enhancement bonus to your effective level for Turning Undead.",
-          "tooltip_is_standard": "unknown",
+          "tooltip_is_standard": true,
           "wiki_link": "/page/Sacred",
           "ours": "Sacred",
           "ours_line": {
@@ -4354,7 +4494,7 @@
           "depth": 0,
           "wiki_text": "Hallowed +16",
           "wiki_tooltip": "Hallowed: An item with this quality assists only wearers who have the ability to turn undead. Hallowed items provide an +16 Enhancement bonus to the maximum Hit Dice of undead turned.",
-          "tooltip_is_standard": "unknown",
+          "tooltip_is_standard": true,
           "wiki_link": "/page/Hallowed",
           "ours": "Hallowed",
           "ours_line": {
@@ -4374,7 +4514,7 @@
           "depth": 0,
           "wiki_text": "Insightful Faith",
           "wiki_tooltip": "Insightful Faith: An item with this quality assists only wearers who have the ability to turn undead. Insightful Faith items provide Insight Bonuses to the owner's effective level for the turning check by +2, their maximum Hit Dice turned by +2, and their total Hit Dice turned by +4.",
-          "tooltip_is_standard": "unknown",
+          "tooltip_is_standard": true,
           "wiki_link": "/page/Insightful_Faith",
           "ours": "Insightful Faith",
           "ours_line": {
@@ -4412,7 +4552,7 @@
           "depth": 0,
           "wiki_text": "Lifesealed +40",
           "wiki_tooltip": "Lifesealed +40: You are immune to magical effects that cause instant death. In addition, you have a +40% enhancement bonus to Negative Energy Absorption.",
-          "tooltip_is_standard": "unknown",
+          "tooltip_is_standard": true,
           "wiki_link": "/page/Lifesealed",
           "ours": "Lifesealed",
           "ours_line": {
@@ -4431,7 +4571,7 @@
           "depth": 0,
           "wiki_text": "Undying +315",
           "wiki_tooltip": "Undying +315: Bound to service beyond death, you gain a +315 Enhancement bonus to your Incapacitation range.",
-          "tooltip_is_standard": "unknown",
+          "tooltip_is_standard": true,
           "wiki_link": "/page/Undying",
           "ours": "Undying",
           "ours_line": {
@@ -4528,7 +4668,7 @@
           "depth": 0,
           "wiki_text": "Corrosion +169",
           "wiki_tooltip": "Corrosion +169: Passive: +169 Equipment bonus to Acid Spell Power.",
-          "tooltip_is_standard": "unknown",
+          "tooltip_is_standard": true,
           "wiki_link": "/page/Corrosion_(spell_boost)",
           "ours": "Corrosion",
           "ours_line": {
@@ -4540,14 +4680,21 @@
           },
           "standard_evidence": "not seen on another sampled item; no extra page read",
           "page": "https://ddowiki.com/page/Item:Legendary_Muck%27s_Ascension",
-          "read": "2026-10-05"
+          "read": "2026-10-05",
+          "known_differences": {
+            "description": {
+              "code": "source_line_style",
+              "reason": "The same fact uses different tooltip punctuation, case, sign or short-form wording.",
+              "served": "+169 Equipment bonus to Acid spell power."
+            }
+          }
         },
         {
           "kind": "enchantment",
           "depth": 0,
           "wiki_text": "Acid Intensity +25%",
           "wiki_tooltip": "Acid Intensity +25%: +25% Enhancement bonus to critical damage with Acid spells.",
-          "tooltip_is_standard": "unknown",
+          "tooltip_is_standard": true,
           "wiki_link": "/page/Intensity",
           "ours": "Acid Intensity +",
           "ours_line": {
@@ -4557,23 +4704,18 @@
             "value": 25,
             "value2": null
           },
-          "note": "ours effect name is 'Acid Intensity +'; our template 'Acid Intensity +{1}%' matches",
+          "note": "Maetrim's source name was 'Acid Intensity +'; the cited correction removes the dangling sign.",
           "standard_evidence": "not seen on another sampled item; no extra page read",
           "page": "https://ddowiki.com/page/Item:Legendary_Muck%27s_Ascension",
           "read": "2026-10-05",
-          "known_differences": {
-            "name": {
-              "reason": "A wiki-created effect retains its value-bearing source name until the wiki input has family and amount slots.",
-              "served": "Acid Intensity +"
-            }
-          }
+          "known_differences": null
         },
         {
           "kind": "enchantment",
           "depth": 0,
           "wiki_text": "Insightful Corrosion +84",
           "wiki_tooltip": "Insightful Corrosion +84: Passive: +84 Insightful bonus to Acid Spell Power.",
-          "tooltip_is_standard": "unknown",
+          "tooltip_is_standard": true,
           "wiki_link": "/page/Corrosion_(spell_boost)",
           "ours": "Corrosion",
           "ours_line": {
@@ -4586,14 +4728,21 @@
           "note": "tooltip says 'Insightful bonus' (other Insight tooltips say 'Insight bonus')",
           "standard_evidence": "not seen on another sampled item; no extra page read",
           "page": "https://ddowiki.com/page/Item:Legendary_Muck%27s_Ascension",
-          "read": "2026-10-05"
+          "read": "2026-10-05",
+          "known_differences": {
+            "description": {
+              "code": "source_line_style",
+              "reason": "The same fact uses different tooltip punctuation, case, sign or short-form wording.",
+              "served": "+84 Insight bonus to Acid spell power."
+            }
+          }
         },
         {
           "kind": "enchantment",
           "depth": 0,
           "wiki_text": "Lingering Acidic Burn",
           "wiki_tooltip": "Lingering Acidic Burn: This weapon splashes acid on your opponents. Your attacks and offensive spells have a high chance to deal very strong Acid damage over time.",
-          "tooltip_is_standard": "unknown",
+          "tooltip_is_standard": true,
           "wiki_link": "/page/Lingering_Acidic_Burn",
           "ours": "Lingering Acidic Burn",
           "ours_line": {
@@ -4605,7 +4754,14 @@
           },
           "standard_evidence": "not seen on another sampled item; no extra page read",
           "page": "https://ddowiki.com/page/Item:Legendary_Muck%27s_Ascension",
-          "read": "2026-10-05"
+          "read": "2026-10-05",
+          "known_differences": {
+            "description": {
+              "code": "source_wording",
+              "reason": "Maetrim and the wiki describe this effect in different prose; the wiki wording has not been imported.",
+              "served": "This weapon splashes acid on your opponents. Your attacks have a high chance to deal very strong Acid damage over time."
+            }
+          }
         },
         {
           "kind": "augment_slot",
@@ -4661,7 +4817,8 @@
           "known_differences": {
             "description": {
               "reason": "Maetrim and wiki tooltip prose differ in wording.",
-              "served": "+118 Equipment bonus to each individual spell power. (Universal Spell Power is a different statistic)"
+              "served": "+118 Equipment bonus to each individual spell power. (Universal Spell Power is a different statistic)",
+              "code": "source_wording"
             }
           }
         },
@@ -4687,7 +4844,8 @@
           "known_differences": {
             "description": {
               "reason": "Maetrim and wiki tooltip prose differ in wording.",
-              "served": "+59 Insight bonus to each individual spell power. (Universal Spell Power is a different statistic)"
+              "served": "+59 Insight bonus to each individual spell power. (Universal Spell Power is a different statistic)",
+              "code": "source_wording"
             }
           }
         },
@@ -4712,7 +4870,8 @@
           "known_differences": {
             "description": {
               "reason": "Maetrim and wiki tooltip prose differ in wording.",
-              "served": "+29 Quality bonus to each individual spell power. (Universal Spell Power is a different statistic)"
+              "served": "+29 Quality bonus to each individual spell power. (Universal Spell Power is a different statistic)",
+              "code": "source_wording"
             }
           }
         },
@@ -4805,7 +4964,7 @@
           "depth": 0,
           "wiki_text": "Force Absorption +17%",
           "wiki_tooltip": "Force Absorption +17%: Passive: 17% Enhancement Bonus to Force Absorption. (Absorption reduces damage from an element by a percentage, after resistance have been taken into account.)",
-          "tooltip_is_standard": "unknown",
+          "tooltip_is_standard": true,
           "wiki_link": "/page/Energy_Absorption",
           "ours": "Force Absorption",
           "ours_line": {
@@ -4818,7 +4977,14 @@
           "note": "tooltip writes '17% Enhancement Bonus' (no sign, capital B)",
           "standard_evidence": "not seen on another sampled item; no extra page read",
           "page": "https://ddowiki.com/page/Item:Cloak_of_Winter%27s_End_(level_36)",
-          "read": "2026-10-05"
+          "read": "2026-10-05",
+          "known_differences": {
+            "description": {
+              "code": "source_line_style",
+              "reason": "The same fact uses different tooltip punctuation, case, sign or short-form wording.",
+              "served": "Passive: +17% Enhancement Bonus to Force Absorption. (Absorption reduces damage from an element by a percentage, after resistance have been taken into account.)"
+            }
+          }
         },
         {
           "kind": "enchantment",
@@ -4844,7 +5010,7 @@
           "depth": 0,
           "wiki_text": "Immunity to Fear",
           "wiki_tooltip": "Immunity to Fear: The wearer of this item is immune to all fear effects.",
-          "tooltip_is_standard": "unknown",
+          "tooltip_is_standard": true,
           "wiki_link": "/page/Immunity_to_Fear",
           "ours": "Immunity to Fear",
           "ours_line": {
@@ -4922,7 +5088,7 @@
           "depth": 0,
           "wiki_text": "Fiery 7",
           "wiki_tooltip": "Fiery 7: This effect causes the edges of this weapon to burn with enchanted flames, dealing 7d6 Fire damage on each hit.",
-          "tooltip_is_standard": "unknown",
+          "tooltip_is_standard": true,
           "wiki_link": "/page/Fiery",
           "ours": "Fiery 7",
           "ours_line": {
@@ -4938,7 +5104,8 @@
           "known_differences": {
             "name": {
               "reason": "A wiki-created effect retains its value-bearing source name until the wiki input has family and amount slots.",
-              "served": "Fiery 7"
+              "served": "Fiery 7",
+              "code": "value_in_wiki_name"
             }
           }
         },
@@ -4947,7 +5114,7 @@
           "depth": 0,
           "wiki_text": "Crushing 16",
           "wiki_tooltip": "Crushing 16: This effect causes the edges of this weapon to ripple with force, dealing 16d6 force damage on each critical hit.",
-          "tooltip_is_standard": "unknown",
+          "tooltip_is_standard": true,
           "wiki_link": "/page/Crushing",
           "ours": "Crushing 16",
           "ours_line": {
@@ -4963,7 +5130,8 @@
           "known_differences": {
             "name": {
               "reason": "A wiki-created effect retains its value-bearing source name until the wiki input has family and amount slots.",
-              "served": "Crushing 16"
+              "served": "Crushing 16",
+              "code": "value_in_wiki_name"
             }
           }
         },
@@ -4972,7 +5140,7 @@
           "depth": 0,
           "wiki_text": "Magma Surge 7",
           "wiki_tooltip": "Magma Surge 7: Strikes with this weapon have a small chance to call forth a surge of superheated magma, dealing 7d20+72 fire damage.",
-          "tooltip_is_standard": "unknown",
+          "tooltip_is_standard": true,
           "wiki_link": "/page/Magma_Surge",
           "ours": "Magma Surge 7",
           "ours_line": {
@@ -4988,7 +5156,8 @@
           "known_differences": {
             "name": {
               "reason": "A wiki-created effect retains its value-bearing source name until the wiki input has family and amount slots.",
-              "served": "Magma Surge 7"
+              "served": "Magma Surge 7",
+              "code": "value_in_wiki_name"
             }
           }
         },
@@ -5121,7 +5290,7 @@
           "depth": 0,
           "wiki_text": "Nearly Complete: Insightful Ability Score",
           "wiki_tooltip": "Nearly Complete: Insightful Ability Score: This item isn't quite finished, but it's only a step away from completion. Bring it to the forges on the upper floor of Gravenhollow and combine it with melted materials to restore this item to its full potential.",
-          "tooltip_is_standard": "unknown",
+          "tooltip_is_standard": true,
           "wiki_link": "/page/Nearly_Complete",
           "ours": null,
           "ours_line": null,
@@ -5302,7 +5471,8 @@
           "known_differences": {
             "description": {
               "reason": "Maetrim and wiki tooltip prose differ in wording.",
-              "served": "Passive: +159 Insight Bonus to Spell Points. If you have Sorcerer or Favored Soul levels, you gain additional spell points proportionate to the ratio of those levels to other heroic classes."
+              "served": "Passive: +159 Insight Bonus to Spell Points. If you have Sorcerer or Favored Soul levels, you gain additional spell points proportionate to the ratio of those levels to other heroic classes.",
+              "code": "source_wording"
             }
           }
         },
@@ -5517,7 +5687,8 @@
           "known_differences": {
             "description": {
               "reason": "Maetrim and wiki tooltip prose differ in wording.",
-              "served": "Passive: +79 Quality Bonus to Spell Points. If you have Sorcerer or Favored Soul levels, you gain additional spell points proportionate to the ratio of those levels to other heroic classes."
+              "served": "Passive: +79 Quality Bonus to Spell Points. If you have Sorcerer or Favored Soul levels, you gain additional spell points proportionate to the ratio of those levels to other heroic classes.",
+              "code": "source_wording"
             }
           }
         },
@@ -5761,7 +5932,7 @@
           "depth": 0,
           "wiki_text": "Coruscating 7",
           "wiki_tooltip": "Coruscating 7: This effect causes the edges of this weapon to coruscate, dealing 7d6 Light damage on each hit.",
-          "tooltip_is_standard": "unknown",
+          "tooltip_is_standard": true,
           "wiki_link": "/page/Coruscating",
           "ours": "Coruscating 7",
           "ours_line": {
@@ -5777,7 +5948,8 @@
           "known_differences": {
             "name": {
               "reason": "A wiki-created effect retains its value-bearing source name until the wiki input has family and amount slots.",
-              "served": "Coruscating 7"
+              "served": "Coruscating 7",
+              "code": "value_in_wiki_name"
             }
           }
         },
@@ -5786,7 +5958,7 @@
           "depth": 0,
           "wiki_text": "Impactful 7",
           "wiki_tooltip": "Impactful 7: This effect causes the edges of this weapon to ripple with force, dealing 7 to 42 force on each hit.",
-          "tooltip_is_standard": "unknown",
+          "tooltip_is_standard": true,
           "wiki_link": "/page/Impactful",
           "ours": "Impactful 7",
           "ours_line": {
@@ -5802,7 +5974,13 @@
           "known_differences": {
             "name": {
               "reason": "A wiki-created effect retains its value-bearing source name until the wiki input has family and amount slots.",
-              "served": "Impactful 7"
+              "served": "Impactful 7",
+              "code": "value_in_wiki_name"
+            },
+            "description": {
+              "code": "source_line_style",
+              "reason": "The same fact uses different tooltip punctuation, case, sign or short-form wording.",
+              "served": "This effect causes the edges of this weapon to ripple with force, dealing 7d6 force damage on each hit."
             }
           }
         },
@@ -5811,7 +5989,7 @@
           "depth": 0,
           "wiki_text": "Holy Burst 7",
           "wiki_tooltip": "Holy Burst 7: This weapon sings of virtue, dealing 7d6 Good damage on a successful hit to Evil enemies, and 1d6 Good damage on a critical hit to Evil enemies. This effect makes the weapon good aligned.\nEvil characters wielding this weapon will suffer one negative level.",
-          "tooltip_is_standard": "unknown",
+          "tooltip_is_standard": true,
           "wiki_link": "/page/Holy_Burst#Holy_Burst",
           "ours": "Holy Burst 7",
           "ours_line": {
@@ -5828,7 +6006,13 @@
           "known_differences": {
             "name": {
               "reason": "A wiki-created effect retains its value-bearing source name until the wiki input has family and amount slots.",
-              "served": "Holy Burst 7"
+              "served": "Holy Burst 7",
+              "code": "value_in_wiki_name"
+            },
+            "description": {
+              "code": "wiki_may_be_stale",
+              "reason": "The wiki dice or target list may be stale; retain Maetrim pending a fresh source read.",
+              "served": "This weapon sings of virtue, dealing 7d6 Good damage on a successful hit to Evil enemies, and 14d6 Good damage on a critical hit to Evil enemies. This effect makes the weapon good aligned."
             }
           }
         },
@@ -5837,7 +6021,7 @@
           "depth": 0,
           "wiki_text": "Favored Weapon",
           "wiki_tooltip": "Favored Weapon: This weapon has a divine attunement and gains bonuses as if it were a Favored Weapon regardless of your Deity.",
-          "tooltip_is_standard": "unknown",
+          "tooltip_is_standard": true,
           "wiki_link": "/page/Favored_weapon",
           "ours": "Favored Weapon",
           "ours_line": {
@@ -5961,7 +6145,7 @@
           "depth": 0,
           "wiki_text": "Dripping with Magma",
           "wiki_tooltip": "Dripping with Magma: This Obsidian weapon drips with magma on every swing. Your attacks have a high chance to deal very strong fire damage over time.",
-          "tooltip_is_standard": "unknown",
+          "tooltip_is_standard": true,
           "wiki_link": "/page/Dripping_with_Magma",
           "ours": "Dripping with Magma",
           "ours_line": {
@@ -5980,7 +6164,7 @@
           "depth": 0,
           "wiki_text": "Sealed in Fire",
           "wiki_tooltip": "Sealed in Fire: This weapon burns with a sealed power. It can have its power unsealed at the Ritual Table, adding one effect. Attempting to add another will remove the original.\nEffect options: Legendary Affirmation • Legendary Ash • Legendary Dust • Legendary Ooze • Legendary Salt • Legendary Vacuum",
-          "tooltip_is_standard": "unknown",
+          "tooltip_is_standard": true,
           "wiki_link": "/page/Sealed_in_Fire",
           "ours": null,
           "ours_line": null,
@@ -6132,7 +6316,7 @@
           "depth": 0,
           "wiki_text": "Rupturing Echo",
           "wiki_tooltip": "Rupturing Echo: This item sends rippling waves of sound through your opponents. Your attacks and offensive spells have a high change to deal very strong Sonic damage over time.",
-          "tooltip_is_standard": "unknown",
+          "tooltip_is_standard": true,
           "wiki_link": "/page/Rupturing_Echo",
           "ours": "Rupturing Echo",
           "ours_line": {
@@ -6171,7 +6355,7 @@
           "depth": 0,
           "wiki_text": "Felling the Oak",
           "wiki_tooltip": "Felling the Oak: On a natural 20 that is confirmed as a critical hit, this weapon will trip your opponent, forcing them to fall prone. There is no save against this effect.",
-          "tooltip_is_standard": "unknown",
+          "tooltip_is_standard": true,
           "wiki_link": "/page/Felling_the_Oak",
           "ours": "Felling the Oak",
           "ours_line": {
@@ -6190,7 +6374,7 @@
           "depth": 0,
           "wiki_text": "Sealed in Mist",
           "wiki_tooltip": "Sealed in Mist: This weapon has its true power obscured by mist. It can have its power unsealed at the Augmentation Altar, adding one effect. Attempting to add another will remove the original.\nEffect options: Legendary Affirmation • Legendary Ash • Legendary Dust • Legendary Ooze • Legendary Salt • Legendary Vacuum",
-          "tooltip_is_standard": "unknown",
+          "tooltip_is_standard": true,
           "wiki_link": "/page/Sealed_in_Mist",
           "ours": null,
           "ours_line": null,
@@ -6364,7 +6548,8 @@
           "known_differences": {
             "description": {
               "reason": "Maetrim and wiki tooltip prose differ in wording.",
-              "served": "Passive: +1 Exceptional bonus to Wisdom."
+              "served": "Passive: +1 Exceptional bonus to Wisdom.",
+              "code": "source_wording"
             }
           }
         },
@@ -6389,7 +6574,8 @@
           "known_differences": {
             "description": {
               "reason": "Maetrim and wiki tooltip prose differ in wording.",
-              "served": "This item gives a +12 Resistance bonus to your Will save."
+              "served": "This item gives a +12 Resistance bonus to your Will save.",
+              "code": "source_wording"
             }
           }
         },
@@ -6434,7 +6620,8 @@
           "known_differences": {
             "description": {
               "reason": "Maetrim and wiki tooltip prose differ in wording.",
-              "served": "Whispers of the ancients grant you the ancient martial secrets of the Thri-Kreen. Your elemental Monk stances grant additional bonuses."
+              "served": "Whispers of the ancients grant you the ancient martial secrets of the Thri-Kreen. Your elemental Monk stances grant additional bonuses.",
+              "code": "source_wording"
             }
           }
         },
@@ -6584,7 +6771,7 @@
           "depth": 0,
           "wiki_text": "Power of the Firestorm +158",
           "wiki_tooltip": "Power of the Firestorm +158: Passive: +158 Equipment bonus to Fire and Electric Spell Power.",
-          "tooltip_is_standard": "unknown",
+          "tooltip_is_standard": true,
           "wiki_link": "/page/Power_of_the_Firestorm",
           "ours": "Power of the Firestorm",
           "ours_line": {
@@ -6604,7 +6791,7 @@
           "depth": 0,
           "wiki_text": "Efficient Metamagic - Embolden II",
           "wiki_tooltip": "Efficient Metamagic - Embolden II: The additional spell point cost for using the Embolden Metamagic feat is reduced by 2 SP.",
-          "tooltip_is_standard": "unknown",
+          "tooltip_is_standard": true,
           "wiki_link": "/page/Efficient_Metamagic",
           "ours": "Efficient Metamagic - Embolden II",
           "ours_line": {
@@ -6623,7 +6810,7 @@
           "depth": 0,
           "wiki_text": "Efficient Metamagic - Intensify II",
           "wiki_tooltip": "Efficient Metamagic - Intensify II: The additional spell point cost for using the Intensify Metamagic feat is reduced by 2 SP.",
-          "tooltip_is_standard": "unknown",
+          "tooltip_is_standard": true,
           "wiki_link": "/page/Efficient_Metamagic",
           "ours": "Efficient Metamagic - Intensify II",
           "ours_line": {
@@ -6642,7 +6829,7 @@
           "depth": 0,
           "wiki_text": "Greater Elemental Spell Power",
           "wiki_tooltip": "Greater Elemental Spell Power: Harnessing a small amount of the power and potential of the raw elements, this item gives you a +100 bonus to your maximum spell points. This stacks with all other bonuses except Greater Elemental Spell Power.",
-          "tooltip_is_standard": "unknown",
+          "tooltip_is_standard": true,
           "wiki_link": "/page/Greater_Elemental_Spell_Power",
           "ours": "Greater Elemental Spell Power",
           "ours_line": {
@@ -6662,7 +6849,7 @@
           "depth": 0,
           "wiki_text": "Planar Searing",
           "wiki_tooltip": "Planar Searing: This weapon harbors a burn unlike anything you've ever seen - As if otherworldly power has started to change it forever.",
-          "tooltip_is_standard": "unknown",
+          "tooltip_is_standard": true,
           "wiki_link": "/page/Planar_Searing",
           "ours": "Planar Searing",
           "ours_line": {
@@ -6794,7 +6981,7 @@
           "depth": 0,
           "wiki_text": "Proof Against Poison +11",
           "wiki_tooltip": "Proof Against Poison +11: This item grants its wearer immunity to natural poisons. This item also grants a +11 Enhancement bonus to saving throws against magical poisons, and the wearer does not fail saving throws against them on a roll of a natural 1 (this renders the wearer immune to magical poisons with a DC of less than 12 + their Fortitude save).",
-          "tooltip_is_standard": "unknown",
+          "tooltip_is_standard": true,
           "wiki_link": "/page/Proof_Against_Poison",
           "ours": "Proof Against Poison",
           "ours_line": {
@@ -6807,7 +6994,14 @@
           "note": "Enhancement bonus with no adjective",
           "standard_evidence": "not seen on another sampled item; no extra page read",
           "page": "https://ddowiki.com/page/Item:Legendary_Snakeskin_Vest",
-          "read": "2026-10-05"
+          "read": "2026-10-05",
+          "known_differences": {
+            "description": {
+              "code": "value_disagreement",
+              "reason": "The wiki and Maetrim disagree on a derived number; the source needs review.",
+              "served": "This item grants its wearer immunity to natural poisons. This item also grants a +11 Enhancement bonus to saving throws against magical poisons, and the wearer does not fail saving throws against them on a roll of a natural 1 (this renders the wearer immune to magical poisons with a DC of less than 11 + their Fortitude save)."
+            }
+          }
         },
         {
           "kind": "enchantment",
@@ -6932,7 +7126,7 @@
           "depth": 0,
           "wiki_text": "Parrying +6",
           "wiki_tooltip": "Parrying +6: +6 Insight bonus to Armor Class, +6 Insight bonus to Saves.",
-          "tooltip_is_standard": "unknown",
+          "tooltip_is_standard": true,
           "wiki_link": "/page/Parrying",
           "ours": "Parrying Number",
           "ours_line": {
@@ -6945,14 +7139,21 @@
           "note": "Insight bonus with no adjective; ours effect is 'Parrying Number', type Insight",
           "standard_evidence": "not seen on another sampled item; no extra page read",
           "page": "https://ddowiki.com/page/Item:Legendary_Tourney_Armor",
-          "read": "2026-10-05"
+          "read": "2026-10-05",
+          "known_differences": {
+            "description": {
+              "code": "source_wording",
+              "reason": "Maetrim and the wiki describe this effect in different prose; the wiki wording has not been imported.",
+              "served": "+6 Insight bonus to Armor Class, +6 Insight bonus to Fortitude, Reflex, and Will Saving throws."
+            }
+          }
         },
         {
           "kind": "enchantment",
           "depth": 0,
           "wiki_text": "DR 30/Adamantine",
           "wiki_tooltip": "Damage Reduction 30/Adamantine: Reduces physical damage by 30, except from Adamantine attacks.",
-          "tooltip_is_standard": "unknown",
+          "tooltip_is_standard": true,
           "wiki_link": "/page/Damage_Reduction",
           "ours": "DR Damage Reduction 30/Adamantine",
           "ours_line": {
@@ -6972,7 +7173,7 @@
           "depth": 0,
           "wiki_text": "Mithral",
           "wiki_tooltip": "Mithral: Mithral armor is one type lighter then normal. Arcane Spell Failure decreased by 10%. Maximum dexterity bonus increased by 2. Armor check penalty reduced by 3.",
-          "tooltip_is_standard": "unknown",
+          "tooltip_is_standard": true,
           "wiki_link": "/page/Mithral",
           "ours": "Mithral",
           "ours_line": {
@@ -7011,7 +7212,7 @@
           "depth": 0,
           "wiki_text": "Legendary Menechtarun Scavenger",
           "wiki_tooltip": "Legendary Menechtarun Scavenger: 2 Pieces Equipped:\n+15 Artifact bonus to Physical and Magical Resistance Rating\n+30 Artifact bonus to Positive, Negative, and Repair Amplification",
-          "tooltip_is_standard": "unknown",
+          "tooltip_is_standard": true,
           "wiki_link": "/page/Named_item_sets#Legendary_Menechtarun_Scavenger",
           "ours": null,
           "ours_line": null,
@@ -7077,7 +7278,7 @@
           "depth": 0,
           "wiki_text": "Permanent Efficacy",
           "wiki_tooltip": "Permanent Efficacy: Passive: +20 Alchemical bonus to each Spell Power.",
-          "tooltip_is_standard": "unknown",
+          "tooltip_is_standard": true,
           "wiki_link": "/page/Efficacy",
           "ours": "Permanent Efficacy",
           "ours_line": {
@@ -7097,7 +7298,7 @@
           "depth": 0,
           "wiki_text": "Superior Stability",
           "wiki_tooltip": "Superior Stability: This armor grants a + 6 deflection bonus to AC and a + 6 resistance bonus to saves for characters of True Neutral alignment.",
-          "tooltip_is_standard": "unknown",
+          "tooltip_is_standard": true,
           "wiki_link": "/page/Superior_Stability",
           "ours": "Superior Stability",
           "ours_line": {
@@ -7109,14 +7310,21 @@
           },
           "standard_evidence": "not seen on another sampled item; no extra page read",
           "page": "https://ddowiki.com/page/Item:Legendary_Immaculate_Globe",
-          "read": "2026-10-05"
+          "read": "2026-10-05",
+          "known_differences": {
+            "description": {
+              "code": "source_line_style",
+              "reason": "The same fact uses different tooltip punctuation, case, sign or short-form wording.",
+              "served": "This armor grants a +6 Deflection bonus to AC and a +6 Resistance bonus to saves for characters of True Neutral alignment."
+            }
+          }
         },
         {
           "kind": "enchantment",
           "depth": 0,
           "wiki_text": "Elemental Resistance +45",
           "wiki_tooltip": "Elemental Resistance +45: Passive: +45 Enhancement bonus to your Acid, Cold, Electricity, and Fire Resistances.",
-          "tooltip_is_standard": "unknown",
+          "tooltip_is_standard": true,
           "wiki_link": "/page/Elemental_Resistance",
           "ours": "Elemental Resistance",
           "ours_line": {
@@ -7128,14 +7336,21 @@
           },
           "standard_evidence": "not seen on another sampled item; no extra page read",
           "page": "https://ddowiki.com/page/Item:Legendary_Immaculate_Globe",
-          "read": "2026-10-05"
+          "read": "2026-10-05",
+          "known_differences": {
+            "description": {
+              "code": "wiki_may_be_stale",
+              "reason": "The wiki dice or target list may be stale; retain Maetrim pending a fresh source read.",
+              "served": "Passive: +45 Enhancement bonus to your Acid, Cold, Electricity, Fire, and Sonic Resistances."
+            }
+          }
         },
         {
           "kind": "enchantment",
           "depth": 0,
           "wiki_text": "Spell Penetration +9",
           "wiki_tooltip": "Spell Penetration +9: Passive: +9 Equipment bonus to Spell Penetration checks.",
-          "tooltip_is_standard": "unknown",
+          "tooltip_is_standard": true,
           "wiki_link": "/page/Spell_penetration",
           "ours": "Spell Penetration",
           "ours_line": {
@@ -7207,7 +7422,7 @@
           "depth": 0,
           "wiki_text": "Feat: Mobility",
           "wiki_tooltip": "Feat: Mobility: While equipped this armor grants the wielder the Mobility feat: increases the maximum dexterity bonus permitted by armor and tower shields by 2, adds a +4 bonus to Armor Class while tumbling, and gain a 2% dodge bonus.",
-          "tooltip_is_standard": "unknown",
+          "tooltip_is_standard": true,
           "wiki_link": "/page/Feat",
           "ours": "Feat - Mobility",
           "ours_line": {
@@ -7220,7 +7435,14 @@
           "note": "our template is 'Feat - Mobility' (hyphen); the wiki writes a colon",
           "standard_evidence": "not seen on another sampled item; no extra page read",
           "page": "https://ddowiki.com/page/Item:Legendary_Bracers_of_Deftness",
-          "read": "2026-10-05"
+          "read": "2026-10-05",
+          "known_differences": {
+            "description": {
+              "code": "source_line_style",
+              "reason": "The same fact uses different tooltip punctuation, case, sign or short-form wording.",
+              "served": "While equipped this armor grants the wielder the Mobility feat: increases the maximum dexterity bonus permitted by armor and tower shields by 2, adds a +4 bonus to Armor Class while tumbling, and gain a 2% dodge bonus."
+            }
+          }
         },
         {
           "kind": "enchantment",
@@ -7246,7 +7468,7 @@
           "depth": 0,
           "wiki_text": "Dodge +13%",
           "wiki_tooltip": "Dodge +13%: +13% Enhancement bonus to Dodge.",
-          "tooltip_is_standard": "unknown",
+          "tooltip_is_standard": true,
           "wiki_link": "/page/Dodge_bonus",
           "ours": "Dodge",
           "ours_line": {
@@ -7266,7 +7488,7 @@
           "depth": 0,
           "wiki_text": "Tumble +20",
           "wiki_tooltip": "Tumble +20: Passive: +20 Competence bonus to the Tumble skill.",
-          "tooltip_is_standard": "unknown",
+          "tooltip_is_standard": true,
           "wiki_link": "/page/Tumble_(skill)",
           "ours": "Tumble",
           "ours_line": {
@@ -7311,7 +7533,7 @@
           "depth": 0,
           "wiki_text": "Legendary Vulkoor's Chosen",
           "wiki_tooltip": "Legendary Vulkoor's Chosen: 2 Pieces Equipped:\n+30 Artifact bonus to Poison Resistance\n+3 Artifact bonus to Sneak Attack Dice\n+3 Artifact bonus to Saving Throws\n+3 Artifact bonus to Dexterity and Constitution",
-          "tooltip_is_standard": "unknown",
+          "tooltip_is_standard": true,
           "wiki_link": "/page/Named_item_sets#Legendary_Vulkoor's_Chosen",
           "ours": null,
           "ours_line": null,
@@ -7332,7 +7554,7 @@
           "depth": 0,
           "wiki_text": "Ice Lore +22%",
           "wiki_tooltip": "Ice Lore +22: Passive: Your Cold spells gain a 22% Equipment bonus to their chance to critical hit.",
-          "tooltip_is_standard": "unknown",
+          "tooltip_is_standard": true,
           "wiki_link": "/page/Spell_Lore",
           "ours": "Ice Lore",
           "ours_line": {
@@ -7352,7 +7574,7 @@
           "depth": 0,
           "wiki_text": "Glaciation +148",
           "wiki_tooltip": "Glaciation +148: Passive: +148 Equipment bonus to Cold Spell Power.",
-          "tooltip_is_standard": "unknown",
+          "tooltip_is_standard": true,
           "wiki_link": "/page/Glaciation",
           "ours": "Glaciation",
           "ours_line": {
@@ -7364,14 +7586,21 @@
           },
           "standard_evidence": "not seen on another sampled item; no extra page read",
           "page": "https://ddowiki.com/page/Item:Bound_Elemental_Ring_of_Frost",
-          "read": "2026-10-05"
+          "read": "2026-10-05",
+          "known_differences": {
+            "description": {
+              "code": "source_line_style",
+              "reason": "The same fact uses different tooltip punctuation, case, sign or short-form wording.",
+              "served": "+148 Equipment bonus to Cold spell power."
+            }
+          }
         },
         {
           "kind": "enchantment",
           "depth": 0,
           "wiki_text": "Alchemical Water Attunement",
           "wiki_tooltip": "Alchemical Water Attunement: Attacks and offensive spells have a chance to inflict ten stacks of cold damage over time, fading one stack at a time. This effect has an internal cooldown.",
-          "tooltip_is_standard": "unknown",
+          "tooltip_is_standard": true,
           "wiki_link": "/page/Alchemical_Attunement",
           "ours": "Alchemical Water Attunement",
           "ours_line": {
@@ -7436,7 +7665,7 @@
           "depth": 0,
           "wiki_text": "Chained Elementals",
           "wiki_tooltip": "Chained Elementals: While wearing two pieces from the Chained Elemental set, you gain:+6% Artifact bonus to Fire, Cold, Acid, and Electric Spell Critical Chance\n+30 Artifact bonus to Fire, Cold, Acid, and Electric Spell Power",
-          "tooltip_is_standard": "unknown",
+          "tooltip_is_standard": true,
           "wiki_link": "/page/Named_item_sets#Chained_Elementals",
           "ours": null,
           "ours_line": null,
@@ -7471,7 +7700,7 @@
           "depth": 0,
           "wiki_text": "Nearly Finished",
           "wiki_tooltip": "Nearly Finished: This item isn't quite finished, but it's only a step away from completion. Bring it to a Cannith Reforging Station and combine it with melted materials to restore this item to its full potential.",
-          "tooltip_is_standard": "unknown",
+          "tooltip_is_standard": true,
           "wiki_link": "/page/Nearly_Finished",
           "ours": null,
           "ours_line": null,
@@ -7575,7 +7804,7 @@
           "depth": 0,
           "wiki_text": "Spell Save +11",
           "wiki_tooltip": "Spell Save +11: This item gives a +11 Resistance bonus to your saves versus spells.",
-          "tooltip_is_standard": "unknown",
+          "tooltip_is_standard": true,
           "wiki_link": "/page/Saving_throw",
           "ours": "Spell Save",
           "ours_line": {
@@ -7620,7 +7849,7 @@
           "depth": 0,
           "wiki_text": "Astute Alchemist",
           "wiki_tooltip": "Astute Alchemist: While wearing two pieces from the Astute Alchemist set, you gain:+6% Artifact bonus to Fire, Poison, and Acid Spell Critical Chance\n+30 Artifact bonus to Fire, Poison, and Acid Spell Power",
-          "tooltip_is_standard": "unknown",
+          "tooltip_is_standard": true,
           "wiki_link": "/page/Named_item_sets#Astute_Alchemist",
           "ours": null,
           "ours_line": null,
@@ -7642,6 +7871,36 @@
           "standard_evidence": "same tooltip body (after the bold title, numbers aside) on Legendary Bracers of the Unseen Assassin ('Mythic Wrist Boost +1 or +3')",
           "page": "https://ddowiki.com/page/Item:Legendary_Alchemist%27s_Pendant",
           "read": "2026-10-05"
+        }
+      ]
+    },
+    {
+      "item": "Pale Blue Ioun Stone (unsuppressed)",
+      "page": "https://ddowiki.com/page/Item:Pale_Blue_Ioun_Stone",
+      "read": "2026-10-05",
+      "lines": [
+        {
+          "kind": "enchantment",
+          "depth": 0,
+          "wiki_text": "Strength Skills - Exceptional Bonus +2",
+          "wiki_tooltip": "Strength Skills - Exceptional Bonus +2: Passive +2 Exceptional bonus to the Strength based skills of: Jump",
+          "tooltip_is_standard": true,
+          "ours": "Strength Skills - Exceptional Bonus",
+          "ours_line": {
+            "index": 1,
+            "template": "Strength Skills - Exceptional Bonus +{1}",
+            "type": null,
+            "value": 2,
+            "value2": null
+          },
+          "wiki_name": "Strength Skills - Exceptional Bonus",
+          "known_differences": {
+            "description": {
+              "code": "wiki_may_be_stale",
+              "reason": "The wiki lists only Jump, while the Strength Skills source grants both Jump and Swim.",
+              "served": "Passive +2 Exceptional bonus to the Strength based skills of: Jump and Swim"
+            }
+          }
         }
       ]
     }
@@ -7775,7 +8034,7 @@
           "kind": "enchantment",
           "wiki_text": "Profane Doublestrike 3%",
           "wiki_tooltip": "Profane Doublestrike 3%: Passive: 3% Profane bonus to Doublestrike. (Doublestrike is a chance to score an additional hit with a melee attack.)",
-          "tooltip_is_standard": "unknown",
+          "tooltip_is_standard": true,
           "wiki_link": "/page/Doublestrike",
           "ours": "Doublestrike",
           "ours_line": {
@@ -7786,13 +8045,20 @@
             "value2": null
           },
           "page": "https://ddowiki.com/page/Item:Woeful_Shadow",
-          "read": "2026-10-05"
+          "read": "2026-10-05",
+          "known_differences": {
+            "description": {
+              "code": "source_line_style",
+              "reason": "The same fact uses different tooltip punctuation, case, sign or short-form wording.",
+              "served": "Passive: 3% Profane bonus to Doublestrike. Doublestrike is a chance to score an additional hit with a melee attack."
+            }
+          }
         },
         {
           "kind": "enchantment",
           "wiki_text": "Profane Doubleshot 3%",
           "wiki_tooltip": "Profane Doubleshot 3%: Passive: 3% Profane bonus to Doubleshot. (Doubleshot is a chance to score an additional hit with a ranged attack.)",
-          "tooltip_is_standard": "unknown",
+          "tooltip_is_standard": true,
           "wiki_link": "/page/Doubleshot",
           "ours": "Doubleshot",
           "ours_line": {
@@ -7803,7 +8069,14 @@
             "value2": null
           },
           "page": "https://ddowiki.com/page/Item:Woeful_Shadow",
-          "read": "2026-10-05"
+          "read": "2026-10-05",
+          "known_differences": {
+            "description": {
+              "code": "source_line_style",
+              "reason": "The same fact uses different tooltip punctuation, case, sign or short-form wording.",
+              "served": "Passive: 3% Profane bonus to Doubleshot. Doubleshot is a chance to score an additional hit with a ranged attack."
+            }
+          }
         },
         {
           "kind": "enchantment",
@@ -7840,6 +8113,66 @@
           },
           "page": "https://ddowiki.com/page/Item:Woeful_Shadow",
           "read": "2026-10-05"
+        }
+      ]
+    },
+    {
+      "augment": "Brightbane Emerald",
+      "page": "https://ddowiki.com/page/Item:Brightbane_Emerald",
+      "read": "2026-10-05",
+      "lines": [
+        {
+          "kind": "enchantment",
+          "depth": 0,
+          "wiki_text": "Insightful Command +4",
+          "wiki_tooltip": "Insightful Command: Passive: +4 insight bonus on Charisma based skill checks. Command armor and command shields make their owners very noticeable, imposing a -6 penalty on Hide checks.",
+          "tooltip_is_standard": true,
+          "ours": "Command",
+          "ours_line": {
+            "index": 0,
+            "template": "Insightful Command +{1}",
+            "type": null,
+            "value": 4,
+            "value2": -6
+          },
+          "wiki_name": "Command",
+          "known_differences": {
+            "description": {
+              "code": "source_line_style",
+              "reason": "The wiki says insight while Maetrim spells the fixed type Insightful.",
+              "served": "Passive: +4 Insightful bonus on Charisma based skill checks. Command armor and command shields make their owners very noticeable, imposing a -6 penalty on Hide checks."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "augment": "Legendary Brightbane Emerald",
+      "page": "https://ddowiki.com/page/Item:Legendary_Brightbane_Emerald",
+      "read": "2026-10-05",
+      "lines": [
+        {
+          "kind": "enchantment",
+          "depth": 0,
+          "wiki_text": "Insightful Command +7",
+          "wiki_tooltip": "Insightful Command: Passive: +7 insight bonus on Charisma based skill checks. Command armor and command shields make their owners very noticeable, imposing a -6 penalty on Hide checks.",
+          "tooltip_is_standard": true,
+          "ours": "Command",
+          "ours_line": {
+            "index": 0,
+            "template": "Insightful Command +{1}",
+            "type": null,
+            "value": 7,
+            "value2": -6
+          },
+          "wiki_name": "Command",
+          "known_differences": {
+            "description": {
+              "code": "source_line_style",
+              "reason": "The wiki says insight while Maetrim spells the fixed type Insightful.",
+              "served": "Passive: +7 Insightful bonus on Charisma based skill checks. Command armor and command shields make their owners very noticeable, imposing a -6 penalty on Hide checks."
+            }
+          }
         }
       ]
     }
@@ -7883,7 +8216,8 @@
               "known_differences": {
                 "name": {
                   "reason": "Wiki set text groups facts and uses its own set-bonus sentence.",
-                  "served": "Fortification Bypass"
+                  "served": "Fortification Bypass",
+                  "code": "set_line_form"
                 }
               }
             },
@@ -7907,7 +8241,8 @@
               "known_differences": {
                 "name": {
                   "reason": "Wiki set text groups facts and uses its own set-bonus sentence.",
-                  "served": "Doublestrike and Doubleshot"
+                  "served": "Doublestrike and Doubleshot",
+                  "code": "set_line_form"
                 }
               }
             },
@@ -7930,7 +8265,8 @@
               "known_differences": {
                 "name": {
                   "reason": "Wiki set text groups facts and uses its own set-bonus sentence.",
-                  "served": "Physical Resistance Rating"
+                  "served": "Physical Resistance Rating",
+                  "code": "set_line_form"
                 }
               }
             }
@@ -7960,7 +8296,8 @@
               "known_differences": {
                 "name": {
                   "reason": "Wiki set text groups facts and uses its own set-bonus sentence.",
-                  "served": "Melee and Ranged Power"
+                  "served": "Melee and Ranged Power",
+                  "code": "set_line_form"
                 }
               }
             },
@@ -7984,7 +8321,8 @@
               "known_differences": {
                 "name": {
                   "reason": "Wiki set text groups facts and uses its own set-bonus sentence.",
-                  "served": "Helpless Damage"
+                  "served": "Helpless Damage",
+                  "code": "set_line_form"
                 }
               }
             }
@@ -8029,7 +8367,8 @@
               "known_differences": {
                 "name": {
                   "reason": "Wiki set text groups facts and uses its own set-bonus sentence.",
-                  "served": "Universal Spell Power"
+                  "served": "Universal Spell Power",
+                  "code": "set_line_form"
                 }
               }
             },
@@ -8053,7 +8392,8 @@
               "known_differences": {
                 "name": {
                   "reason": "Wiki set text groups facts and uses its own set-bonus sentence.",
-                  "served": "Universal Spell Lore"
+                  "served": "Universal Spell Lore",
+                  "code": "set_line_form"
                 }
               }
             },
@@ -8076,7 +8416,8 @@
               "known_differences": {
                 "name": {
                   "reason": "Wiki set text groups facts and uses its own set-bonus sentence.",
-                  "served": "Imbue Dice"
+                  "served": "Imbue Dice",
+                  "code": "set_line_form"
                 }
               }
             }
@@ -8106,7 +8447,8 @@
               "known_differences": {
                 "name": {
                   "reason": "Wiki set text groups facts and uses its own set-bonus sentence.",
-                  "served": "Melee and Ranged Power"
+                  "served": "Melee and Ranged Power",
+                  "code": "set_line_form"
                 }
               }
             },
@@ -8130,7 +8472,8 @@
               "known_differences": {
                 "name": {
                   "reason": "Wiki set text groups facts and uses its own set-bonus sentence.",
-                  "served": "Universal Spell Critical Damage"
+                  "served": "Universal Spell Critical Damage",
+                  "code": "set_line_form"
                 }
               }
             }
@@ -8170,7 +8513,8 @@
               "known_differences": {
                 "name": {
                   "reason": "Wiki set text groups facts and uses its own set-bonus sentence.",
-                  "served": "Physical Resistance Rating"
+                  "served": "Physical Resistance Rating",
+                  "code": "set_line_form"
                 }
               }
             },
@@ -8193,7 +8537,8 @@
               "known_differences": {
                 "name": {
                   "reason": "Wiki set text groups facts and uses its own set-bonus sentence.",
-                  "served": "Magical Resistance Rating"
+                  "served": "Magical Resistance Rating",
+                  "code": "set_line_form"
                 }
               }
             },
@@ -8217,7 +8562,8 @@
               "known_differences": {
                 "name": {
                   "reason": "Wiki set text groups facts and uses its own set-bonus sentence.",
-                  "served": "Armor Class Percentage"
+                  "served": "Armor Class Percentage",
+                  "code": "set_line_form"
                 }
               }
             },
@@ -8241,7 +8587,8 @@
               "known_differences": {
                 "name": {
                   "reason": "Wiki set text groups facts and uses its own set-bonus sentence.",
-                  "served": "Maximum Hit Points"
+                  "served": "Maximum Hit Points",
+                  "code": "set_line_form"
                 }
               }
             }

@@ -310,6 +310,41 @@ fn probe_quest_source_insert(loot_type: &str, chest: &str) -> String {
 fn injected_violations() -> Vec<InjectedViolation> {
     vec![
         violation(
+            "effect_templates_disagree_with_names",
+            "INSERT INTO effects (name, verbose_name_template) VALUES ('Integrity Title Probe', 'Wrong Title');
+             INSERT INTO item_effects (item_id, effect_id, sort_order)
+             VALUES ((SELECT MIN(id) FROM items), last_insert_rowid(), 996);",
+            "Integrity Title Probe",
+        ),
+        violation(
+            "skill_groups_share_home_bonus_type",
+            "INSERT INTO effects (name, verbose_name_template, is_group)
+             VALUES ('Strength Skills', '%b1 Strength Skills +{1}', 1);
+             INSERT INTO effect_bonuses (effect_id, target_effect_id, amount_from, sort_order)
+             VALUES ((SELECT id FROM effects WHERE name = 'Strength Skills'),
+                     (SELECT id FROM effects WHERE name = 'Jump'), 1, 0);
+             INSERT INTO item_effects (item_id, effect_id, bonus_type_id, value, sort_order)
+             VALUES ((SELECT MIN(id) FROM items), (SELECT id FROM effects WHERE name = 'Strength Skills'),
+                     (SELECT id FROM bonus_types WHERE name = 'Insight'), 1, 995);
+             UPDATE effects SET home_bonus_type_id = (SELECT id FROM bonus_types WHERE name = 'Insight')
+             WHERE name = 'Strength Skills';
+             UPDATE effects SET home_bonus_type_id = NULL WHERE name = 'Charisma Skills';",
+            "Strength Skills",
+        ),
+        violation(
+            "effects_with_tied_home_bonus_types",
+            "INSERT INTO effects (name, verbose_name_template) VALUES ('Integrity Tied Type', '%b1 Integrity Tied Type +{1}');
+             INSERT INTO item_effects (item_id, effect_id, bonus_type_id, value, sort_order)
+             VALUES ((SELECT MIN(id) FROM items), last_insert_rowid(),
+                     (SELECT id FROM bonus_types WHERE name = 'Insight'), 1, 994);
+             INSERT INTO effect_vocabulary_counts (kind, id, item_count, augment_count, set_count)
+             VALUES ('effect', (SELECT id FROM effects WHERE name = 'Integrity Tied Type'), 2, 0, 0);
+             INSERT INTO effect_vocabulary_bonus_types (kind, id, bonus_type_id, item_count)
+             SELECT 'effect', (SELECT id FROM effects WHERE name = 'Integrity Tied Type'), id, 1
+             FROM bonus_types WHERE name IN ('Insight', 'Equipment');",
+            "Integrity Tied Type",
+        ),
+        violation(
             "owner_bonuses_have_one_stat_type_per_source_line",
             "INSERT INTO effects (name, verbose_name_template) VALUES ('Integrity Double Bonus', '%b1 Integrity Double Bonus +{1}');
              INSERT INTO effect_bonuses (effect_id, target_effect_id, bonus_type_id, amount_from, sort_order)

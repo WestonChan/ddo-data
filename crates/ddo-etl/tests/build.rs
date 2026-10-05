@@ -38,6 +38,26 @@ fn item_id(db: &Connection, name: &str) -> i64 {
 }
 
 #[test]
+fn potency_grants_each_named_spell_power_without_granting_universal_spell_power() {
+    let (db, _) = built_fixture_db();
+    let item = item_id(&db, "Band of Diani ir'Wynarn");
+    let spell_powers: Vec<String> = db
+        .prepare(
+            "SELECT s.name FROM owner_bonuses ob JOIN effects s ON s.id = ob.stat_id
+             WHERE ob.owner_kind = 'item' AND ob.owner_id = ?1
+               AND ob.via_effect_id = (SELECT id FROM effects WHERE name = 'Potency') ORDER BY s.name",
+        )
+        .unwrap()
+        .query_map([item], |row| row.get(0))
+        .unwrap()
+        .map(Result::unwrap)
+        .collect();
+    assert_eq!(spell_powers.len(), 15);
+    assert!(spell_powers.contains(&"Fire Spell Power".to_string()));
+    assert!(!spell_powers.contains(&"Universal Spell Power".to_string()));
+}
+
+#[test]
 fn writes_improved_deception_from_its_definition_as_a_typed_bluff_bonus() {
     let (db, report) = built_fixture_db();
     assert_eq!(report.effect_fallback_buff_count, 23);

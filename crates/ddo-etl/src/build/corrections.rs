@@ -229,6 +229,32 @@ fn write_correction(
                 ensure!(changed == 1, "item {item_id} has no unique effect {effect_name:?}");
             }
         }
+        FieldShape::BonusTypeName if correction.kind == CorrectionKind::ItemEffect => {
+            let effect_name = correction.effect.as_deref().context("item_effect bonus_type names an effect")?;
+            let bonus_type_name = correction.to.as_text().context("item_effect bonus_type needs a type")?;
+            let bonus_type_id = bonus_type_id_named(transaction, bonus_type_name)?;
+            for item_id in row_ids {
+                let changed = transaction.execute(
+                    "UPDATE item_effects SET bonus_type_id = ?3 WHERE item_id = ?1
+                     AND effect_id = (SELECT id FROM effects WHERE name = ?2)",
+                    params![item_id, effect_name, bonus_type_id],
+                )?;
+                ensure!(changed == 1, "item {item_id} has no unique effect {effect_name:?}");
+            }
+        }
+        FieldShape::Removal if correction.kind == CorrectionKind::ItemEffect => {
+            let effect_name = correction.effect.as_deref().context("item_effect remove names an effect")?;
+            let effect_id = id_named(transaction, "effects", effect_name)?
+                .with_context(|| format!("unknown effect {effect_name:?}"))?;
+            for item_id in row_ids {
+                let changed = transaction.execute(
+                    "DELETE FROM item_effects WHERE item_id = ?1 AND effect_id = ?2",
+                    params![item_id, effect_id],
+                )?;
+                ensure!(changed == 1, "item {item_id} has no unique effect {effect_name:?}");
+            }
+            effects.context("item effect removal needs the family cache")?.delete_unowned(effect_id)?;
+        }
         FieldShape::Integer if correction.kind.corrects_a_bonus() => {
             let new_value = match correction.to {
                 CorrectionValue::Integer(number) => number,
@@ -527,6 +553,33 @@ fn current_value(
                 .collect::<rusqlite::Result<_>>()?;
             ensure!(values.len() == 1, "item {row_id} must have one effect {effect_name:?}");
             return Ok(values[0].map_or(CorrectionValue::Null, CorrectionValue::Integer));
+        }
+        FieldShape::BonusTypeName if correction.kind == CorrectionKind::ItemEffect => {
+            let effect_name = correction.effect.as_deref().context("item_effect bonus_type names an effect")?;
+            let bonus_type_name: Option<Option<String>> = transaction
+                .query_row(
+                    "SELECT b.name FROM item_effects ie JOIN effects e ON e.id = ie.effect_id
+                     LEFT JOIN bonus_types b ON b.id = ie.bonus_type_id
+                     WHERE ie.item_id = ?1 AND e.name = ?2",
+                    params![row_id, effect_name],
+                    |row| row.get(0),
+                )
+                .optional()?;
+            return Ok(match bonus_type_name {
+                Some(Some(name)) => CorrectionValue::Text(name),
+                Some(None) => CorrectionValue::Null,
+                None => CorrectionValue::Text(NO_SUCH_BONUS.to_string()),
+            });
+        }
+        FieldShape::Removal if correction.kind == CorrectionKind::ItemEffect => {
+            let effect_name = correction.effect.as_deref().context("item_effect remove names an effect")?;
+            let present: bool = transaction.query_row(
+                "SELECT EXISTS (SELECT 1 FROM item_effects ie JOIN effects e ON e.id = ie.effect_id
+                 WHERE ie.item_id = ?1 AND e.name = ?2)",
+                params![row_id, effect_name],
+                |row| row.get(0),
+            )?;
+            return Ok(if present { CorrectionValue::Integer(0) } else { CorrectionValue::Text(NO_SUCH_BONUS.to_string()) });
         }
         FieldShape::Removal => return Ok(CorrectionValue::Integer(0)),
         FieldShape::Integer | FieldShape::BonusRemoval if correction.kind.corrects_a_bonus() => {

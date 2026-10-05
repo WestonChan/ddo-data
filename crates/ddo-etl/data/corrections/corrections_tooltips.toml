@@ -186,3 +186,535 @@ to = { name = "Planar Searing", description = "This weapon harbors a burn unlike
 reason = "The wiki lists Planar Searing on this weapon, which Maetrim omits."
 source = "https://ddowiki.com/page/Item:Marro,_the_Bone_of_Demons"
 read = "2026-10-05"
+
+[[correction]]
+kind = "effect"
+name = "DR Damage Reduction 5/-"
+field = "verbose_name_template"
+from = "DR Damage Reduction 5/-"
+to = "DR 5/-"
+reason = "The wiki writes damage reduction lines as DR X/Y; the old template used a copied label or amount."
+source = "https://ddowiki.com/page/Item:Legendary_Infested_Armor"
+read = "2026-10-05"
+
+[[correction]]
+kind = "effect"
+name = "DR 5/Piercing"
+field = "verbose_name_template"
+from = "DR Damage Reduction 5/Piercing"
+to = "DR 5/Piercing"
+reason = "The wiki writes damage reduction lines as DR X/Y; the old template used a copied label or amount."
+source = "https://ddowiki.com/page/Item:Legendary_Infested_Armor"
+read = "2026-10-05"
+
+[[correction]]
+kind = "effect"
+name = "DR 10/Piercing"
+field = "verbose_name_template"
+from = "DR Damage Reduction 5/Piercing"
+to = "DR 10/Piercing"
+reason = "The wiki writes damage reduction lines as DR X/Y; the old template used a copied label or amount."
+source = "https://ddowiki.com/page/Item:Bastion_(level_18)"
+read = "2026-10-05"
+
+[[correction]]
+kind = "effect"
+name = "DR 15/Piercing"
+field = "verbose_name_template"
+from = "DR Damage Reduction 5/Piercing"
+to = "DR 15/Piercing"
+reason = "The wiki writes damage reduction lines as DR X/Y; the old template used a copied label or amount."
+source = "https://ddowiki.com/page/Item:Bastion_(level_25)"
+read = "2026-10-05"
+
+[[correction]]
+kind = "effect"
+name = "DR Damage Reduction 1/-"
+field = "verbose_name_template"
+from = "DR Damage Reduction 1/-"
+to = "DR 1/-"
+reason = "The wiki writes damage reduction lines as DR X/Y; the old template used a copied label or amount."
+source = "https://ddowiki.com/page/Item:Legendary_Infested_Armor"
+read = "2026-10-05"
+
+[[correction]]
+kind = "effect"
+name = "DR Damage Reduction 1/Chaotic"
+field = "verbose_name_template"
+from = "DR Damage Reduction 1/Chaotic"
+to = "DR 1/Chaotic"
+reason = "The wiki writes damage reduction lines as DR X/Y; the old template used a copied label or amount."
+source = "https://ddowiki.com/page/Item:Legendary_Infested_Armor"
+read = "2026-10-05"
+
+[[correction]]
+kind = "effect"
+name = "DR Damage Reduction 2/Chaotic"
+field = "verbose_name_template"
+from = "DR Damage Reduction 2/Chaotic"
+to = "DR 2/Chaotic"
+reason = "The wiki writes damage reduction lines as DR X/Y; the old template used a copied label or amount."
+source = "https://ddowiki.com/page/Item:Legendary_Infested_Armor"
+read = "2026-10-05"
+
+[[correction]]
+kind = "effect"
+name = "DR Damage Reduction 5/Good"
+field = "verbose_name_template"
+from = "DR Damage Reduction 5/Good"
+to = "DR 5/Good"
+reason = "The wiki writes damage reduction lines as DR X/Y; the old template used a copied label or amount."
+source = "https://ddowiki.com/page/Item:Legendary_Infested_Armor"
+read = "2026-10-05"
+
+[[correction]]
+kind = "effect"
+name = "DR Damage Reduction 10/Good"
+field = "verbose_name_template"
+from = "DR Damage Reduction 10/Good"
+to = "DR 10/Good"
+reason = "The wiki writes damage reduction lines as DR X/Y; the old template used a copied label or amount."
+source = "https://ddowiki.com/page/Item:Legendary_Infested_Armor"
+read = "2026-10-05"
+
+[[correction]]
+kind = "effect"
+name = "DR 15/Good"
+field = "verbose_name_template"
+from = "DR Damage Reduction 15/Good"
+to = "DR 15/Good"
+reason = "The wiki writes damage reduction lines as DR X/Y; the old template used a copied label or amount."
+source = "https://ddowiki.com/page/Item:Legendary_Infested_Armor"
+read = "2026-10-05"
+
+[[correction]]
+kind = "effect"
+name = "DR Damage Reduction 5/Lawful"
+field = "verbose_name_template"
+from = "DR Damage Reduction 5/Lawful"
+to = "DR 5/Lawful"
+reason = "The wiki writes damage reduction lines as DR X/Y; the old template used a copied label or amount."
+source = "https://ddowiki.com/page/Item:Legendary_Infested_Armor"
+read = "2026-10-05"
+
+[[correction]]
+kind = "effect"
+name = "DR Damage Reduction 10/Lawful"
+field = "verbose_name_template"
+from = "DR Damage Reduction 10/Lawful"
+to = "DR 10/Lawful"
+reason = "The wiki writes damage reduction lines as DR X/Y; the old template used a copied label or amount."
+source = "https://ddowiki.com/page/Item:Legendary_Infested_Armor"
+read = "2026-10-05"
+
+[[correction]]
+kind = "effect"
+name = "DR Damage Reduction 15/Lawful"
+field = "verbose_name_template"
+from = "DR Damage Reduction 15/Lawful"
+to = "DR 15/Lawful"
+reason = "The wiki writes damage reduction lines as DR X/Y; the old template used a copied label or amount."
+source = "https://ddowiki.com/page/Item:Legendary_Infested_Armor"
+read = "2026-10-05"
+
+[[correction]]
+kind = "effect"
+name = "DR Damage Reduction 15/Epic"
+field = "verbose_name_template"
+from = "DR Damage Reduction 15/Epic"
+to = "DR 15/Epic"
+reason = "The wiki writes damage reduction lines as DR X/Y; the old template used a copied label or amount."
+source = "https://ddowiki.com/page/Item:Legendary_Infested_Armor"
+read = "2026-10-05"
+
+[[correction]]
+kind = "effect"
+name = "DR Damage Reduction 3/Chaotic"
+field = "verbose_name_template"
+from = "DR Damage Reduction 3/Chaotic"
+to = "DR 3/Chaotic"
+reason = "The wiki writes damage reduction lines as DR X/Y; the old template used a copied label or amount."
+source = "https://ddowiki.com/page/Item:Legendary_Infested_Armor"
+read = "2026-10-05"
+
+[[correction]]
+kind = "effect"
+name = "DR Damage Reduction 13/Chaotic"
+field = "verbose_name_template"
+from = "DR Damage Reduction 13/Chaotic"
+to = "DR 13/Chaotic"
+reason = "The wiki writes damage reduction lines as DR X/Y; the old template used a copied label or amount."
+source = "https://ddowiki.com/page/Item:Legendary_Infested_Armor"
+read = "2026-10-05"
+
+[[correction]]
+kind = "effect"
+name = "DR Damage Reduction 30/Chaotic"
+field = "verbose_name_template"
+from = "DR Damage Reduction 30/Chaotic"
+to = "DR 30/Chaotic"
+reason = "The wiki writes damage reduction lines as DR X/Y; the old template used a copied label or amount."
+source = "https://ddowiki.com/page/Item:Legendary_Infested_Armor"
+read = "2026-10-05"
+
+[[correction]]
+kind = "effect"
+name = "DR Damage Reduction 15/-"
+field = "verbose_name_template"
+from = "DR Damage Reduction 15/-"
+to = "DR 15/-"
+reason = "The wiki writes damage reduction lines as DR X/Y; the old template used a copied label or amount."
+source = "https://ddowiki.com/page/Item:Legendary_Infested_Armor"
+read = "2026-10-05"
+
+[[correction]]
+kind = "effect"
+name = "DR Damage Reduction 15/Evil"
+field = "verbose_name_template"
+from = "DR Damage Reduction 15/Evil"
+to = "DR 15/Evil"
+reason = "The wiki writes damage reduction lines as DR X/Y; the old template used a copied label or amount."
+source = "https://ddowiki.com/page/Item:Legendary_Infested_Armor"
+read = "2026-10-05"
+
+[[correction]]
+kind = "effect"
+name = "DR Damage Reduction 15/Adamantine"
+field = "verbose_name_template"
+from = "DR Damage Reduction 15/Adamantine"
+to = "DR 15/Adamantine"
+reason = "The wiki writes damage reduction lines as DR X/Y; the old template used a copied label or amount."
+source = "https://ddowiki.com/page/Item:Legendary_Infested_Armor"
+read = "2026-10-05"
+
+[[correction]]
+kind = "effect"
+name = "DR Damage Reduction 2/-"
+field = "verbose_name_template"
+from = "DR Damage Reduction 2/-"
+to = "DR 2/-"
+reason = "The wiki writes damage reduction lines as DR X/Y; the old template used a copied label or amount."
+source = "https://ddowiki.com/page/Item:Legendary_Infested_Armor"
+read = "2026-10-05"
+
+[[correction]]
+kind = "effect"
+name = "DR Damage Reduction 10/Evil"
+field = "verbose_name_template"
+from = "DR Damage Reduction 10/Evil"
+to = "DR 10/Evil"
+reason = "The wiki writes damage reduction lines as DR X/Y; the old template used a copied label or amount."
+source = "https://ddowiki.com/page/Item:Legendary_Infested_Armor"
+read = "2026-10-05"
+
+[[correction]]
+kind = "effect"
+name = "DR Damage Reduction 15/Bludgeoning"
+field = "verbose_name_template"
+from = "DR Damage Reduction 15/Bludgeoning"
+to = "DR 3/Bludgeoning"
+reason = "The wiki writes damage reduction lines as DR X/Y; the old template used a copied label or amount."
+source = "https://ddowiki.com/page/Item:Ironweave_Tunic"
+read = "2026-10-05"
+
+[[correction]]
+kind = "effect"
+name = "DR 30/Good"
+field = "verbose_name_template"
+from = "DR Damage Reduction 15/Good"
+to = "DR 30/Good"
+reason = "The wiki writes damage reduction lines as DR X/Y; the old template used a copied label or amount."
+source = "https://ddowiki.com/page/Item:Legendary_Infested_Armor"
+read = "2026-10-05"
+
+[[correction]]
+kind = "effect"
+name = "DR Damage Reduction 30/Lawful"
+field = "verbose_name_template"
+from = "DR Damage Reduction 30/Lawful"
+to = "DR 30/Lawful"
+reason = "The wiki writes damage reduction lines as DR X/Y; the old template used a copied label or amount."
+source = "https://ddowiki.com/page/Item:Legendary_Infested_Armor"
+read = "2026-10-05"
+
+[[correction]]
+kind = "effect"
+name = "DR Damage Reduction 50/Evil"
+field = "verbose_name_template"
+from = "DR Damage Reduction 50/Evil"
+to = "DR 50/Evil"
+reason = "The wiki writes damage reduction lines as DR X/Y; the old template used a copied label or amount."
+source = "https://ddowiki.com/page/Item:Legendary_Infested_Armor"
+read = "2026-10-05"
+
+[[correction]]
+kind = "effect"
+name = "DR Damage Reduction 3/-"
+field = "verbose_name_template"
+from = "DR Damage Reduction 3/-"
+to = "DR 3/-"
+reason = "The wiki writes damage reduction lines as DR X/Y; the old template used a copied label or amount."
+source = "https://ddowiki.com/page/Item:Legendary_Infested_Armor"
+read = "2026-10-05"
+
+[[correction]]
+kind = "effect"
+name = "DR Damage Reduction 3/Lawful"
+field = "verbose_name_template"
+from = "DR Damage Reduction 3/Lawful"
+to = "DR 3/Lawful"
+reason = "The wiki writes damage reduction lines as DR X/Y; the old template used a copied label or amount."
+source = "https://ddowiki.com/page/Item:Legendary_Infested_Armor"
+read = "2026-10-05"
+
+[[correction]]
+kind = "effect"
+name = "DR Damage Reduction 5/Evil"
+field = "verbose_name_template"
+from = "DR Damage Reduction 5/Evil"
+to = "DR 5/Evil"
+reason = "The wiki writes damage reduction lines as DR X/Y; the old template used a copied label or amount."
+source = "https://ddowiki.com/page/Item:Legendary_Infested_Armor"
+read = "2026-10-05"
+
+[[correction]]
+kind = "effect"
+name = "DR Damage Reduction 5/Adamantine"
+field = "verbose_name_template"
+from = "DR Damage Reduction 5/Adamantine"
+to = "DR 5/Adamantine"
+reason = "The wiki writes damage reduction lines as DR X/Y; the old template used a copied label or amount."
+source = "https://ddowiki.com/page/Item:Legendary_Infested_Armor"
+read = "2026-10-05"
+
+[[correction]]
+kind = "effect"
+name = "DR 5/Slashing"
+field = "verbose_name_template"
+from = "DR Damage Reduction 5/Slashing"
+to = "DR 5/Slashing"
+reason = "The wiki writes damage reduction lines as DR X/Y; the old template used a copied label or amount."
+source = "https://ddowiki.com/page/Item:Legendary_Infested_Armor"
+read = "2026-10-05"
+
+[[correction]]
+kind = "effect"
+name = "DR 10/Slashing"
+field = "verbose_name_template"
+from = "DR Damage Reduction 5/Slashing"
+to = "DR 10/Slashing"
+reason = "The wiki writes damage reduction lines as DR X/Y; the old template used a copied label or amount."
+source = "https://ddowiki.com/page/Item:Wall_of_Wood_(level_23)"
+read = "2026-10-05"
+
+[[correction]]
+kind = "effect"
+name = "DR 15/Slashing"
+field = "verbose_name_template"
+from = "DR Damage Reduction 5/Slashing"
+to = "DR 5/Slashing"
+reason = "The wiki writes damage reduction lines as DR X/Y; the old template used a copied label or amount."
+source = "https://ddowiki.com/page/Item:Legendary_Infested_Armor"
+read = "2026-10-05"
+
+[[correction]]
+kind = "effect"
+name = "DR Damage Reduction 15/Bludgeoning"
+field = "name"
+from = "DR Damage Reduction 15/Bludgeoning"
+to = "DR 3/Bludgeoning"
+reason = "The wiki and description say DR 3/Bludgeoning; Maetrim names the effect DR 15/Bludgeoning."
+source = "https://ddowiki.com/page/Item:Ironweave_Tunic"
+read = "2026-10-05"
+
+[[correction]]
+kind = "effect"
+name = "Solar IX"
+field = "verbose_name_template"
+from = "Solar VI"
+to = "Solar IX"
+reason = "The wiki line uses this effect title; Maetrim copied an unrelated title into the template."
+source = "https://ddowiki.com/page/Item:Shimmering"
+read = "2026-10-05"
+
+[[correction]]
+kind = "effect"
+name = "Fire Guard VIII"
+field = "verbose_name_template"
+from = "Fire Guard II"
+to = "Fire Guard VIII"
+reason = "The wiki line uses this effect title; Maetrim copied an unrelated title into the template."
+source = "https://ddowiki.com/page/Item:Guardian%27s_Bracers_(level_26)"
+read = "2026-10-05"
+
+[[correction]]
+kind = "effect"
+name = "Astute Skills Bonus"
+field = "verbose_name_template"
+from = "%b1 Alluring Skills Bonus +{1}"
+to = "%b1 Astute Skills Bonus +{1}"
+reason = "The wiki line uses this effect title; Maetrim copied an unrelated title into the template."
+source = "https://ddowiki.com/page/Item:Legendary_Treasure_Hunter's_Spyglass_(level_32)"
+read = "2026-10-05"
+
+[[correction]]
+kind = "effect"
+name = "Earthen Guard"
+field = "verbose_name_template"
+from = "Take a trip into the past!"
+to = "Earthen Guard"
+reason = "The wiki line uses this effect title; Maetrim copied an unrelated title into the template."
+source = "https://ddowiki.com/page/Item:The_Earth_and_the_Sky"
+read = "2026-10-05"
+
+[[correction]]
+kind = "effect"
+name = "Feat Quick Draw"
+field = "verbose_name_template"
+from = "Feat"
+to = "Feat: Quick Draw"
+reason = "The wiki line uses this effect title; Maetrim copied an unrelated title into the template."
+source = "https://ddowiki.com/page/Item:Legendary_Mastermaker's_Fingers"
+read = "2026-10-05"
+
+[[correction]]
+kind = "effect"
+name = "Earthen Guard"
+field = "description_template"
+from = "null"
+to = "When you are successfully attacked, there is a chance that a Stone Skin will be cast on you."
+reason = "The wiki gives the triggered Stone Skin description that Maetrim omitted."
+source = "https://ddowiki.com/page/Item:The_Earth_and_the_Sky"
+read = "2026-10-05"
+
+[[correction]]
+kind = "effect"
+name = "Feat Quick Draw"
+field = "description_template"
+from = "Quick Draw: While equipped, this item grants the feat Quick Draw."
+to = "While equipped, this item grants the feat Quick Draw."
+reason = "The wiki puts Quick Draw in the line title and the remaining sentence in its tooltip."
+source = "https://ddowiki.com/page/Item:Legendary_Mastermaker's_Fingers"
+read = "2026-10-05"
+
+[[correction]]
+kind = "effect"
+name = "Feat Quick Draw"
+field = "name"
+from = "Feat Quick Draw"
+to = "Feat: Quick Draw"
+reason = "The wiki names the item line Feat: Quick Draw, matching the existing Feat: Elusive Target form."
+source = "https://ddowiki.com/page/Item:Legendary_Mastermaker's_Fingers"
+read = "2026-10-05"
+
+[[correction]]
+kind = "effect"
+name = "Acid Intensity +"
+field = "name"
+from = "Acid Intensity +"
+to = "Acid Intensity"
+reason = "The amount sign belongs to the line template, not the effect name."
+source = "https://ddowiki.com/page/Item:Legendary_Muck%27s_Ascension"
+read = "2026-10-05"
+
+[[correction]]
+kind = "effect"
+name = "Greater Nimbleness"
+field = "verbose_name_template"
+from = "Greater Nimbleness +4"
+to = "Greater Nimbleness"
+reason = "The wiki line shows only the Nimbleness tier; its fixed maximum Dexterity increase remains in the description and value."
+source = "https://ddowiki.com/page/Item:Legendary_Tourney_Armor"
+read = "2026-10-05"
+
+[[correction]]
+kind = "effect"
+name = "Superior Nimbleness"
+field = "verbose_name_template"
+from = "Superior Nimbleness +4"
+to = "Superior Nimbleness"
+reason = "The wiki line shows only the Nimbleness tier; its fixed maximum Dexterity increase remains in the description and value."
+source = "https://ddowiki.com/page/Item:Legendary_Rakshasa_Hide"
+read = "2026-10-05"
+
+[[correction]]
+kind = "effect"
+name = "Epic Nimbleness"
+field = "verbose_name_template"
+from = "Epic Nimbleness +4"
+to = "Epic Nimbleness"
+reason = "The wiki line shows only the Nimbleness tier; its fixed maximum Dexterity increase remains in the description and value."
+source = "https://ddowiki.com/page/Item:Legendary_Snakeskin_Vest"
+read = "2026-10-05"
+
+[[correction]]
+kind = "effect"
+name = "Efficient Metamagic - Maximize I"
+field = "verbose_name_template"
+from = "Efficient Metamagic - Maximize I -1"
+to = "Efficient Metamagic - Maximize I"
+reason = "The wiki shows the tier name without the spell-point reduction."
+source = "https://ddowiki.com/page/Item:Vizeran's_Band"
+read = "2026-10-05"
+
+[[correction]]
+kind = "effect"
+name = "Efficient Metamagic - Maximize I"
+field = "description_template"
+from = "The additional spell point cost for using the Maximize Metamagic feat is reduced by 1 SP."
+to = "The additional spell point cost for using the Maximize Metamagic feat is reduced by 2 SP."
+reason = "The wiki and the Maximize magnitude rule give a 2 SP reduction for tier I."
+source = "https://ddowiki.com/page/Item:Vizeran's_Band"
+read = "2026-10-05"
+
+[[correction]]
+kind = "effect"
+name = "Efficient Metamagic - Maximize I"
+stat = "Maximize Cost Reduction"
+field = "constant"
+from = -1
+to = -2
+reason = "The wiki and the Maximize magnitude rule give a 2 SP reduction for tier I."
+source = "https://ddowiki.com/page/Item:Vizeran's_Band"
+read = "2026-10-05"
+
+[[correction]]
+kind = "item_effect"
+name = "Legendary Cracked Symbol of Lolth"
+effect = "Void Intensity"
+field = "bonus_type"
+from = "Equipment"
+to = "Enhancement"
+reason = "The wiki tooltip calls this Void Intensity an Enhancement bonus; Maetrim types this item's link Equipment."
+source = "https://ddowiki.com/page/Item:Legendary_Cracked_Symbol_of_Lolth"
+read = "2026-10-05"
+
+[[correction]]
+kind = "effect"
+name = "Lifesealed"
+field = "description_template"
+from = "You are immune to magical effects that cause instant death. In addition, you have a {1} %b1 bonus to Negative Energy Absorption."
+to = "You are immune to magical effects that cause instant death. In addition, you have a +{1}% enhancement bonus to Negative Energy Absorption."
+reason = "The wiki tooltip measures Lifesealed's Negative Energy Absorption as a percentage."
+source = "https://ddowiki.com/page/Item:Legendary_Lolth%27s_Protection"
+read = "2026-10-05"
+
+[[correction]]
+kind = "effect"
+name = "Shield Bashing"
+field = "description_template"
+from = "{1}% %b1 bonus to your chance of a Secondary Shield Bash. This stacks with bonuses granted by any relevant feats."
+to = "+{1}% %b1 bonus to your chance of a Secondary Shield Bash. This stacks with bonuses granted by any relevant feats."
+reason = "The wiki tooltip signs the Shield Bashing percentage bonus."
+source = "https://ddowiki.com/page/Item:Legendary_Fiendish_Requisition"
+read = "2026-10-05"
+
+[[correction]]
+kind = "effect"
+name = "Command"
+field = "verbose_name_template"
+from = "Command +{1}"
+to = "Insightful Command +{1}"
+reason = "The wiki writes the fixed Insight type as Insightful in Command's line title."
+source = "https://ddowiki.com/page/Item:Brightbane_Emerald"
+read = "2026-10-05"

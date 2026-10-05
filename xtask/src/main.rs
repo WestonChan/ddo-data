@@ -85,6 +85,7 @@ fn main() -> Result<()> {
         Task::Lint => {
             deny_clippy_warnings()?;
             corrections_from(None)?;
+            deny_correction_file_whitespace()?;
             deny_api_contract_or_scale_regressions()?;
             deny_comments()
         }
@@ -189,6 +190,26 @@ fn deny_clippy_warnings() -> Result<()> {
         .context("running cargo clippy")?;
     if !clippy_status.success() {
         bail!("clippy failed");
+    }
+    Ok(())
+}
+
+fn deny_correction_file_whitespace() -> Result<()> {
+    let corrections_dir = workspace_root().join("crates/ddo-etl/data/corrections");
+    for entry in std::fs::read_dir(corrections_dir)? {
+        let path = entry?.path();
+        if path.extension().is_none_or(|extension| extension != "toml") {
+            continue;
+        }
+        let source = std::fs::read_to_string(&path)?;
+        if !source.ends_with('\n') || source.ends_with("\n\n") {
+            anyhow::bail!("{} needs exactly one final newline", path.display());
+        }
+        for (index, line) in source.lines().enumerate() {
+            if line.ends_with([' ', '\t']) {
+                anyhow::bail!("{}:{} has trailing whitespace", path.display(), index + 1);
+            }
+        }
     }
     Ok(())
 }

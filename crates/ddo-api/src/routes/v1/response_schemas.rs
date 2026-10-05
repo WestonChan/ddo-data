@@ -86,6 +86,7 @@ pub(crate) struct EffectLine {
     pub(crate) bonus_type: Option<String>,
     #[schema(schema_with = schema_line_bonuses)]
     pub(crate) bonuses: Vec<EffectStatBonus>,
+    #[schema(schema_with = schema_line_damage)]
     pub(crate) damage: Vec<EffectDamage>,
 }
 
@@ -127,6 +128,9 @@ fn schema_line_bonus_type() -> RefOr<Schema> {
 }
 fn schema_line_bonuses() -> RefOr<Schema> {
     described_schema::<Vec<EffectStatBonus>>("Stat bonuses derived from this owner link.")
+}
+fn schema_line_damage() -> RefOr<Schema> {
+    described_schema::<Vec<EffectDamage>>("Triggered damage dice granted by this effect.")
 }
 
 #[derive(utoipa::ToSchema)]

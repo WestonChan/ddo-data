@@ -301,8 +301,10 @@ impl Correction {
     }
 
     fn validate_qualifier_keys(&self, field: &CorrectableField) -> Result<()> {
-        if self.effect.is_some() != (self.kind == CorrectionKind::ItemEffect && field.name == "value") {
-            bail!("effect names only an item_effect value correction, which requires effect");
+        if self.effect.is_some()
+            != (self.kind == CorrectionKind::ItemEffect && matches!(field.name, "value" | "bonus_type" | "remove"))
+        {
+            bail!("effect names only an item_effect value, bonus_type or remove correction, which requires effect");
         }
         if self.family.is_some() && !matches!(self.kind, CorrectionKind::Augment | CorrectionKind::AugmentBonus) {
             bail!("family narrows only an augment or augment_bonus correction, not a {}", self.kind.as_str());
@@ -334,7 +336,10 @@ impl Correction {
                 "stat, bonus_type and bonus_value name the bonus of an augment_bonus, item_bonus or set_tier_bonus value, bonus_type, scale, rounding or remove correction; an add names them in to"
             );
         }
-        if field.shape == FieldShape::BonusTypeName && self.bonus_type.as_deref() != self.from.as_bonus_type_name() {
+        if field.shape == FieldShape::BonusTypeName
+            && self.kind != CorrectionKind::ItemEffect
+            && self.bonus_type.as_deref() != self.from.as_bonus_type_name()
+        {
             bail!("from must be the bonus_type the correction names, his current type or \"null\"");
         }
         Ok(())

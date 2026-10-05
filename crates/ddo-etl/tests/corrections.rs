@@ -53,6 +53,31 @@ fn recorded_corrections(db: &Connection) -> Vec<(String, String, String, String,
 }
 
 #[test]
+fn item_effect_corrections_change_a_text_line_type_or_remove_its_link() {
+    let type_correction =
+        correction_toml("item_effect", "Epic Ethereal Bracers", "bonus_type", "\"Insight\"", "\"Quality\"")
+            + "effect = \"Riposte\"\n";
+    let (typed_db, typed_report) = built_db_with(&[("type.toml", &type_correction)]).unwrap();
+    assert_eq!(typed_report.correction_stale_count, 0);
+    let typed: String = typed_db
+        .query_row(
+            "SELECT b.name FROM item_effects l JOIN items i ON i.id = l.item_id
+             JOIN effects e ON e.id = l.effect_id JOIN bonus_types b ON b.id = l.bonus_type_id
+             WHERE i.name = 'Epic Ethereal Bracers' AND e.name = 'Riposte'",
+            [],
+            |row| row.get(0),
+        )
+        .unwrap();
+    assert_eq!(typed, "Quality");
+
+    let removal =
+        correction_toml("item_effect", "Epic Ethereal Bracers", "remove", "0", "1") + "effect = \"Riposte\"\n";
+    let (removed_db, removed_report) = built_db_with(&[("remove.toml", &removal)]).unwrap();
+    assert_eq!(removed_report.correction_stale_count, 0);
+    assert!(!item_effect_names(&removed_db, "Epic Ethereal Bracers").contains(&"Riposte".to_string()));
+}
+
+#[test]
 fn reads_a_correction_with_typed_values_and_its_citation() {
     let corrections = parsed_corrections(&[(
         "corrections.toml",

@@ -23,9 +23,62 @@ async fn json_response(router: &axum::Router, path: &str) -> Result<Value> {
     serde_json::from_slice(&body).with_context(|| format!("GET {path} returned invalid JSON"))
 }
 
+fn effect_home_types(db: &rusqlite::Connection) -> Result<BTreeMap<i64, (Option<String>, bool)>> {
+    let mut statement = db.prepare(
+        "SELECT e.id, b.name, INSTR(COALESCE(e.verbose_name_template, ''), '%b1') > 0
+           FROM effects e LEFT JOIN bonus_types b ON b.id = e.home_bonus_type_id",
+    )?;
+    let home_types = statement
+        .query_map([], |row| Ok((row.get::<_, i64>(0)?, (row.get::<_, Option<String>>(1)?, row.get::<_, bool>(2)?))))?
+        .collect::<rusqlite::Result<_>>()?;
+    Ok(home_types)
+}
+
+fn response_effect_lines_show_non_home_types(
+    response: &Value,
+    path: &str,
+    effect_home_types: &BTreeMap<i64, (Option<String>, bool)>,
+) -> Result<()> {
+    match response {
+        Value::Array(rows) => {
+            for row in rows {
+                response_effect_lines_show_non_home_types(row, path, effect_home_types)?;
+            }
+        }
+        Value::Object(fields) => {
+            if let (Some(effect_id), Some(bonus_type), Some(verbose_name)) = (
+                fields.get("effect_id").and_then(Value::as_i64),
+                fields.get("bonus_type").and_then(Value::as_str),
+                fields.get("verbose_name").and_then(Value::as_str),
+            ) {
+                if let Some((home_type, has_type_slot)) = effect_home_types.get(&effect_id) {
+                    if *has_type_slot
+                        && !matches!(bonus_type, "Enhancement" | "Equipment")
+                        && home_type.as_deref() != Some(bonus_type)
+                    {
+                        let visible_type = if bonus_type == "Insight" { "Insightful" } else { bonus_type };
+                        ensure!(
+                            verbose_name.contains(visible_type)
+                                || verbose_name.contains(&format!("{bonus_type} Bonus")),
+                            "{path}: effect {effect_id} has non-home type {bonus_type:?} but verbose_name {verbose_name:?} omits it"
+                        );
+                    }
+                }
+            }
+            for field in fields.values() {
+                response_effect_lines_show_non_home_types(field, path, effect_home_types)?;
+            }
+        }
+        _ => {}
+    }
+    Ok(())
+}
+
 pub fn validate_api(db_path: &Path, all_details: bool) -> Result<(usize, usize)> {
     let state = AppState::open(db_path)?;
-    let source_packs = Arc::new(source_pack_names(&rusqlite::Connection::open(db_path)?)?);
+    let db = rusqlite::Connection::open(db_path)?;
+    let source_packs = Arc::new(source_pack_names(&db)?);
+    let effect_home_types = Arc::new(effect_home_types(&db)?);
     let router = app(state);
     let runtime = tokio::runtime::Builder::new_current_thread().enable_all().build()?;
     let spec = runtime.block_on(json_response(&router, "/v1/openapi.json"))?;
@@ -109,16 +162,22 @@ pub fn validate_api(db_path: &Path, all_details: bool) -> Result<(usize, usize)>
                     let detail_schema = detail_schema.clone();
                     let shared_schemas = shared_schemas.clone();
                     let source_packs = source_packs.clone();
+                    let effect_home_types = effect_home_types.clone();
                     requests.spawn(async move {
                         let response = json_response(&request_router, &request_path).await?;
                         let violation = tokio::task::spawn_blocking(move || {
                             response_matches_schema(&response, &detail_schema, &shared_schemas, &request_path)
                                 .and_then(|()| {
                                     if check_drop_locations {
-                                        detail_has_unique_drop_locations(&response, &request_path, &source_packs)
-                                    } else {
-                                        Ok(())
+                                        detail_has_unique_drop_locations(&response, &request_path, &source_packs)?;
                                     }
+                                    response_effect_lines_show_non_home_types(
+                                        &response,
+                                        &request_path,
+                                        &effect_home_types,
+                                    )
+                                    .map_err(|error| error.to_string())?;
+                                    Ok(())
                                 })
                                 .err()
                         })
@@ -149,4 +208,21 @@ pub fn validate_api(db_path: &Path, all_details: bool) -> Result<(usize, usize)>
         violations.join("\n")
     );
     Ok((checked_routes, checked_responses))
+}
+
+#[cfg(test)]
+mod tests {
+    use super::response_effect_lines_show_non_home_types;
+    use serde_json::json;
+    use std::collections::BTreeMap;
+
+    #[test]
+    fn non_home_type_must_remain_visible_on_a_slotless_line() {
+        let home_types = BTreeMap::from([(454, (Some("Equipment".to_string()), true))]);
+        let line =
+            json!({"effects": [{"effect_id": 454, "bonus_type": "Insight", "verbose_name": "Spell Penetration I"}]});
+        assert!(response_effect_lines_show_non_home_types(&line, "/v1/items/1", &home_types).is_err());
+        let corrected = json!({"effects": [{"effect_id": 454, "bonus_type": "Insight", "verbose_name": "Insightful Spell Penetration I"}]});
+        response_effect_lines_show_non_home_types(&corrected, "/v1/items/1", &home_types).unwrap();
+    }
 }

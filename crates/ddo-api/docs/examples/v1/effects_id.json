@@ -118,7 +118,7 @@
         "amount_source": "constant",
         "bonus_type": "Penalty",
         "effect": "Curse of Weakness",
-        "effect_id": 328,
+        "effect_id": 329,
         "id": 454,
         "line": {
           "bonus_type": "Penalty",
@@ -135,7 +135,7 @@
           ],
           "damage": [],
           "description": "Passive -1 Penalty to Strength. The minimum level required to equip this item is lower than normal due to this curse.",
-          "effect_id": 328,
+          "effect_id": 329,
           "name": "Curse of Weakness",
           "tier": null,
           "value": -1,
@@ -300,7 +300,7 @@
         "amount_source": "owner",
         "bonus_type": "Artifact",
         "effect": "All Ability Scores",
-        "effect_id": 2008,
+        "effect_id": 2009,
         "equipped_count": 3,
         "id": 280,
         "line": {
@@ -310,7 +310,7 @@
               "amount_source": "owner",
               "bonus_type": "Artifact",
               "group": {
-                "id": 2008,
+                "id": 2009,
                 "name": "All Ability Scores"
               },
               "scale": 1.0,
@@ -322,7 +322,7 @@
               "amount_source": "owner",
               "bonus_type": "Artifact",
               "group": {
-                "id": 2008,
+                "id": 2009,
                 "name": "All Ability Scores"
               },
               "scale": 1.0,
@@ -334,7 +334,7 @@
               "amount_source": "owner",
               "bonus_type": "Artifact",
               "group": {
-                "id": 2008,
+                "id": 2009,
                 "name": "All Ability Scores"
               },
               "scale": 1.0,
@@ -345,7 +345,7 @@
           ],
           "damage": [],
           "description": "+1 Artifact bonus to all Ability Scores",
-          "effect_id": 2008,
+          "effect_id": 2009,
           "name": "All Ability Scores",
           "tier": null,
           "value": 1,

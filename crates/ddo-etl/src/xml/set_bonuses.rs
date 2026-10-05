@@ -15,11 +15,20 @@ pub fn parse_set_bonus_file(path: &Path) -> Result<SetBonusFile> {
     let mut set_bonus_file = SetBonusFile::default();
     for child in raw_file.children {
         match child {
-            SetBonusFileChild::SetBonus(set_bonus) => set_bonus_file.set_bonuses.push(set_bonus),
+            SetBonusFileChild::SetBonus(mut set_bonus) => {
+                for tier in &mut set_bonus.tiers {
+                    tier.description = tier.description.as_deref().map(normalized_set_description);
+                }
+                set_bonus_file.set_bonuses.push(set_bonus);
+            }
             SetBonusFileChild::Filigree(filigree) => set_bonus_file.filigrees.push(filigree),
         }
     }
     Ok(set_bonus_file)
+}
+
+fn normalized_set_description(description: &str) -> String {
+    description.split_whitespace().collect::<Vec<_>>().join(" ")
 }
 
 #[derive(Deserialize)]
@@ -72,4 +81,14 @@ pub struct Filigree {
     pub set_bonus_names: Vec<String>,
     #[serde(rename = "Effect", default)]
     pub effects: Vec<Effect>,
+}
+
+#[cfg(test)]
+mod tests {
+    use super::normalized_set_description;
+
+    #[test]
+    fn source_indentation_does_not_split_set_prose() {
+        assert_eq!(normalized_set_description("reducing the\n       enemy's attack"), "reducing the enemy's attack");
+    }
 }

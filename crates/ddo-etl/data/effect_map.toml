@@ -9,6 +9,9 @@ Tactics = 198
 enhancement = ["WeaponEnchantment", "ArmorEnchantment", "ShieldEnchantment"]
 owner_type_precedence = ["ExtraLayOnHands", "Constitution Skills - Exceptional", "Charisma Skills - Exceptional", "Strength Skills - Exceptional", "Wisdom Skills - Exceptional"]
 
+[family.groups]
+Potency = "Spell Powers"
+
 [names]
 "DR 30/Adamantine" = "DR 30/Adamantine"
 FeatMobility = "Feat: Mobility"
@@ -116,6 +119,17 @@ ExtraLayOnHands = "Lay on Hands Uses"
 "Spell Focus Mastery" = "Equipment"
 "Universal Spell Lore" = "Equipment"
 "Elemental Resistance" = "Enhancement"
+"Void Intensity" = "Equipment"
+"Spell Penetration I" = "Equipment"
+"Mighty Skills Bonus" = "none"
+"Alluring Skills Bonus" = "none"
+"Astute Skills Bonus" = "none"
+"Strength Skills" = "none"
+"Dexterity Skills" = "none"
+"Constitution Skills" = "none"
+"Intelligence Skills" = "none"
+"Wisdom Skills" = "none"
+"Charisma Skills" = "none"
 
 [line_templates]
 "DR 30/Adamantine" = "DR 30/Adamantine"
@@ -140,12 +154,15 @@ ExtraLayOnHands = "Lay on Hands Uses"
 "Helpless Damage" = "+{1}% %b1 Bonus to Damage vs. Helpless opponents"
 "Maximum Hit Points" = "+{1}% %b1 Bonus to Maximum Hit Points"
 "Melee and Ranged Power" = "+{1} %b1 Bonus to Melee and Ranged Power"
+"Natural Armor" = "+{1} %b1 Bonus to Armor Class"
 "Universal Spell Critical Damage" = "+{1}% %b1 Bonus to Spell Critical Damage"
 "Universal Spell Lore" = "+{1}% %b1 Bonus to Spell Critical Chance"
 
 [description_templates]
 "Spell Focus Mastery" = "+{1} %b1 bonus to the DC of all spells."
 "Combat Mastery" = "+{1} %b1 bonus to the DC to resist the character's Trip, Improved Trip, Sunder, Improved Sunder, Stunning Blow, and Stunning Fist attempts."
+"Doublestrike and Doubleshot" = "+{1}% %b1 bonus to Doublestrike and Doubleshot."
+"Melee and Ranged Power" = "+{1} %b1 bonus to Melee and Ranged Power."
 Assassinate = "+{1} %b1 bonus to the DC of character's Assassinate attempts."
 "Armor Bonus" = "This item surrounds the wearer with an invisible but tangible field of force, granting {1} armor bonus to AC, just as though he were wearing armor."
 "Fortification" = "+{1}% %b1 bonus to reduced chance of taking critical damage on a critical hit."
@@ -173,6 +190,7 @@ Wizardry = ["Wizardry I", "Wizardry II", "Wizardry III", "Wizardry V", "Wizardry
 Sheltering = ["Physical Resistance Rating", "Magical Resistance Rating"]
 "Melee and Ranged Power" = ["Melee Power", "Ranged Power"]
 "Doublestrike and Doubleshot" = ["Doublestrike", "Doubleshot"]
+"Spell Powers" = ["Fire Spell Power", "Cold Spell Power", "Electric Spell Power", "Acid Spell Power", "Sonic Spell Power", "Light Spell Power", "Force Spell Power", "Negative Spell Power", "Positive Spell Power", "Repair Spell Power", "Poison Spell Power", "Chaos Spell Power", "Good Spell Power", "Evil Spell Power", "Law Spell Power"]
 
 [[augment_line_names]]
 augment = "Dolorous Invigorator (Heroic)"
@@ -216,6 +234,32 @@ effect_name = "Combat Mastery"
 source = "https://ddowiki.com/page/Item:Dolorous_Quality_Combat_Mastery_(legendary)"
 read = "2026-10-05"
 
+[[augment_combined_lines]]
+augment = "Brightbane Emerald"
+first_effect = "Charisma Skills"
+first_bonus_type = "Insight"
+first_value_from = 5
+first_value_to = 4
+second_effect = "Hide"
+second_bonus_type = "Penalty"
+second_value = -6
+effect_name = "Command"
+source = "https://ddowiki.com/page/Item:Brightbane_Emerald"
+read = "2026-10-05"
+
+[[augment_combined_lines]]
+augment = "Legendary Brightbane Emerald"
+first_effect = "Charisma Skills"
+first_bonus_type = "Insight"
+first_value_from = 7
+first_value_to = 7
+second_effect = "Hide"
+second_bonus_type = "Penalty"
+second_value = -6
+effect_name = "Command"
+source = "https://ddowiki.com/page/Item:Legendary_Brightbane_Emerald"
+read = "2026-10-05"
+
 [skill_ability_groups]
 source = "https://ddowiki.com/page/Skills"
 read = "2026-10-05"
@@ -233,7 +277,6 @@ Linguistics = "Linguistics"
 Hallowed = "Turn Undead Max Dice"
 Sacred = "Turn Undead Level"
 SpellcastingImplement = "Universal Spell Power"
-Potency = "Universal Spell Power"
 UniversalSpellPower = "Universal Spell Power"
 Combustion = "Fire Spell Power"
 Magnetism = "Electric Spell Power"

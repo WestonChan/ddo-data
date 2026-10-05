@@ -113,6 +113,18 @@
     </Effect>
   </Buff>
   <Buff>
+    <Type>Potency</Type>
+    <DisplayText>%b1 Potency %v1: %v1 %b1 bonus to each individual spell power. (Universal Spell Power is a different statistic)</DisplayText>
+    <Ignore>Equipment</Ignore>
+    <Effect>
+      <Type>SpellPower</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+      <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
     <Type>Constitution Poison, Lesser</Type>
     <ApplyToWeaponOnly />
     <DisplayText>Constitution Poison, Lesser: The deadly poison coating this weapon deals an extra 1 to 6 points of constitution damage when you score a critical hit on an enemy. Some creatures may be immune or resistant to ability damage.</DisplayText>

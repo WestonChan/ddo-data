@@ -46,6 +46,11 @@ pub enum FamilyResolution {
         amount_from: AmountFrom,
         definition_amount: Option<i64>,
     },
+    MappedGroup {
+        group_name: String,
+        amount_from: AmountFrom,
+        definition_amount: Option<i64>,
+    },
     EffectFallback(Vec<ResolvedStat>),
     SkillGroup,
     Effect,
@@ -101,6 +106,7 @@ impl BuffResolver {
         let mut family_names: BTreeSet<&str> = self.definitions_by_buff_kind.keys().map(String::as_str).collect();
         family_names.extend(self.vocabulary.family.enhancement.iter().map(String::as_str));
         family_names.extend(self.vocabulary.family.fixed.keys().map(String::as_str));
+        family_names.extend(self.vocabulary.family.groups.keys().map(String::as_str));
         family_names.extend(self.vocabulary.family.by_item.keys().map(String::as_str));
         family_names.extend(self.vocabulary.family.text_only.keys().map(String::as_str));
         family_names
@@ -118,6 +124,21 @@ impl BuffResolver {
         }
         if self.vocabulary.family.text_only.contains_key(buff_kind) {
             return Ok(FamilyResolution::Effect);
+        }
+        if let Some(group_name) = self.vocabulary.family.groups.get(buff_kind) {
+            let definition_amount =
+                self.definitions_by_buff_kind.get(buff_kind).and_then(|definition| definition.fixed_amount);
+            let amount_from = self
+                .definitions_by_buff_kind
+                .get(buff_kind)
+                .and_then(|definition| definition.fixed_amount.filter(|_| !definition.display_text.contains("%v1")))
+                .map(AmountFrom::Constant)
+                .unwrap_or(AmountFrom::ItemValue1);
+            return Ok(FamilyResolution::MappedGroup {
+                group_name: group_name.clone(),
+                amount_from,
+                definition_amount,
+            });
         }
         let fixed_stat_name = self.vocabulary.family.fixed.get(buff_kind).cloned();
         let stat_template = self.vocabulary.family.by_item.get(buff_kind).cloned();
@@ -215,6 +236,23 @@ impl BuffResolver {
                 let bonus_type = self.resolved_bonus_type(buff_kind, item_bonus_type, None)?;
                 let resolved_stat = ResolvedStat { stat, bonus_type, amount_from, definition_amount };
                 Ok(ResolvedBuff::Bonuses { source: BuffResolutionSource::Family, stats: vec![resolved_stat] })
+            }
+            FamilyResolution::MappedGroup { group_name, amount_from, definition_amount } => {
+                let item_bonus_type = self.vocabulary.family_bonus_type(buff.bonus_type.as_deref().unwrap_or(""))?;
+                let bonus_type = self.resolved_bonus_type(buff_kind, item_bonus_type, None)?;
+                let stats = self
+                    .vocabulary
+                    .group_members(&group_name)
+                    .expect("validated group members")
+                    .iter()
+                    .map(|name| ResolvedStat {
+                        stat: Stat::by_name(name).expect("validated group stat"),
+                        bonus_type,
+                        amount_from,
+                        definition_amount,
+                    })
+                    .collect();
+                Ok(ResolvedBuff::Bonuses { source: BuffResolutionSource::Family, stats })
             }
             FamilyResolution::EffectFallback(mut stats) => {
                 let item_bonus_type = self.vocabulary.family_bonus_type(buff.bonus_type.as_deref().unwrap_or(""))?;

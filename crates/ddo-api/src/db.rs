@@ -469,6 +469,13 @@ fn render_description_template(template: &str, row: &Value) -> String {
         }
         signed_template.push_str(remainder);
     }
+    let line_template = row["verbose_name_template"].as_str().unwrap_or("");
+    for slot in ["{1}", "{2}"] {
+        let percent_slot = format!("{slot}%");
+        if line_template.contains(&percent_slot) && !template.contains(&percent_slot) {
+            signed_template = signed_template.replace(slot, &percent_slot);
+        }
+    }
     render_effect_template(&signed_template, row)
 }
 
@@ -477,7 +484,7 @@ fn render_verbose_name(row: &Value) -> String {
     let mut rendered_row = row.clone();
     let bonus_type = row["bonus_type"].as_str().unwrap_or("");
     let home_type = row["home_bonus_type"].as_str().unwrap_or("");
-    let visible_type = if bonus_type == home_type {
+    let visible_type = if bonus_type == home_type || matches!(bonus_type, "Enhancement" | "Equipment") {
         ""
     } else if bonus_type == "Insight" {
         "Insightful"
@@ -486,7 +493,11 @@ fn render_verbose_name(row: &Value) -> String {
     };
     rendered_row["template_bonus_type"] = Value::String(visible_type.to_string());
     let name = row["name"].as_str().unwrap_or("");
-    let template = if !template.contains("{1}") && !template.contains("{2}") && row["template_value"].is_number() {
+    let template = if !template.contains("{1}")
+        && !template.contains("{2}")
+        && !template.contains("%b1")
+        && row["template_value"].is_number()
+    {
         name
     } else {
         template
@@ -533,6 +544,12 @@ mod effect_template_tests {
             "bonus_type": "Insight", "home_bonus_type": "Equipment"
         });
         assert_eq!(render_verbose_name(&row), "Insightful Combustion +71");
+        let tiered = json!({
+            "name": "Spell Penetration I", "verbose_name_template": "%b1 Spell Penetration I",
+            "template_value": 1, "template_value2": null,
+            "bonus_type": "Insight", "home_bonus_type": "Equipment"
+        });
+        assert_eq!(render_verbose_name(&tiered), "Insightful Spell Penetration I");
     }
 
     #[test]
@@ -560,6 +577,15 @@ mod effect_template_tests {
         assert_eq!(
             render_description_template("Maximum Dexterity bonus {1} higher than normal.", &row),
             "Maximum Dexterity bonus 29 higher than normal."
+        );
+        let percentage = json!({
+            "template_value": 13, "template_value2": null,
+            "verbose_name_template": "%b1 Dodge +{1}%",
+            "template_bonus_type": "Enhancement", "bonus_type": "Enhancement"
+        });
+        assert_eq!(
+            render_description_template("Passive: {1} %b1 bonus to Dodge.", &percentage),
+            "Passive: +13% Enhancement bonus to Dodge."
         );
         let penalty = json!({
             "template_value": -2, "template_value2": null,

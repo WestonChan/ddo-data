@@ -155,7 +155,7 @@ async fn direct_skill_group_links_render_the_group_description() {
     let line = item["effects"].as_array().unwrap().iter().find(|line| line["name"] == "Charisma Skills").unwrap();
     assert_eq!(line["description"], "+4 Insight bonus to all Charisma based skills.");
     assert_eq!(line["name"], "Charisma Skills");
-    assert_eq!(line["verbose_name"], "Charisma Skills +4");
+    assert_eq!(line["verbose_name"], "Insightful Charisma Skills +4");
     assert!(line.get("text").is_none());
 }
 
@@ -203,7 +203,7 @@ async fn fixture_tooltip_templates_render_signed_units_types_groups_and_tiers() 
         ("Alaric%27s%20Grim%20Gauntlets", "Dark Restoration Lore", "Dark Restoration Lore +23%"),
         ("Alaric%27s%20Grim%20Gauntlets", "Parrying", "Parrying +5"),
         ("Kardin%27s%20Eye", "Heightened Awareness", "Heightened Awareness 6"),
-        ("Lindal%27s%20Mighty%20Belt", "Charisma Skills", "Charisma Skills +4"),
+        ("Lindal%27s%20Mighty%20Belt", "Charisma Skills", "Insightful Charisma Skills +4"),
         ("Lindal%27s%20Mighty%20Belt", "Unwieldy", "Unwieldy"),
         ("Epic%20Ring%20of%20the%20Stalker", "Deception", "Deception +3"),
         ("Alarphon%27s%20Staff", "Spell Lore", "Spell Lore +6%"),

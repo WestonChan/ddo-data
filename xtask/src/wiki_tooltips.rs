@@ -123,7 +123,13 @@ fn compare_lines(
     comparison: &mut TooltipComparison,
 ) -> Result<()> {
     let served_lines = served_lines.as_array().context("served effect lines")?;
-    for golden in golden_lines.as_array().context("golden effect lines")? {
+    let golden_lines = golden_lines.as_array().context("golden effect lines")?;
+    let matched_golden_count = golden_lines.iter().filter(|line| line["ours_line"].is_object()).count();
+    let different_line_counts = matched_golden_count != served_lines.len();
+    for golden in golden_lines {
+        if golden["tooltip_is_standard"].is_string() {
+            bail!("{owner_name}: tooltip_is_standard must be a boolean, not {:?}", golden["tooltip_is_standard"]);
+        }
         if !matches!(golden["kind"].as_str(), Some("enchantment" | "set_tier_line"))
             || golden["wiki_text"].is_null()
             || golden["ours_line"].is_null()
@@ -140,12 +146,13 @@ fn compare_lines(
         let unrecorded_before = comparison.unrecorded.len();
         let wiki_name =
             golden["wiki_name"].as_str().map(str::to_string).unwrap_or_else(|| wiki_label(wiki_text, golden));
-        compare_field(owner_name, line_index, golden, served, "name", &wiki_name, comparison);
-        compare_field(owner_name, line_index, golden, served, "verbose_name", wiki_text, comparison);
+        let line_location = format!("{owner_name} [line {line_index}]");
+        compare_field(&line_location, golden, served, "name", &wiki_name, different_line_counts, comparison);
+        compare_field(&line_location, golden, served, "verbose_name", wiki_text, different_line_counts, comparison);
         if golden["tooltip_is_standard"] == true {
             let tooltip = golden["wiki_tooltip"].as_str().context("standard tooltip text")?;
             let tooltip = tooltip.split_once(':').map_or(tooltip, |(_, body)| body.trim());
-            compare_field(owner_name, line_index, golden, served, "description", tooltip, comparison);
+            compare_field(&line_location, golden, served, "description", tooltip, different_line_counts, comparison);
         }
         if comparison.unrecorded.len() == unrecorded_before {
             if comparison.matched_fields - matched_before == if golden["tooltip_is_standard"] == true { 3 } else { 2 } {
@@ -159,12 +166,12 @@ fn compare_lines(
 }
 
 fn compare_field(
-    owner_name: &str,
-    line_index: usize,
+    line_location: &str,
     golden: &Value,
     served: &Value,
     field: &str,
     expected: &str,
+    different_line_counts: bool,
     comparison: &mut TooltipComparison,
 ) {
     let actual = served[field].as_str().unwrap_or("");
@@ -172,24 +179,38 @@ fn compare_field(
         comparison.matched_fields += 1;
         if golden["known_differences"].get(field).is_some() {
             comparison.unrecorded.push(format!(
-                "{owner_name} [line {line_index}]: {:?} {field}: recorded difference now matches the wiki",
+                "{line_location}: {:?} {field}: recorded difference now matches the wiki",
                 golden["ours"]
             ));
         }
-    } else if let (Some(reason), Some(recorded)) =
-        (golden["known_differences"][field]["reason"].as_str(), golden["known_differences"][field]["served"].as_str())
+    } else if let (Some(code), Some(recorded)) =
+        (golden["known_differences"][field]["code"].as_str(), golden["known_differences"][field]["served"].as_str())
     {
-        if collapse_whitespace(actual) == collapse_whitespace(recorded) {
-            *comparison.known_by_reason.entry(reason.to_string()).or_default() += 1;
+        let valid_shape = match code {
+            "value_in_wiki_name" => field == "name" && actual.chars().any(|character| character.is_ascii_digit()),
+            "set_line_form" => field == "name" && golden["kind"] == "set_tier_line",
+            "source_wording"
+            | "source_line_style"
+            | "wiki_may_be_stale"
+            | "nonstandard_tooltip"
+            | "value_disagreement" => field == "description" && !actual.is_empty(),
+            "folds" => field == "description" && !actual.is_empty(),
+            "grouping" => different_line_counts,
+            _ => false,
+        };
+        if !valid_shape {
+            comparison.unrecorded.push(format!("{line_location}: invalid {code:?} reason for {field}"));
+        } else if collapse_whitespace(actual) == collapse_whitespace(recorded) {
+            *comparison.known_by_reason.entry(code.to_string()).or_default() += 1;
         } else {
             comparison.unrecorded.push(format!(
-                "{owner_name} [line {line_index}]: {:?} {field}: known difference changed from {:?} to {:?}",
+                "{line_location}: {:?} {field}: known difference changed from {:?} to {:?}",
                 golden["ours"], recorded, actual
             ));
         }
     } else {
         comparison.unrecorded.push(format!(
-            "{owner_name} [line {line_index}]: {:?} {field}: expected {:?}, served {:?}",
+            "{line_location}: {:?} {field}: expected {:?}, served {:?}",
             golden["ours"],
             collapse_whitespace(expected),
             collapse_whitespace(actual)
@@ -253,7 +274,7 @@ mod tests {
         });
         let served = json!({"name": "Evocation Focus"});
         let mut comparison = TooltipComparison::default();
-        compare_field("Probe", 0, &golden, &served, "name", "Evocation Focus", &mut comparison);
+        compare_field("Probe [line 0]", &golden, &served, "name", "Evocation Focus", false, &mut comparison);
         assert_eq!(comparison.unrecorded.len(), 1);
     }
 

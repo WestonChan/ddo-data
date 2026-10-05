@@ -3,7 +3,7 @@ use ddo_etl::corrections::Corrections;
 use ddo_etl::map::effect_map::EFFECT_MAP;
 use ddo_etl::xml::item_buffs;
 use ddo_etl::xml::items::parse_item_file;
-use rusqlite::Connection;
+use rusqlite::{Connection, OptionalExtension};
 use std::collections::{BTreeMap, BTreeSet, HashSet};
 use std::fmt;
 use std::path::PathBuf;
@@ -371,6 +371,23 @@ pub const INTEGRITY_CHECKS: &[IntegrityCheck] = &[
         OffenderQuery::Built(effects_named_like_identifiers),
     )
     .showing_every_offender(),
+    IntegrityCheck::warn(
+        "effects_with_tied_home_bonus_types",
+        "in-use effects with equally common bonus types need an explicit home type or an intentional none in effect_map.toml",
+        OffenderQuery::Built(effects_with_tied_home_bonus_types),
+    )
+    .showing_every_offender(),
+    IntegrityCheck::warn(
+        "effect_templates_disagree_with_names",
+        "in-use effect templates must include the effect name or a declared alias with matching numeric tokens",
+        OffenderQuery::Built(effect_templates_disagree_with_names),
+    )
+    .showing_every_offender(),
+    IntegrityCheck::hard(
+        "skill_groups_share_home_bonus_type",
+        "all six ability skill groups have the same declared home bonus type",
+        OffenderQuery::Built(skill_groups_with_different_home_bonus_types),
+    ),
     IntegrityCheck::warn(
         "effects_with_values_in_names",
         "family names containing + followed by a number may embed an owner value; wiki prose stays here until its family and amount fields are read",
@@ -805,6 +822,97 @@ fn effects_with_unused_default(db: &Connection, _options: &IntegrityOptions) -> 
         ));
     }
     Ok(Findings { offenders: Some(offenders_from_sql(db, &queries.join(" UNION ALL "))?), notes: Vec::new() })
+}
+
+fn effects_with_tied_home_bonus_types(db: &Connection, _options: &IntegrityOptions) -> Result<Findings> {
+    let sql = "SELECT e.name, e.id, 'multiple bonus types each occur on ' || MAX(v.item_count) || ' items'
+          FROM effects e JOIN effect_vocabulary_bonus_types v ON v.id = e.id
+           AND v.kind = CASE WHEN e.is_stat THEN 'stat' WHEN e.is_group THEN 'group' ELSE 'effect' END
+         WHERE e.home_bonus_type_id IS NULL AND v.item_count > 0
+         GROUP BY e.id
+        HAVING SUM(v.item_count = (SELECT MAX(candidate.item_count) FROM effect_vocabulary_bonus_types candidate
+                                    WHERE candidate.id = e.id AND candidate.kind = v.kind)) > 1";
+    let offenders = offenders_from_sql(db, sql)?
+        .into_iter()
+        .filter(|offender| EFFECT_MAP.home_bonus_types.get(&offender.name).is_none_or(|home| home != "none"))
+        .collect();
+    Ok(Findings { offenders: Some(offenders), notes: Vec::new() })
+}
+
+fn effect_templates_disagree_with_names(db: &Connection, _options: &IntegrityOptions) -> Result<Findings> {
+    let links = EFFECT_OWNER_LINKS
+        .iter()
+        .map(|(table, _)| format!("SELECT effect_id FROM {table}"))
+        .collect::<Vec<_>>()
+        .join(" UNION ");
+    let mut statement = db.prepare(&format!(
+        "SELECT e.id, e.name, e.verbose_name_template FROM effects e
+          WHERE e.id IN ({links}) AND e.verbose_name_template IS NOT NULL"
+    ))?;
+    let rows = statement
+        .query_map([], |row| Ok((row.get::<_, i64>(0)?, row.get::<_, String>(1)?, row.get::<_, String>(2)?)))?;
+    let mut offenders = Vec::new();
+    for row in rows {
+        let (id, name, template) = row?;
+        let title = template
+            .replace("%b1", "")
+            .replace("+{1}%", "")
+            .replace("-{1}%", "")
+            .replace("{1}%", "")
+            .replace("+{2}%", "")
+            .replace("-{2}%", "")
+            .replace("{2}%", "")
+            .replace("+{1}", "")
+            .replace("-{1}", "")
+            .replace("{1}", "")
+            .replace("+{2}", "")
+            .replace("-{2}", "")
+            .replace("{2}", "")
+            .split_whitespace()
+            .collect::<Vec<_>>()
+            .join(" ");
+        let alias = EFFECT_MAP.template_name_aliases.get(&name).map(String::as_str);
+        let matched_name = std::iter::once(name.as_str())
+            .chain(alias)
+            .any(|candidate| title.to_ascii_lowercase().contains(&candidate.to_ascii_lowercase()));
+        let numeric_tokens = |source: &str| {
+            source
+                .split(|character: char| !character.is_ascii_digit())
+                .filter(|token| !token.is_empty())
+                .map(str::to_string)
+                .collect::<Vec<_>>()
+        };
+        let name_numbers = numeric_tokens(&name);
+        if !matched_name || (!name_numbers.is_empty() && name_numbers != numeric_tokens(&title)) {
+            offenders.push(Offender { name, id: Some(id), detail: format!("template {template:?}") });
+        }
+    }
+    Ok(Findings { offenders: Some(offenders), notes: Vec::new() })
+}
+
+fn skill_groups_with_different_home_bonus_types(db: &Connection, _options: &IntegrityOptions) -> Result<Findings> {
+    let mut groups = Vec::new();
+    for ability in EFFECT_MAP.skill_ability_groups.skills.keys() {
+        let name = format!("{ability} Skills");
+        let home: Option<Option<i64>> = db
+            .query_row("SELECT home_bonus_type_id FROM effects WHERE name = ?1 AND is_group = 1", [&name], |row| {
+                row.get(0)
+            })
+            .optional()?;
+        if let Some(home) = home {
+            groups.push((name, home));
+        }
+    }
+    let distinct: BTreeSet<Option<i64>> = groups.iter().map(|(_, home)| *home).collect();
+    let offenders = if distinct.len() <= 1 {
+        Vec::new()
+    } else {
+        groups
+            .into_iter()
+            .map(|(name, home)| Offender { name, id: None, detail: format!("home bonus type id {home:?}") })
+            .collect()
+    };
+    Ok(Findings { offenders: Some(offenders), notes: Vec::new() })
 }
 
 fn effect_bonus_type_sources(db: &Connection, _options: &IntegrityOptions) -> Result<Findings> {
