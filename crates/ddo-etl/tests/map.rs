@@ -76,6 +76,31 @@ fn family_titles_keep_meaningful_punctuation_and_reject_generic_leads() {
 }
 
 #[test]
+fn fallback_family_names_drop_number_markers() {
+    for (kind, expected_name) in [
+        ("WizardryNumber", "Wizardry"),
+        ("ParryingNumber", "Parrying"),
+        ("SpellFocusNumber", "Spell Focus"),
+        ("SpellPenetrationNumeralV", "Spell Penetration V"),
+        ("VoidLoreNumeralVI", "Void Lore VI"),
+        ("SpeedRomanNumeralXV", "Speed XV"),
+    ] {
+        let definitions = HashMap::from([(
+            kind.to_string(),
+            ItemBuffDefinition {
+                display_text: "On Hit: %v1".to_string(),
+                bonus_type_name: None,
+                fixed_amount: None,
+                effects: Vec::new(),
+                has_activation_condition: false,
+            },
+        )]);
+        let resolver = BuffResolver::from_definitions(&definitions);
+        assert_eq!(resolver.family_name(&buff(kind, None, None, None), None), expected_name, "{kind}");
+    }
+}
+
+#[test]
 fn bonus_types_normalise_onto_ours() {
     assert_eq!(parse_buff_bonus_type("Enhancement").unwrap(), Some(BonusType::Enhancement));
     assert_eq!(parse_buff_bonus_type("Weapon Enchantment").unwrap(), Some(BonusType::Enhancement));
@@ -611,7 +636,7 @@ fn definition_bonus_type_is_fixed_unless_display_text_has_an_item_type_slot() {
     let ResolvedBuff::Bonuses { stats, .. } = resolver.resolved(charisma_skills).unwrap() else {
         panic!("Charisma Skills - Exceptional did not resolve to bonuses");
     };
-    assert!(stats.iter().all(|stat| stat.bonus_type == Some(BonusType::Competence)));
+    assert!(stats.iter().all(|stat| stat.bonus_type == Some(BonusType::Exceptional)));
 }
 
 #[test]

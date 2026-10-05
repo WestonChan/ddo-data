@@ -330,11 +330,8 @@ pub const INTEGRITY_CHECKS: &[IntegrityCheck] = &[
     .showing_every_offender(),
     IntegrityCheck::warn(
         "effects_named_like_identifiers",
-        "effect names with an unspaced lowercase-to-uppercase change or trailing digits need a display name in [names]",
-        OffenderQuery::Sql(
-            "SELECT name, id, 'identifier-like name' FROM effects
-             WHERE name GLOB '*[a-z][A-Z]*' OR name GLOB '*[0-9]' ORDER BY name",
-        ),
+        "effect names with identifier casing, trailing digits, number markers, doubled words, Feat prefixes or buff-type suffixes need display names",
+        OffenderQuery::Built(effects_named_like_identifiers),
     )
     .showing_every_offender(),
     IntegrityCheck::warn(
@@ -574,6 +571,34 @@ fn offenders_from_sql(db: &Connection, sql: &str) -> Result<Vec<Offender>> {
         })?
         .collect::<rusqlite::Result<Vec<_>>>()?;
     Ok(offenders)
+}
+
+fn effects_named_like_identifiers(db: &Connection, _options: &IntegrityOptions) -> Result<Findings> {
+    let mut statement = db.prepare("SELECT name, id FROM effects ORDER BY name")?;
+    let rows = statement.query_map([], |row| Ok((row.get::<_, String>(0)?, row.get::<_, i64>(1)?)))?;
+    let mut offenders = Vec::new();
+    for row in rows {
+        let (name, id) = row?;
+        let words = name.split_whitespace().collect::<Vec<_>>();
+        let has_camel_case = name
+            .chars()
+            .zip(name.chars().skip(1))
+            .any(|(left, right)| left.is_ascii_lowercase() && right.is_ascii_uppercase());
+        let has_number_marker = words.iter().any(|word| matches!(*word, "Number" | "Numeral"));
+        let has_repeated_word = words.windows(2).any(|pair| pair[0].eq_ignore_ascii_case(pair[1]));
+        let has_buff_type_suffix = words.len() > 1
+            && words.last().is_some_and(|word| matches!(*word, "Good" | "Lawful" | "Evil" | "Negative"));
+        if has_camel_case
+            || name.ends_with(|character: char| character.is_ascii_digit())
+            || has_number_marker
+            || has_repeated_word
+            || words.first() == Some(&"Feat")
+            || has_buff_type_suffix
+        {
+            offenders.push(Offender { name, id: Some(id), detail: "identifier-like name".to_string() });
+        }
+    }
+    Ok(Findings { offenders: Some(offenders), notes: Vec::new() })
 }
 
 fn effect_link_amount_counts(db: &Connection, _options: &IntegrityOptions) -> Result<Findings> {

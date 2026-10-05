@@ -138,6 +138,13 @@ async fn command_expands_charisma_skills_and_group_filters_find_its_item() {
 }
 
 #[tokio::test]
+async fn direct_skill_group_links_render_the_group_description() {
+    let item = item_detail_named("lindal").await;
+    let line = item["effects"].as_array().unwrap().iter().find(|line| line["name"] == "Charisma Skills").unwrap();
+    assert_eq!(line["description"], "4 Insight bonus to all Charisma based skills.");
+}
+
+#[tokio::test]
 async fn vocabulary_rows_route_by_kind_even_when_database_ids_overlap() {
     let (_, _, page) = get("/v1/effects?limit=10000").await;
     let rows = page["effects"].as_array().unwrap();
@@ -207,7 +214,7 @@ async fn family_and_stat_detail_page_their_real_carriers() {
         .iter()
         .find(|row| row["name"] == "Epic Ethereal Bracers")
         .unwrap();
-    assert_eq!(bracers["effect"], "Speed Roman Numeral XIV");
+    assert_eq!(bracers["effect"], "Speed XIV");
     assert_eq!(bracers["bonus_type"], "Enhancement");
     assert_eq!(bracers["value"], 14);
     assert!(bracers["value2"].is_null());

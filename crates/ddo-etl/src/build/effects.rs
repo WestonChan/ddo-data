@@ -256,13 +256,31 @@ impl<'a> EffectCache<'a> {
 
     pub(super) fn ensure_group(&mut self, name: &str) -> Result<i64> {
         let members = EFFECT_MAP.group_members(name).expect("declared group has members");
+        let description = name
+            .strip_suffix(" Skills")
+            .filter(|ability| EFFECT_MAP.skill_ability_groups.skills.contains_key(*ability))
+            .map(|ability| format!("{{1}} %b1 bonus to all {ability} based skills."));
         let id = match self.family_named(name) {
             Some(family) => family.id,
-            None => self.ensure_family(name, &format!("%b1 {name} +{{1}}"), None, 1)?,
+            None => self.ensure_family(name, &format!("%b1 {name} +{{1}}"), description.as_deref(), 1)?,
         };
         let family = self.family(id).expect("group family cached");
         ensure!(!family.is_stat && family.amount_count == 1, "group {name:?} must be a one-value named effect");
-        if !family.is_group {
+        let is_group = family.is_group;
+        if let Some(description) = description {
+            ensure!(
+                family.description_template.as_deref().is_none_or(|existing| existing == description),
+                "group {name:?} has a conflicting description"
+            );
+            if family.description_template.is_none() {
+                self.transaction
+                    .execute("UPDATE effects SET description_template = ?2 WHERE id = ?1", params![id, description])?;
+                let family = self.families_by_id.get_mut(&id).expect("group family cached");
+                family.description_template = Some(description);
+                family.uses_link_type = true;
+            }
+        }
+        if !is_group {
             self.transaction.execute("UPDATE effects SET is_group = 1 WHERE id = ?1", [id])?;
             self.families_by_id.get_mut(&id).expect("group family cached").is_group = true;
         }
@@ -637,6 +655,24 @@ mod tests {
     use ddo_model::enums::BonusType;
     use ddo_model::stats::Stat;
     use rusqlite::Connection;
+
+    #[test]
+    fn every_ability_skill_group_has_its_own_description() {
+        let mut db = Connection::open_in_memory().unwrap();
+        db.execute_batch(ddo_model::ddl()).unwrap();
+        ddo_model::seeds::insert_all(&db).unwrap();
+        let transaction = db.transaction().unwrap();
+        let mut effects = EffectCache::new(&transaction);
+        effects.ensure_family("Dexterity Skills", "%b1 Dexterity Skills +{1}", None, 1).unwrap();
+        for ability in ["Strength", "Dexterity", "Constitution", "Intelligence", "Wisdom", "Charisma"] {
+            let group_name = format!("{ability} Skills");
+            let group_id = effects.ensure_group(&group_name).unwrap();
+            let description: String = transaction
+                .query_row("SELECT description_template FROM effects WHERE id = ?1", [group_id], |row| row.get(0))
+                .unwrap();
+            assert_eq!(description, format!("{{1}} %b1 bonus to all {ability} based skills."));
+        }
+    }
 
     #[test]
     fn stat_templates_merge_only_when_type_is_the_difference() {

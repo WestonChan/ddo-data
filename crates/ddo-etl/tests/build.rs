@@ -614,6 +614,10 @@ fn skill_ability_item_links_the_group_without_a_wrapper() {
         )
         .unwrap();
     assert_eq!(augment_link, (5, "Insight".into()));
+    let description: String = db
+        .query_row("SELECT description_template FROM effects WHERE name = 'Charisma Skills'", [], |row| row.get(0))
+        .unwrap();
+    assert_eq!(description, "{1} %b1 bonus to all Charisma based skills.");
 }
 
 #[test]

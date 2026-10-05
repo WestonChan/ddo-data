@@ -489,5 +489,19 @@ fn words_from_buff_kind(buff_kind: &str) -> String {
         words.push(character);
         previous = Some(character);
     }
-    words.split_whitespace().collect::<Vec<_>>().join(" ")
+    let split_words = words.split_whitespace().collect::<Vec<_>>();
+    split_words
+        .iter()
+        .enumerate()
+        .filter_map(|(index, word)| {
+            if matches!(*word, "Number" | "Numeral")
+                || (*word == "Roman" && split_words.get(index + 1) == Some(&"Numeral"))
+            {
+                None
+            } else {
+                Some(*word)
+            }
+        })
+        .collect::<Vec<_>>()
+        .join(" ")
 }

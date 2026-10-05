@@ -162,13 +162,23 @@ fn identifier_like_effect_names_are_warned() {
          VALUES ((SELECT MIN(id) FROM items), last_insert_rowid(), 999);
          INSERT INTO effects (name, text_template) VALUES ('Telekinetic117', 'Telekinetic 117');
          INSERT INTO item_effects (item_id, effect_id, sort_order)
-         VALUES ((SELECT MIN(id) FROM items), last_insert_rowid(), 998);",
+         VALUES ((SELECT MIN(id) FROM items), last_insert_rowid(), 998);
+         INSERT INTO effects (name, text_template) VALUES ('Parrying Number', 'Parrying');
+         INSERT INTO effects (name, text_template) VALUES ('Riposte Riposte', 'Riposte');
+         INSERT INTO effects (name, text_template) VALUES ('Feat Elusive Target', 'Elusive Target');
+         INSERT INTO effects (name, text_template) VALUES ('Penalty Good', 'Penalty');
+         INSERT INTO effects (name, text_template) VALUES ('Energy Absorption Negative', 'Absorption');",
     );
     let db = Connection::open(&db_path).unwrap();
     let report = integrity_report(&db, &fixture_options()).unwrap();
     let outcome = report.outcome("effects_named_like_identifiers").unwrap();
     assert!(outcome.offenders.iter().any(|offender| offender.name == "CamelCase"));
     assert!(outcome.offenders.iter().any(|offender| offender.name == "Telekinetic117"));
+    for name in
+        ["Parrying Number", "Riposte Riposte", "Feat Elusive Target", "Penalty Good", "Energy Absorption Negative"]
+    {
+        assert!(outcome.offenders.iter().any(|offender| offender.name == name), "{name}");
+    }
 }
 
 #[test]
