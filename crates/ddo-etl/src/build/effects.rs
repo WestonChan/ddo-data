@@ -585,6 +585,44 @@ impl<'a> EffectCache<'a> {
         Ok(())
     }
 
+    pub(super) fn merge_identical_text_family(&mut self, source_id: i64, destination_name: &str) -> Result<()> {
+        let source = self.family(source_id).expect("source family is cached").clone();
+        let destination = self.family_named(destination_name).expect("destination family is cached").clone();
+        ensure!(
+            !source.is_stat
+                && !source.is_group
+                && !source.has_stats
+                && !destination.is_stat
+                && !destination.is_group
+                && !destination.has_stats
+                && source.verbose_name_template == destination.verbose_name_template
+                && source.description_template == destination.description_template
+                && source.amount_count == destination.amount_count,
+            "effect {:?} cannot merge into {destination_name:?}: their text or bonuses differ",
+            source.name
+        );
+        for owner in [
+            EffectOwner::Item,
+            EffectOwner::Augment,
+            EffectOwner::SetBonusTier,
+            EffectOwner::Feat,
+            EffectOwner::ItemAugmentSlotOption,
+        ] {
+            let (table, _) = owner.table();
+            self.transaction.execute(
+                &format!("UPDATE {table} SET effect_id = ?2 WHERE effect_id = ?1"),
+                params![source_id, destination.id],
+            )?;
+        }
+        self.transaction
+            .execute("UPDATE modifiers SET effect_id = ?2 WHERE effect_id = ?1", params![source_id, destination.id])?;
+        self.transaction.execute("DELETE FROM effects WHERE id = ?1", [source_id])?;
+        self.families_by_name.remove(&source.name);
+        self.families_by_id.remove(&source_id);
+        self.link_types_by_family.remove(&source_id);
+        Ok(())
+    }
+
     pub(super) fn insert_link(
         &mut self,
         owner: EffectOwner,
@@ -940,6 +978,34 @@ mod tests {
             .collect();
         assert_eq!(amounts, [Some(19), None]);
         effects.insert_link(EffectOwner::Item, item_id, effect_id, None, (None, None), 1).unwrap();
+    }
+
+    #[test]
+    fn identical_text_families_merge_their_owner_links() {
+        let mut db = Connection::open_in_memory().unwrap();
+        db.execute_batch(ddo_model::ddl()).unwrap();
+        ddo_model::seeds::insert_all(&db).unwrap();
+        db.execute(
+            "INSERT INTO items (name, slot_id, item_category, wiki_url) VALUES ('Shared Text Probe',
+             (SELECT id FROM equipment_slots WHERE name = 'Feet'), 'Clothing',
+             'https://ddowiki.com/page/Shared_Text_Probe')",
+            [],
+        )
+        .unwrap();
+        let item_id = db.last_insert_rowid();
+        let transaction = db.transaction().unwrap();
+        let mut effects = EffectCache::new(&transaction);
+        let destination =
+            effects.ensure_family("Earthen Guard", "Earthen Guard", Some("A Stone Skin may trigger."), 0).unwrap();
+        let source =
+            effects.ensure_family("Echoes of 2006", "Earthen Guard", Some("A Stone Skin may trigger."), 0).unwrap();
+        effects.insert_link(EffectOwner::Item, item_id, source, None, (None, None), 0).unwrap();
+        effects.merge_identical_text_family(source, "Earthen Guard").unwrap();
+        let linked_effect: i64 = transaction
+            .query_row("SELECT effect_id FROM item_effects WHERE item_id = ?1", [item_id], |row| row.get(0))
+            .unwrap();
+        assert_eq!(linked_effect, destination);
+        assert!(effects.family(source).is_none());
     }
 
     #[test]

@@ -11,8 +11,35 @@ owner_type_precedence = ["ExtraLayOnHands", "Constitution Skills - Exceptional",
 
 [family.groups]
 Potency = "Spell Powers"
+Nullification = "Negative and Poison Spell Power"
+Radiance = "Light and Alignment Spell Power"
+VoidLore = "Negative and Poison Spell Lore"
 
 [names]
+"DR 1/-" = "DR 1/-"
+"DR 1/Chaotic" = "DR 1/Chaotic"
+"DR 10/Evil" = "DR 10/Evil"
+"DR 10/Good" = "DR 10/Good"
+"DR 10/Lawful" = "DR 10/Lawful"
+"DR 13/Chaotic" = "DR 13/Chaotic"
+"DR 15/-" = "DR 15/-"
+"DR 15/Adamantine" = "DR 15/Adamantine"
+"DR 15/Epic" = "DR 15/Epic"
+"DR 15/Evil" = "DR 15/Evil"
+"DR 15/Lawful" = "DR 15/Lawful"
+"DR 2/-" = "DR 2/-"
+"DR 2/Chaotic" = "DR 2/Chaotic"
+"DR 3/-" = "DR 3/-"
+"DR 3/Chaotic" = "DR 3/Chaotic"
+"DR 3/Lawful" = "DR 3/Lawful"
+"DR 30/Chaotic" = "DR 30/Chaotic"
+"DR 30/Lawful" = "DR 30/Lawful"
+"DR 5/-" = "DR 5/-"
+"DR 5/Adamantine" = "DR 5/Adamantine"
+"DR 5/Evil" = "DR 5/Evil"
+"DR 5/Good" = "DR 5/Good"
+"DR 5/Lawful" = "DR 5/Lawful"
+"DR 50/Evil" = "DR 50/Evil"
 "DR 30/Adamantine" = "DR 30/Adamantine"
 FeatMobility = "Feat: Mobility"
 WindFrenzy122 = "Wild Frenzy"
@@ -132,6 +159,30 @@ ExtraLayOnHands = "Lay on Hands Uses"
 "Charisma Skills" = "none"
 
 [line_templates]
+"Acid Spell Lore" = "%b1 Acid Spell Lore +{1}%"
+"Blighted Lore" = "%b1 Blighted Lore +{1}%"
+"Chaos Spell Lore" = "%b1 Chaos Spell Lore +{1}%"
+"Cold Spell Lore" = "%b1 Cold Spell Lore +{1}%"
+"Creeping Dust Lore" = "%b1 Creeping Dust Lore +{1}%"
+"Electric Spell Lore" = "%b1 Electric Spell Lore +{1}%"
+"Evil Spell Lore" = "%b1 Evil Spell Lore +{1}%"
+"Fire Spell Lore" = "%b1 Fire Spell Lore +{1}%"
+"Force Spell Lore" = "%b1 Force Spell Lore +{1}%"
+"Frozen Depths Lore" = "%b1 Frozen Depths Lore +{1}%"
+"Frozen Thunderstorm Lore" = "%b1 Frozen Thunderstorm Lore +{1}%"
+"Good Spell Lore" = "%b1 Good Spell Lore +{1}%"
+"Law Spell Lore" = "%b1 Law Spell Lore +{1}%"
+"Light Spell Lore" = "%b1 Light Spell Lore +{1}%"
+"Negative Spell Lore" = "%b1 Negative Spell Lore +{1}%"
+"Poison Spell Lore" = "%b1 Poison Spell Lore +{1}%"
+"Positive Spell Lore" = "%b1 Positive Spell Lore +{1}%"
+"Purifying Flame Lore" = "%b1 Purifying Flame Lore +{1}%"
+"Sacred Ground Lore" = "%b1 Sacred Ground Lore +{1}%"
+"Silver Flame Lore" = "Silver Flame Lore +{1}%"
+"Sonic Lore" = "%b1 Sonic Lore +{1}%"
+"Sonic Spell Lore" = "%b1 Sonic Spell Lore +{1}%"
+"Spell Lore (weapon)" = "Spell Lore +{1}%"
+"Thunderstorm Lore" = "%b1 Thunderstorm Lore +{1}%"
 "DR 30/Adamantine" = "DR 30/Adamantine"
 "Feat: Mobility" = "Feat: Mobility"
 "Heightened Awareness" = "Heightened Awareness {1}"
@@ -161,6 +212,7 @@ ExtraLayOnHands = "Lay on Hands Uses"
 [description_templates]
 "Spell Focus Mastery" = "+{1} %b1 bonus to the DC of all spells."
 "Combat Mastery" = "+{1} %b1 bonus to the DC to resist the character's Trip, Improved Trip, Sunder, Improved Sunder, Stunning Blow, and Stunning Fist attempts."
+Tactics = "+{1} %b1 bonus to the DC to resist the character's Trip, Improved Trip, Sunder, Improved Sunder, Stunning Blow, and Stunning Fist attempts."
 "Doublestrike and Doubleshot" = "+{1}% %b1 bonus to Doublestrike and Doubleshot."
 "Melee and Ranged Power" = "+{1} %b1 bonus to Melee and Ranged Power."
 Assassinate = "+{1} %b1 bonus to the DC of character's Assassinate attempts."
@@ -186,6 +238,9 @@ Deception = ["Deception", "Improved Deception"]
 Wizardry = ["Wizardry I", "Wizardry II", "Wizardry III", "Wizardry V", "Wizardry VI", "Wizardry VII", "Wizardry IX", "Wizardry X", "Wizardry XI"]
 
 [groups]
+"Negative and Poison Spell Power" = ["Negative Spell Power", "Poison Spell Power"]
+"Light and Alignment Spell Power" = ["Light Spell Power", "Chaos Spell Power", "Evil Spell Power", "Good Spell Power", "Law Spell Power"]
+"Negative and Poison Spell Lore" = ["Negative Spell Lore", "Poison Spell Lore"]
 "All Ability Scores" = ["Strength", "Dexterity", "Constitution", "Intelligence", "Wisdom", "Charisma"]
 Sheltering = ["Physical Resistance Rating", "Magical Resistance Rating"]
 "Melee and Ranged Power" = ["Melee Power", "Ranged Power"]
@@ -234,12 +289,25 @@ effect_name = "Combat Mastery"
 source = "https://ddowiki.com/page/Item:Dolorous_Quality_Combat_Mastery_(legendary)"
 read = "2026-10-05"
 
+[[augment_line_names]]
+augment = "Combat Mastery"
+source_name = "Tactics"
+effect_name = "Combat Mastery"
+source = "maetrim:Augments/CannithAndRandomItem.Augments.xml"
+read = "2026-10-05"
+
+[[augment_line_names]]
+augment = "Insightful Combat Mastery"
+source_name = "Tactics"
+effect_name = "Combat Mastery"
+source = "maetrim:Augments/CannithAndRandomItem.Augments.xml"
+read = "2026-10-05"
+
 [[augment_combined_lines]]
 augment = "Brightbane Emerald"
 first_effect = "Charisma Skills"
 first_bonus_type = "Insight"
 first_value_from = 5
-first_value_to = 4
 second_effect = "Hide"
 second_bonus_type = "Penalty"
 second_value = -6
@@ -252,7 +320,6 @@ augment = "Legendary Brightbane Emerald"
 first_effect = "Charisma Skills"
 first_bonus_type = "Insight"
 first_value_from = 7
-first_value_to = 7
 second_effect = "Hide"
 second_bonus_type = "Penalty"
 second_value = -6
@@ -285,15 +352,12 @@ Corrosion = "Acid Spell Power"
 Devotion = "Positive Spell Power"
 Impulse = "Force Spell Power"
 Resonance = "Sonic Spell Power"
-Radiance = "Light Spell Power"
-Nullification = "Negative Spell Power"
 Reconstruction = "Repair Spell Power"
 FireLore = "Fire Spell Lore"
 LightningLore = "Electric Spell Lore"
 IceLore = "Cold Spell Lore"
 AcidLore = "Acid Spell Lore"
 SonicLore = "Sonic Spell Lore"
-VoidLore = "Negative Spell Lore"
 HealingLore = "Positive Spell Lore"
 RadianceLore = "Light Spell Lore"
 KineticLore = "Force Spell Lore"
@@ -490,6 +554,22 @@ family_names = { "Melee Attack Speed" = "Melee Alacrity", "Ranged Attack Speed" 
 targets = { All = ["Trip DC", "Sunder DC", "Stun DC"], General = ["Trip DC", "Sunder DC", "Stun DC"], Trip = ["Trip DC"], Sunder = ["Sunder DC"], Stun = ["Stun DC"], Assassinate = ["Assassinate DC"], "Rune Arm" = ["Rune Arm DC"], Vertigo = ["Trip DC"] }
 shared_targets = { All = "Tactics", General = "Tactics" }
 family_names = { "Assassinate DC" = "Assassinate" }
+
+[[effect.owner_extra_stats]]
+owner_kind = "augment"
+owner_name = "+1 Reaper Bonus to Spell, Tactical, and Assassinate DCs"
+effect_type = "TacticalDC"
+stat = "Assassinate DC"
+source = "maetrim:Augments/Reaper.Augments.xml"
+
+[option_companion_targets]
+"Combat Mastery" = ["Quivering Palm"]
+
+[option_target_aliases."Combat Mastery"]
+Shatter = "Sunder"
+
+[option_name_aliases]
+COmabt = "Combat"
 
 [effect.by_item]
 AbilityBonus = "{item}"

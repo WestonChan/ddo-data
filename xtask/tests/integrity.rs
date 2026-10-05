@@ -413,6 +413,29 @@ fn injected_violations() -> Vec<InjectedViolation> {
             "Integrity Title Probe",
         ),
         violation(
+            "effect_template_numbers_match_names",
+            "INSERT INTO effects (name, verbose_name_template) VALUES ('Integrity Solar IX', 'Integrity Solar VI');
+             INSERT INTO item_effects (item_id, effect_id, sort_order)
+             VALUES ((SELECT MIN(id) FROM items), last_insert_rowid(), 997);",
+            "Integrity Solar IX",
+        ),
+        violation(
+            "owner_names_disagree_with_linked_effects",
+            "INSERT INTO augments (name, family) VALUES ('Integrity Combat Mastery', 'probe');
+             INSERT INTO augment_effects (augment_id, effect_id, bonus_type_id, value, sort_order)
+             VALUES (last_insert_rowid(), (SELECT id FROM effects WHERE name = 'Strength'),
+                     (SELECT id FROM bonus_types WHERE name = 'Insight'), 1, 0);",
+            "Integrity Combat Mastery",
+        ),
+        violation(
+            "universal_spell_power_has_no_elemental_types",
+            "INSERT INTO item_effects (item_id, effect_id, bonus_type_id, value, sort_order)
+             VALUES ((SELECT MIN(id) FROM items),
+                     (SELECT id FROM effects WHERE name = 'Universal Spell Power'),
+                     (SELECT id FROM bonus_types WHERE name = 'Equipment'), 10, 998);",
+            "item:",
+        ),
+        violation(
             "skill_groups_share_home_bonus_type",
             "INSERT INTO effects (name, verbose_name_template, is_group)
              VALUES ('Strength Skills', '%b1 Strength Skills +{1}', 1);
@@ -453,6 +476,22 @@ fn injected_violations() -> Vec<InjectedViolation> {
              INSERT INTO item_effects (item_id, effect_id, value, bonus_type_id, sort_order)
              VALUES ((SELECT MIN(id) FROM items), (SELECT id FROM effects WHERE name = 'Integrity Double Bonus'),
                      1, (SELECT id FROM bonus_types WHERE name = 'Enhancement'), 997);",
+            "item:",
+        ),
+        violation(
+            "owner_bonuses_repeated_across_links",
+            "INSERT INTO effects (name, verbose_name_template) VALUES ('Integrity Link A', '%b1 Integrity Link A +{1}');
+             INSERT INTO effect_bonuses (effect_id, target_effect_id, amount_from, sort_order)
+             VALUES (last_insert_rowid(), (SELECT id FROM effects WHERE name = 'Strength'), 1, 0);
+             INSERT INTO effects (name, verbose_name_template) VALUES ('Integrity Link B', '%b1 Integrity Link B +{1}');
+             INSERT INTO effect_bonuses (effect_id, target_effect_id, amount_from, sort_order)
+             VALUES (last_insert_rowid(), (SELECT id FROM effects WHERE name = 'Strength'), 1, 0);
+             INSERT INTO item_effects (item_id, effect_id, value, bonus_type_id, sort_order)
+             SELECT MIN(id), (SELECT id FROM effects WHERE name = 'Integrity Link A'), 1,
+                    (SELECT id FROM bonus_types WHERE name = 'Enhancement'), 995 FROM items;
+             INSERT INTO item_effects (item_id, effect_id, value, bonus_type_id, sort_order)
+             SELECT MIN(id), (SELECT id FROM effects WHERE name = 'Integrity Link B'), 1,
+                    (SELECT id FROM bonus_types WHERE name = 'Enhancement'), 996 FROM items;",
             "item:",
         ),
         violation(

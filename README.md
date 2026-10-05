@@ -65,7 +65,8 @@ cargo run -p ddo-etl -- build --source upstream/Output/DataFiles --out ddo.db
 `ddo-api` serves the database read-only. Every response carries a strong `ETag`, a long
 `Cache-Control`, and an `X-Dataset-Version` header naming the DDOBuilderV2 commit, so browsers and
 CDNs can cache aggressively and revalidate with `If-None-Match`. Responses are gzip/brotli
-compressed, CORS allows any origin for `GET`, and requests are rate limited per IP. For bulk access
+compressed, CORS allows any origin for `GET`, and requests are limited to a burst of 100 followed
+by five per second per IP. For bulk access
 download the whole database once from `/v1/dump.sqlite` rather than paging the list endpoints.
 
 | Path | What |

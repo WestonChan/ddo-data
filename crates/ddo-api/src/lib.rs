@@ -71,7 +71,7 @@ pub fn app(state: AppState) -> Router {
         .layer(CompressionLayer::new());
     if state.is_rate_limited() {
         let rate_limit_config = GovernorConfigBuilder::default()
-            .per_second(5)
+            .per_millisecond(200)
             .burst_size(100)
             .key_extractor(SmartIpKeyExtractor)
             .finish()

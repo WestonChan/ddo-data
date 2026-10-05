@@ -58,6 +58,53 @@ fn potency_grants_each_named_spell_power_without_granting_universal_spell_power(
 }
 
 #[test]
+fn an_augment_potency_effect_grants_each_spell_power_through_the_shared_family() {
+    let (db, _) = built_fixture_db();
+    let augment_id: i64 =
+        db.query_row("SELECT id FROM augments WHERE name = 'Potency Probe'", [], |row| row.get(0)).unwrap();
+    let linked_family: String = db
+        .query_row(
+            "SELECT e.name FROM augment_effects ae JOIN effects e ON e.id = ae.effect_id WHERE ae.augment_id = ?1",
+            [augment_id],
+            |row| row.get(0),
+        )
+        .unwrap();
+    assert_eq!(linked_family, "Potency");
+    let spell_powers: Vec<(String, i64)> = db
+        .prepare(
+            "SELECT s.name, ob.amount FROM owner_bonuses ob JOIN effects s ON s.id = ob.stat_id
+             WHERE ob.owner_kind = 'augment' AND ob.owner_id = ?1 ORDER BY s.name",
+        )
+        .unwrap()
+        .query_map([augment_id], |row| Ok((row.get(0)?, row.get(1)?)))
+        .unwrap()
+        .map(Result::unwrap)
+        .collect();
+    assert_eq!(spell_powers.len(), 15);
+    assert!(spell_powers.contains(&("Fire Spell Power".to_string(), 111)));
+    assert!(!spell_powers.iter().any(|(name, _)| name == "Universal Spell Power"));
+}
+
+#[test]
+fn implement_spell_power_remains_universal() {
+    let (db, _) = built_fixture_db();
+    let bonuses: Vec<(String, String)> = db
+        .prepare(
+            "SELECT s.name, bt.name FROM owner_bonuses ob
+             JOIN augments a ON a.id = ob.owner_id
+             JOIN effects s ON s.id = ob.stat_id
+             JOIN bonus_types bt ON bt.id = ob.bonus_type_id
+             WHERE ob.owner_kind = 'augment' AND a.name = 'Implement Spell Power Probe'",
+        )
+        .unwrap()
+        .query_map([], |row| Ok((row.get(0)?, row.get(1)?)))
+        .unwrap()
+        .map(Result::unwrap)
+        .collect();
+    assert_eq!(bonuses, [("Universal Spell Power".to_string(), "Implement".to_string())]);
+}
+
+#[test]
 fn writes_improved_deception_from_its_definition_as_a_typed_bluff_bonus() {
     let (db, report) = built_fixture_db();
     assert_eq!(report.effect_fallback_buff_count, 23);
@@ -1005,7 +1052,7 @@ fn diff_reports_coverage_against_a_legacy_database() {
 #[test]
 fn writes_augments_with_slots_bonuses_and_modifiers() {
     let (db, report) = built_fixture_db();
-    assert_eq!(report.augment_count, 16);
+    assert_eq!(report.augment_count, 18);
     let ruby: i64 =
         db.query_row("SELECT id FROM augments WHERE name = 'Ruby of Acid Damage'", [], |r| r.get(0)).unwrap();
     let (family, has_selectable_level, levels, values): (String, bool, String, String) = db

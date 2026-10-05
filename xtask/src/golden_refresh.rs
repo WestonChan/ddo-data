@@ -58,10 +58,10 @@ fn select_items(
 
 const REASON_CODES: &[&str] = &[
     "value_in_wiki_name",
+    "value_in_source_name",
     "set_line_form",
     "source_wording",
     "source_line_style",
-    "wiki_may_be_stale",
     "nonstandard_tooltip",
     "value_disagreement",
     "folds",

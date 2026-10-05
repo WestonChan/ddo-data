@@ -21,6 +21,12 @@ pub struct EffectMap {
     pub augment_line_names: Vec<AugmentLineName>,
     #[serde(default)]
     pub augment_combined_lines: Vec<AugmentCombinedLine>,
+    #[serde(default)]
+    pub option_companion_targets: BTreeMap<String, Vec<String>>,
+    #[serde(default)]
+    pub option_target_aliases: BTreeMap<String, BTreeMap<String, String>>,
+    #[serde(default)]
+    pub option_name_aliases: BTreeMap<String, String>,
     pub item_aliases: BTreeMap<String, String>,
     #[serde(default)]
     pub stat_name_aliases: BTreeMap<String, String>,
@@ -82,6 +88,18 @@ pub struct EffectVocabulary {
     pub companion_targets: CompanionTargets,
     pub energy_target_artifacts: EnergyTargetArtifacts,
     pub engine_only: BTreeMap<String, String>,
+    #[serde(default)]
+    pub owner_extra_stats: Vec<OwnerExtraStat>,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct OwnerExtraStat {
+    pub owner_kind: String,
+    pub owner_name: String,
+    pub effect_type: String,
+    pub stat: String,
+    pub source: String,
 }
 
 #[derive(Debug, Deserialize)]
@@ -112,7 +130,6 @@ pub struct AugmentCombinedLine {
     pub first_effect: String,
     pub first_bonus_type: String,
     pub first_value_from: i64,
-    pub first_value_to: i64,
     pub second_effect: String,
     pub second_bonus_type: String,
     pub second_value: i64,
@@ -179,7 +196,8 @@ impl EffectMap {
             if rule.augment.trim().is_empty()
                 || rule.source_name.trim().is_empty()
                 || !vocabulary.named_effect_ids.contains_key(&rule.effect_name)
-                || !rule.source.starts_with("https://ddowiki.com/page/")
+                || !(rule.source.starts_with("https://ddowiki.com/page/")
+                    || rule.source == "maetrim:Augments/CannithAndRandomItem.Augments.xml")
                 || rule.read.len() != 10
                 || !augmented_names.insert((&rule.augment, &rule.source_name))
             {
@@ -197,6 +215,27 @@ impl EffectMap {
                 || BonusType::parse(&rule.second_bonus_type).is_none()
             {
                 bail!("effect_map.toml [[augment_combined_lines]] has invalid rule for {:?}", rule.augment);
+            }
+        }
+        for (line_name, targets) in &vocabulary.option_companion_targets {
+            if line_name.trim().is_empty()
+                || targets.is_empty()
+                || targets.iter().any(|target| target.trim().is_empty())
+            {
+                bail!("effect_map.toml [option_companion_targets] {line_name:?} needs nonblank targets");
+            }
+        }
+        for (line_name, aliases) in &vocabulary.option_target_aliases {
+            if line_name.trim().is_empty()
+                || aliases.is_empty()
+                || aliases.iter().any(|(source, target)| source.trim().is_empty() || target.trim().is_empty())
+            {
+                bail!("effect_map.toml [option_target_aliases] {line_name:?} needs nonblank aliases");
+            }
+        }
+        for (source, replacement) in &vocabulary.option_name_aliases {
+            if source.trim().is_empty() || replacement.trim().is_empty() {
+                bail!("effect_map.toml [option_name_aliases] needs nonblank words");
             }
         }
         for (effect_name, bonus_type_name) in &vocabulary.home_bonus_types {
@@ -416,6 +455,16 @@ impl EffectMap {
         for (alias, weapon_name) in &vocabulary.weapon_aliases {
             if WeaponType::by_name(weapon_name).is_none() {
                 bail!("effect_map.toml [weapon_aliases] {alias} names unknown weapon type {weapon_name:?}");
+            }
+        }
+        for rule in &vocabulary.effect.owner_extra_stats {
+            if rule.owner_kind != "augment"
+                || rule.owner_name.trim().is_empty()
+                || rule.effect_type.trim().is_empty()
+                || Stat::by_name(&rule.stat).is_none()
+                || rule.source != "maetrim:Augments/Reaper.Augments.xml"
+            {
+                bail!("effect_map.toml [[effect.owner_extra_stats]] has invalid rule for {:?}", rule.owner_name);
             }
         }
         for (buff_type, family_name) in &vocabulary.names {

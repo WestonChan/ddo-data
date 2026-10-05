@@ -502,7 +502,12 @@ fn render_verbose_name(row: &Value) -> String {
     } else {
         template
     };
-    render_effect_template(template, &rendered_row).split_whitespace().collect::<Vec<_>>().join(" ")
+    let rendered = render_effect_template(template, &rendered_row).split_whitespace().collect::<Vec<_>>().join(" ");
+    if !visible_type.is_empty() && !template.contains("%b1") && !rendered.starts_with(visible_type) {
+        format!("{visible_type} {rendered}")
+    } else {
+        rendered
+    }
 }
 
 fn render_set_bonus_line(row: &Value) -> String {
@@ -519,7 +524,7 @@ fn render_set_bonus_line(row: &Value) -> String {
 
 #[cfg(test)]
 mod effect_template_tests {
-    use super::{render_description_template, render_effect_template, render_verbose_name};
+    use super::{render_description_template, render_effect_template, render_set_bonus_line, render_verbose_name};
     use serde_json::json;
 
     #[test]
@@ -550,6 +555,21 @@ mod effect_template_tests {
             "bonus_type": "Insight", "home_bonus_type": "Equipment"
         });
         assert_eq!(render_verbose_name(&tiered), "Insightful Spell Penetration I");
+        let sheltering = json!({
+            "name": "Physical Sheltering", "verbose_name_template": "Physical Sheltering +{1}",
+            "template_value": 18, "template_value2": null,
+            "bonus_type": "Insight", "home_bonus_type": "Equipment"
+        });
+        assert_eq!(render_verbose_name(&sheltering), "Insightful Physical Sheltering +18");
+    }
+
+    #[test]
+    fn natural_armor_set_line_names_the_armor_class_it_grants() {
+        let row = json!({
+            "name": "Natural Armor", "set_bonus_line_template": "+{1} %b1 Bonus to Armor Class",
+            "template_value": 5, "template_value2": null, "template_bonus_type": "Profane"
+        });
+        assert_eq!(render_set_bonus_line(&row), "+5 Profane Bonus to Armor Class");
     }
 
     #[test]

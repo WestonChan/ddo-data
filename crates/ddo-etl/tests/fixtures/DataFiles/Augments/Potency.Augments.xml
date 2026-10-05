@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Augments>
+  <Augment>
+    <Name>Potency Probe</Name>
+    <Description>Equipment bonus to each Spell Power.</Description>
+    <MinLevel>30</MinLevel>
+    <Type>Yellow</Type>
+    <Effect>
+      <Type>SpellPower</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">111</Amount>
+      <Item>All</Item>
+    </Effect>
+  </Augment>
+  <Augment>
+    <Name>Implement Spell Power Probe</Name>
+    <Description>Implement bonus to Universal Spell Power.</Description>
+    <MinLevel>30</MinLevel>
+    <Type>Yellow</Type>
+    <Effect>
+      <Type>SpellPower</Type>
+      <Bonus>Implement</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">28</Amount>
+      <Item>All</Item>
+    </Effect>
+  </Augment>
+</Augments>

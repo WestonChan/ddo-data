@@ -124,7 +124,7 @@ impl TableWriter<'_> {
             links[first_index] = DerivedEffectLink {
                 effect_id,
                 bonus_type: None,
-                value: Some(rule.first_value_to),
+                value: Some(rule.first_value_from),
                 value2: Some(rule.second_value),
             };
             links.remove(second_index);

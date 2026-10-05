@@ -394,12 +394,13 @@ impl TableWriter<'_> {
             self.pending_set_option_links.push((option_id, set_name.to_string()));
         }
         self.write_modifiers(ModifierSource::ItemAugmentSlotOption, option_id, &slot_option.effects)?;
-        self.pending_derived_effects.push((
-            EffectOwner::ItemAugmentSlotOption,
-            option_id,
-            item_name.to_string(),
-            slot_option.effects.clone(),
-        ));
+        self.pending_derived_effects.push(super::PendingDerivedEffects {
+            owner_kind: EffectOwner::ItemAugmentSlotOption,
+            owner_id: option_id,
+            owner_name: item_name.to_string(),
+            option_name: Some(slot_option.name.trim().to_string()),
+            effects: slot_option.effects.clone(),
+        });
         Ok(())
     }
 

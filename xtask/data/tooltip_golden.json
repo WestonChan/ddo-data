@@ -3213,14 +3213,9 @@
           "read": "2026-10-05",
           "known_differences": {
             "name": {
-              "reason": "A wiki-created effect retains its value-bearing source name until the wiki input has family and amount slots.",
+              "reason": "A Maetrim effect retains its value-bearing source name until the dice and amount fields are modelled.",
               "served": "Anarchic Burst 7",
-              "code": "value_in_wiki_name"
-            },
-            "description": {
-              "code": "wiki_may_be_stale",
-              "reason": "The wiki dice or target list may be stale; retain Maetrim pending a fresh source read.",
-              "served": "This weapon is a chaotic conduit, dealing 7d6 Chaos damage on a successful hit to Lawful enemies, and 14d6 Chaos damage on a critical hit to Lawful enemies. This effect makes the weapon chaotically aligned. Lawful characters wielding this weapon will suffer one negative level."
+              "code": "value_in_source_name"
             }
           }
         },
@@ -3272,13 +3267,13 @@
           "read": "2026-10-05",
           "known_differences": {
             "name": {
-              "reason": "A wiki-created effect retains its value-bearing source name until the wiki input has family and amount slots.",
+              "reason": "A Maetrim effect retains its value-bearing source name until the dice and amount fields are modelled.",
               "served": "Anarchic 7",
-              "code": "value_in_wiki_name"
+              "code": "value_in_source_name"
             },
             "description": {
-              "code": "source_wording",
-              "reason": "Maetrim and the wiki describe this effect in different prose; the wiki wording has not been imported.",
+              "code": "value_disagreement",
+              "reason": "This item's wiki says 7 to 28 Chaos damage, while its shared Maetrim effect says 7d6; the conflict requires an owner-specific source decision.",
               "served": "This weapon is chaotic and used to undermine the righteous, dealing an additional 7d6 chaos damage on each hit. This effect makes the weapon chaotic aligned. (Lawful characters wielding this weapon will suffer one negative level.)"
             }
           }
@@ -4387,9 +4382,9 @@
           "read": "2026-10-05",
           "known_differences": {
             "name": {
-              "reason": "A wiki-created effect retains its value-bearing source name until the wiki input has family and amount slots.",
+              "reason": "A Maetrim effect retains its value-bearing source name until the dice and amount fields are modelled.",
               "served": "Unholy 7",
-              "code": "value_in_wiki_name"
+              "code": "value_in_source_name"
             },
             "description": {
               "code": "source_wording",
@@ -5103,9 +5098,9 @@
           "read": "2026-10-05",
           "known_differences": {
             "name": {
-              "reason": "A wiki-created effect retains its value-bearing source name until the wiki input has family and amount slots.",
+              "reason": "A Maetrim effect retains its value-bearing source name until the dice and amount fields are modelled.",
               "served": "Fiery 7",
-              "code": "value_in_wiki_name"
+              "code": "value_in_source_name"
             }
           }
         },
@@ -5129,9 +5124,9 @@
           "read": "2026-10-05",
           "known_differences": {
             "name": {
-              "reason": "A wiki-created effect retains its value-bearing source name until the wiki input has family and amount slots.",
+              "reason": "A Maetrim effect retains its value-bearing source name until the dice and amount fields are modelled.",
               "served": "Crushing 16",
-              "code": "value_in_wiki_name"
+              "code": "value_in_source_name"
             }
           }
         },
@@ -5155,9 +5150,9 @@
           "read": "2026-10-05",
           "known_differences": {
             "name": {
-              "reason": "A wiki-created effect retains its value-bearing source name until the wiki input has family and amount slots.",
+              "reason": "A Maetrim effect retains its value-bearing source name until the dice and amount fields are modelled.",
               "served": "Magma Surge 7",
-              "code": "value_in_wiki_name"
+              "code": "value_in_source_name"
             }
           }
         },
@@ -5947,9 +5942,9 @@
           "read": "2026-10-05",
           "known_differences": {
             "name": {
-              "reason": "A wiki-created effect retains its value-bearing source name until the wiki input has family and amount slots.",
+              "reason": "A Maetrim effect retains its value-bearing source name until the dice and amount fields are modelled.",
               "served": "Coruscating 7",
-              "code": "value_in_wiki_name"
+              "code": "value_in_source_name"
             }
           }
         },
@@ -5973,9 +5968,9 @@
           "read": "2026-10-05",
           "known_differences": {
             "name": {
-              "reason": "A wiki-created effect retains its value-bearing source name until the wiki input has family and amount slots.",
+              "reason": "A Maetrim effect retains its value-bearing source name until the dice and amount fields are modelled.",
               "served": "Impactful 7",
-              "code": "value_in_wiki_name"
+              "code": "value_in_source_name"
             },
             "description": {
               "code": "source_line_style",
@@ -6005,14 +6000,9 @@
           "read": "2026-10-05",
           "known_differences": {
             "name": {
-              "reason": "A wiki-created effect retains its value-bearing source name until the wiki input has family and amount slots.",
+              "reason": "A Maetrim effect retains its value-bearing source name until the dice and amount fields are modelled.",
               "served": "Holy Burst 7",
-              "code": "value_in_wiki_name"
-            },
-            "description": {
-              "code": "wiki_may_be_stale",
-              "reason": "The wiki dice or target list may be stale; retain Maetrim pending a fresh source read.",
-              "served": "This weapon sings of virtue, dealing 7d6 Good damage on a successful hit to Evil enemies, and 14d6 Good damage on a critical hit to Evil enemies. This effect makes the weapon good aligned."
+              "code": "value_in_source_name"
             }
           }
         },
@@ -7339,8 +7329,8 @@
           "read": "2026-10-05",
           "known_differences": {
             "description": {
-              "code": "wiki_may_be_stale",
-              "reason": "The wiki dice or target list may be stale; retain Maetrim pending a fresh source read.",
+              "code": "value_disagreement",
+              "reason": "This item's wiki lists four resistances while the shared Maetrim effect also includes Sonic; the conflict requires an owner-specific source decision.",
               "served": "Passive: +45 Enhancement bonus to your Acid, Cold, Electricity, Fire, and Sonic Resistances."
             }
           }
@@ -7896,8 +7886,8 @@
           "wiki_name": "Strength Skills - Exceptional Bonus",
           "known_differences": {
             "description": {
-              "code": "wiki_may_be_stale",
-              "reason": "The wiki lists only Jump, while the Strength Skills source grants both Jump and Swim.",
+              "code": "value_disagreement",
+              "reason": "This item's wiki lists only Jump while the shared Strength Skills group also grants Swim; the conflict requires an owner-specific source decision.",
               "served": "Passive +2 Exceptional bonus to the Strength based skills of: Jump and Swim"
             }
           }

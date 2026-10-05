@@ -22,6 +22,12 @@ struct TooltipComparison {
     unrecorded: Vec<String>,
 }
 
+#[derive(Clone, Copy)]
+struct GoldenLineContext {
+    different_line_counts: bool,
+    wiki_owner: bool,
+}
+
 pub fn check_wiki_tooltips(db_path: &Path) -> Result<String> {
     let corpus: Value = serde_json::from_str(GOLDEN_LINES)?;
     let db = Connection::open_with_flags(db_path, rusqlite::OpenFlags::SQLITE_OPEN_READ_ONLY)?;
@@ -40,6 +46,12 @@ pub fn check_wiki_tooltips(db_path: &Path) -> Result<String> {
             let owner_id: i64 = db
                 .query_row(&format!("SELECT id FROM {table} WHERE name = ?1"), [owner_name], |row| row.get(0))
                 .with_context(|| format!("golden {collection} owner {owner_name:?}"))?;
+            let wiki_owner = collection != "sets"
+                && db.query_row(
+                    &format!("SELECT provenance = 'wiki' FROM {table} WHERE id = ?1"),
+                    [owner_id],
+                    |row| row.get::<_, bool>(0),
+                )?;
             let detail = runtime.block_on(served_detail(&state, &format!("/v1/{route}/{owner_id}")))?;
             if collection == "sets" {
                 for tier in owner["tiers"].as_array().context("golden set tiers")? {
@@ -55,6 +67,7 @@ pub fn check_wiki_tooltips(db_path: &Path) -> Result<String> {
                         &tier["lines"],
                         &served_tier["effects"],
                         &mut comparison,
+                        wiki_owner,
                     )?;
                 }
             } else {
@@ -65,7 +78,7 @@ pub fn check_wiki_tooltips(db_path: &Path) -> Result<String> {
                         }
                     }
                 }
-                compare_lines(owner_name, &owner["lines"], &detail["effects"], &mut comparison)?;
+                compare_lines(owner_name, &owner["lines"], &detail["effects"], &mut comparison, wiki_owner)?;
             }
             if comparison.unrecorded.len() > mismatches_before {
                 let selector = match collection {
@@ -114,11 +127,10 @@ fn compare_enhancement_bonus(owner_name: &str, golden: &Value, detail: &Value, c
             }
         }
         (Some(_), _)
-            if golden["known_differences"]["enhancement_bonus"]["reason"].as_str().is_some()
+            if golden["known_differences"]["enhancement_bonus"]["code"].as_str() == Some("value_disagreement")
                 && golden["known_differences"]["enhancement_bonus"]["served"].as_i64() == actual =>
         {
-            let reason = golden["known_differences"]["enhancement_bonus"]["reason"].as_str().unwrap();
-            *comparison.known_by_reason.entry(reason.to_string()).or_default() += 1;
+            *comparison.known_by_reason.entry("value_disagreement".to_string()).or_default() += 1;
         }
         _ => comparison.unrecorded.push(format!(
             "{owner_name}: wiki enhancement bonus {expected:?}, served item enhancement_bonus {actual:?}"
@@ -139,6 +151,7 @@ fn compare_lines(
     golden_lines: &Value,
     served_lines: &Value,
     comparison: &mut TooltipComparison,
+    wiki_owner: bool,
 ) -> Result<()> {
     let served_lines = served_lines.as_array().context("served effect lines")?;
     let golden_lines = golden_lines.as_array().context("golden effect lines")?;
@@ -165,12 +178,13 @@ fn compare_lines(
         let wiki_name =
             golden["wiki_name"].as_str().map(str::to_string).unwrap_or_else(|| wiki_label(wiki_text, golden));
         let line_location = format!("{owner_name} [line {line_index}]");
-        compare_field(&line_location, golden, served, "name", &wiki_name, different_line_counts, comparison);
-        compare_field(&line_location, golden, served, "verbose_name", wiki_text, different_line_counts, comparison);
+        let context = GoldenLineContext { different_line_counts, wiki_owner };
+        compare_field(&line_location, golden, served, "name", &wiki_name, context, comparison);
+        compare_field(&line_location, golden, served, "verbose_name", wiki_text, context, comparison);
         if golden["tooltip_is_standard"] == true {
             let tooltip = golden["wiki_tooltip"].as_str().context("standard tooltip text")?;
             let tooltip = tooltip.split_once(':').map_or(tooltip, |(_, body)| body.trim());
-            compare_field(&line_location, golden, served, "description", tooltip, different_line_counts, comparison);
+            compare_field(&line_location, golden, served, "description", tooltip, context, comparison);
         }
         if comparison.unrecorded.len() == unrecorded_before {
             if comparison.matched_fields - matched_before == if golden["tooltip_is_standard"] == true { 3 } else { 2 } {
@@ -189,7 +203,7 @@ fn compare_field(
     served: &Value,
     field: &str,
     expected: &str,
-    different_line_counts: bool,
+    context: GoldenLineContext,
     comparison: &mut TooltipComparison,
 ) {
     let actual = served[field].as_str().unwrap_or("");
@@ -205,18 +219,25 @@ fn compare_field(
         (golden["known_differences"][field]["code"].as_str(), golden["known_differences"][field]["served"].as_str())
     {
         let valid_shape = match code {
-            "value_in_wiki_name" => field == "name" && actual.chars().any(|character| character.is_ascii_digit()),
+            "value_in_wiki_name" => {
+                context.wiki_owner && field == "name" && actual.chars().any(|character| character.is_ascii_digit())
+            }
+            "value_in_source_name" => {
+                !context.wiki_owner && field == "name" && actual.chars().any(|character| character.is_ascii_digit())
+            }
             "set_line_form" => field == "name" && golden["kind"] == "set_tier_line",
-            "source_wording"
-            | "source_line_style"
-            | "wiki_may_be_stale"
-            | "nonstandard_tooltip"
-            | "value_disagreement" => field == "description" && !actual.is_empty(),
+            "source_wording" | "source_line_style" | "nonstandard_tooltip" | "value_disagreement" => {
+                field == "description" && !actual.is_empty()
+            }
             "folds" => field == "description" && !actual.is_empty(),
-            "grouping" => different_line_counts,
+            "grouping" => context.different_line_counts,
             _ => false,
         };
-        if !valid_shape {
+        if !valid_shape
+            || (field == "description"
+                && code != "value_disagreement"
+                && numeric_tokens(actual) != numeric_tokens(expected))
+        {
             comparison.unrecorded.push(format!("{line_location}: invalid {code:?} reason for {field}"));
         } else if collapse_whitespace(actual) == collapse_whitespace(recorded) {
             *comparison.known_by_reason.entry(code.to_string()).or_default() += 1;
@@ -238,6 +259,63 @@ fn compare_field(
 
 fn collapse_whitespace(text: &str) -> String {
     text.split_whitespace().collect::<Vec<_>>().join(" ")
+}
+
+fn numeric_tokens(text: &str) -> Vec<String> {
+    let bytes = text.as_bytes();
+    let mut tokens = Vec::new();
+    tokens.extend(
+        text.split(|character: char| !character.is_ascii_alphabetic())
+            .filter(|word| word.eq_ignore_ascii_case("one"))
+            .map(|_| "1".to_string()),
+    );
+    let mut index = 0;
+    while index < bytes.len() {
+        if !bytes[index].is_ascii_digit() {
+            index += 1;
+            continue;
+        }
+        let start = index;
+        while index < bytes.len() && bytes[index].is_ascii_digit() {
+            index += 1;
+        }
+        if index + 1 < bytes.len() && bytes[index] == b'd' && bytes[index + 1].is_ascii_digit() {
+            let dice_number: u64 = text[start..index].parse().unwrap_or(0);
+            index += 1;
+            let sides_start = index;
+            while index < bytes.len() && bytes[index].is_ascii_digit() {
+                index += 1;
+            }
+            let dice_sides: u64 = text[sides_start..index].parse().unwrap_or(0);
+            tokens.push(format!("{}-{}", dice_number, dice_number.saturating_mul(dice_sides)));
+            continue;
+        }
+        let range_start = index;
+        while index < bytes.len() && bytes[index].is_ascii_whitespace() {
+            index += 1;
+        }
+        if index + 1 < bytes.len() && &bytes[index..index + 2] == b"to" {
+            index += 2;
+            while index < bytes.len() && bytes[index].is_ascii_whitespace() {
+                index += 1;
+            }
+            if index < bytes.len() && bytes[index].is_ascii_digit() {
+                let range_end_start = index;
+                while index < bytes.len() && bytes[index].is_ascii_digit() {
+                    index += 1;
+                }
+                tokens.push(format!("{}-{}", &text[start..range_start], &text[range_end_start..index]));
+                continue;
+            }
+        }
+        index = range_start;
+        if index < bytes.len() && bytes[index] == b'%' {
+            index += 1;
+        }
+        tokens.push(text[start..index].to_string());
+    }
+    tokens.sort();
+    tokens
 }
 
 fn wiki_label(wiki_text: &str, golden: &Value) -> String {
@@ -265,7 +343,10 @@ fn wiki_label(wiki_text: &str, golden: &Value) -> String {
 
 #[cfg(test)]
 mod tests {
-    use super::{collapse_whitespace, compare_enhancement_bonus, compare_field, wiki_label, TooltipComparison};
+    use super::{
+        collapse_whitespace, compare_enhancement_bonus, compare_field, numeric_tokens, wiki_label, GoldenLineContext,
+        TooltipComparison,
+    };
     use serde_json::json;
 
     #[test]
@@ -292,7 +373,15 @@ mod tests {
         });
         let served = json!({"name": "Evocation Focus"});
         let mut comparison = TooltipComparison::default();
-        compare_field("Probe [line 0]", &golden, &served, "name", "Evocation Focus", false, &mut comparison);
+        compare_field(
+            "Probe [line 0]",
+            &golden,
+            &served,
+            "name",
+            "Evocation Focus",
+            GoldenLineContext { different_line_counts: false, wiki_owner: false },
+            &mut comparison,
+        );
         assert_eq!(comparison.unrecorded.len(), 1);
     }
 
@@ -304,6 +393,47 @@ mod tests {
         assert_eq!(comparison.enhancement_bonuses_checked, 1);
         assert!(comparison.unrecorded.is_empty());
         compare_enhancement_bonus("Golden sword", &golden, &json!({"enhancement_bonus": 14}), &mut comparison);
+        assert_eq!(comparison.unrecorded.len(), 1);
+    }
+
+    #[test]
+    fn recorded_wording_cannot_hide_a_dice_or_amount_difference() {
+        let golden = json!({"known_differences": {"description": {
+            "code": "source_wording", "served": "Deals 14d6 Chaos damage."
+        }}});
+        let served = json!({"description": "Deals 14d6 Chaos damage."});
+        let mut comparison = TooltipComparison::default();
+        compare_field(
+            "Probe",
+            &golden,
+            &served,
+            "description",
+            "Deals 16d6 Chaos damage.",
+            GoldenLineContext { different_line_counts: false, wiki_owner: false },
+            &mut comparison,
+        );
+        assert_eq!(comparison.unrecorded.len(), 1);
+        assert_eq!(numeric_tokens("7 to 28"), vec!["7-28"]);
+        assert_eq!(numeric_tokens("7d4"), numeric_tokens("7 to 28"));
+        assert_ne!(numeric_tokens("7d6"), numeric_tokens("7 to 28"));
+    }
+
+    #[test]
+    fn value_in_wiki_name_requires_wiki_provenance() {
+        let golden = json!({"known_differences": {"name": {
+            "code": "value_in_wiki_name", "served": "Fiery 7"
+        }}});
+        let served = json!({"name": "Fiery 7"});
+        let mut comparison = TooltipComparison::default();
+        compare_field(
+            "Probe",
+            &golden,
+            &served,
+            "name",
+            "Fiery",
+            GoldenLineContext { different_line_counts: false, wiki_owner: false },
+            &mut comparison,
+        );
         assert_eq!(comparison.unrecorded.len(), 1);
     }
 }

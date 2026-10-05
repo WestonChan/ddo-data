@@ -537,6 +537,14 @@ pub(crate) struct WrittenRows {
     modifier_count: usize,
 }
 
+pub(crate) struct PendingDerivedEffects {
+    owner_kind: effects::EffectOwner,
+    owner_id: i64,
+    owner_name: String,
+    option_name: Option<String>,
+    effects: Vec<crate::xml::effect::Effect>,
+}
+
 pub(crate) struct TableWriter<'a> {
     transaction: &'a Transaction<'a>,
     buff_resolver: &'a BuffResolver,
@@ -548,7 +556,7 @@ pub(crate) struct TableWriter<'a> {
     pending_set_item_links: Vec<(i64, String)>,
     pending_set_augment_links: Vec<(i64, String)>,
     pending_set_option_links: Vec<(i64, String)>,
-    pending_derived_effects: Vec<(effects::EffectOwner, i64, String, Vec<crate::xml::effect::Effect>)>,
+    pending_derived_effects: Vec<PendingDerivedEffects>,
 }
 
 impl TableWriter<'_> {

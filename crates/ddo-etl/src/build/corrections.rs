@@ -437,11 +437,22 @@ fn write_correction(
         }
         FieldShape::SetName => relink_item_sets(transaction, row_ids, correction.to.as_text())?,
         FieldShape::RowName => {
-            rename_rows(transaction, correction, row_ids)?;
-            if correction.kind == CorrectionKind::Effect {
+            if correction.kind == CorrectionKind::Effect
+                && id_named(transaction, "effects", correction.to.as_text().context("an effect rename has a name")?)?
+                    .is_some()
+            {
                 let effects = effects.context("effect corrections need the family cache")?;
                 for family_id in row_ids {
-                    effects.refresh_family(*family_id)?;
+                    effects
+                        .merge_identical_text_family(*family_id, correction.to.as_text().expect("validated name"))?;
+                }
+            } else {
+                rename_rows(transaction, correction, row_ids)?;
+                if correction.kind == CorrectionKind::Effect {
+                    let effects = effects.context("effect corrections need the family cache")?;
+                    for family_id in row_ids {
+                        effects.refresh_family(*family_id)?;
+                    }
                 }
             }
         }
@@ -892,9 +903,9 @@ fn repoint_bonuses(
                 )?;
                 continue;
             }
-            let stat_count: i64 = transaction.query_row(
-                "SELECT COUNT(*) FROM effect_bonuses WHERE effect_id = ?1",
-                [effect_id],
+            let amount_slot_count: i64 = transaction.query_row(
+                "SELECT COUNT(*) FROM effect_bonuses WHERE effect_id = ?1 AND amount_from = ?2",
+                params![effect_id, amount_from],
                 |row| row.get(0),
             )?;
             if link_bonus_type_id.is_some() && new_bonus_type_id != corrected_bonus.bonus_type_id {
@@ -909,7 +920,7 @@ fn repoint_bonuses(
             if new_bonus_type_id == corrected_bonus.bonus_type_id
                 && new_value.is_some()
                 && amount_from > 0
-                && stat_count == 1
+                && amount_slot_count == 1
             {
                 let changed_column = if amount_from == 1 { "value" } else { "value2" };
                 transaction.execute(

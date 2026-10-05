@@ -188,7 +188,7 @@ async fn effect_lines_separate_labels_from_rendered_names() {
 
     let rune_arm = item_detail_named("Echoes%20of%20Night").await;
     let lore = rune_arm["effects"].as_array().unwrap().iter().find(|line| line["name"] == "Sonic Lore").unwrap();
-    assert_eq!(lore["verbose_name"], "Sonic Lore +8");
+    assert_eq!(lore["verbose_name"], "Sonic Lore +8%");
     assert_eq!(lore["bonus_type"], "Equipment");
 }
 
@@ -198,7 +198,7 @@ async fn fixture_tooltip_templates_render_signed_units_types_groups_and_tiers() 
         ("Epic%20Ethereal%20Bracers", "Dexterity", "Dexterity +11"),
         ("Epic%20Ethereal%20Bracers", "Riposte", "Riposte +5"),
         ("Epic%20Ethereal%20Bracers", "Speed XIV", "Speed XIV"),
-        ("Echoes%20of%20Night", "Sonic Lore", "Sonic Lore +8"),
+        ("Echoes%20of%20Night", "Sonic Lore", "Sonic Lore +8%"),
         ("Alaric%27s%20Grim%20Gauntlets", "Wisdom", "Wisdom +14"),
         ("Alaric%27s%20Grim%20Gauntlets", "Dark Restoration Lore", "Dark Restoration Lore +23%"),
         ("Alaric%27s%20Grim%20Gauntlets", "Parrying", "Parrying +5"),
@@ -2590,6 +2590,20 @@ async fn a_rate_limited_response_carries_cors_headers_and_exposes_retry_after() 
         response.headers().get(header::ACCESS_CONTROL_EXPOSE_HEADERS).map(|v| v.to_str().unwrap().to_lowercase());
     assert!(exposed_headers.is_some_and(|names| names.contains("retry-after")), "{:?}", response.headers());
     assert!(response.headers().get(header::RETRY_AFTER).is_some(), "{:?}", response.headers());
+}
+
+#[tokio::test]
+async fn a_client_can_sustain_five_requests_per_second_after_the_burst() {
+    let router = app(fixture_state().with_rate_limit());
+    for _ in 0..100 {
+        assert_eq!(response_to_cross_origin_get(router.clone(), "/v1/version").await.status(), StatusCode::OK);
+    }
+    let started = std::time::Instant::now();
+    for _ in 0..20 {
+        tokio::time::sleep(std::time::Duration::from_millis(210)).await;
+        assert_eq!(response_to_cross_origin_get(router.clone(), "/v1/version").await.status(), StatusCode::OK);
+    }
+    assert!(started.elapsed() < std::time::Duration::from_secs(5));
 }
 
 #[tokio::test]

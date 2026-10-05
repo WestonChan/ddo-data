@@ -461,7 +461,7 @@ fn wiki_batch_writes_the_reading_agent_inputs() {
         "pack and chain segments are linked: {unlinked_segment_lines}"
     );
     let augment_lines = std::fs::read_to_string(out_dir.path().join("augment_names.txt")).unwrap();
-    assert_eq!(augment_lines.lines().count(), 16);
+    assert_eq!(augment_lines.lines().count(), 18);
     assert!(augment_lines.lines().any(|line| line == "Alchemical\tFire I: Combustion\t29"), "{augment_lines}");
     let quest_pages: Value =
         serde_json::from_str(&std::fs::read_to_string(out_dir.path().join("quest_pages.json")).unwrap()).unwrap();

@@ -449,8 +449,15 @@ impl Correction {
         if self.reason.trim().is_empty() {
             bail!("reason is empty; say why his value is wrong");
         }
-        if !self.source.starts_with("https://") || self.source.len() == "https://".len() {
-            bail!("source {:?} must be the https:// URL that shows the right value", self.source);
+        let internal_template_source = self.source == "internal:effect-name-and-description"
+            && self.kind == CorrectionKind::Effect
+            && matches!(self.field.as_str(), "verbose_name_template" | "description_template" | "name");
+        if !internal_template_source && (!self.source.starts_with("https://") || self.source.len() == "https://".len())
+        {
+            bail!(
+                "source {:?} must be a supporting https:// URL or an internal effect-template consistency check",
+                self.source
+            );
         }
         if !is_iso_date(&self.read) {
             bail!("read {:?} must be the ISO date the source was read, YYYY-MM-DD", self.read);

@@ -1,7 +1,7 @@
 [[correction]]
 kind = "item_bonus"
 name = "Docent of Shadow (level 4)"
-stat = "Negative Spell Lore"
+stat = "Negative and Poison Spell Lore"
 bonus_type = "Equipment"
 field = "value"
 from = "null"
@@ -13,7 +13,7 @@ read = "2026-10-04"
 [[correction]]
 kind = "item_bonus"
 name = "Docent of Shadow (level 8)"
-stat = "Negative Spell Lore"
+stat = "Negative and Poison Spell Lore"
 bonus_type = "Equipment"
 field = "value"
 from = "null"
@@ -25,7 +25,7 @@ read = "2026-10-04"
 [[correction]]
 kind = "item_bonus"
 name = "Docent of Shadow (level 12)"
-stat = "Negative Spell Lore"
+stat = "Negative and Poison Spell Lore"
 bonus_type = "Equipment"
 field = "value"
 from = "null"
@@ -37,7 +37,7 @@ read = "2026-10-04"
 [[correction]]
 kind = "item_bonus"
 name = "Docent of Shadow (level 16)"
-stat = "Negative Spell Lore"
+stat = "Negative and Poison Spell Lore"
 bonus_type = "Equipment"
 field = "value"
 from = "null"
@@ -49,32 +49,12 @@ read = "2026-10-04"
 [[correction]]
 kind = "item_bonus"
 name = "Docent of Shadow (level 20)"
-stat = "Negative Spell Lore"
+stat = "Negative and Poison Spell Lore"
 bonus_type = "Equipment"
 field = "value"
 from = "null"
 to = 16
 reason = "The wiki Void Lore tier grants 16% Negative and Poison spell lore."
-source = "https://ddowiki.com/page/Item:Epic_Docent_of_Shadow_%28level_20%29"
-read = "2026-09-29"
-
-[[correction]]
-kind = "item_bonus"
-name = "Docent of Shadow (level 20)"
-field = "add"
-from = "null"
-to = { stat = "Poison Spell Power", bonus_type = "Equipment", value = 90 }
-reason = "The wiki item grants Poison Spell Power alongside Negative Spell Power."
-source = "https://ddowiki.com/page/Item:Epic_Docent_of_Shadow_%28level_20%29"
-read = "2026-09-29"
-
-[[correction]]
-kind = "item_bonus"
-name = "Docent of Shadow (level 20)"
-field = "add"
-from = "null"
-to = { stat = "Poison Spell Lore", bonus_type = "Equipment", value = 16 }
-reason = "The wiki Void Lore tier grants Poison Spell Lore alongside Negative Spell Lore."
 source = "https://ddowiki.com/page/Item:Epic_Docent_of_Shadow_%28level_20%29"
 read = "2026-09-29"
 
@@ -101,32 +81,12 @@ read = "2026-09-29"
 [[correction]]
 kind = "item_bonus"
 name = "Docent of Shadow (level 24)"
-stat = "Negative Spell Lore"
+stat = "Negative and Poison Spell Lore"
 bonus_type = "Equipment"
 field = "value"
 from = "null"
 to = 16
 reason = "The wiki Void Lore tier grants 16% Negative and Poison spell lore."
-source = "https://ddowiki.com/page/Item:Epic_Docent_of_Shadow_%28level_24%29"
-read = "2026-09-29"
-
-[[correction]]
-kind = "item_bonus"
-name = "Docent of Shadow (level 24)"
-field = "add"
-from = "null"
-to = { stat = "Poison Spell Power", bonus_type = "Equipment", value = 114 }
-reason = "The wiki item grants Poison Spell Power alongside Negative Spell Power."
-source = "https://ddowiki.com/page/Item:Epic_Docent_of_Shadow_%28level_24%29"
-read = "2026-09-29"
-
-[[correction]]
-kind = "item_bonus"
-name = "Docent of Shadow (level 24)"
-field = "add"
-from = "null"
-to = { stat = "Poison Spell Lore", bonus_type = "Equipment", value = 16 }
-reason = "The wiki Void Lore tier grants Poison Spell Lore alongside Negative Spell Lore."
 source = "https://ddowiki.com/page/Item:Epic_Docent_of_Shadow_%28level_24%29"
 read = "2026-09-29"
 
@@ -163,26 +123,6 @@ source = "https://ddowiki.com/page/Item:Epic_Docent_of_Shadow_%28level_24%29"
 read = "2026-09-29"
 
 [[correction]]
-kind = "item_bonus"
-name = "Docent of Shadow (level 28)"
-field = "add"
-from = "null"
-to = { stat = "Poison Spell Power", bonus_type = "Equipment", value = 139 }
-reason = "The wiki item grants Poison Spell Power alongside Negative Spell Power."
-source = "https://ddowiki.com/page/Item:Epic_Docent_of_Shadow_%28level_28%29"
-read = "2026-09-29"
-
-[[correction]]
-kind = "item_bonus"
-name = "Docent of Shadow (level 28)"
-field = "add"
-from = "null"
-to = { stat = "Poison Spell Lore", bonus_type = "Equipment", value = 20 }
-reason = "The wiki Void Lore tier grants Poison Spell Lore alongside Negative Spell Lore."
-source = "https://ddowiki.com/page/Item:Epic_Docent_of_Shadow_%28level_28%29"
-read = "2026-09-29"
-
-[[correction]]
 kind = "item_effect"
 name = "Docent of Shadow (level 28)"
 field = "add"
@@ -200,26 +140,6 @@ from = "Docent of Shadow (level 28)"
 to = "Epic Docent of Shadow (Level 28)"
 reason = "The wiki titles this variant with the Epic prefix."
 source = "https://ddowiki.com/page/Item:Epic_Docent_of_Shadow_%28level_28%29"
-read = "2026-09-29"
-
-[[correction]]
-kind = "item_bonus"
-name = "Docent of Shadow (level 32)"
-field = "add"
-from = "null"
-to = { stat = "Poison Spell Power", bonus_type = "Equipment", value = 153 }
-reason = "The wiki item grants Poison Spell Power alongside Negative Spell Power."
-source = "https://ddowiki.com/page/Item:Legendary_Docent_of_Shadow_%28level_32%29"
-read = "2026-09-29"
-
-[[correction]]
-kind = "item_bonus"
-name = "Docent of Shadow (level 32)"
-field = "add"
-from = "null"
-to = { stat = "Poison Spell Lore", bonus_type = "Equipment", value = 22 }
-reason = "The wiki Void Lore tier grants Poison Spell Lore alongside Negative Spell Lore."
-source = "https://ddowiki.com/page/Item:Legendary_Docent_of_Shadow_%28level_32%29"
 read = "2026-09-29"
 
 [[correction]]

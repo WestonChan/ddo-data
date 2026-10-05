@@ -88,7 +88,7 @@
               ],
               "damage": [],
               "description": "Passive: +9 Natural Armor Bonus to Armor Class.",
-              "effect_id": 416,
+              "effect_id": 418,
               "name": "Natural Armor",
               "tier": null,
               "value": 9,

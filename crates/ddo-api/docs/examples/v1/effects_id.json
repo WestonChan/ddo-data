@@ -300,7 +300,7 @@
         "amount_source": "owner",
         "bonus_type": "Artifact",
         "effect": "All Ability Scores",
-        "effect_id": 2009,
+        "effect_id": 2012,
         "equipped_count": 3,
         "id": 280,
         "line": {
@@ -310,7 +310,7 @@
               "amount_source": "owner",
               "bonus_type": "Artifact",
               "group": {
-                "id": 2009,
+                "id": 2012,
                 "name": "All Ability Scores"
               },
               "scale": 1.0,
@@ -322,7 +322,7 @@
               "amount_source": "owner",
               "bonus_type": "Artifact",
               "group": {
-                "id": 2009,
+                "id": 2012,
                 "name": "All Ability Scores"
               },
               "scale": 1.0,
@@ -334,7 +334,7 @@
               "amount_source": "owner",
               "bonus_type": "Artifact",
               "group": {
-                "id": 2009,
+                "id": 2012,
                 "name": "All Ability Scores"
               },
               "scale": 1.0,
@@ -345,7 +345,7 @@
           ],
           "damage": [],
           "description": "+1 Artifact bonus to all Ability Scores",
-          "effect_id": 2009,
+          "effect_id": 2012,
           "name": "All Ability Scores",
           "tier": null,
           "value": 1,

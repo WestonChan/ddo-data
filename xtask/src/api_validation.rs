@@ -23,13 +23,13 @@ async fn json_response(router: &axum::Router, path: &str) -> Result<Value> {
     serde_json::from_slice(&body).with_context(|| format!("GET {path} returned invalid JSON"))
 }
 
-fn effect_home_types(db: &rusqlite::Connection) -> Result<BTreeMap<i64, (Option<String>, bool)>> {
+fn effect_home_types(db: &rusqlite::Connection) -> Result<BTreeMap<i64, Option<String>>> {
     let mut statement = db.prepare(
-        "SELECT e.id, b.name, INSTR(COALESCE(e.verbose_name_template, ''), '%b1') > 0
+        "SELECT e.id, b.name
            FROM effects e LEFT JOIN bonus_types b ON b.id = e.home_bonus_type_id",
     )?;
     let home_types = statement
-        .query_map([], |row| Ok((row.get::<_, i64>(0)?, (row.get::<_, Option<String>>(1)?, row.get::<_, bool>(2)?))))?
+        .query_map([], |row| Ok((row.get::<_, i64>(0)?, row.get::<_, Option<String>>(1)?)))?
         .collect::<rusqlite::Result<_>>()?;
     Ok(home_types)
 }
@@ -37,7 +37,7 @@ fn effect_home_types(db: &rusqlite::Connection) -> Result<BTreeMap<i64, (Option<
 fn response_effect_lines_show_non_home_types(
     response: &Value,
     path: &str,
-    effect_home_types: &BTreeMap<i64, (Option<String>, bool)>,
+    effect_home_types: &BTreeMap<i64, Option<String>>,
 ) -> Result<()> {
     match response {
         Value::Array(rows) => {
@@ -51,11 +51,8 @@ fn response_effect_lines_show_non_home_types(
                 fields.get("bonus_type").and_then(Value::as_str),
                 fields.get("verbose_name").and_then(Value::as_str),
             ) {
-                if let Some((home_type, has_type_slot)) = effect_home_types.get(&effect_id) {
-                    if *has_type_slot
-                        && !matches!(bonus_type, "Enhancement" | "Equipment")
-                        && home_type.as_deref() != Some(bonus_type)
-                    {
+                if let Some(home_type) = effect_home_types.get(&effect_id) {
+                    if !matches!(bonus_type, "Enhancement" | "Equipment") && home_type.as_deref() != Some(bonus_type) {
                         let visible_type = if bonus_type == "Insight" { "Insightful" } else { bonus_type };
                         ensure!(
                             verbose_name.contains(visible_type)
@@ -218,7 +215,7 @@ mod tests {
 
     #[test]
     fn non_home_type_must_remain_visible_on_a_slotless_line() {
-        let home_types = BTreeMap::from([(454, (Some("Equipment".to_string()), true))]);
+        let home_types = BTreeMap::from([(454, Some("Equipment".to_string()))]);
         let line =
             json!({"effects": [{"effect_id": 454, "bonus_type": "Insight", "verbose_name": "Spell Penetration I"}]});
         assert!(response_effect_lines_show_non_home_types(&line, "/v1/items/1", &home_types).is_err());

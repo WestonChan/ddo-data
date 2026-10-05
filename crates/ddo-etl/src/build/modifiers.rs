@@ -19,7 +19,7 @@ pub(super) struct DerivedEffectLink {
 impl TableWriter<'_> {
     pub(super) fn link_pending_derived_effects(&mut self) -> Result<()> {
         let pending = std::mem::take(&mut self.pending_derived_effects);
-        for (owner_kind, owner_id, owner_name, effects) in pending {
+        for super::PendingDerivedEffects { owner_kind, owner_id, owner_name, option_name, effects } in pending {
             let bonus_owner_kind = match owner_kind {
                 EffectOwner::Feat => BonusOwnerKind::Feat,
                 EffectOwner::ItemAugmentSlotOption => BonusOwnerKind::ItemAugmentSlotOption,
@@ -31,9 +31,42 @@ impl TableWriter<'_> {
                 EffectOwner::ItemAugmentSlotOption => ModifierSource::ItemAugmentSlotOption,
                 _ => unreachable!(),
             };
-            for (sort_order, link) in
-                self.ensure_derived_effects(&owner, modifier_source, owner_id, &effects)?.into_iter().enumerate()
-            {
+            let mut mapped_effects = effects;
+            let normalized_option_name = option_name.as_deref().map(|name| {
+                EFFECT_MAP
+                    .option_name_aliases
+                    .iter()
+                    .fold(name.to_string(), |name, (source, replacement)| name.replace(source, replacement))
+            });
+            if let Some(option_name) = normalized_option_name.as_deref() {
+                for (line_name, companion_targets) in &EFFECT_MAP.option_companion_targets {
+                    if option_name.contains(line_name) {
+                        for effect in &mut mapped_effects {
+                            if effect.types.iter().any(|effect_type| effect_type == "TacticalDC") {
+                                effect.targets.retain(|target| !companion_targets.contains(target));
+                            }
+                        }
+                    }
+                }
+                for (line_name, aliases) in &EFFECT_MAP.option_target_aliases {
+                    if option_name.contains(line_name) {
+                        for effect in &mut mapped_effects {
+                            if effect.types.iter().any(|effect_type| effect_type == "TacticalDC") {
+                                for target in &mut effect.targets {
+                                    if let Some(alias) = aliases.get(target) {
+                                        *target = alias.clone();
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            let mut links = self.ensure_derived_effects(&owner, modifier_source, owner_id, &mapped_effects)?;
+            if let Some(option_name) = normalized_option_name.as_deref() {
+                self.collapse_combat_mastery_option(option_name, &mut links)?;
+            }
+            for (sort_order, link) in links.into_iter().enumerate() {
                 self.effects.insert_link(
                     owner_kind,
                     owner_id,
@@ -43,6 +76,49 @@ impl TableWriter<'_> {
                     sort_order,
                 )?;
             }
+        }
+        Ok(())
+    }
+
+    fn collapse_combat_mastery_option(&self, option_name: &str, links: &mut Vec<DerivedEffectLink>) -> Result<()> {
+        if !option_name.contains("Combat Mastery") {
+            return Ok(());
+        }
+        let source_names = ["Tactics", "Trip DC", "Sunder DC", "Stun DC"];
+        let matching_indices: Vec<usize> = links
+            .iter()
+            .enumerate()
+            .filter_map(|(index, link)| {
+                self.effects
+                    .family(link.effect_id)
+                    .filter(|family| source_names.contains(&family.name.as_str()))
+                    .map(|_| index)
+            })
+            .collect();
+        let source_set: std::collections::BTreeSet<&str> = matching_indices
+            .iter()
+            .filter_map(|index| self.effects.family(links[*index].effect_id).map(|family| family.name.as_str()))
+            .collect();
+        anyhow::ensure!(
+            source_set == std::collections::BTreeSet::from(["Tactics"])
+                || source_set == std::collections::BTreeSet::from(["Trip DC", "Sunder DC", "Stun DC"]),
+            "option {option_name:?} names Combat Mastery but grants {source_set:?}"
+        );
+        let first_index = matching_indices[0];
+        let first_type = links[first_index].bonus_type;
+        let first_value = links[first_index].value;
+        anyhow::ensure!(
+            matching_indices.iter().all(|index| {
+                links[*index].bonus_type == first_type
+                    && links[*index].value == first_value
+                    && links[*index].value2.is_none()
+            }),
+            "option {option_name:?} names one Combat Mastery line with different amounts or types"
+        );
+        links[first_index].effect_id =
+            self.effects.family_named("Combat Mastery").expect("declared Combat Mastery effect").id;
+        for index in matching_indices.into_iter().skip(1).rev() {
+            links.remove(index);
         }
         Ok(())
     }
@@ -133,7 +209,52 @@ impl TableWriter<'_> {
             for effect_type in &effect.types {
                 let mut single_type_effect = effect.clone();
                 single_type_effect.types = vec![effect_type.clone()];
-                let derived_bonuses = self.effect_resolver.derive_bonuses(&single_type_effect)?;
+                if (effect_type == "SpellPower"
+                    && (effect.targets.is_empty() || effect.targets.iter().all(|target| target == "All"))
+                    && matches!(effect.bonus.as_deref(), Some("Equipment" | "Insight" | "Insightful" | "Quality")))
+                    || (effect_type == "UniversalSpellPower"
+                        && matches!(effect.bonus.as_deref(), Some("Equipment" | "Insight" | "Insightful" | "Quality")))
+                {
+                    if let Some(value) = effect.simple_integer_amount() {
+                        let bonus_type =
+                            self.effect_resolver.parse_bonus_type(effect.bonus.as_deref().unwrap_or(""))?.ok_or_else(
+                                || anyhow::anyhow!("{:?} {:?} Potency has no bonus type", owner.kind, owner.name),
+                            )?;
+                        let effect_id = self
+                            .effects
+                            .family_named("Potency")
+                            .ok_or_else(|| {
+                                anyhow::anyhow!(
+                                    "Potency family was not written before {:?} {:?}",
+                                    owner.kind,
+                                    owner.name
+                                )
+                            })?
+                            .id;
+                        links.push(DerivedEffectLink {
+                            effect_id,
+                            bonus_type: Some(bonus_type),
+                            value: Some(value),
+                            value2: None,
+                        });
+                        continue;
+                    }
+                }
+                let mut derived_bonuses = self.effect_resolver.derive_bonuses(&single_type_effect)?;
+                for rule in EFFECT_MAP.effect.owner_extra_stats.iter().filter(|rule| {
+                    rule.owner_kind == "augment"
+                        && owner.kind == BonusOwnerKind::Augment
+                        && rule.owner_name == owner.name
+                        && rule.effect_type == *effect_type
+                }) {
+                    if let Some(first) = derived_bonuses.first().copied() {
+                        derived_bonuses.push(crate::map::effect::DerivedBonus {
+                            stat: ddo_model::stats::Stat::by_name(&rule.stat).expect("validated extra stat"),
+                            bonus_type: first.bonus_type,
+                            value: first.value,
+                        });
+                    }
+                }
                 if derived_bonuses.is_empty() {
                     self.ensure_targeted_fixed_effect(&single_type_effect, &mut links)?;
                     continue;
