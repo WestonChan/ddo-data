@@ -1,6 +1,7 @@
 use anyhow::{ensure, Context, Result};
 use axum::body::Body;
 use axum::http::{Request, StatusCode};
+use ddo_api::drop_validation::{detail_has_unique_drop_locations, source_pack_names};
 use ddo_api::schema_validation::response_matches_schema;
 use ddo_api::{app, AppState};
 use http_body_util::BodyExt;
@@ -24,6 +25,7 @@ async fn json_response(router: &axum::Router, path: &str) -> Result<Value> {
 
 pub fn validate_api(db_path: &Path, all_details: bool) -> Result<(usize, usize)> {
     let state = AppState::open(db_path)?;
+    let source_packs = Arc::new(source_pack_names(&rusqlite::Connection::open(db_path)?)?);
     let router = app(state);
     let runtime = tokio::runtime::Builder::new_current_thread().enable_all().build()?;
     let spec = runtime.block_on(json_response(&router, "/v1/openapi.json"))?;
@@ -102,13 +104,23 @@ pub fn validate_api(db_path: &Path, all_details: bool) -> Result<(usize, usize)>
                 let mut requests = tokio::task::JoinSet::new();
                 for id in id_group {
                     let request_path = format!("{list_path}/{id}");
+                    let check_drop_locations = list_path == "/v1/items" || list_path == "/v1/augments";
                     let request_router = router.clone();
                     let detail_schema = detail_schema.clone();
                     let shared_schemas = shared_schemas.clone();
+                    let source_packs = source_packs.clone();
                     requests.spawn(async move {
                         let response = json_response(&request_router, &request_path).await?;
                         let violation = tokio::task::spawn_blocking(move || {
-                            response_matches_schema(&response, &detail_schema, &shared_schemas, &request_path).err()
+                            response_matches_schema(&response, &detail_schema, &shared_schemas, &request_path)
+                                .and_then(|()| {
+                                    if check_drop_locations {
+                                        detail_has_unique_drop_locations(&response, &request_path, &source_packs)
+                                    } else {
+                                        Ok(())
+                                    }
+                                })
+                                .err()
                         })
                         .await?;
                         Ok::<_, anyhow::Error>(violation)

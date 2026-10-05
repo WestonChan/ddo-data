@@ -5,7 +5,7 @@ use crate::enums::{
 };
 use std::sync::LazyLock;
 
-pub const SCHEMA_VERSION: i64 = 27;
+pub const SCHEMA_VERSION: i64 = 28;
 
 fn sql_in_clause<'a>(allowed_values: impl Iterator<Item = &'a str>) -> String {
     let quoted_values: Vec<String> = allowed_values.map(|value| format!("'{value}'")).collect();
@@ -506,8 +506,6 @@ CREATE TABLE IF NOT EXISTS events (
 -- loot_type is set exactly on quest and pack drops; chest is the lower-cased phrase after the quest or pack
 -- name, never on a reward; tier is the saga reward list, null when the source names none and on every other kind;
 -- cost is what a vendor asks, as the wiki writes it.
--- The unique index keeps one row per source, loot, loot type and tier, which a primary key over nullable columns
--- would not.
 CREATE TABLE IF NOT EXISTS sources (
     id          INTEGER PRIMARY KEY,
     kind        TEXT    NOT NULL CHECK (kind {source_kind}),
@@ -537,7 +535,8 @@ CREATE TABLE IF NOT EXISTS sources (
 );
 CREATE UNIQUE INDEX IF NOT EXISTS idx_sources_source_loot ON sources(
     kind, COALESCE({source_ids}), COALESCE(item_id, 0), COALESCE(augment_id, 0),
-    COALESCE(loot_type, ''), COALESCE(tier, '')
+    COALESCE(loot_type, ''), COALESCE(chest, ''), is_rare, COALESCE(tier, ''),
+    COALESCE(character_level, 0), COALESCE(cost, '')
 );
 CREATE INDEX IF NOT EXISTS idx_sources_item ON sources(item_id) WHERE item_id IS NOT NULL;
 CREATE INDEX IF NOT EXISTS idx_sources_augment ON sources(augment_id) WHERE augment_id IS NOT NULL;

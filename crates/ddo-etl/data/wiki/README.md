@@ -4,7 +4,7 @@ Facts read from [ddowiki](https://ddowiki.com) that Maetrim's DDOBuilderV2 files
 
 ## The principle
 
-A wiki row may **add** a fact his files have no field for; it never replaces one he has. When the wiki and his files disagree about something he carries (a name, a level, a bonus, a socket, a drop location), the wiki is assumed right, but the fix goes in [`../corrections/`](../corrections/README.md), the one layer allowed to override him, and never here; report the disagreement upstream at [Maetrim/DDOBuilderV2](https://github.com/Maetrim/DDOBuilderV2) too. Corrections run before the wiki merge, so the files here name rows by their corrected names.
+A wiki row may **add** a fact his files have no field for; it never replaces one he has. When the wiki and his files disagree about something he carries (a name, a level, a bonus, a socket, a drop location), the wiki is assumed right, but the fix goes in [`../corrections/`](../corrections/README.md), the one layer allowed to override him, and never here; report the disagreement upstream at [Maetrim/DDOBuilderV2](https://github.com/Maetrim/DDOBuilderV2) too. The explicit `replaces_pack_drop` field below is the exception for a wiki quest drop that supersedes the same pack-wide chest. Corrections run before the wiki merge, so the files here name rows by their corrected names.
 
 ## Entities his files lack
 
@@ -38,7 +38,7 @@ rare = [
 rare_augments = [{ name = "Lunar Gem of Magical Protection (Heroic)", chest = "end chest" }]
 ```
 
-`items` lists named items the page's loot table gives for the quest that Maetrim's drop text does not link to it, and `augments` the same for augments (by his exact augment name, every row of that name). Each element is a name, or `{ name = "...", loot_type = "...", chest = "..." }` with `loot_type` one of `chest`, `raid` or `reward` (default `chest`; `reward` is the quest's own end reward, while a quest chain's or a saga's end reward goes in `quest_chains.toml` or `sagas.toml`, not here) and `chest` optional, lower-cased as above (never on a `reward`, which the quest's end gives rather than a chest; the build fails on one). A listed drop is not rare; list it in `rare` or `rare_augments` too when the page marks it rare.
+`items` lists named items the page's loot table gives for the quest that Maetrim's drop text does not link to it, and `augments` the same for augments (by his exact augment name, every row of that name). Each element is a name, or `{ name = "...", loot_type = "...", chest = "..." }` with `loot_type` one of `chest`, `raid` or `reward` (default `chest`; `reward` is the quest's own end reward, while a quest chain's or a saga's end reward goes in `quest_chains.toml` or `sagas.toml`, not here) and `chest` optional, lower-cased as above (never on a `reward`, which the quest's end gives rather than a chest; the build fails on one). A listed drop is not rare; list it in `rare` or `rare_augments` too when the page marks it rare. Set `replaces_pack_drop = true` with a chest only when that cited quest drop supersedes a pack-wide row for the same owner, pack, loot type and chest; the build requires exactly one row to replace.
 
 ```toml
 [[quest]]
@@ -65,7 +65,7 @@ The build fails, naming the file and entry, when:
 - `name` matches no quest in Maetrim's `Quests.xml` or `Challenges.xml` or a quest a `quests*.toml` entry creates (names must match his exactly);
 - an item in `rare` or `items` matches no item in his `Items/` or an `items*.toml` entry, or an augment in `rare_augments` or `augments` no augment in his `Augments/` or an `augments*.toml` entry. Items and augments missing from both are reported upstream or given their own wiki entry, not stored here;
 - an element of `rare` or `rare_augments` is neither a string nor a table of exactly `name` and `chest`;
-- an element of `items` or `augments` is neither a string nor a table of `name` with optional `loot_type` and `chest`, or its `loot_type` is not `chest`, `raid` or `reward`.
+- an element of `items` or `augments` is neither a string nor a table of `name` with optional `loot_type`, `chest` and `replaces_pack_drop`, its `loot_type` is not `chest`, `raid` or `reward`, or it asks to replace a pack drop without naming its chest.
 
 Validate a file from the `ddo-data` root:
 

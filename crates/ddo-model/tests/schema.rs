@@ -330,7 +330,10 @@ fn sources_link_each_loot_to_exactly_one_source_of_its_kind() {
         ("kind, saga_id, item_id, loot_type = 'saga', 1, 1, 'reward'", "a loot type on a saga reward"),
         ("kind, quest_id, item_id, loot_type = 'quest', 1, 1, 'bag'", "an unknown loot type"),
         ("kind, saga_id, item_id, tier = 'saga', 1, 1, 'mythic'", "an unknown tier"),
-        ("kind, quest_id, item_id, loot_type = 'quest', 1, 1, 'chest'", "a second identical quest drop"),
+        (
+            "kind, quest_id, item_id, loot_type, chest = 'quest', 1, 1, 'chest', 'end chest'",
+            "a second identical quest drop",
+        ),
         ("kind, chain_id, item_id = 'quest_chain', 1, 1", "a second identical chain reward"),
         ("kind, saga_id, item_id = 'saga', 1, 1", "a second untiered saga reward"),
         ("kind, pack_id, augment_id, loot_type = 'adventure_pack', 1, 1, 'chest'", "a second identical pack drop"),
@@ -432,6 +435,37 @@ fn sources_record_the_chest_as_free_text() {
         ]
     );
     assert!(columns.contains(&("chest".to_string(), "TEXT".to_string())));
+}
+
+#[test]
+fn sources_distinguish_chests_but_reject_an_exact_duplicate_even_with_nulls() {
+    let db = fresh_db();
+    ddo_model::seeds::insert_all(&db).unwrap();
+    db.execute("INSERT INTO adventure_packs (name) VALUES ('Source Identity Pack')", []).unwrap();
+    db.execute(
+        "INSERT INTO quests (name, pack_id) VALUES ('Source Identity Quest', (SELECT id FROM adventure_packs WHERE name = 'Source Identity Pack'))",
+        [],
+    )
+    .unwrap();
+    db.execute(
+        "INSERT INTO items (name, slot_id, item_category, wiki_url) VALUES
+         ('Source Identity Item', (SELECT id FROM equipment_slots WHERE name = 'Ring'), 'Jewelry',
+          'https://ddowiki.com/page/Item:Source_Identity_Item')",
+        [],
+    )
+    .unwrap();
+    let source = "INSERT INTO sources (kind, quest_id, item_id, loot_type, chest) VALUES
+        ('quest', (SELECT id FROM quests WHERE name = 'Source Identity Quest'),
+         (SELECT id FROM items WHERE name = 'Source Identity Item'), 'chest', ?1)";
+    db.execute(source, ["end chest"]).unwrap();
+    assert!(db.execute(source, ["end chest"]).is_err());
+    db.execute(source, ["optional chest"]).unwrap();
+    db.execute(source, ["null chest probe"]).unwrap();
+    let without_chest = "INSERT INTO sources (kind, quest_id, item_id, loot_type) VALUES
+        ('quest', (SELECT id FROM quests WHERE name = 'Source Identity Quest'),
+         (SELECT id FROM items WHERE name = 'Source Identity Item'), 'chest')";
+    db.execute(without_chest, []).unwrap();
+    assert!(db.execute(without_chest, []).is_err());
 }
 
 #[test]

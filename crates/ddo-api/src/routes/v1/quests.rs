@@ -251,10 +251,9 @@ pub(super) fn adventure_packs_dropping_via(
     let mut adventure_packs = json_rows(
         db,
         &format!(
-            "SELECT DISTINCT p.id, p.name, loot.loot_type, loot.is_rare, loot.chest
-               FROM loot_adventure_packs packs JOIN adventure_packs p ON p.id = packs.pack_id
-               JOIN sources loot ON loot.id = packs.source_id
-              WHERE packs.{loot_id_column} = ?1
+            "SELECT p.id, p.name, loot.loot_type, loot.is_rare, loot.chest
+               FROM sources loot JOIN adventure_packs p ON p.id = loot.pack_id
+              WHERE loot.kind = 'adventure_pack' AND loot.{loot_id_column} = ?1
               ORDER BY p.name, loot.loot_type, loot.is_rare, loot.chest"
         ),
         [loot_id],

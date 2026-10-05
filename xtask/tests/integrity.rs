@@ -8,6 +8,14 @@ use xtask::dataset::build_database_file;
 use xtask::integrity::{integrity_report, CheckStatus, IntegrityOptions, Severity, INTEGRITY_CHECKS};
 
 const TABLES_EMPTY_IN_FIXTURES: [&str; 3] = ["corrections", "effect_damage", "race_feat_slots"];
+const PACK_QUEST_OVERLAP_SQL: &str =
+    "INSERT INTO sources (kind, pack_id, item_id, augment_id, loot_type, chest, is_rare)
+     SELECT 'adventure_pack', q.pack_id, s.item_id, s.augment_id, s.loot_type, s.chest, s.is_rare
+     FROM sources s JOIN quests q ON q.id = s.quest_id
+     WHERE s.kind = 'quest' AND s.loot_type <> 'reward' AND q.pack_id IS NOT NULL
+       AND NOT EXISTS (SELECT 1 FROM sources p WHERE p.kind = 'adventure_pack'
+                       AND p.pack_id = q.pack_id AND p.item_id IS s.item_id AND p.augment_id IS s.augment_id)
+     LIMIT 1";
 
 fn fixtures_dir() -> PathBuf {
     Path::new(env!("CARGO_MANIFEST_DIR")).join("../crates/ddo-etl/tests/fixtures")
@@ -179,6 +187,17 @@ fn identifier_like_effect_names_are_warned() {
     {
         assert!(outcome.offenders.iter().any(|offender| offender.name == name), "{name}");
     }
+}
+
+#[test]
+fn a_pack_wide_drop_with_the_same_or_unknown_quest_chest_is_hard() {
+    let work_dir = tempfile::tempdir().unwrap();
+    let db_path = fixture_db_copy_with(work_dir.path(), PACK_QUEST_OVERLAP_SQL);
+    let db = Connection::open(&db_path).unwrap();
+    let report = integrity_report(&db, &fixture_options()).unwrap();
+    let outcome = report.outcome("pack_wide_drops_repeat_quest_drops").unwrap();
+    assert_eq!(outcome.status, CheckStatus::Failed);
+    assert_eq!(outcome.offenders.len(), 1);
 }
 
 #[test]
@@ -449,6 +468,7 @@ fn injected_violations() -> Vec<InjectedViolation> {
             "",
         ),
         violation("raid_loot_only_on_raids", &probe_quest_source_insert("raid", "NULL"), "Integrity Probe Quest"),
+        violation("pack_wide_drops_repeat_quest_drops", PACK_QUEST_OVERLAP_SQL, ""),
         violation(
             "item_sockets_use_known_labels",
             "INSERT INTO augment_slot_types (label, family, variant) VALUES ('mystery: probe', 'mystery', 'probe');

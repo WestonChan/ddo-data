@@ -27,7 +27,7 @@
     "modifiers": 17626,
     "optional_buffs": 138,
     "pack_augment_loot": 0,
-    "pack_loot": 490,
+    "pack_loot": 489,
     "quest_augment_loot": 603,
     "quest_chain_rewards": 243,
     "quest_chains": 43,
@@ -40,7 +40,7 @@
     "sentient_gems": 14,
     "set_bonus_tier_effects": 1431,
     "set_bonuses": 327,
-    "sources": 9054,
+    "sources": 9053,
     "spells": 706,
     "starter_items": 174,
     "vendor_items": 585,
@@ -50,8 +50,8 @@
     "wiki_quests": 5
   },
   "dataset": {
-    "built_at": "2026-10-05T02:38:07Z",
+    "built_at": "2026-10-05T03:13:17Z",
     "upstream_sha": "31ef0201ea8e28604de2b6242988aee6d63733b0"
   },
-  "schema_version": 27
+  "schema_version": 28
 }

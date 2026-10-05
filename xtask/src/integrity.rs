@@ -238,6 +238,27 @@ pub const INTEGRITY_CHECKS: &[IntegrityCheck] = &[
         ),
     ),
     IntegrityCheck::hard(
+        "pack_wide_drops_repeat_quest_drops",
+        "a pack-wide drop does not repeat the same owner's quest drop in that pack when chests match or either chest is unknown",
+        OffenderQuery::Sql(
+            "SELECT COALESCE(i.name, a.name), pack_drop.id,
+                    'pack ' || p.name || ' chest ' || COALESCE(pack_drop.chest, '(unknown)') || ' repeats a quest drop'
+             FROM sources pack_drop JOIN adventure_packs p ON p.id = pack_drop.pack_id
+             LEFT JOIN items i ON i.id = pack_drop.item_id
+             LEFT JOIN augments a ON a.id = pack_drop.augment_id
+             WHERE pack_drop.kind = 'adventure_pack'
+               AND EXISTS (
+                 SELECT 1 FROM quests q JOIN sources quest_drop ON quest_drop.quest_id = q.id
+                 WHERE q.pack_id = pack_drop.pack_id AND quest_drop.kind = 'quest'
+                   AND quest_drop.item_id IS pack_drop.item_id
+                   AND quest_drop.augment_id IS pack_drop.augment_id
+                   AND (quest_drop.chest IS pack_drop.chest
+                        OR quest_drop.chest IS NULL OR pack_drop.chest IS NULL)
+               )
+             ORDER BY COALESCE(i.name, a.name)",
+        ),
+    ),
+    IntegrityCheck::hard(
         "item_sockets_use_known_labels",
         "every item socket is a slot type of a known family (standard, dino, lamordia, slavers, upgrade, crafting) \
          with a variant, and a standard socket is one of the nine colours",

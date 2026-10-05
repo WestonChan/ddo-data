@@ -1,5 +1,6 @@
 use axum::body::Body;
 use axum::http::{header, Request, StatusCode};
+use ddo_api::drop_validation::{detail_has_unique_drop_locations, source_pack_names};
 use ddo_api::schema_validation::response_matches_schema;
 use ddo_api::{app, AppState};
 use ddo_model::DatasetVersion;
@@ -2453,7 +2454,7 @@ async fn a_not_found_response_carries_cors_headers() {
 }
 
 #[tokio::test]
-async fn item_detail_lists_the_adventure_packs_whose_quests_all_drop_it() {
+async fn item_detail_lists_only_pack_wide_drops_in_adventure_packs() {
     let (_, _, crossbow) =
         get(&format!("/v1/items/{}", id_of_item_named("Light Crossbow of the Golden Age").await)).await;
     assert_eq!(crossbow["quests"], serde_json::json!([]));
@@ -2471,9 +2472,68 @@ async fn item_detail_lists_the_adventure_packs_whose_quests_all_drop_it() {
         )
     );
     let (_, _, ring) = get(&format!("/v1/items/{}", id_of_item_named("Acrobat's Ring").await)).await;
-    assert_eq!(ring["adventure_packs"].as_array().unwrap().len(), 1);
-    assert_eq!(ring["adventure_packs"][0]["name"], "Free to Play");
-    assert!(ring["adventure_packs"][0]["loot_type"].is_null());
+    assert_eq!(ring["adventure_packs"], serde_json::json!([]));
+}
+
+#[tokio::test]
+async fn detail_pack_locations_only_list_sources_that_are_pack_wide() {
+    let (_, _, ring) = get(&format!("/v1/items/{}", id_of_item_named("Acrobat's Ring").await)).await;
+    assert!(ring["adventure_packs"].as_array().unwrap().is_empty());
+    assert_eq!(ring["sources"][0]["kind"], "quest_chain");
+
+    let (_, _, page) = get("/v1/augments?q=elemental+absorption").await;
+    let (_, _, augment) = get(&format!("/v1/augments/{}", page["augments"][0]["id"])).await;
+    assert!(augment["adventure_packs"].as_array().unwrap().is_empty());
+    assert_eq!(augment["sources"][0]["kind"], "quest");
+
+    let (_, _, crossbow) =
+        get(&format!("/v1/items/{}", id_of_item_named("Light Crossbow of the Golden Age").await)).await;
+    assert_eq!(crossbow["adventure_packs"].as_array().unwrap().len(), 1);
+    assert_eq!(crossbow["sources"][0]["kind"], "adventure_pack");
+}
+
+#[tokio::test]
+async fn detail_drop_locations_are_unique_for_every_fixture_item_and_augment() {
+    let source_packs = source_pack_names(&rusqlite::Connection::open(fixture_db_path()).unwrap()).unwrap();
+    for resource in ["items", "augments"] {
+        let (_, _, rows) = get_list_rows(&format!("/v1/{resource}")).await;
+        for row in rows.as_array().unwrap() {
+            let path = format!("/v1/{resource}/{}", row["id"]);
+            let (status, _, detail) = get(&path).await;
+            assert_eq!(status, StatusCode::OK, "{path}");
+            detail_has_unique_drop_locations(&detail, &path, &source_packs).unwrap();
+        }
+    }
+}
+
+#[tokio::test]
+async fn detail_drop_validation_rejects_repeated_and_rolled_up_locations() {
+    let source_packs = source_pack_names(&rusqlite::Connection::open(fixture_db_path()).unwrap()).unwrap();
+    let (_, _, mut ring) = get(&format!("/v1/items/{}", id_of_item_named("Acrobat's Ring").await)).await;
+    ring["quests"].as_array_mut().unwrap().push(serde_json::json!({"name": "The Grotto"}));
+    ring["quests"].as_array_mut().unwrap().push(serde_json::json!({"name": "The Grotto"}));
+    assert!(detail_has_unique_drop_locations(&ring, "/v1/items/fixture", &source_packs)
+        .unwrap_err()
+        .contains("duplicate"));
+
+    let (_, _, mut ring) = get(&format!("/v1/items/{}", id_of_item_named("Acrobat's Ring").await)).await;
+    ring["adventure_packs"].as_array_mut().unwrap().push(serde_json::json!({
+        "id": 1, "name": "Free to Play", "loot_type": null, "chest": null, "is_rare": false
+    }));
+    assert!(detail_has_unique_drop_locations(&ring, "/v1/items/fixture", &source_packs)
+        .unwrap_err()
+        .contains("pack-wide"));
+
+    let (_, _, mut crossbow) =
+        get(&format!("/v1/items/{}", id_of_item_named("Light Crossbow of the Golden Age").await)).await;
+    crossbow["sources"].as_array_mut().unwrap().push(serde_json::json!({
+        "kind": "quest_chain", "id": 999, "chest": "any end chest"
+    }));
+    let mut source_packs_with_overlap = source_packs;
+    source_packs_with_overlap.entry(("quest_chain".into(), 999)).or_default().insert("Magic of Myth Drannor".into());
+    assert!(detail_has_unique_drop_locations(&crossbow, "/v1/items/fixture", &source_packs_with_overlap)
+        .unwrap_err()
+        .contains("repeats a"));
 }
 
 #[tokio::test]
@@ -2535,10 +2595,7 @@ async fn item_and_augment_detail_list_every_source_in_one_array() {
 
     let (_, _, list) = get("/v1/augments?q=elemental+absorption").await;
     let (_, _, augment) = get(&format!("/v1/augments/{}", list["augments"][0]["id"])).await;
-    assert_eq!(augment["adventure_packs"].as_array().unwrap().len(), 1);
-    assert_eq!(augment["adventure_packs"][0]["name"], "Chill of Ravenloft");
-    assert_eq!(augment["adventure_packs"][0]["loot_type"], "chest");
-    assert_eq!(augment["adventure_packs"][0]["chest"], "vornir frosthelm's chest");
+    assert_eq!(augment["adventure_packs"], serde_json::json!([]));
     assert_eq!(augment["sources"][0]["kind"], "quest");
     assert_eq!(augment["sources"][0]["name"], "Land of Lamordia");
     assert_eq!(augment["sources"][0]["chest"], "vornir frosthelm's chest");
@@ -2588,17 +2645,7 @@ async fn item_detail_lists_the_challenge_pack_whose_ingredients_buy_it() {
             "wiki_url": "https://ddowiki.com/page/Secrets_of_the_Artificers"
         }])
     );
-    assert_eq!(
-        ring["adventure_packs"],
-        serde_json::json!([{
-            "id": pack_id,
-            "name": "Secrets of the Artificers",
-            "is_rare": false,
-            "loot_type": null,
-            "chest": null,
-            "wiki_url": "https://ddowiki.com/page/Secrets_of_the_Artificers"
-        }])
-    );
+    assert_eq!(ring["adventure_packs"], serde_json::json!([]));
     assert_eq!(
         (&ring["sources"][0]["kind"], &ring["sources"][0]["id"]),
         (&serde_json::json!("challenge"), &serde_json::json!(pack_id))
@@ -2780,8 +2827,9 @@ async fn item_pack_surfaces_follow_every_source_kind() {
         let source = &detail["sources"][0];
         assert_eq!(source["kind"], kind, "{name}");
         let packs = detail["adventure_packs"].as_array().unwrap();
-        assert_eq!(packs.len(), usize::from(pack_name.is_some()), "{name}");
-        if let Some(pack_name) = pack_name {
+        assert_eq!(packs.len(), usize::from(kind == "adventure_pack"), "{name}");
+        if kind == "adventure_pack" {
+            let pack_name = pack_name.unwrap();
             assert_eq!(packs[0]["name"], pack_name, "{name}");
             for field in ["loot_type", "is_rare", "chest"] {
                 assert_eq!(packs[0][field], source[field], "{name}: {field}");
@@ -2852,12 +2900,12 @@ async fn item_pack_query_count_does_not_grow_with_rows_or_sources() {
         let (status, _, detail) = get_from(state.clone(), &format!("/v1/items/{item_id}")).await;
         assert_eq!(status, StatusCode::OK);
         assert_eq!(detail["sources"].as_array().unwrap().len(), source_count);
-        assert_eq!(PACK_QUERY_COUNT.load(Ordering::SeqCst), 1, "one pack summary query: {item_name}");
+        assert_eq!(PACK_QUERY_COUNT.load(Ordering::SeqCst), 0, "detail does not read the roll-up: {item_name}");
     }
 }
 
 #[tokio::test]
-async fn adventure_packs_preserve_saga_rarity_and_every_quest_pack() {
+async fn saga_sources_preserve_rarity_while_item_pack_filters_roll_up_quests() {
     let detail = item_detail_named("Five%20Rings").await;
     let saga_sources: Vec<_> =
         detail["sources"].as_array().unwrap().iter().filter(|source| source["kind"] == "saga").collect();
@@ -2866,21 +2914,7 @@ async fn adventure_packs_preserve_saga_rarity_and_every_quest_pack() {
         saga_sources.iter().map(|source| source["is_rare"].as_bool().unwrap()).collect::<Vec<_>>(),
         [false, true]
     );
-    let saga_packs: Vec<_> =
-        detail["adventure_packs"].as_array().unwrap().iter().filter(|pack| pack["loot_type"].is_null()).collect();
-    assert_eq!(
-        saga_packs
-            .iter()
-            .map(|pack| (pack["name"].as_str().unwrap(), pack["is_rare"].as_bool().unwrap()))
-            .collect::<Vec<_>>(),
-        [
-            ("Chill of Ravenloft", false),
-            ("Chill of Ravenloft", true),
-            ("Masterminds of Sharn", false),
-            ("Masterminds of Sharn", true)
-        ]
-    );
-    assert!(saga_packs.iter().all(|pack| pack["chest"].is_null()));
+    assert_eq!(detail["adventure_packs"], serde_json::json!([]));
     let (_, _, page) = get("/v1/items?q=Five%20Rings").await;
     assert_eq!(
         page["items"][0]["pack"], "Chill of Ravenloft",
@@ -2895,13 +2929,13 @@ async fn adventure_packs_preserve_saga_rarity_and_every_quest_pack() {
 }
 
 #[tokio::test]
-async fn adventure_packs_preserve_distinct_chests_for_items_and_augments() {
-    for (case_index, (first_chest, second_chest, expected_chests)) in [
-        (Some("end chest"), Some("end chest"), vec![Some("end chest")]),
-        (Some("end chest"), Some("optional chest"), vec![Some("end chest"), Some("optional chest")]),
-        (Some("end chest"), None, vec![None, Some("end chest")]),
-        (None, Some("end chest"), vec![None, Some("end chest")]),
-        (None, None, vec![None]),
+async fn quest_sources_preserve_distinct_chests_for_items_and_augments() {
+    for (case_index, (first_chest, second_chest)) in [
+        (Some("end chest"), Some("end chest")),
+        (Some("end chest"), Some("optional chest")),
+        (Some("end chest"), None),
+        (None, Some("end chest")),
+        (None, None),
     ]
     .into_iter()
     .enumerate()
@@ -2928,24 +2962,19 @@ async fn adventure_packs_preserve_distinct_chests_for_items_and_augments() {
             let (status, _, detail) =
                 get_from(state.clone(), &format!("/v1/{resource}/{}", page[resource][0]["id"])).await;
             assert_eq!(status, StatusCode::OK);
-            let packs: Vec<_> = detail["adventure_packs"]
-                .as_array()
-                .unwrap()
-                .iter()
-                .filter(|pack| pack["name"] == "Free to Play")
-                .collect();
-            assert_eq!(packs.len(), expected_chests.len() + usize::from(resource == "items"), "{resource}: {detail}");
-            let chest_rows: Vec<_> = packs.iter().filter(|pack| pack["loot_type"] == "chest").collect();
-            assert_eq!(
-                chest_rows.iter().map(|pack| pack["chest"].as_str()).collect::<Vec<_>>(),
-                expected_chests,
-                "{resource}: case {case_index}"
-            );
-            assert!(packs.iter().all(|pack| pack["is_rare"] == false));
+            assert_eq!(detail["adventure_packs"], serde_json::json!([]));
+            let quests: Vec<_> =
+                detail["quests"].as_array().unwrap().iter().filter(|quest| quest["pack"] == "Free to Play").collect();
+            assert_eq!(quests.len(), 2 * (1 + usize::from(resource == "items")), "{resource}: {detail}");
+            let chest_rows: Vec<_> = quests.iter().filter(|quest| quest["loot_type"] == "chest").collect();
+            let mut observed_chests: Vec<_> = chest_rows.iter().map(|quest| quest["chest"].as_str()).collect();
+            observed_chests.sort();
+            let mut requested_chests = vec![first_chest, second_chest];
+            requested_chests.sort();
+            assert_eq!(observed_chests, requested_chests, "{resource}: case {case_index}");
+            assert!(quests.iter().all(|quest| quest["is_rare"] == false));
             if resource == "items" {
-                let reward = packs.last().unwrap();
-                assert_eq!(reward["loot_type"], "reward");
-                assert!(reward["chest"].is_null());
+                assert_eq!(quests.iter().filter(|quest| quest["loot_type"] == "reward").count(), 2);
             }
         }
     }

@@ -73,6 +73,35 @@ fn reads_a_rare_drop_as_a_name_or_a_name_with_its_chest() {
     );
 }
 
+#[test]
+fn a_cited_quest_drop_replaces_the_same_pack_wide_chest() {
+    let mut wiki = WikiOverrides::from_dir(&fixtures_dir().join("wiki")).unwrap();
+    let item = wiki.items.iter_mut().find(|item| item.name == "Battle Axe of the Oozing Hunger").unwrap();
+    item.drop_location = "Free to Play, end chest".to_string();
+    item.quests.clear();
+    let quest_loot = "[[quest]]
+name = \"The Grotto\"
+page = \"https://ddowiki.com/page/The_Grotto\"
+read = \"2026-10-05\"
+items = [{ name = \"Battle Axe of the Oozing Hunger\", chest = \"end chest\", replaces_pack_drop = true }]
+";
+    wiki.quest_loot.extend(parsed_wiki(&[("quest_loot_pack_replacement.toml", quest_loot)]).unwrap().quest_loot);
+    let (db, report) = built_db_with(&wiki);
+    let rows: Vec<(String, Option<String>)> = db
+        .prepare(
+            "SELECT s.kind, s.chest FROM sources s JOIN items i ON i.id = s.item_id
+             WHERE i.name = 'Battle Axe of the Oozing Hunger' AND s.kind IN ('quest', 'adventure_pack')
+             ORDER BY s.kind, s.id",
+        )
+        .unwrap()
+        .query_map([], |row| Ok((row.get(0)?, row.get(1)?)))
+        .unwrap()
+        .map(Result::unwrap)
+        .collect();
+    assert_eq!(rows, [("quest".to_string(), Some("end chest".to_string()))]);
+    assert_eq!(report.pack_loot_link_count, 1);
+}
+
 fn quest_augment_loot_row(db: &Connection, quest: &str, augment: &str) -> Option<(String, bool, Option<String>)> {
     db.query_row(
         "SELECT qal.loot_type, qal.is_rare, qal.chest FROM sources qal

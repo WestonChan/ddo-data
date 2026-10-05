@@ -215,6 +215,7 @@ pub(crate) struct AugmentsPageResponse {
 }
 
 #[derive(utoipa::ToSchema)]
+#[schema(description = "Pack-wide drops only.")]
 pub(crate) struct AugmentsDetailResponseAdventurePacksEntry {
     pub(crate) chest: Option<String>,
     pub(crate) id: i64,
@@ -1286,6 +1287,7 @@ pub(crate) struct ItemsPageResponse {
 }
 
 #[derive(utoipa::ToSchema)]
+#[schema(description = "Pack-wide drops only.")]
 pub(crate) struct ItemsDetailResponseAdventurePacksEntry {
     pub(crate) chest: Option<String>,
     pub(crate) id: i64,

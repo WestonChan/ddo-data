@@ -623,14 +623,14 @@ pub(super) enum DroppedLoot {
 }
 
 impl DroppedLoot {
-    fn item_id(self) -> Option<i64> {
+    pub(super) fn item_id(self) -> Option<i64> {
         match self {
             Self::Item(id) => Some(id),
             Self::Augment(_) => None,
         }
     }
 
-    fn augment_id(self) -> Option<i64> {
+    pub(super) fn augment_id(self) -> Option<i64> {
         match self {
             Self::Item(_) => None,
             Self::Augment(id) => Some(id),
@@ -689,7 +689,8 @@ struct SourceLinkSql {
     columns: String,
     values: String,
     same_source_and_loot: String,
-    unique_key: String,
+    same_source_loot_type_and_tier: String,
+    same_drop_location: String,
 }
 
 static SOURCE_LINK_SQL: LazyLock<SourceLinkSql> = LazyLock::new(|| {
@@ -704,24 +705,40 @@ static SOURCE_LINK_SQL: LazyLock<SourceLinkSql> = LazyLock::new(|| {
         .enumerate()
         .map(|(index, column)| format!("{column} IS ?{}", index + 1))
         .collect();
+    let matching_columns = |excluded: &[&str]| {
+        columns
+            .iter()
+            .enumerate()
+            .filter(|(_, column)| !excluded.contains(column))
+            .map(|(index, column)| format!("{column} IS ?{}", index + 1))
+            .collect::<Vec<_>>()
+            .join(" AND ")
+    };
     SourceLinkSql {
         columns: format!("sources ({})", columns.join(", ")),
         values: values.join(", "),
         same_source_and_loot: same_source_and_loot.join(" AND "),
-        unique_key: format!(
-            "kind, COALESCE({}), COALESCE(item_id, 0), COALESCE(augment_id, 0), COALESCE(loot_type, ''), COALESCE(tier, '')",
-            identifying_columns.join(", ")
-        ),
+        same_source_loot_type_and_tier: matching_columns(&["is_rare", "chest", "cost"]),
+        same_drop_location: matching_columns(&["is_rare"]),
     }
 });
 
 pub(super) fn insert_source_link(transaction: &Transaction, source_link: &SourceLink) -> Result<usize> {
     let sql = &*SOURCE_LINK_SQL;
+    if source_link.is_rare {
+        let updated = source_link.execute(
+            transaction,
+            &format!("UPDATE sources SET is_rare = 1 WHERE {} AND is_rare = 0", sql.same_drop_location),
+        )?;
+        if updated > 0 {
+            return Ok(updated);
+        }
+    }
     source_link.execute(
         transaction,
         &format!(
-            "INSERT INTO {} VALUES ({}) ON CONFLICT ({}) DO UPDATE SET is_rare = 1 WHERE excluded.is_rare > sources.is_rare",
-            sql.columns, sql.values, sql.unique_key
+            "INSERT INTO {} SELECT {} WHERE NOT EXISTS (SELECT 1 FROM sources WHERE {})",
+            sql.columns, sql.values, sql.same_drop_location
         ),
     )
 }
@@ -747,7 +764,10 @@ pub(super) fn insert_source_link_unless_linked_as(
     let sql = &*SOURCE_LINK_SQL;
     source_link.execute(
         transaction,
-        &format!("INSERT INTO {} VALUES ({}) ON CONFLICT ({}) DO NOTHING", sql.columns, sql.values, sql.unique_key),
+        &format!(
+            "INSERT INTO {} SELECT {} WHERE NOT EXISTS (SELECT 1 FROM sources WHERE {})",
+            sql.columns, sql.values, sql.same_source_loot_type_and_tier
+        ),
     )
 }
 

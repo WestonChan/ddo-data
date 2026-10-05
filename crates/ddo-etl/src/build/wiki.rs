@@ -43,8 +43,11 @@ pub(super) fn apply_wiki_overrides(
             let item_id = id_by_name(transaction, "items", item_name)?.with_context(|| {
                 format!("{citation}: listed item {item_name:?} is not in Maetrim's items or a wiki item; names must match exactly")
             })?;
-            report.wiki_added_quest_loot_link_count +=
+            let (added_links, replaced_pack_drops) =
                 insert_listed_loot_link(transaction, quest_id, DroppedLoot::Item(item_id), listed_item)?;
+            report.wiki_added_quest_loot_link_count += added_links;
+            report.pack_loot_link_count =
+                report.pack_loot_link_count.checked_sub(replaced_pack_drops).context("replacing item pack source")?;
             report.wiki_loot_drop_count += 1;
         }
         for listed_augment in &quest_loot.augments {
@@ -54,8 +57,13 @@ pub(super) fn apply_wiki_overrides(
                 bail!("{citation}: listed augment {augment_name:?} is not in Maetrim's augments or a wiki augment; names must match exactly");
             }
             for augment_id in augment_ids {
-                report.wiki_added_quest_augment_loot_link_count +=
+                let (added_links, replaced_pack_drops) =
                     insert_listed_loot_link(transaction, quest_id, DroppedLoot::Augment(augment_id), listed_augment)?;
+                report.wiki_added_quest_augment_loot_link_count += added_links;
+                report.pack_augment_loot_link_count = report
+                    .pack_augment_loot_link_count
+                    .checked_sub(replaced_pack_drops)
+                    .context("replacing augment pack source")?;
             }
             report.wiki_loot_augment_drop_count += 1;
         }
@@ -393,14 +401,29 @@ fn insert_listed_loot_link(
     quest_id: i64,
     loot: DroppedLoot,
     listed_drop: &ListedDrop,
-) -> Result<usize> {
+) -> Result<(usize, usize)> {
     let listed_source_link =
         SourceLink { chest: listed_drop.chest(), ..SourceLink::from_quest(quest_id, loot, listed_drop.loot_type()) };
-    if listed_drop.names_loot_type() {
+    let added_links = if listed_drop.names_loot_type() {
         insert_source_link_unless_linked_as(transaction, &listed_source_link)
     } else {
         insert_source_link_unless_loot_linked_there(transaction, &listed_source_link)
-    }
+    }?;
+    let replaced_pack_drops = if listed_drop.replaces_pack_drop() {
+        let chest = listed_drop.chest().context("replaces_pack_drop needs a chest")?;
+        let deleted = transaction.execute(
+            "DELETE FROM sources
+             WHERE kind = 'adventure_pack'
+               AND pack_id = (SELECT pack_id FROM quests WHERE id = ?1)
+               AND item_id IS ?2 AND augment_id IS ?3 AND loot_type = ?4 AND chest = ?5",
+            params![quest_id, loot.item_id(), loot.augment_id(), listed_drop.loot_type().as_str(), chest],
+        )?;
+        ensure!(deleted == 1, "wiki quest drop {:?} must replace exactly one pack-wide source", listed_drop.name());
+        deleted
+    } else {
+        0
+    };
+    Ok((added_links, replaced_pack_drops))
 }
 
 fn ids_by_name(transaction: &Transaction, table: &str, name: &str) -> Result<Vec<i64>> {

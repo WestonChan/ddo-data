@@ -61,6 +61,8 @@ pub struct DescribedListedDrop {
     pub name: String,
     pub loot_type: Option<String>,
     pub chest: Option<String>,
+    #[serde(default)]
+    pub replaces_pack_drop: bool,
 }
 
 impl ListedDrop {
@@ -86,6 +88,10 @@ impl ListedDrop {
 
     pub fn names_loot_type(&self) -> bool {
         self.loot_type_name().is_some()
+    }
+
+    pub fn replaces_pack_drop(&self) -> bool {
+        matches!(self, Self::Described(drop) if drop.replaces_pack_drop)
     }
 
     fn loot_type_name(&self) -> Option<&str> {
@@ -114,6 +120,9 @@ impl QuestLoot {
                     "listed drop {:?}: a reward comes from the quest's end, not from a chest; remove its chest",
                     listed_drop.name()
                 );
+            }
+            if listed_drop.replaces_pack_drop() && listed_drop.chest().is_none() {
+                bail!("listed drop {:?}: replaces_pack_drop needs the pack chest it replaces", listed_drop.name());
             }
         }
         Ok(())
