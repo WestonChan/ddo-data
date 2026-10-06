@@ -243,6 +243,22 @@ fn rejects_a_correction_without_a_source_url_reason_or_real_read_date() {
 }
 
 #[test]
+fn an_effect_rename_must_cite_a_wiki_page_but_a_template_may_cite_the_internal_check() {
+    let internal_source = "internal:effect-name-and-description";
+    let wiki_source = "https://ddowiki.com/page/Test";
+    let correction = |field: &str, source: &str| {
+        correction_toml("effect", "Echoes of 2006", field, "\"Echoes of 2006\"", "\"Earthen Guard\"")
+            .replace(wiki_source, source)
+    };
+    let error = parsed_corrections(&[("corrections.toml", &correction("name", internal_source))]).unwrap_err();
+    assert!(error.contains("Echoes of 2006") && error.contains("rename") && error.contains("wiki"), "{error}");
+    assert!(parsed_corrections(&[("corrections.toml", &correction("name", wiki_source))]).is_ok());
+    for template_field in ["verbose_name_template", "description_template"] {
+        assert!(parsed_corrections(&[("corrections.toml", &correction(template_field, internal_source))]).is_ok());
+    }
+}
+
+#[test]
 fn build_fails_naming_a_row_his_files_lack() {
     let error =
         built_db_with(&[("corrections.toml", &correction_toml("augment", "Missing Gem", "min_level", "30", "29"))])

@@ -86,6 +86,35 @@ fn an_augment_potency_effect_grants_each_spell_power_through_the_shared_family()
 }
 
 #[test]
+fn a_wiki_item_links_potency_by_effect_and_keeps_its_description() {
+    let (db, _) = built_fixture_db();
+    let item = item_id(&db, "Battle Axe of the Oozing Hunger");
+    let (linked_effect, description): (String, Option<String>) = db
+        .query_row(
+            "SELECT e.name, e.description_template FROM item_effects ie JOIN effects e ON e.id = ie.effect_id
+              WHERE ie.item_id = ?1 AND e.name = 'Potency'",
+            [item],
+            |row| Ok((row.get(0)?, row.get(1)?)),
+        )
+        .unwrap();
+    assert_eq!(linked_effect, "Potency");
+    assert!(description.is_some());
+    let spell_powers: Vec<(String, i64, String)> = db
+        .prepare(
+            "SELECT s.name, ob.amount, bt.name FROM owner_bonuses ob JOIN effects s ON s.id = ob.stat_id
+             JOIN bonus_types bt ON bt.id = ob.bonus_type_id
+             WHERE ob.owner_kind = 'item' AND ob.owner_id = ?1 AND s.name LIKE '% Spell Power'",
+        )
+        .unwrap()
+        .query_map([item], |row| Ok((row.get(0)?, row.get(1)?, row.get(2)?)))
+        .unwrap()
+        .map(Result::unwrap)
+        .collect();
+    assert_eq!(spell_powers.len(), 15);
+    assert!(spell_powers.iter().all(|(_, amount, bonus_type)| *amount == 49 && bonus_type == "Equipment"));
+}
+
+#[test]
 fn implement_spell_power_remains_universal() {
     let (db, _) = built_fixture_db();
     let bonuses: Vec<(String, String)> = db

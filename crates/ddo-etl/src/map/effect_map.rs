@@ -564,6 +564,10 @@ impl EffectMap {
         (!stats.is_empty()).then_some(stats)
     }
 
+    pub fn is_linkable_named_effect(&self, effect_name: &str) -> bool {
+        self.named_effect_ids.contains_key(effect_name) || self.family.groups.contains_key(effect_name)
+    }
+
     pub fn group_members(&self, group_name: &str) -> Option<&[String]> {
         self.groups
             .get(group_name)

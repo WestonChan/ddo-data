@@ -1,9 +1,9 @@
 use crate::db::{
-    effects_via_with_link_order, json_row, json_rows, paged_query, paged_table_json, ListPage, TableListSource,
-    WhereClause,
+    clamped_page, effects_via_with_link_order, json_row, json_rows, paged_query, paged_table_json, ListPage,
+    TableListSource, WhereClause,
 };
 use crate::error::ApiError;
-use crate::query::{declare_list_parameters, declare_query_parameters, ApiFilterQuery, ApiQuery, ListQuery};
+use crate::query::{declare_list_parameters, declare_query_parameters, ApiFilterQuery, ApiQuery};
 use crate::state::AppState;
 use axum::extract::{Path, State};
 use axum::Json;
@@ -168,8 +168,6 @@ declare_query_parameters! {
     }
 }
 
-const BACKLINK_SORT_FIELDS: &[(&str, &str)] = &[("name", "listed.name"), ("id", "listed.id")];
-
 fn carrier_lines(db: &Connection, owner_kind: &str, rows: &[Value]) -> Result<HashMap<(i64, i64), Value>, ApiError> {
     if rows.is_empty() {
         return Ok(HashMap::new());
@@ -294,54 +292,97 @@ fn carrier_pages(
            JOIN set_bonuses s ON s.id = t.set_id {match_join} ORDER BY s.name, t.equipped_count, j.sort_order",
         match_join = join_for("set_bonus_tier", "tier_id")
     );
-    let page = |sql: String, owner_kind: &str, limit: Option<i64>, offset: Option<i64>| -> Result<ListPage, ApiError> {
-        let query = ListQuery { q: None, limit, offset, sort: Vec::new() };
-        let mut where_clause = WhereClause::default();
-        where_clause.add_bound_condition("listed.match_id = ?", id);
-        let mut result = paged_query(
+    let page = |links_sql: String,
+                owner_columns: &[&str],
+                owner_kind: &str,
+                limit: Option<i64>,
+                offset: Option<i64>|
+     -> Result<ListPage, ApiError> {
+        let (limit, offset) = clamped_page(limit, offset);
+        let link_rows = json_rows(
             db,
-            "*",
-            &format!("({sql}) listed"),
-            &query,
-            "listed.name",
-            BACKLINK_SORT_FIELDS,
-            &where_clause,
+            &format!(
+                "SELECT * FROM ({links_sql}) listed WHERE listed.match_id = ?1
+                  ORDER BY listed.name, listed.id, listed.link_order"
+            ),
+            [id],
         )?;
-        let lines = carrier_lines(db, owner_kind, &result.rows)?;
-        for row in &mut result.rows {
-            if kind != "stat" {
-                let key =
-                    (owner_kind.to_string(), row["id"].as_i64().unwrap_or(0), row["link_order"].as_i64().unwrap_or(0));
-                row["bonuses"] = Value::Array(bonuses_by_link.get(&key).cloned().unwrap_or_default());
+        let mut link_rows_by_owner: Vec<(i64, Vec<Value>)> = Vec::new();
+        for link_row in link_rows {
+            let owner_id = link_row["id"].as_i64().unwrap_or_default();
+            match link_rows_by_owner.last_mut() {
+                Some((last_owner_id, owner_link_rows)) if *last_owner_id == owner_id => owner_link_rows.push(link_row),
+                _ => link_rows_by_owner.push((owner_id, vec![link_row])),
             }
-            let owner_id = row["id"].as_i64().unwrap_or_default();
-            let link_order = row["link_order"].as_i64().unwrap_or_default();
-            row["line"] = lines.get(&(owner_id, link_order)).cloned().ok_or_else(|| {
-                ApiError::Internal(anyhow::anyhow!("missing {owner_kind} effect line {owner_id}:{link_order}"))
-            })?;
-            let object = row.as_object_mut().expect("backlink object");
-            object.remove("match_id");
-            object.remove("link_order");
         }
-        Ok(result)
+        let total = link_rows_by_owner.len() as i64;
+        let page_owners: Vec<(i64, Vec<Value>)> =
+            link_rows_by_owner.into_iter().skip(offset as usize).take(limit as usize).collect();
+        let page_link_rows: Vec<Value> =
+            page_owners.iter().flat_map(|(_, owner_link_rows)| owner_link_rows.iter().cloned()).collect();
+        let lines = carrier_lines(db, owner_kind, &page_link_rows)?;
+        let mut rows = Vec::with_capacity(page_owners.len());
+        for (owner_id, owner_link_rows) in page_owners {
+            let mut owner_lines = Vec::with_capacity(owner_link_rows.len());
+            for link_row in &owner_link_rows {
+                let link_order = link_row["link_order"].as_i64().unwrap_or_default();
+                let mut carrier_line = serde_json::Map::new();
+                for field in ["effect_id", "effect", "bonus_type", "value", "value2", "amount_source", "scale"] {
+                    carrier_line.insert(field.to_string(), link_row[field].clone());
+                }
+                if kind != "stat" {
+                    let key = (owner_kind.to_string(), owner_id, link_order);
+                    carrier_line.insert(
+                        "bonuses".to_string(),
+                        Value::Array(bonuses_by_link.get(&key).cloned().unwrap_or_default()),
+                    );
+                }
+                carrier_line.insert(
+                    "line".to_string(),
+                    lines.get(&(owner_id, link_order)).cloned().ok_or_else(|| {
+                        ApiError::Internal(anyhow::anyhow!("missing {owner_kind} effect line {owner_id}:{link_order}"))
+                    })?,
+                );
+                owner_lines.push(Value::Object(carrier_line));
+            }
+            let mut row = serde_json::Map::new();
+            for field in owner_columns {
+                row.insert(field.to_string(), owner_link_rows[0][*field].clone());
+            }
+            if let Some(Value::Object(first_line)) = owner_lines.first() {
+                for (field, value) in first_line {
+                    row.insert(field.clone(), value.clone());
+                }
+            }
+            row.insert("lines".to_string(), Value::Array(owner_lines));
+            rows.push(Value::Object(row));
+        }
+        Ok(ListPage { total, limit, offset, rows })
     };
-    let items = page(items_sql, "item", pages.items_limit, pages.items_offset)?.into_json("items");
-    let augments = page(augments_sql, "augment", pages.augments_limit, pages.augments_offset)?.into_json("augments");
-    let tiers =
-        page(tiers_sql, "set_bonus_tier", pages.set_tiers_limit, pages.set_tiers_offset)?.into_json("set_tiers");
+    let items = page(items_sql, &["id", "name"], "item", pages.items_limit, pages.items_offset)?.into_json("items");
+    let augments = page(augments_sql, &["id", "name"], "augment", pages.augments_limit, pages.augments_offset)?
+        .into_json("augments");
+    let tiers = page(
+        tiers_sql,
+        &["id", "set_id", "set_name", "equipped_count", "name"],
+        "set_bonus_tier",
+        pages.set_tiers_limit,
+        pages.set_tiers_offset,
+    )?
+    .into_json("set_tiers");
     Ok((items, augments, tiers))
 }
 
 #[utoipa::path(
     get, path = "/v1/effects/{id}", tag = "bonuses", summary = "Get an effect",
-    description = "Returns an effect, group or stat with its bonus and damage rules, tier group and paged carriers.",
+    description = "Returns an effect, group or stat with its bonus and damage rules, tier group and paged carriers, one row per owner with its lines.",
     params(("id" = i64, Path, description = "Effect, group or stat id from the vocabulary."),
-        ("items_limit" = Option<i64>, Query, description = "Maximum item links in this page."),
-        ("items_offset" = Option<i64>, Query, description = "Item links to skip."),
-        ("augments_limit" = Option<i64>, Query, description = "Maximum augment links in this page."),
-        ("augments_offset" = Option<i64>, Query, description = "Augment links to skip."),
-        ("set_tiers_limit" = Option<i64>, Query, description = "Maximum set-tier links in this page."),
-        ("set_tiers_offset" = Option<i64>, Query, description = "Set-tier links to skip."),
+        ("items_limit" = Option<i64>, Query, description = "Maximum items in this page."),
+        ("items_offset" = Option<i64>, Query, description = "Items to skip before this page."),
+        ("augments_limit" = Option<i64>, Query, description = "Maximum augments in this page."),
+        ("augments_offset" = Option<i64>, Query, description = "Augments to skip before this page."),
+        ("set_tiers_limit" = Option<i64>, Query, description = "Maximum set tiers in this page."),
+        ("set_tiers_offset" = Option<i64>, Query, description = "Set tiers to skip before this page."),
         ("include_legacy" = Option<bool>, Query, description = "Use true to include legacy items in carrier links.")),
     responses((status = 200, description = "Effect and paged carriers", body = crate::routes::v1::response_schemas::EffectsDetailResponse),
         (status = 404, description = "No effect has this id", body = crate::error::ErrorBody))

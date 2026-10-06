@@ -6003,6 +6003,11 @@
               "reason": "A Maetrim effect retains its value-bearing source name until the dice and amount fields are modelled.",
               "served": "Holy Burst 7",
               "code": "value_in_source_name"
+            },
+            "description": {
+              "code": "value_disagreement",
+              "reason": "The wiki's 1d6 critical dice are Template:Burst's default for an omitted critical magnitude, not a game value, so Maetrim's 14d6 stands; the Evil-wielder negative level is the separate Evil Characters line.",
+              "served": "This weapon sings of virtue, dealing 7d6 Good damage on a successful hit to Evil enemies, and 14d6 Good damage on a critical hit to Evil enemies. This effect makes the weapon good aligned."
             }
           }
         },

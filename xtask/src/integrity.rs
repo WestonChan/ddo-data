@@ -145,17 +145,34 @@ pub const INTEGRITY_CHECKS: &[IntegrityCheck] = &[
              HAVING COUNT(*) > 1",
         ),
     ),
-    IntegrityCheck::warn(
-        "owner_bonuses_repeated_across_links",
-        "an owner grants the same stat and type from separate effect links; review distinct source lines",
+    IntegrityCheck::hard(
+        "owner_stat_links_repeat_effect_links",
+        "an owner links a stat directly beside an effect or group link that already grants that stat at the same \
+         type and amount, which counts one source line twice",
         OffenderQuery::Sql(
-            "SELECT ob.owner_kind || ':' || ob.owner_id, ob.owner_id,
-                    'stat ' || ob.stat_id || ' and type ' || ob.bonus_type_id || ' occur on ' || COUNT(DISTINCT ob.effect_link_order) || ' links'
-               FROM owner_bonuses ob
-              GROUP BY ob.owner_kind, ob.owner_id, ob.stat_id, ob.bonus_type_id
-             HAVING COUNT(DISTINCT ob.effect_link_order) > 1",
+            "SELECT direct.owner_kind || ':' || direct.owner_id, direct.owner_id,
+                    'direct ' || stat.name || ' repeats ' || via.name
+               FROM owner_bonuses direct
+               JOIN owner_bonuses effect_link ON effect_link.owner_kind = direct.owner_kind
+                AND effect_link.owner_id = direct.owner_id
+                AND effect_link.effect_link_order <> direct.effect_link_order
+                AND effect_link.via_effect_id IS NOT NULL
+                AND effect_link.stat_id = direct.stat_id
+                AND effect_link.bonus_type_id IS direct.bonus_type_id
+                AND effect_link.amount = direct.amount
+               JOIN effects stat ON stat.id = direct.stat_id
+               JOIN effects via ON via.id = effect_link.via_effect_id
+              WHERE direct.via_effect_id IS NULL
+              GROUP BY direct.owner_kind, direct.owner_id, direct.effect_link_order, effect_link.effect_link_order",
         ),
     ),
+    IntegrityCheck::warn(
+        "owner_bonuses_repeated_across_links",
+        "an owner has a link whose resolved stats, all at the same types, another of its links already grants; the \
+         lines are separate in the source and the same type does not stack, so each cause is listed once",
+        OffenderQuery::Built(owner_bonuses_repeated_across_links),
+    )
+    .ranking_top_details(40),
     IntegrityCheck::hard(
         "effect_stat_amount_sources",
         "every stat row reads at most the amount slots its family carries",
@@ -435,6 +452,13 @@ pub const INTEGRITY_CHECKS: &[IntegrityCheck] = &[
         "effect_templates_disagree_with_names",
         "in-use effect templates must include the effect name or a declared alias with matching numeric tokens",
         OffenderQuery::Built(effect_templates_disagree_with_names),
+    )
+    .showing_every_offender(),
+    IntegrityCheck::warn(
+        "effect_descriptions_with_fewer_critical_dice_than_hit_dice",
+        "in-use effect descriptions whose critical-hit dice are fewer than their on-hit dice; a wiki template default \
+         is not a game value, so check the source before trusting either",
+        OffenderQuery::Built(effect_descriptions_with_fewer_critical_dice_than_hit_dice),
     )
     .showing_every_offender(),
     IntegrityCheck::warn(
@@ -1203,6 +1227,119 @@ fn effect_template_numbers_mismatch_names(db: &Connection, _options: &IntegrityO
                 && !name_numbers.iter().all(|token| template_numbers.contains(token)))
             .then_some(Offender { name, id: Some(id), detail: format!("template {template:?}") })
         })
+        .collect();
+    Ok(Findings { offenders: Some(offenders), notes: Vec::new() })
+}
+
+fn owner_bonuses_repeated_across_links(db: &Connection, _options: &IntegrityOptions) -> Result<Findings> {
+    type LinkBonuses = BTreeMap<(i64, Option<i64>), i64>;
+    let mut statement = db.prepare(
+        "SELECT ob.owner_kind, ob.owner_id, ob.effect_link_order, ob.stat_id, ob.bonus_type_id, ob.amount,
+                COALESCE(via.name, stat.name)
+           FROM owner_bonuses ob JOIN effects stat ON stat.id = ob.stat_id
+           LEFT JOIN effects via ON via.id = ob.via_effect_id
+          ORDER BY ob.owner_kind, ob.owner_id, ob.effect_link_order",
+    )?;
+    let mut links_by_owner: BTreeMap<(String, i64), BTreeMap<i64, (String, LinkBonuses)>> = BTreeMap::new();
+    for row in statement.query_map([], |row| {
+        Ok((
+            row.get::<_, String>(0)?,
+            row.get::<_, i64>(1)?,
+            row.get::<_, i64>(2)?,
+            row.get::<_, i64>(3)?,
+            row.get::<_, Option<i64>>(4)?,
+            row.get::<_, i64>(5)?,
+            row.get::<_, String>(6)?,
+        ))
+    })? {
+        let (owner_kind, owner_id, link_order, stat_id, bonus_type_id, amount, effect_name) = row?;
+        links_by_owner
+            .entry((owner_kind, owner_id))
+            .or_default()
+            .entry(link_order)
+            .or_insert_with(|| (effect_name, LinkBonuses::new()))
+            .1
+            .insert((stat_id, bonus_type_id), amount);
+    }
+    let mut offenders = Vec::new();
+    for ((owner_kind, owner_id), links) in &links_by_owner {
+        for (repeating_order, (repeating_name, repeating_bonuses)) in links {
+            let repeated_link = links.iter().find(|(granting_order, (_, granting_bonuses))| {
+                granting_order != &repeating_order
+                    && repeating_bonuses.keys().all(|key| granting_bonuses.contains_key(key))
+                    && (repeating_bonuses.len() < granting_bonuses.len() || granting_order < &repeating_order)
+            });
+            if let Some((_, (granting_name, granting_bonuses))) = repeated_link {
+                let amounts = if repeating_bonuses.iter().all(|(key, amount)| granting_bonuses[key] == *amount) {
+                    "same amounts"
+                } else {
+                    "different amounts"
+                };
+                offenders.push(Offender {
+                    name: format!("{owner_kind}:{owner_id}"),
+                    id: Some(*owner_id),
+                    detail: format!("{repeating_name} repeats {granting_name} ({amounts})"),
+                });
+            }
+        }
+    }
+    Ok(Findings { offenders: Some(offenders), notes: Vec::new() })
+}
+
+fn dice_terms(text: &str) -> Vec<(u32, u32)> {
+    let mut terms = Vec::new();
+    let characters: Vec<char> = text.chars().collect();
+    for (index, character) in characters.iter().enumerate() {
+        if *character != 'd' || index == 0 || !characters[index - 1].is_ascii_digit() {
+            continue;
+        }
+        let count_start =
+            (0..index).rev().take_while(|position| characters[*position].is_ascii_digit()).last().unwrap_or(index);
+        let sides_end =
+            (index + 1..characters.len()).take_while(|position| characters[*position].is_ascii_digit()).count();
+        if sides_end == 0 || (count_start > 0 && characters[count_start - 1].is_alphanumeric()) {
+            continue;
+        }
+        let count: String = characters[count_start..index].iter().collect();
+        let sides: String = characters[index + 1..index + 1 + sides_end].iter().collect();
+        if let (Ok(count), Ok(sides)) = (count.parse(), sides.parse()) {
+            terms.push((count, sides));
+        }
+    }
+    terms
+}
+
+fn has_fewer_critical_dice_than_hit_dice(description: &str) -> bool {
+    let lowercase = description.to_ascii_lowercase();
+    let Some((before_critical, _)) = lowercase.split_once("critical hit") else {
+        return false;
+    };
+    let terms = dice_terms(before_critical);
+    match (terms.first(), terms.last()) {
+        (Some(hit), Some(critical)) if terms.len() > 1 => critical.0 * critical.1 < hit.0 * hit.1,
+        _ => false,
+    }
+}
+
+fn effect_descriptions_with_fewer_critical_dice_than_hit_dice(
+    db: &Connection,
+    _options: &IntegrityOptions,
+) -> Result<Findings> {
+    let links = EFFECT_OWNER_LINKS
+        .iter()
+        .map(|(table, _)| format!("SELECT effect_id FROM {table}"))
+        .collect::<Vec<_>>()
+        .join(" UNION ");
+    let mut statement = db.prepare(&format!(
+        "SELECT e.id, e.name, e.description_template FROM effects e
+          WHERE e.id IN ({links}) AND e.description_template IS NOT NULL ORDER BY e.name"
+    ))?;
+    let offenders = statement
+        .query_map([], |row| Ok((row.get::<_, i64>(0)?, row.get::<_, String>(1)?, row.get::<_, String>(2)?)))?
+        .collect::<rusqlite::Result<Vec<_>>>()?
+        .into_iter()
+        .filter(|(_, _, description)| has_fewer_critical_dice_than_hit_dice(description))
+        .map(|(id, name, description)| Offender { name, id: Some(id), detail: format!("description {description:?}") })
         .collect();
     Ok(Findings { offenders: Some(offenders), notes: Vec::new() })
 }

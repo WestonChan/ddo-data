@@ -564,12 +564,12 @@ mod effect_template_tests {
     }
 
     #[test]
-    fn natural_armor_set_line_names_the_armor_class_it_grants() {
+    fn natural_armor_set_line_names_the_natural_armor_it_grants() {
         let row = json!({
-            "name": "Natural Armor", "set_bonus_line_template": "+{1} %b1 Bonus to Armor Class",
+            "name": "Natural Armor", "set_bonus_line_template": "+{1} %b1 Bonus to Natural Armor",
             "template_value": 5, "template_value2": null, "template_bonus_type": "Profane"
         });
-        assert_eq!(render_set_bonus_line(&row), "+5 Profane Bonus to Armor Class");
+        assert_eq!(render_set_bonus_line(&row), "+5 Profane Bonus to Natural Armor");
     }
 
     #[test]

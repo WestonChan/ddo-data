@@ -1324,7 +1324,25 @@ fn writes_a_new_wiki_item_with_its_stats_bonuses_effects_sockets_set_and_quests(
                JOIN bonus_types bt ON bt.id = ob.bonus_type_id
               WHERE ob.owner_kind = 'item' AND ob.owner_id = ?item ORDER BY ob.effect_link_order, ob.stat_id"
         ),
-        ["Strength|Enhancement|15", "Doublestrike|Insight|5"]
+        [
+            "Strength|Enhancement|15",
+            "Doublestrike|Insight|5",
+            "Fire Spell Power|Equipment|49",
+            "Cold Spell Power|Equipment|49",
+            "Electric Spell Power|Equipment|49",
+            "Acid Spell Power|Equipment|49",
+            "Sonic Spell Power|Equipment|49",
+            "Light Spell Power|Equipment|49",
+            "Force Spell Power|Equipment|49",
+            "Negative Spell Power|Equipment|49",
+            "Positive Spell Power|Equipment|49",
+            "Repair Spell Power|Equipment|49",
+            "Poison Spell Power|Equipment|49",
+            "Chaos Spell Power|Equipment|49",
+            "Good Spell Power|Equipment|49",
+            "Evil Spell Power|Equipment|49",
+            "Law Spell Power|Equipment|49",
+        ]
     );
     let effect_lines = item_column(
         "SELECT e.name || '|' || COALESCE(e.verbose_name_template || ': ' || e.description_template, '')

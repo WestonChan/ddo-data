@@ -36,7 +36,7 @@ read = "2026-09-29"
 - `source`: the `https://` URL that shows the right value.
 - `read`: the date the source was read, `YYYY-MM-DD`.
 
-For an effect template that contradicts its own name, description or placeholder syntax, or a text-only effect that duplicates another effect's corrected text, `source = "internal:effect-name-and-description"` records internal consistency instead of a wiki citation. Its `reason` must state the agreeing text or syntax; the correction still expires when Maetrim changes the source. A rename into an existing text-only effect merges owner links only when both templates, descriptions and amount counts agree.
+For an effect template (`verbose_name_template` or `description_template`) that contradicts its own name, description or placeholder syntax, `source = "internal:effect-name-and-description"` records internal consistency instead of a wiki citation. Its `reason` must state the agreeing text or syntax; the correction still expires when Maetrim changes the source. An effect rename (`field = "name"`) always cites a wiki page showing the new name, never the internal source, because two effects with the same text can still be different effects (Maetrim's Earthen Guard and Echoes of 2006 carry each other's display text). A rename into an existing text-only effect merges owner links only when both templates, descriptions and amount counts agree.
 
 ## The allow-list
 
@@ -86,7 +86,7 @@ The build fails, naming the file and the correction, when:
 - `family` is set on a kind other than `augment` or `augment_bonus`, `equipped_count` is missing on a set tier correction or set on another kind, or `stat` and `bonus_type` are missing from (or `stat`, `bonus_type` or `bonus_value` set outside) an `augment_bonus`, `item_bonus` or `set_tier_bonus` `value`, `bonus_type` or `remove` correction;
 - the same (`kind`, `name`, qualifier, `field`) appears twice, in one file or across files; the qualifier is the `family`, the bonus's stat and type (and `bonus_value`), or an added effect's name or socket's label, so one augment can have several of its bonuses corrected;
 - `from` or `to` does not fit the field (a string for an integer, `2` for a flag, `"null"` for a field that cannot be NULL), or `to` equals `from`;
-- `reason` is empty, `source` is neither an `https://` URL nor the internal template-consistency source for an effect template, or `read` is not a real `YYYY-MM-DD` date;
+- `reason` is empty, `source` is neither an `https://` URL nor, for an effect template only, the internal template-consistency source (an effect rename needs an `https://` URL), or `read` is not a real `YYYY-MM-DD` date;
 - `name` matches no row of that kind (in that `family`) in his files, unless the correction is a rename (`field = "name"`) and a row named `to` already exists, which means he fixed the spelling himself: that rename is counted stale, not failed, and the wiki files that use the corrected name keep working;
 - a `slot`, `material`, `pack`, `patron`, `set_bonus`, stat, bonus type or socket label names nothing in his files, or a rename's `to` is already another row's name (for an augment, another augment in the same family).
 

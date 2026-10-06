@@ -584,6 +584,11 @@ fn schema_carrier_value() -> RefOr<Schema> {
 fn schema_carrier_value2() -> RefOr<Schema> {
     described_schema::<Option<i64>>("Second amount stated by this owner link, if any.")
 }
+fn schema_carrier_lines() -> RefOr<Schema> {
+    described_schema::<Vec<EffectCarrierLine>>(
+        "Every link of this owner to the effect, ordered as the owner lists them; the fields above repeat the first.",
+    )
+}
 fn schema_carrier_line() -> RefOr<Schema> {
     described_schema::<EffectLine>("Rendered effect line carried by this owner link.")
 }
@@ -630,6 +635,22 @@ pub(crate) struct EffectCarrierBonus {
 }
 
 #[derive(utoipa::ToSchema)]
+pub(crate) struct EffectCarrierLine {
+    #[schema(schema_with = schema_carrier_line)]
+    pub(crate) line: EffectLine,
+    #[schema(schema_with = schema_carrier_value)]
+    pub(crate) value: Option<i64>,
+    #[schema(schema_with = schema_carrier_value2)]
+    pub(crate) value2: Option<i64>,
+    pub(crate) effect_id: Option<i64>,
+    pub(crate) effect: Option<String>,
+    pub(crate) bonus_type: Option<String>,
+    pub(crate) amount_source: Option<String>,
+    pub(crate) scale: Option<f64>,
+    pub(crate) bonuses: Option<Vec<EffectCarrierBonus>>,
+}
+
+#[derive(utoipa::ToSchema)]
 pub(crate) struct EffectsDetailResponseAugmentsAugmentsEntry {
     pub(crate) id: i64,
     pub(crate) name: String,
@@ -645,6 +666,8 @@ pub(crate) struct EffectsDetailResponseAugmentsAugmentsEntry {
     pub(crate) amount_source: Option<String>,
     pub(crate) scale: Option<f64>,
     pub(crate) bonuses: Option<Vec<EffectCarrierBonus>>,
+    #[schema(schema_with = schema_carrier_lines)]
+    pub(crate) lines: Vec<EffectCarrierLine>,
 }
 
 #[derive(utoipa::ToSchema)]
@@ -671,6 +694,8 @@ pub(crate) struct EffectsDetailResponseItemsItemsEntry {
     pub(crate) amount_source: Option<String>,
     pub(crate) scale: Option<f64>,
     pub(crate) bonuses: Option<Vec<EffectCarrierBonus>>,
+    #[schema(schema_with = schema_carrier_lines)]
+    pub(crate) lines: Vec<EffectCarrierLine>,
 }
 
 #[derive(utoipa::ToSchema)]
@@ -700,6 +725,8 @@ pub(crate) struct EffectSetTierCarrier {
     pub(crate) amount_source: Option<String>,
     pub(crate) scale: Option<f64>,
     pub(crate) bonuses: Option<Vec<EffectCarrierBonus>>,
+    #[schema(schema_with = schema_carrier_lines)]
+    pub(crate) lines: Vec<EffectCarrierLine>,
 }
 
 #[derive(utoipa::ToSchema)]

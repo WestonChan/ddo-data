@@ -71,11 +71,76 @@ fn response_effect_lines_show_non_home_types(
     Ok(())
 }
 
+fn effect_vocabulary_counts(db: &rusqlite::Connection) -> Result<BTreeMap<i64, (i64, i64)>> {
+    let mut statement = db.prepare("SELECT id, item_count, augment_count FROM effect_vocabulary_counts")?;
+    let counts = statement
+        .query_map([], |row| Ok((row.get::<_, i64>(0)?, (row.get::<_, i64>(1)?, row.get::<_, i64>(2)?))))?
+        .collect::<rusqlite::Result<_>>()?;
+    Ok(counts)
+}
+
+fn effect_detail_totals_match_vocabulary(
+    detail: &Value,
+    path: &str,
+    vocabulary_counts: &BTreeMap<i64, (i64, i64)>,
+) -> Result<()> {
+    let effect_id = detail["id"].as_i64().with_context(|| format!("{path} has no id"))?;
+    let (item_count, augment_count) =
+        vocabulary_counts.get(&effect_id).copied().with_context(|| format!("{path} has no vocabulary row"))?;
+    for (page_key, expected_total) in [("items", item_count), ("augments", augment_count)] {
+        let total = detail[page_key]["total"].as_i64().with_context(|| format!("{path} has no {page_key} total"))?;
+        ensure!(
+            total == expected_total,
+            "{path}: {page_key} total {total} differs from the vocabulary row's count {expected_total}"
+        );
+    }
+    Ok(())
+}
+
+fn effects_that_need_a_description(db: &rusqlite::Connection) -> Result<BTreeSet<i64>> {
+    let mut statement = db.prepare("SELECT id FROM effects WHERE description_template IS NOT NULL OR is_group = 1")?;
+    let effect_ids = statement.query_map([], |row| row.get::<_, i64>(0))?.collect::<rusqlite::Result<_>>()?;
+    Ok(effect_ids)
+}
+
+fn response_effect_lines_have_descriptions(
+    response: &Value,
+    path: &str,
+    effects_that_need_a_description: &BTreeSet<i64>,
+) -> Result<()> {
+    match response {
+        Value::Array(rows) => {
+            for row in rows {
+                response_effect_lines_have_descriptions(row, path, effects_that_need_a_description)?;
+            }
+        }
+        Value::Object(fields) => {
+            if let (Some(effect_id), Some(verbose_name), Some(description)) = (
+                fields.get("effect_id").and_then(Value::as_i64),
+                fields.get("verbose_name").and_then(Value::as_str),
+                fields.get("description"),
+            ) {
+                ensure!(
+                    !description.is_null() || !effects_that_need_a_description.contains(&effect_id),
+                    "{path}: line {verbose_name:?} of effect {effect_id} has no description"
+                );
+            }
+            for field in fields.values() {
+                response_effect_lines_have_descriptions(field, path, effects_that_need_a_description)?;
+            }
+        }
+        _ => {}
+    }
+    Ok(())
+}
+
 pub fn validate_api(db_path: &Path, all_details: bool) -> Result<(usize, usize)> {
     let state = AppState::open(db_path)?;
     let db = rusqlite::Connection::open(db_path)?;
     let source_packs = Arc::new(source_pack_names(&db)?);
     let effect_home_types = Arc::new(effect_home_types(&db)?);
+    let effects_that_need_a_description = Arc::new(effects_that_need_a_description(&db)?);
+    let vocabulary_counts = Arc::new(effect_vocabulary_counts(&db)?);
     let router = app(state);
     let runtime = tokio::runtime::Builder::new_current_thread().enable_all().build()?;
     let spec = runtime.block_on(json_response(&router, "/v1/openapi.json"))?;
@@ -160,6 +225,9 @@ pub fn validate_api(db_path: &Path, all_details: bool) -> Result<(usize, usize)>
                     let shared_schemas = shared_schemas.clone();
                     let source_packs = source_packs.clone();
                     let effect_home_types = effect_home_types.clone();
+                    let effects_that_need_a_description = effects_that_need_a_description.clone();
+                    let vocabulary_counts = vocabulary_counts.clone();
+                    let is_effect_detail = list_path == "/v1/effects";
                     requests.spawn(async move {
                         let response = json_response(&request_router, &request_path).await?;
                         let violation = tokio::task::spawn_blocking(move || {
@@ -174,6 +242,20 @@ pub fn validate_api(db_path: &Path, all_details: bool) -> Result<(usize, usize)>
                                         &effect_home_types,
                                     )
                                     .map_err(|error| error.to_string())?;
+                                    response_effect_lines_have_descriptions(
+                                        &response,
+                                        &request_path,
+                                        &effects_that_need_a_description,
+                                    )
+                                    .map_err(|error| error.to_string())?;
+                                    if is_effect_detail {
+                                        effect_detail_totals_match_vocabulary(
+                                            &response,
+                                            &request_path,
+                                            &vocabulary_counts,
+                                        )
+                                        .map_err(|error| error.to_string())?;
+                                    }
                                     Ok(())
                                 })
                                 .err()
@@ -209,9 +291,35 @@ pub fn validate_api(db_path: &Path, all_details: bool) -> Result<(usize, usize)>
 
 #[cfg(test)]
 mod tests {
-    use super::response_effect_lines_show_non_home_types;
+    use super::{
+        effect_detail_totals_match_vocabulary, response_effect_lines_have_descriptions,
+        response_effect_lines_show_non_home_types,
+    };
     use serde_json::json;
-    use std::collections::BTreeMap;
+    use std::collections::{BTreeMap, BTreeSet};
+
+    #[test]
+    fn effect_detail_totals_must_equal_the_vocabulary_counts() {
+        let counts = BTreeMap::from([(1_i64, (213_i64, 4_i64))]);
+        let detail = |items_total: i64| json!({"id": 1, "name": "Strength", "items": {"total": items_total}, "augments": {"total": 4}});
+        effect_detail_totals_match_vocabulary(&detail(213), "/v1/effects/1", &counts).unwrap();
+        let error = effect_detail_totals_match_vocabulary(&detail(229), "/v1/effects/1", &counts).unwrap_err();
+        assert!(error.to_string().contains("229") && error.to_string().contains("213"), "{error}");
+    }
+
+    #[test]
+    fn a_line_of_an_effect_with_a_description_template_or_a_group_needs_a_description() {
+        let described_effects = BTreeSet::from([314_i64]);
+        let missing =
+            json!({"items": [{"line": {"effect_id": 314, "verbose_name": "Spell Powers +49", "description": null}}]});
+        let error = response_effect_lines_have_descriptions(&missing, "/v1/items/1", &described_effects).unwrap_err();
+        assert!(error.to_string().contains("Spell Powers +49"), "{error}");
+        let present = json!({"items": [{"line": {"effect_id": 314, "verbose_name": "Potency +49", "description": "Each spell power."}}]});
+        response_effect_lines_have_descriptions(&present, "/v1/items/1", &described_effects).unwrap();
+        let undescribed_effect =
+            json!({"effects": [{"effect_id": 99, "verbose_name": "Ethereal", "description": null}]});
+        response_effect_lines_have_descriptions(&undescribed_effect, "/v1/items/1", &described_effects).unwrap();
+    }
 
     #[test]
     fn non_home_type_must_remain_visible_on_a_slotless_line() {

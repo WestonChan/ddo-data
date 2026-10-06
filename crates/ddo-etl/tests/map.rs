@@ -1009,3 +1009,33 @@ fn legacy_and_historic_versions_are_named_by_a_parenthesised_word() {
         assert!(!names_legacy_version(current_name), "{current_name}");
     }
 }
+
+#[test]
+fn natural_armor_set_line_names_natural_armor_as_the_wiki_does() {
+    assert_eq!(
+        EFFECT_MAP.set_bonus_line_templates.get("Natural Armor").map(String::as_str),
+        Some("+{1} %b1 Bonus to Natural Armor")
+    );
+}
+
+#[test]
+fn spell_power_and_lore_groups_carry_the_description_of_the_effect_that_grants_them() {
+    for (group_name, description_template) in [
+        (
+            "Spell Powers",
+            "{1} %b1 bonus to each individual spell power. (Universal Spell Power is a different statistic)",
+        ),
+        ("Light and Alignment Spell Power", "{1} %b1 bonus to Light and Alignment spell power."),
+        ("Negative and Poison Spell Power", "{1} %b1 bonus to Negative and Poison spell power."),
+        (
+            "Negative and Poison Spell Lore",
+            "Passive: Your Negative Energy and Poison spells gain a {1}% %b1 bonus to their chance to critical hit.",
+        ),
+    ] {
+        assert_eq!(
+            EFFECT_MAP.description_templates.get(group_name).map(String::as_str),
+            Some(description_template),
+            "{group_name}"
+        );
+    }
+}

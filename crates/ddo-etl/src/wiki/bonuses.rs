@@ -43,7 +43,7 @@ pub(super) fn validate_bonuses(bonuses: &[WikiBonus]) -> Result<()> {
         if bonus
             .effect
             .as_deref()
-            .is_some_and(|name| !crate::map::effect_map::EFFECT_MAP.named_effect_ids.contains_key(name))
+            .is_some_and(|name| !crate::map::effect_map::EFFECT_MAP.is_linkable_named_effect(name))
         {
             bail!("bonus effect {:?} is not a declared named effect", bonus.effect);
         }

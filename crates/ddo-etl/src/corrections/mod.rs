@@ -449,9 +449,15 @@ impl Correction {
         if self.reason.trim().is_empty() {
             bail!("reason is empty; say why his value is wrong");
         }
+        if self.kind == CorrectionKind::Effect && self.field == "name" && !self.source.starts_with("https://") {
+            bail!(
+                "an effect rename must cite the wiki page that shows the new name; source {:?} is not one",
+                self.source
+            );
+        }
         let internal_template_source = self.source == "internal:effect-name-and-description"
             && self.kind == CorrectionKind::Effect
-            && matches!(self.field.as_str(), "verbose_name_template" | "description_template" | "name");
+            && matches!(self.field.as_str(), "verbose_name_template" | "description_template");
         if !internal_template_source && (!self.source.starts_with("https://") || self.source.len() == "https://".len())
         {
             bail!(

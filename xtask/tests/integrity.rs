@@ -366,6 +366,67 @@ fn items_with_a_source_but_no_pack_counts_items_by_kind_and_excludes_unrelated_i
     assert!(stdout_of(&output).contains("check items_with_a_source_but_no_pack: WARN (3 offenders)"));
 }
 
+fn integrity_pair_effects_sql() -> &'static str {
+    "INSERT INTO effects (name, verbose_name_template) VALUES ('Integrity Pair', '%b1 Integrity Pair +{1}');
+     INSERT INTO effect_bonuses (effect_id, target_effect_id, amount_from, sort_order)
+     VALUES (last_insert_rowid(), (SELECT id FROM effects WHERE name = 'Strength'), 1, 0);
+     INSERT INTO effect_bonuses (effect_id, target_effect_id, amount_from, sort_order)
+     VALUES ((SELECT id FROM effects WHERE name = 'Integrity Pair'),
+             (SELECT id FROM effects WHERE name = 'Dexterity'), 1, 1);
+     INSERT INTO effects (name, verbose_name_template) VALUES ('Integrity Overlap', '%b1 Integrity Overlap +{1}');
+     INSERT INTO effect_bonuses (effect_id, target_effect_id, amount_from, sort_order)
+     VALUES (last_insert_rowid(), (SELECT id FROM effects WHERE name = 'Strength'), 1, 0);
+     INSERT INTO effect_bonuses (effect_id, target_effect_id, amount_from, sort_order)
+     VALUES ((SELECT id FROM effects WHERE name = 'Integrity Overlap'),
+             (SELECT id FROM effects WHERE name = 'Constitution'), 1, 1);"
+}
+
+fn link_item_sql(item_id_sql: &str, effect_name: &str, link_order: i64) -> String {
+    format!(
+        "INSERT INTO item_effects (item_id, effect_id, value, bonus_type_id, sort_order)
+         VALUES (({item_id_sql}), (SELECT id FROM effects WHERE name = '{effect_name}'), 5,
+                 (SELECT id FROM bonus_types WHERE name = 'Enhancement'), {link_order});"
+    )
+}
+
+#[test]
+fn a_link_whose_bonuses_another_link_already_grants_is_warned_but_a_partial_overlap_is_not() {
+    let work_dir = tempfile::tempdir().unwrap();
+    let db_path = fixture_db_copy_with(
+        work_dir.path(),
+        &format!(
+            "{} {} {} {} {} {} {}",
+            integrity_pair_effects_sql(),
+            probe_ring_insert("Integrity Contained Ring"),
+            probe_ring_insert("Integrity Overlapping Ring"),
+            link_item_sql("SELECT id FROM items WHERE name = 'Integrity Contained Ring'", "Integrity Pair", 0),
+            link_item_sql("SELECT id FROM items WHERE name = 'Integrity Contained Ring'", "Strength", 1),
+            link_item_sql("SELECT id FROM items WHERE name = 'Integrity Overlapping Ring'", "Integrity Pair", 0),
+            link_item_sql("SELECT id FROM items WHERE name = 'Integrity Overlapping Ring'", "Integrity Overlap", 1),
+        ),
+    );
+    let db = Connection::open(&db_path).unwrap();
+    let item_named =
+        |name: &str| -> i64 { db.query_row("SELECT id FROM items WHERE name = ?1", [name], |row| row.get(0)).unwrap() };
+    let first_item = item_named("Integrity Contained Ring");
+    let last_item = item_named("Integrity Overlapping Ring");
+    let report = integrity_report(&db, &fixture_options()).unwrap();
+    let outcome = report.outcome("owner_bonuses_repeated_across_links").unwrap();
+    assert_eq!(outcome.status, CheckStatus::Warned, "{report}");
+    assert!(
+        outcome.offenders.iter().any(|offender| offender.id == Some(first_item)
+            && offender.detail.contains("Strength")
+            && offender.detail.contains("Integrity Pair")),
+        "{report}"
+    );
+    assert!(!outcome.offenders.iter().any(|offender| offender.id == Some(last_item)), "{report}");
+    assert!(!outcome.top_details.is_empty(), "{report}");
+    let hard = report.outcome("owner_stat_links_repeat_effect_links").unwrap();
+    assert_eq!(hard.status, CheckStatus::Failed, "{report}");
+    assert!(hard.offenders.iter().any(|offender| offender.id == Some(first_item)), "{report}");
+    assert!(!hard.offenders.iter().any(|offender| offender.id == Some(last_item)), "{report}");
+}
+
 struct InjectedViolation {
     check_name: &'static str,
     injected_sql: String,
@@ -418,6 +479,15 @@ fn injected_violations() -> Vec<InjectedViolation> {
              INSERT INTO item_effects (item_id, effect_id, sort_order)
              VALUES ((SELECT MIN(id) FROM items), last_insert_rowid(), 997);",
             "Integrity Solar IX",
+        ),
+        violation(
+            "effect_descriptions_with_fewer_critical_dice_than_hit_dice",
+            "INSERT INTO effects (name, verbose_name_template, description_template)
+             VALUES ('Integrity Burst 7', 'Integrity Burst 7',
+                     'This weapon deals 7d6 Good damage on a successful hit, and 1d6 Good damage on a critical hit.');
+             INSERT INTO item_effects (item_id, effect_id, sort_order)
+             VALUES ((SELECT MIN(id) FROM items), last_insert_rowid(), 995);",
+            "Integrity Burst 7",
         ),
         violation(
             "owner_names_disagree_with_linked_effects",
@@ -476,6 +546,17 @@ fn injected_violations() -> Vec<InjectedViolation> {
              INSERT INTO item_effects (item_id, effect_id, value, bonus_type_id, sort_order)
              VALUES ((SELECT MIN(id) FROM items), (SELECT id FROM effects WHERE name = 'Integrity Double Bonus'),
                      1, (SELECT id FROM bonus_types WHERE name = 'Enhancement'), 997);",
+            "item:",
+        ),
+        violation(
+            "owner_stat_links_repeat_effect_links",
+            &format!(
+                "{} {} {} {}",
+                integrity_pair_effects_sql(),
+                probe_ring_insert("Integrity Repeat Ring"),
+                link_item_sql("SELECT id FROM items WHERE name = 'Integrity Repeat Ring'", "Integrity Pair", 0),
+                link_item_sql("SELECT id FROM items WHERE name = 'Integrity Repeat Ring'", "Strength", 1),
+            ),
             "item:",
         ),
         violation(

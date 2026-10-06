@@ -455,6 +455,54 @@ async fn named_effect_carriers_page_links_and_nest_each_resolved_bonus() {
         && row["line"]["verbose_name"].as_str().is_some_and(|line| line.contains("All Ability Scores"))));
 }
 
+fn fixture_state_with_sql(injected_sql: &str, test_name: &str) -> AppState {
+    let mut db = rusqlite::Connection::open_in_memory().unwrap();
+    build_fixture_database(&mut db, &fixture_wiki());
+    db.execute_batch(injected_sql).unwrap();
+    let path = std::env::temp_dir().join(format!("ddo-api-{test_name}-{}.db", std::process::id()));
+    let _ = std::fs::remove_file(&path);
+    db.execute("VACUUM INTO ?1", [path.to_str().unwrap()]).unwrap();
+    AppState::open(&path).unwrap()
+}
+
+#[tokio::test]
+async fn effect_detail_totals_count_distinct_owners_and_match_the_vocabulary_row() {
+    let state = fixture_state_with_sql(
+        "INSERT INTO item_effects (item_id, effect_id, bonus_type_id, value, sort_order)
+         SELECT item_id, effect_id, bonus_type_id, value, 990 FROM item_effects
+          WHERE effect_id = (SELECT id FROM effects WHERE name = 'Strength' AND is_stat = 1) AND value IS NOT NULL
+          LIMIT 1;",
+        "repeated-link",
+    );
+    let (_, _, vocabulary) = get_from(state.clone(), "/v1/effects?limit=10000").await;
+    let mut repeated_owner_rows = 0;
+    for row in vocabulary["effects"].as_array().unwrap() {
+        let path = format!(
+            "{}?items_limit=10000&augments_limit=10000&set_tiers_limit=10000&include_legacy=false",
+            row["detail_path"].as_str().unwrap()
+        );
+        let (_, _, detail) = get_from(state.clone(), &path).await;
+        for (page_key, count_key) in [("items", "item_count"), ("augments", "augment_count")] {
+            let owners = detail[page_key][page_key].as_array().unwrap();
+            let distinct_owner_ids: std::collections::BTreeSet<i64> =
+                owners.iter().map(|owner| owner["id"].as_i64().unwrap()).collect();
+            assert_eq!(distinct_owner_ids.len(), owners.len(), "{} {page_key} rows are owners", row["name"]);
+            assert_eq!(detail[page_key]["total"], row[count_key], "{} {page_key} total", row["name"]);
+            repeated_owner_rows +=
+                owners.iter().filter(|owner| owner["lines"].as_array().map_or(0, Vec::len) > 1).count();
+        }
+        let tiers = detail["set_tiers"]["set_tiers"].as_array().unwrap();
+        let distinct_tier_ids: std::collections::BTreeSet<i64> =
+            tiers.iter().map(|tier| tier["id"].as_i64().unwrap()).collect();
+        assert_eq!(distinct_tier_ids.len(), tiers.len(), "{} set tier rows are owners", row["name"]);
+        assert_eq!(detail["set_tiers"]["total"], tiers.len(), "{} set tier total", row["name"]);
+        let distinct_set_ids: std::collections::BTreeSet<i64> =
+            tiers.iter().map(|tier| tier["set_id"].as_i64().unwrap()).collect();
+        assert_eq!(distinct_set_ids.len() as i64, row["set_count"].as_i64().unwrap(), "{} sets", row["name"]);
+    }
+    assert!(repeated_owner_rows > 0, "the injected second Strength link groups under its owner");
+}
+
 fn item_ids_in_page(page: &Value) -> std::collections::BTreeSet<i64> {
     page["items"].as_array().unwrap().iter().map(|item| item["id"].as_i64().unwrap()).collect()
 }

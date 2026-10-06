@@ -18,6 +18,7 @@ augment_slots = ["red", "colorless"]
 bonuses = [
   { stat = "Strength", bonus_type = "Enhancement", value = 15 },
   { stat = "Doublestrike", bonus_type = "Insight", value = 5 },
+  { effect = "Potency", bonus_type = "Equipment", value = 49 },
 ]
 effects = [
   { name = "Test Oozing Hunger", description = "Test description: on hit, the target oozes.", value = 3, target = "All" },

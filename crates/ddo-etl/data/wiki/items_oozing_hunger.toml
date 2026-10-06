@@ -1665,7 +1665,7 @@ accepts_sentience = true
 augment_slots = ["orange", "purple"]
 bonuses = [
   { stat = "Universal Spell Power", bonus_type = "Implement", value = 35 },
-  { group = "Spell Powers", bonus_type = "Equipment", value = 49 },
+  { effect = "Potency", bonus_type = "Equipment", value = 49 },
   { stat = "Acid Spell Lore", bonus_type = "Equipment", value = 25 },
   { stat = "Negative Spell Lore", bonus_type = "Equipment", value = 25 },
   { stat = "Poison Spell Lore", bonus_type = "Equipment", value = 25 },
@@ -2404,7 +2404,7 @@ drop_location = "Sealed Altar, Turn in Duergarcraft Sceptre and 50 Abyssal Gems"
 augment_slots = ["red"]
 bonuses = [
   { stat = "Universal Spell Power", bonus_type = "Implement", value = 11 },
-  { group = "Spell Powers", bonus_type = "Equipment", value = 49 },
+  { effect = "Potency", bonus_type = "Equipment", value = 49 },
   { stat = "Acid Spell Lore", bonus_type = "Equipment", value = 12 },
   { stat = "Negative Spell Lore", bonus_type = "Equipment", value = 12 },
   { stat = "Poison Spell Lore", bonus_type = "Equipment", value = 12 },
