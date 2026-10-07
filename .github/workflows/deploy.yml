@@ -33,7 +33,7 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Fetch DDOBuilderV2 data files
         run: |
@@ -127,7 +127,7 @@ jobs:
 
       - name: Keep the dataset as a workflow artifact
         if: steps.compare.outputs.changed == 'true'
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: ddo-${{ env.UPSTREAM_SHA }}
           path: ddo.db
