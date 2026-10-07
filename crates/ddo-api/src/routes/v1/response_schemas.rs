@@ -1,6 +1,6 @@
 #![allow(dead_code)]
 
-use utoipa::openapi::schema::{AllOfBuilder, Schema};
+use utoipa::openapi::schema::{AllOfBuilder, AnyOfBuilder, Schema};
 use utoipa::openapi::RefOr;
 use utoipa::PartialSchema;
 
@@ -1326,10 +1326,18 @@ fn schema_item_first_set() -> RefOr<Schema> {
 
 #[derive(utoipa::ToSchema)]
 pub(crate) struct ItemsPageResponse {
+    #[schema(schema_with = schema_item_page_rows)]
     pub(crate) items: Vec<ItemsPageResponseItemsEntry>,
     pub(crate) limit: i64,
     pub(crate) offset: i64,
     pub(crate) total: i64,
+}
+
+fn schema_item_page_rows() -> RefOr<Schema> {
+    AnyOfBuilder::new()
+        .item(<Vec<ItemsPageResponseItemsEntry> as PartialSchema>::schema())
+        .item(<Vec<ItemsDetailResponse> as PartialSchema>::schema())
+        .into()
 }
 
 #[derive(utoipa::ToSchema)]

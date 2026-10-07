@@ -1,12 +1,13 @@
 use super::quest_series::{quest_chains_including, sagas_including};
 use crate::db::paged_rows;
-use crate::db::{convert_to_booleans, json_row, json_rows, paged_table_json, TableListSource};
+use crate::db::{convert_to_booleans, grouped_rows, json_row, json_rows, paged_table_json, TableListSource};
 use crate::error::ApiError;
 use crate::query::{declare_list_parameters, ApiQuery};
 use crate::state::AppState;
 use axum::extract::{Path, State};
 use axum::Json;
 use serde_json::Value;
+use std::collections::BTreeMap;
 use utoipa_axum::router::OpenApiRouter;
 use utoipa_axum::routes;
 
@@ -226,19 +227,30 @@ pub(super) fn quests_dropping_via(
     loot_id_column: &str,
     loot_id: i64,
 ) -> Result<Vec<Value>, ApiError> {
-    let mut quests = json_rows(
+    Ok(quests_dropping_via_many(db, loot_id_column, &[loot_id])?.remove(&loot_id).unwrap_or_default())
+}
+
+pub(super) fn quests_dropping_via_many(
+    db: &rusqlite::Connection,
+    loot_id_column: &str,
+    loot_ids: &[i64],
+) -> Result<BTreeMap<i64, Vec<Value>>, ApiError> {
+    let mut quests = grouped_rows(
         db,
+        loot_ids,
         &format!(
-            "SELECT q.id, q.name, q.level, q.epic_level, q.is_raid, q.difficulties, q.is_free_to_play, ap.name AS pack,
-                    pt.name AS patron, loot.loot_type, loot.is_rare, loot.chest
-               FROM sources loot JOIN quests q ON q.id = loot.quest_id
-               LEFT JOIN adventure_packs ap ON ap.id = q.pack_id LEFT JOIN patrons pt ON pt.id = q.patron_id
-              WHERE loot.{loot_id_column} = ?1 ORDER BY q.name, loot.loot_type"
+            "SELECT loot.{loot_id_column} AS owner_id, q.id, q.name, q.level, q.epic_level, q.is_raid,
+                q.difficulties, q.is_free_to_play, ap.name AS pack, pt.name AS patron,
+                loot.loot_type, loot.is_rare, loot.chest
+           FROM sources loot JOIN quests q ON q.id = loot.quest_id
+           LEFT JOIN adventure_packs ap ON ap.id = q.pack_id LEFT JOIN patrons pt ON pt.id = q.patron_id
+          WHERE loot.{loot_id_column} IN ({{ids}}) ORDER BY owner_id, q.name, loot.loot_type"
         ),
-        [loot_id],
     )?;
-    for quest in &mut quests {
-        convert_to_booleans(quest, &["is_raid", "is_free_to_play", "is_rare"]);
+    for rows in quests.values_mut() {
+        for quest in rows {
+            convert_to_booleans(quest, &["is_raid", "is_free_to_play", "is_rare"]);
+        }
     }
     Ok(quests)
 }
@@ -248,20 +260,30 @@ pub(super) fn adventure_packs_dropping_via(
     loot_id_column: &str,
     loot_id: i64,
 ) -> Result<Vec<Value>, ApiError> {
-    let mut adventure_packs = json_rows(
+    Ok(adventure_packs_dropping_via_many(db, loot_id_column, &[loot_id])?.remove(&loot_id).unwrap_or_default())
+}
+
+pub(super) fn adventure_packs_dropping_via_many(
+    db: &rusqlite::Connection,
+    loot_id_column: &str,
+    loot_ids: &[i64],
+) -> Result<BTreeMap<i64, Vec<Value>>, ApiError> {
+    let mut adventure_packs = grouped_rows(
         db,
+        loot_ids,
         &format!(
-            "SELECT p.id, p.name, loot.loot_type, loot.is_rare, loot.chest
-               FROM sources loot JOIN adventure_packs p ON p.id = loot.pack_id
-              WHERE loot.kind = 'adventure_pack' AND loot.{loot_id_column} = ?1
-              ORDER BY p.name, loot.loot_type, loot.is_rare, loot.chest"
+            "SELECT loot.{loot_id_column} AS owner_id, p.id, p.name, loot.loot_type, loot.is_rare, loot.chest
+           FROM sources loot JOIN adventure_packs p ON p.id = loot.pack_id
+          WHERE loot.kind = 'adventure_pack' AND loot.{loot_id_column} IN ({{ids}})
+          ORDER BY owner_id, p.name, loot.loot_type, loot.is_rare, loot.chest"
         ),
-        [loot_id],
     )?;
-    for adventure_pack in &mut adventure_packs {
-        convert_to_booleans(adventure_pack, &["is_rare"]);
-        if let Some(pack_name) = adventure_pack["name"].as_str() {
-            adventure_pack["wiki_url"] = Value::String(wiki_page_url(pack_name));
+    for rows in adventure_packs.values_mut() {
+        for adventure_pack in rows {
+            convert_to_booleans(adventure_pack, &["is_rare"]);
+            if let Some(pack_name) = adventure_pack["name"].as_str() {
+                adventure_pack["wiki_url"] = Value::String(wiki_page_url(pack_name));
+            }
         }
     }
     Ok(adventure_packs)
@@ -272,41 +294,53 @@ pub(super) fn sources_via(
     loot_id_column: &str,
     loot_id: i64,
 ) -> Result<Vec<Value>, ApiError> {
-    let mut sources = json_rows(
+    Ok(sources_via_many(db, loot_id_column, &[loot_id])?.remove(&loot_id).unwrap_or_default())
+}
+
+pub(super) fn sources_via_many(
+    db: &rusqlite::Connection,
+    loot_id_column: &str,
+    loot_ids: &[i64],
+) -> Result<BTreeMap<i64, Vec<Value>>, ApiError> {
+    let mut sources = grouped_rows(
         db,
+        loot_ids,
         &format!(
-            "SELECT loot.kind, COALESCE(q.id, c.id, s.id, p.id, cs.id, v.id, e.id) AS id,
-                    COALESCE(q.name, c.name, s.name, p.name, cs.name, v.name, e.name,
-                             'Advance to level ' || loot.character_level) AS name,
-                    loot.loot_type, loot.chest, loot.is_rare, loot.tier, loot.character_level, loot.cost,
-                    COALESCE(c.wiki_url, s.wiki_url, cs.page, v.wiki_url, e.wiki_url) AS wiki_url
-               FROM sources loot LEFT JOIN quests q ON q.id = loot.quest_id
-               LEFT JOIN quest_chains c ON c.id = loot.chain_id LEFT JOIN sagas s ON s.id = loot.saga_id
-               LEFT JOIN adventure_packs p ON p.id = loot.pack_id
-               LEFT JOIN crafting_systems cs ON cs.id = loot.crafting_system_id
-               LEFT JOIN vendors v ON v.id = loot.vendor_id LEFT JOIN events e ON e.id = loot.event_id
-              WHERE loot.{loot_id_column} = ?1
-              ORDER BY CASE loot.kind WHEN 'quest' THEN 1 WHEN 'quest_chain' THEN 2 WHEN 'saga' THEN 3
-                                      WHEN 'adventure_pack' THEN 4 WHEN 'challenge' THEN 5
-                                      WHEN 'crafting_system' THEN 6 WHEN 'vendor' THEN 7 WHEN 'event' THEN 8
-                                      ELSE 9 END,
-                       name, loot.loot_type,
-                       CASE loot.tier WHEN 'heroic' THEN 1 WHEN 'epic' THEN 2 WHEN 'legendary' THEN 3 ELSE 4 END"
+            "SELECT loot.{loot_id_column} AS owner_id, loot.kind,
+                COALESCE(q.id, c.id, s.id, p.id, cs.id, v.id, e.id) AS id,
+                COALESCE(q.name, c.name, s.name, p.name, cs.name, v.name, e.name,
+                         'Advance to level ' || loot.character_level) AS name,
+                loot.loot_type, loot.chest, loot.is_rare, loot.tier, loot.character_level, loot.cost,
+                COALESCE(c.wiki_url, s.wiki_url, cs.page, v.wiki_url, e.wiki_url) AS wiki_url
+           FROM sources loot LEFT JOIN quests q ON q.id = loot.quest_id
+           LEFT JOIN quest_chains c ON c.id = loot.chain_id LEFT JOIN sagas s ON s.id = loot.saga_id
+           LEFT JOIN adventure_packs p ON p.id = loot.pack_id
+           LEFT JOIN crafting_systems cs ON cs.id = loot.crafting_system_id
+           LEFT JOIN vendors v ON v.id = loot.vendor_id LEFT JOIN events e ON e.id = loot.event_id
+          WHERE loot.{loot_id_column} IN ({{ids}})
+          ORDER BY owner_id,
+                   CASE loot.kind WHEN 'quest' THEN 1 WHEN 'quest_chain' THEN 2 WHEN 'saga' THEN 3
+                                  WHEN 'adventure_pack' THEN 4 WHEN 'challenge' THEN 5
+                                  WHEN 'crafting_system' THEN 6 WHEN 'vendor' THEN 7 WHEN 'event' THEN 8
+                                  ELSE 9 END,
+                   name, loot.loot_type,
+                   CASE loot.tier WHEN 'heroic' THEN 1 WHEN 'epic' THEN 2 WHEN 'legendary' THEN 3 ELSE 4 END"
         ),
-        [loot_id],
     )?;
-    for source in &mut sources {
-        convert_to_booleans(source, &["is_rare"]);
-        if source["wiki_url"].is_null() && source["kind"] != "starter" {
-            if let Some(source_name) = source["name"].as_str() {
-                source["wiki_url"] = Value::String(wiki_page_url(source_name));
+    for rows in sources.values_mut() {
+        for source in rows {
+            convert_to_booleans(source, &["is_rare"]);
+            if source["wiki_url"].is_null() && source["kind"] != "starter" {
+                if let Some(source_name) = source["name"].as_str() {
+                    source["wiki_url"] = Value::String(wiki_page_url(source_name));
+                }
             }
         }
     }
     Ok(sources)
 }
 
-fn wiki_page_url(page_name: &str) -> String {
+pub(super) fn wiki_page_url(page_name: &str) -> String {
     let encoded_page_name: String = page_name
         .replace(' ', "_")
         .bytes()
@@ -318,28 +352,4 @@ fn wiki_page_url(page_name: &str) -> String {
         })
         .collect();
     format!("https://ddowiki.com/page/{encoded_page_name}")
-}
-
-pub(super) fn challenge_packs_rewarding(db: &rusqlite::Connection, item_id: i64) -> Result<Vec<Value>, ApiError> {
-    let mut challenge_packs = json_rows(
-        db,
-        "SELECT p.id, p.name, loot.is_rare FROM sources loot JOIN adventure_packs p ON p.id = loot.pack_id
-          WHERE loot.kind = 'challenge' AND loot.item_id = ?1 ORDER BY p.name",
-        [item_id],
-    )?;
-    for challenge_pack in &mut challenge_packs {
-        convert_to_booleans(challenge_pack, &["is_rare"]);
-        if let Some(pack_name) = challenge_pack["name"].as_str() {
-            challenge_pack["wiki_url"] = Value::String(wiki_page_url(pack_name));
-        }
-    }
-    Ok(challenge_packs)
-}
-
-pub(super) fn starter_rewards_of(db: &rusqlite::Connection, item_id: i64) -> Result<Vec<Value>, ApiError> {
-    json_rows(
-        db,
-        "SELECT character_level FROM sources WHERE kind = 'starter' AND item_id = ?1 ORDER BY character_level",
-        [item_id],
-    )
 }

@@ -46,6 +46,7 @@ pub const EXAMPLE_REQUESTS: &[ExampleRequest<'static>] = &[
     sample("events", "/v1/events"),
     sample("events_id", "/v1/events/1"),
     sample("items", "/v1/items?q=ring&bonus=Strength&bonus=Charisma&bonus=Manslayer&limit=3"),
+    sample("items_full", "/v1/items?view=full&q=ring&bonus=Strength&bonus=Charisma&bonus=Manslayer&limit=2"),
     sample("items_id", "/v1/items/7631"),
     sample("augments", "/v1/augments?slot=sun&limit=2"),
     sample("augments_id", "/v1/augments/1902"),

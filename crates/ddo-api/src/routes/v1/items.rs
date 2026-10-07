@@ -1,13 +1,6 @@
-use super::crafting::crafting_systems_making;
-use super::quest_series::{quest_chains_rewarding, sagas_rewarding};
-use super::quests::{
-    adventure_packs_dropping_via, challenge_packs_rewarding, quests_dropping_via, sources_via, starter_rewards_of,
-};
-use super::vendors_and_events::{events_rewarding, vendors_offering};
-use crate::db::{
-    convert_to_booleans, effects_for_owner, effects_via, json_row, json_rows, like_escaped_text, modifiers_for,
-    paged_query, paged_table_json, TableListSource, WhereClause,
-};
+mod records;
+
+use crate::db::{convert_to_booleans, like_escaped_text, paged_query, paged_table_json, TableListSource, WhereClause};
 use crate::error::ApiError;
 use crate::query::{
     declare_list_parameters, declare_query_parameters, repeated_integer_values, repeated_key_values, ApiQuery,
@@ -61,6 +54,7 @@ declare_query_parameters! {
         pub bonus_match: Option<String>,
         pub include_set_bonuses: Option<bool>,
         pub include_legacy: Option<bool>,
+        pub view: Option<String>,
     }
     repeatable: ["slot", "category", "pack", "set", "quest", "quest_chain", "saga", "bonus"]
     matchable: ["pack", "set", "quest", "quest_chain", "saga", "bonus"]
@@ -120,7 +114,7 @@ declare_list_parameters!(
     path = "/v1/items",
     tag = "items",
     summary = "List items",
-    description = "Lists equipment matching the declared filters, with slot, level, pack, set and source flags.",
+    description = "Lists equipment matching the declared filters; `view=full` returns complete item details.",
     params(
         ItemsParameters,
         ("slot" = Option<Vec<String>>, Query, style = Form, explode = true, description = "Repeat equipment slot names from /v1/equipment-slots to match any."),
@@ -145,6 +139,7 @@ declare_list_parameters!(
         ("bonus_match" = Option<String>, Query, description = "Use `all` to require every bonus, or `any` by default."),
         ("include_set_bonuses" = Option<bool>, Query, description = "Use true to match effects through the item's set tiers too."),
         ("include_legacy" = Option<bool>, Query, description = "Use true to include legacy item versions in the list."),
+        ("view" = Option<String>, Query, description = "Use `summary` (default) for compact rows or `full` for detail records; full pages cap at 50 rows.", example = "full"),
     ),
     responses(
         (status = 200, description = "`total`, `limit`, `offset` and the `items` page", body = crate::routes::v1::response_schemas::ItemsPageResponse),
@@ -164,6 +159,15 @@ async fn items(
         if !ItemCategory::ALL.iter().any(|known| known.as_str() == category) {
             return Err(ApiError::BadRequest(format!("unknown category {category:?}")));
         }
+    }
+    let full_view = match filters.view.as_deref().unwrap_or("summary") {
+        "summary" => false,
+        "full" => true,
+        other => return Err(ApiError::BadRequest(format!("unknown view {other:?}"))),
+    };
+    let mut query = query;
+    if full_view {
+        query.limit = Some(query.limit.unwrap_or(50).min(50));
     }
     state
         .read_db(move |db| {
@@ -247,6 +251,18 @@ async fn items(
             )?;
             for item in &mut page.rows {
                 convert_to_booleans(item, &["is_raid", "is_rare", "is_legacy"]);
+            }
+            if full_view {
+                let item_ids = page
+                    .rows
+                    .iter()
+                    .map(|item| item["id"].as_i64().ok_or_else(|| anyhow::anyhow!("listed item has no numeric id")))
+                    .collect::<Result<Vec<_>, _>>()?;
+                let mut records = records::item_records(db, &item_ids)?;
+                page.rows = item_ids
+                    .into_iter()
+                    .map(|id| records.remove(&id).ok_or(ApiError::NotFound))
+                    .collect::<Result<Vec<_>, _>>()?;
             }
             Ok(Json(page.into_json("items")))
         })
@@ -334,122 +350,10 @@ fn bonus_match_sql(db: &Connection, name: &str, include_set_bonuses: bool) -> Re
 async fn item_detail(State(state): State<AppState>, Path(id): Path<i64>) -> Result<Json<Value>, ApiError> {
     state
         .read_db(move |db| {
-            let mut item = json_row(
-                db,
-                "SELECT i.id, i.name, es.name AS slot, i.item_category AS category, i.item_type, i.minimum_level, i.enhancement_bonus,
-                        m.name AS material, i.race_required, i.icon, i.description, i.drop_location, i.set_bonus AS set_name,
-                        i.accepts_sentience, i.is_minor_artifact, i.is_legacy, i.wiki_url
-                   FROM items i JOIN equipment_slots es ON es.id = i.slot_id LEFT JOIN item_materials m ON m.id = i.material_id
-                  WHERE i.id = ?1",
-                [id],
-            )?;
-            convert_to_booleans(&mut item, &["accepts_sentience", "is_minor_artifact", "is_legacy"]);
-
-            let weapon = json_rows(
-                db,
-                "SELECT wt.name AS weapon_type, p.name AS proficiency, w.handedness, w.damage, w.critical, w.base_dice_count, w.base_dice_sides,
-                        w.base_dice_bonus, w.damage_multiplier, w.critical_threat_range, w.critical_multiplier, w.attack_modifier, w.damage_modifier
-                   FROM item_weapon_stats w JOIN weapon_types wt ON wt.id = w.weapon_type_id
-                   LEFT JOIN weapon_proficiencies p ON p.id = wt.proficiency_id WHERE w.item_id = ?1",
-                [id],
-            )?
-            .pop();
-            item["weapon"] = match weapon {
-                Some(mut weapon) => {
-                    let dr_bypasses: Vec<Value> = json_rows(db, "SELECT bypass FROM item_dr_bypass WHERE item_id = ?1 ORDER BY bypass", [id])?
-                        .into_iter()
-                        .map(|row| row["bypass"].clone())
-                        .collect();
-                    weapon["dr_bypass"] = Value::Array(dr_bypasses);
-                    weapon
-                }
-                None => Value::Null,
-            };
-            item["armor"] = json_rows(
-                db,
-                "SELECT armor_type, armor_bonus, max_dex_bonus, arcane_spell_failure, armor_check_penalty, shield_bonus, damage_reduction, mithral_body, adamantine_body
-                   FROM item_armor_stats WHERE item_id = ?1",
-                [id],
-            )?
-            .pop()
-            .unwrap_or(Value::Null);
-
-            item["effects"] = Value::Array(effects_for_owner(db, "item_effects", "item_id", id)?);
-
-            let mut augment_slots = json_rows(
-                db,
-                "SELECT s.sort_order, t.id AS slot_type_id, t.label, t.family, t.variant, t.qualifier FROM item_augment_slots s
-                   JOIN augment_slot_types t ON t.id = s.slot_id WHERE s.item_id = ?1 ORDER BY s.sort_order",
-                [id],
-            )?;
-            let mut option_effects = effects_via(
-                db,
-                "item_augment_slot_option_effects",
-                "option_id",
-                "j.option_id IN (SELECT id FROM item_augment_slot_options WHERE item_id = ?1)",
-                [id],
-            )?;
-            for augment_slot in &mut augment_slots {
-                let slot_order = augment_slot["sort_order"].as_i64().unwrap_or(0);
-                augment_slot["options"] = Value::Array(augment_slot_options(db, id, slot_order, &mut option_effects)?);
-            }
-            item["augment_slots"] = Value::Array(augment_slots);
-
-            item["clickies"] = Value::Array(json_rows(
-                db,
-                "SELECT ic.name, ic.clickie_id, ic.spell_id, c.description, c.icon FROM item_clickies ic
-                   LEFT JOIN clickies c ON c.id = ic.clickie_id WHERE ic.item_id = ?1 ORDER BY ic.sort_order",
-                [id],
-            )?);
-            item["set"] = json_rows(
-                db,
-                "SELECT s.id, s.name, s.icon FROM set_bonus_items sbi JOIN set_bonuses s ON s.id = sbi.set_id WHERE sbi.item_id = ?1",
-                [id],
-            )?
-            .pop()
-            .unwrap_or(Value::Null);
-            item["quests"] = Value::Array(quests_dropping_via(db, "item_id", id)?);
-            item["quest_chains"] = Value::Array(quest_chains_rewarding(db, id)?);
-            item["sagas"] = Value::Array(sagas_rewarding(db, id)?);
-            item["adventure_packs"] = Value::Array(adventure_packs_dropping_via(db, "item_id", id)?);
-            item["challenge_packs"] = Value::Array(challenge_packs_rewarding(db, id)?);
-            item["crafting_systems"] = Value::Array(crafting_systems_making(db, id)?);
-            item["vendors"] = Value::Array(vendors_offering(db, id)?);
-            item["events"] = Value::Array(events_rewarding(db, id)?);
-            item["starter_rewards"] = Value::Array(starter_rewards_of(db, id)?);
-            item["sources"] = Value::Array(sources_via(db, "item_id", id)?);
-            item["modifiers"] = Value::Array(modifiers_for(db, "item", id)?);
-            Ok(Json(item))
+            let mut records = records::item_records(db, &[id])?;
+            Ok(Json(records.remove(&id).ok_or(ApiError::NotFound)?))
         })
         .await
-}
-
-fn augment_slot_options(
-    db: &Connection,
-    item_id: i64,
-    slot_order: i64,
-    option_effects: &mut std::collections::BTreeMap<i64, Vec<Value>>,
-) -> Result<Vec<Value>, ApiError> {
-    let mut options = json_rows(
-        db,
-        "SELECT o.id, o.name, o.description, o.min_level, o.icon,
-                (SELECT t.label FROM item_augment_slot_option_grants g JOIN augment_slot_types t ON t.id = g.slot_id
-                  WHERE g.option_id = o.id ORDER BY g.sort_order LIMIT 1) AS grants_slot
-           FROM item_augment_slot_options o WHERE o.item_id = ?1 AND o.slot_order = ?2 ORDER BY o.option_order",
-        (item_id, slot_order),
-    )?;
-    for option in &mut options {
-        let option_id = option["id"].as_i64().unwrap_or(0);
-        option["sets"] = Value::Array(json_rows(
-            db,
-            "SELECT s.id, s.name FROM item_augment_slot_option_sets os JOIN set_bonuses s ON s.id = os.set_id
-              WHERE os.option_id = ?1 ORDER BY s.name",
-            [option_id],
-        )?);
-        option["effects"] = Value::Array(option_effects.remove(&option_id).unwrap_or_default());
-        option["modifiers"] = Value::Array(modifiers_for(db, "item_augment_slot_option", option_id)?);
-    }
-    Ok(options)
 }
 
 const EQUIPMENT_SLOTS_SORT_FIELDS: &[(&str, &str)] = &[

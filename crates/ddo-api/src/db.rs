@@ -22,6 +22,25 @@ pub(crate) fn json_row<P: Params>(db: &Connection, sql: &str, params: P) -> Resu
     }
 }
 
+pub(crate) fn sql_integer_list(ids: &[i64]) -> String {
+    if ids.is_empty() {
+        "NULL".to_string()
+    } else {
+        ids.iter().map(ToString::to_string).collect::<Vec<_>>().join(",")
+    }
+}
+
+pub(crate) fn grouped_rows(db: &Connection, ids: &[i64], sql: &str) -> Result<BTreeMap<i64, Vec<Value>>, ApiError> {
+    let mut grouped = BTreeMap::new();
+    for mut row in json_rows(db, &sql.replace("{ids}", &sql_integer_list(ids)), [])? {
+        let owner_id =
+            row["owner_id"].as_i64().ok_or_else(|| anyhow::anyhow!("grouped row has no numeric owner_id"))?;
+        row.as_object_mut().ok_or_else(|| anyhow::anyhow!("grouped row is not an object"))?.remove("owner_id");
+        grouped.entry(owner_id).or_insert_with(Vec::new).push(row);
+    }
+    Ok(grouped)
+}
+
 pub(crate) fn row_count<P: Params>(db: &Connection, sql: &str, params: P) -> Result<i64, ApiError> {
     Ok(db.query_row(sql, params, |row| row.get(0))?)
 }
@@ -146,21 +165,48 @@ pub(crate) fn requirements_for(db: &Connection, owner_kind: &str, owner_id: i64)
 }
 
 pub(crate) fn modifiers_for(db: &Connection, source_kind: &str, source_id: i64) -> Result<Vec<Value>, ApiError> {
-    let mut modifiers = json_rows(
+    Ok(modifiers_for_owners(db, source_kind, &[source_id])?.remove(&source_id).unwrap_or_default())
+}
+
+pub(crate) fn modifiers_for_owners(
+    db: &Connection,
+    source_kind: &str,
+    source_ids: &[i64],
+) -> Result<BTreeMap<i64, Vec<Value>>, ApiError> {
+    let source_id_list = sql_integer_list(source_ids);
+    let modifiers = json_rows(
         db,
-        "SELECT m.id, m.sort_order, m.effect_type, m.extra_types, m.bonus, bt.name AS bonus_type, m.amount_type, m.amounts,
+        &format!("SELECT m.source_id AS owner_id, m.id, m.sort_order, m.effect_type, m.extra_types, m.bonus, bt.name AS bonus_type, m.amount_type, m.amounts,
                 m.targets, m.value, m.dice_number, m.dice_sides, m.dice_bonus, m.dice_damage, m.damage, m.percent, m.rank,
                 m.cap, m.stack_source, m.display_name, m.apply_as_item_effect, m.is_item_specific, m.is_rare
            FROM modifiers m LEFT JOIN bonus_types bt ON bt.id = m.bonus_type_id
-          WHERE m.source_kind = ?1 AND m.source_id = ?2 ORDER BY m.sort_order",
-        (source_kind, source_id),
+          WHERE m.source_kind = ?1 AND m.source_id IN ({source_id_list}) ORDER BY m.source_id, m.sort_order"),
+        [source_kind],
     )?;
-    for modifier in &mut modifiers {
-        convert_to_booleans(modifier, &["percent", "apply_as_item_effect", "is_item_specific", "is_rare"]);
-        let modifier_id = modifier["id"].as_i64().unwrap_or(0);
-        modifier["requirements"] = Value::Array(requirements_for(db, "modifier", modifier_id)?);
+    let modifier_ids: Vec<i64> = modifiers.iter().filter_map(|modifier| modifier["id"].as_i64()).collect();
+    let modifier_id_list = sql_integer_list(&modifier_ids);
+    let mut requirements = json_rows(
+        db,
+        &format!("SELECT owner_id, group_kind, group_index, req_type, items, value FROM requirements
+          WHERE owner_kind = 'modifier' AND owner_id IN ({modifier_id_list}) ORDER BY owner_id, group_index, sort_order"),
+        [],
+    )?;
+    let mut requirements_by_modifier: BTreeMap<i64, Vec<Value>> = BTreeMap::new();
+    for mut requirement in requirements.drain(..) {
+        let modifier_id = requirement["owner_id"].as_i64().unwrap_or_default();
+        requirement.as_object_mut().expect("requirement row").remove("owner_id");
+        requirements_by_modifier.entry(modifier_id).or_default().push(requirement);
     }
-    Ok(modifiers)
+    let mut modifiers_by_owner: BTreeMap<i64, Vec<Value>> = BTreeMap::new();
+    for mut modifier in modifiers {
+        convert_to_booleans(&mut modifier, &["percent", "apply_as_item_effect", "is_item_specific", "is_rare"]);
+        let modifier_id = modifier["id"].as_i64().unwrap_or(0);
+        let source_id = modifier["owner_id"].as_i64().unwrap_or_default();
+        modifier.as_object_mut().expect("modifier row").remove("owner_id");
+        modifier["requirements"] = Value::Array(requirements_by_modifier.remove(&modifier_id).unwrap_or_default());
+        modifiers_by_owner.entry(source_id).or_default().push(modifier);
+    }
+    Ok(modifiers_by_owner)
 }
 
 const STANCE_COLUMNS: &str = "id, name, description, icon, group_name, auto_controlled, incompatible";

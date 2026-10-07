@@ -151,29 +151,3 @@ fn offered_items(db: &Connection, sql: &str, source_id: i64) -> Result<Vec<Value
     }
     Ok(items)
 }
-
-pub(super) fn vendors_offering(db: &Connection, item_id: i64) -> Result<Vec<Value>, ApiError> {
-    let mut vendors = json_rows(
-        db,
-        "SELECT v.id, v.name, v.location, vi.cost, vi.is_rare, v.wiki_url
-           FROM sources vi JOIN vendors v ON v.id = vi.vendor_id WHERE vi.item_id = ?1 ORDER BY v.name",
-        [item_id],
-    )?;
-    for vendor in &mut vendors {
-        convert_to_booleans(vendor, &["is_rare"]);
-    }
-    Ok(vendors)
-}
-
-pub(super) fn events_rewarding(db: &Connection, item_id: i64) -> Result<Vec<Value>, ApiError> {
-    let mut events = json_rows(
-        db,
-        "SELECT e.id, e.name, ei.is_rare, e.wiki_url
-           FROM sources ei JOIN events e ON e.id = ei.event_id WHERE ei.item_id = ?1 ORDER BY e.name",
-        [item_id],
-    )?;
-    for event in &mut events {
-        convert_to_booleans(event, &["is_rare"]);
-    }
-    Ok(events)
-}

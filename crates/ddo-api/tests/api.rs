@@ -720,6 +720,119 @@ async fn items_list_filters_and_pages() {
 }
 
 #[tokio::test]
+async fn item_full_pages_match_detail_under_filters_sort_and_paging() {
+    for query in [
+        "limit=5&sort=-minimum_level&offset=2",
+        "category=Weapon&min_level=20&sort=name&limit=5",
+        "bonus=Strength&sort=-name&limit=2&offset=1",
+        "include_legacy=true&sort=id&limit=5&offset=0",
+    ] {
+        let (_, _, summary) = get(&format!("/v1/items?{query}")).await;
+        let (status, _, full) = get(&format!("/v1/items?{query}&view=full")).await;
+        assert_eq!(status, StatusCode::OK, "{query}: {full}");
+        for key in ["total", "limit", "offset"] {
+            assert_eq!(full[key], summary[key], "{query}: {key}");
+        }
+        let summary_items = summary["items"].as_array().unwrap();
+        let full_items = full["items"].as_array().unwrap();
+        assert_eq!(full_items.len(), summary_items.len(), "{query}");
+        for (summary_item, full_item) in summary_items.iter().zip(full_items) {
+            assert_eq!(full_item["id"], summary_item["id"], "{query}");
+            let (status, _, detail) = get(&format!("/v1/items/{}", full_item["id"])).await;
+            assert_eq!(status, StatusCode::OK);
+            assert_eq!(*full_item, detail, "{query}: {}", full_item["id"]);
+        }
+    }
+    for offset in [0, 50] {
+        let (status, _, page) = get(&format!("/v1/items?view=full&limit=50&offset={offset}")).await;
+        assert_eq!(status, StatusCode::OK);
+        for item in page["items"].as_array().unwrap() {
+            let (_, _, detail) = get(&format!("/v1/items/{}", item["id"])).await;
+            assert_eq!(*item, detail, "fixture item {}", item["id"]);
+        }
+    }
+}
+
+#[tokio::test]
+async fn item_view_defaults_to_summary_and_caps_full_pages() {
+    let (_, summary_headers, summary) = get("/v1/items?limit=100").await;
+    let (_, explicit_headers, explicit_summary) = get("/v1/items?limit=100&view=summary").await;
+    assert_eq!(summary, explicit_summary);
+    assert!(summary["items"][0].get("effects").is_none());
+    assert_ne!(summary_headers[header::ETAG], explicit_headers[header::ETAG]);
+
+    let (status, full_headers, full) = get("/v1/items?limit=100&view=full").await;
+    assert_eq!(status, StatusCode::OK);
+    assert_eq!(full["limit"], 50);
+    assert_eq!(full["items"].as_array().unwrap().len(), 50);
+    assert_ne!(summary_headers[header::ETAG], full_headers[header::ETAG]);
+    assert_eq!(summary_headers[header::CACHE_CONTROL], full_headers[header::CACHE_CONTROL]);
+    for (requested_limit, expected_limit) in [("0", 1), ("1", 1), ("10000", 50)] {
+        let (status, _, page) = get(&format!("/v1/items?view=full&limit={requested_limit}")).await;
+        assert_eq!(status, StatusCode::OK);
+        assert_eq!(page["limit"], expected_limit);
+        assert_eq!(page["items"].as_array().unwrap().len(), expected_limit as usize);
+    }
+    let (_, _, empty) = get("/v1/items?view=full&offset=10000").await;
+    assert_eq!(empty["items"], serde_json::json!([]));
+    assert_eq!(empty["limit"], 50);
+
+    for value in ["expanded", "FULL", ""] {
+        let (status, _, invalid) = get(&format!("/v1/items?view={value}")).await;
+        assert_eq!(status, StatusCode::BAD_REQUEST);
+        assert_eq!(invalid["error"], format!("unknown view {value:?}"));
+    }
+    let (status, _, duplicate) = get("/v1/items?view=full&view=summary").await;
+    assert_eq!(status, StatusCode::BAD_REQUEST, "{duplicate}");
+}
+
+#[tokio::test]
+async fn full_item_rows_match_the_detail_schema() {
+    let (_, _, spec) = get("/v1/openapi.json").await;
+    let schemas = spec["components"]["schemas"].as_object().unwrap();
+    let page_schema = &spec["paths"]["/v1/items"]["get"]["responses"]["200"]["content"]["application/json"]["schema"];
+    let detail_schema =
+        &spec["paths"]["/v1/items/{id}"]["get"]["responses"]["200"]["content"]["application/json"]["schema"];
+    let (_, _, page) = get("/v1/items?view=full&limit=50").await;
+    response_matches_schema(&page, page_schema, schemas, "/v1/items?view=full").unwrap();
+    for item in page["items"].as_array().unwrap() {
+        response_matches_schema(item, detail_schema, schemas, "/v1/items?view=full")
+            .unwrap_or_else(|error| panic!("item {}: {error}", item["id"]));
+    }
+    let (_, _, empty_page) = get("/v1/items?view=full&offset=10000").await;
+    response_matches_schema(&empty_page, page_schema, schemas, "/v1/items?view=full&offset=10000").unwrap();
+}
+
+#[tokio::test]
+async fn item_full_page_query_count_does_not_grow_with_rows() {
+    static QUERY_COUNT: AtomicUsize = AtomicUsize::new(0);
+    let state = fixture_state();
+    state
+        .read_db(|db| {
+            db.trace_v2(
+                TraceEventCodes::SQLITE_TRACE_STMT,
+                Some(|event| {
+                    if let TraceEvent::Stmt(_, _) = event {
+                        QUERY_COUNT.fetch_add(1, Ordering::SeqCst);
+                    }
+                }),
+            );
+            Ok(())
+        })
+        .await
+        .unwrap();
+    let mut counts = Vec::new();
+    for limit in [5, 50] {
+        QUERY_COUNT.store(0, Ordering::SeqCst);
+        let (status, _, page) = get_from(state.clone(), &format!("/v1/items?view=full&limit={limit}")).await;
+        assert_eq!(status, StatusCode::OK, "{page}");
+        assert_eq!(page["items"].as_array().unwrap().len(), limit);
+        counts.push(QUERY_COUNT.load(Ordering::SeqCst));
+    }
+    assert_eq!(counts[0], counts[1], "full records must use a fixed number of queries");
+}
+
+#[tokio::test]
 async fn items_list_leaves_out_legacy_items_unless_asked_to_include_them() {
     let legacy_names = ["+3 Combustion Scorched Battle Axe", "Allegiance (historic)", "Ratkiller (legacy) (level 4)"];
     for path in ["/v1/items?limit=10000", "/v1/items?limit=10000&include_legacy=false"] {
@@ -1638,13 +1751,40 @@ async fn openapi_carries_a_real_example_for_every_json_response() {
         let Some(content) = path_item["get"]["responses"]["200"]["content"]["application/json"].as_object() else {
             continue;
         };
-        let example = content.get("example").unwrap_or(&Value::Null);
-        assert!(!example.is_null(), "GET {path}: 200 response has no example");
-        let real_response = sample_response_for(path, example).await;
-        assert_same_shape(&format!("GET {path}"), example, &real_response);
+        if let Some(examples) = content.get("examples").and_then(Value::as_object) {
+            assert!(!examples.is_empty(), "GET {path}: 200 response has no examples");
+            for (name, named_example) in examples {
+                let example = &named_example["value"];
+                assert!(!example.is_null(), "GET {path}: {name} has no value");
+                let real_response = if path == "/v1/items" && name == "full" {
+                    get("/v1/items?view=full&limit=2").await.2
+                } else {
+                    sample_response_for(path, example).await
+                };
+                assert_same_shape(&format!("GET {path} ({name})"), example, &real_response);
+            }
+        } else {
+            let example = content.get("example").unwrap_or(&Value::Null);
+            assert!(!example.is_null(), "GET {path}: 200 response has no example");
+            let real_response = sample_response_for(path, example).await;
+            assert_same_shape(&format!("GET {path}"), example, &real_response);
+        }
         checked_response_count += 1;
     }
     assert!(checked_response_count >= 25, "only {checked_response_count} JSON responses carry examples");
+}
+
+#[tokio::test]
+async fn item_page_examples_show_summary_and_full_views() {
+    let (_, _, spec) = get("/v1/openapi.json").await;
+    let examples = &spec["paths"]["/v1/items"]["get"]["responses"]["200"]["content"]["application/json"]["examples"];
+    let summary = &examples["summary"]["value"];
+    let full = &examples["full"]["value"];
+    assert!(summary["items"].as_array().is_some_and(|rows| !rows.is_empty()));
+    assert!(full["items"].as_array().is_some_and(|rows| !rows.is_empty() && rows.len() <= 2));
+    assert!(summary["items"][0].get("effects").is_none());
+    assert!(full["items"][0].get("effects").is_some());
+    assert!(examples.get("summary").is_some() && examples.get("full").is_some());
 }
 
 #[tokio::test]
@@ -1889,7 +2029,7 @@ const ALL_LIST_PATHS: &[(&str, &str)] = &[
 #[tokio::test]
 async fn every_scalar_list_column_and_filter_has_a_sort_key() {
     let (_, _, spec) = get("/v1/openapi.json").await;
-    let filter_only_toggles = ["include_set_bonuses", "include_legacy"];
+    let filter_only_toggles = ["include_set_bonuses", "include_legacy", "view"];
     for &(path, rows_key) in ALL_LIST_PATHS {
         let parameters = spec["paths"][path]["get"]["parameters"].as_array().unwrap();
         let sort_description =
@@ -2114,6 +2254,7 @@ fn accepted_sample_value(param_name: &str, schema_type: &str) -> &'static str {
         ("slot", _) => "Wrists",
         ("category", _) => "Armor",
         ("source", _) => "standard",
+        ("view", _) => "full",
         ("bonus", _) => "Strength",
         ("set", _) => "Cooking%20By%20the%20Book",
         ("kind", _) => "stat",
@@ -2220,6 +2361,7 @@ async fn openapi_documents_item_filters_and_shared_query_conventions() {
         "bonus_match",
         "include_set_bonuses",
         "include_legacy",
+        "view",
     ] {
         assert!(names.contains(name), "missing {name}");
     }
@@ -2229,6 +2371,9 @@ async fn openapi_documents_item_filters_and_shared_query_conventions() {
         assert_eq!(parameter["style"], "form", "{name}");
         assert_eq!(parameter["explode"], true, "{name}");
     }
+    let view = parameters.iter().find(|parameter| parameter["name"] == "view").unwrap();
+    assert_eq!(view["example"], "full");
+    assert!(view["description"].as_str().unwrap().contains("50"));
     let introduction = spec["info"]["description"].as_str().unwrap();
     for phrase in [
         "**Query parameters.**",

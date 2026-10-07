@@ -48,7 +48,7 @@ use utoipa_axum::router::OpenApiRouter;
                        lists are never used. `pack_match`, `set_match`, `quest_match`, `quest_chain_match`, `saga_match` and \
                        `bonus_match` accept `any` (default) or `all`; `slot_match` and `category_match` return 400 \
                        because an item has one slot and category. `q` matches a case-insensitive name substring unless \
-                       a route says otherwise. `limit` defaults to 100 and clamps to 1–10000; `offset` defaults to zero \
+                       a route says otherwise. `limit` defaults to 100 and clamps to 1–10000, or 50 for the full item view; `offset` defaults to zero \
                        and clamps to nonnegative values; `total` counts before paging. Repeat `sort` keys in priority \
                        order and prefix `-` for descending; nulls sort last in either direction. Each route lists its \
                        sort fields, and invalid or unknown query keys return 400 naming the bad key and accepted keys.\n\n\
@@ -284,7 +284,8 @@ declare_response_examples! { "v1":
     ("/v1/vendors/{id}", "vendors_id"),
     ("/v1/events", "events"),
     ("/v1/events/{id}", "events_id"),
-    ("/v1/items", "items"),
+    ("/v1/items", "items", "summary"),
+    ("/v1/items", "items_full", "full"),
     ("/v1/items/{id}", "items_id"),
     ("/v1/augments", "augments"),
     ("/v1/augments/{id}", "augments_id"),

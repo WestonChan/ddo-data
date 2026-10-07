@@ -1,5 +1,5 @@
 use crate::db::paged_rows;
-use crate::db::{convert_to_booleans, json_row, json_rows};
+use crate::db::{json_row, json_rows};
 use crate::error::ApiError;
 use crate::query::{declare_list_parameters, ApiQuery};
 use crate::state::AppState;
@@ -138,18 +138,4 @@ async fn crafting_system_detail(State(state): State<AppState>, Path(id): Path<i6
             Ok(Json(crafting_system))
         })
         .await
-}
-
-pub(super) fn crafting_systems_making(db: &Connection, item_id: i64) -> Result<Vec<Value>, ApiError> {
-    let mut crafting_systems = json_rows(
-        db,
-        "SELECT cs.id, cs.name, loot.is_rare, cs.page AS wiki_url
-           FROM sources loot JOIN crafting_systems cs ON cs.id = loot.crafting_system_id
-          WHERE loot.item_id = ?1 ORDER BY cs.name",
-        [item_id],
-    )?;
-    for crafting_system in &mut crafting_systems {
-        convert_to_booleans(crafting_system, &["is_rare"]);
-    }
-    Ok(crafting_systems)
 }

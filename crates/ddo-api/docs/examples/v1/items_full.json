@@ -1,0 +1,381 @@
+{
+  "items": [
+    {
+      "accepts_sentience": false,
+      "adventure_packs": [],
+      "armor": null,
+      "augment_slots": [
+        {
+          "family": "standard",
+          "label": "green",
+          "options": [],
+          "qualifier": null,
+          "slot_type_id": 6,
+          "sort_order": 0,
+          "variant": "green"
+        },
+        {
+          "family": "standard",
+          "label": "yellow",
+          "options": [],
+          "qualifier": null,
+          "slot_type_id": 7,
+          "sort_order": 1,
+          "variant": "yellow"
+        }
+      ],
+      "category": "Jewelry",
+      "challenge_packs": [],
+      "clickies": [
+        {
+          "clickie_id": 13,
+          "description": "Target: Foe\nDuration: 2 minutes 40 seconds\nSchool: Necromancy\nSpell Resistance: Yes\nThe target is cursed, giving a -4 penalty to attack rolls, skill rolls and saves.\nA successful Will save negates this effect.",
+          "icon": "BestowCurse",
+          "name": "Bestow Curse",
+          "spell_id": null
+        }
+      ],
+      "crafting_systems": [],
+      "description": "A large brass ring bearing demonic script. The metal is warm to the touch and\nappears to shrink to fit your finger.",
+      "drop_location": "Chains of Flame, Valgrim Forge-Bound 's Chest",
+      "effects": [
+        {
+          "bonus_type": "Enhancement",
+          "bonuses": [
+            {
+              "amount_source": "owner",
+              "bonus_type": "Enhancement",
+              "group": null,
+              "scale": 1.0,
+              "stat": "Strength",
+              "stat_category": "ability",
+              "value": 6
+            }
+          ],
+          "damage": [],
+          "description": "Passive: +6 Enhancement bonus to Strength.",
+          "effect_id": 1,
+          "name": "Strength",
+          "tier": null,
+          "value": 6,
+          "value2": null,
+          "verbose_name": "Strength +6"
+        },
+        {
+          "bonus_type": "Enhancement",
+          "bonuses": [
+            {
+              "amount_source": "owner",
+              "bonus_type": "Enhancement",
+              "group": null,
+              "scale": 1.0,
+              "stat": "Physical Resistance Rating",
+              "stat_category": "defensive",
+              "value": 15
+            }
+          ],
+          "damage": [],
+          "description": "+15 Enhancement bonus to Physical Resistance Rating",
+          "effect_id": 372,
+          "name": "Physical Sheltering",
+          "tier": null,
+          "value": 15,
+          "value2": null,
+          "verbose_name": "Physical Sheltering +15"
+        },
+        {
+          "bonus_type": "Enhancement",
+          "bonuses": [
+            {
+              "amount_source": "owner",
+              "bonus_type": "Enhancement",
+              "group": null,
+              "scale": 1.0,
+              "stat": "Alignment Absorption",
+              "stat_category": "defensive",
+              "value": 15
+            }
+          ],
+          "damage": [],
+          "description": "Passive: 15% Enhancement Bonus to Alignment Absorption. (Absorption reduces damage from an element by a percentage, after resistance have been taken into account.)",
+          "effect_id": 158,
+          "name": "Alignment Absorption",
+          "tier": null,
+          "value": 15,
+          "value2": null,
+          "verbose_name": "Alignment Absorption +15%"
+        }
+      ],
+      "enhancement_bonus": null,
+      "events": [],
+      "icon": "Ring_5",
+      "id": 6798,
+      "is_legacy": false,
+      "is_minor_artifact": false,
+      "item_type": null,
+      "material": "Gold",
+      "minimum_level": 11,
+      "modifiers": [
+        {
+          "amount_type": "SLA",
+          "amounts": [
+            5,
+            3,
+            3
+          ],
+          "apply_as_item_effect": false,
+          "bonus": "Equipment",
+          "bonus_type": "Equipment",
+          "cap": null,
+          "damage": null,
+          "dice_bonus": null,
+          "dice_damage": null,
+          "dice_number": null,
+          "dice_sides": null,
+          "display_name": null,
+          "effect_type": "ItemClickie",
+          "extra_types": null,
+          "id": 12408,
+          "is_item_specific": false,
+          "is_rare": false,
+          "percent": false,
+          "rank": null,
+          "requirements": [],
+          "sort_order": 0,
+          "stack_source": null,
+          "targets": [
+            "Bestow Curse"
+          ],
+          "value": null
+        }
+      ],
+      "name": "Ring of Baphomet",
+      "quest_chains": [],
+      "quests": [
+        {
+          "chest": "valgrim forge-bound 's chest",
+          "difficulties": [
+            "normal",
+            "hard",
+            "elite"
+          ],
+          "epic_level": 22,
+          "id": 323,
+          "is_free_to_play": false,
+          "is_raid": false,
+          "is_rare": false,
+          "level": 12,
+          "loot_type": "chest",
+          "name": "Chains of Flame",
+          "pack": "Demon Sands",
+          "patron": "The Free Agents"
+        },
+        {
+          "chest": null,
+          "difficulties": [
+            "normal",
+            "hard",
+            "elite"
+          ],
+          "epic_level": 22,
+          "id": 324,
+          "is_free_to_play": false,
+          "is_raid": true,
+          "is_rare": false,
+          "level": 12,
+          "loot_type": "chest",
+          "name": "Zawabi's Revenge",
+          "pack": "Demon Sands",
+          "patron": "The Free Agents"
+        }
+      ],
+      "race_required": null,
+      "sagas": [],
+      "set": {
+        "icon": "Menechtarun",
+        "id": 136,
+        "name": "The Desert's Starless Nights"
+      },
+      "set_name": "The Desert's Starless Nights",
+      "slot": "Ring",
+      "sources": [
+        {
+          "character_level": null,
+          "chest": "valgrim forge-bound 's chest",
+          "cost": null,
+          "id": 323,
+          "is_rare": false,
+          "kind": "quest",
+          "loot_type": "chest",
+          "name": "Chains of Flame",
+          "tier": null,
+          "wiki_url": "https://ddowiki.com/page/Chains_of_Flame"
+        },
+        {
+          "character_level": null,
+          "chest": null,
+          "cost": null,
+          "id": 324,
+          "is_rare": false,
+          "kind": "quest",
+          "loot_type": "chest",
+          "name": "Zawabi's Revenge",
+          "tier": null,
+          "wiki_url": "https://ddowiki.com/page/Zawabi's_Revenge"
+        }
+      ],
+      "starter_rewards": [],
+      "vendors": [],
+      "weapon": null,
+      "wiki_url": "https://ddowiki.com/page/Item:Ring_of_Baphomet"
+    },
+    {
+      "accepts_sentience": false,
+      "adventure_packs": [],
+      "armor": null,
+      "augment_slots": [
+        {
+          "family": "standard",
+          "label": "blue",
+          "options": [],
+          "qualifier": null,
+          "slot_type_id": 8,
+          "sort_order": 0,
+          "variant": "blue"
+        }
+      ],
+      "category": "Jewelry",
+      "challenge_packs": [],
+      "clickies": [],
+      "crafting_systems": [],
+      "description": "Delight in your brutality.",
+      "drop_location": "The Hobgoblin Horde, End chest",
+      "effects": [
+        {
+          "bonus_type": "Enhancement",
+          "bonuses": [
+            {
+              "amount_source": "owner",
+              "bonus_type": "Enhancement",
+              "group": null,
+              "scale": 1.0,
+              "stat": "Strength",
+              "stat_category": "ability",
+              "value": 10
+            }
+          ],
+          "damage": [],
+          "description": "Passive: +10 Enhancement bonus to Strength.",
+          "effect_id": 1,
+          "name": "Strength",
+          "tier": null,
+          "value": 10,
+          "value2": null,
+          "verbose_name": "Strength +10"
+        },
+        {
+          "bonus_type": "Resistance",
+          "bonuses": [
+            {
+              "amount_source": "owner",
+              "bonus_type": "Resistance",
+              "group": null,
+              "scale": 1.0,
+              "stat": "Fortitude Save",
+              "stat_category": "defensive",
+              "value": 9
+            }
+          ],
+          "damage": [],
+          "description": "This item gives a +9 Resistance bonus to your Fortitude save.",
+          "effect_id": 18,
+          "name": "Fortitude Save",
+          "tier": null,
+          "value": 9,
+          "value2": null,
+          "verbose_name": "Fortitude Save +9"
+        },
+        {
+          "bonus_type": "Profane",
+          "bonuses": [
+            {
+              "amount_source": "owner",
+              "bonus_type": "Profane",
+              "group": null,
+              "scale": 1.0,
+              "stat": "Well Rounded",
+              "stat_category": "other",
+              "value": 1
+            }
+          ],
+          "damage": [],
+          "description": "+1 Profane bonus to all abilities.",
+          "effect_id": 506,
+          "name": "Profane Well Rounded",
+          "tier": null,
+          "value": 1,
+          "value2": null,
+          "verbose_name": "Profane Well Rounded +1"
+        }
+      ],
+      "enhancement_bonus": null,
+      "events": [],
+      "icon": "Ring_2",
+      "id": 6800,
+      "is_legacy": false,
+      "is_minor_artifact": false,
+      "item_type": null,
+      "material": "Gem",
+      "minimum_level": 21,
+      "modifiers": [],
+      "name": "Ring of Brutal Force",
+      "quest_chains": [],
+      "quests": [
+        {
+          "chest": "end chest",
+          "difficulties": [
+            "casual",
+            "normal",
+            "hard"
+          ],
+          "epic_level": 21,
+          "id": 22,
+          "is_free_to_play": false,
+          "is_raid": false,
+          "is_rare": false,
+          "level": 1,
+          "loot_type": "chest",
+          "name": "The Hobgoblin Horde",
+          "pack": "Keep on the Borderlands",
+          "patron": "The Gatekeepers"
+        }
+      ],
+      "race_required": null,
+      "sagas": [],
+      "set": null,
+      "set_name": null,
+      "slot": "Ring",
+      "sources": [
+        {
+          "character_level": null,
+          "chest": "end chest",
+          "cost": null,
+          "id": 22,
+          "is_rare": false,
+          "kind": "quest",
+          "loot_type": "chest",
+          "name": "The Hobgoblin Horde",
+          "tier": null,
+          "wiki_url": "https://ddowiki.com/page/The_Hobgoblin_Horde"
+        }
+      ],
+      "starter_rewards": [],
+      "vendors": [],
+      "weapon": null,
+      "wiki_url": "https://ddowiki.com/page/Item:Ring_of_Brutal_Force"
+    }
+  ],
+  "limit": 2,
+  "offset": 0,
+  "total": 73
+}

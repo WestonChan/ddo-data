@@ -192,6 +192,54 @@ pub fn validate_api(db_path: &Path, all_details: bool) -> Result<(usize, usize)>
             }
         }
     }
+    let item_page_schema = &paths["/v1/items"]["get"]["responses"]["200"]["content"]["application/json"]["schema"];
+    let item_detail_schema =
+        &paths["/v1/items/{id}"]["get"]["responses"]["200"]["content"]["application/json"]["schema"];
+    let mut full_offset = 0;
+    let mut full_item_ids = BTreeSet::new();
+    let mut full_item_rows = BTreeMap::new();
+    loop {
+        let request_path = format!("/v1/items?view=full&limit=50&offset={full_offset}");
+        let response = runtime.block_on(json_response(&router, &request_path))?;
+        if let Err(error) = response_matches_schema(&response, item_page_schema, schemas, &request_path) {
+            if violations.len() < 100 {
+                violations.push(error);
+            }
+        }
+        checked_responses += 1;
+        let rows = response["items"].as_array().context("full item page has no items array")?;
+        for (index, row) in rows.iter().enumerate() {
+            let row_path = format!("{request_path}.items[{index}]");
+            let id = row["id"].as_i64().with_context(|| format!("{row_path} has no numeric id"))?;
+            ensure!(full_item_ids.insert(id), "{row_path}: duplicate item id {id}");
+            if all_details {
+                full_item_rows.insert(id, row.clone());
+            }
+            for result in [
+                response_matches_schema(row, item_detail_schema, schemas, &row_path),
+                detail_has_unique_drop_locations(row, &row_path, &source_packs),
+                response_effect_lines_show_non_home_types(row, &row_path, &effect_home_types)
+                    .map_err(|error| error.to_string()),
+                response_effect_lines_have_descriptions(row, &row_path, &effects_that_need_a_description)
+                    .map_err(|error| error.to_string()),
+            ] {
+                if let Err(error) = result {
+                    if violations.len() < 100 {
+                        violations.push(error);
+                    }
+                }
+            }
+        }
+        full_offset += rows.len();
+        if rows.is_empty() || full_offset as u64 >= response["total"].as_u64().context("full item page has no total")? {
+            break;
+        }
+    }
+    ensure!(
+        ids_by_list_path.get("/v1/items") == Some(&full_item_ids),
+        "full item pages do not contain the same item ids as summary pages"
+    );
+    let full_item_rows = Arc::new(full_item_rows);
     for (path, route) in paths {
         let Some(list_path) = path.strip_suffix("/{id}") else {
             continue;
@@ -217,7 +265,7 @@ pub fn validate_api(db_path: &Path, all_details: bool) -> Result<(usize, usize)>
         for id_group in selected_ids.chunks(PARALLEL_DETAIL_REQUESTS) {
             let validated_responses: Vec<Option<String>> = runtime.block_on(async {
                 let mut requests = tokio::task::JoinSet::new();
-                for id in id_group {
+                for &id in id_group {
                     let request_path = format!("{list_path}/{id}");
                     let check_drop_locations = list_path == "/v1/items" || list_path == "/v1/augments";
                     let request_router = router.clone();
@@ -228,6 +276,8 @@ pub fn validate_api(db_path: &Path, all_details: bool) -> Result<(usize, usize)>
                     let effects_that_need_a_description = effects_that_need_a_description.clone();
                     let vocabulary_counts = vocabulary_counts.clone();
                     let is_effect_detail = list_path == "/v1/effects";
+                    let is_full_item_detail = all_details && list_path == "/v1/items";
+                    let full_item_rows = full_item_rows.clone();
                     requests.spawn(async move {
                         let response = json_response(&request_router, &request_path).await?;
                         let violation = tokio::task::spawn_blocking(move || {
@@ -255,6 +305,16 @@ pub fn validate_api(db_path: &Path, all_details: bool) -> Result<(usize, usize)>
                                             &vocabulary_counts,
                                         )
                                         .map_err(|error| error.to_string())?;
+                                    }
+                                    if is_full_item_detail {
+                                        let full_row = full_item_rows
+                                            .get(&id)
+                                            .ok_or_else(|| format!("{request_path}: missing full-page row"))?;
+                                        if full_row != &response {
+                                            return Err(format!(
+                                                "{request_path}: full-page row differs from detail body"
+                                            ));
+                                        }
                                     }
                                     Ok(())
                                 })

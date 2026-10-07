@@ -281,6 +281,7 @@ fn deny_api_contract_or_scale_regressions() -> Result<()> {
     for test_name in [
         "list_parameter_docs_share_descriptions_and_match_runtime_sort_fields",
         "item_pack_query_count_does_not_grow_with_rows_or_sources",
+        "item_full_page_query_count_does_not_grow_with_rows",
         "typed_response_schemas_resolve_every_reference_and_describe_fields",
         "every_json_route_response_matches_its_openapi_schema",
     ] {
