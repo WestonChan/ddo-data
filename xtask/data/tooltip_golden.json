@@ -4691,7 +4691,7 @@
           "wiki_tooltip": "Acid Intensity +25%: +25% Enhancement bonus to critical damage with Acid spells.",
           "tooltip_is_standard": true,
           "wiki_link": "/page/Intensity",
-          "ours": "Acid Intensity +",
+          "ours": "Acid Intensity",
           "ours_line": {
             "index": 2,
             "template": "Acid Intensity +{1}%",
@@ -4699,7 +4699,7 @@
             "value": 25,
             "value2": null
           },
-          "note": "Maetrim's source name was 'Acid Intensity +'; the cited correction removes the dangling sign.",
+          "note": "Maetrim renamed his 'Acid Intensity +' to 'Acid Intensity' in ba7e18e and dropped the description's sign; effect_map.toml's description template restores the wiki's +25%.",
           "standard_evidence": "not seen on another sampled item; no extra page read",
           "page": "https://ddowiki.com/page/Item:Legendary_Muck%27s_Ascension",
           "read": "2026-10-05",

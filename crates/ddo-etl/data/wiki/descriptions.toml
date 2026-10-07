@@ -165,3 +165,10 @@ name = "Divine Disciple: Divine Smiting V"
 page = "https://ddowiki.com/page/Divine_Disciple_enhancements"
 read = "2026-09-29"
 description = "Choose:\nArcane Smiting V: +2% Critical Chance with Fire, Cold, Acid, Electric and Force spells\nRequires both Divine Emissary of Darkness/Light\nDivine Smiting V: +2% Critical Chance with Light, Negative, and Alignment spells"
+
+[[entry]]
+kind = "enhancement"
+name = "Harper Agent: The Resolute Blade"
+page = "https://ddowiki.com/page/Update_81_Patch_4_Release_Notes"
+read = "2026-10-07"
+description = "Multiselector:\nThe Resolute Blade: +1 Competence Bonus to Critical Threat Range while Single Weapon Fighting. Rank 2: +1 Competence Bonus to Critical Multiplier while Single Weapon Fighting.\nThe Harp's Magic: +2% Spell Crit Damage with Force/Physical, Sonic, Light, and Good spells. Rank 2: An additional +2% Spell Crit Damage with Force/Physical, Sonic, Light, and Good spells"

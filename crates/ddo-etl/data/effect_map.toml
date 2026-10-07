@@ -210,6 +210,7 @@ ExtraLayOnHands = "Lay on Hands Uses"
 "Universal Spell Lore" = "+{1}% %b1 Bonus to Spell Critical Chance"
 
 [description_templates]
+"Acid Intensity" = "+{1}% %b1 bonus to critical damage with Acid spells."
 "Spell Powers" = "{1} %b1 bonus to each individual spell power. (Universal Spell Power is a different statistic)"
 "Light and Alignment Spell Power" = "{1} %b1 bonus to Light and Alignment spell power."
 "Negative and Poison Spell Power" = "{1} %b1 bonus to Negative and Poison spell power."

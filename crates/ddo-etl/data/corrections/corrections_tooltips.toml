@@ -609,16 +609,6 @@ read = "2026-10-05"
 
 [[correction]]
 kind = "effect"
-name = "Acid Intensity +"
-field = "name"
-from = "Acid Intensity +"
-to = "Acid Intensity"
-reason = "The amount sign belongs to the line template, not the effect name."
-source = "https://ddowiki.com/page/Item:Legendary_Muck%27s_Ascension"
-read = "2026-10-05"
-
-[[correction]]
-kind = "effect"
 name = "Energy Siphon VI"
 field = "verbose_name_template"
 from = "Energy Siphon XII"
@@ -716,17 +706,6 @@ from = -1
 to = -2
 reason = "The wiki and the Maximize magnitude rule give a 2 SP reduction for tier I."
 source = "https://ddowiki.com/page/Item:Vizeran's_Band"
-read = "2026-10-05"
-
-[[correction]]
-kind = "item_effect"
-name = "Legendary Cracked Symbol of Lolth"
-effect = "Void Intensity"
-field = "bonus_type"
-from = "Equipment"
-to = "Enhancement"
-reason = "The wiki tooltip calls this Void Intensity an Enhancement bonus; Maetrim types this item's link Equipment."
-source = "https://ddowiki.com/page/Item:Legendary_Cracked_Symbol_of_Lolth"
 read = "2026-10-05"
 
 [[correction]]

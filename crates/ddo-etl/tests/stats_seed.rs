@@ -18,6 +18,7 @@ const STATS_KEPT_WITHOUT_A_SOURCE: &[(&str, &str)] = &[
     ("Sleep Save", "saves against sleep, which no SaveBonus in his files names"),
     ("Divination Focus", "divination spell DCs, which no SpellDC or SchoolFocusNumber in his files names"),
     ("Force Resistance", "resistance to force damage, which no EnergyResistance in his files names"),
+    ("Concealment", "concealment percentage, which his files carry as Displacement"),
 ];
 
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord)]

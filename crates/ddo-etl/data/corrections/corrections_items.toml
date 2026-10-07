@@ -625,26 +625,6 @@ read = "2026-10-02"
 
 [[correction]]
 kind = "item"
-name = "Legendary Levik's Bracers"
-field = "set_bonus"
-from = "null"
-to = "Legacy of Levik"
-reason = "The wiki lists Legacy of Levikk among the bracers' enchantments; his item names no set, which leaves his Legacy of Levik set without members."
-source = "https://ddowiki.com/page/Item:Legendary_Levik%27s_Bracers"
-read = "2026-10-02"
-
-[[correction]]
-kind = "item"
-name = "Legendary Lorik's Necklace"
-field = "set_bonus"
-from = "null"
-to = "Legacy of Lorik"
-reason = "The wiki lists Legacy of Lorikk among the necklace's enchantments; his item names no set, which leaves his Legacy of Lorik set without members."
-source = "https://ddowiki.com/page/Item:Legendary_Lorik%27s_Necklace"
-read = "2026-10-02"
-
-[[correction]]
-kind = "item"
 name = "Bracers of the Mountain"
 field = "set_bonus"
 from = "null"
@@ -692,3 +672,57 @@ to = "DM's Vision"
 reason = "The wiki's DM's Vision items are Voice of the Master, its Epic version and Mantle of the Worldshaper; his item names no set."
 source = "https://ddowiki.com/page/Category:DM%27s_Vision_items"
 read = "2026-10-02"
+
+[[correction]]
+kind = "item_bonus"
+name = "Legendary Sceptre of the Oozing Hunger"
+stat = "Acid Spell Critical Damage"
+bonus_type = "null"
+field = "bonus_type"
+from = "null"
+to = "Enhancement"
+reason = "The wiki tooltip of the sceptre's Acid Intensity +25% calls it an Enhancement bonus; his buff has no bonus type."
+source = "https://ddowiki.com/page/Item:Legendary_Sceptre_of_the_Oozing_Hunger"
+read = "2026-10-07"
+
+[[correction]]
+kind = "item_bonus"
+name = "Sceptre of the Oozing Hunger"
+stat = "Acid Spell Critical Damage"
+bonus_type = "null"
+field = "bonus_type"
+from = "null"
+to = "Enhancement"
+reason = "The wiki tooltip of the sceptre's Acid Intensity +12% calls it an Enhancement bonus; his buff has no bonus type."
+source = "https://ddowiki.com/page/Item:Sceptre_of_the_Oozing_Hunger"
+read = "2026-10-07"
+
+[[correction]]
+kind = "item"
+name = "Legendary Dart of the Oozing Hunger of the Oozing Hunger"
+field = "name"
+from = "Legendary Dart of the Oozing Hunger of the Oozing Hunger"
+to = "Legendary Dart of the Oozing Hunger"
+reason = "The suffix is doubled; the wiki and his 43 other Legendary Oozing Hunger items name it once."
+source = "https://ddowiki.com/page/Item:Legendary_Dart_of_the_Oozing_Hunger"
+read = "2026-10-07"
+
+[[correction]]
+kind = "item"
+name = "Legendary Tower Shield of the Oozing Hunger"
+field = "material"
+from = "Steel"
+to = "Wood"
+reason = "The wiki gives the Legendary tower shield Wood as its material."
+source = "https://ddowiki.com/page/Item:Legendary_Tower_Shield_of_the_Oozing_Hunger"
+read = "2026-10-07"
+
+[[correction]]
+kind = "item_effect"
+name = "The Shadow Lord's Arcana"
+field = "add"
+from = "null"
+to = { name = "Graz'zt's Magic: Trap the Soul", description = "This weapon stores the innate magic of the Dark Prince. When you hit an enemy with an offensive spell, this power occasionally comes to the surface, sucking out the life force of an enemy with Hit Points less than 3,420 and imprisoning the essence of their body and soul in a gem if they fail a DC 122 Will saving throw." }
+reason = "The wiki item carries Graz'zt's Magic: Trap the Soul; his file has no such effect."
+source = "https://ddowiki.com/page/Item:The_Shadow_Lord%27s_Arcana"
+read = "2026-10-07"

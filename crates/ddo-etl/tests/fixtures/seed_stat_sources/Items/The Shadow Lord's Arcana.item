@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Items>
+  <Item>
+    <Name>The Shadow Lord's Arcana</Name>
+    <Buff>
+      <Type>SchoolFocusNumber</Type>
+      <Value1>14</Value1>
+      <BonusType>Equipment</BonusType>
+      <Description1>Conjuration</Description1>
+      <Item>Conjuration</Item>
+    </Buff>
+  </Item>
+</Items>

@@ -2758,6 +2758,16 @@ zone = "The Sleeping Spell Inn"
 bestowed_by = "Verona Jethro"
 
 [[quest]]
+name = "Terror of the Demon Lords"
+page = "https://ddowiki.com/page/Terror_of_the_Demon_Lords"
+read = "2026-09-30"
+free_to_play = false
+legendary_level = 37
+zone = "Vision of an Alternate History"
+bestowed_by = "Vision of Future Graz'zt"
+flagging = "No flagging required."
+
+[[quest]]
 name = "Tharashk Arena"
 page = "https://ddowiki.com/page/Tharashk_Arena"
 read = "2026-10-01"
