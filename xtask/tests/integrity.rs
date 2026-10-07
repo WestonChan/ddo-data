@@ -59,7 +59,13 @@ fn fixture_options() -> IntegrityOptions {
 fn check_db_output(db_path: &Path) -> Output {
     let no_corrections_dir = tempfile::tempdir().unwrap();
     let mut command = Command::new(env!("CARGO_BIN_EXE_xtask"));
-    command.arg("check-db").arg(db_path).arg("--corrections").arg(no_corrections_dir.path());
+    command
+        .arg("check-db")
+        .arg(db_path)
+        .arg("--source")
+        .arg(fixtures_dir().join("DataFiles"))
+        .arg("--corrections")
+        .arg(no_corrections_dir.path());
     for table in TABLES_EMPTY_IN_FIXTURES {
         command.args(["--allow-empty-table", table]);
     }
