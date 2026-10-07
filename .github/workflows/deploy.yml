@@ -122,6 +122,7 @@ jobs:
 
       - name: Compare served lines with the wiki's tooltips
         if: steps.compare.outputs.changed == 'true'
+        continue-on-error: ${{ github.event_name == 'schedule' }}
         run: cargo run --release -q -p xtask -- wiki-tooltips --db ddo.db
 
       - name: Keep the dataset as a workflow artifact

@@ -16,7 +16,7 @@ cargo xtask wiki-check --wiki DIR   # validate wiki override drafts against upst
 cargo xtask wiki-batch              # write reading-agent inputs (item, augment, quest page, crafting, vendor, event and blank-description lists) to target/wiki-batch/
 cargo xtask check-db ddo.db         # run the integrity checks on a built database; fails on any HARD check
 cargo xtask validate-api --db ddo.db --all-details  # validate every served response against its schema (the deploy runs it)
-cargo xtask wiki-tooltips --db ddo.db               # compare served lines with the wiki golden set in xtask/data/tooltip_golden.json; fails on an unrecorded mismatch (the deploy runs it)
+cargo xtask wiki-tooltips --db ddo.db               # compare served lines with the wiki golden set in xtask/data/tooltip_golden.json; fails on an unrecorded mismatch (the deploy runs it: a push or manual deploy fails, the weekly scheduled rebuild only warns, so an upstream text change never blocks data)
 cargo run -p ddo-etl -- build --out ddo.db   # --source defaults to $DDO_UPSTREAM/Output/DataFiles, else upstream/Output/DataFiles
 DDO_DB_PATH=ddo.db ICONS_DIR=icons cargo run -p ddo-api
 ```
